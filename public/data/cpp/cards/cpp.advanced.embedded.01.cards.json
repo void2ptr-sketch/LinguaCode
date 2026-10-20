@@ -1,0 +1,636 @@
+{
+  "scenarioId": "cpp.advanced.embedded.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-01",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "embedded",
+          "memory",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Что характерно для embedded-разработки?",
+      "optionsLearning": [
+        "Ограниченные ресурсы и требования реального времени",
+        "Много памяти",
+        "Высокоуровневый API",
+        "Сборщик мусора"
+      ],
+      "correctIndex": 0,
+      "explanation": "Экономия памяти и детерминизм важны."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-02",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "embedded",
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Почему исключения часто выключают в embedded?",
+      "optionsLearning": [
+        "Недетерминизм времени и накладные расходы",
+        "Стандарт запрещает",
+        "Компилятор не умеет",
+        "Нет причин"
+      ],
+      "correctIndex": 0,
+      "explanation": "-fno-exceptions — экономия и предсказуемость."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Embedded и Systems Programming — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "embedded",
+          "modern-cpp"
+        ],
+        "tags": "Меньше runtime-вычислений."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "question": "Что означает constexpr для embedded?",
+      "code": {
+        "code": [
+          "Расчёт констант на этапе компиляции",
+          "Runtime",
+          "Память",
+          "Сеть"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-04",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "embedded"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Что такое memory-mapped IO?",
+      "optionsLearning": [
+        "Работа с регистрами по адресам",
+        "Сеть",
+        "Файлы",
+        "Потоки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Чтение/запись в адресное пространство."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-05",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "embedded",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Чем опасен malloc в embedded?",
+      "optionsLearning": [
+        "Фрагментация и недетерминизм",
+        "Быстро",
+        "Память большая",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Статические/пульные аллокации предпочтительны."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Embedded и Systems Programming — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "embedded",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "question": "Что выведет эта программа на строгом встраиваемом стеке?",
+      "code": {
+        "code": "int f() { int x; return x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Мусор (неинициализировано)",
+        "0",
+        "Ошибка",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Локальная переменная без инициализации — мусор."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-07",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "embedded",
+          "os"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Что такое RTOS?",
+      "optionsLearning": [
+        "Операционная система реального времени",
+        "Сеть",
+        "Виртуализация",
+        "GUI"
+      ],
+      "correctIndex": 0,
+      "explanation": "Планировщик с гарантиями."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-08",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "embedded"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Что такое bare-metal код?",
+      "optionsLearning": [
+        "Программа без ОС",
+        "С ядром Linux всегда",
+        "Виртуальная",
+        "Сетевая"
+      ],
+      "correctIndex": 0,
+      "explanation": "Прямое управление железом."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Embedded и Systems Programming — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "embedded",
+          "memory"
+        ],
+        "tags": "Для регистров и обмена с железом."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "question": "Что делает volatile в embedded?",
+      "code": {
+        "code": [
+          "Запрещает оптимизацию чтений/записей",
+          "Ускоряет",
+          "Константой",
+          "Безопасностью"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-10",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "embedded"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Зачем volatile для регистра?",
+      "optionsLearning": [
+        "Чтобы читать каждый раз из устройства",
+        "Кэш",
+        "Типы",
+        "Скорость"
+      ],
+      "correctIndex": 0,
+      "explanation": "Избежание «затёртых» чтений."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-11",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "embedded"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Что такое watchdog?",
+      "optionsLearning": [
+        "Таймер, сбрасывающий систему при зависании",
+        "Поток",
+        "Лог",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Восстановление после сбоя."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-12",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "embedded"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Что такое interrupt?",
+      "optionsLearning": [
+        "Аппаратное прерывание обработки",
+        "Макрос",
+        "Функция",
+        "Поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "Обработчики ISR."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Embedded и Systems Programming — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "embedded",
+          "concurrency"
+        ],
+        "tags": "Длинная обработка — потерь событий."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "question": "Почему в ISR нельзя блокироваться?",
+      "code": {
+        "code": [
+          "Прерывание должно быть быстрым",
+          "Логи",
+          "RAM",
+          "Не после"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-14",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "embedded",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Что такое static storage duration?",
+      "optionsLearning": [
+        "Память, живущая всю программу",
+        "Стек",
+        "Куча",
+        "Регистр"
+      ],
+      "correctIndex": 0,
+      "explanation": "Глобальные/static без динамики."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-15",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "embedded"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Что такое endianness?",
+      "optionsLearning": [
+        "Порядок байт в слове",
+        "Тип",
+        "Сеть",
+        "Кэш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Little/big-endian важно для протоколов."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "Embedded и Systems Programming — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "embedded"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "question": "Что выведет для памяти в little-endian?",
+      "code": {
+        "code": "int x = 0x12345678; // байты 78 56 34 12",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "78 56 34 12",
+        "12 34 56 78",
+        "all same",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Порядок байт платформы."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-17",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "embedded",
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Что такое linker script?",
+      "optionsLearning": [
+        "Описание раскладки памяти",
+        "Компилятор",
+        "JSON",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Адреса секций (flash, RAM)."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-18",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "embedded"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Что такое DMA?",
+      "optionsLearning": [
+        "Прямой доступ к памяти без CPU",
+        "Сеть",
+        "Шина",
+        "Поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "Эффективный перенос данных."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-19",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "embedded",
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Как отлаживать embedded?",
+      "optionsLearning": [
+        "JTAG/SWD, логи, осёллы",
+        "только printf",
+        "нельзя",
+        "Браузер"
+      ],
+      "correctIndex": 0,
+      "explanation": "Аппаратные отладчики."
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario.card-20",
+      "kind": "select",
+      "title": "Embedded и Systems Programming — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "embedded",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.embedded.01.scenario",
+      "promptKnown": "Ключевой принцип embedded C++?",
+      "optionsLearning": [
+        "Детерминизм, минимум динамики, познание железа",
+        "Максимум абстракций",
+        "GC",
+        "Все фреймворки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Размер и предсказуемость."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

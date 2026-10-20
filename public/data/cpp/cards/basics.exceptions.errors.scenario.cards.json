@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.exceptions.errors.scenario",
+  "cards": [
+    {
+      "id": "basics.exceptions.errors.card-01",
+      "kind": "select",
+      "title": "std::exception hierarchy",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Базовый класс exception?",
+      "optionsLearning": [
+        "std::exception",
+        "Error",
+        "Exception",
+        "Throwable"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "errors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-exceptions-errors",
+      "scenarioId": "basics.exceptions.errors.scenario"
+    },
+    {
+      "id": "basics.exceptions.errors.card-02",
+      "kind": "select",
+      "title": "Runtime vs Logic error",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем runtime_error отличается от logic_error?",
+      "optionsLearning": [
+        "Runtime — внешние ошибки, Logic — логические",
+        "Одно и то же",
+        "Logic — внешние",
+        "Нет различий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "errors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-exceptions-errors",
+      "scenarioId": "basics.exceptions.errors.scenario"
+    },
+    {
+      "id": "basics.exceptions.errors.card-03",
+      "kind": "select",
+      "title": "Catch by reference",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Почему catch (const std::exception& e)?",
+      "optionsLearning": [
+        "Избегание slicing, const correctness",
+        "catch (std::exception) только",
+        "Нельзя по ссылке",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "errors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-exceptions-errors",
+      "scenarioId": "basics.exceptions.errors.scenario"
+    },
+    {
+      "id": "basics.exceptions.errors.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как правильно ловить исключения?",
+      "optionsLearning": [
+        "Конкретные типы, затем std::exception...",
+        "catch (...) всегда",
+        "Никак",
+        "Только runtime_error"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "errors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-exceptions-errors",
+      "scenarioId": "basics.exceptions.errors.scenario"
+    }
+  ]
+}

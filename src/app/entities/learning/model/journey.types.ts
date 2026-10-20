@@ -25,6 +25,7 @@ export type JourneyContentType = 'theory' | 'practice' | 'test' | 'video' | 'cas
  */
 export const CARD_KIND_TO_CONTENT_TYPE: Record<string, JourneyContentType> = {
   select: 'theory',
+  'multiple-choice': 'theory',
   'code-select': 'test',
   symbol: 'theory',
   reading: 'theory',

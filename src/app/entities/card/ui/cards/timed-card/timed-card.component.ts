@@ -73,6 +73,9 @@ export class TimedCardComponent implements OnInit, OnDestroy {
    */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
+  /** Nonce for deterministic option shuffling. */
+  readonly shuffleNonce = input<number>(0);
+
   /**
    * Emits when the user selects an option.
    * @remarks Payload is the zero-based index of the selected option.

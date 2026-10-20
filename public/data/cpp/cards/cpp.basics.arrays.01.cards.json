@@ -1,0 +1,626 @@
+{
+  "scenarioId": "cpp.basics.arrays.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-01",
+      "kind": "select",
+      "title": "Что такое массивы в C++?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите массив в контексте C++",
+      "optionsLearning": [
+        "Непрерывная область памяти для элементов одного типа",
+        "Динамическая коллекция разрозненных элементов",
+        "Ссылка на объект другого класса",
+        "Функция для сортировки данных"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "что"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "Массив — последовательные ячейки памяти одинакового размера. Элементы расположены рядом, что обеспечивает cache-friendly доступ."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-02",
+      "kind": "select",
+      "title": "Объявление массивов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой синтаксис объявления массива?",
+      "optionsLearning": [
+        "тип имя[размер];",
+        "array<тип, размер> имя;",
+        "var имя = new тип[размер];",
+        "dim имя(размер)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "объявление"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "int arr[10] объявляет массив из 10 int. Размер должен быть константой на момент компиляции (для stack-массивов)."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-03",
+      "kind": "select",
+      "title": "Инициализация массивов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как инициализировать массив значениями?",
+      "optionsLearning": [
+        "int arr[3] = {1, 2, 3};",
+        "int arr[3] = (1, 2, 3);",
+        "int arr = {1, 2, 3};",
+        "int arr{1; 2; 3}"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "инициализация"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "Список инициализации в {} задаёт начальные значения. Остальные элементы обнуляются."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-04",
+      "kind": "select",
+      "title": "Доступ к элементам по индексу",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой индекс у первого элемента массива?",
+      "optionsLearning": [
+        "0 (нулевой)",
+        "1 (первый)",
+        "-1 (отрицательный)",
+        "Зависит от компилятора"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "доступ"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "C++ использует 0-based индексацию. Для массива size N: индексы 0..N-1."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-05",
+      "kind": "select",
+      "title": "Размер массива (sizeof)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить размер массива в байтах?",
+      "optionsLearning": [
+        "sizeof(arr) — возвращает total bytes",
+        "arr.length — свойство объекта",
+        "len(arr) — встроенная функция",
+        "sizeof(arr[0]) — размер одного элемента"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "размер"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "sizeof(arr) даёт общий размер в байтах. Для count: sizeof(arr)/sizeof(arr[0])."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-06",
+      "kind": "select",
+      "title": "Циклы для обработки массивов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой цикл наиболее идиоматичен для массива?",
+      "optionsLearning": [
+        "for (int i=0; i<n; ++i) — индексный доступ",
+        "while (true) — бесконечный цикл",
+        "do-while — проверка после",
+        "foreach только для std::vector"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "циклы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "Классический for с индексом — стандартный способ обхода raw arrays. C++11: range-based for (for (auto x : arr))."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-07",
+      "kind": "select",
+      "title": "Многомерные массивы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обратиться к элементу матрицы 3x3?",
+      "optionsLearning": [
+        "arr[i][j] — строка i, столбец j",
+        "arr(i, j) — функция вызов",
+        "arr[i.j] — синтаксис с точкой",
+        "arr->i->j — указатель"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "многомерные"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "arr[i][j] = *(*(arr + i) + j). В памяти хранится как линейный массив: row-major порядок."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-08",
+      "kind": "select",
+      "title": "Массивы и указатели",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что происходит при передаче массива в функцию?",
+      "optionsLearning": [
+        "Передаётся указатель на первый элемент (by pointer)",
+        "Копируется весь массив (by value)",
+        "Создаётся ссылка (by reference)",
+        "Массив не может быть передан"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "Имя массива decay-ится в указатель на первый элемент. Функция получает pointer, а не копию."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-09",
+      "kind": "select",
+      "title": "Передача массивов в функции",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как передать размер массива в функцию?",
+      "optionsLearning": [
+        "Дополнительный параметр size: void func(int* arr, int size)",
+        "Размер не нужен — функция сама определит",
+        "Использовать return для размера",
+        "Массивы нельзя передавать"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "передача"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "sizeof внутри функции вернёт размер pointer'а (4/8 байт), а не массива. Размер нужно передавать явно."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-10",
+      "kind": "select",
+      "title": "const массивы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что означает const int arr[10]?",
+      "optionsLearning": [
+        "Элементы нельзя изменять (const elements)",
+        "Размер массива нельзя изменить",
+        "Массив константного размера",
+        "Указатель на const int"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "const"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "const применяется к элементам: arr[i] = 5; — ошибка компиляции. Но сам массив (arr) — не pointer."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-11",
+      "kind": "select",
+      "title": "Статические массивы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Где хранится static массив внутри функции?",
+      "optionsLearning": [
+        "В data segment (не в stack)",
+        "В heap",
+        "В register",
+        "В stack"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "статические"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "static массивы хранятся в data segment. Они инициализируются один раз и сохраняют значение между вызовами."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-12",
+      "kind": "select",
+      "title": "Динамические массивы (new/delete)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать массив на heap?",
+      "optionsLearning": [
+        "int* arr = new int[10]; delete[] arr;",
+        "int arr[10];",
+        "int* arr = new int(10);",
+        "array<int, 10> arr;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "динамические"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "new int[10] выделяет массив на heap. delete[] arr — освобождает память. Забытый delete = memory leak."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-13",
+      "kind": "select",
+      "title": "std::array vs raw arrays",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Преимущество std::array перед raw array?",
+      "optionsLearning": [
+        "sizeof работает корректно, bounds checking",
+        "std::array быстрее",
+        "std::array на heap",
+        "std::array не требует #include"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "std::array"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "std::array<N, T> — wrapper над raw array. Знает свой размер, поддерживает .size(), .at() с проверкой."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-14",
+      "kind": "select",
+      "title": "std::vector для динамических массивов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать std::vector вместо raw array?",
+      "optionsLearning": [
+        "Всегда, если размер неизвестен или меняется",
+        "Только для строк",
+        "Только для float данных",
+        "Никогда — vector медленнее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "std::vector"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "std::vector — динамический массив с automatic memory management. Автоматически растёт при добавлении элементов."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-15",
+      "kind": "select",
+      "title": "Ошибки выхода за границы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что произойдёт при arr[10] для массива size 10?",
+      "optionsLearning": [
+        "Undefined behavior — доступ к чужой памяти",
+        "Возврат 0",
+        "Ошибка компиляции",
+        "Автоматическое расширение массива"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "ошибки"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "arr[10] для size 10 — UB. Компилятор не проверяет границы. Возможны crash или silent corruption."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-16",
+      "kind": "select",
+      "title": "Uninitialized memory",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие значения у элементов необъявленного массива?",
+      "optionsLearning": [
+        "Неопределённые (garbage values)",
+        "Нули (0)",
+        "NULL",
+        "Ошибки компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "uninitialized"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "int arr[10] без инициализации содержит garbage из памяти. Используйте int arr[10] = {} для zero-init."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-17",
+      "kind": "select",
+      "title": "Array bounds checking",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно получить элемент массива?",
+      "optionsLearning": [
+        "arr.at(i) — выбросит std::out_of_range",
+        "arr[i] — всегда безопасно",
+        "*arr — указатель на элемент",
+        "sizeof(arr)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "array"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": ".at() проверяет границы и выбрасывает исключение при ошибке. arr[i] — без проверки (быстрее, но опасно)."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-18",
+      "kind": "select",
+      "title": "Performance массивов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Почему массивы быстры?",
+      "optionsLearning": [
+        "Sequential memory access = cache friendly",
+        "Используют CPU registers",
+        "Не требуют памяти",
+        "Компилируются в assembly"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "Элементы расположены последовательно. CPU prefetcher загружает блоки памяти в cache заранее."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-19",
+      "kind": "select",
+      "title": "Cache-friendly access patterns",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой порядок обхода массива быстрее?",
+      "optionsLearning": [
+        "row-major (строки подряд)",
+        "column-major (столбцы подряд)",
+        "Random access",
+        "Оба одинаковы"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "cache-friendly"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "C++ хранит массивы row-major. Обход по строкам (arr[i][j]) cache-friendly. По столбцам — cache misses."
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices для массивов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой тип предпочтительнее для новых проектов?",
+      "optionsLearning": [
+        "std::vector или std::array (STL)",
+        "Raw arrays (int arr[10])",
+        "Указатели (int*)",
+        "Списки (std::list)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "best"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays.01.scenario",
+      "explanation": "STL контейнеры безопаснее: автоматическое управление памятью, size checking, итераторы, алгоритмы."
+    }
+  ],
+  "title": "Массивы в C++ — Basics"
+}

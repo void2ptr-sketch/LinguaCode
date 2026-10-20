@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.compiler.internals4.scenario",
+  "cards": [
+    {
+      "id": "advanced.compiler.internals4.card-01",
+      "kind": "select",
+      "title": "Linker optimization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает linker optimization?",
+      "optionsLearning": [
+        "Удаление неиспользуемого кода (dead code elimination)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals4",
+      "scenarioId": "advanced.compiler.internals4.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals4.card-02",
+      "kind": "select",
+      "title": "Compiler intrinsics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое compiler intrinsics?",
+      "optionsLearning": [
+        "Встроенные функции компилятора (__builtin_)",
+        "Обычные функции",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals4",
+      "scenarioId": "advanced.compiler.internals4.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals4.card-03",
+      "kind": "select",
+      "title": "Sanitizers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое sanitizers?",
+      "optionsLearning": [
+        "Runtime инструменты для обнаружения ошибок (ASan, UBSan)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals4",
+      "scenarioId": "advanced.compiler.internals4.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals4.card-04",
+      "kind": "select",
+      "title": "Compiler explorer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое compiler explorer?",
+      "optionsLearning": [
+        "Online tool для просмотра assembly (godbolt.org)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals4",
+      "scenarioId": "advanced.compiler.internals4.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals4.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать compiler?",
+      "optionsLearning": [
+        "-Wall -Wextra -Werror + sanitizers + static analysis + PGO",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals4",
+      "scenarioId": "advanced.compiler.internals4.scenario"
+    }
+  ]
+}

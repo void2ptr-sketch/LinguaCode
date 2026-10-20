@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "stl.regex.scenario",
+      "title": "C++ — Regex создание",
+      "description": "Сценарий: Regex создание — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-stl-regex",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.884784.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.884785.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "stl.regex.card-01",
+          "stl.regex.card-02",
+          "stl.regex.card-03",
+          "stl.regex.card-04"
+        ]
+      }
+    }
+  ]
+}

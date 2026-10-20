@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-01",
+      "kind": "select",
+      "title": "Embedded constraints",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Особенности embedded C++?",
+      "optionsLearning": [
+        "No RTTI, no exceptions, limited memory",
+        "Full C++ features",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-02",
+      "kind": "select",
+      "title": "Volatile keyword",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем volatile?",
+      "optionsLearning": [
+        "Запрет оптимизации (hardware registers, signals)",
+        "Константность",
+        "Статическая переменная",
+        "Глобальная"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-03",
+      "kind": "select",
+      "title": "Interrupt handlers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое interrupt handler?",
+      "optionsLearning": [
+        "Функция вызываемая при прерывании (ISR)",
+        "Обычная функция",
+        "Поток",
+        "Процесс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-04",
+      "kind": "select",
+      "title": "Memory-mapped I/O",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory-mapped I/O?",
+      "optionsLearning": [
+        "Регистры устройства как память (pointer access)",
+        "Файловый ввод",
+        "Сетевой ввод",
+        "Базы данных"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать embedded C++?",
+      "optionsLearning": [
+        "RAII + no exceptions + volatile для hardware",
+        "Full C++ features",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-06",
+      "kind": "select",
+      "title": "RTOS basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое RTOS?",
+      "optionsLearning": [
+        "Real-Time Operating System (deterministic scheduling)",
+        "Обычная ОС",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-07",
+      "kind": "select",
+      "title": "Deterministic timing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое deterministic timing?",
+      "optionsLearning": [
+        "Предсказуемое время выполнения (critical for RTOS)",
+        "Непредсказуемое",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-08",
+      "kind": "select",
+      "title": "Interrupt latency",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое interrupt latency?",
+      "optionsLearning": [
+        "Время от прерывания до ISR (меньше = лучше)",
+        "Время выполнения",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-09",
+      "kind": "select",
+      "title": "Power management",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как управлять питанием?",
+      "optionsLearning": [
+        "Sleep modes + clock gating + DMA",
+        "Только manual",
+        "Никак",
+        "Только hardware"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать embedded C++?",
+      "optionsLearning": [
+        "RAII + no exceptions + deterministic timing",
+        "Full C++ features",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-11",
+      "kind": "select",
+      "title": "Bootloader",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое bootloader?",
+      "optionsLearning": [
+        "Первая программа при запуске (initialize hardware + load OS)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-12",
+      "kind": "select",
+      "title": "Firmware update",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обновлять firmware?",
+      "optionsLearning": [
+        "OTA (Over-The-Air) + A/B partitioning + rollback",
+        "Только manual",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-13",
+      "kind": "select",
+      "title": "Watchdog timer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое watchdog timer?",
+      "optionsLearning": [
+        "Автоматический reset при зависании (safety mechanism)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-14",
+      "kind": "select",
+      "title": "Low power design",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как снизить энергопотребление?",
+      "optionsLearning": [
+        "Sleep modes + clock gating + DMA + interrupt-driven",
+        "Только manual",
+        "Никак",
+        "Только hardware"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать embedded C++?",
+      "optionsLearning": [
+        "RAII + no exceptions + deterministic timing + watchdog",
+        "Full C++ features",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-16",
+      "kind": "select",
+      "title": "Bootloader advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый bootloader?",
+      "optionsLearning": [
+        "Secure boot + OTA updates + A/B partitioning",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-17",
+      "kind": "select",
+      "title": "Firmware update advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое обновление firmware?",
+      "optionsLearning": [
+        "Delta updates + compression + rollback + secure verification",
+        "Только manual",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-18",
+      "kind": "select",
+      "title": "Watchdog timer advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый watchdog?",
+      "optionsLearning": [
+        "Windowed watchdog + software watchdog + multi-core support",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-19",
+      "kind": "select",
+      "title": "Low power design advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое управление питанием?",
+      "optionsLearning": [
+        "Dynamic voltage scaling + sleep modes + interrupt-driven + DMA",
+        "Только manual",
+        "Никак",
+        "Только hardware"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.embedded-systems.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать embedded C++?",
+      "optionsLearning": [
+        "RAII + no exceptions + deterministic timing + watchdog + secure boot",
+        "Full C++ features",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.embedded-systems.01.scenario"
+    }
+  ]
+}

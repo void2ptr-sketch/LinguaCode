@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-01",
+      "kind": "select",
+      "title": "Установка g++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как установить g++ в Linux?",
+      "optionsLearning": [
+        "sudo apt install g++",
+        "npm install g++",
+        "pip install g++",
+        "brew install g++"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-02",
+      "kind": "select",
+      "title": "Проверка версии",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проверить версию g++?",
+      "optionsLearning": [
+        "g++ --version",
+        "g++ -v",
+        "both A and B",
+        "version g++"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-03",
+      "kind": "select",
+      "title": "Стандарты C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как указать стандарт C++17?",
+      "optionsLearning": [
+        "g++ -std=c++17 main.cpp",
+        "g++ -c++17 main.cpp",
+        "g++ --standard=17 main.cpp",
+        "g++ -std=cpp17 main.cpp"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-04",
+      "kind": "select",
+      "title": "Debug flags",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой флаг для отладки?",
+      "optionsLearning": [
+        "-g (debug info)",
+        "-O3 (optimization)",
+        "-Wall (warnings)",
+        "-std=c++17"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-05",
+      "kind": "select",
+      "title": "Warning flags",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как включить все предупреждения?",
+      "optionsLearning": [
+        "-Wall -Wextra",
+        "-O3",
+        "-g",
+        "-std=c++17"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-06",
+      "kind": "select",
+      "title": "Compilation database",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое compile_commands.json?",
+      "optionsLearning": [
+        "База данных компиляции для IDE/tools",
+        "Файл с исходным кодом",
+        "Лог ошибок",
+        "Настройка проекта"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-07",
+      "kind": "select",
+      "title": "IDE setup",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая IDE популярна для C++?",
+      "optionsLearning": [
+        "VS Code + C/C++ extension",
+        "Sublime Text",
+        "Notepad",
+        "Блокнот"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-08",
+      "kind": "select",
+      "title": "CMake intro",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое CMake?",
+      "optionsLearning": [
+        "Система сборки кросс-платформенная",
+        "Компилятор C++",
+        "IDE для C++",
+        "База данных"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-09",
+      "kind": "select",
+      "title": "Makefile intro",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Makefile?",
+      "optionsLearning": [
+        "Скрипт для автоматизации сборки",
+        "Файл с исходным кодом",
+        "Документация",
+        "Настройка IDE"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой флаг всегда использовать в dev?",
+      "optionsLearning": [
+        "-Wall -Wextra -g -std=c++20",
+        "-O3",
+        "-static",
+        "-shared"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-11",
+      "kind": "select",
+      "title": "Создание C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Кто создал C++?",
+      "optionsLearning": [
+        "Бьярн Страуструп (1979)",
+        "Деннис Ритчи",
+        "Гвидо ван Россум",
+        "Джеймс Gosling"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "history"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-12",
+      "kind": "select",
+      "title": "Эволюция стандартов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой стандарт добавил move semantics?",
+      "optionsLearning": [
+        "C++11",
+        "C++98",
+        "C++03",
+        "C++14"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "history"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-13",
+      "kind": "select",
+      "title": "C++11 revolution",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что добавило C++11?",
+      "optionsLearning": [
+        "auto, lambda, nullptr, rvalue refs",
+        "Classes only",
+        "Only bug fixes",
+        "No new features"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "history"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-14",
+      "kind": "select",
+      "title": "C++17 features",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что нового в C++17?",
+      "optionsLearning": [
+        "if constexpr, std::optional, fold expressions",
+        "Only classes",
+        "No changes",
+        "Removed features"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "history"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-15",
+      "kind": "select",
+      "title": "C++20 concepts",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое concepts в C++20?",
+      "optionsLearning": [
+        "Ограничения на template параметры",
+        "Новый тип данных",
+        "Библиотека для UI",
+        "Фреймворк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "history"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-16",
+      "kind": "select",
+      "title": "C++23 modules",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое modules в C++23?",
+      "optionsLearning": [
+        "Замена #include для faster compilation",
+        "Новый тип данных",
+        "Библиотека алгоритмов",
+        "Фреймворк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "history"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-17",
+      "kind": "select",
+      "title": "C vs C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем C++ отличается от C?",
+      "optionsLearning": [
+        "Классы, ООП, STL, templates",
+        "Нет различий",
+        "C быстрее",
+        "C безопаснее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "history"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-18",
+      "kind": "select",
+      "title": "C++ popularity",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Где используется C++?",
+      "optionsLearning": [
+        "Game engines, browsers, OS, HFT",
+        "Only web development",
+        "Only mobile apps",
+        "Only scripts"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "history"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-19",
+      "kind": "select",
+      "title": "Modern C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Modern C++?",
+      "optionsLearning": [
+        "C++11/14/17/20 best practices",
+        "Old C-style code",
+        "C with classes only",
+        "Pre-C++11"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "history"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.02.scenario.card-20",
+      "kind": "select",
+      "title": "Future of C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда следующий стандарт?",
+      "optionsLearning": [
+        "C++26 (2026)",
+        "C++25 (2025)",
+        "C++30 (2030)",
+        "Нет новых стандартов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "history"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.02.scenario"
+    }
+  ]
+}

@@ -65,11 +65,14 @@ export function createGroupForKind(kind: CardKind): CardCreateGroup {
     case 'reading':
     case 'symbol':
     case 'tone':
+    case 'cloze':
+    case 'code-trace':
       return 'choice';
     case 'keyboard':
     case 'draw':
       return 'input';
     case 'memory':
+    case 'flip':
       return 'pairs';
     case 'sound':
       return 'media';

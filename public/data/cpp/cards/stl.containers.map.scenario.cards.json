@@ -1,0 +1,150 @@
+{
+  "scenarioId": "stl.containers.map.scenario",
+  "cards": [
+    {
+      "id": "stl.containers.map.card-01",
+      "kind": "select",
+      "title": "Map создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать std::map?",
+      "optionsLearning": [
+        "std::map<std::string, int> m;",
+        "Dictionary<string, int> m;",
+        "HashMap<string, int> m;",
+        "Dict<string, int> m;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-map",
+      "scenarioId": "stl.containers.map.scenario"
+    },
+    {
+      "id": "stl.containers.map.card-02",
+      "kind": "select",
+      "title": "Insert element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить элемент?",
+      "optionsLearning": [
+        "m[key] = value или m.insert({key, value})",
+        "m.add(key, value)",
+        "m.put(key, value)",
+        "m[key] := value"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-map",
+      "scenarioId": "stl.containers.map.scenario"
+    },
+    {
+      "id": "stl.containers.map.card-03",
+      "kind": "select",
+      "title": "Find element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти элемент?",
+      "optionsLearning": [
+        "m.find(key) != m.end()",
+        "m.contains(key)",
+        "m[key] != null",
+        "m.get(key)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-map",
+      "scenarioId": "stl.containers.map.scenario"
+    },
+    {
+      "id": "stl.containers.map.card-04",
+      "kind": "select",
+      "title": "Iterate map",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как перебрать map?",
+      "optionsLearning": [
+        "for (const auto& [k, v] : m)",
+        "for (int i = 0; i < m.size(); i++)",
+        "while loop",
+        "foreach только"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-map",
+      "scenarioId": "stl.containers.map.scenario"
+    },
+    {
+      "id": "stl.containers.map.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать map вместо unordered_map?",
+      "optionsLearning": [
+        "Когда нужен sorted order (O(log n))",
+        "Всегда unordered_map",
+        "Никогда",
+        "Только для small data"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-map",
+      "scenarioId": "stl.containers.map.scenario"
+    }
+  ]
+}

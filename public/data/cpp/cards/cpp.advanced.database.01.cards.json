@@ -1,0 +1,627 @@
+{
+  "scenarioId": "cpp.advanced.database.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.database.01.scenario.card-01",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое БД?",
+      "optionsLearning": [
+        "Организованное хранилище данных",
+        "Файл",
+        "Поток",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "SQL/NoSQL хранилища."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-02",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое SQL?",
+      "optionsLearning": [
+        "Язык запросов к реляционным БД",
+        "Формат",
+        "Сеть",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "SELECT/INSERT/UPDATE."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Database — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "question": "Что делает этот запрос?",
+      "code": {
+        "code": "SELECT name FROM users WHERE age > 18;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Выбор имён взрослых",
+        "Удаление",
+        "Ошибку",
+        "Счёт"
+      ],
+      "correctIndex": 0,
+      "explanation": "Фильтрация строк."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-04",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое транзакция?",
+      "optionsLearning": [
+        "Атомарная последовательность операций",
+        "Запрос",
+        "Индекс",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "ACID свойства."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-05",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое ACID?",
+      "optionsLearning": [
+        "Atomicity, Consistency, Isolation, Durability",
+        "Хеш",
+        "Сеть",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Гарантии транзакций."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-06",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "database",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое index?",
+      "optionsLearning": [
+        "Ускорение поиска по полю",
+        "Копия",
+        "Строка",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "B-tree/hash для скорости."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-07",
+      "kind": "code-trace",
+      "title": "Database — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "database",
+          "performance"
+        ],
+        "tags": "Логарифмический поиск."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "question": "Почему индекс ускоряет?",
+      "code": {
+        "code": [
+          "Быстрый поиск без полного скана",
+          "Память",
+          "Шифр",
+          "нет"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-08",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое NoSQL?",
+      "optionsLearning": [
+        "Нереляционные хранилища",
+        "SQL везде",
+        "ОС",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Key-value, документы, графы."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-09",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое ORM?",
+      "optionsLearning": [
+        "Отображение объектов на реляционные таблицы",
+        "Сеть",
+        "Хеш",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "SQLAlchemy-стиль для C++."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Database — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "database"
+        ],
+        "tags": "Удобство ценой абстракции."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "question": "Что делает ORM reduce?",
+      "code": {
+        "code": [
+          "Уменьшает ручной SQL",
+          "Удаляет",
+          "Хеширует",
+          "Логирует"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-11",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое CAPC+l транзакции?",
+      "optionsLearning": [
+        "Откат при ошибке",
+        "Запрос",
+        "Лог",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сохранность консистентности."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-12",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "database",
+          "security"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое SQL injection?",
+      "optionsLearning": [
+        "Внедрение кода в запрос",
+        "Ошибка",
+        "Хеш",
+        "Шифр"
+      ],
+      "correctIndex": 0,
+      "explanation": "Никогда не конкатенация в SQL."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Database — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "database",
+          "security"
+        ],
+        "tags": "Защита от инъекций."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "question": "Что лучше для параметров?",
+      "code": {
+        "code": [
+          "Prepared statement / параметризация",
+          "строки+",
+          "конкатенация",
+          "нет"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-14",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "database",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое connection pool?",
+      "optionsLearning": [
+        "Пул соединений для повторного использования",
+        "Ошибка",
+        "Лог",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Избежание накладных соединений."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-15",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое миграция схемы?",
+      "optionsLearning": [
+        "Изменение структуры БД версиями",
+        "Копия",
+        "Лог",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Аккуратные изменения."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-16",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое backup и restore?",
+      "optionsLearning": [
+        "Резервное копирование и восстановление",
+        "Логи",
+        "Хеш",
+        "скорость"
+      ],
+      "correctIndex": 0,
+      "explanation": "Аварийное восстановление."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Database — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "database"
+        ],
+        "tags": "Восстановление после сбоя."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "question": "Что такое WAL (write-ahead log)?",
+      "code": {
+        "code": [
+          "Журнал предзаписи для надёжности",
+          "Индекс",
+          "Хеш",
+          "сеть"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-18",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что такое шардирование?",
+      "optionsLearning": [
+        "Разделение данных по серверам",
+        "Сортировка",
+        "Шифр",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Масштабирование записи."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-19",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что более масштабируемо: SQL или NoSQL?",
+      "optionsLearning": [
+        "Зависит от нагрузки и модели",
+        "SQL всегда",
+        "NoSQL всегда",
+        "одинаково"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компромиссы согласованности."
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario.card-20",
+      "kind": "select",
+      "title": "Database и Storage — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "database"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.database.01.scenario",
+      "promptKnown": "Что важно при хранении в C++?",
+      "optionsLearning": [
+        "Сериализация, размер, кодировка, транзакции",
+        "массивы только",
+        "строки",
+        "ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Продуманная модель данных."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

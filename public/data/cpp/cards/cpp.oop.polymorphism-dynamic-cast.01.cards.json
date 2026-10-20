@@ -1,0 +1,646 @@
+{
+  "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-01",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что делает dynamic_cast?",
+      "optionsLearning": [
+        "Безопасное приведение по иерархии в runtime",
+        "Приведение чисел",
+        "Приведение void*",
+        "Снимок"
+      ],
+      "correctIndex": 0,
+      "explanation": "dynamic_cast валидирует преобразование во время выполнения."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-02",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что вернёт dynamic_cast при неудаче для указателя?",
+      "optionsLearning": [
+        "nullptr",
+        "Исключение",
+        "Оригинал",
+        "Мусор"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для указателей при неудаче возвращается nullptr."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Динамическое приведение типов — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual ~A() {} };\nstruct B : A { void g() const {} };\nint main() { A* p = new B; B* b = dynamic_cast<B*>(p); std::cout << (b != nullptr); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "Ошибка",
+        "адрес"
+      ],
+      "correctIndex": 0,
+      "explanation": "Динамическое приведение успешно: 1."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-04",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что произойдёт при неудаче dynamic_cast для ссылки?",
+      "optionsLearning": [
+        "Исключение std::bad_cast",
+        "nullptr",
+        "Копия",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для ссылок бросается bad_cast."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Динамическое приведение типов — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <typeinfo>\nstruct A { virtual ~A() {} };\nstruct B : A {};\nstruct C : A {};\nint main() { A* p = new B; C* c = dynamic_cast<C*>(p); std::cout << (c == nullptr); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "Ошибка",
+        "B"
+      ],
+      "correctIndex": 0,
+      "explanation": "B не является C — nullptr: 1."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-06",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Когда dynamic_cast возможен?",
+      "optionsLearning": [
+        "Только для полиморфных типов (с virtual)",
+        "Всегда",
+        "Никогда",
+        "Только для int"
+      ],
+      "correctIndex": 0,
+      "explanation": "RTTI требует хотя бы одного виртуального метода."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-07",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что такое RTTI?",
+      "optionsLearning": [
+        "Информация о типах во время выполнения",
+        "Сборщик мусора",
+        "Оптимизатор",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "RTTI (typeid, dynamic_cast) опирается на virtual."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Динамическое приведение типов — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <typeinfo>\nstruct A { virtual ~A() {} };\nstruct D : A {};\nint main() { A* p = new D; std::cout << (typeid(*p) == typeid(D)); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "Ошибка",
+        "A"
+      ],
+      "correctIndex": 0,
+      "explanation": "typeid по реальному типу: D == D → 1."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-09",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Чем dynamic_cast отличается от static_cast?",
+      "optionsLearning": [
+        "dynamic проверяет в runtime, static — без проверки",
+        "Ничем",
+        "static в runtime",
+        "dynamic при компиляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "static_cast для downcast доверяет программисту."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-10",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Когда оправдан dynamic_cast?",
+      "optionsLearning": [
+        "Обработка объектов по конкретному типу в иерархии",
+        "Всегда",
+        "Никогда",
+        "Для чисел"
+      ],
+      "correctIndex": 0,
+      "explanation": "Использовать аккуратно; часто можно спроектировать без него."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-11",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что произойдёт при dynamic_cast<int>(p) для указателя?",
+      "optionsLearning": [
+        "Ошибка компиляции (не отношение наследования)",
+        "nullptr",
+        "int",
+        "Исключение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Приведение к несвязанному типу не компилируется."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Динамическое приведение типов — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { virtual ~B() {} };\nstruct D : B { int x = 5; };\nint main() { B* b = new D; if (auto d = dynamic_cast<D*>(b)) std::cout << d->x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "0",
+        "Ошибка",
+        "x"
+      ],
+      "correctIndex": 0,
+      "explanation": "Успешное downcast и чтение поля: 5."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-13",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что делает upcast (производный → базовый)?",
+      "optionsLearning": [
+        "Безопасен и автоматичен; dynamic не нужен",
+        "Опасен",
+        "Запрещён",
+        "Только dynamic"
+      ],
+      "correctIndex": 0,
+      "explanation": "Производный всегда «является» базовым."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-14",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что произойдёт при static_cast неправильного downcast?",
+      "optionsLearning": [
+        "Неопределённое поведение",
+        "nullptr",
+        "Исключение",
+        "Предупреждение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Неверный static_cast вниз — UB; dynamic безопасен."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-15",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что такое кросс-cast (sibling cast)?",
+      "optionsLearning": [
+        "Приведение между «братскими» базами/наследниками через dynamic",
+        "Приведение чисел",
+        "Срез",
+        "Копия"
+      ],
+      "correctIndex": 0,
+      "explanation": "dynamic_cast позволяет переходы между ветвями иерархии."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "Динамическое приведение типов — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual ~A() {} };\nstruct B { virtual ~B() {} };\nstruct C : A, B {};\nint main() { A* a = new C; B* b = dynamic_cast<B*>(a); std::cout << (b != nullptr); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "Ошибка",
+        "C"
+      ],
+      "correctIndex": 0,
+      "explanation": "Кросс-cast от A к B успешен через C: 1."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-17",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Откуда dynamic_cast знает тип?",
+      "optionsLearning": [
+        "Из RTTI, ассоциированной с vptr",
+        "По имени",
+        "Из комментариев",
+        "Не знает"
+      ],
+      "correctIndex": 0,
+      "explanation": "RTTI хранится рядом с vtable полиморфных классов."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-18",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Чем typeid отличается от dynamic_cast?",
+      "optionsLearning": [
+        "typeid даёт тип, dynamic_cast проверяет/преобразует",
+        "Одним же",
+        "typeid для чисел",
+        "Не отличается"
+      ],
+      "correctIndex": 0,
+      "explanation": "typeid::name/id — идентификация; cast — преобразование."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-19",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Влияет ли RTTI на скорость?",
+      "optionsLearning": [
+        "Небольшая цена хранения и проверок",
+        "Огромная",
+        "Ноль",
+        "Отрицательная"
+      ],
+      "correctIndex": 0,
+      "explanation": "RTTI добавляет накладные расходы и размер."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-20",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Как отключить RTTI?",
+      "optionsLearning": [
+        "Флаг -fno-rtti у GCC/Clang",
+        "Нельзя",
+        "#pragma rtti",
+        "std::disable"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без RTTI dynamic_cast и typeid недоступны."
+    }
+  ],
+  "title": "Oop — Intermediate C++"
+}

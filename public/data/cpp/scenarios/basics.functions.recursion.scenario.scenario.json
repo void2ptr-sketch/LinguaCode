@@ -1,0 +1,35 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.functions.recursion.scenario",
+      "title": "C++ — Что такое рекурсия?",
+      "description": "Сценарий: Что такое рекурсия? — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-functions-recursion",
+      "courseId": "course-cpp-complete",
+      "cardCount": 6,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.861398.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.861399.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.functions.recursion.card-01",
+          "basics.functions.recursion.card-02",
+          "basics.functions.recursion.card-03",
+          "basics.functions.recursion.card-04",
+          "basics.functions.recursion.card-05",
+          "basics.functions.recursion.card-06"
+        ]
+      }
+    }
+  ]
+}

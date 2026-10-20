@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.coroutines.scenario",
+  "cards": [
+    {
+      "id": "advanced.coroutines.card-01",
+      "kind": "select",
+      "title": "Coroutine basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое coroutine?",
+      "optionsLearning": [
+        "Функция с возможностью приостановки и возобновления",
+        "Обычная функция",
+        "Поток",
+        "Процесс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "coroutines"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-coroutines",
+      "scenarioId": "advanced.coroutines.scenario"
+    },
+    {
+      "id": "advanced.coroutines.card-02",
+      "kind": "select",
+      "title": "Co_await",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем co_await?",
+      "optionsLearning": [
+        "Ожидание завершения async operation (suspend/resume)",
+        "Обычный await",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "coroutines"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-coroutines",
+      "scenarioId": "advanced.coroutines.scenario"
+    },
+    {
+      "id": "advanced.coroutines.card-03",
+      "kind": "select",
+      "title": "Generator function",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое generator?",
+      "optionsLearning": [
+        "Функция с co_yield (возвращает sequence значений)",
+        "Обычная функция",
+        "Поток",
+        "Процесс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "coroutines"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-coroutines",
+      "scenarioId": "advanced.coroutines.scenario"
+    },
+    {
+      "id": "advanced.coroutines.card-04",
+      "kind": "select",
+      "title": "Promise type",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое promise?",
+      "optionsLearning": [
+        "Объект управления lifecycle coroutine",
+        "Тип данных",
+        "Оператор",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "coroutines"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-coroutines",
+      "scenarioId": "advanced.coroutines.scenario"
+    },
+    {
+      "id": "advanced.coroutines.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать coroutines?",
+      "optionsLearning": [
+        "Для async operations (network, I/O)",
+        "Всегда",
+        "Никогда",
+        "Только для small tasks"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "coroutines"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-coroutines",
+      "scenarioId": "advanced.coroutines.scenario"
+    }
+  ]
+}

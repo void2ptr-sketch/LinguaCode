@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.database.programming.scenario",
+      "title": "C++ — SQL basics",
+      "description": "Сценарий: SQL basics — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-database-programming",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.856788.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.856790.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.database.programming.card-01",
+          "advanced.database.programming.card-02",
+          "advanced.database.programming.card-03",
+          "advanced.database.programming.card-04",
+          "advanced.database.programming.card-05"
+        ]
+      }
+    }
+  ]
+}

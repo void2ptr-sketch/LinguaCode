@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-01",
+      "kind": "select",
+      "title": "String capacity",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое capacity string?",
+      "optionsLearning": [
+        "Выделенная память (может быть > size())",
+        "Длина строки",
+        "Максимальная длина",
+        "Минимальная длина"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-02",
+      "kind": "select",
+      "title": "Reserve string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем reserve()?",
+      "optionsLearning": [
+        "Предварительное выделение памяти",
+        "Уменьшение памяти",
+        "Очистка строки",
+        "Копирование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-03",
+      "kind": "select",
+      "title": "C-string conversion",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить char* из std::string?",
+      "optionsLearning": [
+        "s.c_str() или s.data()",
+        "s.ptr()",
+        "s.char_ptr()",
+        "s.to_c_string()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-04",
+      "kind": "select",
+      "title": "String views",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::string_view?",
+      "optionsLearning": [
+        "Не-owning view на строку (без копирования)",
+        "Новый тип string",
+        "Указатель на string",
+        "Const string"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать string_view?",
+      "optionsLearning": [
+        "Для read-only параметров функций",
+        "Всегда вместо string",
+        "Никогда",
+        "Только для больших строк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-06",
+      "kind": "select",
+      "title": "Stringstream",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем stringstream?",
+      "optionsLearning": [
+        "Форматирование строк как cout",
+        "Чтение из файла",
+        "Запись в файл",
+        "Сравнение строк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "streams"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-07",
+      "kind": "select",
+      "title": "Parse from string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как распарсить строку?",
+      "optionsLearning": [
+        "std::istringstream(s) >> var",
+        "std::string.parse(var)",
+        "var = s.parseInt()",
+        " sscanf(s, var)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "streams"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-08",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать stringstream?",
+      "optionsLearning": [
+        "Для форматирования чисел в строки",
+        "Всегда вместо printf",
+        "Никогда",
+        "Только для файлов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "streams"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-09",
+      "kind": "select",
+      "title": "Cout output",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как вывести на экран?",
+      "optionsLearning": [
+        "std::cout << \"Hello\";",
+        "print(\"Hello\")",
+        "echo \"Hello\"",
+        "System.out.println"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-10",
+      "kind": "select",
+      "title": "Cin input",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как прочитать ввод?",
+      "optionsLearning": [
+        "std::cin >> var;",
+        "var = read()",
+        "input(var)",
+        "scanf(var)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-11",
+      "kind": "select",
+      "title": "Newline",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить новую строку?",
+      "optionsLearning": [
+        "std::endl или \"\\n\"",
+        "\\r только",
+        "println()",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-12",
+      "kind": "select",
+      "title": "Formatted output",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как форматировать вывод?",
+      "optionsLearning": [
+        "std::cout << std::setw(5) << val;",
+        "printf только",
+        "Нельзя",
+        "String.format"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-13",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать cin/cout?",
+      "optionsLearning": [
+        "Для простых программ и обучения",
+        "Всегда",
+        "Никогда",
+        "Только для файлов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-14",
+      "kind": "select",
+      "title": "File reading",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как прочитать файл?",
+      "optionsLearning": [
+        "std::ifstream in(\"file.txt\"); in >> var;",
+        "File.read()",
+        "open file",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-15",
+      "kind": "select",
+      "title": "File writing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как записать в файл?",
+      "optionsLearning": [
+        "std::ofstream out(\"file.txt\"); out << var;",
+        "File.write()",
+        "open file write",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-16",
+      "kind": "select",
+      "title": "Check file open",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проверить открытие файла?",
+      "optionsLearning": [
+        "if (!in) { } или if (in.good())",
+        "Нельзя проверить",
+        "try-catch только",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-17",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как правильно работать с файлами?",
+      "optionsLearning": [
+        "using scope_guard или RAII для закрытия",
+        "Никогда не закрывать",
+        "Только вручную",
+        "Игнорировать ошибки"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-18",
+      "kind": "select",
+      "title": "File modes",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Режимы открытия файлов?",
+      "optionsLearning": [
+        "ios::in, ios::out, ios::app",
+        "read/write только",
+        "Только один режим",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-19",
+      "kind": "select",
+      "title": "Binary files",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как работать с бинарными файлами?",
+      "optionsLearning": [
+        "std::fstream f(\"file.bin\", std::ios::binary)",
+        "Только text файлы",
+        "Нельзя",
+        "ifstream только"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-io.01.scenario.card-20",
+      "kind": "select",
+      "title": "Read line by line",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как читать построчно?",
+      "optionsLearning": [
+        "std::getline(in, line)",
+        "in >> line только",
+        "Нельзя",
+        "readLine()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-io.01.scenario"
+    }
+  ]
+}

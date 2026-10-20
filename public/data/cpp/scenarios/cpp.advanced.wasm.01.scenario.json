@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.advanced.wasm.01.scenario",
+      "title": "WebAssembly и Native Bindings",
+      "description": "Сценарий: WebAssembly и Native Bindings — каверзные вопросы по WebAssembly и нативным биндингам в C++",
+      "order": 19,
+      "lessonId": "lesson-cpp-advanced-systems",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.advanced.wasm.01.scenario.card-01",
+          "cpp.advanced.wasm.01.scenario.card-02",
+          "cpp.advanced.wasm.01.scenario.card-03",
+          "cpp.advanced.wasm.01.scenario.card-04",
+          "cpp.advanced.wasm.01.scenario.card-05",
+          "cpp.advanced.wasm.01.scenario.card-06",
+          "cpp.advanced.wasm.01.scenario.card-07",
+          "cpp.advanced.wasm.01.scenario.card-08",
+          "cpp.advanced.wasm.01.scenario.card-09",
+          "cpp.advanced.wasm.01.scenario.card-10",
+          "cpp.advanced.wasm.01.scenario.card-11",
+          "cpp.advanced.wasm.01.scenario.card-12",
+          "cpp.advanced.wasm.01.scenario.card-13",
+          "cpp.advanced.wasm.01.scenario.card-14",
+          "cpp.advanced.wasm.01.scenario.card-15",
+          "cpp.advanced.wasm.01.scenario.card-16",
+          "cpp.advanced.wasm.01.scenario.card-17",
+          "cpp.advanced.wasm.01.scenario.card-18",
+          "cpp.advanced.wasm.01.scenario.card-19",
+          "cpp.advanced.wasm.01.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-06-14T12:00:00.000Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.design.patterns.scenario",
+  "cards": [
+    {
+      "id": "advanced.design.patterns.card-01",
+      "kind": "select",
+      "title": "Singleton",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Singleton?",
+      "optionsLearning": [
+        "Один экземпляр класса на всё приложение",
+        "Много экземпляров",
+        "Без экземпляров",
+        "Статический класс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-design-patterns",
+      "scenarioId": "advanced.design.patterns.scenario"
+    },
+    {
+      "id": "advanced.design.patterns.card-02",
+      "kind": "select",
+      "title": "Factory pattern",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Factory?",
+      "optionsLearning": [
+        "Создание объектов без указания конкретного класса",
+        "Уничтожение объектов",
+        "Копирование",
+        "Сравнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-design-patterns",
+      "scenarioId": "advanced.design.patterns.scenario"
+    },
+    {
+      "id": "advanced.design.patterns.card-03",
+      "kind": "select",
+      "title": "Observer pattern",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Observer?",
+      "optionsLearning": [
+        "Подписка на события (pub/sub)",
+        "Односторонняя связь",
+        "Без событий",
+        "Статический"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-design-patterns",
+      "scenarioId": "advanced.design.patterns.scenario"
+    },
+    {
+      "id": "advanced.design.patterns.card-04",
+      "kind": "select",
+      "title": "Strategy pattern",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Strategy?",
+      "optionsLearning": [
+        "Пол interchangeable algorithms",
+        "Фиксированный алгоритм",
+        "Без алгоритмов",
+        "Статический"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-design-patterns",
+      "scenarioId": "advanced.design.patterns.scenario"
+    },
+    {
+      "id": "advanced.design.patterns.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать паттерны?",
+      "optionsLearning": [
+        "Для повторяющихся проблем проектирования",
+        "Всегда",
+        "Никогда",
+        "Только для small projects"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-design-patterns",
+      "scenarioId": "advanced.design.patterns.scenario"
+    }
+  ]
+}

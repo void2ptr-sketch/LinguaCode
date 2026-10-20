@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.arrays.vectors.scenario",
+  "cards": [
+    {
+      "id": "basics.arrays.vectors.card-01",
+      "kind": "select",
+      "title": "Array to vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать array в vector?",
+      "optionsLearning": [
+        "std::vector<int> v(arr, arr+n)",
+        "v = arr только",
+        "Нельзя",
+        "Кастование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-vectors",
+      "scenarioId": "basics.arrays.vectors.scenario"
+    },
+    {
+      "id": "basics.arrays.vectors.card-02",
+      "kind": "select",
+      "title": "Vector to array",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить C-array из vector?",
+      "optionsLearning": [
+        "v.data() или &v[0]",
+        "v.c_array()",
+        "v.to_array()",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-vectors",
+      "scenarioId": "basics.arrays.vectors.scenario"
+    },
+    {
+      "id": "basics.arrays.vectors.card-03",
+      "kind": "select",
+      "title": "Multi-dimensional",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать 2D массив?",
+      "optionsLearning": [
+        "std::vector<std::vector<int>> v(n, std::vector<int>(m));",
+        "int arr[5][5] только",
+        "int[][] arr;",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-vectors",
+      "scenarioId": "basics.arrays.vectors.scenario"
+    },
+    {
+      "id": "basics.arrays.vectors.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать vector вместо array?",
+      "optionsLearning": [
+        "Динамический размер, безопасность",
+        "Всегда array",
+        "Никогда",
+        "Только для small data"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-vectors",
+      "scenarioId": "basics.arrays.vectors.scenario"
+    }
+  ]
+}

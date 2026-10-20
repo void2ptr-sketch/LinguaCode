@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.compiler.internals2.scenario",
+      "title": "C++ — AST",
+      "description": "Сценарий: AST — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-compiler-internals2",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.855556.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.855558.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.compiler.internals2.card-01",
+          "advanced.compiler.internals2.card-02",
+          "advanced.compiler.internals2.card-03",
+          "advanced.compiler.internals2.card-04",
+          "advanced.compiler.internals2.card-05"
+        ]
+      }
+    }
+  ]
+}

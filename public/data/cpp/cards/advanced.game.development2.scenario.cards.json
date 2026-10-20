@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.game.development2.scenario",
+  "cards": [
+    {
+      "id": "advanced.game.development2.card-01",
+      "kind": "select",
+      "title": "Physics engine",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое physics engine?",
+      "optionsLearning": [
+        "Симуляция физики (rigid body, collision, gravity)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development2",
+      "scenarioId": "advanced.game.development2.scenario"
+    },
+    {
+      "id": "advanced.game.development2.card-02",
+      "kind": "select",
+      "title": "Animation system",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое animation system?",
+      "optionsLearning": [
+        "Система анимации (keyframes, skeletal, blend trees)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development2",
+      "scenarioId": "advanced.game.development2.scenario"
+    },
+    {
+      "id": "advanced.game.development2.card-03",
+      "kind": "select",
+      "title": "AI pathfinding",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pathfinding?",
+      "optionsLearning": [
+        "Поиск пути (A*, Dijkstra, navigation meshes)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development2",
+      "scenarioId": "advanced.game.development2.scenario"
+    },
+    {
+      "id": "advanced.game.development2.card-04",
+      "kind": "select",
+      "title": "Networking multiplayer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать multiplayer?",
+      "optionsLearning": [
+        "Client-server + state synchronization + prediction",
+        "Только P2P",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development2",
+      "scenarioId": "advanced.game.development2.scenario"
+    },
+    {
+      "id": "advanced.game.development2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать game code?",
+      "optionsLearning": [
+        "Data-oriented + cache-friendly + ECS",
+        "OOP всегда",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development2",
+      "scenarioId": "advanced.game.development2.scenario"
+    }
+  ]
+}

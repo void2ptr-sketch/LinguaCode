@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.ai.programming2.scenario",
+  "cards": [
+    {
+      "id": "advanced.ai.programming2.card-01",
+      "kind": "select",
+      "title": "Neural network training",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как тренировать нейросети на C++?",
+      "optionsLearning": [
+        "TensorFlow C++ API + custom backpropagation",
+        "Только Python",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming2",
+      "scenarioId": "advanced.ai.programming2.scenario"
+    },
+    {
+      "id": "advanced.ai.programming2.card-02",
+      "kind": "select",
+      "title": "Model quantization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое quantization?",
+      "optionsLearning": [
+        "Снижение точности (FP32 → INT8) для скорости",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming2",
+      "scenarioId": "advanced.ai.programming2.scenario"
+    },
+    {
+      "id": "advanced.ai.programming2.card-03",
+      "kind": "select",
+      "title": "Distributed training",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как distributed training?",
+      "optionsLearning": [
+        "Multi-GPU + multi-node (parameter server, ring allreduce)",
+        "Один GPU",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming2",
+      "scenarioId": "advanced.ai.programming2.scenario"
+    },
+    {
+      "id": "advanced.ai.programming2.card-04",
+      "kind": "select",
+      "title": "Edge AI",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Edge AI?",
+      "optionsLearning": [
+        "ML на edge устройствах (mobile, embedded)",
+        "Только cloud",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming2",
+      "scenarioId": "advanced.ai.programming2.scenario"
+    },
+    {
+      "id": "advanced.ai.programming2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как интегрировать ML в C++?",
+      "optionsLearning": [
+        "ONNX Runtime + quantization + batching + edge optimization",
+        "Только Python",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming2",
+      "scenarioId": "advanced.ai.programming2.scenario"
+    }
+  ]
+}

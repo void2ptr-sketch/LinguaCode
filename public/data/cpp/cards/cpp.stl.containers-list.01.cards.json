@@ -1,0 +1,652 @@
+{
+  "scenarioId": "cpp.stl.containers-list.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-01",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Какова внутренняя структура std::list?",
+      "optionsLearning": [
+        "Двусвязный список узлов",
+        "Динамический массив",
+        "Хеш-таблица",
+        "Дерево"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждый узел хранит данные и указатели на соседей."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-02",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Какая сложность вставки в list по известному итератору?",
+      "optionsLearning": [
+        "O(1)",
+        "O(n)",
+        "O(log n)",
+        "O(n^2)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вставка — переустановка указателей, без сдвигов."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "list и forward_list — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <list>\nint main() { std::list<int> l = {1, 2, 3}; l.push_front(0); l.pop_back(); std::cout << l.front() << l.back(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "02",
+        "01",
+        "23",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "После операций: {0,1,2} → front 0, back 2."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-04",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Поддерживает ли std::list произвольный доступ?",
+      "optionsLearning": [
+        "Нет (нет operator[])",
+        "Да",
+        "Только для int",
+        "В C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "У list двунаправленные итераторы без индексации."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-05",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Чем forward_list отличается от list?",
+      "optionsLearning": [
+        "Односвязный: движение только вперёд, меньше памяти",
+        "То же самое",
+        "Динамичнее",
+        "Быстрее всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "forward_list экономит память, но нет обратной итерации и size()."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "list и forward_list — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <forward_list>\nint main() { std::forward_list<int> fl = {1, 2, 3}; std::cout << fl.front(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "3",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "front() — первый элемент: 1."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-07",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Почему list плох для произвольного доступа к середине?",
+      "optionsLearning": [
+        "Линейный обход O(n)",
+        "Мало элементов",
+        "Кэш",
+        "Типы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Доступ к i-му узлу требует обхода от начала."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "list и forward_list — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <list>\nint main() { std::list<int> l = {3, 1, 2}; l.sort(); std::cout << l.front() << l.back(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "13",
+        "31",
+        "12",
+        "21"
+      ],
+      "correctIndex": 0,
+      "explanation": "list::sort → {1,2,3}: 1 и 3."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-09",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Как слить два отсортированных list?",
+      "optionsLearning": [
+        "l1.merge(l2)",
+        "l1 += l2",
+        "std::sort всё",
+        "concat(l1,l2)"
+      ],
+      "correctIndex": 0,
+      "explanation": "merge переносит узлы l2 в l1, сохраняя порядок."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "list и forward_list — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <list>\nint main() { std::list<int> a = {1, 3}; std::list<int> b = {2, 4}; a.merge(b); std::cout << a.front() << a.back(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "14",
+        "12",
+        "34",
+        "13"
+      ],
+      "correctIndex": 0,
+      "explanation": "После merge: {1,2,3,4} → 1 и 4."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-11",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Что делает l.splice?",
+      "optionsLearning": [
+        "Переносит узлы из другого списка без копирования",
+        "Копирует элементы",
+        "Сортирует",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "splice переподключает узлы за O(1)."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-12",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "containers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Почему vector обычно быстрее list для маленьких данных?",
+      "optionsLearning": [
+        "Кэш-локальность непрерывной памяти",
+        "list компактнее",
+        "Меньше кода",
+        "Мода"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разбросанные узлы list хуже дружелюбны к кэшу."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-13",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Что делает l.remove(value)?",
+      "optionsLearning": [
+        "Удаляет все вхождения значения",
+        "Удаляет первое",
+        "Сортирует",
+        "Игнорирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "remove удаляет все элементы, равные value."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "list и forward_list — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <list>\nint main() { std::list<int> l = {1, 2, 2, 3}; l.remove(2); std::cout << l.size() << l.back(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "23",
+        "21",
+        "33",
+        "31"
+      ],
+      "correctIndex": 0,
+      "explanation": "Остаётся {1,3}: size 2, back 3 → 23."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-15",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Что делает l.unique()?",
+      "optionsLearning": [
+        "Удаляет подряд идущие дубликаты",
+        "Все дубликаты",
+        "Сортирует",
+        "Разворачивает"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique сжимает соседние равные элементы."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-16",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Как list ведёт себя при insert в середину?",
+      "optionsLearning": [
+        "O(1), итераторы не инвалидизируются",
+        "O(n) и сдвиг",
+        "Реаллокация",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Узлы не сдвигаются — вставка дёшева."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-17",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Чего нет у forward_list?",
+      "optionsLearning": [
+        "size() за O(1) и обратной итерации",
+        "push_front",
+        "begin()",
+        "front()"
+      ],
+      "correctIndex": 0,
+      "explanation": "forward_list не предоставляет size() и rbegin."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "list и forward_list — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <list>\nint main() { std::list<int> l = {1, 2, 3, 4}; l.pop_front(); l.pop_back(); std::cout << l.front() << l.back(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "23",
+        "12",
+        "34",
+        "13"
+      ],
+      "correctIndex": 0,
+      "explanation": "После удалений с концов: {2,3} → 23."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-19",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Почему list не поддерживает случайный доступ по индексу?",
+      "optionsLearning": [
+        "Узлы не обязаны быть непрерывными в памяти",
+        "Быстрее",
+        "Меньше кода",
+        "Стандарт запрещает"
+      ],
+      "correctIndex": 0,
+      "explanation": "Список — цепочка узлов, индексация невозможна за O(1)."
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario.card-20",
+      "kind": "select",
+      "title": "list и forward_list — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-list.01.scenario",
+      "promptKnown": "Когда разумен forward_list?",
+      "optionsLearning": [
+        "Минимальные требования к памяти, однопроходная обработка",
+        "Всегда",
+        "Никогда",
+        "Для словарей"
+      ],
+      "correctIndex": 0,
+      "explanation": "forward_list — экстремально лёгкий список."
+    }
+  ],
+  "title": "Stl — Intermediate C++"
+}

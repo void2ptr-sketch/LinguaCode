@@ -1,0 +1,628 @@
+{
+  "scenarioId": "cpp.advanced.wasm.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-01",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "wasm",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Что такое WebAssembly?",
+      "optionsLearning": [
+        "Бинарный формат для браузеров",
+        "Язык",
+        "Сеть",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компиляция C++ в браузер."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-02",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "wasm"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Чем wasm полезен C++?",
+      "optionsLearning": [
+        "Запуск нативного кода в браузере",
+        "Сервер",
+        "GPU только",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Игры, обработка, демо."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Wasm — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "wasm",
+          "compilers"
+        ],
+        "tags": "Популярные тулчейны."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "question": "Как компилировать C++ в wasm?",
+      "code": {
+        "code": [
+          "Emscripten / clang --target=wasm32",
+          "gcc",
+          "cmake",
+          "нет"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-04",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Что такое WASI?",
+      "optionsLearning": [
+        "Системный интерфейс для wasm (не только браузер)",
+        "Браузер",
+        "ОС",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ресурсы вне браузера."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-05",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Можно ли писать был-код руками?",
+      "optionsLearning": [
+        "Да, но обычно через языки",
+        "нет",
+        "только asm",
+        "никогда"
+      ],
+      "correctIndex": 0,
+      "explanation": "AssemblyScript и др."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Wasm — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "wasm"
+        ],
+        "tags": "Экспортируемые API."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "question": "Что экспортирует .wasm модуль?",
+      "code": {
+        "code": [
+          "Функции для вызова из JS",
+          "массив",
+          "хэш",
+          "лог"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-07",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Какой тип данных — основа wasm?",
+      "optionsLearning": [
+        "i32/f64/линейная память",
+        "string",
+        "объект",
+        "класс"
+      ],
+      "correctIndex": 0,
+      "explanation": "Простые числа и память."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-08",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Как общаться с JS?",
+      "optionsLearning": [
+        "Через импорт/экспорт функций и память",
+        "строки напрямую",
+        "объекты",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Маршалинг границ."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Wasm — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "wasm"
+        ],
+        "tags": "Обмен данными через буфер."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "question": "Что такое linear memory?",
+      "code": {
+        "code": [
+          "Непрерывная память wasm-модуля",
+          "куча JS",
+          "стек",
+          "лог"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-10",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Чем wasm быстр?",
+      "optionsLearning": [
+        "Спецификация под JIT-компиляцию",
+        "интерпретация",
+        "сеть",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Близко к нативному."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-11",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "wasm"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Что такое Emscripten?",
+      "optionsLearning": [
+        "Набор инструментов C++ → wasm",
+        "браузер",
+        "ОС",
+        "хэш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Портирование приложений."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Wasm — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "wasm"
+        ],
+        "tags": "Основной вызов."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "question": "Что делает emcc?",
+      "code": {
+        "code": [
+          "Компилирует C/C++ в wasm/JS",
+          "линкует JS",
+          "хэширует",
+          "сети"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-13",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm",
+          "graphics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Что такое WebGL + wasm?",
+      "optionsLearning": [
+        "Графика через WebGL из wasm",
+        "только JS",
+        "кеш",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Игры в браузере."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-14",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm",
+          "security"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Безопасна ли wasm-песочница?",
+      "optionsLearning": [
+        "Изолированная модель",
+        "небезопасна",
+        "открыта",
+        "сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ограниченные привилегии."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-15",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Можно ли запустить wasm вне браузера?",
+      "optionsLearning": [
+        "Да — через WASI/runtimes",
+        "нет",
+        "только браузер",
+        "сервер нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Wasmer/Wasmtime."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "Wasm — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "wasm"
+        ],
+        "tags": "Связь с окружением."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "question": "Что делает import в wasm?",
+      "code": {
+        "code": [
+          "Подтягивает внешние функции/память",
+          "компилирует",
+          "сортирует",
+          "логирует"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-17",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm",
+          "bindings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Что такое bindings к нативным библиотекам?",
+      "optionsLearning": [
+        "Обвязка для вызова из wasm/JS",
+        "ошибка",
+        "кэш",
+        "лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "FFI границы."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-18",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Какие ограничения у wasm?",
+      "optionsLearning": [
+        "Нет прямого доступа к железу/ОС",
+        "всё доступно",
+        "сеть",
+        "лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Песочница — компромисс."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-19",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Что делает былм в браузере?",
+      "optionsLearning": [
+        "Нативная производительность кода",
+        "JS везде",
+        "нет",
+        "медленнее"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вычислительно интенсивные задачи."
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario.card-20",
+      "kind": "select",
+      "title": "WebAssembly и Native Bindings — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "wasm"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.wasm.01.scenario",
+      "promptKnown": "Будущее C++ и wasm?",
+      "optionsLearning": [
+        "Перенос тяжёлого кода в браузер/edge",
+        "замена всему",
+        "упадёт",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Расширение платформы C++."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

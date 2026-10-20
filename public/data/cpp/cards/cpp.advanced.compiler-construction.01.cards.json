@@ -1,0 +1,629 @@
+{
+  "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-01",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что делает парсер?",
+      "optionsLearning": [
+        "Строит синтаксическое дерево из токенов",
+        "Лексер",
+        "Кодогенерация",
+        "Линковка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Parser: грамматика языка → AST."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-02",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что такое AST?",
+      "optionsLearning": [
+        "Абстрактное синтаксическое дерево",
+        "Массив",
+        "Строка",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Структура программы в дереве."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Compiler Construction — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "compilers"
+        ],
+        "tags": "Литералы — листья."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "question": "Что находится в листьях AST для выражения 1+2?",
+      "code": {
+        "code": [
+          "Литералы 1 и 2",
+          "Оператор",
+          "Скобки",
+          "Логи"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-04",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что такое lexer (scanner)?",
+      "optionsLearning": [
+        "Разбивает исходник на токены",
+        "Строит AST",
+        "Генерирует",
+        "Линкует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Первая фаза компиляции."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-05",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что такое грамматика в контексте компилятора?",
+      "optionsLearning": [
+        "Правила синтаксиса языка",
+        "Стиль",
+        "Файл",
+        "Кодировка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Грамматика определяет валидные конструкции."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Compiler Construction — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "compilers"
+        ],
+        "tags": "Диагностика синтаксических ошибок."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "question": "Что сделает парсер при некорректном синтаксисе?",
+      "code": {
+        "code": [
+          "Сообщит об ошибке",
+          "Игнорирует",
+          "Исправит",
+          "Запустит"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-07",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что такое IR (intermediate representation)?",
+      "optionsLearning": [
+        "Промежуточное представление кода",
+        "Финальный код",
+        "Строка",
+        "Массив"
+      ],
+      "correctIndex": 0,
+      "explanation": "Между AST и машинным кодом."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-08",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что такое кодогенерация?",
+      "optionsLearning": [
+        "Превращение IR в машинный код",
+        "Парсинг",
+        "Лексинг",
+        "Линковка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Финальная фаза трансляции."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Compiler Construction — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "compilers"
+        ],
+        "tags": ".o / .obj."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "question": "Что выводит компилятор после когенерации?",
+      "code": {
+        "code": [
+          "Объектный файл",
+          "Исходник",
+          "Токены",
+          "AST"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-10",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что такое семантический анализ?",
+      "optionsLearning": [
+        "Проверка типов и смысла",
+        "Синтаксис",
+        "Стиль",
+        "Сборка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Type checking, имена, контексты."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-11",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что делает оптимизатор?",
+      "optionsLearning": [
+        "Улучшает IR без изменения смысла",
+        "Парсит",
+        "Шифрует",
+        "Линкует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Снижение времени/размера."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Compiler Construction — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "compilers"
+        ],
+        "tags": "Каждая переменная присваивается один раз."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "question": "Что такое SSA?",
+      "code": {
+        "code": [
+          "Static Single Assignment — формы для анализа",
+          "Строка",
+          "Код",
+          "Ошибка"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-13",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Чем полезен SSA?",
+      "optionsLearning": [
+        "Упрощение оптимизаций",
+        "Скорость компиляции",
+        "Память",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Формальность кода для анализа."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-14",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что такое back-end компилятора?",
+      "optionsLearning": [
+        "Генерация кода под архитектуру",
+        "Лексер",
+        "AST",
+        "Тест"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для x86, ARM и т.д."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Compiler Construction — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "compilers"
+        ],
+        "tags": "LLVM IR — единый мост."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "question": "Сколько фрондээндов у LLVM?",
+      "code": {
+        "code": [
+          "Много (C, C++, Rust, Swift...)",
+          "Один",
+          "Два",
+          "Ноль"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-16",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что такое backend-таргет?",
+      "optionsLearning": [
+        "Конкретная ISA для генерации",
+        "Файл",
+        "Поток",
+        "Тип"
+      ],
+      "correctIndex": 0,
+      "explanation": "x86-64, AArch64..."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-17",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Как ускорить компиляцию?",
+      "optionsLearning": [
+        "Меньше #include, модули, incremental",
+        "Больше кода",
+        "Один файл",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Изоляция и кэширование."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "Compiler Construction — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "compilers",
+          "performance"
+        ],
+        "tags": "Меньше повторного препроцессинга."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "question": "Что из этого ускоряет сборку?",
+      "code": {
+        "code": [
+          "Precompiled headers / modules",
+          "Комментарии",
+          "Пустые строки",
+          "Макросы много"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-19",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что такое JIT против AOT?",
+      "optionsLearning": [
+        "JIT компилирует в runtime; AOT — заранее",
+        "Одно",
+        "Сеть",
+        "Файл"
+      ],
+      "correctIndex": 0,
+      "explanation": "Two философии исполнения."
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario.card-20",
+      "kind": "select",
+      "title": "Compiler Construction — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
+      "promptKnown": "Что такое cценарии санитайзеров?",
+      "optionsLearning": [
+        "Инструменты найдения ошибок в runtime",
+        "Компиляторы",
+        "Опции -g",
+        "Линтеры"
+      ],
+      "correctIndex": 0,
+      "explanation": "ASan/UBSan встраиваются на этапе компиляции."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.debugging.scenario",
+      "title": "C++ — GDB basics",
+      "description": "Сценарий: GDB basics — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-debugging",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.857034.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.857036.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.debugging.card-01",
+          "advanced.debugging.card-02",
+          "advanced.debugging.card-03",
+          "advanced.debugging.card-04",
+          "advanced.debugging.card-05"
+        ]
+      }
+    }
+  ]
+}

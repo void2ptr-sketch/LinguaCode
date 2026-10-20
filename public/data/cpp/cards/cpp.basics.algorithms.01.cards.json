@@ -1,0 +1,654 @@
+{
+  "scenarioId": "cpp.basics.algorithms.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-01",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Что такое алгоритм в STL?",
+      "optionsLearning": [
+        "Готовая функция обработки диапазона (поиск, сортировка…)",
+        "Цикл",
+        "Класс",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Алгоритмы — готовые шаблоны обработки последовательностей."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-02",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Какой алгоритм сортирует контейнер?",
+      "optionsLearning": [
+        "std::sort",
+        "std::find",
+        "std::count",
+        "std::accumulate"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::sort сортирует диапазон по возрастанию."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Алгоритмы Intro — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {5, 2, 8, 1}; std::sort(v.begin(), v.end()); std::cout << v[0] << v[3]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "18",
+        "15",
+        "81",
+        "28"
+      ],
+      "correctIndex": 0,
+      "explanation": "После сортировки {1,2,5,8}: 1 и 8."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-04",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Какая сложность std::sort?",
+      "optionsLearning": [
+        "O(n log n)",
+        "O(n)",
+        "O(log n)",
+        "O(n^2) гарантированно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Introsort в среднем O(n log n)."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-05",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Какой алгоритм ищет элемент по значению?",
+      "optionsLearning": [
+        "std::find",
+        "std::search",
+        "std::rfind",
+        "std::lookup"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::find возвращает итератор на первое вхождение."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Алгоритмы Intro — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; auto it = std::find(v.begin(), v.end(), 3); std::cout << std::distance(v.begin(), it); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "3 на позиции 2."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-07",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Как проверить, что find не нашёл элемент?",
+      "optionsLearning": [
+        "it == v.end()",
+        "it == nullptr",
+        "it == v.begin()",
+        "it != 0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отсутствие результата — итератор на end()."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-08",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Что делает std::count?",
+      "optionsLearning": [
+        "Считает вхождения значения",
+        "Сортирует",
+        "Удаляет",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "count(begin, end, x) — сколько раз встречается x."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Алгоритмы Intro — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 1, 1}; std::cout << std::count(v.begin(), v.end(), 1); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "1",
+        "2",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "Единица встречается 3 раза."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-10",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Какой алгоритм применяет функцию к каждому элементу?",
+      "optionsLearning": [
+        "std::for_each",
+        "std::find",
+        "std::sort",
+        "std::count"
+      ],
+      "correctIndex": 0,
+      "explanation": "for_each вызывает функцию для всех элементов диапазона."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-11",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Что делает std::accumulate?",
+      "optionsLearning": [
+        "Суммирует (свёртку) элементы с начальным значением",
+        "Сортирует",
+        "Ищет",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "accumulate(begin, end, init) — свертка с операцией +."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Алгоритмы Intro — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <numeric>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4, 5}; std::cout << std::accumulate(v.begin(), v.end(), 0); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "15",
+        "5",
+        "120",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сумма 1..5 = 15."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-13",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Какой алгоритм находит минимум и максимум диапазона?",
+      "optionsLearning": [
+        "std::minmax_element",
+        "std::min/max",
+        "std::smallest",
+        "std::extreme"
+      ],
+      "correctIndex": 0,
+      "explanation": "minmax_element возвращает пару итераторов."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Алгоритмы Intro — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {4, -1, 7}; auto r = std::minmax_element(v.begin(), v.end()); std::cout << *r.first << *r.second; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "-17",
+        "74",
+        "4-1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "min=-1, max=7 → -17."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-15",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Что делает std::transform?",
+      "optionsLearning": [
+        "Преобразует элементы, записывая результат",
+        "Сортирует",
+        "Ищет",
+        "Считает"
+      ],
+      "correctIndex": 0,
+      "explanation": "transform(begin, end, out, f) применяет функцию к элементам."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "Алгоритмы Intro — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\nint main() { int a[] = {1, 2, 3}; int b[3]; std::transform(a, a + 3, b, [](int x) { return x + 10; }); std::cout << b[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "12",
+        "11",
+        "13",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждый элемент +10: b[1] = 12."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-17",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Как отсортировать только часть контейнера?",
+      "optionsLearning": [
+        "std::sort(mid1, mid2) — диапазон итераторами",
+        "Нельзя",
+        "sort всего",
+        "через erase"
+      ],
+      "correctIndex": 0,
+      "explanation": "Алгоритмы работают с любыми полуинтервалами."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-18",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Что делает std::reverse?",
+      "optionsLearning": [
+        "Разворачивает порядок",
+        "Сортирует вниз",
+        "Копирует",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "reverse(begin, end) переставляет элементы в обратном порядке."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-19",
+      "kind": "code-trace",
+      "title": "Алгоритмы Intro — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; std::reverse(v.begin(), v.end()); std::cout << v[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "После разворота {4,3,2,1}: v[1]=3."
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario.card-20",
+      "kind": "select",
+      "title": "Алгоритмы Intro — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "algorithms",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.algorithms.01.scenario",
+      "promptKnown": "Чем std::sort отличается от std::stable_sort?",
+      "optionsLearning": [
+        "stable_sort сохраняет порядок равных элементов",
+        "Они одинаковы",
+        "stable быстрее",
+        "sort стабилен"
+      ],
+      "correctIndex": 0,
+      "explanation": "stable_sort гарантирует относительный порядок равных."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

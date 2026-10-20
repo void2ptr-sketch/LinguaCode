@@ -1,0 +1,646 @@
+{
+  "scenarioId": "cpp.basics.types-bool.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-01",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Какой ключевой тип используется для логических значений в C++?",
+      "optionsLearning": [
+        "bool",
+        "boolean",
+        "logical",
+        "bit"
+      ],
+      "correctIndex": 0,
+      "explanation": "Логический тип C++ называется bool и принимает значения true или false."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-02",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Какие значения может хранить переменная типа bool?",
+      "optionsLearning": [
+        "true и false",
+        "0 и 1 только как int",
+        "Любые числа",
+        "Строки да/нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "bool хранит логические значения true (истина) и false (ложь)."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-03",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Сколько байт обычно занимает bool в C++?",
+      "optionsLearning": [
+        "1 байт",
+        "4 байта",
+        "8 байт",
+        "2 бита"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стандарт гарантирует, что bool хранит true/false; на практике его размер — 1 байт."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-04",
+      "kind": "code-trace",
+      "title": "Логический тип — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { bool b = true; std::cout << b; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "true",
+        "TRUE",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "При выводе bool через iostream печатается 0 или 1, поэтому true выводится как 1."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-05",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Какое значение соответствует false при преобразовании числа в bool?",
+      "optionsLearning": [
+        "0",
+        "1",
+        "-1",
+        "Любое ненулевое"
+      ],
+      "correctIndex": 0,
+      "explanation": "Число 0 преобразуется в false, любое ненулевое — в true."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Логический тип — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 5; std::cout << static_cast<bool>(x); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "5",
+        "true",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ненулевое значение 5 преобразуется в true, который выводится как 1."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-07",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Какой оператор НЕ (логическое отрицание) в C++?",
+      "optionsLearning": [
+        "!",
+        "not из Python",
+        "~",
+        "-"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оператор ! инвертирует логическое значение: !true == false."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-08",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Какой результат даст выражение true && false?",
+      "optionsLearning": [
+        "false",
+        "true",
+        "Ошибка компиляции",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Логическое И (&&) истинно только когда оба операнда истинны."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-09",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Какой результат даст выражение true || false?",
+      "optionsLearning": [
+        "true",
+        "false",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Логическое ИЛИ (||) истинно, если хотя бы один операнд истинен."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Логический тип — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << std::boolalpha << true; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "true",
+        "1",
+        "TRUE",
+        "Тrue"
+      ],
+      "correctIndex": 0,
+      "explanation": "Манипулятор std::boolalpha включает вывод bool словами true/false."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-11",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Что произойдёт при сравнении 2 == 2 в условии if?",
+      "optionsLearning": [
+        "Условие окажется истинным (true)",
+        "Условие окажется ложным",
+        "Ошибка компиляции",
+        "Программа зависнет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оператор == возвращает bool: true при равенстве."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-12",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Какое значение вернёт выражение 0 != 1?",
+      "optionsLearning": [
+        "true",
+        "false",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "0 не равно 1, поэтому оператор != возвращает true."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-13",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Что такое короткое замыкание (short-circuit) для &&?",
+      "optionsLearning": [
+        "Если левый операнд false, правый не вычисляется",
+        "Правый операнд вычисляется всегда",
+        "Результат всегда true",
+        "Операция выполняется быстрее на 2 ядрах"
+      ],
+      "correctIndex": 0,
+      "explanation": "При false слева результат && гарантированно false, поэтому правый операнд не вычисляется."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Логический тип — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a = 0; std::cout << std::boolalpha << (a || true); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "true",
+        "false",
+        "0",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "true || что-либо равно true; вывод с boolalpha — слово true."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-15",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Как записать отрицание переменной isReady?",
+      "optionsLearning": [
+        "!isReady",
+        "isReady!",
+        "not isReady из C",
+        "isReady == false меньше"
+      ],
+      "correctIndex": 0,
+      "explanation": "Унарный оператор ! перед выражением даёт его логическое отрицание."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-16",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Какое значение логического выражения 5 > 3?",
+      "optionsLearning": [
+        "true",
+        "false",
+        "5",
+        "2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сравнение 5 > 3 истинно, результат — bool true."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-17",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Как сохранить результат сравнения в переменную?",
+      "optionsLearning": [
+        "bool res = (a > b);",
+        "int res = a > b; только",
+        "auto res = сравнить(a,b);",
+        "bool res = сравнить a b"
+      ],
+      "correctIndex": 0,
+      "explanation": "Результат сравнения — bool, его можно сохранить в переменную типа bool."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "Логический тип — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { bool a = true, b = false; std::cout << (a && b) << (a || b); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "01",
+        "10",
+        "11",
+        "00"
+      ],
+      "correctIndex": 0,
+      "explanation": "true && false = false (0), true || false = true (1) → вывод 01."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-19",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Что вернёт выражение !(5 > 2)?",
+      "optionsLearning": [
+        "false",
+        "true",
+        "Ошибка",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "5 > 2 истинно, отрицание превращает true в false."
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario.card-20",
+      "kind": "select",
+      "title": "Логический тип — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-bool.01.scenario",
+      "promptKnown": "Зачем нужен тип bool, если можно использовать int 0/1?",
+      "optionsLearning": [
+        "Код становится понятнее и безопаснее",
+        "bool быстрее int",
+        "int не умеет хранить 0 и 1",
+        "bool обязателен в if"
+      ],
+      "correctIndex": 0,
+      "explanation": "bool выражает намерение и предотвращает случайные ошибки при проверках."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

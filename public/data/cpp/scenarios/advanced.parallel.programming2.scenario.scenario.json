@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.parallel.programming2.scenario",
+      "title": "C++ — Thread-safe data structures",
+      "description": "Сценарий: Thread-safe data structures — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-parallel-programming2",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.859217.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.859219.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.parallel.programming2.card-01",
+          "advanced.parallel.programming2.card-02",
+          "advanced.parallel.programming2.card-03",
+          "advanced.parallel.programming2.card-04",
+          "advanced.parallel.programming2.card-05"
+        ]
+      }
+    }
+  ]
+}

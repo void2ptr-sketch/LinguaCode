@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.io.files.scenario",
+      "title": "C++ — File reading",
+      "description": "Сценарий: File reading — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-io-files",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.862103.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.862105.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.io.files.card-01",
+          "basics.io.files.card-02",
+          "basics.io.files.card-03",
+          "basics.io.files.card-04"
+        ]
+      }
+    }
+  ]
+}

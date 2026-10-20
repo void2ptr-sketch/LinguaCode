@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.network.programming2.scenario",
+  "cards": [
+    {
+      "id": "advanced.network.programming2.card-01",
+      "kind": "select",
+      "title": "HTTP/2 vs HTTP/1.1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем HTTP/2 отличается от HTTP/1.1?",
+      "optionsLearning": [
+        "HTTP/2 — multiplexing, binary framing, header compression",
+        "Одно и то же",
+        "HTTP/2 медленнее",
+        "HTTP/2 проще"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming2",
+      "scenarioId": "advanced.network.programming2.scenario"
+    },
+    {
+      "id": "advanced.network.programming2.card-02",
+      "kind": "select",
+      "title": "WebSocket",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое WebSocket?",
+      "optionsLearning": [
+        "Full-duplex communication (persistent connection)",
+        "Односторонняя связь",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming2",
+      "scenarioId": "advanced.network.programming2.scenario"
+    },
+    {
+      "id": "advanced.network.programming2.card-03",
+      "kind": "select",
+      "title": "gRPC",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое gRPC?",
+      "optionsLearning": [
+        "High-performance RPC framework (Protocol Buffers)",
+        "REST API",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming2",
+      "scenarioId": "advanced.network.programming2.scenario"
+    },
+    {
+      "id": "advanced.network.programming2.card-04",
+      "kind": "select",
+      "title": "Load balancing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое load balancing?",
+      "optionsLearning": [
+        "Распределение нагрузки (round-robin, least connections)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming2",
+      "scenarioId": "advanced.network.programming2.scenario"
+    },
+    {
+      "id": "advanced.network.programming2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать network code?",
+      "optionsLearning": [
+        "Async I/O + connection pooling + timeouts + retry",
+        "Только blocking",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming2",
+      "scenarioId": "advanced.network.programming2.scenario"
+    }
+  ]
+}

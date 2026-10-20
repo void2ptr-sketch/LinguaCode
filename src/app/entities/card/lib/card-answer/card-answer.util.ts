@@ -131,16 +131,17 @@ function checkOptionCardAnswer(
   card: OptionCard,
   selectedIndex: number,
   sessionDirection: CardDirection,
+  shuffleNonce?: number,
 ): boolean {
-  if (card.kind === 'code-select') {
-    return selectedIndex === card.correctIndex;
-  }
-
   const direction = effectiveCardDirection(
     'direction' in card ? card.direction : undefined,
     sessionDirection,
   );
-  const resolved = resolveOptionCard(card, direction);
+  const resolved = resolveOptionCard(card, direction, shuffleNonce);
+
+  if (card.kind === 'code-select' || card.kind === 'code-trace') {
+    return selectedIndex === resolved.correctIndex;
+  }
 
   if (card.kind === 'reading') {
     return matchesReadingCardSelection(card, resolved, selectedIndex);
@@ -239,13 +240,20 @@ export const canCheckCardAnswer = (card: Card, state: CardAnswerState): boolean 
     case 'timed':
     case 'reading':
     case 'tone':
+    case 'code-trace':
       return state.selectedIndex !== null;
     case 'keyboard':
       return state.answerText.trim().length > 0;
+    case 'cloze':
+      return card.options?.length
+        ? state.selectedIndex !== null
+        : state.answerText.trim().length > 0;
     case 'memory':
       return state.memoryComplete;
     case 'draw':
       return state.drawSubmitted;
+    case 'flip':
+      return state.flipKnown !== null;
   }
 };
 
@@ -256,6 +264,7 @@ export const canCheckCardAnswer = (card: Card, state: CardAnswerState): boolean 
  * @param state - The current answer state (selected index, text, etc.).
  * @param sessionDirection - The session direction (defaults to `'known-to-learning'`).
  * @param getHanziModel - Optional resolver for Hanzi character models (used for draw cards).
+ * @param shuffleNonce - Optional nonce for deterministic option shuffling.
  * @returns `true` if correct, `false` if incorrect, `null` if the answer cannot be evaluated.
  */
 export const checkCardAnswer = (
@@ -263,13 +272,14 @@ export const checkCardAnswer = (
   state: CardAnswerState,
   sessionDirection: CardDirection = 'known-to-learning',
   getHanziModel?: HanziModelResolver,
+  shuffleNonce?: number,
 ): boolean | null => {
   if (!canCheckCardAnswer(card, state)) {
     return null;
   }
 
   if (isOptionCard(card)) {
-    return checkOptionCardAnswer(card, state.selectedIndex!, sessionDirection);
+    return checkOptionCardAnswer(card, state.selectedIndex!, sessionDirection, shuffleNonce);
   }
 
   switch (card.kind) {
@@ -280,6 +290,16 @@ export const checkCardAnswer = (
     }
     case 'tone':
       return state.selectedIndex === card.correctIndex;
+    case 'cloze': {
+      if (card.options?.length) {
+        return state.selectedIndex !== null && state.selectedIndex === card.correctIndex;
+      }
+
+      const accepted = [card.correctAnswer, ...(card.acceptedAnswers ?? [])].filter(
+        (value) => value.trim().length > 0,
+      );
+      return matchesKeyboardAnswer(state.answerText, accepted, card.promptLexeme);
+    }
     case 'memory':
       return state.memoryComplete;
     case 'draw':
@@ -290,6 +310,8 @@ export const checkCardAnswer = (
         state.learningProficiencyLevel,
         getHanziModel,
       );
+    case 'flip':
+      return state.flipKnown;
   }
 };
 
@@ -302,18 +324,20 @@ export const checkCardAnswer = (
  *
  * @param card - The card being answered.
  * @param sessionDirection - The session direction (defaults to `'known-to-learning'`).
+ * @param shuffleNonce - Optional nonce for deterministic option shuffling.
  * @returns The correct answer label, or `null` if not applicable.
  */
 export const getCorrectAnswerLabel = (
   card: Card,
   sessionDirection: CardDirection = 'known-to-learning',
+  shuffleNonce?: number,
 ): string | null => {
   if (isOptionCard(card)) {
     const direction = effectiveCardDirection(
       'direction' in card ? card.direction : undefined,
       sessionDirection,
     );
-    const resolved = resolveOptionCard(card, direction);
+    const resolved = resolveOptionCard(card, direction, shuffleNonce);
 
     if (card.kind === 'code-select') {
       return resolved.options[resolved.correctIndex] ?? null;
@@ -344,6 +368,18 @@ export const getCorrectAnswerLabel = (
     }
 
     return accepted[0] ?? null;
+  }
+
+  if (card.kind === 'flip') {
+    return card.back.trim() || card.front.trim() || null;
+  }
+
+  if (card.kind === 'cloze') {
+    if (card.options?.length && card.correctIndex !== undefined) {
+      return card.options[card.correctIndex] ?? card.correctAnswer;
+    }
+
+    return card.correctAnswer.trim() || card.acceptedAnswers?.[0]?.trim() || null;
   }
 
   if (card.kind === 'tone') {

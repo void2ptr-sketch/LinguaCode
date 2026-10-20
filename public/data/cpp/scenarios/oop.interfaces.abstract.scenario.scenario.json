@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "oop.interfaces.abstract.scenario",
+      "title": "C++ — Abstract class",
+      "description": "Сценарий: Abstract class — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-oop-interfaces-abstract",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.883736.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.883738.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "oop.interfaces.abstract.card-01",
+          "oop.interfaces.abstract.card-02",
+          "oop.interfaces.abstract.card-03",
+          "oop.interfaces.abstract.card-04"
+        ]
+      }
+    }
+  ]
+}

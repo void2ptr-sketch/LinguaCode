@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "oop.templates.intro.scenario",
+      "title": "C++ — Что такое шаблоны?",
+      "description": "Сценарий: Что такое шаблоны? — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-oop-templates-intro",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.884046.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.884048.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "oop.templates.intro.card-01",
+          "oop.templates.intro.card-02",
+          "oop.templates.intro.card-03",
+          "oop.templates.intro.card-04",
+          "oop.templates.intro.card-05"
+        ]
+      }
+    }
+  ]
+}

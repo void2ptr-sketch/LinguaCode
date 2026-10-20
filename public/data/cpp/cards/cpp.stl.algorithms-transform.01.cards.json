@@ -1,0 +1,658 @@
+{
+  "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-01",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Что делает std::transform?",
+      "optionsLearning": [
+        "Преобразует элементы и записывает результаты",
+        "Сортирует",
+        "Ищет",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "transform(begin, end, out, fn) — отображение."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-02",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Сколько входных диапазонов может быть у transform?",
+      "optionsLearning": [
+        "Один или два (бинарный вариант)",
+        "Только один",
+        "Три",
+        "Ни одного"
+      ],
+      "correctIndex": 0,
+      "explanation": "Перегрузка с двумя входными диапазонами комбинирует их."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "transform и преобразования — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; std::vector<int> r(3); std::transform(v.begin(), v.end(), r.begin(), [](int x) { return x + 10; }); std::cout << r[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "13",
+        "12",
+        "11",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждый элемент +10: r[2]=13."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-04",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Можно ли записывать результат в тот же контейнер?",
+      "optionsLearning": [
+        "Да: out может совпадать с in",
+        "Нет",
+        "Только в новый",
+        "Только в vector"
+      ],
+      "correctIndex": 0,
+      "explanation": "При параллельных итераторах это безопасно."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "transform и преобразования — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {2, 4, 6}; std::transform(v.begin(), v.end(), v.begin(), [](int x) { return x * x; }); std::cout << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "36",
+        "6",
+        "12",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "На месте: {4,16,36} → v[2]=36."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-06",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Чем transform лучше ручного цикла?",
+      "optionsLearning": [
+        "Декларативность и отсутствие ошибок индексов",
+        "Быстрее всегда",
+        "Короче",
+        "Обязателен"
+      ],
+      "correctIndex": 0,
+      "explanation": "Алгоритмический стиль понятнее."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-07",
+      "kind": "code-trace",
+      "title": "transform и преобразования — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "question": "Что выведет эта программа (два диапазона)?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> a = {1, 2, 3}; std::vector<int> b = {10, 20, 30}; std::vector<int> r(3); std::transform(a.begin(), a.end(), b.begin(), r.begin(), [](int x, int y) { return x + y; }); std::cout << r[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "22",
+        "11",
+        "33",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "1-й: 1+10, 2-й: 2+20=22."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-08",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Как использовать transform для строк?",
+      "optionsLearning": [
+        "Преобразовывать символы (например, toupper)",
+        "stoi",
+        "Только числа",
+        "concat"
+      ],
+      "correctIndex": 0,
+      "explanation": "transform по символам строки."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "transform и преобразования — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <string>\n#include <cctype>\nint main() { std::string s = \"abc\"; std::transform(s.begin(), s.end(), s.begin(), ::toupper); std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "ABC",
+        "abc",
+        "AB",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждый символ в верхний регистр."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-10",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Что вернёт transform?",
+      "optionsLearning": [
+        "Итератор на конец результата",
+        "bool",
+        "size_t",
+        "void"
+      ],
+      "correctIndex": 0,
+      "explanation": "Возвращается итератор места записи."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-11",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Чем transform отличается от for_each?",
+      "optionsLearning": [
+        "transform декларативно строит результат; for_each — побочные эффекты",
+        "Ничем",
+        "for_each быстрее",
+        "transform не может"
+      ],
+      "correctIndex": 0,
+      "explanation": "transform без побочных эффектов — чистое отображение."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "transform и преобразования — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; std::vector<int> r(4); auto it = std::transform(v.begin(), v.end(), r.begin(), [](int x) { return x % 2; }); std::cout << std::distance(r.begin(), it); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "4",
+        "3",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Записано 4 результата: distance 4."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-13",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Когда нужен ручной цикл вместо transform?",
+      "optionsLearning": [
+        "Практически никогда при простом отображении",
+        "Всегда",
+        "В C",
+        "Строки"
+      ],
+      "correctIndex": 0,
+      "explanation": "transform выражает отображение напрямую."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-14",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Что делает transform с предикатом-фильтром?",
+      "optionsLearning": [
+        "Не фильтрует — только отображает (для фильтра есть copy_if)",
+        "Фильтрует",
+        "Сортирует",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Фильтрация — отдельный алгоритм copy_if."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "transform и преобразования — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "question": "Что выведет эта программа (обратные итераторы)?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; std::vector<int> r(3); std::transform(v.begin(), v.end(), r.rbegin(), [](int x) { return x * 10; }); std::cout << r[0]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "30",
+        "10",
+        "20",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Запись с конца: r = {30,20,10} → r[0]=30."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-16",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Как применить transform в C++20 Ranges?",
+      "optionsLearning": [
+        "std::ranges::transform(v, out, fn)",
+        "Как в STL",
+        "Нельзя",
+        "только sort"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ranges-версия принимает контейнер напрямую."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-17",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Можно ли transform преобразовывать типы?",
+      "optionsLearning": [
+        "Да: int → double через лямбду",
+        "Нет",
+        "Только int",
+        "Только числа"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отображение типов — частая задача transform."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "transform и преобразования — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; std::vector<double> r(3); std::transform(v.begin(), v.end(), r.begin(), [](int x) { return x / 2.0; }); std::cout << r[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1.5",
+        "1",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "3/2.0 = 1.5."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-19",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Как лениво задать отображение в C++20?",
+      "optionsLearning": [
+        "std::views::transform (reветские адапторы)",
+        "transform сразу",
+        "std::lazy",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ranges-адапторы вычисляются лениво."
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario.card-20",
+      "kind": "select",
+      "title": "transform и преобразования — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-transform.01.scenario",
+      "promptKnown": "Почему transform считается функциональным?",
+      "optionsLearning": [
+        "Чистое отображение без побочных эффектов",
+        "Сортирует",
+        "Мутирует контейнер",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отображение — базовая функциональная операция."
+    }
+  ],
+  "title": "Stl — Intermediate C++"
+}

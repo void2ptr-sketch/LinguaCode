@@ -1,0 +1,632 @@
+{
+  "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-01",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Какой уровень гарантии сильнейший?",
+      "optionsLearning": [
+        "No-throw",
+        "Strong",
+        "Basic",
+        "None"
+      ],
+      "correctIndex": 0,
+      "explanation": "no-throw — высшая гарантия."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-02",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Что такое strong guarantee?",
+      "optionsLearning": [
+        "Либо успех, либо состояние не меняется",
+        "Частичный",
+        "Пусто",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Транзакционность операции."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Exception Safety — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "question": "Что выведет эта программа (strong)?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {1, 2}; try { v.push_back(3); } catch (...) {} std::cout << v.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3 (успех, если нет исключения)",
+        "2",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "После успеха size=3."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-04",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Что такое basic guarantee?",
+      "optionsLearning": [
+        "Инварианты целы, ресурсы не текут",
+        "Полный откат",
+        "Нет ничего",
+        "Утечка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Минимальная корректность RAII."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-05",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Что реализует copy-and-swap?",
+      "optionsLearning": [
+        "Копия + noexcept-обмен — strong",
+        "move",
+        "вручную",
+        "логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Идиома для operator= обеспечивает strong гарантию."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Exception Safety — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { A() { std::cout << 'c'; } ~A() { std::cout << 'd'; } };\nint main() { try { A a; throw 1; } catch (...) { std::cout << 'x'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "cdx",
+        "cx",
+        "xcd",
+        "c"
+      ],
+      "correctIndex": 0,
+      "explanation": "Объект a разрушен при раскрутке: cdx."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-07",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Что гарантирует strong для push_back?",
+      "optionsLearning": [
+        "При исключении вектор не меняется",
+        "Меняется",
+        "Очищается",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стандартные контейнеры дают strong (в основном)."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-08",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Как обновить два ресурса атомарно?",
+      "optionsLearning": [
+        "Резерв + коммит/swap",
+        "Два lock",
+        "Через сеть",
+        "Без"
+      ],
+      "correctIndex": 0,
+      "explanation": "Транзакционный подход."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-09",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Что такое noexcept swap?",
+      "optionsLearning": [
+        "Обмен, не бросающий исключений",
+        "Медленный",
+        "Обязательный",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ключ к strong-операциям."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Exception Safety — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <utility>\nint main() { int a = 1, b = 2; std::swap(a, b); std::cout << a << b; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "21",
+        "12",
+        "Ошибка",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "swap: a=2, b=1 → 21."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-11",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Что значит «не бросать из деструкторов»?",
+      "optionsLearning": [
+        "Деструктор noexcept по умолчанию",
+        "Можно бросать",
+        "Логировать",
+        "Любой"
+      ],
+      "correctIndex": 0,
+      "explanation": "Исключение из деструктора — опасность terminate."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-12",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Как коммитить изменение при исключении?",
+      "optionsLearning": [
+        "Выполнять операцию с копией, потом swap",
+        "Прямо изменять",
+        "Откатывать вручную",
+        "Нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отложенный коммит."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Exception Safety — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { try { int* p = new int[10]; throw 1; } catch (...) { std::cout << 'u'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "u (утечка массива без delete)",
+        "1",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Голый new в try без delete — утечка при броске."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-14",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Как исправить предыдущую утечку?",
+      "optionsLearning": [
+        "Использовать unique_ptr/RAII",
+        "delete в catch",
+        "не менять",
+        "throw"
+      ],
+      "correctIndex": 0,
+      "explanation": "RAII автоматичестно освобождает."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-15",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Что такое exception-neutral/foolproof?",
+      "optionsLearning": [
+        "Функция перебрасывает исключения без потери",
+        "Ловит всё",
+        "Глотает",
+        "Игнор"
+      ],
+      "correctIndex": 0,
+      "explanation": "Прозрачность для исключений."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-16",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Какая польза от noexcept в интерфейсе?",
+      "optionsLearning": [
+        "Явный контракт и оптимизации",
+        "Пусто",
+        "Скорость компиляции",
+        "Тесты"
+      ],
+      "correctIndex": 0,
+      "explanation": "Документация и кодогенерация."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Exception Safety — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nint main() { try { auto p = std::make_unique<int>(1); throw 2; } catch (...) { std::cout << 'r'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "r (unique_ptr освободил)",
+        "2",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "RAII убрал утечку: r."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-18",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Что такое контракт функции relative to exceptions?",
+      "optionsLearning": [
+        "Какие исключения может бросать и как",
+        "Стиль",
+        "Типы",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Документированный контракт."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-19",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Когда basic-гарантия недостаточна?",
+      "optionsLearning": [
+        "Для транзакционных операций/инвариантов",
+        "Всегда достаточно",
+        "Никогда",
+        "Для чисел"
+      ],
+      "correctIndex": 0,
+      "explanation": "Требуется сильная при необходимости."
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario.card-20",
+      "kind": "select",
+      "title": "Exception Safety — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.exception-safety.01.scenario",
+      "promptKnown": "Как тестировать exception safety?",
+      "optionsLearning": [
+        "Инъецировать сбои (fail-injection) + RAII-проверки",
+        "Вручную",
+        "нельзя",
+        "только smoke"
+      ],
+      "correctIndex": 0,
+      "explanation": "Активное тестирование аномалий."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

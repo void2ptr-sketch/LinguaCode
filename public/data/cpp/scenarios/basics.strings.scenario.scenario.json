@@ -1,0 +1,39 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.strings.scenario",
+      "title": "C++ — Создание string",
+      "description": "Сценарий: Создание string — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-strings",
+      "courseId": "course-cpp-complete",
+      "cardCount": 10,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.862823.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.862825.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.strings.card-01",
+          "basics.strings.card-02",
+          "basics.strings.card-03",
+          "basics.strings.card-04",
+          "basics.strings.card-05",
+          "basics.strings.card-06",
+          "basics.strings.card-07",
+          "basics.strings.card-08",
+          "basics.strings.card-09",
+          "basics.strings.card-10"
+        ]
+      }
+    }
+  ]
+}

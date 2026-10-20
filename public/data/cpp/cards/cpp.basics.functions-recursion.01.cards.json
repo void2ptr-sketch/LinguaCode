@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-01",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Что такое рекурсия?",
+      "optionsLearning": [
+        "Функция, вызывающая саму себя",
+        "Цикл с break",
+        "Функция без возврата",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "Рекурсивная функция вызывает себя с изменёнными аргументами."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-02",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Что обязательно должно быть в рекурсивной функции?",
+      "optionsLearning": [
+        "Базовый случай (условие выхода)",
+        "Глобальная переменная",
+        "Цикл",
+        "Две функции"
+      ],
+      "correctIndex": 0,
+      "explanation": "Базовый случай останавливает рекурсию; без него — бесконечность/переполнение стека."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Рекурсия — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint fact(int n) { return n <= 1 ? 1 : n * fact(n - 1); }\nint main() { std::cout << fact(5); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "120",
+        "15",
+        "55",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "fact(5) = 5*4*3*2*1 = 120."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-04",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Что такое глубина рекурсии?",
+      "optionsLearning": [
+        "Количество вложенных вызовов до текущего момента",
+        "Скорость вызова",
+        "Размер аргумента",
+        "Число параметров"
+      ],
+      "correctIndex": 0,
+      "explanation": "Глубина — число одновременно активных (незавершённых) вызовов."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-05",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Что случится при бесконечной рекурсии?",
+      "optionsLearning": [
+        "Переполнение стека (stack overflow)",
+        "Цикл зациклится",
+        "Компилятор остановит",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждый вызов занимает стек; бесконечная рекурсия исчерпывает его."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Рекурсия — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nvoid count(int n) { if (n == 0) return; std::cout << n; count(n - 1); }\nint main() { count(3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "321",
+        "123",
+        "03",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Перед рекурсивным вызовом печатается n: 3 2 1."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-07",
+      "kind": "code-trace",
+      "title": "Рекурсия — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nvoid up(int n) { if (n == 0) return; up(n - 1); std::cout << n; }\nint main() { up(3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "123",
+        "321",
+        "3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вывод после рекурсивного вызова: 1 2 3 (обратный ход)."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-08",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Что такое хвостовая рекурсия (tail recursion)?",
+      "optionsLearning": [
+        "Рекурсивный вызов — последний оператор функции",
+        "Рекурсия в цикле",
+        "Двойная рекурсия",
+        "Рекурсия без базы"
+      ],
+      "correctIndex": 0,
+      "explanation": "В tail recursion вызов стоит в конце — её можно оптимизировать в цикл (TCO)."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-09",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "functions",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Какая сложность наивной рекурсии Фибоначчи fib(n)?",
+      "optionsLearning": [
+        "Экспоненциальная O(2^n)",
+        "O(n)",
+        "O(log n)",
+        "O(n^2)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без мемоизации fib(n) пересчитывает одни и те же значения экспоненциально."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Рекурсия — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint fib(int n) { return n < 2 ? n : fib(n - 1) + fib(n - 2); }\nint main() { std::cout << fib(6); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "8",
+        "6",
+        "13",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "fib(6) = 8 (0,1,1,2,3,5,8)."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-11",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Как улучшить рекурсивный Фибоначчи?",
+      "optionsLearning": [
+        "Мемоизация (запоминание результатов) или итерация",
+        "Увеличить стек",
+        "Больше аргументов",
+        "Вставить sleep"
+      ],
+      "correctIndex": 0,
+      "explanation": "Мемоизация устраняет повторные вычисления; итерация — лучший вариант."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-12",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Когда рекурсия удобнее цикла?",
+      "optionsLearning": [
+        "Для древовидных/вложенных структур (обход дерева, графов)",
+        "Всегда",
+        "Никогда",
+        "Для простых сумм"
+      ],
+      "correctIndex": 0,
+      "explanation": "Рекурсия естественно выражает обход вложенных структур и задач «разделяй и властвуй»."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Рекурсия — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint power(int b, int e) { return e == 0 ? 1 : b * power(b, e - 1); }\nint main() { std::cout << power(2, 3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "8",
+        "6",
+        "9",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "2^3 = 2*2*2 = 8."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-14",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Что такое базовый случай (base case)?",
+      "optionsLearning": [
+        "Условие, при котором функция возвращается без рекурсии",
+        "Первый вызов",
+        "Последний вызов",
+        "Главная функция"
+      ],
+      "correctIndex": 0,
+      "explanation": "Базовый случай — терминальное условие, останавливающее рекурсию."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-15",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Какая функция вычисляет НОД рекурсивно?",
+      "optionsLearning": [
+        "gcd(a, b) = b == 0 ? a : gcd(b, a % b)",
+        "gcd(a,b) = a-b",
+        "gcd через цикл for",
+        "gcd(a,b) = max"
+      ],
+      "correctIndex": 0,
+      "explanation": "Алгоритм Евклида рекурсивно: gcd(b, a % b)."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-16",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Как избежать переполнения стека при глубокой рекурсии?",
+      "optionsLearning": [
+        "Переписать на итерацию или увеличить стек осознанно",
+        "Добавить return",
+        "Уменьшить аргументы",
+        "Вызвать функцию реже"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для больших глубин итеративный алгоритм безопаснее и предсказуемее."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Рекурсия — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint sum(int n) { return n == 0 ? 0 : n + sum(n - 1); }\nint main() { std::cout << sum(4); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "4",
+        "24",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "sum(4) = 4+3+2+1+0 = 10."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-18",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Сколько памяти занимает каждый рекурсивный вызов?",
+      "optionsLearning": [
+        "Кадр стека (адрес возврата, параметры, локальные)",
+        "Нисколько",
+        "Один байт",
+        "Всю память"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждый вызов размещает кадр в стеке вызовов."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-19",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Что такое «разделяй и властвуй»?",
+      "optionsLearning": [
+        "Паттерн: разделить задачу, рекурсивно решить части, объединить",
+        "Вставить комментарии",
+        "Ускорить цикл",
+        "Перегрузка функций"
+      ],
+      "correctIndex": 0,
+      "explanation": "Divide and conquer — рекурсивное разбиение задачи (merge sort, быстрая сортировка)."
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario.card-20",
+      "kind": "select",
+      "title": "Рекурсия — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-recursion.01.scenario",
+      "promptKnown": "Почему рекурсия может быть медленнее цикла?",
+      "optionsLearning": [
+        "Накладные расходы на вызовы и отсутствие оптимизации",
+        "Рекурсия всегда быстрее",
+        "Компилятор запрещает",
+        "Стек не нужен"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без TCO рекурсия платит за каждый вызов; итерация — за цикл без кадров."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

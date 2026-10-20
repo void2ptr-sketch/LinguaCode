@@ -1,0 +1,295 @@
+{
+  "scenarioId": "basics.intro.compiler.setup.scenario",
+  "cards": [
+    {
+      "id": "basics.intro.compiler.setup.card-01",
+      "kind": "select",
+      "title": "Установка g++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как установить g++ в Linux?",
+      "optionsLearning": [
+        "sudo apt install g++",
+        "npm install g++",
+        "pip install g++",
+        "brew install g++"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compiler-setup",
+      "scenarioId": "basics.intro.compiler.setup.scenario"
+    },
+    {
+      "id": "basics.intro.compiler.setup.card-02",
+      "kind": "select",
+      "title": "Проверка версии",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проверить версию g++?",
+      "optionsLearning": [
+        "g++ --version",
+        "g++ -v",
+        "both A and B",
+        "version g++"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compiler-setup",
+      "scenarioId": "basics.intro.compiler.setup.scenario"
+    },
+    {
+      "id": "basics.intro.compiler.setup.card-03",
+      "kind": "select",
+      "title": "Стандарты C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как указать стандарт C++17?",
+      "optionsLearning": [
+        "g++ -std=c++17 main.cpp",
+        "g++ -c++17 main.cpp",
+        "g++ --standard=17 main.cpp",
+        "g++ -std=cpp17 main.cpp"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compiler-setup",
+      "scenarioId": "basics.intro.compiler.setup.scenario"
+    },
+    {
+      "id": "basics.intro.compiler.setup.card-04",
+      "kind": "select",
+      "title": "Debug flags",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой флаг для отладки?",
+      "optionsLearning": [
+        "-g (debug info)",
+        "-O3 (optimization)",
+        "-Wall (warnings)",
+        "-std=c++17"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compiler-setup",
+      "scenarioId": "basics.intro.compiler.setup.scenario"
+    },
+    {
+      "id": "basics.intro.compiler.setup.card-05",
+      "kind": "select",
+      "title": "Warning flags",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как включить все предупреждения?",
+      "optionsLearning": [
+        "-Wall -Wextra",
+        "-O3",
+        "-g",
+        "-std=c++17"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compiler-setup",
+      "scenarioId": "basics.intro.compiler.setup.scenario"
+    },
+    {
+      "id": "basics.intro.compiler.setup.card-06",
+      "kind": "select",
+      "title": "Compilation database",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое compile_commands.json?",
+      "optionsLearning": [
+        "База данных компиляции для IDE/tools",
+        "Файл с исходным кодом",
+        "Лог ошибок",
+        "Настройка проекта"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compiler-setup",
+      "scenarioId": "basics.intro.compiler.setup.scenario"
+    },
+    {
+      "id": "basics.intro.compiler.setup.card-07",
+      "kind": "select",
+      "title": "IDE setup",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая IDE популярна для C++?",
+      "optionsLearning": [
+        "VS Code + C/C++ extension",
+        "Sublime Text",
+        "Notepad",
+        "Блокнот"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compiler-setup",
+      "scenarioId": "basics.intro.compiler.setup.scenario"
+    },
+    {
+      "id": "basics.intro.compiler.setup.card-08",
+      "kind": "select",
+      "title": "CMake intro",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое CMake?",
+      "optionsLearning": [
+        "Система сборки кросс-платформенная",
+        "Компилятор C++",
+        "IDE для C++",
+        "База данных"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compiler-setup",
+      "scenarioId": "basics.intro.compiler.setup.scenario"
+    },
+    {
+      "id": "basics.intro.compiler.setup.card-09",
+      "kind": "select",
+      "title": "Makefile intro",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Makefile?",
+      "optionsLearning": [
+        "Скрипт для автоматизации сборки",
+        "Файл с исходным кодом",
+        "Документация",
+        "Настройка IDE"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compiler-setup",
+      "scenarioId": "basics.intro.compiler.setup.scenario"
+    },
+    {
+      "id": "basics.intro.compiler.setup.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой флаг всегда использовать в dev?",
+      "optionsLearning": [
+        "-Wall -Wextra -g -std=c++20",
+        "-O3",
+        "-static",
+        "-shared"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "setup"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compiler-setup",
+      "scenarioId": "basics.intro.compiler.setup.scenario"
+    }
+  ]
+}

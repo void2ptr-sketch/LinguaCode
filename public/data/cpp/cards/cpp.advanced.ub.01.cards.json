@@ -1,0 +1,639 @@
+{
+  "scenarioId": "cpp.advanced.ub.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-01",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "syntax",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что такое UB?",
+      "optionsLearning": [
+        "Поведение, не определённое стандартом",
+        "Ошибка",
+        "Логи",
+        "Скорость"
+      ],
+      "correctIndex": 0,
+      "explanation": "UB может вести себя как угодно."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-02",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "syntax",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что относится к UB?",
+      "optionsLearning": [
+        "Signed-переполнение, деление на 0 int, выходят за границы",
+        "Строки",
+        "double-деление",
+        "логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Множество опасных операций."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Undefined Behavior (UB) — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "types",
+          "memory"
+        ],
+        "tags": "Signed overflow — UB."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "question": "Что произойдёт при int x = INT_MAX; x++?",
+      "code": {
+        "code": [
+          "UB (can wrap or anything)",
+          "Всегда INT_MIN",
+          "Ошибка",
+          "0"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-04",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что произойдёт при чтении out-of-bounds?",
+      "optionsLearning": [
+        "UB (возможен segfault)",
+        "0",
+        "Границы",
+        "Исключение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Доступ за массив — UB."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Undefined Behavior (UB) — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[3] = {1, 2, 3}; std::cout << a[5]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "UB (непредсказуемо)",
+        "0",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Индекс вне диапазона — UB."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-06",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что такое use-after-free?",
+      "optionsLearning": [
+        "Использование указателя после delete",
+        "Обычно",
+        "Безопасно",
+        "Строки"
+      ],
+      "correctIndex": 0,
+      "explanation": "delete, затем доступ — UB."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-07",
+      "kind": "code-trace",
+      "title": "Undefined Behavior (UB) — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "question": "Компилируется ли и что делает?",
+      "code": {
+        "code": "int* p = new int(5); delete p; delete p;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Компилируется, двойной delete — UB",
+        "Нет",
+        "Безопасно",
+        "Ошибка линковки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Двойное освобождение — классика UB."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-08",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "memory",
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что такое null-dereference?",
+      "optionsLearning": [
+        "Разыменование nullptr — UB",
+        "Исключение гарантировано",
+        "0",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "*nullptr — UB (обычно crash)."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-09",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "syntax",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что делает компилятор с UB?",
+      "optionsLearning": [
+        "Может оптимизировать неожиданно",
+        "Гарантирует ошибку",
+        "Замедляет",
+        "Печатает"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оптимизаторы используют отсутствие UB."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Undefined Behavior (UB) — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "types"
+        ],
+        "tags": "Деление на 0 в int — UB."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "question": "Что произойдёт при делении int на 0?",
+      "code": {
+        "code": [
+          "UB (обычно SIGFPE)",
+          "inf",
+          "Исключение C++",
+          "0"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-11",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что такое uninitialized read?",
+      "optionsLearning": [
+        "Чтение неинициализированной переменной",
+        "Чтение 0",
+        "Логи",
+        "grrr"
+      ],
+      "correctIndex": 0,
+      "explanation": "Локальная переменная без инициализации — UB."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-12",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что даёт компилятору отсутствие UB?",
+      "optionsLearning": [
+        "Свободу оптимизаций",
+        "Замедление",
+        "Ошибки",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Фиктивная оптимизация под допущение."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Undefined Behavior (UB) — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "question": "Что выведет этот код (signed overflow)?",
+      "code": {
+        "code": "int x = INT_MAX; std::cout << (x + 1 > 0);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "UB-зависит (обычно false из-за wrap)",
+        "true",
+        "false верно",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Wrap/UB — результат неопределён."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-14",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Как ловить UB?",
+      "optionsLearning": [
+        "Sanitizers (UBSan/ASan), тщательное тестирование",
+        "Нельзя",
+        "Вручную",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "-fsanitize=undefined — детектор."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Undefined Behavior (UB) — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "debugging"
+        ],
+        "tags": "С инструментом видно проблему."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "question": "Что выведет UBSan для 1/0?",
+      "code": {
+        "code": [
+          "Сообщение о UB",
+          "inf",
+          "0",
+          "ничего"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-16",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что такое strict aliasing violation?",
+      "optionsLearning": [
+        "Доступ через несовместимый тип",
+        "Разрешается",
+        "Только C",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Чтение int как float* — нарушение, UB."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-17",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что рекомендует C++ Core Guidelines?",
+      "optionsLearning": [
+        "Избегать UB через RAII, границы, типы",
+        "Игнорировать",
+        "Гарантировать",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Профилактика UB."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-18",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что такое lifecycle violation?",
+      "optionsLearning": [
+        "Использование объекта после конца жизни",
+        "Норма",
+        "Строки",
+        "Нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Просроченный объект — UB."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-19",
+      "kind": "code-trace",
+      "title": "Undefined Behavior (UB) — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "question": "Опасно ли это?",
+      "code": {
+        "code": "std::string& r = *(new std::string(\"x\")); delete &r; r.size();",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Да, use-after-free",
+        "Нет",
+        "Ок",
+        "Исключение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Доступ после delete — UB."
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-20",
+      "kind": "select",
+      "title": "Undefined Behavior (UB) — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "memory",
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario",
+      "promptKnown": "Что важнее всего приложениям на C++?",
+      "optionsLearning": [
+        "Корректность без UB + тесты + санитайзеры",
+        "Скорость любой ценой",
+        "Меньше кода",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Надёжность через явные контракты."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

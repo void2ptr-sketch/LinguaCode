@@ -1,0 +1,121 @@
+{
+  "scenarioId": "oop.rules.of.five.scenario",
+  "cards": [
+    {
+      "id": "oop.rules.of.five.card-01",
+      "kind": "select",
+      "title": "Rule of five",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое правило пяти?",
+      "optionsLearning": [
+        "Destructor, copy ctor, copy assign, move ctor, move assign",
+        "Только destructor",
+        "Только copy ctor",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "five"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-rules-of-five",
+      "scenarioId": "oop.rules.of.five.scenario"
+    },
+    {
+      "id": "oop.rules.of.five.card-02",
+      "kind": "select",
+      "title": "Move semantics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое move semantics?",
+      "optionsLearning": [
+        "Перемещение ресурсов вместо копирования (rvalue refs)",
+        "Копирование",
+        "Удаление",
+        "Сравнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "five"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-rules-of-five",
+      "scenarioId": "oop.rules.of.five.scenario"
+    },
+    {
+      "id": "oop.rules.of.five.card-03",
+      "kind": "select",
+      "title": "Copy elision",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое copy elision?",
+      "optionsLearning": [
+        "Оптимизация: удаление unnecessary copies (RVO, NRVO)",
+        "Копирование",
+        "Удаление",
+        "Сравнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "five"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-rules-of-five",
+      "scenarioId": "oop.rules.of.five.scenario"
+    },
+    {
+      "id": "oop.rules.of.five.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда определять Rule of Five?",
+      "optionsLearning": [
+        "При управлении ресурсами (memory, file handles)",
+        "Всегда",
+        "Никогда",
+        "Только для small classes"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "five"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-rules-of-five",
+      "scenarioId": "oop.rules.of.five.scenario"
+    }
+  ]
+}

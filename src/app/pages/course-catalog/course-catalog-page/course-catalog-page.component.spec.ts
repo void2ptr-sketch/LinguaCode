@@ -413,7 +413,7 @@ describe('CourseCatalogPageComponent', () => {
     expect(component.loading()).toBe(false);
   });
 
-  it('should navigate to cards/select on startCourse', async () => {
+  it('should navigate to journey map on startCourse', async () => {
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
@@ -422,7 +422,7 @@ describe('CourseCatalogPageComponent', () => {
     void component.startCourse('c-1');
     await fixture.whenStable();
 
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/cards/select'], {
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/journey'], {
       queryParams: { courseId: 'c-1' },
     });
   });

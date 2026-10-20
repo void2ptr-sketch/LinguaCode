@@ -1,0 +1,646 @@
+{
+  "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-01",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Что такое абстрактный класс?",
+      "optionsLearning": [
+        "Класс с чисто виртуальными методами (нельзя инстанцировать)",
+        "Обычный класс",
+        "Финальный класс",
+        "Структура"
+      ],
+      "correctIndex": 0,
+      "explanation": "Абстракция — контракт для производных классов."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-02",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Как объявить чисто виртуальный метод?",
+      "optionsLearning": [
+        "virtual void f() = 0;",
+        "void f() = 0; без virtual",
+        "abstract void f();",
+        "virtual void f() noexcept;"
+      ],
+      "correctIndex": 0,
+      "explanation": "= 0 после сигнатуры делает метод чисто виртуальным."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Абстрактные классы — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "question": "Компилируется ли создание объекта A?",
+      "code": {
+        "code": "class A { public: virtual void f() = 0; };\nA a;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Нет — абстрактный класс",
+        "Да",
+        "С warning",
+        "В C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "Абстрактные типы нельзя создавать."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-04",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Что обязан сделать производный класс с чисто виртуальным методом?",
+      "optionsLearning": [
+        "Реализовать его (или тоже стать абстрактным)",
+        "Ничего",
+        "Удалить",
+        "Скопировать"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конкретный класс реализует все чисто виртуальные методы."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Абстрактные классы — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct Shape { virtual double area() const = 0; virtual ~Shape() {} };\nstruct Square : Shape { double side; explicit Square(double s) : side(s) {} double area() const override { return side * side; } };\nint main() { Shape* s = new Square(4); std::cout << s->area(); delete s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "16",
+        "4",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Полиморфный вызов: площадь 16."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-06",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Зачем нужны абстрактные классы в дизайне?",
+      "optionsLearning": [
+        "Задают интерфейс/контракт для иерархии",
+        "Ускоряют",
+        "Сокращают",
+        "Украшают"
+      ],
+      "correctIndex": 0,
+      "explanation": "Абстракция определяет «что делать», делегируя «как»."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-07",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Может ли абстрактный класс иметь обычные методы?",
+      "optionsLearning": [
+        "Да — реализацию общей логики",
+        "Нет",
+        "Только static",
+        "Только virtual"
+      ],
+      "correctIndex": 0,
+      "explanation": "Абстракции часто содержат готовые методы и данные."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-08",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Может ли абстрактный класс иметь конструктор?",
+      "optionsLearning": [
+        "Да (вызывается при построении производного)",
+        "Нет",
+        "Только дефолт",
+        "Не нужен"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор базы инициализирует её часть."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Абстрактные классы — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual void f() = 0; virtual ~A() { std::cout << 'a'; } };\nstruct B : A { void f() override {} ~B() override { std::cout << 'b'; } };\nint main() { A* p = new B; delete p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "ba",
+        "ab",
+        "a",
+        "b"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор B затем A: ba."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-10",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Что такое интерфейсный класс в C++?",
+      "optionsLearning": [
+        "Абстрактный класс только с чисто виртуальными методами",
+        "final класс",
+        "структура",
+        "шаблон"
+      ],
+      "correctIndex": 0,
+      "explanation": "Чистые интерфейсы — контракты без состояния."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-11",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Можно ли иметь указатель на абстрактный класс?",
+      "optionsLearning": [
+        "Да: A* p = new D;",
+        "Нет",
+        "Только const",
+        "Ошибкой"
+      ],
+      "correctIndex": 0,
+      "explanation": "Указатели/ссылки на абстрактные типы разрешены."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Абстрактные классы — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "question": "Из корректного ли применения идёт полиморфизм через ссылку?",
+      "code": {
+        "code": "struct I { virtual int f() = 0; };\nvoid call(I& r) { r.f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Да — ссылка на абстрактный тип",
+        "Нет",
+        "Ошибка",
+        "С warning"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылки на интерфейс — стандартный полиморфизм."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-13",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Что произойдёт, если производный не реализует все абстрактные методы?",
+      "optionsLearning": [
+        "Продолжает быть абстрактным",
+        "Ошибка линковки",
+        "Автореализация",
+        "Предупреждение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Класс остаётся абстрактным, пока не реализованы все = 0."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-14",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Почему абстрактный класс часто имеет виртуальный деструктор?",
+      "optionsLearning": [
+        "Корректное удаление полиморфных объектов",
+        "Скорость",
+        "Требование",
+        "Стиль"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual ~A обязателен при delete через A*."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Абстрактные классы — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct I { virtual int get() const = 0; };\nstruct Impl : I { int get() const override { return 42; } };\nint main() { I& r = *new Impl; std::cout << r.get(); delete &r; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "0",
+        "Ошибка",
+        "get"
+      ],
+      "correctIndex": 0,
+      "explanation": "Полиморфный вызов через ссылку: 42."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-16",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Чем интерфейс C++ отличается от Java-интерфейса?",
+      "optionsLearning": [
+        "В C++ интерфейс — класс с чисто виртуальными (и опциональной реализацией)",
+        "Ничем",
+        "C++ без интерфейсов",
+        "Java без"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ позволяет и контракты, и частичную реализацию."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-17",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Можно ли вызвать чисто виртуальный метод из конструктора?",
+      "optionsLearning": [
+        "Да, но это опасно — вызовется базовая версия/none",
+        "Нельзя",
+        "Всегда крах",
+        "Запрещено"
+      ],
+      "correctIndex": 0,
+      "explanation": "Из конструктора virtual-диспетчеризация идёт в текущий класс."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-18",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Когда класс считается конкретным?",
+      "optionsLearning": [
+        "Если реализует все чисто виртуальные методы",
+        "Всегда",
+        "При virtual",
+        "По названию"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конкретный класс полностью реализует контракт."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-19",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Как называется паттерн использования абстракций?",
+      "optionsLearning": [
+        "Программирование на интерфейсах (program to interface)",
+        "Копирование",
+        "Статика",
+        "Глобализация"
+      ],
+      "correctIndex": 0,
+      "explanation": "Зависимость от абстракций улучшает расширяемость."
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-20",
+      "kind": "select",
+      "title": "Абстрактные классы — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+      "promptKnown": "Какая связь абстрактных классов и полиморфизма?",
+      "optionsLearning": [
+        "Абстракции — основа динамического полиморфизма",
+        "Никакой",
+        "Противоположность",
+        "Случайность"
+      ],
+      "correctIndex": 0,
+      "explanation": "Обобщённый код работает с абстракциями, вызывая конкретику."
+    }
+  ],
+  "title": "Oop — Intermediate C++"
+}

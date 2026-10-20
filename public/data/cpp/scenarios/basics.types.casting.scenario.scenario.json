@@ -1,0 +1,36 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.types.casting.scenario",
+      "title": "C++ — Implicit cast",
+      "description": "Сценарий: Implicit cast — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-types-casting",
+      "courseId": "course-cpp-complete",
+      "cardCount": 7,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.863223.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.863224.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.types.casting.card-01",
+          "basics.types.casting.card-02",
+          "basics.types.casting.card-03",
+          "basics.types.casting.card-04",
+          "basics.types.casting.card-05",
+          "basics.types.casting.card-06",
+          "basics.types.casting.card-07"
+        ]
+      }
+    }
+  ]
+}

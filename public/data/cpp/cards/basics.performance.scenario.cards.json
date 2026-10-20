@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.performance.scenario",
+  "cards": [
+    {
+      "id": "basics.performance.card-01",
+      "kind": "select",
+      "title": "Big O notation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Big O?",
+      "optionsLearning": [
+        "Оценка сложности алгоритма",
+        "Название языка",
+        "Тип данных",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-performance",
+      "scenarioId": "basics.performance.scenario"
+    },
+    {
+      "id": "basics.performance.card-02",
+      "kind": "select",
+      "title": "Cache locality",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое cache locality?",
+      "optionsLearning": [
+        "Эффективное использование кэша процессора",
+        "Тип памяти",
+        "Операция ввода",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-performance",
+      "scenarioId": "basics.performance.scenario"
+    },
+    {
+      "id": "basics.performance.card-03",
+      "kind": "select",
+      "title": "Profiling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как профилировать программу?",
+      "optionsLearning": [
+        "gprof, perf, valgrind",
+        "Нельзя профилировать",
+        "Только вручную",
+        "print(time) только"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-performance",
+      "scenarioId": "basics.performance.scenario"
+    },
+    {
+      "id": "basics.performance.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать код?",
+      "optionsLearning": [
+        "Профилировать → найти bottleneck → оптимизировать",
+        "Оптимизировать всё",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-performance",
+      "scenarioId": "basics.performance.scenario"
+    }
+  ]
+}

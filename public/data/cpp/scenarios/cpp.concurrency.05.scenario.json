@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.concurrency.05.scenario",
+      "title": "std::async",
+      "description": "Сценарий: std::async",
+      "order": 4,
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-18T20:11:59.590Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-18T20:11:59.590Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.concurrency.05.scenario.card-01",
+          "cpp.concurrency.05.scenario.card-02",
+          "cpp.concurrency.05.scenario.card-03",
+          "cpp.concurrency.05.scenario.card-04",
+          "cpp.concurrency.05.scenario.card-05",
+          "cpp.concurrency.05.scenario.card-06",
+          "cpp.concurrency.05.scenario.card-07",
+          "cpp.concurrency.05.scenario.card-08",
+          "cpp.concurrency.05.scenario.card-09",
+          "cpp.concurrency.05.scenario.card-10",
+          "cpp.concurrency.05.scenario.card-11",
+          "cpp.concurrency.05.scenario.card-12",
+          "cpp.concurrency.05.scenario.card-13",
+          "cpp.concurrency.05.scenario.card-14",
+          "cpp.concurrency.05.scenario.card-15",
+          "cpp.concurrency.05.scenario.card-16",
+          "cpp.concurrency.05.scenario.card-17",
+          "cpp.concurrency.05.scenario.card-18",
+          "cpp.concurrency.05.scenario.card-19",
+          "cpp.concurrency.05.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-18T20:11:59.590Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "oop.templates.specialization.scenario",
+      "title": "C++ — Full specialization",
+      "description": "Сценарий: Full specialization — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-oop-templates-specialization",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.884121.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.884122.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "oop.templates.specialization.card-01",
+          "oop.templates.specialization.card-02",
+          "oop.templates.specialization.card-03",
+          "oop.templates.specialization.card-04"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.ai.programming.scenario",
+      "title": "C++ — ML libraries C++",
+      "description": "Сценарий: ML libraries C++ — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-ai-programming",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.854708.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.854715.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.ai.programming.card-01",
+          "advanced.ai.programming.card-02",
+          "advanced.ai.programming.card-03",
+          "advanced.ai.programming.card-04",
+          "advanced.ai.programming.card-05"
+        ]
+      }
+    }
+  ]
+}

@@ -129,6 +129,9 @@ export class LearningZoneComponent {
   /** Event emitted when memory completion state changes. */
   @Output() readonly memoryCompleteChange = new EventEmitter<boolean>();
 
+  /** Event emitted when the self-reported flip result changes. */
+  @Output() readonly flipKnownChange = new EventEmitter<boolean>();
+
   /** Event emitted when draw submission state changes. */
   @Output() readonly drawSubmittedChange = new EventEmitter<boolean>();
 
@@ -154,6 +157,9 @@ export class LearningZoneComponent {
 
   /** Whether memory board is complete. */
   readonly memoryComplete = computed(() => this.store.memoryComplete());
+
+  /** Self-reported flip result from the store. */
+  readonly flipKnown = computed(() => this.store.flipKnown());
 
   /** Nonce for the memory board layout randomization. */
   readonly memoryBoardNonce = computed(() => this.store.memoryBoardNonce());
@@ -212,6 +218,11 @@ export class LearningZoneComponent {
   /** Handles memory completion state changes. */
   onMemoryCompleteChange(complete: boolean): void {
     this.memoryCompleteChange.emit(complete);
+  }
+
+  /** Handles flip self-reported result changes. */
+  onFlipKnownChange(knows: boolean): void {
+    this.flipKnownChange.emit(knows);
   }
 
   /** Handles draw submission state changes. */

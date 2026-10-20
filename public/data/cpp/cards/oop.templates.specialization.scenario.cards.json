@@ -1,0 +1,121 @@
+{
+  "scenarioId": "oop.templates.specialization.scenario",
+  "cards": [
+    {
+      "id": "oop.templates.specialization.card-01",
+      "kind": "select",
+      "title": "Full specialization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое full specialization?",
+      "optionsLearning": [
+        "template<> void f<int>(int x) {} — для конкретного типа",
+        "Удаление шаблона",
+        "Компиляция",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "specialization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-templates-specialization",
+      "scenarioId": "oop.templates.specialization.scenario"
+    },
+    {
+      "id": "oop.templates.specialization.card-02",
+      "kind": "select",
+      "title": "Partial specialization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое partial specialization?",
+      "optionsLearning": [
+        "template<typename T> class Box<T*> {} — для pointer types",
+        "Удаление шаблона",
+        "Компиляция",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "specialization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-templates-specialization",
+      "scenarioId": "oop.templates.specialization.scenario"
+    },
+    {
+      "id": "oop.templates.specialization.card-03",
+      "kind": "select",
+      "title": "Template constraints",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как ограничить типы в шаблоне?",
+      "optionsLearning": [
+        "static_assert или concepts (C++20)",
+        "Нельзя ограничить",
+        "Только runtime",
+        "Только int"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "specialization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-templates-specialization",
+      "scenarioId": "oop.templates.specialization.scenario"
+    },
+    {
+      "id": "oop.templates.specialization.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать safe templates?",
+      "optionsLearning": [
+        "static_assert для проверки требований",
+        "Никак",
+        "Только runtime",
+        "Игнорировать"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "specialization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-templates-specialization",
+      "scenarioId": "oop.templates.specialization.scenario"
+    }
+  ]
+}

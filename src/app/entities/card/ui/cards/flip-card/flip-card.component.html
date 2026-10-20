@@ -1,0 +1,92 @@
+<mat-card class="quiz-card flip-card quiz-card--font-{{ fontSize() }}">
+  <section class="quiz-card__question" aria-label="Вопрос">
+    <app-quiz-card-question-header
+      [title]="card().title"
+      [prompt]="front()"
+      [promptLexeme]="frontLexeme()"
+    />
+  </section>
+
+  <section class="quiz-card__answer" aria-label="Ответ">
+    <p class="quiz-card__section-label">Обратная сторона</p>
+    <mat-card-content class="flip-card__back">
+      @if (revealed()) {
+        <app-lexeme-display surface="answer" [lexeme]="backLexeme()" [fallbackText]="back()" />
+        @if (card().audioUrl) {
+          <button
+            mat-icon-button
+            type="button"
+            class="flip-card__audio"
+            aria-label="Прослушать"
+            (click)="playAudio()"
+          >
+            <mat-icon>volume_up</mat-icon>
+          </button>
+        }
+      } @else {
+        <button mat-stroked-button type="button" (click)="reveal()">
+          <mat-icon>visibility</mat-icon>
+          Показать ответ
+        </button>
+      }
+    </mat-card-content>
+
+    @if (revealed() && feedback() === null) {
+      <mat-card-content class="flip-card__assessment" aria-label="Самопроверка">
+        <button
+          mat-flat-button
+          type="button"
+          [class.flip-card__knows]="flipKnown() === true"
+          (click)="selectKnown(true)"
+        >
+          <mat-icon>thumb_up</mat-icon>
+          Знал
+        </button>
+        <button
+          mat-flat-button
+          type="button"
+          [class.flip-card__unknown]="flipKnown() === false"
+          (click)="selectKnown(false)"
+        >
+          <mat-icon>thumb_down</mat-icon>
+          Не знал
+        </button>
+      </mat-card-content>
+    }
+  </section>
+
+  @if (feedback() === 'correct') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
+      <mat-icon>check_circle</mat-icon>
+      Верно!
+    </mat-card-content>
+  }
+
+  @if (feedback() === 'incorrect') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
+      <mat-icon>cancel</mat-icon>
+      Неверно. Правильный ответ:
+      <app-lexeme-display
+        surface="answer"
+        [lexeme]="backLexeme()"
+        [fallbackText]="back()"
+        [inline]="true"
+      />
+    </mat-card-content>
+  }
+
+  <mat-card-actions align="end">
+    @if (feedback() === null) {
+      <button
+        mat-flat-button
+        type="button"
+        [disabled]="flipKnown() === null || !revealed()"
+        (click)="checkAnswer.emit()"
+      >
+        Проверить
+      </button>
+    } @else {
+      <button mat-flat-button type="button" (click)="nextCard.emit()">Далее</button>
+    }
+  </mat-card-actions>
+</mat-card>

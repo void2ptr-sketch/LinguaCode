@@ -1,0 +1,150 @@
+{
+  "scenarioId": "basics.types.floating.scenario",
+  "cards": [
+    {
+      "id": "basics.types.floating.card-01",
+      "kind": "select",
+      "title": "float vs double",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем float отличается от double?",
+      "optionsLearning": [
+        "float: ~7 digits, double: ~15 digits",
+        "float быстрее всегда",
+        "double меньше по размеру",
+        "Нет различий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "floating"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-types-floating",
+      "scenarioId": "basics.types.floating.scenario"
+    },
+    {
+      "id": "basics.types.floating.card-02",
+      "kind": "select",
+      "title": "Float precision",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Проблема float сравнения?",
+      "optionsLearning": [
+        "0.1 + 0.2 != 0.3 из-за погрешности",
+        "float всегда точен",
+        "Сравнение == работает",
+        "Нет проблем"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "floating"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-types-floating",
+      "scenarioId": "basics.types.floating.scenario"
+    },
+    {
+      "id": "basics.types.floating.card-03",
+      "kind": "select",
+      "title": "Float literals",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как записать float?",
+      "optionsLearning": [
+        "3.14f (float), 3.14 (double)",
+        "3.14 только",
+        "float(3.14)",
+        "Number(3.14)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "floating"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-types-floating",
+      "scenarioId": "basics.types.floating.scenario"
+    },
+    {
+      "id": "basics.types.floating.card-04",
+      "kind": "select",
+      "title": "Special float values",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое NaN?",
+      "optionsLearning": [
+        "Not a Number (неопределённое значение)",
+        "Ноль",
+        "Бесконечность",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "floating"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-types-floating",
+      "scenarioId": "basics.types.floating.scenario"
+    },
+    {
+      "id": "basics.types.floating.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать float?",
+      "optionsLearning": [
+        "Когда важна память (графика)",
+        "Всегда",
+        "Никогда",
+        "Только для целых"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "floating"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-types-floating",
+      "scenarioId": "basics.types.floating.scenario"
+    }
+  ]
+}

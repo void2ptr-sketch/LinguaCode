@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "stl.containers.algorithms.scenario",
+      "title": "C++ — std::sort",
+      "description": "Сценарий: std::sort — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-stl-containers-algorithms",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.884268.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.884269.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "stl.containers.algorithms.card-01",
+          "stl.containers.algorithms.card-02",
+          "stl.containers.algorithms.card-03",
+          "stl.containers.algorithms.card-04"
+        ]
+      }
+    }
+  ]
+}

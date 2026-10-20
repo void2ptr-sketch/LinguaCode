@@ -1,0 +1,635 @@
+{
+  "scenarioId": "cpp.advanced.performance.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-01",
+      "kind": "select",
+      "title": "Performance Optimization — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance",
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Что такое профилирование?",
+      "optionsLearning": [
+        "Измерение, где программа тратит время",
+        "Компиляция",
+        "Тесты",
+        "Линк"
+      ],
+      "correctIndex": 0,
+      "explanation": "Профилировщики находят hot spots."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-02",
+      "kind": "select",
+      "title": "Performance Optimization — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Что такое hot path?",
+      "optionsLearning": [
+        "Часто исполняемый участок кода",
+        "Сеть",
+        "Ошибка",
+        "Файл"
+      ],
+      "correctIndex": 0,
+      "explanation": "Критичный для производительности."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Performance — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "performance",
+          "modern-cpp"
+        ],
+        "tags": "Хронометраж в C++11."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "question": "Какой инструмент замеряет время?",
+      "code": {
+        "code": [
+          "std::chrono",
+          "cout",
+          "printf",
+          "sleep"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "beginner"
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-04",
+      "kind": "select",
+      "title": "Performance — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "performance",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Что такое cache locality?",
+      "optionsLearning": [
+        "Локальность данных для кэша",
+        "Логи",
+        "Сеть",
+        "Строки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Дружелюбные к кэшу структуры."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Performance — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "performance",
+          "types"
+        ],
+        "tags": "Algorithm + оптимизация."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "question": "Что выведет ((n*n) при n=100000? ",
+      "code": {
+        "code": [
+          "Замер, зависящий от оптимизаций",
+          "1e10 неизменна",
+          "0",
+          "Исключение"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-06",
+      "kind": "select",
+      "title": "Performance — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "performance",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Почему vector быстрее list для многих задач?",
+      "optionsLearning": [
+        "Кэш-локальность и меньшие накладные",
+        "Всегда так",
+        "list меньше",
+        "случайно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Непрерывность памяти."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-07",
+      "kind": "select",
+      "title": "Performance — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "performance",
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Что такое allocator-aware containers?",
+      "optionsLearning": [
+        "Контейнеры с кастомным выделением",
+        "Ошибки",
+        "Стены",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пулы и арены."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Performance — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "performance",
+          "modern-cpp"
+        ],
+        "tags": "Производительность через перемещение."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "question": "Как избежать излишних копий?",
+      "code": {
+        "code": [
+          "std::move, const&, RVO",
+          "return копией",
+          "копии везде",
+          "нельзя"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-09",
+      "kind": "select",
+      "title": "Performance — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Что такое 80/20 правило производительности?",
+      "optionsLearning": [
+        "20% кода дают 80% времени",
+        "перевёрнутое",
+        "нет",
+        "100%"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оптимизировать горячее."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-10",
+      "kind": "select",
+      "title": "Performance — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Что такое premature optimization?",
+      "optionsLearning": [
+        "Оптимизация до измерения — антипаттерн",
+        "Полезная",
+        "Необходимая",
+        "Стиль"
+      ],
+      "correctIndex": 0,
+      "explanation": "Measure first."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Performance — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "performance",
+          "compilers"
+        ],
+        "tags": "В perf-critical release-сборках."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "question": "Что даст -O3?",
+      "code": {
+        "code": [
+          "Агрессивные оптимизации",
+          "Отладку",
+          "Ошибки",
+          "Меньше кода"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "beginner"
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-12",
+      "kind": "select",
+      "title": "Performance — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Что такое branch prediction?",
+      "optionsLearning": [
+        "Предсказание переходов процессором",
+        "Сеть",
+        "Ошибка",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Хорошие условия — быстрее."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-13",
+      "kind": "select",
+      "title": "Performance — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Что такое branchless код?",
+      "optionsLearning": [
+        "Избегание ветвлений через арифметику",
+        "Обычный",
+        "Только asm",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Усложнение ради консистентности."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Performance — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "performance"
+        ],
+        "tags": "Данные → понимание → оптимизация."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "question": "Чем опасен профиля-оптимизация без данных?",
+      "code": {
+        "code": [
+          "Оптимизация не того места",
+          "Скорость растёт",
+          "Память",
+          "Ошибки"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-15",
+      "kind": "select",
+      "title": "Performance — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Что такое microbenchmark?",
+      "optionsLearning": [
+        "Точный замер маленького кусочка",
+        "Интеграционный",
+        "Лог",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "С контролем флуктуаций."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-16",
+      "kind": "select",
+      "title": "Performance — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Что такое Big-O и зачем?",
+      "optionsLearning": [
+        "Асимптотическая сложность алгоритма",
+        "Стиль",
+        "Память",
+        "Логи типов"
+      ],
+      "correctIndex": 0,
+      "explanation": "Выбор алгоритма важнее констант."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Performance — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "performance",
+          "algorithms"
+        ],
+        "tags": "Introsort."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "question": "Сложность std::sort?",
+      "code": {
+        "code": [
+          "O(n log n)",
+          "O(n)",
+          "O(n^2)",
+          "O(1)"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "beginner"
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-18",
+      "kind": "select",
+      "title": "Performance — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Что такое SIMD?",
+      "optionsLearning": [
+        "Одна инструкция над несколькими данными",
+        "Поток",
+        "Ошибка",
+        "Массив"
+      ],
+      "correctIndex": 0,
+      "explanation": "Векторизация."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-19",
+      "kind": "select",
+      "title": "Performance — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "performance",
+          "concurrency"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Когда переходить на lock-free?",
+      "optionsLearning": [
+        "Гонки в горячем пути и замеры оправдали",
+        "Всегда",
+        "Никогда",
+        "Для строк"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сложность ценой скорости."
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario.card-20",
+      "kind": "select",
+      "title": "Performance — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.performance.01.scenario",
+      "promptKnown": "Ключ к производительности C++?",
+      "optionsLearning": [
+        "Измерение, разумные структуры, алгоритмы, компилятор",
+        "Меньше кода",
+        "Логи",
+        "Aгрессия"
+      ],
+      "correctIndex": 0,
+      "explanation": "Систематический подход."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

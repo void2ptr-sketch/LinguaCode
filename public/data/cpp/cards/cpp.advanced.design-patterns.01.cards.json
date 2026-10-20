@@ -1,0 +1,645 @@
+{
+  "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-01",
+      "kind": "select",
+      "title": "Advanced Design Patterns — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что такое паттерн проектирования?",
+      "optionsLearning": [
+        "Проверенное решение типовой задачи",
+        "Ошибка",
+        "Класс",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "explanation": "Шаблон (не шаблон языка) решения."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-02",
+      "kind": "select",
+      "title": "Advanced Design Patterns — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что делает паттерн Factory?",
+      "optionsLearning": [
+        "Создаёт объекты без жёсткой привязки к типам",
+        "Сортирует",
+        "Ищет",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инкапсуляция создания."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Design Patterns — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "question": "Что выведет эта программа (Factory)?",
+      "code": {
+        "code": "auto objs = makeObj(\"circle\"); objs->draw(); // circle рисует",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "circle-рисование",
+        "ошибка",
+        "circle",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Фабрика вернула нужный тип."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-04",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что такое Singleton?",
+      "optionsLearning": [
+        "Единственный экземпляр класса",
+        "Массив",
+        "Копия",
+        "Поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "Глобальная точка доступа."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-05",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "В чём критика Singleton?",
+      "optionsLearning": [
+        "Глобальное состояние и сложность тестов",
+        "Скорость",
+        "Память",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Использовать осторожно/избегать."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Design Patterns — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "oop",
+          "design-patterns"
+        ],
+        "tags": "Pub/sub: наблюдатели реагируют."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "question": "Что такое Observer?",
+      "code": {
+        "code": [
+          "Уведомление подписчиков об изменениях",
+          "Печать",
+          "Сортировку",
+          "Хеш"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-07",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что делает паттерн Strategy?",
+      "optionsLearning": [
+        "Выбор алгоритма в runtime",
+        "Создание",
+        "Поток",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инкапсуляция взаимозаменяемых алгоритмов."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Design Patterns — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "question": "Что выведет эта программа (Strategy)?",
+      "code": {
+        "code": "Calculator c(std::make_unique<Add>()); std::cout << c.calc(2, 3);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "Ошибка",
+        "2",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "Strategy Add даёт 5."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-09",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что такое Command?",
+      "optionsLearning": [
+        "Инкапсуляция действия в объект",
+        "Копия",
+        "Строка",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отмена/очереди действий."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-10",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "memory",
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что такое RAII как паттерн?",
+      "optionsLearning": [
+        "Управление ресурсом через время жизни объекта",
+        "Строка",
+        "Массив",
+        "Поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "Высший приоритет в C++ идиомы."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-11",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что такое pimpl?",
+      "optionsLearning": [
+        "Скрытие реализации через указатель",
+        "Приватный метод",
+        "Инлайн",
+        "Геттер"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pointer to implementation."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Design Patterns — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "oop",
+          "design-patterns",
+          "performance"
+        ],
+        "tags": "Изоляция ABI и заголовков."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "question": "Плюс pimpl?",
+      "code": {
+        "code": [
+          "Меньше пересборок и скрытие деталей",
+          "Скорость",
+          "Память",
+          "Ничего"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-13",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что такое Visitor?",
+      "optionsLearning": [
+        "Отдельная операция над структурой объектов",
+        "Копия",
+        "Сборка",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Добавление операций без изменения типов."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-14",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что такое CRTP?",
+      "optionsLearning": [
+        "Паттерн с наследованием от шаблона собой",
+        "Фабрика",
+        "Наблюдатель",
+        "Стратегия"
+      ],
+      "correctIndex": 0,
+      "explanation": "Статический полиморфизм."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-15",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что такое prototype?",
+      "optionsLearning": [
+        "Клонирование объектов",
+        "Создание",
+        "Очередь",
+        "Сортировка"
+      ],
+      "correctIndex": 0,
+      "explanation": "clone() вместо конструкторов."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-16",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что такое Builder?",
+      "optionsLearning": [
+        "Пошаговое конструирование сложных объектов",
+        "Фабрика",
+        "Итератор",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отделение построения от представления."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Design Patterns — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "question": "Что выведет этот (Builder) код?",
+      "code": {
+        "code": "auto pizza = PizzaBuilder().size(30).cheese(true).build(); std::cout << pizza.size;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "30",
+        "0",
+        "Ошибка",
+        "pizza"
+      ],
+      "correctIndex": 0,
+      "explanation": "Builder сконфигурировал размер 30."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-18",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Что такое adapter?",
+      "optionsLearning": [
+        "Совмещение несовместимых интерфейсов",
+        "Ошибка",
+        "Копия",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Обёртка интерфейса."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-19",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Какой паттерн для работы с последовательностями?",
+      "optionsLearning": [
+        "Iterator",
+        "Factory",
+        "Observer",
+        "Proxy"
+      ],
+      "correctIndex": 0,
+      "explanation": "Единый обход контейнеров."
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario.card-20",
+      "kind": "select",
+      "title": "Design Patterns — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "design-patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.design-patterns.01.scenario",
+      "promptKnown": "Когда паттерны вредны?",
+      "optionsLearning": [
+        "Когда усложняют простую задачу",
+        "Всегда полезны",
+        "Никогда",
+        "В играх"
+      ],
+      "correctIndex": 0,
+      "explanation": "Применять по необходимости, не ради подхода."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

@@ -1,0 +1,643 @@
+{
+  "scenarioId": "cpp.advanced.lambda.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-01",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "modern-cpp",
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Что такое lambda в C++?",
+      "optionsLearning": [
+        "Анонимная функция с захватом контекста",
+        "Шаблон",
+        "Макрос",
+        "Класс"
+      ],
+      "correctIndex": 0,
+      "explanation": "Лямбда — компактная функция на месте использования."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-02",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Как захватить переменную по значению?",
+      "optionsLearning": [
+        "[x] в списке захвата",
+        "[&x]",
+        "x в теле",
+        "auto"
+      ],
+      "correctIndex": 0,
+      "explanation": "[x] копирует x в лямбду."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Lambda Expressions — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 5; auto f = [x] { return x + 1; }; x = 0; std::cout << f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "1",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Копия x = 5 захвачена: результат 6."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-04",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Как захватить по ссылке?",
+      "optionsLearning": [
+        "[&x]",
+        "[x]",
+        "[=]",
+        "auto&"
+      ],
+      "correctIndex": 0,
+      "explanation": "[&x] ссылается на оригинал."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Lambda Expressions — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 5; auto f = [&x] { x = 9; }; f(); std::cout << x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "9",
+        "5",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылочный захват меняет x: 9."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-06",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Что означает [=]?",
+      "optionsLearning": [
+        "Захват всех переменных по значению",
+        "По ссылке",
+        "Ничего",
+        "Только int"
+      ],
+      "correctIndex": 0,
+      "explanation": "[=] копирует используемые переменные."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-07",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Что означает [&]?",
+      "optionsLearning": [
+        "Захват всех по ссылке",
+        "По значению",
+        "Глобально",
+        "Бесплатно"
+      ],
+      "correctIndex": 0,
+      "explanation": "[&] использует внешние переменные по ссылке."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Lambda Expressions — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "modern-cpp",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nint main() { std::vector<int> v = {1, 2, 3}; int s = 0; std::for_each(v.begin(), v.end(), [&s](int x) { s += x; }); std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "3",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Лямбда накапливает сумму: 6."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-09",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Можно ли изменять захваченную копию?",
+      "optionsLearning": [
+        "Только с mutable",
+        "Нет",
+        "Да всегда",
+        "В C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "mutable позволяет менять копии в [ ]."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Lambda Expressions — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int c = 0; auto f = [c]() mutable { return ++c; }; std::cout << f() << f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "12",
+        "11",
+        "01",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "mutable-лямбда увеличивает копию: 1 затем 2."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-11",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Что такое generic lambda?",
+      "optionsLearning": [
+        "Лямбда с auto-параметрами",
+        "Лямбда без захвата",
+        "Макрос",
+        "Шаблон вне"
+      ],
+      "correctIndex": 0,
+      "explanation": "[](auto x) — параметризованная лямбда (C++14)."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Lambda Expressions — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { auto f = [](auto x) { return x * 2; }; std::cout << f(3) << ' ' << f(2.5); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6 5",
+        "6 5.0",
+        "Ошибка",
+        "3 2.5"
+      ],
+      "correctIndex": 0,
+      "explanation": "Generic lambda работает с int и double: 6 и 5."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-13",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "functions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Как хранить лямбду в функции?",
+      "optionsLearning": [
+        "std::function<T(...)>",
+        "lambda-тип нельзя",
+        "auto*",
+        "void"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::function оборачивает любой вызываемый объект."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Lambda Expressions — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <functional>\nint main() { std::function<int(int)> f = [](int x) { return x + 3; }; std::cout << f(4); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "4",
+        "3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::function вызывает лямбду: 7."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-15",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Что такое captureless lambda?",
+      "optionsLearning": [
+        "Нет захватов — конвертируется в указатель",
+        "Захваты всё",
+        "Ошибка",
+        "Требует mutable"
+      ],
+      "correctIndex": 0,
+      "explanation": "[](int x){ return x; } может стать fn-указателем."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-16",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Как лямбда конвертируется в указатель на функцию?",
+      "optionsLearning": [
+        "Если не захватывает",
+        "Всегда",
+        "Никогда",
+        "При &"
+      ],
+      "correctIndex": 0,
+      "explanation": "Conversion operator для captureless."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Lambda Expressions — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int (*fp)(int) = [](int x) { return x; }; std::cout << fp(8); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "8",
+        "fp",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Captureless lambda неявно стала указателем."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-18",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Какой тип у лямбды?",
+      "optionsLearning": [
+        "Анонимный closure-тип (unique)",
+        "int",
+        "function",
+        "variant"
+      ],
+      "correctIndex": 0,
+      "explanation": "Тип лямбды генерируется компилятором."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-19",
+      "kind": "select",
+      "title": "Lambda Expressions — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "promptKnown": "Что возвращает лямбда без -> type?",
+      "optionsLearning": [
+        "Выводится из return (авто)",
+        "void",
+        "int",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Тип возврата выводится автоматически."
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario.card-20",
+      "kind": "code-trace",
+      "title": "Lambda Expressions — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "modern-cpp",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.lambda.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <sort>\n",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Ошибка: нет такого заголовка",
+        "0",
+        "sort",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Заголовок называется <algorithm>, не <sort>."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

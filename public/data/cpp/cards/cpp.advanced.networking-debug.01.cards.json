@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-01",
+      "kind": "select",
+      "title": "HTTP/2 vs HTTP/1.1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем HTTP/2 отличается от HTTP/1.1?",
+      "optionsLearning": [
+        "HTTP/2 — multiplexing, binary framing, header compression",
+        "Одно и то же",
+        "HTTP/2 медленнее",
+        "HTTP/2 проще"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-02",
+      "kind": "select",
+      "title": "WebSocket",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое WebSocket?",
+      "optionsLearning": [
+        "Full-duplex communication (persistent connection)",
+        "Односторонняя связь",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-03",
+      "kind": "select",
+      "title": "gRPC",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое gRPC?",
+      "optionsLearning": [
+        "High-performance RPC framework (Protocol Buffers)",
+        "REST API",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-04",
+      "kind": "select",
+      "title": "Load balancing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое load balancing?",
+      "optionsLearning": [
+        "Распределение нагрузки (round-robin, least connections)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать network code?",
+      "optionsLearning": [
+        "Async I/O + connection pooling + timeouts + retry",
+        "Только blocking",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-06",
+      "kind": "select",
+      "title": "HTTP/3 + QUIC",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое HTTP/3?",
+      "optionsLearning": [
+        "HTTP поверх QUIC (UDP-based, faster, encrypted)",
+        "HTTP/2 over TCP",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-07",
+      "kind": "select",
+      "title": "Service mesh",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое service mesh?",
+      "optionsLearning": [
+        "Infrastructure для микросервисов (Istio, Linkerd)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-08",
+      "kind": "select",
+      "title": "API gateway",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое API gateway?",
+      "optionsLearning": [
+        "Единая точка входа для API (routing, auth, rate limiting)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-09",
+      "kind": "select",
+      "title": "Message queues",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое message queue?",
+      "optionsLearning": [
+        "Асинхронная коммуникация (RabbitMQ, Kafka, Redis)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать network code?",
+      "optionsLearning": [
+        "Async I/O + connection pooling + timeouts + retry + monitoring",
+        "Только blocking",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-11",
+      "kind": "select",
+      "title": "GDB basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Основы GDB?",
+      "optionsLearning": [
+        "break, run, next, step, print",
+        "debug, start, continue, inspect",
+        "stop, go, jump, show",
+        "pause, resume, check, display"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-12",
+      "kind": "select",
+      "title": "Core dump",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое core dump?",
+      "optionsLearning": [
+        "Снимок памяти при crash (для отладки)",
+        "Лог файл",
+        "Настройка",
+        "Документация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-13",
+      "kind": "select",
+      "title": "Valgrind",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем Valgrind?",
+      "optionsLearning": [
+        "Проверка утечек памяти и ошибок",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-14",
+      "kind": "select",
+      "title": "Sanitizers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое sanitizers?",
+      "optionsLearning": [
+        "Compile-time инструменты (ASan, UBSan) для обнаружения ошибок",
+        "Runtime инструменты",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как эффективно дебажить?",
+      "optionsLearning": [
+        "GDB + sanitizers + valgrind",
+        "Только print",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-16",
+      "kind": "select",
+      "title": "Singleton",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Singleton?",
+      "optionsLearning": [
+        "Один экземпляр класса на всё приложение",
+        "Много экземпляров",
+        "Без экземпляров",
+        "Статический класс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-17",
+      "kind": "select",
+      "title": "Factory pattern",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Factory?",
+      "optionsLearning": [
+        "Создание объектов без указания конкретного класса",
+        "Уничтожение объектов",
+        "Копирование",
+        "Сравнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-18",
+      "kind": "select",
+      "title": "Observer pattern",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Observer?",
+      "optionsLearning": [
+        "Подписка на события (pub/sub)",
+        "Односторонняя связь",
+        "Без событий",
+        "Статический"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-19",
+      "kind": "select",
+      "title": "Strategy pattern",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Strategy?",
+      "optionsLearning": [
+        "Пол interchangeable algorithms",
+        "Фиксированный алгоритм",
+        "Без алгоритмов",
+        "Статический"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.networking-debug.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать паттерны?",
+      "optionsLearning": [
+        "Для повторяющихся проблем проектирования",
+        "Всегда",
+        "Никогда",
+        "Только для small projects"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.networking-debug.01.scenario"
+    }
+  ]
+}

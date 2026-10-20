@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "stl.strings.stl.scenario",
+      "title": "C++ — String operations",
+      "description": "Сценарий: String operations — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-stl-strings-stl",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.884858.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.884860.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "stl.strings.stl.card-01",
+          "stl.strings.stl.card-02",
+          "stl.strings.stl.card-03",
+          "stl.strings.stl.card-04",
+          "stl.strings.stl.card-05"
+        ]
+      }
+    }
+  ]
+}

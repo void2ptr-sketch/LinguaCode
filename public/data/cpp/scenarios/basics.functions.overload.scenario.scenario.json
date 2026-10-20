@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.functions.overload.scenario",
+      "title": "C++ — Function overloading",
+      "description": "Сценарий: Function overloading — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-functions-overload",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.861223.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.861225.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.functions.overload.card-01",
+          "basics.functions.overload.card-02",
+          "basics.functions.overload.card-03",
+          "basics.functions.overload.card-04",
+          "basics.functions.overload.card-05"
+        ]
+      }
+    }
+  ]
+}

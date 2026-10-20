@@ -1,0 +1,626 @@
+{
+  "scenarioId": "cpp.basics.pointers-references.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-01",
+      "kind": "select",
+      "title": "Что такое указатель?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите указатель в C++",
+      "optionsLearning": [
+        "Переменная, хранящая адрес другой переменной",
+        "Тип данных для строк",
+        "Функция возврата",
+        "Массив"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "что"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "int* p = &x; — p хранит адрес x. *p — разыменование (доступ к значению по адресу)."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-02",
+      "kind": "select",
+      "title": "Адрес оператора &",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает оператор &?",
+      "optionsLearning": [
+        "Возвращает адрес переменной",
+        "Побитовое И",
+        "Ссылка на переменную",
+        "Указатель на функцию"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "адрес"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "&x — адрес x. int* p = &x; — p указывает на x."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-03",
+      "kind": "select",
+      "title": "Разыменование *",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает оператор *?",
+      "optionsLearning": [
+        "Доступ к значению по адресу (dereference)",
+        "Умножение",
+        "Указатель объявление",
+        "Побитовое И"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "разыменование"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "*p — значение, на которое указывает p. *p = 5; — записывает 5 по адресу p."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-04",
+      "kind": "select",
+      "title": "Null pointer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обозначить null указатель?",
+      "optionsLearning": [
+        "nullptr (C++11)",
+        "NULL (C-style)",
+        "0 (устаревший)",
+        "nil"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "null"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "nullptr — типобезопасный null в C++11. NULL — макрос (обычно 0). Избегайте 0."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-05",
+      "kind": "select",
+      "title": "Dangling pointer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое dangling pointer?",
+      "optionsLearning": [
+        "Указатель на освобождённую/недействительную память",
+        "Нулевой указатель",
+        "Указатель на функцию",
+        "Вечный указатель"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "dangling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "После delete p, p — dangling. Использование = UB. Обнуляйте: p = nullptr;"
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-06",
+      "kind": "select",
+      "title": "Что такое ссылка?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем ссылка отличается от указателя?",
+      "optionsLearning": [
+        "Ссылка — alias (не может быть null), указатель — адрес",
+        "Ссылка медленнее",
+        "Ссылка больше по размеру",
+        "Нет различий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "что"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "int& r = x; — r это alias для x. Не может быть null, не требует *."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-07",
+      "kind": "select",
+      "title": "Reference initialization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли изменить ссылку после инициализации?",
+      "optionsLearning": [
+        "Нет, ссылка привязана навсегда",
+        "Да, через оператор =",
+        "Да, через reinterpret_cast",
+        "Зависит от компилятора"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "reference"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "int& r = x; r = &y; — ошибка! Ссылка не может перепривязаться."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-08",
+      "kind": "select",
+      "title": "Const reference",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем const T& в параметрах?",
+      "optionsLearning": [
+        "Избегает копирования, защищает от изменений",
+        "Увеличивает скорость",
+        "Менее читаемо",
+        "Обязательно для классов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "const"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "void func(const vector<int>& v) — передача по const reference: без копии, без модификации."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-09",
+      "kind": "select",
+      "title": "Pointer arithmetic",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает ptr + 1 для int*?",
+      "optionsLearning": [
+        "Указывает на следующий int (адрес + sizeof(int))",
+        "+1 байт",
+        "+4 всегда",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "pointer"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "ptr + 1 — адрес следующего элемента. Compiler учитывает размер типа."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-10",
+      "kind": "select",
+      "title": "Array decay to pointer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что происходит при передаче массива в функцию?",
+      "optionsLearning": [
+        "Имя массива decay-ится в pointer на первый элемент",
+        "Копируется весь массив",
+        "Создаётся ссылка",
+        "Размер теряется"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "array"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "void func(int arr[]) → void func(int* arr). Размер не передаётся автоматически."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-11",
+      "kind": "select",
+      "title": "Double pointer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем использовать int**?",
+      "optionsLearning": [
+        "Указатель на указатель (изменение указателя в функции)",
+        "Двумерный массив всегда",
+        "Ошибка дизайна",
+        "Никогда не используется"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "double"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "int** pp — указатель на указатель. Используется для изменения указателя в функции или динамических матриц."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-12",
+      "kind": "select",
+      "title": "Const correctness",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что означает const int* p?",
+      "optionsLearning": [
+        "p указывает на const int (нельзя изменить *p)",
+        "p сам const",
+        "Указатель на указатель",
+        "Нельзя использовать"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "const"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "const int* p — значение по адресу const. int* const p — сам pointer const."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-13",
+      "kind": "select",
+      "title": "Reference vs Pointer performance",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что быстрее: ссылка или указатель?",
+      "optionsLearning": [
+        "Оба одинаковы (компилируются в адрес)",
+        "Ссылка всегда быстрее",
+        "Указатель всегда быстрее",
+        "Зависит от компилятора"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "reference"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "На машинном уровне — одинаково. Ссылка — синтаксический сахар над указателем."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-14",
+      "kind": "select",
+      "title": "Smart pointers intro",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Проблема raw pointer?",
+      "optionsLearning": [
+        "Ручное управление памятью (leaks, dangling)",
+        "Медленнее smart pointers",
+        "Не может быть null",
+        "Слишком большой"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "smart"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "Raw pointers не управляют памятью. Используйте std::unique_ptr/std::shared_ptr."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой тип использовать для необязательных параметров?",
+      "optionsLearning": [
+        "std::optional<T> (C++17) или T*",
+        "int всегда",
+        "Ссылка всегда",
+        "Global variable"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "best"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "std::optional<T> — явно указывает 'может отсутствовать'. Лучше, чем null pointer."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-16",
+      "kind": "select",
+      "title": "Common mistakes: null deref",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при разыменовании nullptr?",
+      "optionsLearning": [
+        "Segmentation fault / crash",
+        "Возврат 0",
+        "Ошибка компиляции",
+        "Undefined behavior, может работать"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "common"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "*nullptr — UB. Обычно crash (SIGSEGV). Всегда проверяйте: if (ptr) { }"
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-17",
+      "kind": "select",
+      "title": "Common mistakes: uninitialized ptr",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что с неинициализированным указателем?",
+      "optionsLearning": [
+        "Указывает на случайный адрес (garbage)",
+        "nullptr",
+        "Ошибка компиляции",
+        "Нуль"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "common"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "int* p; — garbage address. Использование = UB. Всегда инициализируйте: int* p = nullptr;"
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-18",
+      "kind": "select",
+      "title": "Reference binding to temp",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли bind non-const ref to rvalue?",
+      "optionsLearning": [
+        "Нет, ошибка компиляции",
+        "Да, автоматически",
+        "Да, через cast",
+        "Зависит от компилятора"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "reference"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "int& r = 5; — ошибка! Non-const ref не bindится к temporary. Используйте const T&."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-19",
+      "kind": "select",
+      "title": "Pointer to member",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое int Class::*pm?",
+      "optionsLearning": [
+        "Указатель на член класса",
+        "Указатель на функцию",
+        "Двойной указатель",
+        "Ссылка на static"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "pointer"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "int Class::*pm = &Class::member; — указатель на член. Используется для reflection/callbacks."
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices modern C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что предпочтительнее в современном C++?",
+      "optionsLearning": [
+        "Smart pointers, references, std::optional",
+        "Raw new/delete",
+        "Global pointers",
+        "C-style casts"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "best"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.pointers-references.01.scenario",
+      "explanation": "Modern C++: unique_ptr, shared_ptr, references. Избегайте raw new/delete."
+    }
+  ],
+  "title": "Указатели и ссылки — Basics"
+}

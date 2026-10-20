@@ -1,0 +1,646 @@
+{
+  "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-01",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Что делает std::terminate?",
+      "optionsLearning": [
+        "Аварийно завершает программу при необработанном исключении",
+        "Печатает лог",
+        "Возвращает 0",
+        "Повторяет try"
+      ],
+      "correctIndex": 0,
+      "explanation": "terminate вызывается при фатальных ошибках исключений."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-02",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Как установить свой обработчик terminate?",
+      "optionsLearning": [
+        "std::set_terminate(f)",
+        "set_handler",
+        "catch all",
+        "Это нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "set_terminate меняет обработчик фатального завершения."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Exceptions и Errors 02 — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { try { std::cout << 1; return 0; } catch (...) { std::cout << 2; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "12",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Исключений нет — выводится 1, return завершает."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-04",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Когда срабатывает конструктор без исключений?",
+      "optionsLearning": [
+        "Нормальный объект создан",
+        "При ошибке",
+        "После catch",
+        "В деструкторе"
+      ],
+      "correctIndex": 0,
+      "explanation": "Исключение из конструктора означает, что объект не создан."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-05",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Как освободить ресурсы при исключении из конструктора?",
+      "optionsLearning": [
+        "RAII-поля сами освободятся; незахваченные — вручную",
+        "Никак",
+        "new до конструктора",
+        "ignore"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструкторы уже созданных членов вызываются при исключении."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-06",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Что такое stack unwinding?",
+      "optionsLearning": [
+        "Раскрутка стека: уничтожение локальных объектов при исключении",
+        "Оптимизация",
+        "Очистка памяти",
+        "Рекурсия"
+      ],
+      "correctIndex": 0,
+      "explanation": "При исключении уничтожаются локальные объекты до точки catch."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-07",
+      "kind": "code-trace",
+      "title": "Exceptions и Errors 02 — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct X { ~X() { std::cout << 'd'; } };\nint main() { try { X x; throw 1; } catch (int) { std::cout << 'c'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "dc",
+        "c",
+        "d",
+        "cd"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор x при раскрутке (d), затем catch (c)."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-08",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Что происходит при исключении в конструкторе std::vector?",
+      "optionsLearning": [
+        "Память освобождается, исключение распространяется",
+        "Вектор остаётся",
+        "Данные теряются",
+        "Программа падает"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вектор гарантирует освобождение ресурсов при неудаче."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-09",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Можно ли бросать исключения из main()?",
+      "optionsLearning": [
+        "Да, но необработанное вызовет terminate",
+        "Нет",
+        "Только int",
+        "Только строками"
+      ],
+      "correctIndex": 0,
+      "explanation": "Исключение из main() приводит к terminate без перехвата."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-10",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Что делать с исключениями в деструкторах?",
+      "optionsLearning": [
+        "Не бросать — обрабатывать внутри",
+        "Бросать",
+        "Игнорировать и terminate",
+        "Логировать всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструкторы должны быть noexcept (по умолчанию)."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Exceptions и Errors 02 — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { try { throw; } catch (...) { std::cout << 'x'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Ошибка: throw без активного исключения",
+        "x",
+        "Ошибка",
+        "пусто"
+      ],
+      "correctIndex": 0,
+      "explanation": "throw; вне catch — ошибка времени выполнения (terminate)."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-12",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Что такое exception_ptr?",
+      "optionsLearning": [
+        "Умный указатель, хранящий исключение для передачи между потоками",
+        "Копию исключения",
+        "Ссылку",
+        "nullptr"
+      ],
+      "correctIndex": 0,
+      "explanation": "current_exception/rethrow_exception передают исключения между контекстами."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-13",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "concurrency"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Как передать исключение из потока?",
+      "optionsLearning": [
+        "Через std::exception_ptr в std::future",
+        "Нельзя",
+        "Через throw в main",
+        "Скопировать what()"
+      ],
+      "correctIndex": 0,
+      "explanation": "future.get() пробрасывает исключение из асинхронной задачи."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Exceptions и Errors 02 — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "concurrency"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <future>\nint main() { try { auto f = std::async([] { throw std::runtime_error(\"x\"); return 1; }); f.get(); } catch (const std::exception& e) { std::cout << e.what(); } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "x",
+        "1",
+        "Ошибка",
+        "async"
+      ],
+      "correctIndex": 0,
+      "explanation": "Исключение из async доходит через future.get(): x."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-15",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Когда полезен noexcept в малых функциях?",
+      "optionsLearning": [
+        "Функции, гарантированно не бросающие (оптимизации)",
+        "Всегда",
+        "В main",
+        "В конструкторах"
+      ],
+      "correctIndex": 0,
+      "explanation": "noexcept улучшает оптимизации и документирует контракт."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-16",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Что такое базовые гарантии (basic guarantee)?",
+      "optionsLearning": [
+        "При исключении ресурсы не текут и инварианты объектов целы",
+        "Ничего не падает",
+        "Всегда копируется",
+        "Откат состояния"
+      ],
+      "correctIndex": 0,
+      "explanation": "Basic — минимальный уровень корректности RAII."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-17",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Какая идиома обеспечивает strong guarantee для присваивания?",
+      "optionsLearning": [
+        "copy-and-swap",
+        "memset",
+        "std::move всегда",
+        "throw в конце"
+      ],
+      "correctIndex": 0,
+      "explanation": "copy-and-swap: копия + обмен (swap noexcept)."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-18",
+      "kind": "code-trace",
+      "title": "Exceptions и Errors 02 — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <stdexcept>\nint main() { try { throw std::logic_error(\"logic\"); } catch (const std::exception& e) { std::cout << e.what(); } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "logic",
+        "logic_error",
+        "Ошибка",
+        "exc"
+      ],
+      "correctIndex": 0,
+      "explanation": "what() — «logic»."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-19",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Чем std::runtime_error отличается от std::logic_error?",
+      "optionsLearning": [
+        "logic — ошибки логики программы, runtime — ошибки выполнения",
+        "Ничем",
+        "runtime быстрее",
+        "logic бросает string"
+      ],
+      "correctIndex": 0,
+      "explanation": "Иерархия разделяет предсказуемые и средовые ошибки."
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario.card-20",
+      "kind": "select",
+      "title": "Exceptions и Errors 02 — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "exceptions",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.exceptions-errors.02.scenario",
+      "promptKnown": "Что выбрать для возврата ошибочного результата без исключений?",
+      "optionsLearning": [
+        "std::expected<T, E> (C++23) или error_code",
+        "Всегда throw",
+        "NULL",
+        "static глобал"
+      ],
+      "correctIndex": 0,
+      "explanation": "expected — современный способ результата/ошибки без throw."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

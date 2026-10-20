@@ -1,0 +1,150 @@
+{
+  "scenarioId": "stl.strings.stl.scenario",
+  "cards": [
+    {
+      "id": "stl.strings.stl.card-01",
+      "kind": "select",
+      "title": "String operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Основные операции string?",
+      "optionsLearning": [
+        "append, substr, find, replace",
+        "add, slice, search, change",
+        "push, cut, index, update",
+        "insert, delete, modify, get"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-strings-stl",
+      "scenarioId": "stl.strings.stl.scenario"
+    },
+    {
+      "id": "stl.strings.stl.card-02",
+      "kind": "select",
+      "title": "String to number",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать string в число?",
+      "optionsLearning": [
+        "std::stoi(s), std::stod(s)",
+        "parseInt(s)",
+        "int(s)",
+        "(int)s"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-strings-stl",
+      "scenarioId": "stl.strings.stl.scenario"
+    },
+    {
+      "id": "stl.strings.stl.card-03",
+      "kind": "select",
+      "title": "Number to string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать число в string?",
+      "optionsLearning": [
+        "std::to_string(n)",
+        "toString(n)",
+        "(string)n",
+        "str(n)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-strings-stl",
+      "scenarioId": "stl.strings.stl.scenario"
+    },
+    {
+      "id": "stl.strings.stl.card-04",
+      "kind": "select",
+      "title": "String views",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое string_view?",
+      "optionsLearning": [
+        "Non-owning view на строку (без копирования)",
+        "Новый тип string",
+        "Указатель на string",
+        "Const string"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-strings-stl",
+      "scenarioId": "stl.strings.stl.scenario"
+    },
+    {
+      "id": "stl.strings.stl.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как эффективно работать со строками?",
+      "optionsLearning": [
+        "Использовать += вместо多次 concatenation",
+        "char* всегда",
+        "std::string медленно",
+        "Никаких практик"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-strings-stl",
+      "scenarioId": "stl.strings.stl.scenario"
+    }
+  ]
+}

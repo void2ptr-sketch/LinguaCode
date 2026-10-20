@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.modern-cpp.05.scenario",
+      "title": "lambda expressions",
+      "description": "Сценарий: lambda expressions",
+      "order": 4,
+      "lessonId": "lesson-cpp-basics-modern-cpp",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-18T20:11:59.594Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-18T20:11:59.594Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.modern-cpp.05.scenario.card-01",
+          "cpp.modern-cpp.05.scenario.card-02",
+          "cpp.modern-cpp.05.scenario.card-03",
+          "cpp.modern-cpp.05.scenario.card-04",
+          "cpp.modern-cpp.05.scenario.card-05",
+          "cpp.modern-cpp.05.scenario.card-06",
+          "cpp.modern-cpp.05.scenario.card-07",
+          "cpp.modern-cpp.05.scenario.card-08",
+          "cpp.modern-cpp.05.scenario.card-09",
+          "cpp.modern-cpp.05.scenario.card-10",
+          "cpp.modern-cpp.05.scenario.card-11",
+          "cpp.modern-cpp.05.scenario.card-12",
+          "cpp.modern-cpp.05.scenario.card-13",
+          "cpp.modern-cpp.05.scenario.card-14",
+          "cpp.modern-cpp.05.scenario.card-15",
+          "cpp.modern-cpp.05.scenario.card-16",
+          "cpp.modern-cpp.05.scenario.card-17",
+          "cpp.modern-cpp.05.scenario.card-18",
+          "cpp.modern-cpp.05.scenario.card-19",
+          "cpp.modern-cpp.05.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-18T20:11:59.594Z"
+      }
+    }
+  ]
+}

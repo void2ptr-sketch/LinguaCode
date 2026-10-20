@@ -1,0 +1,649 @@
+{
+  "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-01",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Какие модификаторы доступа влияют на наследование?",
+      "optionsLearning": [
+        "public, protected, private",
+        "static, const, extern",
+        "virtual только",
+        "inline"
+      ],
+      "correctIndex": 0,
+      "explanation": "Три типа наследования: public/protected/private."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-02",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Что станет с private-членом Base при любом наследовании?",
+      "optionsLearning": [
+        "Останется недоступным производному (но он существует)",
+        "Станет public",
+        "Станет protected",
+        "Удалится"
+      ],
+      "correctIndex": 0,
+      "explanation": "private-члены существуют, но недоступны потомкам."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Модификаторы доступа в наследовании — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "oop",
+          "inheritance"
+        ],
+        "tags": "protected создан для доступа наследников."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "question": "Доступен ли protected-член производному классу?",
+      "code": {
+        "code": [
+          "Да",
+          "Нет",
+          "Только public",
+          "Только в C++20"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-04",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Что происходит с public-членом при protected-наследовании?",
+      "optionsLearning": [
+        "Становится protected",
+        "Остаётся public",
+        "Становится private",
+        "Удаляется"
+      ],
+      "correctIndex": 0,
+      "explanation": "protected-наследование понижает public до protected."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-05",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Что происходит с public-членом при private-наследовании?",
+      "optionsLearning": [
+        "Становится private",
+        "Остаётся public",
+        "protected",
+        "Удаляется"
+      ],
+      "correctIndex": 0,
+      "explanation": "private-наследование скрывает всё от внешнего мира."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Модификаторы доступа в наследовании — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "question": "Компилируется ли этот вызов?",
+      "code": {
+        "code": "class A { protected: int p = 1; };\nclass B : public A {}; int main() { B b; std::cout << b.p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Нет — p protected вне иерархии",
+        "Да",
+        "Да с warning",
+        "Смотря"
+      ],
+      "correctIndex": 0,
+      "explanation": "protected-член недоступен извне."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-07",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Кто может обращаться к protected-члену?",
+      "optionsLearning": [
+        "Класс и его наследники",
+        "Все",
+        "Только друзья",
+        "Никто"
+      ],
+      "correctIndex": 0,
+      "explanation": "protected — «полуприватный» для иерархии."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Модификаторы доступа в наследовании — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass A { protected: int p = 5; public: int get() const { return p; } };\nclass B : public A { public: int twice() const { return p * 2; } };\nint main() { B b; std::cout << b.twice() << b.get(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "105",
+        "510",
+        "55",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "B видит p (protected): twice=10, get=5 → 105."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-09",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Как правильно выбрать тип наследования?",
+      "optionsLearning": [
+        "Почти всегда public (is-a); private/protected для «использует»",
+        "Всегда private",
+        "Всегда protected",
+        "Случайно"
+      ],
+      "correctIndex": 0,
+      "explanation": "public-наследование — контракт is-a; остальное — ограниченные случаи."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-10",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Что такое access specifier в иерархии?",
+      "optionsLearning": [
+        "Правила видимости унаследованных членов",
+        "Имя класса",
+        "Поле",
+        "Комментарий"
+      ],
+      "correctIndex": 0,
+      "explanation": "Модификатор наследования задаёт минимум видимости."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Модификаторы доступа в наследовании — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { public: int x = 3; };\nstruct B : protected A {};\nstruct C : B { int get() const { return x; } };\nint main() { C c; std::cout << c.get(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "Ошибка",
+        "0",
+        "x"
+      ],
+      "correctIndex": 0,
+      "explanation": "x стал protected дважды — C всё ещё видит его: 3."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-12",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Можно ли в производном классе повысить доступ к члену?",
+      "optionsLearning": [
+        "Да, через using в нужной секции",
+        "Нет",
+        "Только понизить",
+        "Макросом"
+      ],
+      "correctIndex": 0,
+      "explanation": "public: using Base::f; меняет уровень доступа."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-13",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Что будет с protected-членом при public-наследовании?",
+      "optionsLearning": [
+        "Останется protected",
+        "public",
+        "private",
+        "удалён"
+      ],
+      "correctIndex": 0,
+      "explanation": "public-наследование не меняет protected."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Модификаторы доступа в наследовании — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "question": "Компилируется ли этот доступ к x из main?",
+      "code": {
+        "code": "class A { protected: int x; };\nclass B : public A { public: int f() const { return x; } };\nint main() { B b; return b.f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Да — через публичный метод",
+        "Нет",
+        "Да",
+        "Смотря"
+      ],
+      "correctIndex": 0,
+      "explanation": "Защищённые данные доступны через публичные методы."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-15",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Стоит ли делать поля protected?",
+      "optionsLearning": [
+        "Спорно: лучше private + protected методы",
+        "Да всегда",
+        "Нет никогда",
+        "Только int"
+      ],
+      "correctIndex": 0,
+      "explanation": "protected-поля ломают инкапсуляцию; чаще рекомендуют private."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-16",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Какая комбинация «класс-наследник-член» даёт private у всех?",
+      "optionsLearning": [
+        "class B : private A — public базы станут private",
+        "protected-наследование",
+        "public",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "private-наследование понижает все доступа."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Модификаторы доступа в наследовании — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { public: void f() const { std::cout << 'a'; } };\nstruct B : private A { public: using A::f; };\nint main() { B b; b.f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "a",
+        "Ошибка",
+        "b",
+        "private"
+      ],
+      "correctIndex": 0,
+      "explanation": "using вернул публичный доступ к f: a."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-18",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Что такое friend и как это связано с доступом?",
+      "optionsLearning": [
+        "friend даёт приватный доступ, обходя модификаторы",
+        "Только методов",
+        "Никак",
+        "Только класс"
+      ],
+      "correctIndex": 0,
+      "explanation": "friend — точечное исключение инкапсуляции."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-19",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Почему доступ по умолчанию у struct/class разный?",
+      "optionsLearning": [
+        "Историческая совместимость: struct — C-style public",
+        "Случайность",
+        "Управление памятью",
+        "Нет причины"
+      ],
+      "correctIndex": 0,
+      "explanation": "struct наследует C — всё открыто; класс — инкапсулирован."
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-20",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+      "promptKnown": "Какая наследование лучше для интерфейсов (абстрактных)?",
+      "optionsLearning": [
+        "public + чисто виртуальные методы",
+        "private",
+        "protected",
+        "ни одно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Интерфейсы — public-наследование абстрактных классов."
+    }
+  ],
+  "title": "Oop — Intermediate C++"
+}

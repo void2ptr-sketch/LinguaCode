@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.debugging.scenario",
+  "cards": [
+    {
+      "id": "advanced.debugging.card-01",
+      "kind": "select",
+      "title": "GDB basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Основы GDB?",
+      "optionsLearning": [
+        "break, run, next, step, print",
+        "debug, start, continue, inspect",
+        "stop, go, jump, show",
+        "pause, resume, check, display"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-debugging",
+      "scenarioId": "advanced.debugging.scenario"
+    },
+    {
+      "id": "advanced.debugging.card-02",
+      "kind": "select",
+      "title": "Core dump",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое core dump?",
+      "optionsLearning": [
+        "Снимок памяти при crash (для отладки)",
+        "Лог файл",
+        "Настройка",
+        "Документация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-debugging",
+      "scenarioId": "advanced.debugging.scenario"
+    },
+    {
+      "id": "advanced.debugging.card-03",
+      "kind": "select",
+      "title": "Valgrind",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем Valgrind?",
+      "optionsLearning": [
+        "Проверка утечек памяти и ошибок",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-debugging",
+      "scenarioId": "advanced.debugging.scenario"
+    },
+    {
+      "id": "advanced.debugging.card-04",
+      "kind": "select",
+      "title": "Sanitizers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое sanitizers?",
+      "optionsLearning": [
+        "Compile-time инструменты (ASan, UBSan) для обнаружения ошибок",
+        "Runtime инструменты",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-debugging",
+      "scenarioId": "advanced.debugging.scenario"
+    },
+    {
+      "id": "advanced.debugging.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как эффективно дебажить?",
+      "optionsLearning": [
+        "GDB + sanitizers + valgrind",
+        "Только print",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-debugging",
+      "scenarioId": "advanced.debugging.scenario"
+    }
+  ]
+}

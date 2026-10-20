@@ -329,4 +329,411 @@ describe('ScenarioBuilderStore', () => {
 
     await store.load();
   });
+
+  // ── createScenario ──
+
+  it('should create a scenario successfully and reload list', async () => {
+    mockScenarioSearchService.create.mockResolvedValue(undefined);
+    mockScenarioSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+    mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
+
+    const result = await store.createScenario({
+      title: 'New Scenario',
+      description: 'Desc',
+      languagePair: { known: 'ru', learning: 'en' },
+      published: false,
+      cardSource: { mode: 'fixed', cardIds: ['c1'] },
+    });
+
+    expect(result).toBe(true);
+    expect(mockScenarioSearchService.create).toHaveBeenCalled();
+    expect(store.editorMode()).toBe('list');
+  });
+
+  it('should return false and set error when creation fails', async () => {
+    mockScenarioSearchService.create.mockRejectedValue(new Error('Conflict'));
+    mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
+
+    const result = await store.createScenario({
+      title: 'New Scenario',
+      description: 'Desc',
+      languagePair: { known: 'ru', learning: 'en' },
+      published: false,
+      cardSource: { mode: 'fixed', cardIds: ['c1'] },
+    });
+
+    expect(result).toBe(false);
+    expect(store.error()).toBe('Не удалось создать сценарий');
+  });
+
+  it('should return false when draft has empty title', async () => {
+    mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
+
+    const result = await store.createScenario({
+      title: '   ',
+      description: 'Desc',
+      languagePair: { known: 'ru', learning: 'en' },
+      published: false,
+      cardSource: { mode: 'fixed', cardIds: ['c1'] },
+    });
+
+    expect(result).toBe(false);
+    expect(store.error()).toBe('Укажите название сценария');
+  });
+
+  // ── updateScenario ──
+
+  it('should update a scenario successfully', async () => {
+    mockScenarioSearchService.getById.mockResolvedValue({
+      id: 's1',
+      title: 'Editable',
+      authorId: 'local-user',
+      description: '',
+      cardSource: { mode: 'fixed', cardIds: [] },
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    });
+    mockScenarioSearchService.update.mockResolvedValue(undefined);
+    mockScenarioSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+    mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
+
+    await store.startEdit('s1');
+
+    const result = await store.updateScenario('s1', {
+      title: 'Updated',
+      description: 'New desc',
+      languagePair: { known: 'ru', learning: 'en' },
+      published: true,
+      cardSource: { mode: 'fixed', cardIds: ['c1'] },
+    });
+
+    expect(result).toBe(true);
+    expect(mockScenarioSearchService.update).toHaveBeenCalledWith(
+      's1',
+      expect.objectContaining({ title: 'Updated' }),
+    );
+  });
+
+  it('should return false when updating read-only scenario', async () => {
+    mockScenarioSearchService.getById.mockResolvedValue({
+      id: 's1',
+      title: 'Other',
+      authorId: 'other-user',
+      description: '',
+      cardSource: { mode: 'fixed', cardIds: [] },
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    });
+
+    await store.startEdit('s1');
+    expect(store.isReadOnly()).toBe(true);
+
+    const result = await store.updateScenario('s1', {
+      title: 'Updated',
+      description: '',
+      languagePair: { known: 'ru', learning: 'en' },
+      published: false,
+      cardSource: { mode: 'fixed', cardIds: [] },
+    });
+
+    expect(result).toBe(false);
+    expect(store.error()).toBe('Нельзя изменять чужой сценарий');
+  });
+
+  it('should return false when update fails', async () => {
+    mockScenarioSearchService.getById.mockResolvedValue({
+      id: 's1',
+      title: 'Editable',
+      authorId: 'local-user',
+      description: '',
+      cardSource: { mode: 'fixed', cardIds: [] },
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    });
+    mockScenarioSearchService.update.mockRejectedValue(new Error('Server error'));
+    mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
+
+    await store.startEdit('s1');
+
+    const result = await store.updateScenario('s1', {
+      title: 'Updated',
+      description: '',
+      languagePair: { known: 'ru', learning: 'en' },
+      published: false,
+      cardSource: { mode: 'fixed', cardIds: ['c1'] },
+    });
+
+    expect(result).toBe(false);
+    expect(store.error()).toBe('Не удалось сохранить сценарий');
+  });
+
+  // ── deleteScenario ──
+
+  it('should delete a scenario and reload list', async () => {
+    mockScenarioSearchService.delete.mockResolvedValue(undefined);
+    mockScenarioSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    store.indexItems.set([
+      {
+        id: 's1',
+        title: 'Mine',
+        authorId: 'local-user',
+        cardSourceMode: 'fixed',
+        cardSourceSummary: '0 карточек',
+        published: false,
+        updatedAt: '',
+      },
+    ]);
+
+    await store.deleteScenario('s1');
+
+    expect(mockScenarioSearchService.delete).toHaveBeenCalledWith('s1');
+  });
+
+  it('should prevent deleting another user scenario', async () => {
+    store.indexItems.set([
+      {
+        id: 's1',
+        title: 'Other',
+        authorId: 'other-user',
+        cardSourceMode: 'fixed',
+        cardSourceSummary: '0 карточек',
+        published: false,
+        updatedAt: '',
+      },
+    ]);
+
+    await store.deleteScenario('s1');
+
+    expect(mockScenarioSearchService.delete).not.toHaveBeenCalled();
+    expect(store.error()).toBe('Нельзя удалять чужой сценарий');
+  });
+
+  it('should cancel edit when deleting the currently edited scenario', async () => {
+    mockScenarioSearchService.delete.mockResolvedValue(undefined);
+    mockScenarioSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    store.indexItems.set([
+      {
+        id: 's1',
+        title: 'Mine',
+        authorId: 'local-user',
+        cardSourceMode: 'fixed',
+        cardSourceSummary: '0 карточек',
+        published: false,
+        updatedAt: '',
+      },
+    ]);
+
+    await store.deleteScenario('s1');
+
+    expect(store.editorMode()).toBe('list');
+    expect(store.editingScenarioId()).toBeNull();
+  });
+
+  it('should handle delete failure gracefully', async () => {
+    mockScenarioSearchService.delete.mockRejectedValue(new Error('Network error'));
+
+    store.indexItems.set([
+      {
+        id: 's1',
+        title: 'Mine',
+        authorId: 'local-user',
+        cardSourceMode: 'fixed',
+        cardSourceSummary: '0 карточек',
+        published: false,
+        updatedAt: '',
+      },
+    ]);
+
+    await store.deleteScenario('s1');
+
+    expect(store.error()).toBe('Не удалось удалить сценарий');
+  });
+
+  // ── buildSnapshotFromCriteria ──
+
+  it('should return null when criteria has no filters', async () => {
+    const result = await store.buildSnapshotFromCriteria({}, 10);
+    expect(result).toBeNull();
+    expect(store.error()).toBe('Укажите критерии перед созданием snapshot');
+  });
+
+  it('should return null when no cards match criteria', async () => {
+    mockCardSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    const result = await store.buildSnapshotFromCriteria({ query: 'test' }, 10);
+    expect(result).toBeNull();
+    expect(store.error()).toBe('По критериям не найдено карточек');
+  });
+
+  // ── normalizeCardSource — criteria mode ──
+
+  it('should normalize criteria card source with trimmed query', async () => {
+    mockScenarioSearchService.getById.mockResolvedValue({
+      id: 's1',
+      title: 'Editable',
+      authorId: 'local-user',
+      description: '',
+      cardSource: { mode: 'fixed', cardIds: [] },
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    });
+    mockCardSearchService.search.mockResolvedValue({
+      items: [{ id: 'c1', title: 'C1' }],
+      page: 0,
+      pageSize: 10,
+      totalItems: 1,
+      totalPages: 1,
+    });
+    mockCardsCatalogHandler.getIndexEntry.mockResolvedValue({
+      id: 'c1',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
+    });
+    mockScenarioSearchService.update.mockResolvedValue(undefined);
+
+    await store.startEdit('s1');
+
+    const result = await store.updateScenario('s1', {
+      title: 'Criteria Scenario',
+      description: '',
+      languagePair: { known: 'ru', learning: 'en' },
+      published: false,
+      cardSource: {
+        mode: 'criteria',
+        criteria: {
+          knownLanguage: 'ru',
+          learningLanguage: 'en',
+          query: '  test  ',
+        },
+        limit: 5,
+      },
+    });
+
+    // criteria mode doesn't validate card IDs or language pair match
+    expect(result).toBe(true);
+    expect(mockScenarioSearchService.update).toHaveBeenCalled();
+  });
+
+  // ── normalizeCardSource — snapshot mode ──
+
+  it('should normalize snapshot card source', async () => {
+    mockScenarioSearchService.getById.mockResolvedValue({
+      id: 's1',
+      title: 'Editable',
+      authorId: 'local-user',
+      description: '',
+      cardSource: { mode: 'fixed', cardIds: [] },
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    });
+    mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
+    mockCardsCatalogHandler.getIndexEntry.mockResolvedValue({
+      id: 'c1',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
+    });
+    mockScenarioSearchService.update.mockResolvedValue(undefined);
+    mockScenarioSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    await store.startEdit('s1');
+
+    const result = await store.updateScenario('s1', {
+      title: 'Snapshot Scenario',
+      description: '',
+      languagePair: { known: 'ru', learning: 'en' },
+      published: false,
+      cardSource: {
+        mode: 'snapshot',
+        cardIds: ['c1'],
+        criteria: { knownLanguage: 'ru', learningLanguage: 'en' },
+        frozenAt: '2026-01-01T00:00:00.000Z',
+      },
+    });
+
+    expect(result).toBe(true);
+  });
+
+  // ── validateCardIdsMatchPair — mismatch ──
+
+  it('should return error when card IDs do not match language pair', async () => {
+    mockScenarioSearchService.getById.mockResolvedValue({
+      id: 's1',
+      title: 'Editable',
+      authorId: 'local-user',
+      description: '',
+      cardSource: { mode: 'fixed', cardIds: [] },
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    });
+    mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
+    mockCardsCatalogHandler.getIndexEntry.mockResolvedValue({
+      id: 'c1',
+      source: { knownLanguage: 'zh', learningLanguage: 'ja' },
+    });
+    mockScenarioSearchService.update.mockResolvedValue(undefined);
+    mockScenarioSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    await store.startEdit('s1');
+
+    const result = await store.updateScenario('s1', {
+      title: 'Mismatch',
+      description: '',
+      languagePair: { known: 'ru', learning: 'en' },
+      published: false,
+      cardSource: { mode: 'fixed', cardIds: ['c1'] },
+    });
+
+    expect(result).toBe(false);
+    expect(store.error()).toBe('Карточка c1 не соответствует курсу сценария');
+  });
 });

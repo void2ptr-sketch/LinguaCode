@@ -1,0 +1,150 @@
+{
+  "scenarioId": "oop.polymorphism.scenario",
+  "cards": [
+    {
+      "id": "oop.polymorphism.card-01",
+      "kind": "select",
+      "title": "Polymorphism definition",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое полиморфизм?",
+      "optionsLearning": [
+        "Один интерфейс, разные реализации",
+        "Наследование только",
+        "Шаблоны только",
+        "Константность"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-polymorphism",
+      "scenarioId": "oop.polymorphism.scenario"
+    },
+    {
+      "id": "oop.polymorphism.card-02",
+      "kind": "select",
+      "title": "Virtual destructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем virtual деструктор?",
+      "optionsLearning": [
+        "Корректное удаление через base pointer",
+        "Оптимизация",
+        "Константность",
+        "Статический метод"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-polymorphism",
+      "scenarioId": "oop.polymorphism.scenario"
+    },
+    {
+      "id": "oop.polymorphism.card-03",
+      "kind": "select",
+      "title": "Override keyword",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем override?",
+      "optionsLearning": [
+        "Проверка компилятором переопределения",
+        "Удаление метода",
+        "Константность",
+        "Статический метод"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-polymorphism",
+      "scenarioId": "oop.polymorphism.scenario"
+    },
+    {
+      "id": "oop.polymorphism.card-04",
+      "kind": "select",
+      "title": "Dynamic dispatch",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое dynamic dispatch?",
+      "optionsLearning": [
+        "Вызов метода по vtable во runtime",
+        "Статический вызов",
+        "Inline функция",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-polymorphism",
+      "scenarioId": "oop.polymorphism.scenario"
+    },
+    {
+      "id": "oop.polymorphism.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать полиморфизм?",
+      "optionsLearning": [
+        "Base pointer/reference + virtual methods",
+        "Наследование всегда",
+        "Шаблоны всегда",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-polymorphism",
+      "scenarioId": "oop.polymorphism.scenario"
+    }
+  ]
+}

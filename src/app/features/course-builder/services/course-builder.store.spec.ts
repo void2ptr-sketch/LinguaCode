@@ -420,4 +420,251 @@ describe('CourseBuilderStore', () => {
     expect(store.exportError()).toBe('Нельзя экспортировать чужой курс');
     expect(mockPdfExport.export).not.toHaveBeenCalled();
   });
+
+  it('should create course successfully and reload list', async () => {
+    mockCourseSearchService.create.mockResolvedValue({
+      id: 'c-new',
+      title: 'New Course',
+      authorId: 'local-user',
+      description: '',
+      lessons: [],
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    });
+
+    mockCourseSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    const result = await store.createCourse({
+      title: 'New Course',
+      description: 'A new course',
+      published: false,
+      authoring: { idea: 'My idea', status: 'draft' },
+      lessons: [
+        {
+          clientId: 'lc-1',
+          title: 'Lesson 1',
+          description: '',
+          scenarioIds: ['s1'],
+          prerequisiteLessonIds: [],
+          order: 0,
+        },
+      ],
+    });
+
+    expect(result).toBe(true);
+    expect(store.editorMode()).toBe('list');
+    expect(mockCourseSearchService.create).toHaveBeenCalled();
+    expect(mockCourseSearchService.search).toHaveBeenCalled();
+  });
+
+  it('should update course successfully and reload list', async () => {
+    store.editingCourse.set({
+      id: 'c1',
+      title: 'Old Title',
+      authorId: 'local-user',
+      description: '',
+      lessons: [],
+      lessonIds: [],
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    } as CourseWithLessons);
+
+    mockCourseSearchService.update.mockResolvedValue({
+      id: 'c1',
+      title: 'Updated Title',
+      authorId: 'local-user',
+      description: '',
+      lessons: [],
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    });
+
+    mockCourseSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    const result = await store.updateCourse('c1', {
+      title: 'Updated Title',
+      description: 'Updated description',
+      published: true,
+      authoring: { idea: 'Updated idea', status: 'draft' },
+      lessons: [
+        {
+          clientId: 'lc-1',
+          title: 'Lesson 1',
+          description: '',
+          scenarioIds: ['s1'],
+          prerequisiteLessonIds: [],
+          order: 0,
+        },
+      ],
+    });
+
+    expect(result).toBe(true);
+    expect(store.editorMode()).toBe('list');
+    expect(mockCourseSearchService.update).toHaveBeenCalled();
+  });
+
+  it('should filter empty prerequisite lesson IDs during normalization', async () => {
+    mockCourseSearchService.create.mockResolvedValue({
+      id: 'c-new',
+      title: 'Clean IDs Course',
+      authorId: 'local-user',
+      description: '',
+      lessons: [],
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    });
+
+    mockCourseSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    await store.createCourse({
+      title: 'Clean IDs Course',
+      description: '',
+      published: false,
+      authoring: { idea: '', status: 'draft' },
+      lessons: [
+        {
+          clientId: 'lc-1',
+          title: 'Lesson 1',
+          description: '',
+          scenarioIds: ['s1'],
+          prerequisiteLessonIds: ['', '  ', 'valid-id'],
+          order: 0,
+        },
+      ],
+    });
+
+    expect(mockCourseSearchService.create).toHaveBeenCalled();
+  });
+
+  it('should handle export bundle failure with error message', async () => {
+    mockCoursesApi.getBundle.mockRejectedValue(new Error('Course not found in bundle'));
+
+    const result = await store.exportCourseBundle('c1');
+
+    expect(result).toBeNull();
+    expect(store.exportError()).toContain('Ошибка при экспорте курса');
+  });
+
+  it('should set export error on PDF export failure', async () => {
+    store.indexItems.set([
+      {
+        id: 'c1',
+        title: 'My Course',
+        authorId: 'local-user',
+        lessonCount: 1,
+        published: false,
+        updatedAt: '',
+        languagePairSummary: 'Russian → English',
+      },
+    ]);
+
+    mockCourseSearchService.getById.mockRejectedValue(new Error('Not found'));
+
+    const result = await store.exportPdf('c1', false);
+
+    expect(result).toBe(false);
+    expect(store.exportError()).toBe('Ошибка при экспорте в PDF');
+  });
+
+  it('should handle create course API failure', async () => {
+    mockCourseSearchService.create.mockRejectedValue(new Error('API error'));
+
+    const result = await store.createCourse({
+      title: 'Failing Course',
+      description: '',
+      published: false,
+      authoring: { idea: '', status: 'draft' },
+      lessons: [
+        {
+          clientId: 'lc-1',
+          title: 'Lesson 1',
+          description: '',
+          scenarioIds: ['s1'],
+          prerequisiteLessonIds: [],
+          order: 0,
+        },
+      ],
+    });
+
+    expect(result).toBe(false);
+    expect(store.error()).toBe('Не удалось создать курс');
+  });
+
+  it('should handle update course API failure', async () => {
+    store.editingCourse.set({
+      id: 'c1',
+      title: 'Old Title',
+      authorId: 'local-user',
+      description: '',
+      lessons: [],
+      lessonIds: [],
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    } as CourseWithLessons);
+
+    mockCourseSearchService.update.mockRejectedValue(new Error('API error'));
+
+    const result = await store.updateCourse('c1', {
+      title: 'Updated',
+      description: '',
+      published: false,
+      authoring: { idea: '', status: 'draft' },
+      lessons: [
+        {
+          clientId: 'lc-1',
+          title: 'Lesson 1',
+          description: '',
+          scenarioIds: ['s1'],
+          prerequisiteLessonIds: [],
+          order: 0,
+        },
+      ],
+    });
+
+    expect(result).toBe(false);
+    expect(store.error()).toBe('Не удалось сохранить курс');
+  });
+
+  it('should handle delete course API failure', async () => {
+    store.indexItems.set([
+      {
+        id: 'c1',
+        title: 'My Course',
+        authorId: 'local-user',
+        lessonCount: 1,
+        published: false,
+        updatedAt: '',
+        languagePairSummary: 'Russian → English',
+      },
+    ]);
+
+    mockCourseSearchService.delete.mockRejectedValue(new Error('Delete failed'));
+
+    await store.deleteCourse('c1');
+
+    expect(store.error()).toBe('Не удалось удалить курс');
+  });
 });

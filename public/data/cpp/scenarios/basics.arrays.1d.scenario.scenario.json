@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.arrays.1d.scenario",
+      "title": "C++ — C-array создание",
+      "description": "Сценарий: C-array создание — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-arrays-1d",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.860369.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.860371.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.arrays.1d.card-01",
+          "basics.arrays.1d.card-02",
+          "basics.arrays.1d.card-03",
+          "basics.arrays.1d.card-04",
+          "basics.arrays.1d.card-05"
+        ]
+      }
+    }
+  ]
+}

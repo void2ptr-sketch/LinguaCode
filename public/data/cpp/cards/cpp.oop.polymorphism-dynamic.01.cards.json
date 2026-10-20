@@ -1,0 +1,646 @@
+{
+  "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-01",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Что такое динамическая диспетчеризация?",
+      "optionsLearning": [
+        "Выбор метода по фактическому типу в runtime",
+        "Выбор по типу при компиляции",
+        "Перегрузка",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual-вызовы диспетчеризуются динамически."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-02",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Где хранится адрес виртуального метода?",
+      "optionsLearning": [
+        "В таблице виртуальных функций (vtable)",
+        "В вызванной функции",
+        "В стеке",
+        "В регистре"
+      ],
+      "correctIndex": 0,
+      "explanation": "vtable класса содержит адреса виртуальных методов."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Динамическая диспетчеризация — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual void f() const { std::cout << 'a'; } };\nstruct B : A { void f() const override { std::cout << 'b'; } };\nint main() { A* p = new B; p->f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "b",
+        "a",
+        "ab",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Фактический тип B → вызывается B::f: b."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-04",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Что такое позднее связывание (late binding)?",
+      "optionsLearning": [
+        "Связывание вызова с реализацией в runtime",
+        "Связывание в compile time",
+        "Компоновка",
+        "Импорт"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual дают позднее связывание."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-05",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Когда работает статическое связывание?",
+      "optionsLearning": [
+        "Для не-virtual вызовов и по статическому типу",
+        "Всегда",
+        "Никогда",
+        "В C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без virtual вызовы резолвятся статически."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Динамическая диспетчеризация — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual void f() const { std::cout << 'a'; } };\nstruct B : A { void f() const override { std::cout << 'b'; } };\nint main() { B b; A& r = b; r.f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "b",
+        "a",
+        "ab",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылка A& на B: диспетчеризация по фактическому типу: b."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-07",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Что делает виртуальность с объектом?",
+      "optionsLearning": [
+        "Добавляет vptr (указатель на vtable)",
+        "Ничего",
+        "Кучу",
+        "Счётчик"
+      ],
+      "correctIndex": 0,
+      "explanation": "Полиморфный объект содержит скрытый vptr."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-08",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Можно ли переопределить virtual метод без ключевого слова override?",
+      "optionsLearning": [
+        "Да, но override безопаснее",
+        "Нет",
+        "Запрещено",
+        "Только в заголовке"
+      ],
+      "correctIndex": 0,
+      "explanation": "override лишь проверяет; virtual наследуется."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Динамическая диспетчеризация — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual void f() const { std::cout << 'a'; } };\nstruct B : A { void f() const { std::cout << 'b'; } };\nint main() { A* p = new B; p->f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "b",
+        "a",
+        "Ошибка",
+        "ab"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual унаследован — переопределение работает: b."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-10",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Что если virtual метод объявлен, но не определён?",
+      "optionsLearning": [
+        "Ошибка линковки при вызове",
+        "Ничего",
+        "0",
+        "Автodefault"
+      ],
+      "correctIndex": 0,
+      "explanation": "Определение виртуальной функции нужно (если не чистая)."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-11",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Какова роль vtable в наследовании?",
+      "optionsLearning": [
+        "Производный класс расширяет/замещает таблицу",
+        "Копирует",
+        "Удаляет",
+        "Сортирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждый полиморфный класс имеет собственную vtable."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-12",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Быстрее ли прямой вызов виртуального?",
+      "optionsLearning": [
+        "Да (меньше косвенности), если нет девиртуализации",
+        "Нет",
+        "Одинаково",
+        "Не сравнимо"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual добавляет косвенный переход через vtable."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Динамическая диспетчеризация — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "question": "Что выведет эта программа (три уровня)?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual void f() const { std::cout << 'a'; } };\nstruct M : A { void f() const override { std::cout << 'm'; } };\nstruct B : M {};\nint main() { A* p = new B; p->f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "m",
+        "a",
+        "b",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Наследуется реализация M: m."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-14",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Что инвалидирует vptr?",
+      "optionsLearning": [
+        "Ничего — vptr установлен в конструкторах",
+        "delete",
+        "Копия",
+        "static"
+      ],
+      "correctIndex": 0,
+      "explanation": "vptr корректно настраивается по мере построения объекта."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-15",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "В чём отличие динамического полиморфизма от шаблонного?",
+      "optionsLearning": [
+        "virtual — runtime, templates — compile time",
+        "Одно и то же",
+        "Templates медленнее",
+        "virtual быстрее"
+      ],
+      "correctIndex": 0,
+      "explanation": "Статический (шаблоны) и динамический (virtual) полиморфизмы различны."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "Динамическая диспетчеризация — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "question": "Что выведет эта программа (массив указателей)?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual int f() const { return 1; } };\nstruct B : A { int f() const override { return 2; } };\nint main() { A* arr[] = {new A, new B}; int s = 0; for (auto p : arr) s += p->f(); std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "1 + 2 = 3 — полиморфизм в контейнере."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-17",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Почему виртуальные вызовы считаются «дорогими» в hot loops?",
+      "optionsLearning": [
+        "Косвенность и невозможность inline-оптимизации",
+        "Они в 100 раз дороже",
+        "Память",
+        "Кэш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Девirtual необходим для оптимизаций цикла."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-18",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Что такое vtable (виртуальная таблица)?",
+      "optionsLearning": [
+        "Массив адресов виртуальных функций класса",
+        "Массив объектов",
+        "Стек",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Таблицей диспетчеризуются virtual-вызовы."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-19",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Когда компилятор точно вызовет нужный virtual?",
+      "optionsLearning": [
+        "Когда тип известен статически (devirtualization)",
+        "Никогда",
+        "Всегда",
+        "По ключу"
+      ],
+      "correctIndex": 0,
+      "explanation": "Прямые вызовы B::f для известного типа оптимизируются."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-20",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "promptKnown": "Какая типичная стоимость полиморфного контейнера?",
+      "optionsLearning": [
+        "Один косвенный вызов на элемент",
+        "Нет",
+        "В 100 раз",
+        "Не существует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Полиморфные объекты в контейнерах требуют указателей и косвенности."
+    }
+  ],
+  "title": "Oop — Intermediate C++"
+}

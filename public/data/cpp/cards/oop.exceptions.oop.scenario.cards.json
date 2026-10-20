@@ -1,0 +1,121 @@
+{
+  "scenarioId": "oop.exceptions.oop.scenario",
+  "cards": [
+    {
+      "id": "oop.exceptions.oop.card-01",
+      "kind": "select",
+      "title": "Exception in constructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при исключении в конструкторе?",
+      "optionsLearning": [
+        "Объект не создан, деструкторы вызванных частей работают",
+        "Объект частично создан",
+        "Ничего",
+        "Утечка памяти"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-exceptions-oop",
+      "scenarioId": "oop.exceptions.oop.scenario"
+    },
+    {
+      "id": "oop.exceptions.oop.card-02",
+      "kind": "select",
+      "title": "Exception in destructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при исключении в деструкторе?",
+      "optionsLearning": [
+        "std::terminate — нельзя выбрасывать из деструктора!",
+        "Ничего",
+        "Объект удалён",
+        "Утечка памяти"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-exceptions-oop",
+      "scenarioId": "oop.exceptions.oop.scenario"
+    },
+    {
+      "id": "oop.exceptions.oop.card-03",
+      "kind": "select",
+      "title": "No-throw guarantee",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое no-throw guarantee?",
+      "optionsLearning": [
+        "Метод гарантированно не выбросит исключение",
+        "Метод всегда выбрасывает",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-exceptions-oop",
+      "scenarioId": "oop.exceptions.oop.scenario"
+    },
+    {
+      "id": "oop.exceptions.oop.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать исключения в ООП?",
+      "optionsLearning": [
+        "RAII + noexcept для деструкторов",
+        "Никак",
+        "Всегда",
+        "Только try-catch"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-exceptions-oop",
+      "scenarioId": "oop.exceptions.oop.scenario"
+    }
+  ]
+}

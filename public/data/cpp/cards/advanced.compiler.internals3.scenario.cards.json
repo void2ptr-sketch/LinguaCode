@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.compiler.internals3.scenario",
+  "cards": [
+    {
+      "id": "advanced.compiler.internals3.card-01",
+      "kind": "select",
+      "title": "Debug info",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое debug info?",
+      "optionsLearning": [
+        "Символьная информация для отладки (-g flag)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals3",
+      "scenarioId": "advanced.compiler.internals3.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals3.card-02",
+      "kind": "select",
+      "title": "Static analysis",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое static analysis?",
+      "optionsLearning": [
+        "Анализ кода без выполнения (clang-tidy, cppcheck)",
+        "Runtime анализ",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals3",
+      "scenarioId": "advanced.compiler.internals3.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals3.card-03",
+      "kind": "select",
+      "title": "Compiler warnings",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем -Wall -Wextra?",
+      "optionsLearning": [
+        "Предупреждения о потенциальных ошибках (early detection)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals3",
+      "scenarioId": "advanced.compiler.internals3.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals3.card-04",
+      "kind": "select",
+      "title": "Compiler plugins",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое compiler plugins?",
+      "optionsLearning": [
+        "Расширения компилятора (custom checks, transformations)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals3",
+      "scenarioId": "advanced.compiler.internals3.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals3.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать compiler?",
+      "optionsLearning": [
+        "-Wall -Wextra -Werror + sanitizers + static analysis",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals3",
+      "scenarioId": "advanced.compiler.internals3.scenario"
+    }
+  ]
+}

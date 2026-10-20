@@ -22,6 +22,9 @@ import type {
   CodeBlock,
   CodeHighlightLanguage,
   CodeSelectCard,
+  ClozeCard,
+  CodeTraceCard,
+  FlipCard,
 } from '../../../../entities/card/model';
 import {
   Card,
@@ -39,10 +42,13 @@ import {
 } from '../../../../entities/card/model';
 import {
   CardDraft,
+  ClozeCardDraft,
   CodeBlockDraft,
   CodeSelectCardDraft,
+  CodeTraceCardDraft,
   DEFAULT_CARD_DIRECTION,
   DrawCardDraft,
+  FlipCardDraft,
   KeyboardCardDraft,
   MemoryCardDraft,
   ReadingCardDraft,
@@ -728,6 +734,151 @@ export const normalizeReadingCardDraft = (
  * @param cardId - The unique identifier for the card.
  * @returns A validated Card, or `null` if validation fails.
  */
+
+/**
+ * Normalizes a FlipCardDraft into a validated FlipCard.
+ *
+ * @remarks
+ * Requires a title and both sides (front/back).
+ *
+ * @param draft - The flip card draft.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated FlipCard, or `null` if validation fails.
+ */
+export const normalizeFlipCardDraft = (draft: FlipCardDraft, cardId: string): FlipCard | null => {
+  const title = sanitizeTitle(draft.title);
+  const front = sanitizePrompt(draft.front);
+  const back = sanitizePrompt(draft.back);
+
+  if (!title || !front || !back) {
+    return null;
+  }
+
+  return {
+    id: cardId,
+    kind: 'flip',
+    title,
+    front,
+    back,
+    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+    appearance: normalizeAppearance(draft.appearance),
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
+  };
+};
+
+/**
+ * Normalizes a ClozeCardDraft into a validated ClozeCard.
+ *
+ * @remarks
+ * Requires title, prompt mask and correct answer. Supports select mode
+ * (options + correctIndex) and input mode (accepted answers).
+ *
+ * @param draft - The cloze card draft.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated ClozeCard, or `null` if validation fails.
+ */
+export const normalizeClozeCardDraft = (
+  draft: ClozeCardDraft,
+  cardId: string,
+): ClozeCard | null => {
+  const title = sanitizeTitle(draft.title);
+  const promptKnown = sanitizePrompt(draft.promptKnown);
+  const correctAnswer = sanitizePrompt(draft.correctAnswer);
+
+  if (!title || !promptKnown || !correctAnswer) {
+    return null;
+  }
+
+  const options = normalizeOptions(draft.options);
+  const acceptedAnswers = draft.acceptedAnswers
+    .map(sanitizeShort)
+    .filter((answer) => answer.length > 0);
+
+  let correctIndex: number | undefined;
+  if (options) {
+    const normalizedIndex = normalizeCorrectIndex(draft.correctIndex, options.length);
+    if (normalizedIndex === null) {
+      return null;
+    }
+
+    correctIndex = normalizedIndex;
+  }
+
+  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
+
+  return {
+    id: cardId,
+    kind: 'cloze',
+    title,
+    promptKnown,
+    correctAnswer,
+    ...(options ? { options } : {}),
+    ...(correctIndex !== undefined ? { correctIndex } : {}),
+    ...(acceptedAnswers.length ? { acceptedAnswers } : {}),
+    ...(promptLexeme ? { promptLexeme } : {}),
+    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+    appearance: normalizeAppearance(draft.appearance),
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
+  };
+};
+
+/**
+ * Normalizes a CodeTraceCardDraft into a validated CodeTraceCard.
+ *
+ * @remarks
+ * Requires a title, a non-empty code block and at least two output options.
+ *
+ * @param draft - The code-trace card draft.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated CodeTraceCard, or `null` if validation fails.
+ */
+export const normalizeCodeTraceCardDraft = (
+  draft: CodeTraceCardDraft,
+  cardId: string,
+): CodeTraceCard | null => {
+  const title = sanitizeTitle(draft.title);
+  const code = sanitizeMarkdownText(draft.code.code);
+  if (!title || !code) {
+    return null;
+  }
+
+  const outputOptions = normalizeOptions(draft.outputOptions);
+  if (!outputOptions) {
+    return null;
+  }
+
+  const correctIndex = normalizeCorrectIndex(draft.correctIndex, outputOptions.length);
+  if (correctIndex === null) {
+    return null;
+  }
+
+  return {
+    id: cardId,
+    kind: 'code-trace',
+    title,
+    code: { code, language: draft.code.language },
+    outputOptions,
+    correctIndex,
+    ...(draft.caption.trim() ? { caption: sanitizeMarkdownText(draft.caption) } : {}),
+    ...(draft.question.trim() ? { question: sanitizeMarkdownText(draft.question) } : {}),
+    appearance: normalizeAppearance(draft.appearance),
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
+  };
+};
+
+/**
+ * Normalizes a card draft into a validated Card.
+ *
+ * @param draft - The card draft to normalize.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated Card, or `null` if validation fails.
+ */
 export const normalizeCardDraft = (draft: CardDraft, cardId: string): Card | null => {
   switch (draft.kind) {
     case 'select':
@@ -750,6 +901,12 @@ export const normalizeCardDraft = (draft: CardDraft, cardId: string): Card | nul
       return normalizeToneCardDraft(draft, cardId);
     case 'reading':
       return normalizeReadingCardDraft(draft, cardId);
+    case 'flip':
+      return normalizeFlipCardDraft(draft, cardId);
+    case 'cloze':
+      return normalizeClozeCardDraft(draft, cardId);
+    case 'code-trace':
+      return normalizeCodeTraceCardDraft(draft, cardId);
   }
 };
 
@@ -785,5 +942,11 @@ export const cardValidationErrorMessage = (kind: CardKind): string => {
       return 'Проверьте название, контекст, варианты чтения и правильный ответ';
     case 'tone':
       return 'Проверьте название, подсказку, слог без тона и правильный тон';
+    case 'flip':
+      return 'Проверьте название, лицевую и обратную стороны';
+    case 'cloze':
+      return 'Проверьте название, текст с пропуском и правильный ответ';
+    case 'code-trace':
+      return 'Проверьте название, код и варианты вывода';
   }
 };

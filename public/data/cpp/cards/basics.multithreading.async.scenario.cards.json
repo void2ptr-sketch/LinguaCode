@@ -1,0 +1,150 @@
+{
+  "scenarioId": "basics.multithreading.async.scenario",
+  "cards": [
+    {
+      "id": "basics.multithreading.async.card-01",
+      "kind": "select",
+      "title": "Thread создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать поток?",
+      "optionsLearning": [
+        "std::thread t(func); t.join();",
+        "new Thread(func).start()",
+        "async(func)",
+        "spawn(func)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "async"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-multithreading-async",
+      "scenarioId": "basics.multithreading.async.scenario"
+    },
+    {
+      "id": "basics.multithreading.async.card-02",
+      "kind": "select",
+      "title": "Thread safety",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое thread safety?",
+      "optionsLearning": [
+        "Корректная работа при параллельном доступе",
+        "Быстрая работа",
+        "Малое потребление памяти",
+        "Отсутствие ошибок"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "async"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-multithreading-async",
+      "scenarioId": "basics.multithreading.async.scenario"
+    },
+    {
+      "id": "basics.multithreading.async.card-03",
+      "kind": "select",
+      "title": "Mutex basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем mutex?",
+      "optionsLearning": [
+        "Защита общих данных от concurrent access",
+        "Увеличение скорости",
+        "Уменьшение памяти",
+        "Отключение потоков"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "async"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-multithreading-async",
+      "scenarioId": "basics.multithreading.async.scenario"
+    },
+    {
+      "id": "basics.multithreading.async.card-04",
+      "kind": "select",
+      "title": "Lock guard",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое lock_guard?",
+      "optionsLearning": [
+        "RAII wrapper для mutex (автоматический unlock)",
+        "Ручной lock/unlock",
+        "Новый тип потока",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "async"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-multithreading-async",
+      "scenarioId": "basics.multithreading.async.scenario"
+    },
+    {
+      "id": "basics.multithreading.async.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как избежать data race?",
+      "optionsLearning": [
+        "Использовать mutex для общих данных",
+        "Игнорировать",
+        "Только read-only",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "async"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-multithreading-async",
+      "scenarioId": "basics.multithreading.async.scenario"
+    }
+  ]
+}

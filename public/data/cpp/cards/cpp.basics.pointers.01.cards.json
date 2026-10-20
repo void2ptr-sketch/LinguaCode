@@ -1,0 +1,649 @@
+{
+  "scenarioId": "cpp.basics.pointers.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-01",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Что хранит указатель?",
+      "optionsLearning": [
+        "Адрес участка памяти",
+        "Значение переменной",
+        "Тип переменной",
+        "Имя переменной"
+      ],
+      "correctIndex": 0,
+      "explanation": "Указатель хранит адрес (адрес переменной/объекта)."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-02",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Как объявить указатель на int?",
+      "optionsLearning": [
+        "int* p;",
+        "int p*;",
+        "*int p;",
+        "ptr int p;"
+      ],
+      "correctIndex": 0,
+      "explanation": "int* p — указатель на int (звёздочка у типа)."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Основы указателей в C++ — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 5; int* p = &x; std::cout << *p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "адрес",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оператор *p разыменовывает указатель и даёт значение 5."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-04",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Как получить адрес переменной x?",
+      "optionsLearning": [
+        "&x",
+        "*x",
+        "x*",
+        "x&"
+      ],
+      "correctIndex": 0,
+      "explanation": "Унарный оператор & возвращает адрес переменной."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-05",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Что означает nullptr?",
+      "optionsLearning": [
+        "Пустой указатель (никакой адрес)",
+        "Нулевое значение int",
+        "Нулевой символ",
+        "Начало памяти"
+      ],
+      "correctIndex": 0,
+      "explanation": "nullptr — безопасный литерал пустого указателя (C++11)."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Основы указателей в C++ — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "pointers",
+          "memory"
+        ],
+        "tags": "Разыменование nullptr — UB; часто segfault."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "question": "Что произойдёт при разыменовании nullptr?",
+      "code": {
+        "code": [
+          "Неопределённое поведение (обычно крах)",
+          "Возврат 0",
+          "Ошибка компиляции",
+          "Выброс исключения гарантированно"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-07",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Как изменить значение переменной через указатель?",
+      "optionsLearning": [
+        "*p = 10;",
+        "p = 10;",
+        "&p = 10;",
+        "p* = 10;"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разыменование в левой части присваивания меняет значение по адресу."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Основы указателей в C++ — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 1; int* p = &x; *p = 42; std::cout << x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "1",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "*p = 42 меняет x через указатель → 42."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-09",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Чем указатель отличается от переменной?",
+      "optionsLearning": [
+        "Указатель хранит адрес, переменная — значение",
+        "Ничем",
+        "Указатель больше",
+        "Указатель константен"
+      ],
+      "correctIndex": 0,
+      "explanation": "Уровень косвенности: у указателя значение — адрес."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-10",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Как проверить, что указатель не пуст?",
+      "optionsLearning": [
+        "if (p != nullptr) или if (p)",
+        "if (*p)",
+        "if (&p)",
+        "if (p > 0)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сравнение с nullptr или неявное приведение к bool."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-11",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "pointers",
+          "functions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Что такое указатель на функцию?",
+      "optionsLearning": [
+        "Переменная, хранящая адрес функции",
+        "Функция-член",
+        "Макрос",
+        "Ссылка на main"
+      ],
+      "correctIndex": 0,
+      "explanation": "Указатель на функцию хранит адрес функции для косвенного вызова."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Основы указателей в C++ — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "pointers",
+          "functions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint add(int a, int b) { return a + b; }\nint main() { int (*fp)(int, int) = add; std::cout << fp(3, 4); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "34",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "fp — указатель на функцию; fp(3,4) вызывает add → 7."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-13",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Что произойдёт, если не инициализировать указатель?",
+      "optionsLearning": [
+        "В нём мусор — разыменование опасно",
+        "Он станет nullptr",
+        "Ошибка компиляции",
+        "Он станет 0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Неинициализированный указатель хранит мусор; нужна инициализация."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-14",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "structs"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Какой оператор доступа к полям через указатель на структуру?",
+      "optionsLearning": [
+        "p->field или (*p).field",
+        "p.field",
+        "&p.field",
+        "p::field"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стрелка -> разыменовывает и обращается к полю."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Основы указателей в C++ — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "structs"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct P { int x; };\nint main() { P p = {7}; P* ptr = &p; std::cout << ptr->x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "x",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "ptr->x разыменовывает указатель и читает поле x = 7."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-16",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Чем bool convertible указатель в if?",
+      "optionsLearning": [
+        "Указатель неявно преобразуется в bool (nullptr → false)",
+        "Указатель нельзя в if",
+        "Всегда true",
+        "Только nullptr"
+      ],
+      "correctIndex": 0,
+      "explanation": "Если p не nullptr — true; стандартная идиома проверки."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-17",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Что такое висячий указатель (dangling pointer)?",
+      "optionsLearning": [
+        "Указатель на уже освобождённую память",
+        "Указатель на стек",
+        "Пустой указатель",
+        "Указатель на константу"
+      ],
+      "correctIndex": 0,
+      "explanation": "После delete/free указатель ссылается на освобождённую область — UB при использовании."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-18",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Как избежать висячих указателей в современном C++?",
+      "optionsLearning": [
+        "Использовать умные указатели (unique_ptr/shared_ptr)",
+        "Запоминать адреса вручную",
+        "void* всегда",
+        "Макросы"
+      ],
+      "correctIndex": 0,
+      "explanation": "RAII-умные указатели автоматизируют время жизни."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-19",
+      "kind": "code-trace",
+      "title": "Основы указателей в C++ — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a = 10; int* p = &a; int* q = p; *q = 5; std::cout << a; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "10",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "p и q указывают на одну переменную; *q=5 меняет a → 5."
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario.card-20",
+      "kind": "select",
+      "title": "Основы указателей в C++ — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.pointers.01.scenario",
+      "promptKnown": "Что возвращает оператор sizeof(указатель)?",
+      "optionsLearning": [
+        "Размер адреса (обычно 8 байт на 64-битной)",
+        "Размер данных по адресу",
+        "Число байт объекта",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "sizeof(указатель) — размер самого указателя, не объекта."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

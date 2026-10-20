@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +11,7 @@ import { ToneColoredTextComponent } from '../../../../chinese/ui/tone-colored-te
 import { CardFeedback } from '../../../model/card-interaction.types';
 import { buildOptionClass } from '../../../lib/cards/option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
+import { hashSeed, shuffleArray } from '../../../utils/card-shuffle.util';
 
 /**
  * Tone card component. Displays a tone mark selection exercise where the user
@@ -65,6 +66,9 @@ export class ToneCardComponent {
    */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
+  /** Nonce for deterministic option shuffling. */
+  readonly shuffleNonce = input<number>(0);
+
   /**
    * Emits when the user selects a tone option.
    * @remarks Payload is the zero-based index of the selected option.
@@ -84,6 +88,23 @@ export class ToneCardComponent {
    * Triggered when the user clicks the next card button.
    */
   readonly nextCard = output<void>();
+
+  /**
+   * Resolved tone options with shuffled order.
+   * @remarks
+   * Shuffles `toneOptions` and adjusts `correctIndex` when shuffleNonce is provided.
+   */
+  readonly resolved = computed(() => {
+    const card = this.card();
+    const nonce = this.shuffleNonce();
+    if (nonce === undefined || card.toneOptions.length <= 1) {
+      return { options: card.toneOptions, correctIndex: card.correctIndex };
+    }
+    const seed = `${card.id}-${nonce}`;
+    const shuffled = shuffleArray(card.toneOptions, hashSeed(seed));
+    const newCorrectIndex = shuffled.indexOf(card.toneOptions[card.correctIndex]);
+    return { options: shuffled, correctIndex: newCorrectIndex };
+  });
 
   /**
    * Returns the display label for a tone mark.
@@ -112,7 +133,12 @@ export class ToneCardComponent {
    * @returns CSS class string for styling the option card.
    */
   optionClass(index: number): string {
-    return buildOptionClass(index, this.selectedIndex(), this.feedback(), this.card().correctIndex);
+    return buildOptionClass(
+      index,
+      this.selectedIndex(),
+      this.feedback(),
+      this.resolved().correctIndex,
+    );
   }
 
   /**

@@ -1,0 +1,150 @@
+{
+  "scenarioId": "basics.functions.overload.scenario",
+  "cards": [
+    {
+      "id": "basics.functions.overload.card-01",
+      "kind": "select",
+      "title": "Function overloading",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое перегрузка?",
+      "optionsLearning": [
+        "Одинаковое имя, разные сигнатуры",
+        "Разные имена",
+        "Одинаковые параметры",
+        "Без параметров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "overload"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-overload",
+      "scenarioId": "basics.functions.overload.scenario"
+    },
+    {
+      "id": "basics.functions.overload.card-02",
+      "kind": "select",
+      "title": "Overload resolution",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как компилятор выбирает перегрузку?",
+      "optionsLearning": [
+        "Лучшее соответствие типов",
+        "Случайный выбор",
+        "Первая функция",
+        "Последняя функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "overload"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-overload",
+      "scenarioId": "basics.functions.overload.scenario"
+    },
+    {
+      "id": "basics.functions.overload.card-03",
+      "kind": "select",
+      "title": "Ambiguous overload",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ambiguous overload?",
+      "optionsLearning": [
+        "Несколько функций с одинаковым приоритетом",
+        "Одна функция",
+        "Ошибка синтаксиса",
+        "Работает нормально"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "overload"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-overload",
+      "scenarioId": "basics.functions.overload.scenario"
+    },
+    {
+      "id": "basics.functions.overload.card-04",
+      "kind": "select",
+      "title": "Operator overloading",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator overloading?",
+      "optionsLearning": [
+        "Переопределение операторов для типов",
+        "Новые операторы",
+        "Удаление операторов",
+        "Скрытие операторов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "overload"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-overload",
+      "scenarioId": "basics.functions.overload.scenario"
+    },
+    {
+      "id": "basics.functions.overload.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда перегружать функции?",
+      "optionsLearning": [
+        "Одинаковая логика, разные типы",
+        "Разная логика",
+        "Всегда",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "overload"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-overload",
+      "scenarioId": "basics.functions.overload.scenario"
+    }
+  ]
+}

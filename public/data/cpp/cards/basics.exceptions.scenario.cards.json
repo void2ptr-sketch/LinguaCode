@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.exceptions.scenario",
+  "cards": [
+    {
+      "id": "basics.exceptions.card-01",
+      "kind": "select",
+      "title": "Try-catch",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Синтаксис try-catch?",
+      "optionsLearning": [
+        "try { } catch (Exception e) { }",
+        "if (error) { }",
+        "onError { }",
+        "catch { } только"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-exceptions",
+      "scenarioId": "basics.exceptions.scenario"
+    },
+    {
+      "id": "basics.exceptions.card-02",
+      "kind": "select",
+      "title": "Multiple catch",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Несколько catch блоков?",
+      "optionsLearning": [
+        "catch (TypeError) {}, catch (LogicError) {}",
+        "Нельзя",
+        "Один catch всегда",
+        "Синтаксическая ошибка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-exceptions",
+      "scenarioId": "basics.exceptions.scenario"
+    },
+    {
+      "id": "basics.exceptions.card-03",
+      "kind": "select",
+      "title": "Throw exception",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как выбросить исключение?",
+      "optionsLearning": [
+        "throw std::runtime_error(\"msg\")",
+        "error(\"msg\")",
+        "raise Exception",
+        "return error"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-exceptions",
+      "scenarioId": "basics.exceptions.scenario"
+    },
+    {
+      "id": "basics.exceptions.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать исключения?",
+      "optionsLearning": [
+        "Для ошибок, которые нельзя игнорировать",
+        "Всегда",
+        "Никогда",
+        "Только для критических"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-exceptions",
+      "scenarioId": "basics.exceptions.scenario"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.strings.streams.scenario",
+      "title": "C++ — Stringstream",
+      "description": "Сценарий: Stringstream — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-strings-streams",
+      "courseId": "course-cpp-complete",
+      "cardCount": 3,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.862993.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.862995.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.strings.streams.card-01",
+          "basics.strings.streams.card-02",
+          "basics.strings.streams.card-03"
+        ]
+      }
+    }
+  ]
+}

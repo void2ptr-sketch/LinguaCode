@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.basics.templates-intro.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-01",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Что такое шаблон (template) в C++?",
+      "optionsLearning": [
+        "Инструкция для генерации кода по типам",
+        "Готовая функция",
+        "Макрос",
+        "Класс"
+      ],
+      "correctIndex": 0,
+      "explanation": "Шаблон параметризуется типами и инстанцируется при использовании."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-02",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Как объявить шаблонную функцию max?",
+      "optionsLearning": [
+        "template <typename T> T max(T a, T b);",
+        "#define max(a,b)",
+        "T max(T a)",
+        "функция без template"
+      ],
+      "correctIndex": 0,
+      "explanation": "template <typename T> перед функцией параметризует тип T."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Templates Intro — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename T> T sqr(T x) { return x * x; }\nint main() { std::cout << sqr(5); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "25",
+        "5",
+        "Ошибка",
+        "5.0"
+      ],
+      "correctIndex": 0,
+      "explanation": "sqr<int>(5) → 25."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-04",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Когда создаётся код шаблонной функции?",
+      "optionsLearning": [
+        "При инстанцировании (первом использовании с типом)",
+        "Сразу при компиляции шаблона",
+        "При запуске",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инстанцирование шаблона происходит по месту использования с конкретным типом."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-05",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Чем отличаются typename и class в шаблонах?",
+      "optionsLearning": [
+        "Эквивалентны",
+        "typename только для встроенных",
+        "class запрещён",
+        "typename — C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "В параметрах шаблона typename и class взаимозаменяемы."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Templates Intro — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename T> T max2(T a, T b) { return a > b ? a : b; }\nint main() { std::cout << max2(3, 7); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "3",
+        "Ошибка",
+        "37"
+      ],
+      "correctIndex": 0,
+      "explanation": "max2(3,7) → 7."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-07",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Что произойдёт при sqr(\"abc\") для шаблона с оператором *?",
+      "optionsLearning": [
+        "Ошибка компиляции: нет operator* для строки",
+        "Аbcabc",
+        "Ошибка runtime",
+        "Строка удвоится"
+      ],
+      "correctIndex": 0,
+      "explanation": "Операция * не определена для std::string-литералов — ошибка типизации."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-08",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Что такое инстанцирование шаблона?",
+      "optionsLearning": [
+        "Генерация конкретной версии под конкретный тип",
+        "Вызов функции",
+        "Препроцессинг",
+        "Линковка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инстанцирование создаёт специализацию кода для каждого типа T."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-09",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Как вызвать шаблонную функцию с явным типом?",
+      "optionsLearning": [
+        "sqr<int>(5)",
+        "sqr(5)",
+        "int(sqr)",
+        "template sqr"
+      ],
+      "correctIndex": 0,
+      "explanation": "sqr<int>(5) явно задаёт тип шаблона."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Templates Intro — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename T>\nT add(T a, T b) { return a + b; }\nint main() { std::cout << add(2.5, 1.5); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "4",
+        "4.0",
+        "2.5+1.5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "add<double>(2.5, 1.5) = 4.0 → выводится 4."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-11",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Что такое шаблонный класс?",
+      "optionsLearning": [
+        "Класс, параметризованный типом",
+        "Класс с виртуальными методами",
+        "Макрос-класс",
+        "Структура с new"
+      ],
+      "correctIndex": 0,
+      "explanation": "template <typename T> class Box { T value; }; — шаблонный класс."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Templates Intro — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename T>\nclass Box { public: T v; Box(T x) : v(x) {} };\nint main() { Box<int> b(10); std::cout << b.v; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "Ошибка",
+        "v",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Box<int> хранит int 10."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-13",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Что делает auto в возвращаемом типе C++14?",
+      "optionsLearning": [
+        "Выводит тип возврата из return",
+        "Делает тип динамическим",
+        "Убирает return",
+        "Ставит int"
+      ],
+      "correctIndex": 0,
+      "explanation": "В C++14 auto выводит тип возвращаемого значения автоматически."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-14",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Что такое специализация шаблона?",
+      "optionsLearning": [
+        "Отдельная реализация для конкретного типа",
+        "Копия шаблона",
+        "Макрос",
+        "Перегрузка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Специализация задаёт особое поведение шаблона для типа."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Templates Intro — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "question": "Какую версию вызовет f(1)?",
+      "code": {
+        "code": "template <typename T> void f(T) {}\ntemplate <> void f<int>(int) {}",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Специализированную f<int>",
+        "Общую f<T>",
+        "Обе",
+        "Ошибку"
+      ],
+      "correctIndex": 0,
+      "explanation": "Явная специализация для int выбирается при вызове f(1)."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-16",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Что такое вывод типа шаблона (template argument deduction)?",
+      "optionsLearning": [
+        "Компилятор выводит T из аргументов вызова",
+        "Задание T вручную",
+        "Препроцессинг",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "При вызове sqr(5) компилятор выводит T = int."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-17",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Что произойдёт, если два аргумента шаблона имеют разные типы?",
+      "optionsLearning": [
+        "Вывод T неоднозначен — нужен явный тип или два параметра",
+        "Возьмётся первый",
+        "Ошибка всегда",
+        "Преобразование"
+      ],
+      "correctIndex": 0,
+      "explanation": "add(1, 2.5) с одним T — конфликт; нужно add<int>(…) или два параметра."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "Templates Intro — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename T, typename U>\nauto sum2(T a, U b) { return a + b; }\nint main() { std::cout << sum2(1, 2.5); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3.5",
+        "3",
+        "Ошибка",
+        "12.5"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разные типы: int + double → double 3.5."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-19",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Почему шаблоны обычно определяют в заголовочных файлах?",
+      "optionsLearning": [
+        "Инстанцирование происходит в каждой единице трансляции",
+        "Так короче",
+        "Стандарт запрещает иначе",
+        "Для скорости"
+      ],
+      "correctIndex": 0,
+      "explanation": "Код шаблона должен быть виден в точке инстанцирования."
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario.card-20",
+      "kind": "select",
+      "title": "Templates Intro — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.templates-intro.01.scenario",
+      "promptKnown": "Что такое non-type параметр шаблона?",
+      "optionsLearning": [
+        "Параметр-значение: template <int N>",
+        "Параметр-тип",
+        "Параметр-класс",
+        "Указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "template <int N> можно использовать как константу времени компиляции."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

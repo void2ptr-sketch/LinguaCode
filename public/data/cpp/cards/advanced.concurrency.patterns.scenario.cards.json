@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.concurrency.patterns.scenario",
+  "cards": [
+    {
+      "id": "advanced.concurrency.patterns.card-01",
+      "kind": "select",
+      "title": "Producer-Consumer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое producer-consumer?",
+      "optionsLearning": [
+        "Один производит, другой потребляет (queue + mutex)",
+        "Односторонняя связь",
+        "Без очереди",
+        "Статический"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concurrency-patterns",
+      "scenarioId": "advanced.concurrency.patterns.scenario"
+    },
+    {
+      "id": "advanced.concurrency.patterns.card-02",
+      "kind": "select",
+      "title": "Barrier",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое barrier?",
+      "optionsLearning": [
+        "Точки синхронизации (все потоки ждут друг друга)",
+        "Один поток",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concurrency-patterns",
+      "scenarioId": "advanced.concurrency.patterns.scenario"
+    },
+    {
+      "id": "advanced.concurrency.patterns.card-03",
+      "kind": "select",
+      "title": "Read-Write lock",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое read-write lock?",
+      "optionsLearning": [
+        "Много читателей или один писатель (shared_mutex)",
+        "Обычный mutex",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concurrency-patterns",
+      "scenarioId": "advanced.concurrency.patterns.scenario"
+    },
+    {
+      "id": "advanced.concurrency.patterns.card-04",
+      "kind": "select",
+      "title": "Thread-local storage",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое thread-local?",
+      "optionsLearning": [
+        "Переменная для каждого потока (thread_local)",
+        "Глобальная переменная",
+        "Статическая",
+        "Константа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concurrency-patterns",
+      "scenarioId": "advanced.concurrency.patterns.scenario"
+    },
+    {
+      "id": "advanced.concurrency.patterns.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проектировать concurrent code?",
+      "optionsLearning": [
+        "Immutability + message passing",
+        "Shared mutable state",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concurrency-patterns",
+      "scenarioId": "advanced.concurrency.patterns.scenario"
+    }
+  ]
+}

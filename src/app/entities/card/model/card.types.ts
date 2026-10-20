@@ -17,7 +17,10 @@ export type CardKind =
   | 'keyboard'
   | 'draw'
   | 'tone'
-  | 'reading';
+  | 'reading'
+  | 'flip'
+  | 'cloze'
+  | 'code-trace';
 
 /**
  * User-configurable appearance settings for cards.
@@ -290,6 +293,64 @@ export type ReadingCard = CardBase &
   };
 
 /**
+ * Flip card: user self-reports whether they know the back side.
+ *
+ * @remarks
+ * A classic two-sided flashcard without objective answer checking.
+ * The session records the user's self-assessment via `flipKnown`
+ * (basis for future spaced repetition).
+ */
+export type FlipCard = CardBase & {
+  kind: 'flip';
+  /** Front side (known language). */
+  front: string;
+  frontLexeme?: PhoneticLexeme;
+  /** Back side (learning language). */
+  back: string;
+  backLexeme?: PhoneticLexeme;
+  audioUrl?: string;
+};
+
+/**
+ * Cloze card: user fills in a blank in a sentence.
+ *
+ * @remarks
+ * Bimodal: if `options` is set, the user selects one of the options
+ * (`correctIndex` is required); otherwise the user types the answer
+ * (matched against `acceptedAnswers` + `correctAnswer`).
+ */
+export type ClozeCard = CardBase &
+  LexemeCardFields & {
+    kind: 'cloze';
+    /** Text with a blank placeholder (e.g. `Я ___ в Москве`). */
+    promptKnown: string;
+    /** Options for select mode. When set, `correctIndex` is required. */
+    options?: readonly string[];
+    /** Correct option index (select mode). */
+    correctIndex?: number;
+    /** Correct answer (used in both modes, and for the answer label). */
+    correctAnswer: string;
+    /** Additional accepted spellings for input mode. */
+    acceptedAnswers?: readonly string[];
+  };
+
+/**
+ * Code-trace card: user predicts the output of a code snippet.
+ *
+ * @remarks
+ * Similar to `code-select` but checks understanding of code execution:
+ * the prompt is a code block and the options are possible outputs.
+ */
+export type CodeTraceCard = CardBase & {
+  kind: 'code-trace';
+  caption?: string;
+  question?: string;
+  code: CodeBlock;
+  outputOptions: readonly string[];
+  correctIndex: number;
+};
+
+/**
  * Union of all card kinds.
  *
  * @remarks
@@ -305,7 +366,10 @@ export type Card =
   | KeyboardCard
   | DrawCard
   | ToneCard
-  | ReadingCard;
+  | ReadingCard
+  | FlipCard
+  | ClozeCard
+  | CodeTraceCard;
 
 /**
  * Subset of Card types that present multiple-choice options.
@@ -314,13 +378,13 @@ export type Card =
  * These cards share a common answer-checking pattern via `canCheckCardAnswer` and `checkCardAnswer`.
  */
 export type OptionCard =
-  SelectCard | CodeSelectCard | SymbolCard | SoundCard | TimedCard | ReadingCard;
+  SelectCard | CodeSelectCard | SymbolCard | SoundCard | TimedCard | ReadingCard | CodeTraceCard;
 
 /**
  * Type guard: checks whether a card is an option-based card (multiple choice).
  *
  * @param card - The card to check.
- * @returns `true` if the card is one of: select, code-select, symbol, sound, timed, reading.
+ * @returns `true` if the card is one of: select, code-select, symbol, sound, timed, reading, code-trace.
  */
 export const isOptionCard = (card: Card): card is OptionCard => {
   return (
@@ -329,6 +393,7 @@ export const isOptionCard = (card: Card): card is OptionCard => {
     card.kind === 'symbol' ||
     card.kind === 'sound' ||
     card.kind === 'timed' ||
-    card.kind === 'reading'
+    card.kind === 'reading' ||
+    card.kind === 'code-trace'
   );
 };

@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.ai.programming4.scenario",
+  "cards": [
+    {
+      "id": "advanced.ai.programming4.card-01",
+      "kind": "select",
+      "title": "Reinforcement learning C++2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "RL на C++ 2?",
+      "optionsLearning": [
+        "TensorFlow Agents C++ + custom environments + distributed training",
+        "Только Python",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming4",
+      "scenarioId": "advanced.ai.programming4.scenario"
+    },
+    {
+      "id": "advanced.ai.programming4.card-02",
+      "kind": "select",
+      "title": "Model compression advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое сжатие моделей?",
+      "optionsLearning": [
+        "Quantization + pruning + distillation + neural architecture search",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming4",
+      "scenarioId": "advanced.ai.programming4.scenario"
+    },
+    {
+      "id": "advanced.ai.programming4.card-03",
+      "kind": "select",
+      "title": "Federated learning advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый federated learning?",
+      "optionsLearning": [
+        "Privacy-preserving + differential privacy + secure aggregation",
+        "Только centralized",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming4",
+      "scenarioId": "advanced.ai.programming4.scenario"
+    },
+    {
+      "id": "advanced.ai.programming4.card-04",
+      "kind": "select",
+      "title": "Neural architecture search advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый NAS?",
+      "optionsLearning": [
+        "AutoML + neural network evolution + hyperparameter optimization",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming4",
+      "scenarioId": "advanced.ai.programming4.scenario"
+    },
+    {
+      "id": "advanced.ai.programming4.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как интегрировать ML в C++?",
+      "optionsLearning": [
+        "ONNX Runtime + quantization + batching + edge optimization + profiling + compression",
+        "Только Python",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming4",
+      "scenarioId": "advanced.ai.programming4.scenario"
+    }
+  ]
+}

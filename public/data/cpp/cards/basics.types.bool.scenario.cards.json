@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.types.bool.scenario",
+  "cards": [
+    {
+      "id": "basics.types.bool.card-01",
+      "kind": "select",
+      "title": "Что такое bool?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие значения может принимать bool?",
+      "optionsLearning": [
+        "true и false",
+        "0 и 1 только",
+        "Да и Нет",
+        "1, 0, -1"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "bool"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-types-bool",
+      "scenarioId": "basics.types.bool.scenario"
+    },
+    {
+      "id": "basics.types.bool.card-02",
+      "kind": "select",
+      "title": "Bool из выражений",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что возвращает 5 > 3?",
+      "optionsLearning": [
+        "true",
+        "5",
+        "3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "bool"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-types-bool",
+      "scenarioId": "basics.types.bool.scenario"
+    },
+    {
+      "id": "basics.types.bool.card-03",
+      "kind": "select",
+      "title": "Implicit conversion",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при int -> bool?",
+      "optionsLearning": [
+        "0 -> false, !=0 -> true",
+        "Ошибка компиляции",
+        "Всегда true",
+        "Всегда false"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "bool"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-types-bool",
+      "scenarioId": "basics.types.bool.scenario"
+    },
+    {
+      "id": "basics.types.bool.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как правильно проверять bool?",
+      "optionsLearning": [
+        "if (flag) { } или if (!flag)",
+        "if (flag == true)",
+        "if (flag == 1)",
+        "if (flag != 0)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "bool"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-types-bool",
+      "scenarioId": "basics.types.bool.scenario"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "scenarioId": "oop.inheritance.scenario",
+  "cards": [
+    {
+      "id": "oop.inheritance.card-01",
+      "kind": "select",
+      "title": "Inheritance syntax",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Синтаксис наследования?",
+      "optionsLearning": [
+        "class Derived : public Base {}",
+        "class Derived extends Base {}",
+        "class Derived inherits Base {}",
+        "class Derived implements Base {}"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-inheritance",
+      "scenarioId": "oop.inheritance.scenario"
+    },
+    {
+      "id": "oop.inheritance.card-02",
+      "kind": "select",
+      "title": "Access in inheritance",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "public vs private inheritance?",
+      "optionsLearning": [
+        "public: публичные члены Base доступны",
+        "private всегда",
+        "protected только",
+        "Нет различий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-inheritance",
+      "scenarioId": "oop.inheritance.scenario"
+    },
+    {
+      "id": "oop.inheritance.card-03",
+      "kind": "select",
+      "title": "Base constructor call",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как вызвать конструктор базового?",
+      "optionsLearning": [
+        "Derived() : Base(args) {}",
+        "Base(); в теле",
+        "Нельзя",
+        "super()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-inheritance",
+      "scenarioId": "oop.inheritance.scenario"
+    },
+    {
+      "id": "oop.inheritance.card-04",
+      "kind": "select",
+      "title": "Virtual functions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем virtual?",
+      "optionsLearning": [
+        "Полиморфизм: вызов метода по base pointer",
+        "Оптимизация",
+        "Константность",
+        "Статический метод"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-inheritance",
+      "scenarioId": "oop.inheritance.scenario"
+    },
+    {
+      "id": "oop.inheritance.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать наследование?",
+      "optionsLearning": [
+        "IS-A relationship (Dog IS-A Animal)",
+        "Всегда",
+        "Никогда",
+        "Только для small classes"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-inheritance",
+      "scenarioId": "oop.inheritance.scenario"
+    }
+  ]
+}

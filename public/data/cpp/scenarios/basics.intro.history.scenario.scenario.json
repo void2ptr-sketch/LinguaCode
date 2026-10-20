@@ -1,0 +1,39 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.intro.history.scenario",
+      "title": "C++ — Создание C++",
+      "description": "Сценарий: Создание C++ — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-intro-history",
+      "courseId": "course-cpp-complete",
+      "cardCount": 10,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.861934.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.861935.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.intro.history.card-01",
+          "basics.intro.history.card-02",
+          "basics.intro.history.card-03",
+          "basics.intro.history.card-04",
+          "basics.intro.history.card-05",
+          "basics.intro.history.card-06",
+          "basics.intro.history.card-07",
+          "basics.intro.history.card-08",
+          "basics.intro.history.card-09",
+          "basics.intro.history.card-10"
+        ]
+      }
+    }
+  ]
+}

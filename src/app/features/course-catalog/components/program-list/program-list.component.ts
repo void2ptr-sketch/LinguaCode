@@ -44,7 +44,7 @@ export class CourseCatalogProgramsComponent {
    *
    * @remarks
    * The parent component should listen for this output to initiate
-   * navigation to the card select page for the given course.
+   * navigation to the journey map (learning path) for the given course.
    */
   readonly startCourse = output<string>();
 

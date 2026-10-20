@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.templates.advanced.scenario",
+  "cards": [
+    {
+      "id": "advanced.templates.advanced.card-01",
+      "kind": "select",
+      "title": "Template template params",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое template template params?",
+      "optionsLearning": [
+        "Параметр шаблона — другой шаблон (class<T> alloc)",
+        "Обычный параметр",
+        "Константа",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-templates-advanced",
+      "scenarioId": "advanced.templates.advanced.scenario"
+    },
+    {
+      "id": "advanced.templates.advanced.card-02",
+      "kind": "select",
+      "title": "Variadic templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое variadic template?",
+      "optionsLearning": [
+        "Неограниченное количество параметров (typename... Args)",
+        "Один параметр",
+        "Два параметра",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-templates-advanced",
+      "scenarioId": "advanced.templates.advanced.scenario"
+    },
+    {
+      "id": "advanced.templates.advanced.card-03",
+      "kind": "select",
+      "title": "Fold expressions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое fold expression?",
+      "optionsLearning": [
+        "Операция над pack (..., op) — C++17",
+        "Обычный цикл",
+        "Рекурсия",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-templates-advanced",
+      "scenarioId": "advanced.templates.advanced.scenario"
+    },
+    {
+      "id": "advanced.templates.advanced.card-04",
+      "kind": "select",
+      "title": "SFINAE advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый SFINAE?",
+      "optionsLearning": [
+        "std::enable_if_t, decltype, requires clause (C++20)",
+        "Ручная проверка",
+        "Нельзя",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-templates-advanced",
+      "scenarioId": "advanced.templates.advanced.scenario"
+    },
+    {
+      "id": "advanced.templates.advanced.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать сложные шаблоны?",
+      "optionsLearning": [
+        "Concepts (C++20) вместо SFINAE",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-templates-advanced",
+      "scenarioId": "advanced.templates.advanced.scenario"
+    }
+  ]
+}

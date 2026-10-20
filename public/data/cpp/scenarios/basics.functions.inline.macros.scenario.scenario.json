@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.functions.inline.macros.scenario",
+      "title": "C++ — Inline function",
+      "description": "Сценарий: Inline function — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-functions-inline-macros",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.861140.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.861142.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.functions.inline.macros.card-01",
+          "basics.functions.inline.macros.card-02",
+          "basics.functions.inline.macros.card-03",
+          "basics.functions.inline.macros.card-04",
+          "basics.functions.inline.macros.card-05"
+        ]
+      }
+    }
+  ]
+}

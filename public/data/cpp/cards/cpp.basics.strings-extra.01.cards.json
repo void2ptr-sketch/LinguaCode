@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-01",
+      "kind": "select",
+      "title": "Создание string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать std::string?",
+      "optionsLearning": [
+        "std::string s = \"hello\";",
+        "char* s = \"hello\";",
+        "string s = 'hello';",
+        "String s = new String();"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-02",
+      "kind": "select",
+      "title": "Concatenation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как конкатенировать строки?",
+      "optionsLearning": [
+        "s1 + s2 или s1 += s2",
+        "s1 . s2",
+        "s1, s2",
+        "s1 & s2"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-03",
+      "kind": "select",
+      "title": "Length of string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить длину строки?",
+      "optionsLearning": [
+        "s.length() или s.size()",
+        "strlen(s)",
+        "len(s)",
+        "s.count()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-04",
+      "kind": "select",
+      "title": "Substring",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить подстроку?",
+      "optionsLearning": [
+        "s.substr(pos, len)",
+        "s.substring(pos, len)",
+        "s.slice(pos, len)",
+        "s.sub(pos, len)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-05",
+      "kind": "select",
+      "title": "Find substring",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти подстроку?",
+      "optionsLearning": [
+        "s.find(\"sub\")",
+        "s.search(\"sub\")",
+        "s.contains(\"sub\")",
+        "s.index(\"sub\")"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-06",
+      "kind": "select",
+      "title": "Compare strings",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как сравнить строки?",
+      "optionsLearning": [
+        "s1 == s2 (operator==)",
+        "strcmp(s1, s2) == 0",
+        "s1.compare(s2) только",
+        "s1 === s2"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-07",
+      "kind": "select",
+      "title": "Char access",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить символ?",
+      "optionsLearning": [
+        "s[i] или s.at(i)",
+        "s.charAt(i)",
+        "s[i] только",
+        "s.get(i)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-08",
+      "kind": "select",
+      "title": "String to int",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать string в int?",
+      "optionsLearning": [
+        "std::stoi(s)",
+        "parseInt(s)",
+        "int(s)",
+        "(int)s"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-09",
+      "kind": "select",
+      "title": "Int to string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать int в string?",
+      "optionsLearning": [
+        "std::to_string(n)",
+        "toString(n)",
+        "(string)n",
+        "str(n)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать std::string?",
+      "optionsLearning": [
+        "Всегда вместо char* для строк",
+        "Только для больших строк",
+        "Никогда",
+        "Только для C-строки"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-11",
+      "kind": "select",
+      "title": "C-string создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать C-строку?",
+      "optionsLearning": [
+        "char s[] = \"hello\";",
+        "std::string s = \"hello\";",
+        "char* s = new char[6];",
+        "String s = \"hello\";"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-12",
+      "kind": "select",
+      "title": "strlen",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает strlen?",
+      "optionsLearning": [
+        "Возвращает длину строки (без \\0)",
+        "Добавляет \\0",
+        "Копирует строку",
+        "Сравнивает строки"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-13",
+      "kind": "select",
+      "title": "strcpy",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает strcpy?",
+      "optionsLearning": [
+        "Копирует одну строку в другую",
+        "Сравнивает строки",
+        "Конкатенирует",
+        "Находит подстроку"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-14",
+      "kind": "select",
+      "title": "strcmp",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает strcmp?",
+      "optionsLearning": [
+        "Сравнивает две строки",
+        "Копирует строку",
+        "Конкатенирует",
+        "Находит символ"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-15",
+      "kind": "select",
+      "title": "Buffer overflow",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое buffer overflow?",
+      "optionsLearning": [
+        "Запись за пределами буфера",
+        "Пустой буфер",
+        "Быстрая операция",
+        "Безопасная операция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-16",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать C-строки?",
+      "optionsLearning": [
+        "Только для C-API или производительности",
+        "Всегда",
+        "Никогда",
+        "Только для коротких строк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-17",
+      "kind": "select",
+      "title": "Append string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить строку?",
+      "optionsLearning": [
+        "s += \"text\" или s.append(\"text\")",
+        "s.push_back(\"text\")",
+        "s.add(\"text\")",
+        "s.insert(0, \"text\")"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-18",
+      "kind": "select",
+      "title": "Insert string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как вставить подстроку?",
+      "optionsLearning": [
+        "s.insert(pos, \"text\")",
+        "s.push(\"text\", pos)",
+        "s.add(pos, \"text\")",
+        "s.prepend(pos, \"text\")"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-19",
+      "kind": "select",
+      "title": "Erase string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как удалить подстроку?",
+      "optionsLearning": [
+        "s.erase(pos, len)",
+        "s.remove(pos, len)",
+        "s.delete(pos, len)",
+        "s.cut(pos, len)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-extra.01.scenario.card-20",
+      "kind": "select",
+      "title": "Replace string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как заменить подстроку?",
+      "optionsLearning": [
+        "s.replace(pos, len, new_str)",
+        "s.update(pos, len, new_str)",
+        "s.change(pos, len, new_str)",
+        "s.modify(pos, len, new_str)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-strings",
+      "scenarioId": "cpp.basics.strings-extra.01.scenario"
+    }
+  ]
+}

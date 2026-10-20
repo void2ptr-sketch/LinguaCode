@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.network.programming3.scenario",
+  "cards": [
+    {
+      "id": "advanced.network.programming3.card-01",
+      "kind": "select",
+      "title": "HTTP/3 + QUIC",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое HTTP/3?",
+      "optionsLearning": [
+        "HTTP поверх QUIC (UDP-based, faster, encrypted)",
+        "HTTP/2 over TCP",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming3",
+      "scenarioId": "advanced.network.programming3.scenario"
+    },
+    {
+      "id": "advanced.network.programming3.card-02",
+      "kind": "select",
+      "title": "Service mesh",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое service mesh?",
+      "optionsLearning": [
+        "Infrastructure для микросервисов (Istio, Linkerd)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming3",
+      "scenarioId": "advanced.network.programming3.scenario"
+    },
+    {
+      "id": "advanced.network.programming3.card-03",
+      "kind": "select",
+      "title": "API gateway",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое API gateway?",
+      "optionsLearning": [
+        "Единая точка входа для API (routing, auth, rate limiting)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming3",
+      "scenarioId": "advanced.network.programming3.scenario"
+    },
+    {
+      "id": "advanced.network.programming3.card-04",
+      "kind": "select",
+      "title": "Message queues",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое message queue?",
+      "optionsLearning": [
+        "Асинхронная коммуникация (RabbitMQ, Kafka, Redis)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming3",
+      "scenarioId": "advanced.network.programming3.scenario"
+    },
+    {
+      "id": "advanced.network.programming3.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать network code?",
+      "optionsLearning": [
+        "Async I/O + connection pooling + timeouts + retry + monitoring",
+        "Только blocking",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming3",
+      "scenarioId": "advanced.network.programming3.scenario"
+    }
+  ]
+}

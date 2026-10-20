@@ -1,0 +1,32 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.control.switch.scenario",
+      "title": "C++ — Switch синтаксис",
+      "description": "Сценарий: Switch синтаксис — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-control-switch",
+      "courseId": "course-cpp-complete",
+      "cardCount": 3,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.860751.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.860753.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.control.switch.card-01",
+          "basics.control.switch.card-02",
+          "basics.control.switch.card-03"
+        ]
+      }
+    }
+  ]
+}

@@ -7,11 +7,13 @@ import {
   OnInit,
   untracked,
 } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { CourseSearchService } from '../../../entities/course';
+import { ScenarioSearchService } from '../../../entities/scenario';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { CardSelectStore } from '../../../features/card-select/services/card-select.store';
 import { CardSelectService } from '../../../features/card-select/services/card-select.service';
@@ -63,10 +65,15 @@ import { cardSupportsSessionDirection } from '../../../entities/card/utils/card-
 })
 export class CardSelectPageComponent implements OnInit {
   private readonly cardSelectService = inject(CardSelectService);
+  private readonly courseSearchService = inject(CourseSearchService);
+  private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly logger = inject(AppLoggerService);
+  /** Guard so the journey return fires exactly once per completed session. */
+  private journeyReturnFired = false;
 
   readonly store = inject(CardSelectStore);
   readonly flow = inject(CardSelectFlowService);
@@ -214,6 +221,23 @@ export class CardSelectPageComponent implements OnInit {
     }
   });
 
+  /**
+   * Returns to the learning path map (Путь обучения) when a course scenario ends.
+   *
+   * @remarks
+   * Triggered when the session is completed via the "Далее" button on the last card.
+   * Navigates to `/journey` with the course ID; free practice (no course) keeps
+   * the current completion screen.
+   */
+  private readonly returnToJourneyOnCompletion = effect(() => {
+    const completed = this.store.completed();
+    const courseId = this.selectedCourseId();
+    if (completed && courseId && !this.journeyReturnFired) {
+      this.journeyReturnFired = true;
+      void this.router.navigate(['/journey'], { queryParams: { courseId } });
+    }
+  });
+
   // ─── Lifecycle ────────────────────────────────────────────────────────
 
   async ngOnInit(): Promise<void> {
@@ -222,6 +246,15 @@ export class CardSelectPageComponent implements OnInit {
     const lessonId = query.get('lessonId');
     const scenarioId = query.get('scenarioId');
     const tab = query.get('tab');
+
+    // Активируем языковую пару курса/сценария ДО установки состояния флоу:
+    // глобальный сброс флоу при смене пары должен отработать на пустом состоянии,
+    // иначе он затрёт выбранные курс/урок/сценарий, и карточки не откроются.
+    if (courseId) {
+      await this.activateLanguagePairForCourse(courseId);
+    } else if (scenarioId) {
+      await this.activateLanguagePairForScenario(scenarioId);
+    }
 
     if (courseId) {
       await this.flow.loadCourse(courseId);
@@ -248,6 +281,35 @@ export class CardSelectPageComponent implements OnInit {
       this.flow.setActiveTab(LEARNING_TAB.lessons);
     } else if (tab === 'course') {
       this.flow.setActiveTab(LEARNING_TAB.course);
+    }
+  }
+
+  /**
+   * Активирует языковую пару курса, чтобы сценарии курса открывались
+   * независимо от активной пары пользователя.
+   */
+  private async activateLanguagePairForCourse(courseId: string): Promise<void> {
+    try {
+      const course = await this.courseSearchService.getById(courseId);
+      if (course?.languagePair) {
+        this.userStore.addLanguagePair(course.languagePair);
+      }
+    } catch {
+      // Не критично: флоу покажет собственную ошибку при загрузке курса.
+    }
+  }
+
+  /**
+   * Активирует языковую пару сценария при прямом переходе по ссылке.
+   */
+  private async activateLanguagePairForScenario(scenarioId: string): Promise<void> {
+    try {
+      const scenario = await this.scenarioSearchService.getById(scenarioId);
+      if (scenario?.languagePair) {
+        this.userStore.addLanguagePair(scenario.languagePair);
+      }
+    } catch {
+      // Не критично: loadScenario покажет собственную ошибку.
     }
   }
 

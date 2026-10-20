@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.performance.advanced.scenario",
+  "cards": [
+    {
+      "id": "advanced.performance.advanced.card-01",
+      "kind": "select",
+      "title": "Cache optimization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать cache usage?",
+      "optionsLearning": [
+        "Data-oriented design (contiguous memory)",
+        "OOP всегда",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced",
+      "scenarioId": "advanced.performance.advanced.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced.card-02",
+      "kind": "select",
+      "title": "Branch prediction",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое branch prediction?",
+      "optionsLearning": [
+        "CPU предсказание ветвлений (for faster execution)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced",
+      "scenarioId": "advanced.performance.advanced.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced.card-03",
+      "kind": "select",
+      "title": "Profiling tools",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Популярные profiling инструменты?",
+      "optionsLearning": [
+        "perf, gprof, valgrind, Intel VTune",
+        "Только GDB",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced",
+      "scenarioId": "advanced.performance.advanced.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced.card-04",
+      "kind": "select",
+      "title": "Benchmarking",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как правильно бенчмаркать?",
+      "optionsLearning": [
+        "Измерять реальные сценарии, избегать cold start",
+        "Один замер",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced",
+      "scenarioId": "advanced.performance.advanced.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать эффективно?",
+      "optionsLearning": [
+        "Profile → optimize bottleneck → re-profile",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced",
+      "scenarioId": "advanced.performance.advanced.scenario"
+    }
+  ]
+}

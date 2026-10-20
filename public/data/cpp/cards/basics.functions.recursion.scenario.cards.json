@@ -1,0 +1,179 @@
+{
+  "scenarioId": "basics.functions.recursion.scenario",
+  "cards": [
+    {
+      "id": "basics.functions.recursion.card-01",
+      "kind": "select",
+      "title": "Что такое рекурсия?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите рекурсию",
+      "optionsLearning": [
+        "Функция вызывает саму себя",
+        "Цикл for",
+        "Вложенные функции",
+        "Лямбда"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-recursion",
+      "scenarioId": "basics.functions.recursion.scenario"
+    },
+    {
+      "id": "basics.functions.recursion.card-02",
+      "kind": "select",
+      "title": "Base case",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем base case?",
+      "optionsLearning": [
+        "Условие остановки рекурсии",
+        "Увеличение скорости",
+        "Ошибка",
+        "Бесконечный цикл"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-recursion",
+      "scenarioId": "basics.functions.recursion.scenario"
+    },
+    {
+      "id": "basics.functions.recursion.card-03",
+      "kind": "select",
+      "title": "Factorial example",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как вычислить факториал рекурсией?",
+      "optionsLearning": [
+        "n * factorial(n-1)",
+        "n + factorial(n-1)",
+        "factorial(n) * n",
+        "loop n times"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-recursion",
+      "scenarioId": "basics.functions.recursion.scenario"
+    },
+    {
+      "id": "basics.functions.recursion.card-04",
+      "kind": "select",
+      "title": "Stack overflow",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при глубокой рекурсии?",
+      "optionsLearning": [
+        "Stack overflow (переполнение стека)",
+        "Увеличение памяти",
+        "Ошибка компиляции",
+        "Нормальная работа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-recursion",
+      "scenarioId": "basics.functions.recursion.scenario"
+    },
+    {
+      "id": "basics.functions.recursion.card-05",
+      "kind": "select",
+      "title": "Tail recursion",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое tail recursion?",
+      "optionsLearning": [
+        "Рекурсивный вызов в конце функции (оптимизируется)",
+        "Любая рекурсия",
+        "Без base case",
+        "Вложенная рекурсия"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-recursion",
+      "scenarioId": "basics.functions.recursion.scenario"
+    },
+    {
+      "id": "basics.functions.recursion.card-06",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать рекурсию?",
+      "optionsLearning": [
+        "Для tree/graph traversal",
+        "Всегда вместо циклов",
+        "Никогда",
+        "Только для простых задач"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-recursion",
+      "scenarioId": "basics.functions.recursion.scenario"
+    }
+  ]
+}

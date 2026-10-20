@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-01",
+      "kind": "select",
+      "title": "Map создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать std::map?",
+      "optionsLearning": [
+        "std::map<std::string, int> m;",
+        "Dictionary<string, int> m;",
+        "HashMap<string, int> m;",
+        "Dict<string, int> m;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-02",
+      "kind": "select",
+      "title": "Insert element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить элемент?",
+      "optionsLearning": [
+        "m[key] = value или m.insert({key, value})",
+        "m.add(key, value)",
+        "m.put(key, value)",
+        "m[key] := value"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-03",
+      "kind": "select",
+      "title": "Find element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти элемент?",
+      "optionsLearning": [
+        "m.find(key) != m.end()",
+        "m.contains(key)",
+        "m[key] != null",
+        "m.get(key)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-04",
+      "kind": "select",
+      "title": "Iterate map",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как перебрать map?",
+      "optionsLearning": [
+        "for (const auto& [k, v] : m)",
+        "for (int i = 0; i < m.size(); i++)",
+        "while loop",
+        "foreach только"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать map вместо unordered_map?",
+      "optionsLearning": [
+        "Когда нужен sorted order (O(log n))",
+        "Всегда unordered_map",
+        "Никогда",
+        "Только для small data"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-06",
+      "kind": "select",
+      "title": "Set создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать std::set?",
+      "optionsLearning": [
+        "std::set<int> s;",
+        "HashSet<int> s;",
+        "List<int> s;",
+        "Array<int> s;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "set"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-07",
+      "kind": "select",
+      "title": "Insert element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить элемент?",
+      "optionsLearning": [
+        "s.insert(x)",
+        "s.add(x)",
+        "s.push(x)",
+        "s.append(x)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "set"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-08",
+      "kind": "select",
+      "title": "Find element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти элемент?",
+      "optionsLearning": [
+        "s.find(x) != s.end()",
+        "x in s",
+        "s.contains(x)",
+        "s.get(x)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "set"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-09",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать set?",
+      "optionsLearning": [
+        "Для unique sorted elements",
+        "Всегда vector",
+        "Никогда",
+        "Только для small data"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "set"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-10",
+      "kind": "select",
+      "title": "Unordered map создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать std::unordered_map?",
+      "optionsLearning": [
+        "std::unordered_map<std::string, int> m;",
+        "HashMap<string, int> m;",
+        "Dict<string, int> m;",
+        "Dictionary<string, int> m;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-11",
+      "kind": "select",
+      "title": "Hash function",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как работает hashing?",
+      "optionsLearning": [
+        "hash(key) → bucket index",
+        "Сортировка ключей",
+        "Бинарный поиск",
+        "Линейный поиск"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-12",
+      "kind": "select",
+      "title": "Reserve buckets",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем reserve()?",
+      "optionsLearning": [
+        "Предварительное выделение bucket'ов (избегает rehash)",
+        "Уменьшение памяти",
+        "Очистка карты",
+        "Копирование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-13",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать unordered_map?",
+      "optionsLearning": [
+        "Когда важна скорость (O(1) avg)",
+        "Всегда map",
+        "Никогда",
+        "Только для small data"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-14",
+      "kind": "select",
+      "title": "std::sort",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как отсортировать контейнер?",
+      "optionsLearning": [
+        "std::sort(c.begin(), c.end());",
+        "c.sort()",
+        "sort(c)",
+        "c.order()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-15",
+      "kind": "select",
+      "title": "std::find",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти элемент?",
+      "optionsLearning": [
+        "std::find(c.begin(), c.end(), val)",
+        "c.find(val)",
+        "find(c, val)",
+        "c.search(val)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-16",
+      "kind": "select",
+      "title": "std::for_each",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как применить функцию ко всем элементам?",
+      "optionsLearning": [
+        "std::for_each(c.begin(), c.end(), func)",
+        "c.forEach(func)",
+        "for (auto x : c) только",
+        "map(func, c)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-17",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать STL algorithms?",
+      "optionsLearning": [
+        "Для стандартных операций (sort, find, transform)",
+        "Ручная реализация",
+        "Никак",
+        "Только custom"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-18",
+      "kind": "select",
+      "title": "Iterator basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое итератор?",
+      "optionsLearning": [
+        "Обобщённый указатель для доступа к элементам",
+        "Указатель на память",
+        "Тип данных",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-19",
+      "kind": "select",
+      "title": "Iterator types",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие типы итераторов?",
+      "optionsLearning": [
+        "Input, Output, Forward, Bidirectional, Random Access",
+        "Только pointer",
+        "Только reference",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    },
+    {
+      "id": "cpp.stl.containers-extra.01.scenario.card-20",
+      "kind": "select",
+      "title": "Const iterator",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем const_iterator?",
+      "optionsLearning": [
+        "Запрет модификации через итератор",
+        "Увеличение скорости",
+        "Уменьшение памяти",
+        "Отключение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-stl",
+      "scenarioId": "cpp.stl.containers-extra.01.scenario"
+    }
+  ]
+}

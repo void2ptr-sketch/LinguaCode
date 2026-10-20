@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.exception.handling.scenario",
+  "cards": [
+    {
+      "id": "advanced.exception.handling.card-01",
+      "kind": "select",
+      "title": "Exception safety",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое exception safety?",
+      "optionsLearning": [
+        "Гарантии при исключениях (no-throw, strong, basic)",
+        "Отсутствие исключений",
+        "Только try-catch",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "handling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-exception-handling",
+      "scenarioId": "advanced.exception.handling.scenario"
+    },
+    {
+      "id": "advanced.exception.handling.card-02",
+      "kind": "select",
+      "title": "Strong guarantee",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое strong guarantee?",
+      "optionsLearning": [
+        "Состояние не меняется при исключении (rollback)",
+        "Состояние меняется",
+        "Никаких гарантий",
+        "Только logging"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "handling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-exception-handling",
+      "scenarioId": "advanced.exception.handling.scenario"
+    },
+    {
+      "id": "advanced.exception.handling.card-03",
+      "kind": "select",
+      "title": "Exception specs",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем noexcept?",
+      "optionsLearning": [
+        "Гарантия отсутствия исключений (оптимизация)",
+        "Разрешение исключений",
+        "Запрет исключений",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "handling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-exception-handling",
+      "scenarioId": "advanced.exception.handling.scenario"
+    },
+    {
+      "id": "advanced.exception.handling.card-04",
+      "kind": "select",
+      "title": "Custom exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать custom exception?",
+      "optionsLearning": [
+        "class MyError : public std::runtime_error {}",
+        "new Exception()",
+        "raise Error",
+        "throw error"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "handling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-exception-handling",
+      "scenarioId": "advanced.exception.handling.scenario"
+    },
+    {
+      "id": "advanced.exception.handling.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать исключения?",
+      "optionsLearning": [
+        "RAII + noexcept + strong guarantee",
+        "Никак",
+        "Всегда",
+        "Только try-catch"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "handling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-exception-handling",
+      "scenarioId": "advanced.exception.handling.scenario"
+    }
+  ]
+}

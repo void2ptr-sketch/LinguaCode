@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-01",
+      "kind": "select",
+      "title": "Что такое класс?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите класс в C++",
+      "optionsLearning": [
+        "Пользовательский тип с данными и методами",
+        "Функция",
+        "Переменная",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-02",
+      "kind": "select",
+      "title": "Class syntax",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Синтаксис класса?",
+      "optionsLearning": [
+        "class MyClass { int x; public: void setX(int v) { x = v; } };",
+        "function MyClass() {}",
+        "def MyClass:",
+        "struct MyClass {}"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-03",
+      "kind": "select",
+      "title": "Access modifiers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие модификаторы доступа?",
+      "optionsLearning": [
+        "private, protected, public",
+        "open, close, hidden",
+        "static, dynamic",
+        "const, volatile"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-04",
+      "kind": "select",
+      "title": "Encapsulation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое инкапсуляция?",
+      "optionsLearning": [
+        "Скрытие данных через private + публичные методы",
+        "Наследование",
+        "Полиморфизм",
+        "Шаблоны"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проектировать классы?",
+      "optionsLearning": [
+        "SRP: один класс — одна ответственность",
+        "Максимум полей",
+        "Минимум методов",
+        "Публичные поля"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-06",
+      "kind": "select",
+      "title": "Constructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое конструктор?",
+      "optionsLearning": [
+        "Метод, вызываемый при создании объекта",
+        "Деструктор",
+        "Переменная",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-07",
+      "kind": "select",
+      "title": "Default constructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое default constructor?",
+      "optionsLearning": [
+        "Конструктор без параметров или с default values",
+        "Любой конструктор",
+        "Деструктор",
+        "Копирующий конструктор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-08",
+      "kind": "select",
+      "title": "Parameterized constructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем параметризованный конструктор?",
+      "optionsLearning": [
+        "Инициализация с данными при создании",
+        "Удаление объекта",
+        "Копирование",
+        "Сравнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-09",
+      "kind": "select",
+      "title": "Destructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое деструктор?",
+      "optionsLearning": [
+        "~ClassName() — вызывается при удалении объекта",
+        "Конструктор",
+        "Переменная",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-10",
+      "kind": "select",
+      "title": "RAII",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое RAII?",
+      "optionsLearning": [
+        "Resource Acquisition Is Initialization (управление ресурсами через lifetime)",
+        "Тип данных",
+        "Оператор",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-11",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как управлять ресурсами?",
+      "optionsLearning": [
+        "RAII через конструктор/деструктор",
+        "Ручное управление",
+        "Никак",
+        "Global variables"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-12",
+      "kind": "select",
+      "title": "Rule of five",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое правило пяти?",
+      "optionsLearning": [
+        "Destructor, copy ctor, copy assign, move ctor, move assign",
+        "Только destructor",
+        "Только copy ctor",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "five"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-13",
+      "kind": "select",
+      "title": "Move semantics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое move semantics?",
+      "optionsLearning": [
+        "Перемещение ресурсов вместо копирования (rvalue refs)",
+        "Копирование",
+        "Удаление",
+        "Сравнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "five"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-14",
+      "kind": "select",
+      "title": "Copy elision",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое copy elision?",
+      "optionsLearning": [
+        "Оптимизация: удаление unnecessary copies (RVO, NRVO)",
+        "Копирование",
+        "Удаление",
+        "Сравнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "five"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда определять Rule of Five?",
+      "optionsLearning": [
+        "При управлении ресурсами (memory, file handles)",
+        "Всегда",
+        "Никогда",
+        "Только для small classes"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "five"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-16",
+      "kind": "select",
+      "title": "unique_ptr",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое unique_ptr?",
+      "optionsLearning": [
+        "Эксклюзивное владение (move-only)",
+        "Общее владение",
+        "Слабое владение",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-17",
+      "kind": "select",
+      "title": "shared_ptr",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое shared_ptr?",
+      "optionsLearning": [
+        "Общее владение с reference counting",
+        "Эксклюзивное владение",
+        "Слабое владение",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-18",
+      "kind": "select",
+      "title": "weak_ptr",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем weak_ptr?",
+      "optionsLearning": [
+        "Слабое владение (без увеличения ref count)",
+        "Общее владение",
+        "Эксклюзивное владение",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-19",
+      "kind": "select",
+      "title": "Make functions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем make_unique/make_shared?",
+      "optionsLearning": [
+        "Безопасное создание (atomic ref count)",
+        "Нельзя",
+        "Оптимизация",
+        "Константность"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.classes-extra.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как выбирать умный указатель?",
+      "optionsLearning": [
+        "unique_ptr по умолчанию, shared_ptr для общего владения",
+        "Никогда",
+        "Всегда shared_ptr",
+        "Только raw pointers"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.classes-extra.01.scenario"
+    }
+  ]
+}

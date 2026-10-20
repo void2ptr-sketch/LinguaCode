@@ -1,0 +1,150 @@
+{
+  "scenarioId": "basics.arrays.1d.scenario",
+  "cards": [
+    {
+      "id": "basics.arrays.1d.card-01",
+      "kind": "select",
+      "title": "C-array создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать C-массив?",
+      "optionsLearning": [
+        "int arr[5] = {1, 2, 3, 4, 5};",
+        "int[] arr = new int[5];",
+        "Array<int> arr;",
+        "List<int> arr;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "1d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-1d",
+      "scenarioId": "basics.arrays.1d.scenario"
+    },
+    {
+      "id": "basics.arrays.1d.card-02",
+      "kind": "select",
+      "title": "Array initialization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как инициализировать массив?",
+      "optionsLearning": [
+        "int arr[5] = {0};",
+        "int arr[5]; только",
+        "int arr[];",
+        "int arr = {0};"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "1d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-1d",
+      "scenarioId": "basics.arrays.1d.scenario"
+    },
+    {
+      "id": "basics.arrays.1d.card-03",
+      "kind": "select",
+      "title": "Array size",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить размер массива?",
+      "optionsLearning": [
+        "sizeof(arr) / sizeof(arr[0])",
+        "arr.size()",
+        "arr.length",
+        "arr.count()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "1d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-1d",
+      "scenarioId": "basics.arrays.1d.scenario"
+    },
+    {
+      "id": "basics.arrays.1d.card-04",
+      "kind": "select",
+      "title": "Array vs vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать array вместо vector?",
+      "optionsLearning": [
+        "Фиксированный размер, производительность",
+        "Всегда",
+        "Никогда",
+        "Только для строк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "1d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-1d",
+      "scenarioId": "basics.arrays.1d.scenario"
+    },
+    {
+      "id": "basics.arrays.1d.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Рекомендация по массивам?",
+      "optionsLearning": [
+        "std::array для фиксированного, std::vector для динамического",
+        "Только C-массивы",
+        "Только vector",
+        "Никакие"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "1d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-1d",
+      "scenarioId": "basics.arrays.1d.scenario"
+    }
+  ]
+}

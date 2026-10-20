@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.control.while.scenario",
+  "cards": [
+    {
+      "id": "basics.control.while.card-01",
+      "kind": "select",
+      "title": "Синтаксис while",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой синтаксис while?",
+      "optionsLearning": [
+        "while (condition) { }",
+        "for (condition) { }",
+        "repeat until",
+        "do { } while"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "while"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-while",
+      "scenarioId": "basics.control.while.scenario"
+    },
+    {
+      "id": "basics.control.while.card-02",
+      "kind": "select",
+      "title": "Do-while loop",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем do-while отличается от while?",
+      "optionsLearning": [
+        "do-while выполняется хотя бы один раз",
+        "do-while быстрее",
+        "while выполняется хотя бы раз",
+        "Нет различий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "while"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-while",
+      "scenarioId": "basics.control.while.scenario"
+    },
+    {
+      "id": "basics.control.while.card-03",
+      "kind": "select",
+      "title": "While true pattern",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем while (true)?",
+      "optionsLearning": [
+        "Бесконечный цикл с break внутри",
+        "Ошибка компиляции",
+        "Бесконечный без выхода",
+        "Одна итерация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "while"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-while",
+      "scenarioId": "basics.control.while.scenario"
+    },
+    {
+      "id": "basics.control.while.card-04",
+      "kind": "select",
+      "title": "Infinite while",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при condition всегда true?",
+      "optionsLearning": [
+        "Бесконечный цикл",
+        "Одна итерация",
+        "Ошибка компиляции",
+        "Ноль итераций"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "while"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-while",
+      "scenarioId": "basics.control.while.scenario"
+    }
+  ]
+}

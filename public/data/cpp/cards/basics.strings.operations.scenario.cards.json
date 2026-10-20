@@ -1,0 +1,179 @@
+{
+  "scenarioId": "basics.strings.operations.scenario",
+  "cards": [
+    {
+      "id": "basics.strings.operations.card-01",
+      "kind": "select",
+      "title": "Append string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить строку?",
+      "optionsLearning": [
+        "s += \"text\" или s.append(\"text\")",
+        "s.push_back(\"text\")",
+        "s.add(\"text\")",
+        "s.insert(0, \"text\")"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-operations",
+      "scenarioId": "basics.strings.operations.scenario"
+    },
+    {
+      "id": "basics.strings.operations.card-02",
+      "kind": "select",
+      "title": "Insert string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как вставить подстроку?",
+      "optionsLearning": [
+        "s.insert(pos, \"text\")",
+        "s.push(\"text\", pos)",
+        "s.add(pos, \"text\")",
+        "s.prepend(pos, \"text\")"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-operations",
+      "scenarioId": "basics.strings.operations.scenario"
+    },
+    {
+      "id": "basics.strings.operations.card-03",
+      "kind": "select",
+      "title": "Erase string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как удалить подстроку?",
+      "optionsLearning": [
+        "s.erase(pos, len)",
+        "s.remove(pos, len)",
+        "s.delete(pos, len)",
+        "s.cut(pos, len)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-operations",
+      "scenarioId": "basics.strings.operations.scenario"
+    },
+    {
+      "id": "basics.strings.operations.card-04",
+      "kind": "select",
+      "title": "Replace string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как заменить подстроку?",
+      "optionsLearning": [
+        "s.replace(pos, len, new_str)",
+        "s.update(pos, len, new_str)",
+        "s.change(pos, len, new_str)",
+        "s.modify(pos, len, new_str)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-operations",
+      "scenarioId": "basics.strings.operations.scenario"
+    },
+    {
+      "id": "basics.strings.operations.card-05",
+      "kind": "select",
+      "title": "Find last",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти последнее вхождение?",
+      "optionsLearning": [
+        "s.rfind(\"sub\")",
+        "s.find_last(\"sub\")",
+        "s.last(\"sub\")",
+        "s.reverse_find(\"sub\")"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-operations",
+      "scenarioId": "basics.strings.operations.scenario"
+    },
+    {
+      "id": "basics.strings.operations.card-06",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как эффективно работать со строками?",
+      "optionsLearning": [
+        "Использовать += вместо多次 concatenation",
+        "char* всегда",
+        "std::string медленно",
+        "Никаких практик"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-operations",
+      "scenarioId": "basics.strings.operations.scenario"
+    }
+  ]
+}

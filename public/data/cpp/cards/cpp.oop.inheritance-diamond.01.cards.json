@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-01",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Какая структура называется «ромбом» (diamond)?",
+      "optionsLearning": [
+        "C наследует B и D, которые оба наследуют A",
+        "Квадрат",
+        "Дерево",
+        "Цепочка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Один общий предок достигается двумя путями."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-02",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "В чём проблема ромба без virtual?",
+      "optionsLearning": [
+        "Дублирование подобъекта A и неоднозначность",
+        "Скорость",
+        "Память мала",
+        "Нет проблем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Две копии A: конфликты членов и double delete намеренность."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "question": "Сколько экземпляров A создаст этот код?",
+      "code": {
+        "code": "struct A {}; struct B : A {}; struct C : A {}; struct D : B, C {};",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "0",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "Два пути к A → два подобъекта A."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-04",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Как задаётся виртуальное наследование?",
+      "optionsLearning": [
+        "class B : virtual public A",
+        "class B : A",
+        "A виртуальна сама",
+        "через макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ключевое слово virtual перед базой."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "question": "Сколько теперь A у D?",
+      "code": {
+        "code": "struct A {};\nstruct B : virtual A {};\nstruct C : virtual A {};\nstruct D : B, C {};",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "0",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "Виртуальные базы дают единственный подобъект A."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-06",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Кто инициализирует virtual base?",
+      "optionsLearning": [
+        "Наиболее производный класс (D)",
+        "Каждая ветка",
+        "Никто",
+        "Компилятор"
+      ],
+      "correctIndex": 0,
+      "explanation": "D отвечает за конструктор виртуальной базы."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-07",
+      "kind": "code-trace",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { A() { std::cout << 'a'; } };\nstruct B : virtual A { B() { std::cout << 'b'; } };\nstruct D : B { D() { std::cout << 'd'; } };\nint main() { D d; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "abd",
+        "bad",
+        "adb",
+        "a"
+      ],
+      "correctIndex": 0,
+      "explanation": "Virtual база A инициализируется первой: abd."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-08",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Каков ценой виртуального наследования?",
+      "optionsLearning": [
+        "Накладные расходы (vtbl/указатель на базу)",
+        "Никакой",
+        "Красота",
+        "Нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Виртуальная база требует косвенного доступа."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "question": "Разрешена ли неоднозначность в этом коде?",
+      "code": {
+        "code": "struct A { int x; }; struct B : virtual A {}; struct C : virtual A {}; struct D : B, C {}; int main() { D d; d.x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Да — одна A",
+        "Нет",
+        "С warning",
+        "Смотря"
+      ],
+      "correctIndex": 0,
+      "explanation": "Единственная виртуальная база устраняет конфликт."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-10",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Когда стоит использовать виртуальное наследование?",
+      "optionsLearning": [
+        "Для корректного ромба (редкий, но нужный случай)",
+        "Всегда",
+        "Никогда",
+        "Только интерфейсы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Используется осознанно в сложных иерархиях."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-11",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Что такое «shared base» в терминах виртуального наследования?",
+      "optionsLearning": [
+        "Один общий подобъект базы",
+        "Копия",
+        "Ссылка",
+        "Поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "Все ветви разделяют единственный подобъект."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-12",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Чем виртуальная база отличается от обычной?",
+      "optionsLearning": [
+        "Одиночный экземпляр и особая инициализация",
+        "Ничем",
+        "Скорость",
+        "Имя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Модель «shared subobject» вместо «contained»."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { int v = 5; };\nstruct B : virtual A {};\nstruct C : virtual A {};\nstruct D : B, C { int get() const { return v; } };\nint main() { D d; std::cout << d.get(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "Ошибка",
+        "0",
+        "55"
+      ],
+      "correctIndex": 0,
+      "explanation": "Единый A: v = 5."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-14",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Что будет с размерами объектов при virtual base?",
+      "optionsLearning": [
+        "Растут (указатель/смещение к базе)",
+        "Уменьшаются",
+        "Не меняются",
+        "Ноль"
+      ],
+      "correctIndex": 0,
+      "explanation": "Дополнительные поля для поиска виртуальной базы."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-15",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Как избежать ромба вообще?",
+      "optionsLearning": [
+        "Композиция вместо наследования",
+        "Больше классов",
+        "static",
+        "Динамический"
+      ],
+      "correctIndex": 0,
+      "explanation": "Композиция (отношение «имеет») часто проще, чем ромб наследования."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual void f() const { std::cout << 'a'; } };\nstruct B : virtual A {};\nstruct C : virtual A {};\nstruct D : B, C {};\nint main() { D d; B* p = &d; p->f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "a",
+        "Ошибка",
+        "b",
+        "ab"
+      ],
+      "correctIndex": 0,
+      "explanation": "f вызывается через общую A: a."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-17",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "В чём отличие от Java-интерфейсов при ромбе?",
+      "optionsLearning": [
+        "C++ даёт выбор реализации или чистоты",
+        "Всё одинаково",
+        "Java запрещает",
+        "C++ запрещает"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ позволяет даже реализацию; Java — только контракты."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-18",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Что случится при удалении через B* (virtual база)?",
+      "optionsLearning": [
+        "Корректное удаление благодаря virtual деструкторам",
+        "UB",
+        "Частичное",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual ~A и shared base корректно разрушают D."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-19",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Какой подход рекомендуют чаще ромба?",
+      "optionsLearning": [
+        "Интерфейсы без данных + композиция",
+        "Больше наследников",
+        "Шаблоны",
+        "Нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Минимизация глубины иерархии упрощает поддержку."
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario.card-20",
+      "kind": "select",
+      "title": "Проблема ромба и виртуальное наследование — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-diamond.01.scenario",
+      "promptKnown": "Что важно помнить про инициализацию virtual base?",
+      "optionsLearning": [
+        "Самый производный класс передаёт аргументы",
+        "Он не участвует",
+        "Случайно",
+        "Автоматически"
+      ],
+      "correctIndex": 0,
+      "explanation": "Правило: виртуальную базу строит наиболее производный класс."
+    }
+  ],
+  "title": "Oop — Intermediate C++"
+}

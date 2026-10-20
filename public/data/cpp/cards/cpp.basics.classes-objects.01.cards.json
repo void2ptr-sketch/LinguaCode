@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.basics.classes-objects.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-01",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Чем класс (class) отличается от struct?",
+      "optionsLearning": [
+        "По умолчанию члены private у class, public у struct",
+        "class быстрее",
+        "struct не имеет методов",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отличие только в доступе по умолчанию."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-02",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Что такое объект класса?",
+      "optionsLearning": [
+        "Экземпляр класса с собственным состоянием",
+        "Имя класса",
+        "Метод",
+        "Указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "Объект — конкретный экземпляр с данными."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Classes и Objects Intro — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass Counter { public: int value = 0; void inc() { ++value; } };\nint main() { Counter c; c.inc(); std::cout << c.value; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "inc() увеличивает поле value: 1."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-04",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Для чего нужна инкапсуляция?",
+      "optionsLearning": [
+        "Скрытие внутреннего состояния и защита инвариантов",
+        "Ускорение",
+        "Меньше кода",
+        "Стиль"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инкапсуляция ограничивает доступ и сохраняет корректность объекта."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-05",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Какие модификаторы доступа есть в классе?",
+      "optionsLearning": [
+        "public, private, protected",
+        "open, close, hidden",
+        "static, const, final",
+        "Только public"
+      ],
+      "correctIndex": 0,
+      "explanation": "Три модификатора доступа к членам класса."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Classes и Objects Intro — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass A { public: int x = 3; };\nint main() { A a, b; b = a; b.x = 10; std::cout << a.x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "10",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "b — отдельный объект; изменение b не меняет a."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-07",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Как вызвать метод объекта?",
+      "optionsLearning": [
+        "obj.method()",
+        "obj::method()",
+        "method(obj)",
+        "obj->method()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Метод вызывается через точку на объекте."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-08",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Где размещаются объекты, созданные без new?",
+      "optionsLearning": [
+        "В стеке (автоматическая память)",
+        "В куче",
+        "В регистрах",
+        "В глобальной памяти"
+      ],
+      "correctIndex": 0,
+      "explanation": "Локальные объекты живут в стеке и разрушаются при выходе из области."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Classes и Objects Intro — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass Calc { public: int add(int a, int b) { return a + b; } };\nint main() { Calc c; std::cout << c.add(2, 5); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "25",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Метод add возвращает 2+5=7."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-10",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Как создать объект в куче?",
+      "optionsLearning": [
+        "new ClassName(...) — возвращает указатель",
+        "ClassName obj;",
+        "obj = new",
+        "ClassName* ptr на стек"
+      ],
+      "correctIndex": 0,
+      "explanation": "new выделяет объект в куче; нужен delete (или умный указатель)."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-11",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Какой указатель используется для объектов в куче?",
+      "optionsLearning": [
+        "ClassName* ptr = new ClassName(...)",
+        "ClassName ptr = new",
+        "auto ptr = malloc",
+        "ptr& obj"
+      ],
+      "correctIndex": 0,
+      "explanation": "new возвращает ClassName*; управление вручную либо умный указатель."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Classes и Objects Intro — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass Box { public: int s = 1; };\nint main() { Box* b = new Box; std::cout << b->s; delete b; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "адрес",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "b->s читает поле через указатель: 1; delete освобождает."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-13",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Что произойдёт при забытом delete?",
+      "optionsLearning": [
+        "Утечка памяти (memory leak)",
+        "Ошибка компиляции",
+        "Крах сразу",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Неосвобождённая куча остаётся до завершения программы."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-14",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Какой умный указатель владеет объектом единолично?",
+      "optionsLearning": [
+        "std::unique_ptr",
+        "std::shared_ptr",
+        "std::weak_ptr",
+        "raw*"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique_ptr — единоличное владение; shared_ptr — разделяемое."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Classes и Objects Intro — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nclass P { public: int v = 7; };\nint main() { auto p = std::make_unique<P>(); std::cout << p->v; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "адрес",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique_ptr автоматически управляет памятью; p->v = 7."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-16",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Что такое this в методе класса?",
+      "optionsLearning": [
+        "Указатель на текущий объект",
+        "Копию объекта",
+        "Метод",
+        "Глобальную функцию"
+      ],
+      "correctIndex": 0,
+      "explanation": "this — скрытый параметр-указатель на вызывающий объект."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-17",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Методы и поля класса по умолчанию private — что это значит?",
+      "optionsLearning": [
+        "Доступны только изнутри класса",
+        "Доступны всем",
+        "Доступны наследникам",
+        "Скрыты от компилятора"
+      ],
+      "correctIndex": 0,
+      "explanation": "private-члены видны только методам этого класса."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-18",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Как сделать поле доступным для чтения, но не записи?",
+      "optionsLearning": [
+        "Приватное поле + публичный геттер",
+        "public поле",
+        "static поле",
+        "const в private"
+      ],
+      "correctIndex": 0,
+      "explanation": "Идиома: private данные + public getter."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-19",
+      "kind": "code-trace",
+      "title": "Classes и Objects Intro — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass T { public: static int count; }; int T::count = 5;\nint main() { std::cout << T::count; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "0",
+        "Ошибка",
+        "count"
+      ],
+      "correctIndex": 0,
+      "explanation": "Статическое поле принадлежит классу; доступ через T::count."
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario.card-20",
+      "kind": "select",
+      "title": "Classes и Objects Intro — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.classes-objects.01.scenario",
+      "promptKnown": "Какая основная цель классов в ООП?",
+      "optionsLearning": [
+        "Моделирование сущностей с данными и поведением",
+        "Только хранение данных",
+        "Ускорение кода",
+        "Замена функций"
+      ],
+      "correctIndex": 0,
+      "explanation": "Классы объединяют состояние и поведение в единый тип."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

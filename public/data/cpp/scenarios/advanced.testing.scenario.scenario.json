@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.testing.scenario",
+      "title": "C++ — Test framework",
+      "description": "Сценарий: Test framework — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-testing",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.860213.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.860215.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.testing.card-01",
+          "advanced.testing.card-02",
+          "advanced.testing.card-03",
+          "advanced.testing.card-04",
+          "advanced.testing.card-05"
+        ]
+      }
+    }
+  ]
+}

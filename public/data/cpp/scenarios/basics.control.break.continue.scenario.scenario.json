@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.control.break.continue.scenario",
+      "title": "C++ — Break statement",
+      "description": "Сценарий: Break statement — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-control-break-continue",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.860597.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.860599.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.control.break.continue.card-01",
+          "basics.control.break.continue.card-02",
+          "basics.control.break.continue.card-03",
+          "basics.control.break.continue.card-04"
+        ]
+      }
+    }
+  ]
+}

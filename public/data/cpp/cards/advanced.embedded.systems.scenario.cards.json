@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.embedded.systems.scenario",
+  "cards": [
+    {
+      "id": "advanced.embedded.systems.card-01",
+      "kind": "select",
+      "title": "Embedded constraints",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Особенности embedded C++?",
+      "optionsLearning": [
+        "No RTTI, no exceptions, limited memory",
+        "Full C++ features",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems",
+      "scenarioId": "advanced.embedded.systems.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems.card-02",
+      "kind": "select",
+      "title": "Volatile keyword",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем volatile?",
+      "optionsLearning": [
+        "Запрет оптимизации (hardware registers, signals)",
+        "Константность",
+        "Статическая переменная",
+        "Глобальная"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems",
+      "scenarioId": "advanced.embedded.systems.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems.card-03",
+      "kind": "select",
+      "title": "Interrupt handlers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое interrupt handler?",
+      "optionsLearning": [
+        "Функция вызываемая при прерывании (ISR)",
+        "Обычная функция",
+        "Поток",
+        "Процесс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems",
+      "scenarioId": "advanced.embedded.systems.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems.card-04",
+      "kind": "select",
+      "title": "Memory-mapped I/O",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory-mapped I/O?",
+      "optionsLearning": [
+        "Регистры устройства как память (pointer access)",
+        "Файловый ввод",
+        "Сетевой ввод",
+        "Базы данных"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems",
+      "scenarioId": "advanced.embedded.systems.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать embedded C++?",
+      "optionsLearning": [
+        "RAII + no exceptions + volatile для hardware",
+        "Full C++ features",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems",
+      "scenarioId": "advanced.embedded.systems.scenario"
+    }
+  ]
+}

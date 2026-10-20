@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-01",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Что делает оператор break?",
+      "optionsLearning": [
+        "Немедленно завершает ближайший цикл или switch",
+        "Завершает программу",
+        "Пропускает одну итерацию",
+        "Перезапускает цикл"
+      ],
+      "correctIndex": 0,
+      "explanation": "break выходит из ближайшего for/while/do-while/switch."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-02",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Что делает оператор continue?",
+      "optionsLearning": [
+        "Переходит к следующей итерации цикла",
+        "Завершает цикл",
+        "Выходит из функции",
+        "Останавливает программу"
+      ],
+      "correctIndex": 0,
+      "explanation": "continue прерывает текущую итерацию и запускает следующую."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Управление циклами: break и continue — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { for (int i = 1; i <= 4; ++i) { if (i == 3) break; std::cout << i; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "12",
+        "123",
+        "124",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "break при i=3 останавливает цикл после вывода 1 и 2."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-04",
+      "kind": "code-trace",
+      "title": "Управление циклами: break и continue — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { for (int i = 1; i <= 4; ++i) { if (i == 2) continue; std::cout << i; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "134",
+        "1234",
+        "13",
+        "12"
+      ],
+      "correctIndex": 0,
+      "explanation": "continue при i=2 пропускает вывод — печатаются 1,3,4."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-05",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Как выйти из вложенного цикла изнутри самого внутреннего?",
+      "optionsLearning": [
+        "break выходит только из ближайшего цикла; нужен флаг или ранний return",
+        "break выходит из всех",
+        "goto запрещён",
+        "continue решает"
+      ],
+      "correctIndex": 0,
+      "explanation": "break воздействует на ближайший цикл; для выхода из всех используют флаг, return или goto."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-06",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Можно ли использовать break в while (true)?",
+      "optionsLearning": [
+        "Да, для выхода из бесконечного цикла",
+        "Нет",
+        "Только в for",
+        "Только с условием"
+      ],
+      "correctIndex": 0,
+      "explanation": "break — стандартный способ выйти из бесконечного while (true)."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-07",
+      "kind": "code-trace",
+      "title": "Управление циклами: break и continue — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int i = 0; while (true) { ++i; if (i == 3) break; } std::cout << i; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "4",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "i растёт до 3 и break завершает цикл — вывод 3."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-08",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Влияет ли break на if?",
+      "optionsLearning": [
+        "Нет, break работает только в циклах и switch",
+        "Да, выходит из if",
+        "Только в C++20",
+        "Только в else"
+      ],
+      "correctIndex": 0,
+      "explanation": "if — не цикл; break внутри if компилируется только если if находится внутри цикла."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-09",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Что сделать, чтобы пропустить чётные числа в цикле?",
+      "optionsLearning": [
+        "if (i % 2 == 0) continue;",
+        "if (i % 2 == 0) break;",
+        "if (i % 2) continue;",
+        "i += 2 в условии"
+      ],
+      "correctIndex": 0,
+      "explanation": "continue при чётном i переходит к следующей итерации."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Управление циклами: break и continue — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { for (int i = 0; i < 6; ++i) { if (i % 2 == 0) continue; std::cout << i; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "135",
+        "024",
+        "012345",
+        "13"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пропуск чётных (continue) — вывод нечётных 1,3,5."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-11",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Чем continue в do-while отличается от while?",
+      "optionsLearning": [
+        "В do-while continue переходит к проверке условия в конце",
+        "Ничем",
+        "continue запрещён в do-while",
+        "В while continue не работает"
+      ],
+      "correctIndex": 0,
+      "explanation": "Семантика continue одинакова: переход к следующей итерации (проверка условия после тела)."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-12",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Что произойдёт с switch при continue внутри case в цикле?",
+      "optionsLearning": [
+        "continue перейдёт к следующей итерации цикла",
+        "Продолжится следующий case",
+        "Завершится switch",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "continue относится к окружающему циклу, а не к switch — начинается следующая итерация."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Управление циклами: break и continue — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { for (int i = 1; i <= 5; ++i) { if (i % 3 == 0) break; std::cout << i << ' '; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1 2",
+        "1 2 3",
+        "1 2 4 5",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "break при i=3 (делится на 3) — вывод 1 и 2."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-14",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "arrays"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Как найти первый чётный элемент массива и остановиться?",
+      "optionsLearning": [
+        "for (...) { if (arr[i] % 2 == 0) { found = i; break; } }",
+        "Продолжить после нахождения",
+        "Использовать continue после вывода",
+        "Сортировать массив"
+      ],
+      "correctIndex": 0,
+      "explanation": "break после нахождения искомого элемента прерывает поиск."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-15",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Как корректно выйти из двух вложенных циклов?",
+      "optionsLearning": [
+        "Флаг bool found + break в обоих или return из функции",
+        "Двойной break",
+        "break (2)",
+        "Вызвать exit"
+      ],
+      "correctIndex": 0,
+      "explanation": "В C++ нет «break 2»; используют флаг, ранний return или goto."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-16",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Когда continue эквивалентен пустому хвосту тела цикла?",
+      "optionsLearning": [
+        "Когда continue стоит последним оператором в теле",
+        "Никогда",
+        "Всегда",
+        "Только в for"
+      ],
+      "correctIndex": 0,
+      "explanation": "continue в конце тела цикла не меняет поведение — там он избыточен."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Управление циклами: break и continue — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { for (int i = 0; i < 4; ++i) { for (int j = 0; j < 4; ++j) { if (j == 2) break; std::cout << i << j << ' '; } } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "00 01 10 11 20 21 30 31",
+        "00 01 02 10 11 12 ...",
+        "00 01 02 03 ...",
+        "ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Внутренний цикл останавливается при j==2 — печатаются пары с j=0,1 для каждого i."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-18",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Почему continue не рекомендуется использовать в конце тела цикла?",
+      "optionsLearning": [
+        "Он избыточен и ухудшает читаемость",
+        "Он замедляет цикл",
+        "Он не компилируется",
+        "Он меняет семантику"
+      ],
+      "correctIndex": 0,
+      "explanation": "Лишний continue в конце тела не нужен и загромождает код."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-19",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Что будет, если break стоит вне цикла и switch?",
+      "optionsLearning": [
+        "Ошибка компиляции: break statement not in loop or switch",
+        "Предупреждение",
+        "Программа завершится",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "break вне цикла/switch — диагностируемая ошибка."
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario.card-20",
+      "kind": "select",
+      "title": "Управление циклами: break и continue — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-break-continue.01.scenario",
+      "promptKnown": "Какой паттерн используют для обработки ввода до команды «выход»?",
+      "optionsLearning": [
+        "while (true) { if (cmd == exit) break; }",
+        "for (;;) без break",
+        "do { } while (cmd != exit) без break",
+        "switch без цикла"
+      ],
+      "correctIndex": 0,
+      "explanation": "Цикл с break по команде выхода — типичный паттерн REPL."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

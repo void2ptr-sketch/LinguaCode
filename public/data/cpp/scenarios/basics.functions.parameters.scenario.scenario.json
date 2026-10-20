@@ -1,0 +1,36 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.functions.parameters.scenario",
+      "title": "C++ — Pass by value",
+      "description": "Сценарий: Pass by value — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-functions-parameters",
+      "courseId": "course-cpp-complete",
+      "cardCount": 7,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.861312.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.861314.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.functions.parameters.card-01",
+          "basics.functions.parameters.card-02",
+          "basics.functions.parameters.card-03",
+          "basics.functions.parameters.card-04",
+          "basics.functions.parameters.card-05",
+          "basics.functions.parameters.card-06",
+          "basics.functions.parameters.card-07"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.intro.comments.scenario",
+      "title": "C++ — Что такое комментарии?",
+      "description": "Сценарий: Что такое комментарии? — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-intro-comments",
+      "courseId": "course-cpp-complete",
+      "cardCount": 10,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.861502.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.861503.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.intro.comments.card-01",
+          "basics.intro.comments.card-02",
+          "basics.intro.comments.card-03",
+          "basics.intro.comments.card-04",
+          "basics.intro.comments.card-05",
+          "basics.intro.comments.card-06",
+          "basics.intro.comments.card-07",
+          "basics.intro.comments.card-08",
+          "basics.intro.comments.card-09",
+          "basics.intro.comments.card-10"
+        ]
+      }
+    }
+  ]
+}

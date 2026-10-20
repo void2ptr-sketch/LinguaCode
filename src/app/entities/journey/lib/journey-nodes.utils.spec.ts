@@ -103,6 +103,22 @@ describe('journey-nodes.utils', () => {
       expect(node.cardCount).toBe(0);
     });
 
+    it('should count cards for snapshot-based cardSource', () => {
+      const snapshotScenario: Scenario = {
+        ...baseScenario,
+        id: 'scenario-snapshot',
+        cardSource: {
+          mode: 'snapshot',
+          cardIds: ['c1', 'c2', 'c3'],
+          criteria: {},
+          frozenAt: '2026-01-01T00:00:00.000Z',
+        },
+      };
+
+      const node = mapScenarioToNode(snapshotScenario, baseOptions);
+      expect(node.cardCount).toBe(3);
+    });
+
     it('should handle empty description', () => {
       const scenario: Scenario = {
         ...baseScenario,
@@ -343,6 +359,29 @@ describe('journey-nodes.utils', () => {
       // lesson-2 depends on lesson-1, which has no completed scenarios
       expect(nodes[2].status).toBe('locked');
       expect(nodes[2].blockReason).toContain('Урок 1');
+    });
+
+    it('should unlock all lessons when course practiceSettings disables prerequisites', () => {
+      const openCourse: CourseWithLessons = {
+        ...baseCourse,
+        practiceSettings: {
+          mode: 'open',
+          enforceLessonPrerequisites: false,
+          requireLessonForScenarios: false,
+        },
+      };
+
+      const nodes = buildJourneyNodes(
+        openCourse,
+        scenarioMap,
+        mockCards,
+        () => false,
+        () => false,
+      );
+
+      // lesson-2 depends on lesson-1, but prerequisites are disabled in open mode
+      expect(nodes[2].status).toBe('available');
+      expect(nodes[2].blockReason).toBeNull();
     });
 
     it('should compute completion percent per lesson', () => {

@@ -1,0 +1,649 @@
+{
+  "scenarioId": "cpp.advanced.threading.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-01",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Что такое std::thread?",
+      "optionsLearning": [
+        "Объект управления потоком выполнения",
+        "Процесс",
+        "Поток вывода",
+        "Атомик"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::thread запускает функцию в новом потоке."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-02",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Как передать аргументы в поток?",
+      "optionsLearning": [
+        "std::thread t(f, arg);",
+        "только глобалы",
+        "нельзя",
+        "через макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Аргументы передаются в конструктор thread."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Threading и Concurrency — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <thread>\nvoid add(int n) { std::cout << n + 1; }\nint main() { std::thread t(add, 4); t.join(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "4",
+        "Ошибка",
+        "40"
+      ],
+      "correctIndex": 0,
+      "explanation": "Аргумент 4 → 5."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-04",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Что такое joinable()?",
+      "optionsLearning": [
+        "Проверка, что поток активен",
+        "Проверка памяти",
+        "Стиль",
+        "Тип"
+      ],
+      "correctIndex": 0,
+      "explanation": "joinable() — можно ли join/detach."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-05",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Как правильно передавать разделяемые данные?",
+      "optionsLearning": [
+        "const& / синхронизация доступа",
+        "копии",
+        "глобалы",
+        "указатели+"
+      ],
+      "correctIndex": 0,
+      "explanation": "Чтение без записи безопасно."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Threading и Concurrency — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <thread>\nint main() { std::thread t([]{ std::cout << 'a'; }); std::cout << 'b'; t.join(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "ba или ab (порядок не гарантирован)",
+        "ab всегда",
+        "a",
+        "b"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вывод из двух потоков — порядок гоночный."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-07",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Что такое мьютекс?",
+      "optionsLearning": [
+        "Примитив взаимного исключения",
+        "Копия",
+        "Поток",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::mutex защищает критическую секцию."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-08",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Какой RAII-обёртки над mutex?",
+      "optionsLearning": [
+        "std::lock_guard",
+        "lock",
+        "итератор",
+        "spin"
+      ],
+      "correctIndex": 0,
+      "explanation": "lock_guard блокирует/разблокирует."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Threading и Concurrency — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "question": "Что делает этот код?",
+      "code": {
+        "code": "std::mutex m; std::unique_lock<std::mutex> ul(m);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Блокирует m (возможно, ждёт)",
+        "Ничего",
+        "Удаляет m",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique_lock блокирует и позволяет unlock вручную."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-10",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Что такое condition_variable?",
+      "optionsLearning": [
+        "Ожидание условия с освобождением мьютекса",
+        "Переменную состояния",
+        "Строку",
+        "Поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "cv.wait/notify синхронизируют события."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Threading и Concurrency — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "concurrency",
+          "modern-cpp"
+        ],
+        "tags": "notify будит ожидающие потоки."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "question": "Какой метод пробудит ждущих?",
+      "code": {
+        "code": [
+          "cv.notify_one() / notify_all()",
+          "cv.wait",
+          "cv.unlock",
+          "cv.stop"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-12",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Почему cv.wait надо использовать с предикатом?",
+      "optionsLearning": [
+        "Защита от spurious wakeup",
+        "Скорость",
+        "Синтаксис",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "explanation": "wait(pred) проверяет условие в цикле."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-13",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "concurrency",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Что такое атомарная операция в threading?",
+      "optionsLearning": [
+        "Неделимая операция над переменной",
+        "Операция цикла",
+        "Файловая",
+        "Сетевая"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::atomic гарантирует атомарность."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Threading и Concurrency — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concurrency",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <atomic>\nint main() { std::atomic<int> v{5}; std::cout << v.fetch_add(2); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "7",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "fetch_add возвращает старое значение 5."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-15",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Что такое thread-local storage?",
+      "optionsLearning": [
+        "Переменная, своя у каждого потока (thread_local)",
+        "Глобальная",
+        "Статическая",
+        "Константа"
+      ],
+      "correctIndex": 0,
+      "explanation": "thread_local — копия на поток."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "Threading и Concurrency — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "question": "Сколько копий x будет?",
+      "code": {
+        "code": "thread_local int x = 0; // 3 потока",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "1",
+        "0",
+        "∞"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждый поток получает свою x."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-17",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "concurrency",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Что такое гонка данных и почему это UB?",
+      "optionsLearning": [
+        "Доступ из нескольких потоков без синхронизации",
+        "Быстро",
+        "Стиль",
+        "Ошибка кодирования"
+      ],
+      "correctIndex": 0,
+      "explanation": "Модель памяти считает это неопределённым."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-18",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Что делает std::recursive_mutex?",
+      "optionsLearning": [
+        "Позволяет повторную блокировку тем же потоком",
+        "Удаляет",
+        "Ждёт",
+        "Ускоряет"
+      ],
+      "correctIndex": 0,
+      "explanation": "recursive_mutex можно lock несколько раз (счётчик)."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-19",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concurrency",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Зачем нужен std::scoped_lock?",
+      "optionsLearning": [
+        "Блокирует несколько мьютексов сразу (C++17)",
+        "Один",
+        "zero",
+        "compile"
+      ],
+      "correctIndex": 0,
+      "explanation": "scoped_lock(m1, m2) исключает deadlock."
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario.card-20",
+      "kind": "select",
+      "title": "Threading и Concurrency — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concurrency",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.threading.01.scenario",
+      "promptKnown": "Какая стратегия оптимальна для пула задач?",
+      "optionsLearning": [
+        "Очередь задач + пул потоков",
+        "Поток на задачу",
+        "Один поток",
+        "Мьютексы поверх"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пул ограничивает потоки и траты контекста."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

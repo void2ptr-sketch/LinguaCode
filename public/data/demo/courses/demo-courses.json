@@ -1,0 +1,210 @@
+{
+  "courses": [
+    {
+      "id": "demo-course",
+      "title": "Демо: базовый English",
+      "description": "Вводная учебная программа для курса ru→en.",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "lessonIds": [
+        "demo-lesson-1",
+        "demo-lesson-2"
+      ],
+      "published": true,
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "course-demo-card-kinds",
+      "title": "Все типы карточек — Демо",
+      "description": "Демо-программа ru→en: обзор всех 13 типов карточек, по сценарию на каждый тип.",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "lessonIds": [
+        "demo-lesson-card-kinds-1",
+        "demo-lesson-card-kinds-2",
+        "demo-lesson-card-kinds-3"
+      ],
+      "published": true,
+      "updatedAt": "2026-10-17T12:35:00.000Z"
+    },
+    {
+      "id": "course-zh-a1",
+      "title": "Китайский A1: первые шаги",
+      "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы.",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "lessonIds": [
+        "lesson-zh-greetings",
+        "lesson-zh-phonetics",
+        "lesson-zh-characters"
+      ],
+      "published": true,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    },
+    {
+      "id": "course-zh-conversation",
+      "title": "Китайский: разговорная практика",
+      "description": "Короткий курс для закрепления приветствий и смешанных упражнений.",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "lessonIds": [
+        "lesson-zh-quick-start",
+        "lesson-zh-review"
+      ],
+      "published": true,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "demo-lesson-1",
+      "courseId": "demo-course",
+      "title": "Приветствия",
+      "description": "Первые сценарии приветствия.",
+      "scenarioIds": [
+        "demo-scenario"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "demo-lesson-2",
+      "courseId": "demo-course",
+      "title": "Повторение",
+      "description": "Закрепление после первого урока.",
+      "scenarioIds": [
+        "demo-scenario"
+      ],
+      "prerequisiteLessonIds": [
+        "demo-lesson-1"
+      ],
+      "order": 1,
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "demo-lesson-card-kinds-1",
+      "courseId": "course-demo-card-kinds",
+      "title": "Часть 1: выбор, код, память, символы, звук",
+      "description": "5 сценариев: select, code-select, memory, symbol, sound.",
+      "scenarioIds": [
+        "scenario-demo-select",
+        "scenario-demo-code-select",
+        "scenario-demo-memory",
+        "scenario-demo-symbol",
+        "scenario-demo-sound"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-10-17T12:35:00.000Z"
+    },
+    {
+      "id": "demo-lesson-card-kinds-2",
+      "courseId": "course-demo-card-kinds",
+      "title": "Часть 2: время, клавиатура, рисование, тон, чтение",
+      "description": "5 сценариев: timed, keyboard, draw, tone, reading.",
+      "scenarioIds": [
+        "scenario-demo-timed",
+        "scenario-demo-keyboard",
+        "scenario-demo-draw",
+        "scenario-demo-tone",
+        "scenario-demo-reading"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 1,
+      "updatedAt": "2026-10-17T12:35:00.000Z"
+    },
+    {
+      "id": "demo-lesson-card-kinds-3",
+      "courseId": "course-demo-card-kinds",
+      "title": "Часть 3: переворот, пропуск, код-trace",
+      "description": "3 сценария: flip, cloze, code-trace.",
+      "scenarioIds": [
+        "scenario-demo-flip",
+        "scenario-demo-cloze",
+        "scenario-demo-code-trace"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 2,
+      "updatedAt": "2026-10-17T12:35:00.000Z"
+    },
+    {
+      "id": "lesson-zh-greetings",
+      "courseId": "course-zh-a1",
+      "title": "Урок 1: Приветствия",
+      "description": "你好, 谢谢, 再见 — узнавание и сопоставление.",
+      "scenarioIds": [
+        "scenario-zh-greetings"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    },
+    {
+      "id": "lesson-zh-phonetics",
+      "courseId": "course-zh-a1",
+      "title": "Урок 2: Пиньинь и тоны",
+      "description": "Ввод пиньинь, IPA и выбор тона.",
+      "scenarioIds": [
+        "scenario-zh-phonetics"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-zh-greetings"
+      ],
+      "order": 1,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    },
+    {
+      "id": "lesson-zh-characters",
+      "courseId": "course-zh-a1",
+      "title": "Урок 3: Иероглифы",
+      "description": "Черты, радикалы и чтение 行.",
+      "scenarioIds": [
+        "scenario-zh-characters"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-zh-phonetics"
+      ],
+      "order": 2,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    },
+    {
+      "id": "lesson-zh-quick-start",
+      "courseId": "course-zh-conversation",
+      "title": "Быстрый старт",
+      "description": "Первые фразы и базовые упражнения.",
+      "scenarioIds": [
+        "scenario-zh-greetings"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    },
+    {
+      "id": "lesson-zh-review",
+      "courseId": "course-zh-conversation",
+      "title": "Закрепление",
+      "description": "Смешанная практика после быстрого старта.",
+      "scenarioIds": [
+        "scenario-zh-review"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-zh-quick-start"
+      ],
+      "order": 1,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    }
+  ]
+}

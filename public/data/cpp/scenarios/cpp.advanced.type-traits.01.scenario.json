@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.advanced.type-traits.01.scenario",
+      "title": "Type Traits и SFINAE",
+      "description": "Сценарий: Type Traits и SFINAE — каверзные вопросы по type traits и SFINAE в C++",
+      "order": 30,
+      "lessonId": "lesson-cpp-advanced-modern",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.advanced.type-traits.01.scenario.card-01",
+          "cpp.advanced.type-traits.01.scenario.card-02",
+          "cpp.advanced.type-traits.01.scenario.card-03",
+          "cpp.advanced.type-traits.01.scenario.card-04",
+          "cpp.advanced.type-traits.01.scenario.card-05",
+          "cpp.advanced.type-traits.01.scenario.card-06",
+          "cpp.advanced.type-traits.01.scenario.card-07",
+          "cpp.advanced.type-traits.01.scenario.card-08",
+          "cpp.advanced.type-traits.01.scenario.card-09",
+          "cpp.advanced.type-traits.01.scenario.card-10",
+          "cpp.advanced.type-traits.01.scenario.card-11",
+          "cpp.advanced.type-traits.01.scenario.card-12",
+          "cpp.advanced.type-traits.01.scenario.card-13",
+          "cpp.advanced.type-traits.01.scenario.card-14",
+          "cpp.advanced.type-traits.01.scenario.card-15",
+          "cpp.advanced.type-traits.01.scenario.card-16",
+          "cpp.advanced.type-traits.01.scenario.card-17",
+          "cpp.advanced.type-traits.01.scenario.card-18",
+          "cpp.advanced.type-traits.01.scenario.card-19",
+          "cpp.advanced.type-traits.01.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-06-14T12:00:00.000Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,626 @@
+{
+  "scenarioId": "cpp.basics.functions-declare.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-01",
+      "kind": "select",
+      "title": "Что такое функция в C++?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите функцию в C++",
+      "optionsLearning": [
+        "Именованный блок кода с параметрами и возвращаемым значением",
+        "Переменная для хранения числа",
+        "Тип данных для строк",
+        "Оператор цикла"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "что"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "Функция — единица логики. Принимает параметры, выполняет действия, возвращает результат (или void)."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-02",
+      "kind": "select",
+      "title": "Объявление функции",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Каков синтаксис объявления функции?",
+      "optionsLearning": [
+        "return_type name(parameter_list) { body }",
+        "function name(params) { body }",
+        "def name(params): body",
+        "name(params) -> type { body }"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "объявление"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "C++ функция: тип возврата, имя, параметры в (), тело в {}. Например: int add(int a, int b) { return a+b; }"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-03",
+      "kind": "select",
+      "title": "Прототипы функций",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем нужны прототипы функций?",
+      "optionsLearning": [
+        "Для компиляции вызовов до определения функции",
+        "Для ускорения выполнения",
+        "Для хранения значений",
+        "Для создания объектов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "прототипы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "Прототип (forward declaration): int add(int, int); — сообщает компилятору о существовании функции."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-04",
+      "kind": "select",
+      "title": "Вызов функции",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как вызвать функцию add(3, 4)?",
+      "optionsLearning": [
+        "add(3, 4);",
+        "call add(3, 4);",
+        "function add(3, 4);",
+        "add::(3, 4);"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "вызов"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "Вызов функции — имя + аргументы в (). Результат можно присвоить переменной: int sum = add(3, 4);"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-05",
+      "kind": "select",
+      "title": "Параметры по значению",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что происходит при передаче по значению?",
+      "optionsLearning": [
+        "Копия значения передаётся в функцию",
+        "Оригинал изменяется",
+        "Указатель передаётся",
+        "Значение не копируется"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "параметры"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "int x = 5; func(x); — функция получает копию 5. Изменения внутри func не влияют на x."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-06",
+      "kind": "select",
+      "title": "Параметры по ссылке",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как передать параметр по ссылке?",
+      "optionsLearning": [
+        "void func(int& x) — ссылка",
+        "void func(int x) — значение",
+        "void func(int* x) — указатель",
+        "void func(const int x) — константа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "параметры"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "& в параметре создаёт ссылку: функция работает с оригиналом. void func(int& x) — x это alias для аргумента."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-07",
+      "kind": "select",
+      "title": "Параметры по указателю",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как передать параметр по указателю?",
+      "optionsLearning": [
+        "void func(int* x) — указатель",
+        "void func(int& x) — ссылка",
+        "void func(int x) — значение",
+        "void func(const int* x) — константный указатель"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "параметры"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "* в параметре — указатель: функция получает адрес. *x — разыменование (доступ к значению по адресу)."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-08",
+      "kind": "select",
+      "title": "Возврат значения",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор используется для возврата?",
+      "optionsLearning": [
+        "return value;",
+        "exit value;",
+        "yield value;",
+        "send value;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "возврат"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "return передаёт управление обратно вызывающему коду и опционально возвращает значение."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-09",
+      "kind": "select",
+      "title": "Функции без возврата",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой тип использовать для функции без return?",
+      "optionsLearning": [
+        "void — ничего не возвращает",
+        "int — по умолчанию 0",
+        "null — пустое значение",
+        "empty"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "функции"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "void означает 'без результата'. Функция может выполнять действия (печать, модификация), но не возвращает значение."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-10",
+      "kind": "select",
+      "title": "Default параметры",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как задать параметр по умолчанию?",
+      "optionsLearning": [
+        "void func(int x = 10) — x=10 если не указан",
+        "void func(int x default 10)",
+        "void func(int x := 10)",
+        "void func(int x -> 10)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "default"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "func(5) → x=5. func() → x=10. Default параметры должны быть справа в списке."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-11",
+      "kind": "select",
+      "title": "Overloading функций",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое перегрузка функций?",
+      "optionsLearning": [
+        "Одно имя, разные сигнатуры (типы/количество параметров)",
+        "Изменение функции после объявления",
+        "Вызов функции без параметров",
+        "Рекурсивный вызов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "overloading"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "int add(int, int) и double add(double, double) — обе называются add. Компилятор выбирает по типам аргументов."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-12",
+      "kind": "select",
+      "title": "Inline функции",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем использовать inline?",
+      "optionsLearning": [
+        "Подстановка кода вместо вызова (убирает overhead)",
+        "Увеличение размера исполняемого файла",
+        "Изменение видимости функции",
+        "Асинхронный вызов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "inline"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "inline — подсказка компилятору встроить код функции. Убирает overhead вызова (push/pop stack). Эффективно для коротких функций."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-13",
+      "kind": "select",
+      "title": "Рекурсия",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что обязательно в рекурсивной функции?",
+      "optionsLearning": [
+        "Базовый случай (условие выхода)",
+        "Два параметра",
+        "Возврат int",
+        "Статическая переменная"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "рекурсия"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "Без базового случая — бесконечная рекурсия → stack overflow. factorial(n): if (n<=1) return 1; else return n*factorial(n-1);"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-14",
+      "kind": "select",
+      "title": "Рекурсия: пример",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чему равно factorial(5)?",
+      "optionsLearning": [
+        "120 (5×4×3×2×1)",
+        "15 (сумма 1..5)",
+        "25 (5²)",
+        "10 (5+5)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "рекурсия:"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "factorial(5) = 5 × factorial(4) = 5 × 4 × 3 × 2 × 1 = 120. Базовый случай: factorial(1) = 1."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-15",
+      "kind": "select",
+      "title": "Область видимости",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Где доступна переменная, объявленная в main()?",
+      "optionsLearning": [
+        "Только внутри main()",
+        "Во всей программе",
+        "В других функциях",
+        "В глобальной области"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "область"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "Локальные переменные видны только в своём бло {}. main() — отдельный блок, другие функции не видят его локальные."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-16",
+      "kind": "select",
+      "title": "Глобальные переменные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Где объявляются глобальные переменные?",
+      "optionsLearning": [
+        "До любой функции (вне функций)",
+        "Только в main()",
+        "Только в классах",
+        "Только в функциях"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "глобальные"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "Глобальные видны от точки объявления до конца файла. Избегайте их — нарушают инкапсуляцию, вызывают side effects."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-17",
+      "kind": "select",
+      "title": "Static переменные в функциях",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает static внутри функции?",
+      "optionsLearning": [
+        "Сохраняет значение между вызовами",
+        "Делает переменную глобальной",
+        "Обнуляет при каждом вызове",
+        "Удаляет из памяти"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "static"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "static int counter = 0; — инициализируется один раз. Значение сохраняется между вызовами функции."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-18",
+      "kind": "select",
+      "title": "Forward declaration",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем нужен forward declaration?",
+      "optionsLearning": [
+        "Чтобы вызвать функцию до её определения",
+        "Для ускорения компиляции",
+        "Для создания объектов",
+        "Для объявления переменных"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "forward"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "int add(int, int); — forward declaration. Компилятор знает о функции, но не её тело. Тело может быть ниже."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-19",
+      "kind": "select",
+      "title": "Main функция",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие допустимые сигнатуры main()?",
+      "optionsLearning": [
+        "int main() и int main(int argc, char* argv[])",
+        "void main()",
+        "main()",
+        "int Main()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "main"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "Стандарт: int main() или с параметрами командной строки. void main() — non-standard (работает в некоторых компиляторах)."
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices для функций",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой принцип хорошего дизайна функций?",
+      "optionsLearning": [
+        "Одна функция — одна задача (SRP)",
+        "Максимум логики в одной функции",
+        "Избегать параметров",
+        "Использовать глобальные переменные"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "best"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario",
+      "explanation": "Single Responsibility Principle: функция должна делать ОДНО, но делать его хорошо. Короткие, читаемые функции."
+    }
+  ],
+  "title": "Функции: объявление — Basics"
+}

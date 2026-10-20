@@ -1,0 +1,640 @@
+{
+  "scenarioId": "cpp.advanced.modern-features.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-01",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что нового в C++20?",
+      "optionsLearning": [
+        "Концепты, ranges, coroutines, modules, calendar",
+        "Ничего",
+        "Только поправки",
+        "GUI"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++20 — крупная ревизия."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-02",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что добавил C++23?",
+      "optionsLearning": [
+        "std::expected, ranges/views больше, deducing this",
+        "Только fixes",
+        "Ничего",
+        "GUI"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++23 — инкрементальные улучшения."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "C++20/23 Modern Features — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <compare>\n#include <iostream>\nint main() { std::cout << (1 <=> 2 < 0); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "1 <=> 2 — less, < 0 истинно (1)."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-04",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что такое spaceship <=>?",
+      "optionsLearning": [
+        "Трёхстороннее сравнение (ordering)",
+        "Космический корабль",
+        "Равно",
+        "Больше"
+      ],
+      "correctIndex": 0,
+      "explanation": "<=> даёт полный набор сравнений."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-05",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что делает std::expected (C++23)?",
+      "optionsLearning": [
+        "Результат или ошибка без исключений",
+        "Копию",
+        "Ожидание",
+        "Булево"
+      ],
+      "correctIndex": 0,
+      "explanation": "expected<T, E> — ожидаемое значение/ошибка."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "C++20/23 Modern Features — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <expected>\nint main() { std::expected<int, int> e = 5; std::cout << *e; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "Ошибка",
+        "0",
+        "expected"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разыменование expected даёт значение 5."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-07",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что такое coroutines?",
+      "optionsLearning": [
+        "Функции с точками приостановки/возобновления",
+        "Потоки",
+        "Коруны вообще",
+        "Классы"
+      ],
+      "correctIndex": 0,
+      "explanation": "co_await/co_yield/co_return."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-08",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что делает co_await?",
+      "optionsLearning": [
+        "Приостанавливает корутину",
+        "Ждёт вечно",
+        "Бросает",
+        "Цикл"
+      ],
+      "correctIndex": 0,
+      "explanation": "co_await — асинхронное ожидание в корутине."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-09",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что делает std::views (ranges)?",
+      "optionsLearning": [
+        "Ленивые представления (без аллокаций)",
+        "Копии",
+        "Массивы",
+        "Потоки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конвейеры над диапазонами."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-10",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что такое std::span?",
+      "optionsLearning": [
+        "Не владеющий вид на непрерывную память",
+        "Строку",
+        "Сохраняемое",
+        "Умный указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::span<T> — лёгкий обзор массива."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "C++20/23 Modern Features — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <span>\nint main() { int a[] = {1, 2, 3}; std::span<int> s(a); std::cout << s.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "a",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "span видит 3 элемента."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-12",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что такое designated initializers?",
+      "optionsLearning": [
+        "Инициализация по имени полей: {.x = 1}",
+        "По индексу",
+        "Дефолт",
+        "Вручную"
+      ],
+      "correctIndex": 0,
+      "explanation": ".x = value в агрегатах."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-13",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что делает std::source_location?",
+      "optionsLearning": [
+        "Данные о месте вызова (file, line)",
+        "Путь",
+        "ӱрл",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для логирования/ассертов."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-14",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20",
+          "concurrency"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что такое std::jthread (C++20)?",
+      "optionsLearning": [
+        "Поток с joinable-концепцией",
+        "Просто thread",
+        "Мьютекс",
+        "Атомик"
+      ],
+      "correctIndex": 0,
+      "explanation": "jthread автоматически join'ится в деструкторе."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "C++20/23 Modern Features — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <thread>\nint main() { std::jthread t([] { std::cout << 'j'; }); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "j",
+        "Ошибка",
+        "ничего",
+        "t"
+      ],
+      "correctIndex": 0,
+      "explanation": "jthread выполняет задачу и join-ится сам: j."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-16",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что такое std::stop_token?",
+      "optionsLearning": [
+        "Механизм остановки jthread",
+        "Поток",
+        "Мутекс",
+        "Сигнал"
+      ],
+      "correctIndex": 0,
+      "explanation": "Кооперативная отмена асинхронных задач."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-17",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что даёт using-enum (C++20)?",
+      "optionsLearning": [
+        "Вносит значения enum в область",
+        "Удаляет enum",
+        "Конвертирует",
+        "Печатает"
+      ],
+      "correctIndex": 0,
+      "explanation": "using enum Color: {}."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-18",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что такое константные (constexpr) шаблоны данных?",
+      "optionsLearning": [
+        "constexpr с templates/arrays (C++20)",
+        "Макросы",
+        "Быстрее",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Шаблонные структуры в константных вычислениях."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-19",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Что делает std::bit_cast?",
+      "optionsLearning": [
+        "Переинтерпретация битов как другого типа",
+        "Копию",
+        "Хеш",
+        "Сдвиг"
+      ],
+      "correctIndex": 0,
+      "explanation": "Безопасная битовая трактовка значения."
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario.card-20",
+      "kind": "select",
+      "title": "C++20/23 Modern Features — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "modern-cpp",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.modern-features.01.scenario",
+      "promptKnown": "Какой стандарт добавил format?",
+      "optionsLearning": [
+        "C++20 (std::format)",
+        "C++11",
+        "C++17",
+        "C++23"
+      ],
+      "correctIndex": 0,
+      "explanation": "printf-подобное форматирование с типами."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

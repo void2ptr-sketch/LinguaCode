@@ -101,6 +101,31 @@ describe('IndexedDbService', () => {
     }
   });
 
+  it('should reject when IndexedDB open fails', async () => {
+    const originalIndexedDb = globalThis.indexedDB;
+    const errorDb: IDBFactory = {
+      open: () => {
+        const request = {
+          result: null,
+          onupgradeneeded: null,
+          onsuccess: null,
+          onerror: null,
+          error: new DOMException('Unknown error', 'UnknownError'),
+        } as unknown as IDBOpenDBRequest;
+        queueMicrotask(() => request.onerror?.({ target: request } as unknown as Event));
+        return request;
+      },
+    } as unknown as IDBFactory;
+    globalThis.indexedDB = errorDb;
+
+    try {
+      const service = TestBed.inject(IndexedDbService);
+      await expect(service.get('content-seed', 'key')).rejects.toThrow();
+    } finally {
+      globalThis.indexedDB = originalIndexedDb;
+    }
+  });
+
   it('should round-trip records through get/set/delete', async () => {
     const originalIndexedDb = globalThis.indexedDB;
     globalThis.indexedDB = createFakeIndexedDb();

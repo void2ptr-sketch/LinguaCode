@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.constexpr.scenario",
+  "cards": [
+    {
+      "id": "advanced.constexpr.card-01",
+      "kind": "select",
+      "title": "Constexpr function",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое constexpr function?",
+      "optionsLearning": [
+        "Вычисляется на compile time",
+        "Runtime функция",
+        "Константа",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "constexpr"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-constexpr",
+      "scenarioId": "advanced.constexpr.scenario"
+    },
+    {
+      "id": "advanced.constexpr.card-02",
+      "kind": "select",
+      "title": "Constexpr variable",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое constexpr variable?",
+      "optionsLearning": [
+        "Compile-time константа",
+        "Runtime переменная",
+        "Глобальная переменная",
+        "Статическая переменная"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "constexpr"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-constexpr",
+      "scenarioId": "advanced.constexpr.scenario"
+    },
+    {
+      "id": "advanced.constexpr.card-03",
+      "kind": "select",
+      "title": "Constexpr if",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем constexpr if?",
+      "optionsLearning": [
+        "Условная компиляция на основе типов (template specialization)",
+        "Runtime if",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "constexpr"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-constexpr",
+      "scenarioId": "advanced.constexpr.scenario"
+    },
+    {
+      "id": "advanced.constexpr.card-04",
+      "kind": "select",
+      "title": "Consteval",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое consteval?",
+      "optionsLearning": [
+        "Function must be evaluated at compile time (C++20)",
+        "Runtime function",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "constexpr"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-constexpr",
+      "scenarioId": "advanced.constexpr.scenario"
+    },
+    {
+      "id": "advanced.constexpr.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать constexpr?",
+      "optionsLearning": [
+        "Для compile-time вычислений (performance)",
+        "Всегда",
+        "Никогда",
+        "Только для small values"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "constexpr"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-constexpr",
+      "scenarioId": "advanced.constexpr.scenario"
+    }
+  ]
+}

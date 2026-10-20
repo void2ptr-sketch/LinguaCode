@@ -169,6 +169,41 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
         appearance: { ...appearance },
         ...lexemeFields,
       };
+    case 'flip':
+      return {
+        kind: 'flip',
+        title: '',
+        ...h,
+        front: '',
+        back: '',
+        audioUrl: '',
+        appearance: { ...appearance },
+      };
+    case 'cloze':
+      return {
+        kind: 'cloze',
+        title: '',
+        ...h,
+        promptKnown: '',
+        options: [],
+        acceptedAnswers: [''],
+        correctAnswer: '',
+        correctIndex: 0,
+        appearance: { ...appearance },
+        ...lexemeFields,
+      };
+    case 'code-trace':
+      return {
+        kind: 'code-trace',
+        title: '',
+        ...h,
+        caption: '',
+        question: '',
+        code: { code: '', language: 'cpp' },
+        outputOptions: ['', ''],
+        correctIndex: 0,
+        appearance: { ...appearance },
+      };
   }
 };
 
@@ -344,6 +379,42 @@ export const cardToDraft = (card: Card): CardDraft => {
         promptLexeme,
         audioUrl,
       };
+    case 'flip':
+      return {
+        kind: 'flip',
+        title: card.title,
+        ...h,
+        front: card.front,
+        back: card.back,
+        audioUrl: card.audioUrl ?? '',
+        appearance,
+      };
+    case 'cloze':
+      return {
+        kind: 'cloze',
+        title: card.title,
+        ...h,
+        promptKnown: card.promptKnown,
+        options: [...(card.options ?? [])],
+        acceptedAnswers: [...(card.acceptedAnswers ?? [])],
+        correctAnswer: card.correctAnswer,
+        correctIndex: card.correctIndex ?? 0,
+        appearance,
+        promptLexeme,
+        audioUrl,
+      };
+    case 'code-trace':
+      return {
+        kind: 'code-trace',
+        title: card.title,
+        ...h,
+        caption: card.caption ?? '',
+        question: card.question ?? '',
+        code: { ...card.code },
+        outputOptions: [...card.outputOptions],
+        correctIndex: card.correctIndex,
+        appearance,
+      };
   }
 };
 
@@ -361,5 +432,17 @@ export const cardSummary = (card: Card): string => {
     return card.caption?.trim() || card.prompt.code.split('\n')[0]?.trim() || card.title;
   }
 
-  return card.promptKnown;
+  if (card.kind === 'code-trace') {
+    return card.question?.trim() || card.caption?.trim() || card.title;
+  }
+
+  if (card.kind === 'flip') {
+    return card.front.trim() || card.back.trim() || card.title;
+  }
+
+  if ('promptKnown' in card) {
+    return card.promptKnown;
+  }
+
+  return '';
 };

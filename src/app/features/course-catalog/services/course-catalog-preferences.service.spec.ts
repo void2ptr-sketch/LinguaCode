@@ -168,4 +168,126 @@ describe('CourseCatalogPreferencesService', () => {
     expect(options).toHaveLength(2);
     expect(options[0].value).toBe('pinyin');
   });
+
+  it('should return first pair when draft id does not match any pair', () => {
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'nonexistent',
+    );
+    const entry = service.settingsEntry();
+    expect(entry?.id).toBe('pair-1');
+  });
+
+  it('should return label for fallback first pair when draft id does not match', () => {
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'nonexistent',
+    );
+    const label = service.settingsCourseLabel();
+    expect(label).toBe('ru → en');
+  });
+
+  it('should show CJK preferences when pair manager returns true', () => {
+    (mockPairManager.shouldShowCjkPreferences as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    expect(service.showCjkPreferences()).toBe(true);
+  });
+
+  it('should show phonetic preferences when learning is zh', () => {
+    const zhPair = makePair('pair-zh', 'en', 'zh');
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([zhPair]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-zh',
+    );
+    expect(service.showPhoneticPreferences()).toBe(true);
+  });
+
+  it('should not show phonetic preferences when learning is neither en nor zh', () => {
+    const ruPair = makePair('pair-ru', 'en', 'ru');
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([ruPair]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-ru',
+    );
+    expect(service.showPhoneticPreferences()).toBe(false);
+  });
+
+  it('should show tracing settings when learning is zh', () => {
+    const zhPair = makePair('pair-zh', 'en', 'zh');
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([zhPair]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-zh',
+    );
+    expect(service.showTracingSettings()).toBe(true);
+  });
+
+  it('should not show tracing settings when learning is not zh', () => {
+    const ruPair = makePair('pair-ru', 'en', 'ru');
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([ruPair]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-ru',
+    );
+    expect(service.showTracingSettings()).toBe(false);
+  });
+
+  it('should return null settings entry when no pairs exist', () => {
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-1',
+    );
+
+    const entry = service.settingsEntry();
+    expect(entry).toBeNull();
+  });
+
+  it('should return empty label when settings entry is null', () => {
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-1',
+    );
+
+    const label = service.settingsCourseLabel();
+    expect(label).toBe('');
+  });
+
+  it('should return false for showCjkPreferences when entry is null', () => {
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-1',
+    );
+
+    expect(service.showCjkPreferences()).toBe(false);
+  });
+
+  it('should return false for showPhoneticPreferences when entry is null', () => {
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-1',
+    );
+
+    expect(service.showPhoneticPreferences()).toBe(false);
+  });
+
+  it('should return false for showTracingSettings when entry is null', () => {
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-1',
+    );
+
+    expect(service.showTracingSettings()).toBe(false);
+  });
 });

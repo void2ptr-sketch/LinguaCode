@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.modern.cpp.scenario",
+      "title": "C++ — C++17 features",
+      "description": "Сценарий: C++17 features — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-modern-cpp",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.858801.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.858803.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.modern.cpp.card-01",
+          "advanced.modern.cpp.card-02",
+          "advanced.modern.cpp.card-03",
+          "advanced.modern.cpp.card-04",
+          "advanced.modern.cpp.card-05"
+        ]
+      }
+    }
+  ]
+}

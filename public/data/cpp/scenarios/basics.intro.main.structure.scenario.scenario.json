@@ -1,0 +1,38 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.intro.main.structure.scenario",
+      "title": "C++ — Минимальная программа",
+      "description": "Сценарий: Минимальная программа — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-intro-main-structure",
+      "courseId": "course-cpp-complete",
+      "cardCount": 9,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.862026.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.862027.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.intro.main.structure.card-01",
+          "basics.intro.main.structure.card-02",
+          "basics.intro.main.structure.card-03",
+          "basics.intro.main.structure.card-04",
+          "basics.intro.main.structure.card-05",
+          "basics.intro.main.structure.card-06",
+          "basics.intro.main.structure.card-07",
+          "basics.intro.main.structure.card-08",
+          "basics.intro.main.structure.card-09"
+        ]
+      }
+    }
+  ]
+}

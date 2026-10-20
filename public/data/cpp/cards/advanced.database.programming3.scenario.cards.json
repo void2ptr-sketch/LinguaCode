@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.database.programming3.scenario",
+  "cards": [
+    {
+      "id": "advanced.database.programming3.card-01",
+      "kind": "select",
+      "title": "NoSQL C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "NoSQL на C++?",
+      "optionsLearning": [
+        "MongoDB C++ driver, Redis Hiredip, LevelDB",
+        "Только SQL",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-database-programming3",
+      "scenarioId": "advanced.database.programming3.scenario"
+    },
+    {
+      "id": "advanced.database.programming3.card-02",
+      "kind": "select",
+      "title": "Database migration",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое database migration?",
+      "optionsLearning": [
+        "Версионирование схемы БД (Alembic, Flyway)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-database-programming3",
+      "scenarioId": "advanced.database.programming3.scenario"
+    },
+    {
+      "id": "advanced.database.programming3.card-03",
+      "kind": "select",
+      "title": "Database sharding advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый sharding?",
+      "optionsLearning": [
+        "Consistent hashing + automatic rebalancing",
+        "Только manual",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-database-programming3",
+      "scenarioId": "advanced.database.programming3.scenario"
+    },
+    {
+      "id": "advanced.database.programming3.card-04",
+      "kind": "select",
+      "title": "Database replication advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутая репликация?",
+      "optionsLearning": [
+        "Multi-master + conflict resolution + eventual consistency",
+        "Только single-master",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-database-programming3",
+      "scenarioId": "advanced.database.programming3.scenario"
+    },
+    {
+      "id": "advanced.database.programming3.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как работать с БД?",
+      "optionsLearning": [
+        "Indexes + connection pooling + prepared statements + monitoring + backup",
+        "Только manual",
+        "Никак",
+        "Только raw SQL"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-database-programming3",
+      "scenarioId": "advanced.database.programming3.scenario"
+    }
+  ]
+}

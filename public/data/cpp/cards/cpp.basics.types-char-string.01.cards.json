@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.basics.types-char-string.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-01",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Какой тип хранит один символ в C++?",
+      "optionsLearning": [
+        "char",
+        "string",
+        "byte",
+        "symbol"
+      ],
+      "correctIndex": 0,
+      "explanation": "Тип char хранит один символ (обычно 1 байт)."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-02",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Как записать символьный литерал 'A' в C++?",
+      "optionsLearning": [
+        "'A'",
+        "\"A\"",
+        "A",
+        "<<"
+      ],
+      "correctIndex": 0,
+      "explanation": "Символьный литерал заключается в одинарные кавычки: 'A'."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-03",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Чем строковый литерал \"A\" отличается от символа 'A'?",
+      "optionsLearning": [
+        "\"A\" — массив из двух char (символ и завершающий нулевой байт), 'A' — один char",
+        "Ничем",
+        "\"A\" короче",
+        "'A' тоже содержит два байта"
+      ],
+      "correctIndex": 0,
+      "explanation": "Строковый литерал — это массив символов, завершающийся нулевым байтом (null terminator)."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-04",
+      "kind": "code-trace",
+      "title": "Символы и строки — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { char c = 'A'; std::cout << c; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "A",
+        "65",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "При выводе char печатается сам символ, а не его код: A."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-05",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Какой заголовок нужен для std::string?",
+      "optionsLearning": [
+        "#include <string>",
+        "#include <iostream>",
+        "#include <char>",
+        "#include <cstyle>"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::string объявлен в заголовке <string>."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-06",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Как получить длину std::string s?",
+      "optionsLearning": [
+        "s.size() (или s.length())",
+        "sizeof(s)",
+        "strlen(s)",
+        "s.len"
+      ],
+      "correctIndex": 0,
+      "explanation": "Методы size()/length() возвращают количество символов в std::string."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-07",
+      "kind": "code-trace",
+      "title": "Символы и строки — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <string>\nint main() { std::string s = \"Hi\"; std::cout << s.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "3",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hi» содержит 2 символа; size() вернёт 2 (без учёта null-терминатора)."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-08",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Как получить символ строки s по индексу 2?",
+      "optionsLearning": [
+        "s[2]",
+        "s(2)",
+        "s.at все",
+        "s->2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оператор индексации s[i] возвращает i-й символ строки."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Символы и строки — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <string>\nint main() { std::string s = \"abcd\"; std::cout << s[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "b",
+        "a",
+        "c",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Индексация с нуля: s[1] — второй символ 'b'."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-10",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Как подключить функции C-строк (strlen, strcpy)?",
+      "optionsLearning": [
+        "#include <cstring>",
+        "#include <string> только",
+        "#include <str>",
+        "#include <cstdlib>"
+      ],
+      "correctIndex": 0,
+      "explanation": "C-функции строк объявлены в заголовке <cstring>."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-11",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Чем заканчивается C-строка (char[])?",
+      "optionsLearning": [
+        "Нулевым символом '\\0'",
+        "Пробелом",
+        "Символом конца файла",
+        "Точкой"
+      ],
+      "correctIndex": 0,
+      "explanation": "C-строка завершается нулевым байтом '\\0', по которому функции определяют длину."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Символы и строки — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { char s[] = {\"Hi\"}; std::cout << sizeof(s); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Массив содержит 'H','i','\\0' — 3 символа вместе с null-терминатором."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-13",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Какой escape-последовательностью записывается перевод строки?",
+      "optionsLearning": [
+        "\\n",
+        "/n",
+        "\\\\n",
+        "n"
+      ],
+      "correctIndex": 0,
+      "explanation": "Последовательность \\n — символ новой строки."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-14",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Как записать символ табуляции в строке?",
+      "optionsLearning": [
+        "\\t",
+        "/t",
+        "tab",
+        "\\\\t"
+      ],
+      "correctIndex": 0,
+      "explanation": "\\t — символ горизонтальной табуляции."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Символы и строки — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { char c = '\\n'; std::cout << static_cast<int>(c); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "0",
+        "65",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Код символа перевода строки '\\n' — 10 в ASCII."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-16",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Как сравнить две std::string?",
+      "optionsLearning": [
+        "Оператором == : if (a == b)",
+        "strcmp напрямую",
+        "a.compare без кода",
+        "Только по длине"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::string перегружает operator==, сравнивающий содержимое строк."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-17",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Какая функция возвращает размер C-строки без завершающего '\\0'?",
+      "optionsLearning": [
+        "strlen(s)",
+        "sizeof(s)",
+        "lengthof(s)",
+        "strsize(s)"
+      ],
+      "correctIndex": 0,
+      "explanation": "strlen считает символы до '\\0' и возвращает их количество."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "Символы и строки — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <cstring>\nint main() { char s[] = \"abc\"; std::cout << strlen(s); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "4",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "strlen считает 3 символа до завершающего нуля."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-19",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Какая операция конкатенирует (склеивает) две std::string?",
+      "optionsLearning": [
+        "s3 = s1 + s2;",
+        "s3 = s1 & s2;",
+        "concat(s1, s2)",
+        "s3 = s1 . s2"
+      ],
+      "correctIndex": 0,
+      "explanation": "operator+ для std::string выполняет конкатенацию строк."
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario.card-20",
+      "kind": "select",
+      "title": "Символы и строки — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-char-string.01.scenario",
+      "promptKnown": "Что произойдёт при s.push_back('x') для std::string s?",
+      "optionsLearning": [
+        "Символ 'x' добавится в конец строки",
+        "Строка заменится на x",
+        "Ошибка компиляции",
+        "Строка очистится"
+      ],
+      "correctIndex": 0,
+      "explanation": "push_back добавляет один символ в конец строки."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}
