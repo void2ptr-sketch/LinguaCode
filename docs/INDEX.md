@@ -11,11 +11,13 @@
 
 ## Продукт и домен
 
-| Документ                                        | Описание                                           |
-| ----------------------------------------------- | -------------------------------------------------- |
-| [BUSINESS.md](./BUSINESS.md)                    | Бизнес-идеи, миссия, ценность для пользователя     |
-| [DOMAIN.md](./COMMON/DOMAIN.md)                 | Доменная модель: сущности, типы, иерархия контента |
-| [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) | Пара языков known → learning, G7–G8, Learning Home |
+| Документ                                        | Описание                                                |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| [BUSINESS.md](./BUSINESS.md)                    | Бизнес-идеи, миссия, ценность для пользователя          |
+| [DOMAIN.md](./COMMON/DOMAIN.md)                 | Доменная модель: сущности, типы, иерархия контента      |
+| [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) | Пара языков known → learning, G7–G8, Learning Home      |
+| [COURSE-CPP.md](./DATA/COURSE-CPP.md)           | Курс C++ Complete Course: структура, сценарии, карточки |
+| [FILE-FORMATS.md](./DATA/FILE-FORMATS.md)       | Форматы seed-файлов: courses, scenarios, cards          |
 
 ## Техническая документация
 

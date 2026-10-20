@@ -1,5 +1,7 @@
 ---
 description: LinguaCode Project Guide
+lastReviewed: 2026-10-18
+reviewInterval: 90d   # the period after which the assistant is required to double‑check the facts
 ---
 
 ## 1. Project Overview
@@ -144,7 +146,7 @@ src/
 
 1. **Только standalone components** — никогда не используйте NgModules
 2. **TypeScript Strict Mode** — строгая типизация, предпочитайте `type` над `interface` для данных
-3. **Signals для локального состояния** — RxJS только для внешних потоков (см. `05.angular.Reactive.rule.md`)
+3. **Signals для локального состояния** — RxJS только для внешних потоков (см. `03.angular.03.reactive.rule.md`)
 4. **Названия файлов** — kebab-case с суффиксом типа (`user-profile.component.ts`, `user.service.ts`)
 5. **Названия классов** — UpperCamelCase с суффиксом (`UserProfileComponent`, `UserService`)
 6. **Константы** — UPPER_CASE (`MAX_RETRY_COUNT`)
@@ -154,7 +156,7 @@ src/
 - **Unit-тесты** через **Vitest** (`*.spec.ts`, runner `vitest` в `angular.json`)
 - Мокайте внешние зависимости вместо вызова реальных эндпоинтов
 - Тестируйте: инициализацию компонентов, input/output bindings, реактивные потоки (observables, signals), обработку ошибок
-- Целевые пороги покрытия: statements 70%, branches 65%, functions 70%, lines 70%
+- Целевые пороги покрытия: statements 80%, branches 80%, functions 80%, lines 80%
 
 ### Процесс сборки и деплоя
 - Production builds с tree-shaking и оптимизацией
@@ -241,7 +243,18 @@ src/
 
 ## 8. References
 
-### Документация
+### Документация проекта
+- [`docs/INDEX.md`](../../docs/INDEX.md) — оглавление всей документации
+- [`docs/ARCHITECTURE.md`](../../docs/ARCHITECTURE.md) — обзор архитектуры
+- [`docs/COMMON/DOMAIN.md`](../../docs/COMMON/DOMAIN.md) — доменная модель
+- [`docs/COMMON/CARD-CATALOG.md`](../../docs/COMMON/CARD-CATALOG.md) — индекс карточек
+- [`docs/CONTENT/CJK-CONTENT.md`](../../docs/CONTENT/CJK-CONTENT.md) — иероглифы, пиньинь, тоны
+- [`docs/CONTENT/PHONETIC-CONTENT.md`](../../docs/CONTENT/PHONETIC-CONTENT.md) — IPA
+- [`docs/API-CONTRACT.md`](../../docs/API-CONTRACT.md) — HTTP API
+- [`docs/SYSTEM/GIT-RULES.md`](../../docs/SYSTEM/GIT-RULES.md) — Git workflow
+- [`TASKS.md`](../../TASKS.md) — чеклист задач
+
+### Внешняя документация
 - [Angular Documentation](https://angular.dev/docs)
 - [Angular Material Documentation](https://material.angular.io/)
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)
@@ -253,12 +266,75 @@ src/
 - Vitest suite documentation
 
 ### Ссылки на правила проекта
-- `.continue/rules/00.project.md` — границы доступа к файлам
-- `.continue/rules/04.angular.DI-PS.rule.md` — DI и provider rules
-- `.continue/rules/05.angular.Reactive.rule.md` — реактивные паттерны (Signals vs RxJS)
-- `.continue/rules/11.angular.naming.rules.md` — соглашения о названиях, когезивные модули
+
+Правила именуются по схеме `NN.domain.NZ.name.rule.md`: `NN` — номер домена (01=meta, 02=architecture, 03=angular, 04=design, 05=business), `NZ` — номер сортировки внутри домена (см. `01.meta.09.rules-maintenance.rule.md`).
+
+#### meta — процесс и инструменты
+- `.continue/rules/01.meta.01.agent-behavior.rule.md` — поведение агента, границы доступа к файлам
+- `.continue/rules/01.meta.02.validate-write-arguments.rule.md` — валидация аргументов write-инструментов
+- `.continue/rules/01.meta.03.git-workflow.rule.md` — Git workflow (ветки, коммиты)
+- `.continue/rules/01.meta.04.tasks-workflow.rule.md` — workflow с `TASKS.md`
+- `.continue/rules/01.meta.05.verification-checklist.rule.md` — чек-лист верификации
+- `.continue/rules/01.meta.06.docs-conventions.rule.md` — конвенции документации `docs/`
+- `.continue/rules/01.meta.07.ci-parity.rule.md` — паритет локальных проверок и CI
+- `.continue/rules/01.meta.08.dependencies.rule.md` — управление зависимостями
+- `.continue/rules/01.meta.09.rules-maintenance.rule.md` — поддержка правил в актуальном состоянии
+- `.continue/rules/01.meta.10.anti-looping.rule.md` — предотвращение зацикливания (повтор команд/вызовов без прогресса)
+- `.continue/rules/01.meta.11.rag.rule.md` — RAG: поиск в интернете в сложных случаях вместо догадок
+- `.continue/rules/01.meta.12.built-in-tools.rule.md` — встроенные инструменты (Continue "Built-in Tools", MCP)
+- `.continue/rules/01.meta.13.rules-lifecycle.rule.md` — жизненный цикл правил: триггеры обновления, ревью-цикл, changelog
+
+#### architecture — структура проекта
+- `.continue/rules/02.architecture.01.project-architecture.rule.md` — архитектура проекта, FSD-слои
+- `.continue/rules/02.architecture.02.lazy-loading.rule.md` — lazy loading маршрутов (`loadComponent`)
+- `.continue/rules/02.architecture.03.di-providers.rule.md` — DI и provider rules
+- `.continue/rules/02.architecture.04.fsd-imports.rule.md` — FSD-слои и направления импортов
+- `.continue/rules/02.architecture.05.routing.rule.md` — маршрутизация, guards
+- `.continue/rules/02.architecture.06.component-patterns.rule.md` — OnPush, `inject()`, жизненный цикл
+- `.continue/rules/02.architecture.07.stores.rule.md` — signal-based stores (`*.store.ts`)
+- `.continue/rules/02.architecture.08.migration-standalone.rule.md` — миграция на standalone
+
+#### angular — код на Angular
+- `.continue/rules/03.angular.01.senior-developer.rule.md` — свод правил senior-разработчика
+- `.continue/rules/03.angular.02.build.rule.md` — сборка и оптимизация (Ivy)
+- `.continue/rules/03.angular.03.reactive.rule.md` — реактивные паттерны (Signals vs RxJS)
+- `.continue/rules/03.angular.04.typescript.rule.md` — TypeScript и строгость типов
+- `.continue/rules/03.angular.05.testing-strategy.rule.md` — тестирование и пороги покрытия
+- `.continue/rules/03.angular.06.code-style.rule.md` — стиль кода и форматирование
+- `.continue/rules/03.angular.07.naming.rule.md` — соглашения о названиях, когезивные модули
+- `.continue/rules/03.angular.08.config-editing.rule.md` — правка конфиг-файлов (`angular.json`, `tsconfig`)
+- `.continue/rules/03.angular.09.control-flow.rule.md` — control flow (`@if`/`@for`/`@switch`/`@defer`/`@let`)
+- `.continue/rules/03.angular.10.signal-inputs.rule.md` — signal inputs / `model()` / `output()`
+- `.continue/rules/03.angular.11.forms.rule.md` — формы (template-driven, dirty-state)
+- `.continue/rules/03.angular.12.smoke-conformance.rule.md` — smoke и conformance тесты
+- `.continue/rules/03.angular.13.performance.rule.md` — производительность (бюджеты, `@defer`, track)
+
+#### design — UI и UX
+- `.continue/rules/04.design.01.styles.rule.md` — SCSS/CSS-конвенции
+- `.continue/rules/04.design.02.a11y.rule.md` — доступность (a11y)
+- `.continue/rules/04.design.03.dialogs.rule.md` — модальные диалоги (MatDialog)
+- `.continue/rules/04.design.04.i18n.rule.md` — локализация UI (RU-строки)
+
+#### business — домен и данные
+- `.continue/rules/05.business.01.security.rule.md` — безопасность
+- `.continue/rules/05.business.02.data-content.rule.md` — данные/контент (seed, overlay)
+- `.continue/rules/05.business.03.errors-http.rule.md` — обработка ошибок и HTTP-слой
+- `.continue/rules/05.business.04.pwa.rule.md` — PWA / service worker
+- `.continue/rules/05.business.05.env-api-contract.rule.md` — окружение и API-контракт
+- `.continue/rules/05.business.06.backend-coordination.rule.md` — координация с бэкендом (java.LinguaCode)
+- `.continue/rules/05.business.07.auth.rule.md` — аутентификация (AuthStore, токены, guards)
+- `.continue/rules/05.business.08.storage.rule.md` — хранение (IndexedDB, localStorage, persistence)
+
+#### Obsolete rules — архив заменённых правил
+
+Правило, которое заменено или удалено, **не удаляется молча**: его запись переносится сюда с указанием замены (см. `01.meta.13.rules-lifecycle.rule.md`). Это предотвращает «правила-зомби», которые продолжают цитироваться, но файла уже нет.
+
+| Устаревшее правило | Замена | Дата |
+| ------------------ | ------ | ---- |
+| *(пока нет)* | | |
 
 ---
+
 
 ## 9. Barrel Exports (`index.ts`)
 
@@ -292,42 +368,22 @@ export type { FirstType } from './first.types';
 export { formatLabel } from './format.util';
 ```
 
-### Когезивные модули (нельзя разделять)
-Следующие папки представляют когезивные логические единицы — все файлы внутри должны перемещаться целиком:
-- `src/app/shared/utils/markdown-field/` — component, utils, tests, `index.ts`
-- `src/app/shared/utils/pagination/` — component, utils, types, state, tests, `index.ts`
+> Когезивные модули (папки, которые нельзя разделять) и правила публичного API слайсов — см. `03.angular.07.naming.rule.md` и `02.architecture.04.fsd-imports.rule.md`.
 
 ---
 
 ## 10. Security Rules
 
-- Санитизируйте пользовательский ввод при рендеринге HTML; никогда не привязывайте напрямую к `[innerHTML]` без санитизации
-- Валидируйте и санитизируйте URL перед использованием в редиректах или динамических импортах
-- Избегайте хранения чувствительных данных в localStorage без шифрования
-- Используйте встроенные механизмы безопасности Angular (DOM sanitization, XSS protection)
+> Полные правила безопасности — см. `05.business.01.security.rule.md` (санитизация, секреты, `npm run audit`, PWA-кэширование).
 
 ---
 
 ## 11. Testing Rules
 
-- Генерируйте unit-тесты с помощью **Vitest** со значимыми ассершинами
-- Мокайте внешние зависимости (сервисы, API) вместо вызова реальных эндпоинтов
-- Включайте тесты для:
-  - Инициализации компонентов и input/output bindings
-  - Реактивных потоков (observables, signals)
-  - Обработки ошибок и edge cases
-- Избегайте написания тестов, зависящих от глобального состояния или неконтролируемого асинхронного поведения
+> Полные правила тестирования и пороги покрытия (statements 80%, branches 80%, functions 80%, lines 80%) — см. `03.angular.05.testing-strategy.rule.md`.
 
 ---
 
 ## 12. Migration Notes
 
-### Миграция с NgModule на standalone
-- Используйте официальные migration schematics: `ng generate @angular/core:standalone`
-- Конвертируйте маршруты из NgModule lazy loading (`loadChildren` + `NgModule`) в standalone `loadComponent`
-- Замените `BrowserModule`/`CommonModule` imports в migrated классах на `imports` array standalone компонента
-- Переместите root providers в `app.config.ts` (`provideHttpClient()`, interceptors, etc.) вместо `AppModule`
-- Удалите пустые NgModules после миграции; проверьте с `ng build` и Vitest suite
-
-### Ссылки
-- [Angular Standalone Migration Guide](https://angular.dev/reference/migrations/standalone)
+> Полные правила миграции с NgModule на standalone — см. `02.architecture.08.migration-standalone.rule.md` и [Angular Standalone Migration Guide](https://angular.dev/reference/migrations/standalone).
