@@ -3,11 +3,13 @@
 ## 📊 Итоги импорта
 
 ### Созданные файлы
+
 - **Файлы карточек**: 354 файла (.cards.json)
 - **Файлы сценариев**: 354 файла (.scenario.json)
 - **Всего карточек**: 619 уникальных карточек из all_cpp_content.json
 
 ### Структура данных
+
 ```
 public/data/cpp/
 ├── cards/           # 354 новых файла карточек
@@ -24,7 +26,9 @@ public/data/cpp/
 ```
 
 ### Формат карточек
+
 Каждая карточка содержит:
+
 - `id`: уникальный идентификатор (например, "advanced.compiler.internals4.card-01")
 - `kind`: тип карточки ("select")
 - `title`: заголовок вопроса
@@ -37,7 +41,9 @@ public/data/cpp/
 - `courseId`, `lessonId`, `scenarioId`: связи с курсом и уроком
 
 ### Формат сценариев
+
 Каждый сценарий содержит:
+
 - `id`: уникальный идентификатор сценария
 - `title`: название сценария
 - `description`: описание
@@ -59,34 +65,41 @@ public/data/cpp/
 ## 🔧 Технические детали
 
 ### Генерация ID
+
 - Карточки: `{topic_key}.card-{index:02d}`
 - Сценарии: `{topic_key}.scenario`
 - Topic key: `advanced.compiler.internals4` (из ключа all_cpp_content.json)
 
 ### Определение сложности
+
 - `advanced` в topic key → difficulty: "advanced"
 - `intermediate` в topic key → difficulty: "intermediate"
 - Остальные → difficulty: "beginner"
 
 ### Теги
+
 Извлекаются из первой карточки сценария и используются для категоризации.
 
 ## 📈 Статистика по темам
 
 ### Basics (35 тем)
+
 - intro-comments, intro-compilation, intro-compiler-setup, intro-history, intro-main-structure
 - operators-expressions, control-for, control-while, control-break-continue, control-switch
 - strings, types, functions, vectors, arrays, algorithms, exceptions, io, files, streams, multithreading, network-programming, system-programming, performance
 
 ### OOP (10 тем)
+
 - classes-intro, constructors-destructors, inheritance, polymorphism, interfaces-abstract
 - templates-intro, templates-specialization, smart-pointers, rules-of-five, exceptions-oop
 
 ### STL (10 тем)
+
 - containers-map, containers-unordered-map, containers-set, containers-algorithms
 - iterators, strings-stl, filesystem, regex, chrono, optional-variant
 
 ### Advanced (205 тем)
+
 - macros-preprocessor, memory-management, constexpr, concepts, coroutines
 - meta-programming, cmake-build, debugging, testing, ci-cd, design-patterns
 - exception-handling, templates-advanced, modern-cpp, parallel-programming
@@ -111,6 +124,7 @@ public/data/cpp/
 ## ✅ Верификация проекта
 
 Все проверки пройдены успешно:
+
 - **Lint**: All files pass linting.
 - **FSD audit**: 2503 imports respect layer direction and slice isolation.
 - **Rules audit**: 46 rule files have valid front-matter, naming, references and index.
