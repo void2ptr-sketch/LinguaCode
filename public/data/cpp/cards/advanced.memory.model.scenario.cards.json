@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.memory.model.scenario",
+  "cards": [
+    {
+      "id": "advanced.memory.model.card-01",
+      "kind": "select",
+      "title": "Memory order",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory order?",
+      "optionsLearning": [
+        "Гарантии порядка операций (relaxed, acquire, release)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-memory-model",
+      "scenarioId": "advanced.memory.model.scenario"
+    },
+    {
+      "id": "advanced.memory.model.card-02",
+      "kind": "select",
+      "title": "Atomic operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое atomic?",
+      "optionsLearning": [
+        "Атомарная операция (непрерывная, без прерываний)",
+        "Обычная операция",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-memory-model",
+      "scenarioId": "advanced.memory.model.scenario"
+    },
+    {
+      "id": "advanced.memory.model.card-03",
+      "kind": "select",
+      "title": "Lock-free programming",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое lock-free?",
+      "optionsLearning": [
+        "Прогресс без mutex (атомарные операции)",
+        "С mutex",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-memory-model",
+      "scenarioId": "advanced.memory.model.scenario"
+    },
+    {
+      "id": "advanced.memory.model.card-04",
+      "kind": "select",
+      "title": "Memory barriers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory barrier?",
+      "optionsLearning": [
+        "Гарантия порядка операций в multi-threaded code",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-memory-model",
+      "scenarioId": "advanced.memory.model.scenario"
+    },
+    {
+      "id": "advanced.memory.model.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать lock-free code?",
+      "optionsLearning": [
+        "std::atomic + memory orders",
+        "Только mutex",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-memory-model",
+      "scenarioId": "advanced.memory.model.scenario"
+    }
+  ]
+}

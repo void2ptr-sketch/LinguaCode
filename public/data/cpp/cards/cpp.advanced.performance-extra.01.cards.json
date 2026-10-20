@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-01",
+      "kind": "select",
+      "title": "Cache optimization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать cache usage?",
+      "optionsLearning": [
+        "Data-oriented design (contiguous memory)",
+        "OOP всегда",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-02",
+      "kind": "select",
+      "title": "Branch prediction",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое branch prediction?",
+      "optionsLearning": [
+        "CPU предсказание ветвлений (for faster execution)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-03",
+      "kind": "select",
+      "title": "Profiling tools",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Популярные profiling инструменты?",
+      "optionsLearning": [
+        "perf, gprof, valgrind, Intel VTune",
+        "Только GDB",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-04",
+      "kind": "select",
+      "title": "Benchmarking",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как правильно бенчмаркать?",
+      "optionsLearning": [
+        "Измерять реальные сценарии, избегать cold start",
+        "Один замер",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать эффективно?",
+      "optionsLearning": [
+        "Profile → optimize bottleneck → re-profile",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-06",
+      "kind": "select",
+      "title": "Loop unrolling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое loop unrolling?",
+      "optionsLearning": [
+        "Раскрытие цикла (больше работы на итерацию)",
+        "Уменьшение итераций",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-07",
+      "kind": "select",
+      "title": "Loop fusion",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое loop fusion?",
+      "optionsLearning": [
+        "Объединение циклов (меньше overhead)",
+        "Разделение циклов",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-08",
+      "kind": "select",
+      "title": "Software pipelining",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое software pipelining?",
+      "optionsLearning": [
+        "Перекрытие операций (overlap execution)",
+        "Последовательное выполнение",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-09",
+      "kind": "select",
+      "title": "Profiling guided optimization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое PGO?",
+      "optionsLearning": [
+        "Optimization based on runtime profiles (best performance)",
+        "Оптимизация без данных",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать эффективно?",
+      "optionsLearning": [
+        "Profile → optimize bottleneck → re-profile + PGO",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-11",
+      "kind": "select",
+      "title": "Memory alignment",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем memory alignment?",
+      "optionsLearning": [
+        "Выравнивание для SIMD и cache efficiency (alignas)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-12",
+      "kind": "select",
+      "title": "Cache prefetching",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое cache prefetching?",
+      "optionsLearning": [
+        "Предварительная загрузка данных в кэш (__builtin_prefetch)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-13",
+      "kind": "select",
+      "title": "Vectorization patterns",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Паттерны vectorization?",
+      "optionsLearning": [
+        "Loop unrolling + SIMD intrinsics + auto-vectorization",
+        "Только manual",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-14",
+      "kind": "select",
+      "title": "Profiling guided optimization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое PGO?",
+      "optionsLearning": [
+        "Optimization based on runtime profiles (best performance)",
+        "Оптимизация без данных",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать эффективно?",
+      "optionsLearning": [
+        "Profile → optimize bottleneck → re-profile + PGO + vectorization",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-16",
+      "kind": "select",
+      "title": "Memory alignment advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое memory alignment?",
+      "optionsLearning": [
+        "alignas + alignof + cache line padding + SIMD alignment",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-17",
+      "kind": "select",
+      "title": "Cache prefetching advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое cache prefetching?",
+      "optionsLearning": [
+        "__builtin_prefetch + hardware prefetching + software hints",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-18",
+      "kind": "select",
+      "title": "Vectorization patterns advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутые паттерны vectorization?",
+      "optionsLearning": [
+        "Loop unrolling + SIMD intrinsics + auto-vectorization + software pipelining",
+        "Только manual",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-19",
+      "kind": "select",
+      "title": "Profiling guided optimization advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый PGO?",
+      "optionsLearning": [
+        "Profile-guided + link-time optimization + feedback-directed",
+        "Оптимизация без данных",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.performance-extra.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать эффективно?",
+      "optionsLearning": [
+        "Profile → optimize bottleneck → re-profile + PGO + vectorization + cache-friendly",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-systems",
+      "scenarioId": "cpp.advanced.performance-extra.01.scenario"
+    }
+  ]
+}

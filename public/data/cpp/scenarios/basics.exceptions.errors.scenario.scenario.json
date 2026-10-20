@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.exceptions.errors.scenario",
+      "title": "C++ — std::exception hierarchy",
+      "description": "Сценарий: std::exception hierarchy — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-exceptions-errors",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.860902.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.860904.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.exceptions.errors.card-01",
+          "basics.exceptions.errors.card-02",
+          "basics.exceptions.errors.card-03",
+          "basics.exceptions.errors.card-04"
+        ]
+      }
+    }
+  ]
+}

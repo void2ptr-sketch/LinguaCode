@@ -1,0 +1,649 @@
+{
+  "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-01",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Как передать аргументы конструктору базового класса?",
+      "optionsLearning": [
+        "Через список инициализации: D(...) : B(args)",
+        "В теле D",
+        "Нельзя",
+        "Статически"
+      ],
+      "correctIndex": 0,
+      "explanation": "Список инициализации производного вызывает конструктор базового."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-02",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { B() { std::cout << 'b'; } };\nstruct D : B { D() : B() { std::cout << 'd'; } };\nint main() { D d; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "bd",
+        "db",
+        "d",
+        "b"
+      ],
+      "correctIndex": 0,
+      "explanation": "B инициализируется перед D: bd."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-03",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что произойдёт, если базовый класс не имеет конструктора по умолчанию?",
+      "optionsLearning": [
+        "Ошибка: нужен явный вызов конструктора Base",
+        "Автоматически",
+        "Null",
+        "Дефолт создаётся"
+      ],
+      "correctIndex": 0,
+      "explanation": "производный обязан вызвать подходящий конструктор Base."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-04",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "Компилируется ли этот код?",
+      "code": {
+        "code": "struct B { B(int) {} };\nstruct D : B { D() {} };",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Нет — B без конструктора по умолчанию",
+        "Да",
+        "Да в C++20",
+        "С warning"
+      ],
+      "correctIndex": 0,
+      "explanation": "D() не вызывает B(int) — ошибка: нет B()."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-05",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Как исправить предыдущую ситуацию?",
+      "optionsLearning": [
+        "D() : B(0) {}",
+        "Добавить B()",
+        "static",
+        "virtual"
+      ],
+      "correctIndex": 0,
+      "explanation": "Явный вызов конструктора базы с аргументом решает задачу."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-06",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что такое унаследованные конструкторы (C++11)?",
+      "optionsLearning": [
+        "using Base::Base; — конструкторы базы наследуются",
+        "Копирование",
+        "Дефолт",
+        "Статика"
+      ],
+      "correctIndex": 0,
+      "explanation": "using B::B; переносит конструкторы в производный класс."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-07",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "oop",
+          "inheritance"
+        ],
+        "tags": "Порядок: базы (по объявлению), потом члены производного."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "В каком порядке инициализируются части объекта D из B?",
+      "code": {
+        "code": [
+          "Сначала B (базы), потом члены D",
+          "Члены D первыми",
+          "Случайно",
+          "Параллельно"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-08",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Почему перед телом D уже выполнен конструктор B?",
+      "optionsLearning": [
+        "Чтобы базовые поля были готовы",
+        "Так удобно",
+        "Случайно",
+        "Для скорости"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инициализация базы — precondition использования её полей."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-09",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Можно ли вызвать виртуальный метод в конструкторе базового?",
+      "optionsLearning": [
+        "Да, но вызовется версия базового (safe), не производного",
+        "Нельзя",
+        "Только в C++20",
+        "Ошибка всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Во время конструктора базы объект ещё не производный — virtual не работает полностью."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { B(int x) { std::cout << x; } };\nstruct D : B { D() : B(7) { std::cout << 'd'; } };\nint main() { D d; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7d",
+        "d7",
+        "7",
+        "d"
+      ],
+      "correctIndex": 0,
+      "explanation": "B(7) печатает 7, потом D: 7d."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-11",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что будет при копировании производного объекта?",
+      "optionsLearning": [
+        "Копируется базовый и производный срезы (в зависимости)",
+        "Дубли ссылки",
+        "Ошибка",
+        "Только id"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор копии D копирует базу и свои члены."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-12",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что такое slicing (срезка) объекта?",
+      "optionsLearning": [
+        "Копирование только базовой части при присваивании в Base",
+        "Удаление полей",
+        "Шаблон",
+        "Сортировка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Base b = d; теряет производные части — опасное сужение."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { int x = 1; };\nstruct D : B { int y = 2; };\nint main() { D d; B b = d; std::cout << b.x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Slicing: копируется лишь базовая часть — x=1."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-14",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что будет с виртуальным деструктором при удалении базового указателя?",
+      "optionsLearning": [
+        "Вызовется деструктор производного (правильный)",
+        "Только базовый",
+        "Ничего",
+        "UB при отсутствии virtual"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual ~B() гарантирует полное уничтожение D."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-15",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Зачем базовому классу виртуальный деструктор?",
+      "optionsLearning": [
+        "Корректное удаление полиморфных объектов",
+        "Для скорости",
+        "Документации",
+        "Обязателен"
+      ],
+      "correctIndex": 0,
+      "explanation": "delete через Base* без virtual — UB (неполное уничтожение)."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-16",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что такое delegating constructor в производном?",
+      "optionsLearning": [
+        "Свой конструктор вызывает другой своего класса, который зовёт базу",
+        "Вызов base",
+        "Копия",
+        "Перегрузка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Делегирование упрощает дублирующиеся инициализации."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-17",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Порядок деструкторов в иерархии?",
+      "optionsLearning": [
+        "Сначала D, потом B",
+        "Сначала B",
+        "Случайно",
+        "По алфавиту"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разрушение обратно созданию."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { ~B() { std::cout << 'b'; } };\nstruct D : B { ~D() { std::cout << 'd'; } };\nint main() { D d; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "db",
+        "bd",
+        "d",
+        "b"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор D, затем B: db."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-19",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Почему нельзя полагаться на конструктор Base для инициализации членов D?",
+      "optionsLearning": [
+        "Члены D не существуют при вызове базы",
+        "Скорость",
+        "Стиль",
+        "База чище"
+      ],
+      "correctIndex": 0,
+      "explanation": "Члены D инициализируются после базы."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-20",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Как правильно создать иерархию с общими полями?",
+      "optionsLearning": [
+        "Общие поля в Base + конструктор с параметрами",
+        "Дублировать",
+        "static",
+        "генер"
+      ],
+      "correctIndex": 0,
+      "explanation": "Базовый класс владеет общей частью состояния."
+    }
+  ],
+  "title": "Oop — Intermediate C++"
+}

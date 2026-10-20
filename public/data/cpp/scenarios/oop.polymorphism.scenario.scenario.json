@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "oop.polymorphism.scenario",
+      "title": "C++ — Polymorphism definition",
+      "description": "Сценарий: Polymorphism definition — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-oop-polymorphism",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.883814.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.883816.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "oop.polymorphism.card-01",
+          "oop.polymorphism.card-02",
+          "oop.polymorphism.card-03",
+          "oop.polymorphism.card-04",
+          "oop.polymorphism.card-05"
+        ]
+      }
+    }
+  ]
+}

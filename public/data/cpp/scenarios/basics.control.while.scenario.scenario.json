@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.control.while.scenario",
+      "title": "C++ — Синтаксис while",
+      "description": "Сценарий: Синтаксис while — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-control-while",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.860826.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.860828.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.control.while.card-01",
+          "basics.control.while.card-02",
+          "basics.control.while.card-03",
+          "basics.control.while.card-04"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,585 @@
+{
+  "cards": [
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-01",
+      "kind": "select",
+      "title": "Минимальная программа",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая минимальная программа C++?",
+      "optionsLearning": [
+        "int main() {}",
+        "void main() {}",
+        "class Program {}",
+        "def main():"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-02",
+      "kind": "select",
+      "title": "Main function return",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что возвращает main()?",
+      "optionsLearning": [
+        "int (0 = success)",
+        "void",
+        "string",
+        "nothing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-03",
+      "kind": "select",
+      "title": "Include headers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем #include <iostream>?",
+      "optionsLearning": [
+        "Для std::cin, std::cout",
+        "Для main()",
+        "Обязательно всегда",
+        "Для компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-04",
+      "kind": "select",
+      "title": "Namespace std",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое namespace std?",
+      "optionsLearning": [
+        "Пространство имён стандартной библиотеки",
+        "Ошибка компиляции",
+        "Тип данных",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-05",
+      "kind": "select",
+      "title": "Using namespace",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает using namespace std?",
+      "optionsLearning": [
+        "Позволяет писать cout вместо std::cout",
+        "Ошибка компиляции",
+        "Увеличивает размер",
+        "Отключает std"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-06",
+      "kind": "select",
+      "title": "Program structure",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Порядок элементов в файле?",
+      "optionsLearning": [
+        "Includes → Using → Functions → main()",
+        "main() → Functions → Includes",
+        "Functions → main() → Includes",
+        "Случайный порядок"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-07",
+      "kind": "select",
+      "title": "Multiple files",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как организовать многофайловый проект?",
+      "optionsLearning": [
+        ".h (declarations) + .cpp (implementations)",
+        "Только .cpp файлы",
+        "Только .h файлы",
+        "Один файл"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-08",
+      "kind": "select",
+      "title": "Header guards",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем #ifndef HEADER_H?",
+      "optionsLearning": [
+        "Предотвращение повторного включения",
+        "Увеличение скорости",
+        "Отключение header",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-09",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как структурировать большой проект?",
+      "optionsLearning": [
+        "Разделить на модули/файлы по ответственности",
+        "Один огромный файл",
+        "Скрыть все функции",
+        "Использовать только main()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-10",
+      "kind": "select",
+      "title": "Арифметические операторы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие арифметические операторы в C++?",
+      "optionsLearning": [
+        "+, -, *, /, % (остаток)",
+        "+, -, ×, ÷, ^",
+        "++, --, +=, -= только",
+        "~, &, |"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-11",
+      "kind": "select",
+      "title": "Оператор присваивания",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем = отличается от ==?",
+      "optionsLearning": [
+        "= присваивает, == сравнивает",
+        "Одно и то же",
+        "== присваивает, = сравнивает",
+        "Оба — сравнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-12",
+      "kind": "select",
+      "title": "Операторы инкремента",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем i++ отличается от ++i?",
+      "optionsLearning": [
+        "i++ возвращает старое значение, ++i — новое",
+        "Одно и то же всегда",
+        "++i медленнее",
+        "i++ быстрее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-13",
+      "kind": "select",
+      "title": "Операторы сравнения",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие операторы сравнения?",
+      "optionsLearning": [
+        "==, !=, <, >, <=, >=",
+        "==, ==, <>, ^, <<, >>",
+        "=",
+        "+, -, *, /",
+        "&&, ||, !"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-14",
+      "kind": "select",
+      "title": "Логические операторы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие логические операторы?",
+      "optionsLearning": [
+        "&& (И), || (ИЛИ), ! (НЕ)",
+        "&, |, ~",
+        "+, -, *",
+        "==, !="
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-15",
+      "kind": "select",
+      "title": "Побитовые операторы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие побитовые операторы?",
+      "optionsLearning": [
+        "&, |, ^, ~, <<, >>",
+        "&&, ||, !",
+        "+, -, *",
+        "==, !=, <, >"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-16",
+      "kind": "select",
+      "title": "Priority of operators",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что имеет высший приоритет?",
+      "optionsLearning": [
+        "* / % (умножение/деление)",
+        "+ - (сложение/вычитание)",
+        "= (присваивание)",
+        "== (сравнение)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-17",
+      "kind": "select",
+      "title": "Type promotion",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при int + double?",
+      "optionsLearning": [
+        "int_promоруется в double, результат double",
+        "Ошибка компиляции",
+        "Результат int",
+        "Результат float"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-18",
+      "kind": "select",
+      "title": "Integer division",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое 7 / 2 в C++?",
+      "optionsLearning": [
+        "3 (целочисленное деление)",
+        "3.5",
+        "Ошибка компиляции",
+        "4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-19",
+      "kind": "select",
+      "title": "Modulo operator",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает %?",
+      "optionsLearning": [
+        "Остаток от деления",
+        "Процент",
+        "Деление",
+        "Умножение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.03.scenario.card-20",
+      "kind": "select",
+      "title": "Big O notation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Big O?",
+      "optionsLearning": [
+        "Оценка сложности алгоритма",
+        "Название языка",
+        "Тип данных",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.03.scenario"
+    }
+  ]
+}

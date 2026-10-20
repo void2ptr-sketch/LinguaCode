@@ -1,0 +1,638 @@
+{
+  "scenarioId": "cpp.basics.intro-comments.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-01",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Какой синтаксис у однострочного комментария в C++?",
+      "optionsLearning": [
+        "// текст комментария",
+        "/* текст */",
+        "# текст",
+        "<!-- текст -->"
+      ],
+      "correctIndex": 0,
+      "explanation": "Однострочный комментарий начинается с // и длится до конца строки."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-02",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Какой синтаксис у многострочного комментария в C++?",
+      "optionsLearning": [
+        "/* текст */",
+        "// текст //",
+        "<!-- текст -->",
+        "** текст **"
+      ],
+      "correctIndex": 0,
+      "explanation": "Многострочный комментарий ограничен парами /* и */."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-03",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Что делает препроцессор с комментариями к моменту компиляции?",
+      "optionsLearning": [
+        "Заменяет каждый комментарий одним пробелом",
+        "Удаляет комментарии вместе с кодом",
+        "Сохраняет комментарии в бинарнике",
+        "Превращает комментарии в строки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Комментарии заменяются одним пробелом на этапе препроцессинга, поэтому разбиение лексем не нарушается."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-04",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Можно ли вложить комментарий /* ... /* ... */ ... */ внутрь другого?",
+      "optionsLearning": [
+        "Нет, вложенность блоков /* */ не поддерживается",
+        "Да, в C++20 разрешено",
+        "Да, но только в стиле Doxygen",
+        "Только если оба на одной строке"
+      ],
+      "correctIndex": 0,
+      "explanation": "Первый же */ завершает блок — вложение /* */ не поддерживается в C++."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Комментарии и документация — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "question": "Что произойдёт при компиляции этого кода?",
+      "code": {
+        "code": "int main() { /* комментарий */ return 0; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Программа скомпилируется и вернёт 0",
+        "Ошибка: комментарий внутри блока",
+        "Предупреждение о мёртвом коде",
+        "Ошибка: комментарий после return"
+      ],
+      "correctIndex": 0,
+      "explanation": "Комментарий игнорируется препроцессором, код корректно компилируется."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-06",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Зачем используются комментарии вида // TODO: ...?",
+      "optionsLearning": [
+        "Пометить незавершённый код для доработки",
+        "Запретить компиляцию строки",
+        "Подключить библиотеку",
+        "Объявить функцию"
+      ],
+      "correctIndex": 0,
+      "explanation": "TODO — общепринятая метка для указания на незавершённые задачи в коде."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-07",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Какой инструмент генерирует документацию из комментированного кода?",
+      "optionsLearning": [
+        "Doxygen",
+        "GDB",
+        "Valgrind",
+        "Make"
+      ],
+      "correctIndex": 0,
+      "explanation": "Doxygen разбирает специальные комментарии и строит документацию по API."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-08",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Какой комментарий Doxygen описывает параметр функции?",
+      "optionsLearning": [
+        "@param name — описание",
+        "// param name",
+        "/* @param */ только блок",
+        "#param name"
+      ],
+      "correctIndex": 0,
+      "explanation": "Тег @param используется в блоках Doxygen для описания аргументов функции."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-09",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Почему не стоит комментировать очевидный код вида x = x + 1;?",
+      "optionsLearning": [
+        "Комментарий не добавляет информации и устаревает",
+        "Компилятор удалит такой комментарий",
+        "Он замедляет выполнение",
+        "Он занимает место в бинарнике"
+      ],
+      "correctIndex": 0,
+      "explanation": "Комментарии должны объяснять замысел, а не повторять код — иначе они вводят в заблуждение."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Комментарии и документация — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { // std::cout << 1;\n std::cout << 2; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "12",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вывод 1 закомментирован, поэтому выполняется только вывод 2."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-11",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Можно ли использовать комментарий внутри строкового литерала?",
+      "optionsLearning": [
+        "Да, это часть строки, не комментарий",
+        "Нет, это всегда синтаксическая ошибка",
+        "Только в C++17",
+        "Только для wchar_t строк"
+      ],
+      "correctIndex": 0,
+      "explanation": "Внутри строковых литералов символы // и /* */ — обычные символы, а не комментарии."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-12",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Как закомментировать блок кода из 10 строк наиболее надёжно?",
+      "optionsLearning": [
+        "Обрамить /* ... */ или закомментировать // каждую строку",
+        "Поставить // перед блоком",
+        "Обернуть в препроцессорный #if 0",
+        "Использовать <-- -->"
+      ],
+      "correctIndex": 2,
+      "explanation": "Надёжный способ временно отключить код с вложенными комментариями — #if 0 ... #endif."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-13",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Что произойдёт, если забыть закрыть многострочный комментарий /* ... ?",
+      "optionsLearning": [
+        "Остаток файла станет комментарием — возможна ошибка",
+        "Компилятор сам закроет его",
+        "Будет предупреждение, но код скомпилируется",
+        "Ничего, это допустимо"
+      ],
+      "correctIndex": 0,
+      "explanation": "Незакрытый /* поглощает весь последующий код до конца файла, что ломает программу."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-14",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Какой стиль комментариев рекомендуется для публичного API библиотеки?",
+      "optionsLearning": [
+        "Документационные блоки Doxygen с описанием контракта",
+        "Без комментариев — код говорит сам",
+        "Только однострочные //",
+        "Комментарии только в .cpp файлах"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для публичного API важны контракты: что делает функция, параметры, возврат, исключения."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-15",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Чем плох комментарий, который не соответствует коду?",
+      "optionsLearning": [
+        "Вводит в заблуждение — хуже, чем отсутствие комментария",
+        "Компилятор выдаст ошибку",
+        "Увеличивает время сборки",
+        "Нарушает лицензию"
+      ],
+      "correctIndex": 0,
+      "explanation": "Устаревший комментарий дезинформирует читателя сильнее, чем его отсутствие."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "Комментарии и документация — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 5 /* + 3 */ + 2; std::cout << x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "10",
+        "5",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "Комментарий заменяется пробелом: выражение становится 5 + 2 = 7."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-17",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Какой комментарий кратко описывает назначение функции по стандарту хорошего стиля?",
+      "optionsLearning": [
+        "Функция вычисляет сумму всех элементов вектора.",
+        "Вот код функции.",
+        "Не трогать!",
+        "auto — быстрый код"
+      ],
+      "correctIndex": 0,
+      "explanation": "Комментарий должен объяснять замысел и контракт функции, а не пересказывать код."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-18",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Что означает комментарий FIXME в коде?",
+      "optionsLearning": [
+        "Метку об известной ошибке, которую нужно исправить",
+        "Имя автора",
+        "Версию компилятора",
+        "Дату сборки"
+      ],
+      "correctIndex": 0,
+      "explanation": "FIXME помечает место, где есть известная проблема, требующая исправления."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-19",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Почему комментарии не влияют на производительность программы?",
+      "optionsLearning": [
+        "Они удаляются препроцессором до компиляции",
+        "Они хранятся отдельно от бинарника",
+        "Они выполняются в фоновом потоке",
+        "Они кэшируются процессором"
+      ],
+      "correctIndex": 0,
+      "explanation": "Препроцессор удаляет комментарии до стадии компиляции, поэтому в машинном коде их нет."
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario.card-20",
+      "kind": "select",
+      "title": "Комментарии и документация — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-comments.01.scenario",
+      "promptKnown": "Какая директива условной компиляции позволяет временно сохранить закомментированный код?",
+      "optionsLearning": [
+        "#if 0 ... #endif",
+        "//if 0",
+        "/*if 0*/",
+        "#pragma once"
+      ],
+      "correctIndex": 0,
+      "explanation": "#if 0 исключает блок из компиляции; это надёжнее вложенных комментариев."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject, signal, effect } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -8,6 +8,8 @@ import { JourneyAnalyticsService } from '../../../features/journey/services/jour
 import { LearningDashboardService } from '../../../entities/learning/services';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
+import { CourseSearchService } from '../../../entities/course';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import {
   buildJourneyNodes,
@@ -16,6 +18,7 @@ import {
 import type { JourneyLocationNode } from '../../../entities/learning/model';
 import type { CardBase } from '../../../entities/card/model';
 import type { CourseWithLessons } from '../../../entities/course/model';
+import { CPP_COMPLETE_COURSE_ID } from '../../../entities/course/model';
 
 /**
  * Journey page component. Renders the learning journey map for the current course,
@@ -39,7 +42,7 @@ import type { CourseWithLessons } from '../../../entities/course/model';
       <app-learning-journey-map
         [courseId]="courseId()"
         [nodes]="nodes()"
-        (locationSelect)="onLocationSelect()"
+        (locationSelect)="onLocationSelect($event)"
       />
     } @else {
       <div class="journey-page__empty" role="status">
@@ -51,47 +54,101 @@ import type { CourseWithLessons } from '../../../entities/course/model';
 })
 export class JourneyPageComponent {
   private readonly dashboardService = inject<LearningDashboardService>(LearningDashboardService);
+  private readonly courseSearchService = inject(CourseSearchService);
   private readonly analyticsService = inject(JourneyAnalyticsService);
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly contentSeedRepo = inject(ContentSeedRepository);
+  private readonly userStore = inject(UserStore);
   private readonly logger = inject(AppLoggerService);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
   readonly nodes = signal<JourneyLocationNode[]>([]);
   readonly courseId = signal('');
 
+  /** ID курса, который сейчас загружается (защита от параллельных запросов). */
+  private loadingCourseId: string | null = null;
+
   constructor() {
+    // Загружаем активный курс дашборда — он используется как fallback,
+    // когда курс не передан явно через query-параметр `?courseId=`.
     this.dashboardService.reload();
 
-    effect(() => {
-      const course = this.dashboardService.course();
-      if (course) {
-        this.buildNodes(course);
-      }
-    });
-
     const queryParams = toSignal(
-      this.route.queryParams.pipe(
-        map((params) => {
-          const fromQuery = params['courseId'] as string | undefined;
-          const dashboardCourse = this.dashboardService.course();
-          const fromDashboard = dashboardCourse?.id;
-          return fromQuery ?? fromDashboard ?? '';
-        }),
-      ),
+      this.route.queryParams.pipe(map((params) => params['courseId'] as string | undefined)),
     );
 
     effect(() => {
-      const id = queryParams();
-      if (id) {
-        this.courseId.set(id);
+      const requestedId = queryParams();
+      const dashboardCourse = this.dashboardService.course();
+
+      // Явный выбор курса через `?courseId=` имеет приоритет над активным курсом дашборда.
+      if (requestedId) {
+        this.courseId.set(requestedId);
+        if (requestedId !== dashboardCourse?.id) {
+          void this.loadCourse(requestedId);
+        } else if (dashboardCourse) {
+          this.buildNodes(dashboardCourse);
+        }
+        return;
+      }
+
+      // Без query-параметра показываем активный курс дашборда;
+      // по умолчанию предпочитаем C++ Complete Course.
+      if (dashboardCourse) {
+        if (dashboardCourse.id === CPP_COMPLETE_COURSE_ID) {
+          this.courseId.set(dashboardCourse.id);
+          this.buildNodes(dashboardCourse);
+        } else {
+          this.courseId.set(CPP_COMPLETE_COURSE_ID);
+          void this.loadCourse(CPP_COMPLETE_COURSE_ID);
+        }
       }
     });
   }
 
+  /**
+   * Загружает курс по ID (query-параметр `?courseId=`) и строит узлы карты для него.
+   *
+   * @param courseId - ID курса для отображения на карте.
+   */
+  private async loadCourse(courseId: string): Promise<void> {
+    // Узлы для этого курса уже построены — не перезагружаем.
+    if (this.nodes().length > 0 && this.nodes()[0].courseId === courseId) {
+      return;
+    }
+    // Запрос уже выполняется — не дублируем.
+    if (this.loadingCourseId === courseId) {
+      return;
+    }
+
+    this.loadingCourseId = courseId;
+    this.loading.set(true);
+    this.error.set(null);
+
+    try {
+      const course = await this.courseSearchService.getById(courseId);
+      if (this.courseId() === courseId && course.id === courseId) {
+        this.buildNodes(course);
+      }
+    } catch (error) {
+      this.logger.error('[JourneyPage] Failed to load course from query param', error);
+      this.error.set('Не удалось загрузить программу обучения');
+    } finally {
+      this.loadingCourseId = null;
+      this.loading.set(false);
+    }
+  }
+
   private buildNodes(course: CourseWithLessons): void {
+    // Активируем языковую пару курса, чтобы открытие сценариев с карты
+    // (переход на /cards/select) не блокировалось несовпадением пары.
+    if (course.languagePair) {
+      this.userStore.addLanguagePair(course.languagePair);
+    }
+
     const hasScenarioResult = (scenarioId: string) =>
       this.resultsStore.resultsForScenario(scenarioId).length > 0;
 
@@ -130,7 +187,19 @@ export class JourneyPageComponent {
    * @remarks
    * Currently a placeholder — navigates to the selected scenario or opens detail view.
    */
-  onLocationSelect(): void {
-    // TODO: перейти к сценарию или открыть детальную информацию
+  onLocationSelect(nodeId: string): void {
+    const node = this.nodes().find((item) => item.id === nodeId);
+    if (!node) {
+      return;
+    }
+    // Переход к сценарию на страницу карточек с полным контекстом
+    // (курс, урок, сценарий) — сценарий открывается напрямую.
+    void this.router.navigate(['/cards/select'], {
+      queryParams: {
+        courseId: node.courseId,
+        lessonId: node.lessonId,
+        scenarioId: node.scenarioId,
+      },
+    });
   }
 }

@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.basics.strings.01.scenario",
+      "title": "Строки в C++ (std::string)",
+      "description": "Сценарий: Строки в C++ (std::string)",
+      "order": 0,
+      "lessonId": "lesson-cpp-basics-strings",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-18T23:22:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-18T23:22:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.basics.strings.01.scenario.card-01",
+          "cpp.basics.strings.01.scenario.card-02",
+          "cpp.basics.strings.01.scenario.card-03",
+          "cpp.basics.strings.01.scenario.card-04",
+          "cpp.basics.strings.01.scenario.card-05",
+          "cpp.basics.strings.01.scenario.card-06",
+          "cpp.basics.strings.01.scenario.card-07",
+          "cpp.basics.strings.01.scenario.card-08",
+          "cpp.basics.strings.01.scenario.card-09",
+          "cpp.basics.strings.01.scenario.card-10",
+          "cpp.basics.strings.01.scenario.card-11",
+          "cpp.basics.strings.01.scenario.card-12",
+          "cpp.basics.strings.01.scenario.card-13",
+          "cpp.basics.strings.01.scenario.card-14",
+          "cpp.basics.strings.01.scenario.card-15",
+          "cpp.basics.strings.01.scenario.card-16",
+          "cpp.basics.strings.01.scenario.card-17",
+          "cpp.basics.strings.01.scenario.card-18",
+          "cpp.basics.strings.01.scenario.card-19",
+          "cpp.basics.strings.01.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-18T23:22:00.000Z"
+      }
+    }
+  ]
+}

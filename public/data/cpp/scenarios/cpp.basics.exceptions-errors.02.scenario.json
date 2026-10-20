@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario",
+      "title": "Exceptions и Errors 02",
+      "description": "Сценарий: Exceptions и Errors 02",
+      "order": 0,
+      "lessonId": "lesson-cpp-basics-exceptions",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-18T16:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-18T16:00:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.basics.exceptions-errors.02.scenario.card-01",
+          "cpp.basics.exceptions-errors.02.scenario.card-02",
+          "cpp.basics.exceptions-errors.02.scenario.card-03",
+          "cpp.basics.exceptions-errors.02.scenario.card-04",
+          "cpp.basics.exceptions-errors.02.scenario.card-05",
+          "cpp.basics.exceptions-errors.02.scenario.card-06",
+          "cpp.basics.exceptions-errors.02.scenario.card-07",
+          "cpp.basics.exceptions-errors.02.scenario.card-08",
+          "cpp.basics.exceptions-errors.02.scenario.card-09",
+          "cpp.basics.exceptions-errors.02.scenario.card-10",
+          "cpp.basics.exceptions-errors.02.scenario.card-11",
+          "cpp.basics.exceptions-errors.02.scenario.card-12",
+          "cpp.basics.exceptions-errors.02.scenario.card-13",
+          "cpp.basics.exceptions-errors.02.scenario.card-14",
+          "cpp.basics.exceptions-errors.02.scenario.card-15",
+          "cpp.basics.exceptions-errors.02.scenario.card-16",
+          "cpp.basics.exceptions-errors.02.scenario.card-17",
+          "cpp.basics.exceptions-errors.02.scenario.card-18",
+          "cpp.basics.exceptions-errors.02.scenario.card-19",
+          "cpp.basics.exceptions-errors.02.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-18T16:00:00.000Z"
+      }
+    }
+  ]
+}

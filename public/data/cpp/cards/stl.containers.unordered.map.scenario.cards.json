@@ -1,0 +1,121 @@
+{
+  "scenarioId": "stl.containers.unordered.map.scenario",
+  "cards": [
+    {
+      "id": "stl.containers.unordered.map.card-01",
+      "kind": "select",
+      "title": "Unordered map создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать std::unordered_map?",
+      "optionsLearning": [
+        "std::unordered_map<std::string, int> m;",
+        "HashMap<string, int> m;",
+        "Dict<string, int> m;",
+        "Dictionary<string, int> m;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-unordered-map",
+      "scenarioId": "stl.containers.unordered.map.scenario"
+    },
+    {
+      "id": "stl.containers.unordered.map.card-02",
+      "kind": "select",
+      "title": "Hash function",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как работает hashing?",
+      "optionsLearning": [
+        "hash(key) → bucket index",
+        "Сортировка ключей",
+        "Бинарный поиск",
+        "Линейный поиск"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-unordered-map",
+      "scenarioId": "stl.containers.unordered.map.scenario"
+    },
+    {
+      "id": "stl.containers.unordered.map.card-03",
+      "kind": "select",
+      "title": "Reserve buckets",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем reserve()?",
+      "optionsLearning": [
+        "Предварительное выделение bucket'ов (избегает rehash)",
+        "Уменьшение памяти",
+        "Очистка карты",
+        "Копирование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-unordered-map",
+      "scenarioId": "stl.containers.unordered.map.scenario"
+    },
+    {
+      "id": "stl.containers.unordered.map.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать unordered_map?",
+      "optionsLearning": [
+        "Когда важна скорость (O(1) avg)",
+        "Всегда map",
+        "Никогда",
+        "Только для small data"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "map"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-unordered-map",
+      "scenarioId": "stl.containers.unordered.map.scenario"
+    }
+  ]
+}

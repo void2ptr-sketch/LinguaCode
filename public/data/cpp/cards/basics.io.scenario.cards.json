@@ -1,0 +1,150 @@
+{
+  "scenarioId": "basics.io.scenario",
+  "cards": [
+    {
+      "id": "basics.io.card-01",
+      "kind": "select",
+      "title": "Cout output",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как вывести на экран?",
+      "optionsLearning": [
+        "std::cout << \"Hello\";",
+        "print(\"Hello\")",
+        "echo \"Hello\"",
+        "System.out.println"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-io",
+      "scenarioId": "basics.io.scenario"
+    },
+    {
+      "id": "basics.io.card-02",
+      "kind": "select",
+      "title": "Cin input",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как прочитать ввод?",
+      "optionsLearning": [
+        "std::cin >> var;",
+        "var = read()",
+        "input(var)",
+        "scanf(var)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-io",
+      "scenarioId": "basics.io.scenario"
+    },
+    {
+      "id": "basics.io.card-03",
+      "kind": "select",
+      "title": "Newline",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить новую строку?",
+      "optionsLearning": [
+        "std::endl или \"\\n\"",
+        "\\r только",
+        "println()",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-io",
+      "scenarioId": "basics.io.scenario"
+    },
+    {
+      "id": "basics.io.card-04",
+      "kind": "select",
+      "title": "Formatted output",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как форматировать вывод?",
+      "optionsLearning": [
+        "std::cout << std::setw(5) << val;",
+        "printf только",
+        "Нельзя",
+        "String.format"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-io",
+      "scenarioId": "basics.io.scenario"
+    },
+    {
+      "id": "basics.io.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать cin/cout?",
+      "optionsLearning": [
+        "Для простых программ и обучения",
+        "Всегда",
+        "Никогда",
+        "Только для файлов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-io",
+      "scenarioId": "basics.io.scenario"
+    }
+  ]
+}

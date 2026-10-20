@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.structs.03.scenario",
+      "title": "Структуры",
+      "description": "Сценарий: Структуры",
+      "order": 2,
+      "lessonId": "lesson-cpp-basics-structs",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-18T20:11:59.589Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-18T20:11:59.589Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.structs.03.scenario.card-01",
+          "cpp.structs.03.scenario.card-02",
+          "cpp.structs.03.scenario.card-03",
+          "cpp.structs.03.scenario.card-04",
+          "cpp.structs.03.scenario.card-05",
+          "cpp.structs.03.scenario.card-06",
+          "cpp.structs.03.scenario.card-07",
+          "cpp.structs.03.scenario.card-08",
+          "cpp.structs.03.scenario.card-09",
+          "cpp.structs.03.scenario.card-10",
+          "cpp.structs.03.scenario.card-11",
+          "cpp.structs.03.scenario.card-12",
+          "cpp.structs.03.scenario.card-13",
+          "cpp.structs.03.scenario.card-14",
+          "cpp.structs.03.scenario.card-15",
+          "cpp.structs.03.scenario.card-16",
+          "cpp.structs.03.scenario.card-17",
+          "cpp.structs.03.scenario.card-18",
+          "cpp.structs.03.scenario.card-19",
+          "cpp.structs.03.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-18T20:11:59.589Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "scenarioId": "basics.functions.inline.macros.scenario",
+  "cards": [
+    {
+      "id": "basics.functions.inline.macros.card-01",
+      "kind": "select",
+      "title": "Inline function",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем inline?",
+      "optionsLearning": [
+        "Подстановка кода вместо вызова (оптимизация)",
+        "Увеличение размера",
+        "Ошибка компиляции",
+        "Отключение функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "macros"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-inline-macros",
+      "scenarioId": "basics.functions.inline.macros.scenario"
+    },
+    {
+      "id": "basics.functions.inline.macros.card-02",
+      "kind": "select",
+      "title": "Inline vs macro",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем inline отличается от #define?",
+      "optionsLearning": [
+        "inline type-safe, macro нет",
+        "Одно и то же",
+        "Macro быстрее",
+        "Inline медленнее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "macros"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-inline-macros",
+      "scenarioId": "basics.functions.inline.macros.scenario"
+    },
+    {
+      "id": "basics.functions.inline.macros.card-03",
+      "kind": "select",
+      "title": "Macro dangers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Проблема макросов?",
+      "optionsLearning": [
+        "Нет проверки типов, side effects",
+        "Безопасны всегда",
+        "Быстрее inline",
+        "Не используются"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "macros"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-inline-macros",
+      "scenarioId": "basics.functions.inline.macros.scenario"
+    },
+    {
+      "id": "basics.functions.inline.macros.card-04",
+      "kind": "select",
+      "title": "Const vs macro",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "const или #define для констант?",
+      "optionsLearning": [
+        "const (type-safe)",
+        "#define всегда",
+        "Никак",
+        "Macro быстрее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "macros"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-inline-macros",
+      "scenarioId": "basics.functions.inline.macros.scenario"
+    },
+    {
+      "id": "basics.functions.inline.macros.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что использовать вместо макросов?",
+      "optionsLearning": [
+        "inline functions, constexpr, templates",
+        "#define всегда",
+        "Ничего",
+        "Global variables"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "macros"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-inline-macros",
+      "scenarioId": "basics.functions.inline.macros.scenario"
+    }
+  ]
+}

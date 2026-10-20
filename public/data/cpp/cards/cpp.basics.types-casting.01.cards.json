@@ -1,0 +1,647 @@
+{
+  "scenarioId": "cpp.basics.types-casting.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-01",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Какой вид приведения выполняется автоматически при int x = 3.7;?",
+      "optionsLearning": [
+        "Неявное (число к int с отбрасыванием дробной части)",
+        "static_cast",
+        "reinterpret_cast",
+        "dynamic_cast"
+      ],
+      "correctIndex": 0,
+      "explanation": "При присваивании double в int дробная часть отбрасывается (усечение к нулю)."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-02",
+      "kind": "code-trace",
+      "title": "Приведение типов — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { double d = 3.7; int i = d; std::cout << i; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "4",
+        "3.7",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Неявное приведение double→int отбрасывает дробную часть: 3."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-03",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Какой оператор приведения рекомендуется для явного преобразования типов?",
+      "optionsLearning": [
+        "static_cast<Type>(expr)",
+        "C-style (Type)expr",
+        "reinterpret_cast всегда",
+        "Никакой, приведение запрещено"
+      ],
+      "correctIndex": 0,
+      "explanation": "static_cast — безопасный и намеренный способ преобразования между совместимыми типами."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-04",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Что произойдёт при делении 5 / 2 в C++ для int?",
+      "optionsLearning": [
+        "Результат 2 (целочисленное деление)",
+        "Результат 2.5",
+        "Ошибка",
+        "Результат 3"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деление двух int выполняется в целых числах: остаток отбрасывается, 5/2 = 2."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Приведение типов — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << 5 / 2; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "2.5",
+        "2.0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Целочисленное деление 5/2 даёт 2, так как оба операнда типа int."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-06",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Как получить результат 2.5 при делении 5 на 2?",
+      "optionsLearning": [
+        "Привести хотя бы один операнд к double: 5.0 / 2",
+        "Написать 5 / 2.0 только",
+        "Использовать float(5/2)",
+        "Привести результат к int"
+      ],
+      "correctIndex": 0,
+      "explanation": "Если хотя бы один операнд вещественный, деление выполняется по правилам double."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-07",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Какой из операторов приведения выполняет преобразование во время выполнения с проверкой для полиморфных типов?",
+      "optionsLearning": [
+        "dynamic_cast",
+        "static_cast",
+        "const_cast",
+        "reinterpret_cast"
+      ],
+      "correctIndex": 0,
+      "explanation": "dynamic_cast проверяет иерархию типов в runtime и возвращает nullptr при неудаче для указателей."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-08",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Для чего используется const_cast?",
+      "optionsLearning": [
+        "Убирает const у указателя/ссылки",
+        "Меняет число на строку",
+        "Приводит void* к int",
+        "Копирует объект"
+      ],
+      "correctIndex": 0,
+      "explanation": "const_cast снимает cv-квалификатор const (нужен осторожно — только если объект не константен)."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-09",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Что делает reinterpret_cast?",
+      "optionsLearning": [
+        "Переинтерпретирует битовое представление значения",
+        "Убирает const",
+        "Проверяет иерархию в runtime",
+        "Округляет число"
+      ],
+      "correctIndex": 0,
+      "explanation": "reinterpret_cast трактует память как другой тип без каких-либо преобразований значений."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Приведение типов — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << static_cast<double>(5) / 2; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2.5",
+        "2",
+        "2.0",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "static_cast<double>(5) делает операнд double → деление 2.5."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-11",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Чем опасно сужающее приведение (например, long long → int)?",
+      "optionsLearning": [
+        "Возможна потеря данных из-за переполнения",
+        "Оно всегда запрещено",
+        "Увеличивает память",
+        "Замедляет программу"
+      ],
+      "correctIndex": 0,
+      "explanation": "Если значение не помещается в целевой тип, результат будет обрезан — данные теряются."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-12",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Какую инициализацию избегает сужающих преобразований?",
+      "optionsLearning": [
+        "Списочную инициализацию { }: int x{2.5} — ошибка",
+        "Присваивание = ",
+        "int x(2.5)",
+        "Прямую инициализацию"
+      ],
+      "correctIndex": 0,
+      "explanation": "Braced initialization запрещает сужающие конверсии на этапе компиляции."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Приведение типов — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "question": "Какой результат даст эта инициализация?",
+      "code": {
+        "code": "int x{2.9};",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Ошибка компиляции: сужающее преобразование",
+        "x == 2",
+        "x == 3",
+        "x == 2.9"
+      ],
+      "correctIndex": 0,
+      "explanation": "Списковая инициализация запрещает сужение double→int с потерей данных."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-14",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Что вернёт static_cast<int>('A') для ASCII?",
+      "optionsLearning": [
+        "65",
+        "A",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Символ 'A' в ASCII имеет код 65; static_cast<int>('A') = 65."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-15",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Зачем нужен C-style cast (int)x, если есть static_cast?",
+      "optionsLearning": [
+        "C-style cast не рекомендуется: он объединяет несколько видов приведения",
+        "Он безопаснее",
+        "Он быстрее",
+        "static_cast запрещён"
+      ],
+      "correctIndex": 0,
+      "explanation": "C-стиль может выполнить reinterpret/const-cast неявно, а static_cast выражает намерение."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-16",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Что случится при приведении отрицательного double к беззнаковому int?",
+      "optionsLearning": [
+        "Результат — большой положительный (модульная арифметика)",
+        "Результат отрицательный",
+        "Ошибка компиляции",
+        "Программа упадёт"
+      ],
+      "correctIndex": 0,
+      "explanation": "Преобразование в unsigned выполняется по модулю 2^N — появляется «большое» число."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Приведение типов — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "question": "Что выведет эта программа (в предположении int 8 бит для наглядности)?",
+      "code": {
+        "code": "unsigned char c = -1;\nstd::cout << static_cast<int>(c);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "255",
+        "-1",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "-1 приводится к unsigned char как 2^8-1 = 255."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-18",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Какой оператор приведения подходит для преобразования void* к конкретному типу?",
+      "optionsLearning": [
+        "static_cast",
+        "динамический только",
+        "const_cast",
+        "явный вручную битовый"
+      ],
+      "correctIndex": 0,
+      "explanation": "static_cast<void*>(...) и обратно — стандартный способ работы с void*."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-19",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Что выведет выражение char(65) при выводе?",
+      "optionsLearning": [
+        "Символ 'A'",
+        "Число 65",
+        "Ошибка",
+        "Пустая строка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Приведение числа 65 к char даёт символ 'A' по коду."
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario.card-20",
+      "kind": "select",
+      "title": "Приведение типов — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "types",
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.types-casting.01.scenario",
+      "promptKnown": "Какая из этих записей преобразует int в double явно и безопасно?",
+      "optionsLearning": [
+        "double d = static_cast<double>(x);",
+        "double d = x; только",
+        "double d = (x) + 0;",
+        "double d = x + 0.0;"
+      ],
+      "correctIndex": 0,
+      "explanation": "static_cast<double>(x) — явное намеренное преобразование int в double."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

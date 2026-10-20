@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.graphics.programming2.scenario",
+      "title": "C++ — Vulkan basics",
+      "description": "Сценарий: Vulkan basics — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-graphics-programming2",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.858159.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.858161.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.graphics.programming2.card-01",
+          "advanced.graphics.programming2.card-02",
+          "advanced.graphics.programming2.card-03",
+          "advanced.graphics.programming2.card-04",
+          "advanced.graphics.programming2.card-05"
+        ]
+      }
+    }
+  ]
+}

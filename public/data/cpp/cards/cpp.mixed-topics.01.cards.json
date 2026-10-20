@@ -1,0 +1,555 @@
+{
+  "cards": [
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-01",
+      "kind": "select",
+      "title": "Contract testing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое contract testing?",
+      "optionsLearning": [
+        "Тестирование интерфейсов между сервисами (API contracts)",
+        "Unit testing",
+        "Integration testing",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-02",
+      "kind": "select",
+      "title": "Chaos engineering",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое chaos engineering?",
+      "optionsLearning": [
+        "Тестирование устойчивости (random failures)",
+        "Unit testing",
+        "Integration testing",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-03",
+      "kind": "select",
+      "title": "Mutation testing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое mutation testing?",
+      "optionsLearning": [
+        "Изменение кода для проверки качества тестов",
+        "Unit testing",
+        "Integration testing",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-04",
+      "kind": "select",
+      "title": "Performance testing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое performance testing?",
+      "optionsLearning": [
+        "Тестирование скорости/нагрузки (JMeter, Locust)",
+        "Unit testing",
+        "Integration testing",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как тестировать сложные системы?",
+      "optionsLearning": [
+        "Комбинация: unit + integration + chaos + mutation",
+        "Только manual",
+        "Никак",
+        "Только unit"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-06",
+      "kind": "select",
+      "title": "Test framework",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Популярный тестовый фреймворк?",
+      "optionsLearning": [
+        "Google Test (gtest)",
+        "JUnit",
+        "PyTest",
+        "Jest"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-07",
+      "kind": "select",
+      "title": "Test case",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать тест?",
+      "optionsLearning": [
+        "TEST(TestSuite, TestCaseName) { ASSERT_EQ(5, calculate()); }",
+        "def test():",
+        "@test",
+        "function test()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-08",
+      "kind": "select",
+      "title": "Mock objects",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем mock объекты?",
+      "optionsLearning": [
+        "Имитация зависимостей для изоляции теста",
+        "Увеличение скорости",
+        "Уменьшение памяти",
+        "Отключение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-09",
+      "kind": "select",
+      "title": "Test fixtures",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое test fixture?",
+      "optionsLearning": [
+        "Setup/teardown для тестов (SetUp/TearDown)",
+        "Один тест",
+        "Глобальные переменные",
+        "Константы"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать хорошие тесты?",
+      "optionsLearning": [
+        "AAA pattern (Arrange, Act, Assert)",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-11",
+      "kind": "select",
+      "title": "Full specialization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое full specialization?",
+      "optionsLearning": [
+        "template<> void f<int>(int x) {} — для конкретного типа",
+        "Удаление шаблона",
+        "Компиляция",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "specialization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-12",
+      "kind": "select",
+      "title": "Partial specialization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое partial specialization?",
+      "optionsLearning": [
+        "template<typename T> class Box<T*> {} — для pointer types",
+        "Удаление шаблона",
+        "Компиляция",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "specialization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-13",
+      "kind": "select",
+      "title": "Template constraints",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как ограничить типы в шаблоне?",
+      "optionsLearning": [
+        "static_assert или concepts (C++20)",
+        "Нельзя ограничить",
+        "Только runtime",
+        "Только int"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "specialization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-14",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать safe templates?",
+      "optionsLearning": [
+        "static_assert для проверки требований",
+        "Никак",
+        "Только runtime",
+        "Игнорировать"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "specialization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать шаблоны?",
+      "optionsLearning": [
+        "Для generic code (vector, sort)",
+        "Всегда",
+        "Никогда",
+        "Только для small types"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-16",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать итераторы?",
+      "optionsLearning": [
+        "Range-based for для простых случаев, итераторы для сложных",
+        "Всегда вручную",
+        "Никогда",
+        "Только pointers"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-17",
+      "kind": "select",
+      "title": "Number to string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать число в string?",
+      "optionsLearning": [
+        "std::to_string(n)",
+        "toString(n)",
+        "(string)n",
+        "str(n)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-18",
+      "kind": "select",
+      "title": "String views",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое string_view?",
+      "optionsLearning": [
+        "Non-owning view на строку (без копирования)",
+        "Новый тип string",
+        "Указатель на string",
+        "Const string"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    },
+    {
+      "id": "cpp.mixed-topics.01.scenario.card-19",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как эффективно работать со строками?",
+      "optionsLearning": [
+        "Использовать += вместо多次 concatenation",
+        "char* всегда",
+        "std::string медленно",
+        "Никаких практик"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.mixed-topics.01.scenario"
+    }
+  ]
+}

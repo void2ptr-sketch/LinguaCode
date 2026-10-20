@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-01",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Что такое наследование?",
+      "optionsLearning": [
+        "Класс получает члены другого класса (базового)",
+        "Дублирование кода",
+        "Функция",
+        "Копия объекта"
+      ],
+      "correctIndex": 0,
+      "explanation": "Наследование — связь «является» между классами."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-02",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Как объявить класс Derived наследником Base?",
+      "optionsLearning": [
+        "class Derived : public Base { };",
+        "Derived extends Base",
+        "Derived : Base",
+        "class Derived(Base)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Наследование указывается двоеточием и модификатором доступа."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Основы наследования — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct Base { int x = 1; };\nstruct Derived : Base { int y = 2; };\nint main() { Derived d; std::cout << d.x + d.y; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "12",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Derived наследует поле x: 1+2=3."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-04",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Какие члены не наследуются?",
+      "optionsLearning": [
+        "Конструкторы, деструктор, операторы присваивания (но вызываются)",
+        "Методы",
+        "Поля",
+        "public всё наследуется"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструкторы не наследуются механически (C++11 унаследованные конструкторы можно)."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-05",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Что означает public-наследование?",
+      "optionsLearning": [
+        "Публичные члены Base остаются публичными в Derived",
+        "Все члены приватны",
+        "Запрет наследования",
+        "static"
+      ],
+      "correctIndex": 0,
+      "explanation": "public-наследование сохраняет видимость (is-a)."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Основы наследования — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { void f() const { std::cout << 'a'; } };\nstruct B : A { };\nint main() { B b; b.f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "a",
+        "b",
+        "Ошибка",
+        "ab"
+      ],
+      "correctIndex": 0,
+      "explanation": "Унаследованный метод доступен через производный объект."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-07",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Что такое базовый (base) и производный (derived) класс?",
+      "optionsLearning": [
+        "Base — родитель; Derived — наследник с расширением",
+        "Синонимы",
+        "Один класс",
+        "Интерфейс"
+      ],
+      "correctIndex": 0,
+      "explanation": "Иерархия: производный расширяет базовый."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-08",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Может ли производный класс добавить свои поля?",
+      "optionsLearning": [
+        "Да, расширение класса",
+        "Нет",
+        "Только методы",
+        "Только private"
+      ],
+      "correctIndex": 0,
+      "explanation": "Derived добавляет новые члены поверх базовых."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Основы наследования — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { B() { std::cout << 'b'; } };\nstruct D : B { D() { std::cout << 'd'; } };\nint main() { D d; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "bd",
+        "db",
+        "d",
+        "b"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сначала конструктор базового, потом производного: bd."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-10",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "В каком порядке вызываются деструкторы в иерархии?",
+      "optionsLearning": [
+        "Сначала производный, затем базовый",
+        "Базовый первым",
+        "Случайно",
+        "Параллельно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разрушение обратно созданию: Derived → Base."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Основы наследования — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { virtual ~B() {} void f() const { std::cout << 'b'; } };\nstruct D : B { void f() const { std::cout << 'd'; } };\nint main() { B* p = new D; p->f(); delete p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "b",
+        "d",
+        "bd",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без virtual вызов f — по статическому типу B: b."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-12",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Что такое is-a relation?",
+      "optionsLearning": [
+        "Производный класс является базовым",
+        "Композиция",
+        "Агрегация",
+        "Дружба"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Собака — животное»: наследование моделирует is-a."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-13",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Когда private-наследование оправдано?",
+      "optionsLearning": [
+        "Для реализации «через» класс (implementation hiding)",
+        "Всегда",
+        "Никогда",
+        "Для интерфейсов"
+      ],
+      "correctIndex": 0,
+      "explanation": "private-наследование — скорее композиция с возможностями."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-14",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Что такое protected-наследование?",
+      "optionsLearning": [
+        "public члены Base становятся protected в Derived",
+        "Всё публично",
+        "Всё приватно",
+        "Запрет"
+      ],
+      "correctIndex": 0,
+      "explanation": "protected-наследование ограничивает видимость для следующих наследников."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Основы наследования — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "question": "Компилируется ли этот код?",
+      "code": {
+        "code": "struct A { public: int x; };\nstruct B : private A {}; int main() { B b; return b.x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Нет — x стал private от B",
+        "Да",
+        "Да, warning",
+        "Смотря"
+      ],
+      "correctIndex": 0,
+      "explanation": "private-наследование делает члены Base приватными для B."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-16",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Что такое hiding (скрытие) методов?",
+      "optionsLearning": [
+        "Метод производного скрывает метод базового с тем же именем",
+        "Обнуление",
+        "Удаление",
+        "Наследование"
+      ],
+      "correctIndex": 0,
+      "explanation": "Имя в Derived скрывает перегрузки Base (даже с другими параметрами)."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Основы наследования — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { void f() const { std::cout << 1; } };\nstruct D : B { void f(int) const { std::cout << 2; } };\nint main() { D d; d.f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Ошибка: f() скрыта перегрузкой f(int)",
+        "1",
+        "2",
+        "12"
+      ],
+      "correctIndex": 0,
+      "explanation": "D::f(int) скрывает B::f() — вызов без аргумента не компилируется (нужен using)."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-18",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Что делает using B::f; в производном классе?",
+      "optionsLearning": [
+        "Добавляет перегрузки базового класса в область видимости",
+        "Удаляет f",
+        "Делает static",
+        "Приватной"
+      ],
+      "correctIndex": 0,
+      "explanation": "using восстанавливает видимость скрытых перегрузок."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-19",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Можно ли наследовать от final-класса?",
+      "optionsLearning": [
+        "Нет, final запрещает наследование",
+        "Да",
+        "Только virtual",
+        "В C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "final на классе запрещает его наследование."
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario.card-20",
+      "kind": "select",
+      "title": "Основы наследования — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-basics.01.scenario",
+      "promptKnown": "Какой полиморфизм достигается наследованием?",
+      "optionsLearning": [
+        "Динамический (virtual-методы в runtime)",
+        "Статический (template)",
+        "Перегрузка",
+        "Утиная типизация"
+      ],
+      "correctIndex": 0,
+      "explanation": "Наследование + virtual дают runtime-полиморфизм."
+    }
+  ],
+  "title": "Oop — Basics C++"
+}

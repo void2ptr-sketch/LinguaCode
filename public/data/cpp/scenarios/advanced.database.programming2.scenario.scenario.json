@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.database.programming2.scenario",
+      "title": "C++ — Database indexing",
+      "description": "Сценарий: Database indexing — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-database-programming2",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.856871.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.856873.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.database.programming2.card-01",
+          "advanced.database.programming2.card-02",
+          "advanced.database.programming2.card-03",
+          "advanced.database.programming2.card-04",
+          "advanced.database.programming2.card-05"
+        ]
+      }
+    }
+  ]
+}

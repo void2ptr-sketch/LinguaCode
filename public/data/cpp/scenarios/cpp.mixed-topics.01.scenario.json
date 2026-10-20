@@ -1,0 +1,50 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.mixed-topics.01.scenario",
+      "title": "Смешанные темы: тестирование, шаблоны и STL",
+      "description": "Сценарий: Смешанные темы: тестирование, шаблоны и STL",
+      "order": 0,
+      "lessonId": "lesson-cpp-mixed-topics",
+      "courseId": "course-cpp-complete",
+      "cardCount": 19,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:55:25.377Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:55:25.377Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.mixed-topics.01.scenario.card-01",
+          "cpp.mixed-topics.01.scenario.card-02",
+          "cpp.mixed-topics.01.scenario.card-03",
+          "cpp.mixed-topics.01.scenario.card-04",
+          "cpp.mixed-topics.01.scenario.card-05",
+          "cpp.mixed-topics.01.scenario.card-06",
+          "cpp.mixed-topics.01.scenario.card-07",
+          "cpp.mixed-topics.01.scenario.card-08",
+          "cpp.mixed-topics.01.scenario.card-09",
+          "cpp.mixed-topics.01.scenario.card-10",
+          "cpp.mixed-topics.01.scenario.card-11",
+          "cpp.mixed-topics.01.scenario.card-12",
+          "cpp.mixed-topics.01.scenario.card-13",
+          "cpp.mixed-topics.01.scenario.card-14",
+          "cpp.mixed-topics.01.scenario.card-15",
+          "cpp.mixed-topics.01.scenario.card-16",
+          "cpp.mixed-topics.01.scenario.card-17",
+          "cpp.mixed-topics.01.scenario.card-18",
+          "cpp.mixed-topics.01.scenario.card-19"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-19T17:55:25.377Z"
+      }
+    }
+  ]
+}

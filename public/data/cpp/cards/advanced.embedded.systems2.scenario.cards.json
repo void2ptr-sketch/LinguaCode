@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.embedded.systems2.scenario",
+  "cards": [
+    {
+      "id": "advanced.embedded.systems2.card-01",
+      "kind": "select",
+      "title": "RTOS basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое RTOS?",
+      "optionsLearning": [
+        "Real-Time Operating System (deterministic scheduling)",
+        "Обычная ОС",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems2",
+      "scenarioId": "advanced.embedded.systems2.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems2.card-02",
+      "kind": "select",
+      "title": "Deterministic timing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое deterministic timing?",
+      "optionsLearning": [
+        "Предсказуемое время выполнения (critical for RTOS)",
+        "Непредсказуемое",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems2",
+      "scenarioId": "advanced.embedded.systems2.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems2.card-03",
+      "kind": "select",
+      "title": "Interrupt latency",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое interrupt latency?",
+      "optionsLearning": [
+        "Время от прерывания до ISR (меньше = лучше)",
+        "Время выполнения",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems2",
+      "scenarioId": "advanced.embedded.systems2.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems2.card-04",
+      "kind": "select",
+      "title": "Power management",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как управлять питанием?",
+      "optionsLearning": [
+        "Sleep modes + clock gating + DMA",
+        "Только manual",
+        "Никак",
+        "Только hardware"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems2",
+      "scenarioId": "advanced.embedded.systems2.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать embedded C++?",
+      "optionsLearning": [
+        "RAII + no exceptions + deterministic timing",
+        "Full C++ features",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems2",
+      "scenarioId": "advanced.embedded.systems2.scenario"
+    }
+  ]
+}

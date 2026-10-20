@@ -26,3 +26,4 @@ export {
   DEFAULT_CARD_FOCUS_FULLSCREEN,
   normalizeCardFocusFullscreen,
 } from './card-focus-preference.utils';
+export { shuffleArray, findShuffledIndex, hashSeed } from './card-shuffle.util';

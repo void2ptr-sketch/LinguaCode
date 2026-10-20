@@ -12,9 +12,9 @@
   <section class="quiz-card__answer" aria-label="Ответ">
     <p class="quiz-card__section-label">Выберите ответ</p>
     <mat-card-content class="quiz-card__options code-select-card__options">
-      @for (option of card().options; track $index; let index = $index) {
+      @for (option of resolved().options; track option; let index = $index) {
         <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
-          <app-code-highlight [code]="option.code" [language]="option.language" />
+          <app-code-highlight [code]="option" [language]="'plain'" />
         </button>
       }
     </mat-card-content>
@@ -31,11 +31,7 @@
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
       <mat-icon>cancel</mat-icon>
       Неверно. Правильный ответ:
-      <app-code-highlight
-        [code]="card().options[card().correctIndex].code"
-        [language]="card().options[card().correctIndex].language"
-        [inline]="true"
-      />
+      <code>{{ resolved().options[resolved().correctIndex] }}</code>
     </mat-card-content>
   }
 

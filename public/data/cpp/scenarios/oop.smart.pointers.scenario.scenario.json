@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "oop.smart.pointers.scenario",
+      "title": "C++ — unique_ptr",
+      "description": "Сценарий: unique_ptr — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-oop-smart-pointers",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.883965.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.883967.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "oop.smart.pointers.card-01",
+          "oop.smart.pointers.card-02",
+          "oop.smart.pointers.card-03",
+          "oop.smart.pointers.card-04",
+          "oop.smart.pointers.card-05"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.compiler.internals.scenario",
+  "cards": [
+    {
+      "id": "advanced.compiler.internals.card-01",
+      "kind": "select",
+      "title": "Compilation stages",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Этапы компиляции?",
+      "optionsLearning": [
+        "Preprocess → Compile → Assemble → Link",
+        "Только compile",
+        "Только link",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals",
+      "scenarioId": "advanced.compiler.internals.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals.card-02",
+      "kind": "select",
+      "title": "Linker",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает linker?",
+      "optionsLearning": [
+        "Объединяет object files в executable",
+        "Компилирует код",
+        "Запускает программу",
+        "Отлаживает"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals",
+      "scenarioId": "advanced.compiler.internals.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals.card-03",
+      "kind": "select",
+      "title": "Optimization levels",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Уровни оптимизации?",
+      "optionsLearning": [
+        "-O0, -O1, -O2, -O3 (GCC/Clang)",
+        "Только один",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals",
+      "scenarioId": "advanced.compiler.internals.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals.card-04",
+      "kind": "select",
+      "title": "LTO",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое LTO?",
+      "optionsLearning": [
+        "Link-Time Optimization (cross-module optimization)",
+        "Обычная оптимизация",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals",
+      "scenarioId": "advanced.compiler.internals.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать compiler?",
+      "optionsLearning": [
+        "-Wall -Wextra -O2 + sanitizers",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals",
+      "scenarioId": "advanced.compiler.internals.scenario"
+    }
+  ]
+}

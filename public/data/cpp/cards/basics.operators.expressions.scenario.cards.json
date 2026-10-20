@@ -1,0 +1,296 @@
+{
+  "scenarioId": "basics.operators.expressions.scenario",
+  "cards": [
+    {
+      "id": "basics.operators.expressions.card-01",
+      "kind": "select",
+      "title": "Арифметические операторы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие арифметические операторы в C++?",
+      "optionsLearning": [
+        "+, -, *, /, % (остаток)",
+        "+, -, ×, ÷, ^",
+        "++, --, +=, -= только",
+        "~, &, |"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-operators-expressions",
+      "scenarioId": "basics.operators.expressions.scenario"
+    },
+    {
+      "id": "basics.operators.expressions.card-02",
+      "kind": "select",
+      "title": "Оператор присваивания",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем = отличается от ==?",
+      "optionsLearning": [
+        "= присваивает, == сравнивает",
+        "Одно и то же",
+        "== присваивает, = сравнивает",
+        "Оба — сравнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-operators-expressions",
+      "scenarioId": "basics.operators.expressions.scenario"
+    },
+    {
+      "id": "basics.operators.expressions.card-03",
+      "kind": "select",
+      "title": "Операторы инкремента",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем i++ отличается от ++i?",
+      "optionsLearning": [
+        "i++ возвращает старое значение, ++i — новое",
+        "Одно и то же всегда",
+        "++i медленнее",
+        "i++ быстрее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-operators-expressions",
+      "scenarioId": "basics.operators.expressions.scenario"
+    },
+    {
+      "id": "basics.operators.expressions.card-04",
+      "kind": "select",
+      "title": "Операторы сравнения",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие операторы сравнения?",
+      "optionsLearning": [
+        "==, !=, <, >, <=, >=",
+        "==, ==, <>, ^, <<, >>",
+        "=",
+        "+, -, *, /",
+        "&&, ||, !"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-operators-expressions",
+      "scenarioId": "basics.operators.expressions.scenario"
+    },
+    {
+      "id": "basics.operators.expressions.card-05",
+      "kind": "select",
+      "title": "Логические операторы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие логические операторы?",
+      "optionsLearning": [
+        "&& (И), || (ИЛИ), ! (НЕ)",
+        "&, |, ~",
+        "+, -, *",
+        "==, !="
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-operators-expressions",
+      "scenarioId": "basics.operators.expressions.scenario"
+    },
+    {
+      "id": "basics.operators.expressions.card-06",
+      "kind": "select",
+      "title": "Побитовые операторы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие побитовые операторы?",
+      "optionsLearning": [
+        "&, |, ^, ~, <<, >>",
+        "&&, ||, !",
+        "+, -, *",
+        "==, !=, <, >"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-operators-expressions",
+      "scenarioId": "basics.operators.expressions.scenario"
+    },
+    {
+      "id": "basics.operators.expressions.card-07",
+      "kind": "select",
+      "title": "Priority of operators",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что имеет высший приоритет?",
+      "optionsLearning": [
+        "* / % (умножение/деление)",
+        "+ - (сложение/вычитание)",
+        "= (присваивание)",
+        "== (сравнение)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-operators-expressions",
+      "scenarioId": "basics.operators.expressions.scenario"
+    },
+    {
+      "id": "basics.operators.expressions.card-08",
+      "kind": "select",
+      "title": "Type promotion",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при int + double?",
+      "optionsLearning": [
+        "int_promоруется в double, результат double",
+        "Ошибка компиляции",
+        "Результат int",
+        "Результат float"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-operators-expressions",
+      "scenarioId": "basics.operators.expressions.scenario"
+    },
+    {
+      "id": "basics.operators.expressions.card-09",
+      "kind": "select",
+      "title": "Integer division",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое 7 / 2 в C++?",
+      "optionsLearning": [
+        "3 (целочисленное деление)",
+        "3.5",
+        "Ошибка компиляции",
+        "4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-operators-expressions",
+      "scenarioId": "basics.operators.expressions.scenario"
+    },
+    {
+      "id": "basics.operators.expressions.card-10",
+      "kind": "select",
+      "title": "Modulo operator",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает %?",
+      "optionsLearning": [
+        "Остаток от деления",
+        "Процент",
+        "Деление",
+        "Умножение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "expressions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-operators-expressions",
+      "scenarioId": "basics.operators.expressions.scenario"
+    }
+  ]
+}

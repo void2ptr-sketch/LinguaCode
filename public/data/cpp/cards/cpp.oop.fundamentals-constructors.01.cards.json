@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-01",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Что такое конструктор?",
+      "optionsLearning": [
+        "Метод, инициализирующий объект при создании",
+        "Функция main",
+        "Деструктор",
+        "Геттер"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор вызывается при создании объекта."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-02",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Как называется конструктор по имени класса Foo?",
+      "optionsLearning": [
+        "Foo()",
+        "~Foo()",
+        "init()",
+        "create()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор имеет имя класса без типа возврата."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Конструкторы — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass C { public: C() { std::cout << 'c'; } };\nint main() { C obj; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "c",
+        "ничего",
+        "Ошибка",
+        "c дважды"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор по умолчанию вызывается при создании."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-04",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Что такое конструктор с параметрами?",
+      "optionsLearning": [
+        "Конструктор, принимающий аргументы для инициализации",
+        "Деструктор",
+        "Копия",
+        "Метод"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор с параметрами задаёт начальное состояние."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Конструкторы — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass P { int v; public: P(int x) : v(x) {} int get() const { return v; } };\nint main() { P p(42); std::cout << p.get(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "0",
+        "Ошибка",
+        "v"
+      ],
+      "correctIndex": 0,
+      "explanation": "Список инициализации ставит v=42."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-06",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Что такое список инициализации (member initializer list)?",
+      "optionsLearning": [
+        "Инициализация полей до тела конструктора",
+        "Список аргументов",
+        "Массив",
+        "Комментарий"
+      ],
+      "correctIndex": 0,
+      "explanation": "= : v(x), w(y) {} инициализирует поля напрямую."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-07",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Что произойдёт, если в классе нет ни одного конструктора?",
+      "optionsLearning": [
+        "Компилятор сгенерирует конструктор по умолчанию (если возможно)",
+        "Ошибка",
+        "Объект нельзя создать",
+        "Мусор"
+      ],
+      "correctIndex": 0,
+      "explanation": "Если нет конструкторов — создаётся неявный конструктор по умолчанию."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-08",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Что такое конструктор копирования?",
+      "optionsLearning": [
+        "Создаёт объект-копию другого: Foo(const Foo&)",
+        "Перемещает",
+        "Удаляет",
+        "Создаёт по умолчанию"
+      ],
+      "correctIndex": 0,
+      "explanation": "Copy constructor создаёт копию существующего объекта."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Конструкторы — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass C { public: int v; C(int x = 1) : v(x) {} };\nint main() { C a(5); C b = a; std::cout << b.v; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "1",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Копия b наследует v=5."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-10",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Что такое конструктор по умолчанию (default constructor)?",
+      "optionsLearning": [
+        "Конструктор без параметров (или с умолчаниями)",
+        "Конструктор с тремя аргументами",
+        "Деструктор",
+        "Статический"
+      ],
+      "correctIndex": 0,
+      "explanation": "Позволяет создавать объект без аргументов."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-11",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Как запретить копирование объекта?",
+      "optionsLearning": [
+        "= delete для копирующего конструктора",
+        "throw",
+        "return 0",
+        "private и delete вместе"
+      ],
+      "correctIndex": 0,
+      "explanation": "class C { C(const C&) = delete; } — некопируемый тип."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Конструкторы — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass C { public: C() = default; void f() const { std::cout << 'x'; } };\nint main() { C c; c.f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "x",
+        "Ошибка",
+        "c",
+        "ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "= default генерирует конструктор по умолчанию."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-13",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Что такое делегирующий конструктор (C++11)?",
+      "optionsLearning": [
+        "Один конструктор вызывает другой своего класса",
+        "Интерфейс",
+        "Наследование",
+        "Два класса"
+      ],
+      "correctIndex": 0,
+      "explanation": "C(int x) : C(x, 0) {} — делегирование."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-14",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Что произойдёт при C obj(); (объявление функции)?",
+      "optionsLearning": [
+        "Это объявление функции, не объект — vexing parse (C++ most vexing)",
+        "Создаст объект",
+        "Ошибка",
+        "Копия"
+      ],
+      "correctIndex": 0,
+      "explanation": "C obj; создаёт объект; C obj() объявляет функцию."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Конструкторы — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass A { public: A() { std::cout << 1; } A(int) { std::cout << 2; } };\nint main() { A a{5}; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Списковая инициализация выбирает конструктор от int: 2."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-16",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Когда нужен явный конструктор (explicit)?",
+      "optionsLearning": [
+        "Чтобы запретить неявные преобразования",
+        "Чтобы ускорить",
+        "Обязан быть всегда",
+        "Для статики"
+      ],
+      "correctIndex": 0,
+      "explanation": "explicit предотвращает неявную конверсию через конструктор."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Конструкторы — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "question": "Будет ли компилироваться эта передача?",
+      "code": {
+        "code": "class C { public: explicit C(int) {} };\nvoid f(C) {}\nf(5);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Нет — explicit запрещает неявное преобразование",
+        "Да",
+        "Да, в C++20",
+        "Предупреждение"
+      ],
+      "correctIndex": 0,
+      "explanation": "С explicit int не преобразуется в C неявно."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-18",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "exceptions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Что произойдёт при исключении из конструктора?",
+      "optionsLearning": [
+        "Объект не создан, ресурсы членов освободятся",
+        "Объект создастся частично",
+        "Программа падает",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор объекта не вызывается (он не создан), но члены-объекты разрушаются."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-19",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "В каком порядке инициализируются поля?",
+      "optionsLearning": [
+        "В порядке объявления в классе, не в списке инициализации",
+        "В порядке списка",
+        "Алфавитном",
+        "Случайном"
+      ],
+      "correctIndex": 0,
+      "explanation": "Порядок определяется объявлением полей — список лишь присваивает значения."
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-20",
+      "kind": "select",
+      "title": "Конструкторы — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+      "promptKnown": "Что такое агрегатная инициализация?",
+      "optionsLearning": [
+        "Инициализация списком для типов без пользовательских конструкторов",
+        "new с аргументами",
+        "Копия",
+        "Перемещение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Агрегаты инициализируются { } по порядку полей."
+    }
+  ],
+  "title": "Oop — Intermediate C++"
+}

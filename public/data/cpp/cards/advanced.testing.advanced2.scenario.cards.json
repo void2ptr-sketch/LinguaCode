@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.testing.advanced2.scenario",
+  "cards": [
+    {
+      "id": "advanced.testing.advanced2.card-01",
+      "kind": "select",
+      "title": "Contract testing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое contract testing?",
+      "optionsLearning": [
+        "Тестирование интерфейсов между сервисами (API contracts)",
+        "Unit testing",
+        "Integration testing",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing-advanced2",
+      "scenarioId": "advanced.testing.advanced2.scenario"
+    },
+    {
+      "id": "advanced.testing.advanced2.card-02",
+      "kind": "select",
+      "title": "Chaos engineering",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое chaos engineering?",
+      "optionsLearning": [
+        "Тестирование устойчивости (random failures)",
+        "Unit testing",
+        "Integration testing",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing-advanced2",
+      "scenarioId": "advanced.testing.advanced2.scenario"
+    },
+    {
+      "id": "advanced.testing.advanced2.card-03",
+      "kind": "select",
+      "title": "Mutation testing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое mutation testing?",
+      "optionsLearning": [
+        "Изменение кода для проверки качества тестов",
+        "Unit testing",
+        "Integration testing",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing-advanced2",
+      "scenarioId": "advanced.testing.advanced2.scenario"
+    },
+    {
+      "id": "advanced.testing.advanced2.card-04",
+      "kind": "select",
+      "title": "Performance testing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое performance testing?",
+      "optionsLearning": [
+        "Тестирование скорости/нагрузки (JMeter, Locust)",
+        "Unit testing",
+        "Integration testing",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing-advanced2",
+      "scenarioId": "advanced.testing.advanced2.scenario"
+    },
+    {
+      "id": "advanced.testing.advanced2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как тестировать сложные системы?",
+      "optionsLearning": [
+        "Комбинация: unit + integration + chaos + mutation",
+        "Только manual",
+        "Никак",
+        "Только unit"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing-advanced2",
+      "scenarioId": "advanced.testing.advanced2.scenario"
+    }
+  ]
+}

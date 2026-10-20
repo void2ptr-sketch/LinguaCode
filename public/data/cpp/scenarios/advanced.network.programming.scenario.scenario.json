@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.network.programming.scenario",
+      "title": "C++ — Socket basics",
+      "description": "Сценарий: Socket basics — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-network-programming",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.858883.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.858885.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.network.programming.card-01",
+          "advanced.network.programming.card-02",
+          "advanced.network.programming.card-03",
+          "advanced.network.programming.card-04",
+          "advanced.network.programming.card-05"
+        ]
+      }
+    }
+  ]
+}

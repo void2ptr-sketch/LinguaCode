@@ -1,0 +1,295 @@
+{
+  "scenarioId": "basics.intro.compilation.scenario",
+  "cards": [
+    {
+      "id": "basics.intro.compilation.card-01",
+      "kind": "select",
+      "title": "Что такое компиляция?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите компиляцию",
+      "optionsLearning": [
+        "Преобразование исходного кода в машинный код",
+        "Запуск программы без преобразования",
+        "Редактирование файлов",
+        "Отладка кода"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compilation",
+      "scenarioId": "basics.intro.compilation.scenario"
+    },
+    {
+      "id": "basics.intro.compilation.card-02",
+      "kind": "select",
+      "title": "Этапы компиляции",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие этапы компиляции C++?",
+      "optionsLearning": [
+        "Препроцессинг → Компиляция → Ассемблирование → Линковка",
+        "Запуск → Отладка → Деплой",
+        "Написание → Тестирование",
+        "Исполнение → Кэширование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compilation",
+      "scenarioId": "basics.intro.compilation.scenario"
+    },
+    {
+      "id": "basics.intro.compilation.card-03",
+      "kind": "select",
+      "title": "Препроцессор",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает препроцессор?",
+      "optionsLearning": [
+        "Обработка #include, #define до компиляции",
+        "Запуск программы",
+        "Создание документации",
+        "Отладка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compilation",
+      "scenarioId": "basics.intro.compilation.scenario"
+    },
+    {
+      "id": "basics.intro.compilation.card-04",
+      "kind": "select",
+      "title": "Object file",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое object file (.o)?",
+      "optionsLearning": [
+        "Компилированный код ещё не линкованный",
+        "Исполняемый файл",
+        "Исходный код",
+        "Документация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compilation",
+      "scenarioId": "basics.intro.compilation.scenario"
+    },
+    {
+      "id": "basics.intro.compilation.card-05",
+      "kind": "select",
+      "title": "Linking",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает линковщик?",
+      "optionsLearning": [
+        "Объединяет object files в executable",
+        "Запускает программу",
+        "Компилирует код",
+        "Создаёт документацию"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compilation",
+      "scenarioId": "basics.intro.compilation.scenario"
+    },
+    {
+      "id": "basics.intro.compilation.card-06",
+      "kind": "select",
+      "title": "g++ команды",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как скомпилировать программу?",
+      "optionsLearning": [
+        "g++ main.cpp -o program",
+        "run main.cpp",
+        "compile main.cpp",
+        "exec main.cpp"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compilation",
+      "scenarioId": "basics.intro.compilation.scenario"
+    },
+    {
+      "id": "basics.intro.compilation.card-07",
+      "kind": "select",
+      "title": "Multiple files compilation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как компилировать несколько файлов?",
+      "optionsLearning": [
+        "g++ file1.cpp file2.cpp -o program",
+        "g++ *.cpp -o program только",
+        "Нельзя компилировать несколько",
+        "g++ file1.cpp"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compilation",
+      "scenarioId": "basics.intro.compilation.scenario"
+    },
+    {
+      "id": "basics.intro.compilation.card-08",
+      "kind": "select",
+      "title": "Compilation errors",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ошибка компиляции?",
+      "optionsLearning": [
+        "Синтаксическая/семантическая ошибка в коде",
+        "Ошибка во время выполнения",
+        "Ошибка линковки только",
+        "Ошибка препроцессора"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compilation",
+      "scenarioId": "basics.intro.compilation.scenario"
+    },
+    {
+      "id": "basics.intro.compilation.card-09",
+      "kind": "select",
+      "title": "Warnings vs Errors",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем отличается warning от error?",
+      "optionsLearning": [
+        "Warning — предупреждение (код компилируется), error — ошибка (нет бинарника)",
+        "Оба останавливают компиляцию",
+        "Error менее важен",
+        "Нет различий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compilation",
+      "scenarioId": "basics.intro.compilation.scenario"
+    },
+    {
+      "id": "basics.intro.compilation.card-10",
+      "kind": "select",
+      "title": "Optimization levels",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает -O3?",
+      "optionsLearning": [
+        "Максимальная оптимизация скорости",
+        "Отладочная информация",
+        "Без оптимизации",
+        "Только для release"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-compilation",
+      "scenarioId": "basics.intro.compilation.scenario"
+    }
+  ]
+}

@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-01",
+      "kind": "select",
+      "title": "OpenGL basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое OpenGL?",
+      "optionsLearning": [
+        "API для 2D/3D графики (shaders, buffers)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-02",
+      "kind": "select",
+      "title": "Shaders",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое shader?",
+      "optionsLearning": [
+        "Программа для GPU (vertex/fragment)",
+        "CPU программа",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-03",
+      "kind": "select",
+      "title": "VBO/VAO",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое VBO/VAO?",
+      "optionsLearning": [
+        "Vertex Buffer/Array Object (GPU memory)",
+        "CPU memory",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-04",
+      "kind": "select",
+      "title": "Texture mapping",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое texture mapping?",
+      "optionsLearning": [
+        "Наложение изображений на 3D модели",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать graphics code?",
+      "optionsLearning": [
+        "Batch rendering + texture atlases + LOD",
+        "Только manual",
+        "Никак",
+        "Только CPU"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-06",
+      "kind": "select",
+      "title": "Vulkan basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Vulkan?",
+      "optionsLearning": [
+        "Low-level graphics API (modern alternative to OpenGL)",
+        "High-level API",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-07",
+      "kind": "select",
+      "title": "Compute shaders",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое compute shaders?",
+      "optionsLearning": [
+        "GPU вычисления (general purpose)",
+        "Только графика",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-08",
+      "kind": "select",
+      "title": "Ray tracing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ray tracing?",
+      "optionsLearning": [
+        "Рендеринг через трассировку лучей (realistic lighting)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-09",
+      "kind": "select",
+      "title": "GPU profiling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как профилировать GPU?",
+      "optionsLearning": [
+        "NVIDIA Nsight, AMD Radeon GPU Profiler",
+        "Только CPU profiling",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать graphics code?",
+      "optionsLearning": [
+        "Batch rendering + texture atlases + LOD + async compute",
+        "Только manual",
+        "Никак",
+        "Только CPU"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-11",
+      "kind": "select",
+      "title": "Compute shaders advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутые compute shaders?",
+      "optionsLearning": [
+        "Parallel algorithms (reduce, scan, sort) на GPU",
+        "Только графика",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-12",
+      "kind": "select",
+      "title": "Ray tracing advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый ray tracing?",
+      "optionsLearning": [
+        "Path tracing, global illumination, denoising",
+        "Только basic RT",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-13",
+      "kind": "select",
+      "title": "GPU profiling advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый GPU profiling?",
+      "optionsLearning": [
+        "NVIDIA Nsight Compute + AMD RGP + frame capture",
+        "Только CPU profiling",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-14",
+      "kind": "select",
+      "title": "Vulkan advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый Vulkan?",
+      "optionsLearning": [
+        "Synchronization + memory management + descriptor sets",
+        "Только basic rendering",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать graphics code?",
+      "optionsLearning": [
+        "Batch rendering + texture atlases + LOD + async compute + profiling",
+        "Только manual",
+        "Никак",
+        "Только CPU"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-16",
+      "kind": "select",
+      "title": "Compute shaders advanced2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутые compute shaders 2?",
+      "optionsLearning": [
+        "Parallel reduce + scan + sort + matrix operations на GPU",
+        "Только графика",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-17",
+      "kind": "select",
+      "title": "Ray tracing advanced2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый ray tracing 2?",
+      "optionsLearning": [
+        "Path tracing + global illumination + denoising + DLSS",
+        "Только basic RT",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-18",
+      "kind": "select",
+      "title": "GPU profiling advanced2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый GPU profiling 2?",
+      "optionsLearning": [
+        "NVIDIA Nsight Compute + AMD RGP + frame capture + memory profiler",
+        "Только CPU profiling",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-19",
+      "kind": "select",
+      "title": "Vulkan advanced2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый Vulkan 2?",
+      "optionsLearning": [
+        "Synchronization + memory management + descriptor sets + pipeline caching",
+        "Только basic rendering",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.graphics-extra.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать graphics code?",
+      "optionsLearning": [
+        "Batch rendering + texture atlases + LOD + async compute + profiling + GPU optimization",
+        "Только manual",
+        "Никак",
+        "Только CPU"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.graphics-extra.01.scenario"
+    }
+  ]
+}

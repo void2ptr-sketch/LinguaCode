@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.advanced.ai-programming.01.scenario",
+      "title": "ИИ-программирование на C++",
+      "description": "Сценарий: ИИ-программирование на C++",
+      "order": 0,
+      "lessonId": "lesson-cpp-advanced-advanced",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:55:25.377Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:55:25.377Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.advanced.ai-programming.01.scenario.card-01",
+          "cpp.advanced.ai-programming.01.scenario.card-02",
+          "cpp.advanced.ai-programming.01.scenario.card-03",
+          "cpp.advanced.ai-programming.01.scenario.card-04",
+          "cpp.advanced.ai-programming.01.scenario.card-05",
+          "cpp.advanced.ai-programming.01.scenario.card-06",
+          "cpp.advanced.ai-programming.01.scenario.card-07",
+          "cpp.advanced.ai-programming.01.scenario.card-08",
+          "cpp.advanced.ai-programming.01.scenario.card-09",
+          "cpp.advanced.ai-programming.01.scenario.card-10",
+          "cpp.advanced.ai-programming.01.scenario.card-11",
+          "cpp.advanced.ai-programming.01.scenario.card-12",
+          "cpp.advanced.ai-programming.01.scenario.card-13",
+          "cpp.advanced.ai-programming.01.scenario.card-14",
+          "cpp.advanced.ai-programming.01.scenario.card-15",
+          "cpp.advanced.ai-programming.01.scenario.card-16",
+          "cpp.advanced.ai-programming.01.scenario.card-17",
+          "cpp.advanced.ai-programming.01.scenario.card-18",
+          "cpp.advanced.ai-programming.01.scenario.card-19",
+          "cpp.advanced.ai-programming.01.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-19T17:55:25.377Z"
+      }
+    }
+  ]
+}

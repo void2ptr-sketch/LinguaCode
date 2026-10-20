@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.parallel.programming.scenario",
+  "cards": [
+    {
+      "id": "advanced.parallel.programming.card-01",
+      "kind": "select",
+      "title": "std::async",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::async?",
+      "optionsLearning": [
+        "High-level async (задача + future)",
+        "Низкоуровневый thread",
+        "Синхронная функция",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-parallel-programming",
+      "scenarioId": "advanced.parallel.programming.scenario"
+    },
+    {
+      "id": "advanced.parallel.programming.card-02",
+      "kind": "select",
+      "title": "Future/Promise",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое future/promise?",
+      "optionsLearning": [
+        "Async result container (get/set value)",
+        "Sync container",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-parallel-programming",
+      "scenarioId": "advanced.parallel.programming.scenario"
+    },
+    {
+      "id": "advanced.parallel.programming.card-03",
+      "kind": "select",
+      "title": "Parallel algorithms",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parallel algorithms?",
+      "optionsLearning": [
+        "std::execution::par (C++17) для параллельных операций",
+        "Sequential only",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-parallel-programming",
+      "scenarioId": "advanced.parallel.programming.scenario"
+    },
+    {
+      "id": "advanced.parallel.programming.card-04",
+      "kind": "select",
+      "title": "Thread pool",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое thread pool?",
+      "optionsLearning": [
+        " пул потоков для повторного использования (reusable threads)",
+        "Один поток",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-parallel-programming",
+      "scenarioId": "advanced.parallel.programming.scenario"
+    },
+    {
+      "id": "advanced.parallel.programming.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как параллелить эффективно?",
+      "optionsLearning": [
+        "Task-based parallelism (std::async, parallel algorithms)",
+        "Только manual threads",
+        "Никак",
+        "Только SIMD"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-parallel-programming",
+      "scenarioId": "advanced.parallel.programming.scenario"
+    }
+  ]
+}

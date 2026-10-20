@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-01",
+      "kind": "select",
+      "title": "Debug info",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое debug info?",
+      "optionsLearning": [
+        "Символьная информация для отладки (-g flag)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-02",
+      "kind": "select",
+      "title": "Static analysis",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое static analysis?",
+      "optionsLearning": [
+        "Анализ кода без выполнения (clang-tidy, cppcheck)",
+        "Runtime анализ",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-03",
+      "kind": "select",
+      "title": "Compiler warnings",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем -Wall -Wextra?",
+      "optionsLearning": [
+        "Предупреждения о потенциальных ошибках (early detection)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-04",
+      "kind": "select",
+      "title": "Compiler plugins",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое compiler plugins?",
+      "optionsLearning": [
+        "Расширения компилятора (custom checks, transformations)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать compiler?",
+      "optionsLearning": [
+        "-Wall -Wextra -Werror + sanitizers + static analysis",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-06",
+      "kind": "select",
+      "title": "Linker optimization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает linker optimization?",
+      "optionsLearning": [
+        "Удаление неиспользуемого кода (dead code elimination)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-07",
+      "kind": "select",
+      "title": "Compiler intrinsics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое compiler intrinsics?",
+      "optionsLearning": [
+        "Встроенные функции компилятора (__builtin_)",
+        "Обычные функции",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-08",
+      "kind": "select",
+      "title": "Sanitizers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое sanitizers?",
+      "optionsLearning": [
+        "Runtime инструменты для обнаружения ошибок (ASan, UBSan)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-09",
+      "kind": "select",
+      "title": "Compiler explorer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое compiler explorer?",
+      "optionsLearning": [
+        "Online tool для просмотра assembly (godbolt.org)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать compiler?",
+      "optionsLearning": [
+        "-Wall -Wextra -Werror + sanitizers + static analysis + PGO",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-11",
+      "kind": "select",
+      "title": "Concept definition",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое concept?",
+      "optionsLearning": [
+        "Constraint на template parameters (проверка на compile time)",
+        "Тип данных",
+        "Оператор",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concepts"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-12",
+      "kind": "select",
+      "title": "Concept syntax",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Синтаксис concept?",
+      "optionsLearning": [
+        "concept Integer = std::integral<T>;",
+        "interface Integer {}",
+        "type Integer = int",
+        "require Integer"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concepts"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-13",
+      "kind": "select",
+      "title": "Concept usage",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать concept?",
+      "optionsLearning": [
+        "template<Integer T> void f(T x)",
+        "template<typename T> requires Integer<T>",
+        "function<Integer>(x)",
+        "def f(x: Integer)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concepts"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-14",
+      "kind": "select",
+      "title": "Concept benefits",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Преимущества concepts?",
+      "optionsLearning": [
+        "Better error messages, self-documenting code",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concepts"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать concepts?",
+      "optionsLearning": [
+        "Для template constraints (C++20)",
+        "Всегда",
+        "Никогда",
+        "Только для small types"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concepts"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-16",
+      "kind": "select",
+      "title": "Constexpr function",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое constexpr function?",
+      "optionsLearning": [
+        "Вычисляется на compile time",
+        "Runtime функция",
+        "Константа",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "constexpr"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-17",
+      "kind": "select",
+      "title": "Constexpr variable",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое constexpr variable?",
+      "optionsLearning": [
+        "Compile-time константа",
+        "Runtime переменная",
+        "Глобальная переменная",
+        "Статическая переменная"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "constexpr"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-18",
+      "kind": "select",
+      "title": "Constexpr if",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем constexpr if?",
+      "optionsLearning": [
+        "Условная компиляция на основе типов (template specialization)",
+        "Runtime if",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "constexpr"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-19",
+      "kind": "select",
+      "title": "Consteval",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое consteval?",
+      "optionsLearning": [
+        "Function must be evaluated at compile time (C++20)",
+        "Runtime function",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "constexpr"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.compiler-internals.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать constexpr?",
+      "optionsLearning": [
+        "Для compile-time вычислений (performance)",
+        "Всегда",
+        "Никогда",
+        "Только для small values"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "constexpr"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.compiler-internals.01.scenario"
+    }
+  ]
+}

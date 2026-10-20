@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.ci.cd.scenario",
+      "title": "C++ — CI pipeline",
+      "description": "Сценарий: CI pipeline — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-ci-cd",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.855264.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.855266.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.ci.cd.card-01",
+          "advanced.ci.cd.card-02",
+          "advanced.ci.cd.card-03",
+          "advanced.ci.cd.card-04",
+          "advanced.ci.cd.card-05"
+        ]
+      }
+    }
+  ]
+}

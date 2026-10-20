@@ -44,4 +44,150 @@ describe('scenario-search.utils', () => {
 
     expect(matches).toBe(false);
   });
+
+  it('should hide mine-scope entries from other users', () => {
+    const matches = matchesScenarioIndexEntry(baseEntry, { scope: 'mine' }, 'other-user');
+
+    expect(matches).toBe(false);
+  });
+
+  it('should show mine-scope entries for the owner', () => {
+    const matches = matchesScenarioIndexEntry(baseEntry, { scope: 'mine' }, 'local-user');
+
+    expect(matches).toBe(true);
+  });
+
+  it('should hide unpublished entries from non-authors in published scope', () => {
+    const unpublishedEntry: ScenarioIndexEntry = { ...baseEntry, published: false };
+
+    const matches = matchesScenarioIndexEntry(
+      unpublishedEntry,
+      { scope: 'published' },
+      'other-user',
+    );
+
+    expect(matches).toBe(false);
+  });
+
+  it('should show unpublished entries to their author in published scope', () => {
+    const unpublishedEntry: ScenarioIndexEntry = { ...baseEntry, published: false };
+
+    const matches = matchesScenarioIndexEntry(
+      unpublishedEntry,
+      { scope: 'published' },
+      'local-user',
+    );
+
+    expect(matches).toBe(true);
+  });
+
+  it('should filter by authorId', () => {
+    const matches = matchesScenarioIndexEntry(
+      baseEntry,
+      { scope: 'published', authorId: 'different-author' },
+      'local-user',
+    );
+
+    expect(matches).toBe(false);
+  });
+
+  it('should match when authorId matches', () => {
+    const matches = matchesScenarioIndexEntry(
+      baseEntry,
+      { scope: 'published', authorId: 'local-user' },
+      'local-user',
+    );
+
+    expect(matches).toBe(true);
+  });
+
+  it('should filter by cardSourceMode', () => {
+    const matches = matchesScenarioIndexEntry(
+      baseEntry,
+      { scope: 'published', cardSourceMode: 'criteria' },
+      'local-user',
+    );
+
+    expect(matches).toBe(false);
+  });
+
+  it('should match when cardSourceMode matches', () => {
+    const matches = matchesScenarioIndexEntry(
+      baseEntry,
+      { scope: 'published', cardSourceMode: 'fixed' },
+      'local-user',
+    );
+
+    expect(matches).toBe(true);
+  });
+
+  it('should filter by courseId', () => {
+    const entryWithCourse: ScenarioIndexEntry = {
+      ...baseEntry,
+      courseId: 'course-1',
+    };
+
+    const matches = matchesScenarioIndexEntry(
+      entryWithCourse,
+      { scope: 'published', courseId: 'course-2' },
+      'local-user',
+    );
+
+    expect(matches).toBe(false);
+  });
+
+  it('should match when courseId matches', () => {
+    const entryWithCourse: ScenarioIndexEntry = {
+      ...baseEntry,
+      courseId: 'course-1',
+    };
+
+    const matches = matchesScenarioIndexEntry(
+      entryWithCourse,
+      { scope: 'published', courseId: 'course-1' },
+      'local-user',
+    );
+
+    expect(matches).toBe(true);
+  });
+
+  it('should filter by text query in title', () => {
+    const matches = matchesScenarioIndexEntry(
+      baseEntry,
+      { scope: 'published', query: 'nonexistent' },
+      'local-user',
+    );
+
+    expect(matches).toBe(false);
+  });
+
+  it('should match when query matches title', () => {
+    const matches = matchesScenarioIndexEntry(
+      baseEntry,
+      { scope: 'published', query: 'demo' },
+      'local-user',
+    );
+
+    expect(matches).toBe(true);
+  });
+
+  it('should match query case-insensitively', () => {
+    const matches = matchesScenarioIndexEntry(
+      baseEntry,
+      { scope: 'published', query: 'DEMO' },
+      'local-user',
+    );
+
+    expect(matches).toBe(true);
+  });
+
+  it('should trim query before matching', () => {
+    const matches = matchesScenarioIndexEntry(
+      baseEntry,
+      { scope: 'published', query: '  demo  ' },
+      'local-user',
+    );
+
+    expect(matches).toBe(true);
+  });
 });

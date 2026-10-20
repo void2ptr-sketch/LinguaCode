@@ -1,0 +1,619 @@
+{
+  "scenarioId": "cpp.basics.network-programming.02.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-01",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "networking",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Что такое сокет (socket)?",
+      "optionsLearning": [
+        "Интерфейс сетевого взаимодействия между процессами",
+        "Тип данных",
+        "Протокол",
+        "Порт-номер"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сокет — конечная точка двухстороннего сетевого соединения."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-02",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Какой транспортный протокол гарантирует доставку и порядок?",
+      "optionsLearning": [
+        "TCP",
+        "UDP",
+        "IP",
+        "HTTP"
+      ],
+      "correctIndex": 0,
+      "explanation": "TCP — надёжный потоковый протокол."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-03",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Что использует UDP?",
+      "optionsLearning": [
+        "Датаграммы без гарантий доставки",
+        "Поток",
+        "Гарантии порядка",
+        "Шифрование"
+      ],
+      "correctIndex": 0,
+      "explanation": "UDP — быстрый, но ненадёжный протокол датаграмм."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-04",
+      "kind": "code-trace",
+      "title": "Network Programming 02 — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "networking"
+        ],
+        "tags": "HTTP — порт 80; HTTPS — 443."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "question": "Какой порт по умолчанию у HTTP?",
+      "code": {
+        "code": [
+          "80",
+          "443",
+          "22",
+          "53"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "beginner"
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-05",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Что делает функция bind() в сетевом программировании?",
+      "optionsLearning": [
+        "Привязывает сокет к адресу/порту",
+        "Соединяет сокеты",
+        "Слушает порт",
+        "Закрывает"
+      ],
+      "correctIndex": 0,
+      "explanation": "bind назначает локальный адрес сокету."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-06",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Какая функция переводит сокет в режим прослушивания?",
+      "optionsLearning": [
+        "listen()",
+        "accept()",
+        "connect()",
+        "recv()"
+      ],
+      "correctIndex": 0,
+      "explanation": "listen помечает сокет как принимающий входящие соединения."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-07",
+      "kind": "code-trace",
+      "title": "Network Programming 02 — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "networking"
+        ],
+        "tags": "accept возвращает новый сокет для соединения с клиентом."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "question": "Какая функция сервера принимает входящее соединение?",
+      "code": {
+        "code": [
+          "accept()",
+          "connect()",
+          "bind()",
+          "send()"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-08",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Какая функция клиента инициирует соединение?",
+      "optionsLearning": [
+        "connect()",
+        "listen()",
+        "accept()",
+        "bind()"
+      ],
+      "correctIndex": 0,
+      "explanation": "connect устанавливает соединение с удалённым сервером."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-09",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Что такое IP-адрес?",
+      "optionsLearning": [
+        "Уникальный адрес узла в сети",
+        "Порт",
+        "Протокол",
+        "Домен"
+      ],
+      "correctIndex": 0,
+      "explanation": "IP-адрес идентифицирует интерфейс/узел в сети."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-10",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Что такое порт?",
+      "optionsLearning": [
+        "16-битный номер для различения приложений на узле",
+        "Адрес в памяти",
+        "Протокол",
+        "Скорость"
+      ],
+      "correctIndex": 0,
+      "explanation": "Порт выбирает процесс-получатель на хосте."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Network Programming 02 — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "networking"
+        ],
+        "tags": "htons конвертирует порядок байт хоста в сетевой."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "question": "Что вернёт htons(port)?",
+      "code": {
+        "code": [
+          "Порт в сетевом порядке байт (big-endian)",
+          "Порт в кодировке ASCII",
+          "Хэш порта",
+          "Тот же порт"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-12",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Зачем нужны htonl/ntohl?",
+      "optionsLearning": [
+        "Конвертация порядка байт между хостом и сетью",
+        "Хеширование",
+        "Оптимизация",
+        "Низачем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сетевой порядок байт — big-endian; функции адаптируют его."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-13",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Что делает recv()?",
+      "optionsLearning": [
+        "Получает данные из сокета",
+        "Отправляет данные",
+        "Закрывает сокет",
+        "Соединяет"
+      ],
+      "correctIndex": 0,
+      "explanation": "recv читает данные из соединённого сокета."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-14",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Что делает send()?",
+      "optionsLearning": [
+        "Отправляет данные через сокет",
+        "Принимает данные",
+        "Проверяет соединение",
+        "Устанавливает порт"
+      ],
+      "correctIndex": 0,
+      "explanation": "send записывает данные в сокет."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Network Programming 02 — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "networking"
+        ],
+        "tags": "recv возвращает 0 при закрытии соединения другой стороной."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "question": "Что означает возврат recv() == 0?",
+      "code": {
+        "code": [
+          "Соединение закрыто (EOF)",
+          "Нет данных, но соединение живо",
+          "Ошибка",
+          "Данные получены"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-16",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Что возвращает recv() == -1?",
+      "optionsLearning": [
+        "Ошибку (errno)",
+        "Успех",
+        "Закрытие",
+        "Нет данных"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отрицательное возвращаемое значение означает ошибку операции."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-17",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Что такое блокирующий сокет?",
+      "optionsLearning": [
+        "Операции ждут события (данные/соединение)",
+        "Операции мгновенны",
+        "Сокет занят",
+        "Ускоренный режим"
+      ],
+      "correctIndex": 0,
+      "explanation": "Блокирующие вызовы приостанавливают поток до готовности."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-18",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Как избежать блокировки сокета?",
+      "optionsLearning": [
+        "Неблокирующий режим + poll/select/epoll",
+        "Нельзя",
+        "sleep",
+        "Меньше данных"
+      ],
+      "correctIndex": 0,
+      "explanation": "O_NONBLOCK + мультиплексирование дают событийную модель."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-19",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Что такое localhost (127.0.0.1)?",
+      "optionsLearning": [
+        "Локальный интерфейс этого же узла",
+        "Удалённый сервер",
+        "Домен верхнего уровня",
+        "Порт 0"
+      ],
+      "correctIndex": 0,
+      "explanation": "127.0.0.1 указывает на саму машину."
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario.card-20",
+      "kind": "select",
+      "title": "Network Programming 02 — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "networking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.network-programming.02.scenario",
+      "promptKnown": "Какая современная библиотека упрощает сеть в C++?",
+      "optionsLearning": [
+        "Boost.Asio (и std::net в перспективе)",
+        "Только сокеты C",
+        "iostream",
+        "conio"
+      ],
+      "correctIndex": 0,
+      "explanation": "Boost.Asio предоставляет асинхронные и синхронные API."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

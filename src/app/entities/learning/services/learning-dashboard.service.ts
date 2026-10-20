@@ -14,6 +14,7 @@ import { CourseSearchService } from '../../../entities/course/search/course-sear
 import { resolveLearningSessionForPair } from '../lib/learning-session.utils';
 import { getScenarioSeedCache } from '../../../entities/content-seed/content-seed.cache';
 import type { CourseWithLessons } from '../../../entities/course/model';
+import { CPP_COMPLETE_COURSE_ID } from '../../../entities/course/model';
 import { LearningResultsStore } from '../model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { RADICALS_COURSE_ID } from '../../../entities/chinese/lib/tones/radicals-course.defaults';
@@ -138,8 +139,17 @@ export class LearningDashboardService {
       }
 
       if (!courseId) {
-        // Fallback: курс радикалов по умолчанию
+        // Гарантированный fallback — курс радикалов (как раньше).
         courseId = RADICALS_COURSE_ID;
+        // По умолчанию предпочитаем C++ Complete Course, если он доступен.
+        try {
+          const cppCourse = await this.courseSearchService.getById(CPP_COMPLETE_COURSE_ID);
+          if (cppCourse) {
+            courseId = CPP_COMPLETE_COURSE_ID;
+          }
+        } catch {
+          // C++ курс недоступен — остаёмся на курсе радикалов.
+        }
       }
 
       if (!courseId) {

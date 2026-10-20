@@ -1,0 +1,121 @@
+{
+  "scenarioId": "stl.chrono.scenario",
+  "cards": [
+    {
+      "id": "stl.chrono.card-01",
+      "kind": "select",
+      "title": "Time points",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое time_point?",
+      "optionsLearning": [
+        "Конкретная точка во времени (date/time)",
+        "Продолжительность",
+        "Часовой пояс",
+        "Календарь"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "chrono"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-chrono",
+      "scenarioId": "stl.chrono.scenario"
+    },
+    {
+      "id": "stl.chrono.card-02",
+      "kind": "select",
+      "title": "Duration",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое duration?",
+      "optionsLearning": [
+        "Продолжительность (например, 5 секунд)",
+        "Точка во времени",
+        "Часовой пояс",
+        "Календарь"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "chrono"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-chrono",
+      "scenarioId": "stl.chrono.scenario"
+    },
+    {
+      "id": "stl.chrono.card-03",
+      "kind": "select",
+      "title": "Time conversion",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как конвертировать время?",
+      "optionsLearning": [
+        "std::chrono::duration_cast<seconds>(dur)",
+        "(int)dur",
+        "dur.toSeconds()",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "chrono"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-chrono",
+      "scenarioId": "stl.chrono.scenario"
+    },
+    {
+      "id": "stl.chrono.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как измерять время?",
+      "optionsLearning": [
+        "std::chrono::high_resolution_clock для benchmarking",
+        "time() только",
+        "Нельзя",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "chrono"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-chrono",
+      "scenarioId": "stl.chrono.scenario"
+    }
+  ]
+}

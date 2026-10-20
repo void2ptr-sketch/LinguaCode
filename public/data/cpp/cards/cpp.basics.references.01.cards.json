@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.basics.references.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.references.01.scenario.card-01",
+      "kind": "select",
+      "title": "References Intro — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Что такое ссылка в C++?",
+      "optionsLearning": [
+        "Альтернативное имя (alias) существующего объекта",
+        "Копия объекта",
+        "Указатель",
+        "Значение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылка — псевдоним; после инициализации всегда относится к тому же объекту."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-02",
+      "kind": "select",
+      "title": "References Intro — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Как объявить ссылку на int x?",
+      "optionsLearning": [
+        "int& r = x;",
+        "int r& = x;",
+        "&int r;",
+        "r = &x;"
+      ],
+      "correctIndex": 0,
+      "explanation": "int& r = x — ссылка инициализируется объектом."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "References Intro — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 5; int& r = x; r = 10; std::cout << x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "5",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Изменение через ссылку меняет x → 10."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-04",
+      "kind": "select",
+      "title": "References Intro — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Можно ли перепривязать ссылку на другой объект?",
+      "optionsLearning": [
+        "Нет, ссылка связывается один раз при инициализации",
+        "Да, через =",
+        "Только в C++20",
+        "Только через указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "Присваивание ссылке меняет целевой объект, а не привязку."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "References Intro — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a = 1, b = 2; int& r = a; r = b; std::cout << a; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "r = b присваивает a значение b (=2), привязка осталась."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-06",
+      "kind": "select",
+      "title": "References Intro — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Чем ссылка отличается от указателя?",
+      "optionsLearning": [
+        "Ссылка не может быть nullptr и не перепривязывается",
+        "Указатель всегда безопаснее",
+        "Ничем",
+        "Ссылка занимает меньше"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылки непустые и фиксированные; указатели перезаписываемы и могут быть null."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-07",
+      "kind": "select",
+      "title": "References Intro — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "functions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Какой параметр функции меняет аргумент через псевдоним?",
+      "optionsLearning": [
+        "void f(int& x)",
+        "void f(int x)",
+        "void f(const int& x)",
+        "void f(int* x <= тоже можно)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылочный параметр работает с оригиналом аргумента."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "References Intro — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "functions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nvoid inc(int& x) { ++x; }\nint main() { int n = 5; inc(n); std::cout << n; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "5",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "inc через ссылку увеличивает n → 6."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-09",
+      "kind": "select",
+      "title": "References Intro — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "functions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Зачем передавать большие объекты как const&?",
+      "optionsLearning": [
+        "Избежать копирования и запретить изменение",
+        "Ссылка медленнее",
+        "Так проще читать",
+        "Меньше памяти обязательно"
+      ],
+      "correctIndex": 0,
+      "explanation": "const& — эффективная и безопасная передача."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-10",
+      "kind": "select",
+      "title": "References Intro — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Что произойдёт при возврате ссылки на локальную переменную?",
+      "optionsLearning": [
+        "Висячая ссылка (UB при использовании)",
+        "Копия значения",
+        "Ошибка линковки",
+        "Компилятор вернёт 0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Локальная переменная уничтожается — ссылка становится висячей."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "References Intro — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 7; const int& r = x; std::cout << r; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "адрес",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "const-ссылка читает значение x = 7."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-12",
+      "kind": "select",
+      "title": "References Intro — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "pointers",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Можно ли инициализировать ссылку временным значением (const)?",
+      "optionsLearning": [
+        "Да, для const-ссылки (продлевает жизнь временного)",
+        "Нет",
+        "Только через rvalue-ссылку&&",
+        "Запрещено вовсе"
+      ],
+      "correctIndex": 0,
+      "explanation": "const& и && продлевают время жизни временного объекта."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-13",
+      "kind": "select",
+      "title": "References Intro — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "pointers",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Что такое rvalue-ссылка (T&&)?",
+      "optionsLearning": [
+        "Ссылка на временный объект (для move-семантики)",
+        "Обычная ссылка",
+        "Указатель",
+        "Константная ссылка"
+      ],
+      "correctIndex": 0,
+      "explanation": "T&& связывается с временными значениями и используется в move."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "References Intro — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "pointers",
+          "functions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "question": "Что выведет эта программа (перегрузка)?",
+      "code": {
+        "code": "#include <iostream>\nvoid f(int&) { std::cout << 1; }\nvoid f(const int&) { std::cout << 2; }\nint main() { f(5); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "Ошибка",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "5 — временное значение: подходит только const int& → 2."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-15",
+      "kind": "select",
+      "title": "References Intro — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "pointers",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Чем std::reference_wrapper отличается от ссылки?",
+      "optionsLearning": [
+        "Его можно хранить в контейнерах и перепривязывать",
+        "Он медленнее",
+        "Это указатель",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "reference_wrapper<N> — объект-обёртка ссылки для контейнеров."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-16",
+      "kind": "select",
+      "title": "References Intro — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Что случится при присваивании ссылке неинициализированного объекта?",
+      "optionsLearning": [
+        "Ошибка компиляции — ссылка требует объект при создании",
+        "Ссылка станет nullptr",
+        "Мусор",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылку нельзя создать без инициализации."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "References Intro — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a = 3, b = 4; int& r = a; r = b; std::cout << r << a; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "44",
+        "34",
+        "43",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "r = b → a = 4; r и a равны 4 → 44."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-18",
+      "kind": "select",
+      "title": "References Intro — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers",
+          "functions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Как вернуть из функции несколько значений (без структур)?",
+      "optionsLearning": [
+        "Выходные параметры-ссылки или std::tuple",
+        "Через глобальные",
+        "Через return только одно",
+        "Указатель на стек"
+      ],
+      "correctIndex": 0,
+      "explanation": "Выходные ссылки/указатели или tuple — способы вернуть несколько значений."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-19",
+      "kind": "select",
+      "title": "References Intro — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "functions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Что означает тип void f(const std::string& s)?",
+      "optionsLearning": [
+        "Строка передаётся без копии и не изменяется",
+        "Строка копируется",
+        "Ссылка на указатель",
+        "Строка удаляется"
+      ],
+      "correctIndex": 0,
+      "explanation": "const& — эффективность и защита от изменения."
+    },
+    {
+      "id": "cpp.basics.references.01.scenario.card-20",
+      "kind": "select",
+      "title": "References Intro — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.references.01.scenario",
+      "promptKnown": "Зачем вообще нужны ссылки, если есть указатели?",
+      "optionsLearning": [
+        "Безопасность (без nullptr) и удобный синтаксис",
+        "Указатели бесполезны",
+        "Ссылки быстрее всегда",
+        "Ссылки обязательны"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылки безопаснее и короче для обязательного доступа к существующему объекту."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

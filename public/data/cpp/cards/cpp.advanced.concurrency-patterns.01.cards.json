@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-01",
+      "kind": "select",
+      "title": "Producer-Consumer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое producer-consumer?",
+      "optionsLearning": [
+        "Один производит, другой потребляет (queue + mutex)",
+        "Односторонняя связь",
+        "Без очереди",
+        "Статический"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-02",
+      "kind": "select",
+      "title": "Barrier",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое barrier?",
+      "optionsLearning": [
+        "Точки синхронизации (все потоки ждут друг друга)",
+        "Один поток",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-03",
+      "kind": "select",
+      "title": "Read-Write lock",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое read-write lock?",
+      "optionsLearning": [
+        "Много читателей или один писатель (shared_mutex)",
+        "Обычный mutex",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-04",
+      "kind": "select",
+      "title": "Thread-local storage",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое thread-local?",
+      "optionsLearning": [
+        "Переменная для каждого потока (thread_local)",
+        "Глобальная переменная",
+        "Статическая",
+        "Константа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проектировать concurrent code?",
+      "optionsLearning": [
+        "Immutability + message passing",
+        "Shared mutable state",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-06",
+      "kind": "select",
+      "title": "Actor model",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое actor model?",
+      "optionsLearning": [
+        "Модель через isolated actors + message passing",
+        "Shared state",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-07",
+      "kind": "select",
+      "title": "Futures chain",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое futures chain?",
+      "optionsLearning": [
+        "Цепочка async операций (then/flatMap)",
+        "Односторонняя связь",
+        "Без цепочки",
+        "Статический"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-08",
+      "kind": "select",
+      "title": "Cyclic barrier",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое cyclic barrier?",
+      "optionsLearning": [
+        "Точка синхронизации для повторного использования",
+        "Одноразовая барьер",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-09",
+      "kind": "select",
+      "title": "Read-copy-update",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое RCU?",
+      "optionsLearning": [
+        "Модификация без блокировки (copy + update + replace)",
+        "Обычная модификация",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проектировать concurrent code?",
+      "optionsLearning": [
+        "Immutability + message passing + actors",
+        "Shared mutable state",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-11",
+      "kind": "select",
+      "title": "std::async",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::async?",
+      "optionsLearning": [
+        "High-level async (задача + future)",
+        "Низкоуровневый thread",
+        "Синхронная функция",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-12",
+      "kind": "select",
+      "title": "Future/Promise",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое future/promise?",
+      "optionsLearning": [
+        "Async result container (get/set value)",
+        "Sync container",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-13",
+      "kind": "select",
+      "title": "Parallel algorithms",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parallel algorithms?",
+      "optionsLearning": [
+        "std::execution::par (C++17) для параллельных операций",
+        "Sequential only",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-14",
+      "kind": "select",
+      "title": "Thread pool",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое thread pool?",
+      "optionsLearning": [
+        " пул потоков для повторного использования (reusable threads)",
+        "Один поток",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как параллелить эффективно?",
+      "optionsLearning": [
+        "Task-based parallelism (std::async, parallel algorithms)",
+        "Только manual threads",
+        "Никак",
+        "Только SIMD"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-16",
+      "kind": "select",
+      "title": "Thread-safe data structures",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое thread-safe структуры?",
+      "optionsLearning": [
+        "Структуры данных для concurrent access (lock-free queues)",
+        "Обычные структуры",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-17",
+      "kind": "select",
+      "title": "Lock-free algorithms",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое lock-free алгоритмы?",
+      "optionsLearning": [
+        "Алгоритмы без блокировок (CAS operations)",
+        "С mutex",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-18",
+      "kind": "select",
+      "title": "Work stealing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое work stealing?",
+      "optionsLearning": [
+        "Потоки забирают задачи у других (balanced load)",
+        "Фиксированные задачи",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-19",
+      "kind": "select",
+      "title": "Parallel sorting",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как параллелить сортировку?",
+      "optionsLearning": [
+        "Parallel merge sort + std::execution::par",
+        "Sequential only",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.concurrency-patterns.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как параллелить эффективно?",
+      "optionsLearning": [
+        "Task-based + work stealing + lock-free",
+        "Только manual threads",
+        "Никак",
+        "Только SIMD"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-concurrency",
+      "scenarioId": "cpp.advanced.concurrency-patterns.01.scenario"
+    }
+  ]
+}

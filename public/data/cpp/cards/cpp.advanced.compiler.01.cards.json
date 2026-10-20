@@ -1,0 +1,649 @@
+{
+  "scenarioId": "cpp.advanced.compiler.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-01",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "syntax",
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Какие этапы проходит компилятор?",
+      "optionsLearning": [
+        "Лексер → парсер → семантика → кодогенерация",
+        "Только парсинг",
+        "Сборка",
+        "Линковка сразу"
+      ],
+      "correctIndex": 0,
+      "explanation": "Трансляция исходного кода в машинный."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-02",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "syntax",
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что делает лексер?",
+      "optionsLearning": [
+        "Разбивает текст на токены",
+        "Строит дерево",
+        "Генерирует код",
+        "Линкует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Токены: ключевые слова, числа, идентификаторы."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Compiler Internals и Optimization — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "syntax",
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "question": "Что выведет этот код после оптимизации?",
+      "code": {
+        "code": "int f() { return 2 + 3; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5 (константная складка)",
+        "2 + 3",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Constant folding: 2+3 → 5."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-04",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "syntax",
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что такое constant folding?",
+      "optionsLearning": [
+        "Вычисление константных выражений",
+        "Сортировка",
+        "Линковка",
+        "Парсинг"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компилятор считает константы заранее."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-05",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что такое inlining?",
+      "optionsLearning": [
+        "Замена вызова телом функции",
+        "Ошибка",
+        "Сборка",
+        "Линковка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Устраняет накладные расходы вызова."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Compiler Internals и Optimization — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ninline int sq(int x) { return x * x; }\nint main() { std::cout << sq(4); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "16",
+        "4",
+        "Ошибка",
+        "sq"
+      ],
+      "correctIndex": 0,
+      "explanation": "sq(4) = 16 (возможно inline)."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-07",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что такое dead code elimination?",
+      "optionsLearning": [
+        "Удаление недостижимого/ненужного кода",
+        "Оптимизация вызовов",
+        "Сборка",
+        "Парсинг"
+      ],
+      "correctIndex": 0,
+      "explanation": "Убирает код, результат которого не используется."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Compiler Internals и Optimization — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "question": "Что оптимизирует компилятор здесь?",
+      "code": {
+        "code": "int x = 1; if (x) p();",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Условие всегда true — вызов напрямую",
+        "Не может",
+        "Удаляет p",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Branch elimination по константе."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-09",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что такое loop unrolling?",
+      "optionsLearning": [
+        "Размотка цикла для ускорения",
+        "Ошибка",
+        "Удаление",
+        "Сортировка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Повторение тела уменьшает проверки."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-10",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что такое vectorization?",
+      "optionsLearning": [
+        "Преобразование цикла в SIMD-инструкции",
+        "Поток",
+        "Массив",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Автовекторизация циклов."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Compiler Internals и Optimization — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "compilers",
+          "syntax"
+        ],
+        "tags": "-O2 — оптимизация производительности."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "question": "Какой флаг включает O2 оптимизации?",
+      "code": {
+        "code": [
+          "-O2",
+          "-g",
+          "-Wall",
+          "-std=c++20"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "beginner"
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-12",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilers",
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что делает -O0?",
+      "optionsLearning": [
+        "Без оптимизаций (для отладки)",
+        "Максимум",
+        "Убирает",
+        "Фаталит"
+      ],
+      "correctIndex": 0,
+      "explanation": "-O0 удобно в отладчике."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-13",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что такое LTO?",
+      "optionsLearning": [
+        "Link-Time Optimization — оптимизация на этапе линковки",
+        "Линтер",
+        "Сборка",
+        "Тест"
+      ],
+      "correctIndex": 0,
+      "explanation": "LTO видит все единицы трансляции."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Compiler Internals и Optimization — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "compilers",
+          "syntax"
+        ],
+        "tags": "-flto включает линк-тайм оптимизацию."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "question": "Как включить LTO?",
+      "code": {
+        "code": [
+          "-flto",
+          "-O3",
+          "-g",
+          "-w"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-15",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что такое undefined behavior оптимизация?",
+      "optionsLearning": [
+        "Компилятор полагается на отсутствие UB",
+        "Гарантия",
+        "Обязательство",
+        "Скорость"
+      ],
+      "correctIndex": 0,
+      "explanation": "Использование допущений для оптимизации."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-16",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что такое RVO?",
+      "optionsLearning": [
+        "Return Value Optimization",
+        "Оптимизация вызовов",
+        "Удаление",
+        "Сборка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Возврат без копии/перемещения."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Compiler Internals и Optimization — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "question": "Что оптимизирует RVO в этом коде?",
+      "code": {
+        "code": "std::string f() { return \"abc\"; } auto s = f();",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Конструкция s без копии/перемещения",
+        "Поиск",
+        "Сортировку",
+        "Ошибку"
+      ],
+      "correctIndex": 0,
+      "explanation": "NRVO/RVO убирает лишние конструкции."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-18",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что такое instruction scheduling?",
+      "optionsLearning": [
+        "Переупорядочивание инструкций для конвейера",
+        "Сортировка",
+        "Хеширование",
+        "Сборка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Улучшение использования CPU pipeline."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-19",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Когда доверять компилятору без профилей?",
+      "optionsLearning": [
+        "Обычно да; для горячих путей — профиль",
+        "Никогда",
+        "Всегда",
+        "Только O0"
+      ],
+      "correctIndex": 0,
+      "explanation": "PGO/BOLT улучшает реальные нагрузки."
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario.card-20",
+      "kind": "select",
+      "title": "Compiler Internals и Optimization — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "compilers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.compiler.01.scenario",
+      "promptKnown": "Что такое PGO?",
+      "optionsLearning": [
+        "Profile-Guided Optimization",
+        "Ошибка",
+        "Макрос",
+        "Тест"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оптимизация по профилю выполнения."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

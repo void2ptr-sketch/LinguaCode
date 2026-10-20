@@ -1,0 +1,629 @@
+{
+  "scenarioId": "cpp.basics.performance.09.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.performance.09.scenario.card-01",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Что такое C++?",
+      "optionsLearning": [
+        "Язык программирования общего назначения с компиляцией в машинный код",
+        "Язык разметки",
+        "База данных",
+        "Операционная система"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ — компилируемый язык с ручным и RAII-управлением ресурсами."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-02",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Какой парадигм поддерживает C++?",
+      "optionsLearning": [
+        "Процедурная, ООП, обобщённое, функциональное",
+        "Только функциональное",
+        "Только процедурное",
+        "Только логическое"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ мультипарадигмальный: процедурный, ООП, шаблоны, лямбды."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-03",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "В чём главное преимущество C++ над высокоуровневыми языками?",
+      "optionsLearning": [
+        "Производительность и контроль над памятью",
+        "Динамическая типизация",
+        "Отсутствие компиляции",
+        "Автоматический сборщик мусора"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ даёт близкий к железу контроль и высокую производительность."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-04",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Кто создал язык C++?",
+      "optionsLearning": [
+        "Бьёрн Страуструп",
+        "Деннис Ритчи",
+        "Джеймс Гослинг",
+        "Гвидо ван Россум"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ разработал Бьёрн Страуструп в Bell Labs."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-05",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Из какого языка C++ взял базовый синтаксис?",
+      "optionsLearning": [
+        "C",
+        "Java",
+        "Python",
+        "Pascal"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ сохранил обратную совместимость и синтаксис C."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-06",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Где применяется C++?",
+      "optionsLearning": [
+        "Игры, высоконагруженные сервисы, embedded, финансы",
+        "Только веб-вёрстка",
+        "Только аналитика",
+        "Только базы данных"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ — стандарт для игр, HFT, embedded и системного ПО."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-07",
+      "kind": "code-trace",
+      "title": "Что такое C++? — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << \"Hello, C++!\"; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Hello, C++!",
+        "Hello",
+        "Ошибка",
+        "C++"
+      ],
+      "correctIndex": 0,
+      "explanation": "Программа выводит строку приветствия."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-08",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Как компилируется программа на C++?",
+      "optionsLearning": [
+        "Исходник → объектный файл → линковка → исполняемый",
+        "Интерпретация построчно",
+        "Транспиляция в JS",
+        "Компоновка в Python"
+      ],
+      "correctIndex": 0,
+      "explanation": "Классический пайплайн: препроцессор → компилятор → линковщик."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-09",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Что такое компилятор?",
+      "optionsLearning": [
+        "Программа, переводящая код в машинный",
+        "IDE",
+        "ОС",
+        "Библиотека"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компилятор превращает исходники в исполняемый код."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-10",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Какие инструменты нужны для начала работы с C++?",
+      "optionsLearning": [
+        "Компилятор (g++/clang/MSVC) и редактор",
+        "Только браузер",
+        "База данных",
+        "Виртуальная машина Java"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компилятор и редактор — минимальный набор разработчика."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-11",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Чем C++20 отличается от C++11?",
+      "optionsLearning": [
+        "Новыми возможностями: concepts, ranges, coroutines",
+        "Ничем",
+        "Меньше фич",
+        "Только синтаксисом"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++20 принёс крупные языковые улучшения."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-12",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Что означает «собран на C++»?",
+      "optionsLearning": [
+        "Программа скомпилирована из C++-кода",
+        "Создана в IDE",
+        "Работает быстро автоматически",
+        "Использует Linux"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компиляция из исходников C++ в исполняемый файл."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-13",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Какова роль фигурных скобок { } в C++?",
+      "optionsLearning": [
+        "Ограничивают блоки кода",
+        "Обозначают строки",
+        "Являются комментариями",
+        "Обозначают числа"
+      ],
+      "correctIndex": 0,
+      "explanation": "Блоки операторов выделяются фигурными скобками."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-14",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Что значит «статическая типизация»?",
+      "optionsLearning": [
+        "Типы известны на этапе компиляции",
+        "Типы меняются в runtime",
+        "Нет типов",
+        "Типы ленивые"
+      ],
+      "correctIndex": 0,
+      "explanation": "В C++ тип переменной фиксируется и проверяется при компиляции."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-15",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Что такое стандартная библиотека C++?",
+      "optionsLearning": [
+        "Набор готовых типов и алгоритмов (vector, sort и др.)",
+        "Компилятор",
+        "Фреймворк GUI",
+        "IDE"
+      ],
+      "correctIndex": 0,
+      "explanation": "STL и стандартная библиотека экономят время разработки."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-16",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Какая функция является точкой входа в программу?",
+      "optionsLearning": [
+        "main()",
+        "start()",
+        "run()",
+        "init()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Исполнение программы начинается с main()."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Что такое C++? — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { return 0; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Ничего (код возврата 0)",
+        "0 на экран",
+        "Ошибка",
+        "main"
+      ],
+      "correctIndex": 0,
+      "explanation": "return 0 завершает программу без вывода."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-18",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Зачем нужно изучать C++ в 2020-х?",
+      "optionsLearning": [
+        "Для системного, высокопроизводительного и embedded ПО",
+        "Не нужно",
+        "Только для игр прошлого",
+        "Только для Windows"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ остаётся ключевым для производительных систем."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-19",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Чем C++ отличается от C#?",
+      "optionsLearning": [
+        "C++ — нативный компилируемый; C# — управляемый на .NET",
+        "Это один язык",
+        "C# — расширение C++",
+        "C++ написан на C#"
+      ],
+      "correctIndex": 0,
+      "explanation": "C# работает на CLR с GC; C++ — нативный без GC."
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario.card-20",
+      "kind": "select",
+      "title": "Что такое C++? — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "scenarioId": "cpp.basics.performance.09.scenario",
+      "promptKnown": "Какая философия «zero-overhead» у C++?",
+      "optionsLearning": [
+        "Абстракции не добавляют затрат, если не используются",
+        "Код всегда быстрый",
+        "Компиляция бесплатна",
+        "Нет затрат вообще"
+      ],
+      "correctIndex": 0,
+      "explanation": "Zero-overhead: абстракции стоят ровно столько, сколько вы платите за них."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

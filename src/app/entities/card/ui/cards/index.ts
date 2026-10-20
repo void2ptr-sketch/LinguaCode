@@ -1,4 +1,7 @@
+export { ClozeCardComponent } from './cloze-card';
 export { CodeSelectCardComponent } from './code-select-card';
+export { CodeTraceCardComponent } from './code-trace-card';
+export { FlipCardComponent } from './flip-card';
 export { KeyboardCardComponent } from './keyboard-card';
 export { MemoryCardComponent } from './memory-card';
 export { QuizCardQuestionHeaderComponent } from './quiz-card-question-header';

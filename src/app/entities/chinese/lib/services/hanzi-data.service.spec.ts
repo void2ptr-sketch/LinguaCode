@@ -175,6 +175,7 @@ describe('HanziDataService offline smoke', () => {
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
+    TestBed.resetTestingModule();
     TestBed.configureTestingModule({
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
@@ -185,6 +186,7 @@ describe('HanziDataService offline smoke', () => {
 
   afterEach(() => {
     httpMock.verify();
+    TestBed.resetTestingModule();
   });
 
   it('should expose local relative asset URLs only (no CDN)', () => {
@@ -207,5 +209,87 @@ describe('HanziDataService offline smoke', () => {
     expect(cached?.character).toBe('人');
     expect(service.getCachedModel('人')?.strokes.length).toBe(2);
     expect(service.hasCachedData('人')).toBe(true);
+  });
+
+  it('should return null for empty character', async () => {
+    const result = await service.loadCharacter('');
+    expect(result).toBeNull();
+    httpMock.expectNone('/assets/hanzi/');
+  });
+
+  it('should trim whitespace from character', async () => {
+    const promise = service.loadCharacter(' 人 ');
+    const request = httpMock.expectOne('/assets/hanzi/%E4%BA%BA.json');
+    request.flush(REN_JSON);
+
+    const model = await promise;
+    expect(model?.character).toBe('人');
+    expect(service.hasCachedData('人')).toBe(true);
+  });
+
+  it('should return null for cached missing character', async () => {
+    service.clearCache();
+    const promise = service.loadCharacter('未');
+    httpMock.expectOne('/assets/hanzi/%E6%9C%AA.json').flush('not found', {
+      status: 404,
+      statusText: 'Not Found',
+    });
+    await Promise.resolve();
+    httpMock.expectOne('/assets/hanzi/radical/%E6%9C%AA.json').flush('not found', {
+      status: 404,
+      statusText: 'Not Found',
+    });
+    await promise;
+
+    const second = await service.loadCharacter('未');
+    expect(second).toBeNull();
+    expect(service.getLoadState('未')).toBe('missing');
+  });
+
+  it('should deduplicate in-flight requests', async () => {
+    const promise1 = service.loadCharacter('人');
+    const promise2 = service.loadCharacter('人');
+
+    // Only one HTTP request should be made
+    const request = httpMock.expectOne('/assets/hanzi/%E4%BA%BA.json');
+    request.flush(REN_JSON);
+
+    const [model1, model2] = await Promise.all([promise1, promise2]);
+    expect(model1?.character).toBe('人');
+    expect(model2?.character).toBe('人');
+  });
+
+  it('should return idle state for uncached character', () => {
+    expect(service.getLoadState('未')).toBe('idle');
+  });
+
+  it('should return null for uncached model', () => {
+    expect(service.getCachedModel('未')).toBeNull();
+  });
+
+  it('should clear cache and inflight requests', async () => {
+    const promise = service.loadCharacter('人');
+    httpMock.expectOne('/assets/hanzi/%E4%BA%BA.json').flush(REN_JSON);
+    await promise;
+
+    expect(service.hasCachedData('人')).toBe(true);
+    service.clearCache();
+
+    expect(service.hasCachedData('人')).toBe(false);
+    expect(service.getLoadState('人')).toBe('idle');
+    expect(service.getCachedModel('人')).toBeNull();
+  });
+
+  it('should handle non-404 error and set error state', async () => {
+    service.clearCache();
+    const promise = service.loadCharacter('人');
+    httpMock.expectOne('/assets/hanzi/%E4%BA%BA.json').flush('Server error', {
+      status: 500,
+      statusText: 'Internal Server Error',
+    });
+    await promise;
+
+    expect(service.getLoadState('人')).toBe('error');
+    expect(service.getCachedModel('人')).toBeNull();
   });
 });

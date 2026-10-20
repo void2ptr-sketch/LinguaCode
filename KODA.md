@@ -1,5 +1,7 @@
 # KODA.md — Инструкции для AI-ассистента
 
+> **Единый источник правил разработки — `.continue/rules/`** (см. [`CONTINUE.md`](.continue/rules/CONTINUE.md) и правила по доменам `meta` / `architecture` / `angular` / `design` / `business`). Этот файл — краткий обзор проекта и указатели; при расхождении приоритет у `.continue/rules/`.
+
 ## О проекте
 
 **LinguaCode** — приложение для изучения языков (от естественных до искусственных). Основная единица обучения — **карточка** (10 типов). Карточки → сценарии → уроки → программы.
@@ -16,7 +18,7 @@
 | `README.md`                | Обзор, быстрый старт, стек     |
 | `TASKS.md`                 | Чеклист задач и бэклога        |
 | `docs/INDEX.md`            | Оглавление документации        |
-| `docs/SYSTEM/DOMAIN.md`    | Сущности, модели, терминология |
+| `docs/COMMON/DOMAIN.md`    | Сущности, модели, терминология |
 | `docs/ARCHITECTURE.md`     | Технические решения            |
 | `docs/SYSTEM/GIT-RULES.md` | Правила веток и коммитов       |
 | `.cursorrules`             | Базовые правила стиля          |
@@ -51,7 +53,7 @@ src/app/
 
 - Фичи **не импортируют** друг друга (запрещены cross-slice импорты).
 - Публичный API фичи — через `index.ts`.
-- `core/` — переходные shim-баррели (реальный код в entities/shared/app/widgets); удаление — отдельная задача.
+- `core/` **удалён** при FSD-миграции; инфраструктура живёт в `app/`, `shared/`, `entities/` или `widgets/` (см. `02.architecture.01.project-architecture.rule.md`).
 
 ### Контент
 
@@ -85,19 +87,19 @@ src/app/
 
 ### Команды
 
-| Команда                            | Описание                                 |
-| ---------------------------------- | ---------------------------------------- |
-| `npm start`                        | Dev-сервер                               |
-| `npm run build`                    | Production-сборка                        |
-| `npm test`                         | Unit-тесты (Vitest)                      |
-| `npm run lint`                     | ESLint                                   |
-| `npm run format`                   | Prettier                                 |
-| `npm run verify`                   | lint + sync:hanzi + build + test         |
-| `npm run export:content-seed`      | Экспорт overlay → seed                   |
-| `npm run import:perl-idea`         | Импорт идеи Perl-интервью из Markdown    |
-| `npm run import:course-bundle`     | Импорт CourseBundle JSON                 |
-| `npm run generate:radicals-course` | Генерация курса радикалов + экспорт seed |
-| `npm run export:course-pdf`        | Экспорт курса в PDF                      |
+| Команда                            | Описание                                                                             |
+| ---------------------------------- | ------------------------------------------------------------------------------------ |
+| `npm run build`                    | Сборка (development)                                                                 |
+| `npm run build:prod`               | Production-сборка                                                                    |
+| `npm test`                         | Unit-тесты (Vitest)                                                                  |
+| `npm run lint`                     | ESLint                                                                               |
+| `npm run format`                   | Prettier                                                                             |
+| `npm run verify`                   | lint + audit:fsd + check:imports + audit:barrels + sync:hanzi + build:prod + test:ci |
+| `npm run export:content-seed`      | Экспорт overlay → seed                                                               |
+| `npm run import:perl-idea`         | Импорт идеи Perl-интервью из Markdown                                                |
+| `npm run import:course-bundle`     | Импорт CourseBundle JSON                                                             |
+| `npm run generate:radicals-course` | Генерация курса радикалов + экспорт seed                                             |
+| `npm run export:course-pdf`        | Экспорт курса в PDF                                                                  |
 
 ### Скрипты данных
 

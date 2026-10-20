@@ -29,6 +29,9 @@ export const CARD_FORM_KIND_GROUP: Record<CardKind, CardFormKindGroup> = {
   draw: 'input',
   memory: 'pairs',
   sound: 'media',
+  flip: 'pairs',
+  cloze: 'choice',
+  'code-trace': 'choice',
 };
 
 /**

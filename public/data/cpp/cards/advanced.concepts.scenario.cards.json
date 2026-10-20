@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.concepts.scenario",
+  "cards": [
+    {
+      "id": "advanced.concepts.card-01",
+      "kind": "select",
+      "title": "Concept definition",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое concept?",
+      "optionsLearning": [
+        "Constraint на template parameters (проверка на compile time)",
+        "Тип данных",
+        "Оператор",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concepts"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concepts",
+      "scenarioId": "advanced.concepts.scenario"
+    },
+    {
+      "id": "advanced.concepts.card-02",
+      "kind": "select",
+      "title": "Concept syntax",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Синтаксис concept?",
+      "optionsLearning": [
+        "concept Integer = std::integral<T>;",
+        "interface Integer {}",
+        "type Integer = int",
+        "require Integer"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concepts"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concepts",
+      "scenarioId": "advanced.concepts.scenario"
+    },
+    {
+      "id": "advanced.concepts.card-03",
+      "kind": "select",
+      "title": "Concept usage",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать concept?",
+      "optionsLearning": [
+        "template<Integer T> void f(T x)",
+        "template<typename T> requires Integer<T>",
+        "function<Integer>(x)",
+        "def f(x: Integer)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concepts"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concepts",
+      "scenarioId": "advanced.concepts.scenario"
+    },
+    {
+      "id": "advanced.concepts.card-04",
+      "kind": "select",
+      "title": "Concept benefits",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Преимущества concepts?",
+      "optionsLearning": [
+        "Better error messages, self-documenting code",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concepts"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concepts",
+      "scenarioId": "advanced.concepts.scenario"
+    },
+    {
+      "id": "advanced.concepts.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать concepts?",
+      "optionsLearning": [
+        "Для template constraints (C++20)",
+        "Всегда",
+        "Никогда",
+        "Только для small types"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "concepts"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concepts",
+      "scenarioId": "advanced.concepts.scenario"
+    }
+  ]
+}

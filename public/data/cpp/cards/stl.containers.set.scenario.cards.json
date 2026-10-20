@@ -1,0 +1,121 @@
+{
+  "scenarioId": "stl.containers.set.scenario",
+  "cards": [
+    {
+      "id": "stl.containers.set.card-01",
+      "kind": "select",
+      "title": "Set создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать std::set?",
+      "optionsLearning": [
+        "std::set<int> s;",
+        "HashSet<int> s;",
+        "List<int> s;",
+        "Array<int> s;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "set"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-set",
+      "scenarioId": "stl.containers.set.scenario"
+    },
+    {
+      "id": "stl.containers.set.card-02",
+      "kind": "select",
+      "title": "Insert element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить элемент?",
+      "optionsLearning": [
+        "s.insert(x)",
+        "s.add(x)",
+        "s.push(x)",
+        "s.append(x)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "set"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-set",
+      "scenarioId": "stl.containers.set.scenario"
+    },
+    {
+      "id": "stl.containers.set.card-03",
+      "kind": "select",
+      "title": "Find element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти элемент?",
+      "optionsLearning": [
+        "s.find(x) != s.end()",
+        "x in s",
+        "s.contains(x)",
+        "s.get(x)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "set"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-set",
+      "scenarioId": "stl.containers.set.scenario"
+    },
+    {
+      "id": "stl.containers.set.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать set?",
+      "optionsLearning": [
+        "Для unique sorted elements",
+        "Всегда vector",
+        "Никогда",
+        "Только для small data"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "set"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-set",
+      "scenarioId": "stl.containers.set.scenario"
+    }
+  ]
+}

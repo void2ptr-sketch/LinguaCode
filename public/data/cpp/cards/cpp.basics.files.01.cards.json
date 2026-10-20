@@ -1,0 +1,649 @@
+{
+  "scenarioId": "cpp.basics.files.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.files.01.scenario.card-01",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Какой класс записывает данные в файл?",
+      "optionsLearning": [
+        "std::ofstream",
+        "std::ifstream",
+        "std::ostream только",
+        "std::cin"
+      ],
+      "correctIndex": 0,
+      "explanation": "ofstream — поток вывода в файл."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-02",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Что произойдёт при открытии ofstream существующего файла?",
+      "optionsLearning": [
+        "Содержимое перезапишется (или добавится с app)",
+        "Файл защитится от записи",
+        "Запись запрещена",
+        "Файл переименуется"
+      ],
+      "correctIndex": 0,
+      "explanation": "ofstream по умолчанию перезаписывает файл."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Files Intro — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <fstream>\nint main() { std::ofstream f(\"out.txt\"); f << \"Hello\"; f.close(); std::cout << \"done\"; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "done",
+        "Hello",
+        "Hello done",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "В файл пишется Hello; в консоль — done."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-04",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Какой класс читает данные из файла?",
+      "optionsLearning": [
+        "std::ifstream",
+        "std::ofstream",
+        "std::fout",
+        "std::source"
+      ],
+      "correctIndex": 0,
+      "explanation": "ifstream — поток ввода из файла."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-05",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Что выведет ifstream при открытии несуществующего файла?",
+      "optionsLearning": [
+        "Поток в состоянии ошибки",
+        "Пустой файл создастся",
+        "Исключение",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Открытие несуществующего файла не удаётся (но не бросает по умолчанию)."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Files Intro — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "io",
+          "syntax"
+        ],
+        "tags": "is_open() проверяет успешность открытия."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "question": "Какой код корректно проверяет открытие?",
+      "code": {
+        "code": [
+          "std::ifstream f(\"a.txt\"); if (f.is_open()) { ... }",
+          "ifstream f = a.txt",
+          "std::ifstream f; if (f.open == true)",
+          "f()"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "beginner"
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-07",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Как прочитать одно число из файла?",
+      "optionsLearning": [
+        "file >> n;",
+        "file.getline(n)",
+        "file.read_number",
+        "n = file"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оператор >> извлекает число из файлового потока."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Files Intro — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "question": "Что запишется в файл?",
+      "code": {
+        "code": "std::ofstream f(\"d.txt\"); f << 3.14 << ' ' << 100;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3.14 100",
+        "3.14100",
+        "3,14 100",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оба значения с пробелом: 3.14 100."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-09",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Что делает std::ofstream::open?",
+      "optionsLearning": [
+        "Открывает файл для записи",
+        "Закрывает файл",
+        "Читает файл",
+        "Создаёт директорию"
+      ],
+      "correctIndex": 0,
+      "explanation": "open() открывает файл (альтернатива конструктору)."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-10",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Как прочитать строку из файла?",
+      "optionsLearning": [
+        "std::getline(file, line)",
+        "file >> line",
+        "file.string()",
+        "line = file.read()"
+      ],
+      "correctIndex": 0,
+      "explanation": "getline(file, line) читает строку из файлового потока."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Files Intro — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "question": "Сколько строк выведет цикл для файла из 2 строк?",
+      "code": {
+        "code": "std::ifstream f(\"f.txt\"); std::string l; while (std::getline(f, l)) std::cout << '.';",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2 точки",
+        "1 точка",
+        "3 точки",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "По одной точке на каждую строку файла."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-12",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Как добавить данные в конец файла?",
+      "optionsLearning": [
+        "Режим std::ios::app",
+        "Дописать через ifstream",
+        "f.put_end",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::ofstream f(\"f\", std::ios::app) — дозапись в конец."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-13",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Почему важно закрывать потоки (или применять RAII)?",
+      "optionsLearning": [
+        "Освободить дескриптор и сбросить данные",
+        "Чтобы файл не читался",
+        "Для ускорения",
+        "Не важно"
+      ],
+      "correctIndex": 0,
+      "explanation": "close()/деструктор сбрасывают буфер и освобождают ресурс."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Files Intro — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "question": "Что выведет программа, если файла нет?",
+      "code": {
+        "code": "std::ifstream f(\"n.txt\"); int x = 5; f >> x; std::cout << x;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "0",
+        "Ошибка",
+        "n.txt"
+      ],
+      "correctIndex": 0,
+      "explanation": "Неудачное чтение не меняет x — остаётся 5."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-15",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Как записать несколько строк в файл?",
+      "optionsLearning": [
+        "f << строка << '\\n' в цикле",
+        "f.write_lines",
+        "f.puts",
+        "f.append_line"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оператор << с переводом строки в цикле пишет строки."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-16",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Как узнать, достигнут ли конец файла?",
+      "optionsLearning": [
+        "file.eof() (после неудачного чтения)",
+        "file.end()",
+        "file.is_end",
+        "file.empty()"
+      ],
+      "correctIndex": 0,
+      "explanation": "eof() истинно после попытки чтения за концом; проверять после чтения."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Files Intro — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "question": "Что выведет эта программа при файле '7 8'?",
+      "code": {
+        "code": "std::ifstream f(\"p.txt\"); int a, b; f >> a >> b; std::cout << a + b;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "15",
+        "78",
+        "7",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Читаются 7 и 8, сумма 15."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-18",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Какое расширение имеют текстовые файлы данных по соглашению?",
+      "optionsLearning": [
+        ".txt",
+        ".cpp",
+        ".exe",
+        ".json"
+      ],
+      "correctIndex": 0,
+      "explanation": "Текстовые данные часто сохраняют в .txt."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-19",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Что произойдёт, если забыть закрыть ofstream перед чтением того же файла?",
+      "optionsLearning": [
+        "Данные могут не сброситься в файл",
+        "Ошибка",
+        "Файл удалится",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Буфер может не сброситься; закрытие/деструктор гарантируют запись."
+    },
+    {
+      "id": "cpp.basics.files.01.scenario.card-20",
+      "kind": "select",
+      "title": "Files Intro — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.files.01.scenario",
+      "promptKnown": "Чем текстовый режим записи отличается на Windows?",
+      "optionsLearning": [
+        "Перевод строки преобразуется в CRLF",
+        "Файл шифруется",
+        "Скорость выше",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "В текстовом режиме '\\n' может записываться как '\\r\\n'."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

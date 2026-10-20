@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { Subject } from 'rxjs';
 import { CardEditorDialogComponent } from './card-editor-dialog.component';
 import { CardEditorStore } from '../../services/card-editor.store';
 import { UserStore } from '../../../../entities/user/model/user.store';
@@ -8,30 +9,38 @@ import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/card
 import { seedTestContentCache } from '../../../../entities/content-seed/content-seed.test-utils';
 import { provideHttpClient } from '@angular/common/http';
 import type { CardEditorDialogData } from './card-editor-dialog.types';
+import type { CardDraft } from '../../types';
 
 describe('CardEditorDialogComponent', () => {
   let component: CardEditorDialogComponent;
+  let mockDialogRef: { close: ReturnType<typeof vi.fn> };
+  let mockMatDialog: { open: ReturnType<typeof vi.fn> };
+  let afterClosedSubject: Subject<boolean | undefined>;
 
-  const mockDialogRef = {
+  const createMockDialogRef = () => ({
     close: vi.fn(),
+  });
+
+  const createMockMatDialog = () => {
+    afterClosedSubject = new Subject<boolean | undefined>();
+    return {
+      open: vi.fn().mockReturnValue({
+        afterClosed: () => afterClosedSubject.asObservable(),
+      }),
+    };
   };
 
-  const mockAfterClosed = {
-    subscribe: function (cb: (value: boolean) => void) {
-      cb(false);
-      return { unsubscribe: vi.fn() };
-    },
-  };
-
-  const mockMatDialog = {
-    open: vi.fn().mockReturnValue(mockAfterClosed),
-  };
-
-  const dialogData: CardEditorDialogData = { mode: 'create', kind: 'select' };
+  const createCreateData = (): CardEditorDialogData => ({
+    mode: 'create',
+    kind: 'select',
+  });
 
   beforeEach(async () => {
     localStorage.clear();
     seedTestContentCache();
+
+    mockDialogRef = createMockDialogRef();
+    mockMatDialog = createMockMatDialog();
 
     await TestBed.configureTestingModule({
       imports: [CardEditorDialogComponent],
@@ -42,7 +51,7 @@ describe('CardEditorDialogComponent', () => {
         provideHttpClient(),
         { provide: MatDialogRef, useValue: mockDialogRef },
         { provide: MatDialog, useValue: mockMatDialog },
-        { provide: MAT_DIALOG_DATA, useValue: dialogData },
+        { provide: MAT_DIALOG_DATA, useValue: createCreateData() },
       ],
     }).compileComponents();
 
@@ -51,7 +60,10 @@ describe('CardEditorDialogComponent', () => {
 
   afterEach(() => {
     localStorage.clear();
+    afterClosedSubject?.complete();
   });
+
+  // ── Basic tests ──
 
   it('should create', () => {
     expect(component).toBeDefined();
@@ -62,7 +74,7 @@ describe('CardEditorDialogComponent', () => {
   });
 
   it('should inject MAT_DIALOG_DATA', () => {
-    expect(component.data).toBe(dialogData);
+    expect(component.data).toBeDefined();
   });
 
   it('should expose kindLabels', () => {
@@ -110,12 +122,21 @@ describe('CardEditorDialogComponent', () => {
     expect(component.defaultAppearance).toBeDefined();
   });
 
+  // ── setEditorUxMode ──
+
   describe('setEditorUxMode', () => {
     it('should update editorUxMode signal', () => {
       component.setEditorUxMode('advanced');
       expect(component.editorUxMode()).toBe('advanced');
     });
+
+    it('should support basic mode', () => {
+      component.setEditorUxMode('basic');
+      expect(component.editorUxMode()).toBe('basic');
+    });
   });
+
+  // ── expandToFullEditor ──
 
   describe('expandToFullEditor', () => {
     it('should be a no-op', () => {
@@ -123,13 +144,18 @@ describe('CardEditorDialogComponent', () => {
     });
   });
 
+  // ── updateDraft ──
+
   describe('updateDraft', () => {
     it('should update the draft signal', () => {
       const initialDraft = component.draft();
-      component.updateDraft({ ...initialDraft, title: 'New Title' } as typeof initialDraft);
+      const newDraft = { ...initialDraft, title: 'New Title' } as CardDraft;
+      component.updateDraft(newDraft);
       expect(component.draft().title).toBe('New Title');
     });
   });
+
+  // ── updateIndexMeta ──
 
   describe('updateIndexMeta', () => {
     it('should update the indexMeta signal', () => {
@@ -139,13 +165,24 @@ describe('CardEditorDialogComponent', () => {
     });
   });
 
+  // ── onKnownLanguageChange ──
+
   describe('onKnownLanguageChange', () => {
     it('should update indexMeta and cardMeta with new known language', () => {
       component.onKnownLanguageChange('en');
       expect(component.indexMeta().knownLanguage).toBe('en');
       expect(component.cardMeta()?.knownLanguage).toBe('en');
     });
+
+    it('should preserve existing cardMeta fields', () => {
+      component.cardMeta.set({ knownLanguage: 'ru', tags: ['test'] });
+      component.onKnownLanguageChange('en');
+      expect(component.cardMeta()?.knownLanguage).toBe('en');
+      expect(component.cardMeta()?.tags).toEqual(['test']);
+    });
   });
+
+  // ── onLearningLanguageChange ──
 
   describe('onLearningLanguageChange', () => {
     it('should update indexMeta and cardMeta with new learning language', () => {
@@ -153,14 +190,16 @@ describe('CardEditorDialogComponent', () => {
       expect(component.indexMeta().learningLanguage).toBe('zh');
       expect(component.cardMeta()?.learningLanguage).toBe('zh');
     });
-  });
 
-  describe('dirty computed', () => {
-    it('should be a boolean', () => {
-      const isDirty = component.dirty();
-      expect(typeof isDirty).toBe('boolean');
+    it('should preserve existing cardMeta fields', () => {
+      component.cardMeta.set({ learningLanguage: 'en', tags: ['hsk1'] });
+      component.onLearningLanguageChange('zh');
+      expect(component.cardMeta()?.learningLanguage).toBe('zh');
+      expect(component.cardMeta()?.tags).toEqual(['hsk1']);
     });
   });
+
+  // ── title computed ──
 
   describe('title computed', () => {
     it('should return create title with kind label', () => {
@@ -168,7 +207,14 @@ describe('CardEditorDialogComponent', () => {
       expect(typeof title).toBe('string');
       expect(title).toContain('Новая карточка');
     });
+
+    it('should include card kind label in title', () => {
+      const title = component.title();
+      expect(title).toContain('Выбор');
+    });
   });
+
+  // ── showWizard computed ──
 
   describe('showWizard computed', () => {
     it('should be true in create mode with basic ux', () => {
@@ -179,6 +225,34 @@ describe('CardEditorDialogComponent', () => {
     it('should be false in create mode with advanced ux', () => {
       component.setEditorUxMode('advanced');
       expect(component.showWizard()).toBe(false);
+    });
+  });
+
+  // ── dirty computed ──
+
+  describe('dirty computed', () => {
+    it('should be a boolean', () => {
+      const isDirty = component.dirty();
+      expect(typeof isDirty).toBe('boolean');
+    });
+  });
+
+  // ── Default appearance ──
+
+  describe('defaultAppearance', () => {
+    it('should return theme and fontSize from user preferences', () => {
+      const appearance = component.defaultAppearance();
+      expect(appearance).toBeDefined();
+      expect(appearance.theme).toBeDefined();
+      expect(appearance.fontSize).toBeDefined();
+    });
+  });
+
+  // ── Language labels ──
+
+  describe('languageLabels', () => {
+    it('should be defined', () => {
+      expect(component.languageLabels).toBeDefined();
     });
   });
 });

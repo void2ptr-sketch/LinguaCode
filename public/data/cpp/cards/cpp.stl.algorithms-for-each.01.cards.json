@@ -1,0 +1,651 @@
+{
+  "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-01",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Что делает std::for_each?",
+      "optionsLearning": [
+        "Применяет функцию/лямбду к каждому элементу",
+        "Сортирует",
+        "Ищет",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "for_each — обход с побочным действием."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-02",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Какой аргумент for_each является третьим?",
+      "optionsLearning": [
+        "Вызываемая функция или лямбда",
+        "Начало",
+        "Конец",
+        "Значение"
+      ],
+      "correctIndex": 0,
+      "explanation": "for_each(begin, end, func)."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "for_each и алгоритмы обхода — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; int s = 0; std::for_each(v.begin(), v.end(), [&](int x) { s += x; }); std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "3",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Лямбда накапливает сумму: 6."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-04",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Может ли for_each изменять элементы?",
+      "optionsLearning": [
+        "Да, при передаче по ссылке",
+        "Нет",
+        "Только const",
+        "Через копию"
+      ],
+      "correctIndex": 0,
+      "explanation": "Лямбда с auto& меняет реальные элементы."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "for_each и алгоритмы обхода — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; std::for_each(v.begin(), v.end(), [](int& x) { x *= 2; }); std::cout << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "3",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Удвоение: {2,4,6} → v[2]=6."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-06",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Что возвращает for_each?",
+      "optionsLearning": [
+        "Функцию (можно накопить состояние)",
+        "Итератор",
+        "bool",
+        "void всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Возврат функции позволяет забрать состояние функтора."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-07",
+      "kind": "code-trace",
+      "title": "for_each и алгоритмы обхода — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nstruct Counter { int n = 0; void operator()(int) { ++n; } };\nint main() { std::vector<int> v = {1, 2, 3, 4}; Counter c = std::for_each(v.begin(), v.end(), Counter()); std::cout << c.n; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "4",
+        "3",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Функтор посчитал элементы: 4."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-08",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Чем for_each отличается от range-based for?",
+      "optionsLearning": [
+        "for_each — алгоритм, применимый к любому диапазону и возвращает functor",
+        "Ничем",
+        "for_each быстрее",
+        "for короче обязательно"
+      ],
+      "correctIndex": 0,
+      "explanation": "for_each полезен с алгоритмическим стилем."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-09",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Как пропустить первые k элементов в for_each?",
+      "optionsLearning": [
+        "Начать с begin()+k",
+        "Использовать счётчик",
+        "Нельзя",
+        "filter"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сдвиг начала диапазона итератором."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "for_each и алгоритмы обхода — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; std::for_each(v.begin() + 1, v.begin() + 3, [](int x) { std::cout << x; }); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "23",
+        "12",
+        "34",
+        "2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Диапазон [1,3): элементы 2 и 3."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-11",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Чем for_each_n полезен?",
+      "optionsLearning": [
+        "Применяет функцию к первым n элементам",
+        "Считает",
+        "Сортирует",
+        "Ищет"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::for_each_n(begin, n, func) — для первых n."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-12",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Почему for_each называют «побочным» алгоритмом?",
+      "optionsLearning": [
+        "Обычно имеет эффекты вне контейнера",
+        "Сортирует",
+        "Удаляет",
+        "Безвреден"
+      ],
+      "correctIndex": 0,
+      "explanation": "Типичное применение — вывод, накопление, изменение."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "for_each и алгоритмы обхода — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {10, 20, 30}; std::for_each(v.rbegin(), v.rend(), [](int x) { std::cout << x << ' '; }); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "30 20 10",
+        "10 20 30",
+        "30 10",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Обратные итераторы обходят в обратном порядке."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-14",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Какой заголовок нужен для for_each?",
+      "optionsLearning": [
+        "<algorithm>",
+        "<numeric>",
+        "<vector>",
+        "<iterator>"
+      ],
+      "correctIndex": 0,
+      "explanation": "for_each в <algorithm>."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-15",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Что будет при мутабельном изменении во время обхода?",
+      "optionsLearning": [
+        "Гонка/UB при изменении структуры контейнера",
+        "Ничего",
+        "Сортировка",
+        "Ошибка линковки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Нельзя изменять контейнер во время for_each."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-16",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms",
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Как написать вывод всех элементов кратко?",
+      "optionsLearning": [
+        "std::for_each(begin, end, [](auto x) { std::cout << x << ' '; });",
+        "for (auto x : v) — тоже можно",
+        "cout << v",
+        "print(v)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оба подхода допустимы; for_each — алгоритмический стиль."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-17",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Чем функтор в for_each лучше лямбды?",
+      "optionsLearning": [
+        "Состояние/переиспользование/полная типизация",
+        "Всегда",
+        "Лямбда запрещена",
+        "Быстрее"
+      ],
+      "correctIndex": 0,
+      "explanation": "Функторы удобны при сложном состоянии."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "for_each и алгоритмы обхода — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {2, 4, 6}; int odd = 0; std::for_each(v.begin(), v.end(), [&](int x) { if (x % 2 != 0) ++odd; }); std::cout << odd; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0",
+        "3",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Нет нечётных: счётчик 0."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-19",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Что предпочтительнее для чистого преобразования?",
+      "optionsLearning": [
+        "std::transform",
+        "for_each",
+        "sort",
+        "find"
+      ],
+      "correctIndex": 0,
+      "explanation": "transform декларативно отображает без побочных эффектов."
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-20",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+      "promptKnown": "Сколькими способами можно обойти контейнер в STL?",
+      "optionsLearning": [
+        "Индексы, итераторы, range-for, for_each, transform",
+        "Один",
+        "Два",
+        "Три"
+      ],
+      "correctIndex": 0,
+      "explanation": "Многообразие подходов — гибкость C++."
+    }
+  ],
+  "title": "Stl — Intermediate C++"
+}

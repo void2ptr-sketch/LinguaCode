@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.system.programming.scenario",
+      "title": "C++ — Process creation",
+      "description": "Сценарий: Process creation — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-system-programming",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.863068.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.863070.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.system.programming.card-01",
+          "basics.system.programming.card-02",
+          "basics.system.programming.card-03",
+          "basics.system.programming.card-04"
+        ]
+      }
+    }
+  ]
+}

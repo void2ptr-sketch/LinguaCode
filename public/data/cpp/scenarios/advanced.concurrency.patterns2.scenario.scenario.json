@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.concurrency.patterns2.scenario",
+      "title": "C++ — Actor model",
+      "description": "Сценарий: Actor model — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-concurrency-patterns2",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.855970.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.855972.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.concurrency.patterns2.card-01",
+          "advanced.concurrency.patterns2.card-02",
+          "advanced.concurrency.patterns2.card-03",
+          "advanced.concurrency.patterns2.card-04",
+          "advanced.concurrency.patterns2.card-05"
+        ]
+      }
+    }
+  ]
+}

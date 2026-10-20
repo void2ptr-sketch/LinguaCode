@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.meta.programming.scenario",
+  "cards": [
+    {
+      "id": "advanced.meta.programming.card-01",
+      "kind": "select",
+      "title": "Template metaprogramming",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое template metaprogramming?",
+      "optionsLearning": [
+        "Программирование на compile time через шаблоны",
+        "Runtime программирование",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-meta-programming",
+      "scenarioId": "advanced.meta.programming.scenario"
+    },
+    {
+      "id": "advanced.meta.programming.card-02",
+      "kind": "select",
+      "title": "Type traits",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое type traits?",
+      "optionsLearning": [
+        "Compile-time информация о типах (std::is_integral<T>)",
+        "Runtime информация",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-meta-programming",
+      "scenarioId": "advanced.meta.programming.scenario"
+    },
+    {
+      "id": "advanced.meta.programming.card-03",
+      "kind": "select",
+      "title": "SFINAE",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое SFINAE?",
+      "optionsLearning": [
+        "Substitution Failure Is Not An Error (flexible templates)",
+        "Ошибка компиляции",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-meta-programming",
+      "scenarioId": "advanced.meta.programming.scenario"
+    },
+    {
+      "id": "advanced.meta.programming.card-04",
+      "kind": "select",
+      "title": "Tuple operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое tuple?",
+      "optionsLearning": [
+        "Fixed-size collection разных типов (std::tuple<int, string>)",
+        "Array одного типа",
+        "List",
+        "Map"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-meta-programming",
+      "scenarioId": "advanced.meta.programming.scenario"
+    },
+    {
+      "id": "advanced.meta.programming.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать TMP?",
+      "optionsLearning": [
+        "Для compile-time вычислений и type-safe code",
+        "Всегда",
+        "Никогда",
+        "Только для small types"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-meta-programming",
+      "scenarioId": "advanced.meta.programming.scenario"
+    }
+  ]
+}

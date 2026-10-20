@@ -1,0 +1,626 @@
+{
+  "scenarioId": "cpp.algorithms.04.scenario",
+  "cards": [
+    {
+      "id": "cpp.algorithms.04.scenario.card-01",
+      "kind": "select",
+      "title": "Что такое C++?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите, что представляет собой язык программирования C++",
+      "optionsLearning": [
+        "Язык программирования, созданный как расширение C с поддержкой ООП",
+        "Высокоуровневый интерпретируемый язык без указателей",
+        "Язык только для веб-разработки",
+        "Только язык для embedded систем"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "что"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "C++ — компилируемый язык программирования, созданный Бьярном Страуструпом как расширение C с классами и ООП."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-02",
+      "kind": "select",
+      "title": "История создания C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Назовите год создания C++ и автора языка",
+      "optionsLearning": [
+        "1979 год, Бьярн Страуструп в Bell Labs",
+        "1985 год, Деннис Ритчи в AT&T",
+        "1990 год, Гвидо ван Россум",
+        "1995 год, Джеймс Гослинг"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "история"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "C++ создан Бьярном Страуструпом в 1979 году в Bell Labs, изначально назывался 'C with Classes'."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-03",
+      "kind": "select",
+      "title": "Структура простой программы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие обязательные элементы есть в минимальной программе C++?",
+      "optionsLearning": [
+        "#include <iostream>, int main(), return 0",
+        "class Program, public static void main",
+        "def main(), print(), import",
+        "package main, func main()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "структура"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "Минимальная программа C++ включает подключение заголовочных файлов, функцию main() и оператор return."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-04",
+      "kind": "select",
+      "title": "Компиляция и запуск",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой командой компилируется C++ программа в Linux?",
+      "optionsLearning": [
+        "g++ program.cpp -o program",
+        "javac program.java",
+        "python program.py",
+        "cc -E program.c"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "компиляция"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "g++ — компилятор C++, опция -o указывает имя выходного исполняемого файла."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-05",
+      "kind": "select",
+      "title": "Основные типы данных",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие базовые типы данных есть в C++?",
+      "optionsLearning": [
+        "int, double, char, bool, void",
+        "String, Number, Boolean, Array, Object",
+        "str, int, float, list, dict",
+        "byte, short, long, float, double"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "основные"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "Базовые типы C++: int (целые), double (浮点数), char (символы), bool (логические), void (пустота)."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-06",
+      "kind": "select",
+      "title": "Переменные и константы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как объявить константу в C++?",
+      "optionsLearning": [
+        "const int MAX_SIZE = 100;",
+        "final int MAX_SIZE = 100;",
+        "const val MAX_SIZE = 100",
+        "define MAX_SIZE 100"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "переменные"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "Ключевое слово const делает переменную константой. #define — препроцессорная директива (не типобезопасна)."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-07",
+      "kind": "select",
+      "title": "Ввод/вывод данных",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие объекты используются для ввода/вывода в C++?",
+      "optionsLearning": [
+        "std::cin, std::cout, std::endl",
+        "System.in, System.out",
+        "input(), print()",
+        "scanf(), printf()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "ввод/вывод"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "std::cin (ввод), std::cout (вывод), std::endl (перенос строки + очистка буфера) — стандартные потоки C++."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-08",
+      "kind": "select",
+      "title": "Операторы и выражения",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой результат выражения 5 + 3 * 2 в C++?",
+      "optionsLearning": [
+        "11 (умножение приоритетнее сложения)",
+        "16 (последовательное вычисление)",
+        "10 (приоритет одинаковый)",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "операторы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "Оператор * имеет более высокий приоритет, чем +. Сначала 3*2=6, затем 5+6=11."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-09",
+      "kind": "select",
+      "title": "Условные операторы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой синтаксус if-else в C++?",
+      "optionsLearning": [
+        "if (condition) { } else { }",
+        "if condition { } else { }",
+        "if: condition; end",
+        "switch (condition) { case: }"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "условные"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "C++ использует скобки для условия и фигурные скобки для блоков кода, как в C."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-10",
+      "kind": "select",
+      "title": "Циклы for, while, do-while",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой цикл гарантирует хотя бы одно выполнение?",
+      "optionsLearning": [
+        "do-while (проверка после тела)",
+        "for (проверка перед телом)",
+        "while (проверка перед телом)",
+        "foreach (итерация по коллекции)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "циклы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "do-while проверяет условие ПОСЛЕ выполнения тела, поэтому тело выполняется минимум один раз."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-11",
+      "kind": "select",
+      "title": "Операторы break и continue",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем отличается break от continue в цикле?",
+      "optionsLearning": [
+        "break — выход из цикла, continue — пропуск итерации",
+        "break — пропуск итерации, continue — выход из цикла",
+        "Оба прерывают цикл полностью",
+        "Оба пропускают текущую итерацию"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "операторы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "break полностью завершает цикл, continue переходит к следующей итерации, пропуская остаток тела."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-12",
+      "kind": "select",
+      "title": "Функции: объявление и вызов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какова структура функции в C++?",
+      "optionsLearning": [
+        "return_type name(params) { body }",
+        "def name(params): body",
+        "function name(params) { body }",
+        "name(params) -> type { body }"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "функции:"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "Функция C++: тип возвращаемого значения, имя, параметры в скобках, тело в фигурных скобках."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-13",
+      "kind": "select",
+      "title": "Параметры функций",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как передать переменную по значению в функцию?",
+      "optionsLearning": [
+        "void func(int x) — копия значения",
+        "void func(int& x) — копия значения",
+        "void func(int* x) — копия значения",
+        "void func(const int x) — ссылка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "параметры"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "Параметр без & и * копирует значение. int& — передача по ссылке, int* — по указателю."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-14",
+      "kind": "select",
+      "title": "Возвращаемые значения",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что возвращает функция с void?",
+      "optionsLearning": [
+        "Ничего (пустой результат)",
+        "0 по умолчанию",
+        "null",
+        "Неопределённое значение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "возвращаемые"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "void означает 'без возвращаемого значения'. Функция не может использовать return с значением."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-15",
+      "kind": "select",
+      "title": "Область видимости переменных",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Где доступна локальная переменная, объявленная внутри функции?",
+      "optionsLearning": [
+        "Только внутри этой функции",
+        "Во всей программе",
+        "Только в main()",
+        "В других функциях того же файла"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "область"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "Локальные переменные видны только в блоке, где объявлены (фунции, цикле, if-блоке)."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-16",
+      "kind": "select",
+      "title": "Рекурсия",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое рекурсия?",
+      "optionsLearning": [
+        "Вызов функцией самой себя",
+        "Цикл for внутри функции",
+        "Вызов другой функции",
+        "Двойное объявление переменной"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "рекурсия"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "Рекурсия — вызов функцией самой себя. Требует базовый случай (условие выхода) для предотвращения бесконечного цикла."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-17",
+      "kind": "select",
+      "title": "Массивы одномерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как объявить массив из 10 целых чисел?",
+      "optionsLearning": [
+        "int arr[10];",
+        "int arr(10);",
+        "array<int, 10> arr;",
+        "int[] arr = new int[10];"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "int arr[10] — массив из 10 элементов типа int. Индексы от 0 до 9."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-18",
+      "kind": "select",
+      "title": "Массивы многомерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как объявить двумерный массив 3x4?",
+      "optionsLearning": [
+        "int arr[3][4];",
+        "int arr[3, 4];",
+        "int arr(3)(4);",
+        "int[][] arr = new int[3][4];"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "int arr[3][4] — массив 3 строки по 4 столбца. Доступ: arr[i][j], где i=0..2, j=0..3."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-19",
+      "kind": "select",
+      "title": "Строки и работа с ними",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой тип использовать для строк в C++?",
+      "optionsLearning": [
+        "std::string (за #include <string>)",
+        "char[] всегда",
+        "String (с большой буквы)",
+        "text"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "строки"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "std::string — удобный класс для строк. char[] — C-style строки, требуют ручного управления."
+    },
+    {
+      "id": "cpp.algorithms.04.scenario.card-20",
+      "kind": "select",
+      "title": "Компиляция с опциями",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая опция g++ включает все предупреждения?",
+      "optionsLearning": [
+        "-Wall (Warning All)",
+        "-O3 (оптимизация)",
+        "-g (отладка)",
+        "-std=c++17 (стандарт)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "компиляция"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.algorithms.04.scenario",
+      "explanation": "-Wall включает большинство предупреждений компилятора. Полезно для поиска потенциальных ошибок."
+    }
+  ],
+  "title": "Введение в C++ — Basics"
+}

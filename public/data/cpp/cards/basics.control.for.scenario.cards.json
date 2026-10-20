@@ -1,0 +1,179 @@
+{
+  "scenarioId": "basics.control.for.scenario",
+  "cards": [
+    {
+      "id": "basics.control.for.card-01",
+      "kind": "select",
+      "title": "Синтаксис for",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой синтаксис цикла for?",
+      "optionsLearning": [
+        "for (init; condition; increment) { }",
+        "for variable in collection",
+        "while (condition) { init; increment; }",
+        "repeat { } until"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "for"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-for",
+      "scenarioId": "basics.control.for.scenario"
+    },
+    {
+      "id": "basics.control.for.card-02",
+      "kind": "select",
+      "title": "Range-based for",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое range-based for?",
+      "optionsLearning": [
+        "for (auto& item : container)",
+        "for (int i = 0; i < size; i++)",
+        "while loop",
+        "do-while"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "for"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-for",
+      "scenarioId": "basics.control.for.scenario"
+    },
+    {
+      "id": "basics.control.for.card-03",
+      "kind": "select",
+      "title": "Break in for",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает break в цикле?",
+      "optionsLearning": [
+        "Немедленный выход из цикла",
+        "Пропуск итерации",
+        "Завершение программы",
+        "Переход к следующей итерации"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "for"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-for",
+      "scenarioId": "basics.control.for.scenario"
+    },
+    {
+      "id": "basics.control.for.card-04",
+      "kind": "select",
+      "title": "Continue in for",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает continue?",
+      "optionsLearning": [
+        "Пропускает остаток итерации, переходит к следующей",
+        "Выходит из цикла",
+        "Завершает программу",
+        "Перезапускает цикл"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "for"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-for",
+      "scenarioId": "basics.control.for.scenario"
+    },
+    {
+      "id": "basics.control.for.card-05",
+      "kind": "select",
+      "title": "Infinite loop",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что создаёт бесконечный цикл?",
+      "optionsLearning": [
+        "for (;;) { } или while (true) { }",
+        "for (int i = 0; i < 10; i++)",
+        "for (int i = 10; i > 0; i--)",
+        "while (false)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "for"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-for",
+      "scenarioId": "basics.control.for.scenario"
+    },
+    {
+      "id": "basics.control.for.card-06",
+      "kind": "select",
+      "title": "Nested for loops",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем вложенные циклы?",
+      "optionsLearning": [
+        "Обработка двумерных структур (матрицы)",
+        "Бесконечный цикл",
+        "Ошибка",
+        "Упрощение кода"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "for"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-for",
+      "scenarioId": "basics.control.for.scenario"
+    }
+  ]
+}

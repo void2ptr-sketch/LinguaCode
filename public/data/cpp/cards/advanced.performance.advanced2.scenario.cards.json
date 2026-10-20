@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.performance.advanced2.scenario",
+  "cards": [
+    {
+      "id": "advanced.performance.advanced2.card-01",
+      "kind": "select",
+      "title": "Loop unrolling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое loop unrolling?",
+      "optionsLearning": [
+        "Раскрытие цикла (больше работы на итерацию)",
+        "Уменьшение итераций",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced2",
+      "scenarioId": "advanced.performance.advanced2.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced2.card-02",
+      "kind": "select",
+      "title": "Loop fusion",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое loop fusion?",
+      "optionsLearning": [
+        "Объединение циклов (меньше overhead)",
+        "Разделение циклов",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced2",
+      "scenarioId": "advanced.performance.advanced2.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced2.card-03",
+      "kind": "select",
+      "title": "Software pipelining",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое software pipelining?",
+      "optionsLearning": [
+        "Перекрытие операций (overlap execution)",
+        "Последовательное выполнение",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced2",
+      "scenarioId": "advanced.performance.advanced2.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced2.card-04",
+      "kind": "select",
+      "title": "Profiling guided optimization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое PGO?",
+      "optionsLearning": [
+        "Optimization based on runtime profiles (best performance)",
+        "Оптимизация без данных",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced2",
+      "scenarioId": "advanced.performance.advanced2.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать эффективно?",
+      "optionsLearning": [
+        "Profile → optimize bottleneck → re-profile + PGO",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced2",
+      "scenarioId": "advanced.performance.advanced2.scenario"
+    }
+  ]
+}

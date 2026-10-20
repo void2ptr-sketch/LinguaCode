@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.streams.04.scenario",
+      "title": "std::stringstream",
+      "description": "Сценарий: std::stringstream",
+      "order": 3,
+      "lessonId": "lesson-cpp-basics-streams",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-18T20:11:59.593Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-18T20:11:59.593Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.streams.04.scenario.card-01",
+          "cpp.streams.04.scenario.card-02",
+          "cpp.streams.04.scenario.card-03",
+          "cpp.streams.04.scenario.card-04",
+          "cpp.streams.04.scenario.card-05",
+          "cpp.streams.04.scenario.card-06",
+          "cpp.streams.04.scenario.card-07",
+          "cpp.streams.04.scenario.card-08",
+          "cpp.streams.04.scenario.card-09",
+          "cpp.streams.04.scenario.card-10",
+          "cpp.streams.04.scenario.card-11",
+          "cpp.streams.04.scenario.card-12",
+          "cpp.streams.04.scenario.card-13",
+          "cpp.streams.04.scenario.card-14",
+          "cpp.streams.04.scenario.card-15",
+          "cpp.streams.04.scenario.card-16",
+          "cpp.streams.04.scenario.card-17",
+          "cpp.streams.04.scenario.card-18",
+          "cpp.streams.04.scenario.card-19",
+          "cpp.streams.04.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-18T20:11:59.593Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.compiler.internals2.scenario",
+  "cards": [
+    {
+      "id": "advanced.compiler.internals2.card-01",
+      "kind": "select",
+      "title": "AST",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое AST?",
+      "optionsLearning": [
+        "Abstract Syntax Tree (дерево синтаксиса)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals2",
+      "scenarioId": "advanced.compiler.internals2.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals2.card-02",
+      "kind": "select",
+      "title": "IR",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое IR?",
+      "optionsLearning": [
+        "Intermediate Representation (промежуточный код)",
+        "Исходный код",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals2",
+      "scenarioId": "advanced.compiler.internals2.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals2.card-03",
+      "kind": "select",
+      "title": "Code generation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое code generation?",
+      "optionsLearning": [
+        "Генерация машинного кода из IR",
+        "Исходный код",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals2",
+      "scenarioId": "advanced.compiler.internals2.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals2.card-04",
+      "kind": "select",
+      "title": "Optimization passes",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое optimization passes?",
+      "optionsLearning": [
+        "Последовательные оптимизации (loop unroll, inlining)",
+        "Одна оптимизация",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals2",
+      "scenarioId": "advanced.compiler.internals2.scenario"
+    },
+    {
+      "id": "advanced.compiler.internals2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать compiler?",
+      "optionsLearning": [
+        "-O2 + sanitizers + profile-guided optimization",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-compiler-internals2",
+      "scenarioId": "advanced.compiler.internals2.scenario"
+    }
+  ]
+}

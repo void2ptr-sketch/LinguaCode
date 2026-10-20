@@ -1,0 +1,648 @@
+{
+  "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-01",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Что такое enable_shared_from_this?",
+      "optionsLearning": [
+        "Позволяет безопасно получить shared_ptr от this",
+        "Включение оптимизаций",
+        "Умный массив",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Класс-наследник enable_shared_from_this даёт shared_from_this()."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-02",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Почему возвращать shared_ptr(this) опасно?",
+      "optionsLearning": [
+        "Два владельца удалят объект дважды",
+        "Медленно",
+        "Так нельзя",
+        "Утечка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Создание нового shared_ptr из this без enable_shared_from_this — двойной delete."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nstruct S : std::enable_shared_from_this<S> { int v = 5; };\nint main() { auto p = std::make_shared<S>(); std::cout << p->shared_from_this().use_count(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "shared_from_this добавляет временное владение: 2."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-04",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Что такое aliasing constructor shared_ptr?",
+      "optionsLearning": [
+        "shared_ptr на подобъект с тем же владельцем",
+        "Копию",
+        "move",
+        "null"
+      ],
+      "correctIndex": 0,
+      "explanation": "Делит владение, указывая на член объекта."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-05",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp",
+          "concurrency"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Что делает std::atomic<shared_ptr>?",
+      "optionsLearning": [
+        "Атомарные операции над shared_ptr",
+        "Обычный shared",
+        "Спиноч-лок",
+        "Массив"
+      ],
+      "correctIndex": 0,
+      "explanation": "Атомарная работа с указателем из нескольких потоков."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nint main() { std::shared_ptr<int> p = std::make_shared<int>(4); std::shared_ptr<int> q(p, &(*p)); std::cout << *q << q.use_count(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "41",
+        "44",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Aliasing: q указывает на тот же int, владельцев 2."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-07",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Когда shared_ptr использовать охотнее unique_ptr?",
+      "optionsLearning": [
+        "Когда время жизни разделяется и неизвестно заранее",
+        "Всегда",
+        "Никогда",
+        "Для чисел"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разделяемое владение — повод для shared_ptr."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-08",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Что такое издержки shared_ptr?",
+      "optionsLearning": [
+        "Контрольный блок и атомарный счётчик",
+        "Ноль",
+        "Память вдвое",
+        "Время компиляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "Счётчик ссылок и атомики дороже unique_ptr."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nint main() { std::weak_ptr<int> w; { auto s = std::make_shared<int>(2); w = s; } std::cout << w.expired(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "После выхода s объект удалён: expired() = 1."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-10",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Как weak_ptr преобразовать в shared_ptr безопасно?",
+      "optionsLearning": [
+        "auto s = w.lock(); if (s) {...}",
+        "w.get()",
+        "w.ptr()",
+        "static_cast"
+      ],
+      "correctIndex": 0,
+      "explanation": "lock() + проверка пустоты."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-11",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Что такое слабая ссылка на объект?",
+      "optionsLearning": [
+        "Наблюдение без продления жизни",
+        "Сильное владение",
+        "Копия",
+        "Поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "weak_ptr не мешает удалению объекта."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-12",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Как правильно вернуть shared_ptr из фабрики?",
+      "optionsLearning": [
+        "make_shared и возврат по значению",
+        "Голый адрес",
+        "Копию указателя",
+        "weak_ptr"
+      ],
+      "correctIndex": 0,
+      "explanation": "Возврат shared_ptr по значению — нормально."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nstruct B; struct A { int x = 1; };\nint main() { std::shared_ptr<A> a = std::make_shared<A>(); std::shared_ptr<int> i(a, &a->x); a.reset(); std::cout << (bool)i; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1 (объект жив благодаря aliasing)",
+        "0",
+        "x",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "i держит владение через A даже после сброса a."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-14",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Что произойдёт при цикле из двух shared_ptr?",
+      "optionsLearning": [
+        "Объекты не освобождаются никогда (утечка)",
+        "Освободятся сразу",
+        "Ошибка",
+        "Один из них"
+      ],
+      "correctIndex": 0,
+      "explanation": "Циклические ссылки требуют weak_ptr для разрыва."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-15",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Какая опасность у custom deleter shared_ptr?",
+      "optionsLearning": [
+        "Неверная функция может быть вызвана с чужим объектом",
+        "Медленно",
+        "Мало памяти",
+        "Никакая"
+      ],
+      "correctIndex": 0,
+      "explanation": "Делетер должен корректно освобождать ресурс."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-16",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Как задать кастомный аллокатор в make_shared?",
+      "optionsLearning": [
+        "Дополнительным аргументом",
+        "Нельзя",
+        "functor",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "make_shared<T>(alloc, args...) — продвинутое выделение."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nint main() { std::unique_ptr<int> p; p = std::make_unique<int>(8); std::cout << *p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "8",
+        "0",
+        "Ошибка",
+        "адрес"
+      ],
+      "correctIndex": 0,
+      "explanation": "Присваивание перемещает новый указатель: 8."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-18",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Что делает reset(nullptr)?",
+      "optionsLearning": [
+        "Удаляет объект и обнуляет",
+        "Ничего",
+        "Создаёт",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "reset без аргумента = освобождение."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-19",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Как избежать двойного delete при передаче в C-API?",
+      "optionsLearning": [
+        "get() для чтения, release() для передачи владения",
+        "Никак",
+        "Утечка",
+        "const_cast"
+      ],
+      "correctIndex": 0,
+      "explanation": "Чётко решить, кто станет владельцем."
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario.card-20",
+      "kind": "select",
+      "title": "Smart Pointers и Ownership (продвинутый) — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "memory",
+          "modern-cpp",
+          "concurrency"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.smart-pointers.02.scenario",
+      "promptKnown": "Что такое thread-safe применительно к shared_ptr?",
+      "optionsLearning": [
+        "Атомарность счётчика; объект не защищён автоматически",
+        "Потокобезопасность объекта",
+        "Мутекс",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Счётчик атомарен, но данные требует синхронизации."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

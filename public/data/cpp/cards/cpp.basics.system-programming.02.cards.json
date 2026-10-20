@@ -1,0 +1,641 @@
+{
+  "scenarioId": "cpp.basics.system-programming.02.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-01",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Что такое системный вызов (syscall)?",
+      "optionsLearning": [
+        "Запрос пользовательского кода к ядру ОС",
+        "Ошибка программы",
+        "Функция print",
+        "Конвейер"
+      ],
+      "correctIndex": 0,
+      "explanation": "Системные вызовы дают доступ к возможностям ядра."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-02",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Какая функция C++ (POSIX) создаёт новый процесс?",
+      "optionsLearning": [
+        "fork()",
+        "clone always",
+        "system()",
+        "exec() только"
+      ],
+      "correctIndex": 0,
+      "explanation": "fork создаёт копию текущего процесса."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-03",
+      "kind": "code-trace",
+      "title": "System Programming 02 — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "system",
+          "syntax"
+        ],
+        "tags": "Родитель получает PID ребёнка; ребёнок — 0."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "question": "Что вернёт fork() в родительском процессе?",
+      "code": {
+        "code": [
+          "PID дочернего процесса",
+          "0",
+          "-1",
+          "Адрес"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-04",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Что делает exec()?",
+      "optionsLearning": [
+        "Заменяет образ процесса новой программой",
+        "Завершает процесс",
+        "Ждёт процесс",
+        "Копирует процесс"
+      ],
+      "correctIndex": 0,
+      "explanation": "exec загружает новую программу в текущий процесс."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-05",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Какая функция ждёт завершения дочернего процесса?",
+      "optionsLearning": [
+        "wait() / waitpid()",
+        "join()",
+        "sleep()",
+        "sync()"
+      ],
+      "correctIndex": 0,
+      "explanation": "wait/waitpid ожидают завершение ребёнка и получают код выхода."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-06",
+      "kind": "code-trace",
+      "title": "System Programming 02 — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "system",
+          "syntax"
+        ],
+        "tags": "Зомби существует до вызова wait() родителем."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "question": "Что такое зомби-процесс?",
+      "code": {
+        "code": [
+          "Завершённый процесс, чей статус ещё не забран wait",
+          "Мёртвый поток",
+          "Бесконечный цикл",
+          "Фоновый процесс"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-07",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Что такое сигнал в POSIX?",
+      "optionsLearning": [
+        "Асинхронное уведомление процессу от ядра/процессов",
+        "Поток",
+        "Ошибка",
+        "Сокет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сигналы (SIGINT, SIGTERM и т.д.) уведомляют процесс о событиях."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-08",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Что такое SIGTERM?",
+      "optionsLearning": [
+        "Запрос на завершение процесса",
+        "Аварийный сброс",
+        "Ошибка памяти",
+        "Пауза"
+      ],
+      "correctIndex": 0,
+      "explanation": "SIGTERM — вежливый запрос завершения; SIGKILL — принудительный."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-09",
+      "kind": "code-trace",
+      "title": "System Programming 02 — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "system",
+          "syntax"
+        ],
+        "tags": "kill отправляет сигнал указанному процессу."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "question": "Что делает kill(pid, SIGTERM)?",
+      "code": {
+        "code": [
+          "Отправляет сигнал завершения процессу",
+          "Удаляет pid",
+          "Создаёт процесс",
+          "Ставит на паузу"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-10",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Что такое файловый дескриптор?",
+      "optionsLearning": [
+        "Целое число, ссылающееся на открытый файл/сокет",
+        "Указатель на файл",
+        "Имя файла",
+        "Размер файла"
+      ],
+      "correctIndex": 0,
+      "explanation": "В POSIX открытые ресурсы представляются fd."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-11",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Какие три стандартных дескриптора есть у процесса?",
+      "optionsLearning": [
+        "0 (stdin), 1 (stdout), 2 (stderr)",
+        "1,2,3",
+        "0,1,9",
+        "5,6,7"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стандартные потоки ввода/вывода/ошибок."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-12",
+      "kind": "code-trace",
+      "title": "System Programming 02 — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "system",
+          "syntax"
+        ],
+        "tags": "open возвращает неотрицательный fd либо -1."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "question": "Что возвращает open(\"f.txt\", O_RDONLY)?",
+      "code": {
+        "code": [
+          "Дескриптор (>=0) или -1 при ошибке",
+          "Имя файла",
+          "Указатель",
+          "0 всегда"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-13",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Что делает close(fd)?",
+      "optionsLearning": [
+        "Закрывает файловый дескриптор",
+        "Удаляет файл",
+        "Читает",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "close освобождает ресурс, связанный с fd."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-14",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Что такое pipe?",
+      "optionsLearning": [
+        "Канал связи между процессами",
+        "Сетевой коннект",
+        "Тип файла",
+        "Мьютекс"
+      ],
+      "correctIndex": 0,
+      "explanation": "pipe создаёт однонаправленный поток данных между процессами."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-15",
+      "kind": "code-trace",
+      "title": "System Programming 02 — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "system",
+          "syntax"
+        ],
+        "tags": "pipe(fds) даёт fds[0] для чтения, fds[1] для записи."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "question": "Сколько концов у pipe(), представленных в массиве?",
+      "code": {
+        "code": [
+          "2 (чтение и запись)",
+          "1",
+          "3",
+          "4"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-16",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Что такое shared memory?",
+      "optionsLearning": [
+        "Память, разделяемая между процессами",
+        "Кэш процессора",
+        "Виртуальная память",
+        "Стек"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разделяемая память позволяет быстрый обмен без копирования."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-17",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Зачем нужны семафоры в ОС?",
+      "optionsLearning": [
+        "Синхронизация доступа к ресурсам",
+        "Сортировка",
+        "Шифрование",
+        "Сжатие"
+      ],
+      "correctIndex": 0,
+      "explanation": "Семафоры ограничивают/координируют доступ нескольких процессов."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-18",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Что делает mmap()?",
+      "optionsLearning": [
+        "Проецирует файл/память в адресное пространство процесса",
+        "Выделяет int",
+        "Печатает",
+        "Соединяет сокеты"
+      ],
+      "correctIndex": 0,
+      "explanation": "mmap отображает файл или память; unmap — m-unmap()."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-19",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Что такое errno?",
+      "optionsLearning": [
+        "Переменная с кодом последней ошибки системного вызова",
+        "Имя файла",
+        "Флаг",
+        "PID"
+      ],
+      "correctIndex": 0,
+      "explanation": "errno хранит код ошибки; проверяется после сбоев."
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario.card-20",
+      "kind": "select",
+      "title": "System Programming 02 — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "system",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.system-programming.02.scenario",
+      "promptKnown": "Почему системных вызовов избегают в горячем пути?",
+      "optionsLearning": [
+        "Они дороже пользовательских операций (переключение контекста)",
+        "Они запрещены",
+        "Они быстрые",
+        "Они дешёвые"
+      ],
+      "correctIndex": 0,
+      "explanation": "syscall требует перехода в ядро — накладные расходы растут с числом вызовов."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

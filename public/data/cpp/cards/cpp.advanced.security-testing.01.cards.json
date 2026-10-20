@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-01",
+      "kind": "select",
+      "title": "Buffer overflow",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое buffer overflow?",
+      "optionsLearning": [
+        "Запись за пределами буфера (memory corruption)",
+        "Утечка памяти",
+        "Ошибка компиляции",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-02",
+      "kind": "select",
+      "title": "SQL injection",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое SQL injection?",
+      "optionsLearning": [
+        "Вставка вредоносного SQL через user input",
+        "Утечка памяти",
+        "Ошибка компиляции",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-03",
+      "kind": "select",
+      "title": "Secure coding",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Основы secure coding?",
+      "optionsLearning": [
+        "Input validation + sanitization + least privilege",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-04",
+      "kind": "select",
+      "title": "Cryptography basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Основы криптографии?",
+      "optionsLearning": [
+        "Symmetric/asymmetric encryption + hashing",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать secure code?",
+      "optionsLearning": [
+        "Validate input + use libraries + regular audits",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-06",
+      "kind": "select",
+      "title": "Secure memory handling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно работать с памятью?",
+      "optionsLearning": [
+        "std::string + std::vector + smart pointers (no raw new/delete)",
+        "Raw pointers",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-07",
+      "kind": "select",
+      "title": "Secure string handling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно работать со строками?",
+      "optionsLearning": [
+        "std::string + std::string_view (no C-style strings)",
+        "C-style strings",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-08",
+      "kind": "select",
+      "title": "Secure networking",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно работать с сетью?",
+      "optionsLearning": [
+        "TLS/SSL + certificate validation + input sanitization",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-09",
+      "kind": "select",
+      "title": "Secure coding standards",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Популярные secure coding стандарты?",
+      "optionsLearning": [
+        "MISRA C++, CERT C++, OWASP Secure Coding",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать secure code?",
+      "optionsLearning": [
+        "Input validation + sanitization + least privilege + regular audits",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-11",
+      "kind": "select",
+      "title": "Secure memory management",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно управлять памятью?",
+      "optionsLearning": [
+        "Smart pointers + RAII + sanitizers (ASan)",
+        "Raw new/delete",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-12",
+      "kind": "select",
+      "title": "Secure string operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно работать со строками?",
+      "optionsLearning": [
+        "std::string + std::string_view + std::format (no C-style)",
+        "C-style strings",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-13",
+      "kind": "select",
+      "title": "Secure networking protocols",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно работать с сетью?",
+      "optionsLearning": [
+        "TLS 1.3 + certificate pinning + HSTS",
+        "Только HTTP",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-14",
+      "kind": "select",
+      "title": "Secure coding audits",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проводить security audit?",
+      "optionsLearning": [
+        "Static analysis + dynamic analysis + manual review",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать secure code?",
+      "optionsLearning": [
+        "Input validation + sanitization + least privilege + regular audits + training",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-16",
+      "kind": "select",
+      "title": "Property-based testing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое property-based testing?",
+      "optionsLearning": [
+        "Генерация случайных данных для проверки свойств (QuickCheck)",
+        "Ручные тесты",
+        "Только unit tests",
+        "Integration tests"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-17",
+      "kind": "select",
+      "title": "Fuzzing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое fuzzing?",
+      "optionsLearning": [
+        "Автоматическая генерация edge-case inputs (AFL, libFuzzer)",
+        "Ручные тесты",
+        "Только unit tests",
+        "Integration tests"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-18",
+      "kind": "select",
+      "title": "Mock frameworks",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Популярный mock фреймворк?",
+      "optionsLearning": [
+        "Google Mock (gmock)",
+        "JUnit Mock",
+        "PyTest Mock",
+        "Jest Mock"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-19",
+      "kind": "select",
+      "title": "BDD style",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое BDD?",
+      "optionsLearning": [
+        "Behavior-Driven Development (Gherkin: Given/When/Then)",
+        "Unit testing",
+        "Integration testing",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.security-testing.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как тестировать сложные системы?",
+      "optionsLearning": [
+        "Property-based + fuzzing + mocks",
+        "Только manual",
+        "Никак",
+        "Только unit"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.security-testing.01.scenario"
+    }
+  ]
+}

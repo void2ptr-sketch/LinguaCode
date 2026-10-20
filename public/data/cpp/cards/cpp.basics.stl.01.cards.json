@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.basics.stl.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.stl.01.scenario.card-01",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Что означает аббревиатура STL?",
+      "optionsLearning": [
+        "Standard Template Library",
+        "Simple Type Library",
+        "Standard Test Loader",
+        "System Template List"
+      ],
+      "correctIndex": 0,
+      "explanation": "STL — стандартная библиотека шаблонов C++."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-02",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Какие три основные части входят в STL?",
+      "optionsLearning": [
+        "Контейнеры, алгоритмы, итераторы",
+        "Классы, структуры, перечисления",
+        "Файлы, строки, потоки",
+        "Макросы, шаблоны, enum"
+      ],
+      "correctIndex": 0,
+      "explanation": "STL построена на контейнерах, алгоритмах и итераторах."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "STL Intro — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {3, 1, 2}; std::sort(v.begin(), v.end()); std::cout << v[0] << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "13",
+        "32",
+        "12",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "sort упорядочивает {1,2,3} → 1 и 3."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-04",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "В каком заголовке находятся алгоритмы?",
+      "optionsLearning": [
+        "<algorithm>",
+        "<vector>",
+        "<iostream>",
+        "<string>"
+      ],
+      "correctIndex": 0,
+      "explanation": "Алгоритмы — в заголовке <algorithm>."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-05",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Что такое итератор?",
+      "optionsLearning": [
+        "Абстракция доступа к элементам контейнера",
+        "Указатель на вектор",
+        "Индекс",
+        "Счётчик"
+      ],
+      "correctIndex": 0,
+      "explanation": "Итератор предоставляет единообразный доступ к элементам."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "STL Intro — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {5, 6, 7}; std::cout << v.begin()[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "5",
+        "7",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "begin()[1] — второй элемент: 6 (для vector итератор — random access)."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-07",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Какие типы контейнеров есть в STL?",
+      "optionsLearning": [
+        "vector, list, map, set, deque, unordered_*",
+        "Только массивы",
+        "Только строки",
+        "Только списки"
+      ],
+      "correctIndex": 0,
+      "explanation": "STL предлагает последовательные и ассоциативные контейнеры."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-08",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Какой контейнер — динамический массив?",
+      "optionsLearning": [
+        "std::vector",
+        "std::list",
+        "std::set",
+        "std::map"
+      ],
+      "correctIndex": 0,
+      "explanation": "vector — динамический массив с произвольным доступом."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-09",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Почему алгоритмы отделены от контейнеров?",
+      "optionsLearning": [
+        "Общий код через итераторы: один алгоритм для многих контейнеров",
+        "Это случайность",
+        "Быстрее компиляция",
+        "Меньше памяти"
+      ],
+      "correctIndex": 0,
+      "explanation": "Итераторы позволяют алгоритмам работать с любым контейнером."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "STL Intro — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; std::cout << std::accumulate(v.begin(), v.end(), 0); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "24",
+        "4",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "acosumulate суммирует элементы с начальным 0: 10."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-11",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Что делает std::find?",
+      "optionsLearning": [
+        "Ищет первое вхождение значения, возвращая итератор",
+        "Сортирует",
+        "Удаляет",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::find возвращает итератор на найденный элемент или end()."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-12",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Что такое begin() и end()?",
+      "optionsLearning": [
+        "Итераторы на начало и конец диапазона",
+        "Индексы",
+        "Методы копирования",
+        "Указатели на вектор"
+      ],
+      "correctIndex": 0,
+      "explanation": "end() указывает за последний элемент (полуинтервал [begin, end))."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "STL Intro — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; int n = 0; for (int x : v) ++n; std::cout << n; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Range-for считает элементы: 3."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-14",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Какой контейнер хранит уникальные ключи в отсортированном виде?",
+      "optionsLearning": [
+        "std::set",
+        "std::vector",
+        "std::list",
+        "std::deque"
+      ],
+      "correctIndex": 0,
+      "explanation": "set хранит уникальные элементы, упорядоченные по ключу."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-15",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Что хранит std::map?",
+      "optionsLearning": [
+        "Пары ключ-значение, упорядоченные по ключу",
+        "Только ключи",
+        "Строки",
+        "Массивы"
+      ],
+      "correctIndex": 0,
+      "explanation": "map ассоциирует уникальные ключи со значениями."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "STL Intro — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <map>\nint main() { std::map<std::string, int> m; m[\"a\"] = 1; m[\"b\"] = 2; std::cout << m[\"a\"] + m[\"b\"]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "12",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "m[a]=1, m[b]=2 → 3."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-17",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Какой контейнер оптимален для вставки в середину?",
+      "optionsLearning": [
+        "std::list",
+        "std::vector",
+        "std::array",
+        "std::string"
+      ],
+      "correctIndex": 0,
+      "explanation": "list — связный список: вставка O(1) по итератору."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-18",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Что делает std::for_each?",
+      "optionsLearning": [
+        "Применяет функцию к каждому элементу диапазона",
+        "Сортирует",
+        "Находит",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "for_each применяет переданный callable ко всем элементам."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-19",
+      "kind": "code-trace",
+      "title": "STL Intro — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; std::for_each(v.begin(), v.end(), [](int& x) { x *= 2; }); std::cout << v[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "4",
+        "2",
+        "6",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждый элемент удваивается: v[1]=4."
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario.card-20",
+      "kind": "select",
+      "title": "STL Intro — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.stl.01.scenario",
+      "promptKnown": "Почему STL важна для C++?",
+      "optionsLearning": [
+        "Готовые проверенные структуры и алгоритмы экономят время",
+        "Она обязательна",
+        "Она ускоряет compile",
+        "Она уменьшает бинарник"
+      ],
+      "correctIndex": 0,
+      "explanation": "STL — переиспользуемые типы и алгоритмы с гарантиями сложности."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

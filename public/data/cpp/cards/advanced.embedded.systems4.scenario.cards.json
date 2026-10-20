@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.embedded.systems4.scenario",
+  "cards": [
+    {
+      "id": "advanced.embedded.systems4.card-01",
+      "kind": "select",
+      "title": "Bootloader advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый bootloader?",
+      "optionsLearning": [
+        "Secure boot + OTA updates + A/B partitioning",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems4",
+      "scenarioId": "advanced.embedded.systems4.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems4.card-02",
+      "kind": "select",
+      "title": "Firmware update advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое обновление firmware?",
+      "optionsLearning": [
+        "Delta updates + compression + rollback + secure verification",
+        "Только manual",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems4",
+      "scenarioId": "advanced.embedded.systems4.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems4.card-03",
+      "kind": "select",
+      "title": "Watchdog timer advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый watchdog?",
+      "optionsLearning": [
+        "Windowed watchdog + software watchdog + multi-core support",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems4",
+      "scenarioId": "advanced.embedded.systems4.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems4.card-04",
+      "kind": "select",
+      "title": "Low power design advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое управление питанием?",
+      "optionsLearning": [
+        "Dynamic voltage scaling + sleep modes + interrupt-driven + DMA",
+        "Только manual",
+        "Никак",
+        "Только hardware"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems4",
+      "scenarioId": "advanced.embedded.systems4.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems4.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать embedded C++?",
+      "optionsLearning": [
+        "RAII + no exceptions + deterministic timing + watchdog + secure boot",
+        "Full C++ features",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems4",
+      "scenarioId": "advanced.embedded.systems4.scenario"
+    }
+  ]
+}

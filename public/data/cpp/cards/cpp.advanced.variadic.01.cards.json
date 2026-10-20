@@ -1,0 +1,636 @@
+{
+  "scenarioId": "cpp.advanced.variadic.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-01",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Что такое variadic templates?",
+      "optionsLearning": [
+        "Шаблоны с произвольным числом параметров",
+        "Шаблон на 3",
+        "Макрос",
+        "Массив"
+      ],
+      "correctIndex": 0,
+      "explanation": "template <typename... Args>."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-02",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Что такое parameter pack?",
+      "optionsLearning": [
+        "Набор параметров шаблона",
+        "Пакет данных",
+        "Структура",
+        "Архив"
+      ],
+      "correctIndex": 0,
+      "explanation": "Args... — pack типов/значений."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Variadic Templates — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++17"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename... Args>\nauto sum(Args... args) { return (args + ...); }\nint main() { std::cout << sum(1, 2, 3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "123",
+        "3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fold-выражение складывает 6."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-04",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Как раскрыть pack в списке?",
+      "optionsLearning": [
+        "args... с многоточием",
+        "args",
+        "pack()",
+        "sizeof"
+      ],
+      "correctIndex": 0,
+      "explanation": "Раскрытие pack — через ...."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-05",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Что делает sizeof...(Args)?",
+      "optionsLearning": [
+        "Возвращает число параметров",
+        "Размер типа",
+        "Ноль",
+        "Индекс"
+      ],
+      "correctIndex": 0,
+      "explanation": "Мета-количество элементов pack."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Variadic Templates — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename... Ts> int count() { return sizeof...(Ts); }\nint main() { std::cout << count<int, double, char>(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "1",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Три типа в pack."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-07",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++17"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Что такое fold-выражение?",
+      "optionsLearning": [
+        "Свёртка pack с оператором ((x op ...))",
+        "Цикл",
+        "Сортировка",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Однострочная свёртка variadic."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-08",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Где применяют pack в std?",
+      "optionsLearning": [
+        "make_tuple, tuple, apply, printf-подобные",
+        "Только в играх",
+        "В логировании всегда",
+        "Нигде"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инфраструктура кортежей/вызовов."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Variadic Templates — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <tuple>\nint main() { auto t = std::make_tuple(1, 2.5, 'x'); std::cout << std::get<1>(t); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2.5",
+        "1",
+        "x",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "tuple — variadic-хранилище."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-10",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Что делает std::apply?",
+      "optionsLearning": [
+        "Вызывает функцию с аргументами из tuple",
+        "Применяет патч",
+        "Сортирует",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "apply(f, tuple) — распаковка."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Variadic Templates — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <tuple>\nint add(int a, int b) { return a + b; }\nint main() { std::cout << std::apply(add, std::make_tuple(2, 3)); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "23",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "apply вызывает add(2,3): 5."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-12",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Как рекурсивно обрабатывают pack до C++17?",
+      "optionsLearning": [
+        "Верхний элемент + рекурсивный вызов",
+        "Циклом",
+        "Массивом",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Классическая рекурсия шаблонов."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-13",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Что такое init-capture в лямбде из pack?",
+      "optionsLearning": [
+        "Захват элементов pack (С++20 именованный)",
+        "Копию",
+        "Ссылку",
+        "Уничтожение"
+      ],
+      "correctIndex": 0,
+      "explanation": "pack expansion в init-captures."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Variadic Templates — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename... Ts>\nbool all(Ts... xs) { return (xs && ...); }\nint main() { std::cout << all(true, true) << all(true, false); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "01",
+        "11",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Логическое И: 1 и 0."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-15",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Что делает (std::cout << ... << args);",
+      "optionsLearning": [
+        "Fold-вывод всех аргументов",
+        "Печать последнего",
+        "Ошибку",
+        "Цикл"
+      ],
+      "correctIndex": 0,
+      "explanation": "Правый fold подряд выводит args."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "Variadic Templates — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename... Ts>\nvoid print(Ts... args) { (std::cout << ... << args); }\nint main() { print(1, 2, 3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "123",
+        "6",
+        "1 2 3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Все значения подряд: 123."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-17",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Что такое pack expansion в типах?",
+      "optionsLearning": [
+        "tuple<Ts...> — конкретный tuple",
+        "Копия",
+        "Массив",
+        "Указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "Раскрытие типов в списке типов."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-18",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++17"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Как избежать рекурсии при раскрытии?",
+      "optionsLearning": [
+        "Fold-выражениями (C++17)",
+        "Нельзя",
+        "Макросами",
+        "Инлайн"
+      ],
+      "correctIndex": 0,
+      "explanation": "Folds заменяют рекурсивные разборы."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-19",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Где variadic нужен в std::make_shared?",
+      "optionsLearning": [
+        "Передача произвольных аргументов конструктору",
+        "Всегда",
+        "Нигде",
+        "Для malloc"
+      ],
+      "correctIndex": 0,
+      "explanation": "make_shared<T>(args...) — вариадик."
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario.card-20",
+      "kind": "select",
+      "title": "Variadic Templates — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.variadic.01.scenario",
+      "promptKnown": "Что перешло из variadic в C++20?",
+      "optionsLearning": [
+        "Pack в init-capture и перегрузки с <>",
+        "Ничего",
+        "Многое старое",
+        "Только макросы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Дальнейшее расширение выразительности."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

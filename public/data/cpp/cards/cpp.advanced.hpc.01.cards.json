@@ -1,0 +1,636 @@
+{
+  "scenarioId": "cpp.advanced.hpc.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-01",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance",
+          "hpc"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое HPC?",
+      "optionsLearning": [
+        "Высокопроизводительные вычисления",
+        "Игры",
+        "Сеть",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Суперкомпьютеры, параллелизм."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-02",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое MPI?",
+      "optionsLearning": [
+        "Межпроцессный обмен сообщениями",
+        "Поток",
+        "Мьютекс",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Распределённые вычисления."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "HPC — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "hpc"
+        ],
+        "tags": "Идентификация в коммуникаторе."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "question": "Что делает MPI_Comm_rank?",
+      "code": {
+        "code": [
+          "Возвращает номер процесса",
+          "Размер",
+          "Сумму",
+          "Лог"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-04",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "hpc",
+          "concurrency"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое OpenMP?",
+      "optionsLearning": [
+        "Директивы параллельных циклов",
+        "Сеть",
+        "Базы данных",
+        "GUI"
+      ],
+      "correctIndex": 0,
+      "explanation": "#pragma omp parallel for."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "HPC — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc",
+          "concurrency"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "question": "Что делает этот прагма?",
+      "code": {
+        "code": "#pragma omp parallel for\nfor (i...) { ... }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Параллелит цикл",
+        "Сортирует",
+        "Логирует",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разбиение итераций по потокам."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-06",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое SIMD?",
+      "optionsLearning": [
+        "Одна инструкция — много данных",
+        "Поток",
+        "Мьютекс",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Векторные операции."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-07",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "hpc"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое GPU-вычисления?",
+      "optionsLearning": [
+        "Параллельные вычисления на видеокарте",
+        "Сеть",
+        "Логи",
+        "Хранение"
+      ],
+      "correctIndex": 0,
+      "explanation": "CUDA/ROCm/OpenCL."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "HPC — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "hpc"
+        ],
+        "tags": "Множество потоков на GPU."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "question": "Что делает kernel в CUDA?",
+      "code": {
+        "code": [
+          "Функцию, исполняемую на GPU",
+          "ОС",
+          "Буфер",
+          "Сеть"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-09",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое cache blocking (tiling)?",
+      "optionsLearning": [
+        "Деление данных на блоки для кэша",
+        "Мблокировку",
+        "Сортировку",
+        "Шифрование"
+      ],
+      "correctIndex": 0,
+      "explanation": "Улучшение локальности матриц."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-10",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Зачем оптимизировать память в HPC?",
+      "optionsLearning": [
+        "Пропускная способность — узкое место",
+        "Скорость CPU только",
+        "Логи",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Поток данных к ядрам."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "HPC — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "question": "Что выведет (упрощённо) умножение матриц? ",
+      "code": {
+        "code": "C[i][j] += A[i][k] * B[k][j];",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Стандартное тройное ядро",
+        "Ошибка",
+        "0",
+        "индекс"
+      ],
+      "correctIndex": 0,
+      "explanation": "Тройной цикл BLAS-стиля."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-12",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое BLAS?",
+      "optionsLearning": [
+        "Библиотека линейной алгебры",
+        "Сетевой протокол",
+        "Логер",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "GEMM, DOT и др."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-13",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое Amdahl's law?",
+      "optionsLearning": [
+        "Предел ускорения от параллелизма",
+        "Сортировка",
+        "Сеть",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "explanation": "Доля последовательного кода."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "HPC — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "hpc"
+        ],
+        "tags": "Закон Амдаля."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "question": "Что показывает ускорение при p ядрах?",
+      "code": {
+        "code": [
+          "зависит от последовательной части",
+          "p раз всегда",
+          "ноль",
+          "1"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-15",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc",
+          "concurrency"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое load balancing?",
+      "optionsLearning": [
+        "Равномерное распределение работы",
+        "Сеть",
+        "Хеш",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Избежание простаивающих ядер."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-16",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое Stencil-вычисления?",
+      "optionsLearning": [
+        "Обновление сетки по соседям",
+        "Сортировку",
+        "Хеш",
+        "Файлы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Дифференциальные уравнения."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-17",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое редуцирование (reduction)?",
+      "optionsLearning": [
+        "Свёртка результатов по процессам",
+        "Строку",
+        "Хеш",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "MPI_Reduce / OpenMP reduction."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "HPC — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc",
+          "concurrency"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "question": "Что делает reduction в OpenMP?",
+      "code": {
+        "code": "#pragma omp parallel for reduction(+:sum)\nsum += a[i];",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Корректная сумма параллельно",
+        "Ошибка",
+        "0",
+        "мусор"
+      ],
+      "correctIndex": 0,
+      "explanation": "Свёртка с безопасностью."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-19",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что такое tensor?",
+      "optionsLearning": [
+        "Многомерный массив",
+        "Строку",
+        "Поток",
+        "Ошибку"
+      ],
+      "correctIndex": 0,
+      "explanation": "ML-исчисления."
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario.card-20",
+      "kind": "select",
+      "title": "High Performance Computing — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "hpc",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.hpc.01.scenario",
+      "promptKnown": "Что важнее в HPC: алгоритм или микрокод?",
+      "optionsLearning": [
+        "Оба: асимптотика и реализация",
+        "только алгоритм",
+        "только микрокод",
+        "ничто"
+      ],
+      "correctIndex": 0,
+      "explanation": "Совместная оптимизация."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

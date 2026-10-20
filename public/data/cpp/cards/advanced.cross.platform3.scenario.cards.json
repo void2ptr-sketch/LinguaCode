@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.cross.platform3.scenario",
+  "cards": [
+    {
+      "id": "advanced.cross.platform3.card-01",
+      "kind": "select",
+      "title": "Cross-platform file I/O",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать cross-platform file I/O?",
+      "optionsLearning": [
+        "std::filesystem (C++17) + platform abstraction",
+        "Только POSIX",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform3",
+      "scenarioId": "advanced.cross.platform3.scenario"
+    },
+    {
+      "id": "advanced.cross.platform3.card-02",
+      "kind": "select",
+      "title": "Cross-platform process management",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как управлять процессами cross-platform?",
+      "optionsLearning": [
+        "std::process (C++23) + platform abstraction",
+        "Только POSIX",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform3",
+      "scenarioId": "advanced.cross.platform3.scenario"
+    },
+    {
+      "id": "advanced.cross.platform3.card-03",
+      "kind": "select",
+      "title": "Cross-platform networking",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать cross-platform network code?",
+      "optionsLearning": [
+        "POSIX sockets + platform abstraction layer",
+        "Только Windows sockets",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform3",
+      "scenarioId": "advanced.cross.platform3.scenario"
+    },
+    {
+      "id": "advanced.cross.platform3.card-04",
+      "kind": "select",
+      "title": "Cross-platform threading",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать cross-platform threading?",
+      "optionsLearning": [
+        "std::thread (C++11) + platform abstraction",
+        "Только POSIX threads",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform3",
+      "scenarioId": "advanced.cross.platform3.scenario"
+    },
+    {
+      "id": "advanced.cross.platform3.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как поддерживать cross-platform?",
+      "optionsLearning": [
+        "CI on all platforms + abstraction layers + tests",
+        "Только одна платформа",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform3",
+      "scenarioId": "advanced.cross.platform3.scenario"
+    }
+  ]
+}

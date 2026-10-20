@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.basics.control-while.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-01",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Когда выполняется проверка условия в while?",
+      "optionsLearning": [
+        "До каждой итерации",
+        "После каждой итерации",
+        "Только один раз",
+        "Параллельно"
+      ],
+      "correctIndex": 0,
+      "explanation": "while проверяет условие перед телом; при false цикл завершается."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-02",
+      "kind": "code-trace",
+      "title": "Циклы: while и do-while — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int i = 0; while (i < 3) { std::cout << i; ++i; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "012",
+        "123",
+        "0123",
+        "03"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пока i < 3 выводятся 0, 1, 2."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-03",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Сколько раз выполнится тело while (false) { }?",
+      "optionsLearning": [
+        "0",
+        "1",
+        "Бесконечно",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Условие false с самого начала — тело не выполняется ни разу."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-04",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Чем do-while отличается от while?",
+      "optionsLearning": [
+        "do-while выполняет тело минимум один раз",
+        "do-while быстрее",
+        "do-while нельзя с break",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "do { } while (cond); проверяет условие после тела — минимум одна итерация."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Циклы: while и do-while — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 5; do { std::cout << x; } while (x < 3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "ничего",
+        "5 5 5...",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "do-while выполняется один раз до проверки условия — выводится 5."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-06",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Какой цикл подходит, когда число итераций заранее неизвестно и зависит от ввода?",
+      "optionsLearning": [
+        "while (cin >> x) или while (cond)",
+        "Только for",
+        "Только do-while",
+        "Ни один"
+      ],
+      "correctIndex": 0,
+      "explanation": "while удобен для циклов с неизвестным заранее числом итераций."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-07",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Как написать бесконечный цикл?",
+      "optionsLearning": [
+        "while (true) { }",
+        "while (1 == 0) { }",
+        "do { } while (false)",
+        "while (false) { }"
+      ],
+      "correctIndex": 0,
+      "explanation": "while (true) — классический бесконечный цикл; выход через break."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Циклы: while и do-while — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int n = 5, c = 0; while (n > 0) { n /= 2; ++c; } std::cout << c; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "5",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "n: 5→2→1→0; цикл выполнился 3 раза."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-09",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Где в while правильно изменять счётчик?",
+      "optionsLearning": [
+        "Внутри тела (например, ++i)",
+        "В условии заранее",
+        "После цикла",
+        "Автоматически"
+      ],
+      "correctIndex": 0,
+      "explanation": "В while шаг итерации пишется внутри тела, иначе цикл станет бесконечным."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-10",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Что произойдёт, если забыть увеличить счётчик в while?",
+      "optionsLearning": [
+        "Бесконечный цикл",
+        "Ошибка компиляции",
+        "Цикл завершится сам",
+        "Программа упадёт"
+      ],
+      "correctIndex": 0,
+      "explanation": "Если условие не меняется, while (true-условие) выполняется вечно."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Циклы: while и do-while — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int i = 10; while (i > 0) { i -= 3; } std::cout << i; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "-2",
+        "1",
+        "0",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "i: 10→7→4→1→-2; условие 1>0 true ещё раз — финальное i = -2."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-12",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Можно ли использовать break внутри while?",
+      "optionsLearning": [
+        "Да",
+        "Нет",
+        "Только в do-while",
+        "Только с меткой"
+      ],
+      "correctIndex": 0,
+      "explanation": "break работает во всех циклах C++: for, while, do-while."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-13",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "io"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Какое условие остановит цикл чтения чисел до ввода 0 (int x)?",
+      "optionsLearning": [
+        "while (x != 0) { cin >> x; }",
+        "while (x == 0)",
+        "while (x > 0)",
+        "do { } while (x == 0)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Цикл продолжается, пока введённое число не равно 0."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Циклы: while и do-while — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 1; while (x < 100) x *= 2; std::cout << x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "128",
+        "100",
+        "64",
+        "256"
+      ],
+      "correctIndex": 0,
+      "explanation": "Удвоение: 1→2→4→8→16→32→64→128; 128 >= 100, цикл остановлен."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-15",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "В каком случае do-while удобнее while?",
+      "optionsLearning": [
+        "Когда тело должно выполниться хотя бы один раз",
+        "Когда итераций точно много",
+        "Когда нужен break",
+        "Всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "do-while гарантирует минимум одну итерацию — удобно для меню и повторного ввода."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-16",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Чем while отличатется от for?",
+      "optionsLearning": [
+        "for удобен при известном числе итераций и счётчике; while — при произвольном условии",
+        "Это одно и то же",
+        "while не имеет условия",
+        "for всегда бесконечный"
+      ],
+      "correctIndex": 0,
+      "explanation": "Выбор между for/while — вопрос читаемости: счётчик → for, условие → while."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Циклы: while и do-while — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int i = 0; while (i < 5) { ++i; if (i == 2) continue; std::cout << i; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1345",
+        "12345",
+        "12",
+        "345"
+      ],
+      "correctIndex": 0,
+      "explanation": "continue при i=2 пропускает вывод 2: печатаются 1,3,4,5."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-18",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Что произойдёт при while (x) для int x = 3?",
+      "optionsLearning": [
+        "Цикл выполнится, пока x не станет 0 (3 истинно)",
+        "Ошибка компиляции",
+        "Цикл не выполнится",
+        "x должен быть bool"
+      ],
+      "correctIndex": 0,
+      "explanation": "Число неявно приводится к bool: ненулевое — true."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-19",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Как организовать меню, которое показывается минимум один раз?",
+      "optionsLearning": [
+        "do { показать меню; cin >> choice; } while (choice != 0);",
+        "while (true) только",
+        "for (;;)",
+        "if (choice)"
+      ],
+      "correctIndex": 0,
+      "explanation": "do-while гарантирует первый показ меню и повтор до выхода."
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-20",
+      "kind": "select",
+      "title": "Циклы: while и do-while — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.control-while.01.scenario",
+      "promptKnown": "Какой цикл предпочтителен для послеусловия (проверка в конце)?",
+      "optionsLearning": [
+        "do-while",
+        "while",
+        "for",
+        "range-for"
+      ],
+      "correctIndex": 0,
+      "explanation": "do-while проверяет условие после тела — послеусловие."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

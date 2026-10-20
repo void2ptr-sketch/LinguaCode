@@ -1,0 +1,381 @@
+{
+  "scenarios": [
+    {
+      "id": "demo-scenario",
+      "title": "Демо-сценарий",
+      "description": "3 карточки для начала обучения (ru→en): выбор ответа.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-01-01T00:00:00.000Z",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "select-1",
+          "select-2",
+          "select-3"
+        ]
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "demo-course"
+    },
+    {
+      "id": "scenario-zh-greetings",
+      "title": "Приветствия (китайский)",
+      "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T10:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-a1",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "select-zh-1",
+          "memory-zh-1",
+          "symbol-zh-1",
+          "sound-zh-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-zh-phonetics",
+      "title": "Фонетика: пиньинь и тоны",
+      "description": "3 карточки: пиньинь, IPA и тоны на примере 你好 и 妈.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T10:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-a1",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "keyboard-zh-pinyin-1",
+          "keyboard-zh-ipa-1",
+          "tone-ma-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-zh-characters",
+      "title": "Иероглифы и чтение",
+      "description": "7 карточек: черты 人 и 好, ввод перевода, полифония 行 в 银行.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T10:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-a1",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "draw-nihao-1",
+          "draw-henbang-1",
+          "draw-bowuguan-1",
+          "draw-ren-1",
+          "draw-hao-1",
+          "keyboard-zh-1",
+          "reading-xing-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-zh-review",
+      "title": "Закрепление (китайский)",
+      "description": "3 карточки: на время, выбор и пары.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T10:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-conversation",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "timed-zh-1",
+          "select-zh-1",
+          "memory-zh-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-code-demo",
+      "title": "Код: выбор ответа",
+      "description": "3 карточки code-select: Perl, Java и C++ с подсветкой синтаксиса.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "code-select-perl-1",
+          "code-select-java-1",
+          "code-select-cpp-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-select",
+      "title": "Выбор ответа",
+      "description": "Выбор правильного перевода из вариантов (kind: select).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "select-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-code-select",
+      "title": "Код: выбор ответа",
+      "description": "Выбор корректного фрагмента кода (kind: code-select).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "code-select-cpp-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-memory",
+      "title": "Запоминание",
+      "description": "Сопоставление пар перевода (kind: memory).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "memory-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-symbol",
+      "title": "Символы",
+      "description": "Выбор символа по значению (kind: symbol).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "symbol-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-sound",
+      "title": "Звук",
+      "description": "Распознавание слова на слух (kind: sound).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "sound-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-timed",
+      "title": "На время",
+      "description": "Ответ с ограничением по времени (kind: timed).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "timed-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-keyboard",
+      "title": "Клавиатура",
+      "description": "Ввод ответа с клавиатуры (kind: keyboard).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "keyboard-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-draw",
+      "title": "Рисование",
+      "description": "Рисование символа на канвасе (kind: draw).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "draw-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-tone",
+      "title": "Тон",
+      "description": "Определение тона слога (kind: tone, пример из китайского модуля).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "tone-ma-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-reading",
+      "title": "Чтение (полифония)",
+      "description": "Чтение с выбором интерпретации (kind: reading, пример из китайского модуля).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "reading-xing-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-flip",
+      "title": "Переворот",
+      "description": "Классическая карточка-переворот (kind: flip).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "flip-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-cloze",
+      "title": "Пропуск в тексте",
+      "description": "Заполнение пропуска в предложении (kind: cloze).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "cloze-1"
+        ]
+      }
+    },
+    {
+      "id": "scenario-demo-code-trace",
+      "title": "Код: что выведет?",
+      "description": "Предсказание вывода кода (kind: code-trace).",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-10-17T12:30:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "courseId": "course-demo-card-kinds",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "code-trace-cpp-1"
+        ]
+      }
+    }
+  ]
+}

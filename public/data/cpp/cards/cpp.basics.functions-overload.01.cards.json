@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.basics.functions-overload.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-01",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Что такое перегрузка функций?",
+      "optionsLearning": [
+        "Несколько функций с одним именем, но разными параметрами",
+        "Функция с одним именем и телом",
+        "Переопределение оператора",
+        "Рекурсивный вызов"
+      ],
+      "correctIndex": 0,
+      "explanation": "Перегрузка — одно имя, разные списки параметров; выбор при компиляции."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-02",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "По чему различаются перегруженные функции?",
+      "optionsLearning": [
+        "По типам/количеству параметров",
+        "По возвращаемому типу",
+        "По имени",
+        "По комментариям"
+      ],
+      "correctIndex": 0,
+      "explanation": "Возвращаемый тип не участвует в перегрузке — только параметры."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Перегрузка функций — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "question": "Какую функцию вызовет print(5) в этом коде?",
+      "code": {
+        "code": "void print(int);\nvoid print(double);\nvoid print(int, int);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "print(int)",
+        "print(double)",
+        "print(int,int)",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "print(5) выбирает print(int) — точное совпадение лучше преобразования."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-04",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Можно ли перегрузить функцию только изменив const у параметра-ссылки?",
+      "optionsLearning": [
+        "Да: f(int&) и f(const int&) — разные сигнатуры",
+        "Нет",
+        "Только в C++20",
+        "Только с указателями"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылочные параметры с разными cv-квалификаторами — допустимые перегрузки."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-05",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Почему нельзя перегрузить только по возвращаемому типу?",
+      "optionsLearning": [
+        "Вызов происходит по аргументам; тип результата не участвует в выборе",
+        "Это запрещено компилятором из-за скорости",
+        "Возврат один на функцию",
+        "Стандарт отменил"
+      ],
+      "correctIndex": 0,
+      "explanation": "int f(); double f(); — недопустимо: неясно, какую выбрать по вызову."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Перегрузка функций — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nvoid f(int) { std::cout << 1; }\nvoid f(double) { std::cout << 2; }\nint main() { f(3.0); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "Ошибка",
+        "3.0"
+      ],
+      "correctIndex": 0,
+      "explanation": "3.0 — точное совпадение с double: выводится 2."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-07",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Какая функция вызовется при f(1L) при перегрузках f(int) и f(long)?",
+      "optionsLearning": [
+        "f(long)",
+        "f(int)",
+        "Ошибка",
+        "Любая"
+      ],
+      "correctIndex": 0,
+      "explanation": "1L имеет тип long — точное совпадение без преобразования."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-08",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Что произойдёт при неоднозначном вызове, например f(1) с f(int) и f(double)?",
+      "optionsLearning": [
+        "Вызовется f(int) — точное совпадение",
+        "Ошибка неоднозначности",
+        "Вызовется f(double)",
+        "Любая по порядку"
+      ],
+      "correctIndex": 0,
+      "explanation": "Точное совпадение (int) выигрывает у преобразования в double."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Перегрузка функций — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "question": "Что выведет эта программа (bool выводится как 0/1)?",
+      "code": {
+        "code": "#include <iostream>\nvoid f(int) { std::cout << 1; }\nvoid f(bool) { std::cout << 2; }\nint main() { f(true); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "Ошибка",
+        "true"
+      ],
+      "correctIndex": 0,
+      "explanation": "true точно соответствует bool — выводится 2."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-10",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Можно ли перегрузить функцию с разными значениями параметров по умолчанию?",
+      "optionsLearning": [
+        "Перегрузка учитывает только типы, не значения умолчаний",
+        "Да, значения",
+        "Нет",
+        "Только в C++17"
+      ],
+      "correctIndex": 0,
+      "explanation": "f(int) и f(int=0) — одинаковая сигнатура: ошибка повторного объявления."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-11",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Где обычно объявляют перегрузки?",
+      "optionsLearning": [
+        "В заголовочном файле рядом",
+        "В разных файлах без объявлений",
+        "Только в main",
+        "В отдельном .h для каждой"
+      ],
+      "correctIndex": 0,
+      "explanation": "Перегрузки объявляют вместе, чтобы была видна вся группа."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Перегрузка функций — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nvoid f(char) { std::cout << 'c'; }\nvoid f(int) { std::cout << 'i'; }\nint main() { f('A'); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "c",
+        "i",
+        "Ошибка",
+        "A"
+      ],
+      "correctIndex": 0,
+      "explanation": "'A' — char, точное совпадение: выводится c."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-13",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "В чём отличие перегрузки от переопределения (override)?",
+      "optionsLearning": [
+        "Перегрузка — разные параметры; override — виртуальный метод базового класса",
+        "Это одно и то же",
+        "Override — изменение возврата",
+        "Перегрузка только для классов"
+      ],
+      "correctIndex": 0,
+      "explanation": "Перегрузка статична; override полиморфен и работает с виртуальными методами."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-14",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Как вызвать перегрузку f(double) для целого числа?",
+      "optionsLearning": [
+        "f(static_cast<double>(5))",
+        "f(5)",
+        "f(int(5))",
+        "f(5.5)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Явное приведение заставляет выбрать перегрузку double."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Перегрузка функций — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "question": "Какая функция вызовется при f(nullptr)?",
+      "code": {
+        "code": "void f(int*);\nvoid f(long);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "f(int*)",
+        "f(long)",
+        "Ошибка неоднозначности",
+        "Никакая"
+      ],
+      "correctIndex": 0,
+      "explanation": "nullptr — именно указатель: точное совпадение с f(int*)."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-16",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Почему f(0) с перегрузками f(int*) и f(int) выберет f(int)?",
+      "optionsLearning": [
+        "0 — литерал int, точное совпадение",
+        "0 — nullptr",
+        "0 — указатель",
+        "Компилятор выберет случайно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Литерал 0 — int; для указателя требуется преобразование, поэтому выигрывает f(int)."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-17",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Что такое ADL (Argument-Dependent Lookup) при перегрузке?",
+      "optionsLearning": [
+        "Поиск функций в пространстве имён типов аргументов",
+        "Поиск в главном файле",
+        "Динамическая диспетчеризация",
+        "Поиск макросов"
+      ],
+      "correctIndex": 0,
+      "explanation": "ADL (Koenig lookup) ищет функции-кандидаты в пространствах имён типов аргументов."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "Перегрузка функций — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nvoid g(int) { std::cout << 1; }\nvoid g(double) { std::cout << 2; }\nvoid g(int, int) { std::cout << 3; }\nint main() { g(1, 2); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "1",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Два аргумента соответствуют только g(int,int): вывод 3."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-19",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Какое правило выбора перегрузки применяет компилятор?",
+      "optionsLearning": [
+        "Наилучшее совпадение: точное > стандартные преобразования > пользовательские",
+        "Первую объявленную",
+        "Последнюю",
+        "Случайную"
+      ],
+      "correctIndex": 0,
+      "explanation": "Резолюция перегрузки: точное совпадение предпочтительнее преобразований."
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-20",
+      "kind": "select",
+      "title": "Перегрузка функций — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "functions",
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario",
+      "promptKnown": "Зачем нужна перегрузка операторов через функции класса/друзей?",
+      "optionsLearning": [
+        "Чтобы операторы работали с пользовательскими типами",
+        "Ускорить сложение",
+        "Сократить код всегда",
+        "Только для вывода"
+      ],
+      "correctIndex": 0,
+      "explanation": "Перегрузка операторов реализуется функциями и делает пользовательские типы естественными."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

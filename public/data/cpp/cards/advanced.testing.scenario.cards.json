@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.testing.scenario",
+  "cards": [
+    {
+      "id": "advanced.testing.card-01",
+      "kind": "select",
+      "title": "Test framework",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Популярный тестовый фреймворк?",
+      "optionsLearning": [
+        "Google Test (gtest)",
+        "JUnit",
+        "PyTest",
+        "Jest"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing",
+      "scenarioId": "advanced.testing.scenario"
+    },
+    {
+      "id": "advanced.testing.card-02",
+      "kind": "select",
+      "title": "Test case",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать тест?",
+      "optionsLearning": [
+        "TEST(TestSuite, TestCaseName) { ASSERT_EQ(5, calculate()); }",
+        "def test():",
+        "@test",
+        "function test()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing",
+      "scenarioId": "advanced.testing.scenario"
+    },
+    {
+      "id": "advanced.testing.card-03",
+      "kind": "select",
+      "title": "Mock objects",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем mock объекты?",
+      "optionsLearning": [
+        "Имитация зависимостей для изоляции теста",
+        "Увеличение скорости",
+        "Уменьшение памяти",
+        "Отключение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing",
+      "scenarioId": "advanced.testing.scenario"
+    },
+    {
+      "id": "advanced.testing.card-04",
+      "kind": "select",
+      "title": "Test fixtures",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое test fixture?",
+      "optionsLearning": [
+        "Setup/teardown для тестов (SetUp/TearDown)",
+        "Один тест",
+        "Глобальные переменные",
+        "Константы"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing",
+      "scenarioId": "advanced.testing.scenario"
+    },
+    {
+      "id": "advanced.testing.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать хорошие тесты?",
+      "optionsLearning": [
+        "AAA pattern (Arrange, Act, Assert)",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing",
+      "scenarioId": "advanced.testing.scenario"
+    }
+  ]
+}

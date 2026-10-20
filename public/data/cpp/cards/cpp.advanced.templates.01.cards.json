@@ -1,0 +1,639 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-01",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Что такое шаблон класса?",
+      "optionsLearning": [
+        "Параметризованный по типам класс",
+        "Функция",
+        "Макрос",
+        "Структура данных"
+      ],
+      "correctIndex": 0,
+      "explanation": "template <typename T> class Box."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-02",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Что такое явная специализация?",
+      "optionsLearning": [
+        "Определение для конкретного типа",
+        "Копия",
+        "Инлайн",
+        "final"
+      ],
+      "correctIndex": 0,
+      "explanation": "template <> class X<int>."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Template Metaprogramming — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename T> struct Wrap { T v; Wrap(T x) : v(x) {} };\nint main() { Wrap<int> w(7); std::cout << w.v; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "0",
+        "w",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Wrap<int> хранит 7."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-04",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Что такое параметр non-type?",
+      "optionsLearning": [
+        "Значение в шаблоне: template <int N>",
+        "Тип",
+        "Класс",
+        "Ссылка"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::array<T, N> — пример."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Template Metaprogramming — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <int N> int fact() { return N * fact<N - 1>(); }\ntemplate <> int fact<0>() { return 1; }\nint main() { std::cout << fact<5>(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "120",
+        "15",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Мета-факториал: 120."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-06",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Что такое partial specialization?",
+      "optionsLearning": [
+        "Частичная специализация для подгруппы типов",
+        "Полная",
+        "Ничего",
+        "Инстанция"
+      ],
+      "correctIndex": 0,
+      "explanation": "template <typename T> struct X<T*>."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-07",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Зачем метафункции компилятору?",
+      "optionsLearning": [
+        "Вычислять типы/значения в compile-time",
+        "Runtime",
+        "Печать",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оптимизация и универсальность."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Template Metaprogramming — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename T> void print(T x) { std::cout << x; }\nint main() { print(5); print('x'); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5x",
+        "5 x",
+        "Ошибка",
+        "55"
+      ],
+      "correctIndex": 0,
+      "explanation": "Одна функция для int и char."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-09",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Что делает std::is_integral в мета-коде?",
+      "optionsLearning": [
+        "Проверка типа во время компиляции",
+        "Конвертер",
+        "Счётчик",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "type_traits + if constexpr."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-10",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Что такое CRTP?",
+      "optionsLearning": [
+        "Curiously Recurring Template Pattern",
+        "Макрос",
+        "Класс",
+        "Фабрика"
+      ],
+      "correctIndex": 0,
+      "explanation": "class Derived : public Base<Derived>."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Template Metaprogramming — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "question": "Что выведет эта программа (CRTP)?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename D> struct Base { D& self() { return *static_cast<D*>(this); } int val() { return self().impl(); } };\nstruct X : Base<X> { int impl() { return 9; } };\nint main() { X x; std::cout << x.val(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "9",
+        "0",
+        "Ошибка",
+        "val"
+      ],
+      "correctIndex": 0,
+      "explanation": "CRTP-вызов дочернего метода: 9."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-12",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Что такое expression templates?",
+      "optionsLearning": [
+        "Ленивое построение выражений для оптимизации",
+        "Ошибки",
+        "Макросы",
+        "Поиск"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пример: библиотеки линейной алгебры."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-13",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Чем концепты упрощают шаблоны?",
+      "optionsLearning": [
+        "Читаемые ограничения вместо SFINAE",
+        "Усилия",
+        "Скорость",
+        "Память"
+      ],
+      "correctIndex": 0,
+      "explanation": "Concepts сужают область шаблона."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Template Metaprogramming — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <concepts>\ntemplate <std::integral T> T f(T x) { return x + 1; }\nint main() { std::cout << f(1); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "Ошибка",
+        "f"
+      ],
+      "correctIndex": 0,
+      "explanation": "int соответствует концепту: 2."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-15",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++17"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Что такое template deduction guides?",
+      "optionsLearning": [
+        "Правила вывода типов для CTAD",
+        "Спецификаторы",
+        "Классы",
+        "Хеши"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::pair p(1, 2.0); — выводится."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-16",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++17"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Что такое CTAD (C++17)?",
+      "optionsLearning": [
+        "Class template argument deduction",
+        "Класс",
+        "Макрос",
+        "Guide"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вывод параметров класса из конструктора."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Template Metaprogramming — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++17"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <utility>\nint main() { std::pair p(1, 2.5); std::cout << p.first; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "1.0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "CTAD: pair<int,double> → first 1."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-18",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Что такое alias template?",
+      "optionsLearning": [
+        "template <typename T> using V = vector<T>;",
+        "Функция",
+        "Класс",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Псевдонимы шаблонов."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-19",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Какая цена сложного метапрограммирования?",
+      "optionsLearning": [
+        "Время компиляции и сложность",
+        "Runtime",
+        "Память",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Балансировать выразительность и скорость сборки."
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario.card-20",
+      "kind": "select",
+      "title": "Template Metaprogramming — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.templates.01.scenario",
+      "promptKnown": "Чем заканчивается «шаблонный ад»?",
+      "optionsLearning": [
+        "Дисциплиной и концептами",
+        "Ничем",
+        "Макросами",
+        "Гарантией"
+      ],
+      "correctIndex": 0,
+      "explanation": "Читаемый код важнее трюков."
+    }
+  ],
+  "scenarioId": "cpp.advanced.templates.01.scenario",
+  "title": "Advanced — Advanced C++"
+}

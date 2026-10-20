@@ -14,7 +14,7 @@
   <section class="quiz-card__answer" aria-label="Ответ">
     <p class="quiz-card__section-label">Выберите тон</p>
     <mat-card-content class="quiz-card__options quiz-card__options--tones">
-      @for (tone of card().toneOptions; track tone; let index = $index) {
+      @for (tone of resolved().options; track tone; let index = $index) {
         <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
           <span class="tone-card__pinyin">
             <app-tone-colored-text
@@ -41,8 +41,8 @@
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
       <mat-icon>cancel</mat-icon>
       Неверно. Правильный тон:
-      <strong>{{ toneLabel(card().toneOptions[card().correctIndex]) }}</strong>
-      ({{ tonedSyllable(card().toneOptions[card().correctIndex]) }})
+      <strong>{{ toneLabel(resolved().options[resolved().correctIndex]) }}</strong>
+      ({{ tonedSyllable(resolved().options[resolved().correctIndex]) }})
     </mat-card-content>
   }
 

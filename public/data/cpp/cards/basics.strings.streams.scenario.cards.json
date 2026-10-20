@@ -1,0 +1,92 @@
+{
+  "scenarioId": "basics.strings.streams.scenario",
+  "cards": [
+    {
+      "id": "basics.strings.streams.card-01",
+      "kind": "select",
+      "title": "Stringstream",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем stringstream?",
+      "optionsLearning": [
+        "Форматирование строк как cout",
+        "Чтение из файла",
+        "Запись в файл",
+        "Сравнение строк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "streams"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-streams",
+      "scenarioId": "basics.strings.streams.scenario"
+    },
+    {
+      "id": "basics.strings.streams.card-02",
+      "kind": "select",
+      "title": "Parse from string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как распарсить строку?",
+      "optionsLearning": [
+        "std::istringstream(s) >> var",
+        "std::string.parse(var)",
+        "var = s.parseInt()",
+        " sscanf(s, var)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "streams"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-streams",
+      "scenarioId": "basics.strings.streams.scenario"
+    },
+    {
+      "id": "basics.strings.streams.card-03",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать stringstream?",
+      "optionsLearning": [
+        "Для форматирования чисел в строки",
+        "Всегда вместо printf",
+        "Никогда",
+        "Только для файлов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "streams"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-streams",
+      "scenarioId": "basics.strings.streams.scenario"
+    }
+  ]
+}

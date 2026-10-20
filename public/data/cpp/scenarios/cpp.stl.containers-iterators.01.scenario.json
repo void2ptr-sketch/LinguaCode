@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.stl.containers-iterators.01.scenario",
+      "title": "Итераторы и аллокаторы",
+      "description": "Сценарий: Итераторы и аллокаторы",
+      "order": 4,
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.stl.containers-iterators.01.scenario.card-01",
+          "cpp.stl.containers-iterators.01.scenario.card-02",
+          "cpp.stl.containers-iterators.01.scenario.card-03",
+          "cpp.stl.containers-iterators.01.scenario.card-04",
+          "cpp.stl.containers-iterators.01.scenario.card-05",
+          "cpp.stl.containers-iterators.01.scenario.card-06",
+          "cpp.stl.containers-iterators.01.scenario.card-07",
+          "cpp.stl.containers-iterators.01.scenario.card-08",
+          "cpp.stl.containers-iterators.01.scenario.card-09",
+          "cpp.stl.containers-iterators.01.scenario.card-10",
+          "cpp.stl.containers-iterators.01.scenario.card-11",
+          "cpp.stl.containers-iterators.01.scenario.card-12",
+          "cpp.stl.containers-iterators.01.scenario.card-13",
+          "cpp.stl.containers-iterators.01.scenario.card-14",
+          "cpp.stl.containers-iterators.01.scenario.card-15",
+          "cpp.stl.containers-iterators.01.scenario.card-16",
+          "cpp.stl.containers-iterators.01.scenario.card-17",
+          "cpp.stl.containers-iterators.01.scenario.card-18",
+          "cpp.stl.containers-iterators.01.scenario.card-19",
+          "cpp.stl.containers-iterators.01.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-06-14T12:00:00.000Z"
+      }
+    }
+  ]
+}

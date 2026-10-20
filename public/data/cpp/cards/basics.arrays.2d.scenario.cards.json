@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.arrays.2d.scenario",
+  "cards": [
+    {
+      "id": "basics.arrays.2d.card-01",
+      "kind": "select",
+      "title": "2D array syntax",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как объявить 2D массив?",
+      "optionsLearning": [
+        "int arr[3][4];",
+        "int arr[3,4];",
+        "int[][] arr;",
+        "Array<int> arr;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "2d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-2d",
+      "scenarioId": "basics.arrays.2d.scenario"
+    },
+    {
+      "id": "basics.arrays.2d.card-02",
+      "kind": "select",
+      "title": "2D vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать 2D vector?",
+      "optionsLearning": [
+        "vector<vector<int>> v(3, vector<int>(4));",
+        "int arr[3][4] только",
+        "Нельзя",
+        "Array<int> arr;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "2d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-2d",
+      "scenarioId": "basics.arrays.2d.scenario"
+    },
+    {
+      "id": "basics.arrays.2d.card-03",
+      "kind": "select",
+      "title": "Access 2D element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить элемент 2D?",
+      "optionsLearning": [
+        "arr[i][j]",
+        "arr[i, j]",
+        "arr.get(i, j)",
+        "arr.at(i, j)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "2d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-2d",
+      "scenarioId": "basics.arrays.2d.scenario"
+    },
+    {
+      "id": "basics.arrays.2d.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как инициализировать 2D array?",
+      "optionsLearning": [
+        "int arr[3][4] = {}; // zero-init",
+        "int arr[3][4]; только",
+        "Нельзя инициализировать",
+        "int arr = {};"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "2d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-arrays-2d",
+      "scenarioId": "basics.arrays.2d.scenario"
+    }
+  ]
+}

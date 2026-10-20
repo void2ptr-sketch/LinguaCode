@@ -3,6 +3,10 @@ import type { Scenario } from '../../scenario/model';
 import type { CardBase } from '../../card/model';
 import type { JourneyLocationNode, JourneyContentType } from '../../learning/model';
 import { CARD_KIND_TO_CONTENT_TYPE } from '../../learning/model';
+import {
+  resolveCoursePracticeSettings,
+  scenarioCardIds,
+} from '../../course/utils/course-practice.utils';
 /** Маппинг scenarioId → Scenario для быстрого доступа. */
 type ScenarioMap = Map<string, Scenario>;
 
@@ -11,6 +15,15 @@ type ScenarioMap = Map<string, Scenario>;
  */
 export function buildScenarioMap(scenarios: readonly Scenario[]): ScenarioMap {
   return new Map(scenarios.map((s) => [s.id, s]));
+}
+
+/**
+ * Количество карточек в сценарии.
+ * Для `fixed` и `snapshot` источников возвращается длина списка `cardIds`,
+ * для `criteria`-сценариев карточки неизвестны заранее — возвращается 0.
+ */
+function scenarioCardCount(scenario: Scenario | undefined): number {
+  return scenario ? scenarioCardIds(scenario).length : 0;
 }
 
 /**
@@ -63,7 +76,7 @@ export function mapScenarioToNode(
     blockReason: string | null;
   },
 ): JourneyLocationNode {
-  const cardCount = scenario.cardSource.mode === 'fixed' ? scenario.cardSource.cardIds.length : 0;
+  const cardCount = scenarioCardCount(scenario);
 
   return {
     id: `node-${scenario.id}`,
@@ -106,8 +119,18 @@ export function buildJourneyNodes(
   const lessonsById = buildLessonsById(sortedLessons);
   const allNodes: JourneyLocationNode[] = [];
 
+  // Уважаем practiceSettings курса: при `enforceLessonPrerequisites: false`
+  // (open-режим) пререквизиты на карте не применяются — все уроки открыты.
+  const enforcePrerequisites =
+    resolveCoursePracticeSettings(course).enforceLessonPrerequisites !== false;
+
   for (const lesson of sortedLessons) {
-    const isLessonUnlocked = isLessonUnlockedInternal(lesson, lessonsById, hasScenarioResult);
+    const isLessonUnlocked = isLessonUnlockedInternal(
+      lesson,
+      lessonsById,
+      hasScenarioResult,
+      enforcePrerequisites,
+    );
     const isLessonCompleted = isLessonCompletedInternal(lesson, hasScenarioResult);
 
     for (let order = 0; order < lesson.scenarioIds.length; order++) {
@@ -117,7 +140,7 @@ export function buildJourneyNodes(
 
       // Получаем данные сценария и вычисляем contentTypes
       const scenario = scenarioMap.get(scenarioId);
-      const cardIds = scenario?.cardSource.mode === 'fixed' ? scenario.cardSource.cardIds : [];
+      const cardIds = scenario ? scenarioCardIds(scenario) : [];
       const contentTypes = computeContentTypes(cardIds, cards);
 
       const status = computeScenarioStatus(
@@ -135,8 +158,7 @@ export function buildJourneyNodes(
 
       const title = scenario?.title ?? `Сценарий ${order + 1}`;
       const description = scenario?.description ?? '';
-      const cardCount =
-        scenario?.cardSource.mode === 'fixed' ? scenario.cardSource.cardIds.length : 0;
+      const cardCount = scenarioCardCount(scenario);
 
       allNodes.push({
         id: `node-${scenarioId}`,
@@ -172,7 +194,12 @@ function isLessonUnlockedInternal(
   lesson: Lesson,
   lessonsById: Map<string, Lesson>,
   hasScenarioResult: (scenarioId: string) => boolean,
+  enforcePrerequisites: boolean,
 ): boolean {
+  if (!enforcePrerequisites) {
+    return true;
+  }
+
   const prerequisites = lesson.prerequisiteLessonIds ?? [];
 
   for (const prerequisiteId of prerequisites) {

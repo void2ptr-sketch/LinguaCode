@@ -1,0 +1,121 @@
+{
+  "scenarioId": "stl.regex.scenario",
+  "cards": [
+    {
+      "id": "stl.regex.card-01",
+      "kind": "select",
+      "title": "Regex создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать regex?",
+      "optionsLearning": [
+        "std::regex re(\"pattern\");",
+        "new RegExp(\"pattern\")",
+        "/pattern/",
+        "re.create()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "regex"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-regex",
+      "scenarioId": "stl.regex.scenario"
+    },
+    {
+      "id": "stl.regex.card-02",
+      "kind": "select",
+      "title": "Regex match",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проверить совпадение?",
+      "optionsLearning": [
+        "std::regex_match(str, re)",
+        "str.match(re)",
+        "re.test(str)",
+        "str.contains(re)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "regex"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-regex",
+      "scenarioId": "stl.regex.scenario"
+    },
+    {
+      "id": "stl.regex.card-03",
+      "kind": "select",
+      "title": "Regex search",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти все совпадения?",
+      "optionsLearning": [
+        "std::sregex_iterator(begin, end, re)",
+        "str.findAll(re)",
+        "re.findall()",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "regex"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-regex",
+      "scenarioId": "stl.regex.scenario"
+    },
+    {
+      "id": "stl.regex.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать regex?",
+      "optionsLearning": [
+        "Для парсинга сложных текстовых форматов",
+        "Всегда",
+        "Никогда",
+        "Только для small strings"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "regex"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-regex",
+      "scenarioId": "stl.regex.scenario"
+    }
+  ]
+}

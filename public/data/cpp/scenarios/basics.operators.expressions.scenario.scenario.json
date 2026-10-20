@@ -1,0 +1,39 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.operators.expressions.scenario",
+      "title": "C++ — Арифметические операторы",
+      "description": "Сценарий: Арифметические операторы — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-operators-expressions",
+      "courseId": "course-cpp-complete",
+      "cardCount": 10,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.862422.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.862423.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.operators.expressions.card-01",
+          "basics.operators.expressions.card-02",
+          "basics.operators.expressions.card-03",
+          "basics.operators.expressions.card-04",
+          "basics.operators.expressions.card-05",
+          "basics.operators.expressions.card-06",
+          "basics.operators.expressions.card-07",
+          "basics.operators.expressions.card-08",
+          "basics.operators.expressions.card-09",
+          "basics.operators.expressions.card-10"
+        ]
+      }
+    }
+  ]
+}

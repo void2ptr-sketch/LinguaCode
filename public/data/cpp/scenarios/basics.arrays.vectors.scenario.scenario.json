@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.arrays.vectors.scenario",
+      "title": "C++ — Array to vector",
+      "description": "Сценарий: Array to vector — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-arrays-vectors",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.860520.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.860522.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.arrays.vectors.card-01",
+          "basics.arrays.vectors.card-02",
+          "basics.arrays.vectors.card-03",
+          "basics.arrays.vectors.card-04"
+        ]
+      }
+    }
+  ]
+}

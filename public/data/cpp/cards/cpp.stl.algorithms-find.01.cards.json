@@ -1,0 +1,659 @@
+{
+  "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-01",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Что делает std::find?",
+      "optionsLearning": [
+        "Ищет первое вхождение значения в диапазоне",
+        "Сортирует",
+        "Удаляет",
+        "Считает"
+      ],
+      "correctIndex": 0,
+      "explanation": "find возвращает итератор на найденный элемент."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-02",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Что вернёт find, если элемент отсутствует?",
+      "optionsLearning": [
+        "end() диапазона",
+        "begin()",
+        "nullptr",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отсутствие результата — итератор на конец."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "find и поиск — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {4, 7, 2, 9}; auto it = std::find(v.begin(), v.end(), 7); std::cout << std::distance(v.begin(), it); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "7",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "7 на позиции 1."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-04",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Что делает std::find_if?",
+      "optionsLearning": [
+        "Ищет первый элемент, удовлетворяющий предикату",
+        "Ищет по значению",
+        "Сортирует",
+        "Фильтрует"
+      ],
+      "correctIndex": 0,
+      "explanation": "find_if принимает предикат вместо значения."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "find и поиск — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 3, 5, 6}; auto it = std::find_if(v.begin(), v.end(), [](int x) { return x % 2 == 0; }); std::cout << *it; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "1",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Первый чётный элемент: 6."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-06",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Что делает std::search?",
+      "optionsLearning": [
+        "Ищет подпоследовательность в диапазоне",
+        "Ищет значение",
+        "Сортирует",
+        "Сравнивает строки"
+      ],
+      "correctIndex": 0,
+      "explanation": "search находит начало поддиапазона."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-07",
+      "kind": "code-trace",
+      "title": "find и поиск — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\nint main() { std::string s = \"hello\"; auto it = std::search(s.begin(), s.end(), std::string(\"llo\").begin(), std::string(\"llo\").end()); std::cout << std::distance(s.begin(), it); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "3",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Подстрока llo начинается на индексе 2."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-08",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Как проверить наличие элемента у std::set?",
+      "optionsLearning": [
+        "s.count(x) > 0 или find",
+        "std::find по set тоже O(n)",
+        "s.contains только C++20",
+        "s[x]"
+      ],
+      "correctIndex": 0,
+      "explanation": "Член-функции set эффективнее общего find."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-09",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Какая сложность std::find?",
+      "optionsLearning": [
+        "O(n)",
+        "O(1)",
+        "O(log n)",
+        "O(n^2)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Линейный поиск по диапазону."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "find и поиск — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; std::cout << (std::find(v.begin(), v.end(), 5) == v.end()); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "5 отсутствует — равно end(): true → 1."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-11",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Чем find отличается от find_if?",
+      "optionsLearning": [
+        "find — по значению; find_if — по предикату",
+        "Ничем",
+        "find_if быстрее",
+        "find ищет с конца"
+      ],
+      "correctIndex": 0,
+      "explanation": "Предикат позволяет произвольное условие."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-12",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Что делает std::find_end?",
+      "optionsLearning": [
+        "Ищет последнее вхождение подпоследовательности",
+        "Первое",
+        "Конечный элемент",
+        "Максимум"
+      ],
+      "correctIndex": 0,
+      "explanation": "find_end — как search, но последнее вхождение."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "find и поиск — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 1, 2}; auto it = std::find_end(v.begin(), v.end(), std::vector<int>({1}).begin(), std::vector<int>({1}).end()); std::cout << std::distance(v.begin(), it); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "0",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Последняя единица на позиции 2."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-14",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Что делает std::adjacent_find?",
+      "optionsLearning": [
+        "Ищет пару соседних равных элементов",
+        "Дубликаты везде",
+        "Сортирует",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "adjacent_find находит первые равные соседи."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "find и поиск — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 2, 3}; auto it = std::adjacent_find(v.begin(), v.end()); std::cout << *it; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Первая пара 2,2 — первое из них 2."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-16",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Что делает std::binary_search?",
+      "optionsLearning": [
+        "Проверяет наличие в отсортированном диапазоне за O(log n)",
+        "Линейный поиск",
+        "Сортирует",
+        "Вставляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Требует отсортированного диапазона."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "find и поиск — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 3, 5, 7}; std::cout << std::binary_search(v.begin(), v.end(), 5); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "5 есть → true: 1."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-18",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Что делает std::lower_bound?",
+      "optionsLearning": [
+        "Итератор на первый элемент >= x в сортированном",
+        "Первый > x",
+        "Последний <= x",
+        "end"
+      ],
+      "correctIndex": 0,
+      "explanation": "lower_bound — граница для вставки, сохраняющей порядок."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-19",
+      "kind": "code-trace",
+      "title": "find и поиск — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 3, 5, 7}; auto it = std::lower_bound(v.begin(), v.end(), 4); std::cout << std::distance(v.begin(), it); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "3",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "4 вставляется перед 5 (индекс 2)."
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-20",
+      "kind": "select",
+      "title": "find и поиск — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+      "promptKnown": "Что вернёт equal_range?",
+      "optionsLearning": [
+        "Пару итераторов [lower_bound, upper_bound)",
+        "Сумму",
+        "Минимум/максимум",
+        "Дубликаты"
+      ],
+      "correctIndex": 0,
+      "explanation": "equal_range охватывает весь диапазон равных ключу."
+    }
+  ],
+  "title": "Stl — Intermediate C++"
+}

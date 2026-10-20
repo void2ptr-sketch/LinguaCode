@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-01",
+      "kind": "select",
+      "title": "Error codes vs exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать error codes вместо исключений?",
+      "optionsLearning": [
+        "В performance-critical code (no overhead)",
+        "Всегда исключения",
+        "Никогда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-02",
+      "kind": "select",
+      "title": "Result type",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое result type?",
+      "optionsLearning": [
+        "Either<Success, Error> (std::expected в C++23)",
+        "void",
+        "int",
+        "bool"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-03",
+      "kind": "select",
+      "title": "Error propagation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как распространять ошибки?",
+      "optionsLearning": [
+        "Result type + map/and_then (monadic)",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-04",
+      "kind": "select",
+      "title": "Fail-fast principle",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое fail-fast?",
+      "optionsLearning": [
+        "Раннее обнаружение ошибок (assertions, checks)",
+        "Позднее обнаружение",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать ошибки?",
+      "optionsLearning": [
+        "Result type + fail-fast + assertions",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-06",
+      "kind": "select",
+      "title": "Error monad",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое error monad?",
+      "optionsLearning": [
+        "Монета для композиции error handling (Result type)",
+        "Обычная функция",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-07",
+      "kind": "select",
+      "title": "Fail-safe design",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое fail-safe design?",
+      "optionsLearning": [
+        "Дизайн для graceful degradation при ошибках",
+        "Crash at error",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-08",
+      "kind": "select",
+      "title": "Circuit breaker",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое circuit breaker?",
+      "optionsLearning": [
+        "Защита от cascading failures (open/closed/half-open)",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-09",
+      "kind": "select",
+      "title": "Retry with backoff",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое retry with backoff?",
+      "optionsLearning": [
+        "Повтор с увеличением интервала (exponential backoff)",
+        "Только один раз",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать ошибки?",
+      "optionsLearning": [
+        "Result type + circuit breaker + retry with backoff",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-11",
+      "kind": "select",
+      "title": "Exception safety",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое exception safety?",
+      "optionsLearning": [
+        "Гарантии при исключениях (no-throw, strong, basic)",
+        "Отсутствие исключений",
+        "Только try-catch",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "handling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-12",
+      "kind": "select",
+      "title": "Strong guarantee",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое strong guarantee?",
+      "optionsLearning": [
+        "Состояние не меняется при исключении (rollback)",
+        "Состояние меняется",
+        "Никаких гарантий",
+        "Только logging"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "handling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-13",
+      "kind": "select",
+      "title": "Exception specs",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем noexcept?",
+      "optionsLearning": [
+        "Гарантия отсутствия исключений (оптимизация)",
+        "Разрешение исключений",
+        "Запрет исключений",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "handling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-14",
+      "kind": "select",
+      "title": "Custom exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать custom exception?",
+      "optionsLearning": [
+        "class MyError : public std::runtime_error {}",
+        "new Exception()",
+        "raise Error",
+        "throw error"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "handling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать исключения?",
+      "optionsLearning": [
+        "RAII + noexcept + strong guarantee",
+        "Никак",
+        "Всегда",
+        "Только try-catch"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "handling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-16",
+      "kind": "select",
+      "title": "Stack vs Heap",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем stack отличается от heap?",
+      "optionsLearning": [
+        "Stack — automatic, fast; Heap — manual, flexible",
+        "Одно и то же",
+        "Stack медленнее",
+        "Heap быстрее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "management"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-17",
+      "kind": "select",
+      "title": "Memory leak",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory leak?",
+      "optionsLearning": [
+        "Выделенная память не освобождена",
+        "Утечка данных",
+        "Ошибка компиляции",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "management"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-18",
+      "kind": "select",
+      "title": "Custom allocator",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем custom allocator?",
+      "optionsLearning": [
+        "Кастомная политика выделения памяти (performance)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "management"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-19",
+      "kind": "select",
+      "title": "Placement new",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое placement new?",
+      "optionsLearning": [
+        "Размещение объекта в pre-allocated memory",
+        "Новый new",
+        "Удаление",
+        "Копирование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "management"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling-extra.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как избежать утечек?",
+      "optionsLearning": [
+        "RAII + smart pointers",
+        "Никогда не освобождать",
+        "Только вручную",
+        "Игнорировать"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "management"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.error-handling-extra.01.scenario"
+    }
+  ]
+}

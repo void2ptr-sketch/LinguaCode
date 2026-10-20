@@ -1,0 +1,630 @@
+{
+  "scenarioId": "cpp.advanced.testing.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-01",
+      "kind": "select",
+      "title": "Testing и CI/CD — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что такое unit-тест?",
+      "optionsLearning": [
+        "Проверка отдельной единицы кода",
+        "Интеграция",
+        "Сеть",
+        "Сборка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Изолированные модульные проверки."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-02",
+      "kind": "select",
+      "title": "Testing и CI/CD — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Какие фреймворки тестирования C++?",
+      "optionsLearning": [
+        "GoogleTest, Catch2, doctest",
+        "JUnit",
+        "pytest",
+        "Mocha"
+      ],
+      "correctIndex": 0,
+      "explanation": "Популярные фреймворки C++."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Testing — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "question": "Что выведет GoogleTest при expect?",
+      "code": {
+        "code": "[ RUN ] MySuite.Test",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Запуск и завершение с результатом",
+        "ошибка",
+        "null",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вывод прогона теста."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-04",
+      "kind": "select",
+      "title": "Testing — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что такое assertion в тестах?",
+      "optionsLearning": [
+        "Проверка ожидаемого условия",
+        "Комментарий",
+        "Строка",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "EXPECT_/ASSERT_ — ядро теста."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-05",
+      "kind": "select",
+      "title": "Testing — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что такое test fixture?",
+      "optionsLearning": [
+        "Подготовка/очистка контекста тестов",
+        "Ошибка",
+        "Файл",
+        "Поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "SetUp/TearDown для повторяемости."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Testing — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "question": "Что вернёт этот тест при compare 5 и 5?",
+      "code": {
+        "code": "EXPECT_EQ(5, 5);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Пройден",
+        "Провален",
+        "Скип",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Равенство — успех."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-07",
+      "kind": "select",
+      "title": "Testing — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что такое mock object?",
+      "optionsLearning": [
+        "Имитация зависимостей",
+        "Ошибка",
+        "Копия",
+        "Тест"
+      ],
+      "correctIndex": 0,
+      "explanation": "Изоляция от внешних систем."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-08",
+      "kind": "select",
+      "title": "Testing — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что делает mock в тесте?",
+      "optionsLearning": [
+        "Заменяет реальный объект контролируемым дублем",
+        "Удаляет",
+        "Сортирует",
+        "Шифрует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Настройка поведения и проверок."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-09",
+      "kind": "select",
+      "title": "Testing — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что такое coverage?",
+      "optionsLearning": [
+        "Доля кода, покрытого тестами",
+        "Скорость",
+        "Память",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Метрика полноты тестирования."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Testing — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "testing"
+        ],
+        "tags": "Инструменты покрытия."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "question": "Как измерить COVERAGE в C++?",
+      "code": {
+        "code": [
+          "gcov/lcov или фреймворки",
+          "cmake",
+          "git",
+          "нельзя"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-11",
+      "kind": "select",
+      "title": "Testing — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что такое интеграционный тест?",
+      "optionsLearning": [
+        "Проверка взаимодействия компонентов",
+        "Один модуль",
+        "Сборка",
+        "Синтакс"
+      ],
+      "correctIndex": 0,
+      "explanation": "Связка систем."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-12",
+      "kind": "select",
+      "title": "Testing — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "testing",
+          "ci"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что такое CI?",
+      "optionsLearning": [
+        "Непрерывная интеграция — автотесты при каждом изменении",
+        "Интерфейс",
+        "Сервер",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "GitHub Actions, Jenkins и др."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Testing — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "testing",
+          "ci"
+        ],
+        "tags": "Быстрый фидбек о регрессиях."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "question": "Что делает CI на push?",
+      "code": {
+        "code": [
+          "Собирает и прогоняет тесты",
+          "Пишет код",
+          "Деплоит всегда",
+          "Хеширует"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-14",
+      "kind": "select",
+      "title": "Testing — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "testing",
+          "ci"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что такое pipeline (пайплайн)?",
+      "optionsLearning": [
+        "Цепочка шагов: build → test → deploy",
+        "Файл",
+        "Функция",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Автоматизация циклов."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-15",
+      "kind": "select",
+      "title": "Testing — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что такое property-based testing?",
+      "optionsLearning": [
+        "Проверка свойств на случайных данных",
+        "Ручной",
+        "Инлайн",
+        "Crash"
+      ],
+      "correctIndex": 0,
+      "explanation": "QuickCheck-стиль для C++."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "Testing — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "testing"
+        ],
+        "tags": "Поиск крахов и UB."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "question": "Что делает fuzzing?",
+      "code": {
+        "code": [
+          "Подаёт случайные/мутированные входы",
+          "Сортирует",
+          "Компилирует",
+          "Хеширует"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-17",
+      "kind": "select",
+      "title": "Testing — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что такое regression test?",
+      "optionsLearning": [
+        "Проверка, что старые баги не вернулись",
+        "Новый",
+        "Скорость",
+        "Интеграция"
+      ],
+      "correctIndex": 0,
+      "explanation": "Защита от регрессий."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-18",
+      "kind": "select",
+      "title": "Testing — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что такое test pyramid?",
+      "optionsLearning": [
+        "Много unit, меньше интеграционных, мало e2e",
+        "Перевёрнутый",
+        "Квадрат",
+        "Линия"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стратегия распределения тестов."
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-19",
+      "kind": "code-trace",
+      "title": "Testing — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "testing",
+          "ci"
+        ],
+        "tags": "CI должен сигналить."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "question": "Что выведет при сбое теста в CI?",
+      "code": {
+        "code": [
+          "Падение пайплайна (non-zero exit)",
+          "0",
+          "лог только",
+          "продолжение"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario.card-20",
+      "kind": "select",
+      "title": "Testing — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "testing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.testing.01.scenario",
+      "promptKnown": "Что важно для хороших тестов?",
+      "optionsLearning": [
+        "Скорость, изоляция, детерминизм, понятность",
+        "Громкость",
+        "Много",
+        "Без assert"
+      ],
+      "correctIndex": 0,
+      "explanation": "Качество теста — как качество кода."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

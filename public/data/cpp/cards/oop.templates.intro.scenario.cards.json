@@ -1,0 +1,150 @@
+{
+  "scenarioId": "oop.templates.intro.scenario",
+  "cards": [
+    {
+      "id": "oop.templates.intro.card-01",
+      "kind": "select",
+      "title": "Что такое шаблоны?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите шаблон в C++",
+      "optionsLearning": [
+        "Generic programming: функции/классы с параметрами типов",
+        "Тип данных",
+        "Оператор",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-templates-intro",
+      "scenarioId": "oop.templates.intro.scenario"
+    },
+    {
+      "id": "oop.templates.intro.card-02",
+      "kind": "select",
+      "title": "Function template",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Синтаксис function template?",
+      "optionsLearning": [
+        "template<typename T> void f(T x) {}",
+        "function<T>(x) {}",
+        "def f(x):",
+        "generic f<T>(x)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-templates-intro",
+      "scenarioId": "oop.templates.intro.scenario"
+    },
+    {
+      "id": "oop.templates.intro.card-03",
+      "kind": "select",
+      "title": "Class template",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Синтаксис class template?",
+      "optionsLearning": [
+        "template<typename T> class Box { T val; };",
+        "class<T> Box {}",
+        "generic Box<T> {}",
+        "Box<T> class {}"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-templates-intro",
+      "scenarioId": "oop.templates.intro.scenario"
+    },
+    {
+      "id": "oop.templates.intro.card-04",
+      "kind": "select",
+      "title": "Template instantiation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое instantiation?",
+      "optionsLearning": [
+        "Создание конкретной версии шаблона (int, double)",
+        "Удаление шаблона",
+        "Компиляция",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-templates-intro",
+      "scenarioId": "oop.templates.intro.scenario"
+    },
+    {
+      "id": "oop.templates.intro.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать шаблоны?",
+      "optionsLearning": [
+        "Для generic code (vector, sort)",
+        "Всегда",
+        "Никогда",
+        "Только для small types"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-templates-intro",
+      "scenarioId": "oop.templates.intro.scenario"
+    }
+  ]
+}

@@ -1,0 +1,634 @@
+{
+  "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-01",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Что делает препроцессор перед компиляцией?",
+      "optionsLearning": [
+        "Обрабатывает директивы #include, #define, #if",
+        "Превращает машинный код в исходники",
+        "Запускает программу",
+        "Оптимизирует бинарник"
+      ],
+      "correctIndex": 0,
+      "explanation": "Препроцессор подставляет заголовки, раскрывает макросы и обрабатывает условную компиляцию."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-02",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Что делает компилятор на этапе трансляции?",
+      "optionsLearning": [
+        "Превращает C++ в объектный код для целевой архитектуры",
+        "Связывает объектные файлы",
+        "Запускает тесты",
+        "Скачивает зависимости"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компилятор транслирует препроцессированный исходник в объектный файл (.o/.obj)."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-03",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Какая команда компилирует исходник в объектный файл без линковки?",
+      "optionsLearning": [
+        "g++ -c main.cpp",
+        "g++ main.cpp -o app",
+        "g++ -E main.cpp",
+        "g++ -S main.cpp"
+      ],
+      "correctIndex": 0,
+      "explanation": "Флаг -c создаёт объектный файл main.o без этапа линковки."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-04",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Что делает линковщик?",
+      "optionsLearning": [
+        "Связывает объектные файлы и библиотеки в исполняемый файл",
+        "Компилирует заголовки",
+        "Проверяет синтаксис",
+        "Раскрывает макросы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Линковщик разрешает ссылки между объектными файлами и формирует исполняемый файл."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-05",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Что произойдёт, если компилятор найдёт синтаксическую ошибку?",
+      "optionsLearning": [
+        "Выдаст сообщение об ошибке и не создаст объектный файл",
+        "Создаст объектный файл с пометкой",
+        "Автоматически исправит код",
+        "Пропустит строку с ошибкой"
+      ],
+      "correctIndex": 0,
+      "explanation": "Трансляция останавливается с диагностикой; объектный файл не создаётся."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-06",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Какой этап обрабатывает директиву #include <iostream>?",
+      "optionsLearning": [
+        "Препроцессинг",
+        "Линковка",
+        "Оптимизация",
+        "Загрузка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Директивы #include обрабатываются препроцессором — он вставляет содержимое заголовка."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-07",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Что означает ошибка undefined reference to 'foo' на этапе линковки?",
+      "optionsLearning": [
+        "Вызвана функция, определение которой не найдено",
+        "Синтаксическая ошибка в foo",
+        "Файл не найден",
+        "Не хватает оперативной памяти"
+      ],
+      "correctIndex": 0,
+      "explanation": "Линковщик не нашёл определение foo — например, забыт файл или библиотека."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-08",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Какая опция GCC включает оптимизацию уровня 2?",
+      "optionsLearning": [
+        "-O2",
+        "-g",
+        "-Wall",
+        "-std=c++17"
+      ],
+      "correctIndex": 0,
+      "explanation": "Опция -O2 включает агрессивные оптимизации производительности."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-09",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Для чего нужен флаг -std=c++17?",
+      "optionsLearning": [
+        "Выбрать стандарт языка C++17",
+        "Включить отладку",
+        "Убрать предупреждения",
+        "Задать имя бинарника"
+      ],
+      "correctIndex": 0,
+      "explanation": "Флаг задаёт версию стандарта C++, по которой компилируется код."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-10",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Что делает опция -g при компиляции?",
+      "optionsLearning": [
+        "Добавляет отладочную информацию",
+        "Включает оптимизации",
+        "Запускает отладчик",
+        "Дизассемблирует код"
+      ],
+      "correctIndex": 0,
+      "explanation": "Опция -g добавляет символы и номера строк для отладчика (gdb)."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Компиляция и этапы преобразования — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "question": "Какая команда соберёт исполняемый файл app из main.cpp?",
+      "code": {
+        "code": "g++ -std=c++17 -Wall main.cpp -o app",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "g++ -std=c++17 -Wall main.cpp -o app",
+        "g++ -c main.cpp -o app",
+        "g++ -E main.cpp -o app",
+        "g++ -S main.cpp -o app"
+      ],
+      "correctIndex": 0,
+      "explanation": "Полная цепочка компиляции и линковки задаётся без -c; -o задаёт имя выходного файла."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-12",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Что такое translation unit?",
+      "optionsLearning": [
+        "Исходный файл после обработки препроцессором",
+        "Исполняемый файл",
+        "Библиотека",
+        "Файл сценария cmake"
+      ],
+      "correctIndex": 0,
+      "explanation": "Единица трансляции — исходный файл вместе со всеми #include после препроцессинга."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-13",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Зачем нужен раздельный этап компиляции и линковки?",
+      "optionsLearning": [
+        "Для ускорения пересборки: меняется только один объектный файл",
+        "Он обязателен по стандарту C++",
+        "Иначе программа не запустится",
+        "Для уменьшения размера исходников"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инкрементальная сборка перекомпилирует только изменённые единицы трансляции."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-14",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Что такое include guard (или #pragma once)?",
+      "optionsLearning": [
+        "Защита от повторного включения заголовка",
+        "Проверка версии компилятора",
+        "Ограничение прав доступа",
+        "Фильтрация входящих данных"
+      ],
+      "correctIndex": 0,
+      "explanation": "Include guard предотвращает повторное включение одного заголовка в единицу трансляции."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Компиляция и этапы преобразования — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "question": "Что выведет препроцессор для этого кода?",
+      "code": {
+        "code": "#define N 10\nint x = N + 1;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "int x = 10 + 1;",
+        "int x = N + 1;",
+        "int x;",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Макрос N заменяется его определением 10 до компиляции."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-16",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Какой тип ошибки возникает при повторном определении функции в двух .cpp файлах?",
+      "optionsLearning": [
+        "Ошибка линковки: multiple definition",
+        "Ошибка препроцессора",
+        "Ошибка выполнения",
+        "Предупреждение без остановки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Два определения одной функции нарушают правило одного определения (ODR) — ошибка на этапе линковки."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-17",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Что произойдёт, если main() не вернёт значение в конце?",
+      "optionsLearning": [
+        "Неявно вернётся 0",
+        "Ошибка компиляции",
+        "Программа упадёт",
+        "Вернётся мусор"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для main() без явного return компилятор подставляет return 0 (успешное завершение)."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-18",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Как называется файл, который получается после компиляции одного исходника?",
+      "optionsLearning": [
+        "Объектный файл (.o / .obj)",
+        "Заголовочный файл",
+        "Исполняемый файл",
+        "Скрипт сборки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Один исходник компилируется в объектный файл; исполняемый файл собирает линковщик."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-19",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Какой продукт получается на выходе линковки в простом случае?",
+      "optionsLearning": [
+        "Исполняемый файл",
+        "Объектный файл",
+        "Препроцессированный исходник",
+        "Ассемблерный листинг"
+      ],
+      "correctIndex": 0,
+      "explanation": "Линковщик объединяет объектные файлы и библиотеки в исполняемый файл."
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-20",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+      "promptKnown": "Что такое статическая библиотека (lib*.a)?",
+      "optionsLearning": [
+        "Архив объектных файлов, встраиваемый линковщиком",
+        "Динамическая библиотека для подгрузки",
+        "Заголовочный файл с реализацией",
+        "Исполняемый файл в контейнере"
+      ],
+      "correctIndex": 0,
+      "explanation": "Статическая библиотека — набор объектных файлов; при линковке нужные объекты встраиваются в бинарник."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

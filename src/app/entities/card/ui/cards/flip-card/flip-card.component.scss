@@ -1,0 +1,31 @@
+@use '../quiz-card';
+
+.flip-card__back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:not(:has(button)) {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+}
+
+.flip-card__audio {
+  flex: 0 0 auto;
+}
+
+.flip-card__assessment {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  padding-top: 0.75rem;
+
+  .flip-card__knows {
+    background-color: rgba(76, 175, 80, 0.18);
+  }
+
+  .flip-card__unknown {
+    background-color: rgba(244, 67, 54, 0.15);
+  }
+}

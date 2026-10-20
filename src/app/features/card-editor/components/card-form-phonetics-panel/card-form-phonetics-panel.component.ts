@@ -75,7 +75,7 @@ export class CardFormPhoneticsPanelComponent {
    */
   updatePromptLexeme(fields: LexemeDraftFields): void {
     const draft = this.draft();
-    if (draft.kind === 'code-select') {
+    if (!('promptLexeme' in draft)) {
       return;
     }
 
@@ -91,7 +91,7 @@ export class CardFormPhoneticsPanelComponent {
    */
   updateAudioUrl(value: string): void {
     const draft = this.draft();
-    if (draft.kind === 'code-select') {
+    if (!('audioUrl' in draft)) {
       return;
     }
 

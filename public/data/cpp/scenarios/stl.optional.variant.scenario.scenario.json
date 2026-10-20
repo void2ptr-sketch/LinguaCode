@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "stl.optional.variant.scenario",
+      "title": "C++ — Optional создание",
+      "description": "Сценарий: Optional создание — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-stl-optional-variant",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.884711.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.884712.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "stl.optional.variant.card-01",
+          "stl.optional.variant.card-02",
+          "stl.optional.variant.card-03",
+          "stl.optional.variant.card-04",
+          "stl.optional.variant.card-05"
+        ]
+      }
+    }
+  ]
+}

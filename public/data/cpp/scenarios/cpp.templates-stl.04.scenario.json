@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.templates-stl.04.scenario",
+      "title": "Шаблоны в STL",
+      "description": "Сценарий: Шаблоны в STL",
+      "order": 3,
+      "lessonId": "lesson-cpp-basics-templates-stl",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-18T20:11:59.591Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-18T20:11:59.591Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.templates-stl.04.scenario.card-01",
+          "cpp.templates-stl.04.scenario.card-02",
+          "cpp.templates-stl.04.scenario.card-03",
+          "cpp.templates-stl.04.scenario.card-04",
+          "cpp.templates-stl.04.scenario.card-05",
+          "cpp.templates-stl.04.scenario.card-06",
+          "cpp.templates-stl.04.scenario.card-07",
+          "cpp.templates-stl.04.scenario.card-08",
+          "cpp.templates-stl.04.scenario.card-09",
+          "cpp.templates-stl.04.scenario.card-10",
+          "cpp.templates-stl.04.scenario.card-11",
+          "cpp.templates-stl.04.scenario.card-12",
+          "cpp.templates-stl.04.scenario.card-13",
+          "cpp.templates-stl.04.scenario.card-14",
+          "cpp.templates-stl.04.scenario.card-15",
+          "cpp.templates-stl.04.scenario.card-16",
+          "cpp.templates-stl.04.scenario.card-17",
+          "cpp.templates-stl.04.scenario.card-18",
+          "cpp.templates-stl.04.scenario.card-19",
+          "cpp.templates-stl.04.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-18T20:11:59.591Z"
+      }
+    }
+  ]
+}

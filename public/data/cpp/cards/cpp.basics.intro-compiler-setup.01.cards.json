@@ -1,0 +1,626 @@
+{
+  "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-01",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Какая среда разработки (IDE) поддерживает C++?",
+      "optionsLearning": [
+        "VS Code, CLion, Visual Studio, Qt Creator",
+        "Только текстовый редактор",
+        "Только браузер",
+        "Любой текстовый процессор"
+      ],
+      "correctIndex": 0,
+      "explanation": "IDE предоставляют редактор, сборку, отладку и автодополнение для C++."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-02",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Какой компилятор входит в состав GCC?",
+      "optionsLearning": [
+        "g++",
+        "cl.exe",
+        "javac",
+        "go build"
+      ],
+      "correctIndex": 0,
+      "explanation": "g++ — компилятор C++ из набора GCC."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-03",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Какой компилятор разработан компанией Microsoft?",
+      "optionsLearning": [
+        "MSVC (cl.exe)",
+        "g++",
+        "clang++",
+        "icc"
+      ],
+      "correctIndex": 0,
+      "explanation": "MSVC входит в Visual Studio и вызывается как cl.exe."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-04",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Что делает CMake?",
+      "optionsLearning": [
+        "Генерирует файлы сборки для разных систем",
+        "Компилирует код напрямую",
+        "Запускает отладчик",
+        "Проверяет память"
+      ],
+      "correctIndex": 0,
+      "explanation": "CMake — кросс-платформенная система генерации проектов сборки."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-05",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Какой файл описывает цель сборки в CMake?",
+      "optionsLearning": [
+        "CMakeLists.txt",
+        "Makefile",
+        "package.json",
+        "build.xml"
+      ],
+      "correctIndex": 0,
+      "explanation": "CMakeLists.txt содержит инструкции для CMake: цели, источники, зависимости."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-06",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Что делает make (или ninja) после генерации проекта?",
+      "optionsLearning": [
+        "Выполняет инкрементальную сборку по правилам",
+        "Генерирует CMakeLists.txt",
+        "Компилирует без препроцессора",
+        "Запускает тесты в браузере"
+      ],
+      "correctIndex": 0,
+      "explanation": "Система сборки следит за временами файлов и пересобирает только устаревшие цели."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-07",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Какая переменная окружения указывает компилятору, где искать заголовки?",
+      "optionsLearning": [
+        "CPLUS_INCLUDE_PATH (или -I флаг)",
+        "PATH",
+        "HOME",
+        "LANG"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пути поиска заголовков задаются флагом -I либо переменной CPLUS_INCLUDE_PATH."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-08",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Как подключить библиотеку при линковке в GCC?",
+      "optionsLearning": [
+        "Флаг -l<имя> и опция -L<путь>",
+        "Директива #include",
+        "Переменная PATH",
+        "Флаг -E"
+      ],
+      "correctIndex": 0,
+      "explanation": "-L задаёт путь поиска библиотек, -l<имя> — имя библиотеки для линковки."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-09",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Что делает флаг -Wall у g++?",
+      "optionsLearning": [
+        "Включает основные предупреждения компилятора",
+        "Отключает все предупреждения",
+        "Включает отладочную информацию",
+        "Запрещает оптимизации"
+      ],
+      "correctIndex": 0,
+      "explanation": "-Wall включает разумный набор предупреждений — помогает ловить ошибки."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-10",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Почему предупреждения компилятора важно не игнорировать?",
+      "optionsLearning": [
+        "Они часто указывают на реальные ошибки",
+        "Они замедляют сборку",
+        "Они меняют поведение",
+        "Они обязательны по стандарту"
+      ],
+      "correctIndex": 0,
+      "explanation": "Многие предупреждения сигнализируют о неопределённом или неожиданном поведении."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-11",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Что делает отладчик (gdb) с программой, собранной с -g?",
+      "optionsLearning": [
+        "Позволяет ставить breakpoints и смотреть переменные",
+        "Компилирует программу",
+        "Оптимизирует программу",
+        "Упаковывает программу"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отладочная информация (-g) нужна gdb для сопоставления кода и машинных адресов."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-12",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Что означает библиотека, подключаемая с -lpthread?",
+      "optionsLearning": [
+        "Работа с потоками POSIX",
+        "Работа с памятью",
+        "Сетевая библиотека",
+        "Математическая библиотека"
+      ],
+      "correctIndex": 0,
+      "explanation": "libpthread — библиотека потоков POSIX; в новых glibc функции объединены с libc."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-13",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Какой файл содержит точки входа (main) для сборки программы?",
+      "optionsLearning": [
+        "Один из объектных файлов, содержащий main()",
+        "Заголовочный файл iostream",
+        "CMakeLists.txt",
+        "Makefile"
+      ],
+      "correctIndex": 0,
+      "explanation": "Линковщику требуется ровно одно определение main() во всех объектных файлах."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-14",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Что произойдёт, если в проекте две функции main()?",
+      "optionsLearning": [
+        "Ошибка линковки: multiple definition of main",
+        "Компилятор выберет первую",
+        "Программа запустит обе",
+        "Ничего страшного"
+      ],
+      "correctIndex": 0,
+      "explanation": "main() может быть определён только один раз — иначе конфликт на этапе линковки."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-15",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Какая команда запускает инкрементальную сборку после правки одного файла с Makefile?",
+      "optionsLearning": [
+        "make",
+        "g++ -c главное.cpp",
+        "./a.out",
+        "cmake --build нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "make сравнивает времена и пересобирает только изменённые модули."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-16",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Что такое препроцессированный файл (.i) и как его получить?",
+      "optionsLearning": [
+        "Исходник с раскрытыми #include и макросами (флаг -E)",
+        "Объектный файл с отладочной информацией",
+        "Исполняемый файл",
+        "Дамп памяти"
+      ],
+      "correctIndex": 0,
+      "explanation": "Флаг -E останавливает компиляцию после препроцессинга и выводит .i-файл."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-17",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Какой флаг сообщает линковщику путь к динамическим библиотекам в runtime?",
+      "optionsLearning": [
+        "-Wl,-rpath,<путь>",
+        "-c",
+        "-E",
+        "-fno-exceptions"
+      ],
+      "correctIndex": 0,
+      "explanation": "-rpath прописывает путь поиска .so в исполняемый файл для этапа выполнения."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-18",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Что делает директива #pragma once?",
+      "optionsLearning": [
+        "Защищает заголовок от повторного включения",
+        "Включает оптимизации",
+        "Отключает предупреждения",
+        "Объявляет точку входа"
+      ],
+      "correctIndex": 0,
+      "explanation": "#pragma once — нестандартная, но широко поддержанная альтернатива include guards."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-19",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Какая команда показывает только предупреждения и ошибки сборки в терминале?",
+      "optionsLearning": [
+        "g++ -Wall -Wextra main.cpp",
+        "ls -la",
+        "git log",
+        "echo done"
+      ],
+      "correctIndex": 0,
+      "explanation": "-Wall/-Wextra включают предупреждения; диагностика выводится в терминал."
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario.card-20",
+      "kind": "select",
+      "title": "Компиляция, препроцессор, линковка — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.intro-compiler-setup.01.scenario",
+      "promptKnown": "Как обычно называют процесс устранения ошибок сборки?",
+      "optionsLearning": [
+        "Отладка сборки (build debugging)",
+        "Дефрагментация",
+        "Кэширование",
+        "Индексация"
+      ],
+      "correctIndex": 0,
+      "explanation": "Итеративный цикл правки и пересборки для устранения диагностик компилятора и линковщика."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

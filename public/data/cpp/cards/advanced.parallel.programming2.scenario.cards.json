@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.parallel.programming2.scenario",
+  "cards": [
+    {
+      "id": "advanced.parallel.programming2.card-01",
+      "kind": "select",
+      "title": "Thread-safe data structures",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое thread-safe структуры?",
+      "optionsLearning": [
+        "Структуры данных для concurrent access (lock-free queues)",
+        "Обычные структуры",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-parallel-programming2",
+      "scenarioId": "advanced.parallel.programming2.scenario"
+    },
+    {
+      "id": "advanced.parallel.programming2.card-02",
+      "kind": "select",
+      "title": "Lock-free algorithms",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое lock-free алгоритмы?",
+      "optionsLearning": [
+        "Алгоритмы без блокировок (CAS operations)",
+        "С mutex",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-parallel-programming2",
+      "scenarioId": "advanced.parallel.programming2.scenario"
+    },
+    {
+      "id": "advanced.parallel.programming2.card-03",
+      "kind": "select",
+      "title": "Work stealing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое work stealing?",
+      "optionsLearning": [
+        "Потоки забирают задачи у других (balanced load)",
+        "Фиксированные задачи",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-parallel-programming2",
+      "scenarioId": "advanced.parallel.programming2.scenario"
+    },
+    {
+      "id": "advanced.parallel.programming2.card-04",
+      "kind": "select",
+      "title": "Parallel sorting",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как параллелить сортировку?",
+      "optionsLearning": [
+        "Parallel merge sort + std::execution::par",
+        "Sequential only",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-parallel-programming2",
+      "scenarioId": "advanced.parallel.programming2.scenario"
+    },
+    {
+      "id": "advanced.parallel.programming2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как параллелить эффективно?",
+      "optionsLearning": [
+        "Task-based + work stealing + lock-free",
+        "Только manual threads",
+        "Никак",
+        "Только SIMD"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-parallel-programming2",
+      "scenarioId": "advanced.parallel.programming2.scenario"
+    }
+  ]
+}

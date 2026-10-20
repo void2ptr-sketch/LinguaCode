@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.testing.advanced.scenario",
+  "cards": [
+    {
+      "id": "advanced.testing.advanced.card-01",
+      "kind": "select",
+      "title": "Property-based testing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое property-based testing?",
+      "optionsLearning": [
+        "Генерация случайных данных для проверки свойств (QuickCheck)",
+        "Ручные тесты",
+        "Только unit tests",
+        "Integration tests"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing-advanced",
+      "scenarioId": "advanced.testing.advanced.scenario"
+    },
+    {
+      "id": "advanced.testing.advanced.card-02",
+      "kind": "select",
+      "title": "Fuzzing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое fuzzing?",
+      "optionsLearning": [
+        "Автоматическая генерация edge-case inputs (AFL, libFuzzer)",
+        "Ручные тесты",
+        "Только unit tests",
+        "Integration tests"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing-advanced",
+      "scenarioId": "advanced.testing.advanced.scenario"
+    },
+    {
+      "id": "advanced.testing.advanced.card-03",
+      "kind": "select",
+      "title": "Mock frameworks",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Популярный mock фреймворк?",
+      "optionsLearning": [
+        "Google Mock (gmock)",
+        "JUnit Mock",
+        "PyTest Mock",
+        "Jest Mock"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing-advanced",
+      "scenarioId": "advanced.testing.advanced.scenario"
+    },
+    {
+      "id": "advanced.testing.advanced.card-04",
+      "kind": "select",
+      "title": "BDD style",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое BDD?",
+      "optionsLearning": [
+        "Behavior-Driven Development (Gherkin: Given/When/Then)",
+        "Unit testing",
+        "Integration testing",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing-advanced",
+      "scenarioId": "advanced.testing.advanced.scenario"
+    },
+    {
+      "id": "advanced.testing.advanced.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как тестировать сложные системы?",
+      "optionsLearning": [
+        "Property-based + fuzzing + mocks",
+        "Только manual",
+        "Никак",
+        "Только unit"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-testing-advanced",
+      "scenarioId": "advanced.testing.advanced.scenario"
+    }
+  ]
+}

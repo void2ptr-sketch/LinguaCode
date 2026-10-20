@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-01",
+      "kind": "select",
+      "title": "Coroutine basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое coroutine?",
+      "optionsLearning": [
+        "Функция с возможностью приостановки и возобновления",
+        "Обычная функция",
+        "Поток",
+        "Процесс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "coroutines"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-02",
+      "kind": "select",
+      "title": "Co_await",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем co_await?",
+      "optionsLearning": [
+        "Ожидание завершения async operation (suspend/resume)",
+        "Обычный await",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "coroutines"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-03",
+      "kind": "select",
+      "title": "Generator function",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое generator?",
+      "optionsLearning": [
+        "Функция с co_yield (возвращает sequence значений)",
+        "Обычная функция",
+        "Поток",
+        "Процесс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "coroutines"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-04",
+      "kind": "select",
+      "title": "Promise type",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое promise?",
+      "optionsLearning": [
+        "Объект управления lifecycle coroutine",
+        "Тип данных",
+        "Оператор",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "coroutines"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать coroutines?",
+      "optionsLearning": [
+        "Для async operations (network, I/O)",
+        "Всегда",
+        "Никогда",
+        "Только для small tasks"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "coroutines"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-06",
+      "kind": "select",
+      "title": "C++17 features",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что нового в C++17?",
+      "optionsLearning": [
+        "if constexpr, structured binding, std::optional, filesystem",
+        "Только lambdas",
+        "Только move semantics",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-07",
+      "kind": "select",
+      "title": "C++20 features",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что нового в C++20?",
+      "optionsLearning": [
+        "Concepts, coroutines, ranges, modules",
+        "Только templates",
+        "Только exceptions",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-08",
+      "kind": "select",
+      "title": "Ranges (C++20)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ranges?",
+      "optionsLearning": [
+        "Lazy evaluation pipelines (| std::views::filter)",
+        "Старые алгоритмы",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-09",
+      "kind": "select",
+      "title": "Modules (C++20)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое modules?",
+      "optionsLearning": [
+        "import std; вместо #include (faster compilation)",
+        "#include только",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать Modern C++?",
+      "optionsLearning": [
+        "C++17/20 features когда доступны",
+        "C++98 всегда",
+        "Никогда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-11",
+      "kind": "select",
+      "title": "Template metaprogramming",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое template metaprogramming?",
+      "optionsLearning": [
+        "Программирование на compile time через шаблоны",
+        "Runtime программирование",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-12",
+      "kind": "select",
+      "title": "Type traits",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое type traits?",
+      "optionsLearning": [
+        "Compile-time информация о типах (std::is_integral<T>)",
+        "Runtime информация",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-13",
+      "kind": "select",
+      "title": "SFINAE",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое SFINAE?",
+      "optionsLearning": [
+        "Substitution Failure Is Not An Error (flexible templates)",
+        "Ошибка компиляции",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-14",
+      "kind": "select",
+      "title": "Tuple operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое tuple?",
+      "optionsLearning": [
+        "Fixed-size collection разных типов (std::tuple<int, string>)",
+        "Array одного типа",
+        "List",
+        "Map"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать TMP?",
+      "optionsLearning": [
+        "Для compile-time вычислений и type-safe code",
+        "Всегда",
+        "Никогда",
+        "Только для small types"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-16",
+      "kind": "select",
+      "title": "Template template params",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое template template params?",
+      "optionsLearning": [
+        "Параметр шаблона — другой шаблон (class<T> alloc)",
+        "Обычный параметр",
+        "Константа",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-17",
+      "kind": "select",
+      "title": "Variadic templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое variadic template?",
+      "optionsLearning": [
+        "Неограниченное количество параметров (typename... Args)",
+        "Один параметр",
+        "Два параметра",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-18",
+      "kind": "select",
+      "title": "Fold expressions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое fold expression?",
+      "optionsLearning": [
+        "Операция над pack (..., op) — C++17",
+        "Обычный цикл",
+        "Рекурсия",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-19",
+      "kind": "select",
+      "title": "SFINAE advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый SFINAE?",
+      "optionsLearning": [
+        "std::enable_if_t, decltype, requires clause (C++20)",
+        "Ручная проверка",
+        "Нельзя",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.coroutines-modern.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать сложные шаблоны?",
+      "optionsLearning": [
+        "Concepts (C++20) вместо SFINAE",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-modern",
+      "scenarioId": "cpp.advanced.coroutines-modern.01.scenario"
+    }
+  ]
+}

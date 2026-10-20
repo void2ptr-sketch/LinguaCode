@@ -1,0 +1,35 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.types.char.string.scenario",
+      "title": "C++ — Что такое char?",
+      "description": "Сценарий: Что такое char? — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-types-char-string",
+      "courseId": "course-cpp-complete",
+      "cardCount": 6,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.863302.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.863304.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.types.char.string.card-01",
+          "basics.types.char.string.card-02",
+          "basics.types.char.string.card-03",
+          "basics.types.char.string.card-04",
+          "basics.types.char.string.card-05",
+          "basics.types.char.string.card-06"
+        ]
+      }
+    }
+  ]
+}

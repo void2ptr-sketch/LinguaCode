@@ -277,6 +277,61 @@ export type ReadingCardDraft = LexemeCardDraft & {
 };
 
 /**
+ * Draft of a flip card (two-sided flashcard).
+ *
+ * @remarks
+ * User self-reports knowledge of the back side; no objective answer.
+ */
+export type FlipCardDraft = {
+  kind: 'flip';
+  title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
+  front: string;
+  back: string;
+  audioUrl: string;
+  appearance: CardAppearanceDraft;
+};
+
+/**
+ * Draft of a cloze card (fill-in-the-blank).
+ *
+ * @remarks
+ * Bimodal: `options` non-empty => select mode, otherwise input mode.
+ */
+export type ClozeCardDraft = LexemeCardDraft & {
+  kind: 'cloze';
+  title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
+  promptKnown: string;
+  options: readonly string[];
+  acceptedAnswers: readonly string[];
+  correctAnswer: string;
+  correctIndex: number;
+  appearance: CardAppearanceDraft;
+};
+
+/**
+ * Draft of a code-trace card («What will the code output?»).
+ */
+export type CodeTraceCardDraft = {
+  kind: 'code-trace';
+  title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
+  caption: string;
+  question: string;
+  code: CodeBlockDraft;
+  outputOptions: readonly string[];
+  correctIndex: number;
+  appearance: CardAppearanceDraft;
+};
+
+/**
  * Union of all card draft kinds.
  *
  * @remarks
@@ -292,7 +347,10 @@ export type CardDraft =
   | KeyboardCardDraft
   | DrawCardDraft
   | ToneCardDraft
-  | ReadingCardDraft;
+  | ReadingCardDraft
+  | FlipCardDraft
+  | ClozeCardDraft
+  | CodeTraceCardDraft;
 
 /**
  * Union of choice-type card drafts (multiple-choice with options).
@@ -329,6 +387,9 @@ export const CARD_KIND_LABELS: Record<CardKind, string> = {
   draw: 'Рисование',
   tone: 'Тон',
   reading: 'Чтение (полифония)',
+  flip: 'Переворот',
+  cloze: 'Пропуск в тексте',
+  'code-trace': 'Код: что выведет?',
 };
 
 /**

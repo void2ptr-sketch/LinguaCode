@@ -1,0 +1,654 @@
+{
+  "scenarioId": "cpp.basics.io.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.io.01.scenario.card-01",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Какой объект выводит текст на экран?",
+      "optionsLearning": [
+        "std::cout",
+        "std::cin",
+        "std::cerr только",
+        "std::in"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::cout — стандартный поток вывода."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-02",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Какой объект читает данные с клавиатуры?",
+      "optionsLearning": [
+        "std::cin",
+        "std::cout",
+        "std::out",
+        "std::log"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::cin — стандартный поток ввода."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "IO Intro — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << 2 + 3; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "23",
+        "2 3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сначала вычисляется 2+3, затем вывод 5."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-04",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Какой оператор используется для вывода?",
+      "optionsLearning": [
+        "<<",
+        ">>",
+        "->",
+        "=>"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оператор вставки << направляет данные поток."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-05",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Какой оператор используется для ввода?",
+      "optionsLearning": [
+        ">>",
+        "<<",
+        "->",
+        "=>"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оператор извлечения >> читает из потока."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "IO Intro — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "question": "Что выведет эта программа при вводе числа 10?",
+      "code": {
+        "code": "int x; std::cin >> x; std::cout << x * 2;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "20",
+        "10",
+        "102",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Читается 10, выводится удвоенное 20."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-07",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Как вывести несколько значений подряд?",
+      "optionsLearning": [
+        "std::cout << a << b << c;",
+        "cout a, b, c",
+        "print(a b c)",
+        "cout(a+b+c)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Цепочка операторов << выводит значения последовательно."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "IO Intro — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << \"a\" << 1 << '!'; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "a1!",
+        "a 1 !",
+        "Ошибка",
+        "a"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вывод строки и чисел подряд: a1!."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-09",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Что делает std::endl?",
+      "optionsLearning": [
+        "Перевод строки и сброс буфера",
+        "Пробел",
+        "Конец программы",
+        "Очистку экрана"
+      ],
+      "correctIndex": 0,
+      "explanation": "endl выводит '\\n' и вызывает flush."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-10",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Как прочитать строку с пробелами до конца строки?",
+      "optionsLearning": [
+        "std::getline(std::cin, s)",
+        "std::cin >> s",
+        "gets(s)",
+        "cin(s)"
+      ],
+      "correctIndex": 0,
+      "explanation": "getline читает всю строку, включая пробелы."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "IO Intro — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "question": "Что выведет эта программа при вводе 'abc def'?",
+      "code": {
+        "code": "std::string word; std::cin >> word; std::cout << word;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "abc",
+        "abc def",
+        "def",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "cin >> читает только до первого пробела: abc."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-12",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Что произойдёт при чтении числа из нечислового ввода?",
+      "optionsLearning": [
+        "Поток переходит в fail-состояние",
+        "Автоконвертация",
+        "Читается 0",
+        "Программа упадёт"
+      ],
+      "correctIndex": 0,
+      "explanation": "Неудачное извлечение устанавливает failbit."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "IO Intro — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << 5 << std::endl << 6; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5 и 6 на разных строках",
+        "56",
+        "5 6",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "endl разделяет: строка 5, затем строка 6."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-14",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Какая директива подключает iostream?",
+      "optionsLearning": [
+        "#include <iostream>",
+        "#include <stdio.h>",
+        "#include <conio>",
+        "#include <stream>"
+      ],
+      "correctIndex": 0,
+      "explanation": "Заголовок <iostream> объявляет потоки ввода/вывода."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-15",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Что выводит std::cerr?",
+      "optionsLearning": [
+        "Сообщения об ошибках (stderr)",
+        "Данные в файл",
+        "Ошибки компиляции",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "cerr — поток ошибок на стандартный stderr."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "IO Intro — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "io",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << std::boolalpha << true; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "true",
+        "1",
+        "TRUE",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "boolalpha включает вывод bool словами."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-17",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Как записать значение в hex для вывода?",
+      "optionsLearning": [
+        "std::hex манипулятором",
+        "std::binary",
+        "std::oct",
+        "cout << x % 16"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::hex переключает целочисленный вывод в 16-ричный формат."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-18",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Как ограничить ширину вывода?",
+      "optionsLearning": [
+        "std::setw(n) из <iomanip>",
+        "std::width",
+        "cout << n",
+        "resize"
+      ],
+      "correctIndex": 0,
+      "explanation": "setw задаёт минимальную ширину поля вывода."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-19",
+      "kind": "code-trace",
+      "title": "IO Intro — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <iomanip>\nint main() { std::cout << std::setw(5) << 42; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "   42",
+        "42   ",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Число 42 выравнивается справа в поле ширины 5."
+    },
+    {
+      "id": "cpp.basics.io.01.scenario.card-20",
+      "kind": "select",
+      "title": "IO Intro — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "cpp.basics.io.01.scenario",
+      "promptKnown": "Почему после getline нужно иногда std::cin.ignore()?",
+      "optionsLearning": [
+        "Чтобы убрать неиспользованный символ перевода строки из буфера",
+        "Чтобы очистить экран",
+        "Для замедления",
+        "Не нужно никогда"
+      ],
+      "correctIndex": 0,
+      "explanation": "После >> остаётся '\\n' в буфере; ignore() отбрасывает его перед getline."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

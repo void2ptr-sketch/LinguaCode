@@ -1,0 +1,649 @@
+{
+  "scenarioId": "cpp.advanced.concepts.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-01",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Что такое concept?",
+      "optionsLearning": [
+        "Именованное требование к типам (constraint)",
+        "Тип данных",
+        "Шаблон",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Концепты документируют требования шаблонов."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-02",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Как объявить концепт?",
+      "optionsLearning": [
+        "template <typename T> concept Name = выражение;",
+        "class Name",
+        "#define Name",
+        "struct Name"
+      ],
+      "correctIndex": 0,
+      "explanation": "Концепт — булевское выражение о типе."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Concepts и Constraints (C++20) — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <concepts>\ntemplate <std::integral T> T twice(T x) { return x * 2; }\nint main() { std::cout << twice(3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "3",
+        "Ошибка",
+        "9"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::integral допускает int: 6."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-04",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Что будет при twice(2.5)?",
+      "optionsLearning": [
+        "Ошибка: double не integral",
+        "Лямбда",
+        "2.5",
+        "Автоусечение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Концепт сужает допустимые типы."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-05",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Зачем concepts лучше SFINAE?",
+      "optionsLearning": [
+        "Читаемость и понятные сообщения",
+        "Быстрее",
+        "Короче",
+        "Обязателен"
+      ],
+      "correctIndex": 0,
+      "explanation": "Концепты декларативны и диагностируемы."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Concepts и Constraints (C++20) — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "templates",
+          "c++20"
+        ],
+        "tags": "requires-предложение и requires-выражения."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "question": "Что делает requires?",
+      "code": {
+        "code": [
+          "Задаёт требования/floor выражения",
+          "Выбрасывает",
+          "Сортирует",
+          "Включает"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-07",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Как проверить наличие метода у типа?",
+      "optionsLearning": [
+        "requires { t.f(); }",
+        "if",
+        "typeid",
+        "template"
+      ],
+      "correctIndex": 0,
+      "explanation": "requires-выражение проверяет выразимость."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-08",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Что такое constrained template?",
+      "optionsLearning": [
+        "Шаблон с ограничением через концепт",
+        "Обычный шаблон",
+        "Макрос",
+        "Финальный"
+      ],
+      "correctIndex": 0,
+      "explanation": "template <C T> или requires после аргументов."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Concepts и Constraints (C++20) — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "question": "Компилируется ли этот вызов?",
+      "code": {
+        "code": "template <typename T> requires std::integral<T> T inc(T x) { return x + 1; }\nint main() { inc(1); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Да",
+        "Нет",
+        "С warning",
+        "В C++23"
+      ],
+      "correctIndex": 0,
+      "explanation": "int удовлетворяет std::integral."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-10",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Что такое надмножество концептов (subsumption)?",
+      "optionsLearning": [
+        "Автоматическая иерархия ограничений",
+        "Наследование",
+        "Сортировка",
+        "Удаление"
+      ],
+      "correctIndex": 0,
+      "explanation": "Специфичный концепт «покрывает» общий."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-11",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Как ограничить тип пары?",
+      "optionsLearning": [
+        "concept Pair = requires(T t) { t.first; t.second; };",
+        "структуры",
+        "enum",
+        "class"
+      ],
+      "correctIndex": 0,
+      "explanation": "Требуем доступность .first и .second."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Concepts и Constraints (C++20) — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <concepts>\ntemplate <std::floating_point T> void f(T) { std::cout << 'f'; }\nint main() { f(1.5); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "f",
+        "1.5",
+        "Ошибка",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "double — floating_point: вызов c f."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-13",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Как сделать перегрузку по концептам?",
+      "optionsLearning": [
+        "Функции с разными требует-концептами",
+        "Нельзя",
+        "switch",
+        "enum"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разные концепты выбирают перегрузку."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Concepts и Constraints (C++20) — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "question": "Какая перегрузка вызовется?",
+      "code": {
+        "code": "#include <concepts>\nvoid f(std::integral auto) {}\nvoid f(const std::integral auto&) {}\nint x = 1; f(x);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Первая (по значению)",
+        "Вторая",
+        "Обе",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Точное совпадение параметра — первая."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-15",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Что такое requires clause?",
+      "optionsLearning": [
+        "Секция requires перед телом функции",
+        "Комментарий",
+        "Макрос",
+        "Вариант"
+      ],
+      "correctIndex": 0,
+      "explanation": "requires … после параметров шаблона."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-16",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Как составить концепт из нескольких условий?",
+      "optionsLearning": [
+        "&& и требуется-выражения",
+        "Иначе нельзя",
+        "Через include",
+        "Массивами"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конъюнкция условий в концепте."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Concepts и Constraints (C++20) — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <concepts>\ntemplate <typename T> requires (sizeof(T) <= 8) void f(T) { std::cout << 's'; }\nint main() { f(1); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "s",
+        "1",
+        "Ошибка",
+        "8"
+      ],
+      "correctIndex": 0,
+      "explanation": "sizeof(int)<=8 — выполняется: s."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-18",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Что улучшают концепты в диагностике?",
+      "optionsLearning": [
+        "Понятные сообщения об ограничениях",
+        "Скорость",
+        "Память",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ошибки читабельнее, чем SFINAE."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-19",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Что такое abbreviated template?",
+      "optionsLearning": [
+        "template <std::integral auto x> или auto-параметры",
+        "Краткий макрос",
+        "Инлайн",
+        "Сокращение"
+      ],
+      "correctIndex": 0,
+      "explanation": "auto-параметры в функциях — аббревиатура шаблонов."
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario.card-20",
+      "kind": "select",
+      "title": "Concepts и Constraints (C++20) — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.concepts.01.scenario",
+      "promptKnown": "Почему concepts считают «компонуемым» средством?",
+      "optionsLearning": [
+        "Концепты комбинируются логическими операторами",
+        "Только одиночные",
+        "Макросы",
+        "Enum"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сложные требования строятся из простых."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

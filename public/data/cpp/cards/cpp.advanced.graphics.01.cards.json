@@ -1,0 +1,627 @@
+{
+  "scenarioId": "cpp.advanced.graphics.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-01",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "graphics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое рендеринг?",
+      "optionsLearning": [
+        "Порождение изображения из сцены",
+        "Сеть",
+        "Хеш",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Превращение моделей в пиксели."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-02",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "graphics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое шейдер?",
+      "optionsLearning": [
+        "Программа для GPU",
+        "Модель",
+        "Текстура",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вершинные/фрагментные."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Graphics — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "graphics"
+        ],
+        "tags": "Финальный цвет."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "question": "Что делает фрагментный шейдер?",
+      "code": {
+        "code": [
+          "Считает цвет пикселя",
+          "Геометрию",
+          "Сеть",
+          "Хеш"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-04",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "graphics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое OpenGL/Vulkan?",
+      "optionsLearning": [
+        "Графические API",
+        "Протоколы сети",
+        "ОС",
+        "Файлы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Доступ к GPU."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-05",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "graphics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое VBO/IBO?",
+      "optionsLearning": [
+        "Буферы вершин/индексов GPU",
+        "Строки",
+        "Текстуры",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Геометрия на GPU."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Graphics — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "graphics"
+        ],
+        "tags": "Контекстная привязка."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "question": "Что делает bind в OpenGL?",
+      "code": {
+        "code": [
+          "Активирует объект как текущий",
+          "Сортирует",
+          "Хеширует",
+          "Логирует"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-07",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "graphics",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое FPS?",
+      "optionsLearning": [
+        "Кадры в секунду",
+        "Формат",
+        "Хеш",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Плавность вывода."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-08",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "graphics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое геймлуп?",
+      "optionsLearning": [
+        "Цикл: ввод → обновление → рендер",
+        "Сцены",
+        "Сеть",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сердце игры."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-09",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "graphics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое delta time?",
+      "optionsLearning": [
+        "Время между кадрами",
+        "Задержка",
+        "Хеш",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Скоординированное движение."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Graphics — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "graphics"
+        ],
+        "tags": "pos += speed * dt."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "question": "Зачем использовать dt в движении?",
+      "code": {
+        "code": [
+          "Независимость от FPS",
+          "Скорость",
+          "память",
+          "лог"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-11",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "graphics",
+          "patterns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое ECS?",
+      "optionsLearning": [
+        "Entity-Component-System",
+        "Файл",
+        "Шейдер",
+        "ОС"
+      ],
+      "correctIndex": 0,
+      "explanation": "Архитектура игровых объектов."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-12",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "graphics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое компонент в ECS?",
+      "optionsLearning": [
+        "Данные без логики",
+        "Объект",
+        "Система",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Позиция, здоровье."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Graphics — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "graphics"
+        ],
+        "tags": "Логика по категориям."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "question": "Что делает система в ECS?",
+      "code": {
+        "code": [
+          "Обрабатывает компоненты типов",
+          "Хранит данные",
+          "Рендерит",
+          "Логирует"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-14",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "graphics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое ассет?",
+      "optionsLearning": [
+        "Ресурс игры (модель, текстура, звук)",
+        "Строка",
+        "Поток",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Управление ресурсами."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-15",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "graphics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое пайплайн рендера?",
+      "optionsLearning": [
+        "Цепочка этапов GPU",
+        "Шейдер",
+        "Сеть",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Input assembler → ... → output."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-16",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "graphics",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое бюджет кадра?",
+      "optionsLearning": [
+        "Лимит времени на кадр",
+        "Память",
+        "Логи",
+        "Скорость"
+      ],
+      "correctIndex": 0,
+      "explanation": "Целевая производительность."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Graphics — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "graphics",
+          "performance"
+        ],
+        "tags": "Снижение нагрузки GPU/CPU."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "question": "Что оптимизируют при низком FPS?",
+      "code": {
+        "code": [
+          "Сложность сцены, батчинг, LOD",
+          "Сеть",
+          "ничего",
+          "логи"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-18",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "graphics",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое батчинг (draw call)?",
+      "optionsLearning": [
+        "Группировка отрисовок",
+        "Ошибка",
+        "Хеш",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Меньше вызовов — быстрее."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-19",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "graphics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что такое collision detection?",
+      "optionsLearning": [
+        "Определение столкновений объектов",
+        "Рендер",
+        "Сеть",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Физика игр."
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario.card-20",
+      "kind": "select",
+      "title": "Graphics и Game Development — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "graphics",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.graphics.01.scenario",
+      "promptKnown": "Что важно для игрового C++?",
+      "optionsLearning": [
+        "Производительность, детерминизм, ассеты, ECS",
+        "GC",
+        "Интерпретатор",
+        "скрипт глубже"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инженерная дисциплина."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

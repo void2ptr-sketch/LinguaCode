@@ -1,0 +1,644 @@
+{
+  "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-01",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Что такое множественное наследование?",
+      "optionsLearning": [
+        "Класс наследуется от нескольких базовых",
+        "Наследование от одного",
+        "Композиция",
+        "Интерфейс"
+      ],
+      "correctIndex": 0,
+      "explanation": "class C : public A, public B { };"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-02",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Какая опасность множественного наследования?",
+      "optionsLearning": [
+        "Конфликты имён и неоднозначность",
+        "Скорость",
+        "Память",
+        "Нет опасностей"
+      ],
+      "correctIndex": 0,
+      "explanation": "Два базовых с одноимёнными методами требуют квалификации."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Множественное наследование — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { void f() const { std::cout << 'a'; } };\nstruct B { void f() const { std::cout << 'b'; } };\nstruct C : A, B {};\nint main() { C c; c.f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Ошибка неоднозначности",
+        "a",
+        "b",
+        "ab"
+      ],
+      "correctIndex": 0,
+      "explanation": "f() есть в обеих базах — требуется c.A::f() или c.B::f()."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-04",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Как разрешить конфликт имён?",
+      "optionsLearning": [
+        "Явная квалификация: c.A::f()",
+        "Нельзя",
+        "memset",
+        "new"
+      ],
+      "correctIndex": 0,
+      "explanation": "Квалифицированный вызов устраняет неоднозначность."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-05",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Когда множественное наследование полезно?",
+      "optionsLearning": [
+        "Интерфейсы (абстрактные классы как контракты)",
+        "Данные",
+        "Шаблоны",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Наследование нескольких интерфейсов — частая практика."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Множественное наследование — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "oop",
+          "inheritance"
+        ],
+        "tags": "Порядок объявления базовых классов определяет порядок."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "question": "В каком порядке инициализируются базы?",
+      "code": {
+        "code": [
+          "В порядке объявления",
+          "По алфавиту",
+          "Случайно",
+          "Наоборот"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-07",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Что такое ромбовидное наследование?",
+      "optionsLearning": [
+        "C : B, D; B и D : A — общий предок A",
+        "Квадрат",
+        "Цикл",
+        "Дерево"
+      ],
+      "correctIndex": 0,
+      "explanation": "Diamond — два пути к одному предку."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Множественное наследование — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "oop",
+          "inheritance"
+        ],
+        "tags": "Без виртуального наследования A дублируется."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "question": "Сколько копий A будет в D при ромбе без virtual?",
+      "code": {
+        "code": [
+          "Две (по одной через каждую ветку)",
+          "Одна",
+          "Ноль",
+          "Три"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-09",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Как избежать дублирования в ромбе?",
+      "optionsLearning": [
+        "Виртуальное наследование: class B : virtual public A",
+        "Игнорировать",
+        "static",
+        "final"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual база даёт единственный экземпляр."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-10",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Когда virtual base инициализируется?",
+      "optionsLearning": [
+        "Самым производным классом",
+        "Базовыми",
+        "Дефолтом",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Наиболее производный класс инициализирует virtual базу."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Множественное наследование — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual void f() const { std::cout << 'a'; } };\nstruct B { virtual void g() const { std::cout << 'b'; } };\nstruct C : A, B {};\nint main() { C c; A* p = &c; p->f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "a",
+        "b",
+        "ab",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "C подходит как A: вызов f из A: a."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-12",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Можно ли приводить C* к A* и B*?",
+      "optionsLearning": [
+        "Да — оба преобразования корректны",
+        "Нет",
+        "Только к первому",
+        "Случайно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Указатель C конвертируется в указатель любой базы."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-13",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Что такое двусмысленный upcast при ромбе?",
+      "optionsLearning": [
+        "Любая из двух копий A — неоднозначность без virtual",
+        "Простой cast",
+        "Ошибка линковки",
+        "Нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Два пути к A: C→A неоднозначен."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-14",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Какая рекомендация по множественному наследованию?",
+      "optionsLearning": [
+        "Использовать для интерфейсов, избегать глубоких ромбов",
+        "Всегда",
+        "Никогда",
+        "Только данные"
+      ],
+      "correctIndex": 0,
+      "explanation": "Практика: MI для контрактов, композиция для реализации."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Множественное наследование — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { int x = 1; };\nstruct B { int x = 2; };\nstruct C : A, B { int get() const { return A::x + B::x; } };\nint main() { C c; std::cout << c.get(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "12",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Квалифицированный доступ: 1+2=3."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-16",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Почему Язык позволяет MI, а многие другие нет?",
+      "optionsLearning": [
+        "C++ ориентирован на производительность и гибкость",
+        "Скорость",
+        "Мода",
+        "Не бывает"
+      ],
+      "correctIndex": 0,
+      "explanation": "MI — часть философии C++; мощь и ответственность."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-17",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Что будет с виртуальными таблицами при MI?",
+      "optionsLearning": [
+        "Объект содержит несколько vptr (по числу полиморфных баз)",
+        "Одну",
+        "Ноль",
+        "Две точно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждая полиморфная база приносит свой vptr."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-18",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Как определить порядок размещения баз в памяти?",
+      "optionsLearning": [
+        "В порядке объявления (обычно)",
+        "Алфавит",
+        "По размеру",
+        "random"
+      ],
+      "correctIndex": 0,
+      "explanation": "Раскладка в памяти реализационно, но обычно по объявлению."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-19",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Что такое mixin-классы?",
+      "optionsLearning": [
+        "Малые базовые классы, добавляющие функциональность",
+        "Шаблоны",
+        "Интерфейсы",
+        "Глобальные"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mixin-стиль MI добавляет свойства переиспользуемо."
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-20",
+      "kind": "select",
+      "title": "Множественное наследование — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+      "promptKnown": "Что происходит при delete полиморфного объекта в MI?",
+      "optionsLearning": [
+        "Корректное уничтожение всех баз через virtual деструкторы",
+        "Частичное",
+        "UB",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual деструкторы обеспечивают полное разрушение иерархии."
+    }
+  ],
+  "title": "Oop — Intermediate C++"
+}

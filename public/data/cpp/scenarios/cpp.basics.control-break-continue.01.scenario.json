@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario",
+      "title": "Управление циклами: break и continue",
+      "description": "Сценарий: Управление циклами: break и continue",
+      "order": 4,
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.basics.control-break-continue.01.scenario.card-01",
+          "cpp.basics.control-break-continue.01.scenario.card-02",
+          "cpp.basics.control-break-continue.01.scenario.card-03",
+          "cpp.basics.control-break-continue.01.scenario.card-04",
+          "cpp.basics.control-break-continue.01.scenario.card-05",
+          "cpp.basics.control-break-continue.01.scenario.card-06",
+          "cpp.basics.control-break-continue.01.scenario.card-07",
+          "cpp.basics.control-break-continue.01.scenario.card-08",
+          "cpp.basics.control-break-continue.01.scenario.card-09",
+          "cpp.basics.control-break-continue.01.scenario.card-10",
+          "cpp.basics.control-break-continue.01.scenario.card-11",
+          "cpp.basics.control-break-continue.01.scenario.card-12",
+          "cpp.basics.control-break-continue.01.scenario.card-13",
+          "cpp.basics.control-break-continue.01.scenario.card-14",
+          "cpp.basics.control-break-continue.01.scenario.card-15",
+          "cpp.basics.control-break-continue.01.scenario.card-16",
+          "cpp.basics.control-break-continue.01.scenario.card-17",
+          "cpp.basics.control-break-continue.01.scenario.card-18",
+          "cpp.basics.control-break-continue.01.scenario.card-19",
+          "cpp.basics.control-break-continue.01.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-06-14T12:00:00.000Z"
+      }
+    }
+  ]
+}

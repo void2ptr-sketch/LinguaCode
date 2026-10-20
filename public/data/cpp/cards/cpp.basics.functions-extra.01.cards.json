@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-01",
+      "kind": "select",
+      "title": "Inline function",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем inline?",
+      "optionsLearning": [
+        "Подстановка кода вместо вызова (оптимизация)",
+        "Увеличение размера",
+        "Ошибка компиляции",
+        "Отключение функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "macros"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-02",
+      "kind": "select",
+      "title": "Inline vs macro",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем inline отличается от #define?",
+      "optionsLearning": [
+        "inline type-safe, macro нет",
+        "Одно и то же",
+        "Macro быстрее",
+        "Inline медленнее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "macros"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-03",
+      "kind": "select",
+      "title": "Macro dangers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Проблема макросов?",
+      "optionsLearning": [
+        "Нет проверки типов, side effects",
+        "Безопасны всегда",
+        "Быстрее inline",
+        "Не используются"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "macros"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-04",
+      "kind": "select",
+      "title": "Const vs macro",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "const или #define для констант?",
+      "optionsLearning": [
+        "const (type-safe)",
+        "#define всегда",
+        "Никак",
+        "Macro быстрее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "macros"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что использовать вместо макросов?",
+      "optionsLearning": [
+        "inline functions, constexpr, templates",
+        "#define всегда",
+        "Ничего",
+        "Global variables"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "macros"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-06",
+      "kind": "select",
+      "title": "Function overloading",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое перегрузка?",
+      "optionsLearning": [
+        "Одинаковое имя, разные сигнатуры",
+        "Разные имена",
+        "Одинаковые параметры",
+        "Без параметров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "overload"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-07",
+      "kind": "select",
+      "title": "Overload resolution",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как компилятор выбирает перегрузку?",
+      "optionsLearning": [
+        "Лучшее соответствие типов",
+        "Случайный выбор",
+        "Первая функция",
+        "Последняя функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "overload"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-08",
+      "kind": "select",
+      "title": "Ambiguous overload",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ambiguous overload?",
+      "optionsLearning": [
+        "Несколько функций с одинаковым приоритетом",
+        "Одна функция",
+        "Ошибка синтаксиса",
+        "Работает нормально"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "overload"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-09",
+      "kind": "select",
+      "title": "Operator overloading",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator overloading?",
+      "optionsLearning": [
+        "Переопределение операторов для типов",
+        "Новые операторы",
+        "Удаление операторов",
+        "Скрытие операторов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "overload"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда перегружать функции?",
+      "optionsLearning": [
+        "Одинаковая логика, разные типы",
+        "Разная логика",
+        "Всегда",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "overload"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-11",
+      "kind": "select",
+      "title": "Что такое рекурсия?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите рекурсию",
+      "optionsLearning": [
+        "Функция вызывает саму себя",
+        "Цикл for",
+        "Вложенные функции",
+        "Лямбда"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-12",
+      "kind": "select",
+      "title": "Base case",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем base case?",
+      "optionsLearning": [
+        "Условие остановки рекурсии",
+        "Увеличение скорости",
+        "Ошибка",
+        "Бесконечный цикл"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-13",
+      "kind": "select",
+      "title": "Factorial example",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как вычислить факториал рекурсией?",
+      "optionsLearning": [
+        "n * factorial(n-1)",
+        "n + factorial(n-1)",
+        "factorial(n) * n",
+        "loop n times"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-14",
+      "kind": "select",
+      "title": "Stack overflow",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при глубокой рекурсии?",
+      "optionsLearning": [
+        "Stack overflow (переполнение стека)",
+        "Увеличение памяти",
+        "Ошибка компиляции",
+        "Нормальная работа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-15",
+      "kind": "select",
+      "title": "Tail recursion",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое tail recursion?",
+      "optionsLearning": [
+        "Рекурсивный вызов в конце функции (оптимизируется)",
+        "Любая рекурсия",
+        "Без base case",
+        "Вложенная рекурсия"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-16",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать рекурсию?",
+      "optionsLearning": [
+        "Для tree/graph traversal",
+        "Всегда вместо циклов",
+        "Никогда",
+        "Только для простых задач"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-17",
+      "kind": "select",
+      "title": "Default parameters",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как задать параметр по умолчанию?",
+      "optionsLearning": [
+        "void f(int x = 5)",
+        "void f(int x default= 5)",
+        "void f(int x := 5)",
+        "void f(int x = 5) {}"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "parameters"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-18",
+      "kind": "select",
+      "title": "Named parameters",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как именованные параметры в C++?",
+      "optionsLearning": [
+        "Struct/Class с default values",
+        "Именованные аргументы (C# style)",
+        "Нельзя",
+        "Через map"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "parameters"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-19",
+      "kind": "select",
+      "title": "Overloading",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое перегрузка функций?",
+      "optionsLearning": [
+        "Одинаковое имя, разные параметры",
+        "Одинаковые параметры",
+        "Без параметров",
+        "Всегда ошибка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "parameters"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-extra.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать const reference?",
+      "optionsLearning": [
+        "Для больших объектов (string, vector)",
+        "Всегда",
+        "Никогда",
+        "Только для int"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "parameters"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-extra.01.scenario"
+    }
+  ]
+}

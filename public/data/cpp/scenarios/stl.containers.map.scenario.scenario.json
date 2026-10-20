@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "stl.containers.map.scenario",
+      "title": "C++ — Map создание",
+      "description": "Сценарий: Map создание — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-stl-containers-map",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.884343.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.884344.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "stl.containers.map.card-01",
+          "stl.containers.map.card-02",
+          "stl.containers.map.card-03",
+          "stl.containers.map.card-04",
+          "stl.containers.map.card-05"
+        ]
+      }
+    }
+  ]
+}

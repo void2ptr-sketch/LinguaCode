@@ -1,0 +1,121 @@
+{
+  "scenarioId": "oop.interfaces.abstract.scenario",
+  "cards": [
+    {
+      "id": "oop.interfaces.abstract.card-01",
+      "kind": "select",
+      "title": "Abstract class",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое абстрактный класс?",
+      "optionsLearning": [
+        "Класс с pure virtual методами (нельзя создать объект)",
+        "Обычный класс",
+        "Структура",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "abstract"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-interfaces-abstract",
+      "scenarioId": "oop.interfaces.abstract.scenario"
+    },
+    {
+      "id": "oop.interfaces.abstract.card-02",
+      "kind": "select",
+      "title": "Interface pattern",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать интерфейс в C++?",
+      "optionsLearning": [
+        "Класс только с pure virtual методами",
+        "interface keyword",
+        "abstract keyword",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "abstract"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-interfaces-abstract",
+      "scenarioId": "oop.interfaces.abstract.scenario"
+    },
+    {
+      "id": "oop.interfaces.abstract.card-03",
+      "kind": "select",
+      "title": "Pure virtual destructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем pure virtual деструктор?",
+      "optionsLearning": [
+        "Делает класс abstract, но деструктор должен быть определён",
+        "Ошибка",
+        "Оптимизация",
+        "Константность"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "abstract"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-interfaces-abstract",
+      "scenarioId": "oop.interfaces.abstract.scenario"
+    },
+    {
+      "id": "oop.interfaces.abstract.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать абстрактные классы?",
+      "optionsLearning": [
+        "Для определения интерфейса без реализации",
+        "Всегда",
+        "Никогда",
+        "Только для small classes"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "abstract"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-interfaces-abstract",
+      "scenarioId": "oop.interfaces.abstract.scenario"
+    }
+  ]
+}

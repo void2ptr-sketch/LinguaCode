@@ -1,0 +1,35 @@
+{
+  "scenarios": [
+    {
+      "id": "oop.constructors.destructors.scenario",
+      "title": "C++ — Constructor",
+      "description": "Сценарий: Constructor — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-oop-constructors-destructors",
+      "courseId": "course-cpp-complete",
+      "cardCount": 6,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.883300.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.883302.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "oop.constructors.destructors.card-01",
+          "oop.constructors.destructors.card-02",
+          "oop.constructors.destructors.card-03",
+          "oop.constructors.destructors.card-04",
+          "oop.constructors.destructors.card-05",
+          "oop.constructors.destructors.card-06"
+        ]
+      }
+    }
+  ]
+}

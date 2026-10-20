@@ -1,0 +1,650 @@
+{
+  "scenarioId": "cpp.basics.structs.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.structs.01.scenario.card-01",
+      "kind": "select",
+      "title": "Структуры — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Каким ключевым словом объявляется структура в C++?",
+      "optionsLearning": [
+        "struct",
+        "class только",
+        "record",
+        "type"
+      ],
+      "correctIndex": 0,
+      "explanation": "struct объявляет пользовательский тип с полями."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-02",
+      "kind": "select",
+      "title": "Структуры — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Какова видимость членов struct по умолчанию?",
+      "optionsLearning": [
+        "public",
+        "private",
+        "protected",
+        "internal"
+      ],
+      "correctIndex": 0,
+      "explanation": "В struct доступ по умолчанию public (в отличие от class)."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Структуры — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct Point { int x; int y; };\nint main() { Point p = {1, 2}; std::cout << p.x + p.y; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "12",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Поля x=1, y=2; сумма 3."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-04",
+      "kind": "select",
+      "title": "Структуры — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Как обратиться к полю объекта структуры?",
+      "optionsLearning": [
+        "obj.field",
+        "obj->field",
+        "obj::field",
+        "obj[field]"
+      ],
+      "correctIndex": 0,
+      "explanation": "Доступ к полю через точку для объекта."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-05",
+      "kind": "select",
+      "title": "Структуры — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Какой оператор обращается к полю через указатель на структуру?",
+      "optionsLearning": [
+        "ptr->field",
+        "ptr.field",
+        "ptr::field",
+        "ptr[field]"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стрелка -> разыменовывает указатель и даёт доступ к полю."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Структуры — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct P { int a; };\nint main() { P p; p.a = 9; P* q = &p; std::cout << q->a; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "9",
+        "адрес",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "q->a читает поле через указатель: 9."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-07",
+      "kind": "select",
+      "title": "Структуры — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "structs",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Можно ли сравнивать две структуры оператором == напрямую?",
+      "optionsLearning": [
+        "Нет, если не перегружен operator== (в C++20 можно = default)",
+        "Да, всегда",
+        "Только по одному полю",
+        "Запрещено"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стандарт не генерирует == сам; C++20 позволяет operator==(…) = default."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Структуры — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct R { int w; int h; };\nint main() { R r = {5, 3}; std::cout << r.w * r.h; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "15",
+        "8",
+        "53",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Площадь w*h = 5*3 = 15."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-09",
+      "kind": "select",
+      "title": "Структуры — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "structs",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Сколько памяти обычно занимает struct { char c; int i; }?",
+      "optionsLearning": [
+        "С учётом выравнивания — обычно 8 байт",
+        "5 байт",
+        "4 байта",
+        "1 байт"
+      ],
+      "correctIndex": 0,
+      "explanation": "Выравнивание: char + паддинг + int → 8 байт (на 32/64-битной)."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-10",
+      "kind": "select",
+      "title": "Структуры — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "structs",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Что такое выравнивание (alignment) структур?",
+      "optionsLearning": [
+        "Размещение полей по границам, кратным их размеру",
+        "Сортировка полей",
+        "Сжатие данных",
+        "Округление значений"
+      ],
+      "correctIndex": 0,
+      "explanation": "Адреса полей выравниваются для эффективного доступа."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Структуры — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "functions"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct T { int v; };\nT make(int x) { return {x}; }\nint main() { T t = make(42); std::cout << t.v; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "адрес",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Функция возвращает структуру; v=42."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-12",
+      "kind": "select",
+      "title": "Структуры — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Как инициализировать структуру агрегатной инициализацией?",
+      "optionsLearning": [
+        "Point p = {1, 2};",
+        "Point p(1);",
+        "Point p = new Point;",
+        "Point p; p = 1,2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Агрегатная инициализация списком значений полей в порядке объявления."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-13",
+      "kind": "select",
+      "title": "Структуры — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "structs",
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Чем struct отличается от class в C++?",
+      "optionsLearning": [
+        "Только видимостью по умолчанию (public vs private)",
+        "Ничем",
+        "struct не имеет методов",
+        "class не имеет полей"
+      ],
+      "correctIndex": 0,
+      "explanation": "Единственное отличие — default access: public у struct, private у class."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "Структуры — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "structs",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct V { int x = 1; int y = 2; };\nint main() { V v; std::cout << v.x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инициализаторы по умолчанию в C++11: x=1."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-15",
+      "kind": "select",
+      "title": "Структуры — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Как определить метод внутри структуры?",
+      "optionsLearning": [
+        "struct S { int f() { return 1; } };",
+        "Методы нельзя",
+        "Через функции вне",
+        "Только static"
+      ],
+      "correctIndex": 0,
+      "explanation": "Структуры могут содержать методы, как классы."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-16",
+      "kind": "select",
+      "title": "Структуры — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "structs",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Когда структура считается стандартным (trivially copyable) типом?",
+      "optionsLearning": [
+        "Когда можно копировать memcpy-подобно без пользовательских операций",
+        "У всех структур",
+        "Только с virtual",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Trivially copyable типы безопасно копировать байтами."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "Структуры — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct P { int x; int y; };\nint main() { P p{2, 3}; P* q = &p; std::cout << (*q).x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "3",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "(*q).x — разыменование и доступ: 2."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-18",
+      "kind": "select",
+      "title": "Структуры — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "structs",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Что делает sizeof(Point) для struct Point { int x; int y; }?",
+      "optionsLearning": [
+        "Обычно 8 байт",
+        "2 байта",
+        "4 байта",
+        "16 байт"
+      ],
+      "correctIndex": 0,
+      "explanation": "Два int по 4 байта → 8."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-19",
+      "kind": "select",
+      "title": "Структуры — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "structs",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Как перегрузить operator== для структуры в C++20?",
+      "optionsLearning": [
+        "bool operator==(const T&) const = default;",
+        "Нельзя перегрузить",
+        "Через макрос",
+        "= delete"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++20 генерирует членное сравнение при = default."
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario.card-20",
+      "kind": "select",
+      "title": "Структуры — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structs",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-structs",
+      "scenarioId": "cpp.basics.structs.01.scenario",
+      "promptKnown": "Почему структуры полезны для группировки связанных данных?",
+      "optionsLearning": [
+        "Одна переменная хранит набор полей; читаемость и типизация",
+        "Они быстрее",
+        "Меньше кода всегда",
+        "Безопаснее массивов автоматически"
+      ],
+      "correctIndex": 0,
+      "explanation": "Структура объединяет связанные поля в один именованный тип."
+    }
+  ],
+  "title": "Basics — Basics C++"
+}

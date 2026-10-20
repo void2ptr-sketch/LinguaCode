@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.types.bool.scenario",
+      "title": "C++ — Что такое bool?",
+      "description": "Сценарий: Что такое bool? — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-types-bool",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.863141.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.863142.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.types.bool.card-01",
+          "basics.types.bool.card-02",
+          "basics.types.bool.card-03",
+          "basics.types.bool.card-04"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.types.floating.scenario",
+      "title": "C++ — float vs double",
+      "description": "Сценарий: float vs double — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-types-floating",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.863386.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.863388.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.types.floating.card-01",
+          "basics.types.floating.card-02",
+          "basics.types.floating.card-03",
+          "basics.types.floating.card-04",
+          "basics.types.floating.card-05"
+        ]
+      }
+    }
+  ]
+}

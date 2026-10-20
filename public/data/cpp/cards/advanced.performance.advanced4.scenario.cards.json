@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.performance.advanced4.scenario",
+  "cards": [
+    {
+      "id": "advanced.performance.advanced4.card-01",
+      "kind": "select",
+      "title": "Memory alignment advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое memory alignment?",
+      "optionsLearning": [
+        "alignas + alignof + cache line padding + SIMD alignment",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced4",
+      "scenarioId": "advanced.performance.advanced4.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced4.card-02",
+      "kind": "select",
+      "title": "Cache prefetching advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое cache prefetching?",
+      "optionsLearning": [
+        "__builtin_prefetch + hardware prefetching + software hints",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced4",
+      "scenarioId": "advanced.performance.advanced4.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced4.card-03",
+      "kind": "select",
+      "title": "Vectorization patterns advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутые паттерны vectorization?",
+      "optionsLearning": [
+        "Loop unrolling + SIMD intrinsics + auto-vectorization + software pipelining",
+        "Только manual",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced4",
+      "scenarioId": "advanced.performance.advanced4.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced4.card-04",
+      "kind": "select",
+      "title": "Profiling guided optimization advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый PGO?",
+      "optionsLearning": [
+        "Profile-guided + link-time optimization + feedback-directed",
+        "Оптимизация без данных",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced4",
+      "scenarioId": "advanced.performance.advanced4.scenario"
+    },
+    {
+      "id": "advanced.performance.advanced4.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать эффективно?",
+      "optionsLearning": [
+        "Profile → optimize bottleneck → re-profile + PGO + vectorization + cache-friendly",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-performance-advanced4",
+      "scenarioId": "advanced.performance.advanced4.scenario"
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "scenarioId": "basics.functions.parameters.scenario",
+  "cards": [
+    {
+      "id": "basics.functions.parameters.card-01",
+      "kind": "select",
+      "title": "Pass by value",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pass by value?",
+      "optionsLearning": [
+        "Копия параметра в функцию",
+        "Оригинал изменяется",
+        "Указатель передаётся",
+        "Ссылка передаётся"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "parameters"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-parameters",
+      "scenarioId": "basics.functions.parameters.scenario"
+    },
+    {
+      "id": "basics.functions.parameters.card-02",
+      "kind": "select",
+      "title": "Pass by reference",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pass by reference?",
+      "optionsLearning": [
+        "Оригинал передаётся (без копии)",
+        "Копия параметра",
+        "Указатель передаётся",
+        "Значение игнорируется"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "parameters"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-parameters",
+      "scenarioId": "basics.functions.parameters.scenario"
+    },
+    {
+      "id": "basics.functions.parameters.card-03",
+      "kind": "select",
+      "title": "Const reference",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем const T&?",
+      "optionsLearning": [
+        "Без копии, защита от изменений",
+        "Копия значения",
+        "Указатель",
+        "Нужно для классов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "parameters"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-parameters",
+      "scenarioId": "basics.functions.parameters.scenario"
+    },
+    {
+      "id": "basics.functions.parameters.card-04",
+      "kind": "select",
+      "title": "Default parameters",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как задать параметр по умолчанию?",
+      "optionsLearning": [
+        "void f(int x = 5)",
+        "void f(int x default= 5)",
+        "void f(int x := 5)",
+        "void f(int x = 5) {}"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "parameters"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-parameters",
+      "scenarioId": "basics.functions.parameters.scenario"
+    },
+    {
+      "id": "basics.functions.parameters.card-05",
+      "kind": "select",
+      "title": "Named parameters",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как именованные параметры в C++?",
+      "optionsLearning": [
+        "Struct/Class с default values",
+        "Именованные аргументы (C# style)",
+        "Нельзя",
+        "Через map"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "parameters"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-parameters",
+      "scenarioId": "basics.functions.parameters.scenario"
+    },
+    {
+      "id": "basics.functions.parameters.card-06",
+      "kind": "select",
+      "title": "Overloading",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое перегрузка функций?",
+      "optionsLearning": [
+        "Одинаковое имя, разные параметры",
+        "Одинаковые параметры",
+        "Без параметров",
+        "Всегда ошибка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "parameters"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-parameters",
+      "scenarioId": "basics.functions.parameters.scenario"
+    },
+    {
+      "id": "basics.functions.parameters.card-07",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать const reference?",
+      "optionsLearning": [
+        "Для больших объектов (string, vector)",
+        "Всегда",
+        "Никогда",
+        "Только для int"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "parameters"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-functions-parameters",
+      "scenarioId": "basics.functions.parameters.scenario"
+    }
+  ]
+}

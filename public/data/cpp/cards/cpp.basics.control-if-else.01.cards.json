@@ -1,0 +1,626 @@
+{
+  "scenarioId": "cpp.basics.control-if-else.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-01",
+      "kind": "select",
+      "title": "Синтаксис if",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой правильный синтаксис if в C++?",
+      "optionsLearning": [
+        "if (condition) { }",
+        "if condition { }",
+        "if: condition",
+        "if -> condition"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "синтаксис"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "C++ требует скобки вокруг условия и фигурные скобки для блока кода."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-02",
+      "kind": "select",
+      "title": "if-else конструкция",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать if-else?",
+      "optionsLearning": [
+        "if (cond) { } else { }",
+        "if (cond) { } otherwise { }",
+        "if (cond) { } else-if { }",
+        "switch (cond) { }"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "if-else"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "else выполняется, когда условие ложно. Можно цепочку: if-else if-else."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-03",
+      "kind": "select",
+      "title": "Тернарный оператор",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает тернарный оператор?",
+      "optionsLearning": [
+        "cond ? a : b — выбор между a и b",
+        "cond && a || b — логическое ИЛИ",
+        "cond -> a : b — стрелочный синтаксис",
+        "cond :: a :: b — двойной двоеточие"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "тернарный"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "Тернарный оператор: если cond истинно, результат a, иначе b. Аналог if-else в выражении."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-04",
+      "kind": "select",
+      "title": "Вложенные if",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое вложенный if?",
+      "optionsLearning": [
+        "if внутри другого if",
+        "if с несколькими условиями",
+        "if без else",
+        "if в цикле"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "вложенные"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "if (a) { if (b) { } } — проверка b только если a истинно. Избегайте глубокой вложенности."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-05",
+      "kind": "select",
+      "title": "Логические операторы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие логические операторы есть в C++?",
+      "optionsLearning": [
+        "&& (И), || (ИЛИ), ! (НЕ)",
+        "&, |, ~ (побитовые)",
+        "+, -, *, / (арифметика)",
+        "==, !=, <, > (сравнение)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "логические"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "&& — оба истинны, || — хотя бы один истинен, ! — инверсия. Короткое замыкание: если && первый false, второй не вычисляется."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-06",
+      "kind": "select",
+      "title": "Сравнение строк",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как сравнить std::string?",
+      "optionsLearning": [
+        "str1 == str2 (operator==)",
+        "str1 == str2 (strcmp)",
+        "str1.compare(str2) == 0 только",
+        "strcmp(str1, str2)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "сравнение"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "std::string перегружает operator== для сравнения содержимого. strcmp работает с char*."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-07",
+      "kind": "select",
+      "title": "Сравнение float",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно сравнить float?",
+      "optionsLearning": [
+        "fabs(a - b) < epsilon",
+        "a == b напрямую",
+        "(int)a == (int)b",
+        "a.equals(b)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "сравнение"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "Float неточны! Сравнивайте с допуском: fabs(a-b) < 1e-9. Прямое == может дать false из-за погрешности."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-08",
+      "kind": "select",
+      "title": "Dangling else проблема",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое dangling else?",
+      "optionsLearning": [
+        "Неоднозначность if-else без {}",
+        "Лишний else в коде",
+        "Else без if",
+        "Пустой else блок"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "dangling"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "if (a) if (b) foo(); else bar(); — какой if принадлежит else? Используйте {} для ясности."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-09",
+      "kind": "select",
+      "title": "Switch-case конструкция",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать switch?",
+      "optionsLearning": [
+        "Множественный выбор по константе",
+        "Условие с float",
+        "Сравнение строк",
+        "Вложенные условия"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "switch-case"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "switch (int_var) { case 1: ...; break; } — эффективнее цепочки if-else для констант."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-10",
+      "kind": "select",
+      "title": "Break в switch",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем нужен break в case?",
+      "optionsLearning": [
+        "Выход из switch, иначе fall-through",
+        "Пропуск текущего case",
+        "Завершение программы",
+        "Переход к следующему case"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "break"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "Без break — fall-through: выполнение продолжается в следующий case. Иногда полезно, но опасно."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-11",
+      "kind": "select",
+      "title": "Default в switch",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает default?",
+      "optionsLearning": [
+        "Действие по умолчанию, если нет совпадений",
+        "Обязательный case",
+        "Первый case",
+        "Последний case"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "default"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "default выполняется, ни один case не совпал. Хорошая практика — всегда включать default."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-12",
+      "kind": "select",
+      "title": "Switch по строкам",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли switch по std::string?",
+      "optionsLearning": [
+        "Нет, только целочисленные типы и enum",
+        "Да, напрямую",
+        "Да, через hash()",
+        "Да, в C++20"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "switch"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "switch требует compile-time константу. Строки — runtime значения. Используйте if-else для строк."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-13",
+      "kind": "select",
+      "title": "Bool как условие",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое truthy/falsy в C++?",
+      "optionsLearning": [
+        "0/false = false, !=0/true = true",
+        "Только true/false",
+        "Строки всегда true",
+        "Указатели всегда false"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "bool"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "C++: 0 → false, любое другое число → true. nullptr → false, любой другой указатель → true."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-14",
+      "kind": "select",
+      "title": "Short-circuit evaluation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое short-circuit?",
+      "optionsLearning": [
+        "Второй operand не вычисляется, если результат определён первым",
+        "Вычисляются оба operand'a",
+        "Операторы выполняются параллельно",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "short-circuit"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "a && b: если a false, b не вычисляется. a || b: если a true, b не вычисляется. Важно для защиты от null."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-15",
+      "kind": "select",
+      "title": "Null pointer check",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно проверить указатель?",
+      "optionsLearning": [
+        "if (ptr) { } или if (ptr != nullptr)",
+        "if (ptr == 0) только",
+        "if (*ptr)",
+        "ptr->valid()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "null"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "nullptr — стандартный null в C++11. if (ptr) проверяет, не равен ли ptr nullptr."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-16",
+      "kind": "select",
+      "title": "Nested ternary",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое nested ternary?",
+      "optionsLearning": [
+        "Тернарный оператор внутри другого тернарного",
+        "Три тернарных оператора",
+        "Тернарный с switch",
+        "Тернарный без else"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "nested"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "a ? (b ? x : y) : z — вложенный тернарный. Избегайте: код становится нечитаемым."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-17",
+      "kind": "select",
+      "title": "If constexpr (C++17)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем нужен if constexpr?",
+      "optionsLearning": [
+        "Условие на этапе компиляции, убирает мёртвый код",
+        "Обычный if с const",
+        "Проверка во время выполнения",
+        "Альтернатива switch"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "if"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "if constexpr (condition) — condition должна быть известна при компиляции. Убирает ветку из бинарника."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-18",
+      "kind": "select",
+      "title": "Pattern matching (C++23)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что добавляет C++23 в условия?",
+      "optionsLearning": [
+        "std::match_case для pattern matching",
+        "Новый оператор switch",
+        "Упрощённый синтаксис if",
+        "Автоматическое сравнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "pattern"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "C++23 вводит std::switch и std::match_case для pattern matching, аналогично Rust/Swift."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-19",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой принцип хорошего кода с условиями?",
+      "optionsLearning": [
+        "Guard clauses (ранний return)",
+        "Глубокая вложенность if",
+        "Вложенные тернарные операторы",
+        "Сравнение с true/false"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "best"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "Guard clause: if (!valid) return; — уменьшает вложенность. Избегайте if (x == true), пишите if (x)."
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-20",
+      "kind": "select",
+      "title": "Common mistakes",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Частая ошибка с присваиванием в условии?",
+      "optionsLearning": [
+        "if (x = 5) вместо if (x == 5)",
+        "if (x === 5)",
+        "if x == 5",
+        "if (x != 5)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "common"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario",
+      "explanation": "if (x = 5) присваивает 5 и условие всегда true! Компилятор с -Wall предупреждает. Используйте const: if (5 == x)."
+    }
+  ],
+  "title": "Условные операторы if-else — Basics"
+}

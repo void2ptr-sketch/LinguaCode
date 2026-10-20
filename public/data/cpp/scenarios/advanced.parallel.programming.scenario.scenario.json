@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.parallel.programming.scenario",
+      "title": "C++ — std::async",
+      "description": "Сценарий: std::async — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-parallel-programming",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.859137.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.859139.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.parallel.programming.card-01",
+          "advanced.parallel.programming.card-02",
+          "advanced.parallel.programming.card-03",
+          "advanced.parallel.programming.card-04",
+          "advanced.parallel.programming.card-05"
+        ]
+      }
+    }
+  ]
+}

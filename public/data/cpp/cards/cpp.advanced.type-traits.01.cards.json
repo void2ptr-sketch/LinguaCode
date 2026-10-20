@@ -1,0 +1,636 @@
+{
+  "scenarioId": "cpp.advanced.type-traits.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-01",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Что такое type traits?",
+      "optionsLearning": [
+        "Шаблонные мета-свойства типов",
+        "Функции вывода",
+        "Макросы",
+        "Переменные"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::is_* проверяют свойства типов."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-02",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Как проверить, что тип — целочисленный?",
+      "optionsLearning": [
+        "std::is_integral<T>::value",
+        "T.is_int()",
+        "typeid == int",
+        "sizeof < 4"
+      ],
+      "correctIndex": 0,
+      "explanation": "is_integral для char/int/long и т.д."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Type Traits и SFINAE — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <type_traits>\nint main() { std::cout << std::is_integral<int>::value << std::is_integral<double>::value; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "01",
+        "11",
+        "00"
+      ],
+      "correctIndex": 0,
+      "explanation": "int — да (1), double — нет (0)."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-04",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++17"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Что означает _v суффикс (is_integral_v)?",
+      "optionsLearning": [
+        "Короткая переменная-шаблон C++17",
+        "Версию",
+        "void",
+        "константу"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::is_integral_v<T> — сокращение ::value."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-05",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Что такое is_same?",
+      "optionsLearning": [
+        "Проверка совпадения двух типов",
+        "Сравнение строк",
+        "Равенство чисел",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::is_same<T, U>::value."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Type Traits и SFINAE — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <type_traits>\nint main() { std::cout << std::is_same_v<int, int> << std::is_same_v<int, long>; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "01",
+        "11",
+        "00"
+      ],
+      "correctIndex": 0,
+      "explanation": "int==int (1), int!=long (0)."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-07",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Что такое remove_reference?",
+      "optionsLearning": [
+        "Убирает & и && у типа",
+        "Удаляет переменную",
+        "Освобождает",
+        "Ссылку сбрасывает"
+      ],
+      "correctIndex": 0,
+      "explanation": "int& → int."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-08",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Что делает decay?",
+      "optionsLearning": [
+        "Преобразует к «чистому» типу (arrays, refs)",
+        "Уничтожает",
+        "Копирует",
+        "Сортирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "decay_t<int[3]> → int*."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Type Traits и SFINAE — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <type_traits>\nint main() { std::cout << std::is_const_v<const int> << std::is_const_v<int>; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "01",
+        "11",
+        "00"
+      ],
+      "correctIndex": 0,
+      "explanation": "const int — const (1), int — нет."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-10",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Что такое SFINAE?",
+      "optionsLearning": [
+        "Неудача подстановки не ошибка — продолжаем искать перегрузки",
+        "Ошибка",
+        "Сборка",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Substitution Failure Is Not An Error."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-11",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Как применяют enable_if?",
+      "optionsLearning": [
+        "Условное включение перегрузок",
+        "Автоматически",
+        "Выключение оптимизаций",
+        "Спецификатор"
+      ],
+      "correctIndex": 0,
+      "explanation": "enable_if<cond, T>::type — инструмент SFINAE."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Type Traits и SFINAE — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "question": "Какая перегрузка вызовится для int?",
+      "code": {
+        "code": "template <typename T> std::enable_if_t<std::is_integral_v<T>, int> f(T) { return 1; }\ntemplate <typename T> std::enable_if_t<!std::is_integral_v<T>, int> f(T) { return 2; }\nf(5)",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "Обе",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "int — интегральный: первая → 1."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-13",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Что такое void_t?",
+      "optionsLearning": [
+        "Трюк проверки выразимости (detection idiom)",
+        "Пустой тип",
+        "Указатель",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "explanation": "void_t проверяет существование членов."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-14",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Что делает is_convertible?",
+      "optionsLearning": [
+        "Проверяет возможность преобразования типов",
+        "Гонку",
+        "Конвертер",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::is_convertible<A, B>::value."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Type Traits и SFINAE — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <type_traits>\nint main() { std::cout << std::is_convertible_v<int, double>; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "int → double допустимо: true."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-16",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Что такое constexpr-метафункции?",
+      "optionsLearning": [
+        "Вычисления над типами в compile-time",
+        "Функции runtime",
+        "Макросы",
+        "Циклы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Типовые трансформации выполняются компилятором."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-17",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Как добавить свою trait?",
+      "optionsLearning": [
+        "Шаблон-структура с ::value",
+        "Магически",
+        "class",
+        "typedef"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пользовательские трейты наследуют std::integral_constant."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "Type Traits и SFINAE — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "strings"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <type_traits>\nint main() { std::cout << std::is_class_v<std::string>; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "10",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::string — класс: true."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-19",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates",
+          "c++20"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Чем заменили SFINAE в C++20?",
+      "optionsLearning": [
+        "Концептами (более читабельно)",
+        "Ничем",
+        "Макросами",
+        "Enum"
+      ],
+      "correctIndex": 0,
+      "explanation": "Концепты — современная альтернатива."
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario.card-20",
+      "kind": "select",
+      "title": "Type Traits и SFINAE — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "templates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.type-traits.01.scenario",
+      "promptKnown": "Где применяют type traits в реальности?",
+      "optionsLearning": [
+        "Перегрузки, оптимизация, сериализация, обобщения",
+        "Только тесты",
+        "Только логи",
+        "Нигде"
+      ],
+      "correctIndex": 0,
+      "explanation": "Типы знаний превращаются в код."
+    }
+  ],
+  "title": "Advanced — Advanced C++"
+}

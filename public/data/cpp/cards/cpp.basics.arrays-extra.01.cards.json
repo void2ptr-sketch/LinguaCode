@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-01",
+      "kind": "select",
+      "title": "C-array создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать C-массив?",
+      "optionsLearning": [
+        "int arr[5] = {1, 2, 3, 4, 5};",
+        "int[] arr = new int[5];",
+        "Array<int> arr;",
+        "List<int> arr;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "1d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-02",
+      "kind": "select",
+      "title": "Array initialization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как инициализировать массив?",
+      "optionsLearning": [
+        "int arr[5] = {0};",
+        "int arr[5]; только",
+        "int arr[];",
+        "int arr = {0};"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "1d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-03",
+      "kind": "select",
+      "title": "Array size",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить размер массива?",
+      "optionsLearning": [
+        "sizeof(arr) / sizeof(arr[0])",
+        "arr.size()",
+        "arr.length",
+        "arr.count()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "1d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-04",
+      "kind": "select",
+      "title": "Array vs vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать array вместо vector?",
+      "optionsLearning": [
+        "Фиксированный размер, производительность",
+        "Всегда",
+        "Никогда",
+        "Только для строк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "1d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Рекомендация по массивам?",
+      "optionsLearning": [
+        "std::array для фиксированного, std::vector для динамического",
+        "Только C-массивы",
+        "Только vector",
+        "Никакие"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "1d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-06",
+      "kind": "select",
+      "title": "2D array syntax",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как объявить 2D массив?",
+      "optionsLearning": [
+        "int arr[3][4];",
+        "int arr[3,4];",
+        "int[][] arr;",
+        "Array<int> arr;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "2d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-07",
+      "kind": "select",
+      "title": "2D vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать 2D vector?",
+      "optionsLearning": [
+        "vector<vector<int>> v(3, vector<int>(4));",
+        "int arr[3][4] только",
+        "Нельзя",
+        "Array<int> arr;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "2d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-08",
+      "kind": "select",
+      "title": "Access 2D element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить элемент 2D?",
+      "optionsLearning": [
+        "arr[i][j]",
+        "arr[i, j]",
+        "arr.get(i, j)",
+        "arr.at(i, j)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "2d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-09",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как инициализировать 2D array?",
+      "optionsLearning": [
+        "int arr[3][4] = {}; // zero-init",
+        "int arr[3][4]; только",
+        "Нельзя инициализировать",
+        "int arr = {};"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "2d"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-10",
+      "kind": "select",
+      "title": "Array to vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать array в vector?",
+      "optionsLearning": [
+        "std::vector<int> v(arr, arr+n)",
+        "v = arr только",
+        "Нельзя",
+        "Кастование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-11",
+      "kind": "select",
+      "title": "Vector to array",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить C-array из vector?",
+      "optionsLearning": [
+        "v.data() или &v[0]",
+        "v.c_array()",
+        "v.to_array()",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-12",
+      "kind": "select",
+      "title": "Multi-dimensional",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать 2D массив?",
+      "optionsLearning": [
+        "std::vector<std::vector<int>> v(n, std::vector<int>(m));",
+        "int arr[5][5] только",
+        "int[][] arr;",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-13",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать vector вместо array?",
+      "optionsLearning": [
+        "Динамический размер, безопасность",
+        "Всегда array",
+        "Никогда",
+        "Только для small data"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-14",
+      "kind": "select",
+      "title": "Создание vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать std::vector?",
+      "optionsLearning": [
+        "std::vector<int> v;",
+        "int[] v;",
+        "vector<int> v = new vector();",
+        "List<int> v;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-15",
+      "kind": "select",
+      "title": "Add element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить элемент?",
+      "optionsLearning": [
+        "v.push_back(x)",
+        "v.add(x)",
+        "v.insert(x)",
+        "v.append(x)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-16",
+      "kind": "select",
+      "title": "Access element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить элемент?",
+      "optionsLearning": [
+        "v[i] или v.at(i)",
+        "v.get(i)",
+        "v[i] только",
+        "v.find(i)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-17",
+      "kind": "select",
+      "title": "Size and capacity",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем size отличается от capacity?",
+      "optionsLearning": [
+        "size() — элементы, capacity() — выделенная память",
+        "Одно и то же",
+        "capacity < size",
+        "Нет различий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-18",
+      "kind": "select",
+      "title": "Resize vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как изменить размер?",
+      "optionsLearning": [
+        "v.resize(n)",
+        "v.setSize(n)",
+        "v.changeSize(n)",
+        "v.length(n)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-19",
+      "kind": "select",
+      "title": "Iterate vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как перебрать vector?",
+      "optionsLearning": [
+        "for (const auto& x : v)",
+        "for (int i = 0; i < v.size(); i++) только",
+        "while loop",
+        "foreach только"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-extra.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать vector?",
+      "optionsLearning": [
+        "reserve(n) перед добавлением",
+        "Использовать array всегда",
+        "Никак",
+        "Удалять элементы часто"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-extra.01.scenario"
+    }
+  ]
+}

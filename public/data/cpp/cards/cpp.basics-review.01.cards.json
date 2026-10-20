@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.basics-review.01.scenario.card-01",
+      "kind": "select",
+      "title": "Cache locality",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое cache locality?",
+      "optionsLearning": [
+        "Эффективное использование кэша процессора",
+        "Тип памяти",
+        "Операция ввода",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-02",
+      "kind": "select",
+      "title": "Profiling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как профилировать программу?",
+      "optionsLearning": [
+        "gprof, perf, valgrind",
+        "Нельзя профилировать",
+        "Только вручную",
+        "print(time) только"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-03",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать код?",
+      "optionsLearning": [
+        "Профилировать → найти bottleneck → оптимизировать",
+        "Оптимизировать всё",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-04",
+      "kind": "select",
+      "title": "Special float values",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое NaN?",
+      "optionsLearning": [
+        "Not a Number (неопределённое значение)",
+        "Ноль",
+        "Бесконечность",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "floating"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать float?",
+      "optionsLearning": [
+        "Когда важна память (графика)",
+        "Всегда",
+        "Никогда",
+        "Только для целых"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "floating"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-06",
+      "kind": "select",
+      "title": "Find last",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти последнее вхождение?",
+      "optionsLearning": [
+        "s.rfind(\"sub\")",
+        "s.find_last(\"sub\")",
+        "s.last(\"sub\")",
+        "s.reverse_find(\"sub\")"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-07",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как эффективно работать со строками?",
+      "optionsLearning": [
+        "Использовать += вместо多次 concatenation",
+        "char* всегда",
+        "std::string медленно",
+        "Никаких практик"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "operations"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-08",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать ошибки файлов?",
+      "optionsLearning": [
+        "Проверять in.good() после операций",
+        "Игнорировать",
+        "Только try-catch",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-09",
+      "kind": "select",
+      "title": "HTTP basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое HTTP?",
+      "optionsLearning": [
+        "Протокол для web (GET, POST)",
+        "Файловая система",
+        "База данных",
+        "Операционная система"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать сетевые ошибки?",
+      "optionsLearning": [
+        "try-catch для socket operations",
+        "Игнорировать",
+        "Только logging",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-11",
+      "kind": "select",
+      "title": "fstream классы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие классы для файловых стримов?",
+      "optionsLearning": [
+        "ifstream, ofstream, fstream",
+        "FileReader, FileWriter",
+        "InputStream, OutputStream",
+        "TextStream, BinaryStream"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-12",
+      "kind": "select",
+      "title": "String streams",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем stringstream?",
+      "optionsLearning": [
+        "Форматирование строк как cout/cin",
+        "Чтение файлов",
+        "Запись в файлы",
+        "Сравнение строк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-13",
+      "kind": "select",
+      "title": "Parse from string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как распарсить строку?",
+      "optionsLearning": [
+        "std::istringstream(s) >> var",
+        "s.parse(var)",
+        "var = s.parseInt()",
+        "sscanf(s, var)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-14",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать stringstream?",
+      "optionsLearning": [
+        "Для форматирования чисел в строки",
+        "Всегда вместо printf",
+        "Никогда",
+        "Только для файлов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-15",
+      "kind": "select",
+      "title": "Process creation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать процесс?",
+      "optionsLearning": [
+        "fork() (Unix) или CreateProcess() (Windows)",
+        "new Process()",
+        "spawn(process)",
+        "thread.create()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-16",
+      "kind": "select",
+      "title": "Signals",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое сигналы?",
+      "optionsLearning": [
+        "Уведомления ОС процессу (SIGINT, SIGTERM)",
+        "Ошибки компиляции",
+        "Типы данных",
+        "Функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-17",
+      "kind": "select",
+      "title": "File descriptors",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое file descriptor?",
+      "optionsLearning": [
+        "Целочисленный идентификатор файла в ОС",
+        "Указатель на файл",
+        "Тип данных",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-18",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как работать с ресурсами ОС?",
+      "optionsLearning": [
+        "RAII для автоматического освобождения",
+        "Никогда не освобождать",
+        "Только вручную",
+        "Игнорировать"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-19",
+      "kind": "select",
+      "title": "Class template",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Синтаксис class template?",
+      "optionsLearning": [
+        "template<typename T> class Box { T val; };",
+        "class<T> Box {}",
+        "generic Box<T> {}",
+        "Box<T> class {}"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    },
+    {
+      "id": "cpp.basics-review.01.scenario.card-20",
+      "kind": "select",
+      "title": "Template instantiation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое instantiation?",
+      "optionsLearning": [
+        "Создание конкретной версии шаблона (int, double)",
+        "Удаление шаблона",
+        "Компиляция",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-mixed-topics",
+      "scenarioId": "cpp.basics-review.01.scenario"
+    }
+  ]
+}

@@ -38,6 +38,9 @@ export class SingleCardPlayStore {
   /** Nonce for forcing host component re-render. */
   readonly hostKey = signal(0);
 
+  /** Nonce for deterministic option shuffling. */
+  readonly shuffleNonce = signal(0);
+
   /** Index of the selected option (for multiple-choice cards). */
   readonly selectedIndex = signal<number | null>(null);
 
@@ -46,6 +49,9 @@ export class SingleCardPlayStore {
 
   /** Whether the user has completed the memory board. */
   readonly memoryComplete = signal(false);
+
+  /** Self-reported result for flip cards: `true` — knew, `false` — did not know, `null` — unknown. */
+  readonly flipKnown = signal<boolean | null>(null);
 
   /** Whether the user has submitted a draw answer. */
   readonly drawSubmitted = signal(false);
@@ -100,6 +106,7 @@ export class SingleCardPlayStore {
     this.error.set(null);
     this.resetInteraction();
     this.bumpHostKey();
+    this.shuffleNonce.set(Math.floor(Math.random() * 1_000_000));
   }
 
   /**
@@ -139,6 +146,19 @@ export class SingleCardPlayStore {
     }
 
     this.memoryComplete.set(value);
+  }
+
+  /**
+   * Sets the self-reported result for flip cards.
+   *
+   * @param value - Whether the user knew the back side.
+   */
+  setFlipKnown(value: boolean): void {
+    if (this.feedback() !== null) {
+      return;
+    }
+
+    this.flipKnown.set(value);
   }
 
   /**
@@ -200,6 +220,7 @@ export class SingleCardPlayStore {
       this.answerState(),
       this.sessionDirection(),
       (character) => this.hanziData.getCachedModel(character),
+      this.shuffleNonce(),
     );
     if (isCorrect === null) {
       return null;
@@ -242,6 +263,7 @@ export class SingleCardPlayStore {
       memoryComplete: this.memoryComplete(),
       drawSubmitted: this.drawSubmitted(),
       drawAnswer: this.drawAnswer(),
+      flipKnown: this.flipKnown(),
       learningProficiencyLevel: this.userStore.learningProficiencyLevel(),
     };
   }
@@ -250,6 +272,7 @@ export class SingleCardPlayStore {
     this.selectedIndex.set(null);
     this.answerText.set('');
     this.memoryComplete.set(false);
+    this.flipKnown.set(null);
     this.drawSubmitted.set(false);
     this.drawAnswer.set(null);
     this.feedback.set(null);

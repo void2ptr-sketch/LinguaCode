@@ -1,0 +1,49 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.basics.performance.07.scenario",
+      "title": "C++ — Что такое C++?",
+      "description": "Сценарий: Что такое C++? — карточки по теме C++",
+      "order": 2,
+      "lessonId": "lesson-cpp-basics-performance-1",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.870452.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.870453.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.basics.performance.07.scenario.card-01",
+          "cpp.basics.performance.07.scenario.card-02",
+          "cpp.basics.performance.07.scenario.card-03",
+          "cpp.basics.performance.07.scenario.card-04",
+          "cpp.basics.performance.07.scenario.card-05",
+          "cpp.basics.performance.07.scenario.card-06",
+          "cpp.basics.performance.07.scenario.card-07",
+          "cpp.basics.performance.07.scenario.card-08",
+          "cpp.basics.performance.07.scenario.card-09",
+          "cpp.basics.performance.07.scenario.card-10",
+          "cpp.basics.performance.07.scenario.card-11",
+          "cpp.basics.performance.07.scenario.card-12",
+          "cpp.basics.performance.07.scenario.card-13",
+          "cpp.basics.performance.07.scenario.card-14",
+          "cpp.basics.performance.07.scenario.card-15",
+          "cpp.basics.performance.07.scenario.card-16",
+          "cpp.basics.performance.07.scenario.card-17",
+          "cpp.basics.performance.07.scenario.card-18",
+          "cpp.basics.performance.07.scenario.card-19",
+          "cpp.basics.performance.07.scenario.card-20"
+        ]
+      }
+    }
+  ]
+}

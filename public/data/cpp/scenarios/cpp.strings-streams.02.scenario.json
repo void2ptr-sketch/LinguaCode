@@ -1,0 +1,49 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.strings-streams.02.scenario",
+      "title": "C++ — Что такое C++?",
+      "description": "Сценарий: Что такое C++? — карточки по теме C++",
+      "order": 2,
+      "lessonId": "lesson-cpp-basics-strings",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.881371.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.881373.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.strings-streams.02.scenario.card-01",
+          "cpp.strings-streams.02.scenario.card-02",
+          "cpp.strings-streams.02.scenario.card-03",
+          "cpp.strings-streams.02.scenario.card-04",
+          "cpp.strings-streams.02.scenario.card-05",
+          "cpp.strings-streams.02.scenario.card-06",
+          "cpp.strings-streams.02.scenario.card-07",
+          "cpp.strings-streams.02.scenario.card-08",
+          "cpp.strings-streams.02.scenario.card-09",
+          "cpp.strings-streams.02.scenario.card-10",
+          "cpp.strings-streams.02.scenario.card-11",
+          "cpp.strings-streams.02.scenario.card-12",
+          "cpp.strings-streams.02.scenario.card-13",
+          "cpp.strings-streams.02.scenario.card-14",
+          "cpp.strings-streams.02.scenario.card-15",
+          "cpp.strings-streams.02.scenario.card-16",
+          "cpp.strings-streams.02.scenario.card-17",
+          "cpp.strings-streams.02.scenario.card-18",
+          "cpp.strings-streams.02.scenario.card-19",
+          "cpp.strings-streams.02.scenario.card-20"
+        ]
+      }
+    }
+  ]
+}

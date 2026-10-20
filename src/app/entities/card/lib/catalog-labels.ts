@@ -23,6 +23,9 @@ export const CARD_KIND_LABELS: Record<CardKind, string> = {
   draw: 'Рисование',
   tone: 'Тон',
   reading: 'Чтение (полифония)',
+  flip: 'Переворот',
+  cloze: 'Пропуск в тексте',
+  'code-trace': 'Код: что выведет?',
 };
 
 export const CARD_KINDS: readonly CardKind[] = [

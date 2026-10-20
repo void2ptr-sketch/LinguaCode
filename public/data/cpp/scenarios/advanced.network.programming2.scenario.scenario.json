@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.network.programming2.scenario",
+      "title": "C++ — HTTP/2 vs HTTP/1.1",
+      "description": "Сценарий: HTTP/2 vs HTTP/1.1 — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-network-programming2",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.858966.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.858968.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.network.programming2.card-01",
+          "advanced.network.programming2.card-02",
+          "advanced.network.programming2.card-03",
+          "advanced.network.programming2.card-04",
+          "advanced.network.programming2.card-05"
+        ]
+      }
+    }
+  ]
+}

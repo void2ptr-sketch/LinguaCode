@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.multithreading.async.scenario",
+      "title": "C++ — Thread создание",
+      "description": "Сценарий: Thread создание — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-multithreading-async",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.862255.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.862257.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.multithreading.async.card-01",
+          "basics.multithreading.async.card-02",
+          "basics.multithreading.async.card-03",
+          "basics.multithreading.async.card-04",
+          "basics.multithreading.async.card-05"
+        ]
+      }
+    }
+  ]
+}
