@@ -16,6 +16,50 @@
 | Рисование         | `draw`        | input        | Рисование иероглифа пошагово                          |
 | Тон               | `tone`        | choice       | Выбор правильного тона по слогу                       |
 | Чтение            | `reading`     | choice       | Выбор правильного варианта чтения (полифония)         |
+| Переворот         | `flip`        | pairs        | Двусторонняя карточка «знаю / не знаю» (база SRS)     |
+| Пропуск в тексте  | `cloze`       | choice       | Заполнение пропуска `___` выбором или вводом          |
+| Код: что выведет? | `code-trace`  | choice       | Выбор вывода программы по фрагменту кода              |
+
+---
+
+## Новые виды: поля и механика (Фаза 1)
+
+### `flip` — переворот
+
+| Поле          | Тип               | Редактор      | Примечание                        |
+| ------------- | ----------------- | ------------- | --------------------------------- |
+| `front`       | `string`          | mat-input     | Лицевая сторона (известный язык)  |
+| `back`        | `string`          | mat-input     | Обратная сторона (изучаемый язык) |
+| `frontLexeme` | `PhoneticLexeme?` | lexeme-fields | Фонетика лицевой стороны          |
+| `backLexeme`  | `PhoneticLexeme?` | lexeme-fields | Фонетика обратной стороны         |
+| `audioUrl`    | `string?`         | mat-input     | Аудио озвучки обратной стороны    |
+| Проверка      | самопроверка      | —             | `flipKnown` → `LearningResult`    |
+
+### `cloze` — пропуск
+
+| Поле              | Тип                  | Редактор              | Примечание                             |
+| ----------------- | -------------------- | --------------------- | -------------------------------------- |
+| `promptKnown`     | `string`             | mat-textarea (2 rows) | Текст с маской пропуска `___`          |
+| `options`         | `readonly string[]?` | mat-options-editor    | Варианты выбора (режим выбора)         |
+| `correctIndex`    | `number?`            | mat-radio-group       | Индекс правильного варианта            |
+| `correctAnswer`   | `string`             | mat-input             | Правильный ответ (оба режима)          |
+| `acceptedAnswers` | `readonly string[]?` | mat-input × N         | Допустимые варианты написания (ввод)   |
+| `promptLexeme`    | `PhoneticLexeme?`    | lexeme-fields         | Фонетика подсказки                     |
+| Проверка          | выбор == ввод        | —                     | Ввод — нечёткое сравнение (IPA/Pinyin) |
+
+### `code-trace` — что выведет код
+
+| Поле            | Тип                 | Редактор                                      | Примечание                     |
+| --------------- | ------------------- | --------------------------------------------- | ------------------------------ |
+| `caption`       | `string?`           | mat-textarea (2 rows)                         | Подпись (тема задания)         |
+| `question`      | `string?`           | mat-textarea (2 rows)                         | Вопрос («Что выведет код?»)    |
+| `code`          | `CodeBlock`         | mat-textarea (8 rows) + mat-select (language) | Фрагмент кода (code-highlight) |
+| `outputOptions` | `readonly string[]` | mat-options-editor                            | Варианты вывода                |
+| `correctIndex`  | `number`            | mat-radio-group                               | Индекс правильного вывода      |
+| Проверка        | по индексу          | —                                             | Как у `code-select`            |
+
+Детали поведения и примеры данных: [`docs/CARDS/card-flip.md`](../CARDS/card-flip.md),
+[`docs/CARDS/card-cloze.md`](../CARDS/card-cloze.md), [`docs/CARDS/card-code-trace.md`](../CARDS/card-code-trace.md).
 
 ---
 
