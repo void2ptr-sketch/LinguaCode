@@ -133,9 +133,15 @@ export function normalizeStoredCourseCatalog(
   catalog: Partial<CoursesSeedFixture>,
 ): CourseCatalogState {
   // Migrate legacy format: courses with lessonIds → courses with programs
-  const { courses, programs: existingPrograms, lessons, ...rest } = catalog as any;
-  const migratedPrograms: any[] = [];
-  const migratedLessons: any[] = [];
+  // Deep clone to avoid mutating the original fixture objects across multiple calls
+  const cloned = JSON.parse(JSON.stringify(catalog));
+  const { courses, programs: existingPrograms, lessons } = cloned as {
+    courses?: unknown[];
+    programs?: unknown[];
+    lessons?: unknown[];
+  };
+  const migratedPrograms: Record<string, unknown>[] = [];
+  const migratedLessons: Record<string, unknown>[] = [];
 
   if (Array.isArray(courses)) {
     for (const course of courses) {
@@ -145,25 +151,27 @@ export function normalizeStoredCourseCatalog(
       }
 
       // Check if this is a legacy course (has lessonIds instead of programIds)
-      if (Array.isArray((course as any).lessonIds) && (!Array.isArray((course as any).programIds) || (course as any).programIds.length === 0)) {
+      const c = course as Record<string, unknown>;
+      if (Array.isArray(c['lessonIds']) && (!Array.isArray(c['programIds']) || (c['programIds'] as string[]).length === 0)) {
         // Create a default program for this course
-        const programId = `program-${course.id}`;
+        const programId = `program-${c['id'] as string}`;
         migratedPrograms.push({
           id: programId,
-          courseId: course.id,
-          title: course.title,
-          description: course.description ?? '',
-          lessonIds: course.lessonIds,
+          courseId: c['id'],
+          title: c['title'],
+          description: (c['description'] as string) ?? '',
+          lessonIds: c['lessonIds'],
           order: 0,
-          updatedAt: course.updatedAt ?? new Date().toISOString(),
+          updatedAt: (c['updatedAt'] as string) ?? new Date().toISOString(),
         });
 
         // Update lessons to reference the program instead of the course
         if (Array.isArray(lessons)) {
           for (const lesson of lessons) {
-            if (lesson.courseId === course.id) {
+            const l = lesson as Record<string, unknown>;
+            if (l['courseId'] === c['id']) {
               migratedLessons.push({
-                ...lesson,
+                ...l,
                 programId,
                 courseId: undefined, // Remove legacy field
               });
@@ -172,8 +180,8 @@ export function normalizeStoredCourseCatalog(
         }
 
         // Update course to use programIds
-        course.programIds = [programId];
-        delete course.lessonIds;
+        c['programIds'] = [programId];
+        delete c['lessonIds'];
       }
     }
   }
@@ -186,13 +194,13 @@ export function normalizeStoredCourseCatalog(
       ...(Array.isArray(existingPrograms)
         ? existingPrograms.filter(isProgram).map((program) => normalizeStoredProgram(program))
         : []),
-      ...migratedPrograms.map((p) => normalizeStoredProgram(p)),
+      ...migratedPrograms.map((p) => normalizeStoredProgram(p as Program)),
     ],
     lessons: [
       ...(Array.isArray(lessons)
-        ? lessons.filter((l) => !migratedLessons.find((ml) => ml.id === l.id)).filter(isLesson).map((lesson) => normalizeStoredLesson(lesson))
+        ? lessons.filter((l) => !migratedLessons.find((ml) => ml['id'] === (l as Lesson).id)).filter(isLesson).map((lesson) => normalizeStoredLesson(lesson as Lesson))
         : []),
-      ...migratedLessons.map((l) => normalizeStoredLesson(l)),
+      ...migratedLessons.map((l) => normalizeStoredLesson(l as Lesson)),
     ],
   };
 }

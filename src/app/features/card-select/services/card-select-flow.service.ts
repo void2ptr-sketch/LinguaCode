@@ -5,7 +5,6 @@ import type { CourseWithPrograms } from '../../../entities/course/model';
 import type { LessonPickPayload } from '../../../entities/lesson/ui/lesson-picker';
 import { CardSearchService } from '../../../entities/card';
 import {
-  collectCourseScenarioIds,
   filterScenarioIdsByDifficulty,
   buildScenarioDifficultyMap,
   resolveCoursePracticeSettings,

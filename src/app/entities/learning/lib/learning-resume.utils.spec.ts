@@ -143,19 +143,20 @@ describe('learning-resume.utils', () => {
     });
 
     it('should return no-program when course has no lessons', () => {
-      const emptyCourse = {
-        ...getTestDemoCourseWithLessons(),
-        programs: [],
+      const demoCourse = getTestDemoCourseWithLessons();
+      const emptyProgram: import('../../program/model/program.types').ProgramWithLessons = {
+        ...demoCourse.programs[0],
+        lessons: [],
       };
       const target = resolveLearningResumeTarget({
-        course: emptyCourse,
-        program: undefined as never,
+        course: demoCourse,
+        program: emptyProgram,
         pairResults: [],
         hasScenarioResult: () => false,
       });
 
       expect(target?.kind).toBe('no-program');
-      expect(target?.courseId).toBe(emptyCourse.id);
+      expect(target?.courseId).toBe(demoCourse.id);
     });
 
     it('should return continue when has results but not all scenarios done', () => {

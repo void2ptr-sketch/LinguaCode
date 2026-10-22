@@ -453,10 +453,21 @@ describe('journey-nodes.utils', () => {
             courseId: 'course-radicals',
             title: 'Урок 1',
             description: 'Описание',
-            lessonIds: ['scenario-missing'],
+            lessonIds: ['lesson-placeholder'],
             order: 1,
             updatedAt: '2026-01-01T00:00:00.000Z',
-            lessons: [],
+            lessons: [
+              {
+                id: 'lesson-placeholder',
+                programId: 'lesson-1',
+                title: 'Урок 1',
+                description: 'Описание',
+                scenarioIds: ['scenario-missing'],
+                prerequisiteLessonIds: [],
+                order: 1,
+                updatedAt: '2026-01-01T00:00:00.000Z',
+              },
+            ],
           },
         ],
       };

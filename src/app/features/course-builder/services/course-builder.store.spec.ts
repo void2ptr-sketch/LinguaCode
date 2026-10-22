@@ -241,7 +241,7 @@ describe('CourseBuilderStore', () => {
     });
 
     expect(result).toBe(false);
-    expect(store.error()).toBe('Укажите название курса');
+    expect(store.error()).toBe('Укажите название каталога');
   });
 
   it('should return false when no lessons are provided', async () => {
@@ -254,7 +254,7 @@ describe('CourseBuilderStore', () => {
     });
 
     expect(result).toBe(false);
-    expect(store.error()).toBe('Добавьте хотя бы один урок');
+    expect(store.error()).toBe('Добавьте хотя бы одну программу');
   });
 
   it('should return false when lesson has no scenarios', async () => {

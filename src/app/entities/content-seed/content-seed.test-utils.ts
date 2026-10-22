@@ -120,7 +120,6 @@ export function getTestDemoCourseWithLessons(): CourseWithPrograms {
   }
 
   // Resolve programs for this course from the catalog
-  const courseProgramIds = new Set(course.programIds);
   const resolvedPrograms: import('../program/model/program.types').ProgramWithLessons[] = [];
 
   for (const program of catalog.programs) {

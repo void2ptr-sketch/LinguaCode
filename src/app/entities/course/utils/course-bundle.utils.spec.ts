@@ -266,7 +266,7 @@ describe('course-bundle.utils', () => {
 
     it('rejects bundles with missing lesson', () => {
       const bundle = makeValidBundle();
-      bundle.course.courses[0].programIds = ['program-missing'];
+      bundle.course.programs[0].lessonIds = ['lesson-missing'];
 
       const result = validateCourseBundle(bundle);
       expect(result.valid).toBe(false);

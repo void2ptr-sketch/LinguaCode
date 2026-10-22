@@ -408,7 +408,18 @@ describe('CardSelectFlowService', () => {
       const course = {
         id: 'c1',
         title: 'Test Course',
-        lessons: [{ id: 'l1', title: 'Lesson 1', scenarioIds: ['s1', 's2'] }],
+        programs: [
+          {
+            id: 'p1',
+            courseId: 'c1',
+            title: 'Program 1',
+            description: '',
+            lessonIds: ['l1'],
+            order: 0,
+            updatedAt: '2026-01-01T00:00:00.000Z',
+            lessons: [{ id: 'l1', title: 'Lesson 1', scenarioIds: ['s1', 's2'], programId: 'p1', prerequisiteLessonIds: [], order: 0, updatedAt: '2026-01-01T00:00:00.000Z' }],
+          },
+        ],
       } as unknown as CourseWithPrograms;
 
       service.selectedCourseId.set('c1');
@@ -434,7 +445,18 @@ describe('CardSelectFlowService', () => {
       const course = {
         id: 'c1',
         title: 'Test Course',
-        lessons: [{ id: 'l1', title: 'Lesson 1', scenarioIds: ['s1'] }],
+        programs: [
+          {
+            id: 'p1',
+            courseId: 'c1',
+            title: 'Program 1',
+            description: '',
+            lessonIds: ['l1'],
+            order: 0,
+            updatedAt: '2026-01-01T00:00:00.000Z',
+            lessons: [],
+          },
+        ],
       } as unknown as CourseWithPrograms;
 
       service.selectedCourseId.set('c1');

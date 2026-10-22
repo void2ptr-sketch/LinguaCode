@@ -308,6 +308,12 @@ export function migratePerlInterviewAuthoringToSeed(overlay: UserContentOverlay)
           }
         }
       }
+      // Also remove overlay lessons that reference this program directly
+      for (const [lessonId, lesson] of Object.entries(lessons)) {
+        if (isOverlayLesson(lesson) && lesson.programId === programId) {
+          delete lessons[lessonId];
+        }
+      }
     }
   }
 

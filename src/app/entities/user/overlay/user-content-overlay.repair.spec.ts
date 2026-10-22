@@ -40,7 +40,17 @@ describe('user-content-overlay.repair', () => {
           updatedAt: '2026-06-14T00:00:00.000Z',
         } satisfies Course,
       },
-      programs: {},
+      programs: {
+        'program-1': {
+          id: 'program-1',
+          courseId: 'user-course-1',
+          title: 'Program 1',
+          description: '',
+          lessonIds: ['lesson-1'],
+          order: 0,
+          updatedAt: '2026-06-14T00:00:00.000Z',
+        },
+      },
       lessons: {
         'lesson-1': {
           id: 'lesson-1',

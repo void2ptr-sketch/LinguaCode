@@ -1,6 +1,6 @@
 import { Injectable, inject, signal } from '@angular/core';
 
-import type { CourseIndexEntry, ProgramWithLessons } from '../../../course/model';
+import type { CourseIndexEntry } from '../../../course/model';
 import type { Lesson } from '../../../course/model/lesson.types';
 import { CourseSearchService } from '../../../course/search/course-search.service';
 import type { ContentLanguage } from '../../model';

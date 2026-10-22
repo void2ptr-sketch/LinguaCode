@@ -84,7 +84,6 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
   }
 
   const programs: ProgramWritePayload[] = draft.programs.map((program, pIndex) => {
-    const ownProgramKey = programDraftKey(program);
     const programId = program.id ?? program.clientId;
 
     const lessons: import('../../../entities/course/repository/course-catalog.port').LessonWritePayload[] = program.lessons.map((lesson, lIndex) => {
@@ -110,6 +109,7 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
       title: program.title,
       description: program.description,
       lessonIds: lessons.map((l) => l.id ?? ''),
+      lessons,
       order: program.order ?? pIndex,
     };
   });
