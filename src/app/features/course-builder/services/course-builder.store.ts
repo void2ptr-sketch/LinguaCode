@@ -493,9 +493,7 @@ export class CourseBuilderStore {
             ...lesson,
             title: sanitizeTitle(lesson.title),
             description: sanitizeDescription(lesson.description),
-            scenarioIds: lesson.scenarioIds
-              .map((id) => sanitizePlainText(id, 64))
-              .filter(Boolean),
+            scenarioIds: lesson.scenarioIds.map((id) => sanitizePlainText(id, 64)).filter(Boolean),
             prerequisiteLessonIds: lesson.prerequisiteLessonIds
               .map((id) => sanitizePlainText(id, 64))
               .filter(Boolean),

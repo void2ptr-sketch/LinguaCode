@@ -13,7 +13,11 @@ import {
   programDraftKey,
   serializeCourseFormDraft,
 } from './course-form-draft.utils';
-import type { CourseFormDraft, LessonFormDraft, ProgramFormDraft } from '../types/course-builder.types';
+import type {
+  CourseFormDraft,
+  LessonFormDraft,
+  ProgramFormDraft,
+} from '../types/course-builder.types';
 
 describe('course-form-draft.utils', () => {
   const defaultAuthoring: CourseAuthoring = {

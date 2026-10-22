@@ -181,7 +181,11 @@ describe('ContentSeedRepository', () => {
     it('should resolve immediately when the cache is ready', async () => {
       resetContentSeedCache();
       setScenarioSeedCache([makeScenarioFixture()]);
-      setCourseSeedCache({ courses: [makeCourseFixture()], programs: [], lessons: [makeLessonFixture()] });
+      setCourseSeedCache({
+        courses: [makeCourseFixture()],
+        programs: [],
+        lessons: [makeLessonFixture()],
+      });
       setCardSeedCache([makeCardFixture()]);
       createRepository();
 

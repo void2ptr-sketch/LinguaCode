@@ -76,7 +76,10 @@ export class CardCatalogHierarchyService {
   readonly programsLoading = signal(false);
 
   private coursesCache = new Map<string, readonly CourseOption[]>();
-  private courseProgramsCache = new Map<string, readonly import('../../../program/model/program.types').Program[]>();
+  private courseProgramsCache = new Map<
+    string,
+    readonly import('../../../program/model/program.types').Program[]
+  >();
   private programLessonsCache = new Map<string, readonly Lesson[]>();
 
   /**
@@ -121,7 +124,9 @@ export class CardCatalogHierarchyService {
    * @param courseId - The course ID.
    * @returns Array of program options.
    */
-  async loadPrograms(courseId: string): Promise<readonly import('../../../program/model/program.types').Program[]> {
+  async loadPrograms(
+    courseId: string,
+  ): Promise<readonly import('../../../program/model/program.types').Program[]> {
     const cached = this.courseProgramsCache.get(courseId);
     if (cached) {
       return cached;
@@ -131,7 +136,12 @@ export class CardCatalogHierarchyService {
 
     try {
       const course = await this.courseSearchService.getById(courseId);
-      const programs = (course as unknown as { programs: import('../../../program/model/program.types').Program[] }).programs ?? [];
+      const programs =
+        (
+          course as unknown as {
+            programs: import('../../../program/model/program.types').Program[];
+          }
+        ).programs ?? [];
       this.courseProgramsCache.set(courseId, programs);
       return programs;
     } finally {

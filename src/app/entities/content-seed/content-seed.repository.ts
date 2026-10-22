@@ -231,7 +231,11 @@ export class ContentSeedRepository {
    */
   private hydrate(snapshot: ContentSeedSnapshot): void {
     setScenarioSeedCache(snapshot.scenarios);
-    setCourseSeedCache({ courses: [...snapshot.courses], programs: [...snapshot.programs], lessons: [...snapshot.lessons] });
+    setCourseSeedCache({
+      courses: [...snapshot.courses],
+      programs: [...snapshot.programs],
+      lessons: [...snapshot.lessons],
+    });
     setCardSeedCache(snapshot.cards);
   }
 
@@ -296,7 +300,9 @@ function mergeCourseFixtures(fixtures: readonly CoursesSeedFixture[]): CourseCat
   // Normalize each fixture through normalizeStoredCourseCatalog to handle
   // legacy format (courses with lessonIds, lessons with courseId) and produce
   // the canonical format with programs.
-  const normalized = fixtures.map((f) => normalizeStoredCourseCatalog(f as Partial<CoursesSeedFixture>));
+  const normalized = fixtures.map((f) =>
+    normalizeStoredCourseCatalog(f as Partial<CoursesSeedFixture>),
+  );
 
   const coursesById = new Map<string, Course>();
   const programsById = new Map<string, import('../program/model/program.types').Program>();

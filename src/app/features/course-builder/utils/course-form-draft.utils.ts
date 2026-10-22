@@ -1,5 +1,8 @@
 import type { ProgramWithLessons } from '../../../entities/program/model/program.types';
-import type { CourseWritePayload, ProgramWritePayload } from '../../../entities/course/api/courses-api.service';
+import type {
+  CourseWritePayload,
+  ProgramWritePayload,
+} from '../../../entities/course/api/courses-api.service';
 import type { Course } from '../../../entities/course/model';
 import {
   emptyCourseAuthoring,
@@ -40,7 +43,9 @@ export const emptyCourseFormDraft = (): CourseFormDraft => ({
   programs: [emptyProgramFormDraft(0)],
 });
 
-export function courseToFormDraft(course: Course & { programs: readonly ProgramWithLessons[] }): CourseFormDraft {
+export function courseToFormDraft(
+  course: Course & { programs: readonly ProgramWithLessons[] },
+): CourseFormDraft {
   return {
     title: course.title,
     description: course.description,
@@ -86,22 +91,23 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
   const programs: ProgramWritePayload[] = draft.programs.map((program, pIndex) => {
     const programId = program.id ?? program.clientId;
 
-    const lessons: import('../../../entities/course/repository/course-catalog.port').LessonWritePayload[] = program.lessons.map((lesson, lIndex) => {
-      const ownLessonKey = lessonDraftKey(lesson);
-      const prerequisiteLessonIds = lesson.prerequisiteLessonIds
-        .map((key) => lessonKeyToPersistedId.get(key) ?? key)
-        .filter((id) => id !== lessonKeyToPersistedId.get(ownLessonKey));
+    const lessons: import('../../../entities/course/repository/course-catalog.port').LessonWritePayload[] =
+      program.lessons.map((lesson, lIndex) => {
+        const ownLessonKey = lessonDraftKey(lesson);
+        const prerequisiteLessonIds = lesson.prerequisiteLessonIds
+          .map((key) => lessonKeyToPersistedId.get(key) ?? key)
+          .filter((id) => id !== lessonKeyToPersistedId.get(ownLessonKey));
 
-      return {
-        id: lesson.id ?? lesson.clientId,
-        programId,
-        title: lesson.title,
-        description: lesson.description,
-        scenarioIds: lesson.scenarioIds,
-        prerequisiteLessonIds,
-        order: lesson.order ?? lIndex,
-      };
-    });
+        return {
+          id: lesson.id ?? lesson.clientId,
+          programId,
+          title: lesson.title,
+          description: lesson.description,
+          scenarioIds: lesson.scenarioIds,
+          prerequisiteLessonIds,
+          order: lesson.order ?? lIndex,
+        };
+      });
 
     return {
       id: program.id ?? program.clientId,

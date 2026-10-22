@@ -91,7 +91,11 @@
         </p>
 
         <div class="course-form__lessons">
-          @for (program of draft().programs; track programDraftKey(program); let programIndex = $index) {
+          @for (
+            program of draft().programs;
+            track programDraftKey(program);
+            let programIndex = $index
+          ) {
             <mat-card class="course-form__lesson" appearance="outlined">
               <div class="course-form__lesson-header">
                 <span class="course-form__lesson-badge">Программа {{ programIndex + 1 }}</span>
@@ -134,10 +138,16 @@
                 </mat-form-field>
 
                 <div class="course-form__lessons">
-                  @for (lesson of program.lessons; track lessonDraftKey(lesson); let lessonIndex = $index) {
+                  @for (
+                    lesson of program.lessons;
+                    track lessonDraftKey(lesson);
+                    let lessonIndex = $index
+                  ) {
                     <div class="course-form__lesson-item">
                       <div class="course-form__lesson-item-header">
-                        <span class="course-form__lesson-item-badge">Урок {{ lessonIndex + 1 }}</span>
+                        <span class="course-form__lesson-item-badge"
+                          >Урок {{ lessonIndex + 1 }}</span
+                        >
                         @if (!readOnly()) {
                           <button
                             mat-icon-button
@@ -168,7 +178,9 @@
                           matInput
                           [disabled]="readOnly()"
                           [ngModel]="lesson.description"
-                          (ngModelChange)="updateLessonDescription(programIndex, lessonIndex, $event)"
+                          (ngModelChange)="
+                            updateLessonDescription(programIndex, lessonIndex, $event)
+                          "
                         />
                       </mat-form-field>
 
@@ -179,7 +191,9 @@
                             multiple
                             [disabled]="readOnly()"
                             [ngModel]="lesson.scenarioIds"
-                            (ngModelChange)="updateLessonScenarioIds(programIndex, lessonIndex, $event)"
+                            (ngModelChange)="
+                              updateLessonScenarioIds(programIndex, lessonIndex, $event)
+                            "
                           >
                             @for (scenario of scenarioOptions(); track scenario.id) {
                               <mat-option [value]="scenario.id">{{ scenario.title }}</mat-option>
@@ -191,11 +205,19 @@
                           <mat-label>Предварительные уроки</mat-label>
                           <mat-select
                             multiple
-                            [disabled]="readOnly() || prerequisiteOptions(programIndex, lessonIndex).length === 0"
+                            [disabled]="
+                              readOnly() ||
+                              prerequisiteOptions(programIndex, lessonIndex).length === 0
+                            "
                             [ngModel]="prerequisiteSelection(programIndex, lessonIndex)"
-                            (ngModelChange)="updateLessonPrerequisites(programIndex, lessonIndex, $event)"
+                            (ngModelChange)="
+                              updateLessonPrerequisites(programIndex, lessonIndex, $event)
+                            "
                           >
-                            @for (option of prerequisiteOptions(programIndex, lessonIndex); track option.key) {
+                            @for (
+                              option of prerequisiteOptions(programIndex, lessonIndex);
+                              track option.key
+                            ) {
                               <mat-option [value]="option.key">{{ option.label }}</mat-option>
                             }
                           </mat-select>

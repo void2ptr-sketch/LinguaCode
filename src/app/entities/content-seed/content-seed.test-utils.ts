@@ -38,8 +38,12 @@ export function seedTestContentCache(): void {
 
   setScenarioSeedCache([...demoScenarios, ...radicalsScenarios, ...perlScenarios]);
 
-  const demoCourses = normalizeStoredCourseCatalog(demoCoursesFixture as unknown as CoursesSeedFixture);
-  const radicalsCourses = normalizeStoredCourseCatalog(radicalsCourseFixture as unknown as CoursesSeedFixture);
+  const demoCourses = normalizeStoredCourseCatalog(
+    demoCoursesFixture as unknown as CoursesSeedFixture,
+  );
+  const radicalsCourses = normalizeStoredCourseCatalog(
+    radicalsCourseFixture as unknown as CoursesSeedFixture,
+  );
   const perlCourses = normalizeStoredCourseCatalog(
     perlInterviewCourseFixture as unknown as CoursesSeedFixture,
   );
@@ -85,7 +89,9 @@ export function getTestZhCourseCatalog(): CourseCatalogState {
   return {
     courses: zhCourses,
     programs: catalog.programs.filter((p) => zhCourseIds.has(p.courseId)),
-    lessons: catalog.lessons.filter((lesson) => zhCourseIds.has(programToCourse.get(lesson.programId) ?? '')),
+    lessons: catalog.lessons.filter((lesson) =>
+      zhCourseIds.has(programToCourse.get(lesson.programId) ?? ''),
+    ),
   };
 }
 
@@ -107,7 +113,9 @@ export function getTestPerlCourseCatalog(): CourseCatalogState {
   return {
     courses: perlCourses,
     programs: catalog.programs.filter((p) => perlCourseIds.has(p.courseId)),
-    lessons: catalog.lessons.filter((lesson) => perlCourseIds.has(programToCourse.get(lesson.programId) ?? '')),
+    lessons: catalog.lessons.filter((lesson) =>
+      perlCourseIds.has(programToCourse.get(lesson.programId) ?? ''),
+    ),
   };
 }
 

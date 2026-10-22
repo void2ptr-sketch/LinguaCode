@@ -38,7 +38,11 @@ export function getDefaultCourseCatalog(): CourseCatalogState {
 }
 
 /** @deprecated Use getDefaultCourseCatalog() after content seed preload. */
-export const DEFAULT_COURSE_CATALOG: CourseCatalogState = { courses: [], programs: [], lessons: [] };
+export const DEFAULT_COURSE_CATALOG: CourseCatalogState = {
+  courses: [],
+  programs: [],
+  lessons: [],
+};
 
 /**
  * Merges a stored (user-modified) course catalog with the seed catalog.
@@ -100,8 +104,8 @@ export function readStoredCourseCatalog(): CourseCatalogState | null {
     Object.keys(overlay.lessons).length > 0 ||
     Boolean(
       overlay.deletedSystemIds?.courses?.length ||
-        overlay.deletedSystemIds?.programs?.length ||
-        overlay.deletedSystemIds?.lessons?.length
+      overlay.deletedSystemIds?.programs?.length ||
+      overlay.deletedSystemIds?.lessons?.length,
     );
 
   if (!hasStored) {

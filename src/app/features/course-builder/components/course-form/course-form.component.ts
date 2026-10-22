@@ -305,9 +305,7 @@ export class CourseFormComponent implements OnInit {
 
     this.updateLesson(programIndex, {
       ...program,
-      lessons: program.lessons.map((l, i) =>
-        i === lessonIndex ? { ...l, title: value } : l,
-      ),
+      lessons: program.lessons.map((l, i) => (i === lessonIndex ? { ...l, title: value } : l)),
     });
   }
 
@@ -361,9 +359,7 @@ export class CourseFormComponent implements OnInit {
 
     this.updateLesson(programIndex, {
       ...program,
-      lessons: program.lessons.map((l, i) =>
-        i === lessonIndex ? { ...l, scenarioIds } : l,
-      ),
+      lessons: program.lessons.map((l, i) => (i === lessonIndex ? { ...l, scenarioIds } : l)),
     });
   }
 
@@ -507,9 +503,7 @@ export class CourseFormComponent implements OnInit {
       .map((lesson, order) => ({
         ...lesson,
         order,
-        prerequisiteLessonIds: lesson.prerequisiteLessonIds.filter(
-          (key) => key !== removedKey,
-        ),
+        prerequisiteLessonIds: lesson.prerequisiteLessonIds.filter((key) => key !== removedKey),
       }));
     this.updateLesson(programIndex, { ...program, lessons });
   }

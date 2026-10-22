@@ -19,7 +19,11 @@ import type {
   ProgramWritePayload,
 } from '../repository/course-catalog.port';
 
-export type { CourseWritePayload, LessonWritePayload, ProgramWritePayload } from '../repository/course-catalog.port';
+export type {
+  CourseWritePayload,
+  LessonWritePayload,
+  ProgramWritePayload,
+} from '../repository/course-catalog.port';
 
 /**
  * HTTP API service for course operations.
@@ -165,7 +169,10 @@ export class CoursesApiService implements CourseCatalogPort {
    */
   updateProgram(programId: string, payload: ProgramWritePayload): Promise<ProgramWithLessons> {
     return firstValueFrom(
-      this.http.put<ApiResponse<ProgramWithLessons>>(buildApiUrl(`/programs/${programId}`), payload),
+      this.http.put<ApiResponse<ProgramWithLessons>>(
+        buildApiUrl(`/programs/${programId}`),
+        payload,
+      ),
     ).then((response) => response.data);
   }
 

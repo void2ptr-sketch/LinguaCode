@@ -57,12 +57,7 @@ export class CoursesCatalogMockHandler {
     await this.ensureData();
 
     const filtered = filterCourseIndex(
-      this.catalog!.courses.map((course) =>
-        courseToIndexEntry(
-          course,
-          course.programIds.length,
-        ),
-      ),
+      this.catalog!.courses.map((course) => courseToIndexEntry(course, course.programIds.length)),
       criteria,
       this.userStore.user().id,
     );
@@ -209,10 +204,11 @@ export class CoursesCatalogMockHandler {
     this.catalog = {
       courses: this.catalog!.courses.filter((item) => item.id !== courseId),
       programs: this.catalog!.programs?.filter((p) => p.courseId !== courseId) ?? [],
-      lessons: this.catalog!.lessons?.filter((l) => {
-        const program = this.catalog!.programs?.find((p) => p.id === l.programId);
-        return !program || program.courseId !== courseId;
-      }) ?? [],
+      lessons:
+        this.catalog!.lessons?.filter((l) => {
+          const program = this.catalog!.programs?.find((p) => p.id === l.programId);
+          return !program || program.courseId !== courseId;
+        }) ?? [],
     };
     this.persist();
   }
@@ -226,23 +222,21 @@ export class CoursesCatalogMockHandler {
   async findUsingScenario(scenarioId: string): Promise<readonly CourseIndexEntry[]> {
     await this.ensureData();
 
-    return this.catalog!.courses
-      .filter((course) => {
-        const programs = this.catalog!.programs?.filter((p) => p.courseId === course.id) ?? [];
-        for (const program of programs) {
-          const lessons = this.catalog!.lessons?.filter((l) => l.programId === program.id) ?? [];
-          if (lessons.some((lesson) => lesson.scenarioIds.includes(scenarioId))) {
-            return true;
-          }
+    return this.catalog!.courses.filter((course) => {
+      const programs = this.catalog!.programs?.filter((p) => p.courseId === course.id) ?? [];
+      for (const program of programs) {
+        const lessons = this.catalog!.lessons?.filter((l) => l.programId === program.id) ?? [];
+        if (lessons.some((lesson) => lesson.scenarioIds.includes(scenarioId))) {
+          return true;
         }
-        return false;
-      })
-      .map((course) =>
-        courseToIndexEntry(
-          course,
-          this.catalog!.programs?.filter((p) => p.courseId === course.id).length ?? 0,
-        ),
-      );
+      }
+      return false;
+    }).map((course) =>
+      courseToIndexEntry(
+        course,
+        this.catalog!.programs?.filter((p) => p.courseId === course.id).length ?? 0,
+      ),
+    );
   }
 
   /**
@@ -302,7 +296,10 @@ export class CoursesCatalogMockHandler {
     return { ...newProgram, lessons };
   }
 
-  async updateProgram(programId: string, payload: ProgramWritePayload): Promise<ProgramWithLessons> {
+  async updateProgram(
+    programId: string,
+    payload: ProgramWritePayload,
+  ): Promise<ProgramWithLessons> {
     await this.ensureData();
     const idx = this.catalog!.programs?.findIndex((p) => p.id === programId);
     if (idx === undefined || idx === -1) {
@@ -378,16 +375,23 @@ export class CoursesCatalogMockHandler {
   ): ProgramWithLessons[] {
     return drafts.map((draft, pIndex) => {
       const programId = draft.id ?? crypto.randomUUID();
-      const lessons = (draft.lessons ?? []).map((lessonDraft: import('../../repository/course-catalog.port').LessonWritePayload, lIndex: number) => ({
-        id: lessonDraft.id ?? crypto.randomUUID(),
-        programId,
-        title: lessonDraft.title,
-        description: lessonDraft.description,
-        scenarioIds: [...new Set(lessonDraft.scenarioIds.filter(Boolean))],
-        prerequisiteLessonIds: [...new Set((lessonDraft.prerequisiteLessonIds ?? []).filter(Boolean))],
-        order: lessonDraft.order ?? lIndex,
-        updatedAt: new Date().toISOString(),
-      }));
+      const lessons = (draft.lessons ?? []).map(
+        (
+          lessonDraft: import('../../repository/course-catalog.port').LessonWritePayload,
+          lIndex: number,
+        ) => ({
+          id: lessonDraft.id ?? crypto.randomUUID(),
+          programId,
+          title: lessonDraft.title,
+          description: lessonDraft.description,
+          scenarioIds: [...new Set(lessonDraft.scenarioIds.filter(Boolean))],
+          prerequisiteLessonIds: [
+            ...new Set((lessonDraft.prerequisiteLessonIds ?? []).filter(Boolean)),
+          ],
+          order: lessonDraft.order ?? lIndex,
+          updatedAt: new Date().toISOString(),
+        }),
+      );
 
       return {
         id: programId,

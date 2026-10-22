@@ -35,7 +35,11 @@ function makeLesson(
   };
 }
 
-function makeCourse(id: string, title: string, programs: import('../../../entities/program/model/program.types').ProgramWithLessons[]): CourseWithPrograms {
+function makeCourse(
+  id: string,
+  title: string,
+  programs: import('../../../entities/program/model/program.types').ProgramWithLessons[],
+): CourseWithPrograms {
   return {
     id,
     title,
@@ -153,24 +157,22 @@ describe('JourneyPageComponent', () => {
     };
 
     mockCourseSearchService = {
-      getById: vi
-        .fn()
-        .mockImplementation((courseId: string) => {
-          const mockProgram = {
-            id: 'program-1',
-            courseId,
-            title: 'Program 1',
-            description: '',
-            lessonIds: ['lesson-1', 'lesson-2'],
-            order: 0,
-            updatedAt: '2024-01-01T00:00:00.000Z',
-            lessons: [
-              makeLesson('lesson-1', 'Lesson 1', ['scenario-1', 'scenario-2'], [], 0),
-              makeLesson('lesson-2', 'Lesson 2', ['scenario-3'], ['lesson-1'], 1),
-            ],
-          };
-          return Promise.resolve(makeCourse(courseId, `Course ${courseId}`, [mockProgram]));
-        }),
+      getById: vi.fn().mockImplementation((courseId: string) => {
+        const mockProgram = {
+          id: 'program-1',
+          courseId,
+          title: 'Program 1',
+          description: '',
+          lessonIds: ['lesson-1', 'lesson-2'],
+          order: 0,
+          updatedAt: '2024-01-01T00:00:00.000Z',
+          lessons: [
+            makeLesson('lesson-1', 'Lesson 1', ['scenario-1', 'scenario-2'], [], 0),
+            makeLesson('lesson-2', 'Lesson 2', ['scenario-3'], ['lesson-1'], 1),
+          ],
+        };
+        return Promise.resolve(makeCourse(courseId, `Course ${courseId}`, [mockProgram]));
+      }),
     };
 
     mockActivatedRoute = {

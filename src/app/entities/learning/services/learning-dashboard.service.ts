@@ -188,16 +188,25 @@ export class LearningDashboardService {
 
       // Resolve active program from saved state or use the first program
       const savedProgramId = saved.activeProgramId;
-      const programs = (course as unknown as { programs: import('../../../entities/program/model/program.types').Program[] }).programs ?? [];
+      const programs =
+        (
+          course as unknown as {
+            programs: import('../../../entities/program/model/program.types').Program[];
+          }
+        ).programs ?? [];
       let activeProgram = programs.find((p) => p.id === savedProgramId) ?? programs[0];
 
       if (!activeProgram && programs.length > 0) {
         // Load first program with lessons
-        activeProgram = await this.courseSearchService.getProgramById(programs[0].id) as unknown as import('../../../entities/program/model/program.types').ProgramWithLessons;
+        activeProgram = (await this.courseSearchService.getProgramById(
+          programs[0].id,
+        )) as unknown as import('../../../entities/program/model/program.types').ProgramWithLessons;
       }
 
       if (activeProgram) {
-        this.program.set(activeProgram as unknown as import('../../../entities/program/model/program.types').ProgramWithLessons);
+        this.program.set(
+          activeProgram as unknown as import('../../../entities/program/model/program.types').ProgramWithLessons,
+        );
       }
 
       const shouldPersistActiveCourse = !saved.activeCourseId || saved.activeCourseId !== courseId;
@@ -216,7 +225,9 @@ export class LearningDashboardService {
         return;
       }
 
-      const scenarioTitles = await this.loadScenarioTitles(collectScenarioIds(activeProgramForResume));
+      const scenarioTitles = await this.loadScenarioTitles(
+        collectScenarioIds(activeProgramForResume),
+      );
       const target = resolveLearningResumeTarget({
         course,
         program: activeProgramForResume,

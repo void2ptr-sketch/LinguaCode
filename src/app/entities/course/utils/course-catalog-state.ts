@@ -135,7 +135,11 @@ export function normalizeStoredCourseCatalog(
   // Migrate legacy format: courses with lessonIds → courses with programs
   // Deep clone to avoid mutating the original fixture objects across multiple calls
   const cloned = JSON.parse(JSON.stringify(catalog));
-  const { courses, programs: existingPrograms, lessons } = cloned as {
+  const {
+    courses,
+    programs: existingPrograms,
+    lessons,
+  } = cloned as {
     courses?: unknown[];
     programs?: unknown[];
     lessons?: unknown[];
@@ -152,7 +156,10 @@ export function normalizeStoredCourseCatalog(
 
       // Check if this is a legacy course (has lessonIds instead of programIds)
       const c = course as Record<string, unknown>;
-      if (Array.isArray(c['lessonIds']) && (!Array.isArray(c['programIds']) || (c['programIds'] as string[]).length === 0)) {
+      if (
+        Array.isArray(c['lessonIds']) &&
+        (!Array.isArray(c['programIds']) || (c['programIds'] as string[]).length === 0)
+      ) {
         // Create a default program for this course
         const programId = `program-${c['id'] as string}`;
         migratedPrograms.push({
@@ -198,7 +205,10 @@ export function normalizeStoredCourseCatalog(
     ],
     lessons: [
       ...(Array.isArray(lessons)
-        ? lessons.filter((l) => !migratedLessons.find((ml) => ml['id'] === (l as Lesson).id)).filter(isLesson).map((lesson) => normalizeStoredLesson(lesson as Lesson))
+        ? lessons
+            .filter((l) => !migratedLessons.find((ml) => ml['id'] === (l as Lesson).id))
+            .filter(isLesson)
+            .map((lesson) => normalizeStoredLesson(lesson as Lesson))
         : []),
       ...migratedLessons.map((l) => normalizeStoredLesson(l as Lesson)),
     ],

@@ -761,6 +761,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 Контекст: текущая иерархия `Course → Lesson → Scenario → Card`. `Course` — это каталог программ (A1, A2, B1); нужен уровень **учебного трека** между `Course` и `Lesson`. Новая иерархия: `Course → Program → Lesson → Scenario → Card`.
 
 **Определения:**
+
 - **`Course`** — каталог/категория программ (A1: Basics, A2: Elementary, B1: Intermediate). Содержит `LanguagePair`, `published`, `authoring`.
 - **`Program`** — учебный трек/модуль внутри `Course` (Spring 2024, Self-paced, Intensive). Содержит `lessonIds`, `order`.
 - **`Lesson`** — урок внутри трека.

@@ -8,7 +8,11 @@ import type {
   ProgramWithLessons,
 } from '../model';
 
-import { CoursesApiService, type CourseWritePayload, type ProgramWritePayload } from '../api/courses-api.service';
+import {
+  CoursesApiService,
+  type CourseWritePayload,
+  type ProgramWritePayload,
+} from '../api/courses-api.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 
 /**

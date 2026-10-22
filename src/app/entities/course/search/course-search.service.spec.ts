@@ -114,7 +114,9 @@ describe('CourseSearchService', () => {
         updatedAt: new Date().toISOString(),
         programs: [],
       };
-      const spy = vi.spyOn(apiService, 'create').mockResolvedValue(mockCourse as CourseWithPrograms);
+      const spy = vi
+        .spyOn(apiService, 'create')
+        .mockResolvedValue(mockCourse as CourseWithPrograms);
 
       await service.create({
         title: 'New Course',
@@ -146,7 +148,9 @@ describe('CourseSearchService', () => {
         published: true,
         programs: [],
       };
-      const spy = vi.spyOn(apiService, 'update').mockResolvedValue(mockCourse as CourseWithPrograms);
+      const spy = vi
+        .spyOn(apiService, 'update')
+        .mockResolvedValue(mockCourse as CourseWithPrograms);
 
       await service.update('course-1', payload);
 

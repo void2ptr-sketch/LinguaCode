@@ -417,7 +417,17 @@ describe('CardSelectFlowService', () => {
             lessonIds: ['l1'],
             order: 0,
             updatedAt: '2026-01-01T00:00:00.000Z',
-            lessons: [{ id: 'l1', title: 'Lesson 1', scenarioIds: ['s1', 's2'], programId: 'p1', prerequisiteLessonIds: [], order: 0, updatedAt: '2026-01-01T00:00:00.000Z' }],
+            lessons: [
+              {
+                id: 'l1',
+                title: 'Lesson 1',
+                scenarioIds: ['s1', 's2'],
+                programId: 'p1',
+                prerequisiteLessonIds: [],
+                order: 0,
+                updatedAt: '2026-01-01T00:00:00.000Z',
+              },
+            ],
           },
         ],
       } as unknown as CourseWithPrograms;

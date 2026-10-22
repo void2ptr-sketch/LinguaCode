@@ -18,13 +18,13 @@
 Card  →  Scenario  →  Lesson  →  Program  →  Course
 ```
 
-| Уровень | Сущность   | Назначение                                              | Статус |
-| ------- | ---------- | ------------------------------------------------------- | ------ |
-| 1       | `Card`     | Атомарное упражнение (вопрос, пара, ввод…)              | MVP    |
-| 2       | `Scenario` | Один прогон: фиксированный или criteria-набор карточек  | MVP    |
-| 3       | `Lesson`   | Тема: несколько сценариев в заданном порядке            | G11    |
-| 4       | `Program`  | Учебный трек: несколько уроков; привязан к `Course`     | G17    |
-| 5       | `Course`   | Каталог программ: `LanguagePair`, `published`, `authoring` | G11   |
+| Уровень | Сущность   | Назначение                                                 | Статус |
+| ------- | ---------- | ---------------------------------------------------------- | ------ |
+| 1       | `Card`     | Атомарное упражнение (вопрос, пара, ввод…)                 | MVP    |
+| 2       | `Scenario` | Один прогон: фиксированный или criteria-набор карточек     | MVP    |
+| 3       | `Lesson`   | Тема: несколько сценариев в заданном порядке               | G11    |
+| 4       | `Program`  | Учебный трек: несколько уроков; привязан к `Course`        | G17    |
+| 5       | `Course`   | Каталог программ: `LanguagePair`, `published`, `authoring` | G11    |
 
 ### Термины: не путать «курс», `Course` и `Program`
 
@@ -44,13 +44,13 @@ Card  →  Scenario  →  Lesson  →  Program  →  Course
 
 Точка входа обучения — **`/home`** (вкладка «Обучение»). Экран отвечает на вопрос **«что делать дальше»**, не дублируя пикеры с `/cards/select`.
 
-| Элемент                   | Назначение                                                             |
-| ------------------------- | ---------------------------------------------------------------------- |
-| Hero                      | активный **курс** (`LanguagePair`) и **каталог** (`Course`)            |
+| Элемент                   | Назначение                                                                       |
+| ------------------------- | -------------------------------------------------------------------------------- |
+| Hero                      | активный **курс** (`LanguagePair`) и **каталог** (`Course`)                      |
 | CTA «Продолжить / Начать» | deep link на `/cards/select?courseId&programId&lessonId&scenarioId&tab=learning` |
-| Прогресс программы        | агрегация `LearningResultsStore.courseProgress`                        |
-| Roadmap уроков            | locked / in progress / done (`lesson-prerequisites.utils`)             |
-| Статистика                | краткая точность; подробности — `/home/progress`                       |
+| Прогресс программы        | агрегация `LearningResultsStore.courseProgress`                                  |
+| Roadmap уроков            | locked / in progress / done (`lesson-prerequisites.utils`)                       |
+| Статистика                | краткая точность; подробности — `/home/progress`                                 |
 
 **Persistence:** `UserLanguagePairSettings.learning` (`LearningSessionPreferences`):
 

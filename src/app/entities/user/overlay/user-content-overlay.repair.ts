@@ -202,7 +202,11 @@ function isOverlayLesson(
   );
 }
 
-function isOverlayProgram(value: import('../../program/model/program.types').Program | Partial<import('../../program/model/program.types').Program>): value is import('../../program/model/program.types').Program {
+function isOverlayProgram(
+  value:
+    | import('../../program/model/program.types').Program
+    | Partial<import('../../program/model/program.types').Program>,
+): value is import('../../program/model/program.types').Program {
   return (
     typeof value === 'object' &&
     value !== null &&
