@@ -20,7 +20,7 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
 import type { Card } from '../../../entities/card/model';
-import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
+import type { CourseWithPrograms, Lesson } from '../../../entities/course/model';
 import type { Scenario } from '../../../entities/scenario/model';
 import { CoursesApiService } from '../../../entities/course';
 import { shuffleArray, hashSeed } from '../../../entities/card/utils/card-shuffle.util';
@@ -164,15 +164,15 @@ export class CoursePdfExportService {
    * Процесс:
    * 1. Загружает шрифт (если ещё не загружен)
    * 2. Загружает сценарии и карточки из хранилищ
-   * 3. Собирает карточки в порядке курса
-   * 4. Парсит authoring.idea для оглавления
+   * 3. Собирает карточки в порядке курса (programs → lessons → scenarios → cards)
+   * 4. Парсит idea для оглавления
    * 5. Генерирует PDF
    *
-   * @param course — курс с уроками для экспорта
+   * @param course — курс с программами для экспорта
    * @param showHints — если true, показывает правильные ответы (✓)
    * @returns Blob с PDF-данными
    */
-  async export(course: CourseWithLessons, showHints: boolean): Promise<Blob> {
+  async export(course: CourseWithPrograms, showHints: boolean): Promise<Blob> {
     // 1. Загружаем шрифт (один раз)
     if (!this.fontData) {
       this.fontData = await this.loadFont();
@@ -183,15 +183,22 @@ export class CoursePdfExportService {
     const allScenarios = bundle.scenarios;
     const allCards = bundle.cards;
 
-    // 3. Собираем карточки в порядке курса
-    const lessons = [...course.lessons].sort((a, b) => a.order - b.order);
-    const cardEntries = this.collectCardEntries(lessons, allScenarios, allCards);
+    // 3. Собираем все уроки из всех программ в порядке
+    const allLessons: Lesson[] = [];
+    for (const program of course.programs) {
+      for (const lesson of program.lessons ?? []) {
+        allLessons.push(lesson);
+      }
+    }
+    allLessons.sort((a, b) => a.order - b.order);
+
+    const cardEntries = this.collectCardEntries(allLessons, allScenarios, allCards);
 
     // 4. Парсим идею для оглавления
     const stages = this.parseIdeaStages(course.authoring?.idea ?? '');
 
     // 5. Генерируем PDF
-    return this.generatePdf(course.title, stages, cardEntries, lessons, showHints);
+    return this.generatePdf(course.title, stages, cardEntries, allLessons, showHints);
   }
 
   // -------------------------------------------------------------------------
@@ -1053,7 +1060,7 @@ export class CoursePdfExportService {
             card,
             scenarioTitle: scenario.title,
             lessonTitle: lesson.title,
-          });
+          } as CardEntry);
         }
       }
     }
@@ -1088,7 +1095,7 @@ export class CoursePdfExportService {
       const stageMatch = line.match(/^##\s+Этап\s+\d+\s*:\s*(.+)/i);
       if (stageMatch) {
         currentStage = { title: stageMatch[1].trim(), questions: [] };
-        stages.push(currentStage);
+        stages.push(currentStage!);
         continue;
       }
 
@@ -1098,7 +1105,7 @@ export class CoursePdfExportService {
         const q = questionMatch[1].trim();
         // Добавляем только если вопрос заканчивается на "?"
         if (q.endsWith('?')) {
-          currentStage.questions.push(q);
+          currentStage!.questions.push(q);
         }
       }
     }

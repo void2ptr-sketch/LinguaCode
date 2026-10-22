@@ -441,16 +441,19 @@ export class CourseCatalogPageComponent implements OnInit {
       items.map(async (entry) => {
         try {
           const course = await this.courseSearchService.getById(entry.id);
-          const stats = this.resultsStore.courseProgress(
-            entry.id,
-            course.lessons.map((lesson) => ({
-              lessonId: lesson.id,
-              scenarioIds: lesson.scenarioIds,
-            })),
-          );
+          const allLessons: { lessonId: string; scenarioIds: readonly string[] }[] = [];
+          for (const program of course.programs) {
+            for (const lesson of program.lessons ?? []) {
+              allLessons.push({
+                lessonId: lesson.id,
+                scenarioIds: lesson.scenarioIds,
+              });
+            }
+          }
+          const stats = this.resultsStore.courseProgress(entry.id, allLessons);
           progress[entry.id] = stats.percent;
 
-          if (this.resultsStore.isCourseCompleted(course.lessons)) {
+          if (this.resultsStore.isCourseCompleted(allLessons)) {
             completed.add(entry.id);
           }
         } catch (error) {

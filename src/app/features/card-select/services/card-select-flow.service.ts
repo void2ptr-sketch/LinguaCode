@@ -1,11 +1,10 @@
 import { Injectable, computed, signal, effect, inject, untracked } from '@angular/core';
 import type { CardDifficulty } from '../../../entities/card/model';
 
-import type { CourseWithLessons } from '../../../entities/course/model';
+import type { CourseWithPrograms } from '../../../entities/course/model';
 import type { LessonPickPayload } from '../../../entities/lesson/ui/lesson-picker';
 import { CardSearchService } from '../../../entities/card';
 import {
-  collectCourseScenarioIds,
   filterScenarioIdsByDifficulty,
   buildScenarioDifficultyMap,
   resolveCoursePracticeSettings,
@@ -120,7 +119,7 @@ export class CardSelectFlowService {
   readonly selectedLessonId = signal<string>('');
 
   /** The currently loaded course with its lessons. */
-  readonly currentCourse = signal<CourseWithLessons | null>(null);
+  readonly currentCourse = signal<CourseWithPrograms | null>(null);
 
   /** Selected difficulty filter (null = no filter). */
   readonly selectedDifficulty = signal<CardDifficulty | null>(null);
@@ -200,7 +199,7 @@ export class CardSelectFlowService {
       lessonIds.length > 0
         ? lessonIds
         : course && this.isOpenPractice()
-          ? collectCourseScenarioIds(course)
+          ? extractAllScenarioIdsFromCourse(course)
           : null;
 
     if (!base || base.length === 0) {
@@ -281,12 +280,17 @@ export class CardSelectFlowService {
       const course = await this.courseSearchService.getById(courseId);
       this.currentCourse.set(course);
       this.courseTitle.set(course.title);
-      this.courseLessons.set(
-        course.lessons.map((lesson) => ({
-          lessonId: lesson.id,
-          scenarioIds: lesson.scenarioIds,
-        })),
-      );
+      // Extract lessons from all programs
+      const allLessons: { lessonId: string; scenarioIds: readonly string[] }[] = [];
+      for (const program of course.programs) {
+        for (const lesson of program.lessons ?? []) {
+          allLessons.push({
+            lessonId: lesson.id,
+            scenarioIds: lesson.scenarioIds,
+          });
+        }
+      }
+      this.courseLessons.set(allLessons);
       await this.loadScenarioDifficultyMap(course);
     } catch (error) {
       this.logger.warn('CardSelect: failed to load course', error);
@@ -339,7 +343,12 @@ export class CardSelectFlowService {
       return;
     }
 
-    const lesson = course.lessons.find((item) => item.id === lessonId);
+    // Find lesson across all programs
+    let lesson: { id: string; title: string; scenarioIds: readonly string[] } | undefined;
+    for (const program of course.programs) {
+      lesson = program.lessons?.find((l) => l.id === lessonId);
+      if (lesson) break;
+    }
     if (!lesson) {
       return;
     }
@@ -553,19 +562,46 @@ export class CardSelectFlowService {
 
   // ─── Private helpers ──────────────────────────────────────────────────
 
-  private async loadScenarioDifficultyMap(course: CourseWithLessons): Promise<void> {
+  private async loadScenarioDifficultyMap(course: CourseWithPrograms): Promise<void> {
     if (!resolveCoursePracticeSettings(course).allowDifficultyFilter) {
       this.scenarioDifficultyMap.set(new Map());
       return;
     }
 
+    // Extract all lessons from all programs
+    const allLessons: { lessonId: string; scenarioIds: readonly string[] }[] = [];
+    for (const program of course.programs) {
+      for (const lesson of program.lessons ?? []) {
+        allLessons.push({
+          lessonId: lesson.id,
+          scenarioIds: lesson.scenarioIds,
+        });
+      }
+    }
+
     await this.cardSearchService.ensureIndexLoaded();
-    const scenarioIds = collectCourseScenarioIds(course);
+    const scenarioIds = allLessons.flatMap((l) => [...l.scenarioIds]);
+    const uniqueScenarioIds = [...new Set(scenarioIds)];
     const scenarios = await Promise.all(
-      scenarioIds.map((scenarioId) => this.scenarioSearchService.getById(scenarioId)),
+      uniqueScenarioIds.map((scenarioId) => this.scenarioSearchService.getById(scenarioId)),
     );
     this.scenarioDifficultyMap.set(
       buildScenarioDifficultyMap(scenarios, this.cardSearchService.indexEntries()),
     );
   }
+}
+
+/**
+ * Extracts all scenario IDs from a course by iterating through all programs and their lessons.
+ */
+function extractAllScenarioIdsFromCourse(course: CourseWithPrograms): readonly string[] {
+  const ids = new Set<string>();
+  for (const program of course.programs) {
+    for (const lesson of program.lessons ?? []) {
+      for (const scenarioId of lesson.scenarioIds) {
+        ids.add(scenarioId);
+      }
+    }
+  }
+  return [...ids];
 }

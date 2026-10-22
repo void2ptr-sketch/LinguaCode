@@ -10,6 +10,7 @@
  */
 import type { Card } from '../card/model';
 import type { Course, Lesson } from '../course/model';
+import type { Program } from '../program/model';
 import type { Scenario } from '../scenario/model';
 import { IDB_STORE_CONTENT_SEED, IndexedDbService } from '../../shared/storage';
 
@@ -26,6 +27,7 @@ export type ContentSeedSnapshot = {
   version: number;
   scenarios: readonly Scenario[];
   courses: readonly Course[];
+  programs: readonly Program[];
   lessons: readonly Lesson[];
   cards: readonly Card[];
 };

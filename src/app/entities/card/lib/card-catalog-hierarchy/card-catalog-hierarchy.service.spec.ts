@@ -12,7 +12,7 @@ describe('CardCatalogHierarchyService', () => {
     id: 'course-1',
     title: 'Test Course',
     authorId: 'author-1',
-    lessonCount: 2,
+    programCount: 2,
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
     languagePairSummary: 'Русский → English',
@@ -22,30 +22,42 @@ describe('CardCatalogHierarchyService', () => {
     id: 'course-1',
     title: 'Test Course',
     authorId: 'author-1',
-    lessonCount: 2,
+    programCount: 2,
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
     languagePairSummary: 'Русский → English',
-    lessons: [
+    programIds: ['program-1'],
+    programs: [
       {
-        id: 'lesson-1',
+        id: 'program-1',
+        courseId: 'course-1',
         title: 'Lesson 1',
         description: '',
-        courseId: 'course-1',
-        scenarioIds: ['scenario-1'],
-        prerequisiteLessonIds: [],
+        lessonIds: ['lesson-1', 'lesson-2'],
         order: 0,
         updatedAt: '2024-01-01T00:00:00.000Z',
-      },
-      {
-        id: 'lesson-2',
-        title: 'Lesson 2',
-        description: '',
-        courseId: 'course-1',
-        scenarioIds: ['scenario-2', 'scenario-3'],
-        prerequisiteLessonIds: ['lesson-1'],
-        order: 1,
-        updatedAt: '2024-01-01T00:00:00.000Z',
+        lessons: [
+          {
+            id: 'lesson-1',
+            title: 'Lesson 1',
+            description: '',
+            programId: 'program-1',
+            scenarioIds: ['scenario-1'],
+            prerequisiteLessonIds: [],
+            order: 0,
+            updatedAt: '2024-01-01T00:00:00.000Z',
+          },
+          {
+            id: 'lesson-2',
+            title: 'Lesson 2',
+            description: '',
+            programId: 'program-1',
+            scenarioIds: ['scenario-2', 'scenario-3'],
+            prerequisiteLessonIds: ['lesson-1'],
+            order: 1,
+            updatedAt: '2024-01-01T00:00:00.000Z',
+          },
+        ],
       },
     ],
   };
@@ -61,6 +73,7 @@ describe('CardCatalogHierarchyService', () => {
     courseSearchServiceMock = {
       search: vi.fn().mockResolvedValue(mockPaginatedCourses),
       getById: vi.fn().mockResolvedValue(mockCourseWithLessons),
+      getProgramById: vi.fn().mockResolvedValue(mockCourseWithLessons.programs[0]),
     };
 
     TestBed.configureTestingModule({
@@ -135,7 +148,7 @@ describe('CardCatalogHierarchyService', () => {
       await service.loadLessons('course-1');
       await service.loadLessons('course-1');
 
-      expect(courseSearchServiceMock.getById).toHaveBeenCalledTimes(1);
+      expect(courseSearchServiceMock.getProgramById).toHaveBeenCalledTimes(1);
     });
   });
 

@@ -109,6 +109,7 @@ describe('learning-resume.utils', () => {
       const demoCourse = getTestDemoCourseWithLessons();
       const target = resolveLearningResumeTarget({
         course: demoCourse,
+        program: demoCourse.programs[0],
         pairResults: [],
         hasScenarioResult: () => false,
       });
@@ -122,6 +123,7 @@ describe('learning-resume.utils', () => {
       const demoCourse = getTestDemoCourseWithLessons();
       const target = resolveLearningResumeTarget({
         course: demoCourse,
+        program: demoCourse.programs[0],
         pairResults: [
           {
             id: '1',
@@ -141,24 +143,27 @@ describe('learning-resume.utils', () => {
     });
 
     it('should return no-program when course has no lessons', () => {
-      const emptyCourse = {
-        ...getTestDemoCourseWithLessons(),
+      const demoCourse = getTestDemoCourseWithLessons();
+      const emptyProgram: import('../../program/model/program.types').ProgramWithLessons = {
+        ...demoCourse.programs[0],
         lessons: [],
       };
       const target = resolveLearningResumeTarget({
-        course: emptyCourse,
+        course: demoCourse,
+        program: emptyProgram,
         pairResults: [],
         hasScenarioResult: () => false,
       });
 
       expect(target?.kind).toBe('no-program');
-      expect(target?.courseId).toBe(emptyCourse.id);
+      expect(target?.courseId).toBe(demoCourse.id);
     });
 
     it('should return continue when has results but not all scenarios done', () => {
       const demoCourse = getTestDemoCourseWithLessons();
       const target = resolveLearningResumeTarget({
         course: demoCourse,
+        program: demoCourse.programs[0],
         pairResults: [
           {
             id: '1',
@@ -181,6 +186,7 @@ describe('learning-resume.utils', () => {
       const demoCourse = getTestDemoCourseWithLessons();
       const target = resolveLearningResumeTarget({
         course: demoCourse,
+        program: demoCourse.programs[0],
         pairResults: [],
         hasScenarioResult: () => false,
       });
@@ -193,6 +199,7 @@ describe('learning-resume.utils', () => {
       const demoCourse = getTestDemoCourseWithLessons();
       const target = resolveLearningResumeTarget({
         course: demoCourse,
+        program: demoCourse.programs[0],
         pairResults: [],
         hasScenarioResult: () => true,
       });
@@ -204,6 +211,7 @@ describe('learning-resume.utils', () => {
       const demoCourse = getTestDemoCourseWithLessons();
       const target = resolveLearningResumeTarget({
         course: demoCourse,
+        program: demoCourse.programs[0],
         pairResults: [],
         hasScenarioResult: () => false,
         scenarioTitles: { 'demo-scenario': 'Custom Title' },
@@ -216,7 +224,7 @@ describe('learning-resume.utils', () => {
   describe('buildLessonRoadmap', () => {
     it('should build roadmap with locked lesson', () => {
       const demoCourse = getTestDemoCourseWithLessons();
-      const roadmap = buildLessonRoadmap(demoCourse.lessons, () => false);
+      const roadmap = buildLessonRoadmap(demoCourse.programs[0].lessons, () => false);
 
       expect(roadmap).toHaveLength(2);
       expect(roadmap[0]?.unlocked).toBe(true);
@@ -225,7 +233,7 @@ describe('learning-resume.utils', () => {
 
     it('should mark completed lessons', () => {
       const demoCourse = getTestDemoCourseWithLessons();
-      const roadmap = buildLessonRoadmap(demoCourse.lessons, () => true);
+      const roadmap = buildLessonRoadmap(demoCourse.programs[0].lessons, () => true);
 
       expect(roadmap[0]?.completed).toBe(true);
       expect(roadmap[0]?.completedScenarios).toBeGreaterThan(0);
@@ -233,7 +241,7 @@ describe('learning-resume.utils', () => {
 
     it('should return block reason for locked lessons', () => {
       const demoCourse = getTestDemoCourseWithLessons();
-      const roadmap = buildLessonRoadmap(demoCourse.lessons, () => false);
+      const roadmap = buildLessonRoadmap(demoCourse.programs[0].lessons, () => false);
 
       expect(roadmap[1]?.blockReason).toContain('урок');
     });
@@ -259,27 +267,25 @@ describe('learning-resume.utils', () => {
   describe('collectScenarioIds', () => {
     it('should collect unique scenario IDs from course lessons', () => {
       const demoCourse = getTestDemoCourseWithLessons();
-      const ids = collectScenarioIds(demoCourse);
+      const ids = collectScenarioIds(demoCourse.programs[0]);
 
       expect(ids).toContain('demo-scenario');
       expect(ids.length).toBeGreaterThan(0);
     });
 
     it('should return unique IDs when scenarios repeat across lessons', () => {
-      const course = {
-        id: 'c1',
+      const program = {
+        id: 'p1',
+        courseId: 'c1',
         title: 'Test',
         description: '',
-        authorId: 'u',
-        languagePair: { known: 'en' as const, learning: 'zh' as const },
         lessonIds: ['l1', 'l2'],
-        published: true,
+        order: 0,
         updatedAt: '2024-01-01T00:00:00Z',
-        authoring: { idea: '', status: 'draft' as const },
         lessons: [
           {
             id: 'l1',
-            courseId: 'c1',
+            programId: 'p1',
             title: 'L1',
             description: '',
             scenarioIds: ['s1', 's2'],
@@ -289,7 +295,7 @@ describe('learning-resume.utils', () => {
           },
           {
             id: 'l2',
-            courseId: 'c1',
+            programId: 'p1',
             title: 'L2',
             description: '',
             scenarioIds: ['s2', 's3'],
@@ -299,7 +305,7 @@ describe('learning-resume.utils', () => {
           },
         ],
       };
-      const ids = collectScenarioIds(course);
+      const ids = collectScenarioIds(program);
 
       expect(ids).toEqual(['s1', 's2', 's3']);
     });

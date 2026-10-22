@@ -31,6 +31,7 @@
 | [ARCHITECTURE.card-editor.md](./ARCHITECTURE/ARCHITECTURE.card-editor.md)           | Редактор `/tools/cards`                                   |
 | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) | Конструктор сценариев                                     |
 | [ARCHITECTURE.course.md](./ARCHITECTURE/ARCHITECTURE.course.md)                     | Программы и каталог                                       |
+| [ARCHITECTURE.program.md](./ARCHITECTURE/ARCHITECTURE.program.md)                   | Учебные треки (`Program`)                                 |
 | [ARCHITECTURE.journey.md](./ARCHITECTURE/ARCHITECTURE.journey.md)                   | Путь обучения (`journey map`)                             |
 | [ARCHITECTURE.learning-results.md](./ARCHITECTURE/ARCHITECTURE.learning-results.md) | Прогресс и `LearningResult`                               |
 | [ARCHITECTURE.user.md](./ARCHITECTURE/ARCHITECTURE.user.md)                         | Профиль пользователя и настройки                          |
@@ -67,8 +68,8 @@
 ## Быстрая навигация по темам
 
 - **Объект изучения vs карточка (компоненты, затенение известного)** — [BUSINESS.md § Объект и карточка](./BUSINESS.md#объект-изучения-и-карточка)
-- **Иерархия Card → Scenario → Lesson → Course** — [DOMAIN.md § Иерархия](./COMMON/DOMAIN.md#иерархия-контента) · [BUSINESS.md § Иерархия](./BUSINESS.md#иерархия-учебного-контента)
-- **«Курс» vs программа (`Course`)** — [DOMAIN.md § Термины](./COMMON/DOMAIN.md#термины-не-путать-курс-и-languagepair) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md)
+- **Иерархия Card → Scenario → Lesson → Program → Course** — [DOMAIN.md § Иерархия](./COMMON/DOMAIN.md#иерархия-контента) · [BUSINESS.md § Иерархия](./BUSINESS.md#иерархия-учебного-контента)
+- **«Курс» vs программа (`Course`) vs трек (`Program`)** — [DOMAIN.md § Термины](./COMMON/DOMAIN.md#термины-не-путать-курс-и-languagepair) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md)
 - **Dashboard `/home` и практика `/cards/select`** — [DOMAIN.md § Learning Home](./COMMON/DOMAIN.md#learning-home-g13)
 - **Модели TypeScript** — [DOMAIN.md § Модели](./COMMON/DOMAIN.md#модели)
 - **Уровень подготовки в профиле** — [DOMAIN.md § UserPreferences](./COMMON/DOMAIN.md#сущности) · `learning-proficiency.types.ts`

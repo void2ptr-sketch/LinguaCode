@@ -20,9 +20,10 @@ import { normalizeLanguagePair } from '../../../entities/language-pair/lib/langu
 import { CourseSearchService, CoursesApiService } from '../../../entities/course';
 import type {
   CourseIndexEntry,
+  CourseWithPrograms,
   CourseListScope,
-  CourseWithLessons,
 } from '../../../entities/course/model';
+import type { ProgramWithLessons } from '../../../entities/program/model';
 import { sanitizeMarkdownText, sanitizePlainText } from '../../../shared/security';
 import { COURSE_IDEA_MAX_LENGTH } from '../../../entities/course/utils/course-authoring.utils';
 import { UserStore } from '../../../entities/user/model/user.store';
@@ -101,8 +102,8 @@ export class CourseBuilderStore {
   readonly editorMode = signal<CourseEditorMode>('list');
   /** ID of the course being edited (null when not editing) */
   readonly editingCourseId = signal<string | null>(null);
-  /** Data of the course being edited, including lessons */
-  readonly editingCourse = signal<CourseWithLessons | null>(null);
+  /** Data of the course being edited, including programs */
+  readonly editingCourse = signal<CourseWithPrograms | null>(null);
 
   /**
    * Computed signal: `true` if the current user cannot edit the course.
@@ -221,9 +222,22 @@ export class CourseBuilderStore {
 
     try {
       const course = await this.courseSearchService.getById(courseId);
+
+      // Resolve programs with their lessons
+      const programsWithLessons: ProgramWithLessons[] = [];
+      for (const program of course.programs) {
+        const programWithLessons = await this.courseSearchService.getProgramById(program.id);
+        programsWithLessons.push(programWithLessons);
+      }
+
+      const resolvedCourse: CourseWithPrograms = {
+        ...course,
+        programs: programsWithLessons,
+      };
+
       this.editorMode.set('edit');
       this.editingCourseId.set(courseId);
-      this.editingCourse.set(course);
+      this.editingCourse.set(resolvedCourse);
     } catch (error) {
       this.logger.error('CourseBuilder: failed to load course for edit', error);
       this.error.set('Не удалось загрузить курс');
@@ -468,33 +482,51 @@ export class CourseBuilderStore {
   private normalizeDraft(draft: CourseFormDraft) {
     const title = sanitizeTitle(draft.title);
     const description = sanitizeDescription(draft.description);
-    const lessons = draft.lessons
-      .map((lesson, index) => ({
-        ...lesson,
-        title: sanitizeTitle(lesson.title),
-        description: sanitizeDescription(lesson.description),
-        scenarioIds: lesson.scenarioIds.map((id) => sanitizePlainText(id, 64)).filter(Boolean),
-        prerequisiteLessonIds: lesson.prerequisiteLessonIds
-          .map((id) => sanitizePlainText(id, 64))
-          .filter(Boolean),
-        order: lesson.order ?? index,
+
+    const programs = draft.programs
+      .map((program, pIndex) => ({
+        ...program,
+        title: sanitizeTitle(program.title),
+        description: sanitizeDescription(program.description),
+        lessons: program.lessons
+          .map((lesson, lIndex) => ({
+            ...lesson,
+            title: sanitizeTitle(lesson.title),
+            description: sanitizeDescription(lesson.description),
+            scenarioIds: lesson.scenarioIds.map((id) => sanitizePlainText(id, 64)).filter(Boolean),
+            prerequisiteLessonIds: lesson.prerequisiteLessonIds
+              .map((id) => sanitizePlainText(id, 64))
+              .filter(Boolean),
+            order: lesson.order ?? lIndex,
+          }))
+          .filter((lesson) => lesson.title),
+        order: program.order ?? pIndex,
       }))
-      .filter((lesson) => lesson.title);
+      .filter((program) => program.title);
 
     if (!title) {
-      this.error.set('Укажите название курса');
+      this.error.set('Укажите название каталога');
       return null;
     }
 
-    if (lessons.length === 0) {
-      this.error.set('Добавьте хотя бы один урок');
+    if (programs.length === 0) {
+      this.error.set('Добавьте хотя бы одну программу');
       return null;
     }
 
-    for (const lesson of lessons) {
-      if (lesson.scenarioIds.length === 0) {
-        this.error.set(`Урок «${lesson.title}»: добавьте хотя бы один сценарий`);
+    for (const program of programs) {
+      if (program.lessons.length === 0) {
+        this.error.set(`Программа «${program.title}»: добавьте хотя бы один урок`);
         return null;
+      }
+
+      for (const lesson of program.lessons) {
+        if (lesson.scenarioIds.length === 0) {
+          this.error.set(
+            `Урок «${lesson.title}» в программе «${program.title}»: добавьте хотя бы один сценарий`,
+          );
+          return null;
+        }
       }
     }
 
@@ -506,7 +538,7 @@ export class CourseBuilderStore {
         ...draft.authoring,
         idea: sanitizeCourseIdea(draft.authoring.idea),
       },
-      lessons,
+      programs,
     });
   }
 }

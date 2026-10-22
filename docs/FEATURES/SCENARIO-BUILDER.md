@@ -2,7 +2,18 @@
 
 Переход от legacy `localStorage`-ключей к каталогу сценариев (seed + overlay) и точечной загрузке карточек при прохождении.
 
-Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](../COMMON/DOMAIN.md) · [ARCHITECTURE.md](../ARCHITECTURE.md) · [CARD-CATALOG.md](../COMMON/CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](../COMMON/DOMAIN.md) · [ARCHITECTURE.md](../ARCHITECTURE.md) · [ARCHITECTURE.program.md](../ARCHITECTURE/ARCHITECTURE.program.md) · [CARD-CATALOG.md](../COMMON/CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
+
+## Контекст иерархии
+
+Сценарии (`Scenario`) — часть цепочки `Card → Scenario → Lesson → Program → Course`. При выборе сценариев для урока учитывается:
+
+- **`Course`** — каталог программ (scope: `LanguagePair`, `published`)
+- **`Program`** — учебный трек внутри `Course` (содержит `lessonIds`)
+- **`Lesson`** — урок внутри трека (содержит `scenarioIds`)
+- **`Scenario`** — сценарий внутри урока (содержит `cardSource`)
+
+Picker сценариев в конструкторе уроков (`ScenarioPickerComponent`) фильтрует по активной `LanguagePair` (G8 scope). Сценарий может входить в несколько уроков и программ.
 
 ## Решение: индекс сценария + полный Scenario
 

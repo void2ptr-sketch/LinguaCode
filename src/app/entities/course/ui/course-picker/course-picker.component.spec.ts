@@ -16,7 +16,7 @@ describe('CoursePickerComponent', () => {
       id: 'course-1',
       title: 'Course One',
       authorId: 'user-1',
-      lessonCount: 5,
+      programCount: 5,
       published: true,
       updatedAt: '2024-01-01',
       languagePairSummary: 'EN-RU',
@@ -25,7 +25,7 @@ describe('CoursePickerComponent', () => {
       id: 'course-2',
       title: 'Course Two',
       authorId: 'user-1',
-      lessonCount: 10,
+      programCount: 10,
       published: true,
       updatedAt: '2024-01-02',
       languagePairSummary: 'EN-RU',
@@ -122,7 +122,7 @@ describe('CoursePickerComponent', () => {
 
     component.pick(mockCourses[0]);
     expect(emitSpy).toHaveBeenCalledWith('course-1');
-    expect(labelSpy).toHaveBeenCalledWith('Course One · 5 уроков · EN-RU');
+    expect(labelSpy).toHaveBeenCalledWith('Course One · 5 программ · EN-RU');
   });
 
   it('should collapse full list in compact mode when picking', () => {
@@ -183,6 +183,6 @@ describe('CoursePickerComponent', () => {
 
   it('should format label with title, lesson count, and language pair', () => {
     const label = component.formatLabel(mockCourses[1]);
-    expect(label).toBe('Course Two · 10 уроков · EN-RU');
+    expect(label).toBe('Course Two · 10 программ · EN-RU');
   });
 });

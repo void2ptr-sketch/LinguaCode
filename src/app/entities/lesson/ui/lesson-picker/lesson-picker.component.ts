@@ -209,7 +209,14 @@ export class LessonPickerComponent {
 
     try {
       const course = await this.courseSearchService.getById(courseId);
-      const sorted = [...course.lessons].sort((left, right) => left.order - right.order);
+      // Extract all lessons from all programs
+      const allLessons: Lesson[] = [];
+      for (const program of course.programs) {
+        for (const lesson of program.lessons ?? []) {
+          allLessons.push(lesson);
+        }
+      }
+      const sorted = [...allLessons].sort((left, right) => left.order - right.order);
       this.lessons.set(sorted);
     } catch (error) {
       this.logger.error('LessonPicker: failed to load lessons', error);

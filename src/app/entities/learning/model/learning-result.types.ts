@@ -15,6 +15,7 @@ export type LearningResult = {
   answeredAt: string;
   languagePair: LanguagePair;
   direction?: CardDirection;
+  programId?: string; // G17 — optional for progress aggregation by program
   lessonId?: string;
   courseId?: string;
 };

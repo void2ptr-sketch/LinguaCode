@@ -23,7 +23,7 @@ src/app/
 ├── pages/      # страницы-маршруты (*-page компоненты)
 ├── widgets/    # layout-оболочки и навигация (header, navigation, main-layout, footer, menu-\*)
 ├── features/   # изолированные фичи (по одной на сценарий использования)
-├── entities/   # доменные слайсы: card, course, lesson, scenario, user, learning, language-pair, phonetic, chinese, content-seed, journey
+├── entities/   # доменные слайсы: card, course, lesson, program, scenario, user, learning, language-pair, phonetic, chinese, content-seed, journey
 └── shared/     # доменно-агностичный код: utils, security, api-инфраструктура, theme-типы, ui
 ```
 
@@ -268,10 +268,12 @@ export const routes: Routes = [
 
 Кратко:
 
-- `User`, `Card`, `Scenario`, `LearningResult`, `CardAppearance`
+- `User`, `Card`, `Scenario`, `Program`, `Course`, `LearningResult`, `CardAppearance`
 - `Card` — discriminated union по полю `kind` (10 типов: `select`, `code-select`, `memory`, `symbol`, `sound`, `timed`, `keyboard`, `draw`, `tone`, `reading`)
 - Все 10 `CardKind` реализованы
+- **Иерархия контента:** `Card → Scenario → Lesson → Program → Course` (G17)
 - **Конструктор сценариев** — инструмент для создания и редактирования `Scenario` (`features/scenario-builder/`); масштабирование — [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)
+- **Конструктор программ** — CRUD `Program` внутри `Course` (`features/program-builder/`)
 
 ### Рендер карточек
 

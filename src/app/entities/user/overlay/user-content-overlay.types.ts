@@ -1,5 +1,6 @@
 import type { Card } from '../../card/model';
 import type { Course, Lesson } from '../../course/model';
+import type { Program } from '../../program/model';
 import type { Scenario } from '../../scenario/model';
 
 import type { CardIndexMetaOverride } from '../../card/model';
@@ -30,7 +31,17 @@ export const LEGACY_CARD_INDEX_META_KEY = 'lingua-code.card-index-meta';
  * Used for incremental updates without replacing the entire course object.
  */
 export type CoursePatch = Partial<
-  Pick<Course, 'title' | 'description' | 'published' | 'updatedAt' | 'lessonIds' | 'authoring'>
+  Pick<Course, 'title' | 'description' | 'published' | 'updatedAt' | 'programIds' | 'authoring'>
+>;
+
+/**
+ * Partial patch for updating a program in the user content overlay.
+ *
+ * @remarks
+ * Used for incremental updates without replacing the entire program object.
+ */
+export type ProgramPatch = Partial<
+  Pick<Program, 'title' | 'description' | 'lessonIds' | 'order' | 'updatedAt'>
 >;
 
 /**
@@ -66,6 +77,8 @@ export type ScenarioPatch = Partial<
 export type UserContentDeletedIds = {
   /** IDs of deleted courses. */
   courses?: readonly string[];
+  /** IDs of deleted programs. */
+  programs?: readonly string[];
   /** IDs of deleted lessons. */
   lessons?: readonly string[];
   /** IDs of deleted scenarios. */
@@ -78,12 +91,13 @@ export type UserContentDeletedIds = {
  * User content overlay stored in localStorage.
  *
  * @remarks
- * Merges with or overrides system content (courses, lessons, scenarios, cards).
+ * Merges with or overrides system content (courses, programs, lessons, scenarios, cards).
  * Supports partial patches for incremental updates.
  */
 export type UserContentOverlay = {
   version: typeof USER_CONTENT_OVERLAY_VERSION;
   courses: Record<string, Course | CoursePatch>;
+  programs: Record<string, Program | ProgramPatch>;
   lessons: Record<string, Lesson | LessonPatch>;
   scenarios: Record<string, Scenario | ScenarioPatch>;
   cards: Record<string, Card>;

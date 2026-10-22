@@ -1,5 +1,6 @@
 import type { Card } from '../card/model';
 import type { Course, Lesson } from '../course/model';
+import type { Program } from '../program/model';
 import type { Scenario } from '../scenario/model';
 
 /**
@@ -26,14 +27,16 @@ export type ScenariosSeedFixture = {
 };
 
 /**
- * Fixture for courses and lessons seed data.
+ * Fixture for courses, programs, and lessons seed data.
  *
  * @remarks
- * Used to load course and lesson JSON files during the content seed initialization process.
+ * Used to load course, program, and lesson JSON files during the content seed initialization process.
  */
 export type CoursesSeedFixture = {
   /** Array of course objects to seed. */
   courses: readonly Course[];
+  /** Array of program objects to seed. */
+  programs: readonly Program[];
   /** Array of lesson objects to seed. */
   lessons: readonly Lesson[];
 };

@@ -17,7 +17,7 @@ reviewInterval: 90d   # the period after which the assistant is required to doub
 - **Prettier & ESLint** — форматирование и линтинг
 
 ### Высокоуровневая архитектура (FEEDS / FSD-подобная)
-- **`src/app/entities/`** — доменные сущности: карточки, курсы, сценарии, китайский язык (hanzi, pinyin, phonetics), пользователь, аутентификация. Содержит модели, репозитории, утилиты и UI-компоненты сущностей.
+- **`src/app/entities/`** — доменные сущности: карточки, курсы, треки (программы), сценарии, китайский язык (hanzi, pinyin, phonetics), пользователь, аутентификация. Содержит модели, репозитории, утилиты и UI-компоненты сущностей.
 - **`src/app/features/`** — изолированные фичи (редактор карточек, выбор карточек, каталог курсов, домашняя страница, путь обучения, builder сценариев). Каждая фича содержит компоненты, сервисы, типы и утилиты.
 - **`src/app/pages/`** — страницы приложения (layout shell, home, journey, card-select, course-catalog, help, user). Страницы загружаются лениво через `loadComponent`.
 - **`src/app/widgets/`** — переиспользуемые виджеты: main-layout, header, footer, sidebar-навигация, меню (карточки, помощь, инструменты, пользователь).
@@ -253,6 +253,12 @@ src/
 - [`docs/API-CONTRACT.md`](../../docs/API-CONTRACT.md) — HTTP API
 - [`docs/SYSTEM/GIT-RULES.md`](../../docs/SYSTEM/GIT-RULES.md) — Git workflow
 - [`TASKS.md`](../../TASKS.md) — чеклист задач
+
+### Архитектура подсистем
+- [`docs/ARCHITECTURE/ARCHITECTURE.program.md`](../../docs/ARCHITECTURE/ARCHITECTURE.program.md) — учебные треки (`Program`)
+- [`docs/ARCHITECTURE/ARCHITECTURE.course.md`](../../docs/ARCHITECTURE/ARCHITECTURE.course.md) — программы и каталог
+- [`docs/ARCHITECTURE/ARCHITECTURE.card-select.md`](../../docs/ARCHITECTURE/ARCHITECTURE.card-select.md) — практика
+- [`docs/ARCHITECTURE/ARCHITECTURE.home.md`](../../docs/ARCHITECTURE/ARCHITECTURE.home.md) — dashboard
 
 ### Внешняя документация
 - [Angular Documentation](https://angular.dev/docs)

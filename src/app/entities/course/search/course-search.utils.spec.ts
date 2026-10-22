@@ -5,7 +5,7 @@ const baseEntry: CourseIndexEntry = {
   id: 'c1',
   title: 'Demo course',
   authorId: 'local-user',
-  lessonCount: 1,
+  programCount: 1,
   published: true,
   updatedAt: '2026-01-01T00:00:00.000Z',
   languagePairSummary: 'Русский → English',

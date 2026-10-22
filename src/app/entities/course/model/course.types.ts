@@ -8,10 +8,10 @@ export type { CoursePracticeMode, CoursePracticeSettings } from './course-practi
 export { DEFAULT_COURSE_PRACTICE_SETTINGS } from './course-practice.types';
 
 /**
- * A course: a structured learning program containing lessons, scenarios, and cards.
+ * A course: a catalog of learning programs containing tracks, lessons, scenarios, and cards.
  *
  * @remarks
- * Courses are authored by a user, organized into lessons, and scoped to a language pair.
+ * Courses are authored by a user, organized into programs, and scoped to a language pair.
  * The `authoring` field contains the author's idea for course generation (not shown in catalog).
  */
 export type Course = {
@@ -25,8 +25,8 @@ export type Course = {
   authorId: string;
   /** Language pair this course teaches (known → learning). */
   languagePair: LanguagePair;
-  /** IDs of lessons contained in this course, in order. */
-  lessonIds: readonly string[];
+  /** IDs of programs contained in this course, in order. */
+  programIds: readonly string[];
   /** Whether the course is published and visible in the catalog. */
   published: boolean;
   /** ISO 8601 timestamp of the last update. */
@@ -38,12 +38,12 @@ export type Course = {
 };
 
 /**
- * A course with its lessons fully resolved.
+ * A course with its programs fully resolved.
  *
  * @remarks
- * Used in the course builder and journey map where lesson details are needed.
+ * Used in the course builder and journey map where program details are needed.
  */
-export type CourseWithLessons = Course & {
-  /** Resolved lesson objects with full metadata. */
-  lessons: readonly import('./lesson.types').Lesson[];
+export type CourseWithPrograms = Course & {
+  /** Resolved program objects with full metadata and lessons. */
+  programs: readonly import('../../program/model/program.types').ProgramWithLessons[];
 };

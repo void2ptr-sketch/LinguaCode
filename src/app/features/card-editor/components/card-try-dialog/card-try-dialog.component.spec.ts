@@ -6,9 +6,11 @@ import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { CardTryDialogComponent } from './card-try-dialog.component';
 import { SingleCardPlayStore } from './single-card-play.store';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
+import { CardsApiService } from '../../../../entities/card/api/cards-api.service';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { seedTestContentCache } from '../../../../entities/content-seed/content-seed.test-utils';
 import type { CardTryDialogData } from './card-try-dialog.types';
+import type { CardIndexEntry } from '../../../../entities/card/model';
 
 /** Mock for CardHostComponent to avoid deep dependency chain. */
 @Component({
@@ -120,8 +122,52 @@ describe('CardTryDialogComponent', () => {
   });
 
   describe('checkAnswer', () => {
-    it('should be defined', () => {
-      expect(component.checkAnswer).toBeDefined();
+    it('should call playStore.checkAnswer', async () => {
+      await fixture.whenStable();
+
+      const checkSpy = vi.spyOn(component.playStore, 'checkAnswer');
+      component.checkAnswer();
+
+      expect(checkSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe('initialization with error', () => {
+    it('should set error when card does not belong to active course', async () => {
+      // DEFAULT_LANGUAGE_PAIR is ru→en, use a different pair to trigger mismatch
+      mockHandlerSpy.mockResolvedValueOnce({
+        id: 'other-card',
+        title: 'Other',
+        knownLanguage: 'zh',
+        learningLanguage: 'ja',
+      } as unknown as CardIndexEntry);
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+      await fixture.whenStable();
+
+      expect(component.playStore.error()).toBe('Карточка не относится к активному курсу');
+      expect(component.playStore.loading()).toBe(false);
+    });
+
+    it('should set error when card loading fails', async () => {
+      mockHandlerSpy.mockResolvedValueOnce({
+        id: TEST_CARD_ID,
+        title: 'Test',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
+      } as unknown as CardIndexEntry);
+
+      // Override getById to throw
+      const cardsApi = TestBed.inject(CardsApiService);
+      vi.spyOn(cardsApi, 'getById').mockRejectedValueOnce(new Error('API error'));
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+      await fixture.whenStable();
+
+      expect(component.playStore.error()).toBe('Не удалось загрузить карточку');
+      expect(component.playStore.loading()).toBe(false);
     });
   });
 
@@ -132,6 +178,13 @@ describe('CardTryDialogComponent', () => {
       component.close();
 
       expect(mockDialogRef.close).toHaveBeenCalled();
+    });
+  });
+
+  describe('tryAgain flow', () => {
+    it('should return null from checkAnswer when no card is set', async () => {
+      const result = component.playStore.checkAnswer();
+      expect(result).toBeNull();
     });
   });
 });

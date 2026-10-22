@@ -5,7 +5,7 @@ import { of, throwError } from 'rxjs';
 
 import { CoursePdfExportService } from './course-pdf-export.service';
 import { CoursesApiService } from '../../../entities/course';
-import type { CourseWithLessons } from '../../../entities/course/model';
+import type { CourseWithPrograms } from '../../../entities/course/model';
 
 // Mock jsPDF — используем doMock чтобы избежать проблем с hoisting
 const _noop = (): void => {
@@ -80,13 +80,13 @@ describe('CoursePdfExportService', () => {
     },
   ];
 
-  const mockCourse: CourseWithLessons = {
+  const mockCourse: CourseWithPrograms = {
     id: 'course-1',
     title: 'Тестовый курс',
     description: 'Описание курса',
     authorId: 'user-1',
     languagePair: { known: 'en', learning: 'zh' },
-    lessonIds: ['l1', 'l2'],
+    programIds: ['l1', 'l2'],
     published: true,
     updatedAt: '2024-01-01T00:00:00Z',
     authoring: {
@@ -98,26 +98,48 @@ describe('CoursePdfExportService', () => {
 - Как проходить тесты?`,
       status: 'draft',
     },
-    lessons: [
+    programs: [
       {
-        id: 'l1',
+        id: 'p1',
         courseId: 'course-1',
-        title: 'Урок 1',
-        description: 'Описание урока 1',
-        scenarioIds: ['s1'],
-        prerequisiteLessonIds: [],
+        title: 'Программа 1',
+        description: 'Описание программы 1',
+        lessonIds: ['l1'],
         order: 1,
         updatedAt: '2024-01-01T00:00:00Z',
+        lessons: [
+          {
+            id: 'l1',
+            programId: 'p1',
+            title: 'Урок 1',
+            description: 'Описание урока 1',
+            scenarioIds: ['s1'],
+            prerequisiteLessonIds: [],
+            order: 1,
+            updatedAt: '2024-01-01T00:00:00Z',
+          },
+        ],
       },
       {
-        id: 'l2',
+        id: 'p2',
         courseId: 'course-1',
-        title: 'Урок 2',
-        description: 'Описание урока 2',
-        scenarioIds: ['s2'],
-        prerequisiteLessonIds: [],
+        title: 'Программа 2',
+        description: 'Описание программы 2',
+        lessonIds: ['l2'],
         order: 2,
         updatedAt: '2024-01-01T00:00:00Z',
+        lessons: [
+          {
+            id: 'l2',
+            programId: 'p2',
+            title: 'Урок 2',
+            description: 'Описание урока 2',
+            scenarioIds: ['s2'],
+            prerequisiteLessonIds: [],
+            order: 2,
+            updatedAt: '2024-01-01T00:00:00Z',
+          },
+        ],
       },
     ],
   };
@@ -193,18 +215,29 @@ describe('CoursePdfExportService', () => {
     });
 
     it('should skip missing scenarios gracefully', async () => {
-      const courseWithMissingScenario: CourseWithLessons = {
+      const courseWithMissingScenario: CourseWithPrograms = {
         ...mockCourse,
-        lessons: [
+        programs: [
           {
-            id: 'l1',
+            id: 'p1',
             courseId: 'course-1',
-            title: 'Урок 1',
+            title: 'Программа 1',
             description: 'Описание',
-            scenarioIds: ['non-existent'],
-            prerequisiteLessonIds: [],
+            lessonIds: ['l1'],
             order: 1,
             updatedAt: '2024-01-01T00:00:00Z',
+            lessons: [
+              {
+                id: 'l1',
+                programId: 'p1',
+                title: 'Урок 1',
+                description: 'Описание',
+                scenarioIds: ['non-existent'],
+                prerequisiteLessonIds: [],
+                order: 1,
+                updatedAt: '2024-01-01T00:00:00Z',
+              },
+            ],
           },
         ],
       };
@@ -215,18 +248,29 @@ describe('CoursePdfExportService', () => {
     });
 
     it('should skip missing cards gracefully', async () => {
-      const courseWithMissingCard: CourseWithLessons = {
+      const courseWithMissingCard: CourseWithPrograms = {
         ...mockCourse,
-        lessons: [
+        programs: [
           {
-            id: 'l1',
+            id: 'p1',
             courseId: 'course-1',
-            title: 'Урок 1',
+            title: 'Программа 1',
             description: 'Описание',
-            scenarioIds: ['s1'],
-            prerequisiteLessonIds: [],
+            lessonIds: ['l1'],
             order: 1,
             updatedAt: '2024-01-01T00:00:00Z',
+            lessons: [
+              {
+                id: 'l1',
+                programId: 'p1',
+                title: 'Урок 1',
+                description: 'Описание',
+                scenarioIds: ['s1'],
+                prerequisiteLessonIds: [],
+                order: 1,
+                updatedAt: '2024-01-01T00:00:00Z',
+              },
+            ],
           },
         ],
       };
@@ -249,28 +293,50 @@ describe('CoursePdfExportService', () => {
     });
 
     it('should sort lessons by order', async () => {
-      const unsortedCourse: CourseWithLessons = {
+      const unsortedCourse: CourseWithPrograms = {
         ...mockCourse,
-        lessons: [
+        programs: [
           {
-            id: 'l2',
+            id: 'p2',
             courseId: 'course-1',
-            title: 'Урок 2',
+            title: 'Программа 2',
             description: 'Описание 2',
-            scenarioIds: ['s2'],
-            prerequisiteLessonIds: [],
+            lessonIds: ['l2'],
             order: 2,
             updatedAt: '2024-01-01T00:00:00Z',
+            lessons: [
+              {
+                id: 'l2',
+                programId: 'p2',
+                title: 'Урок 2',
+                description: 'Описание 2',
+                scenarioIds: ['s2'],
+                prerequisiteLessonIds: [],
+                order: 2,
+                updatedAt: '2024-01-01T00:00:00Z',
+              },
+            ],
           },
           {
-            id: 'l1',
+            id: 'p1',
             courseId: 'course-1',
-            title: 'Урок 1',
+            title: 'Программа 1',
             description: 'Описание 1',
-            scenarioIds: ['s1'],
-            prerequisiteLessonIds: [],
+            lessonIds: ['l1'],
             order: 1,
             updatedAt: '2024-01-01T00:00:00Z',
+            lessons: [
+              {
+                id: 'l1',
+                programId: 'p1',
+                title: 'Урок 1',
+                description: 'Описание 1',
+                scenarioIds: ['s1'],
+                prerequisiteLessonIds: [],
+                order: 1,
+                updatedAt: '2024-01-01T00:00:00Z',
+              },
+            ],
           },
         ],
       };
@@ -288,7 +354,7 @@ describe('CoursePdfExportService', () => {
     });
 
     it('should handle empty idea', async () => {
-      const emptyCourse: CourseWithLessons = {
+      const emptyCourse: CourseWithPrograms = {
         ...mockCourse,
         authoring: { idea: '', status: 'draft' },
       };
@@ -297,7 +363,7 @@ describe('CoursePdfExportService', () => {
     });
 
     it('should handle idea without stages', async () => {
-      const noStagesCourse: CourseWithLessons = {
+      const noStagesCourse: CourseWithPrograms = {
         ...mockCourse,
         authoring: { idea: 'Some text without stages', status: 'draft' },
       };
@@ -306,7 +372,7 @@ describe('CoursePdfExportService', () => {
     });
 
     it('should handle idea with questions not ending with ?', async () => {
-      const courseWithNonQuestion: CourseWithLessons = {
+      const courseWithNonQuestion: CourseWithPrograms = {
         ...mockCourse,
         authoring: {
           idea: `## Этап 1: Тест
@@ -321,7 +387,7 @@ describe('CoursePdfExportService', () => {
     });
 
     it('should handle undefined authoring', async () => {
-      const noAuthoringCourse: CourseWithLessons = { ...mockCourse, authoring: undefined };
+      const noAuthoringCourse: CourseWithPrograms = { ...mockCourse, authoring: undefined };
       await service.export(noAuthoringCourse, false);
       expect(coursesApiMock.getBundle).toHaveBeenCalled();
     });
@@ -329,18 +395,29 @@ describe('CoursePdfExportService', () => {
 
   describe('renderCard - different card kinds', () => {
     it('should render select card', async () => {
-      const selectCourse: CourseWithLessons = {
+      const selectCourse: CourseWithPrograms = {
         ...mockCourse,
-        lessons: [
+        programs: [
           {
-            id: 'l1',
+            id: 'p1',
             courseId: 'course-1',
-            title: 'Урок 1',
+            title: 'Программа 1',
             description: 'Описание',
-            scenarioIds: ['s1'],
-            prerequisiteLessonIds: [],
+            lessonIds: ['l1'],
             order: 1,
             updatedAt: '2024-01-01T00:00:00Z',
+            lessons: [
+              {
+                id: 'l1',
+                programId: 'p1',
+                title: 'Урок 1',
+                description: 'Описание',
+                scenarioIds: ['s1'],
+                prerequisiteLessonIds: [],
+                order: 1,
+                updatedAt: '2024-01-01T00:00:00Z',
+              },
+            ],
           },
         ],
       };
@@ -358,18 +435,29 @@ describe('CoursePdfExportService', () => {
     });
 
     it('should render keyboard card', async () => {
-      const keyboardCourse: CourseWithLessons = {
+      const keyboardCourse: CourseWithPrograms = {
         ...mockCourse,
-        lessons: [
+        programs: [
           {
-            id: 'l1',
+            id: 'p1',
             courseId: 'course-1',
-            title: 'Урок 1',
+            title: 'Программа 1',
             description: 'Описание',
-            scenarioIds: ['s1'],
-            prerequisiteLessonIds: [],
+            lessonIds: ['l1'],
             order: 1,
             updatedAt: '2024-01-01T00:00:00Z',
+            lessons: [
+              {
+                id: 'l1',
+                programId: 'p1',
+                title: 'Урок 1',
+                description: 'Описание',
+                scenarioIds: ['s1'],
+                prerequisiteLessonIds: [],
+                order: 1,
+                updatedAt: '2024-01-01T00:00:00Z',
+              },
+            ],
           },
         ],
       };
@@ -387,18 +475,29 @@ describe('CoursePdfExportService', () => {
     });
 
     it('should render memory card', async () => {
-      const memoryCourse: CourseWithLessons = {
+      const memoryCourse: CourseWithPrograms = {
         ...mockCourse,
-        lessons: [
+        programs: [
           {
             id: 'l1',
             courseId: 'course-1',
             title: 'Урок 1',
             description: 'Описание',
-            scenarioIds: ['s1'],
-            prerequisiteLessonIds: [],
+            lessonIds: ['s1'],
             order: 1,
             updatedAt: '2024-01-01T00:00:00Z',
+            lessons: [
+              {
+                id: 's1',
+                programId: 'p1',
+                title: 'Сценарий 1',
+                description: '',
+                scenarioIds: ['c3'],
+                prerequisiteLessonIds: [],
+                order: 1,
+                updatedAt: '2024-01-01T00:00:00Z',
+              },
+            ],
           },
         ],
       };

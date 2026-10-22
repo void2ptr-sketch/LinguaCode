@@ -8,7 +8,7 @@ import {
 
 const baseLesson: Lesson = {
   id: 'l1',
-  courseId: 'c1',
+  programId: 'p1',
   title: 'Урок 1',
   description: '',
   scenarioIds: ['s1'],

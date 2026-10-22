@@ -756,6 +756,71 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [ ] Сервис материализации: outline → `Lesson` / `Scenario` / `Card`
 - [ ] LLM-интеграция поверх `authoring.idea`
 
+### G17 — учебные треки (`Program`)
+
+Контекст: текущая иерархия `Course → Lesson → Scenario → Card`. `Course` — это каталог программ (A1, A2, B1); нужен уровень **учебного трека** между `Course` и `Lesson`. Новая иерархия: `Course → Program → Lesson → Scenario → Card`.
+
+**Определения:**
+
+- **`Course`** — каталог/категория программ (A1: Basics, A2: Elementary, B1: Intermediate). Содержит `LanguagePair`, `published`, `authoring`.
+- **`Program`** — учебный трек/модуль внутри `Course` (Spring 2024, Self-paced, Intensive). Содержит `lessonIds`, `order`.
+- **`Lesson`** — урок внутри трека.
+
+**G17a — домен и типы**
+
+- [ ] `Program` в `entities/program/model/program.types.ts`
+- [ ] `ProgramWithLessons` — аналог `CourseWithLessons`
+- [ ] `Course.programIds: readonly string[]` (замена `lessonIds`)
+- [ ] `Program.lessonIds: readonly string[]`
+- [ ] `LearningSessionPreferences`: добавить `activeProgramId?`
+- [ ] `LearningResult`: добавить `programId?`
+- [ ] `DOMAIN.md`: обновить иерархию и диаграмму
+- [ ] `ARCHITECTURE.program.md`: новый файл документации
+
+**G17b — repository и API**
+
+- [ ] `ProgramCatalogPort` — порт для программ
+- [ ] `ProgramsApiService` — HTTP API
+- [ ] Mock handlers для program endpoints
+- [ ] `CourseWritePayload.programs` вместо `lessons`
+- [ ] Conformance тесты
+
+**G17c — хранение и overlay**
+
+- [ ] `UserContentOverlay.programs` + `ProgramPatch`
+- [ ] `resolveCourseCatalog`: добавить resolution программ
+- [ ] `computeCourseCatalogOverlay`: добавить для программ
+- [ ] Migration overlay v1 → v2 (если нужно)
+- [ ] `CourseCatalogState.programs`
+
+**G17d — learning и прогресс**
+
+- [ ] `LearningDashboardService`: обновить для программ
+- [ ] `learning-resume.utils`: добавить `programId` в `LearningResumeTarget`
+- [ ] Прогресс по программам
+- [ ] Roadmap: программа → уроки
+
+**G17e — UI конструктора**
+
+- [ ] `features/program-builder/` — CRUD программ
+- [ ] `course-form`: вместо списка уроков — список программ + вложенные уроки
+- [ ] `program-picker` — выбор программы на практике
+- [ ] `program-list` — список программ в каталоге
+
+**G17f — данные и тесты**
+
+- [ ] Seed-программы для существующих курсов
+- [ ] `content-manifest.json`: добавить `programFiles`
+- [ ] Unit-тесты для всех новых типов и утилит
+- [ ] Conformance тесты
+- [ ] Smoke тесты для program-builder
+
+**G17g — документация**
+
+- [ ] `TASKS.md`: статус G17
+- [ ] `ARCHITECTURE.program.md`
+- [ ] `LANGUAGE-PAIR.md`: согласовать термины (Курс vs Course vs Program)
+
 **G12 — Editor UX (упрощение редактора карточек)**
 
 Контекст: `card-form` (~650 строк TS + ~350 HTML) + `card-validation` (~490 строк) обслуживают **10** `CardKind`; дублируются блоки вариантов (select / timed / reading / sound / symbol); на каждый вариант — **строка + полная лексема** (pinyin, zhuyin, palladius, ipa). Цель: **≤ 8 полей** в базовом режиме для типовой select-карточки; новый kind — **один файл формы**, не правка god-component.

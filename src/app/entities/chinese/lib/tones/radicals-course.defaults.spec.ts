@@ -14,7 +14,8 @@ describe('radicals-course.defaults', () => {
   it('should define 214 draw cards across scenarios', () => {
     const catalog = getTestDefaultCourseCatalog();
     const course = catalog.courses.find((item) => item.id === RADICALS_COURSE_ID);
-    const lessons = catalog.lessons.filter((lesson) => lesson.courseId === RADICALS_COURSE_ID);
+    const courseProgramIds = new Set((course?.programIds ?? []).map((pid) => pid));
+    const lessons = catalog.lessons.filter((lesson) => courseProgramIds.has(lesson.programId));
     const allScenarios = getTestDefaultScenarios();
     const scenarios = allScenarios.filter((scenario) =>
       scenario.id.startsWith('scenario-radicals-'),

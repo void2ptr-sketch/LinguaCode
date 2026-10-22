@@ -144,7 +144,7 @@ describe('ScenarioBuilderPageComponent', () => {
           id: 'course-1',
           title: 'My Course',
           authorId: 'u',
-          lessonCount: 0,
+          programCount: 0,
           published: false,
           updatedAt: '',
           languagePairSummary: '',

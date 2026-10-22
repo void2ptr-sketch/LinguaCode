@@ -6,9 +6,12 @@ import type {
   CourseIndexEntry,
   CourseSearchCriteria,
   CourseSearchPage,
-  CourseWithLessons,
+  CourseWithPrograms,
   Lesson,
+  Program,
 } from '../../model';
+import type { ProgramWithLessons } from '../../../program/model/program.types';
+import type { ProgramWritePayload } from '../../repository/course-catalog.port';
 import { paginateArray } from '../../../../shared/utils/pagination';
 import { UserStore } from '../../../user/model/user.store';
 
@@ -54,12 +57,7 @@ export class CoursesCatalogMockHandler {
     await this.ensureData();
 
     const filtered = filterCourseIndex(
-      this.catalog!.courses.map((course) =>
-        courseToIndexEntry(
-          course,
-          this.catalog!.lessons.filter((lesson) => lesson.courseId === course.id).length,
-        ),
-      ),
+      this.catalog!.courses.map((course) => courseToIndexEntry(course, course.programIds.length)),
       criteria,
       this.userStore.user().id,
     );
@@ -68,13 +66,13 @@ export class CoursesCatalogMockHandler {
   }
 
   /**
-   * Retrieves a single course with its lessons by ID.
+   * Retrieves a single course with its programs by ID.
    *
    * @param courseId - The unique identifier of the course.
-   * @returns The matching `CourseWithLessons` object with lessons sorted by order.
+   * @returns The matching `CourseWithPrograms` object with programs and lessons.
    * @throws `HttpErrorResponse` with status 404 if no course is found.
    */
-  async getById(courseId: string): Promise<CourseWithLessons> {
+  async getById(courseId: string): Promise<CourseWithPrograms> {
     await this.ensureData();
 
     const course = this.catalog!.courses.find((item) => item.id === courseId);
@@ -82,24 +80,24 @@ export class CoursesCatalogMockHandler {
       throw notFound('Курс не найден');
     }
 
-    const lessons = this.lessonsForCourse(course).sort((left, right) => left.order - right.order);
-    return { ...course, lessons };
+    const programs = await this.programsWithLessonsForCourse(course);
+    return { ...course, programs };
   }
 
   /**
-   * Creates a new course with the given lessons.
+   * Creates a new course with the given programs.
    *
    * Assigns a new UUID, normalises the language pair, and persists the catalog.
    *
-   * @param payload - The course creation payload including title, lessons, and metadata.
-   * @returns The created `CourseWithLessons` object.
+   * @param payload - The course creation payload including title, programs, and metadata.
+   * @returns The created `CourseWithPrograms` object.
    */
-  async create(payload: CourseWritePayload): Promise<CourseWithLessons> {
+  async create(payload: CourseWritePayload): Promise<CourseWithPrograms> {
     await this.ensureData();
 
     const languagePair = normalizeLanguagePair(payload.languagePair);
     const courseId = crypto.randomUUID();
-    const lessons = this.normalizeLessons(courseId, payload.lessons);
+    const programs = this.normalizePrograms(courseId, payload.programs);
 
     const course: Course = {
       id: courseId,
@@ -107,7 +105,7 @@ export class CoursesCatalogMockHandler {
       description: payload.description,
       authorId: this.userStore.user().id,
       languagePair,
-      lessonIds: lessons.map((lesson) => lesson.id),
+      programIds: programs.map((p) => p.id),
       published: payload.published,
       updatedAt: new Date().toISOString(),
       authoring: normalizeCourseAuthoring(payload.authoring),
@@ -115,10 +113,11 @@ export class CoursesCatalogMockHandler {
 
     this.catalog = {
       courses: [...this.catalog!.courses, course],
-      lessons: [...this.catalog!.lessons, ...lessons],
+      programs: [...(this.catalog!.programs ?? []), ...programs],
+      lessons: [...(this.catalog!.lessons ?? [])],
     };
     this.persist();
-    return { ...course, lessons };
+    return { ...course, programs };
   }
 
   /**
@@ -129,10 +128,10 @@ export class CoursesCatalogMockHandler {
    *
    * @param courseId - The unique identifier of the course to update.
    * @param payload - The updated course data.
-   * @returns The updated `CourseWithLessons` object.
+   * @returns The updated `CourseWithPrograms` object.
    * @throws `HttpErrorResponse` with status 404 if not found, 403 if not authorised.
    */
-  async update(courseId: string, payload: CourseWritePayload): Promise<CourseWithLessons> {
+  async update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
     await this.ensureData();
 
     const current = this.catalog!.courses.find((item) => item.id === courseId);
@@ -152,19 +151,18 @@ export class CoursesCatalogMockHandler {
         updatedAt: new Date().toISOString(),
         authoring: normalizeCourseAuthoring(payload.authoring ?? current.authoring),
       };
-      const lessons = this.lessonsForCourse(updated).sort(
-        (left, right) => left.order - right.order,
-      );
+      const programs = await this.programsWithLessonsForCourse(updated);
 
       this.catalog = {
         courses: this.catalog!.courses.map((item) => (item.id === courseId ? updated : item)),
+        programs: this.catalog!.programs,
         lessons: this.catalog!.lessons,
       };
       this.persist();
-      return { ...updated, lessons };
+      return { ...updated, programs };
     }
 
-    const lessons = this.normalizeLessons(courseId, payload.lessons);
+    const programs = this.normalizePrograms(courseId, payload.programs);
 
     const updated: Course = {
       ...current,
@@ -172,24 +170,22 @@ export class CoursesCatalogMockHandler {
       description: payload.description,
       published: payload.published,
       languagePair,
-      lessonIds: lessons.map((lesson) => lesson.id),
+      programIds: programs.map((p) => p.id),
       updatedAt: new Date().toISOString(),
       authoring: normalizeCourseAuthoring(payload.authoring ?? current.authoring),
     };
 
     this.catalog = {
       courses: this.catalog!.courses.map((item) => (item.id === courseId ? updated : item)),
-      lessons: [
-        ...this.catalog!.lessons.filter((lesson) => lesson.courseId !== courseId),
-        ...lessons,
-      ],
+      programs: programs,
+      lessons: this.catalog!.lessons,
     };
     this.persist();
-    return { ...updated, lessons };
+    return { ...updated, programs };
   }
 
   /**
-   * Deletes a course and its associated lessons.
+   * Deletes a course and its associated programs and lessons.
    *
    * Verifies edit permissions before removing the course from the catalog.
    *
@@ -207,7 +203,12 @@ export class CoursesCatalogMockHandler {
     this.assertCanEdit(current);
     this.catalog = {
       courses: this.catalog!.courses.filter((item) => item.id !== courseId),
-      lessons: this.catalog!.lessons.filter((lesson) => lesson.courseId !== courseId),
+      programs: this.catalog!.programs?.filter((p) => p.courseId !== courseId) ?? [],
+      lessons:
+        this.catalog!.lessons?.filter((l) => {
+          const program = this.catalog!.programs?.find((p) => p.id === l.programId);
+          return !program || program.courseId !== courseId;
+        }) ?? [],
     };
     this.persist();
   }
@@ -221,14 +222,19 @@ export class CoursesCatalogMockHandler {
   async findUsingScenario(scenarioId: string): Promise<readonly CourseIndexEntry[]> {
     await this.ensureData();
 
-    return this.catalog!.courses.filter((course) =>
-      this.catalog!.lessons.some(
-        (lesson) => lesson.courseId === course.id && lesson.scenarioIds.includes(scenarioId),
-      ),
-    ).map((course) =>
+    return this.catalog!.courses.filter((course) => {
+      const programs = this.catalog!.programs?.filter((p) => p.courseId === course.id) ?? [];
+      for (const program of programs) {
+        const lessons = this.catalog!.lessons?.filter((l) => l.programId === program.id) ?? [];
+        if (lessons.some((lesson) => lesson.scenarioIds.includes(scenarioId))) {
+          return true;
+        }
+      }
+      return false;
+    }).map((course) =>
       courseToIndexEntry(
         course,
-        this.catalog!.lessons.filter((lesson) => lesson.courseId === course.id).length,
+        this.catalog!.programs?.filter((p) => p.courseId === course.id).length ?? 0,
       ),
     );
   }
@@ -255,6 +261,84 @@ export class CoursesCatalogMockHandler {
     };
   }
 
+  // ── Program operations ──
+
+  async getProgramById(programId: string): Promise<ProgramWithLessons> {
+    await this.ensureData();
+    const program = this.catalog!.programs?.find((p) => p.id === programId);
+    if (!program) {
+      throw notFound(`Program '${programId}' not found`);
+    }
+    const lessons = (this.catalog!.lessons ?? [])
+      .filter((lesson) => lesson.programId === programId)
+      .sort((left, right) => left.order - right.order);
+    return { ...program, lessons };
+  }
+
+  async createProgram(payload: ProgramWritePayload): Promise<ProgramWithLessons> {
+    await this.ensureData();
+    const id = payload.id ?? `program-${Date.now()}`;
+    const newProgram: Program = {
+      id,
+      courseId: payload.courseId,
+      title: payload.title,
+      description: payload.description,
+      lessonIds: payload.lessonIds,
+      order: payload.order,
+      updatedAt: new Date().toISOString(),
+    };
+    this.catalog!.programs ??= [];
+    this.catalog!.programs.push(newProgram);
+    this.persist();
+    const lessons = (this.catalog!.lessons ?? [])
+      .filter((lesson) => lesson.programId === id)
+      .sort((left, right) => left.order - right.order);
+    return { ...newProgram, lessons };
+  }
+
+  async updateProgram(
+    programId: string,
+    payload: ProgramWritePayload,
+  ): Promise<ProgramWithLessons> {
+    await this.ensureData();
+    const idx = this.catalog!.programs?.findIndex((p) => p.id === programId);
+    if (idx === undefined || idx === -1) {
+      throw notFound(`Program '${programId}' not found`);
+    }
+    const existing = this.catalog!.programs![idx];
+    const updated: Program = {
+      ...existing,
+      title: payload.title,
+      description: payload.description,
+      lessonIds: payload.lessonIds,
+      order: payload.order,
+      updatedAt: new Date().toISOString(),
+    };
+    this.catalog!.programs![idx] = updated;
+    this.persist();
+    const lessons = (this.catalog!.lessons ?? [])
+      .filter((lesson) => lesson.programId === programId)
+      .sort((left, right) => left.order - right.order);
+    return { ...updated, lessons };
+  }
+
+  async deleteProgram(programId: string): Promise<void> {
+    await this.ensureData();
+    const idx = this.catalog!.programs?.findIndex((p) => p.id === programId);
+    if (idx === undefined || idx === -1) {
+      throw notFound(`Program '${programId}' not found`);
+    }
+    this.catalog!.programs!.splice(idx, 1);
+    this.persist();
+  }
+
+  async getLessons(programId: string): Promise<readonly Lesson[]> {
+    await this.ensureData();
+    return (this.catalog!.lessons ?? [])
+      .filter((lesson) => lesson.programId === programId)
+      .sort((left, right) => left.order - right.order);
+  }
+
   /**
    * Clears the cached catalog data, forcing a reload on the next operation.
    */
@@ -271,21 +355,55 @@ export class CoursesCatalogMockHandler {
     saveCourseCatalogToStorage(this.catalog!);
   }
 
-  private lessonsForCourse(course: Course): Lesson[] {
-    return this.catalog!.lessons.filter((lesson) => course.lessonIds.includes(lesson.id));
+  private async programsWithLessonsForCourse(course: Course): Promise<ProgramWithLessons[]> {
+    const programs = this.catalog!.programs?.filter((p) => course.programIds.includes(p.id)) ?? [];
+    const results: ProgramWithLessons[] = [];
+
+    for (const program of programs) {
+      const lessons = (this.catalog!.lessons ?? [])
+        .filter((lesson) => lesson.programId === program.id)
+        .sort((left, right) => left.order - right.order);
+      results.push({ ...program, lessons });
+    }
+
+    return results;
   }
 
-  private normalizeLessons(courseId: string, drafts: CourseWritePayload['lessons']): Lesson[] {
-    return drafts.map((draft, index) => ({
-      id: draft.id ?? crypto.randomUUID(),
-      courseId,
-      title: draft.title,
-      description: draft.description,
-      scenarioIds: [...new Set(draft.scenarioIds.filter(Boolean))],
-      prerequisiteLessonIds: [...new Set((draft.prerequisiteLessonIds ?? []).filter(Boolean))],
-      order: draft.order ?? index,
-      updatedAt: new Date().toISOString(),
-    }));
+  private normalizePrograms(
+    courseId: string,
+    drafts: CourseWritePayload['programs'],
+  ): ProgramWithLessons[] {
+    return drafts.map((draft, pIndex) => {
+      const programId = draft.id ?? crypto.randomUUID();
+      const lessons = (draft.lessons ?? []).map(
+        (
+          lessonDraft: import('../../repository/course-catalog.port').LessonWritePayload,
+          lIndex: number,
+        ) => ({
+          id: lessonDraft.id ?? crypto.randomUUID(),
+          programId,
+          title: lessonDraft.title,
+          description: lessonDraft.description,
+          scenarioIds: [...new Set(lessonDraft.scenarioIds.filter(Boolean))],
+          prerequisiteLessonIds: [
+            ...new Set((lessonDraft.prerequisiteLessonIds ?? []).filter(Boolean)),
+          ],
+          order: lessonDraft.order ?? lIndex,
+          updatedAt: new Date().toISOString(),
+        }),
+      );
+
+      return {
+        id: programId,
+        courseId,
+        title: draft.title,
+        description: draft.description,
+        lessonIds: lessons.map((l) => l.id),
+        order: draft.order ?? pIndex,
+        updatedAt: new Date().toISOString(),
+        lessons,
+      };
+    });
   }
 
   private assertCanEdit(course: Course): void {

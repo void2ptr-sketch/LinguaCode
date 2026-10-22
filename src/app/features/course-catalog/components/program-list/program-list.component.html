@@ -41,7 +41,7 @@
                 }
               </div>
               <p class="course-catalog-page__meta">
-                {{ course.lessonCount }} уроков · {{ course.languagePairSummary }}
+                {{ course.programCount }} программ · {{ course.languagePairSummary }}
                 @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
                   · {{ progressPercent(course.id) }}%
                 }

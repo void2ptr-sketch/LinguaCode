@@ -44,7 +44,7 @@ function makeCourse(overrides?: Partial<Course>): Course {
     description: 'Test course',
     authorId: 'local-user',
     languagePair: { known: 'ru', learning: 'zh' },
-    lessonIds: [],
+    programIds: [],
     published: false,
     updatedAt: new Date(0).toISOString(),
     ...overrides,
@@ -54,7 +54,7 @@ function makeCourse(overrides?: Partial<Course>): Course {
 function makeLesson(overrides?: Partial<Lesson>): Lesson {
   return {
     id: 'l1',
-    courseId: 'c1',
+    programId: 'p1',
     title: 'Lesson 1',
     description: 'Test lesson',
     scenarioIds: [],
@@ -98,6 +98,7 @@ describe('content-seed.cache', () => {
     it('should return stored catalog after setting', () => {
       const catalog = {
         courses: [makeCourse()],
+        programs: [],
         lessons: [makeLesson()],
       };
       setCourseSeedCache(catalog);
@@ -109,6 +110,7 @@ describe('content-seed.cache', () => {
     it('should clone courses and lessons arrays (not same reference)', () => {
       const catalog = {
         courses: [makeCourse()],
+        programs: [],
         lessons: [makeLesson()],
       };
       setCourseSeedCache(catalog);
@@ -144,7 +146,7 @@ describe('content-seed.cache', () => {
     it('should clone courses and lessons arrays', () => {
       const courses = [makeCourse()];
       const lessons = [makeLesson()];
-      const catalog = { courses, lessons };
+      const catalog = { courses, programs: [], lessons };
       setCourseSeedCache(catalog);
       courses.push(makeCourse({ id: 'c2' }));
       lessons.push(makeLesson({ id: 'l2' }));
@@ -169,6 +171,7 @@ describe('content-seed.cache', () => {
       setCardSeedCache([makeCard()]);
       setCourseSeedCache({
         courses: [makeCourse()],
+        programs: [],
         lessons: [makeLesson()],
       });
 
@@ -194,6 +197,7 @@ describe('content-seed.cache', () => {
     it('should return false when only courses are present', () => {
       setCourseSeedCache({
         courses: [makeCourse()],
+        programs: [],
         lessons: [],
       });
       expect(isContentSeedCacheReady()).toBe(false);
@@ -208,6 +212,7 @@ describe('content-seed.cache', () => {
       setScenarioSeedCache([makeScenario()]);
       setCourseSeedCache({
         courses: [makeCourse()],
+        programs: [],
         lessons: [],
       });
       setCardSeedCache([makeCard()]);

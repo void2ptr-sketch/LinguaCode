@@ -7,7 +7,7 @@ import {
 import { languagePairsEqual } from '../../language-pair/lib/language-pair.utils';
 import { scenarioDisplayLabel } from '../../scenario/utils/scenario-display-label.utils';
 import type { LearningSessionPreferences } from '../model';
-import type { Course, CourseWithLessons, Lesson } from '../../course/model';
+import type { Course, ProgramWithLessons, Lesson } from '../../course/model';
 import type { LanguagePair } from '../../language-pair/model/language-pair.types';
 import type { LearningResult } from '../model';
 
@@ -23,6 +23,8 @@ export type LearningResumeTarget = {
   kind: LearningResumeKind;
   courseId: string;
   courseTitle: string;
+  programId: string;
+  programTitle: string;
   lessonId: string;
   lessonTitle: string;
   scenarioId: string;
@@ -47,7 +49,8 @@ export type LessonRoadmapItem = {
  * Context required to compute the learning resume target for a given course.
  */
 export type LearningResumeContext = {
-  course: CourseWithLessons;
+  course: Course;
+  program: ProgramWithLessons;
   saved?: LearningSessionPreferences;
   pairResults: readonly LearningResult[];
   hasScenarioResult: (scenarioId: string) => boolean;
@@ -57,7 +60,7 @@ export type LearningResumeContext = {
 /**
  * Determines the active course ID from saved session preferences, learning results, or the course itself.
  *
- * Checks saved preferences first, then falls back to the most recently answered result,
+ * Checks saved preferences first (activeCourseId), then falls back to the most recently answered result,
  * and finally to the provided course object.
  *
  * @param saved — Saved learning session preferences.
@@ -68,7 +71,7 @@ export type LearningResumeContext = {
 export function inferActiveCourseId(
   saved: LearningSessionPreferences | undefined,
   pairResults: readonly LearningResult[],
-  course: CourseWithLessons | null,
+  course: Course | null,
 ): string | null {
   if (saved?.activeCourseId) {
     return saved.activeCourseId;
@@ -137,23 +140,26 @@ export function buildLessonRoadmap(
 /**
  * Resolves the next lesson and scenario target for resuming a learning session.
  *
- * Returns the first unlocked, incomplete scenario. If all scenarios are complete,
- * returns a `'course-complete'` target. Returns `'no-program'` when the course has no lessons.
+ * Returns the first unlocked, incomplete scenario within the active program.
+ * If all scenarios are complete, returns a `'course-complete'` target.
+ * Returns `'no-program'` when the course has no programs or the program has no lessons.
  *
- * @param context — Learning resume context containing course, results, and helpers.
+ * @param context — Learning resume context containing course, program, results, and helpers.
  * @returns The resolved resume target, or `null` if no target can be determined.
  */
 export function resolveLearningResumeTarget(
   context: LearningResumeContext,
 ): LearningResumeTarget | null {
-  const { course, hasScenarioResult, scenarioTitles, pairResults } = context;
-  const lessons = [...course.lessons].sort((left, right) => left.order - right.order);
+  const { course, program, hasScenarioResult, scenarioTitles, pairResults } = context;
+  const lessons = [...program.lessons].sort((left, right) => left.order - right.order);
 
   if (lessons.length === 0) {
     return {
       kind: 'no-program',
       courseId: course.id,
       courseTitle: course.title,
+      programId: program.id,
+      programTitle: program.title,
       lessonId: '',
       lessonTitle: '',
       scenarioId: '',
@@ -177,6 +183,8 @@ export function resolveLearningResumeTarget(
           kind: hasAnyResult ? 'continue' : 'start',
           courseId: course.id,
           courseTitle: course.title,
+          programId: program.id,
+          programTitle: program.title,
           lessonId: lesson.id,
           lessonTitle: lesson.title,
           scenarioId,
@@ -195,6 +203,8 @@ export function resolveLearningResumeTarget(
     kind: 'course-complete',
     courseId: course.id,
     courseTitle: course.title,
+    programId: program.id,
+    programTitle: program.title,
     lessonId: firstLesson?.id ?? '',
     lessonTitle: firstLesson?.title ?? '',
     scenarioId: firstScenarioId,
@@ -203,11 +213,11 @@ export function resolveLearningResumeTarget(
 }
 
 /**
- * Collects all unique scenario IDs from the lessons of a course.
+ * Collects all unique scenario IDs from the lessons of a program.
  *
- * @param course — Course whose lesson scenarios to collect.
+ * @param program — Program whose lesson scenarios to collect.
  * @returns Array of unique scenario IDs.
  */
-export function collectScenarioIds(course: CourseWithLessons): readonly string[] {
-  return [...new Set(course.lessons.flatMap((lesson) => lesson.scenarioIds))];
+export function collectScenarioIds(program: ProgramWithLessons): readonly string[] {
+  return [...new Set(program.lessons.flatMap((lesson) => lesson.scenarioIds))];
 }

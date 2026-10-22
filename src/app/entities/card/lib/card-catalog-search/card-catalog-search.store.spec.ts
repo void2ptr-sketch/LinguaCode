@@ -24,6 +24,16 @@ describe('CardCatalogSearchStore', () => {
   const courseSearchMock = {
     search: vi.fn().mockName('CourseSearchService.search'),
     getById: vi.fn().mockName('CourseSearchService.getById'),
+    getProgramById: vi.fn().mockName('CourseSearchService.getProgramById').mockResolvedValue({
+      id: 'program-1',
+      courseId: 'course-1',
+      title: 'Program 1',
+      description: '',
+      lessonIds: [],
+      order: 0,
+      updatedAt: '2026-01-01T00:00:00.000Z',
+      lessons: [],
+    }),
     loading: () => false,
     error: () => null,
   };

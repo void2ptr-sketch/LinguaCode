@@ -8,7 +8,7 @@ function makeCourse(overrides?: Partial<Course>): Course {
     description: 'Description',
     authorId: 'local-user',
     languagePair: { known: 'ru', learning: 'zh' },
-    lessonIds: ['l1', 'l2'],
+    programIds: ['p1', 'p2'],
     published: true,
     updatedAt: '2026-10-10T12:00:00.000Z',
     ...overrides,
@@ -24,7 +24,7 @@ describe('course-index.mapper', () => {
       expect(entry.id).toBe('c1');
       expect(entry.title).toBe('Test Course');
       expect(entry.authorId).toBe('local-user');
-      expect(entry.lessonCount).toBe(5);
+      expect(entry.programCount).toBe(5);
       expect(entry.published).toBe(true);
       expect(entry.updatedAt).toBe('2026-10-10T12:00:00.000Z');
       expect(entry.languagePairSummary).toBeTruthy();
@@ -34,7 +34,7 @@ describe('course-index.mapper', () => {
     it('should use provided lessonCount', () => {
       const course = makeCourse();
       const entry = courseToIndexEntry(course, 0);
-      expect(entry.lessonCount).toBe(0);
+      expect(entry.programCount).toBe(0);
     });
 
     it('should handle unpublished courses', () => {

@@ -19,14 +19,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 function makeCourse(
   id: string,
   title: string,
-  lessonCount: number,
+  programCount: number,
   languagePairSummary: string,
 ): CourseIndexEntry {
   return {
     id,
     title,
     authorId: 'author-1',
-    lessonCount,
+    programCount,
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
     languagePairSummary,
@@ -285,8 +285,8 @@ describe('CourseCatalogProgramsComponent', () => {
 
     it('should render course meta with lesson count', () => {
       const metas = fixture.nativeElement.querySelectorAll('.course-catalog-page__meta');
-      expect(metas[0]?.textContent?.trim()).toContain('10 уроков');
-      expect(metas[1]?.textContent?.trim()).toContain('20 уроков');
+      expect(metas[0]?.textContent?.trim()).toContain('10 программ');
+      expect(metas[1]?.textContent?.trim()).toContain('20 программ');
     });
 
     it('should show completed badge for completed courses', () => {

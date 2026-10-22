@@ -6,7 +6,8 @@ import type {
   CourseIndexEntry,
   CourseSearchCriteria,
   CourseSearchPage,
-  CourseWithLessons,
+  CourseWithPrograms,
+  ProgramWithLessons,
 } from '../model';
 import type { ApiResponse } from '../../../shared/api/api.types';
 import { buildApiUrl } from '../../../shared/api/api-url';
@@ -15,9 +16,14 @@ import type {
   CourseCatalogPort,
   CourseExportBundle,
   CourseWritePayload,
+  ProgramWritePayload,
 } from '../repository/course-catalog.port';
 
-export type { CourseWritePayload, LessonWritePayload } from '../repository/course-catalog.port';
+export type {
+  CourseWritePayload,
+  LessonWritePayload,
+  ProgramWritePayload,
+} from '../repository/course-catalog.port';
 
 /**
  * HTTP API service for course operations.
@@ -45,14 +51,14 @@ export class CoursesApiService implements CourseCatalogPort {
   }
 
   /**
-   * Retrieves a course with its lessons by ID.
+   * Retrieves a course with its programs by ID.
    *
    * @param courseId - The course ID.
-   * @returns The course with lessons.
+   * @returns The course with programs.
    */
-  getById(courseId: string): Promise<CourseWithLessons> {
+  getById(courseId: string): Promise<CourseWithPrograms> {
     return firstValueFrom(
-      this.http.get<ApiResponse<CourseWithLessons>>(buildApiUrl(`/courses/${courseId}`)),
+      this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`)),
     ).then((response) => response.data);
   }
 
@@ -60,11 +66,11 @@ export class CoursesApiService implements CourseCatalogPort {
    * Creates a new course.
    *
    * @param payload - The course write payload.
-   * @returns The created course with lessons.
+   * @returns The created course with programs.
    */
-  create(payload: CourseWritePayload): Promise<CourseWithLessons> {
+  create(payload: CourseWritePayload): Promise<CourseWithPrograms> {
     return firstValueFrom(
-      this.http.post<ApiResponse<CourseWithLessons>>(buildApiUrl('/courses'), payload),
+      this.http.post<ApiResponse<CourseWithPrograms>>(buildApiUrl('/courses'), payload),
     ).then((response) => response.data);
   }
 
@@ -73,11 +79,11 @@ export class CoursesApiService implements CourseCatalogPort {
    *
    * @param courseId - The course ID.
    * @param payload - The course write payload.
-   * @returns The updated course with lessons.
+   * @returns The updated course with programs.
    */
-  update(courseId: string, payload: CourseWritePayload): Promise<CourseWithLessons> {
+  update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
     return firstValueFrom(
-      this.http.put<ApiResponse<CourseWithLessons>>(buildApiUrl(`/courses/${courseId}`), payload),
+      this.http.put<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`), payload),
     ).then((response) => response.data);
   }
 
@@ -115,7 +121,7 @@ export class CoursesApiService implements CourseCatalogPort {
    * Retrieves a self-contained export bundle for a course.
    *
    * @param courseId - The course ID.
-   * @returns The export bundle with the resolved catalog, scenarios, cards, and metadata.
+   * @returns The export bundle with the resolved catalog, programs, lessons, scenarios, cards, and metadata.
    *
    * @example
    * ```ts
@@ -125,6 +131,73 @@ export class CoursesApiService implements CourseCatalogPort {
   getBundle(courseId: string): Promise<CourseExportBundle> {
     return firstValueFrom(
       this.http.get<ApiResponse<CourseExportBundle>>(buildApiUrl(`/courses/${courseId}/bundle`)),
+    ).then((response) => response.data);
+  }
+
+  // ── Program operations ──
+
+  /**
+   * Retrieves a program with its lessons by ID.
+   *
+   * @param programId - The program ID.
+   * @returns The program with lessons.
+   */
+  getProgramById(programId: string): Promise<ProgramWithLessons> {
+    return firstValueFrom(
+      this.http.get<ApiResponse<ProgramWithLessons>>(buildApiUrl(`/programs/${programId}`)),
+    ).then((response) => response.data);
+  }
+
+  /**
+   * Creates a new program within a course.
+   *
+   * @param payload - The program write payload.
+   * @returns The created program with lessons.
+   */
+  createProgram(payload: ProgramWritePayload): Promise<ProgramWithLessons> {
+    return firstValueFrom(
+      this.http.post<ApiResponse<ProgramWithLessons>>(buildApiUrl('/programs'), payload),
+    ).then((response) => response.data);
+  }
+
+  /**
+   * Updates an existing program.
+   *
+   * @param programId - The program ID.
+   * @param payload - The program write payload.
+   * @returns The updated program with lessons.
+   */
+  updateProgram(programId: string, payload: ProgramWritePayload): Promise<ProgramWithLessons> {
+    return firstValueFrom(
+      this.http.put<ApiResponse<ProgramWithLessons>>(
+        buildApiUrl(`/programs/${programId}`),
+        payload,
+      ),
+    ).then((response) => response.data);
+  }
+
+  /**
+   * Deletes a program by ID.
+   *
+   * @param programId - The program ID.
+   */
+  deleteProgram(programId: string): Promise<void> {
+    return firstValueFrom(
+      this.http.delete<ApiResponse<null>>(buildApiUrl(`/programs/${programId}`)),
+    ).then(() => undefined);
+  }
+
+  /**
+   * Retrieves all lessons for a given program.
+   *
+   * @param programId - The program ID.
+   * @returns Array of lessons in the program.
+   */
+  getLessons(programId: string): Promise<readonly import('../model').Lesson[]> {
+    return firstValueFrom(
+      this.http.get<ApiResponse<readonly import('../model').Lesson[]>>(
+        buildApiUrl(`/programs/${programId}/lessons`),
+      ),
     ).then((response) => response.data);
   }
 }

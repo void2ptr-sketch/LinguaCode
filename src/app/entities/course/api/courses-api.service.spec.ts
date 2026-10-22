@@ -3,31 +3,42 @@ import { TestBed } from '@angular/core/testing';
 
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { CoursesApiService, CourseWritePayload } from './courses-api.service';
-import type { CourseIndexEntry, CourseWithLessons } from '../model';
+import type { CourseIndexEntry, CourseWithPrograms } from '../model';
 
 describe('CoursesApiService', () => {
   let service: CoursesApiService;
   let httpMock: HttpTestingController;
 
-  const mockCourseWithLessons: CourseWithLessons = {
+  const mockCourseWithPrograms: CourseWithPrograms = {
     id: 'course-1',
     title: 'Test Course',
     description: 'Test description',
     authorId: 'author-1',
     languagePair: { known: 'ru', learning: 'en' },
-    lessonIds: ['lesson-1'],
+    programIds: ['program-1'],
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
-    lessons: [
+    programs: [
       {
-        id: 'lesson-1',
+        id: 'program-1',
+        courseId: 'course-1',
         title: 'Lesson 1',
         description: '',
-        courseId: 'course-1',
-        scenarioIds: ['scenario-1'],
-        prerequisiteLessonIds: [],
+        lessonIds: ['lesson-1'],
         order: 0,
         updatedAt: '2024-01-01T00:00:00.000Z',
+        lessons: [
+          {
+            id: 'lesson-1',
+            programId: 'program-1',
+            title: 'Lesson 1',
+            description: '',
+            scenarioIds: ['scenario-1'],
+            prerequisiteLessonIds: [],
+            order: 0,
+            updatedAt: '2024-01-01T00:00:00.000Z',
+          },
+        ],
       },
     ],
   };
@@ -36,7 +47,7 @@ describe('CoursesApiService', () => {
     id: 'course-1',
     title: 'Test Course',
     authorId: 'author-1',
-    lessonCount: 1,
+    programCount: 1,
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
     languagePairSummary: 'Русский → English',
@@ -47,12 +58,13 @@ describe('CoursesApiService', () => {
     description: 'Test description',
     published: true,
     languagePair: { known: 'ru', learning: 'en' },
-    lessons: [
+    programs: [
       {
-        id: 'lesson-1',
+        id: 'program-1',
+        courseId: 'course-1',
         title: 'Lesson 1',
         description: '',
-        scenarioIds: ['scenario-1'],
+        lessonIds: ['lesson-1'],
         order: 0,
       },
     ],
@@ -103,10 +115,10 @@ describe('CoursesApiService', () => {
 
       const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
       expect(req.request.method).toBe('GET');
-      req.flush({ data: mockCourseWithLessons });
+      req.flush({ data: mockCourseWithPrograms });
 
       const result = await promise;
-      expect(result).toEqual(mockCourseWithLessons);
+      expect(result).toEqual(mockCourseWithPrograms);
     });
   });
 
@@ -117,10 +129,10 @@ describe('CoursesApiService', () => {
       const req = httpMock.expectOne(buildApiUrl('/courses'));
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockPayload);
-      req.flush({ data: mockCourseWithLessons });
+      req.flush({ data: mockCourseWithPrograms });
 
       const result = await promise;
-      expect(result).toEqual(mockCourseWithLessons);
+      expect(result).toEqual(mockCourseWithPrograms);
     });
   });
 
@@ -131,10 +143,10 @@ describe('CoursesApiService', () => {
       const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
       expect(req.request.method).toBe('PUT');
       expect(req.request.body).toEqual(mockPayload);
-      req.flush({ data: mockCourseWithLessons });
+      req.flush({ data: mockCourseWithPrograms });
 
       const result = await promise;
-      expect(result).toEqual(mockCourseWithLessons);
+      expect(result).toEqual(mockCourseWithPrograms);
     });
   });
 

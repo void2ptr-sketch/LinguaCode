@@ -26,8 +26,13 @@ import { COURSE_AUTHORING_STATUSES } from '../../../../entities/course/model';
 import type { ScenarioIndexEntry } from '../../../../entities/scenario/model';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { MarkdownFieldComponent } from '../../../../shared/utils/markdown-field';
-import type { CourseFormDraft, LessonFormDraft } from '../../types';
-import { emptyLessonFormDraft, lessonDraftKey } from '../../utils/course-form-draft.utils';
+import type { CourseFormDraft, LessonFormDraft, ProgramFormDraft } from '../../types';
+import {
+  emptyLessonFormDraft,
+  emptyProgramFormDraft,
+  lessonDraftKey,
+  programDraftKey,
+} from '../../utils/course-form-draft.utils';
 
 /**
  * Full form component for creating and editing courses.
@@ -96,10 +101,18 @@ export class CourseFormComponent implements OnInit {
   readonly exportPdf = output<boolean>();
 
   /**
+   * Utility function for generating unique program draft keys.
+   *
+   * @remarks
+   * Used in templates for `ngModel` bindings.
+   */
+  readonly programDraftKey = programDraftKey;
+
+  /**
    * Utility function for generating unique lesson draft keys.
    *
    * @remarks
-   * Used in templates for `ngModel` bindings and prerequisite selection.
+   * Used in templates for prerequisite selection.
    */
   readonly lessonDraftKey = lessonDraftKey;
 
@@ -199,63 +212,185 @@ export class CourseFormComponent implements OnInit {
   }
 
   /**
-   * Updates the title of a specific lesson.
+   * Updates the title of a specific program.
    *
-   * @param index — The zero-based index of the lesson.
-   * @param value — The new lesson title.
+   * @param index — The zero-based index of the program.
+   * @param value — The new program title.
    */
-  updateLessonTitle(index: number, value: string): void {
-    const lesson = this.draft().lessons[index];
-    if (!lesson) {
+  updateProgramTitle(index: number, value: string): void {
+    const program = this.draft().programs[index];
+    if (!program) {
       return;
     }
 
-    this.updateLesson(index, { ...lesson, title: value });
+    this.updateProgram(index, { ...program, title: value });
   }
 
   /**
-   * Updates the description of a specific lesson.
+   * Updates the description of a specific program.
    *
-   * @param index — The zero-based index of the lesson.
-   * @param value — The new lesson description.
+   * @param index — The zero-based index of the program.
+   * @param value — The new program description.
    */
-  updateLessonDescription(index: number, value: string): void {
-    const lesson = this.draft().lessons[index];
+  updateProgramDescription(index: number, value: string): void {
+    const program = this.draft().programs[index];
+    if (!program) {
+      return;
+    }
+
+    this.updateProgram(index, { ...program, description: value });
+  }
+
+  /**
+   * Replaces a program at a specific index with the provided program draft.
+   *
+   * @param index — The zero-based index of the program to replace.
+   * @param program — The new program draft.
+   */
+  updateProgram(index: number, program: ProgramFormDraft): void {
+    const programs = this.draft().programs.map((item, itemIndex) =>
+      itemIndex === index ? program : item,
+    );
+    this.updateDraft({ ...this.draft(), programs });
+  }
+
+  /**
+   * Appends a new empty program to the draft.
+   *
+   * @remarks
+   * Assigns the next available order number.
+   */
+  addProgram(): void {
+    const programs = [
+      ...this.draft().programs,
+      emptyProgramFormDraft(this.draft().programs.length),
+    ];
+    this.updateDraft({ ...this.draft(), programs });
+  }
+
+  /**
+   * Removes a program at the specified index.
+   *
+   * @remarks
+   * Prevents removal if there is only one program.
+   *
+   * @param index — The zero-based index of the program to remove.
+   */
+  removeProgram(index: number): void {
+    if (this.draft().programs.length <= 1) {
+      return;
+    }
+
+    const programs = this.draft().programs.filter((_, itemIndex) => itemIndex !== index);
+    this.updateDraft({ ...this.draft(), programs });
+  }
+
+  /**
+   * Updates the title of a specific lesson within a program.
+   *
+   * @param programIndex — The zero-based index of the program.
+   * @param lessonIndex — The zero-based index of the lesson.
+   * @param value — The new lesson title.
+   */
+  updateLessonTitle(programIndex: number, lessonIndex: number, value: string): void {
+    const program = this.draft().programs[programIndex];
+    if (!program) {
+      return;
+    }
+
+    const lesson = program.lessons[lessonIndex];
     if (!lesson) {
       return;
     }
 
-    this.updateLesson(index, { ...lesson, description: value });
+    this.updateLesson(programIndex, {
+      ...program,
+      lessons: program.lessons.map((l, i) => (i === lessonIndex ? { ...l, title: value } : l)),
+    });
+  }
+
+  /**
+   * Updates the description of a specific lesson within a program.
+   *
+   * @param programIndex — The zero-based index of the program.
+   * @param lessonIndex — The zero-based index of the lesson.
+   * @param value — The new lesson description.
+   */
+  updateLessonDescription(programIndex: number, lessonIndex: number, value: string): void {
+    const program = this.draft().programs[programIndex];
+    if (!program) {
+      return;
+    }
+
+    const lesson = program.lessons[lessonIndex];
+    if (!lesson) {
+      return;
+    }
+
+    this.updateLesson(programIndex, {
+      ...program,
+      lessons: program.lessons.map((l, i) =>
+        i === lessonIndex ? { ...l, description: value } : l,
+      ),
+    });
   }
 
   /**
    * Updates the assigned scenario IDs for a specific lesson.
    *
-   * @param index — The zero-based index of the lesson.
+   * @param programIndex — The zero-based index of the program.
+   * @param lessonIndex — The zero-based index of the lesson.
    * @param scenarioIds — The new array of scenario IDs.
    */
-  updateLessonScenarioIds(index: number, scenarioIds: readonly string[]): void {
-    const lesson = this.draft().lessons[index];
+  updateLessonScenarioIds(
+    programIndex: number,
+    lessonIndex: number,
+    scenarioIds: readonly string[],
+  ): void {
+    const program = this.draft().programs[programIndex];
+    if (!program) {
+      return;
+    }
+
+    const lesson = program.lessons[lessonIndex];
     if (!lesson) {
       return;
     }
 
-    this.updateLesson(index, { ...lesson, scenarioIds });
+    this.updateLesson(programIndex, {
+      ...program,
+      lessons: program.lessons.map((l, i) => (i === lessonIndex ? { ...l, scenarioIds } : l)),
+    });
   }
 
   /**
    * Updates the prerequisite lesson IDs for a specific lesson.
    *
-   * @param index — The zero-based index of the lesson.
+   * @param programIndex — The zero-based index of the program.
+   * @param lessonIndex — The zero-based index of the lesson.
    * @param prerequisiteLessonIds — The new array of prerequisite lesson keys.
    */
-  updateLessonPrerequisites(index: number, prerequisiteLessonIds: readonly string[]): void {
-    const lesson = this.draft().lessons[index];
+  updateLessonPrerequisites(
+    programIndex: number,
+    lessonIndex: number,
+    prerequisiteLessonIds: readonly string[],
+  ): void {
+    const program = this.draft().programs[programIndex];
+    if (!program) {
+      return;
+    }
+
+    const lesson = program.lessons[lessonIndex];
     if (!lesson) {
       return;
     }
 
-    this.updateLesson(index, { ...lesson, prerequisiteLessonIds });
+    this.updateLesson(programIndex, {
+      ...program,
+      lessons: program.lessons.map((l, i) =>
+        i === lessonIndex ? { ...l, prerequisiteLessonIds } : l,
+      ),
+    });
   }
 
   /**
@@ -275,27 +410,42 @@ export class CourseFormComponent implements OnInit {
    * @remarks
    * Excludes the lesson itself from the options to prevent self-references.
    *
-   * @param index — The zero-based index of the target lesson.
+   * @param programIndex — The zero-based index of the program.
+   * @param lessonIndex — The zero-based index of the target lesson.
    * @returns Array of `{ key, label, index }` objects for other lessons.
    */
-  prerequisiteOptions(index: number): readonly { key: string; label: string }[] {
-    return this.draft()
-      .lessons.map((lesson, lessonIndex) => ({
+  prerequisiteOptions(
+    programIndex: number,
+    lessonIndex: number,
+  ): readonly { key: string; label: string }[] {
+    const program = this.draft().programs[programIndex];
+    if (!program) {
+      return [];
+    }
+
+    return program.lessons
+      .map((lesson, lIndex) => ({
         key: lessonDraftKey(lesson),
-        label: this.lessonLabel(lesson, lessonIndex),
-        index: lessonIndex,
+        label: this.lessonLabel(lesson, lIndex),
+        index: lIndex,
       }))
-      .filter((option) => option.index !== index);
+      .filter((option) => option.index !== lessonIndex);
   }
 
   /**
    * Returns the currently selected prerequisite lesson IDs for a specific lesson.
    *
-   * @param index — The zero-based index of the lesson.
+   * @param programIndex — The zero-based index of the program.
+   * @param lessonIndex — The zero-based index of the lesson.
    * @returns Array of prerequisite lesson keys, or empty array if lesson not found.
    */
-  prerequisiteSelection(index: number): readonly string[] {
-    const lesson = this.draft().lessons[index];
+  prerequisiteSelection(programIndex: number, lessonIndex: number): readonly string[] {
+    const program = this.draft().programs[programIndex];
+    if (!program) {
+      return [];
+    }
+
+    const lesson = program.lessons[lessonIndex];
     if (!lesson) {
       return [];
     }
@@ -304,51 +454,57 @@ export class CourseFormComponent implements OnInit {
   }
 
   /**
-   * Replaces a lesson at a specific index with the provided lesson draft.
+   * Updates a lesson within a program.
    *
-   * @param index — The zero-based index of the lesson to replace.
-   * @param lesson — The new lesson draft.
+   * @param programIndex — The zero-based index of the program.
+   * @param program — The updated program draft.
    */
-  updateLesson(index: number, lesson: LessonFormDraft): void {
-    const lessons = this.draft().lessons.map((item, itemIndex) =>
-      itemIndex === index ? lesson : item,
+  updateLesson(programIndex: number, program: ProgramFormDraft): void {
+    const programs = this.draft().programs.map((item, itemIndex) =>
+      itemIndex === programIndex ? program : item,
     );
-    this.updateDraft({ ...this.draft(), lessons });
+    this.updateDraft({ ...this.draft(), programs });
   }
 
   /**
-   * Appends a new empty lesson to the draft.
+   * Appends a new empty lesson to a specific program.
    *
-   * @remarks
-   * Assigns the next available order number.
+   * @param programIndex — The zero-based index of the program.
    */
-  addLesson(): void {
-    const lessons = [...this.draft().lessons, emptyLessonFormDraft(this.draft().lessons.length)];
-    this.updateDraft({ ...this.draft(), lessons });
+  addLesson(programIndex: number): void {
+    const program = this.draft().programs[programIndex];
+    if (!program) {
+      return;
+    }
+
+    const lessons = [...program.lessons, emptyLessonFormDraft(program.lessons.length)];
+    this.updateLesson(programIndex, { ...program, lessons });
   }
 
   /**
-   * Removes a lesson at the specified index.
+   * Removes a lesson at the specified index within a program.
    *
    * @remarks
    * Prevents removal if there is only one lesson. Cleans up prerequisite references
    * to the removed lesson from other lessons.
    *
-   * @param index — The zero-based index of the lesson to remove.
+   * @param programIndex — The zero-based index of the program.
+   * @param lessonIndex — The zero-based index of the lesson to remove.
    */
-  removeLesson(index: number): void {
-    if (this.draft().lessons.length <= 1) {
+  removeLesson(programIndex: number, lessonIndex: number): void {
+    const program = this.draft().programs[programIndex];
+    if (!program || program.lessons.length <= 1) {
       return;
     }
 
-    const removedKey = lessonDraftKey(this.draft().lessons[index]);
-    const lessons = this.draft()
-      .lessons.filter((_, itemIndex) => itemIndex !== index)
+    const removedKey = lessonDraftKey(program.lessons[lessonIndex]);
+    const lessons = program.lessons
+      .filter((_, itemIndex) => itemIndex !== lessonIndex)
       .map((lesson, order) => ({
         ...lesson,
         order,
         prerequisiteLessonIds: lesson.prerequisiteLessonIds.filter((key) => key !== removedKey),
       }));
-    this.updateDraft({ ...this.draft(), lessons });
+    this.updateLesson(programIndex, { ...program, lessons });
   }
 }

@@ -4,9 +4,9 @@
 
 ## Назначение
 
-`LinguaCode` — приложение для исследования и изучения языков. Основная единица домена — **карточка** (`Card`); карточки объединяются в **сценарии** (`Scenario`), сценарии — в **уроки** (`Lesson`), уроки — в **программы** (`Course`).
+`LinguaCode` — приложение для исследования и изучения языков. Основная единица домена — **карточка** (`Card`); карточки объединяются в **сценарии** (`Scenario`), сценарии — в **уроки** (`Lesson`), уроки — в **треки** (`Program`), треки — в **каталоги программ** (`Course`).
 
-> **Статус иерархии:** `Card` → `Scenario` — **реализовано** (MVP). `Lesson` и `Course` — **реализовано** (G11), см. [TASKS.md](../TASKS.md).
+> **Статус иерархии:** `Card` → `Scenario` — **реализовано** (MVP). `Lesson` и `Course` — **реализовано** (G11). `Program` — **реализовано** (G17), см. [TASKS.md](../TASKS.md).
 
 Техническая реализация: [ARCHITECTURE.md](./ARCHITECTURE.md).
 
@@ -15,46 +15,49 @@
 Учебный материал выстраивается снизу вверх:
 
 ```text
-Card  →  Scenario  →  Lesson  →  Course
+Card  →  Scenario  →  Lesson  →  Program  →  Course
 ```
 
-| Уровень | Сущность   | Назначение                                              | Статус |
-| ------- | ---------- | ------------------------------------------------------- | ------ |
-| 1       | `Card`     | Атомарное упражнение (вопрос, пара, ввод…)              | MVP    |
-| 2       | `Scenario` | Один прогон: фиксированный или criteria-набор карточек  | MVP    |
-| 3       | `Lesson`   | Тема: несколько сценариев в заданном порядке            | G11    |
-| 4       | `Course`   | Программа: несколько уроков; привязана к `LanguagePair` | G11    |
+| Уровень | Сущность   | Назначение                                                 | Статус |
+| ------- | ---------- | ---------------------------------------------------------- | ------ |
+| 1       | `Card`     | Атомарное упражнение (вопрос, пара, ввод…)                 | MVP    |
+| 2       | `Scenario` | Один прогон: фиксированный или criteria-набор карточек     | MVP    |
+| 3       | `Lesson`   | Тема: несколько сценариев в заданном порядке               | G11    |
+| 4       | `Program`  | Учебный трек: несколько уроков; привязан к `Course`        | G17    |
+| 5       | `Course`   | Каталог программ: `LanguagePair`, `published`, `authoring` | G11    |
 
-### Термины: не путать «курс» и `LanguagePair`
+### Термины: не путать «курс», `Course` и `Program`
 
-В UI и документации G7/G8 слово **«курс»** иногда означает **активную языковую пару** (ru→en, ru→zh) — scope контента в каталогах и обучении. В домене G11 **`Course`** — отдельная сущность: **учебная программа** из уроков.
+В UI и документации G7/G8 слово **«курс»** иногда означает **активную языковую пару** (ru→en, ru→zh) — scope контента в каталогах и обучении. В домене G11/G17:
 
 | В речи / UI                         | В домене       | Пример                            |
 | ----------------------------------- | -------------- | --------------------------------- |
 | языковая пара, «курс ru→en» (G7/G8) | `LanguagePair` | `{ known: 'ru', learning: 'en' }` |
-| учебная программа                   | `Course`       | «Английский A1: базовый»          |
+| каталог программ                    | `Course`       | «Английский A1: базовый»          |
+| учебный трек                        | `Program`      | «Spring 2024», «Self-paced»       |
 | тематический блок                   | `Lesson`       | «Урок 3: Приветствия»             |
 | прогон упражнений                   | `Scenario`     | «Демо: приветствие»               |
 
-Рекомендация для UI (G11e): активный scope подписывать **«Курс: …»** (`LanguagePair`); сущность **`Course`** в UI называть **программой** / **учебной программой**, чтобы не путать с scope.
+Рекомендация для UI (G11e/G17): активный scope подписывать **«Курс: …»** (`LanguagePair`); сущность **`Course`** в UI называть **каталогом программ**; сущность **`Program`** — **учебным треком** / **модулем**.
 
 ## Learning Home (G13)
 
 Точка входа обучения — **`/home`** (вкладка «Обучение»). Экран отвечает на вопрос **«что делать дальше»**, не дублируя пикеры с `/cards/select`.
 
-| Элемент                   | Назначение                                                             |
-| ------------------------- | ---------------------------------------------------------------------- |
-| Hero                      | активный **курс** (`LanguagePair`) и **программа** (`Course`)          |
-| CTA «Продолжить / Начать» | deep link на `/cards/select?courseId&lessonId&scenarioId&tab=learning` |
-| Прогресс программы        | агрегация `LearningResultsStore.courseProgress`                        |
-| Roadmap уроков            | locked / in progress / done (`lesson-prerequisites.utils`)             |
-| Статистика                | краткая точность; подробности — `/home/progress`                       |
+| Элемент                   | Назначение                                                                       |
+| ------------------------- | -------------------------------------------------------------------------------- |
+| Hero                      | активный **курс** (`LanguagePair`) и **каталог** (`Course`)                      |
+| CTA «Продолжить / Начать» | deep link на `/cards/select?courseId&programId&lessonId&scenarioId&tab=learning` |
+| Прогресс программы        | агрегация `LearningResultsStore.courseProgress`                                  |
+| Roadmap уроков            | locked / in progress / done (`lesson-prerequisites.utils`)                       |
+| Статистика                | краткая точность; подробности — `/home/progress`                                 |
 
 **Persistence:** `UserLanguagePairSettings.learning` (`LearningSessionPreferences`):
 
 ```typescript
 type LearningSessionPreferences = {
   activeCourseId?: string;
+  activeProgramId?: string;
   lastLessonId?: string;
   lastScenarioId?: string;
 };
@@ -62,7 +65,7 @@ type LearningSessionPreferences = {
 
 **Алгоритм resume:** `learning-resume.utils` → первый непройденный сценарий в разблокированном уроке; иначе «программа завершена».
 
-**Разделение с `/cards/select` (G14):** dashboard — hub «куда идти»; **Практика** (`/cards/select`) — студия сессии: sticky session bar, stepper, вкладки **Программа / Уроки / Сценарии / Обучение**, кнопки «Далее» / «Начать практику». Roadmap уроков только на `/home`.
+**Разделение с `/cards/select` (G14):** dashboard — hub «куда идти»; **Практика** (`/cards/select`) — студия сессии: sticky session bar, stepper, вкладки **Треки / Уроки / Сценарии / Обучение**, кнопки «Далее» / «Начать практику». Roadmap уроков только на `/home`.
 
 ## Конструктор сценариев
 
@@ -91,7 +94,8 @@ erDiagram
     User ||--o{ Course : authors
     User ||--o{ LearningResult : produces
     User ||--|| CardAppearance : prefers
-    Course ||--|{ Lesson : contains
+    Course ||--|{ Program : contains
+    Program ||--|{ Lesson : references
     Lesson ||--|{ Scenario : references
     Scenario ||--|{ Card : contains
     Card ||--o{ LearningResult : tracks
@@ -104,6 +108,12 @@ erDiagram
         string id
         string title
         LanguagePair languagePair
+    }
+    Program {
+        string id
+        string title
+        string courseId
+        int order
     }
     Lesson {
         string id
@@ -126,7 +136,7 @@ erDiagram
     }
 ```
 
-> `Lesson` и `Course` — **реализовано** (G11). Полная union `Card` — см. `card.types.ts` (10 kind).
+> `Lesson`, `Course` — **реализовано** (G11). `Program` — **реализовано** (G17). Полная union `Card` — см. `card.types.ts` (10 kind).
 
 ### Сущности
 
@@ -141,10 +151,11 @@ erDiagram
 | `PhoneticLexeme`             | Лексема (han, pinyin, ipa…)                                                                       | `phonetic-content.types.ts`     |
 | `Scenario`                   | Сценарий; `cardSource`                                                                            | `scenario.types.ts`             |
 | `ScenarioCardSource`         | `fixed` / `criteria` / `snapshot`                                                                 | `scenario-card-source.types.ts` |
-| `Lesson`                     | Урок программы                                                                                    | `lesson.types.ts`               |
-| `Course`                     | Учебная программа                                                                                 | `course.types.ts`               |
+| `Lesson`                     | Урок трека                                                                                        | `lesson.types.ts`               |
+| `Program`                    | Учебный трек: несколько уроков; привязан к `Course`                                               | `program.types.ts`              |
+| `Course`                     | Каталог программ: `LanguagePair`, `published`, `authoring`                                        | `course.types.ts`               |
 | `LearningResult`             | Результат ответа                                                                                  | `learning-result.types.ts`      |
-| `LearningSessionPreferences` | activeCourseId, lastLessonId, lastScenarioId                                                      | `learning-session.types.ts`     |
+| `LearningSessionPreferences` | activeCourseId, activeProgramId, lastLessonId, lastScenarioId                                     | `learning-session.types.ts`     |
 | `CardIndexEntry`             | Запись каталога                                                                                   | `card-index.types.ts`           |
 | `CardSearchCriteria`         | Критерии поиска                                                                                   | `card-search.types.ts`          |
 
@@ -218,7 +229,7 @@ type Scenario = {
 /** G11 — см. `entities/course/model/lesson.types.ts` */
 type Lesson = {
   id: string;
-  courseId: string;
+  programId: string;
   title: string;
   description: string;
   scenarioIds: readonly string[];
@@ -227,14 +238,25 @@ type Lesson = {
   updatedAt: string; // ISO 8601
 };
 
-/** G11 — см. `entities/course/model/course.types.ts`. languagePair задаёт scope контента курса */
+/** G17 — см. `entities/program/model/program.types.ts`. Трек внутри Course */
+type Program = {
+  id: string;
+  courseId: string;
+  title: string;
+  description: string;
+  lessonIds: readonly string[];
+  order: number;
+  updatedAt: string; // ISO 8601
+};
+
+/** G11 — см. `entities/course/model/course.types.ts`. languagePair задаёт scope контента каталога */
 type Course = {
   id: string;
   title: string;
   description: string;
   authorId: string;
   languagePair: LanguagePair;
-  lessonIds: readonly string[];
+  programIds: readonly string[];
   published: boolean;
   updatedAt: string; // ISO 8601
   /** Авторская идея программы (G16); не в CourseIndexEntry */
@@ -258,8 +280,9 @@ type LearningResult = {
   answeredAt: string; // ISO 8601
   languagePair: LanguagePair;
   direction?: CardDirection;
+  programId?: string; // G17 — опционально для агрегации прогресса по треку
   lessonId?: string; // G11 — опционально для агрегации прогресса по уроку
-  courseId?: string; // G11 — опционально для агрегации прогресса по курсу
+  courseId?: string; // G11 — опционально для агрегации прогресса по каталогу
 };
 
 type User = {

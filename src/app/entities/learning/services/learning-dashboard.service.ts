@@ -13,7 +13,7 @@ import {
 import { CourseSearchService } from '../../../entities/course/search/course-search.service';
 import { resolveLearningSessionForPair } from '../lib/learning-session.utils';
 import { getScenarioSeedCache } from '../../../entities/content-seed/content-seed.cache';
-import type { CourseWithLessons } from '../../../entities/course/model';
+import type { Course, ProgramWithLessons } from '../../../entities/course/model';
 import { CPP_COMPLETE_COURSE_ID } from '../../../entities/course/model';
 import { LearningResultsStore } from '../model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
@@ -50,12 +50,20 @@ export class LearningDashboardService {
   readonly error = signal<string | null>(null);
 
   /**
-   * The currently loaded course with its lessons.
+   * The currently loaded course with its programs.
    *
    * @remarks
    * Set by `reload()` after fetching course data. `null` when no course is active.
    */
-  readonly course = signal<CourseWithLessons | null>(null);
+  readonly course = signal<Course | null>(null);
+
+  /**
+   * The currently loaded program (active track).
+   *
+   * @remarks
+   * Set by `reload()` after resolving the active program from saved state. `null` when no program is active.
+   */
+  readonly program = signal<ProgramWithLessons | null>(null);
 
   /**
    * The determined resume target indicating where to continue learning.
@@ -88,23 +96,28 @@ export class LearningDashboardService {
   );
 
   /**
-   * Computed progress for the currently loaded course.
+   * Computed progress for the currently loaded program.
    *
    * @remarks
-   * Returns `null` when no course is loaded.
+   * Returns `null` when no program is loaded.
    */
   readonly courseProgress = computed(() => {
-    const course = this.course();
-    if (!course) {
+    const program = this.program();
+    if (!program) {
       return null;
     }
 
-    const lessons = course.lessons.map((lesson) => ({
+    const lessons = program.lessons.map((lesson) => ({
       lessonId: lesson.id,
       scenarioIds: lesson.scenarioIds,
     }));
 
-    return this.resultsStore.courseProgress(course.id, lessons);
+    const courseId = this.course()?.id;
+    if (!courseId) {
+      return null;
+    }
+
+    return this.resultsStore.courseProgress(courseId, lessons);
   });
 
   /**
@@ -154,10 +167,13 @@ export class LearningDashboardService {
 
       if (!courseId) {
         this.course.set(null);
+        this.program.set(null);
         this.resumeTarget.set({
           kind: 'no-program',
           courseId: '',
           courseTitle: '',
+          programId: '',
+          programTitle: '',
           lessonId: '',
           lessonTitle: '',
           scenarioId: '',
@@ -170,6 +186,29 @@ export class LearningDashboardService {
       const course = await this.courseSearchService.getById(courseId);
       this.course.set(course);
 
+      // Resolve active program from saved state or use the first program
+      const savedProgramId = saved.activeProgramId;
+      const programs =
+        (
+          course as unknown as {
+            programs: import('../../../entities/program/model/program.types').Program[];
+          }
+        ).programs ?? [];
+      let activeProgram = programs.find((p) => p.id === savedProgramId) ?? programs[0];
+
+      if (!activeProgram && programs.length > 0) {
+        // Load first program with lessons
+        activeProgram = (await this.courseSearchService.getProgramById(
+          programs[0].id,
+        )) as unknown as import('../../../entities/program/model/program.types').ProgramWithLessons;
+      }
+
+      if (activeProgram) {
+        this.program.set(
+          activeProgram as unknown as import('../../../entities/program/model/program.types').ProgramWithLessons,
+        );
+      }
+
       const shouldPersistActiveCourse = !saved.activeCourseId || saved.activeCourseId !== courseId;
       if (shouldPersistActiveCourse) {
         queueMicrotask(() => {
@@ -179,9 +218,19 @@ export class LearningDashboardService {
         });
       }
 
-      const scenarioTitles = await this.loadScenarioTitles(collectScenarioIds(course));
+      const activeProgramForResume = this.program();
+      if (!activeProgramForResume) {
+        this.resumeTarget.set(null);
+        this.roadmap.set([]);
+        return;
+      }
+
+      const scenarioTitles = await this.loadScenarioTitles(
+        collectScenarioIds(activeProgramForResume),
+      );
       const target = resolveLearningResumeTarget({
         course,
+        program: activeProgramForResume,
         saved,
         pairResults,
         hasScenarioResult,
@@ -189,7 +238,7 @@ export class LearningDashboardService {
       });
 
       this.resumeTarget.set(target);
-      this.roadmap.set(buildLessonRoadmap(course.lessons, hasScenarioResult));
+      this.roadmap.set(buildLessonRoadmap(activeProgramForResume.lessons, hasScenarioResult));
     } catch (error) {
       this.logger.error('LearningDashboard: failed to load learning program', error);
       this.error.set('Не удалось загрузить программу обучения');
@@ -207,13 +256,14 @@ export class LearningDashboardService {
    * @param courseId - The ID of the course to set as active.
    *
    * @remarks
-   * Clears the saved last lesson and last scenario IDs, effectively resetting the resume
+   * Clears the saved last lesson, last scenario, and active program IDs, effectively resetting the resume
    * target so that the next `reload()` will resolve a fresh "Start" target.
    */
   setActiveCourseId(courseId: string): void {
     this.userStore.updateActiveLanguagePairSettings({
       learning: {
         activeCourseId: courseId,
+        activeProgramId: undefined,
         lastLessonId: undefined,
         lastScenarioId: undefined,
       },

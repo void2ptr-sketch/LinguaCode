@@ -35,13 +35,16 @@
  */
 import type { Card } from '../../card/model';
 import type { Course, Lesson } from '../../course/model';
+import type { Program } from '../../program/model';
 import type { Scenario } from '../../scenario/model';
 
 import {
   mergeStoredCourse,
   mergeStoredLesson,
+  mergeStoredProgram,
   normalizeStoredCourse,
   normalizeStoredLesson,
+  normalizeStoredProgram,
   type CourseCatalogState,
 } from '../../course/utils/course-catalog-state';
 import {
@@ -54,6 +57,7 @@ import { mergeScenariosWithDefaults } from '../../scenario/utils/scenario-catalo
 import type {
   CoursePatch,
   LessonPatch,
+  ProgramPatch,
   ScenarioPatch,
   UserContentDeletedIds,
   UserContentOverlay,
@@ -79,6 +83,11 @@ const REMOVED_SEED_CARD_IDS = new Set(['draw-jiangenshenfang-1']);
  *    - Если есть overlay — применяет overlay
  *    - Иначе — использует seed
  * 3. Добавляет пользовательские курсы (нет в seed)
+ * 4. Для каждой программы из seed:
+ *    - Если удалена — пропускает
+ *    - Если есть overlay — применяет overlay
+ *    - Иначе — использует seed
+ * 5. Добавляет пользовательские программы (нет в seed)
  *
  * @param seed — seed-данные курсов
  * @param overlay — пользовательские оверлеи
@@ -89,11 +98,14 @@ export function resolveCourseCatalog(
   overlay: UserContentOverlay,
 ): CourseCatalogState {
   const deletedCourses = new Set(overlay.deletedSystemIds?.courses ?? []);
+  const deletedPrograms = new Set(overlay.deletedSystemIds?.programs ?? []);
   const deletedLessons = new Set(overlay.deletedSystemIds?.lessons ?? []);
   const seedCourseIds = new Set(seed.courses.map((course) => course.id));
+  const seedProgramIds = new Set(seed.programs.map((program) => program.id));
   const seedLessonIds = new Set(seed.lessons.map((lesson) => lesson.id));
 
   const coursesById = new Map<string, Course>();
+  const programsById = new Map<string, Program>();
   const lessonsById = new Map<string, Lesson>();
 
   for (const course of seed.courses) {
@@ -104,14 +116,6 @@ export function resolveCourseCatalog(
     coursesById.set(course.id, applyCourseOverlay(course, overlay.courses[course.id]));
   }
 
-  for (const lesson of seed.lessons) {
-    if (deletedLessons.has(lesson.id) || isObsoleteRadicalsCatalogItem(lesson.id)) {
-      continue;
-    }
-
-    lessonsById.set(lesson.id, applyLessonOverlay(lesson, overlay.lessons[lesson.id]));
-  }
-
   for (const [id, entry] of Object.entries(overlay.courses)) {
     if (seedCourseIds.has(id) || deletedCourses.has(id)) {
       continue;
@@ -120,6 +124,32 @@ export function resolveCourseCatalog(
     if (isCompleteCourse(entry)) {
       coursesById.set(id, normalizeStoredCourse(entry));
     }
+  }
+
+  for (const program of seed.programs) {
+    if (deletedPrograms.has(program.id) || isObsoleteRadicalsCatalogItem(program.id)) {
+      continue;
+    }
+
+    programsById.set(program.id, applyProgramOverlay(program, overlay.programs[program.id]));
+  }
+
+  for (const [id, entry] of Object.entries(overlay.programs)) {
+    if (seedProgramIds.has(id) || deletedPrograms.has(id)) {
+      continue;
+    }
+
+    if (isCompleteProgram(entry)) {
+      programsById.set(id, normalizeStoredProgram(entry));
+    }
+  }
+
+  for (const lesson of seed.lessons) {
+    if (deletedLessons.has(lesson.id) || isObsoleteRadicalsCatalogItem(lesson.id)) {
+      continue;
+    }
+
+    lessonsById.set(lesson.id, applyLessonOverlay(lesson, overlay.lessons[lesson.id]));
   }
 
   for (const [id, entry] of Object.entries(overlay.lessons)) {
@@ -134,6 +164,7 @@ export function resolveCourseCatalog(
 
   return {
     courses: [...coursesById.values()],
+    programs: [...programsById.values()],
     lessons: [...lessonsById.values()],
   };
 }
@@ -258,13 +289,16 @@ export function computeCourseCatalogOverlay(
   resolved: CourseCatalogState,
   seed: CourseCatalogState,
   previous: UserContentOverlay,
-): Pick<UserContentOverlay, 'courses' | 'lessons' | 'deletedSystemIds'> {
+): Pick<UserContentOverlay, 'courses' | 'programs' | 'lessons' | 'deletedSystemIds'> {
   const seedCourseIds = new Set(seed.courses.map((course) => course.id));
+  const seedProgramIds = new Set(seed.programs.map((program) => program.id));
   const seedLessonIds = new Set(seed.lessons.map((lesson) => lesson.id));
   const resolvedCourseIds = new Set(resolved.courses.map((course) => course.id));
+  const resolvedProgramIds = new Set(resolved.programs.map((program) => program.id));
   const resolvedLessonIds = new Set(resolved.lessons.map((lesson) => lesson.id));
 
   const courses: Record<string, Course | CoursePatch> = {};
+  const programs: Record<string, Program | ProgramPatch> = {};
   const lessons: Record<string, Lesson | LessonPatch> = {};
 
   for (const course of resolved.courses) {
@@ -278,6 +312,19 @@ export function computeCourseCatalogOverlay(
     }
 
     courses[course.id] = course;
+  }
+
+  for (const program of resolved.programs) {
+    const seedProgram = seed.programs.find((item) => item.id === program.id);
+    if (seedProgram) {
+      const patch = diffProgram(program, seedProgram);
+      if (Object.keys(patch).length > 0) {
+        programs[program.id] = patch;
+      }
+      continue;
+    }
+
+    programs[program.id] = program;
   }
 
   for (const lesson of resolved.lessons) {
@@ -299,6 +346,10 @@ export function computeCourseCatalogOverlay(
       ...(previous.deletedSystemIds?.courses ?? []),
       ...seed.courses.map((course) => course.id).filter((id) => !resolvedCourseIds.has(id)),
     ]),
+    programs: uniqueIds([
+      ...(previous.deletedSystemIds?.programs ?? []),
+      ...seed.programs.map((program) => program.id).filter((id) => !resolvedProgramIds.has(id)),
+    ]),
     lessons: uniqueIds([
       ...(previous.deletedSystemIds?.lessons ?? []),
       ...seed.lessons.map((lesson) => lesson.id).filter((id) => !resolvedLessonIds.has(id)),
@@ -311,13 +362,19 @@ export function computeCourseCatalogOverlay(
     }
   }
 
+  for (const id of seedProgramIds) {
+    if (!(id in programs) && resolvedProgramIds.has(id)) {
+      delete programs[id];
+    }
+  }
+
   for (const id of seedLessonIds) {
     if (!(id in lessons) && resolvedLessonIds.has(id)) {
       delete lessons[id];
     }
   }
 
-  return { courses, lessons, deletedSystemIds };
+  return { courses, programs, lessons, deletedSystemIds };
 }
 
 /**
@@ -461,10 +518,15 @@ function mergeCourseCatalogFromLegacyLists(
   seed: CourseCatalogState,
 ): CourseCatalogState {
   const coursesById = new Map<string, Course>();
+  const programsById = new Map<string, import('../../program/model/program.types').Program>();
   const lessonsById = new Map<string, Lesson>();
 
   for (const course of seed.courses) {
     coursesById.set(course.id, course);
+  }
+
+  for (const program of seed.programs ?? []) {
+    programsById.set(program.id, program);
   }
 
   for (const lesson of seed.lessons) {
@@ -479,6 +541,14 @@ function mergeCourseCatalogFromLegacyLists(
     coursesById.set(course.id, mergeStoredCourse(course, coursesById.get(course.id)));
   }
 
+  for (const program of stored.programs ?? []) {
+    if (isObsoleteRadicalsCatalogItem(program.id)) {
+      continue;
+    }
+
+    programsById.set(program.id, program);
+  }
+
   for (const lesson of stored.lessons) {
     if (isObsoleteRadicalsCatalogItem(lesson.id)) {
       continue;
@@ -489,6 +559,7 @@ function mergeCourseCatalogFromLegacyLists(
 
   return {
     courses: [...coursesById.values()],
+    programs: [...programsById.values()],
     lessons: [...lessonsById.values()],
   };
 }
@@ -532,6 +603,25 @@ function applyLessonOverlay(base: Lesson, overlayEntry?: Lesson | LessonPatch): 
 }
 
 /**
+ * Применяет оверлей к программе.
+ *
+ * @param base — базовая программа из seed
+ * @param overlayEntry — оверлей (patch или полная программа)
+ * @returns программа с применённым оверлеем
+ */
+function applyProgramOverlay(base: Program, overlayEntry?: Program | ProgramPatch): Program {
+  if (!overlayEntry) {
+    return base;
+  }
+
+  if (isCompleteProgram(overlayEntry)) {
+    return mergeStoredProgram(overlayEntry, base);
+  }
+
+  return mergeStoredProgram({ ...base, ...overlayEntry } as Program, base);
+}
+
+/**
  * Применяет оверлей к сценарию.
  *
  * @param base — базовый сценарий из seed
@@ -553,6 +643,39 @@ function applyScenarioOverlay(base: Scenario, overlayEntry?: Scenario | Scenario
     languagePair: base.languagePair,
     cardSource: base.cardSource,
   };
+}
+
+/**
+ * Вычисляет разницу между программой и seed.
+ *
+ * @param resolved — текущая программа
+ * @param seed — seed-программа
+ * @returns patch с различиями
+ */
+function diffProgram(resolved: Program, seed: Program): ProgramPatch {
+  const patch: ProgramPatch = {};
+
+  if (resolved.title !== seed.title) {
+    patch.title = resolved.title;
+  }
+
+  if (resolved.description !== seed.description) {
+    patch.description = resolved.description;
+  }
+
+  if (resolved.order !== seed.order) {
+    patch.order = resolved.order;
+  }
+
+  if (resolved.updatedAt !== seed.updatedAt) {
+    patch.updatedAt = resolved.updatedAt;
+  }
+
+  if (!sameStringArray(resolved.lessonIds, seed.lessonIds)) {
+    patch.lessonIds = [...resolved.lessonIds];
+  }
+
+  return patch;
 }
 
 /**
@@ -581,8 +704,8 @@ function diffCourse(resolved: Course, seed: Course): CoursePatch {
     patch.updatedAt = resolved.updatedAt;
   }
 
-  if (!sameStringArray(resolved.lessonIds, seed.lessonIds)) {
-    patch.lessonIds = [...resolved.lessonIds];
+  if (!sameStringArray(resolved.programIds, seed.programIds)) {
+    patch.programIds = [...resolved.programIds];
   }
 
   if (!sameCourseAuthoring(resolved.authoring, seed.authoring)) {
@@ -678,7 +801,7 @@ function cardsDiffer(resolved: Card, seed: Card): boolean {
 function isCompleteCourse(value: Course | CoursePatch): value is Course {
   return (
     typeof (value as Course).languagePair === 'object' &&
-    Array.isArray((value as Course).lessonIds) &&
+    Array.isArray((value as Course).programIds) &&
     typeof (value as Course).authorId === 'string'
   );
 }
@@ -691,7 +814,21 @@ function isCompleteCourse(value: Course | CoursePatch): value is Course {
  */
 function isCompleteLesson(value: Lesson | LessonPatch): value is Lesson {
   return (
-    typeof (value as Lesson).courseId === 'string' && Array.isArray((value as Lesson).scenarioIds)
+    typeof (value as Lesson).programId === 'string' && Array.isArray((value as Lesson).scenarioIds)
+  );
+}
+
+/**
+ * Проверяет, является ли значение полной программой (а не patch).
+ *
+ * @param value — значение для проверки
+ * @returns true если это полная программа
+ */
+function isCompleteProgram(value: Program | ProgramPatch): value is Program {
+  return (
+    typeof (value as Program).courseId === 'string' &&
+    typeof (value as Program).title === 'string' &&
+    Array.isArray((value as Program).lessonIds)
   );
 }
 
