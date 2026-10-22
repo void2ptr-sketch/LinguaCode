@@ -71,12 +71,15 @@ describe('CourseBuilderPageComponent', () => {
 
     // Override store methods
     const store = TestBed.inject(CourseBuilderStore);
-    vi.spyOn(store, 'exportCourseBundle')
-      .mockImplementation(storeExportBundleSpy as unknown as () => Promise<string | null>);
-    vi.spyOn(store, 'exportPdf')
-      .mockImplementation(storeExportPdfSpy as unknown as (id: string, hints: boolean) => Promise<boolean>);
-    vi.spyOn(store, 'exportError')
-      .mockImplementation(storeExportErrorSpy as unknown as () => string | null);
+    vi.spyOn(store, 'exportCourseBundle').mockImplementation(
+      storeExportBundleSpy as unknown as () => Promise<string | null>,
+    );
+    vi.spyOn(store, 'exportPdf').mockImplementation(
+      storeExportPdfSpy as unknown as (id: string, hints: boolean) => Promise<boolean>,
+    );
+    vi.spyOn(store, 'exportError').mockImplementation(
+      storeExportErrorSpy as unknown as () => string | null,
+    );
 
     fixture = TestBed.createComponent(CourseBuilderPageComponent);
     component = fixture.componentInstance;
