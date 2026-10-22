@@ -295,6 +295,7 @@ describe('ContentSeedRepository', () => {
         version: 1,
         scenarios: [makeScenarioFixture()],
         courses: [makeCourseFixture()],
+        programs: [],
         lessons: [makeLessonFixture()],
         cards: [makeCardFixture()],
       });
@@ -318,6 +319,7 @@ describe('ContentSeedRepository', () => {
         version: 1,
         scenarios: [makeScenarioFixture()],
         courses: [],
+        programs: [],
         lessons: [],
         cards: [],
       });
@@ -336,6 +338,7 @@ describe('ContentSeedRepository', () => {
         version: 0,
         scenarios: [],
         courses: [],
+        programs: [],
         lessons: [],
         cards: [],
       });

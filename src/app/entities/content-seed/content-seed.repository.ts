@@ -33,6 +33,7 @@ import { firstValueFrom } from 'rxjs';
 import { buildFixtureUrl } from '../../shared/api/api-url';
 import { IndexedDbService } from '../../shared/storage';
 import type { Card } from '../card/model';
+import type { Course } from '../course/model';
 import type { LegacyScenario, Scenario } from '../scenario/model';
 import { normalizeLegacyCards } from '../card/mapping/card-legacy.mapper';
 import { normalizeScenario } from '../scenario/utils/scenario-card-source.utils';
@@ -216,6 +217,7 @@ export class ContentSeedRepository {
       version: manifest.version,
       scenarios,
       courses: courses.courses,
+      programs: courses.programs,
       lessons: courses.lessons,
       cards,
     }).catch(() => undefined);
@@ -229,7 +231,7 @@ export class ContentSeedRepository {
    */
   private hydrate(snapshot: ContentSeedSnapshot): void {
     setScenarioSeedCache(snapshot.scenarios);
-    setCourseSeedCache({ courses: [...snapshot.courses], programs: [], lessons: [...snapshot.lessons] });
+    setCourseSeedCache({ courses: [...snapshot.courses], programs: [...snapshot.programs], lessons: [...snapshot.lessons] });
     setCardSeedCache(snapshot.cards);
   }
 
@@ -291,20 +293,25 @@ export class ContentSeedRepository {
  * @private
  */
 function mergeCourseFixtures(fixtures: readonly CoursesSeedFixture[]): CourseCatalogState {
-  const coursesById = new Map<string, CoursesSeedFixture['courses'][number]>();
-  const programsById = new Map<string, CoursesSeedFixture['programs'][number]>();
-  const lessonsById = new Map<string, CoursesSeedFixture['lessons'][number]>();
+  // Normalize each fixture through normalizeStoredCourseCatalog to handle
+  // legacy format (courses with lessonIds, lessons with courseId) and produce
+  // the canonical format with programs.
+  const normalized = fixtures.map((f) => normalizeStoredCourseCatalog(f as Partial<CoursesSeedFixture>));
 
-  for (const fixture of fixtures) {
-    for (const course of fixture.courses) {
+  const coursesById = new Map<string, Course>();
+  const programsById = new Map<string, import('../program/model/program.types').Program>();
+  const lessonsById = new Map<string, import('../course/model/lesson.types').Lesson>();
+
+  for (const catalog of normalized) {
+    for (const course of catalog.courses) {
       coursesById.set(course.id, course);
     }
 
-    for (const program of fixture.programs ?? []) {
+    for (const program of catalog.programs) {
       programsById.set(program.id, program);
     }
 
-    for (const lesson of fixture.lessons) {
+    for (const lesson of catalog.lessons) {
       lessonsById.set(lesson.id, lesson);
     }
   }

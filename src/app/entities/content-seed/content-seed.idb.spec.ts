@@ -50,6 +50,7 @@ describe('content-seed.idb', () => {
       version: 2,
       scenarios: [{ id: 's1' } as never],
       courses: [],
+      programs: [],
       lessons: [],
       cards: [],
     };
@@ -64,6 +65,7 @@ describe('content-seed.idb', () => {
       version: 1,
       scenarios: [],
       courses: [],
+      programs: [],
       lessons: [],
       cards: [],
     });
