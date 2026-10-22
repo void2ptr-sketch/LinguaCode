@@ -28,15 +28,16 @@ describe('courses-storage', () => {
           description: 'User course',
           authorId: 'local-user',
           languagePair: { known: 'ru' as const, learning: 'zh' as const },
-          lessonIds: ['custom-lesson'],
+          programIds: ['program-1'],
           published: true,
           updatedAt: '2026-06-14T10:00:00.000Z',
         },
       ],
+      programs: [],
       lessons: [
         {
           id: 'custom-lesson',
-          courseId: 'custom-course',
+          programId: 'program-1',
           title: 'Custom lesson',
           description: 'User lesson',
           scenarioIds: ['scenario-zh-greetings'],
@@ -66,18 +67,19 @@ describe('courses-storage', () => {
           authorId: 'local-user',
           languagePair:
             undefined as unknown as import('../../language-pair/model/language-pair.types').LanguagePair,
-          lessonIds: [],
+          programIds: [],
           published: true,
           updatedAt: '2026-06-14T10:00:00.000Z',
         },
       ],
+      programs: [],
       lessons: [],
     });
 
     const radicals = merged.courses.find((course) => course.id === 'course-zh-radicals-214');
     expect(radicals?.title).toBe('Пользовательское название');
     expect(radicals?.languagePair).toEqual({ known: 'ru', learning: 'zh' });
-    expect(radicals?.lessonIds.length).toBeGreaterThan(0);
+    expect(radicals?.programIds.length).toBeGreaterThan(0);
   });
 
   it('should keep default zh languagePair when stored seed course has en pair', () => {
@@ -89,11 +91,12 @@ describe('courses-storage', () => {
           description: '',
           authorId: 'local-user',
           languagePair: { known: 'ru', learning: 'en' },
-          lessonIds: [],
+          programIds: [],
           published: true,
           updatedAt: '2026-06-14T10:00:00.000Z',
         },
       ],
+      programs: [],
       lessons: [],
     });
 

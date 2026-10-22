@@ -6,7 +6,7 @@ import { CourseSearchService } from '../../../entities/course/search/course-sear
 import { LearningResultsStore } from '../model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
-import type { CourseWithLessons } from '../../../entities/course/model';
+import type { CourseWithPrograms } from '../../../entities/course/model';
 import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 import { computed } from '@angular/core';
 
@@ -16,25 +16,36 @@ describe('LearningDashboardService', () => {
   let mockResultsStore: Partial<LearningResultsStore>;
 
   const mockLanguagePair: LanguagePair = { known: 'ru', learning: 'zh' };
-  const mockCourse: CourseWithLessons = {
+  const mockCourse: CourseWithPrograms = {
     id: 'course-1',
     title: 'Test Course',
     description: 'Test description',
     authorId: 'author-1',
     languagePair: mockLanguagePair,
-    lessonIds: ['lesson-1'],
+    programIds: ['program-1'],
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
-    lessons: [
+    programs: [
       {
-        id: 'lesson-1',
+        id: 'program-1',
+        courseId: 'course-1',
         title: 'Lesson 1',
         description: '',
-        courseId: 'course-1',
-        scenarioIds: ['scenario-1', 'scenario-2'],
-        prerequisiteLessonIds: [],
+        lessonIds: ['lesson-1'],
         order: 0,
         updatedAt: '2024-01-01T00:00:00.000Z',
+        lessons: [
+          {
+            id: 'lesson-1',
+            programId: 'program-1',
+            title: 'Lesson 1',
+            description: '',
+            scenarioIds: ['scenario-1', 'scenario-2'],
+            prerequisiteLessonIds: [],
+            order: 0,
+            updatedAt: '2024-01-01T00:00:00.000Z',
+          },
+        ],
       },
     ],
   };

@@ -6,12 +6,12 @@ import { formatLanguagePair } from '../../language-pair/lib/language-pair.utils'
  *
  * Includes the formatted language pair summary derived from the course's `languagePair`.
  */
-export function courseToIndexEntry(course: Course, lessonCount: number): CourseIndexEntry {
+export function courseToIndexEntry(course: Course, programCount: number): CourseIndexEntry {
   return {
     id: course.id,
     title: course.title,
     authorId: course.authorId,
-    lessonCount,
+    programCount,
     published: course.published,
     updatedAt: course.updatedAt,
     languagePairSummary: formatLanguagePair(course.languagePair),

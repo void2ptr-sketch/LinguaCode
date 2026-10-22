@@ -13,7 +13,7 @@ import { ContentSeedRepository } from '../../../entities/content-seed/content-se
 import { CourseSearchService } from '../../../entities/course';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CPP_COMPLETE_COURSE_ID } from '../../../entities/course/model';
-import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
+import type { CourseWithPrograms, Lesson } from '../../../entities/course/model';
 import type { Scenario } from '../../../entities/scenario/model';
 import type { JourneyLocationNode } from '../../../entities/learning/model';
 function makeLesson(
@@ -27,7 +27,7 @@ function makeLesson(
     id,
     title,
     description: '',
-    courseId: 'course-1',
+    programId: 'program-1',
     scenarioIds,
     prerequisiteLessonIds,
     order,
@@ -35,17 +35,17 @@ function makeLesson(
   };
 }
 
-function makeCourse(id: string, title: string, lessons: Lesson[]): CourseWithLessons {
+function makeCourse(id: string, title: string, programs: import('../../../entities/program/model/program.types').ProgramWithLessons[]): CourseWithPrograms {
   return {
     id,
     title,
     description: '',
     authorId: 'author-1',
     languagePair: { known: 'ru', learning: 'zh' },
-    lessonIds: lessons.map((l) => l.id),
+    programIds: programs.map((p) => p.id),
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
-    lessons,
+    programs,
   };
 }
 
@@ -65,12 +65,21 @@ describe('JourneyPageComponent', () => {
   let component: JourneyPageComponent;
   let fixture: ComponentFixture<JourneyPageComponent>;
 
-  const mockLessons: Lesson[] = [
-    makeLesson('lesson-1', 'Lesson 1', ['scenario-1', 'scenario-2'], [], 0),
-    makeLesson('lesson-2', 'Lesson 2', ['scenario-3'], ['lesson-1'], 1),
-  ];
+  const mockProgram = {
+    id: 'program-1',
+    courseId: 'course-1',
+    title: 'Program 1',
+    description: '',
+    lessonIds: ['lesson-1', 'lesson-2'],
+    order: 0,
+    updatedAt: '2024-01-01T00:00:00.000Z',
+    lessons: [
+      makeLesson('lesson-1', 'Lesson 1', ['scenario-1', 'scenario-2'], [], 0),
+      makeLesson('lesson-2', 'Lesson 2', ['scenario-3'], ['lesson-1'], 1),
+    ],
+  };
 
-  const mockCourse = makeCourse('course-1', 'Test Course', mockLessons);
+  const mockCourse = makeCourse('course-1', 'Test Course', [mockProgram]);
 
   const mockScenarios: Scenario[] = [
     makeScenario('scenario-1', 'Scenario 1', ['card-1', 'card-2']),
@@ -146,9 +155,22 @@ describe('JourneyPageComponent', () => {
     mockCourseSearchService = {
       getById: vi
         .fn()
-        .mockImplementation((courseId: string) =>
-          Promise.resolve(makeCourse(courseId, `Course ${courseId}`, mockLessons)),
-        ),
+        .mockImplementation((courseId: string) => {
+          const mockProgram = {
+            id: 'program-1',
+            courseId,
+            title: 'Program 1',
+            description: '',
+            lessonIds: ['lesson-1', 'lesson-2'],
+            order: 0,
+            updatedAt: '2024-01-01T00:00:00.000Z',
+            lessons: [
+              makeLesson('lesson-1', 'Lesson 1', ['scenario-1', 'scenario-2'], [], 0),
+              makeLesson('lesson-2', 'Lesson 2', ['scenario-3'], ['lesson-1'], 1),
+            ],
+          };
+          return Promise.resolve(makeCourse(courseId, `Course ${courseId}`, [mockProgram]));
+        }),
     };
 
     mockActivatedRoute = {

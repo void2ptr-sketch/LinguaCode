@@ -3,7 +3,7 @@ import type { Card } from '../card/model';
 
 import type { CourseCatalogState } from '../course/utils/course-catalog-state';
 
-const EMPTY_COURSE_CATALOG: CourseCatalogState = { courses: [], lessons: [] };
+const EMPTY_COURSE_CATALOG: CourseCatalogState = { courses: [], programs: [], lessons: [] };
 
 let scenarioSeedCache: readonly Scenario[] = [];
 let courseSeedCache: CourseCatalogState = EMPTY_COURSE_CATALOG;
@@ -53,6 +53,7 @@ export function setScenarioSeedCache(scenarios: readonly Scenario[]): void {
 export function setCourseSeedCache(catalog: CourseCatalogState): void {
   courseSeedCache = {
     courses: [...catalog.courses],
+    programs: [...(catalog.programs ?? [])],
     lessons: [...catalog.lessons],
   };
 }

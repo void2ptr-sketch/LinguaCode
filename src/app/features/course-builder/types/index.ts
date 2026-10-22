@@ -1,1 +1,6 @@
-export type { CourseFormDraft, CourseEditorMode, LessonFormDraft } from './course-builder.types';
+export type {
+  CourseFormDraft,
+  CourseEditorMode,
+  LessonFormDraft,
+  ProgramFormDraft,
+} from './course-builder.types';

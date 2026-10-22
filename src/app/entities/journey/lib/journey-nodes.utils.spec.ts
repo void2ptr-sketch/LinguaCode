@@ -4,7 +4,7 @@ import {
   mapScenarioToNode,
   computeContentTypes,
 } from './journey-nodes.utils';
-import type { CourseWithLessons } from '../../course/model';
+import type { CourseWithPrograms } from '../../course/model';
 import type { Scenario } from '../../scenario/model';
 import type { CardBase } from '../../card/model';
 import type { JourneyLocationNode } from '../../learning/model';
@@ -192,35 +192,57 @@ describe('journey-nodes.utils', () => {
   });
 
   describe('buildJourneyNodes', () => {
-    const baseCourse: CourseWithLessons = {
+    const baseCourse: CourseWithPrograms = {
       id: 'course-radicals',
       title: 'Радикалы Канси',
       description: 'Курс радикалов',
       authorId: 'system',
       languagePair: { known: 'ru', learning: 'zh' },
-      lessonIds: ['lesson-1', 'lesson-2'],
+      programIds: ['program-1', 'program-2'],
       published: true,
       updatedAt: '2026-01-01T00:00:00.000Z',
-      lessons: [
+      programs: [
         {
-          id: 'lesson-1',
+          id: 'program-1',
           courseId: 'course-radicals',
           title: 'Урок 1',
           description: 'Описание урока 1',
-          scenarioIds: ['scenario-01', 'scenario-02'],
-          prerequisiteLessonIds: [],
+          lessonIds: ['lesson-1'],
           order: 1,
           updatedAt: '2026-01-01T00:00:00.000Z',
+          lessons: [
+            {
+              id: 'lesson-1',
+              programId: 'program-1',
+              title: 'Урок 1',
+              description: 'Описание урока 1',
+              scenarioIds: ['scenario-01', 'scenario-02'],
+              prerequisiteLessonIds: [],
+              order: 1,
+              updatedAt: '2026-01-01T00:00:00.000Z',
+            },
+          ],
         },
         {
-          id: 'lesson-2',
+          id: 'program-2',
           courseId: 'course-radicals',
           title: 'Урок 2',
           description: 'Описание урока 2',
-          scenarioIds: ['scenario-03'],
-          prerequisiteLessonIds: ['lesson-1'],
+          lessonIds: ['lesson-2'],
           order: 2,
           updatedAt: '2026-01-01T00:00:00.000Z',
+          lessons: [
+            {
+              id: 'lesson-2',
+              programId: 'program-2',
+              title: 'Урок 2',
+              description: 'Описание урока 2',
+              scenarioIds: ['scenario-03'],
+              prerequisiteLessonIds: ['lesson-1'],
+              order: 2,
+              updatedAt: '2026-01-01T00:00:00.000Z',
+            },
+          ],
         },
       ],
     };
@@ -362,7 +384,7 @@ describe('journey-nodes.utils', () => {
     });
 
     it('should unlock all lessons when course practiceSettings disables prerequisites', () => {
-      const openCourse: CourseWithLessons = {
+      const openCourse: CourseWithPrograms = {
         ...baseCourse,
         practiceSettings: {
           mode: 'open',
@@ -423,18 +445,18 @@ describe('journey-nodes.utils', () => {
     });
 
     it('should fallback to placeholder title when scenario not in map', () => {
-      const courseWithUnknownScenario: CourseWithLessons = {
+      const courseWithUnknownScenario: CourseWithPrograms = {
         ...baseCourse,
-        lessons: [
+        programs: [
           {
             id: 'lesson-1',
             courseId: 'course-radicals',
             title: 'Урок 1',
             description: 'Описание',
-            scenarioIds: ['scenario-missing'],
-            prerequisiteLessonIds: [],
+            lessonIds: ['scenario-missing'],
             order: 1,
             updatedAt: '2026-01-01T00:00:00.000Z',
+            lessons: [],
           },
         ],
       };
@@ -453,18 +475,18 @@ describe('journey-nodes.utils', () => {
     });
 
     it('should handle empty lesson scenarioIds', () => {
-      const courseWithEmptyLesson: CourseWithLessons = {
+      const courseWithEmptyLesson: CourseWithPrograms = {
         ...baseCourse,
-        lessons: [
+        programs: [
           {
             id: 'lesson-1',
             courseId: 'course-radicals',
             title: 'Урок 1',
             description: 'Описание',
-            scenarioIds: [],
-            prerequisiteLessonIds: [],
+            lessonIds: [],
             order: 1,
             updatedAt: '2026-01-01T00:00:00.000Z',
+            lessons: [],
           },
         ],
       };

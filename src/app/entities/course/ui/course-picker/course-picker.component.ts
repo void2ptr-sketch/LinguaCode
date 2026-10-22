@@ -273,6 +273,6 @@ export class CoursePickerComponent implements OnInit {
    * @returns A formatted string with title, lesson count, and language pair.
    */
   formatLabel(entry: CourseIndexEntry): string {
-    return `${entry.title} · ${entry.lessonCount} уроков · ${entry.languagePairSummary}`;
+    return `${entry.title} · ${entry.programCount} программ · ${entry.languagePairSummary}`;
   }
 }

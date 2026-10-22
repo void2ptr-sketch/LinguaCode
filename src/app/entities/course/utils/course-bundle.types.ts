@@ -1,12 +1,13 @@
 import type { Card } from '../../card/model';
 import type { Course, Lesson } from '../model';
+import type { Program } from '../../program/model';
 import type { Scenario } from '../../scenario/model';
 import type { CardIndexMetaOverride } from '../../card/model';
 /**
  * A self-contained JSON package for exporting a course from localStorage to repository seed files.
  *
  * @remarks
- * Contains the course, lessons, scenarios, cards, and card index metadata in a single bundle.
+ * Contains the course, programs, lessons, scenarios, cards, and card index metadata in a single bundle.
  * Used for backup, migration, and content sharing between projects.
  * @see docs/FEATURES/COURSE-BUNDLE.md
  */
@@ -17,9 +18,10 @@ export type CourseBundle = {
   exportedAt: string;
   /** Author ID from localStorage (typically 'local-user'). */
   sourceAuthorId?: string;
-  /** The course program with its lessons. */
+  /** The course program with its programs and lessons. */
   course: {
     courses: Course[];
+    programs: Program[];
     lessons: Lesson[];
   };
   /** All scenarios referenced by the course's lessons. */

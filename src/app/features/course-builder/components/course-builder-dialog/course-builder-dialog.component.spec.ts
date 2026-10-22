@@ -11,7 +11,7 @@ import { CourseBuilderDialogComponent } from './course-builder-dialog.component'
 import { CourseBuilderStore } from '../../services/course-builder.store';
 import { CoursePdfExportService } from '../../services/course-pdf-export.service';
 import { scenariosApiMockInterceptor } from '../../../../entities/scenario/api/mock/scenarios-api.mock.interceptor';
-import type { CourseWithLessons } from '../../../../entities/course/model';
+import type { CourseWithPrograms } from '../../../../entities/course/model';
 import type { CourseBuilderDialogData } from './course-builder-dialog.types';
 
 function createComponent(
@@ -153,13 +153,13 @@ describe('CourseBuilderDialogComponent', () => {
   });
 
   it('should close dialog with saved:true on successful update', async () => {
-    const mockCourse: CourseWithLessons = {
+    const mockCourse: CourseWithPrograms = {
       id: 'c1',
       title: 'Test',
       authorId: 'local-user',
       description: '',
-      lessons: [],
-      lessonIds: [],
+      programs: [],
+      programIds: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
@@ -179,13 +179,13 @@ describe('CourseBuilderDialogComponent', () => {
   });
 
   it('should not close dialog when update fails', async () => {
-    const mockCourse: CourseWithLessons = {
+    const mockCourse: CourseWithPrograms = {
       id: 'c1',
       title: 'Test',
       authorId: 'local-user',
       description: '',
-      lessons: [],
-      lessonIds: [],
+      programs: [],
+      programIds: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
@@ -218,13 +218,13 @@ describe('CourseBuilderDialogComponent', () => {
   });
 
   it('should show success snackbar on PDF export success', async () => {
-    const mockCourse: CourseWithLessons = {
+    const mockCourse: CourseWithPrograms = {
       id: 'c1',
       title: 'Test',
       authorId: 'local-user',
       description: '',
-      lessons: [],
-      lessonIds: [],
+      programs: [],
+      programIds: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
@@ -249,13 +249,13 @@ describe('CourseBuilderDialogComponent', () => {
   });
 
   it('should show error snackbar on PDF export failure', async () => {
-    const mockCourse: CourseWithLessons = {
+    const mockCourse: CourseWithPrograms = {
       id: 'c1',
       title: 'Test',
       authorId: 'local-user',
       description: '',
-      lessons: [],
-      lessonIds: [],
+      programs: [],
+      programIds: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
@@ -290,13 +290,13 @@ describe('CourseBuilderDialogComponent', () => {
   // ── Edit mode title ──
 
   it('should set edit mode title when not read-only', async () => {
-    const mockCourse: CourseWithLessons = {
+    const mockCourse: CourseWithPrograms = {
       id: 'c1',
       title: 'Test Course',
       authorId: 'local-user',
       description: '',
-      lessons: [],
-      lessonIds: [],
+      programs: [],
+      programIds: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
@@ -315,13 +315,13 @@ describe('CourseBuilderDialogComponent', () => {
   });
 
   it('should set read-only mode title when user is not author', async () => {
-    const mockCourse: CourseWithLessons = {
+    const mockCourse: CourseWithPrograms = {
       id: 'c1',
       title: 'Test Course',
       authorId: 'other-user',
       description: '',
-      lessons: [],
-      lessonIds: [],
+      programs: [],
+      programIds: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',

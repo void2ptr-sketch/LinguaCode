@@ -2,7 +2,7 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 
-import type { CourseIndexEntry, CourseWithLessons } from '../model';
+import type { CourseIndexEntry, CourseWithPrograms } from '../model';
 import type { PageResponse } from '../../../shared/utils/pagination';
 import { CourseSearchService } from './course-search.service';
 import { CoursesApiService } from '../api/courses-api.service';
@@ -86,14 +86,14 @@ describe('CourseSearchService', () => {
         description: '',
         authorId: 'user-1',
         languagePair: { known: 'en', learning: 'zh' },
-        lessonIds: [],
+        programIds: [],
         published: true,
         updatedAt: new Date().toISOString(),
-        lessons: [],
+        programs: [],
       };
       const spy = vi
         .spyOn(apiService, 'getById')
-        .mockResolvedValue(mockCourse as CourseWithLessons);
+        .mockResolvedValue(mockCourse as CourseWithPrograms);
 
       await service.getById('course-1');
 
@@ -109,18 +109,18 @@ describe('CourseSearchService', () => {
         description: '',
         authorId: 'user-1',
         languagePair: { known: 'en', learning: 'zh' },
-        lessonIds: [],
+        programIds: [],
         published: false,
         updatedAt: new Date().toISOString(),
-        lessons: [],
+        programs: [],
       };
-      const spy = vi.spyOn(apiService, 'create').mockResolvedValue(mockCourse as CourseWithLessons);
+      const spy = vi.spyOn(apiService, 'create').mockResolvedValue(mockCourse as CourseWithPrograms);
 
       await service.create({
         title: 'New Course',
         description: '',
         published: false,
-        lessons: [],
+        programs: [],
       });
 
       expect(spy).toHaveBeenCalled();
@@ -135,18 +135,18 @@ describe('CourseSearchService', () => {
         description: '',
         authorId: 'user-1',
         languagePair: { known: 'en', learning: 'zh' },
-        lessonIds: [],
+        programIds: [],
         published: true,
         updatedAt: new Date().toISOString(),
-        lessons: [],
+        programs: [],
       };
       const payload = {
         title: 'Updated',
         description: '',
         published: true,
-        lessons: [],
+        programs: [],
       };
-      const spy = vi.spyOn(apiService, 'update').mockResolvedValue(mockCourse as CourseWithLessons);
+      const spy = vi.spyOn(apiService, 'update').mockResolvedValue(mockCourse as CourseWithPrograms);
 
       await service.update('course-1', payload);
 
@@ -171,7 +171,7 @@ describe('CourseSearchService', () => {
           id: 'c1',
           title: 'Test',
           authorId: 'u1',
-          lessonCount: 0,
+          programCount: 0,
           published: true,
           updatedAt: '',
           languagePairSummary: '',

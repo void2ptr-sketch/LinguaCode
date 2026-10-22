@@ -1,16 +1,19 @@
 import { describe, expect, it } from 'vitest';
 
-import type { CourseWithLessons } from '../../../entities/course/model';
+import type { CourseWithPrograms } from '../../../entities/course/model';
+import type { ProgramWithLessons } from '../../../entities/program/model';
 import type { CourseAuthoring } from '../../../entities/course/model';
 import {
   courseToFormDraft,
   emptyCourseFormDraft,
   emptyLessonFormDraft,
+  emptyProgramFormDraft,
   formDraftToCourseWritePayload,
   lessonDraftKey,
+  programDraftKey,
   serializeCourseFormDraft,
 } from './course-form-draft.utils';
-import type { CourseFormDraft, LessonFormDraft } from '../types/course-builder.types';
+import type { CourseFormDraft, LessonFormDraft, ProgramFormDraft } from '../types/course-builder.types';
 
 describe('course-form-draft.utils', () => {
   const defaultAuthoring: CourseAuthoring = {
@@ -32,6 +35,23 @@ describe('course-form-draft.utils', () => {
         clientId: 'client-789',
       } as Pick<LessonFormDraft, 'id' | 'clientId'>;
       expect(lessonDraftKey(lesson)).toBe('client-789');
+    });
+  });
+
+  describe('programDraftKey', () => {
+    it('should return id when available', () => {
+      const program: Pick<ProgramFormDraft, 'id' | 'clientId'> = {
+        id: 'persisted-123',
+        clientId: 'client-456',
+      };
+      expect(programDraftKey(program)).toBe('persisted-123');
+    });
+
+    it('should return clientId when id is absent', () => {
+      const program: Pick<ProgramFormDraft, 'id' | 'clientId'> = {
+        clientId: 'client-789',
+      } as Pick<ProgramFormDraft, 'id' | 'clientId'>;
+      expect(programDraftKey(program)).toBe('client-789');
     });
   });
 
@@ -58,15 +78,27 @@ describe('course-form-draft.utils', () => {
     });
   });
 
+  describe('emptyProgramFormDraft', () => {
+    it('should create a program draft with one empty lesson', () => {
+      const draft = emptyProgramFormDraft();
+      expect(draft.title).toBe('');
+      expect(draft.description).toBe('');
+      expect(draft.lessons).toHaveLength(1);
+      expect(draft.lessons[0].title).toBe('');
+      expect(draft.lessons[0].order).toBe(0);
+      expect(draft.order).toBe(0);
+    });
+  });
+
   describe('emptyCourseFormDraft', () => {
-    it('should create a course draft with one empty lesson', () => {
+    it('should create a course draft with one empty program', () => {
       const draft = emptyCourseFormDraft();
       expect(draft.title).toBe('');
       expect(draft.description).toBe('');
       expect(draft.published).toBe(true);
-      expect(draft.lessons).toHaveLength(1);
-      expect(draft.lessons[0].title).toBe('');
-      expect(draft.lessons[0].order).toBe(0);
+      expect(draft.programs).toHaveLength(1);
+      expect(draft.programs[0].title).toBe('');
+      expect(draft.programs[0].order).toBe(0);
     });
 
     it('should have non-empty authoring', () => {
@@ -76,15 +108,14 @@ describe('course-form-draft.utils', () => {
   });
 
   describe('courseToFormDraft', () => {
-    function createCourse(overrides?: Record<string, unknown>): CourseWithLessons {
+    function createProgram(overrides?: Record<string, unknown>): ProgramWithLessons {
       return {
-        id: 'course-1',
-        title: 'Test Course',
-        description: 'Test Description',
-        authorId: 'author-1',
-        languagePair: 'en-zh',
+        id: 'program-1',
+        courseId: 'course-1',
+        title: 'Test Program',
+        description: 'Test Program Description',
         lessonIds: ['lesson-1', 'lesson-2'],
-        published: true,
+        order: 0,
         updatedAt: '2024-01-01T00:00:00Z',
         lessons: [
           {
@@ -94,7 +125,7 @@ describe('course-form-draft.utils', () => {
             scenarioIds: ['scenario-1', 'scenario-2'],
             prerequisiteLessonIds: [],
             order: 1,
-            courseId: 'course-1',
+            programId: 'program-1',
           },
           {
             id: 'lesson-2',
@@ -103,12 +134,27 @@ describe('course-form-draft.utils', () => {
             scenarioIds: ['scenario-3'],
             prerequisiteLessonIds: ['lesson-1'],
             order: 2,
-            courseId: 'course-1',
+            programId: 'program-1',
           },
         ],
+        ...overrides,
+      } as unknown as ProgramWithLessons;
+    }
+
+    function createCourse(overrides?: Record<string, unknown>): CourseWithPrograms {
+      return {
+        id: 'course-1',
+        title: 'Test Course',
+        description: 'Test Description',
+        authorId: 'author-1',
+        languagePair: 'en-zh',
+        programIds: ['program-1'],
+        published: true,
+        updatedAt: '2024-01-01T00:00:00Z',
+        programs: [createProgram()],
         authoring: { ...defaultAuthoring },
         ...overrides,
-      } as unknown as CourseWithLessons;
+      } as unknown as CourseWithPrograms;
     }
 
     it('should convert a course to form draft preserving all fields', () => {
@@ -118,51 +164,65 @@ describe('course-form-draft.utils', () => {
       expect(draft.title).toBe('Test Course');
       expect(draft.description).toBe('Test Description');
       expect(draft.published).toBe(true);
-      expect(draft.lessons).toHaveLength(2);
+      expect(draft.programs).toHaveLength(1);
+      expect(draft.programs[0].lessons).toHaveLength(2);
     });
 
     it('should sort lessons by order', () => {
       const course = createCourse({
-        lessons: [
+        programs: [
           {
-            id: 'lesson-2',
-            title: 'Lesson 2',
-            description: '',
-            scenarioIds: [],
-            prerequisiteLessonIds: [],
-            order: 2,
+            id: 'program-1',
             courseId: 'course-1',
-          },
-          {
-            id: 'lesson-1',
-            title: 'Lesson 1',
+            title: 'Test Program',
             description: '',
-            scenarioIds: [],
-            prerequisiteLessonIds: [],
-            order: 1,
-            courseId: 'course-1',
+            lessonIds: ['lesson-2', 'lesson-1'],
+            order: 0,
+            updatedAt: '2024-01-01T00:00:00Z',
+            lessons: [
+              {
+                id: 'lesson-2',
+                title: 'Lesson 2',
+                description: '',
+                scenarioIds: [],
+                prerequisiteLessonIds: [],
+                order: 2,
+                programId: 'program-1',
+              },
+              {
+                id: 'lesson-1',
+                title: 'Lesson 1',
+                description: '',
+                scenarioIds: [],
+                prerequisiteLessonIds: [],
+                order: 1,
+                programId: 'program-1',
+              },
+            ],
           },
         ],
-      } as unknown as CourseWithLessons);
+      } as unknown as CourseWithPrograms);
 
       const draft = courseToFormDraft(course);
-      expect(draft.lessons[0].id).toBe('lesson-1');
-      expect(draft.lessons[1].id).toBe('lesson-2');
+      expect(draft.programs[0].lessons[0].id).toBe('lesson-1');
+      expect(draft.programs[0].lessons[1].id).toBe('lesson-2');
     });
 
     it('should deep copy scenarioIds', () => {
       const course = createCourse();
       const draft = courseToFormDraft(course);
 
-      expect(draft.lessons[0].scenarioIds).not.toBe(course.lessons[0].scenarioIds);
+      expect(draft.programs[0].lessons[0].scenarioIds).not.toBe(
+        (course.programs[0] as ProgramWithLessons).lessons[0].scenarioIds,
+      );
     });
 
     it('should deep copy prerequisiteLessonIds', () => {
       const course = createCourse();
       const draft = courseToFormDraft(course);
 
-      expect(draft.lessons[1].prerequisiteLessonIds).not.toBe(
-        course.lessons[1].prerequisiteLessonIds,
+      expect(draft.programs[0].lessons[1].prerequisiteLessonIds).not.toBe(
+        (course.programs[0] as ProgramWithLessons).lessons[1].prerequisiteLessonIds,
       );
     });
 
@@ -181,23 +241,41 @@ describe('course-form-draft.utils', () => {
         description: 'Test Description',
         published: true,
         authoring: { ...defaultAuthoring },
-        lessons: [
+        programs: [
           {
             clientId: 'client-1',
             id: 'persisted-1',
-            title: 'Lesson 1',
-            description: 'First',
-            scenarioIds: ['scenario-1'],
-            prerequisiteLessonIds: [],
+            title: 'Program 1',
+            description: 'First program',
+            lessons: [
+              {
+                clientId: 'lesson-client-1',
+                id: 'persisted-lesson-1',
+                title: 'Lesson 1',
+                description: 'First',
+                scenarioIds: ['scenario-1'],
+                prerequisiteLessonIds: [],
+                order: 0,
+              },
+            ],
             order: 0,
           },
           {
             clientId: 'client-2',
             id: 'persisted-2',
-            title: 'Lesson 2',
-            description: 'Second',
-            scenarioIds: ['scenario-2', 'scenario-3'],
-            prerequisiteLessonIds: ['persisted-1'],
+            title: 'Program 2',
+            description: 'Second program',
+            lessons: [
+              {
+                clientId: 'lesson-client-2',
+                id: 'persisted-lesson-2',
+                title: 'Lesson 2',
+                description: 'Second',
+                scenarioIds: ['scenario-2', 'scenario-3'],
+                prerequisiteLessonIds: ['persisted-lesson-1'],
+                order: 1,
+              },
+            ],
             order: 1,
           },
         ],
@@ -212,22 +290,22 @@ describe('course-form-draft.utils', () => {
       expect(payload.title).toBe('Test Course');
       expect(payload.description).toBe('Test Description');
       expect(payload.published).toBe(true);
-      expect(payload.lessons).toHaveLength(2);
+      expect(payload.programs).toHaveLength(2);
     });
 
-    it('should map lesson ids correctly', () => {
+    it('should map program ids correctly', () => {
       const draft = createDraft();
       const payload = formDraftToCourseWritePayload(draft);
 
-      expect(payload.lessons[0].id).toBe('persisted-1');
-      expect(payload.lessons[1].id).toBe('persisted-2');
+      expect(payload.programs[0].id).toBe('persisted-1');
+      expect(payload.programs[1].id).toBe('persisted-2');
     });
 
     it('should map prerequisite lesson ids using key-to-id map', () => {
       const draft = createDraft();
       const payload = formDraftToCourseWritePayload(draft);
 
-      expect(payload.lessons[1].prerequisiteLessonIds).toContain('persisted-1');
+      expect(payload.programs[1].lessons![0].prerequisiteLessonIds).toContain('persisted-lesson-1');
     });
 
     it('should filter self-referencing prerequisites', () => {
@@ -236,21 +314,30 @@ describe('course-form-draft.utils', () => {
         description: 'Test Description',
         published: true,
         authoring: { ...defaultAuthoring },
-        lessons: [
+        programs: [
           {
             clientId: 'client-1',
             id: 'persisted-1',
-            title: 'Lesson 1',
+            title: 'Program 1',
             description: '',
-            scenarioIds: [],
-            prerequisiteLessonIds: ['persisted-1'],
+            lessons: [
+              {
+                clientId: 'lesson-client-1',
+                id: 'persisted-lesson-1',
+                title: 'Lesson 1',
+                description: '',
+                scenarioIds: [],
+                prerequisiteLessonIds: ['persisted-lesson-1'],
+                order: 0,
+              },
+            ],
             order: 0,
           },
         ],
       } as CourseFormDraft;
 
       const payload = formDraftToCourseWritePayload(draft);
-      expect(payload.lessons[0].prerequisiteLessonIds).toHaveLength(0);
+      expect(payload.programs[0].lessons![0].prerequisiteLessonIds).toHaveLength(0);
     });
 
     it('should use clientId when id is absent', () => {
@@ -259,20 +346,29 @@ describe('course-form-draft.utils', () => {
         description: 'Test Description',
         published: true,
         authoring: { ...defaultAuthoring },
-        lessons: [
+        programs: [
           {
             clientId: 'new-client-1',
-            title: 'New Lesson',
+            title: 'New Program',
             description: '',
-            scenarioIds: [],
-            prerequisiteLessonIds: [],
+            lessons: [
+              {
+                clientId: 'new-lesson-client-1',
+                title: 'New Lesson',
+                description: '',
+                scenarioIds: [],
+                prerequisiteLessonIds: [],
+                order: 0,
+              },
+            ],
             order: 0,
           },
         ],
       } as CourseFormDraft;
 
       const payload = formDraftToCourseWritePayload(draft);
-      expect(payload.lessons[0].id).toBe('new-client-1');
+      expect(payload.programs[0].id).toBe('new-client-1');
+      expect(payload.programs[0].lessons![0].id).toBe('new-lesson-client-1');
     });
 
     it('should normalize authoring', () => {
@@ -282,17 +378,17 @@ describe('course-form-draft.utils', () => {
       expect(payload.authoring).toBeDefined();
     });
 
-    it('should handle empty lessons array', () => {
+    it('should handle empty programs array', () => {
       const draft = {
         title: 'Test Course',
         description: 'Test Description',
         published: true,
         authoring: { ...defaultAuthoring },
-        lessons: [],
+        programs: [],
       } as CourseFormDraft;
       const payload = formDraftToCourseWritePayload(draft);
 
-      expect(payload.lessons).toEqual([]);
+      expect(payload.programs).toEqual([]);
     });
   });
 
@@ -303,14 +399,23 @@ describe('course-form-draft.utils', () => {
         description: 'Desc',
         published: true,
         authoring: { ...defaultAuthoring },
-        lessons: [
+        programs: [
           {
             clientId: 'client-1',
             id: 'id-1',
-            title: 'Lesson',
+            title: 'Program',
             description: '',
-            scenarioIds: [],
-            prerequisiteLessonIds: [],
+            lessons: [
+              {
+                clientId: 'lesson-client-1',
+                id: 'lesson-id-1',
+                title: 'Lesson',
+                description: '',
+                scenarioIds: [],
+                prerequisiteLessonIds: [],
+                order: 0,
+              },
+            ],
             order: 0,
           },
         ],
@@ -321,7 +426,7 @@ describe('course-form-draft.utils', () => {
 
       const parsed = JSON.parse(serialized);
       expect(parsed.title).toBe('Test');
-      expect(parsed.lessons).toHaveLength(1);
+      expect(parsed.programs).toHaveLength(1);
     });
 
     it('should preserve all fields through serialization', () => {
@@ -330,13 +435,21 @@ describe('course-form-draft.utils', () => {
         description: 'Description',
         published: false,
         authoring: { ...defaultAuthoring },
-        lessons: [
+        programs: [
           {
             clientId: 'c1',
-            title: 'L1',
+            title: 'P1',
             description: 'D1',
-            scenarioIds: ['s1'],
-            prerequisiteLessonIds: [],
+            lessons: [
+              {
+                clientId: 'l1',
+                title: 'L1',
+                description: 'D1',
+                scenarioIds: ['s1'],
+                prerequisiteLessonIds: [],
+                order: 0,
+              },
+            ],
             order: 0,
           },
         ],

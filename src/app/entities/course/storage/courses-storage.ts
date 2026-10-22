@@ -38,7 +38,7 @@ export function getDefaultCourseCatalog(): CourseCatalogState {
 }
 
 /** @deprecated Use getDefaultCourseCatalog() after content seed preload. */
-export const DEFAULT_COURSE_CATALOG: CourseCatalogState = { courses: [], lessons: [] };
+export const DEFAULT_COURSE_CATALOG: CourseCatalogState = { courses: [], programs: [], lessons: [] };
 
 /**
  * Merges a stored (user-modified) course catalog with the seed catalog.
@@ -66,7 +66,7 @@ export function loadCourseCatalogFromStorage(): CourseCatalogState {
  * Persists a course catalog to user-content overlay storage.
  *
  * Computes the overlay delta relative to the seed and previous state, then patches the overlay with
- * the new courses, lessons, and deleted system IDs.
+ * the new courses, programs, lessons, and deleted system IDs.
  */
 export function saveCourseCatalogToStorage(catalog: CourseCatalogState): void {
   migrateUserContentOverlayIfNeeded();
@@ -76,10 +76,12 @@ export function saveCourseCatalogToStorage(catalog: CourseCatalogState): void {
 
   patchUserContentOverlay({
     courses: computed.courses,
+    programs: computed.programs,
     lessons: computed.lessons,
     deletedSystemIds: {
       ...previous.deletedSystemIds,
       courses: computed.deletedSystemIds?.courses,
+      programs: computed.deletedSystemIds?.programs,
       lessons: computed.deletedSystemIds?.lessons,
     },
   });
@@ -88,14 +90,19 @@ export function saveCourseCatalogToStorage(catalog: CourseCatalogState): void {
 /**
  * Reads the stored course catalog from overlay storage, returning `null` when no user data exists.
  *
- * Checks whether the overlay contains any courses, lessons, or deleted-system IDs before attempting to load.
+ * Checks whether the overlay contains any courses, programs, lessons, or deleted-system IDs before attempting to load.
  */
 export function readStoredCourseCatalog(): CourseCatalogState | null {
   const overlay = readUserContentOverlay();
   const hasStored =
     Object.keys(overlay.courses).length > 0 ||
+    Object.keys(overlay.programs).length > 0 ||
     Object.keys(overlay.lessons).length > 0 ||
-    Boolean(overlay.deletedSystemIds?.courses?.length || overlay.deletedSystemIds?.lessons?.length);
+    Boolean(
+      overlay.deletedSystemIds?.courses?.length ||
+        overlay.deletedSystemIds?.programs?.length ||
+        overlay.deletedSystemIds?.lessons?.length
+    );
 
   if (!hasStored) {
     return null;

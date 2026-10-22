@@ -2,7 +2,7 @@ import { vi } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
 
-import type { CourseWithLessons } from '../../../entities/course/model';
+import type { CourseWithPrograms } from '../../../entities/course/model';
 import { CourseSearchService, CoursesApiService } from '../../../entities/course';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
@@ -61,7 +61,7 @@ describe('CourseBuilderStore', () => {
           id: 'c1',
           title: 'Test course',
           authorId: 'local-user',
-          lessonCount: 2,
+          programCount: 2,
           published: false,
           updatedAt: '2026-01-01T00:00:00.000Z',
           languagePairSummary: 'Russian → English',
@@ -141,7 +141,7 @@ describe('CourseBuilderStore', () => {
       title: 'Editable Course',
       authorId: 'local-user',
       description: 'Test course',
-      lessons: [],
+      programs: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '2026-01-01T00:00:00.000Z',
@@ -165,7 +165,7 @@ describe('CourseBuilderStore', () => {
 
   it('should cancel editing and return to list mode', () => {
     store.editingCourseId.set('c1');
-    store.editingCourse.set({} as CourseWithLessons);
+    store.editingCourse.set({} as CourseWithPrograms);
     store.editorMode.set('edit');
     store.error.set('some error');
 
@@ -188,7 +188,7 @@ describe('CourseBuilderStore', () => {
       title: 'My Course',
       authorId: 'local-user',
       description: '',
-      lessons: [],
+      programs: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
@@ -204,7 +204,7 @@ describe('CourseBuilderStore', () => {
       title: 'Other Course',
       authorId: 'other-user',
       description: '',
-      lessons: [],
+      programs: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
@@ -220,13 +220,21 @@ describe('CourseBuilderStore', () => {
       description: '',
       published: false,
       authoring: { idea: '', status: 'draft' },
-      lessons: [
+      programs: [
         {
           clientId: 'lc-1',
           title: 'Lesson 1',
           description: '',
-          scenarioIds: ['s1'],
-          prerequisiteLessonIds: [],
+          lessons: [
+            {
+              clientId: 'l-1',
+              title: 'Scenario 1',
+              description: '',
+              scenarioIds: ['s1'],
+              prerequisiteLessonIds: [],
+              order: 0,
+            },
+          ],
           order: 0,
         },
       ],
@@ -242,7 +250,7 @@ describe('CourseBuilderStore', () => {
       description: '',
       published: false,
       authoring: { idea: '', status: 'draft' },
-      lessons: [],
+      programs: [],
     });
 
     expect(result).toBe(false);
@@ -255,13 +263,21 @@ describe('CourseBuilderStore', () => {
       description: '',
       published: false,
       authoring: { idea: '', status: 'draft' },
-      lessons: [
+      programs: [
         {
           clientId: 'lc-empty',
           title: 'Empty Lesson',
           description: '',
-          scenarioIds: [],
-          prerequisiteLessonIds: [],
+          lessons: [
+            {
+              clientId: 'l-empty',
+              title: 'Empty',
+              description: '',
+              scenarioIds: [],
+              prerequisiteLessonIds: [],
+              order: 0,
+            },
+          ],
           order: 0,
         },
       ],
@@ -278,25 +294,33 @@ describe('CourseBuilderStore', () => {
       title: 'Other Course',
       authorId: 'other-user',
       description: '',
-      lessons: [],
-      lessonIds: [],
+      programs: [],
+      programIds: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
-    } as CourseWithLessons);
+    } as CourseWithPrograms);
 
     const result = await store.updateCourse('c1', {
       title: 'Updated',
       description: '',
       published: false,
       authoring: { idea: '', status: 'draft' },
-      lessons: [
+      programs: [
         {
           clientId: 'lc-1',
           title: 'Lesson 1',
           description: '',
-          scenarioIds: ['s1'],
-          prerequisiteLessonIds: [],
+          lessons: [
+            {
+              clientId: 'l-1',
+              title: 'Scenario 1',
+              description: '',
+              scenarioIds: ['s1'],
+              prerequisiteLessonIds: [],
+              order: 0,
+            },
+          ],
           order: 0,
         },
       ],
@@ -313,7 +337,7 @@ describe('CourseBuilderStore', () => {
         id: 'c1',
         title: 'My Course',
         authorId: 'local-user',
-        lessonCount: 1,
+        programCount: 1,
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
@@ -334,7 +358,7 @@ describe('CourseBuilderStore', () => {
         id: 'c1',
         title: 'Other Course',
         authorId: 'other-user',
-        lessonCount: 1,
+        programCount: 1,
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
@@ -353,7 +377,7 @@ describe('CourseBuilderStore', () => {
         id: 'c1',
         title: 'My Course',
         authorId: 'local-user',
-        lessonCount: 1,
+        programCount: 1,
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
@@ -386,7 +410,7 @@ describe('CourseBuilderStore', () => {
         id: 'c1',
         title: 'My Course',
         authorId: 'local-user',
-        lessonCount: 1,
+        programCount: 1,
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
@@ -407,7 +431,7 @@ describe('CourseBuilderStore', () => {
         id: 'c1',
         title: 'Other Course',
         authorId: 'other-user',
-        lessonCount: 1,
+        programCount: 1,
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
@@ -427,7 +451,7 @@ describe('CourseBuilderStore', () => {
       title: 'New Course',
       authorId: 'local-user',
       description: '',
-      lessons: [],
+      programs: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
@@ -446,13 +470,21 @@ describe('CourseBuilderStore', () => {
       description: 'A new course',
       published: false,
       authoring: { idea: 'My idea', status: 'draft' },
-      lessons: [
+      programs: [
         {
           clientId: 'lc-1',
           title: 'Lesson 1',
           description: '',
-          scenarioIds: ['s1'],
-          prerequisiteLessonIds: [],
+          lessons: [
+            {
+              clientId: 'l-1',
+              title: 'Scenario 1',
+              description: '',
+              scenarioIds: ['s1'],
+              prerequisiteLessonIds: [],
+              order: 0,
+            },
+          ],
           order: 0,
         },
       ],
@@ -470,19 +502,19 @@ describe('CourseBuilderStore', () => {
       title: 'Old Title',
       authorId: 'local-user',
       description: '',
-      lessons: [],
-      lessonIds: [],
+      programs: [],
+      programIds: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
-    } as CourseWithLessons);
+    } as CourseWithPrograms);
 
     mockCourseSearchService.update.mockResolvedValue({
       id: 'c1',
       title: 'Updated Title',
       authorId: 'local-user',
       description: '',
-      lessons: [],
+      programs: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
@@ -497,17 +529,25 @@ describe('CourseBuilderStore', () => {
     });
 
     const result = await store.updateCourse('c1', {
-      title: 'Updated Title',
-      description: 'Updated description',
-      published: true,
-      authoring: { idea: 'Updated idea', status: 'draft' },
-      lessons: [
+      title: 'Updated',
+      description: '',
+      published: false,
+      authoring: { idea: '', status: 'draft' },
+      programs: [
         {
           clientId: 'lc-1',
           title: 'Lesson 1',
           description: '',
-          scenarioIds: ['s1'],
-          prerequisiteLessonIds: [],
+          lessons: [
+            {
+              clientId: 'l-1',
+              title: 'Scenario 1',
+              description: '',
+              scenarioIds: ['s1'],
+              prerequisiteLessonIds: [],
+              order: 0,
+            },
+          ],
           order: 0,
         },
       ],
@@ -524,7 +564,7 @@ describe('CourseBuilderStore', () => {
       title: 'Clean IDs Course',
       authorId: 'local-user',
       description: '',
-      lessons: [],
+      programs: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
@@ -543,13 +583,21 @@ describe('CourseBuilderStore', () => {
       description: '',
       published: false,
       authoring: { idea: '', status: 'draft' },
-      lessons: [
+      programs: [
         {
           clientId: 'lc-1',
           title: 'Lesson 1',
           description: '',
-          scenarioIds: ['s1'],
-          prerequisiteLessonIds: ['', '  ', 'valid-id'],
+          lessons: [
+            {
+              clientId: 'l-1',
+              title: 'Scenario 1',
+              description: '',
+              scenarioIds: ['s1'],
+              prerequisiteLessonIds: ['', '  ', 'valid-id'],
+              order: 0,
+            },
+          ],
           order: 0,
         },
       ],
@@ -573,7 +621,7 @@ describe('CourseBuilderStore', () => {
         id: 'c1',
         title: 'My Course',
         authorId: 'local-user',
-        lessonCount: 1,
+        programCount: 1,
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
@@ -596,13 +644,21 @@ describe('CourseBuilderStore', () => {
       description: '',
       published: false,
       authoring: { idea: '', status: 'draft' },
-      lessons: [
+      programs: [
         {
           clientId: 'lc-1',
           title: 'Lesson 1',
           description: '',
-          scenarioIds: ['s1'],
-          prerequisiteLessonIds: [],
+          lessons: [
+            {
+              clientId: 'l-1',
+              title: 'Scenario 1',
+              description: '',
+              scenarioIds: ['s1'],
+              prerequisiteLessonIds: [],
+              order: 0,
+            },
+          ],
           order: 0,
         },
       ],
@@ -618,12 +674,12 @@ describe('CourseBuilderStore', () => {
       title: 'Old Title',
       authorId: 'local-user',
       description: '',
-      lessons: [],
-      lessonIds: [],
+      programs: [],
+      programIds: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
-    } as CourseWithLessons);
+    } as CourseWithPrograms);
 
     mockCourseSearchService.update.mockRejectedValue(new Error('API error'));
 
@@ -632,13 +688,21 @@ describe('CourseBuilderStore', () => {
       description: '',
       published: false,
       authoring: { idea: '', status: 'draft' },
-      lessons: [
+      programs: [
         {
           clientId: 'lc-1',
           title: 'Lesson 1',
           description: '',
-          scenarioIds: ['s1'],
-          prerequisiteLessonIds: [],
+          lessons: [
+            {
+              clientId: 'l-1',
+              title: 'Scenario 1',
+              description: '',
+              scenarioIds: ['s1'],
+              prerequisiteLessonIds: [],
+              order: 0,
+            },
+          ],
           order: 0,
         },
       ],
@@ -654,7 +718,7 @@ describe('CourseBuilderStore', () => {
         id: 'c1',
         title: 'My Course',
         authorId: 'local-user',
-        lessonCount: 1,
+        programCount: 1,
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',

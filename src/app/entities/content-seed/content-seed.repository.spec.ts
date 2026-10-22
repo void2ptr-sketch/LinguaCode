@@ -56,23 +56,23 @@ function makeCourseFixture(): Course {
     description: 'Test course',
     authorId: 'local-user',
     languagePair: { known: 'ru', learning: 'en' },
-    lessonIds: ['l1'],
+    programIds: ['p1'],
     published: false,
     updatedAt: new Date(0).toISOString(),
-  } as Course;
+  } as unknown as Course;
 }
 
 function makeLessonFixture(): Lesson {
   return {
     id: 'l1',
-    courseId: 'c1',
+    programId: 'p1',
     title: 'Lesson 1',
     description: 'Test lesson',
     scenarioIds: [],
     prerequisiteLessonIds: [],
     order: 0,
     updatedAt: new Date(0).toISOString(),
-  } as Lesson;
+  } as unknown as Lesson;
 }
 
 function makeCardFixture(): Card {
@@ -181,7 +181,7 @@ describe('ContentSeedRepository', () => {
     it('should resolve immediately when the cache is ready', async () => {
       resetContentSeedCache();
       setScenarioSeedCache([makeScenarioFixture()]);
-      setCourseSeedCache({ courses: [makeCourseFixture()], lessons: [makeLessonFixture()] });
+      setCourseSeedCache({ courses: [makeCourseFixture()], programs: [], lessons: [makeLessonFixture()] });
       setCardSeedCache([makeCardFixture()]);
       createRepository();
 

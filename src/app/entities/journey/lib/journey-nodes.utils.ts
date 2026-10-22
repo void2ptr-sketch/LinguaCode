@@ -1,4 +1,4 @@
-import type { CourseWithLessons, Lesson } from '../../course/model';
+import type { CourseWithPrograms, Lesson } from '../../course/model';
 import type { Scenario } from '../../scenario/model';
 import type { CardBase } from '../../card/model';
 import type { JourneyLocationNode, JourneyContentType } from '../../learning/model';
@@ -109,13 +109,20 @@ export function mapScenarioToNode(
  * @param hasScenarioVisit — возвращает true, если сценарий посещён
  */
 export function buildJourneyNodes(
-  course: CourseWithLessons,
+  course: CourseWithPrograms,
   scenarioMap: ScenarioMap,
   cards: readonly CardBase[],
   hasScenarioResult: (scenarioId: string) => boolean,
   hasScenarioVisit: (scenarioId: string) => boolean,
 ): JourneyLocationNode[] {
-  const sortedLessons = [...course.lessons].sort((left, right) => left.order - right.order);
+  // Extract all lessons from all programs
+  const allLessons: Lesson[] = [];
+  for (const program of course.programs) {
+    for (const lesson of program.lessons ?? []) {
+      allLessons.push(lesson);
+    }
+  }
+  const sortedLessons = [...allLessons].sort((left, right) => left.order - right.order);
   const lessonsById = buildLessonsById(sortedLessons);
   const allNodes: JourneyLocationNode[] = [];
 

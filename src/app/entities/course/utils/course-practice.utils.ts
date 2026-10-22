@@ -1,12 +1,12 @@
 import type { CardDifficulty, CardIndexEntry } from '../../card/model';
-import type { Course, CourseWithLessons } from '../model';
+import type { ProgramWithLessons } from '../model';
 import type { Scenario } from '../../scenario/model';
 import { DEFAULT_COURSE_PRACTICE_SETTINGS, type CoursePracticeSettings } from '../model';
 /**
  * Resolves practice settings for a course, falling back to defaults when the course or its settings are missing.
  */
 export function resolveCoursePracticeSettings(
-  course: Pick<Course, 'practiceSettings'> | null | undefined,
+  course: { practiceSettings?: CoursePracticeSettings } | null | undefined,
 ): CoursePracticeSettings {
   if (!course?.practiceSettings) {
     return DEFAULT_COURSE_PRACTICE_SETTINGS;
@@ -22,19 +22,19 @@ export function resolveCoursePracticeSettings(
  * Returns `true` when the course practice mode is set to `'open'`.
  */
 export function isOpenPracticeCourse(
-  course: Pick<Course, 'practiceSettings'> | null | undefined,
+  course: { practiceSettings?: CoursePracticeSettings } | null | undefined,
 ): boolean {
   return resolveCoursePracticeSettings(course).mode === 'open';
 }
 
 /**
- * Collects all unique scenario IDs referenced by every lesson in a course.
+ * Collects all unique scenario IDs referenced by every lesson in a program.
  */
 export function collectCourseScenarioIds(
-  course: Pick<CourseWithLessons, 'lessons'>,
+  program: Pick<ProgramWithLessons, 'lessons'>,
 ): readonly string[] {
   const ids = new Set<string>();
-  for (const lesson of course.lessons) {
+  for (const lesson of program.lessons) {
     for (const scenarioId of lesson.scenarioIds) {
       ids.add(scenarioId);
     }

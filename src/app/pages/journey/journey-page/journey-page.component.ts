@@ -17,7 +17,7 @@ import {
 } from '../../../entities/journey/lib/journey-nodes.utils';
 import type { JourneyLocationNode } from '../../../entities/learning/model';
 import type { CardBase } from '../../../entities/card/model';
-import type { CourseWithLessons } from '../../../entities/course/model';
+import type { CourseWithPrograms } from '../../../entities/course/model';
 import { CPP_COMPLETE_COURSE_ID } from '../../../entities/course/model';
 
 /**
@@ -90,7 +90,8 @@ export class JourneyPageComponent {
         if (requestedId !== dashboardCourse?.id) {
           void this.loadCourse(requestedId);
         } else if (dashboardCourse) {
-          this.buildNodes(dashboardCourse);
+          // Load course with programs for the dashboard course
+          void this.loadCourse(dashboardCourse.id);
         }
         return;
       }
@@ -100,7 +101,8 @@ export class JourneyPageComponent {
       if (dashboardCourse) {
         if (dashboardCourse.id === CPP_COMPLETE_COURSE_ID) {
           this.courseId.set(dashboardCourse.id);
-          this.buildNodes(dashboardCourse);
+          // Load course with programs for the dashboard course
+          void this.loadCourse(dashboardCourse.id);
         } else {
           this.courseId.set(CPP_COMPLETE_COURSE_ID);
           void this.loadCourse(CPP_COMPLETE_COURSE_ID);
@@ -142,7 +144,7 @@ export class JourneyPageComponent {
     }
   }
 
-  private buildNodes(course: CourseWithLessons): void {
+  private buildNodes(course: CourseWithPrograms): void {
     // Активируем языковую пару курса, чтобы открытие сценариев с карты
     // (переход на /cards/select) не блокировалось несовпадением пары.
     if (course.languagePair) {
@@ -162,7 +164,9 @@ export class JourneyPageComponent {
     this.logger.debug(`[JourneyPage] Cards loaded: ${allCards.length}`);
     this.logger.debug(`[JourneyPage] Scenarios loaded: ${allScenarios.length}`);
 
-    const courseScenarioIds = new Set(course.lessons.flatMap((l) => [...l.scenarioIds]));
+    const courseScenarioIds = new Set(
+      course.programs.flatMap((p) => (p.lessons ?? []).flatMap((l) => [...l.scenarioIds])),
+    );
     const courseScenarios = allScenarios.filter((s) => courseScenarioIds.has(s.id));
     const scenarioMap = buildScenarioMap(courseScenarios);
 

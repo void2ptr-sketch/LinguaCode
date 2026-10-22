@@ -125,13 +125,13 @@ function hasOverlayContent(overlay: ReturnType<typeof readUserContentOverlay>): 
 function readLegacyCourseCatalog(): CourseCatalogState {
   const raw = localStorage.getItem(LEGACY_COURSE_CATALOG_KEY);
   if (!raw) {
-    return { courses: [], lessons: [] };
+    return { courses: [], programs: [], lessons: [] };
   }
 
   try {
     return normalizeStoredCourseCatalog(JSON.parse(raw) as CourseCatalogState);
   } catch {
-    return { courses: [], lessons: [] };
+    return { courses: [], programs: [], lessons: [] };
   }
 }
 

@@ -4,7 +4,7 @@ import { CardSearchService } from '../../../entities/card';
 import { ScenarioSearchService } from '../../../entities/scenario';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CardSelectFlowService, LEARNING_TAB } from './card-select-flow.service';
-import type { CourseWithLessons } from '../../../entities/course/model';
+import type { CourseWithPrograms } from '../../../entities/course/model';
 
 describe('CardSelectFlowService', () => {
   let service: CardSelectFlowService;
@@ -20,8 +20,8 @@ describe('CardSelectFlowService', () => {
               ({
                 id: 'c1',
                 title: 'Test Course',
-                lessons: [],
-                lessonIds: [],
+                programs: [],
+                programIds: [],
                 description: '',
                 authorId: 'u1',
                 published: true,
@@ -33,7 +33,7 @@ describe('CardSelectFlowService', () => {
                   enforceLessonPrerequisites: true,
                   requireLessonForScenarios: true,
                 },
-              }) as CourseWithLessons,
+              }) as CourseWithPrograms,
           },
         },
         {
@@ -409,7 +409,7 @@ describe('CardSelectFlowService', () => {
         id: 'c1',
         title: 'Test Course',
         lessons: [{ id: 'l1', title: 'Lesson 1', scenarioIds: ['s1', 's2'] }],
-      } as unknown as CourseWithLessons;
+      } as unknown as CourseWithPrograms;
 
       service.selectedCourseId.set('c1');
       service.currentCourse.set(course);
@@ -435,7 +435,7 @@ describe('CardSelectFlowService', () => {
         id: 'c1',
         title: 'Test Course',
         lessons: [{ id: 'l1', title: 'Lesson 1', scenarioIds: ['s1'] }],
-      } as unknown as CourseWithLessons;
+      } as unknown as CourseWithPrograms;
 
       service.selectedCourseId.set('c1');
       service.currentCourse.set(course);

@@ -1,5 +1,6 @@
 import type { Card } from '../../card/model';
 import type { Lesson } from '../model';
+import type { Program } from '../../program/model';
 import type { Scenario } from '../../scenario/model';
 import type { CardIndexMetaOverride } from '../../card/model';
 import type { CourseCatalogState } from './course-catalog-state';
@@ -8,7 +9,7 @@ import type { CourseBundle, CourseBundleValidation } from './course-bundle.types
 /**
  * Собирает самодостаточный CourseBundle для переданного courseId.
  *
- * Обходит граф: Course → Lesson → Scenario → Card,
+ * Обходит граф: Course → Program → Lesson → Scenario → Card,
  * проверяет замкнутость всех ссылок и отсутствие criteria-сценариев.
  *
  * @param courseId  ID курса из resolvedCatalog
@@ -34,15 +35,33 @@ export function collectCourseBundle(
     return null;
   }
 
-  // 2. Собрать уроки
-  const lessons: Lesson[] = [];
-  for (const lessonId of course.lessonIds) {
-    const lesson = catalog.lessons.find((l) => l.id === lessonId);
-    if (!lesson) {
-      errors.push(`Урок ${lessonId} не найден в каталоге`);
+  // 2. Собрать программы
+  const programs: Program[] = [];
+  for (const programId of course.programIds) {
+    const program = catalog.programs.find((p) => p.id === programId);
+    if (!program) {
+      errors.push(`Программа ${programId} не найдена в каталоге`);
       continue;
     }
-    lessons.push(lesson);
+    programs.push(program);
+  }
+
+  if (programs.length === 0) {
+    errors.push(`Курс ${courseId} не содержит программ`);
+    return null;
+  }
+
+  // 3. Собрать уроки из программ
+  const lessons: Lesson[] = [];
+  for (const program of programs) {
+    for (const lessonId of program.lessonIds) {
+      const lesson = catalog.lessons.find((l) => l.id === lessonId);
+      if (!lesson) {
+        errors.push(`Урок ${lessonId} не найден в каталоге`);
+        continue;
+      }
+      lessons.push(lesson);
+    }
   }
 
   if (lessons.length === 0) {
@@ -130,6 +149,7 @@ export function collectCourseBundle(
       sourceAuthorId: course.authorId,
       course: {
         courses: [course],
+        programs,
         lessons,
       },
       scenarios: bundleScenarios,
@@ -165,11 +185,22 @@ export function validateCourseBundle(bundle: CourseBundle): CourseBundleValidati
     return { valid: false, errors };
   }
 
-  // Проверить уроки
+  // Проверить программы
+  const bundleProgramIds = new Set(bundle.course.programs.map((p) => p.id));
+  for (const programId of course.programIds) {
+    if (!bundleProgramIds.has(programId)) {
+      errors.push(`Программа ${programId} указана в курсе, но отсутствует в пакете`);
+    }
+  }
+
+  // Собрать все уроки из программ
   const bundleLessonIds = new Set(bundle.course.lessons.map((l) => l.id));
-  for (const lessonId of course.lessonIds) {
-    if (!bundleLessonIds.has(lessonId)) {
-      errors.push(`Урок ${lessonId} указан в курсе, но отсутствует в пакете`);
+  const allPrograms = bundle.course.programs;
+  for (const program of allPrograms) {
+    for (const lessonId of program.lessonIds) {
+      if (!bundleLessonIds.has(lessonId)) {
+        errors.push(`Урок ${lessonId} указан в программе, но отсутствует в пакете`);
+      }
     }
   }
 

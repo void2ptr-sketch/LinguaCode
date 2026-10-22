@@ -23,6 +23,7 @@ describe('user-content-overlay.storage', () => {
 
       expect(overlay.version).toBe(USER_CONTENT_OVERLAY_VERSION);
       expect(overlay.courses).toEqual({});
+      expect(overlay.programs).toEqual({});
       expect(overlay.lessons).toEqual({});
       expect(overlay.scenarios).toEqual({});
       expect(overlay.cards).toEqual({});
@@ -43,6 +44,7 @@ describe('user-content-overlay.storage', () => {
       const overlay: UserContentOverlay = {
         version: USER_CONTENT_OVERLAY_VERSION,
         courses: { c1: { id: 'c1', title: 'Test Course' } },
+        programs: {},
         lessons: {},
         scenarios: {},
         cards: {},
@@ -110,6 +112,7 @@ describe('user-content-overlay.storage', () => {
       const overlay: UserContentOverlay = {
         version: USER_CONTENT_OVERLAY_VERSION,
         courses: { c1: { id: 'c1', title: 'Test' } },
+        programs: {},
         lessons: {},
         scenarios: {},
         cards: {},
@@ -152,7 +155,8 @@ describe('user-content-overlay.storage', () => {
       const initial: UserContentOverlay = {
         version: USER_CONTENT_OVERLAY_VERSION,
         courses: { c1: { id: 'c1', title: 'Original' } },
-        lessons: { l1: { id: 'l1', courseId: 'c1', title: 'Original Lesson' } },
+        programs: {},
+        lessons: { l1: { id: 'l1', programId: 'p1', title: 'Original Lesson' } },
         scenarios: {},
         cards: {},
         cardIndexMeta: {},

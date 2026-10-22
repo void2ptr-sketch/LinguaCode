@@ -20,7 +20,7 @@ function clearLocalStorage(): void {
 }
 
 function seedEmptyCache(): void {
-  setCourseSeedCache({ courses: [], lessons: [] });
+  setCourseSeedCache({ courses: [], programs: [], lessons: [] });
   setScenarioSeedCache([]);
 }
 
@@ -62,13 +62,14 @@ describe('migrateUserContentOverlayIfNeeded', () => {
           id: 'seed-course',
           title: 'Seed',
           description: 'Seed desc',
-          lessonIds: [],
+          programIds: [],
           authorId: 'user-1',
           languagePair: { known: 'en', learning: 'zh' },
           published: true,
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
       ],
+      programs: [],
       lessons: [],
     });
     setScenarioSeedCache([
@@ -94,7 +95,7 @@ describe('migrateUserContentOverlayIfNeeded', () => {
         {
           id: 'legacy-course',
           title: 'Legacy',
-          lessonIds: [],
+          programIds: [],
           authorId: 'user-1',
           languagePair: { known: 'en', learning: 'zh' },
           published: true,
@@ -112,13 +113,14 @@ describe('migrateUserContentOverlayIfNeeded', () => {
           id: 'seed-course',
           title: 'Seed',
           description: 'Seed desc',
-          lessonIds: [],
+          programIds: [],
           authorId: 'user-1',
           languagePair: { known: 'en', learning: 'zh' },
           published: true,
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
       ],
+      programs: [],
       lessons: [],
     });
     setScenarioSeedCache([
@@ -158,13 +160,14 @@ describe('migrateUserContentOverlayIfNeeded', () => {
           id: 'seed-course',
           title: 'Seed',
           description: 'Seed desc',
-          lessonIds: [],
+          programIds: [],
           authorId: 'user-1',
           languagePair: { known: 'en', learning: 'zh' },
           published: true,
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
       ],
+      programs: [],
       lessons: [],
     });
     setScenarioSeedCache([
@@ -204,13 +207,14 @@ describe('migrateUserContentOverlayIfNeeded', () => {
           id: 'seed-course',
           title: 'Seed',
           description: 'Seed desc',
-          lessonIds: [],
+          programIds: [],
           authorId: 'user-1',
           languagePair: { known: 'en', learning: 'zh' },
           published: true,
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
       ],
+      programs: [],
       lessons: [],
     });
     setScenarioSeedCache([
@@ -241,13 +245,14 @@ describe('migrateUserContentOverlayIfNeeded', () => {
           id: 'seed-course',
           title: 'Seed',
           description: 'Seed desc',
-          lessonIds: [],
+          programIds: [],
           authorId: 'user-1',
           languagePair: { known: 'en', learning: 'zh' },
           published: true,
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
       ],
+      programs: [],
       lessons: [],
     });
     setScenarioSeedCache([
@@ -277,13 +282,14 @@ describe('migrateUserContentOverlayIfNeeded', () => {
           id: 'seed-course',
           title: 'Seed',
           description: 'Seed desc',
-          lessonIds: [],
+          programIds: [],
           authorId: 'user-1',
           languagePair: { known: 'en', learning: 'zh' },
           published: true,
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
       ],
+      programs: [],
       lessons: [],
     });
     setScenarioSeedCache([
@@ -311,13 +317,14 @@ describe('migrateUserContentOverlayIfNeeded', () => {
           id: 'seed-course',
           title: 'Seed',
           description: 'Seed desc',
-          lessonIds: [],
+          programIds: [],
           authorId: 'user-1',
           languagePair: { known: 'en', learning: 'zh' },
           published: true,
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
       ],
+      programs: [],
       lessons: [],
     });
     setScenarioSeedCache([
@@ -348,13 +355,14 @@ describe('migrateUserContentOverlayIfNeeded', () => {
           id: 'seed-course',
           title: 'Seed',
           description: 'Seed desc',
-          lessonIds: [],
+          programIds: [],
           authorId: 'user-1',
           languagePair: { known: 'en', learning: 'zh' },
           published: true,
           updatedAt: '2026-01-01T00:00:00.000Z',
         },
       ],
+      programs: [],
       lessons: [],
     });
     setScenarioSeedCache([

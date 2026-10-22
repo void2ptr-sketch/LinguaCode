@@ -76,6 +76,7 @@ export function bindPerlInterviewCourseLanguagePair(overlay: UserContentOverlay)
 
   const pair = normalizeLanguagePair(RU_PERL_LANGUAGE_PAIR);
   const courses = { ...overlay.courses };
+  const programs = { ...overlay.programs };
   const lessons = { ...overlay.lessons };
   const scenarios = { ...overlay.scenarios };
   const cardIndexMeta = { ...overlay.cardIndexMeta };
@@ -94,11 +95,18 @@ export function bindPerlInterviewCourseLanguagePair(overlay: UserContentOverlay)
       changed = true;
     }
 
-    for (const lessonId of entry.lessonIds) {
-      const lesson = lessons[lessonId];
-      if (lesson && isOverlayLesson(lesson)) {
-        for (const scenarioId of lesson.scenarioIds) {
-          scenarioIds.add(scenarioId);
+    for (const programId of entry.programIds) {
+      const program = programs[programId];
+      if (!program || !isOverlayProgram(program)) {
+        continue;
+      }
+
+      for (const lessonId of program.lessonIds) {
+        const lesson = lessons[lessonId];
+        if (lesson && isOverlayLesson(lesson)) {
+          for (const scenarioId of lesson.scenarioIds) {
+            scenarioIds.add(scenarioId);
+          }
         }
       }
     }
@@ -178,7 +186,7 @@ function isPerlInterviewCourse(entry: Course | Partial<Course>): boolean {
 function isOverlayCourse(value: Course | Partial<Course>): value is Course {
   return (
     typeof value.languagePair === 'object' &&
-    Array.isArray(value.lessonIds) &&
+    Array.isArray(value.programIds) &&
     typeof value.authorId === 'string'
   );
 }
@@ -189,8 +197,17 @@ function isOverlayLesson(
   return (
     typeof value === 'object' &&
     value !== null &&
-    typeof (value as import('../../course/model').Lesson).courseId === 'string' &&
+    typeof (value as import('../../course/model').Lesson).programId === 'string' &&
     Array.isArray((value as import('../../course/model').Lesson).scenarioIds)
+  );
+}
+
+function isOverlayProgram(value: import('../../program/model/program.types').Program | Partial<import('../../program/model/program.types').Program>): value is import('../../program/model/program.types').Program {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    typeof (value as import('../../program/model/program.types').Program).courseId === 'string' &&
+    Array.isArray((value as import('../../program/model/program.types').Program).lessonIds)
   );
 }
 
@@ -245,6 +262,7 @@ export function migratePerlInterviewAuthoringToSeed(overlay: UserContentOverlay)
   }
 
   const courses = { ...overlay.courses };
+  const programs = { ...overlay.programs };
   const lessons = { ...overlay.lessons };
   let changed = false;
 
@@ -279,10 +297,16 @@ export function migratePerlInterviewAuthoringToSeed(overlay: UserContentOverlay)
       continue;
     }
 
-    for (const lessonId of entry.lessonIds) {
-      const lesson = lessons[lessonId];
-      if (lesson && isOverlayLesson(lesson) && lesson.courseId === courseId) {
-        delete lessons[lessonId];
+    // Remove lessons belonging to programs of this course
+    for (const programId of entry.programIds) {
+      const program = programs[programId];
+      if (program && isOverlayProgram(program)) {
+        for (const lessonId of program.lessonIds) {
+          const lesson = lessons[lessonId];
+          if (lesson && isOverlayLesson(lesson) && lesson.programId === programId) {
+            delete lessons[lessonId];
+          }
+        }
       }
     }
   }

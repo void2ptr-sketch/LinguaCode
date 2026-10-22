@@ -9,7 +9,7 @@ import { LessonPickerComponent } from './lesson-picker.component';
 import { CourseSearchService } from '../../../course';
 import { LearningResultsStore } from '../../../learning/model/learning-results.store';
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
-import type { CourseWithLessons, Lesson } from '../../../course/model';
+import type { CourseWithPrograms, Lesson } from '../../../course/model';
 
 function makeLesson(
   id: string,
@@ -22,7 +22,7 @@ function makeLesson(
     id,
     title,
     description: '',
-    courseId: 'course-1',
+    programId: 'program-1',
     scenarioIds,
     prerequisiteLessonIds,
     order,
@@ -30,17 +30,28 @@ function makeLesson(
   };
 }
 
-function makeCourse(id: string, title: string, lessons: Lesson[]): CourseWithLessons {
+function makeCourse(id: string, title: string, lessons: Lesson[]): CourseWithPrograms {
   return {
     id,
     title,
     description: '',
     authorId: 'author-1',
     languagePair: { known: 'ru', learning: 'zh' },
-    lessonIds: lessons.map((l) => l.id),
+    programIds: ['program-1'],
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
-    lessons,
+    programs: [
+      {
+        id: 'program-1',
+        courseId: id,
+        title: title + ' Program',
+        description: '',
+        lessonIds: lessons.map((l) => l.id),
+        order: 0,
+        updatedAt: '2024-01-01T00:00:00.000Z',
+        lessons,
+      },
+    ],
   };
 }
 

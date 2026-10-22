@@ -229,7 +229,7 @@ export class ContentSeedRepository {
    */
   private hydrate(snapshot: ContentSeedSnapshot): void {
     setScenarioSeedCache(snapshot.scenarios);
-    setCourseSeedCache({ courses: [...snapshot.courses], lessons: [...snapshot.lessons] });
+    setCourseSeedCache({ courses: [...snapshot.courses], programs: [], lessons: [...snapshot.lessons] });
     setCardSeedCache(snapshot.cards);
   }
 
@@ -292,11 +292,16 @@ export class ContentSeedRepository {
  */
 function mergeCourseFixtures(fixtures: readonly CoursesSeedFixture[]): CourseCatalogState {
   const coursesById = new Map<string, CoursesSeedFixture['courses'][number]>();
+  const programsById = new Map<string, CoursesSeedFixture['programs'][number]>();
   const lessonsById = new Map<string, CoursesSeedFixture['lessons'][number]>();
 
   for (const fixture of fixtures) {
     for (const course of fixture.courses) {
       coursesById.set(course.id, course);
+    }
+
+    for (const program of fixture.programs ?? []) {
+      programsById.set(program.id, program);
     }
 
     for (const lesson of fixture.lessons) {
@@ -306,6 +311,7 @@ function mergeCourseFixtures(fixtures: readonly CoursesSeedFixture[]): CourseCat
 
   return {
     courses: [...coursesById.values()],
+    programs: [...programsById.values()],
     lessons: [...lessonsById.values()],
   };
 }

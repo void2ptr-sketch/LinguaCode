@@ -122,7 +122,7 @@
                     · {{ formatEntryLanguages(entry) }} · {{ difficultyLabels[entry.difficulty] }}
                   </span>
                   <mat-chip-set class="card-editor-page__tags" aria-label="Теги">
-                    @for (tag of entry.tags; track tag) {
+                    @for (tag of entry.tags; track $index) {
                       <mat-chip>{{ tagLabel(tag) }}</mat-chip>
                     }
                   </mat-chip-set>

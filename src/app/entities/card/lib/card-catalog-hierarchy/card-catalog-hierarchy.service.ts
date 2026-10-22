@@ -1,6 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 
-import type { CourseIndexEntry, CourseWithLessons, Lesson } from '../../../course/model';
+import type { CourseIndexEntry, ProgramWithLessons } from '../../../course/model';
+import type { Lesson } from '../../../course/model/lesson.types';
 import { CourseSearchService } from '../../../course/search/course-search.service';
 import type { ContentLanguage } from '../../model';
 /**
@@ -37,10 +38,10 @@ export type ScenarioOption = {
 };
 
 /**
- * Service for managing course/lesson/scenario hierarchy in the card catalog.
+ * Service for managing course/program/lesson/scenario hierarchy in the card catalog.
  *
  * @remarks
- * Loads courses by language pair, lessons by course, and provides scenario
+ * Loads courses by language pair, programs by course, lessons by program, and provides scenario
  * lookup for lessons. Uses internal caches to avoid redundant API calls.
  */
 @Injectable({ providedIn: 'root' })
@@ -65,8 +66,18 @@ export class CardCatalogHierarchyService {
    */
   readonly lessonsLoading = signal(false);
 
+  /**
+   * Whether programs are currently being loaded from the server.
+   *
+   * @remarks
+   * Set to `true` at the start of `loadPrograms` and reset to `false` when
+   * the operation completes (success or error).
+   */
+  readonly programsLoading = signal(false);
+
   private coursesCache = new Map<string, readonly CourseOption[]>();
-  private courseLessonsCache = new Map<string, CourseWithLessons>();
+  private courseProgramsCache = new Map<string, readonly import('../../../program/model/program.types').Program[]>();
+  private programLessonsCache = new Map<string, readonly Lesson[]>();
 
   /**
    * Loads courses for a given language pair.
@@ -105,42 +116,66 @@ export class CardCatalogHierarchyService {
   }
 
   /**
-   * Loads lessons for a given course.
+   * Loads program options for a given course.
    *
    * @param courseId - The course ID.
+   * @returns Array of program options.
+   */
+  async loadPrograms(courseId: string): Promise<readonly import('../../../program/model/program.types').Program[]> {
+    const cached = this.courseProgramsCache.get(courseId);
+    if (cached) {
+      return cached;
+    }
+
+    this.programsLoading.set(true);
+
+    try {
+      const course = await this.courseSearchService.getById(courseId);
+      const programs = (course as unknown as { programs: import('../../../program/model/program.types').Program[] }).programs ?? [];
+      this.courseProgramsCache.set(courseId, programs);
+      return programs;
+    } finally {
+      this.programsLoading.set(false);
+    }
+  }
+
+  /**
+   * Loads lesson options for a given program.
+   *
+   * @param programId - The program ID.
    * @returns Array of lesson options.
    */
-  async loadLessons(courseId: string): Promise<readonly LessonOption[]> {
-    const cached = this.courseLessonsCache.get(courseId);
+  async loadLessons(programId: string): Promise<readonly LessonOption[]> {
+    const cached = this.programLessonsCache.get(programId);
     if (cached) {
-      return cached.lessons.map(toLessonOption);
+      return cached.map(toLessonOption);
     }
 
     this.lessonsLoading.set(true);
 
     try {
-      const course = await this.courseSearchService.getById(courseId);
-      this.courseLessonsCache.set(courseId, course);
-      return course.lessons.map(toLessonOption);
+      const program = await this.courseSearchService.getProgramById(programId);
+      this.programLessonsCache.set(programId, program.lessons);
+      return program.lessons.map(toLessonOption);
     } finally {
       this.lessonsLoading.set(false);
     }
   }
 
   /**
-   * Returns scenario options for a given lesson within a course.
+   * Returns scenario options for a given lesson within a program.
    *
-   * @param courseId - The course ID.
+   * @param programId - The program ID.
    * @param lessonId - The lesson ID.
    * @returns Array of scenario options (IDs as titles until full data is loaded).
    */
-  getScenariosForLesson(courseId: string, lessonId: string): readonly ScenarioOption[] {
-    const course = this.courseLessonsCache.get(courseId);
-    if (!course) {
+  getScenariosForLesson(programId: string, lessonId: string): readonly ScenarioOption[] {
+    const cached = this.programLessonsCache.get(programId);
+    if (!cached) {
       return [];
     }
 
-    const lesson = course.lessons.find((l) => l.id === lessonId);
+    const lesson = cached.find((l) => l.id === lessonId);
     if (!lesson) {
       return [];
     }
@@ -159,7 +194,8 @@ export class CardCatalogHierarchyService {
       this.coursesCache.delete(languagePairKey);
     } else {
       this.coursesCache.clear();
-      this.courseLessonsCache.clear();
+      this.courseProgramsCache.clear();
+      this.programLessonsCache.clear();
     }
   }
 }

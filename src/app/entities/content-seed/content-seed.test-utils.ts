@@ -1,4 +1,4 @@
-import type { CourseWithLessons } from '../course/model';
+import type { CourseWithPrograms } from '../course/model';
 import type { Scenario } from '../scenario/model';
 
 import { setCardSeedCache, setCourseSeedCache, setScenarioSeedCache } from './content-seed.cache';
@@ -38,14 +38,15 @@ export function seedTestContentCache(): void {
 
   setScenarioSeedCache([...demoScenarios, ...radicalsScenarios, ...perlScenarios]);
 
-  const demoCourses = normalizeStoredCourseCatalog(demoCoursesFixture as CoursesSeedFixture);
-  const radicalsCourses = normalizeStoredCourseCatalog(radicalsCourseFixture as CoursesSeedFixture);
+  const demoCourses = normalizeStoredCourseCatalog(demoCoursesFixture as unknown as CoursesSeedFixture);
+  const radicalsCourses = normalizeStoredCourseCatalog(radicalsCourseFixture as unknown as CoursesSeedFixture);
   const perlCourses = normalizeStoredCourseCatalog(
-    perlInterviewCourseFixture as CoursesSeedFixture,
+    perlInterviewCourseFixture as unknown as CoursesSeedFixture,
   );
 
   const catalog: CourseCatalogState = {
     courses: [...demoCourses.courses, ...radicalsCourses.courses, ...perlCourses.courses],
+    programs: [...demoCourses.programs, ...radicalsCourses.programs, ...perlCourses.programs],
     lessons: [...demoCourses.lessons, ...radicalsCourses.lessons, ...perlCourses.lessons],
   };
 
@@ -75,9 +76,16 @@ export function getTestZhCourseCatalog(): CourseCatalogState {
   const zhCourses = catalog.courses.filter((course) => course.languagePair.learning === 'zh');
   const zhCourseIds = new Set(zhCourses.map((course) => course.id));
 
+  // Build a map of programId -> courseId for efficient lookup
+  const programToCourse = new Map<string, string>();
+  for (const program of catalog.programs) {
+    programToCourse.set(program.id, program.courseId);
+  }
+
   return {
     courses: zhCourses,
-    lessons: catalog.lessons.filter((lesson) => zhCourseIds.has(lesson.courseId)),
+    programs: catalog.programs.filter((p) => zhCourseIds.has(p.courseId)),
+    lessons: catalog.lessons.filter((lesson) => zhCourseIds.has(programToCourse.get(lesson.programId) ?? '')),
   };
 }
 
@@ -90,13 +98,20 @@ export function getTestPerlCourseCatalog(): CourseCatalogState {
   const perlCourses = catalog.courses.filter((course) => course.languagePair.learning === 'perl');
   const perlCourseIds = new Set(perlCourses.map((course) => course.id));
 
+  // Build a map of programId -> courseId for efficient lookup
+  const programToCourse = new Map<string, string>();
+  for (const program of catalog.programs) {
+    programToCourse.set(program.id, program.courseId);
+  }
+
   return {
     courses: perlCourses,
-    lessons: catalog.lessons.filter((lesson) => perlCourseIds.has(lesson.courseId)),
+    programs: catalog.programs.filter((p) => perlCourseIds.has(p.courseId)),
+    lessons: catalog.lessons.filter((lesson) => perlCourseIds.has(programToCourse.get(lesson.programId) ?? '')),
   };
 }
 
-export function getTestDemoCourseWithLessons(): CourseWithLessons {
+export function getTestDemoCourseWithLessons(): CourseWithPrograms {
   const catalog = getTestDefaultCourseCatalog();
   const course = catalog.courses.find((item) => item.id === 'demo-course');
 
@@ -104,8 +119,22 @@ export function getTestDemoCourseWithLessons(): CourseWithLessons {
     throw new Error('Demo course seed is missing');
   }
 
+  // Resolve programs for this course from the catalog
+  const courseProgramIds = new Set(course.programIds);
+  const resolvedPrograms: import('../program/model/program.types').ProgramWithLessons[] = [];
+
+  for (const program of catalog.programs) {
+    if (program.courseId === course.id) {
+      const programLessons = catalog.lessons.filter((l) => l.programId === program.id);
+      resolvedPrograms.push({
+        ...program,
+        lessons: programLessons,
+      });
+    }
+  }
+
   return {
     ...course,
-    lessons: catalog.lessons.filter((lesson) => lesson.courseId === 'demo-course'),
+    programs: resolvedPrograms,
   };
 }

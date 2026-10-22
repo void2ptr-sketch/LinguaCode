@@ -13,6 +13,7 @@ export function emptyUserContentOverlay(): UserContentOverlay {
   return {
     version: USER_CONTENT_OVERLAY_VERSION,
     courses: {},
+    programs: {},
     lessons: {},
     scenarios: {},
     cards: {},
@@ -84,6 +85,7 @@ function normalizeUserContentOverlay(value: Partial<UserContentOverlay>): UserCo
   return {
     version: USER_CONTENT_OVERLAY_VERSION,
     courses: value.courses && typeof value.courses === 'object' ? { ...value.courses } : {},
+    programs: value.programs && typeof value.programs === 'object' ? { ...value.programs } : {},
     lessons: value.lessons && typeof value.lessons === 'object' ? { ...value.lessons } : {},
     scenarios: value.scenarios && typeof value.scenarios === 'object' ? { ...value.scenarios } : {},
     cards: value.cards && typeof value.cards === 'object' ? { ...value.cards } : {},

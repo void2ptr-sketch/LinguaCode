@@ -20,7 +20,7 @@ import type { ContentLanguage } from '../../../entities/card/model';
 import type {
   CourseIndexEntry,
   CourseSearchPage,
-  CourseWithLessons,
+  CourseWithPrograms,
 } from '../../../entities/course/model';
 import type { UserLanguagePairEntry } from '../../../entities/user/model';
 import type { ToneColorSchemeId } from '../../../entities/phonetic/model';
@@ -46,12 +46,12 @@ function makePair(
   };
 }
 
-function makeCourse(id: string, title: string, lessonCount: number): CourseIndexEntry {
+function makeCourse(id: string, title: string, programCount: number): CourseIndexEntry {
   return {
     id,
     title,
     authorId: 'author-1',
-    lessonCount,
+    programCount,
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
     languagePairSummary: 'Русский → English',
@@ -78,35 +78,57 @@ describe('CourseCatalogPageComponent', () => {
     totalPages: 1,
   };
 
-  const mockCourse: CourseWithLessons = {
+  const mockCourse: CourseWithPrograms = {
     id: 'c-1',
     title: 'Course 1',
     description: 'Test course',
     authorId: 'author-1',
     languagePair: { known: 'ru', learning: 'en' },
-    lessonIds: ['l-1', 'l-2'],
+    programIds: ['p-1', 'p-2'],
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
-    lessons: [
+    programs: [
       {
-        id: 'l-1',
+        id: 'p-1',
         courseId: 'c-1',
-        title: 'Lesson 1',
+        title: 'Program 1',
         description: '',
-        scenarioIds: ['s-1'],
-        prerequisiteLessonIds: [],
+        lessonIds: ['l-1'],
         order: 0,
         updatedAt: '2024-01-01T00:00:00.000Z',
+        lessons: [
+          {
+            id: 'l-1',
+            programId: 'p-1',
+            title: 'Lesson 1',
+            description: '',
+            scenarioIds: ['s-1'],
+            prerequisiteLessonIds: [],
+            order: 0,
+            updatedAt: '2024-01-01T00:00:00.000Z',
+          },
+        ],
       },
       {
-        id: 'l-2',
+        id: 'p-2',
         courseId: 'c-1',
-        title: 'Lesson 2',
+        title: 'Program 2',
         description: '',
-        scenarioIds: ['s-2'],
-        prerequisiteLessonIds: [],
+        lessonIds: ['l-2'],
         order: 1,
         updatedAt: '2024-01-01T00:00:00.000Z',
+        lessons: [
+          {
+            id: 'l-2',
+            programId: 'p-2',
+            title: 'Lesson 2',
+            description: '',
+            scenarioIds: ['s-2'],
+            prerequisiteLessonIds: [],
+            order: 0,
+            updatedAt: '2024-01-01T00:00:00.000Z',
+          },
+        ],
       },
     ],
   };

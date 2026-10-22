@@ -12,7 +12,7 @@ export type CourseIndexEntry = {
   id: string;
   title: string;
   authorId: string;
-  lessonCount: number;
+  programCount: number;
   published: boolean;
   updatedAt: string;
   languagePairSummary: string;

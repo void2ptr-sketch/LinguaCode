@@ -25,7 +25,7 @@ function makeCourse(overrides: Partial<Course> = {}): Course {
     description: 'Description',
     authorId: 'user-1',
     languagePair: { known: 'en', learning: 'zh' },
-    lessonIds: ['lesson-1'],
+    programIds: ['program-1'],
     published: true,
     updatedAt: '2026-01-01T00:00:00.000Z',
     ...overrides,
@@ -35,7 +35,7 @@ function makeCourse(overrides: Partial<Course> = {}): Course {
 function makeLesson(overrides: Partial<Lesson> = {}): Lesson {
   return {
     id: 'lesson-1',
-    courseId: 'course-1',
+    programId: 'program-1',
     title: 'Test Lesson',
     description: 'Lesson desc',
     scenarioIds: ['scenario-1'],
@@ -76,6 +76,7 @@ function emptyOverlay(): UserContentOverlay {
   return {
     version: 1,
     courses: {},
+    programs: {},
     lessons: {},
     scenarios: {},
     cards: {},
@@ -92,6 +93,7 @@ describe('resolveCourseCatalog', () => {
   it('returns seed courses and lessons when overlay is empty', () => {
     const seed = {
       courses: [makeCourse()],
+      programs: [],
       lessons: [makeLesson()],
     };
     const overlay = emptyOverlay();
@@ -107,6 +109,7 @@ describe('resolveCourseCatalog', () => {
   it('excludes deleted courses and lessons', () => {
     const seed = {
       courses: [makeCourse()],
+      programs: [],
       lessons: [makeLesson()],
     };
     const overlay: UserContentOverlay = {
@@ -126,6 +129,7 @@ describe('resolveCourseCatalog', () => {
   it('applies course overlay patch', () => {
     const seed = {
       courses: [makeCourse({ title: 'Original Title' })],
+      programs: [],
       lessons: [],
     };
     const overlay: UserContentOverlay = {
@@ -141,7 +145,7 @@ describe('resolveCourseCatalog', () => {
   });
 
   it('includes user-created courses from overlay', () => {
-    const seed = { courses: [], lessons: [] };
+    const seed = { courses: [], programs: [], lessons: [] };
     const userCourse = makeCourse({ id: 'user-course-1' });
     const overlay: UserContentOverlay = {
       ...emptyOverlay(),
@@ -155,7 +159,7 @@ describe('resolveCourseCatalog', () => {
   });
 
   it('includes user-created lessons from overlay', () => {
-    const seed = { courses: [], lessons: [] };
+    const seed = { courses: [], programs: [], lessons: [] };
     const userLesson = makeLesson({ id: 'user-lesson-1' });
     const overlay: UserContentOverlay = {
       ...emptyOverlay(),
@@ -273,6 +277,7 @@ describe('computeCourseCatalogOverlay', () => {
   it('returns empty overlay when resolved matches seed', () => {
     const seed = {
       courses: [makeCourse()],
+      programs: [],
       lessons: [makeLesson()],
     };
     const resolved = { ...seed };
@@ -287,10 +292,12 @@ describe('computeCourseCatalogOverlay', () => {
   it('captures course title change as patch', () => {
     const seed = {
       courses: [makeCourse({ title: 'Original' })],
+      programs: [],
       lessons: [],
     };
     const resolved = {
       courses: [makeCourse({ title: 'Changed' })],
+      programs: [],
       lessons: [],
     };
     const previous = emptyOverlay();
@@ -303,9 +310,10 @@ describe('computeCourseCatalogOverlay', () => {
   it('tracks deleted courses in deletedSystemIds', () => {
     const seed = {
       courses: [makeCourse()],
+      programs: [],
       lessons: [],
     };
-    const resolved = { courses: [], lessons: [] };
+    const resolved = { courses: [], programs: [], lessons: [] };
     const previous = emptyOverlay();
 
     const result = computeCourseCatalogOverlay(resolved, seed, previous);
@@ -384,10 +392,12 @@ describe('mergeLegacyCourseCatalogWithSeed', () => {
   it('merges legacy courses with seed', () => {
     const stored = {
       courses: [makeCourse({ id: 'legacy-1', title: 'Legacy Course' })],
+      programs: [],
       lessons: [makeLesson({ id: 'legacy-lesson-1' })],
     };
     const seed = {
       courses: [makeCourse()],
+      programs: [],
       lessons: [makeLesson()],
     };
 

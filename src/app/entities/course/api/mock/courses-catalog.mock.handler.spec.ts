@@ -70,11 +70,12 @@ describe('CoursesCatalogMockHandler', () => {
     const course = await api.getById('demo-course');
 
     expect(course).toBeDefined();
-    expect(course.lessons.length).toBeGreaterThan(0);
+    const allLessons = course.programs.flatMap((p) => p.lessons ?? []);
+    expect(allLessons.length).toBeGreaterThan(0);
 
     // Verify lessons are sorted by order
-    for (let i = 1; i < course.lessons.length; i++) {
-      expect(course.lessons[i].order).toBeGreaterThanOrEqual(course.lessons[i - 1].order);
+    for (let i = 1; i < allLessons.length; i++) {
+      expect(allLessons[i].order).toBeGreaterThanOrEqual(allLessons[i - 1].order);
     }
   });
 
@@ -125,13 +126,15 @@ describe('CoursesCatalogMockHandler', () => {
         description: 'Test description',
         published: false,
         languagePair: makeLanguagePair('en', 'zh'),
-        lessons: [
+        programs: [
           {
-            id: 'lesson-1',
+            id: 'p1',
+            courseId: 'new-course',
             title: 'Lesson 1',
             description: 'First lesson',
-            scenarioIds: [],
+            lessonIds: [],
             order: 0,
+            updatedAt: new Date().toISOString(),
           },
         ],
       };
@@ -140,8 +143,7 @@ describe('CoursesCatalogMockHandler', () => {
 
       expect(created.id).toBeDefined();
       expect(created.title).toBe('New Test Course');
-      expect(created.lessons.length).toBe(1);
-      expect(created.lessons[0].title).toBe('Lesson 1');
+      expect(created.programIds).toHaveLength(1);
     });
 
     it('creates course without lessons', async () => {
@@ -150,13 +152,13 @@ describe('CoursesCatalogMockHandler', () => {
         description: 'No lessons',
         published: true,
         languagePair: makeLanguagePair('en', 'zh'),
-        lessons: [],
+        programs: [],
       };
 
       const created = await api.create(payload);
 
       expect(created.title).toBe('Empty Course');
-      expect(created.lessons).toEqual([]);
+      expect(created.programIds).toEqual([]);
     });
   });
 
@@ -167,7 +169,7 @@ describe('CoursesCatalogMockHandler', () => {
         description: 'Updated description',
         published: true,
         languagePair: makeLanguagePair('en', 'zh'),
-        lessons: [],
+        programs: [],
       };
 
       const updated = await api.update('demo-course', payload);
@@ -183,7 +185,7 @@ describe('CoursesCatalogMockHandler', () => {
         description: '',
         published: false,
         languagePair: makeLanguagePair('en', 'zh'),
-        lessons: [],
+        programs: [],
       };
 
       await expect(api.update('non-existent-id', payload)).rejects.toThrow();
@@ -197,8 +199,16 @@ describe('CoursesCatalogMockHandler', () => {
         description: 'Will be deleted',
         published: false,
         languagePair: makeLanguagePair('en', 'zh'),
-        lessons: [
-          { id: 'del-lesson', title: 'Lesson', description: '', scenarioIds: [], order: 0 },
+        programs: [
+          {
+            id: 'p-del',
+            courseId: 'del-course',
+            title: 'Lesson',
+            description: '',
+            lessonIds: [],
+            order: 0,
+            updatedAt: new Date().toISOString(),
+          },
         ],
       };
 

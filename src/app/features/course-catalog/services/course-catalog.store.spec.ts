@@ -57,7 +57,7 @@ describe('CourseCatalogStore', () => {
           id: 'c1',
           title: 'Course 1',
           authorId: 'user1',
-          lessonCount: 5,
+          programCount: 5,
           published: true,
           updatedAt: '2024-01-01T00:00:00.000Z',
           languagePairSummary: 'Русский → English',
