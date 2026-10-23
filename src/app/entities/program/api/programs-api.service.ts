@@ -44,23 +44,6 @@ export class ProgramsApiService implements ProgramCatalogPort {
   }
 
   /**
-   * Retrieves a program by ID.
-   *
-   * @param programId - The program ID.
-   * @returns The program.
-   *
-   * @example
-   * ```ts
-   * const program = await programsApi.getById('program-123');
-   * ```
-   */
-  getById(programId: string): Promise<Program> {
-    return firstValueFrom(
-      this.http.get<ApiResponse<Program>>(buildApiUrl(`/programs/${programId}`)),
-    ).then((response) => response.data);
-  }
-
-  /**
    * Retrieves a program with its lessons fully resolved.
    *
    * @param programId - The program ID.
@@ -68,10 +51,10 @@ export class ProgramsApiService implements ProgramCatalogPort {
    *
    * @example
    * ```ts
-   * const program = await programsApi.getProgramWithLessons('program-123');
+   * const program = await programsApi.getById('program-123');
    * ```
    */
-  getProgramWithLessons(programId: string): Promise<ProgramWithLessons> {
+  getById(programId: string): Promise<ProgramWithLessons> {
     return firstValueFrom(
       this.http.get<ApiResponse<ProgramWithLessons>>(buildApiUrl(`/programs/${programId}`)),
     ).then((response) => response.data);

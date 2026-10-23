@@ -40,20 +40,12 @@ export type ProgramCatalogPort = {
   search(criteria: ProgramSearchCriteria): Promise<ProgramSearchPage>;
 
   /**
-   * Retrieves a program by ID.
-   *
-   * @param programId - The program ID.
-   * @returns The program.
-   */
-  getById(programId: string): Promise<Program>;
-
-  /**
    * Retrieves a program with its lessons fully resolved.
    *
    * @param programId - The program ID.
    * @returns The program with lessons.
    */
-  getProgramWithLessons(programId: string): Promise<ProgramWithLessons>;
+  getById(programId: string): Promise<ProgramWithLessons>;
 
   /**
    * Retrieves all programs for a given course.

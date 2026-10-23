@@ -4,6 +4,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { CardSearchService } from '../..';
 import { CourseSearchService } from '../../../course/search/course-search.service';
+import { ProgramsApiService } from '../../../program/api/programs-api.service';
+import { CardCatalogHierarchyService } from '../card-catalog-hierarchy/card-catalog-hierarchy.service';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
 
 describe('CardCatalogSearchStore', () => {
@@ -24,19 +26,25 @@ describe('CardCatalogSearchStore', () => {
   const courseSearchMock = {
     search: vi.fn().mockName('CourseSearchService.search'),
     getById: vi.fn().mockName('CourseSearchService.getById'),
-    getProgramById: vi.fn().mockName('CourseSearchService.getProgramById').mockResolvedValue({
-      id: 'program-1',
-      courseId: 'course-1',
-      title: 'Program 1',
-      description: '',
-      lessonIds: [],
-      order: 0,
-      updatedAt: '2026-01-01T00:00:00.000Z',
-      lessons: [],
-    }),
     loading: () => false,
     error: () => null,
   };
+
+  const programsApiMock = {
+    getById: vi.fn().mockName('ProgramsApiService.getById'),
+  };
+
+  const hierarchyMock = {
+    loadLessons: vi.fn().mockName('CardCatalogHierarchyService.loadLessons').mockResolvedValue([]),
+    invalidateCache: vi.fn().mockName('CardCatalogHierarchyService.invalidateCache'),
+    loadCourses: vi.fn().mockName('CardCatalogHierarchyService.loadCourses').mockResolvedValue([]),
+    getScenariosForLesson: vi
+      .fn()
+      .mockName('CardCatalogHierarchyService.getScenariosForLesson')
+      .mockResolvedValue([]),
+    getLessons: vi.fn().mockName('CardCatalogHierarchyService.getLessons').mockResolvedValue([]),
+  };
+
   courseSearchMock.search.mockResolvedValue({
     items: [],
     page: 0,
@@ -53,6 +61,12 @@ describe('CardCatalogSearchStore', () => {
   beforeEach(() => {
     searchMock.mockClear();
     courseSearchMock.search.mockClear();
+    programsApiMock.getById.mockClear();
+    hierarchyMock.loadLessons.mockClear();
+    hierarchyMock.invalidateCache.mockClear();
+    hierarchyMock.loadCourses.mockClear();
+    hierarchyMock.getScenariosForLesson.mockClear();
+    hierarchyMock.getLessons.mockClear();
 
     TestBed.configureTestingModule({
       providers: [
@@ -64,6 +78,14 @@ describe('CardCatalogSearchStore', () => {
         {
           provide: CourseSearchService,
           useValue: courseSearchMock,
+        },
+        {
+          provide: ProgramsApiService,
+          useValue: programsApiMock,
+        },
+        {
+          provide: CardCatalogHierarchyService,
+          useValue: hierarchyMock,
         },
       ],
     });

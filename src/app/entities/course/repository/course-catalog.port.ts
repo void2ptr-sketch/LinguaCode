@@ -7,7 +7,6 @@ import type {
   CourseSearchCriteria,
   CourseSearchPage,
   CourseWithPrograms,
-  ProgramWithLessons,
 } from '../model';
 import type { CourseCatalogState } from '../utils/course-catalog-state';
 
@@ -141,46 +140,4 @@ export type CourseCatalogPort = {
    * @returns The export bundle with the resolved catalog, programs, lessons, scenarios, cards, and metadata.
    */
   getBundle(courseId: string): Promise<CourseExportBundle>;
-
-  // ── Program operations ──
-
-  /**
-   * Retrieves a program with its lessons by ID.
-   *
-   * @param programId - The program ID.
-   * @returns The program with lessons.
-   */
-  getProgramById(programId: string): Promise<ProgramWithLessons>;
-
-  /**
-   * Creates a new program within a course.
-   *
-   * @param payload - The program write payload.
-   * @returns The created program with lessons.
-   */
-  createProgram(payload: ProgramWritePayload): Promise<ProgramWithLessons>;
-
-  /**
-   * Updates an existing program.
-   *
-   * @param programId - The program ID.
-   * @param payload - The program write payload.
-   * @returns The updated program with lessons.
-   */
-  updateProgram(programId: string, payload: ProgramWritePayload): Promise<ProgramWithLessons>;
-
-  /**
-   * Deletes a program by ID.
-   *
-   * @param programId - The program ID.
-   */
-  deleteProgram(programId: string): Promise<void>;
-
-  /**
-   * Retrieves all lessons for a given program.
-   *
-   * @param programId - The program ID.
-   * @returns Array of lessons in the program.
-   */
-  getLessons(programId: string): Promise<readonly import('../model').Lesson[]>;
 };

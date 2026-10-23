@@ -11,6 +11,7 @@ import {
   type LessonRoadmapItem,
 } from '../lib/learning-resume.utils';
 import { CourseSearchService } from '../../../entities/course/search/course-search.service';
+import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import { resolveLearningSessionForPair } from '../lib/learning-session.utils';
 import { getScenarioSeedCache } from '../../../entities/content-seed/content-seed.cache';
 import type { Course, ProgramWithLessons } from '../../../entities/course/model';
@@ -29,6 +30,7 @@ import { RADICALS_COURSE_ID } from '../../../entities/chinese/lib/tones/radicals
 @Injectable({ providedIn: 'root' })
 export class LearningDashboardService {
   private readonly courseSearchService = inject<CourseSearchService>(CourseSearchService);
+  private readonly programsApi = inject(ProgramsApiService);
   private readonly userStore = inject<UserStore>(UserStore);
   private readonly resultsStore = inject<LearningResultsStore>(LearningResultsStore);
   private readonly logger = inject<AppLoggerService>(AppLoggerService);
@@ -198,7 +200,7 @@ export class LearningDashboardService {
 
       if (!activeProgram && programs.length > 0) {
         // Load first program with lessons
-        activeProgram = (await this.courseSearchService.getProgramById(
+        activeProgram = (await this.programsApi.getById(
           programs[0].id,
         )) as unknown as import('../../../entities/program/model/program.types').ProgramWithLessons;
       }

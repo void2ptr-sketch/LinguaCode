@@ -70,31 +70,13 @@ export class ProgramsCatalogMockHandler {
   }
 
   /**
-   * Retrieves a single program by ID.
-   *
-   * @param programId - The unique identifier of the program.
-   * @returns The matching `Program` object.
-   * @throws `HttpErrorResponse` with status 404 if no program is found.
-   */
-  async getById(programId: string): Promise<Program> {
-    await this.ensureData();
-
-    const program = (this.catalog!.programs ?? []).find((p) => p.id === programId);
-    if (!program) {
-      throw notFound(`Программа '${programId}' не найдена`);
-    }
-
-    return program;
-  }
-
-  /**
    * Retrieves a program with its lessons fully resolved.
    *
    * @param programId - The unique identifier of the program.
    * @returns The matching `ProgramWithLessons` object.
    * @throws `HttpErrorResponse` with status 404 if no program is found.
    */
-  async getProgramWithLessons(programId: string): Promise<ProgramWithLessons> {
+  async getById(programId: string): Promise<ProgramWithLessons> {
     await this.ensureData();
 
     const program = (this.catalog!.programs ?? []).find((p) => p.id === programId);

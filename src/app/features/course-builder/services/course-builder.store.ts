@@ -18,6 +18,7 @@ import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
 import { normalizeLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
 import { CourseSearchService, CoursesApiService } from '../../../entities/course';
+import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import type {
   CourseIndexEntry,
   CourseWithPrograms,
@@ -60,6 +61,7 @@ const sanitizeCourseIdea = (value: string): string =>
 export class CourseBuilderStore {
   /** Service for HTTP requests to the courses API */
   private readonly courseSearchService = inject(CourseSearchService);
+  private readonly programsApi = inject(ProgramsApiService);
   /** User store (current language pair, user ID) */
   private readonly userStore = inject(UserStore);
   /** API service for course data access */
@@ -226,7 +228,7 @@ export class CourseBuilderStore {
       // Resolve programs with their lessons
       const programsWithLessons: ProgramWithLessons[] = [];
       for (const program of course.programs) {
-        const programWithLessons = await this.courseSearchService.getProgramById(program.id);
+        const programWithLessons = await this.programsApi.getById(program.id);
         programsWithLessons.push(programWithLessons);
       }
 

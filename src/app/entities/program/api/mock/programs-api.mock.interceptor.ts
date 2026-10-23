@@ -88,7 +88,7 @@ export const programsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
 
   const programId = extractProgramId(req.url);
   if (req.method === 'GET' && programId) {
-    return defer(() => handler.getProgramWithLessons(programId)).pipe(
+    return defer(() => handler.getById(programId)).pipe(
       map((data) => new HttpResponse({ status: 200, body: { data } })),
     );
   }

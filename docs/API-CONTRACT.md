@@ -45,35 +45,6 @@
 
 Пейлоад записи: `ScenarioWritePayload` (`title`, `description`, `cardSource`, `published`, `languagePair?`).
 
-## Курсы (`/courses`)
-
-Реализация: `CoursesApiService` · порт `CourseCatalogPort` · mock `coursesApiMockInterceptor`.
-
-| Метод  | Путь                               | Описание                             |
-| ------ | ---------------------------------- | ------------------------------------ |
-| GET    | `/courses/search`                  | Поиск + пагинация                    |
-| GET    | `/courses/:id`                     | Курс с уроками (`CourseWithLessons`) |
-| GET    | `/courses/:id/bundle`              | Экспорт-пакет (`CourseExportBundle`) |
-| GET    | `/courses/by-scenario/:scenarioId` | Курсы, использующие сценарий         |
-| POST   | `/courses`                         | Создание курса (201)                 |
-| PUT    | `/courses/:id`                     | Обновление курса (403 на чужой)      |
-| DELETE | `/courses/:id`                     | Удаление курса                       |
-
-Пейлоад записи: `CourseWritePayload` (`title`, `description`, `published`, `languagePair?`, `lessons[]`, `authoring?`).
-
-### Экспорт-пакет (`CourseExportBundle`)
-
-Используется инструментами автора (экспорт в CourseBundle JSON, PDF):
-
-```typescript
-type CourseExportBundle = {
-  catalog: CourseCatalogState; // курсы + уроки (seed + overlay)
-  scenarios: readonly Scenario[]; // все сценарии
-  cards: readonly Card[]; // все карточки
-  cardIndexMeta: Record<string, CardIndexMetaOverride>; // метаданные индекса
-};
-```
-
 ## Программы (`/programs`)
 
 Реализация: `ProgramsApiService` · порт `ProgramCatalogPort` · mock `programsApiMockInterceptor`.
@@ -88,6 +59,46 @@ type CourseExportBundle = {
 | DELETE | `/programs/:id`                 | Удаление программы                     |
 
 Пейлоад записи: `ProgramWritePayload` (`courseId`, `title`, `description`, `lessonIds`, `order`).
+
+## Курсы (`/courses`)
+
+Реализация: `CoursesApiService` · порт `CourseCatalogPort` · mock `coursesApiMockInterceptor`.
+
+| Метод  | Путь                               | Описание                             |
+| ------ | ---------------------------------- | ------------------------------------ |
+| GET    | `/courses/search`                  | Поиск + пагинация                    |
+| GET    | `/courses/:id`                     | Курс с уроками (`CourseWithLessons`) |
+| GET    | `/courses/:id/bundle`              | Экспорт-пакет (`CourseExportBundle`) |
+| GET    | `/courses/by-scenario/:scenarioId` | Курсы, использующие сценарий         |
+| POST   | `/courses`                         | Создание курса (201)                 |
+| PUT    | `/courses/:id`                     | Обновление курса (403 на чужой)      |
+| DELETE | `/courses/:id`                     | Удаление курса                       |
+
+Пейлоад записи: `CourseWritePayload` (`title`, `description`, `published`, `languagePair?`, `programs[]`, `authoring?`).
+
+### Экспорт-пакет (`CourseExportBundle`)
+
+Используется инструментами автора (экспорт в CourseBundle JSON, PDF):
+
+```typescript
+type CourseExportBundle = {
+  catalog: CourseCatalogState; // курсы + уроки (seed + overlay)
+  scenarios: readonly Scenario[]; // все сценарии
+  cards: readonly Card[]; // все карточки
+  cardIndexMeta: Record<string, CardIndexMetaOverride>; // метаданные индекса
+};
+```
+
+## Пользователь (`/users`)
+
+Реализация: `UserApiService` · порт `UserPort` · mock `userApiMockInterceptor`.
+
+| Метод | Путь        | Описание                                 |
+| ----- | ----------- | ---------------------------------------- |
+| GET   | `/users/me` | Профиль текущего пользователя            |
+| PUT   | `/users/me` | Обновление профиля (`UpdateUserPayload`) |
+
+Пейлоад обновления: `UpdateUserPayload` (`displayName?`, `preferences?`).
 
 ## Аутентификация (`/auth`)
 
@@ -107,9 +118,21 @@ type CourseExportBundle = {
 - `authRefreshInterceptor` — при ответе 401 (кроме `/auth/*`) выполняет single-flight refresh и повторяет запрос с новым токеном.
 - Токены хранятся в `sessionStorage` (не переживают закрытие вкладки).
 
+## Обучение (`/learning`)
+
+Реализация: `LearningApiService` · порт `LearningCatalogPort` · mock `learningApiMockInterceptor`.
+
+| Метод | Путь                                 | Описание                                  |
+| ----- | ------------------------------------ | ----------------------------------------- |
+| POST  | `/learning/results`                  | Запись результата (`LearningResult`)      |
+| GET   | `/learning/results/:userId`          | Результаты пользователя (пагинация)       |
+| GET   | `/learning/accuracy/:userId/:cardId` | Точность по карточке (`CardAccuracyData`) |
+
+Тип точности: `CardAccuracyData` (`cardId`, `totalAttempts`, `correctAttempts`, `accuracy`).
+
 ## Mock vs реальный бэкенд
 
-- Dev: `useCardsApiMock` / `useScenariosApiMock` / `useCoursesApiMock` = `true` — ответы отдают mock-интерсепторы (данные: content seed + user overlay в `localStorage`).
+- Dev: `useCardsApiMock` / `useScenariosApiMock` / `useCoursesApiMock` / `useUsersApiMock` / `useLearningApiMock` = `true` — ответы отдают mock-интерсепторы (данные: content seed + user overlay в `localStorage`).
 - Production: флаги `false` — запросы идут на `environment.apiUrl` реального бэкенда.
 - Auth: `authEnabled` = `false` в dev (mock-бэкенд не требует токенов); `true` в production включает restore-сессии и refresh-интерсептор.
 - Контракт должен совпадать: порты + conformance-тесты (`*.port.conformance.spec.ts`) проверяют, что API-сервис и mock-хендлер структурно реализуют один и тот же порт.
