@@ -41,7 +41,10 @@ export class LearningApiService implements LearningCatalogPort {
   private readonly http = inject(HttpClient);
 
   /**
-   * Records a learning result for a user's answer.
+   * Records a learning result for the authenticated user's answer.
+   *
+   * @remarks
+   * `userId` is extracted from the JWT token on the backend — not sent in the body.
    *
    * @param result - The learning result to record.
    * @returns Promise resolving to the saved learning result.
@@ -49,7 +52,6 @@ export class LearningApiService implements LearningCatalogPort {
    * @example
    * ```ts
    * await learningApi.record({
-   *   userId: 'user-123',
    *   cardId: 'card-456',
    *   scenarioId: 'scenario-789',
    *   correct: true,
@@ -57,10 +59,9 @@ export class LearningApiService implements LearningCatalogPort {
    * });
    * ```
    */
-  record(result: Omit<LearningResult, 'id'>): Promise<LearningResult> {
+  record(result: Omit<LearningResult, 'id' | 'userId'>): Promise<LearningResult> {
     return firstValueFrom(
       this.http.post<ApiResponse<BackendLearningResultDto>>(buildApiUrl('/learning/results'), {
-        userId: result.userId,
         cardId: result.cardId,
         scenarioId: result.scenarioId ?? null,
         correct: result.correct,

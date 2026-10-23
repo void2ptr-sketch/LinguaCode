@@ -18,19 +18,17 @@ export type UpdateUserPayload = {
  */
 export type UserPort = {
   /**
-   * Retrieves the current user profile.
+   * Retrieves the current user profile (userId from JWT).
    *
-   * @param userId - The user ID.
    * @returns Promise resolving to the user profile.
    */
-  getMe(userId: string): Promise<User>;
+  getMe(): Promise<User>;
 
   /**
-   * Updates the current user profile.
+   * Updates the current user profile (userId from JWT).
    *
-   * @param userId - The user ID.
    * @param payload - The update payload.
    * @returns Promise resolving to the updated user profile.
    */
-  updateMe(userId: string, payload: UpdateUserPayload): Promise<User>;
+  updateMe(payload: UpdateUserPayload): Promise<User>;
 };

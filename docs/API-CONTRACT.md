@@ -98,7 +98,7 @@ type CourseExportBundle = {
 | GET   | `/users/me` | Профиль пользователя (query: `userId`)   |
 | PUT   | `/users/me` | Обновление профиля (`UpdateUserPayload`) |
 
-> **Важно:** оба эндпоинта принимают `userId` явно — в query-параметре (`GET`) и в теле запроса (`PUT`). Бэкенд не извлекает userId из JWT-токена; авторизация на этих эндпоинтах не проверяет ownership. Пейлоад обновления: `UpdateUserPayload` (`displayName?`, `preferences?`).
+> **Важно:** оба эндпоинта извлекают `userId` из JWT-токена (через `Authentication`Spring Security). `userId` не передаётся в query-параметрах или теле запроса. Авторизация на этих эндпоинтах проверяет ownership через JWT. Пейлоад обновления: `UpdateUserPayload` (`displayName?`, `preferences?`).
 
 ## Аутентификация (`/auth`)
 
@@ -110,7 +110,7 @@ type CourseExportBundle = {
 | POST  | `/auth/refresh` | Обновление токенов по `{ refreshToken }` → `AuthTokens` |
 | POST  | `/auth/logout`  | Выход (best-effort)                                     |
 
-Типы: `AuthSession` (`user` + `tokens`), `AuthTokens` (`accessToken`, `refreshToken`, `expiresAt`).
+Типы: `AuthSession` (`userId`, `accessToken`, `refreshToken` — соответствует backend `AuthResponse`), `AuthTokens` (`accessToken`, `refreshToken`).
 
 Поток:
 
@@ -128,7 +128,7 @@ type CourseExportBundle = {
 | GET   | `/learning/results/:userId`          | Результаты пользователя (пагинация)       |
 | GET   | `/learning/accuracy/:userId/:cardId` | Точность по карточке (`CardAccuracyData`) |
 
-> **Важно:** все эндпоинты принимают `userId` явно — в URL-пути и/или в теле запроса. Бэкенд не извлекает userId из JWT-токена; авторизация на этих эндпоинтах не проверяет ownership. Тип точности: `CardAccuracyData` (`cardId`, `totalAttempts`, `correctAttempts`, `accuracy`).
+> **Важно:** эндпоинт `POST /learning/results` извлекает `userId` из JWT-токена — поле `userId` не должно передаваться в теле запроса. Эндпоинты `GET /learning/results/{userId}` и `GET /learning/accuracy/{userId}/{cardId}` принимают `userId` в URL; бэкенд проверяет ownership через `@PreAuthorize` (только владелец может читать свои результаты). Тип точности: `CardAccuracyData` (`cardId`, `totalAttempts`, `correctAttempts`, `accuracy`).
 
 ## Mock vs реальный бэкенд
 

@@ -5,7 +5,7 @@ import { getApiErrorMessage } from '../../../shared/api/api-error.utils';
 import { AuthApiService } from '../api/auth-api.service';
 import { AuthTokenStorage } from './auth-token.storage';
 import { initialAuthState, isAccessTokenExpired } from '../model/auth-state';
-import type { AuthState, LoginCredentials } from '../model/auth.types';
+import type { AuthState, AuthTokens, LoginCredentials } from '../model/auth.types';
 
 /**
  * Signal-стор аутентификации.
@@ -58,11 +58,16 @@ export class AuthStore {
     this.#state.update((s) => ({ ...s, status: 'authenticating', error: null }));
     try {
       const session = await this.authApi.login(credentials);
-      this.tokenStorage.write(session.tokens);
+      // Backend AuthResponse: { userId, accessToken, refreshToken }
+      const tokens: AuthTokens = {
+        accessToken: session.accessToken,
+        refreshToken: session.refreshToken,
+      };
+      this.tokenStorage.write(tokens);
       this.#state.set({
         status: 'authenticated',
-        user: session.user,
-        tokens: session.tokens,
+        user: { id: session.userId, displayName: '', email: '' },
+        tokens,
         error: null,
       });
       return true;

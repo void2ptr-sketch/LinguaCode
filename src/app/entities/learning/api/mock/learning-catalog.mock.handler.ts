@@ -20,15 +20,16 @@ export class LearningCatalogMockHandler {
   private results: readonly LearningResult[] | null = null;
 
   /**
-   * Records a learning result.
+   * Records a learning result (userId is extracted from JWT on the backend).
    *
-   * @param result - The learning result to record (without id).
+   * @param result - The learning result to record (without id and userId).
    * @returns The saved learning result with generated id.
    */
-  record(result: Omit<LearningResult, 'id'>): LearningResult {
+  record(result: Omit<LearningResult, 'id' | 'userId'>): LearningResult {
     const newResult: LearningResult = {
       ...result,
       id: crypto.randomUUID(),
+      userId: 'local-user', // mock fallback — in real API userId comes from JWT
     };
 
     const current = this.ensureResults();

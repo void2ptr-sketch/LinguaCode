@@ -8,6 +8,15 @@ import { buildApiUrl } from '../../../shared/api/api-url';
 import type { AuthPort } from '../repository/auth.port';
 
 /**
+ * Backend DTO для ответа аутентификации (соответствует Java AuthResponse).
+ */
+type BackendAuthResponse = {
+  userId: string;
+  accessToken: string;
+  refreshToken: string;
+};
+
+/**
  * API-сервис аутентификации.
  *
  * @remarks
@@ -22,14 +31,19 @@ export class AuthApiService implements AuthPort {
 
   login(credentials: LoginCredentials): Promise<AuthSession> {
     return firstValueFrom(
-      this.http.post<ApiResponse<AuthSession>>(buildApiUrl('/auth/login'), credentials),
+      this.http.post<ApiResponse<BackendAuthResponse>>(buildApiUrl('/auth/login'), credentials),
     ).then((response) => response.data);
   }
 
   refresh(refreshToken: string): Promise<AuthTokens> {
     return firstValueFrom(
-      this.http.post<ApiResponse<AuthTokens>>(buildApiUrl('/auth/refresh'), { refreshToken }),
-    ).then((response) => response.data);
+      this.http.post<ApiResponse<BackendAuthResponse>>(buildApiUrl('/auth/refresh'), {
+        refreshToken,
+      }),
+    ).then((response) => {
+      const { accessToken, refreshToken: rt } = response.data;
+      return { accessToken, refreshToken: rt };
+    });
   }
 
   logout(): Promise<void> {

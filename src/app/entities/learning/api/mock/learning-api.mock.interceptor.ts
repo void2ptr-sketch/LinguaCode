@@ -87,7 +87,7 @@ export const learningApiMockInterceptor: HttpInterceptorFn = (req, next) => {
 
   // POST /learning/results — запись результата обучения
   if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/learning/results'))) {
-    const body = req.body as Omit<LearningResult, 'id'>;
+    const body = req.body as Omit<LearningResult, 'id' | 'userId'>;
 
     return defer(() => Promise.resolve(handler.record(body))).pipe(
       map((data) => new HttpResponse({ status: 201, body: { data } })),

@@ -20,14 +20,13 @@ export type AuthUser = {
 export type AuthTokens = {
   accessToken: string;
   refreshToken: string;
-  /** Unix-время (мс) истечения access-токена. */
-  expiresAt: number;
 };
 
-/** Результат успешного входа. */
+/** Результат успешного входа (соответствует backend AuthResponse). */
 export type AuthSession = {
-  user: AuthUser;
-  tokens: AuthTokens;
+  userId: string;
+  accessToken: string;
+  refreshToken: string;
 };
 
 /** Учётные данные для входа. */

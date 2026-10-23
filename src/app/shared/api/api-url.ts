@@ -32,4 +32,7 @@ export const buildFixtureUrl = (path: string): string => {
  * @param url - The URL to check.
  * @returns `true` if the URL starts with the configured API base URL.
  */
-export const isApiRequest = (url: string): boolean => url.startsWith(environment.apiUrl);
+export const isApiRequest = (url: string): boolean => {
+  const apiBase = environment.apiUrl;
+  return url.startsWith(apiBase) || url.includes(`${apiBase}/`);
+};

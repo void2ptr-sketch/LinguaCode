@@ -36,7 +36,6 @@ describe('api interceptors', () => {
     tokenStorage.write({
       accessToken: 'test-token',
       refreshToken: 'refresh-token',
-      expiresAt: Date.now() + 60_000,
     });
 
     http.get('/api/scenarios/demo').subscribe();
@@ -58,7 +57,6 @@ describe('api interceptors', () => {
     tokenStorage.write({
       accessToken: 'test-token',
       refreshToken: 'refresh-token',
-      expiresAt: Date.now() + 60_000,
     });
 
     http.get('/repositories/select-cards.json').subscribe();

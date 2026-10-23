@@ -18,14 +18,14 @@ describe('AuthStore', () => {
   };
 
   const tokens: AuthTokens = {
-    accessToken: 'access-1',
+    accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6OTk5OTk5OTk5OTk5OX0.fake',
     refreshToken: 'refresh-1',
-    expiresAt: Date.now() + 3_600_000,
   };
 
   const session: AuthSession = {
-    user: { id: 'u1', displayName: 'User', email: 'user@example.com' },
-    tokens,
+    userId: 'u1',
+    accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6OTk5OTk5OTk5OTk5OX0.fake',
+    refreshToken: 'refresh-1',
   };
 
   beforeEach(() => {
@@ -67,8 +67,8 @@ describe('AuthStore', () => {
 
     expect(ok).toBe(true);
     expect(store.isAuthenticated()).toBe(true);
-    expect(store.user()?.displayName).toBe('User');
-    expect(store.accessToken()).toBe('access-1');
+    expect(store.user()?.id).toBe('u1');
+    expect(store.accessToken()).toBe('eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6OTk5OTk5OTk5OTk5OX0.fake');
     expect(tokenStorage.read()).toEqual(tokens);
   });
 
@@ -88,22 +88,28 @@ describe('AuthStore', () => {
     await store.restoreSession();
 
     expect(store.isAuthenticated()).toBe(true);
-    expect(store.accessToken()).toBe('access-1');
+    expect(store.accessToken()).toBe(tokens.accessToken);
   });
 
   it('should refresh an expired session on restore', async () => {
-    tokenStorage.write({ ...tokens, expiresAt: Date.now() - 1_000 });
-    mockAuthApi.refresh.mockResolvedValue({ ...tokens, accessToken: 'access-2' });
+    // JWT with expired exp claim (seconds since epoch)
+    const expiredToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6MX0.fake';
+    tokenStorage.write({ accessToken: expiredToken, refreshToken: 'refresh-1' });
+    mockAuthApi.refresh.mockResolvedValue({
+      accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6OTk5OTk5OTk5OTk5OX0.fake',
+      refreshToken: 'refresh-2',
+    });
 
     await store.restoreSession();
 
     expect(mockAuthApi.refresh).toHaveBeenCalledWith('refresh-1');
-    expect(store.accessToken()).toBe('access-2');
+    expect(store.accessToken()).toBe('eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6OTk5OTk5OTk5OTk5OX0.fake');
     expect(store.isAuthenticated()).toBe(true);
   });
 
   it('should clear session when refresh fails', async () => {
-    tokenStorage.write({ ...tokens, expiresAt: Date.now() - 1_000 });
+    const expiredToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6MX0.fake';
+    tokenStorage.write({ accessToken: expiredToken, refreshToken: 'refresh-1' });
     mockAuthApi.refresh.mockRejectedValue(new Error('refresh failed'));
 
     await store.restoreSession();
@@ -124,8 +130,12 @@ describe('AuthStore', () => {
   });
 
   it('should deduplicate concurrent refresh calls', async () => {
-    tokenStorage.write({ ...tokens, expiresAt: Date.now() - 1_000 });
-    mockAuthApi.refresh.mockResolvedValue({ ...tokens, accessToken: 'access-2' });
+    const expiredToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6MX0.fake';
+    tokenStorage.write({ accessToken: expiredToken, refreshToken: 'refresh-1' });
+    mockAuthApi.refresh.mockResolvedValue({
+      accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6OTk5OTk5OTk5OTk5OX0.fake',
+      refreshToken: 'refresh-2',
+    });
 
     const [r1, r2] = await Promise.all([store.refreshSession(), store.refreshSession()]);
 

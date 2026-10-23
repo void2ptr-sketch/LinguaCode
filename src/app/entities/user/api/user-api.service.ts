@@ -31,44 +31,37 @@ export class UserApiService implements UserPort {
   private readonly http = inject(HttpClient);
 
   /**
-   * Retrieves the current user profile.
+   * Retrieves the current user profile (userId from JWT).
    *
-   * @param userId - The user ID.
    * @returns Promise resolving to the user profile.
    *
    * @example
    * ```ts
-   * const user = await userApi.getMe('user-123');
+   * const user = await userApi.getMe();
    * ```
    */
-  getMe(userId: string): Promise<User> {
+  getMe(): Promise<User> {
     return firstValueFrom(
-      this.http.get<ApiResponse<BackendUserDto>>(buildApiUrl(`/users/me`), {
-        params: { userId },
-      }),
+      this.http.get<ApiResponse<BackendUserDto>>(buildApiUrl(`/users/me`)),
     ).then((response) => mapBackendUser(response.data));
   }
 
   /**
-   * Updates the current user profile.
+   * Updates the current user profile (userId from JWT).
    *
-   * @param userId - The user ID.
    * @param payload - The update payload (displayName and/or preferences).
    * @returns Promise resolving to the updated user profile.
    *
    * @example
    * ```ts
-   * await userApi.updateMe('user-123', {
+   * await userApi.updateMe({
    *   displayName: 'New Name',
    * });
    * ```
    */
-  updateMe(userId: string, payload: UpdateUserPayload): Promise<User> {
+  updateMe(payload: UpdateUserPayload): Promise<User> {
     return firstValueFrom(
-      this.http.put<ApiResponse<BackendUserDto>>(buildApiUrl(`/users/me`), {
-        userId,
-        ...payload,
-      }),
+      this.http.put<ApiResponse<BackendUserDto>>(buildApiUrl(`/users/me`), payload),
     ).then((response) => mapBackendUser(response.data));
   }
 }
