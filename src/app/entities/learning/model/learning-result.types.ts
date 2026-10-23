@@ -10,10 +10,10 @@ export type LearningResult = {
   id: string;
   userId: string;
   cardId: string;
-  scenarioId: string;
+  scenarioId?: string;
   correct: boolean;
   answeredAt: string;
-  languagePair: LanguagePair;
+  languagePair?: LanguagePair;
   direction?: CardDirection;
   programId?: string; // G17 — optional for progress aggregation by program
   lessonId?: string;

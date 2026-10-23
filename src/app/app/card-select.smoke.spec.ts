@@ -8,6 +8,7 @@ import { routes } from './app.routes';
 import { provideApiHttp } from './api/provide-api.http';
 import { environment } from '../../environments/environment';
 import { resetContentSeedCache } from '../entities/content-seed/content-seed.cache';
+import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 
 describe('Card select smoke', () => {
   beforeEach(async () => {
@@ -24,6 +25,10 @@ describe('Card select smoke', () => {
         provideHttpClientTesting(),
       ],
     }).compileComponents();
+
+    // Clear IndexedDB snapshot so seed loads from HTTP fixtures
+    const seedRepo = TestBed.inject(ContentSeedRepository);
+    await seedRepo.resetForTests();
   });
 
   afterEach(() => {

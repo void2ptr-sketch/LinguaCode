@@ -9,5 +9,5 @@ export const environment: Environment = {
   useCardsApiMock: false,
   useScenariosApiMock: true,
   useCoursesApiMock: true,
-  authEnabled: false,
+  authEnabled: true,
 };

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { provideApiHttp } from './api/provide-api.http';
 import { seedTestContentCache } from '../entities/content-seed/content-seed.test-utils';
+import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 
 describe('Card editor smoke', () => {
   beforeEach(async () => {
@@ -21,6 +22,10 @@ describe('Card editor smoke', () => {
         provideHttpClientTesting(),
       ],
     }).compileComponents();
+
+    // Clear IndexedDB snapshot so seed loads cleanly
+    const seedRepo = TestBed.inject(ContentSeedRepository);
+    await seedRepo.resetForTests();
   });
 
   afterEach(() => {

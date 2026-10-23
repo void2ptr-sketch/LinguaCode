@@ -31,7 +31,7 @@ import { AppLoggerService } from '../../shared/logger/app-logger.service';
 import { firstValueFrom } from 'rxjs';
 
 import { buildFixtureUrl } from '../../shared/api/api-url';
-import { IndexedDbService } from '../../shared/storage';
+import { IndexedDbService, IDB_STORE_CONTENT_SEED } from '../../shared/storage';
 import type { Card } from '../card/model';
 import type { Course } from '../course/model';
 import type { LegacyScenario, Scenario } from '../scenario/model';
@@ -106,6 +106,20 @@ export class ContentSeedRepository {
   resetForTest(): void {
     this.preloadPromise = null;
     this.preloadSuccess = false;
+  }
+
+  /**
+   * Полностью сбрасывает seed-кэш (in-memory + IndexedDB) для тестов.
+   * @internal
+   */
+  async resetForTests(): Promise<void> {
+    this.preloadPromise = null;
+    this.preloadSuccess = false;
+    try {
+      await this.idb.clear(IDB_STORE_CONTENT_SEED);
+    } catch {
+      // IndexedDB may not be available in test environments — ignore
+    }
   }
 
   /**

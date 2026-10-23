@@ -90,7 +90,8 @@
               "buildTarget": "lingua-code:build:production"
             },
             "development": {
-              "buildTarget": "lingua-code:build:development"
+              "buildTarget": "lingua-code:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

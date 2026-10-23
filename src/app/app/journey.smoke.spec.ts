@@ -8,6 +8,7 @@ import { routes } from './app.routes';
 import { provideApiHttp } from './api/provide-api.http';
 import { AppLoggerService } from '../shared/logger/app-logger.service';
 import { seedTestContentCache } from '../entities/content-seed/content-seed.test-utils';
+import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 
 describe('Journey page smoke', () => {
   beforeEach(async () => {
@@ -27,6 +28,10 @@ describe('Journey page smoke', () => {
         },
       ],
     }).compileComponents();
+
+    // Clear IndexedDB snapshot so seed loads cleanly
+    const seedRepo = TestBed.inject(ContentSeedRepository);
+    await seedRepo.resetForTests();
   });
 
   afterEach(() => {

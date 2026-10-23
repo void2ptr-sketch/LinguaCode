@@ -47,13 +47,15 @@ export class LearningResultsStore {
    * This is the primary signal used for progress calculations.
    * Re-evaluates whenever `userResults` or `userStore.languagePair` changes.
    */
-  readonly pairResults = computed(() => {
-    const pair = this.userStore.languagePair();
-    return this.userResults().filter(
-      (item) =>
-        item.languagePair.known === pair.known && item.languagePair.learning === pair.learning,
-    );
-  });
+   readonly pairResults = computed(() => {
+     const pair = this.userStore.languagePair();
+     return this.userResults().filter(
+       (item) =>
+         item.languagePair != null &&
+         item.languagePair.known === pair.known &&
+         item.languagePair.learning === pair.learning,
+     );
+   });
 
   /** Total number of answered cards for the active language pair. */
   readonly totalCount = computed(() => this.pairResults().length);
@@ -94,25 +96,29 @@ export class LearningResultsStore {
    * @remarks
    * Returns an array of { scenarioId, total, correct } sorted by scenarioId.
    */
-  readonly scenarioProgress = computed(() => {
-    const grouped = new Map<string, { total: number; correct: number }>();
+   readonly scenarioProgress = computed(() => {
+     const grouped = new Map<string, { total: number; correct: number }>();
 
-    for (const result of this.pairResults()) {
-      const current = grouped.get(result.scenarioId) ?? { total: 0, correct: 0 };
-      grouped.set(result.scenarioId, {
-        total: current.total + 1,
-        correct: current.correct + (result.correct ? 1 : 0),
-      });
-    }
+     for (const result of this.pairResults()) {
+       if (!result.scenarioId) {
+         continue;
+       }
 
-    return [...grouped.entries()]
-      .map(([scenarioId, stats]) => ({
-        scenarioId,
-        total: stats.total,
-        correct: stats.correct,
-      }))
-      .sort((left, right) => left.scenarioId.localeCompare(right.scenarioId));
-  });
+       const current = grouped.get(result.scenarioId) ?? { total: 0, correct: 0 };
+       grouped.set(result.scenarioId, {
+         total: current.total + 1,
+         correct: current.correct + (result.correct ? 1 : 0),
+       });
+     }
+
+     return [...grouped.entries()]
+       .map(([scenarioId, stats]) => ({
+         scenarioId,
+         total: stats.total,
+         correct: stats.correct,
+       }))
+       .sort((left, right) => left.scenarioId.localeCompare(right.scenarioId));
+   });
 
   /**
    * Adds a learning result and persists.

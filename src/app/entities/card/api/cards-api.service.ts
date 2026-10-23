@@ -4,6 +4,8 @@ import { firstValueFrom } from 'rxjs';
 
 import type { Card, CardSearchCriteria, CardSearchPage } from '../model';
 import type { ApiResponse } from '../../../shared/api/api.types';
+import type { BackendCardDto, BackendCardPage } from '../model/card-backend-dto.types';
+import { CardBackendAdapter } from '../model/card-backend-adapter';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCardSearchParams } from './mock/cards-api.params.utils';
 import type { CardCatalogPort } from '../repository/card-catalog.port';
@@ -53,9 +55,9 @@ export class CardsApiService implements CardCatalogPort {
    * ```
    */
   getById(cardId: string): Promise<Card> {
-    return firstValueFrom(this.http.get<ApiResponse<Card>>(buildApiUrl(`/cards/${cardId}`))).then(
-      (response) => response.data,
-    );
+    return firstValueFrom(
+      this.http.get<ApiResponse<BackendCardDto>>(buildApiUrl(`/cards/${cardId}`)),
+    ).then((response) => CardBackendAdapter.toCard(response.data));
   }
 
   /**
@@ -75,10 +77,10 @@ export class CardsApiService implements CardCatalogPort {
     }
 
     return firstValueFrom(
-      this.http.post<ApiResponse<readonly Card[]>>(buildApiUrl('/cards/batch'), {
+      this.http.post<ApiResponse<BackendCardDto[]>>(buildApiUrl('/cards/batch'), {
         ids: cardIds,
       }),
-    ).then((response) => response.data);
+    ).then((response) => CardBackendAdapter.toCards(response.data));
   }
 
   /**
@@ -93,9 +95,9 @@ export class CardsApiService implements CardCatalogPort {
    * ```
    */
   create(card: Card): Promise<Card> {
-    return firstValueFrom(this.http.post<ApiResponse<Card>>(buildApiUrl('/cards'), card)).then(
-      (response) => response.data,
-    );
+    return firstValueFrom(
+      this.http.post<ApiResponse<BackendCardDto>>(buildApiUrl('/cards'), card),
+    ).then((response) => CardBackendAdapter.toCard(response.data));
   }
 
   /**
@@ -112,8 +114,8 @@ export class CardsApiService implements CardCatalogPort {
    */
   update(cardId: string, card: Card): Promise<Card> {
     return firstValueFrom(
-      this.http.put<ApiResponse<Card>>(buildApiUrl(`/cards/${cardId}`), card),
-    ).then((response) => response.data);
+      this.http.put<ApiResponse<BackendCardDto>>(buildApiUrl(`/cards/${cardId}`), card),
+    ).then((response) => CardBackendAdapter.toCard(response.data));
   }
 
   /**

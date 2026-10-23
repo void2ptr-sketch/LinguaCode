@@ -31,5 +31,5 @@ export const environment: Environment = {
   useCardsApiMock: true,
   useScenariosApiMock: true,
   useCoursesApiMock: true,
-  authEnabled: false,
+  authEnabled: true,
 };

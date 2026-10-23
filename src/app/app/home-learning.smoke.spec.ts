@@ -11,6 +11,7 @@ import {
   getTestDemoCourseWithLessons,
   seedTestContentCache,
 } from '../entities/content-seed/content-seed.test-utils';
+import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 
 describe('Home learning dashboard smoke', () => {
   beforeEach(async () => {
@@ -27,6 +28,10 @@ describe('Home learning dashboard smoke', () => {
         provideHttpClientTesting(),
       ],
     }).compileComponents();
+
+    // Clear IndexedDB snapshot so seed loads cleanly
+    const seedRepo = TestBed.inject(ContentSeedRepository);
+    await seedRepo.resetForTests();
   });
 
   afterEach(() => {
