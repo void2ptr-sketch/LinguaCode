@@ -1,9 +1,27 @@
-import type { Card, CardBase } from './card.types';
+import type {
+  Card,
+  CardBase,
+  SelectCard,
+  CodeSelectCard,
+  MemoryCard,
+  SymbolCard,
+  SoundCard,
+  TimedCard,
+  KeyboardCard,
+  DrawCard,
+  ToneCard,
+  ReadingCard,
+  FlipCard,
+  ClozeCard,
+  CodeTraceCard,
+} from './card.types';
 import type {
   BackendCardDto,
   BackendCardKind,
   BackendCardDifficulty,
   ParsedCardContent,
+  BackendCardCreatePayload,
+  BackendCardUpdatePayload,
 } from './card-backend-dto.types';
 
 /**
@@ -267,6 +285,208 @@ function buildCardBase(dto: BackendCardDto): CardBase {
   };
 }
 
+import type { CardDifficulty } from './card-index.types';
+
+// ---------------------------------------------------------------------------
+// Internal types
+// ---------------------------------------------------------------------------
+
+/** Card with runtime-added metadata fields (tags, difficulty, timestamps). */
+type CardWithMeta = Card & {
+  tags?: readonly string[];
+  difficulty?: CardDifficulty;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+/**
+ * Maps lowercase frontend CardKind to uppercase backend BackendCardKind.
+ */
+function mapKindToBackend(kind: Card['kind']): BackendCardKind {
+  const map: Record<string, BackendCardKind> = {
+    select: 'SELECT',
+    'code-select': 'CODE_SELECT',
+    memory: 'MEMORY',
+    symbol: 'SYMBOL',
+    sound: 'SOUND',
+    timed: 'TIMED',
+    keyboard: 'KEYBOARD',
+    draw: 'DRAW',
+    tone: 'TONE',
+    reading: 'READING',
+    flip: 'FLIP',
+    cloze: 'CLOZE',
+    'code-trace': 'CODE_TRACE',
+  };
+  return map[kind] ?? 'SELECT';
+}
+
+/**
+ * Maps lowercase frontend difficulty to uppercase backend BackendCardDifficulty.
+ */
+function mapDifficultyToBackend(diff: string | undefined): BackendCardDifficulty | null {
+  if (!diff) return null;
+  const map: Record<string, BackendCardDifficulty> = {
+    beginner: 'BEGINNER',
+    intermediate: 'INTERMEDIATE',
+    advanced: 'ADVANCED',
+  };
+  return map[diff] ?? null;
+}
+
+/**
+ * Extracts kind-specific content fields from a frontend Card into a plain object.
+ */
+function extractCardContent(card: Card): Record<string, unknown> {
+  const base: Record<string, unknown> = { kind: mapKindToBackend(card.kind) };
+
+  switch (card.kind) {
+    case 'select': {
+      const c = card as SelectCard;
+      return {
+        ...base,
+        promptKnown: c.promptKnown ?? '',
+        optionsLearning: c.optionsLearning ?? [],
+        correctIndex: c.correctIndex ?? 0,
+        direction: c.direction,
+      };
+    }
+
+    case 'code-select': {
+      const c = card as CodeSelectCard;
+      return {
+        ...base,
+        caption: c.caption,
+        prompt: c.prompt,
+        options: c.options ?? [],
+        correctIndex: c.correctIndex ?? 0,
+      };
+    }
+
+    case 'memory': {
+      const c = card as MemoryCard;
+      return {
+        ...base,
+        promptKnown: c.promptKnown ?? '',
+        pairs: c.pairs ?? [],
+      };
+    }
+
+    case 'symbol': {
+      const c = card as SymbolCard;
+      return {
+        ...base,
+        promptKnown: c.promptKnown ?? '',
+        symbols: c.symbols ?? [],
+        correctIndex: c.correctIndex ?? 0,
+        direction: c.direction,
+      };
+    }
+
+    case 'sound': {
+      const c = card as SoundCard;
+      return {
+        ...base,
+        promptKnown: c.promptKnown ?? '',
+        audioLabelLearning: c.audioLabelLearning ?? '',
+        optionsKnown: c.optionsKnown ?? [],
+        correctIndex: c.correctIndex ?? 0,
+        direction: c.direction,
+      };
+    }
+
+    case 'timed': {
+      const c = card as TimedCard;
+      return {
+        ...base,
+        promptKnown: c.promptKnown ?? '',
+        optionsLearning: c.optionsLearning ?? [],
+        correctIndex: c.correctIndex ?? 0,
+        timeLimitSec: c.timeLimitSec ?? 30,
+        direction: c.direction,
+      };
+    }
+
+    case 'keyboard': {
+      const c = card as KeyboardCard;
+      return {
+        ...base,
+        promptKnown: c.promptKnown ?? '',
+        acceptedAnswers: c.acceptedAnswersKnown ?? [],
+        direction: c.direction,
+      };
+    }
+
+    case 'draw': {
+      const c = card as DrawCard;
+      return {
+        ...base,
+        promptKnown: c.promptKnown ?? '',
+        referenceHintKnown: c.referenceHintKnown ?? '',
+        meaningKnown: c.meaningKnown,
+      };
+    }
+
+    case 'tone': {
+      const c = card as ToneCard;
+      return {
+        ...base,
+        promptKnown: c.promptKnown ?? '',
+        syllableBase: c.syllableBase ?? '',
+        toneOptions: c.toneOptions ?? [],
+        correctIndex: c.correctIndex ?? 0,
+        direction: c.direction,
+      };
+    }
+
+    case 'reading': {
+      const c = card as ReadingCard;
+      return {
+        ...base,
+        promptKnown: c.promptKnown ?? '',
+        optionsLearning: c.optionsLearning ?? [],
+        correctIndex: c.correctIndex ?? 0,
+        direction: c.direction,
+      };
+    }
+
+    case 'flip': {
+      const c = card as FlipCard;
+      return {
+        ...base,
+        front: c.front ?? '',
+        back: c.back ?? '',
+      };
+    }
+
+    case 'cloze': {
+      const c = card as ClozeCard;
+      return {
+        ...base,
+        promptKnown: c.promptKnown ?? '',
+        correctAnswer: c.correctAnswer ?? '',
+        options: c.options,
+        correctIndex: c.correctIndex,
+      };
+    }
+
+    case 'code-trace': {
+      const c = card as CodeTraceCard;
+      return {
+        ...base,
+        caption: c.caption,
+        question: c.question,
+        code: c.code,
+        outputOptions: c.outputOptions ?? [],
+        correctIndex: c.correctIndex ?? 0,
+      };
+    }
+
+    default:
+      return base;
+  }
+}
+
 /**
  * Adapter for converting backend `BackendCardDto` (JSONB content) to frontend `Card` types.
  *
@@ -441,9 +661,73 @@ export const CardBackendAdapter = {
   },
 
   /**
-   * Converts an array of backend DTOs to frontend Cards.
-   */
+    * Converts an array of backend DTOs to frontend Cards.
+    */
   toCards(dtos: readonly BackendCardDto[]): Card[] {
     return dtos.map((dto) => this.toCard(dto));
+  },
+
+  // ---------------------------------------------------------------------------
+  // Write direction: frontend Card → backend JSONB payload
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Converts a frontend Card to a backend create payload.
+   *
+   * @remarks
+   * Transforms the frontend Card (lowercase enums, flat content fields,
+   * string[] tags) into the backend wire format (UPPERCASE enums,
+   * JSONB strings for content and tags).
+   *
+   * @example
+   * ```ts
+   * const card: Card = { kind: 'select', title: '猫', ... };
+   * const payload = CardBackendAdapter.toCreatePayload(card);
+   * // payload = { title: '猫', kind: 'SELECT', content: '{"kind":"SELECT","promptKnown":"猫",...}', tags: '[]', difficulty: 'BEGINNER' }
+   * ```
+   */
+    toCreatePayload(card: CardWithMeta): BackendCardCreatePayload {
+      const contentJson = JSON.stringify(extractCardContent(card));
+      const tagsJson = JSON.stringify(card.tags ?? []);
+      const kind = mapKindToBackend(card.kind);
+      const difficulty = mapDifficultyToBackend(card.difficulty);
+
+     return {
+       id: card.id,
+       title: card.title,
+       kind,
+       content: contentJson,
+       tags: tagsJson,
+       difficulty,
+     };
+   },
+
+  /**
+   * Converts a frontend Card to a backend update payload.
+   *
+   * @remarks
+   * Only includes non-undefined fields (partial update).
+   * Transforms the frontend Card into the backend wire format.
+   */
+   toUpdatePayload(cardId: string, card: CardWithMeta): BackendCardUpdatePayload {
+     const result: BackendCardUpdatePayload = {};
+
+     // Always include title
+     result.title = card.title;
+
+     // Content: encode kind-specific fields as JSON string
+     const contentJson = JSON.stringify(extractCardContent(card));
+     result.content = contentJson;
+
+     // Tags: array → JSON string
+     result.tags = JSON.stringify(card.tags ?? []);
+
+     // Difficulty: lowercase → UPPERCASE
+     const difficulty = mapDifficultyToBackend(card.difficulty);
+    if (difficulty !== null) {
+      result.difficulty = difficulty;
+    }
+
+    return result;
   },
 };

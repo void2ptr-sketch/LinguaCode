@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import type { BackendCardDto } from './card-backend-dto.types';
+import type { Card } from './card.types';
 import { CardBackendAdapter } from './card-backend-adapter';
+
+/** Helper to access kind-specific fields without `any`. */
+function field(card: Card, key: string): unknown {
+  return (card as Record<string, unknown>)[key];
+}
 
 /**
  * Helper to create a minimal BackendCardDto for testing.
@@ -36,10 +42,10 @@ describe('CardBackendAdapter', () => {
 
       expect(card.kind).toBe('select');
       expect(card.title).toBe('Test Card');
-      expect((card as any).promptKnown).toBe('猫');
-      expect((card as any).optionsLearning).toEqual(['cat', 'dog', 'bird']);
-      expect((card as any).correctIndex).toBe(0);
-      expect((card as any).direction).toBe('known-to-learning');
+      expect(field(card, 'promptKnown')).toBe('猫');
+      expect(field(card, 'optionsLearning')).toEqual(['cat', 'dog', 'bird']);
+      expect(field(card, 'correctIndex')).toBe(0);
+      expect(field(card, 'direction')).toBe('known-to-learning');
     });
 
     it('should convert CODE_SELECT card', () => {
@@ -59,10 +65,10 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('code-select');
-      expect((card as any).caption).toBe('Find the matching code');
-      expect((card as any).prompt).toEqual({ code: 'console.log("hello")', language: 'javascript' });
-      expect((card as any).options).toHaveLength(2);
-      expect((card as any).correctIndex).toBe(0);
+      expect(field(card, 'caption')).toBe('Find the matching code');
+      expect(field(card, 'prompt')).toEqual({ code: 'console.log("hello")', language: 'javascript' });
+      expect(field(card, 'options')).toHaveLength(2);
+      expect(field(card, 'correctIndex')).toBe(0);
     });
 
     it('should convert MEMORY card', () => {
@@ -80,8 +86,8 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('memory');
-      expect((card as any).promptKnown).toBe('猫');
-      expect((card as any).pairs).toEqual([
+      expect(field(card, 'promptKnown')).toBe('猫');
+      expect(field(card, 'pairs')).toEqual([
         { known: '猫', learning: 'cat' },
         { known: '犬', learning: 'dog' },
       ]);
@@ -100,9 +106,9 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('symbol');
-      expect((card as any).promptKnown).toBe('猫');
-      expect((card as any).symbols).toEqual(['猫', '犬', '雀']);
-      expect((card as any).correctIndex).toBe(0);
+      expect(field(card, 'promptKnown')).toBe('猫');
+      expect(field(card, 'symbols')).toEqual(['猫', '犬', '雀']);
+      expect(field(card, 'correctIndex')).toBe(0);
     });
 
     it('should convert SOUND card', () => {
@@ -119,10 +125,10 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('sound');
-      expect((card as any).promptKnown).toBe('猫');
-      expect((card as any).audioLabelLearning).toBe('neko');
-      expect((card as any).optionsKnown).toEqual(['cat', 'dog', 'bird']);
-      expect((card as any).correctIndex).toBe(0);
+      expect(field(card, 'promptKnown')).toBe('猫');
+      expect(field(card, 'audioLabelLearning')).toBe('neko');
+      expect(field(card, 'optionsKnown')).toEqual(['cat', 'dog', 'bird']);
+      expect(field(card, 'correctIndex')).toBe(0);
     });
 
     it('should convert TIMED card', () => {
@@ -139,8 +145,8 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('timed');
-      expect((card as any).promptKnown).toBe('猫');
-      expect((card as any).timeLimitSec).toBe(10);
+      expect(field(card, 'promptKnown')).toBe('猫');
+      expect(field(card, 'timeLimitSec')).toBe(10);
     });
 
     it('should convert KEYBOARD card', () => {
@@ -155,8 +161,8 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('keyboard');
-      expect((card as any).promptKnown).toBe('猫');
-      expect((card as any).acceptedAnswersKnown).toEqual(['cat', 'a cat']);
+      expect(field(card, 'promptKnown')).toBe('猫');
+      expect(field(card, 'acceptedAnswersKnown')).toEqual(['cat', 'a cat']);
     });
 
     it('should convert DRAW card', () => {
@@ -172,9 +178,9 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('draw');
-      expect((card as any).promptKnown).toBe('猫');
-      expect((card as any).referenceHintKnown).toBe('neko');
-      expect((card as any).meaningKnown).toBe('cat');
+      expect(field(card, 'promptKnown')).toBe('猫');
+      expect(field(card, 'referenceHintKnown')).toBe('neko');
+      expect(field(card, 'meaningKnown')).toBe('cat');
     });
 
     it('should convert TONE card', () => {
@@ -191,9 +197,9 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('tone');
-      expect((card as any).promptKnown).toBe('ma');
-      expect((card as any).syllableBase).toBe('ma');
-      expect((card as any).correctIndex).toBe(2);
+      expect(field(card, 'promptKnown')).toBe('ma');
+      expect(field(card, 'syllableBase')).toBe('ma');
+      expect(field(card, 'correctIndex')).toBe(2);
     });
 
     it('should convert READING card', () => {
@@ -209,7 +215,7 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('reading');
-      expect((card as any).promptKnown).toBe('猫は犬が好きです。');
+      expect(field(card, 'promptKnown')).toBe('猫は犬が好きです。');
     });
 
     it('should convert FLIP card', () => {
@@ -224,8 +230,8 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('flip');
-      expect((card as any).front).toBe('猫');
-      expect((card as any).back).toBe('cat');
+      expect(field(card, 'front')).toBe('猫');
+      expect(field(card, 'back')).toBe('cat');
     });
 
     it('should convert CLOZE card', () => {
@@ -242,9 +248,9 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('cloze');
-      expect((card as any).promptKnown).toBe('Я ___ в Москве');
-      expect((card as any).correctAnswer).toBe('живу');
-      expect((card as any).options).toEqual(['живу', 'иду', 'бегу']);
+      expect(field(card, 'promptKnown')).toBe('Я ___ в Москве');
+      expect(field(card, 'correctAnswer')).toBe('живу');
+      expect(field(card, 'options')).toEqual(['живу', 'иду', 'бегу']);
     });
 
     it('should convert CODE_TRACE card', () => {
@@ -261,9 +267,9 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('code-trace');
-      expect((card as any).question).toBe('What is the output?');
-      expect((card as any).code).toEqual({ code: 'let x = 1; x++;', language: 'javascript' });
-      expect((card as any).correctIndex).toBe(1);
+      expect(field(card, 'question')).toBe('What is the output?');
+      expect(field(card, 'code')).toEqual({ code: 'let x = 1; x++;', language: 'javascript' });
+      expect(field(card, 'correctIndex')).toBe(1);
     });
   });
 
@@ -298,9 +304,9 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
 
       expect(card.kind).toBe('select');
-      expect((card as any).promptKnown).toBe('');
-      expect((card as any).optionsLearning).toEqual([]);
-      expect((card as any).correctIndex).toBe(0);
+      expect(field(card, 'promptKnown')).toBe('');
+      expect(field(card, 'optionsLearning')).toEqual([]);
+      expect(field(card, 'correctIndex')).toBe(0);
     });
 
     it('should handle invalid JSON content and throw', () => {
@@ -316,7 +322,7 @@ describe('CardBackendAdapter', () => {
 
     it('should handle unknown card kind and throw', () => {
       const dto = createBackendDto({
-        kind: 'UNKNOWN_KIND' as any,
+        kind: 'UNKNOWN_KIND' as BackendCardDto['kind'],
         content: '{}',
       });
 
@@ -331,7 +337,7 @@ describe('CardBackendAdapter', () => {
       });
 
       const card = CardBackendAdapter.toCard(dto);
-      expect((card as any).tags).toEqual(['hsk1', 'n5', 'vocabulary']);
+      expect(field(card, 'tags')).toEqual(['hsk1', 'n5', 'vocabulary']);
     });
 
     it('should handle empty tags', () => {
@@ -342,7 +348,7 @@ describe('CardBackendAdapter', () => {
       });
 
       const card = CardBackendAdapter.toCard(dto);
-      expect((card as any).tags).toEqual([]);
+      expect(field(card, 'tags')).toEqual([]);
     });
 
     it('should preserve createdAt and updatedAt', () => {
@@ -354,8 +360,9 @@ describe('CardBackendAdapter', () => {
       });
 
       const card = CardBackendAdapter.toCard(dto);
-      // Note: createdAt/updatedAt are added to card but may not be in strict Card type
+      // createdAt/updatedAt are added to card but may not be in strict Card type
       // This is expected - they're metadata fields
+      expect(field(card, 'id')).toBe('test-card-123');
     });
   });
 });

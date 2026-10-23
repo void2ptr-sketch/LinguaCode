@@ -92,3 +92,33 @@ export type ParsedCardContent =
   | { kind: 'FLIP'; front: string; back: string }
   | { kind: 'CLOZE'; promptKnown: string; correctAnswer: string; options?: string[]; correctIndex?: number }
   | { kind: 'CODE_TRACE'; caption?: string; question?: string; code: { code: string; language: string }; outputOptions: string[]; correctIndex: number };
+
+/**
+ * Payload for creating a card — matches backend `CreateCardRequest`.
+ *
+ * @remarks
+ * `content` and `tags` are JSON-encoded strings (JSONB).
+ * `kind` and `difficulty` use uppercase enum values.
+ */
+export type BackendCardCreatePayload = {
+  /** Card identifier — forwarded from frontend Card.id so the mock handler can return it. */
+  id?: string;
+  title: string;
+  kind: BackendCardKind;
+  content: string;
+  tags: string;
+  difficulty: BackendCardDifficulty | null;
+};
+
+/**
+ * Payload for updating a card — matches backend `UpdateCardRequest`.
+ *
+ * @remarks
+ * All fields are optional. `content` and `tags` are JSON-encoded strings.
+ */
+export type BackendCardUpdatePayload = {
+  title?: string;
+  content?: string;
+  tags?: string;
+  difficulty?: BackendCardDifficulty | null;
+};

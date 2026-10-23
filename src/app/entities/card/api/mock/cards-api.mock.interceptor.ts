@@ -23,7 +23,7 @@
  */
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { defer } from 'rxjs';
+import { defer, switchMap } from 'rxjs';
 import { map } from 'rxjs';
 
 import { parseCardSearchCriteria } from './cards-api.params.utils';
@@ -93,7 +93,34 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
 
   // POST /cards — создание карточки
   if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/cards'))) {
-    return defer(() => handler.create(req.body as Card)).pipe(
+    // Convert BackendCardCreatePayload back to Card for the mock handler
+    const payload = req.body as Record<string, unknown>;
+    const card = {
+      id: payload['id'] as string,
+      title: String(payload['title'] ?? ''),
+      kind: (String(payload['kind'] ?? 'SELECT').toLowerCase()) as Card['kind'],
+      appearance: { theme: 'default', fontSize: 'md' },
+    } as Card;
+    // Parse content JSON to extract kind-specific fields
+    try {
+      const content = JSON.parse(String(payload['content'] ?? '{}'));
+      Object.assign(card, content);
+    } catch {
+      // ignore parse errors
+    }
+    // Parse tags
+    const c = card as Record<string, unknown>;
+    try {
+      c['tags'] = JSON.parse(String(payload['tags'] ?? '[]'));
+    } catch {
+      // ignore
+    }
+    // Add difficulty
+    if (payload['difficulty']) {
+      c['difficulty'] = String(payload['difficulty']).toLowerCase();
+    }
+
+    return defer(() => handler.create(card)).pipe(
       map((data) => new HttpResponse({ status: 201, body: { data } })),
     );
   }
@@ -102,7 +129,37 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
 
   // PUT /cards/{id} — обновление карточки
   if (req.method === 'PUT' && cardId) {
-    return defer(() => handler.update(cardId, req.body as Card)).pipe(
+    // Convert BackendCardUpdatePayload back to Card for the mock handler
+    const payload = req.body as Record<string, unknown>;
+    // Fetch current card first, then apply updates
+    return defer(() => handler.getById(cardId)).pipe(
+      map((current: Card) => {
+        const updated: Card = { ...current };
+        const u = updated as Record<string, unknown>;
+        if (payload['title'] !== undefined) {
+          u['title'] = String(payload['title']);
+        }
+        if (payload['content'] !== undefined) {
+          try {
+            const content = JSON.parse(String(payload['content']));
+            Object.assign(updated, content);
+          } catch {
+            // ignore
+          }
+        }
+        if (payload['tags'] !== undefined) {
+          try {
+            u['tags'] = JSON.parse(String(payload['tags']));
+          } catch {
+            // ignore
+          }
+        }
+        if (payload['difficulty'] !== undefined) {
+          u['difficulty'] = String(payload['difficulty']).toLowerCase();
+        }
+        return updated;
+      }),
+      switchMap((updated) => handler.update(cardId, updated)),
       map((data) => new HttpResponse({ status: 200, body: { data } })),
     );
   }

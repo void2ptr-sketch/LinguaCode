@@ -4,7 +4,7 @@ import { firstValueFrom } from 'rxjs';
 
 import type { Card, CardSearchCriteria, CardSearchPage } from '../model';
 import type { ApiResponse } from '../../../shared/api/api.types';
-import type { BackendCardDto, BackendCardPage } from '../model/card-backend-dto.types';
+import type { BackendCardDto } from '../model/card-backend-dto.types';
 import { CardBackendAdapter } from '../model/card-backend-adapter';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCardSearchParams } from './mock/cards-api.params.utils';
@@ -95,8 +95,9 @@ export class CardsApiService implements CardCatalogPort {
    * ```
    */
   create(card: Card): Promise<Card> {
+    const payload = CardBackendAdapter.toCreatePayload(card);
     return firstValueFrom(
-      this.http.post<ApiResponse<BackendCardDto>>(buildApiUrl('/cards'), card),
+      this.http.post<ApiResponse<BackendCardDto>>(buildApiUrl('/cards'), payload),
     ).then((response) => CardBackendAdapter.toCard(response.data));
   }
 
@@ -113,8 +114,9 @@ export class CardsApiService implements CardCatalogPort {
    * ```
    */
   update(cardId: string, card: Card): Promise<Card> {
+    const payload = CardBackendAdapter.toUpdatePayload(cardId, card);
     return firstValueFrom(
-      this.http.put<ApiResponse<BackendCardDto>>(buildApiUrl(`/cards/${cardId}`), card),
+      this.http.put<ApiResponse<BackendCardDto>>(buildApiUrl(`/cards/${cardId}`), payload),
     ).then((response) => CardBackendAdapter.toCard(response.data));
   }
 
