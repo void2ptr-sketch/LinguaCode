@@ -11,6 +11,7 @@ import {
 import { cardsApiMockInterceptor } from '../../entities/card/api/mock/cards-api.mock.interceptor';
 import { scenariosApiMockInterceptor } from '../../entities/scenario/api/mock/scenarios-api.mock.interceptor';
 import { coursesApiMockInterceptor } from '../../entities/course/api/mock/courses-api.mock.interceptor';
+import { programsApiMockInterceptor } from '../../entities/program/api/mock/programs-api.mock.interceptor';
 
 /**
  * Provides HTTP client configuration for the API layer.
@@ -26,6 +27,7 @@ export const provideApiHttp = () => {
     ...(environment.useCardsApiMock ? [cardsApiMockInterceptor] : []),
     ...(environment.useScenariosApiMock ? [scenariosApiMockInterceptor] : []),
     ...(environment.useCoursesApiMock ? [coursesApiMockInterceptor] : []),
+    ...(environment.useProgramsApiMock ? [programsApiMockInterceptor] : []),
     offlineInterceptor,
     authRefreshInterceptor,
     authInterceptor,

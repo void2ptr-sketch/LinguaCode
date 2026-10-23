@@ -8,6 +8,7 @@
  * - useCardsApiMock: true — использует ContentSeedRepository для карточек
  * - useScenariosApiMock: true — использует ContentSeedRepository для сценариев
  * - useCoursesApiMock: true — использует ContentSeedRepository для курсов
+ * - useProgramsApiMock: true — использует ContentSeedRepository для программ
  *
  * Для отключения mock-интерсепторов установите значения в false.
  * В этом случае запросы будут идти к реальному бэкенду (apiUrl).
@@ -31,5 +32,6 @@ export const environment: Environment = {
   useCardsApiMock: true,
   useScenariosApiMock: true,
   useCoursesApiMock: true,
+  useProgramsApiMock: true,
   authEnabled: true,
 };

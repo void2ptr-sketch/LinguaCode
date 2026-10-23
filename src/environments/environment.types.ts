@@ -8,6 +8,7 @@ export type Environment = {
   useCardsApiMock: boolean;
   useScenariosApiMock: boolean;
   useCoursesApiMock: boolean;
+  useProgramsApiMock: boolean;
   /** Включает реальный auth-поток (токен/refresh). */
   authEnabled: boolean;
 };
