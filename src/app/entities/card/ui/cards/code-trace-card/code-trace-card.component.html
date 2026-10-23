@@ -5,7 +5,9 @@
     </mat-card-header>
 
     <mat-card-content class="code-trace-card__prompt">
-      <app-code-highlight [code]="card().code.code" [language]="card().code.language" />
+      <div class="code-trace-card__code-wrapper">
+        <app-code-highlight [code]="card().code.code" [language]="card().code.language" />
+      </div>
     </mat-card-content>
   </section>
 
