@@ -80,7 +80,9 @@ function parseCardContent(dto: BackendCardDto): ParsedCardContent {
     // returning a frontend Card directly), use it as-is instead of parsing.
     const rawContent = dto.content;
     const parsed: Record<string, unknown> =
-      typeof rawContent === 'string' ? JSON.parse(rawContent) : (rawContent as Record<string, unknown>);
+      typeof rawContent === 'string'
+        ? JSON.parse(rawContent)
+        : (rawContent as Record<string, unknown>);
 
     // Normalize kind to uppercase for the switch statement (mock data may have lowercase)
     const kind = String(parsed['kind'] ?? dto.kind).toUpperCase() as BackendCardKind;
@@ -130,7 +132,12 @@ function parseCardContent(dto: BackendCardDto): ParsedCardContent {
           promptKnown: getString('promptKnown'),
           pairs: Array.isArray(get('pairs'))
             ? (get('pairs') as unknown[]).map((pair: unknown) => {
-                const p = pair as { known?: string; learning?: string; front?: string; back?: string };
+                const p = pair as {
+                  known?: string;
+                  learning?: string;
+                  front?: string;
+                  back?: string;
+                };
                 return {
                   known: String(p.known ?? p.back ?? ''),
                   learning: String(p.learning ?? p.front ?? ''),
@@ -153,7 +160,9 @@ function parseCardContent(dto: BackendCardDto): ParsedCardContent {
           kind: 'SOUND',
           promptKnown: getString('promptKnown'),
           audioLabelLearning: getString('audioLabelLearning'),
-          optionsKnown: Array.isArray(get('optionsKnown')) ? (get('optionsKnown') as string[]).map(String) : [],
+          optionsKnown: Array.isArray(get('optionsKnown'))
+            ? (get('optionsKnown') as string[]).map(String)
+            : [],
           correctIndex: getNumber('correctIndex'),
           direction: get('direction') ? String(get('direction')) : undefined,
         };
@@ -196,7 +205,9 @@ function parseCardContent(dto: BackendCardDto): ParsedCardContent {
           kind: 'TONE',
           promptKnown: getString('promptKnown'),
           syllableBase: getString('syllableBase'),
-          toneOptions: Array.isArray(get('toneOptions')) ? (get('toneOptions') as string[]).map(String) : [],
+          toneOptions: Array.isArray(get('toneOptions'))
+            ? (get('toneOptions') as string[]).map(String)
+            : [],
           correctIndex: getNumber('correctIndex'),
           direction: get('direction') ? String(get('direction')) : undefined,
         };
@@ -224,7 +235,9 @@ function parseCardContent(dto: BackendCardDto): ParsedCardContent {
           kind: 'CLOZE',
           promptKnown: getString('promptKnown'),
           correctAnswer: getString('correctAnswer'),
-          options: Array.isArray(get('options')) ? (get('options') as string[]).map(String) : undefined,
+          options: Array.isArray(get('options'))
+            ? (get('options') as string[]).map(String)
+            : undefined,
           correctIndex: get('correctIndex') !== undefined ? getNumber('correctIndex') : undefined,
         };
 
@@ -661,8 +674,8 @@ export const CardBackendAdapter = {
   },
 
   /**
-    * Converts an array of backend DTOs to frontend Cards.
-    */
+   * Converts an array of backend DTOs to frontend Cards.
+   */
   toCards(dtos: readonly BackendCardDto[]): Card[] {
     return dtos.map((dto) => this.toCard(dto));
   },
@@ -686,21 +699,21 @@ export const CardBackendAdapter = {
    * // payload = { title: '猫', kind: 'SELECT', content: '{"kind":"SELECT","promptKnown":"猫",...}', tags: '[]', difficulty: 'BEGINNER' }
    * ```
    */
-    toCreatePayload(card: CardWithMeta): BackendCardCreatePayload {
-      const contentJson = JSON.stringify(extractCardContent(card));
-      const tagsJson = JSON.stringify(card.tags ?? []);
-      const kind = mapKindToBackend(card.kind);
-      const difficulty = mapDifficultyToBackend(card.difficulty);
+  toCreatePayload(card: CardWithMeta): BackendCardCreatePayload {
+    const contentJson = JSON.stringify(extractCardContent(card));
+    const tagsJson = JSON.stringify(card.tags ?? []);
+    const kind = mapKindToBackend(card.kind);
+    const difficulty = mapDifficultyToBackend(card.difficulty);
 
-     return {
-       id: card.id,
-       title: card.title,
-       kind,
-       content: contentJson,
-       tags: tagsJson,
-       difficulty,
-     };
-   },
+    return {
+      id: card.id,
+      title: card.title,
+      kind,
+      content: contentJson,
+      tags: tagsJson,
+      difficulty,
+    };
+  },
 
   /**
    * Converts a frontend Card to a backend update payload.
@@ -709,21 +722,21 @@ export const CardBackendAdapter = {
    * Only includes non-undefined fields (partial update).
    * Transforms the frontend Card into the backend wire format.
    */
-   toUpdatePayload(cardId: string, card: CardWithMeta): BackendCardUpdatePayload {
-     const result: BackendCardUpdatePayload = {};
+  toUpdatePayload(cardId: string, card: CardWithMeta): BackendCardUpdatePayload {
+    const result: BackendCardUpdatePayload = {};
 
-     // Always include title
-     result.title = card.title;
+    // Always include title
+    result.title = card.title;
 
-     // Content: encode kind-specific fields as JSON string
-     const contentJson = JSON.stringify(extractCardContent(card));
-     result.content = contentJson;
+    // Content: encode kind-specific fields as JSON string
+    const contentJson = JSON.stringify(extractCardContent(card));
+    result.content = contentJson;
 
-     // Tags: array → JSON string
-     result.tags = JSON.stringify(card.tags ?? []);
+    // Tags: array → JSON string
+    result.tags = JSON.stringify(card.tags ?? []);
 
-     // Difficulty: lowercase → UPPERCASE
-     const difficulty = mapDifficultyToBackend(card.difficulty);
+    // Difficulty: lowercase → UPPERCASE
+    const difficulty = mapDifficultyToBackend(card.difficulty);
     if (difficulty !== null) {
       result.difficulty = difficulty;
     }

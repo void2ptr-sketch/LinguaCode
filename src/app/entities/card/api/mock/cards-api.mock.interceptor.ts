@@ -98,7 +98,7 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     const card = {
       id: payload['id'] as string,
       title: String(payload['title'] ?? ''),
-      kind: (String(payload['kind'] ?? 'SELECT').toLowerCase()) as Card['kind'],
+      kind: String(payload['kind'] ?? 'SELECT').toLowerCase() as Card['kind'],
       appearance: { theme: 'default', fontSize: 'md' },
     } as Card;
     // Parse content JSON to extract kind-specific fields

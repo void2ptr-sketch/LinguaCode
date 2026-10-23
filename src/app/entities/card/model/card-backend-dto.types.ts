@@ -79,19 +79,77 @@ export type BackendCardPage = {
  * the structured data for each kind. Used internally by the adapter.
  */
 export type ParsedCardContent =
-  | { kind: 'SELECT'; promptKnown: string; optionsLearning: string[]; correctIndex: number; direction?: string }
-  | { kind: 'CODE_SELECT'; caption?: string; prompt: { code: string; language: string }; options: { code: string; language: string }[]; correctIndex: number }
+  | {
+      kind: 'SELECT';
+      promptKnown: string;
+      optionsLearning: string[];
+      correctIndex: number;
+      direction?: string;
+    }
+  | {
+      kind: 'CODE_SELECT';
+      caption?: string;
+      prompt: { code: string; language: string };
+      options: { code: string; language: string }[];
+      correctIndex: number;
+    }
   | { kind: 'MEMORY'; promptKnown: string; pairs: { known: string; learning: string }[] }
-  | { kind: 'SYMBOL'; promptKnown: string; symbols: string[]; correctIndex: number; direction?: string }
-  | { kind: 'SOUND'; promptKnown: string; audioLabelLearning: string; optionsKnown: string[]; correctIndex: number; direction?: string }
-  | { kind: 'TIMED'; promptKnown: string; optionsLearning: string[]; correctIndex: number; timeLimitSec: number; direction?: string }
+  | {
+      kind: 'SYMBOL';
+      promptKnown: string;
+      symbols: string[];
+      correctIndex: number;
+      direction?: string;
+    }
+  | {
+      kind: 'SOUND';
+      promptKnown: string;
+      audioLabelLearning: string;
+      optionsKnown: string[];
+      correctIndex: number;
+      direction?: string;
+    }
+  | {
+      kind: 'TIMED';
+      promptKnown: string;
+      optionsLearning: string[];
+      correctIndex: number;
+      timeLimitSec: number;
+      direction?: string;
+    }
   | { kind: 'KEYBOARD'; promptKnown: string; acceptedAnswers: string[]; direction?: string }
   | { kind: 'DRAW'; promptKnown: string; referenceHintKnown: string; meaningKnown?: string }
-  | { kind: 'TONE'; promptKnown: string; syllableBase: string; toneOptions: string[]; correctIndex: number; direction?: string }
-  | { kind: 'READING'; promptKnown: string; optionsLearning: string[]; correctIndex: number; direction?: string }
+  | {
+      kind: 'TONE';
+      promptKnown: string;
+      syllableBase: string;
+      toneOptions: string[];
+      correctIndex: number;
+      direction?: string;
+    }
+  | {
+      kind: 'READING';
+      promptKnown: string;
+      optionsLearning: string[];
+      correctIndex: number;
+      direction?: string;
+    }
   | { kind: 'FLIP'; front: string; back: string }
-  | { kind: 'CLOZE'; promptKnown: string; correctAnswer: string; options?: string[]; correctIndex?: number }
-  | { kind: 'CODE_TRACE'; caption?: string; question?: string; code: { code: string; language: string }; outputOptions: string[]; correctIndex: number };
+  | {
+      kind: 'CLOZE';
+      promptKnown: string;
+      correctAnswer: string;
+      options?: string[];
+      correctIndex?: number;
+    }
+  | {
+      kind: 'CODE_TRACE';
+      caption?: string;
+      question?: string;
+      code: { code: string; language: string };
+      outputOptions: string[];
+      correctIndex: number;
+    };
 
 /**
  * Payload for creating a card — matches backend `CreateCardRequest`.

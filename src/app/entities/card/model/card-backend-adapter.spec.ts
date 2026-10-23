@@ -66,7 +66,10 @@ describe('CardBackendAdapter', () => {
 
       expect(card.kind).toBe('code-select');
       expect(field(card, 'caption')).toBe('Find the matching code');
-      expect(field(card, 'prompt')).toEqual({ code: 'console.log("hello")', language: 'javascript' });
+      expect(field(card, 'prompt')).toEqual({
+        code: 'console.log("hello")',
+        language: 'javascript',
+      });
       expect(field(card, 'options')).toHaveLength(2);
       expect(field(card, 'correctIndex')).toBe(0);
     });
@@ -315,9 +318,7 @@ describe('CardBackendAdapter', () => {
         content: 'not valid json',
       });
 
-      expect(() => CardBackendAdapter.toCard(dto)).toThrow(
-        /Failed to parse card content/,
-      );
+      expect(() => CardBackendAdapter.toCard(dto)).toThrow(/Failed to parse card content/);
     });
 
     it('should handle unknown card kind and throw', () => {

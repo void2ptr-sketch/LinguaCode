@@ -78,14 +78,14 @@ type CourseExportBundle = {
 
 Реализация: `ProgramsApiService` · порт `ProgramCatalogPort` · mock `programsApiMockInterceptor`.
 
-| Метод  | Путь                               | Описание                           |
-| ------ | ---------------------------------- | ---------------------------------- |
-| GET    | `/programs/search`                 | Поиск + пагинация                  |
-| GET    | `/programs/:id`                    | Программа по ID (`ProgramWithLessons`) |
-| GET    | `/programs/by-course/:courseId`    | Программы курса                  |
-| POST   | `/programs`                        | Создание программы (201)           |
-| PUT    | `/programs/:id`                    | Обновление программы (403 на чужой) |
-| DELETE | `/programs/:id`                    | Удаление программы                 |
+| Метод  | Путь                            | Описание                               |
+| ------ | ------------------------------- | -------------------------------------- |
+| GET    | `/programs/search`              | Поиск + пагинация                      |
+| GET    | `/programs/:id`                 | Программа по ID (`ProgramWithLessons`) |
+| GET    | `/programs/by-course/:courseId` | Программы курса                        |
+| POST   | `/programs`                     | Создание программы (201)               |
+| PUT    | `/programs/:id`                 | Обновление программы (403 на чужой)    |
+| DELETE | `/programs/:id`                 | Удаление программы                     |
 
 Пейлоад записи: `ProgramWritePayload` (`courseId`, `title`, `description`, `lessonIds`, `order`).
 

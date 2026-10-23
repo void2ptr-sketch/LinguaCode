@@ -106,6 +106,7 @@
             "setupFiles": ["src/test-setup.ts"]
           },
           "configurations": {
+            "test": {},
             "coverage": {
               "coverage": true,
               "coverageInclude": ["src/app/**/*.ts"],

@@ -50,9 +50,8 @@
             <mat-list-item>
               <mat-icon matListItemIcon>{{ result.correct ? 'check_circle' : 'cancel' }}</mat-icon>
               <span matListItemTitle
-                >{{ result.scenarioId ? scenarioLabel(result.scenarioId) : '—' }} · {{
-                  result.cardId
-                }}</span
+                >{{ result.scenarioId ? scenarioLabel(result.scenarioId) : '—' }} ·
+                {{ result.cardId }}</span
               >
               <span matListItemLine>{{ formatDate(result.answeredAt) }}</span>
             </mat-list-item>

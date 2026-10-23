@@ -1,7 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
-import type { Program, ProgramIndexEntry, ProgramSearchCriteria, ProgramSearchPage, ProgramWithLessons } from '../../model';
+import type {
+  Program,
+  ProgramIndexEntry,
+  ProgramSearchCriteria,
+  ProgramSearchPage,
+  ProgramWithLessons,
+} from '../../model';
 import type { ProgramWritePayload } from '../../repository/program-catalog.port';
 import { paginateArray } from '../../../../shared/utils/pagination';
 import { ContentSeedRepository } from '../../../content-seed/content-seed.repository';
