@@ -95,10 +95,10 @@ type CourseExportBundle = {
 
 | Метод | Путь        | Описание                                 |
 | ----- | ----------- | ---------------------------------------- |
-| GET   | `/users/me` | Профиль текущего пользователя            |
+| GET   | `/users/me` | Профиль пользователя (query: `userId`)   |
 | PUT   | `/users/me` | Обновление профиля (`UpdateUserPayload`) |
 
-Пейлоад обновления: `UpdateUserPayload` (`displayName?`, `preferences?`).
+> **Важно:** оба эндпоинта принимают `userId` явно — в query-параметре (`GET`) и в теле запроса (`PUT`). Бэкенд не извлекает userId из JWT-токена; авторизация на этих эндпоинтах не проверяет ownership. Пейлоад обновления: `UpdateUserPayload` (`displayName?`, `preferences?`).
 
 ## Аутентификация (`/auth`)
 
@@ -128,7 +128,7 @@ type CourseExportBundle = {
 | GET   | `/learning/results/:userId`          | Результаты пользователя (пагинация)       |
 | GET   | `/learning/accuracy/:userId/:cardId` | Точность по карточке (`CardAccuracyData`) |
 
-Тип точности: `CardAccuracyData` (`cardId`, `totalAttempts`, `correctAttempts`, `accuracy`).
+> **Важно:** все эндпоинты принимают `userId` явно — в URL-пути и/или в теле запроса. Бэкенд не извлекает userId из JWT-токена; авторизация на этих эндпоинтах не проверяет ownership. Тип точности: `CardAccuracyData` (`cardId`, `totalAttempts`, `correctAttempts`, `accuracy`).
 
 ## Mock vs реальный бэкенд
 
