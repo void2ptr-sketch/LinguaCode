@@ -2,6 +2,8 @@
   [focusControlsEnabled]="focusControlsEnabled()"
   [autoEnterFullscreen]="autoFocusFullscreen()"
 >
+  <ng-content select="[card-focus-shell-header]" />
+
   @if (card(); as current) {
     @switch (current.kind) {
       @case ('select') {

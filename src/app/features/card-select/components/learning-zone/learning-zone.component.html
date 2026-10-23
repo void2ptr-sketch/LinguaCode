@@ -20,28 +20,6 @@
         }
       </div>
 
-      @if (scenarioTitle()) {
-        <div class="card-select-page__context">
-          @if (courseTitle()) {
-            <mat-chip>{{ courseTitle() }}</mat-chip>
-          }
-          @if (lessonTitle()) {
-            <mat-chip>{{ lessonTitle() }}</mat-chip>
-          }
-          <mat-chip>{{ scenarioTitle() }}</mat-chip>
-          @if (scenarioSourceLabel()) {
-            <mat-chip>{{ scenarioSourceLabel() }}</mat-chip>
-          }
-        </div>
-
-        <div class="card-select-page__card-progress">
-          <span class="card-select-page__card-progress-label">
-            Карточка {{ progressLabel() }}
-          </span>
-          <mat-progress-bar mode="determinate" [value]="cardProgressPercent()" />
-        </div>
-      }
-
       @if (missingCardsWarning(); as warning) {
         <p class="card-select-page__warning">{{ warning }}</p>
       }
@@ -115,7 +93,31 @@
               (timeExpired)="onTimeExpired()"
               (checkAnswer)="onCheckAnswer()"
               (nextCard)="onNextCard()"
-            />
+            >
+              @if (scenarioTitle()) {
+                <div card-focus-shell-header>
+                  <div class="card-select-page__context">
+                    @if (courseTitle()) {
+                      <mat-chip>{{ courseTitle() }}</mat-chip>
+                    }
+                    @if (lessonTitle()) {
+                      <mat-chip>{{ lessonTitle() }}</mat-chip>
+                    }
+                    <mat-chip>{{ scenarioTitle() }}</mat-chip>
+                    @if (scenarioSourceLabel()) {
+                      <mat-chip>{{ scenarioSourceLabel() }}</mat-chip>
+                    }
+                  </div>
+
+                  <div class="card-select-page__card-progress">
+                    <span class="card-select-page__card-progress-label">
+                      Карточка {{ progressLabel() }}
+                    </span>
+                    <mat-progress-bar mode="determinate" [value]="cardProgressPercent()" />
+                  </div>
+                </div>
+              }
+            </app-card-host>
           }
         </div>
       }

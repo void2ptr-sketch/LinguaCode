@@ -53,6 +53,26 @@
     width: 100%;
   }
 
+  ::ng-deep [card-focus-shell-header] {
+    grid-area: 1 / 1 / 2 / 2;
+    justify-self: center;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: min(52rem, 100%);
+
+    .card-select-page__context {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-select-page__card-progress {
+      width: 100%;
+    }
+  }
+
   .card-focus-shell__toolbar {
     right: 0;
     top: var(--card-focus-space);
