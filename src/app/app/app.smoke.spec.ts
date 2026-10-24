@@ -4,7 +4,7 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
-import { provideApiHttp } from './api/provide-api.http';
+import { provideApiHttpTesting } from './api/provide-api.http';
 
 describe('App smoke', () => {
   beforeEach(async () => {
@@ -13,7 +13,7 @@ describe('App smoke', () => {
       providers: [
         provideRouter(routes),
         provideNoopAnimations(),
-        provideApiHttp(),
+        provideApiHttpTesting(),
         provideHttpClientTesting(),
       ],
     }).compileComponents();

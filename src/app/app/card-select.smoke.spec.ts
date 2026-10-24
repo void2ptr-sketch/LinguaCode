@@ -1,11 +1,10 @@
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
-import { provideApiHttp } from './api/provide-api.http';
+import { provideApiHttpTesting } from './api/provide-api.http';
 import { environment } from '../../environments/environment';
 import { resetContentSeedCache } from '../entities/content-seed/content-seed.cache';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
@@ -20,8 +19,7 @@ describe('Card select smoke', () => {
       providers: [
         provideRouter(routes),
         provideNoopAnimations(),
-        provideApiHttp(),
-        provideHttpClient(),
+        provideApiHttpTesting(),
         provideHttpClientTesting(),
       ],
     }).compileComponents();

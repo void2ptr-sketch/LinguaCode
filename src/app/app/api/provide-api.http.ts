@@ -1,4 +1,5 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { EnvironmentProviders } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import {
   authInterceptor,
@@ -23,19 +24,11 @@ import { programsApiMockInterceptor } from '../../entities/program/api/mock/prog
  * @returns An `EnvironmentProviders` configuration for Angular's HTTP client.
  */
 export const provideApiHttp = () => {
-  // In test environments, force mock interceptors on so smoke tests work
-  // without requiring HttpTestingController setup for every API call.
-  const isTest = typeof window !== 'undefined' && 'XMLHttpRequest' in window;
-  const cardsMock = environment.useCardsApiMock || isTest;
-  const scenariosMock = environment.useScenariosApiMock || isTest;
-  const coursesMock = environment.useCoursesApiMock || isTest;
-  const programsMock = environment.useProgramsApiMock || isTest;
-
   const interceptors = [
-    ...(cardsMock ? [cardsApiMockInterceptor] : []),
-    ...(scenariosMock ? [scenariosApiMockInterceptor] : []),
-    ...(coursesMock ? [coursesApiMockInterceptor] : []),
-    ...(programsMock ? [programsApiMockInterceptor] : []),
+    ...(environment.useCardsApiMock ? [cardsApiMockInterceptor] : []),
+    ...(environment.useScenariosApiMock ? [scenariosApiMockInterceptor] : []),
+    ...(environment.useCoursesApiMock ? [coursesApiMockInterceptor] : []),
+    ...(environment.useProgramsApiMock ? [programsApiMockInterceptor] : []),
     offlineInterceptor,
     authRefreshInterceptor,
     authInterceptor,
@@ -44,9 +37,31 @@ export const provideApiHttp = () => {
     errorInterceptor,
   ];
 
-  // withFetch() uses native Fetch API which HttpTestingController cannot intercept.
-  // Disable it in test environments to allow smoke tests to work.
-  const httpConfig = isTest ? [] : [withFetch()];
+  return provideHttpClient(withFetch(), withInterceptors(interceptors));
+};
 
-  return provideHttpClient(...httpConfig, withInterceptors(interceptors));
+/**
+ * Provides HTTP client configuration for testing.
+ *
+ * Unlike `provideApiHttp`, this function:
+ * - Always enables mock interceptors (so smoke tests work without modifying `environment.ts`)
+ * - Does NOT use `withFetch()` (HttpTestingController requires XMLHttpRequest backend)
+ *
+ * @returns An `EnvironmentProviders` configuration for Angular's HTTP client in tests.
+ */
+export const provideApiHttpTesting = (): EnvironmentProviders => {
+  const interceptors = [
+    cardsApiMockInterceptor,
+    scenariosApiMockInterceptor,
+    coursesApiMockInterceptor,
+    programsApiMockInterceptor,
+    offlineInterceptor,
+    authRefreshInterceptor,
+    authInterceptor,
+    retryInterceptor,
+    timeoutInterceptor,
+    errorInterceptor,
+  ];
+
+  return provideHttpClient(withInterceptors(interceptors));
 };

@@ -4,7 +4,7 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
-import { provideApiHttp } from './api/provide-api.http';
+import { provideApiHttpTesting } from './api/provide-api.http';
 import {
   getTestDefaultScenarios,
   getTestDemoCourseWithLessons,
@@ -22,7 +22,7 @@ describe('Home learning dashboard smoke', () => {
       providers: [
         provideRouter(routes),
         provideNoopAnimations(),
-        provideApiHttp(),
+        provideApiHttpTesting(),
         provideHttpClientTesting(),
       ],
     }).compileComponents();

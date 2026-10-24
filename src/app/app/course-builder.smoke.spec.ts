@@ -4,7 +4,7 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
-import { provideApiHttp } from './api/provide-api.http';
+import { provideApiHttpTesting } from './api/provide-api.http';
 import { seedTestContentCache } from '../entities/content-seed/content-seed.test-utils';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 
@@ -18,7 +18,7 @@ describe('Course builder smoke', () => {
       providers: [
         provideRouter(routes),
         provideNoopAnimations(),
-        provideApiHttp(),
+        provideApiHttpTesting(),
         provideHttpClientTesting(),
       ],
     }).compileComponents();

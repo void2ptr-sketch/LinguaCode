@@ -5,7 +5,7 @@ import { provideRouter, Router } from '@angular/router';
 import { vi } from 'vitest';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
-import { provideApiHttp } from './api/provide-api.http';
+import { provideApiHttpTesting } from './api/provide-api.http';
 import { AppLoggerService } from '../shared/logger/app-logger.service';
 import { seedTestContentCache } from '../entities/content-seed/content-seed.test-utils';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
@@ -20,7 +20,7 @@ describe('Journey page smoke', () => {
       providers: [
         provideRouter(routes),
         provideNoopAnimations(),
-        provideApiHttp(),
+        provideApiHttpTesting(),
         provideHttpClientTesting(),
         {
           provide: AppLoggerService,
