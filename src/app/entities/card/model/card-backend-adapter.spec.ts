@@ -16,7 +16,7 @@ function createBackendDto(overrides: Partial<BackendCardDto> = {}): BackendCardD
     id: 1,
     title: 'Test Card',
     kind: 'SELECT',
-    content: '{}',
+    dataJson: '{}',
     tags: '[]',
     difficulty: 'BEGINNER',
     createdAt: '2026-10-23T00:00:00Z',
@@ -30,7 +30,7 @@ describe('CardBackendAdapter', () => {
     it('should convert SELECT card', () => {
       const dto = createBackendDto({
         kind: 'SELECT',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           promptKnown: '猫',
           optionsLearning: ['cat', 'dog', 'bird'],
           correctIndex: 0,
@@ -51,7 +51,7 @@ describe('CardBackendAdapter', () => {
     it('should convert CODE_SELECT card', () => {
       const dto = createBackendDto({
         kind: 'CODE_SELECT',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           caption: 'Find the matching code',
           prompt: { code: 'console.log("hello")', language: 'javascript' },
           options: [
@@ -77,7 +77,7 @@ describe('CardBackendAdapter', () => {
     it('should convert MEMORY card', () => {
       const dto = createBackendDto({
         kind: 'MEMORY',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           promptKnown: '猫',
           pairs: [
             { known: '猫', learning: 'cat' },
@@ -99,7 +99,7 @@ describe('CardBackendAdapter', () => {
     it('should convert SYMBOL card', () => {
       const dto = createBackendDto({
         kind: 'SYMBOL',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           promptKnown: '猫',
           symbols: ['猫', '犬', '雀'],
           correctIndex: 0,
@@ -117,7 +117,7 @@ describe('CardBackendAdapter', () => {
     it('should convert SOUND card', () => {
       const dto = createBackendDto({
         kind: 'SOUND',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           promptKnown: '猫',
           audioLabelLearning: 'neko',
           optionsKnown: ['cat', 'dog', 'bird'],
@@ -137,7 +137,7 @@ describe('CardBackendAdapter', () => {
     it('should convert TIMED card', () => {
       const dto = createBackendDto({
         kind: 'TIMED',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           promptKnown: '猫',
           optionsLearning: ['cat', 'dog'],
           correctIndex: 0,
@@ -155,7 +155,7 @@ describe('CardBackendAdapter', () => {
     it('should convert KEYBOARD card', () => {
       const dto = createBackendDto({
         kind: 'KEYBOARD',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           promptKnown: '猫',
           acceptedAnswers: ['cat', 'a cat'],
         }),
@@ -171,7 +171,7 @@ describe('CardBackendAdapter', () => {
     it('should convert DRAW card', () => {
       const dto = createBackendDto({
         kind: 'DRAW',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           promptKnown: '猫',
           referenceHintKnown: 'neko',
           meaningKnown: 'cat',
@@ -189,7 +189,7 @@ describe('CardBackendAdapter', () => {
     it('should convert TONE card', () => {
       const dto = createBackendDto({
         kind: 'TONE',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           promptKnown: 'ma',
           syllableBase: 'ma',
           toneOptions: [' mā ', ' má ', ' mǎ ', ' mà '],
@@ -208,7 +208,7 @@ describe('CardBackendAdapter', () => {
     it('should convert READING card', () => {
       const dto = createBackendDto({
         kind: 'READING',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           promptKnown: '猫は犬が好きです。',
           optionsLearning: ['The cat likes the dog.'],
           correctIndex: 0,
@@ -224,7 +224,7 @@ describe('CardBackendAdapter', () => {
     it('should convert FLIP card', () => {
       const dto = createBackendDto({
         kind: 'FLIP',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           front: '猫',
           back: 'cat',
         }),
@@ -240,7 +240,7 @@ describe('CardBackendAdapter', () => {
     it('should convert CLOZE card', () => {
       const dto = createBackendDto({
         kind: 'CLOZE',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           promptKnown: 'Я ___ в Москве',
           correctAnswer: 'живу',
           options: ['живу', 'иду', 'бегу'],
@@ -259,7 +259,7 @@ describe('CardBackendAdapter', () => {
     it('should convert CODE_TRACE card', () => {
       const dto = createBackendDto({
         kind: 'CODE_TRACE',
-        content: JSON.stringify({
+        dataJson: JSON.stringify({
           question: 'What is the output?',
           code: { code: 'let x = 1; x++;', language: 'javascript' },
           outputOptions: ['1', '2', '3'],
@@ -281,11 +281,11 @@ describe('CardBackendAdapter', () => {
       const dtos: BackendCardDto[] = [
         createBackendDto({
           kind: 'SELECT',
-          content: JSON.stringify({ promptKnown: '猫', optionsLearning: ['cat'], correctIndex: 0 }),
+          dataJson: JSON.stringify({ promptKnown: '猫', optionsLearning: ['cat'], correctIndex: 0 }),
         }),
         createBackendDto({
           kind: 'FLIP',
-          content: JSON.stringify({ front: '狗', back: 'dog' }),
+          dataJson: JSON.stringify({ front: '狗', back: 'dog' }),
         }),
       ];
 
@@ -301,7 +301,7 @@ describe('CardBackendAdapter', () => {
     it('should handle missing content fields with defaults', () => {
       const dto = createBackendDto({
         kind: 'SELECT',
-        content: JSON.stringify({}),
+        dataJson: JSON.stringify({}),
       });
 
       const card = CardBackendAdapter.toCard(dto);
@@ -315,7 +315,7 @@ describe('CardBackendAdapter', () => {
     it('should handle invalid JSON content and throw', () => {
       const dto = createBackendDto({
         kind: 'SELECT',
-        content: 'not valid json',
+        dataJson: 'not valid json',
       });
 
       expect(() => CardBackendAdapter.toCard(dto)).toThrow(/Failed to parse card content/);
@@ -324,7 +324,7 @@ describe('CardBackendAdapter', () => {
     it('should handle unknown card kind and throw', () => {
       const dto = createBackendDto({
         kind: 'UNKNOWN_KIND' as BackendCardDto['kind'],
-        content: '{}',
+        dataJson: '{}',
       });
 
       expect(() => CardBackendAdapter.toCard(dto)).toThrow(/Unknown card kind/);
@@ -333,7 +333,7 @@ describe('CardBackendAdapter', () => {
     it('should parse tags correctly', () => {
       const dto = createBackendDto({
         kind: 'SELECT',
-        content: JSON.stringify({ promptKnown: '猫', optionsLearning: ['cat'], correctIndex: 0 }),
+        dataJson: JSON.stringify({ promptKnown: '猫', optionsLearning: ['cat'], correctIndex: 0 }),
         tags: JSON.stringify(['hsk1', 'n5', 'vocabulary']),
       });
 
@@ -344,7 +344,7 @@ describe('CardBackendAdapter', () => {
     it('should handle empty tags', () => {
       const dto = createBackendDto({
         kind: 'SELECT',
-        content: JSON.stringify({ promptKnown: '猫', optionsLearning: ['cat'], correctIndex: 0 }),
+        dataJson: JSON.stringify({ promptKnown: '猫', optionsLearning: ['cat'], correctIndex: 0 }),
         tags: '[]',
       });
 
@@ -355,7 +355,7 @@ describe('CardBackendAdapter', () => {
     it('should preserve createdAt and updatedAt', () => {
       const dto = createBackendDto({
         kind: 'SELECT',
-        content: JSON.stringify({ promptKnown: '猫', optionsLearning: ['cat'], correctIndex: 0 }),
+        dataJson: JSON.stringify({ promptKnown: '猫', optionsLearning: ['cat'], correctIndex: 0 }),
         createdAt: '2026-10-23T10:00:00Z',
         updatedAt: '2026-10-24T12:00:00Z',
       });

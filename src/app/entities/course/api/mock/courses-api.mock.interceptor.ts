@@ -129,7 +129,15 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/courses'))) {
-    const payload = req.body as CourseWritePayload;
+    // Convert backend field names back to frontend format for the mock handler
+    const raw = req.body as Record<string, unknown>;
+    const payload: CourseWritePayload = {
+      title: String(raw['title'] ?? ''),
+      description: String(raw['courseDescription'] ?? ''),
+      published: Boolean(raw['published'] ?? false),
+      programs: (raw['programs'] as CourseWritePayload['programs'] ?? []),
+      authoring: raw['authoring'] as CourseWritePayload['authoring'],
+    };
 
     return defer(() => handler.create(payload)).pipe(
       map((data) => new HttpResponse({ status: 201, body: { data } })),
@@ -137,7 +145,15 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   if (req.method === 'PUT' && courseId) {
-    const payload = req.body as CourseWritePayload;
+    // Convert backend field names back to frontend format for the mock handler
+    const raw = req.body as Record<string, unknown>;
+    const payload: CourseWritePayload = {
+      title: String(raw['title'] ?? ''),
+      description: String(raw['courseDescription'] ?? ''),
+      published: Boolean(raw['published'] ?? false),
+      programs: (raw['programs'] as CourseWritePayload['programs'] ?? []),
+      authoring: raw['authoring'] as CourseWritePayload['authoring'],
+    };
 
     return defer(() => handler.update(courseId, payload)).pipe(
       map((data) => new HttpResponse({ status: 200, body: { data } })),

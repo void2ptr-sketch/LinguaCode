@@ -76,9 +76,9 @@ function mapDifficulty(backendDiff: BackendCardDifficulty | null): string | unde
  */
 function parseCardContent(dto: BackendCardDto): ParsedCardContent {
   try {
-    // When content is already a structured object (e.g., from mock interceptor
+    // When dataJson is already a structured object (e.g., from mock interceptor
     // returning a frontend Card directly), use it as-is instead of parsing.
-    const rawContent = dto.content;
+    const rawContent = dto.dataJson;
     const parsed: Record<string, unknown> =
       typeof rawContent === 'string'
         ? JSON.parse(rawContent)
@@ -534,9 +534,9 @@ export const CardBackendAdapter = {
    * it is returned as-is without transformation.
    */
   toCard(dto: BackendCardDto): Card {
-    // Fast-path: if content is already a structured object (mock returns frontend Card),
+    // Fast-path: if dataJson is already a structured object (mock returns frontend Card),
     // the dto itself is likely a frontend Card — return as-is.
-    if (typeof dto.content !== 'string') {
+    if (typeof dto.dataJson !== 'string') {
       return dto as unknown as Card;
     }
 
@@ -699,21 +699,21 @@ export const CardBackendAdapter = {
    * // payload = { title: '猫', kind: 'SELECT', content: '{"kind":"SELECT","promptKnown":"猫",...}', tags: '[]', difficulty: 'BEGINNER' }
    * ```
    */
-   toCreatePayload(card: CardWithMeta): BackendCardCreatePayload {
-     const contentJson = JSON.stringify(extractCardContent(card));
-     const tagsJson = JSON.stringify(card.tags ?? []);
-     const kind = mapKindToBackend(card.kind);
-     const difficulty = mapDifficultyToBackend(card.difficulty);
+    toCreatePayload(card: CardWithMeta): BackendCardCreatePayload {
+      const contentJson = JSON.stringify(extractCardContent(card));
+      const tagsJson = JSON.stringify(card.tags ?? []);
+      const kind = mapKindToBackend(card.kind);
+      const difficulty = mapDifficultyToBackend(card.difficulty);
 
-     return {
-       id: card.id,
-       title: card.title,
-       kind,
-       content: contentJson,
-       tags: tagsJson,
-       difficulty,
-     };
-   },
+      return {
+        id: card.id,
+        title: card.title,
+        kind,
+        dataJson: contentJson,
+        tags: tagsJson,
+        difficulty,
+      };
+    },
 
   /**
    * Converts a frontend Card to a backend update payload.
@@ -722,18 +722,18 @@ export const CardBackendAdapter = {
    * Only includes non-undefined fields (partial update).
    * Transforms the frontend Card into the backend wire format.
    */
-  toUpdatePayload(cardId: string, card: CardWithMeta): BackendCardUpdatePayload {
-    const result: BackendCardUpdatePayload = {};
+   toUpdatePayload(cardId: string, card: CardWithMeta): BackendCardUpdatePayload {
+     const result: BackendCardUpdatePayload = {};
 
-    // Always include title
-    result.title = card.title;
+     // Always include title
+     result.title = card.title;
 
-    // Content: encode kind-specific fields as JSON string
-    const contentJson = JSON.stringify(extractCardContent(card));
-    result.content = contentJson;
+     // Content: encode kind-specific fields as JSON string
+     const contentJson = JSON.stringify(extractCardContent(card));
+     result.dataJson = contentJson;
 
-    // Tags: array → JSON string
-    result.tags = JSON.stringify(card.tags ?? []);
+     // Tags: array → JSON string
+     result.tags = JSON.stringify(card.tags ?? []);
 
     // Difficulty: lowercase → UPPERCASE
     const difficulty = mapDifficultyToBackend(card.difficulty);

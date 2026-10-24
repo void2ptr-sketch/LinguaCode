@@ -7,6 +7,7 @@ import type { ProgramSearchCriteria, ProgramSearchPage } from '../model/program-
 import type { ApiResponse } from '../../../shared/api/api.types';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import type { ProgramCatalogPort, ProgramWritePayload } from '../repository/program-catalog.port';
+import { UserStore } from '../../user/model/user.store';
 
 export type { ProgramWritePayload } from '../repository/program-catalog.port';
 
@@ -20,6 +21,7 @@ export type { ProgramWritePayload } from '../repository/program-catalog.port';
 @Injectable({ providedIn: 'root' })
 export class ProgramsApiService implements ProgramCatalogPort {
   private readonly http = inject(HttpClient);
+  private readonly userStore = inject(UserStore);
 
   /**
    * Searches programs by criteria.
@@ -97,8 +99,13 @@ export class ProgramsApiService implements ProgramCatalogPort {
    * ```
    */
   create(payload: ProgramWritePayload): Promise<Program> {
+    const body = {
+      title: payload.title,
+      programDescription: payload.description,
+      courseId: this.userStore.user().id,
+    };
     return firstValueFrom(
-      this.http.post<ApiResponse<Program>>(buildApiUrl('/programs'), payload),
+      this.http.post<ApiResponse<Program>>(buildApiUrl('/programs'), body),
     ).then((response) => response.data);
   }
 
@@ -121,8 +128,12 @@ export class ProgramsApiService implements ProgramCatalogPort {
    * ```
    */
   update(programId: string, payload: ProgramWritePayload): Promise<Program> {
+    const body = {
+      title: payload.title,
+      programDescription: payload.description,
+    };
     return firstValueFrom(
-      this.http.put<ApiResponse<Program>>(buildApiUrl(`/programs/${programId}`), payload),
+      this.http.put<ApiResponse<Program>>(buildApiUrl(`/programs/${programId}`), body),
     ).then((response) => response.data);
   }
 

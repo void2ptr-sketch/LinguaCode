@@ -1,4 +1,4 @@
-import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
@@ -7,8 +7,12 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { provideApiHttpTesting } from './api/provide-api.http';
 import { AppLoggerService } from '../shared/logger/app-logger.service';
-import { seedTestContentCache } from '../entities/content-seed/content-seed.test-utils';
+import {
+  getTestDemoCourseWithLessons,
+  seedTestContentCache,
+} from '../entities/content-seed/content-seed.test-utils';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
+import { CourseSearchService } from '../entities/course/search/course-search.service';
 
 describe('Journey page smoke', () => {
   beforeEach(async () => {
@@ -41,9 +45,43 @@ describe('Journey page smoke', () => {
   it('should render the journey map for the course from query params', async () => {
     const fixture = TestBed.createComponent(AppComponent);
     const router = TestBed.inject(Router);
+    const httpMock = TestBed.inject(HttpTestingController);
+    const courseSearchService = TestBed.inject(CourseSearchService);
+
+    // Mock resolveCourseId to return numeric ID for demo-course
+    vi.spyOn(courseSearchService, 'resolveCourseId').mockResolvedValue('1');
+    // Mock getById to return demo course
+    vi.spyOn(courseSearchService, 'getById').mockResolvedValue(
+      getTestDemoCourseWithLessons() as never,
+    );
+    // Mock getByIdOrNull to return demo course
+    vi.spyOn(courseSearchService, 'getByIdOrNull').mockResolvedValue(
+      getTestDemoCourseWithLessons() as never,
+    );
 
     await router.navigate(['journey'], { queryParams: { courseId: 'demo-course' } });
     fixture.detectChanges();
+
+    const flushRequests = (): void => {
+      for (const request of httpMock.match(() => true)) {
+        const url = request.request.url;
+
+        // Mock getById for the resolved course (used by JourneyPageComponent)
+        if (url.includes('/courses/1')) {
+          request.flush(getTestDemoCourseWithLessons());
+          continue;
+        }
+
+        request.flush({});
+      }
+    };
+
+    flushRequests();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    // Second flush for any pending async operations
+    flushRequests();
     await fixture.whenStable();
     fixture.detectChanges();
 
@@ -54,6 +92,7 @@ describe('Journey page smoke', () => {
     expect(text).toContain('Демо-сценарий');
     expect(text).not.toContain('214 китайских радикалов');
 
+    httpMock.verify();
     fixture.destroy();
   });
 });

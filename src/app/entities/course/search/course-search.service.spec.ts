@@ -1,4 +1,5 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 
@@ -25,6 +26,7 @@ describe('CourseSearchService', () => {
           useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
         },
         provideHttpClient(withFetch(), withInterceptors([coursesApiMockInterceptor])),
+        provideHttpClientTesting(),
       ],
     });
 
@@ -79,7 +81,7 @@ describe('CourseSearchService', () => {
   });
 
   describe('getById', () => {
-    it('delegates to CoursesApiService.getById', async () => {
+    it('delegates to CoursesApiService.getById with numeric ID', async () => {
       const mockCourse = {
         id: 'course-1',
         title: 'Test',
@@ -95,9 +97,39 @@ describe('CourseSearchService', () => {
         .spyOn(apiService, 'getById')
         .mockResolvedValue(mockCourse as CourseWithPrograms);
 
+      await service.getById('1');
+
+      expect(spy).toHaveBeenCalledWith('1');
+    });
+
+    it('resolves string ID and delegates to CoursesApiService.getById', async () => {
+      const mockCourse = {
+        id: 'course-1',
+        title: 'Test',
+        description: '',
+        authorId: 'user-1',
+        languagePair: { known: 'en', learning: 'zh' },
+        programIds: [],
+        published: true,
+        updatedAt: new Date().toISOString(),
+        programs: [],
+      };
+      const getByIdSpy = vi.spyOn(apiService, 'getById').mockResolvedValue(mockCourse as CourseWithPrograms);
+
+      // Mock resolveCourseId to return a numeric ID
+      const resolveSpy = vi.spyOn(service, 'resolveCourseId').mockResolvedValue('42');
+
       await service.getById('course-1');
 
-      expect(spy).toHaveBeenCalledWith('course-1');
+      expect(resolveSpy).toHaveBeenCalledWith('course-1');
+      expect(getByIdSpy).toHaveBeenCalledWith('42');
+    });
+
+    it('throws when string ID cannot be resolved', async () => {
+      // Mock resolveCourseId to return null
+      vi.spyOn(service, 'resolveCourseId').mockResolvedValue(null);
+
+      await expect(service.getById('unknown-course')).rejects.toThrow('Course not found: unknown-course');
     });
   });
 

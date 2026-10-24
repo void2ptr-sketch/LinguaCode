@@ -1,4 +1,6 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 
 import type {
   CourseIndexEntry,
@@ -9,6 +11,8 @@ import type {
 
 import { CoursesApiService, type CourseWritePayload } from '../api/courses-api.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
+import { buildApiUrl } from '../../../shared/api/api-url';
+import type { ApiListResponse } from '../../../shared/api/api.types';
 
 /**
  * Service for course search and management operations.
@@ -20,12 +24,25 @@ import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 export class CourseSearchService {
   private readonly coursesApi = inject(CoursesApiService);
   private readonly logger = inject(AppLoggerService);
+  private readonly http = inject(HttpClient);
 
   /** Whether a course operation is in progress. */
   readonly loading = signal(false);
 
   /** Error message, if any. */
   readonly error = signal<string | null>(null);
+
+  /**
+   * Cache of string ID → numeric ID mapping loaded from the backend.
+   *
+   * @remarks
+   * Seed data uses string IDs (e.g. `course-cpp-complete`). The backend expects
+   * numeric IDs. This map is populated on first `resolveCourseId` call and
+   * reused for subsequent lookups.
+   */
+  private idResolutionCache: Map<string, string> | null = null;
+
+  private idResolutionPromise: Promise<void> | null = null;
 
   /**
    * Searches courses by criteria.
@@ -38,14 +55,108 @@ export class CourseSearchService {
   }
 
   /**
+   * Loads all courses and builds the string ID → numeric ID mapping.
+   *
+   * @remarks
+   * Paginates through all courses via raw HTTP (bypasses CoursesApiService
+   * DTO mapping) and stores the mapping in `idResolutionCache`.
+   * Subsequent calls return the cached result.
+   */
+  private async loadIdResolutionMap(): Promise<void> {
+    if (this.idResolutionCache) {
+      return;
+    }
+
+    if (!this.idResolutionPromise) {
+      this.idResolutionPromise = (async () => {
+        const map = new Map<string, string>();
+        let page = 0;
+        const pageSize = 100;
+        let hasMore = true;
+
+        while (hasMore) {
+          const params = new HttpParams()
+            .set('page', String(page))
+            .set('pageSize', String(pageSize));
+
+          const response = await firstValueFrom(
+            this.http.get<ApiListResponse<unknown>>(buildApiUrl('/courses/search'), { params }),
+          );
+
+          const items = (response.data as unknown as CourseIndexEntry[]) ?? [];
+          for (const item of items) {
+            // item.id is the numeric ID; title is the string seed ID
+            map.set(item.title, String(item.id));
+            // Also store numeric ID as-is for direct lookup
+            map.set(item.id, String(item.id));
+          }
+
+          page++;
+          hasMore = page < (response.total ?? 0);
+        }
+
+        this.idResolutionCache = map;
+        this.idResolutionPromise = null;
+      })();
+    }
+
+    return this.idResolutionPromise;
+  }
+
+  /**
+   * Resolves a course ID to a numeric ID used by the backend.
+   *
+   * @remarks
+   * Seed data uses string IDs (e.g. `course-cpp-complete`). The backend expects
+   * numeric IDs. This method resolves string IDs by looking up the cached
+   * mapping (loaded from the backend). Numeric IDs pass through unchanged.
+   *
+   * @param courseId - The course ID to resolve.
+   * @returns The resolved numeric course ID, or `null` if not found.
+   */
+  async resolveCourseId(courseId: string): Promise<string | null> {
+    // Numeric ID — pass through
+    if (/^\d+$/.test(courseId)) {
+      return courseId;
+    }
+
+    // Ensure the mapping is loaded
+    await this.loadIdResolutionMap();
+
+    if (!this.idResolutionCache) {
+      return null;
+    }
+
+    // Try direct match first (numeric ID passed as string)
+    const direct = this.idResolutionCache.get(courseId);
+    if (direct) {
+      return direct;
+    }
+
+    // Try matching by title (seed string ID → numeric ID)
+    // The cache stores title → numeric ID, so we need to iterate
+    for (const [key, value] of this.idResolutionCache) {
+      if (key === courseId) {
+        return value;
+      }
+    }
+
+    return null;
+  }
+
+  /**
    * Retrieves a course with its programs by ID.
    *
    * @param courseId - The course ID.
    * @returns The course with programs.
    * @throws Error if the course is not found or on other errors.
    */
-  getById(courseId: string): Promise<CourseWithPrograms> {
-    return this.run(() => this.coursesApi.getById(courseId));
+  async getById(courseId: string): Promise<CourseWithPrograms> {
+    const resolvedId = await this.resolveCourseId(courseId);
+    if (!resolvedId) {
+      throw new Error(`Course not found: ${courseId}`);
+    }
+    return this.run(() => this.coursesApi.getById(resolvedId));
   }
 
   /**
@@ -54,7 +165,7 @@ export class CourseSearchService {
    * @remarks
    * Unlike `getById`, this method does NOT throw for 404 — it returns `null`
    * so callers can handle "course not found" as a normal flow (e.g. fallback
-   * to a default course).
+   * to a default course). Resolves string IDs to numeric IDs automatically.
    *
    * @param courseId - The course ID.
    * @returns The course with programs, or `null` if not found.
@@ -64,7 +175,11 @@ export class CourseSearchService {
     this.error.set(null);
 
     try {
-      return await this.coursesApi.getById(courseId);
+      const resolvedId = await this.resolveCourseId(courseId);
+      if (!resolvedId) {
+        return null;
+      }
+      return await this.coursesApi.getById(resolvedId);
     } catch (error) {
       const status = this.extractStatus(error);
       // 404 — штатная ситуация, возвращаем null

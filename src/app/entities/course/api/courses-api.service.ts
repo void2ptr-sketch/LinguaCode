@@ -16,14 +16,15 @@ import type {
   CourseExportBundle,
   CourseWritePayload,
 } from '../repository/course-catalog.port';
+import { UserStore } from '../../user/model/user.store';
 
 /** Backend DTO for a course (matches `CourseDto`). */
 type BackendCourseDto = {
   id: number;
   title: string;
-  description: string;
+  courseDescription: string;
   authorId: number;
-  languagePair: string;
+  languagePairId: number | null;
   published: boolean;
   createdAt: string;
   updatedAt: string;
@@ -44,7 +45,7 @@ function toIndexEntry(dto: BackendCourseDto): CourseIndexEntry {
     programCount: 0, // not available in the list response
     published: dto.published,
     updatedAt: dto.updatedAt,
-    languagePairSummary: dto.languagePair ?? '',
+    languagePairSummary: dto.languagePairId ? String(dto.languagePairId) : '',
   };
 }
 
@@ -66,6 +67,7 @@ export type {
 @Injectable({ providedIn: 'root' })
 export class CoursesApiService implements CourseCatalogPort {
   private readonly http = inject(HttpClient);
+  private readonly userStore = inject(UserStore);
 
   /**
    * Searches courses by criteria.
@@ -114,8 +116,18 @@ export class CoursesApiService implements CourseCatalogPort {
    * @returns The created course with programs.
    */
   create(payload: CourseWritePayload): Promise<CourseWithPrograms> {
+    const body: Record<string, unknown> = {
+      title: payload.title,
+      courseDescription: payload.description,
+      authorId: this.userStore.user().id,
+      published: payload.published,
+    };
+    // Programs are sent for mock handler compatibility (backend creates them separately)
+    if (payload.programs && payload.programs.length > 0) {
+      body['programs'] = payload.programs;
+    }
     return firstValueFrom(
-      this.http.post<ApiResponse<CourseWithPrograms>>(buildApiUrl('/courses'), payload),
+      this.http.post<ApiResponse<CourseWithPrograms>>(buildApiUrl('/courses'), body),
     ).then((response) => response.data);
   }
 
@@ -127,8 +139,13 @@ export class CoursesApiService implements CourseCatalogPort {
    * @returns The updated course with programs.
    */
   update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
+    const body = {
+      title: payload.title,
+      courseDescription: payload.description,
+      published: payload.published,
+    };
     return firstValueFrom(
-      this.http.put<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`), payload),
+      this.http.put<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`), body),
     ).then((response) => response.data);
   }
 

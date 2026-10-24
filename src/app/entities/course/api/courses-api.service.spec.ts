@@ -44,13 +44,13 @@ describe('CoursesApiService', () => {
   };
 
   const mockCourseIndexEntry: CourseIndexEntry = {
-    id: 'course-1',
+    id: '1',
     title: 'Test Course',
-    authorId: 'author-1',
+    authorId: '1',
     programCount: 0,
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
-    languagePairSummary: 'Русский → English',
+    languagePairSummary: '1', // derived from languagePairId: 1
   };
 
   const mockPayload: CourseWritePayload = {
@@ -87,11 +87,11 @@ describe('CoursesApiService', () => {
   describe('search', () => {
     it('should search courses and return paginated results', async () => {
       const mockDto = {
-        id: 'course-1',
+        id: 1,
         title: 'Test Course',
-        description: 'Test description',
-        authorId: 'author-1',
-        languagePair: 'Русский → English',
+        courseDescription: 'Test description',
+        authorId: 1,
+        languagePairId: 1,
         published: true,
         createdAt: '2024-01-01T00:00:00.000Z',
         updatedAt: '2024-01-01T00:00:00.000Z',
@@ -139,7 +139,12 @@ describe('CoursesApiService', () => {
 
       const req = httpMock.expectOne(buildApiUrl('/courses'));
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual(mockPayload);
+      const body = req.request.body as Record<string, unknown>;
+      expect(body['title']).toBe(mockPayload.title);
+      expect(body['courseDescription']).toBe(mockPayload.description);
+      expect(body['published']).toBe(mockPayload.published);
+      expect(body['programs']).toEqual(mockPayload.programs);
+      expect(body['authorId']).toBeDefined();
       req.flush({ data: mockCourseWithPrograms });
 
       const result = await promise;
@@ -153,7 +158,10 @@ describe('CoursesApiService', () => {
 
       const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
       expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(mockPayload);
+      const body = req.request.body as Record<string, unknown>;
+      expect(body['title']).toBe(mockPayload.title);
+      expect(body['courseDescription']).toBe(mockPayload.description);
+      expect(body['published']).toBe(mockPayload.published);
       req.flush({ data: mockCourseWithPrograms });
 
       const result = await promise;

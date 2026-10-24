@@ -19,7 +19,9 @@ export function buildScenarioSearchParams(criteria: ScenarioSearchCriteria): Htt
     .set('page', String(criteria.page.page))
     .set('pageSize', String(criteria.page.pageSize));
 
-  params = params.set('query', criteria.query ?? '');
+  if (criteria.query) {
+    params = params.set('query', criteria.query);
+  }
 
   if (criteria.authorId) {
     params = params.set('authorId', criteria.authorId);

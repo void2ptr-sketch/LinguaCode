@@ -19,14 +19,14 @@
 
 Реализация: `CardsApiService` · порт `CardCatalogPort` · mock `cardsApiMockInterceptor`.
 
-| Метод  | Путь            | Описание                                  |
-| ------ | --------------- | ----------------------------------------- |
-| GET    | `/cards/search` | Поиск по критериям + пагинация + facets   |
-| GET    | `/cards/:id`    | Карточка по ID (404 при отсутствии)       |
-| POST   | `/cards/batch`  | Пакетное получение по `{ ids: string[] }` |
-| POST   | `/cards`        | Создание карточки (201)                   |
-| PUT    | `/cards/:id`    | Обновление карточки                       |
-| DELETE | `/cards/:id`    | Удаление карточки                         |
+| Метод  | Путь                 | Описание                                  |
+| ------ | -------------------- | ----------------------------------------- |
+| GET    | `/cards/search`      | Поиск по критериям + пагинация + facets   |
+| GET    | `/cards/:id`         | Карточка по ID (404 при отсутствии)       |
+| POST   | `/cards/batch/retrieve` | Пакетное получение по `{ ids: string[] }` |
+| POST   | `/cards`             | Создание карточки (201)                   |
+| PUT    | `/cards/:id`         | Обновление карточки                       |
+| DELETE | `/cards/:id`         | Удаление карточки                         |
 
 Критерии поиска (`CardSearchCriteria`): `query`, `knownLanguage`, `learningLanguage`, `tags`, `difficulty`, `kinds`, `page` (`page` / `pageSize`), `sort`. Параметры сериализуются через `buildCardSearchParams`.
 
@@ -43,7 +43,8 @@
 | DELETE | `/scenarios/:id`             | Удаление сценария                  |
 | GET    | `/scenarios/by-card/:cardId` | Сценарии, использующие карточку    |
 
-Пейлоад записи: `ScenarioWritePayload` (`title`, `description`, `cardSource`, `published`, `languagePair?`).
+Пейлоад записи: `ScenarioWritePayload` (`title`, `description`, `cardSource` (структурированный объект), `published`, `languagePair?`).
+На бэкенд отправляется: `scenarioDescription` (из `description`), `cardSource` (JSON-строка), `languagePairId`.
 
 ## Программы (`/programs`)
 
@@ -59,6 +60,7 @@
 | DELETE | `/programs/:id`                 | Удаление программы                     |
 
 Пейлоад записи: `ProgramWritePayload` (`courseId`, `title`, `description`, `lessonIds`, `order`).
+На бэкенд отправляется: `programDescription` (из `description`).
 
 ## Курсы (`/courses`)
 
@@ -75,6 +77,7 @@
 | DELETE | `/courses/:id`                     | Удаление курса                       |
 
 Пейлоад записи: `CourseWritePayload` (`title`, `description`, `published`, `languagePair?`, `programs[]`, `authoring?`).
+На бэкенд отправляется: `courseDescription` (из `description`), `authorId` (из UserStore).
 
 ### Экспорт-пакет (`CourseExportBundle`)
 

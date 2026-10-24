@@ -10,7 +10,7 @@
  * Supported requests:
  * - POST /cards/search — search cards with filters
  * - GET /cards/{id} — fetch a single card by ID
- * - POST /cards/batch — fetch multiple cards by IDs
+ * - POST /cards/batch/retrieve — fetch multiple cards by IDs
  *
  * @example
  * ```typescript
@@ -83,8 +83,8 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
-  // POST /cards/batch — пакетное получение карточек
-  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/cards/batch'))) {
+  // POST /cards/batch/retrieve — пакетное получение карточек
+  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/cards/batch/retrieve'))) {
     const body = req.body as { ids?: readonly string[] };
     const ids = body?.ids ?? [];
 
@@ -105,7 +105,7 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     } as Card;
     // Parse content JSON to extract kind-specific fields
     try {
-      const content = JSON.parse(String(payload['content'] ?? '{}'));
+      const content = JSON.parse(String(payload['dataJson'] ?? '{}'));
       Object.assign(card, content);
     } catch {
       // ignore parse errors
@@ -141,9 +141,9 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
         if (payload['title'] !== undefined) {
           u['title'] = String(payload['title']);
         }
-        if (payload['content'] !== undefined) {
+        if (payload['dataJson'] !== undefined) {
           try {
-            const content = JSON.parse(String(payload['content']));
+            const content = JSON.parse(String(payload['dataJson']));
             Object.assign(updated, content);
           } catch {
             // ignore

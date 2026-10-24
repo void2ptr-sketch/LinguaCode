@@ -100,7 +100,7 @@ export class CardsApiService implements CardCatalogPort {
     }
 
     return firstValueFrom(
-      this.http.post<ApiResponse<BackendCardDto[]>>(buildApiUrl('/cards/batch'), {
+      this.http.post<ApiResponse<BackendCardDto[]>>(buildApiUrl('/cards/batch/retrieve'), {
         ids: cardIds,
       }),
     ).then((response) => CardBackendAdapter.toCards(response.data));

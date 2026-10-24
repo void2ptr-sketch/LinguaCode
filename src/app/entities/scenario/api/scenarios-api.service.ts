@@ -15,6 +15,7 @@ import type {
   ScenarioCatalogPort,
   ScenarioWritePayload,
 } from '../repository/scenario-catalog.port';
+import { UserStore } from '../../user/model/user.store';
 
 export type { ScenarioWritePayload } from '../repository/scenario-catalog.port';
 
@@ -28,6 +29,7 @@ export type { ScenarioWritePayload } from '../repository/scenario-catalog.port';
 @Injectable({ providedIn: 'root' })
 export class ScenariosApiService implements ScenarioCatalogPort {
   private readonly http = inject(HttpClient);
+  private readonly userStore = inject(UserStore);
 
   /**
    * Searches scenarios by criteria.
@@ -44,10 +46,14 @@ export class ScenariosApiService implements ScenarioCatalogPort {
    * ```
    */
   search(criteria: ScenarioSearchCriteria): Promise<ScenarioSearchPage> {
+    // Backend requires 'query' for /search endpoint.
+    // When query is empty, use the list endpoint (/scenarios) instead.
+    const hasQuery = !!criteria.query?.trim();
+    const url = hasQuery ? buildApiUrl('/scenarios/search') : buildApiUrl('/scenarios');
+    const params = buildScenarioSearchParams(criteria);
+
     return firstValueFrom(
-      this.http.get<ApiResponse<ScenarioSearchPage>>(buildApiUrl('/scenarios/search'), {
-        params: buildScenarioSearchParams(criteria),
-      }),
+      this.http.get<ApiResponse<ScenarioSearchPage>>(url, { params }),
     ).then((response) => response.data);
   }
 
@@ -85,8 +91,13 @@ export class ScenariosApiService implements ScenarioCatalogPort {
    * ```
    */
   create(payload: ScenarioWritePayload): Promise<Scenario> {
+    const body = {
+      title: payload.title,
+      scenarioDescription: payload.description,
+      cardSource: JSON.stringify(payload.cardSource),
+    };
     return firstValueFrom(
-      this.http.post<ApiResponse<Scenario>>(buildApiUrl('/scenarios'), payload),
+      this.http.post<ApiResponse<Scenario>>(buildApiUrl('/scenarios'), body),
     ).then((response) => response.data);
   }
 
@@ -108,8 +119,14 @@ export class ScenariosApiService implements ScenarioCatalogPort {
    * ```
    */
   update(scenarioId: string, payload: ScenarioWritePayload): Promise<Scenario> {
+    const body = {
+      title: payload.title,
+      scenarioDescription: payload.description,
+      cardSource: JSON.stringify(payload.cardSource),
+      published: payload.published,
+    };
     return firstValueFrom(
-      this.http.put<ApiResponse<Scenario>>(buildApiUrl(`/scenarios/${scenarioId}`), payload),
+      this.http.put<ApiResponse<Scenario>>(buildApiUrl(`/scenarios/${scenarioId}`), body),
     ).then((response) => response.data);
   }
 
