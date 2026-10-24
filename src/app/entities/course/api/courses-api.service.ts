@@ -8,7 +8,7 @@ import type {
   CourseSearchPage,
   CourseWithPrograms,
 } from '../model';
-import type { ApiResponse } from '../../../shared/api/api.types';
+import type { ApiResponse, ApiListResponse } from '../../../shared/api/api.types';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCourseSearchParams } from './mock/courses-api.params.utils';
 import type {
@@ -16,6 +16,37 @@ import type {
   CourseExportBundle,
   CourseWritePayload,
 } from '../repository/course-catalog.port';
+
+/** Backend DTO for a course (matches `CourseDto`). */
+type BackendCourseDto = {
+  id: string;
+  title: string;
+  description: string;
+  authorId: string;
+  languagePair: string;
+  published: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+/**
+ * Maps a backend course DTO to a frontend `CourseIndexEntry`.
+ *
+ * @remarks
+ * The backend `CourseDto` does not include `programCount` or
+ * `languagePairSummary` — these are derived client-side.
+ */
+function toIndexEntry(dto: BackendCourseDto): CourseIndexEntry {
+  return {
+    id: dto.id,
+    title: dto.title,
+    authorId: dto.authorId,
+    programCount: 0, // not available in the list response
+    published: dto.published,
+    updatedAt: dto.updatedAt,
+    languagePairSummary: dto.languagePair ?? '',
+  };
+}
 
 export type {
   CourseWritePayload,
@@ -44,10 +75,24 @@ export class CoursesApiService implements CourseCatalogPort {
    */
   search(criteria: CourseSearchCriteria): Promise<CourseSearchPage> {
     return firstValueFrom(
-      this.http.get<ApiResponse<CourseSearchPage>>(buildApiUrl('/courses/search'), {
+      this.http.get<ApiListResponse<BackendCourseDto>>(buildApiUrl('/courses/search'), {
         params: buildCourseSearchParams(criteria),
       }),
-    ).then((response) => response.data);
+    ).then((response) => {
+      const dtos = response.data;
+      const totalItems = response.total ?? dtos.length;
+      const pageSize = criteria.page.pageSize;
+      const page = criteria.page.page;
+      const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 0;
+
+      return {
+        items: dtos.map(toIndexEntry),
+        page,
+        pageSize,
+        totalItems,
+        totalPages,
+      };
+    });
   }
 
   /**

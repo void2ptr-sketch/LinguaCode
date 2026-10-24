@@ -7,7 +7,7 @@ import {
   PERL_INTERVIEW_COURSE_ID,
   PERL_INTERVIEW_COURSE_TITLE,
   PERL_INTERVIEW_IDEA_PATH,
-} from './content-seed/perl-interview.mjs';
+} from '../content-seed/perl-interview.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const overlayPath = process.argv[2];
