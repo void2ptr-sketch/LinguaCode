@@ -21,7 +21,7 @@ export class LearningResultsPersistence {
    *
    * @returns An array of learning results, or an empty array if no data is stored or parsing fails.
    * @remarks
-   * Applies fallback defaults: generated UUIDs for missing IDs, `'local-user'` for userId,
+   * Applies fallback defaults: generated IDs for missing IDs, `'local-user'` for userId,
    * `false` for correct, current ISO timestamp for answeredAt.
    */
   load(): readonly LearningResult[] {

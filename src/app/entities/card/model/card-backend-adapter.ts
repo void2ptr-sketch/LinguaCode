@@ -288,7 +288,7 @@ function parseTags(tagsJson: string): string[] {
  */
 function buildCardBase(dto: BackendCardDto): CardBase {
   return {
-    id: dto.id,
+    id: String(dto.id),
     kind: mapCardKind(dto.kind),
     title: dto.title,
     appearance: {
@@ -699,21 +699,21 @@ export const CardBackendAdapter = {
    * // payload = { title: '猫', kind: 'SELECT', content: '{"kind":"SELECT","promptKnown":"猫",...}', tags: '[]', difficulty: 'BEGINNER' }
    * ```
    */
-  toCreatePayload(card: CardWithMeta): BackendCardCreatePayload {
-    const contentJson = JSON.stringify(extractCardContent(card));
-    const tagsJson = JSON.stringify(card.tags ?? []);
-    const kind = mapKindToBackend(card.kind);
-    const difficulty = mapDifficultyToBackend(card.difficulty);
+   toCreatePayload(card: CardWithMeta): BackendCardCreatePayload {
+     const contentJson = JSON.stringify(extractCardContent(card));
+     const tagsJson = JSON.stringify(card.tags ?? []);
+     const kind = mapKindToBackend(card.kind);
+     const difficulty = mapDifficultyToBackend(card.difficulty);
 
-    return {
-      id: card.id,
-      title: card.title,
-      kind,
-      content: contentJson,
-      tags: tagsJson,
-      difficulty,
-    };
-  },
+     return {
+       id: card.id,
+       title: card.title,
+       kind,
+       content: contentJson,
+       tags: tagsJson,
+       difficulty,
+     };
+   },
 
   /**
    * Converts a frontend Card to a backend update payload.

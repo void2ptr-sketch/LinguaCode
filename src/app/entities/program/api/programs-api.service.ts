@@ -74,7 +74,7 @@ export class ProgramsApiService implements ProgramCatalogPort {
   getByCourse(courseId: string): Promise<readonly Program[]> {
     return firstValueFrom(
       this.http.get<ApiResponse<readonly Program[]>>(
-        buildApiUrl(`/programs/by-course/${courseId}`),
+        buildApiUrl(`/programs/by-course/${Number(courseId)}`),
       ),
     ).then((response) => response.data);
   }
@@ -157,7 +157,7 @@ function buildProgramSearchParams(criteria: ProgramSearchCriteria): Record<strin
   }
 
   if (criteria.courseId) {
-    params['courseId'] = criteria.courseId;
+    params['courseId'] = String(Number(criteria.courseId));
   }
 
   if (criteria.page) {

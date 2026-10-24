@@ -13,7 +13,7 @@ function field(card: Card, key: string): unknown {
  */
 function createBackendDto(overrides: Partial<BackendCardDto> = {}): BackendCardDto {
   return {
-    id: 'test-card-123',
+    id: 1,
     title: 'Test Card',
     kind: 'SELECT',
     content: '{}',
@@ -363,7 +363,7 @@ describe('CardBackendAdapter', () => {
       const card = CardBackendAdapter.toCard(dto);
       // createdAt/updatedAt are added to card but may not be in strict Card type
       // This is expected - they're metadata fields
-      expect(field(card, 'id')).toBe('test-card-123');
+      expect(field(card, 'id')).toBe('1');
     });
   });
 });

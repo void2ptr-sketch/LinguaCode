@@ -98,7 +98,7 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     // Convert BackendCardCreatePayload back to Card for the mock handler
     const payload = req.body as Record<string, unknown>;
     const card = {
-      id: payload['id'] as string,
+      id: String(payload['id'] ?? crypto.randomUUID()),
       title: String(payload['title'] ?? ''),
       kind: String(payload['kind'] ?? 'SELECT').toLowerCase() as Card['kind'],
       appearance: { theme: 'default', fontSize: 'md' },

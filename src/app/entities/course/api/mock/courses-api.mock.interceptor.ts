@@ -97,7 +97,13 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     const criteria = parseCourseSearchCriteria(req.params);
 
     return defer(() => handler.search(criteria)).pipe(
-      map((data) => new HttpResponse({ status: 200, body: { data } })),
+      map((result) => {
+        // handler.search() returns CourseSearchPage; the service expects
+        // ApiListResponse<BackendCourseDto> — i.e. { data: BackendCourseDto[] }.
+        // Extract the items array so the service can map DTOs → index entries.
+        const body = 'items' in result ? { data: result.items } : { data: result };
+        return new HttpResponse({ status: 200, body });
+      }),
     );
   }
 

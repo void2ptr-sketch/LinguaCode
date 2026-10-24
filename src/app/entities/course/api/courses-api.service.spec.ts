@@ -47,7 +47,7 @@ describe('CoursesApiService', () => {
     id: 'course-1',
     title: 'Test Course',
     authorId: 'author-1',
-    programCount: 1,
+    programCount: 0,
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
     languagePairSummary: 'Русский → English',
@@ -86,7 +86,18 @@ describe('CoursesApiService', () => {
 
   describe('search', () => {
     it('should search courses and return paginated results', async () => {
-      const mockPage = {
+      const mockDto = {
+        id: 'course-1',
+        title: 'Test Course',
+        description: 'Test description',
+        authorId: 'author-1',
+        languagePair: 'Русский → English',
+        published: true,
+        createdAt: '2024-01-01T00:00:00.000Z',
+        updatedAt: '2024-01-01T00:00:00.000Z',
+      };
+
+      const expectedPage = {
         items: [mockCourseIndexEntry],
         totalItems: 1,
         page: 0,
@@ -102,10 +113,10 @@ describe('CoursesApiService', () => {
 
       const req = httpMock.expectOne((r) => r.url === buildApiUrl('/courses/search'));
       expect(req.request.method).toBe('GET');
-      req.flush({ data: mockPage });
+      req.flush({ data: [mockDto] });
 
       const result = await promise;
-      expect(result).toEqual(mockPage);
+      expect(result).toEqual(expectedPage);
     });
   });
 

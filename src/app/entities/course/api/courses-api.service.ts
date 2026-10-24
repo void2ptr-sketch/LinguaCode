@@ -19,10 +19,10 @@ import type {
 
 /** Backend DTO for a course (matches `CourseDto`). */
 type BackendCourseDto = {
-  id: string;
+  id: number;
   title: string;
   description: string;
-  authorId: string;
+  authorId: number;
   languagePair: string;
   published: boolean;
   createdAt: string;
@@ -38,9 +38,9 @@ type BackendCourseDto = {
  */
 function toIndexEntry(dto: BackendCourseDto): CourseIndexEntry {
   return {
-    id: dto.id,
+    id: String(dto.id),
     title: dto.title,
-    authorId: dto.authorId,
+    authorId: String(dto.authorId),
     programCount: 0, // not available in the list response
     published: dto.published,
     updatedAt: dto.updatedAt,

@@ -11,10 +11,10 @@ import { buildApiUrl } from '../../../shared/api/api-url';
  * Backend DTO for a learning result (matches `LearningResultDto`).
  */
 type BackendLearningResultDto = {
-  id: string;
-  userId: string;
-  cardId: string;
-  scenarioId: string | null;
+  id: number;
+  userId: number;
+  cardId: number;
+  scenarioId: number | null;
   correct: boolean;
   answeredAt: string;
 };
@@ -119,10 +119,10 @@ export class LearningApiService implements LearningCatalogPort {
  */
 function mapBackendResult(dto: BackendLearningResultDto): LearningResult {
   return {
-    id: dto.id,
-    userId: dto.userId,
-    cardId: dto.cardId,
-    scenarioId: dto.scenarioId ?? undefined,
+    id: String(dto.id),
+    userId: String(dto.userId),
+    cardId: String(dto.cardId),
+    scenarioId: dto.scenarioId !== null ? String(dto.scenarioId) : undefined,
     correct: dto.correct,
     answeredAt: dto.answeredAt,
   };
