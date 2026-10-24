@@ -30,6 +30,8 @@ import { parseCardSearchCriteria } from './cards-api.params.utils';
 import { buildApiUrl, isApiRequest } from '../../../../shared/api/api-url';
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
 import type { Card } from '../../model';
+import type { BackendCardDto } from '../../model/card-backend-dto.types';
+import type { ApiListResponse } from '../../../../shared/api/api.types';
 
 /**
  * Checks whether the given URL is a cards search request.
@@ -176,7 +178,16 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     const criteria = parseCardSearchCriteria(req.params);
 
     return defer(() => handler.search(criteria)).pipe(
-      map((data) => new HttpResponse({ status: 200, body: { data } })),
+      map((page) => {
+        // handler.search() returns CardSearchPage, but the service expects
+        // ApiListResponse<BackendCardDto> with { data: BackendCardDto[], total }
+        // Extract items (CardIndexEntry[]) and cast to BackendCardDto[] for the adapter
+        const dtos = page.items as unknown as BackendCardDto[];
+        return new HttpResponse<ApiListResponse<BackendCardDto>>({
+          status: 200,
+          body: { data: dtos, total: page.totalItems },
+        });
+      }),
     );
   }
 

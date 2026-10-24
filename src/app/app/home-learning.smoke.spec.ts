@@ -1,5 +1,4 @@
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
@@ -24,7 +23,6 @@ describe('Home learning dashboard smoke', () => {
         provideRouter(routes),
         provideNoopAnimations(),
         provideApiHttp(),
-        provideHttpClient(),
         provideHttpClientTesting(),
       ],
     }).compileComponents();
