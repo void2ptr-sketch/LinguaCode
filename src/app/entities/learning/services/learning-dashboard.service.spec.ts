@@ -98,6 +98,7 @@ describe('LearningDashboardService', () => {
 
     mockCourseSearchService = {
       getById: vi.fn().mockResolvedValue(mockCourse),
+      getByIdOrNull: vi.fn().mockResolvedValue(mockCourse),
     };
 
     mockResultsStore = {
@@ -156,7 +157,7 @@ describe('LearningDashboardService', () => {
     });
 
     it('should set error on reload failure', async () => {
-      mockCourseSearchService.getById = vi.fn().mockRejectedValue(new Error('API error'));
+      mockCourseSearchService.getByIdOrNull = vi.fn().mockRejectedValue(new Error('API error'));
 
       await service.reload();
 
@@ -168,7 +169,7 @@ describe('LearningDashboardService', () => {
     it('should call course search service with correct ID', async () => {
       await service.reload();
 
-      expect(mockCourseSearchService.getById).toHaveBeenCalledWith('course-1');
+      expect(mockCourseSearchService.getByIdOrNull).toHaveBeenCalledWith('course-1');
     });
 
     it('should load scenario titles from seed cache', async () => {

@@ -68,7 +68,9 @@ describe('AuthStore', () => {
     expect(ok).toBe(true);
     expect(store.isAuthenticated()).toBe(true);
     expect(store.user()?.id).toBe('u1');
-    expect(store.accessToken()).toBe('eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6OTk5OTk5OTk5OTk5OX0.fake');
+    expect(store.accessToken()).toBe(
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6OTk5OTk5OTk5OTk5OX0.fake',
+    );
     expect(tokenStorage.read()).toEqual(tokens);
   });
 
@@ -103,7 +105,9 @@ describe('AuthStore', () => {
     await store.restoreSession();
 
     expect(mockAuthApi.refresh).toHaveBeenCalledWith('refresh-1');
-    expect(store.accessToken()).toBe('eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6OTk5OTk5OTk5OTk5OX0.fake');
+    expect(store.accessToken()).toBe(
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MSIsImV4cCI6OTk5OTk5OTk5OTk5OX0.fake',
+    );
     expect(store.isAuthenticated()).toBe(true);
   });
 

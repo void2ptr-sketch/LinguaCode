@@ -89,6 +89,11 @@ export class CourseBuilderPageComponent implements OnInit {
   /** Сервис Dialog для модальных окон */
   private readonly dialog = inject(MatDialog);
 
+  /** Safe accessor for indexItems (defensive against early template rendering). */
+  protected getIndexItems(): readonly import('../../../entities/course/model').CourseIndexEntry[] {
+    return this.store.indexItems() ?? [];
+  }
+
   /**
    * Effect: отслеживает смену activeLanguagePairId.
    * При смене языка — перезагружает список курсов.

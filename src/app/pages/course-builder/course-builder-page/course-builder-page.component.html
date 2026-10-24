@@ -4,12 +4,12 @@
     <p>Создавайте учебные программы из уроков и сценариев.</p>
   </header>
 
-  @if (store.loading() && store.indexItems().length === 0) {
+  @if (store.loading() && getIndexItems().length === 0) {
     <div class="course-builder-page__state">
       <mat-spinner diameter="40" />
       <p>Загрузка…</p>
     </div>
-  } @else if (store.error() && store.indexItems().length === 0) {
+  } @else if (store.error() && getIndexItems().length === 0) {
     <mat-card class="course-builder-page__message">
       <mat-card-content>{{ store.error() }}</mat-card-content>
       <mat-card-actions align="end">
@@ -46,11 +46,11 @@
           <mat-button-toggle value="all">Все</mat-button-toggle>
         </mat-button-toggle-group>
 
-        @if (store.indexItems().length === 0) {
+        @if (getIndexItems().length === 0) {
           <p class="course-builder-page__empty">Курсов пока нет.</p>
         } @else {
           <mat-list>
-            @for (course of store.indexItems(); track course.id) {
+            @for (course of getIndexItems(); track course.id) {
               <mat-list-item class="course-builder-page__item">
                 <div matListItemTitle>{{ course.title }}</div>
                 <div matListItemLine>

@@ -42,9 +42,41 @@ export class CourseSearchService {
    *
    * @param courseId - The course ID.
    * @returns The course with programs.
+   * @throws Error if the course is not found or on other errors.
    */
   getById(courseId: string): Promise<CourseWithPrograms> {
     return this.run(() => this.coursesApi.getById(courseId));
+  }
+
+  /**
+   * Retrieves a course by ID, returning null if not found (404).
+   *
+   * @remarks
+   * Unlike `getById`, this method does NOT throw for 404 — it returns `null`
+   * so callers can handle "course not found" as a normal flow (e.g. fallback
+   * to a default course).
+   *
+   * @param courseId - The course ID.
+   * @returns The course with programs, or `null` if not found.
+   */
+  async getByIdOrNull(courseId: string): Promise<CourseWithPrograms | null> {
+    this.loading.set(true);
+    this.error.set(null);
+
+    try {
+      return await this.coursesApi.getById(courseId);
+    } catch (error) {
+      const status = this.extractStatus(error);
+      // 404 — штатная ситуация, возвращаем null
+      if (status === 404) {
+        return null;
+      }
+      this.logger.error('CourseSearch: operation failed', error);
+      this.error.set('Не удалось выполнить операцию с курсами');
+      throw error;
+    } finally {
+      this.loading.set(false);
+    }
   }
 
   /**
@@ -99,11 +131,24 @@ export class CourseSearchService {
     try {
       return await action();
     } catch (error) {
-      this.logger.error('CourseSearch: operation failed', error);
-      this.error.set('Не удалось выполнить операцию с курсами');
+      const status = this.extractStatus(error);
+      // 404 — штатная ситуация (курс/сценарий не найден), не логируем как ошибку
+      if (status === 404) {
+        this.error.set('Не найдено');
+      } else {
+        this.logger.error('CourseSearch: operation failed', error);
+        this.error.set('Не удалось выполнить операцию с курсами');
+      }
       throw new Error('Course operation failed');
     } finally {
       this.loading.set(false);
     }
+  }
+
+  private extractStatus(error: unknown): number | null {
+    if (error && typeof error === 'object' && 'status' in error) {
+      return (error as { status: number }).status;
+    }
+    return null;
   }
 }

@@ -3,12 +3,13 @@ import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
 import type { Card, CardSearchCriteria, CardSearchPage } from '../model';
-import type { ApiResponse } from '../../../shared/api/api.types';
+import type { ApiResponse, ApiListResponse } from '../../../shared/api/api.types';
 import type { BackendCardDto } from '../model/card-backend-dto.types';
 import { CardBackendAdapter } from '../model/card-backend-adapter';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCardSearchParams } from './mock/cards-api.params.utils';
 import type { CardCatalogPort } from '../repository/card-catalog.port';
+import { buildCardIndex } from '../mapping/card-index.mapper';
 
 /**
  * API service for card catalog operations.
@@ -37,10 +38,32 @@ export class CardsApiService implements CardCatalogPort {
    */
   search(criteria: CardSearchCriteria): Promise<CardSearchPage> {
     return firstValueFrom(
-      this.http.get<ApiResponse<CardSearchPage>>(buildApiUrl('/cards/search'), {
+      this.http.get<ApiListResponse<BackendCardDto>>(buildApiUrl('/cards/search'), {
         params: buildCardSearchParams(criteria),
       }),
-    ).then((response) => response.data);
+    ).then((response) => {
+      const dtos = response.data;
+      const totalItems = response.total ?? dtos.length;
+      const cards = CardBackendAdapter.toCards(dtos);
+      const entries = buildCardIndex(cards, {});
+      const pageSize = criteria.page.pageSize;
+      const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 0;
+
+      return {
+        items: entries,
+        page: criteria.page.page,
+        pageSize,
+        totalItems,
+        totalPages,
+        facets: {
+          knownLanguages: [],
+          learningLanguages: [],
+          difficulties: [],
+          kinds: [],
+          tags: [],
+        },
+      };
+    });
   }
 
   /**

@@ -112,7 +112,7 @@ export class CardCatalogHierarchyService {
         page: { page: 0, pageSize: 100 },
       });
 
-      const courses = page.items.map(toCourseOption);
+      const courses = (page?.items ?? []).map(toCourseOption);
       this.coursesCache.set(languagePairKey, courses);
       return courses;
     } finally {

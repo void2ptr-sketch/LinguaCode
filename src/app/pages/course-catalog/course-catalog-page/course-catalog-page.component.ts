@@ -364,9 +364,9 @@ export class CourseCatalogPageComponent implements OnInit {
         page: { page: this.pageIndex(), pageSize: this.pageSize() },
       });
 
-      this.catalogStore.setItems(page.items);
+      this.catalogStore.setItems(page.items ?? []);
       this.catalogStore.setTotalItems(page.totalItems);
-      await this.loadProgress(page.items);
+      await this.loadProgress(page.items ?? []);
     } catch (error) {
       this.logger.error('CourseCatalog: failed to load catalog', error);
       this.catalogStore.setError('Не удалось загрузить каталог курсов');

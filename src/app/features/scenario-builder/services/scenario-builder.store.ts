@@ -104,7 +104,7 @@ export class ScenarioBuilderStore {
       const pair = this.userStore.languagePair();
       const courseId = this.listCourseId();
       const page = await this.scenarioSearchService.search({
-        query: this.listQuery().trim() || undefined,
+        query: this.listQuery().trim(),
         scope: this.listScope(),
         courseId: courseId ?? undefined,
         ...activeLanguagePairCriteria(pair),

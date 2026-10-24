@@ -50,6 +50,16 @@ export class ScenarioBuilderPageComponent implements OnInit {
   readonly userStore = inject(UserStore);
   private readonly scenarioBuilderDialog = inject(ScenarioBuilderDialogService);
 
+  /** Safe accessor for indexItems. */
+  protected getIndexItems(): readonly import('../../../entities/scenario/model').ScenarioIndexEntry[] {
+    return this.store.indexItems() ?? [];
+  }
+
+  /** Safe accessor for courses. */
+  protected getCourses(): readonly import('../../../entities/course/model').CourseIndexEntry[] {
+    return this.store.courses() ?? [];
+  }
+
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();
 
@@ -162,7 +172,7 @@ export class ScenarioBuilderPageComponent implements OnInit {
       return null;
     }
 
-    const course = this.store.courses().find((c) => c.id === courseId);
+    const course = this.getCourses().find((c) => c.id === courseId);
     return course?.title ?? null;
   }
 }

@@ -147,6 +147,13 @@ export class CoursePickerComponent implements OnInit {
    */
   readonly showFullList = signal(false);
 
+  /**
+   * Safe accessor for items (defensive against early template rendering).
+   */
+  protected getItems(): readonly CourseIndexEntry[] {
+    return this.items() ?? [];
+  }
+
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();
 
