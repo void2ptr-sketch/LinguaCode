@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { UiPaginationComponent } from '../../../../shared/utils/pagination';
+import { ScormExportButtonComponent } from '../scorm-export-button';
 import type { PageEvent } from '@angular/material/paginator';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 
@@ -26,6 +27,7 @@ import { CourseCatalogStore } from '../../services/course-catalog.store';
     MatProgressSpinnerModule,
     RouterLink,
     UiPaginationComponent,
+    ScormExportButtonComponent,
   ],
   standalone: true,
   templateUrl: './program-list.component.html',

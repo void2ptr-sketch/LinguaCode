@@ -72,6 +72,7 @@
 | GET    | `/courses/:id`                     | Курс с уроками (`CourseWithLessons`) |
 | GET    | `/courses/:id/bundle`              | Экспорт-пакет (`CourseExportBundle`) |
 | GET    | `/courses/by-scenario/:scenarioId` | Курсы, использующие сценарий         |
+| GET    | `/courses/:id/scorm-export`        | Экспорт в SCORM/xAPI (`ScormExportBundle`) |
 | POST   | `/courses`                         | Создание курса (201)                 |
 | PUT    | `/courses/:id`                     | Обновление курса (403 на чужой)      |
 | DELETE | `/courses/:id`                     | Удаление курса                       |
@@ -91,6 +92,83 @@ type CourseExportBundle = {
   cardIndexMeta: Record<string, CardIndexMetaOverride>; // метаданные индекса
 };
 ```
+
+### Экспорт в SCORM/xAPI (`ScormExportBundle`)
+
+Используется для интеграции с корпоративными системами обучения (LMS: Moodle, SCORM Cloud). Полная иерархия `Course → Program → Lesson → Scenario → Card`.
+
+Реализация: `ScormExportService` (backend) · mock `scormExportMockInterceptor` · типы `scorm-export.types.ts`.
+
+| Параметр | Значение | Описание |
+| -------- | -------- | -------- |
+| `format` | `json` (по умолчанию) | `json` — JSON-объект, `zip` — ZIP-архив с `imsmanifest.xml` |
+
+Ответ: `ScormExportBundle`:
+
+```typescript
+type ScormExportBundle = {
+  format: 'linguacode-scorm-export';
+  version: number;
+  exportedAt: string;
+  manifest: ScormManifest;        // SCORM organization hierarchy
+  courses: readonly Course[];
+  programs: readonly Program[];
+  lessons: readonly Lesson[];
+  scenarios: readonly Scenario[];
+  cards: readonly Card[];
+  xapiStatements: readonly XapiStatement[];
+};
+```
+
+`ScormManifest` описывает иерархию SCORM 2004:
+
+```typescript
+type ScormManifest = {
+  identifier: string;
+  title: string;
+  description: string;
+  organizations: readonly ScormOrganization[];
+};
+
+type ScormOrganization = {
+  identifier: string;
+  title: string;
+  description: string;
+  default: boolean;
+  order: number;
+  items: readonly ScormLessonItem[];
+};
+
+type ScormLessonItem = {
+  identifier: string;
+  title: string;
+  description: string;
+  order: number;
+  resources: readonly ScormResource[];
+};
+
+type ScormResource = {
+  identifier: string;
+  type: 'card' | 'scenario' | 'lesson';
+  href: string;
+  title: string;
+};
+```
+
+xAPI statements для аналитики:
+
+```typescript
+type XapiStatement = {
+  id: string;
+  actor: XapiActor;
+  verb: XapiVerb;
+  object: XapiObject;
+  timestamp: string;
+  context: XapiContext;
+};
+```
+
+> **Важно:** mock-данные хранятся в `public/data/export/<courseId>-scorm.json`; флаг `useScormMock` в `environment` включает/отключает mock-интерсептор.
 
 ## Пользователь (`/users`)
 
@@ -135,7 +213,7 @@ type CourseExportBundle = {
 
 ## Mock vs реальный бэкенд
 
-- Dev: `useCardsApiMock` / `useScenariosApiMock` / `useCoursesApiMock` / `useUsersApiMock` / `useLearningApiMock` = `true` — ответы отдают mock-интерсепторы (данные: content seed + user overlay в `localStorage`).
+- Dev: `useCardsApiMock` / `useScenariosApiMock` / `useCoursesApiMock` / `useUsersApiMock` / `useLearningApiMock` / `useScormMock` = `true` — ответы отдают mock-интерсепторы (данные: content seed + user overlay в `localStorage`).
 - Production: флаги `false` — запросы идут на `environment.apiUrl` реального бэкенда.
 - Auth: `authEnabled` = `false` в dev (mock-бэкенд не требует токенов); `true` в production включает restore-сессии и refresh-интерсептор.
 - Контракт должен совпадать: порты + conformance-тесты (`*.port.conformance.spec.ts`) проверяют, что API-сервис и mock-хендлер структурно реализуют один и тот же порт.

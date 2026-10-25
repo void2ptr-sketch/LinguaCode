@@ -13,6 +13,7 @@ import { cardsApiMockInterceptor } from '../../entities/card/api/mock/cards-api.
 import { scenariosApiMockInterceptor } from '../../entities/scenario/api/mock/scenarios-api.mock.interceptor';
 import { coursesApiMockInterceptor } from '../../entities/course/api/mock/courses-api.mock.interceptor';
 import { programsApiMockInterceptor } from '../../entities/program/api/mock/programs-api.mock.interceptor';
+import { scormExportMockInterceptor } from '../../entities/course/api/mock/scorm-export.mock.interceptor';
 
 /**
  * Provides HTTP client configuration for the API layer.
@@ -29,6 +30,7 @@ export const provideApiHttp = () => {
     ...(environment.useScenariosApiMock ? [scenariosApiMockInterceptor] : []),
     ...(environment.useCoursesApiMock ? [coursesApiMockInterceptor] : []),
     ...(environment.useProgramsApiMock ? [programsApiMockInterceptor] : []),
+    ...(environment.useScormMock ? [scormExportMockInterceptor] : []),
     offlineInterceptor,
     authRefreshInterceptor,
     authInterceptor,
@@ -55,6 +57,7 @@ export const provideApiHttpTesting = (): EnvironmentProviders => {
     scenariosApiMockInterceptor,
     coursesApiMockInterceptor,
     programsApiMockInterceptor,
+    scormExportMockInterceptor,
     offlineInterceptor,
     authRefreshInterceptor,
     authInterceptor,

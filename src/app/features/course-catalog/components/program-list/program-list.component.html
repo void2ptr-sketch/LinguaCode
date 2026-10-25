@@ -52,6 +52,7 @@
               <button mat-flat-button type="button" (click)="startCourse.emit(course.id)">
                 Начать
               </button>
+              <app-scorm-export-button [courseId]="course.id" />
             </div>
           </li>
         }

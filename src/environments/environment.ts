@@ -9,6 +9,7 @@
  * - useScenariosApiMock: true — использует ContentSeedRepository для сценариев
  * - useCoursesApiMock: true — использует ContentSeedRepository для курсов
  * - useProgramsApiMock: true — использует ContentSeedRepository для программ
+ * - useScormMock: true — использует mock-данные для SCORM-экспорта курсов
  *
  * Для отключения mock-интерсепторов установите значения в false.
  * В этом случае запросы будут идти к реальному бэкенду (apiUrl).
@@ -33,5 +34,6 @@ export const environment: Environment = {
   useScenariosApiMock: false,
   useCoursesApiMock: false,
   useProgramsApiMock: false,
+  useScormMock: true,
   authEnabled: false,
 };

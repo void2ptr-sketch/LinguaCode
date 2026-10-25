@@ -10,5 +10,6 @@ export const environment: Environment = {
   useScenariosApiMock: true,
   useCoursesApiMock: true,
   useProgramsApiMock: false,
+  useScormMock: false,
   authEnabled: true,
 };
