@@ -20,6 +20,14 @@
   </mat-card>
 } @else {
   <p>Опубликованные учебные программы для активного курса.</p>
+
+  @if (hasCourseFilter()) {
+    <div class="course-catalog-page__filter-indicator">
+      <mat-chip disabled>{{ items()[0]?.title }}</mat-chip>
+      <button mat-stroked-button type="button" (click)="clearFilter()">Сбросить</button>
+    </div>
+  }
+
   <mat-card class="course-catalog-page__panel">
     <mat-card-header>
       <mat-card-title>Курсы</mat-card-title>

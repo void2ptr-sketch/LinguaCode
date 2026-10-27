@@ -30,6 +30,8 @@ function makeCourse(
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
     languagePairSummary,
+    knownLanguage: 'ru',
+    learningLanguage: 'en',
   };
 }
 
@@ -56,6 +58,8 @@ describe('CourseCatalogProgramsComponent', () => {
     pageSize: number;
     progressByCourseId: Record<string, number>;
     completedCourseIds: ReadonlySet<string>;
+    selectedCourseId: string;
+    filterDismissedUntilTabChange: boolean;
   };
 
   const defaultItems: readonly CourseIndexEntry[] = [
@@ -73,6 +77,8 @@ describe('CourseCatalogProgramsComponent', () => {
       pageSize: 10,
       progressByCourseId: {} as Record<string, number>,
       completedCourseIds: new Set<string>() as ReadonlySet<string>,
+      selectedCourseId: '',
+      filterDismissedUntilTabChange: false,
     };
 
     const loadingSignal = signal(stateRef.loading);
@@ -83,6 +89,8 @@ describe('CourseCatalogProgramsComponent', () => {
     const pageSizeSignal = signal(stateRef.pageSize);
     const progressByCourseIdSignal = signal(stateRef.progressByCourseId);
     const completedCourseIdsSignal = signal(stateRef.completedCourseIds);
+    const selectedCourseIdSignal = signal(stateRef.selectedCourseId);
+    const filterDismissedSignal = signal(stateRef.filterDismissedUntilTabChange);
 
     mockStoreState = new Proxy(stateRef, {
       set(target, prop, value) {
@@ -112,6 +120,12 @@ describe('CourseCatalogProgramsComponent', () => {
           case 'completedCourseIds':
             completedCourseIdsSignal.set(value as ReadonlySet<string>);
             break;
+          case 'selectedCourseId':
+            selectedCourseIdSignal.set(value as string);
+            break;
+          case 'filterDismissedUntilTabChange':
+            filterDismissedSignal.set(value as boolean);
+            break;
         }
         return true;
       },
@@ -126,6 +140,8 @@ describe('CourseCatalogProgramsComponent', () => {
       pageSize: pageSizeSignal,
       progressByCourseId: progressByCourseIdSignal,
       completedCourseIds: completedCourseIdsSignal,
+      selectedCourseId: selectedCourseIdSignal,
+      filterDismissedUntilTabChange: filterDismissedSignal,
       setLoading: vi.fn((value: boolean) => {
         mockStoreState.loading = value;
       }),
@@ -149,6 +165,12 @@ describe('CourseCatalogProgramsComponent', () => {
       }),
       setCompletedCourseIds: vi.fn((value: Set<string>) => {
         mockStoreState.completedCourseIds = value;
+      }),
+      setSelectedCourseId: vi.fn((value: string) => {
+        mockStoreState.selectedCourseId = value;
+      }),
+      setFilterDismissed: vi.fn((value: boolean) => {
+        mockStoreState.filterDismissedUntilTabChange = value;
       }),
     };
 
@@ -389,6 +411,41 @@ describe('CourseCatalogProgramsComponent', () => {
       mockStoreState.progressByCourseId = { 'c-1': 75 };
       fixture.detectChanges();
       expect(component.progressPercent('unknown')).toBe(0);
+    });
+  });
+
+  describe('course filter', () => {
+    it('should not show filter indicator when no course is selected', () => {
+      mockStoreState.selectedCourseId = '';
+      fixture.detectChanges();
+
+      const filterIndicator = fixture.nativeElement.querySelector('.course-catalog-page__filter-indicator');
+      expect(filterIndicator).toBeFalsy();
+    });
+
+    it('should show filter indicator when course is selected', () => {
+      mockStoreState.selectedCourseId = 'c-1';
+      mockStoreState.items = defaultItems;
+      fixture.detectChanges();
+
+      const filterIndicator = fixture.nativeElement.querySelector('.course-catalog-page__filter-indicator');
+      expect(filterIndicator).toBeTruthy();
+      expect(filterIndicator.textContent).toContain('Course 1');
+    });
+
+    it('should emit loadRequested when clearFilter is called', () => {
+      mockStoreState.selectedCourseId = 'c-1';
+      fixture.detectChanges();
+
+      let emitted = false;
+      component.loadRequested.subscribe(() => {
+        emitted = true;
+      });
+
+      component.clearFilter();
+
+      expect(emitted).toBe(true);
+      expect(mockStoreState.selectedCourseId).toBe('');
     });
   });
 });

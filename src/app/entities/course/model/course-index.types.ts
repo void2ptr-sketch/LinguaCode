@@ -16,6 +16,8 @@ export type CourseIndexEntry = {
   published: boolean;
   updatedAt: string;
   languagePairSummary: string;
+  knownLanguage: ContentLanguage;
+  learningLanguage: ContentLanguage;
 };
 
 /**

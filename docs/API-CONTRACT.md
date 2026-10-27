@@ -15,6 +15,24 @@
 
 Типы обёрток: [`shared/api/api.types.ts`](../src/app/shared/api/api.types.ts). URL-хелпер: [`shared/api/api-url.ts`](../src/app/shared/api/api-url.ts). Версия API задаётся в `environment.apiVersion`.
 
+## Языковые пары (`/language-pairs`)
+
+Реализация: `LanguagePairsApiService` · mock: нет (данные с бэкенда).
+
+| Метод | Путь | Описание |
+| ----- | ---- | -------- |
+| GET | `/language-pairs` | Список всех доступных языковых пар |
+
+Ответ: `ApiListResponse<LanguagePairDto>`
+
+```typescript
+type LanguagePairDto = {
+  id: number;
+  knownCode: string;
+  learningCode: string;
+};
+```
+
 ## Карточки (`/cards`)
 
 Реализация: `CardsApiService` · порт `CardCatalogPort` · mock `cardsApiMockInterceptor`.
@@ -72,7 +90,7 @@
 | GET    | `/courses/:id`                     | Курс с уроками (`CourseWithLessons`) |
 | GET    | `/courses/:id/bundle`              | Экспорт-пакет (`CourseExportBundle`) |
 | GET    | `/courses/by-scenario/:scenarioId` | Курсы, использующие сценарий         |
-| GET    | `/courses/:id/scorm-export`        | Экспорт в SCORM/xAPI (`ScormExportBundle`) |
+| GET    | `/scorm/export/courses/:id`        | Экспорт в SCORM/xAPI (`ScormExportBundle`) |
 | POST   | `/courses`                         | Создание курса (201)                 |
 | PUT    | `/courses/:id`                     | Обновление курса (403 на чужой)      |
 | DELETE | `/courses/:id`                     | Удаление курса                       |

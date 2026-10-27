@@ -8,6 +8,7 @@ import { provideApiHttpTesting } from './api/provide-api.http';
 import { environment } from '../../environments/environment';
 import { resetContentSeedCache } from '../entities/content-seed/content-seed.cache';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
+import { LanguagePairsApiService } from '../entities/language-pair/api';
 
 describe('Card select smoke', () => {
   beforeEach(async () => {
@@ -21,6 +22,14 @@ describe('Card select smoke', () => {
         provideNoopAnimations(),
         provideApiHttpTesting(),
         provideHttpClientTesting(),
+        {
+          provide: LanguagePairsApiService,
+          useValue: {
+            listAll: () => Promise.resolve([
+              { id: 1, knownCode: 'ru', learningCode: 'en' },
+            ]),
+          },
+        },
       ],
     }).compileComponents();
 

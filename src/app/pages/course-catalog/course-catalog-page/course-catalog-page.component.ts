@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, OnInit, effect } from '@angular/core';
 
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { Router } from '@angular/router';
@@ -170,9 +170,32 @@ export class CourseCatalogPageComponent implements OnInit {
    * @remarks
    * Delegates to `CourseCatalogLanguagePairManagerService.trackActivePairChange`.
    */
-  private readonly reloadOnActivePairChange = this.pairManager.trackActivePairChange(() =>
-    this.load(),
-  );
+  private readonly reloadOnActivePairChange = this.pairManager.trackActivePairChange(async () => {
+    this.catalogStore.setSelectedCourseId('');
+    await this.load();
+  });
+
+  /**
+   * Syncs `selectedCourseId` from `learningSession` when on the Programs tab.
+   *
+   * @remarks
+   * When the user switches to tab 2 ("Программы курса"), the store's
+   * `selectedCourseId` is set to `learningSession().activeCourseId` and the
+   * catalog is reloaded so that client-side filtering is applied.
+   * Auto-sync is suppressed when `filterDismissedUntilTabChange` is true.
+   */
+  private readonly syncSelectedCourseIdEffect = effect(() => {
+    const tabIndex = this.selectedTabIndex();
+    const dismissed = this.catalogStore.filterDismissedUntilTabChange();
+    const activeCourseId = this.userStore.learningSession().activeCourseId;
+    const currentSelectedId = this.catalogStore.selectedCourseId();
+
+    if (tabIndex === 2 && activeCourseId && !dismissed && currentSelectedId !== activeCourseId) {
+      this.catalogStore.setSelectedCourseId(activeCourseId);
+      // reload applies client-side filter by selectedCourseId
+      void this.load();
+    }
+  });
 
   async ngOnInit(): Promise<void> {
     this.drafts.setProfileLearningProficiencyDraft(
@@ -358,15 +381,27 @@ export class CourseCatalogPageComponent implements OnInit {
 
     try {
       const pair = this.userStore.languagePair();
+      const selectedCourseId = this.catalogStore.selectedCourseId();
+
+      // When filtering by course, fetch all items (no pagination) to ensure
+      // the target course is included regardless of its position.
+      const pageSize = selectedCourseId ? 1000 : this.pageSize();
+
       const page = await this.courseSearchService.search({
         scope: 'published',
         ...activeLanguagePairCriteria(pair),
-        page: { page: this.pageIndex(), pageSize: this.pageSize() },
+        page: { page: this.pageIndex(), pageSize },
       });
 
-      this.catalogStore.setItems(page.items ?? []);
-      this.catalogStore.setTotalItems(page.totalItems);
-      await this.loadProgress(page.items ?? []);
+      const allItems = page.items ?? [];
+
+      const filteredItems = selectedCourseId
+        ? allItems.filter((item) => item.id === selectedCourseId)
+        : allItems;
+
+      this.catalogStore.setItems(filteredItems);
+      this.catalogStore.setTotalItems(filteredItems.length);
+      await this.loadProgress(filteredItems);
     } catch (error) {
       this.logger.error('CourseCatalog: failed to load catalog', error);
       this.catalogStore.setError('Не удалось загрузить каталог курсов');

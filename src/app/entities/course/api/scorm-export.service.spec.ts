@@ -47,7 +47,7 @@ describe('ScormExportService', () => {
       const courseId = 'course-123';
       const promise = service.export(courseId);
 
-      const req = httpMock.expectOne(buildApiUrl(`/courses/${courseId}/scorm-export`));
+      const req = httpMock.expectOne(buildApiUrl(`/scorm/export/courses/${courseId}`));
       expect(req.request.method).toBe('GET');
 
       req.flush({ data: mockBundle });
@@ -60,7 +60,7 @@ describe('ScormExportService', () => {
       const courseId = 'radicals-214';
       const promise = service.export(courseId);
 
-      const req = httpMock.expectOne(buildApiUrl(`/courses/${courseId}/scorm-export`));
+      const req = httpMock.expectOne(buildApiUrl(`/scorm/export/courses/${courseId}`));
       expect(req.request.method).toBe('GET');
 
       req.flush({ data: mockBundle });
@@ -75,7 +75,7 @@ describe('ScormExportService', () => {
       const courseId = 'missing-course';
       const promise = service.export(courseId);
 
-      const req = httpMock.expectOne(buildApiUrl(`/courses/${courseId}/scorm-export`));
+      const req = httpMock.expectOne(buildApiUrl(`/scorm/export/courses/${courseId}`));
       expect(req.request.method).toBe('GET');
 
       req.flush(

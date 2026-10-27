@@ -14,6 +14,11 @@ export type CourseCatalogState = {
 
   // Tab control
   selectedTabIndex: number;
+
+  // Course filter (programs tab)
+  selectedCourseId: string;
+  /** When true, auto-sync from learningSession is suppressed until tab changes. */
+  filterDismissedUntilTabChange: boolean;
 };
 
 export const initialState: CourseCatalogState = {
@@ -29,4 +34,8 @@ export const initialState: CourseCatalogState = {
 
   // Tab control
   selectedTabIndex: 0,
+
+  // Course filter (programs tab)
+  selectedCourseId: '',
+  filterDismissedUntilTabChange: false,
 };

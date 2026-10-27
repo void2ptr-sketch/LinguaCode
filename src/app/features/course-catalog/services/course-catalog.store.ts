@@ -55,6 +55,16 @@ export class CourseCatalogStore {
     return computed(() => this.#state().selectedTabIndex);
   }
 
+  /** ID выбранного курса (фильтр для вкладки программ). */
+  get selectedCourseId(): Signal<string> {
+    return computed(() => this.#state().selectedCourseId);
+  }
+
+  /** Флаг: пользователь явно сбросил фильтр (suppress auto-sync). */
+  get filterDismissedUntilTabChange(): Signal<boolean> {
+    return computed(() => this.#state().filterDismissedUntilTabChange);
+  }
+
   // --- Мутации ---
 
   setItems(items: readonly CourseIndexEntry[]): void {
@@ -90,7 +100,19 @@ export class CourseCatalogStore {
   }
 
   setSelectedTabIndex(index: number): void {
-    this.#state.update((s) => ({ ...s, selectedTabIndex: index }));
+    this.#state.update((s) => ({
+      ...s,
+      selectedTabIndex: index,
+      filterDismissedUntilTabChange: false,
+    }));
+  }
+
+  setSelectedCourseId(id: string): void {
+    this.#state.update((s) => ({ ...s, selectedCourseId: id }));
+  }
+
+  setFilterDismissed(dismissed: boolean): void {
+    this.#state.update((s) => ({ ...s, filterDismissedUntilTabChange: dismissed }));
   }
 
   /**

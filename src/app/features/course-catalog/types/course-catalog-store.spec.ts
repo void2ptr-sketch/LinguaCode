@@ -40,6 +40,14 @@ describe('course-catalog-store model', () => {
     it('should have zero selectedTabIndex', () => {
       expect(initialState.selectedTabIndex).toBe(0);
     });
+
+    it('should have empty selectedCourseId', () => {
+      expect(initialState.selectedCourseId).toBe('');
+    });
+
+    it('should have filterDismissedUntilTabChange set to false', () => {
+      expect(initialState.filterDismissedUntilTabChange).toBe(false);
+    });
   });
 
   describe('type safety', () => {

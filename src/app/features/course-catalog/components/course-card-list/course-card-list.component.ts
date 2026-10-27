@@ -12,7 +12,7 @@ import {
   contentLanguages,
 } from '../../../../entities/language-pair/lib/language-pair.utils';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { DraftsStore } from '../../services';
+import { CourseCatalogLanguagePairManagerService, DraftsStore } from '../../services';
 
 /**
  * Course card list component. Displays the courses tab of the course catalog,
@@ -29,6 +29,7 @@ import { DraftsStore } from '../../services';
 })
 export class CourseCatalogCoursesComponent {
   private readonly userStore = inject(UserStore);
+  private readonly pairManager = inject(CourseCatalogLanguagePairManagerService);
   private readonly drafts = inject(DraftsStore);
 
   /** Current user's display name from the store. */
@@ -143,8 +144,7 @@ export class CourseCatalogCoursesComponent {
    * pair ID draft to ensure the settings tab reflects the newly active pair.
    */
   onSetActive(id: string): void {
-    this.userStore.setActiveLanguagePair(id);
-    this.drafts.setSettingsPairIdDraft(id);
+    this.pairManager.setActive(id);
   }
 
   /**

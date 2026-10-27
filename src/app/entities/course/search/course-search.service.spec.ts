@@ -202,7 +202,7 @@ describe('CourseSearchService', () => {
 
   describe('findUsingScenario', () => {
     it('delegates to CoursesApiService.findUsingScenario', async () => {
-      const mockEntries = [
+      const mockEntries: CourseIndexEntry[] = [
         {
           id: 'c1',
           title: 'Test',
@@ -211,6 +211,8 @@ describe('CourseSearchService', () => {
           published: true,
           updatedAt: '',
           languagePairSummary: '',
+          knownLanguage: 'ru',
+          learningLanguage: 'en',
         },
       ];
       const spy = vi.spyOn(apiService, 'findUsingScenario').mockResolvedValue(mockEntries);

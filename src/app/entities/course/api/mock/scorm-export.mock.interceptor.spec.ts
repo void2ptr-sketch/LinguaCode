@@ -33,10 +33,9 @@ describe('scormExportMockInterceptor', () => {
    */
   const testInterceptor: HttpHandlerFn = (req) => {
     const url = req.url;
-    const prefix = `${buildApiUrl('/courses/')}`;
-    const suffix = '/scorm-export';
+    const prefix = `${buildApiUrl('/scorm/export/courses/')}`;
 
-    if (url.includes(prefix) && url.endsWith(suffix)) {
+    if (url.startsWith(prefix)) {
       return new Observable<HttpEvent<unknown>>((observer) => {
         observer.next(new HttpResponse({ status: 200, body: { data: fakeBundle } }));
         observer.complete();
@@ -65,7 +64,7 @@ describe('scormExportMockInterceptor', () => {
   });
 
   it('should match SCORM export URL pattern', () => {
-    const url = buildApiUrl('/courses/course-123/scorm-export');
-    expect(url).toContain('/courses/course-123/scorm-export');
+    const url = buildApiUrl('/scorm/export/courses/course-123');
+    expect(url).toContain('/scorm/export/courses/course-123');
   });
 });

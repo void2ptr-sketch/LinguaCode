@@ -32,7 +32,7 @@ export class ScormExportService {
   export(courseId: string): Promise<ScormExportBundle> {
     return firstValueFrom(
       this.http.get<ApiResponse<ScormExportBundle>>(
-        buildApiUrl(`/courses/${courseId}/scorm-export`),
+        buildApiUrl(`/scorm/export/courses/${courseId}`),
       ),
     ).then((response) => response.data);
   }

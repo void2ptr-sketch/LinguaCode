@@ -65,6 +65,8 @@ describe('CourseBuilderStore', () => {
           published: false,
           updatedAt: '2026-01-01T00:00:00.000Z',
           languagePairSummary: 'Russian → English',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
         },
       ],
       page: 0,
@@ -341,6 +343,8 @@ describe('CourseBuilderStore', () => {
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
       },
     ]);
 
@@ -362,6 +366,8 @@ describe('CourseBuilderStore', () => {
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
       },
     ]);
 
@@ -381,6 +387,8 @@ describe('CourseBuilderStore', () => {
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
       },
     ]);
     store.editingCourseId.set('c1');
@@ -414,6 +422,8 @@ describe('CourseBuilderStore', () => {
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
       },
     ]);
 
@@ -435,6 +445,8 @@ describe('CourseBuilderStore', () => {
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
       },
     ]);
 
@@ -625,6 +637,8 @@ describe('CourseBuilderStore', () => {
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
       },
     ]);
 
@@ -722,6 +736,8 @@ describe('CourseBuilderStore', () => {
         published: false,
         updatedAt: '',
         languagePairSummary: 'Russian → English',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
       },
     ]);
 

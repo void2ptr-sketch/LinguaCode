@@ -55,6 +55,8 @@ function makeCourse(id: string, title: string, programCount: number): CourseInde
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
     languagePairSummary: 'Русский → English',
+    knownLanguage: 'ru',
+    learningLanguage: 'en',
   };
 }
 
@@ -153,6 +155,7 @@ describe('CourseCatalogPageComponent', () => {
       languagePairs: signal(mockPairs),
       activeLanguagePairId: signal('pair-1'),
       languagePair: signal({ known: 'ru', learning: 'en' }),
+      learningSession: computed(() => ({ activeCourseId: 'c-1' })),
       formatEntryLabel: vi.fn(
         (entry: UserLanguagePairEntry) => `${entry.pair.known} → ${entry.pair.learning}`,
       ),
@@ -245,6 +248,8 @@ describe('CourseCatalogPageComponent', () => {
     const mockToneColorSchemeDraftSignal = signal('default' as ToneColorSchemeId);
     const mockTracingStrokeDurationDraftSignal = signal(0.5);
     const mockSelectedTabIndexSignal = signal(0);
+    const mockSelectedCourseIdSignal = signal('');
+    const mockFilterDismissedSignal = signal(false);
 
     mockCatalogStore = {
       items: mockItemsSignal,
@@ -256,6 +261,8 @@ describe('CourseCatalogPageComponent', () => {
       progressByCourseId: mockProgressByCourseIdSignal,
       completedCourseIds: mockCompletedCourseIdsSignal,
       selectedTabIndex: mockSelectedTabIndexSignal,
+      selectedCourseId: mockSelectedCourseIdSignal,
+      filterDismissedUntilTabChange: mockFilterDismissedSignal,
       setItems: (items: readonly CourseIndexEntry[]) => mockItemsSignal.set(items),
       setTotalItems: (total: number) => mockTotalItemsSignal.set(total),
       setPageIndex: (page: number) => mockPageIndexSignal.set(page),
@@ -267,6 +274,8 @@ describe('CourseCatalogPageComponent', () => {
       setCompletedCourseIds: (completed: Set<string>) =>
         mockCompletedCourseIdsSignal.set(completed as ReadonlySet<string>),
       setSelectedTabIndex: (index: number) => mockSelectedTabIndexSignal.set(index),
+      setSelectedCourseId: (id: string) => mockSelectedCourseIdSignal.set(id),
+      setFilterDismissed: (dismissed: boolean) => mockFilterDismissedSignal.set(dismissed),
     };
 
     mockDrafts = {
@@ -411,6 +420,51 @@ describe('CourseCatalogPageComponent', () => {
     await fixture.whenStable();
 
     expect(component.totalItems()).toBe(1);
+  });
+
+  it('should filter items by selectedCourseId when set', async () => {
+    const multiCoursePage: CourseSearchPage = {
+      items: [makeCourse('c-1', 'Course 1', 10), makeCourse('c-2', 'Course 2', 20)],
+      page: 0,
+      pageSize: 10,
+      totalItems: 2,
+      totalPages: 1,
+    };
+    (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockResolvedValueOnce(multiCoursePage);
+
+    (mockCatalogStore.selectedCourseId as import('@angular/core').WritableSignal<string>).set('c-2');
+
+    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
+    const component = fixture.componentInstance;
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.items().length).toBe(1);
+    expect(component.items()[0].id).toBe('c-2');
+    expect(component.totalItems()).toBe(1);
+
+    (mockCatalogStore.selectedCourseId as import('@angular/core').WritableSignal<string>).set('');
+  });
+
+  it('should not filter when selectedCourseId is empty', async () => {
+    const multiCoursePage: CourseSearchPage = {
+      items: [makeCourse('c-1', 'Course 1', 10), makeCourse('c-2', 'Course 2', 20)],
+      page: 0,
+      pageSize: 10,
+      totalItems: 2,
+      totalPages: 1,
+    };
+    (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockResolvedValueOnce(multiCoursePage);
+
+    (mockCatalogStore.selectedCourseId as import('@angular/core').WritableSignal<string>).set('');
+
+    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
+    const component = fixture.componentInstance;
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.items().length).toBe(2);
+    expect(component.totalItems()).toBe(2);
   });
 
   it('should set error on load failure', async () => {

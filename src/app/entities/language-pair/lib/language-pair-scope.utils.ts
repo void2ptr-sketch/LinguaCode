@@ -40,13 +40,13 @@ export function scenarioIndexMatchesLanguagePair(
  *
  * @param entry — Course index entry to check.
  * @param pair — Language pair to compare against.
- * @returns `true` if the entry's language pair summary matches.
+ * @returns `true` if the entry's `knownLanguage` and `learningLanguage` match.
  */
 export function courseIndexMatchesLanguagePair(
-  entry: Pick<CourseIndexEntry, 'languagePairSummary'>,
+  entry: Pick<CourseIndexEntry, 'knownLanguage' | 'learningLanguage'>,
   pair: LanguagePair,
 ): boolean {
-  return entry.languagePairSummary === formatLanguagePair(pair);
+  return entry.knownLanguage === pair.known && entry.learningLanguage === pair.learning;
 }
 
 /**
@@ -87,7 +87,7 @@ export function scenarioIndexMatchesLanguageCriteria(
  * @returns `true` if the entry matches or criteria are incomplete.
  */
 export function courseIndexMatchesLanguageCriteria(
-  entry: Pick<CourseIndexEntry, 'languagePairSummary'>,
+  entry: Pick<CourseIndexEntry, 'knownLanguage' | 'learningLanguage'>,
   knownLanguage?: LanguagePair['known'],
   learningLanguage?: LanguagePair['learning'],
 ): boolean {

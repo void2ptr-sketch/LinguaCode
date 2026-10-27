@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, output, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, output, inject, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -68,6 +68,11 @@ export class CourseCatalogProgramsComponent {
   readonly progressByCourseId = this.catalogStore.progressByCourseId;
   /** Set of completed course IDs. */
   readonly completedCourseIds = this.catalogStore.completedCourseIds;
+  /** ID of the currently filtered course (empty when no filter). */
+  readonly selectedCourseId = this.catalogStore.selectedCourseId;
+
+  /** Whether a course filter is active. */
+  readonly hasCourseFilter = computed(() => this.selectedCourseId().length > 0);
 
   // ---- Methods ----
 
@@ -103,5 +108,18 @@ export class CourseCatalogProgramsComponent {
   onPageChange(event: PageEvent): void {
     this.catalogStore.setPageIndex(event.pageIndex);
     this.catalogStore.setPageSize(event.pageSize);
+  }
+
+  /**
+   * Clears the course filter and reloads the catalog.
+   *
+   * @remarks
+   * Sets `filterDismissedUntilTabChange` so that auto-sync from learningSession
+   * is suppressed until the user switches tabs. Notifies the parent to reload.
+   */
+  clearFilter(): void {
+    this.catalogStore.setFilterDismissed(true);
+    this.catalogStore.setSelectedCourseId('');
+    this.loadRequested.emit();
   }
 }

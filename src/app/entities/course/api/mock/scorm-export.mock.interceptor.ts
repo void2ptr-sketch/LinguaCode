@@ -14,14 +14,13 @@ import type { ScormExportBundle } from './scorm-export.types';
  * @returns The course ID, or `null` if the URL does not target a SCORM export.
  */
 const extractScormCourseId = (url: string): string | null => {
-  const prefix = `${buildApiUrl('/courses/')}`;
-  const suffix = '/scorm-export';
+  const prefix = `${buildApiUrl('/scorm/export/courses/')}`;
 
-  if (!url.includes(prefix) || !url.endsWith(suffix)) {
+  if (!url.startsWith(prefix)) {
     return null;
   }
 
-  const rest = url.slice(url.indexOf(prefix) + prefix.length, -suffix.length);
+  const rest = url.slice(prefix.length);
   return rest || null;
 };
 

@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CoursesApiService } from '../courses-api.service';
 import { coursesApiMockInterceptor } from './courses-api.mock.interceptor';
+import { LanguagePairsApiService } from '../../../language-pair/api';
 
 describe('courses API (mock interceptor)', () => {
   let api: CoursesApiService;
@@ -14,6 +15,15 @@ describe('courses API (mock interceptor)', () => {
       providers: [
         CoursesApiService,
         provideHttpClient(withFetch(), withInterceptors([coursesApiMockInterceptor])),
+        {
+          provide: LanguagePairsApiService,
+          useValue: {
+            listAll: () => Promise.resolve([
+              { id: 1, knownCode: 'ru', learningCode: 'en' },
+              { id: 2, knownCode: 'ru', learningCode: 'zh' },
+            ]),
+          },
+        },
       ],
     });
 

@@ -48,6 +48,10 @@ describe('CourseCatalogStore', () => {
     it('should have default selectedTabIndex', () => {
       expect(store.selectedTabIndex()).toBe(0);
     });
+
+    it('should have default selectedCourseId', () => {
+      expect(store.selectedCourseId()).toBe('');
+    });
   });
 
   describe('course catalog mutations', () => {
@@ -61,6 +65,8 @@ describe('CourseCatalogStore', () => {
           published: true,
           updatedAt: '2024-01-01T00:00:00.000Z',
           languagePairSummary: 'Русский → English',
+          knownLanguage: 'ru',
+          learningLanguage: 'en',
         },
       ];
       store.setItems(items);
@@ -114,6 +120,32 @@ describe('CourseCatalogStore', () => {
     it('should set selectedTabIndex', () => {
       store.setSelectedTabIndex(2);
       expect(store.selectedTabIndex()).toBe(2);
+    });
+
+    it('should reset filterDismissed when setting tab index', () => {
+      store.setFilterDismissed(true);
+      expect(store.filterDismissedUntilTabChange()).toBe(true);
+      store.setSelectedTabIndex(1);
+      expect(store.filterDismissedUntilTabChange()).toBe(false);
+    });
+  });
+
+  describe('course filter mutations', () => {
+    it('should set selectedCourseId', () => {
+      store.setSelectedCourseId('course-123');
+      expect(store.selectedCourseId()).toBe('course-123');
+    });
+
+    it('should reset selectedCourseId to empty string', () => {
+      store.setSelectedCourseId('course-123');
+      store.setSelectedCourseId('');
+      expect(store.selectedCourseId()).toBe('');
+    });
+
+    it('should set filterDismissed', () => {
+      expect(store.filterDismissedUntilTabChange()).toBe(false);
+      store.setFilterDismissed(true);
+      expect(store.filterDismissedUntilTabChange()).toBe(true);
     });
   });
 

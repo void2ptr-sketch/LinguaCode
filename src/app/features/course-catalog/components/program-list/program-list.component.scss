@@ -1,3 +1,11 @@
+.course-catalog-page__filter-indicator {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
 .course-catalog-page__state {
   align-items: center;
   display: grid;

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 import { CourseCatalogCoursesComponent } from './course-card-list.component';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { DraftsStore } from '../../services';
+import { CourseCatalogLanguagePairManagerService, DraftsStore } from '../../services';
 
 describe('CourseCatalogCoursesComponent', () => {
   let fixture: ComponentFixture<CourseCatalogCoursesComponent>;
@@ -68,6 +68,15 @@ describe('CourseCatalogCoursesComponent', () => {
             setSettingsPairIdDraft: vi.fn(),
           },
         },
+        {
+          provide: CourseCatalogLanguagePairManagerService,
+          useValue: {
+            setActive: vi.fn(),
+            removePair: vi.fn(),
+            addPair: vi.fn(),
+            syncPairSettingsDrafts: vi.fn(),
+          },
+        },
       ],
     }).compileComponents();
 
@@ -117,5 +126,14 @@ describe('CourseCatalogCoursesComponent', () => {
       '.page-card__pair-actions button[aria-label="Удалить курс"]',
     );
     expect(removeButtons.length).toBeGreaterThanOrEqual(0);
+  });
+
+  it('should call pairManager.setActive on onSetActive', () => {
+    const mockSetActive = vi.fn();
+    (component as any).pairManager.setActive = mockSetActive;
+
+    component.onSetActive('pair-2');
+
+    expect(mockSetActive).toHaveBeenCalledWith('pair-2');
   });
 });

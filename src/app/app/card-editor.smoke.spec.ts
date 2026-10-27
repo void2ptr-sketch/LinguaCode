@@ -7,6 +7,7 @@ import { routes } from './app.routes';
 import { provideApiHttpTesting } from './api/provide-api.http';
 import { seedTestContentCache } from '../entities/content-seed/content-seed.test-utils';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
+import { LanguagePairsApiService } from '../entities/language-pair/api';
 
 describe('Card editor smoke', () => {
   beforeEach(async () => {
@@ -20,6 +21,14 @@ describe('Card editor smoke', () => {
         provideNoopAnimations(),
         provideApiHttpTesting(),
         provideHttpClientTesting(),
+        {
+          provide: LanguagePairsApiService,
+          useValue: {
+            listAll: () => Promise.resolve([
+              { id: 1, knownCode: 'ru', learningCode: 'en' },
+            ]),
+          },
+        },
       ],
     }).compileComponents();
 

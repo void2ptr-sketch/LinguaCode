@@ -7,6 +7,7 @@ import { CoursesCatalogMockHandler } from './courses-catalog.mock.handler';
 import { coursesApiMockInterceptor } from './courses-api.mock.interceptor';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { seedTestContentCache } from '../../../content-seed/content-seed.test-utils';
+import { LanguagePairsApiService } from '../../../language-pair/api';
 
 const makeLanguagePair = (known: ContentLanguage, learning: ContentLanguage) => ({
   known,
@@ -26,6 +27,15 @@ describe('CoursesCatalogMockHandler', () => {
         CoursesApiService,
         CoursesCatalogMockHandler,
         provideHttpClient(withFetch(), withInterceptors([coursesApiMockInterceptor])),
+        {
+          provide: LanguagePairsApiService,
+          useValue: {
+            listAll: () => Promise.resolve([
+              { id: 1, knownCode: 'ru', learningCode: 'en' },
+              { id: 2, knownCode: 'ru', learningCode: 'zh' },
+            ]),
+          },
+        },
       ],
     });
 

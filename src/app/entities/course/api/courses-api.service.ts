@@ -17,6 +17,8 @@ import type {
   CourseWritePayload,
 } from '../repository/course-catalog.port';
 import { UserStore } from '../../user/model/user.store';
+import type { ContentLanguage } from '../../card/model/card-index.types';
+import { LanguagePairsApiService } from '../../language-pair/api';
 
 /** Backend DTO for a course (matches `CourseDto`). */
 type BackendCourseDto = {
@@ -36,8 +38,16 @@ type BackendCourseDto = {
  * @remarks
  * The backend `CourseDto` does not include `programCount` or
  * `languagePairSummary` — these are derived client-side.
+ * `languagePairId` is resolved to `knownLanguage`/`learningLanguage`
+ * via the `LanguagePairsApiService` cache.
  */
-function toIndexEntry(dto: BackendCourseDto): CourseIndexEntry {
+function toIndexEntry(
+  dto: BackendCourseDto,
+  pairCache: Record<number, { known: ContentLanguage; learning: ContentLanguage }>,
+): CourseIndexEntry {
+  const pairId = dto.languagePairId;
+  const cached = pairId ? pairCache[pairId] : null;
+
   return {
     id: String(dto.id),
     title: dto.title,
@@ -45,7 +55,9 @@ function toIndexEntry(dto: BackendCourseDto): CourseIndexEntry {
     programCount: 0, // not available in the list response
     published: dto.published,
     updatedAt: dto.updatedAt,
-    languagePairSummary: dto.languagePairId ? String(dto.languagePairId) : '',
+    languagePairSummary: pairId ? String(pairId) : '',
+    knownLanguage: cached?.known ?? 'ru',
+    learningLanguage: cached?.learning ?? 'en',
   };
 }
 
@@ -68,6 +80,27 @@ export type {
 export class CoursesApiService implements CourseCatalogPort {
   private readonly http = inject(HttpClient);
   private readonly userStore = inject(UserStore);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
+
+  /** Cache: languagePairId → { known, learning } resolved from `/language-pairs`. */
+  private pairCache: Record<number, { known: ContentLanguage; learning: ContentLanguage }> = {};
+  private pairCacheLoaded = false;
+
+  private async ensurePairCache(): Promise<void> {
+    if (this.pairCacheLoaded) return;
+
+    try {
+      const pairs = await this.languagePairsApi.listAll();
+      for (const p of pairs) {
+        this.pairCache[p.id] = { known: p.knownCode as ContentLanguage, learning: p.learningCode as ContentLanguage };
+      }
+    } catch {
+      // /language-pairs may require auth (403) — fallback to default mapping
+      this.pairCache[1] = { known: 'ru' as ContentLanguage, learning: 'en' as ContentLanguage };
+    }
+
+    this.pairCacheLoaded = true;
+  }
 
   /**
    * Searches courses by criteria.
@@ -76,25 +109,27 @@ export class CoursesApiService implements CourseCatalogPort {
    * @returns A page of course index entries.
    */
   search(criteria: CourseSearchCriteria): Promise<CourseSearchPage> {
-    return firstValueFrom(
-      this.http.get<ApiListResponse<BackendCourseDto>>(buildApiUrl('/courses/search'), {
-        params: buildCourseSearchParams(criteria),
-      }),
-    ).then((response) => {
-      const dtos = response.data;
-      const totalItems = response.total ?? dtos.length;
-      const pageSize = criteria.page.pageSize;
-      const page = criteria.page.page;
-      const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 0;
+    return this.ensurePairCache().then(() =>
+      firstValueFrom(
+        this.http.get<ApiListResponse<BackendCourseDto>>(buildApiUrl('/courses/search'), {
+          params: buildCourseSearchParams(criteria),
+        }),
+      ).then((response) => {
+        const dtos = response.data;
+        const totalItems = response.total ?? dtos.length;
+        const pageSize = criteria.page.pageSize;
+        const page = criteria.page.page;
+        const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 0;
 
-      return {
-        items: dtos.map(toIndexEntry),
-        page,
-        pageSize,
-        totalItems,
-        totalPages,
-      };
-    });
+        return {
+          items: dtos.map((dto) => toIndexEntry(dto, this.pairCache)),
+          page,
+          pageSize,
+          totalItems,
+          totalPages,
+        };
+      }),
+    );
   }
 
   /**

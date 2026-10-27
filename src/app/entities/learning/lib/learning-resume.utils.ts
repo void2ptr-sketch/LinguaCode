@@ -99,6 +99,10 @@ export function courseMatchesActiveLanguagePair(
   course: Pick<Course, 'languagePair'>,
   pair: LanguagePair,
 ): boolean {
+  // Если languagePair не задан — разрешаем загрузку курса (не блокируем)
+  if (course.languagePair == null) {
+    return true;
+  }
   return languagePairsEqual(course.languagePair, pair);
 }
 
