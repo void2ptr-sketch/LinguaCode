@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard, notAuthGuard } from '../entities/auth';
 
 /**
  * Корневые маршруты приложения.
@@ -6,8 +7,18 @@ import { Routes } from '@angular/router';
  * TypeScript-модуль фичи не попадает в начальный чанк.
  */
 export const routes: Routes = [
+  // ── Auth (outside layout shell) ─────────────────────────────────
+  {
+    path: 'login',
+    canMatch: [notAuthGuard],
+    loadComponent: () =>
+      import('../pages/auth/login/login-page.component').then((m) => m.LoginPageComponent),
+  },
+
+  // ── Main layout shell ───────────────────────────────────────────
   {
     path: '',
+    canMatch: [authGuard],
     loadComponent: () =>
       import('../widgets/main-layout/main-layout.component').then((m) => m.MainLayoutComponent),
     children: [

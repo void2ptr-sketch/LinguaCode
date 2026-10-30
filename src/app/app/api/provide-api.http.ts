@@ -14,6 +14,8 @@ import { scenariosApiMockInterceptor } from '../../entities/scenario/api/mock/sc
 import { coursesApiMockInterceptor } from '../../entities/course/api/mock/courses-api.mock.interceptor';
 import { programsApiMockInterceptor } from '../../entities/program/api/mock/programs-api.mock.interceptor';
 import { scormExportMockInterceptor } from '../../entities/course/api/mock/scorm-export.mock.interceptor';
+import { languagePairsApiMockInterceptor } from '../../entities/language-pair/api';
+import { authApiMockInterceptor } from '../../entities/auth/api';
 
 /**
  * Provides HTTP client configuration for the API layer.
@@ -31,6 +33,8 @@ export const provideApiHttp = () => {
     ...(environment.useCoursesApiMock ? [coursesApiMockInterceptor] : []),
     ...(environment.useProgramsApiMock ? [programsApiMockInterceptor] : []),
     ...(environment.useScormMock ? [scormExportMockInterceptor] : []),
+    ...(environment.useLanguagePairsApiMock ? [languagePairsApiMockInterceptor] : []),
+    ...(environment.useAuthApiMock ? [authApiMockInterceptor] : []),
     offlineInterceptor,
     authRefreshInterceptor,
     authInterceptor,

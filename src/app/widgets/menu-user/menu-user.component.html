@@ -1,6 +1,29 @@
-<div class="menu-user">
-  <a mat-button routerLink="/user" routerLinkActive="menu-link--active">
-    <mat-icon>person_outline</mat-icon>
-    {{ displayName() }}
+@if (isAuthenticated()) {
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+  <mat-menu #userMenu="matMenu" xPosition="before">
+    <div class="menu-user__header">
+      <mat-icon>account_circle</mat-icon>
+      <span>{{ displayName() }}</span>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item routerLink="/user">
+      <mat-icon>person</mat-icon>
+      <span>Профиль</span>
+    </button>
+
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Выйти</span>
+    </button>
+  </mat-menu>
+} @else {
+  <a mat-button routerLink="/login">
+    <mat-icon>login</mat-icon>
+    <span>Войти</span>
   </a>
-</div>
+}

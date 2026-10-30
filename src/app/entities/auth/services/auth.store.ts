@@ -59,6 +59,7 @@ export class AuthStore {
     try {
       const session = await this.authApi.login(credentials);
       // Backend AuthResponse: { userId, accessToken, refreshToken }
+      // Mock additionally returns `displayName`
       const tokens: AuthTokens = {
         accessToken: session.accessToken,
         refreshToken: session.refreshToken,
@@ -66,7 +67,11 @@ export class AuthStore {
       this.tokenStorage.write(tokens);
       this.#state.set({
         status: 'authenticated',
-        user: { id: session.userId, displayName: '', email: '' },
+        user: {
+          id: session.userId,
+          displayName: ((session as unknown as Record<string, unknown>)['displayName'] as string) ?? '',
+          email: '',
+        },
         tokens,
         error: null,
       });

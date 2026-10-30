@@ -11,6 +11,10 @@ export type Environment = {
   useProgramsApiMock: boolean;
   /** Включает mock для SCORM-экспорта курсов. */
   useScormMock: boolean;
+  /** Включает mock для language-pairs API. */
+  useLanguagePairsApiMock: boolean;
+  /** Включает mock для auth API (login/refresh/logout). */
+  useAuthApiMock: boolean;
   /** Включает реальный auth-поток (токен/refresh). */
   authEnabled: boolean;
 };

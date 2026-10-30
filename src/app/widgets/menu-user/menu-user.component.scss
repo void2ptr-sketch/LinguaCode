@@ -2,13 +2,18 @@
   display: inline-flex;
 }
 
-.menu-user {
+.menu-user__header {
+  display: flex;
   align-items: center;
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.75rem;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--md-s-on-surface, #1c1b1f);
+  font-weight: 500;
 }
 
-.menu-link--active {
-  font-weight: 500;
+.menu-user__header mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: var(--md-s-primary, #6750a4);
 }

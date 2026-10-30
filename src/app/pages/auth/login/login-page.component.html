@@ -1,0 +1,74 @@
+<div class="login-page">
+  <mat-card class="login-card">
+    <mat-card-content class="login-card__content">
+      <div class="login-card__header">
+        <mat-icon class="login-card__icon" aria-hidden="true">lock_open</mat-icon>
+        <h1 class="login-card__title">Вход в систему</h1>
+      </div>
+
+      <form
+        class="login-card__form"
+        #loginForm="ngForm"
+        (ngSubmit)="onSubmit({ email: email(), password: password() })"
+        novalidate
+      >
+        <mat-form-field class="login-card__field" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            required
+            autocomplete="email"
+            #emailField="ngModel"
+            placeholder="you@example.com"
+          />
+          @if (emailField.invalid && emailField.touched) {
+            <mat-error>Пожалуйста, введите корректный email</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="login-card__field" appearance="outline">
+          <mat-label>Пароль</mat-label>
+          <input
+            matInput
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            required
+            autocomplete="current-password"
+            #passwordField="ngModel"
+            placeholder="Введите пароль"
+          />
+          @if (passwordField.invalid && passwordField.touched) {
+            <mat-error>Пароль должен быть не менее 1 символа</mat-error>
+          }
+        </mat-form-field>
+
+        @if (error()) {
+          <div class="login-card__error" role="alert">
+            <mat-icon aria-hidden="true">error</mat-icon>
+            <span>{{ error() }}</span>
+          </div>
+        }
+
+        <button
+          mat-flat-button
+          type="submit"
+          class="login-card__submit"
+          [disabled]="isAuthenticating() || loginForm.invalid"
+        >
+          @if (isAuthenticating()) {
+            <mat-progress-bar
+              mode="indeterminate"
+              class="login-card__spinner"
+              aria-label="Вход..."
+            />
+          }
+          <span [hidden]="isAuthenticating()">Войти</span>
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
