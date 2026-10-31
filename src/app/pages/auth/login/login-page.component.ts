@@ -10,6 +10,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AuthStore } from '../../../entities/auth/services/auth.store';
 import type { LoginCredentials } from '../../../entities/auth/model/auth.types';
+import { LanguageService } from '../../../entities/language-pair/lib';
 
 /** Status of the login operation. */
 type LoginStatus = 'idle' | 'success' | 'error';
@@ -36,6 +37,7 @@ type LoginStatus = 'idle' | 'success' | 'error';
 })
 export class LoginPageComponent {
   private readonly authStore = inject(AuthStore);
+  private readonly languageService = inject(LanguageService);
   private readonly router = inject(Router);
 
   readonly email = signal('');
@@ -63,11 +65,26 @@ export class LoginPageComponent {
     }, 800);
   }
 
-  /** Handles form submission and authenticates the user. */
-  async onSubmit(credentials: LoginCredentials): Promise<void> {
+  /**
+   * Handles form submission and authenticates the user.
+   *
+   * @param credentials — Email/password entered by the user.
+   * @param form — Template-driven form ref used to guard against invalid submits.
+   *   `ngSubmit` can fire even when the form is invalid (e.g. implicit submit
+   *   via Enter key), so empty credentials are blocked client-side instead of
+   *   reaching the backend validation (which responds with HTTP 400).
+   */
+  async onSubmit(credentials: LoginCredentials, form: NgForm | null): Promise<void> {
+    if (form?.invalid) {
+      form.control.markAllAsTouched();
+      return;
+    }
     this.status.set('idle');
     const success = await this.authStore.login(credentials);
     if (success) {
+      // Now authenticated — languages can be fetched (the backend returns 403
+      // for unauthenticated /languages requests during anonymous bootstrap).
+      void this.languageService.load();
       this.scheduleRedirect();
     } else {
       this.status.set('error');

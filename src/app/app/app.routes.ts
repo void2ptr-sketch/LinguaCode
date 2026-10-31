@@ -184,6 +184,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('../pages/user/user-page.component').then((m) => m.UserPageComponent),
       },
+      {
+        path: 'settings/languages',
+        loadComponent: () =>
+          import('../pages/language-settings/language-settings.component').then(
+            (m) => m.LanguageSettingsComponent,
+          ),
+      },
 
       { path: '**', redirectTo: 'home' },
     ],

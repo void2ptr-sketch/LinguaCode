@@ -14,6 +14,8 @@ export type AuthUser = {
   id: string;
   displayName: string;
   email: string;
+  /** Array of role codes (e.g. ['ROLE_USER', 'ROLE_ADMIN']). */
+  roles?: string[];
 };
 
 /** Пара токенов доступа. */

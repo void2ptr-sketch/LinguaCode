@@ -1,0 +1,163 @@
+@if (loading()) {
+  <div class="settings-page__loading">Loading languages...</div>
+} @else {
+  <mat-card class="settings-page__card">
+    <mat-card-header>
+      <mat-card-title>Language Settings</mat-card-title>
+      <mat-card-subtitle>
+        Select available languages and configure learning pairs
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-tab-group dynamicHeight class="settings-page__tabs">
+        <!-- Tab 1: Languages -->
+        <mat-tab label="Languages">
+          <div class="settings-page__tab-panel">
+            <div class="settings-page__header">
+              <div>
+                <h2 class="settings-page__section-title">Available Languages</h2>
+                <p class="settings-page__hint">
+                  Choose which languages are available for learning.
+                  At least one language is required to create pairs.
+                </p>
+              </div>
+
+              @if (canWriteLanguages()) {
+                <button
+                  mat-flat-button
+                  type="button"
+                  (click)="openCreateLanguageDialog()"
+                >
+                  <mat-icon>add</mat-icon>
+                  Add Language
+                </button>
+              }
+            </div>
+
+            @if (availableLanguages().length === 0) {
+              <div class="settings-page__empty">No languages available.</div>
+            } @else {
+              <div class="settings-page__languages-grid">
+                @for (lang of availableLanguages(); track lang.id) {
+                  <mat-card class="settings-page__language-item">
+                    <mat-card-content>
+                      <div class="settings-page__language-info">
+                        <span class="settings-page__language-name">{{ lang.displayName }}</span>
+                        <span class="settings-page__language-native">({{ lang.nativeName }})</span>
+                        <span class="settings-page__language-code">{{ lang.code }}</span>
+                      </div>
+
+                      <mat-checkbox
+                        [checked]="selectedCodes().includes(lang.code)"
+                        (change)="toggleLanguage(lang.code)"
+                        [disabled]="selectedCodes().length === 1 && selectedCodes().includes(lang.code)"
+                      >
+                        Use in Learning
+                      </mat-checkbox>
+
+                      @if (canWriteLanguages()) {
+                        <div class="settings-page__language-admin">
+                          <mat-slide-toggle
+                            [checked]="lang.activeFlag"
+                            (change)="toggleActiveLanguage(lang)"
+                          >
+                            Active
+                          </mat-slide-toggle>
+                        </div>
+                      }
+                    </mat-card-content>
+                  </mat-card>
+                }
+              </div>
+            }
+          </div>
+        </mat-tab>
+
+        <!-- Tab 2: Language Pairs -->
+        <mat-tab label="Language Pairs">
+          <div class="settings-page__tab-panel">
+            <h2 class="settings-page__section-title">Configured Pairs</h2>
+            <p class="settings-page__hint">
+              Create pairs from your selected languages. The first pair created is active by default.
+            </p>
+
+            @if (selectedCodes().length < 2) {
+              <div class="settings-page__warning">
+                Select at least 2 languages to create pairs.
+              </div>
+            } @else {
+              <!-- Create new pair form -->
+              <div class="settings-page__pair-form">
+                <mat-form-field appearance="outline" class="settings-page__pair-select">
+                  <mat-label>Known</mat-label>
+                  <mat-select [value]="newKnownCode()" (selectionChange)="newKnownCode.set($event.value)">
+                    @for (code of selectedCodes(); track code) {
+                      <mat-option [value]="code">{{ getLanguageLabel(code) }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+
+                <mat-form-field appearance="outline" class="settings-page__pair-select">
+                  <mat-label>Learning</mat-label>
+                  <mat-select [value]="newLearningCode()" (selectionChange)="newLearningCode.set($event.value)">
+                    @for (code of selectedCodes(); track code) {
+                      <mat-option [value]="code">{{ getLanguageLabel(code) }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+
+                <button
+                  mat-flat-button
+                  type="button"
+                  class="settings-page__pair-add"
+                  [disabled]="!newKnownCode() || !newLearningCode() || newKnownCode() === newLearningCode()"
+                  (click)="createPair()"
+                >
+                  Add Pair
+                </button>
+              </div>
+
+              <!-- Existing pairs list -->
+              <div class="settings-page__pairs-list">
+                @for (pair of configuredPairs(); track pair.id) {
+                  <mat-card class="settings-page__pair-item" [class.settings-page__pair-item--active]="pair.id === activePairId()">
+                    <mat-card-content>
+                      <div class="settings-page__pair-label">
+                        <strong>{{ getLanguageLabel(pair.known) }}</strong>
+                        <mat-icon>arrow_forward</mat-icon>
+                        <strong>{{ getLanguageLabel(pair.learning) }}</strong>
+                      </div>
+                      <div class="settings-page__pair-actions">
+                        <button
+                          mat-icon-button
+                          type="button"
+                          matTooltip="Activate"
+                          [class.settings-page__pair-actions--active]="pair.id === activePairId()"
+                          (click)="setActivePair(pair.id)"
+                        >
+                          <mat-icon>radio_button_checked</mat-icon>
+                        </button>
+                        <button
+                          mat-icon-button
+                          type="button"
+                          color="warn"
+                          matTooltip="Remove"
+                          (click)="removePair(pair.id)"
+                        >
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                }
+              </div>
+            }
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+}

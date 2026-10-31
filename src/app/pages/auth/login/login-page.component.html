@@ -13,7 +13,7 @@
       <form
         class="login-card__form"
         #loginForm="ngForm"
-        (ngSubmit)="onSubmit({ email: email(), password: password() })"
+        (ngSubmit)="onSubmit({ email: email(), password: password() }, loginForm)"
         novalidate
       >
         @if (showError()) {

@@ -8,6 +8,26 @@ import { initialAuthState, isAccessTokenExpired } from '../model/auth-state';
 import type { AuthState, AuthTokens, LoginCredentials } from '../model/auth.types';
 import { UserStore } from '../../user/model/user.store';
 
+/** Extracts payload from a JWT token string. */
+const parseJwtPayload = (token: string): Record<string, unknown> | null => {
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      return null;
+    }
+    const payload = parts[1];
+    const json = decodeURIComponent(
+      atob(payload)
+        .split('')
+        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join(''),
+    );
+    return JSON.parse(json);
+  } catch {
+    return null;
+  }
+};
+
 /**
  * Signal-стор аутентификации.
  *
@@ -49,7 +69,15 @@ export class AuthStore {
       return;
     }
     if (!isAccessTokenExpired(tokens)) {
-      this.#state.set({ status: 'authenticated', user: null, tokens, error: null });
+      // Extract roles from the stored access token
+      const payload = parseJwtPayload(tokens.accessToken);
+      const roles = ((payload as Record<string, unknown>)['roles'] as string[] | undefined) ?? [];
+      this.#state.set({
+        status: 'authenticated',
+        user: { id: 'restored', displayName: '', email: '', roles },
+        tokens,
+        error: null,
+      });
       return;
     }
     await this.refreshSession();
@@ -67,6 +95,11 @@ export class AuthStore {
         refreshToken: session.refreshToken,
       };
       this.tokenStorage.write(tokens);
+
+      // Extract roles from JWT access token
+      const payload = parseJwtPayload(session.accessToken);
+      const backendRoles = ((payload as Record<string, unknown>)['roles'] as string[] | undefined) ?? [];
+
       // Extract displayName from backend response if provided
       const backendDisplayName = (
         session as unknown as Record<string, unknown>
@@ -82,6 +115,7 @@ export class AuthStore {
           id: session.userId,
           displayName: userDisplayName,
           email: '',
+          roles: backendRoles,
         },
         tokens,
         error: null,
@@ -133,10 +167,14 @@ export class AuthStore {
       .refresh(tokens.refreshToken)
       .then((newTokens) => {
         this.tokenStorage.write(newTokens);
+        // Extract roles from the refreshed token
+        const payload = parseJwtPayload(newTokens.accessToken);
+        const roles = ((payload as Record<string, unknown>)['roles'] as string[] | undefined) ?? [];
         this.#state.update((s) => ({
           ...s,
           status: 'authenticated',
           tokens: newTokens,
+          user: { ...s.user!, roles },
           error: null,
         }));
         return true;

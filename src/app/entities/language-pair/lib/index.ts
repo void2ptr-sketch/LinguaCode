@@ -18,3 +18,7 @@ export {
   scenarioIndexMatchesLanguageCriteria,
   courseIndexMatchesLanguageCriteria,
 } from './language-pair-scope.utils';
+
+// ===== Services =====
+export { LanguageService } from './language.service';
+export { LanguageSettingsStore } from './language-settings.store';

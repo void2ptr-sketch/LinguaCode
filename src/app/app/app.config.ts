@@ -13,6 +13,7 @@ import { provideApiHttp } from './api/provide-api.http';
 import { SyncQueueBootstrap } from './sync/sync-queue.bootstrap';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 import { AuthStore } from '../entities/auth/services/auth.store';
+import { LanguageService } from '../entities/language-pair/lib';
 import { migrateUserContentOverlayIfNeeded } from '../entities/user/overlay/user-content-overlay.migration';
 import { repairUserContentOverlayIfNeeded } from '../entities/user/overlay/user-content-overlay.repair';
 import { AppErrorHandler } from './errors/app-error-handler';
@@ -46,6 +47,13 @@ export const appConfig: ApplicationConfig = {
       injector.get(SyncQueueBootstrap);
       if (environment.authEnabled) {
         await injector.get(AuthStore).restoreSession();
+      }
+      // Load languages (non-blocking — UI handles loading state).
+      // Only for authenticated users (or when auth is disabled): the backend
+      // returns 403 for unauthenticated /languages requests, and `LanguageService`
+      // swallows errors while marking the cache as loaded — leaving it empty.
+      if (!environment.authEnabled || injector.get(AuthStore).isAuthenticated()) {
+        injector.get(LanguageService).load();
       }
     }),
   ],
