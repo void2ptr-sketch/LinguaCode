@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,6 +31,8 @@ type LoginStatus = 'idle' | 'success' | 'error';
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule,
+    RouterLink,
+    RouterLinkActive,
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',

@@ -5,21 +5,12 @@
  * Intercepts `POST /auth/login`, `POST /auth/refresh`, and `POST /auth/logout`
  * and returns canned token data instead of hitting a real backend.
  *
+ * Also handles password reset endpoints for development:
+ * - `POST /auth/forgot-password` — returns a canned code
+ * - `POST /auth/verify-reset-code` — returns a reset token
+ * - `POST /auth/reset-password` — always succeeds
+ *
  * Active when `environment.useAuthApiMock` is `true`.
- *
- * Supported requests:
- * - POST /auth/login — accepts any email/password, returns a fake session
- * - POST /auth/refresh — returns a fresh token pair
- * - POST /auth/logout — always succeeds
- *
- * @example
- * ```typescript
- * // In environment.ts:
- * export const environment = {
- *   useAuthApiMock: true,
- *   // ...
- * };
- * ```
  */
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
@@ -91,6 +82,43 @@ export const authApiMockInterceptor: HttpInterceptorFn = (req, next) => {
 
   // POST /auth/logout — always succeed
   if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/auth/logout'))) {
+    return of(
+      new HttpResponse({
+        status: 200,
+        body: { data: null },
+      }),
+    );
+  }
+
+  // POST /auth/forgot-password — return canned code for dev
+  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/auth/forgot-password'))) {
+    const body = req.body as Record<string, unknown>;
+    const email = (body['email'] as string) ?? '';
+
+    console.log('[AuthMock] Password reset code for', email, ': 123456');
+
+    return of(
+      new HttpResponse({
+        status: 200,
+        body: {
+          data: '123456',
+        },
+      }),
+    );
+  }
+
+  // POST /auth/verify-code — always succeeds (code already stored from step 1)
+  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/auth/verify-code'))) {
+    return of(
+      new HttpResponse({
+        status: 200,
+        body: { data: true },
+      }),
+    );
+  }
+
+  // POST /auth/reset-password — always succeeds
+  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/auth/reset-password'))) {
     return of(
       new HttpResponse({
         status: 200,

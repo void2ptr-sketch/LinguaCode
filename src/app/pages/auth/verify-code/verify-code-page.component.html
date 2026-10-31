@@ -1,0 +1,70 @@
+<div class="auth-page">
+  <mat-card class="auth-card">
+    <mat-card-content class="auth-card__content">
+      <div class="auth-card__header">
+        <mat-icon class="auth-card__icon">mark_email_unread</mat-icon>
+        <h1 class="auth-card__title">Введите код</h1>
+        <p class="auth-card__subtitle">
+          Мы отправили 6-значный код на <strong>{{ email() }}</strong>
+        </p>
+      </div>
+
+      <form class="auth-card__form" novalidate (ngSubmit)="onSubmit()">
+        <div class="code-inputs">
+          @for (digit of [0, 1, 2, 3, 4, 5]; track digit) {
+            <input
+              class="code-input"
+              [attr.data-index]="digit"
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+              [value]="codeDigits()[digit]"
+              (input)="onDigitInput(digit, $event)"
+              (keydown)="onDigitKeydown(digit, $event)"
+              autocomplete="one-time-code"
+            />
+          }
+        </div>
+
+        <button
+          mat-flat-button
+          type="submit"
+          class="auth-card__submit"
+          [disabled]="submitDisabled()"
+        >
+          @if (submitting()) {
+            Проверка...
+          } @else {
+            Продолжить
+          }
+        </button>
+
+        <div class="code-inputs__footer">
+          <button
+            type="button"
+            mat-button
+            [disabled]="resendLoading() || countdown() > 0"
+            (click)="onResend()"
+          >
+            @if (resendLoading()) {
+              <ng-container>
+                <mat-icon class="code-inputs__spinner">sync</mat-icon>
+                Отправка...
+              </ng-container>
+            } @else if (countdown() > 0) {
+              Отправить повторно через {{ countdown() }}с
+            } @else {
+              Отправить код повторно
+            }
+          </button>
+          <a
+            mat-button
+            routerLink="/auth/forgot-password"
+          >
+            Назад
+          </a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

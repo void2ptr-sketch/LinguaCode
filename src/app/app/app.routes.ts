@@ -14,6 +14,27 @@ export const routes: Routes = [
     loadComponent: () =>
       import('../pages/auth/login/login-page.component').then((m) => m.LoginPageComponent),
   },
+  {
+    path: 'auth/forgot-password',
+    loadComponent: () =>
+      import('../pages/auth/forgot-password/forgot-password-page.component').then(
+        (m) => m.ForgotPasswordPageComponent,
+      ),
+  },
+  {
+    path: 'auth/verify-code',
+    loadComponent: () =>
+      import('../pages/auth/verify-code/verify-code-page.component').then(
+        (m) => m.VerifyCodePageComponent,
+      ),
+  },
+  {
+    path: 'auth/reset-password',
+    loadComponent: () =>
+      import('../pages/auth/reset-password/reset-password-page.component').then(
+        (m) => m.ResetPasswordPageComponent,
+      ),
+  },
 
   // ── Main layout shell ───────────────────────────────────────────
   {

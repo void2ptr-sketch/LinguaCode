@@ -57,6 +57,16 @@
           }
         </mat-form-field>
 
+        <a
+          routerLink="/auth/forgot-password"
+          routerLinkActive
+          #forgotLink="routerLinkActive"
+          class="login-card__forgot"
+          [class.login-card__forgot--active]="forgotLink"
+        >
+          Забыли пароль?
+        </a>
+
         <button
           mat-flat-button
           type="submit"

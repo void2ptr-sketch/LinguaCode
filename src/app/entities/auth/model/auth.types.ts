@@ -44,3 +44,28 @@ export type AuthState = {
   tokens: AuthTokens | null;
   error: string | null;
 };
+
+/** Запрос на отправку кода восстановления пароля. */
+export type ForgotPasswordRequest = {
+  email: string;
+};
+
+/** Ответ: код восстановления отправлен на email (строка). */
+export type ForgotPasswordResponse = string;
+
+/** Запрос на проверку кода восстановления. */
+export type VerifyCodeRequest = {
+  email: string;
+  code: string;
+};
+
+/** Ответ: токен для сброса пароля. */
+export type VerifyCodeResponse = {
+  resetToken: string;
+};
+
+/** Запрос на сброс пароля. */
+export type ResetPasswordRequest = {
+  resetToken: string;
+  newPassword: string;
+};

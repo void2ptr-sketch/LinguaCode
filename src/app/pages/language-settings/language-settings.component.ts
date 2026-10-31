@@ -181,6 +181,13 @@ export class LanguageSettingsComponent {
 
   /** Toggles active status for a language. */
   toggleActiveLanguage(lang: LanguageDto): void {
+    if (!this.canWriteLanguages()) {
+      this.snackBar.open('You do not have permission to change language status', 'Close', {
+        duration: 5000,
+      });
+      return;
+    }
+
     this.languageApi
       .update(lang.id, { activeFlag: !lang.activeFlag })
       .then((updated) => {
@@ -191,12 +198,13 @@ export class LanguageSettingsComponent {
         );
         this.languageService.load();
       })
-      .catch((error) => {
-        this.snackBar.open(
-          `Failed to update language: ${(error as Error).message}`,
-          'Close',
-          { duration: 5000 },
-        );
+      .catch((error: unknown) => {
+        const httpError = error as { status?: number; message?: string };
+        const message =
+          httpError.status === 403
+            ? 'Permission denied. You do not have permission to change language status.'
+            : `Failed to update language: ${httpError.message ?? 'Unknown error'}`;
+        this.snackBar.open(message, 'Close', { duration: 5000 });
       });
   }
 }
