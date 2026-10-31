@@ -1,9 +1,13 @@
 <div class="login-page">
-  <mat-card class="login-card">
+  <mat-card class="login-card" [class.login-card--success]="showSuccess()" [class.login-card--error]="showError()">
     <mat-card-content class="login-card__content">
       <div class="login-card__header">
-        <mat-icon class="login-card__icon" aria-hidden="true">lock_open</mat-icon>
-        <h1 class="login-card__title">Вход в систему</h1>
+        <mat-icon class="login-card__icon" [class.login-card__icon--success]="showSuccess()">
+          {{ showSuccess() ? 'check_circle' : 'lock_open' }}
+        </mat-icon>
+        <h1 class="login-card__title">
+          {{ showSuccess() ? 'Добро пожаловать' : 'Вход в систему' }}
+        </h1>
       </div>
 
       <form
@@ -12,6 +16,13 @@
         (ngSubmit)="onSubmit({ email: email(), password: password() })"
         novalidate
       >
+        @if (showError()) {
+          <div class="login-card__status login-card__status--error" role="alert">
+            <mat-icon>error_outline</mat-icon>
+            <span>{{ error() }}</span>
+          </div>
+        }
+
         <mat-form-field class="login-card__field" appearance="outline">
           <mat-label>Email</mat-label>
           <input
@@ -45,13 +56,6 @@
             <mat-error>Пароль должен быть не менее 1 символа</mat-error>
           }
         </mat-form-field>
-
-        @if (error()) {
-          <div class="login-card__error" role="alert">
-            <mat-icon aria-hidden="true">error</mat-icon>
-            <span>{{ error() }}</span>
-          </div>
-        }
 
         <button
           mat-flat-button

@@ -10,6 +10,16 @@
 .login-card {
   width: 100%;
   max-width: 420px;
+  transition: border-color 0.4s ease;
+  border: 1px solid transparent;
+
+  &--success {
+    border-color: var(--md-s-primary, #6750a4);
+  }
+
+  &--error {
+    border-color: color-mix(in srgb, var(--md-s-error, #ba1a1a) 40%, transparent);
+  }
 }
 
 .login-card__content {
@@ -32,6 +42,11 @@
   width: 48px;
   height: 48px;
   color: var(--md-s-primary, #6750a4);
+  transition: color 0.3s ease;
+
+  &--success {
+    color: #4caf50;
+  }
 }
 
 .login-card__title {
@@ -51,24 +66,31 @@
   width: 100%;
 }
 
-.login-card__error {
+/* ── Inline status indicators ─────────────────────────── */
+
+.login-card__status {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
   border-radius: 8px;
-  background: color-mix(in srgb, var(--md-s-error, #ba1a1a) 8%, transparent);
-  color: var(--md-s-error, #ba1a1a);
   font-size: 0.875rem;
   line-height: 1.4;
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  &--error {
+    background: color-mix(in srgb, var(--md-s-error, #ba1a1a) 8%, transparent);
+    color: var(--md-s-error, #ba1a1a);
+  }
 }
 
-.login-card__error mat-icon {
-  font-size: 20px;
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
+/* ── Submit button ────────────────────────────────────── */
 
 .login-card__submit {
   width: 100%;
@@ -76,6 +98,7 @@
   font-size: 1rem;
   font-weight: 500;
   text-transform: none;
+  position: relative;
 }
 
 .login-card__spinner {
@@ -84,8 +107,4 @@
   left: 0;
   width: 100%;
   border-radius: 0 0 8px 8px;
-}
-
-.login-card__submit {
-  position: relative;
 }
