@@ -6,6 +6,7 @@ import { AuthApiService } from '../api/auth-api.service';
 import { AuthTokenStorage } from './auth-token.storage';
 import { initialAuthState, isAccessTokenExpired } from '../model/auth-state';
 import type { AuthState, AuthTokens, LoginCredentials } from '../model/auth.types';
+import { UserStore } from '../../user/model/user.store';
 
 /**
  * Signal-стор аутентификации.
@@ -21,6 +22,7 @@ import type { AuthState, AuthTokens, LoginCredentials } from '../model/auth.type
 export class AuthStore {
   private readonly authApi = inject(AuthApiService);
   private readonly tokenStorage = inject(AuthTokenStorage);
+  private readonly userStore = inject(UserStore);
   private readonly logger = inject(AppLoggerService);
 
   readonly #state = signal<AuthState>(initialAuthState);
@@ -65,16 +67,30 @@ export class AuthStore {
         refreshToken: session.refreshToken,
       };
       this.tokenStorage.write(tokens);
+      // Extract displayName from backend response if provided
+      const backendDisplayName = (
+        session as unknown as Record<string, unknown>
+      )['displayName'];
+      const userDisplayName =
+        typeof backendDisplayName === 'string' && backendDisplayName
+          ? backendDisplayName
+          : '';
+
       this.#state.set({
         status: 'authenticated',
         user: {
           id: session.userId,
-          displayName: ((session as unknown as Record<string, unknown>)['displayName'] as string) ?? '',
+          displayName: userDisplayName,
           email: '',
         },
         tokens,
         error: null,
       });
+
+      // Sync displayName with UserStore so profile pages display it
+      if (userDisplayName) {
+        this.userStore.updateDisplayName(userDisplayName);
+      }
       return true;
     } catch (error) {
       const message = getApiErrorMessage(error, 'Не удалось войти');
