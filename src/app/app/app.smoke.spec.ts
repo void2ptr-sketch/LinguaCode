@@ -5,6 +5,7 @@ import { provideRouter, Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { provideApiHttpTesting } from './api/provide-api.http';
+import { AuthStore } from '../entities/auth/services/auth.store';
 
 describe('App smoke', () => {
   beforeEach(async () => {
@@ -15,6 +16,14 @@ describe('App smoke', () => {
         provideNoopAnimations(),
         provideApiHttpTesting(),
         provideHttpClientTesting(),
+        {
+          provide: AuthStore,
+          useValue: {
+            isAuthenticated: () => true,
+            user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: [] }),
+            logout: () => Promise.resolve(),
+          },
+        },
       ],
     }).compileComponents();
   });
@@ -24,6 +33,8 @@ describe('App smoke', () => {
     const router = TestBed.inject(Router);
 
     await router.navigate(['home']);
+    fixture.detectChanges();
+    await fixture.whenStable();
     fixture.detectChanges();
 
     const text = fixture.nativeElement.textContent as string;
@@ -39,6 +50,8 @@ describe('App smoke', () => {
 
     await router.navigate(['user']);
     fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     expect(fixture.nativeElement.textContent).toContain('Профиль пользователя');
 
@@ -50,6 +63,8 @@ describe('App smoke', () => {
     const router = TestBed.inject(Router);
 
     await router.navigate(['unknown-route']);
+    fixture.detectChanges();
+    await fixture.whenStable();
     fixture.detectChanges();
 
     expect(router.url).toBe('/home');

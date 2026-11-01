@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 import { resetContentSeedCache } from '../entities/content-seed/content-seed.cache';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 import { LanguagePairsApiService } from '../entities/language-pair/api';
+import { AuthStore } from '../entities/auth/services/auth.store';
 
 describe('Card select smoke', () => {
   beforeEach(async () => {
@@ -28,6 +29,14 @@ describe('Card select smoke', () => {
             listAll: () => Promise.resolve([
               { id: 1, knownCode: 'ru', learningCode: 'en' },
             ]),
+          },
+        },
+        {
+          provide: AuthStore,
+          useValue: {
+            isAuthenticated: () => true,
+            user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: [] }),
+            logout: () => Promise.resolve(),
           },
         },
       ],

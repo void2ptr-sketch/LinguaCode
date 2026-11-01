@@ -8,6 +8,7 @@ import { provideApiHttpTesting } from './api/provide-api.http';
 import { seedTestContentCache } from '../entities/content-seed/content-seed.test-utils';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 import { LanguagePairsApiService } from '../entities/language-pair/api';
+import { AuthStore } from '../entities/auth/services/auth.store';
 
 describe('Card editor smoke', () => {
   beforeEach(async () => {
@@ -27,6 +28,14 @@ describe('Card editor smoke', () => {
             listAll: () => Promise.resolve([
               { id: 1, knownCode: 'ru', learningCode: 'en' },
             ]),
+          },
+        },
+        {
+          provide: AuthStore,
+          useValue: {
+            isAuthenticated: () => true,
+            user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: [] }),
+            logout: () => Promise.resolve(),
           },
         },
       ],

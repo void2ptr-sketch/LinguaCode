@@ -11,6 +11,7 @@ import {
   seedTestContentCache,
 } from '../entities/content-seed/content-seed.test-utils';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
+import { AuthStore } from '../entities/auth/services/auth.store';
 
 describe('Home learning dashboard smoke', () => {
   beforeEach(async () => {
@@ -24,6 +25,14 @@ describe('Home learning dashboard smoke', () => {
         provideNoopAnimations(),
         provideApiHttpTesting(),
         provideHttpClientTesting(),
+        {
+          provide: AuthStore,
+          useValue: {
+            isAuthenticated: () => true,
+            user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: [] }),
+            logout: () => Promise.resolve(),
+          },
+        },
       ],
     }).compileComponents();
 

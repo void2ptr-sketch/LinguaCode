@@ -13,6 +13,7 @@ import {
 } from '../entities/content-seed/content-seed.test-utils';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 import { CourseSearchService } from '../entities/course/search/course-search.service';
+import { AuthStore } from '../entities/auth/services/auth.store';
 
 describe('Journey page smoke', () => {
   beforeEach(async () => {
@@ -29,6 +30,14 @@ describe('Journey page smoke', () => {
         {
           provide: AppLoggerService,
           useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
+        {
+          provide: AuthStore,
+          useValue: {
+            isAuthenticated: () => true,
+            user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: [] }),
+            logout: () => Promise.resolve(),
+          },
         },
       ],
     }).compileComponents();
