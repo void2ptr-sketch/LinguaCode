@@ -8,7 +8,7 @@
 /**
  * Difficulty curve analytics by card kind
  */
-export interface LearningDifficultyCurve {
+export type LearningDifficultyCurve = {
   selectAccuracy?: number;
   keyboardAccuracy?: number;
   drawAccuracy?: number;

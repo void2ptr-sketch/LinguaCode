@@ -9,7 +9,7 @@ import type { LessonAvailability } from './lessonAvailability';
 /**
  * Single resource API response wrapper
  */
-export interface ListLessonAvailabilityResponse {
+export type ListLessonAvailabilityResponse = {
   /** Response data */
   data?: LessonAvailability[];
 }

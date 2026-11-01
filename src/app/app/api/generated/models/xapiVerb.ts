@@ -8,7 +8,7 @@
 /**
  * xAPI verb (action type)
  */
-export interface XapiVerb {
+export type XapiVerb = {
   id?: string;
   display?: string;
 }

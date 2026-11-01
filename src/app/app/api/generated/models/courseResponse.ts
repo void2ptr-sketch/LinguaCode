@@ -9,7 +9,7 @@ import type { Course } from './course';
 /**
  * Single resource API response wrapper
  */
-export interface CourseResponse {
+export type CourseResponse = {
   /** Response data */
   data?: Course;
 }

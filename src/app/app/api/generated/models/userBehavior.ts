@@ -9,7 +9,7 @@ import type { LearningWeakCardProfileo } from './learningWeakCardProfileo';
 /**
  * User behavior snapshot
  */
-export interface UserBehavior {
+export type UserBehavior = {
   userId?: number;
   overallAccuracy?: number;
   selectAccuracy?: number;

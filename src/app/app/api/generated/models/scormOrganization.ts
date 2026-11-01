@@ -9,7 +9,7 @@ import type { ScormOrganizationItem } from './scormOrganizationItem';
 /**
  * SCORM organization container
  */
-export interface ScormOrganization {
+export type ScormOrganization = {
   title?: string;
   identifier?: string;
   isDefault?: boolean;

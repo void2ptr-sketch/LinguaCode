@@ -8,7 +8,7 @@
 /**
  * Lesson export DTO
  */
-export interface LessonExport {
+export type LessonExport = {
   id?: number;
   title?: string;
   description?: string;

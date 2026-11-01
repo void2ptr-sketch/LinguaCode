@@ -9,6 +9,6 @@ import type { AdminSetTierRequestRequiredTier } from './adminSetTierRequestRequi
 /**
  * Admin request to set subscription tier for content
  */
-export interface AdminSetTierRequest {
+export type AdminSetTierRequest = {
   requiredTier: AdminSetTierRequestRequiredTier;
 }

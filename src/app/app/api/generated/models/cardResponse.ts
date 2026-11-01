@@ -9,7 +9,7 @@ import type { Card } from './card';
 /**
  * Single resource API response wrapper
  */
-export interface CardResponse {
+export type CardResponse = {
   /** Response data */
   data?: Card;
 }

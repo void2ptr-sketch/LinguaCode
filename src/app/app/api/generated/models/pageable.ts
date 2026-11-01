@@ -5,7 +5,7 @@
  * OpenAPI spec version: v0
  */
 
-export interface Pageable {
+export type Pageable = {
   /** @minimum 0 */
   page?: number;
   /** @minimum 1 */

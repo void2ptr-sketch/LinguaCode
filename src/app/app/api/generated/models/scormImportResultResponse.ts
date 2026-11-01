@@ -9,7 +9,7 @@ import type { ScormImportResult } from './scormImportResult';
 /**
  * Single resource API response wrapper
  */
-export interface ScormImportResultResponse {
+export type ScormImportResultResponse = {
   /** Response data */
   data?: ScormImportResult;
 }

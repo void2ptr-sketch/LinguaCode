@@ -8,7 +8,7 @@
 /**
  * User registration request
  */
-export interface UserRegisterRequest {
+export type UserRegisterRequest = {
   /**
      * @minLength 1
      * @maxLength 100

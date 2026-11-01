@@ -8,7 +8,7 @@
 /**
  * Course update request
  */
-export interface CourseUpdateRequest {
+export type CourseUpdateRequest = {
   /**
      * @minLength 1
      * @maxLength 200

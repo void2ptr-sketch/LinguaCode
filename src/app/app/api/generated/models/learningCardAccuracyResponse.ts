@@ -9,7 +9,7 @@ import type { LearningCardAccuracy } from './learningCardAccuracy';
 /**
  * Single resource API response wrapper
  */
-export interface LearningCardAccuracyResponse {
+export type LearningCardAccuracyResponse = {
   /** Response data */
   data?: LearningCardAccuracy;
 }

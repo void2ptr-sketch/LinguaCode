@@ -8,7 +8,7 @@
 /**
  * User entity
  */
-export interface User {
+export type User = {
   id?: number;
   displayName?: string;
   email?: string;

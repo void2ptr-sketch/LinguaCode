@@ -4,17 +4,17 @@ import { LanguageService } from './language.service';
 import type { LanguageDto } from '../api/language-dto.types';
 
 /** Stored settings for a user's language configuration. */
-interface LanguageSettings {
+type LanguageSettings = {
   /** Selected language codes that the user wants to use. */
   selectedCodes: string[];
   /** Active language pair ID (from backend language-pairs table). */
   activePairId: string | null;
   /** All available pairs the user has configured. */
-  configuredPairs: Array<{
+  configuredPairs: {
     id: string;
     known: string;
     learning: string;
-  }>;
+  }[];
 }
 
 /** Default settings when nothing is configured. */

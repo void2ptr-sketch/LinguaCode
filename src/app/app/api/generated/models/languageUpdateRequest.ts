@@ -8,7 +8,7 @@
 /**
  * Language update request
  */
-export interface LanguageUpdateRequest {
+export type LanguageUpdateRequest = {
   /** @pattern [a-zA-Z]{2,10} */
   code?: string;
   /**

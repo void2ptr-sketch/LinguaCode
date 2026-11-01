@@ -11,7 +11,7 @@ import type { CardRequiredTier } from './cardRequiredTier';
 /**
  * Educational card entity
  */
-export interface Card {
+export type Card = {
   id?: number;
   title?: string;
   kind?: CardKind;

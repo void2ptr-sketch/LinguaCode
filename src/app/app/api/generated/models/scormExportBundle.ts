@@ -15,7 +15,7 @@ import type { XapiStatement } from './xapiStatement';
 /**
  * SCORM export bundle for a course
  */
-export interface ScormExportBundle {
+export type ScormExportBundle = {
   manifest?: ScormManifest;
   courses?: Course[];
   programs?: ProgramExport[];

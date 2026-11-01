@@ -9,7 +9,7 @@ import type { ScormResource } from './scormResource';
 /**
  * SCORM organization item (program or lesson)
  */
-export interface ScormOrganizationItem {
+export type ScormOrganizationItem = {
   identifier?: string;
   title?: string;
   order?: number;

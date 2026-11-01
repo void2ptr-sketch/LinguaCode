@@ -9,7 +9,7 @@ import type { LearningResume } from './learningResume';
 /**
  * Single resource API response wrapper
  */
-export interface LearningResumeResponse {
+export type LearningResumeResponse = {
   /** Response data */
   data?: LearningResume;
 }

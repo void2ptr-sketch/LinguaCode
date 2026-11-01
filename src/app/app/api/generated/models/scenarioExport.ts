@@ -8,7 +8,7 @@
 /**
  * Scenario export DTO
  */
-export interface ScenarioExport {
+export type ScenarioExport = {
   id?: number;
   title?: string;
   description?: string;

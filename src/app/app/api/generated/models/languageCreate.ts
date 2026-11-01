@@ -8,7 +8,7 @@
 /**
  * Language creation request
  */
-export interface LanguageCreate {
+export type LanguageCreate = {
   /**
      * @minLength 1
      * @pattern [a-zA-Z]{2,10}

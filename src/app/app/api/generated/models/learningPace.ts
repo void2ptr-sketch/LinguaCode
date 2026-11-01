@@ -8,7 +8,7 @@
 /**
  * Learning pace analytics
  */
-export interface LearningPace {
+export type LearningPace = {
   totalSessions?: number;
   avgCardsPerSession?: number;
   avgTimePerCardMs?: number;

@@ -37,12 +37,12 @@ import type {
 
 
 
-interface HttpClientOptions {
+type HttpClientOptions = {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
         | HttpParams
-      | Record<string, string | number | boolean | Array<string | number | boolean>>;
+      | Record<string, string | number | boolean | (string | number | boolean)[]>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -74,7 +74,7 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
-type AngularHttpParamValue = string | number | boolean | Array<string | number | boolean>;
+type AngularHttpParamValue = string | number | boolean | (string | number | boolean)[];
 type AngularHttpParamValueWithNullable = AngularHttpParamValue | null;
 
 function filterParams(
@@ -121,7 +121,7 @@ function filterParams(
         )
         .map((item) =>
           item instanceof Date ? item.toISOString() : item,
-        ) as Array<string | number | boolean>;
+        ) as (string | number | boolean)[];
       if (filtered.length) {
         filteredParams[key] = filtered;
       }

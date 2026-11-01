@@ -9,7 +9,7 @@ import type { ScenarioUpdateRequestRequiredTier } from './scenarioUpdateRequestR
 /**
  * Scenario update request
  */
-export interface ScenarioUpdateRequest {
+export type ScenarioUpdateRequest = {
   id?: string;
   /**
      * @minLength 1

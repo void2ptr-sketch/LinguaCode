@@ -9,7 +9,7 @@ import type { Program } from './program';
 /**
  * Single resource API response wrapper
  */
-export interface ProgramResponse {
+export type ProgramResponse = {
   /** Response data */
   data?: Program;
 }

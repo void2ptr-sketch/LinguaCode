@@ -5,7 +5,7 @@
  * OpenAPI spec version: v0
  */
 
-export interface ScormImportParameters {
+export type ScormImportParameters = {
   /** Author user ID */
   authorId: number;
   /** Optional title override */

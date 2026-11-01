@@ -13,7 +13,7 @@ import type { ScenarioExport } from './scenarioExport';
 /**
  * Course export bundle for authoring tools
  */
-export interface CourseExportBundle {
+export type CourseExportBundle = {
   courses?: Course[];
   programs?: ProgramExport[];
   lessons?: LessonExport[];

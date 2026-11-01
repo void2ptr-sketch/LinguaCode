@@ -8,7 +8,7 @@
 /**
  * Card accuracy analytics
  */
-export interface LearningCardAccuracy {
+export type LearningCardAccuracy = {
   cardId?: number;
   totalAttempts?: number;
   correctAttempts?: number;

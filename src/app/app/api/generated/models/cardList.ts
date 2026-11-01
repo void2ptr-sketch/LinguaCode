@@ -9,7 +9,7 @@ import type { Card } from './card';
 /**
  * Paginated list API response wrapper
  */
-export interface CardList {
+export type CardList = {
   /** List of items */
   data?: Card[];
   /** Total item count */

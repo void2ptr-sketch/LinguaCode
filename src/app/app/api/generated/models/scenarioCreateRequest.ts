@@ -9,7 +9,7 @@ import type { ScenarioCreateRequestRequiredTier } from './scenarioCreateRequestR
 /**
  * Scenario creation request
  */
-export interface ScenarioCreateRequest {
+export type ScenarioCreateRequest = {
   /**
      * @minLength 1
      * @maxLength 200

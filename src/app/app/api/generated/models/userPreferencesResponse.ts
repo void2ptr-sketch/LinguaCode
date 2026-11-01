@@ -9,7 +9,7 @@ import type { UserPreferences } from './userPreferences';
 /**
  * Single resource API response wrapper
  */
-export interface UserPreferencesResponse {
+export type UserPreferencesResponse = {
   /** Response data */
   data?: UserPreferences;
 }

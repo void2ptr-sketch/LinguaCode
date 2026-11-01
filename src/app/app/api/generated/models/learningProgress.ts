@@ -8,7 +8,7 @@
 /**
  * Aggregated progress for a user on a specific learning entity
  */
-export interface LearningProgress {
+export type LearningProgress = {
   entityType?: string;
   entityId?: number;
   completedCards?: number;

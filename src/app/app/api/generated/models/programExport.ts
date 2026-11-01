@@ -9,7 +9,7 @@ import type { LessonExport } from './lessonExport';
 /**
  * Program export DTO
  */
-export interface ProgramExport {
+export type ProgramExport = {
   id?: number;
   title?: string;
   description?: string;

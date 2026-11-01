@@ -41,12 +41,12 @@ import type {
 
 
 
-interface HttpClientOptions {
+type HttpClientOptions = {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
         | HttpParams
-      | Record<string, string | number | boolean | Array<string | number | boolean>>;
+      | Record<string, string | number | boolean | (string | number | boolean)[]>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -78,7 +78,7 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
-type AngularHttpParamValue = string | number | boolean | Array<string | number | boolean>;
+type AngularHttpParamValue = string | number | boolean | (string | number | boolean)[];
 type AngularHttpParamValueWithNullable = AngularHttpParamValue | null;
 type AngularObjectParamStrategy = 'flatten' | 'comma' | 'deepObject';
 
@@ -117,7 +117,7 @@ function filterParams(
   const filteredParams: Record<string, unknown> = {};
   const filterPrimitiveArray = (
     value: unknown[],
-  ): Array<string | number | boolean> =>
+  ): (string | number | boolean)[] =>
     value
       .filter(
         (item) =>
@@ -127,9 +127,7 @@ function filterParams(
             typeof item === 'boolean' ||
             (item instanceof Date && !Number.isNaN(item.getTime()))),
       )
-      .map((item) => (item instanceof Date ? item.toISOString() : item)) as Array<
-      string | number | boolean
-    >;
+      .map((item) => (item instanceof Date ? item.toISOString() : item)) as (string | number | boolean)[];
   for (const [key, value] of Object.entries(params)) {
     if (passthroughKeys.has(key)) {
       if (value !== undefined) {

@@ -10,7 +10,7 @@ import type { FeedbackCreateRequestSeverity } from './feedbackCreateRequestSever
 /**
  * Feedback creation request
  */
-export interface FeedbackCreateRequest {
+export type FeedbackCreateRequest = {
   /** @minLength 1 */
   entityType: string;
   entityId: number;

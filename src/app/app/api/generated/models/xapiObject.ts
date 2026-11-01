@@ -8,7 +8,7 @@
 /**
  * xAPI object (target of the action)
  */
-export interface XapiObject {
+export type XapiObject = {
   id?: string;
   objectType?: string;
 }

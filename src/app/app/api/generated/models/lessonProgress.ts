@@ -8,7 +8,7 @@
 /**
  * Progress summary for a lesson
  */
-export interface LessonProgress {
+export type LessonProgress = {
   completed?: number;
   total?: number;
 }

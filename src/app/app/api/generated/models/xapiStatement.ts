@@ -12,7 +12,7 @@ import type { XapiVerb } from './xapiVerb';
 /**
  * xAPI statement for LRS
  */
-export interface XapiStatement {
+export type XapiStatement = {
   id?: string;
   actor?: XapiActor;
   verb?: XapiVerb;

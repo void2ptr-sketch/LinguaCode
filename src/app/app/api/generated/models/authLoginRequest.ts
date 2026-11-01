@@ -8,7 +8,7 @@
 /**
  * Login authentication request
  */
-export interface AuthLoginRequest {
+export type AuthLoginRequest = {
   /** @minLength 1 */
   email: string;
   /**

@@ -9,7 +9,7 @@ import type { ProgramRequiredTier } from './programRequiredTier';
 /**
  * Educational program entity
  */
-export interface Program {
+export type Program = {
   id?: number;
   title?: string;
   programDescription?: string;

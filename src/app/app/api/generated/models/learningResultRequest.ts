@@ -8,7 +8,7 @@
 /**
  * Learning result recording request
  */
-export interface LearningResultRequest {
+export type LearningResultRequest = {
   /** @deprecated */
   userId?: number;
   cardId: number;

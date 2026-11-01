@@ -36,12 +36,12 @@ import type {
 
 
 
-interface HttpClientOptions {
+type HttpClientOptions = {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
         | HttpParams
-      | Record<string, string | number | boolean | Array<string | number | boolean>>;
+      | Record<string, string | number | boolean | (string | number | boolean)[]>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;

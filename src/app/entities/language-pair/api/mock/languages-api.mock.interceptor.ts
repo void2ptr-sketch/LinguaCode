@@ -21,8 +21,7 @@
  * ```
  */
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
-import { defer, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { buildApiUrl, isApiRequest } from '../../../../shared/api/api-url';
 import type { ApiListResponse, ApiResponse } from '../../../../shared/api/api.types';

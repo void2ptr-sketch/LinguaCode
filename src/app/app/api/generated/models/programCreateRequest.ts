@@ -9,7 +9,7 @@ import type { ProgramCreateRequestRequiredTier } from './programCreateRequestReq
 /**
  * Program creation request
  */
-export interface ProgramCreateRequest {
+export type ProgramCreateRequest = {
   /**
      * @minLength 1
      * @maxLength 200

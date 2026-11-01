@@ -8,7 +8,7 @@
 /**
  * Content language entity
  */
-export interface Language {
+export type Language = {
   id?: number;
   code?: string;
   displayName?: string;

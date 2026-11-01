@@ -9,7 +9,7 @@ import type { Card } from './card';
 /**
  * Batch card retrieval response
  */
-export interface CardBatchRetrieveResponse {
+export type CardBatchRetrieveResponse = {
   found?: Card[];
   notFound?: number[];
 }

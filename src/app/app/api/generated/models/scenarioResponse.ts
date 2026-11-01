@@ -9,7 +9,7 @@ import type { Scenario } from './scenario';
 /**
  * Single resource API response wrapper
  */
-export interface ScenarioResponse {
+export type ScenarioResponse = {
   /** Response data */
   data?: Scenario;
 }

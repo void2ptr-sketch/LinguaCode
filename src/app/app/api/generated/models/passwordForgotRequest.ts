@@ -8,7 +8,7 @@
 /**
  * Forgot password request
  */
-export interface PasswordForgotRequest {
+export type PasswordForgotRequest = {
   /** @minLength 1 */
   email: string;
 }

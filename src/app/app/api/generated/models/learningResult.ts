@@ -8,7 +8,7 @@
 /**
  * Learning result entity
  */
-export interface LearningResult {
+export type LearningResult = {
   id?: number;
   userId?: number;
   cardId?: number;

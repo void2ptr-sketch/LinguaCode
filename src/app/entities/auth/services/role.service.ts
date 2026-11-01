@@ -1,4 +1,4 @@
-import { Injectable, computed, inject, Signal } from '@angular/core';
+import { Injectable, computed, inject } from '@angular/core';
 
 import { AuthStore } from './auth.store';
 

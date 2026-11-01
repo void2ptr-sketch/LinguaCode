@@ -8,7 +8,7 @@
 /**
  * Current learning streak
  */
-export interface LearningStreak {
+export type LearningStreak = {
   currentDays?: number;
   lastActiveDate?: string;
 }

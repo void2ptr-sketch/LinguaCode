@@ -8,7 +8,7 @@
 /**
  * Token refresh request
  */
-export interface AuthRefreshRequest {
+export type AuthRefreshRequest = {
   /** @minLength 1 */
   refreshToken: string;
 }
