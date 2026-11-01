@@ -245,13 +245,13 @@ src/
 
 ### Документация проекта
 - [`docs/INDEX.md`](../../docs/INDEX.md) — оглавление всей документации
-- [`docs/ARCHITECTURE.md`](../../docs/ARCHITECTURE.md) — обзор архитектуры
-- [`docs/COMMON/DOMAIN.md`](../../docs/COMMON/DOMAIN.md) — доменная модель
+- [`docs/PRODUCT/ARCHITECTURE.md`](../../docs/PRODUCT/ARCHITECTURE.md) — обзор архитектуры
+- [`docs/PRODUCT/DOMAIN.md`](../../docs/PRODUCT/DOMAIN.md) — доменная модель
 - [`docs/COMMON/CARD-CATALOG.md`](../../docs/COMMON/CARD-CATALOG.md) — индекс карточек
 - [`docs/CONTENT/CJK-CONTENT.md`](../../docs/CONTENT/CJK-CONTENT.md) — иероглифы, пиньинь, тоны
 - [`docs/CONTENT/PHONETIC-CONTENT.md`](../../docs/CONTENT/PHONETIC-CONTENT.md) — IPA
-- [`docs/API-CONTRACT.md`](../../docs/API-CONTRACT.md) — HTTP API
-- [`docs/SYSTEM/GIT-RULES.md`](../../docs/SYSTEM/GIT-RULES.md) — Git workflow
+- [`docs/API/API-CONTRACT.md`](../../docs/API/API-CONTRACT.md) — HTTP API
+- [`docs/PROCESS/GIT-RULES.md`](../../docs/PROCESS/GIT-RULES.md) — Git workflow
 - [`TASKS.md`](../../TASKS.md) — чеклист задач
 
 ### Архитектура подсистем
