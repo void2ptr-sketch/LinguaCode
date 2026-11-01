@@ -66,6 +66,7 @@ npm run generate:api
 ```
 
 This downloads the OpenAPI spec and generates:
+
 - `src/app/app/api/generated/tags/language/` — service methods
 - `src/app/app/api/generated/models/` — TypeScript types
 
@@ -93,9 +94,7 @@ export class LanguageApiService {
   private readonly generated = inject(getLanguagesService as any);
 
   getAllActive(): Promise<LanguageDto[]> {
-    return firstValueFrom(
-      this.generated.list({})
-    ).then((response: any) => {
+    return firstValueFrom(this.generated.list({})).then((response: any) => {
       // Map generated types to local DTOs
       return response.map((item: any) => ({
         id: item.id,
@@ -132,6 +131,7 @@ npm run test:ci
 ### Step 5: Delete old service
 
 Once all consumers are switched:
+
 ```bash
 rm src/app/entities/language-pair/api/language-api.service.ts
 # Delete or rename old methods
@@ -166,6 +166,7 @@ export class AuthApiService implements AuthPort {
 ```
 
 **The wrapper handles:**
+
 1. Converting orval params to/from local types
 2. Unwrapping `ApiResponse<T>` to just `T`
 3. Mapping generated model types to local DTO types

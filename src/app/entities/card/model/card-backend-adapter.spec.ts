@@ -281,7 +281,11 @@ describe('CardBackendAdapter', () => {
       const dtos: BackendCardDto[] = [
         createBackendDto({
           kind: 'SELECT',
-          dataJson: JSON.stringify({ promptKnown: '猫', optionsLearning: ['cat'], correctIndex: 0 }),
+          dataJson: JSON.stringify({
+            promptKnown: '猫',
+            optionsLearning: ['cat'],
+            correctIndex: 0,
+          }),
         }),
         createBackendDto({
           kind: 'FLIP',

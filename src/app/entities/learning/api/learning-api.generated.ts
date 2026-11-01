@@ -28,7 +28,8 @@ function mapResult(dto: any): LearningResult {
     id: String(dto.id),
     userId: String(dto.userId),
     cardId: String(dto.cardId),
-    scenarioId: dto.scenarioId !== null && dto.scenarioId !== undefined ? String(dto.scenarioId) : undefined,
+    scenarioId:
+      dto.scenarioId !== null && dto.scenarioId !== undefined ? String(dto.scenarioId) : undefined,
     correct: dto.correct,
     answeredAt: dto.answeredAt,
   };
@@ -62,7 +63,9 @@ export class LearningApiService implements LearningCatalogPort {
 
   getCardAccuracy(userId: string, cardId: string): Promise<CardAccuracyData> {
     return firstValueFrom(
-      this.http.get<LearningCardAccuracyResponse>(buildApiUrl(`/learning/accuracy/${userId}/${cardId}`)),
+      this.http.get<LearningCardAccuracyResponse>(
+        buildApiUrl(`/learning/accuracy/${userId}/${cardId}`),
+      ),
     ).then((response) => response.data as unknown as CardAccuracyData);
   }
 }

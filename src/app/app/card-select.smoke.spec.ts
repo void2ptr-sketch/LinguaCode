@@ -26,9 +26,7 @@ describe('Card select smoke', () => {
         {
           provide: LanguagePairsApiService,
           useValue: {
-            listAll: () => Promise.resolve([
-              { id: 1, knownCode: 'ru', learningCode: 'en' },
-            ]),
+            listAll: () => Promise.resolve([{ id: 1, knownCode: 'ru', learningCode: 'en' }]),
           },
         },
         {

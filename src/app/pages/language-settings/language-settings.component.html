@@ -18,17 +18,13 @@
               <div>
                 <h2 class="settings-page__section-title">Available Languages</h2>
                 <p class="settings-page__hint">
-                  Choose which languages are available for learning.
-                  At least one language is required to create pairs.
+                  Choose which languages are available for learning. At least one language is
+                  required to create pairs.
                 </p>
               </div>
 
               @if (canWriteLanguages()) {
-                <button
-                  mat-flat-button
-                  type="button"
-                  (click)="openCreateLanguageDialog()"
-                >
+                <button mat-flat-button type="button" (click)="openCreateLanguageDialog()">
                   <mat-icon>add</mat-icon>
                   Add Language
                 </button>
@@ -51,7 +47,9 @@
                       <mat-checkbox
                         [checked]="selectedCodes().includes(lang.code)"
                         (change)="toggleLanguage(lang.code)"
-                        [disabled]="selectedCodes().length === 1 && selectedCodes().includes(lang.code)"
+                        [disabled]="
+                          selectedCodes().length === 1 && selectedCodes().includes(lang.code)
+                        "
                       >
                         Use in Learning
                       </mat-checkbox>
@@ -79,19 +77,21 @@
           <div class="settings-page__tab-panel">
             <h2 class="settings-page__section-title">Configured Pairs</h2>
             <p class="settings-page__hint">
-              Create pairs from your selected languages. The first pair created is active by default.
+              Create pairs from your selected languages. The first pair created is active by
+              default.
             </p>
 
             @if (selectedCodes().length < 2) {
-              <div class="settings-page__warning">
-                Select at least 2 languages to create pairs.
-              </div>
+              <div class="settings-page__warning">Select at least 2 languages to create pairs.</div>
             } @else {
               <!-- Create new pair form -->
               <div class="settings-page__pair-form">
                 <mat-form-field appearance="outline" class="settings-page__pair-select">
                   <mat-label>Known</mat-label>
-                  <mat-select [value]="newKnownCode()" (selectionChange)="newKnownCode.set($event.value)">
+                  <mat-select
+                    [value]="newKnownCode()"
+                    (selectionChange)="newKnownCode.set($event.value)"
+                  >
                     @for (code of selectedCodes(); track code) {
                       <mat-option [value]="code">{{ getLanguageLabel(code) }}</mat-option>
                     }
@@ -102,7 +102,10 @@
 
                 <mat-form-field appearance="outline" class="settings-page__pair-select">
                   <mat-label>Learning</mat-label>
-                  <mat-select [value]="newLearningCode()" (selectionChange)="newLearningCode.set($event.value)">
+                  <mat-select
+                    [value]="newLearningCode()"
+                    (selectionChange)="newLearningCode.set($event.value)"
+                  >
                     @for (code of selectedCodes(); track code) {
                       <mat-option [value]="code">{{ getLanguageLabel(code) }}</mat-option>
                     }
@@ -113,7 +116,9 @@
                   mat-flat-button
                   type="button"
                   class="settings-page__pair-add"
-                  [disabled]="!newKnownCode() || !newLearningCode() || newKnownCode() === newLearningCode()"
+                  [disabled]="
+                    !newKnownCode() || !newLearningCode() || newKnownCode() === newLearningCode()
+                  "
                   (click)="createPair()"
                 >
                   Add Pair
@@ -123,7 +128,10 @@
               <!-- Existing pairs list -->
               <div class="settings-page__pairs-list">
                 @for (pair of configuredPairs(); track pair.id) {
-                  <mat-card class="settings-page__pair-item" [class.settings-page__pair-item--active]="pair.id === activePairId()">
+                  <mat-card
+                    class="settings-page__pair-item"
+                    [class.settings-page__pair-item--active]="pair.id === activePairId()"
+                  >
                     <mat-card-content>
                       <div class="settings-page__pair-label">
                         <strong>{{ getLanguageLabel(pair.known) }}</strong>

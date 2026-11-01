@@ -4,43 +4,22 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import {
-  HttpClient
-} from '@angular/common/http';
-import type {
-  HttpContext,
-  HttpEvent,
-  HttpParams
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
 
-import {
-  Injectable,
-  inject
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
-import type {
-  Observable
-} from 'rxjs';
+import type { Observable } from 'rxjs';
 
-import type {
-  AdminSetTierRequest,
-  StringResponse
-} from './models';
+import type { AdminSetTierRequest, StringResponse } from './models';
 
-import type {
-  HttpHeaders,
-  HttpResponse as AngularHttpResponse
-} from '@angular/common/http';
-
-
-
+import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
 
 type HttpClientOptions = {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-        | HttpParams
-      | Record<string, string | number | boolean | (string | number | boolean)[]>;
+    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -52,9 +31,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: {includeHeaders?: string[]} | boolean;
+  readonly transferCache?: { includeHeaders?: string[] } | boolean;
   readonly timeout?: number;
-}
+};
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -72,182 +51,216 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
-
-
-
-
-
-
 @Injectable({ providedIn: 'root' })
 export class AdminTierManagementService {
   private readonly http = inject(HttpClient);
-/**
- * Admin override for scenario requiredTier
- * @summary Set scenario tier
- */
- adminTierSetScenarioTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientBodyOptions): Observable<TData>;
- adminTierSetScenarioTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- adminTierSetScenarioTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Admin override for scenario requiredTier
+   * @summary Set scenario tier
+   */
   adminTierSetScenarioTier<TData = StringResponse>(
     id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  adminTierSetScenarioTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  adminTierSetScenarioTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  adminTierSetScenarioTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.patch<TData>(
-      `/api/v1/admin/content/scenarios/${id}/tier`,
-      adminSetTierRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      }
-    );
+        `/api/v1/admin/content/scenarios/${id}/tier`,
+        adminSetTierRequest,
+        {
+          ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+          observe: 'events',
+        },
+      );
     }
 
     if (options?.observe === 'response') {
       return this.http.patch<TData>(
-      `/api/v1/admin/content/scenarios/${id}/tier`,
-      adminSetTierRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      }
-    );
+        `/api/v1/admin/content/scenarios/${id}/tier`,
+        adminSetTierRequest,
+        {
+          ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+          observe: 'response',
+        },
+      );
     }
 
     return this.http.patch<TData>(
       `/api/v1/admin/content/scenarios/${id}/tier`,
-      adminSetTierRequest,{
+      adminSetTierRequest,
+      {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'body',
-      }
+      },
     );
   }
-/**
- * Admin override for program requiredTier
- * @summary Set program tier
- */
- adminTierSetProgramTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientBodyOptions): Observable<TData>;
- adminTierSetProgramTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- adminTierSetProgramTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Admin override for program requiredTier
+   * @summary Set program tier
+   */
   adminTierSetProgramTier<TData = StringResponse>(
     id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  adminTierSetProgramTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  adminTierSetProgramTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  adminTierSetProgramTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.patch<TData>(
-      `/api/v1/admin/content/programs/${id}/tier`,
-      adminSetTierRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      }
-    );
+        `/api/v1/admin/content/programs/${id}/tier`,
+        adminSetTierRequest,
+        {
+          ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+          observe: 'events',
+        },
+      );
     }
 
     if (options?.observe === 'response') {
       return this.http.patch<TData>(
-      `/api/v1/admin/content/programs/${id}/tier`,
-      adminSetTierRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      }
-    );
+        `/api/v1/admin/content/programs/${id}/tier`,
+        adminSetTierRequest,
+        {
+          ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+          observe: 'response',
+        },
+      );
     }
 
     return this.http.patch<TData>(
       `/api/v1/admin/content/programs/${id}/tier`,
-      adminSetTierRequest,{
+      adminSetTierRequest,
+      {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'body',
-      }
+      },
     );
   }
-/**
- * Admin override for course requiredTier
- * @summary Set course tier
- */
- adminTierSetCourseTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientBodyOptions): Observable<TData>;
- adminTierSetCourseTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- adminTierSetCourseTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Admin override for course requiredTier
+   * @summary Set course tier
+   */
   adminTierSetCourseTier<TData = StringResponse>(
     id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  adminTierSetCourseTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  adminTierSetCourseTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  adminTierSetCourseTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.patch<TData>(
-      `/api/v1/admin/content/courses/${id}/tier`,
-      adminSetTierRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      }
-    );
+        `/api/v1/admin/content/courses/${id}/tier`,
+        adminSetTierRequest,
+        {
+          ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+          observe: 'events',
+        },
+      );
     }
 
     if (options?.observe === 'response') {
       return this.http.patch<TData>(
-      `/api/v1/admin/content/courses/${id}/tier`,
-      adminSetTierRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      }
-    );
+        `/api/v1/admin/content/courses/${id}/tier`,
+        adminSetTierRequest,
+        {
+          ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+          observe: 'response',
+        },
+      );
     }
 
-    return this.http.patch<TData>(
-      `/api/v1/admin/content/courses/${id}/tier`,
-      adminSetTierRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.patch<TData>(`/api/v1/admin/content/courses/${id}/tier`, adminSetTierRequest, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Admin override for card requiredTier
- * @summary Set card tier
- */
- adminTierSetCardTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientBodyOptions): Observable<TData>;
- adminTierSetCardTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- adminTierSetCardTier<TData = StringResponse>(id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Admin override for card requiredTier
+   * @summary Set card tier
+   */
   adminTierSetCardTier<TData = StringResponse>(
     id: number,
-    adminSetTierRequest: AdminSetTierRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  adminTierSetCardTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  adminTierSetCardTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  adminTierSetCardTier<TData = StringResponse>(
+    id: number,
+    adminSetTierRequest: AdminSetTierRequest,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.patch<TData>(
-      `/api/v1/admin/content/cards/${id}/tier`,
-      adminSetTierRequest,{
+      return this.http.patch<TData>(`/api/v1/admin/content/cards/${id}/tier`, adminSetTierRequest, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.patch<TData>(
-      `/api/v1/admin/content/cards/${id}/tier`,
-      adminSetTierRequest,{
+      return this.http.patch<TData>(`/api/v1/admin/content/cards/${id}/tier`, adminSetTierRequest, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.patch<TData>(
-      `/api/v1/admin/content/cards/${id}/tier`,
-      adminSetTierRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.patch<TData>(`/api/v1/admin/content/cards/${id}/tier`, adminSetTierRequest, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-};
+}
 
-export type AdminTierSetScenarioTierClientResult = NonNullable<StringResponse>
-export type AdminTierSetProgramTierClientResult = NonNullable<StringResponse>
-export type AdminTierSetCourseTierClientResult = NonNullable<StringResponse>
-export type AdminTierSetCardTierClientResult = NonNullable<StringResponse>
+export type AdminTierSetScenarioTierClientResult = NonNullable<StringResponse>;
+export type AdminTierSetProgramTierClientResult = NonNullable<StringResponse>;
+export type AdminTierSetCourseTierClientResult = NonNullable<StringResponse>;
+export type AdminTierSetCardTierClientResult = NonNullable<StringResponse>;

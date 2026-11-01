@@ -46,29 +46,25 @@ export class LanguageApiService {
   private readonly http = inject(HttpClient);
 
   listAll(): Promise<LanguageDto[]> {
-    return firstValueFrom(
-      this.http.get<{ data: Language[] }>(buildApiUrl('/languages')),
-    ).then((res) => (res?.data ?? []).map(toLocal));
+    return firstValueFrom(this.http.get<{ data: Language[] }>(buildApiUrl('/languages'))).then(
+      (res) => (res?.data ?? []).map(toLocal),
+    );
   }
 
   listActive(): Promise<LanguageDto[]> {
-    return firstValueFrom(
-      this.http.get<{ data: Language[] }>(buildApiUrl('/languages')),
-    ).then((res) =>
-      (res?.data ?? [])
-        .filter((l) => l.activeFlag)
-        .map(toLocal),
+    return firstValueFrom(this.http.get<{ data: Language[] }>(buildApiUrl('/languages'))).then(
+      (res) => (res?.data ?? []).filter((l) => l.activeFlag).map(toLocal),
     );
   }
 
   getById(id: number): Promise<LanguageDto> {
-    return firstValueFrom(
-      this.http.get<{ data: Language }>(buildApiUrl(`/languages/${id}`)),
-    ).then((res) => {
-      const data = res.data;
-      if (!data) throw new Error('Language not found');
-      return toLocal(data);
-    });
+    return firstValueFrom(this.http.get<{ data: Language }>(buildApiUrl(`/languages/${id}`))).then(
+      (res) => {
+        const data = res.data;
+        if (!data) throw new Error('Language not found');
+        return toLocal(data);
+      },
+    );
   }
 
   create(payload: LanguageCreatePayload): Promise<LanguageDto> {
@@ -92,9 +88,9 @@ export class LanguageApiService {
   }
 
   delete(id: number): Promise<void> {
-    return firstValueFrom(
-      this.http.delete<null>(buildApiUrl(`/languages/${id}`)),
-    ).then(() => undefined);
+    return firstValueFrom(this.http.delete<null>(buildApiUrl(`/languages/${id}`))).then(
+      () => undefined,
+    );
   }
 }
 

@@ -12,7 +12,12 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { UserStore } from '../../user/model/user.store';
-import type { Program, ProgramWithLessons, ProgramSearchCriteria, ProgramSearchPage } from '../model';
+import type {
+  Program,
+  ProgramWithLessons,
+  ProgramSearchCriteria,
+  ProgramSearchPage,
+} from '../model';
 import type { ProgramCatalogPort, ProgramWritePayload } from '../repository/program-catalog.port';
 import type {
   ProgramList,
@@ -22,7 +27,12 @@ import type {
 } from '../../../shared/api/generated/models';
 
 export type { ProgramWritePayload } from '../repository/program-catalog.port';
-export type { Program, ProgramWithLessons, ProgramSearchCriteria, ProgramSearchPage } from '../model';
+export type {
+  Program,
+  ProgramWithLessons,
+  ProgramSearchCriteria,
+  ProgramSearchPage,
+} from '../model';
 
 /** Build query params for program search. */
 function buildProgramSearchParams(criteria: ProgramSearchCriteria): Record<string, string> {
@@ -81,13 +91,16 @@ export class ProgramsApiService implements ProgramCatalogPort {
       programDescription: payload.description,
     };
     return firstValueFrom(
-      this.http.put<ProgramResponse>(buildApiUrl(`/programs/${programId}`), body as ProgramUpdateRequest),
+      this.http.put<ProgramResponse>(
+        buildApiUrl(`/programs/${programId}`),
+        body as ProgramUpdateRequest,
+      ),
     ).then((response) => response.data as Program);
   }
 
   delete(programId: string): Promise<void> {
-    return firstValueFrom(
-      this.http.delete<void>(buildApiUrl(`/programs/${programId}`)),
-    ).then(() => undefined);
+    return firstValueFrom(this.http.delete<void>(buildApiUrl(`/programs/${programId}`))).then(
+      () => undefined,
+    );
   }
 }

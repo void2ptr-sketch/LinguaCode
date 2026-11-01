@@ -30,7 +30,12 @@ import type {
 } from '../../../shared/api/generated/models';
 
 export type { ScenarioWritePayload } from '../repository/scenario-catalog.port';
-export type { Scenario, ScenarioIndexEntry, ScenarioSearchCriteria, ScenarioSearchPage } from '../model';
+export type {
+  Scenario,
+  ScenarioIndexEntry,
+  ScenarioSearchCriteria,
+  ScenarioSearchPage,
+} from '../model';
 
 @Injectable({ providedIn: 'root' })
 export class ScenariosApiService implements ScenarioCatalogPort {
@@ -41,9 +46,7 @@ export class ScenariosApiService implements ScenarioCatalogPort {
     const url = hasQuery ? buildApiUrl('/scenarios/search') : buildApiUrl('/scenarios');
     const params = buildScenarioSearchParams(criteria);
 
-    return firstValueFrom(
-      this.http.get<ScenarioList>(url, { params }),
-    ).then((response: any) => {
+    return firstValueFrom(this.http.get<ScenarioList>(url, { params })).then((response: any) => {
       // Response shape: { data: Scenario[], total } or directly ScenarioSearchPage
       const page = response.data?.data ?? response.data ?? response;
       return page as ScenarioSearchPage;
@@ -75,14 +78,17 @@ export class ScenariosApiService implements ScenarioCatalogPort {
       published: payload.published,
     };
     return firstValueFrom(
-      this.http.put<ScenarioResponse>(buildApiUrl(`/scenarios/${scenarioId}`), body as ScenarioUpdateRequest),
+      this.http.put<ScenarioResponse>(
+        buildApiUrl(`/scenarios/${scenarioId}`),
+        body as ScenarioUpdateRequest,
+      ),
     ).then((response) => response.data as unknown as Scenario);
   }
 
   delete(scenarioId: string): Promise<void> {
-    return firstValueFrom(
-      this.http.delete<void>(buildApiUrl(`/scenarios/${scenarioId}`)),
-    ).then(() => undefined);
+    return firstValueFrom(this.http.delete<void>(buildApiUrl(`/scenarios/${scenarioId}`))).then(
+      () => undefined,
+    );
   }
 
   findUsingCard(cardId: string): Promise<readonly ScenarioIndexEntry[]> {

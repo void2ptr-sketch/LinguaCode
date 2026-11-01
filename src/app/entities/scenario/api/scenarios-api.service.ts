@@ -52,9 +52,9 @@ export class ScenariosApiService implements ScenarioCatalogPort {
     const url = hasQuery ? buildApiUrl('/scenarios/search') : buildApiUrl('/scenarios');
     const params = buildScenarioSearchParams(criteria);
 
-    return firstValueFrom(
-      this.http.get<ApiResponse<ScenarioSearchPage>>(url, { params }),
-    ).then((response) => response.data);
+    return firstValueFrom(this.http.get<ApiResponse<ScenarioSearchPage>>(url, { params })).then(
+      (response) => response.data,
+    );
   }
 
   /**

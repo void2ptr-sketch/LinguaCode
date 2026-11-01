@@ -36,7 +36,9 @@ export const provideApiHttp = () => {
     ...(environment.useCoursesApiMock ? [coursesApiMockInterceptor] : []),
     ...(environment.useProgramsApiMock ? [programsApiMockInterceptor] : []),
     ...(environment.useScormMock ? [scormExportMockInterceptor] : []),
-    ...(environment.useLanguagePairsApiMock ? [languagePairsApiMockInterceptor, languagesApiMockInterceptor] : []),
+    ...(environment.useLanguagePairsApiMock
+      ? [languagePairsApiMockInterceptor, languagesApiMockInterceptor]
+      : []),
     ...(environment.useAuthApiMock ? [authApiMockInterceptor] : []),
     offlineInterceptor,
     authRefreshInterceptor,

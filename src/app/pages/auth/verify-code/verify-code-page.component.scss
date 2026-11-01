@@ -73,7 +73,9 @@
   background: var(--md-s-surface, #fff);
   color: var(--md-s-on-surface, #1c1b1f);
   caret-color: transparent;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:focus {
     outline: none;
@@ -122,8 +124,12 @@
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ── Submit / back ────────────────────────────────────── */

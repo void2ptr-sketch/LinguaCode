@@ -135,7 +135,7 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
       title: String(raw['title'] ?? ''),
       description: String(raw['courseDescription'] ?? ''),
       published: Boolean(raw['published'] ?? false),
-      programs: (raw['programs'] as CourseWritePayload['programs'] ?? []),
+      programs: (raw['programs'] as CourseWritePayload['programs']) ?? [],
       authoring: raw['authoring'] as CourseWritePayload['authoring'],
     };
 
@@ -151,7 +151,7 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
       title: String(raw['title'] ?? ''),
       description: String(raw['courseDescription'] ?? ''),
       published: Boolean(raw['published'] ?? false),
-      programs: (raw['programs'] as CourseWritePayload['programs'] ?? []),
+      programs: (raw['programs'] as CourseWritePayload['programs']) ?? [],
       authoring: raw['authoring'] as CourseWritePayload['authoring'],
     };
 

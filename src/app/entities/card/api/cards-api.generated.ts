@@ -17,11 +17,7 @@ import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCardSearchParams } from './mock/cards-api.params.utils';
 import { buildCardIndex } from '../mapping/card-index.mapper';
 import { CardBackendAdapter } from '../model/card-backend-adapter';
-import type {
-  Card,
-  CardSearchCriteria,
-  CardSearchPage,
-} from '../model';
+import type { Card, CardSearchCriteria, CardSearchPage } from '../model';
 import type { CardCatalogPort } from '../repository/card-catalog.port';
 
 // Generated types — shape only
@@ -47,9 +43,7 @@ export class CardsApiService implements CardCatalogPort {
         params: buildCardSearchParams(criteria),
       }),
     ).then((response) => {
-      const cards = (response.data ?? []).map((dto: any) =>
-        CardBackendAdapter.toCard(dto as any),
-      );
+      const cards = (response.data ?? []).map((dto: any) => CardBackendAdapter.toCard(dto as any));
       const entries = buildCardIndex(cards, {});
       const totalItems = response.total ?? cards.length;
       const pageSize = criteria.page.pageSize;
@@ -73,13 +67,13 @@ export class CardsApiService implements CardCatalogPort {
   }
 
   getById(cardId: string): Promise<Card> {
-    return firstValueFrom(
-      this.http.get<CardResponse>(buildApiUrl(`/cards/${cardId}`)),
-    ).then((response) => {
-      const dto = response.data;
-      if (!dto) throw new Error('Card not found');
-      return CardBackendAdapter.toCard(dto as any);
-    });
+    return firstValueFrom(this.http.get<CardResponse>(buildApiUrl(`/cards/${cardId}`))).then(
+      (response) => {
+        const dto = response.data;
+        if (!dto) throw new Error('Card not found');
+        return CardBackendAdapter.toCard(dto as any);
+      },
+    );
   }
 
   getByIds(cardIds: readonly string[]): Promise<readonly Card[]> {
@@ -121,8 +115,8 @@ export class CardsApiService implements CardCatalogPort {
   }
 
   delete(cardId: string): Promise<void> {
-    return firstValueFrom(
-      this.http.delete<void>(buildApiUrl(`/cards/${cardId}`)),
-    ).then(() => undefined);
+    return firstValueFrom(this.http.delete<void>(buildApiUrl(`/cards/${cardId}`))).then(
+      () => undefined,
+    );
   }
 }

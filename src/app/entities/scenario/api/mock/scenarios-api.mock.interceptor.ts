@@ -113,9 +113,10 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     const payload: ScenarioWritePayload = {
       title: String(raw['title'] ?? ''),
       description: String(raw['scenarioDescription'] ?? ''),
-      cardSource: typeof raw['cardSource'] === 'string'
-        ? JSON.parse(raw['cardSource'] as string)
-        : (raw['cardSource'] as ScenarioWritePayload['cardSource']),
+      cardSource:
+        typeof raw['cardSource'] === 'string'
+          ? JSON.parse(raw['cardSource'] as string)
+          : (raw['cardSource'] as ScenarioWritePayload['cardSource']),
       published: Boolean(raw['published'] ?? false),
     };
 
@@ -130,9 +131,10 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     const payload: ScenarioWritePayload = {
       title: String(raw['title'] ?? ''),
       description: String(raw['scenarioDescription'] ?? ''),
-      cardSource: typeof raw['cardSource'] === 'string'
-        ? JSON.parse(raw['cardSource'] as string)
-        : (raw['cardSource'] as ScenarioWritePayload['cardSource']),
+      cardSource:
+        typeof raw['cardSource'] === 'string'
+          ? JSON.parse(raw['cardSource'] as string)
+          : (raw['cardSource'] as ScenarioWritePayload['cardSource']),
       published: Boolean(raw['published'] ?? false),
     };
 

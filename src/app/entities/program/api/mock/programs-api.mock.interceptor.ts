@@ -101,7 +101,7 @@ export const programsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
       courseId: String(raw['courseId'] ?? ''),
       title: String(raw['title'] ?? ''),
       description: String(raw['programDescription'] ?? ''),
-      lessonIds: (raw['lessonIds'] as readonly string[] ?? []),
+      lessonIds: (raw['lessonIds'] as readonly string[]) ?? [],
       order: Number(raw['order'] ?? 0),
     };
 
@@ -118,7 +118,7 @@ export const programsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
       courseId: String(raw['courseId'] ?? ''),
       title: String(raw['title'] ?? ''),
       description: String(raw['programDescription'] ?? ''),
-      lessonIds: (raw['lessonIds'] as readonly string[] ?? []),
+      lessonIds: (raw['lessonIds'] as readonly string[]) ?? [],
       order: Number(raw['order'] ?? 0),
     };
 

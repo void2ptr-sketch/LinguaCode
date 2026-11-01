@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CardsApiService } from '..' ;
+import { CardsApiService } from '..';
 import { CardRepository } from '../../repository/card.repository';
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
 import { cardsApiMockInterceptor } from './cards-api.mock.interceptor';

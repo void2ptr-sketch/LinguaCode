@@ -4,23 +4,12 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import {
-  HttpClient
-} from '@angular/common/http';
-import type {
-  HttpContext,
-  HttpEvent,
-  HttpParams
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
 
-import {
-  Injectable,
-  inject
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
-import type {
-  Observable
-} from 'rxjs';
+import type { Observable } from 'rxjs';
 
 import type {
   LessonList,
@@ -29,23 +18,16 @@ import type {
   ProgramResponse,
   ProgramUpdateRequest,
   ProgramsListParams,
-  ProgramsSearchParams
+  ProgramsSearchParams,
 } from './models';
 
-import type {
-  HttpHeaders,
-  HttpResponse as AngularHttpResponse
-} from '@angular/common/http';
-
-
-
+import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
 
 type HttpClientOptions = {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-        | HttpParams
-      | Record<string, string | number | boolean | (string | number | boolean)[]>;
+    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -57,9 +39,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: {includeHeaders?: string[]} | boolean;
+  readonly transferCache?: { includeHeaders?: string[] } | boolean;
   readonly timeout?: number;
-}
+};
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -114,9 +96,7 @@ function filterParams(
   objectParamStrategies: Readonly<Record<string, AngularObjectParamStrategy>> = {},
 ): Record<string, unknown> {
   const filteredParams: Record<string, unknown> = {};
-  const filterPrimitiveArray = (
-    value: unknown[],
-  ): (string | number | boolean)[] =>
+  const filterPrimitiveArray = (value: unknown[]): (string | number | boolean)[] =>
     value
       .filter(
         (item) =>
@@ -126,7 +106,9 @@ function filterParams(
             typeof item === 'boolean' ||
             (item instanceof Date && !Number.isNaN(item.getTime()))),
       )
-      .map((item) => (item instanceof Date ? item.toISOString() : item)) as (string | number | boolean)[];
+      .map((item) => (item instanceof Date ? item.toISOString() : item)) as (
+      string | number | boolean
+    )[];
   for (const [key, value] of Object.entries(params)) {
     if (passthroughKeys.has(key)) {
       if (value !== undefined) {
@@ -157,10 +139,7 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             commaParts.push(prop, String(propValue));
-          } else if (
-            propValue instanceof Date &&
-            !Number.isNaN(propValue.getTime())
-          ) {
+          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
             commaParts.push(prop, propValue.toISOString());
           }
         }
@@ -169,8 +148,7 @@ function filterParams(
         }
       } else {
         for (const [prop, propValue] of entries) {
-          const targetKey =
-            objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
+          const targetKey = objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
           if (Array.isArray(propValue)) {
             const filteredProp = filterPrimitiveArray(propValue);
             if (filteredProp.length) {
@@ -183,10 +161,7 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             filteredParams[targetKey] = propValue;
-          } else if (
-            propValue instanceof Date &&
-            !Number.isNaN(propValue.getTime())
-          ) {
+          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
             filteredParams[targetKey] = propValue.toISOString();
           }
         }
@@ -210,9 +185,7 @@ function filterParams(
       filteredParams[key] = value.toISOString();
     } else if (
       value != null &&
-      (typeof value === 'string' ||
-        typeof value === 'number' ||
-        typeof value === 'boolean')
+      (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')
     ) {
       filteredParams[key] = value;
     }
@@ -220,306 +193,351 @@ function filterParams(
   return filteredParams;
 }
 
-
-
-
-
 @Injectable({ providedIn: 'root' })
 export class ProgramsService {
   private readonly http = inject(HttpClient);
-/**
- * Returns program details by ID
- * @summary Get program by ID
- */
- programsGetById<TData = ProgramResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- programsGetById<TData = ProgramResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- programsGetById<TData = ProgramResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns program details by ID
+   * @summary Get program by ID
+   */
   programsGetById<TData = ProgramResponse>(
-    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    id: number,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  programsGetById<TData = ProgramResponse>(
+    id: number,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  programsGetById<TData = ProgramResponse>(
+    id: number,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  programsGetById<TData = ProgramResponse>(
+    id: number,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/programs/${id}`,{
+      return this.http.get<TData>(`/api/v1/programs/${id}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/programs/${id}`,{
+      return this.http.get<TData>(`/api/v1/programs/${id}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/programs/${id}`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/programs/${id}`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Updates an existing program
- * @summary Update program
- */
- programsUpdate<TData = ProgramResponse>(id: number,
-    programUpdateRequest: ProgramUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- programsUpdate<TData = ProgramResponse>(id: number,
-    programUpdateRequest: ProgramUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- programsUpdate<TData = ProgramResponse>(id: number,
-    programUpdateRequest: ProgramUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Updates an existing program
+   * @summary Update program
+   */
   programsUpdate<TData = ProgramResponse>(
     id: number,
-    programUpdateRequest: ProgramUpdateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    programUpdateRequest: ProgramUpdateRequest,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  programsUpdate<TData = ProgramResponse>(
+    id: number,
+    programUpdateRequest: ProgramUpdateRequest,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  programsUpdate<TData = ProgramResponse>(
+    id: number,
+    programUpdateRequest: ProgramUpdateRequest,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  programsUpdate<TData = ProgramResponse>(
+    id: number,
+    programUpdateRequest: ProgramUpdateRequest,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.put<TData>(
-      `/api/v1/programs/${id}`,
-      programUpdateRequest,{
+      return this.http.put<TData>(`/api/v1/programs/${id}`, programUpdateRequest, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.put<TData>(
-      `/api/v1/programs/${id}`,
-      programUpdateRequest,{
+      return this.http.put<TData>(`/api/v1/programs/${id}`, programUpdateRequest, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.put<TData>(
-      `/api/v1/programs/${id}`,
-      programUpdateRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.put<TData>(`/api/v1/programs/${id}`, programUpdateRequest, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Deletes a program by ID
- * @summary Delete program
- */
- programsDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- programsDelete<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- programsDelete<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Deletes a program by ID
+   * @summary Delete program
+   */
+  programsDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
   programsDelete<TData = void>(
-    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    id: number,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  programsDelete<TData = void>(
+    id: number,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  programsDelete<TData = void>(
+    id: number,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.delete<TData>(
-      `/api/v1/programs/${id}`,{
+      return this.http.delete<TData>(`/api/v1/programs/${id}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.delete<TData>(
-      `/api/v1/programs/${id}`,{
+      return this.http.delete<TData>(`/api/v1/programs/${id}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.delete<TData>(
-      `/api/v1/programs/${id}`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.delete<TData>(`/api/v1/programs/${id}`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Returns a paginated list of published programs for a course with tier-based access control
- * @summary List programs
- */
- programsList<TData = ProgramList>(params: ProgramsListParams, options?: HttpClientBodyOptions): Observable<TData>;
- programsList<TData = ProgramList>(params: ProgramsListParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- programsList<TData = ProgramList>(params: ProgramsListParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns a paginated list of published programs for a course with tier-based access control
+   * @summary List programs
+   */
   programsList<TData = ProgramList>(
-    params: ProgramsListParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
+    params: ProgramsListParams,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  programsList<TData = ProgramList>(
+    params: ProgramsListParams,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  programsList<TData = ProgramList>(
+    params: ProgramsListParams,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  programsList<TData = ProgramList>(
+    params: ProgramsListParams,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams(
+      { ...params, ...options?.params },
+      new Set<string>([]),
+      false,
+      new Set<string>([]),
+      { pageable: 'flatten' } as const,
+    );
 
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/programs`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(`/api/v1/programs`, {
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-        params: filteredParams,}
-    );
+        params: filteredParams,
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/programs`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(`/api/v1/programs`, {
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,}
-    );
+        params: filteredParams,
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/programs`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-        params: filteredParams,}
-    );
+    return this.http.get<TData>(`/api/v1/programs`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+      params: filteredParams,
+    });
   }
-/**
- * Creates a new program
- * @summary Create program
- */
- programsCreate<TData = ProgramResponse>(programCreateRequest: ProgramCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- programsCreate<TData = ProgramResponse>(programCreateRequest: ProgramCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- programsCreate<TData = ProgramResponse>(programCreateRequest: ProgramCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Creates a new program
+   * @summary Create program
+   */
   programsCreate<TData = ProgramResponse>(
-    programCreateRequest: ProgramCreateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    programCreateRequest: ProgramCreateRequest,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  programsCreate<TData = ProgramResponse>(
+    programCreateRequest: ProgramCreateRequest,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  programsCreate<TData = ProgramResponse>(
+    programCreateRequest: ProgramCreateRequest,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  programsCreate<TData = ProgramResponse>(
+    programCreateRequest: ProgramCreateRequest,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.post<TData>(
-      `/api/v1/programs`,
-      programCreateRequest,{
+      return this.http.post<TData>(`/api/v1/programs`, programCreateRequest, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.post<TData>(
-      `/api/v1/programs`,
-      programCreateRequest,{
+      return this.http.post<TData>(`/api/v1/programs`, programCreateRequest, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.post<TData>(
-      `/api/v1/programs`,
-      programCreateRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.post<TData>(`/api/v1/programs`, programCreateRequest, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Returns all lessons for a program, ordered by order field
- * @summary Get lessons by program
- */
- programsGetLessons<TData = LessonList>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- programsGetLessons<TData = LessonList>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- programsGetLessons<TData = LessonList>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns all lessons for a program, ordered by order field
+   * @summary Get lessons by program
+   */
   programsGetLessons<TData = LessonList>(
-    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    id: number,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  programsGetLessons<TData = LessonList>(
+    id: number,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  programsGetLessons<TData = LessonList>(
+    id: number,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  programsGetLessons<TData = LessonList>(
+    id: number,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/programs/${id}/lessons`,{
+      return this.http.get<TData>(`/api/v1/programs/${id}/lessons`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/programs/${id}/lessons`,{
+      return this.http.get<TData>(`/api/v1/programs/${id}/lessons`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/programs/${id}/lessons`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/programs/${id}/lessons`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Searches programs by title with pagination
- * @summary Search programs
- */
- programsSearch<TData = ProgramList>(params: ProgramsSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
- programsSearch<TData = ProgramList>(params: ProgramsSearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- programsSearch<TData = ProgramList>(params: ProgramsSearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Searches programs by title with pagination
+   * @summary Search programs
+   */
   programsSearch<TData = ProgramList>(
-    params: ProgramsSearchParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
+    params: ProgramsSearchParams,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  programsSearch<TData = ProgramList>(
+    params: ProgramsSearchParams,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  programsSearch<TData = ProgramList>(
+    params: ProgramsSearchParams,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  programsSearch<TData = ProgramList>(
+    params: ProgramsSearchParams,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams(
+      { ...params, ...options?.params },
+      new Set<string>([]),
+      false,
+      new Set<string>([]),
+      { pageable: 'flatten' } as const,
+    );
 
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/programs/search`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(`/api/v1/programs/search`, {
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-        params: filteredParams,}
-    );
+        params: filteredParams,
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/programs/search`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(`/api/v1/programs/search`, {
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,}
-    );
+        params: filteredParams,
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/programs/search`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-        params: filteredParams,}
-    );
+    return this.http.get<TData>(`/api/v1/programs/search`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+      params: filteredParams,
+    });
   }
-/**
- * Returns all programs for a course (404 if course not found)
- * @summary Get programs by course
- */
- programsGetByCourse<TData = ProgramList>(courseId: number, options?: HttpClientBodyOptions): Observable<TData>;
- programsGetByCourse<TData = ProgramList>(courseId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- programsGetByCourse<TData = ProgramList>(courseId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns all programs for a course (404 if course not found)
+   * @summary Get programs by course
+   */
   programsGetByCourse<TData = ProgramList>(
-    courseId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    courseId: number,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  programsGetByCourse<TData = ProgramList>(
+    courseId: number,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  programsGetByCourse<TData = ProgramList>(
+    courseId: number,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  programsGetByCourse<TData = ProgramList>(
+    courseId: number,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/programs/by-course/${courseId}`,{
+      return this.http.get<TData>(`/api/v1/programs/by-course/${courseId}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/programs/by-course/${courseId}`,{
+      return this.http.get<TData>(`/api/v1/programs/by-course/${courseId}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/programs/by-course/${courseId}`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/programs/by-course/${courseId}`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-};
+}
 
-export type ProgramsGetByIdClientResult = NonNullable<ProgramResponse>
-export type ProgramsUpdateClientResult = NonNullable<ProgramResponse>
-export type ProgramsDeleteClientResult = NonNullable<void>
-export type ProgramsListClientResult = NonNullable<ProgramList>
-export type ProgramsCreateClientResult = NonNullable<ProgramResponse>
-export type ProgramsGetLessonsClientResult = NonNullable<LessonList>
-export type ProgramsSearchClientResult = NonNullable<ProgramList>
-export type ProgramsGetByCourseClientResult = NonNullable<ProgramList>
+export type ProgramsGetByIdClientResult = NonNullable<ProgramResponse>;
+export type ProgramsUpdateClientResult = NonNullable<ProgramResponse>;
+export type ProgramsDeleteClientResult = NonNullable<void>;
+export type ProgramsListClientResult = NonNullable<ProgramList>;
+export type ProgramsCreateClientResult = NonNullable<ProgramResponse>;
+export type ProgramsGetLessonsClientResult = NonNullable<LessonList>;
+export type ProgramsSearchClientResult = NonNullable<ProgramList>;
+export type ProgramsGetByCourseClientResult = NonNullable<ProgramList>;

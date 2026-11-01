@@ -419,7 +419,9 @@ describe('CourseCatalogProgramsComponent', () => {
       mockStoreState.selectedCourseId = '';
       fixture.detectChanges();
 
-      const filterIndicator = fixture.nativeElement.querySelector('.course-catalog-page__filter-indicator');
+      const filterIndicator = fixture.nativeElement.querySelector(
+        '.course-catalog-page__filter-indicator',
+      );
       expect(filterIndicator).toBeFalsy();
     });
 
@@ -428,7 +430,9 @@ describe('CourseCatalogProgramsComponent', () => {
       mockStoreState.items = defaultItems;
       fixture.detectChanges();
 
-      const filterIndicator = fixture.nativeElement.querySelector('.course-catalog-page__filter-indicator');
+      const filterIndicator = fixture.nativeElement.querySelector(
+        '.course-catalog-page__filter-indicator',
+      );
       expect(filterIndicator).toBeTruthy();
       expect(filterIndicator.textContent).toContain('Course 1');
     });

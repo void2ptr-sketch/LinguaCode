@@ -20,8 +20,8 @@ export class LanguagePairsApiService {
   private readonly http = inject(HttpClient);
 
   listAll(): Promise<LanguagePairDto[]> {
-    return firstValueFrom(
-      this.http.get<LanguagePairList>(buildApiUrl('/language-pairs')),
-    ).then((response) => (response.data ?? []) as LanguagePairDto[]);
+    return firstValueFrom(this.http.get<LanguagePairList>(buildApiUrl('/language-pairs'))).then(
+      (response) => (response.data ?? []) as LanguagePairDto[],
+    );
   }
 }

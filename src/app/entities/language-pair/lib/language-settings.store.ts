@@ -15,7 +15,7 @@ type LanguageSettings = {
     known: string;
     learning: string;
   }[];
-}
+};
 
 /** Default settings when nothing is configured. */
 const DEFAULT_SETTINGS: LanguageSettings = {
@@ -66,9 +66,7 @@ export class LanguageSettingsStore {
   });
 
   /** Number of available languages for the user. */
-  readonly availableLanguagesCount = computed(
-    () => this.selectedCodes().length,
-  );
+  readonly availableLanguagesCount = computed(() => this.selectedCodes().length);
 
   /**
    * Loads settings from sessionStorage.
@@ -89,10 +87,7 @@ export class LanguageSettingsStore {
    * Persists current state to sessionStorage.
    */
   private persist(): void {
-    sessionStorage.setItem(
-      'lingua-code.language-settings',
-      JSON.stringify(this.#state()),
-    );
+    sessionStorage.setItem('lingua-code.language-settings', JSON.stringify(this.#state()));
   }
 
   /**
@@ -197,9 +192,7 @@ export class LanguageSettingsStore {
   removePair(pairId: string): void {
     const newPairs = this.configuredPairs().filter((p) => p.id !== pairId);
     const newActive =
-      this.activePairId() === pairId
-        ? newPairs[0]?.id ?? null
-        : this.activePairId();
+      this.activePairId() === pairId ? (newPairs[0]?.id ?? null) : this.activePairId();
     this.#state.update((s) => ({
       ...s,
       configuredPairs: newPairs,

@@ -4,43 +4,22 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import {
-  HttpClient
-} from '@angular/common/http';
-import type {
-  HttpContext,
-  HttpEvent,
-  HttpParams
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
 
-import {
-  Injectable,
-  inject
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
-import type {
-  Observable
-} from 'rxjs';
+import type { Observable } from 'rxjs';
 
-import type {
-  UserPreferences,
-  UserPreferencesResponse
-} from './models';
+import type { UserPreferences, UserPreferencesResponse } from './models';
 
-import type {
-  HttpHeaders,
-  HttpResponse as AngularHttpResponse
-} from '@angular/common/http';
-
-
-
+import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
 
 type HttpClientOptions = {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-        | HttpParams
-      | Record<string, string | number | boolean | (string | number | boolean)[]>;
+    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -52,9 +31,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: {includeHeaders?: string[]} | boolean;
+  readonly transferCache?: { includeHeaders?: string[] } | boolean;
   readonly timeout?: number;
-}
+};
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -72,160 +51,158 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
-
-
-
-
-
-
 @Injectable({ providedIn: 'root' })
 export class UserPreferencesService {
   private readonly http = inject(HttpClient);
-/**
- * Returns the current user's preferences
- * @summary Get user preferences
- */
- userPreferencesGet<TData = UserPreferencesResponse>( options?: HttpClientBodyOptions): Observable<TData>;
- userPreferencesGet<TData = UserPreferencesResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- userPreferencesGet<TData = UserPreferencesResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns the current user's preferences
+   * @summary Get user preferences
+   */
   userPreferencesGet<TData = UserPreferencesResponse>(
-     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  userPreferencesGet<TData = UserPreferencesResponse>(
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  userPreferencesGet<TData = UserPreferencesResponse>(
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  userPreferencesGet<TData = UserPreferencesResponse>(
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/users/me/preferences`,{
+      return this.http.get<TData>(`/api/v1/users/me/preferences`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/users/me/preferences`,{
+      return this.http.get<TData>(`/api/v1/users/me/preferences`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/users/me/preferences`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/users/me/preferences`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Fully replaces the current user's preferences
- * @summary Replace preferences
- */
- userPreferencesPut<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientBodyOptions): Observable<TData>;
- userPreferencesPut<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- userPreferencesPut<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Fully replaces the current user's preferences
+   * @summary Replace preferences
+   */
   userPreferencesPut<TData = UserPreferencesResponse>(
-    userPreferences: UserPreferences, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    userPreferences: UserPreferences,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  userPreferencesPut<TData = UserPreferencesResponse>(
+    userPreferences: UserPreferences,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  userPreferencesPut<TData = UserPreferencesResponse>(
+    userPreferences: UserPreferences,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  userPreferencesPut<TData = UserPreferencesResponse>(
+    userPreferences: UserPreferences,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.put<TData>(
-      `/api/v1/users/me/preferences`,
-      userPreferences,{
+      return this.http.put<TData>(`/api/v1/users/me/preferences`, userPreferences, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.put<TData>(
-      `/api/v1/users/me/preferences`,
-      userPreferences,{
+      return this.http.put<TData>(`/api/v1/users/me/preferences`, userPreferences, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.put<TData>(
-      `/api/v1/users/me/preferences`,
-      userPreferences,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.put<TData>(`/api/v1/users/me/preferences`, userPreferences, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Resets the current user's preferences to defaults
- * @summary Reset preferences
- */
- userPreferencesDelete<TData = void>( options?: HttpClientBodyOptions): Observable<TData>;
- userPreferencesDelete<TData = void>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- userPreferencesDelete<TData = void>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Resets the current user's preferences to defaults
+   * @summary Reset preferences
+   */
+  userPreferencesDelete<TData = void>(options?: HttpClientBodyOptions): Observable<TData>;
   userPreferencesDelete<TData = void>(
-     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  userPreferencesDelete<TData = void>(
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  userPreferencesDelete<TData = void>(
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.delete<TData>(
-      `/api/v1/users/me/preferences`,{
+      return this.http.delete<TData>(`/api/v1/users/me/preferences`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.delete<TData>(
-      `/api/v1/users/me/preferences`,{
+      return this.http.delete<TData>(`/api/v1/users/me/preferences`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.delete<TData>(
-      `/api/v1/users/me/preferences`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.delete<TData>(`/api/v1/users/me/preferences`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Partially updates the current user's preferences (merge with existing)
- * @summary Partial update preferences
- */
- userPreferencesPatch<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientBodyOptions): Observable<TData>;
- userPreferencesPatch<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- userPreferencesPatch<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Partially updates the current user's preferences (merge with existing)
+   * @summary Partial update preferences
+   */
   userPreferencesPatch<TData = UserPreferencesResponse>(
-    userPreferences: UserPreferences, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    userPreferences: UserPreferences,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  userPreferencesPatch<TData = UserPreferencesResponse>(
+    userPreferences: UserPreferences,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  userPreferencesPatch<TData = UserPreferencesResponse>(
+    userPreferences: UserPreferences,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  userPreferencesPatch<TData = UserPreferencesResponse>(
+    userPreferences: UserPreferences,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.patch<TData>(
-      `/api/v1/users/me/preferences`,
-      userPreferences,{
+      return this.http.patch<TData>(`/api/v1/users/me/preferences`, userPreferences, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.patch<TData>(
-      `/api/v1/users/me/preferences`,
-      userPreferences,{
+      return this.http.patch<TData>(`/api/v1/users/me/preferences`, userPreferences, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.patch<TData>(
-      `/api/v1/users/me/preferences`,
-      userPreferences,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.patch<TData>(`/api/v1/users/me/preferences`, userPreferences, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-};
+}
 
-export type UserPreferencesGetClientResult = NonNullable<UserPreferencesResponse>
-export type UserPreferencesPutClientResult = NonNullable<UserPreferencesResponse>
-export type UserPreferencesDeleteClientResult = NonNullable<void>
-export type UserPreferencesPatchClientResult = NonNullable<UserPreferencesResponse>
+export type UserPreferencesGetClientResult = NonNullable<UserPreferencesResponse>;
+export type UserPreferencesPutClientResult = NonNullable<UserPreferencesResponse>;
+export type UserPreferencesDeleteClientResult = NonNullable<void>;
+export type UserPreferencesPatchClientResult = NonNullable<UserPreferencesResponse>;

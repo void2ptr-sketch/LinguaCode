@@ -114,7 +114,9 @@ describe('CourseSearchService', () => {
         updatedAt: new Date().toISOString(),
         programs: [],
       };
-      const getByIdSpy = vi.spyOn(apiService, 'getById').mockResolvedValue(mockCourse as CourseWithPrograms);
+      const getByIdSpy = vi
+        .spyOn(apiService, 'getById')
+        .mockResolvedValue(mockCourse as CourseWithPrograms);
 
       // Mock resolveCourseId to return a numeric ID
       const resolveSpy = vi.spyOn(service, 'resolveCourseId').mockResolvedValue('42');
@@ -129,7 +131,9 @@ describe('CourseSearchService', () => {
       // Mock resolveCourseId to return null
       vi.spyOn(service, 'resolveCourseId').mockResolvedValue(null);
 
-      await expect(service.getById('unknown-course')).rejects.toThrow('Course not found: unknown-course');
+      await expect(service.getById('unknown-course')).rejects.toThrow(
+        'Course not found: unknown-course',
+      );
     });
   });
 

@@ -18,10 +18,11 @@ describe('courses API (mock interceptor)', () => {
         {
           provide: LanguagePairsApiService,
           useValue: {
-            listAll: () => Promise.resolve([
-              { id: 1, knownCode: 'ru', learningCode: 'en' },
-              { id: 2, knownCode: 'ru', learningCode: 'zh' },
-            ]),
+            listAll: () =>
+              Promise.resolve([
+                { id: 1, knownCode: 'ru', learningCode: 'en' },
+                { id: 2, knownCode: 'ru', learningCode: 'zh' },
+              ]),
           },
         },
       ],

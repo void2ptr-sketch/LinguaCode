@@ -92,7 +92,10 @@ export class CoursesApiService implements CourseCatalogPort {
     try {
       const pairs = await this.languagePairsApi.listAll();
       for (const p of pairs) {
-        this.pairCache[p.id] = { known: p.knownCode as ContentLanguage, learning: p.learningCode as ContentLanguage };
+        this.pairCache[p.id] = {
+          known: p.knownCode as ContentLanguage,
+          learning: p.learningCode as ContentLanguage,
+        };
       }
     } catch {
       // /language-pairs may require auth (403) — fallback to default mapping

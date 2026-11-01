@@ -18,14 +18,36 @@ import { AuthTokenStorage } from '../services/auth-token.storage';
 import type { AuthResponse } from '../../../shared/api/generated/models/authResponse';
 import type { AuthLoginRequest } from '../../../shared/api/generated/models/authLoginRequest';
 import type { AuthRefreshRequest } from '../../../shared/api/generated/models/authRefreshRequest';
-import type { PasswordForgotRequest, PasswordVerifyCodeRequest, PasswordResetRequest } from '../../../shared/api/generated/models';
+import type {
+  PasswordForgotRequest,
+  PasswordVerifyCodeRequest,
+  PasswordResetRequest,
+} from '../../../shared/api/generated/models';
 
 // Local types
-import type { AuthSession, AuthTokens, LoginCredentials, ForgotPasswordRequest, ForgotPasswordResponse, VerifyCodeRequest, VerifyCodeResponse, ResetPasswordRequest } from '../model/auth.types';
+import type {
+  AuthSession,
+  AuthTokens,
+  LoginCredentials,
+  ForgotPasswordRequest,
+  ForgotPasswordResponse,
+  VerifyCodeRequest,
+  VerifyCodeResponse,
+  ResetPasswordRequest,
+} from '../model/auth.types';
 import type { AuthPort } from '../repository/auth.port';
 
 // Re-export for consumers
-export type { AuthSession, AuthTokens, LoginCredentials, ForgotPasswordRequest, ForgotPasswordResponse, VerifyCodeRequest, VerifyCodeResponse, ResetPasswordRequest } from '../model/auth.types';
+export type {
+  AuthSession,
+  AuthTokens,
+  LoginCredentials,
+  ForgotPasswordRequest,
+  ForgotPasswordResponse,
+  VerifyCodeRequest,
+  VerifyCodeResponse,
+  ResetPasswordRequest,
+} from '../model/auth.types';
 
 /** Map generated AuthResponse to local AuthSession + tokens. */
 function toSession(res: AuthResponse): { session: AuthSession; tokens: AuthTokens } {
@@ -55,25 +77,33 @@ export class AuthApiService implements AuthPort {
 
   refresh(refreshToken: string): Promise<AuthTokens> {
     return firstValueFrom(
-      this.http.post<AuthResponse>(buildApiUrl('/auth/refresh'), { refreshToken } as AuthRefreshRequest),
+      this.http.post<AuthResponse>(buildApiUrl('/auth/refresh'), {
+        refreshToken,
+      } as AuthRefreshRequest),
     ).then((res) => toSession(res).tokens);
   }
 
   logout(): Promise<void> {
-    return firstValueFrom(
-      this.http.post<null>(buildApiUrl('/auth/logout'), {}),
-    ).then(() => undefined);
+    return firstValueFrom(this.http.post<null>(buildApiUrl('/auth/logout'), {})).then(
+      () => undefined,
+    );
   }
 
   forgotPassword(request: ForgotPasswordRequest): Promise<ForgotPasswordResponse> {
     return firstValueFrom(
-      this.http.post<string>(buildApiUrl('/auth/forgot-password'), request as PasswordForgotRequest),
+      this.http.post<string>(
+        buildApiUrl('/auth/forgot-password'),
+        request as PasswordForgotRequest,
+      ),
     ).then((res) => res as string);
   }
 
   verifyResetCode(request: VerifyCodeRequest): Promise<VerifyCodeResponse> {
     return firstValueFrom(
-      this.http.post<{ resetToken: string }>(buildApiUrl('/auth/verify-code'), request as PasswordVerifyCodeRequest),
+      this.http.post<{ resetToken: string }>(
+        buildApiUrl('/auth/verify-code'),
+        request as PasswordVerifyCodeRequest,
+      ),
     ).then((res) => ({ resetToken: res.resetToken ?? '' }));
   }
 

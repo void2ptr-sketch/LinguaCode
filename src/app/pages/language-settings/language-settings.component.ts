@@ -17,7 +17,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { LanguageDto } from '../../entities/language-pair/api/language-dto.types';
-import { LanguageApiService, LanguageCreatePayload } from '../../entities/language-pair/api/language-api.service';
+import {
+  LanguageApiService,
+  LanguageCreatePayload,
+} from '../../entities/language-pair/api/language-api.service';
 import { LanguageService, LanguageSettingsStore } from '../../entities/language-pair';
 import { RoleService } from '../../entities/auth/services/role.service';
 
@@ -171,11 +174,9 @@ export class LanguageSettingsComponent {
         });
       })
       .catch((error) => {
-        this.snackBar.open(
-          `Failed to create language: ${(error as Error).message}`,
-          'Close',
-          { duration: 5000 },
-        );
+        this.snackBar.open(`Failed to create language: ${(error as Error).message}`, 'Close', {
+          duration: 5000,
+        });
       });
   }
 

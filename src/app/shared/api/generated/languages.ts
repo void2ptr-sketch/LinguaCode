@@ -4,46 +4,28 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import {
-  HttpClient
-} from '@angular/common/http';
-import type {
-  HttpContext,
-  HttpEvent,
-  HttpParams
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
 
-import {
-  Injectable,
-  inject
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
-import type {
-  Observable
-} from 'rxjs';
+import type { Observable } from 'rxjs';
 
 import type {
   LanguageCreate,
   LanguageList,
   LanguageResponse,
   LanguageUpdateRequest,
-  LanguagesGetByCodeParams
+  LanguagesGetByCodeParams,
 } from './models';
 
-import type {
-  HttpHeaders,
-  HttpResponse as AngularHttpResponse
-} from '@angular/common/http';
-
-
-
+import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
 
 type HttpClientOptions = {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-        | HttpParams
-      | Record<string, string | number | boolean | (string | number | boolean)[]>;
+    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -55,9 +37,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: {includeHeaders?: string[]} | boolean;
+  readonly transferCache?: { includeHeaders?: string[] } | boolean;
   readonly timeout?: number;
-}
+};
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -120,9 +102,9 @@ function filterParams(
               typeof item === 'boolean' ||
               (item instanceof Date && !Number.isNaN(item.getTime()))),
         )
-        .map((item) =>
-          item instanceof Date ? item.toISOString() : item,
-        ) as (string | number | boolean)[];
+        .map((item) => (item instanceof Date ? item.toISOString() : item)) as (
+        string | number | boolean
+      )[];
       if (filtered.length) {
         filteredParams[key] = filtered;
       }
@@ -138,9 +120,7 @@ function filterParams(
       filteredParams[key] = value.toISOString();
     } else if (
       value != null &&
-      (typeof value === 'string' ||
-        typeof value === 'number' ||
-        typeof value === 'boolean')
+      (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')
     ) {
       filteredParams[key] = value;
     }
@@ -148,234 +128,248 @@ function filterParams(
   return filteredParams;
 }
 
-
-
-
-
 @Injectable({ providedIn: 'root' })
 export class LanguagesService {
   private readonly http = inject(HttpClient);
-/**
- * Returns all active languages ordered by code
- * @summary List all active languages
- */
- languagesList<TData = LanguageList>( options?: HttpClientBodyOptions): Observable<TData>;
- languagesList<TData = LanguageList>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- languagesList<TData = LanguageList>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns all active languages ordered by code
+   * @summary List all active languages
+   */
+  languagesList<TData = LanguageList>(options?: HttpClientBodyOptions): Observable<TData>;
   languagesList<TData = LanguageList>(
-     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  languagesList<TData = LanguageList>(
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  languagesList<TData = LanguageList>(
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/languages`,{
+      return this.http.get<TData>(`/api/v1/languages`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/languages`,{
+      return this.http.get<TData>(`/api/v1/languages`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/languages`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/languages`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Creates a new language with the given metadata
- * @summary Create a new language
- */
- languagesCreate<TData = LanguageResponse>(languageCreate: LanguageCreate, options?: HttpClientBodyOptions): Observable<TData>;
- languagesCreate<TData = LanguageResponse>(languageCreate: LanguageCreate, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- languagesCreate<TData = LanguageResponse>(languageCreate: LanguageCreate, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Creates a new language with the given metadata
+   * @summary Create a new language
+   */
   languagesCreate<TData = LanguageResponse>(
-    languageCreate: LanguageCreate, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    languageCreate: LanguageCreate,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  languagesCreate<TData = LanguageResponse>(
+    languageCreate: LanguageCreate,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  languagesCreate<TData = LanguageResponse>(
+    languageCreate: LanguageCreate,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  languagesCreate<TData = LanguageResponse>(
+    languageCreate: LanguageCreate,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.post<TData>(
-      `/api/v1/languages`,
-      languageCreate,{
+      return this.http.post<TData>(`/api/v1/languages`, languageCreate, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.post<TData>(
-      `/api/v1/languages`,
-      languageCreate,{
+      return this.http.post<TData>(`/api/v1/languages`, languageCreate, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.post<TData>(
-      `/api/v1/languages`,
-      languageCreate,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.post<TData>(`/api/v1/languages`, languageCreate, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Returns a language by its ID
- * @summary Get a language by ID
- */
- languagesGetById<TData = LanguageResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- languagesGetById<TData = LanguageResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- languagesGetById<TData = LanguageResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns a language by its ID
+   * @summary Get a language by ID
+   */
   languagesGetById<TData = LanguageResponse>(
-    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    id: number,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  languagesGetById<TData = LanguageResponse>(
+    id: number,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  languagesGetById<TData = LanguageResponse>(
+    id: number,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  languagesGetById<TData = LanguageResponse>(
+    id: number,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/languages/${id}`,{
+      return this.http.get<TData>(`/api/v1/languages/${id}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/languages/${id}`,{
+      return this.http.get<TData>(`/api/v1/languages/${id}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/languages/${id}`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/languages/${id}`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Deletes a language by its ID
- * @summary Delete a language
- */
- languagesDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- languagesDelete<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- languagesDelete<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Deletes a language by its ID
+   * @summary Delete a language
+   */
+  languagesDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
   languagesDelete<TData = void>(
-    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    id: number,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  languagesDelete<TData = void>(
+    id: number,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  languagesDelete<TData = void>(
+    id: number,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.delete<TData>(
-      `/api/v1/languages/${id}`,{
+      return this.http.delete<TData>(`/api/v1/languages/${id}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.delete<TData>(
-      `/api/v1/languages/${id}`,{
+      return this.http.delete<TData>(`/api/v1/languages/${id}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.delete<TData>(
-      `/api/v1/languages/${id}`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.delete<TData>(`/api/v1/languages/${id}`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Partially updates an existing language with the given fields
- * @summary Update a language
- */
- languagesUpdate<TData = LanguageResponse>(id: number,
-    languageUpdateRequest: LanguageUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- languagesUpdate<TData = LanguageResponse>(id: number,
-    languageUpdateRequest: LanguageUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- languagesUpdate<TData = LanguageResponse>(id: number,
-    languageUpdateRequest: LanguageUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Partially updates an existing language with the given fields
+   * @summary Update a language
+   */
   languagesUpdate<TData = LanguageResponse>(
     id: number,
-    languageUpdateRequest: LanguageUpdateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    languageUpdateRequest: LanguageUpdateRequest,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  languagesUpdate<TData = LanguageResponse>(
+    id: number,
+    languageUpdateRequest: LanguageUpdateRequest,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  languagesUpdate<TData = LanguageResponse>(
+    id: number,
+    languageUpdateRequest: LanguageUpdateRequest,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  languagesUpdate<TData = LanguageResponse>(
+    id: number,
+    languageUpdateRequest: LanguageUpdateRequest,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.patch<TData>(
-      `/api/v1/languages/${id}`,
-      languageUpdateRequest,{
+      return this.http.patch<TData>(`/api/v1/languages/${id}`, languageUpdateRequest, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.patch<TData>(
-      `/api/v1/languages/${id}`,
-      languageUpdateRequest,{
+      return this.http.patch<TData>(`/api/v1/languages/${id}`, languageUpdateRequest, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.patch<TData>(
-      `/api/v1/languages/${id}`,
-      languageUpdateRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.patch<TData>(`/api/v1/languages/${id}`, languageUpdateRequest, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Returns a language by its ISO 639-1 code
- * @summary Get a language by ISO code
- */
- languagesGetByCode<TData = LanguageResponse>(params: LanguagesGetByCodeParams, options?: HttpClientBodyOptions): Observable<TData>;
- languagesGetByCode<TData = LanguageResponse>(params: LanguagesGetByCodeParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- languagesGetByCode<TData = LanguageResponse>(params: LanguagesGetByCodeParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns a language by its ISO 639-1 code
+   * @summary Get a language by ISO code
+   */
   languagesGetByCode<TData = LanguageResponse>(
-    params: LanguagesGetByCodeParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
+    params: LanguagesGetByCodeParams,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  languagesGetByCode<TData = LanguageResponse>(
+    params: LanguagesGetByCodeParams,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  languagesGetByCode<TData = LanguageResponse>(
+    params: LanguagesGetByCodeParams,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  languagesGetByCode<TData = LanguageResponse>(
+    params: LanguagesGetByCodeParams,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({ ...params, ...options?.params }, new Set<string>([]));
 
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/languages/by-code`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(`/api/v1/languages/by-code`, {
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-        params: filteredParams,}
-    );
+        params: filteredParams,
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/languages/by-code`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(`/api/v1/languages/by-code`, {
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,}
-    );
+        params: filteredParams,
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/languages/by-code`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-        params: filteredParams,}
-    );
+    return this.http.get<TData>(`/api/v1/languages/by-code`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+      params: filteredParams,
+    });
   }
-};
+}
 
-export type LanguagesListClientResult = NonNullable<LanguageList>
-export type LanguagesCreateClientResult = NonNullable<LanguageResponse>
-export type LanguagesGetByIdClientResult = NonNullable<LanguageResponse>
-export type LanguagesDeleteClientResult = NonNullable<void>
-export type LanguagesUpdateClientResult = NonNullable<LanguageResponse>
-export type LanguagesGetByCodeClientResult = NonNullable<LanguageResponse>
+export type LanguagesListClientResult = NonNullable<LanguageList>;
+export type LanguagesCreateClientResult = NonNullable<LanguageResponse>;
+export type LanguagesGetByIdClientResult = NonNullable<LanguageResponse>;
+export type LanguagesDeleteClientResult = NonNullable<void>;
+export type LanguagesUpdateClientResult = NonNullable<LanguageResponse>;
+export type LanguagesGetByCodeClientResult = NonNullable<LanguageResponse>;

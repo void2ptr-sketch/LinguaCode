@@ -98,16 +98,13 @@ export class AuthStore {
 
       // Extract roles from JWT access token
       const payload = parseJwtPayload(session.accessToken);
-      const backendRoles = ((payload as Record<string, unknown>)['roles'] as string[] | undefined) ?? [];
+      const backendRoles =
+        ((payload as Record<string, unknown>)['roles'] as string[] | undefined) ?? [];
 
       // Extract displayName from backend response if provided
-      const backendDisplayName = (
-        session as unknown as Record<string, unknown>
-      )['displayName'];
+      const backendDisplayName = (session as unknown as Record<string, unknown>)['displayName'];
       const userDisplayName =
-        typeof backendDisplayName === 'string' && backendDisplayName
-          ? backendDisplayName
-          : '';
+        typeof backendDisplayName === 'string' && backendDisplayName ? backendDisplayName : '';
 
       this.#state.set({
         status: 'authenticated',

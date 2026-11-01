@@ -4,46 +4,28 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import {
-  HttpClient
-} from '@angular/common/http';
-import type {
-  HttpContext,
-  HttpEvent,
-  HttpParams
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
 
-import {
-  Injectable,
-  inject
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
-import type {
-  Observable
-} from 'rxjs';
+import type { Observable } from 'rxjs';
 
 import type {
   LearningHomeResponse,
   LearningProgressResponse,
   LearningResumeResponse,
   LearningStreakResponse,
-  ListLessonAvailabilityResponse
+  ListLessonAvailabilityResponse,
 } from './models';
 
-import type {
-  HttpHeaders,
-  HttpResponse as AngularHttpResponse
-} from '@angular/common/http';
-
-
-
+import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
 
 type HttpClientOptions = {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-        | HttpParams
-      | Record<string, string | number | boolean | (string | number | boolean)[]>;
+    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -55,9 +37,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: {includeHeaders?: string[]} | boolean;
+  readonly transferCache?: { includeHeaders?: string[] } | boolean;
   readonly timeout?: number;
-}
+};
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -75,193 +57,199 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
-
-
-
-
-
-
 @Injectable({ providedIn: 'root' })
 export class LearningProgressService {
   private readonly http = inject(HttpClient);
-/**
- * Returns the current learning streak in consecutive days
- * @summary Get learning streak
- */
- progressGetStreak<TData = LearningStreakResponse>( options?: HttpClientBodyOptions): Observable<TData>;
- progressGetStreak<TData = LearningStreakResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- progressGetStreak<TData = LearningStreakResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns the current learning streak in consecutive days
+   * @summary Get learning streak
+   */
   progressGetStreak<TData = LearningStreakResponse>(
-     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  progressGetStreak<TData = LearningStreakResponse>(
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  progressGetStreak<TData = LearningStreakResponse>(
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  progressGetStreak<TData = LearningStreakResponse>(
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/learning/streak`,{
+      return this.http.get<TData>(`/api/v1/learning/streak`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/learning/streak`,{
+      return this.http.get<TData>(`/api/v1/learning/streak`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/learning/streak`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/learning/streak`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Returns the next scenario and card to continue learning
- * @summary Get resume information
- */
- progressGetResume<TData = LearningResumeResponse>( options?: HttpClientBodyOptions): Observable<TData>;
- progressGetResume<TData = LearningResumeResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- progressGetResume<TData = LearningResumeResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns the next scenario and card to continue learning
+   * @summary Get resume information
+   */
   progressGetResume<TData = LearningResumeResponse>(
-     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  progressGetResume<TData = LearningResumeResponse>(
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  progressGetResume<TData = LearningResumeResponse>(
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  progressGetResume<TData = LearningResumeResponse>(
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/learning/resume`,{
+      return this.http.get<TData>(`/api/v1/learning/resume`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/learning/resume`,{
+      return this.http.get<TData>(`/api/v1/learning/resume`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/learning/resume`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/learning/resume`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Returns progress for a specific entity (SCENARIO, LESSON, PROGRAM)
- * @summary Get progress by entity
- */
- progressGetByEntity<TData = LearningProgressResponse>(entityType: string,
-    entityId: number, options?: HttpClientBodyOptions): Observable<TData>;
- progressGetByEntity<TData = LearningProgressResponse>(entityType: string,
-    entityId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- progressGetByEntity<TData = LearningProgressResponse>(entityType: string,
-    entityId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns progress for a specific entity (SCENARIO, LESSON, PROGRAM)
+   * @summary Get progress by entity
+   */
   progressGetByEntity<TData = LearningProgressResponse>(
     entityType: string,
-    entityId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    entityId: number,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  progressGetByEntity<TData = LearningProgressResponse>(
+    entityType: string,
+    entityId: number,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  progressGetByEntity<TData = LearningProgressResponse>(
+    entityType: string,
+    entityId: number,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  progressGetByEntity<TData = LearningProgressResponse>(
+    entityType: string,
+    entityId: number,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/learning/progress/${entityType}/${entityId}`,{
+      return this.http.get<TData>(`/api/v1/learning/progress/${entityType}/${entityId}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/learning/progress/${entityType}/${entityId}`,{
+      return this.http.get<TData>(`/api/v1/learning/progress/${entityType}/${entityId}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/learning/progress/${entityType}/${entityId}`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/learning/progress/${entityType}/${entityId}`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Returns all lessons for a program with LOCKED/IN_PROGRESS/COMPLETED status
- * @summary Get lessons availability
- */
- progressGetLessonsAvailability<TData = ListLessonAvailabilityResponse>(programId: number, options?: HttpClientBodyOptions): Observable<TData>;
- progressGetLessonsAvailability<TData = ListLessonAvailabilityResponse>(programId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- progressGetLessonsAvailability<TData = ListLessonAvailabilityResponse>(programId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns all lessons for a program with LOCKED/IN_PROGRESS/COMPLETED status
+   * @summary Get lessons availability
+   */
   progressGetLessonsAvailability<TData = ListLessonAvailabilityResponse>(
-    programId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    programId: number,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  progressGetLessonsAvailability<TData = ListLessonAvailabilityResponse>(
+    programId: number,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  progressGetLessonsAvailability<TData = ListLessonAvailabilityResponse>(
+    programId: number,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  progressGetLessonsAvailability<TData = ListLessonAvailabilityResponse>(
+    programId: number,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/learning/lessons/availability/${programId}`,{
+      return this.http.get<TData>(`/api/v1/learning/lessons/availability/${programId}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/learning/lessons/availability/${programId}`,{
+      return this.http.get<TData>(`/api/v1/learning/lessons/availability/${programId}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/learning/lessons/availability/${programId}`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/learning/lessons/availability/${programId}`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Returns active language pair, program, next lesson, resume, and streak
- * @summary Learning Home Dashboard
- */
- progressGetHome<TData = LearningHomeResponse>( options?: HttpClientBodyOptions): Observable<TData>;
- progressGetHome<TData = LearningHomeResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- progressGetHome<TData = LearningHomeResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns active language pair, program, next lesson, resume, and streak
+   * @summary Learning Home Dashboard
+   */
+  progressGetHome<TData = LearningHomeResponse>(options?: HttpClientBodyOptions): Observable<TData>;
   progressGetHome<TData = LearningHomeResponse>(
-     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  progressGetHome<TData = LearningHomeResponse>(
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  progressGetHome<TData = LearningHomeResponse>(
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/learning/home`,{
+      return this.http.get<TData>(`/api/v1/learning/home`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/learning/home`,{
+      return this.http.get<TData>(`/api/v1/learning/home`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/learning/home`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/learning/home`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-};
+}
 
-export type ProgressGetStreakClientResult = NonNullable<LearningStreakResponse>
-export type ProgressGetResumeClientResult = NonNullable<LearningResumeResponse>
-export type ProgressGetByEntityClientResult = NonNullable<LearningProgressResponse>
-export type ProgressGetLessonsAvailabilityClientResult = NonNullable<ListLessonAvailabilityResponse>
-export type ProgressGetHomeClientResult = NonNullable<LearningHomeResponse>
+export type ProgressGetStreakClientResult = NonNullable<LearningStreakResponse>;
+export type ProgressGetResumeClientResult = NonNullable<LearningResumeResponse>;
+export type ProgressGetByEntityClientResult = NonNullable<LearningProgressResponse>;
+export type ProgressGetLessonsAvailabilityClientResult =
+  NonNullable<ListLessonAvailabilityResponse>;
+export type ProgressGetHomeClientResult = NonNullable<LearningHomeResponse>;

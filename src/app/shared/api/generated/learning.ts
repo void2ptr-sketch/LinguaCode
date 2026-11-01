@@ -4,46 +4,28 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import {
-  HttpClient
-} from '@angular/common/http';
-import type {
-  HttpContext,
-  HttpEvent,
-  HttpParams
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
 
-import {
-  Injectable,
-  inject
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
-import type {
-  Observable
-} from 'rxjs';
+import type { Observable } from 'rxjs';
 
 import type {
   LearningCardAccuracyResponse,
   LearningGetUserResultsParams,
   LearningResultList,
   LearningResultRequest,
-  LearningResultResponse
+  LearningResultResponse,
 } from './models';
 
-import type {
-  HttpHeaders,
-  HttpResponse as AngularHttpResponse
-} from '@angular/common/http';
-
-
-
+import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
 
 type HttpClientOptions = {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-        | HttpParams
-      | Record<string, string | number | boolean | (string | number | boolean)[]>;
+    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -55,9 +37,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: {includeHeaders?: string[]} | boolean;
+  readonly transferCache?: { includeHeaders?: string[] } | boolean;
   readonly timeout?: number;
-}
+};
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -112,9 +94,7 @@ function filterParams(
   objectParamStrategies: Readonly<Record<string, AngularObjectParamStrategy>> = {},
 ): Record<string, unknown> {
   const filteredParams: Record<string, unknown> = {};
-  const filterPrimitiveArray = (
-    value: unknown[],
-  ): (string | number | boolean)[] =>
+  const filterPrimitiveArray = (value: unknown[]): (string | number | boolean)[] =>
     value
       .filter(
         (item) =>
@@ -124,7 +104,9 @@ function filterParams(
             typeof item === 'boolean' ||
             (item instanceof Date && !Number.isNaN(item.getTime()))),
       )
-      .map((item) => (item instanceof Date ? item.toISOString() : item)) as (string | number | boolean)[];
+      .map((item) => (item instanceof Date ? item.toISOString() : item)) as (
+      string | number | boolean
+    )[];
   for (const [key, value] of Object.entries(params)) {
     if (passthroughKeys.has(key)) {
       if (value !== undefined) {
@@ -155,10 +137,7 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             commaParts.push(prop, String(propValue));
-          } else if (
-            propValue instanceof Date &&
-            !Number.isNaN(propValue.getTime())
-          ) {
+          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
             commaParts.push(prop, propValue.toISOString());
           }
         }
@@ -167,8 +146,7 @@ function filterParams(
         }
       } else {
         for (const [prop, propValue] of entries) {
-          const targetKey =
-            objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
+          const targetKey = objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
           if (Array.isArray(propValue)) {
             const filteredProp = filterPrimitiveArray(propValue);
             if (filteredProp.length) {
@@ -181,10 +159,7 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             filteredParams[targetKey] = propValue;
-          } else if (
-            propValue instanceof Date &&
-            !Number.isNaN(propValue.getTime())
-          ) {
+          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
             filteredParams[targetKey] = propValue.toISOString();
           }
         }
@@ -208,9 +183,7 @@ function filterParams(
       filteredParams[key] = value.toISOString();
     } else if (
       value != null &&
-      (typeof value === 'string' ||
-        typeof value === 'number' ||
-        typeof value === 'boolean')
+      (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')
     ) {
       filteredParams[key] = value;
     }
@@ -218,130 +191,147 @@ function filterParams(
   return filteredParams;
 }
 
-
-
-
-
 @Injectable({ providedIn: 'root' })
 export class LearningService {
   private readonly http = inject(HttpClient);
-/**
- * Records the authenticated user's answer result for a card (userId from JWT)
- * @summary Record learning result
- */
- learningRecordResult<TData = LearningResultResponse>(learningResultRequest: LearningResultRequest, options?: HttpClientBodyOptions): Observable<TData>;
- learningRecordResult<TData = LearningResultResponse>(learningResultRequest: LearningResultRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- learningRecordResult<TData = LearningResultResponse>(learningResultRequest: LearningResultRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Records the authenticated user's answer result for a card (userId from JWT)
+   * @summary Record learning result
+   */
   learningRecordResult<TData = LearningResultResponse>(
-    learningResultRequest: LearningResultRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    learningResultRequest: LearningResultRequest,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  learningRecordResult<TData = LearningResultResponse>(
+    learningResultRequest: LearningResultRequest,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  learningRecordResult<TData = LearningResultResponse>(
+    learningResultRequest: LearningResultRequest,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  learningRecordResult<TData = LearningResultResponse>(
+    learningResultRequest: LearningResultRequest,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.post<TData>(
-      `/api/v1/learning/results`,
-      learningResultRequest,{
+      return this.http.post<TData>(`/api/v1/learning/results`, learningResultRequest, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.post<TData>(
-      `/api/v1/learning/results`,
-      learningResultRequest,{
+      return this.http.post<TData>(`/api/v1/learning/results`, learningResultRequest, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.post<TData>(
-      `/api/v1/learning/results`,
-      learningResultRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.post<TData>(`/api/v1/learning/results`, learningResultRequest, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-/**
- * Returns paginated learning results for the authenticated user (JWT only)
- * @summary Get user learning results
- */
- learningGetUserResults<TData = LearningResultList>(userId: number,
-    params: LearningGetUserResultsParams, options?: HttpClientBodyOptions): Observable<TData>;
- learningGetUserResults<TData = LearningResultList>(userId: number,
-    params: LearningGetUserResultsParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- learningGetUserResults<TData = LearningResultList>(userId: number,
-    params: LearningGetUserResultsParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns paginated learning results for the authenticated user (JWT only)
+   * @summary Get user learning results
+   */
   learningGetUserResults<TData = LearningResultList>(
     userId: number,
-    params: LearningGetUserResultsParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
+    params: LearningGetUserResultsParams,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  learningGetUserResults<TData = LearningResultList>(
+    userId: number,
+    params: LearningGetUserResultsParams,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  learningGetUserResults<TData = LearningResultList>(
+    userId: number,
+    params: LearningGetUserResultsParams,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  learningGetUserResults<TData = LearningResultList>(
+    userId: number,
+    params: LearningGetUserResultsParams,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams(
+      { ...params, ...options?.params },
+      new Set<string>([]),
+      false,
+      new Set<string>([]),
+      { pageable: 'flatten' } as const,
+    );
 
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/learning/results/${userId}`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(`/api/v1/learning/results/${userId}`, {
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-        params: filteredParams,}
-    );
+        params: filteredParams,
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/learning/results/${userId}`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(`/api/v1/learning/results/${userId}`, {
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,}
-    );
+        params: filteredParams,
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/learning/results/${userId}`,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-        params: filteredParams,}
-    );
+    return this.http.get<TData>(`/api/v1/learning/results/${userId}`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+      params: filteredParams,
+    });
   }
-/**
- * Returns accuracy statistics for the authenticated user (JWT only)
- * @summary Get card accuracy
- */
- learningGetCardAccuracy<TData = LearningCardAccuracyResponse>(userId: number,
-    cardId: number, options?: HttpClientBodyOptions): Observable<TData>;
- learningGetCardAccuracy<TData = LearningCardAccuracyResponse>(userId: number,
-    cardId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- learningGetCardAccuracy<TData = LearningCardAccuracyResponse>(userId: number,
-    cardId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  /**
+   * Returns accuracy statistics for the authenticated user (JWT only)
+   * @summary Get card accuracy
+   */
   learningGetCardAccuracy<TData = LearningCardAccuracyResponse>(
     userId: number,
-    cardId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    cardId: number,
+    options?: HttpClientBodyOptions,
+  ): Observable<TData>;
+  learningGetCardAccuracy<TData = LearningCardAccuracyResponse>(
+    userId: number,
+    cardId: number,
+    options?: HttpClientEventOptions,
+  ): Observable<HttpEvent<TData>>;
+  learningGetCardAccuracy<TData = LearningCardAccuracyResponse>(
+    userId: number,
+    cardId: number,
+    options?: HttpClientResponseOptions,
+  ): Observable<AngularHttpResponse<TData>>;
+  learningGetCardAccuracy<TData = LearningCardAccuracyResponse>(
+    userId: number,
+    cardId: number,
+    options?: HttpClientObserveOptions,
+  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(
-      `/api/v1/learning/accuracy/${userId}/${cardId}`,{
+      return this.http.get<TData>(`/api/v1/learning/accuracy/${userId}/${cardId}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
-    );
+      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(
-      `/api/v1/learning/accuracy/${userId}/${cardId}`,{
+      return this.http.get<TData>(`/api/v1/learning/accuracy/${userId}/${cardId}`, {
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
-    );
+      });
     }
 
-    return this.http.get<TData>(
-      `/api/v1/learning/accuracy/${userId}/${cardId}`,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
+    return this.http.get<TData>(`/api/v1/learning/accuracy/${userId}/${cardId}`, {
+      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      observe: 'body',
+    });
   }
-};
+}
 
-export type LearningRecordResultClientResult = NonNullable<LearningResultResponse>
-export type LearningGetUserResultsClientResult = NonNullable<LearningResultList>
-export type LearningGetCardAccuracyClientResult = NonNullable<LearningCardAccuracyResponse>
+export type LearningRecordResultClientResult = NonNullable<LearningResultResponse>;
+export type LearningGetUserResultsClientResult = NonNullable<LearningResultList>;
+export type LearningGetCardAccuracyClientResult = NonNullable<LearningCardAccuracyResponse>;

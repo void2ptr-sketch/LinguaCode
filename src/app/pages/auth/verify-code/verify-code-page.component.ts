@@ -1,4 +1,12 @@
-import { Component, ChangeDetectionStrategy, inject, signal, computed, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  inject,
+  signal,
+  computed,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -148,7 +156,9 @@ export class VerifyCodePageComponent implements OnInit, OnDestroy {
       this.snackbar.open('Код отправлен повторно', 'Закрыть', { duration: 3000 });
       this.#startCountdown();
     } catch {
-      this.snackbar.open('Не удалось отправить код. Попробуйте позже.', 'Закрыть', { duration: 4000 });
+      this.snackbar.open('Не удалось отправить код. Попробуйте позже.', 'Закрыть', {
+        duration: 4000,
+      });
     } finally {
       this.resendLoading.set(false);
     }
@@ -178,9 +188,7 @@ export class VerifyCodePageComponent implements OnInit, OnDestroy {
   }
 
   #focusDigit(index: number): void {
-    const el = document.querySelector<HTMLInputElement>(
-      `.code-input[data-index="${index}"]`,
-    );
+    const el = document.querySelector<HTMLInputElement>(`.code-input[data-index="${index}"]`);
     el?.focus();
   }
 }

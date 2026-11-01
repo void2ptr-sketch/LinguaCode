@@ -19,9 +19,9 @@
 
 Реализация: `LanguagePairsApiService` · mock: нет (данные с бэкенда).
 
-| Метод | Путь | Описание |
-| ----- | ---- | -------- |
-| GET | `/language-pairs` | Список всех доступных языковых пар |
+| Метод | Путь              | Описание                           |
+| ----- | ----------------- | ---------------------------------- |
+| GET   | `/language-pairs` | Список всех доступных языковых пар |
 
 Ответ: `ApiListResponse<LanguagePairDto>`
 
@@ -37,14 +37,14 @@ type LanguagePairDto = {
 
 Реализация: `CardsApiService` · порт `CardCatalogPort` · mock `cardsApiMockInterceptor`.
 
-| Метод  | Путь                 | Описание                                  |
-| ------ | -------------------- | ----------------------------------------- |
-| GET    | `/cards/search`      | Поиск по критериям + пагинация + facets   |
-| GET    | `/cards/:id`         | Карточка по ID (404 при отсутствии)       |
+| Метод  | Путь                    | Описание                                  |
+| ------ | ----------------------- | ----------------------------------------- |
+| GET    | `/cards/search`         | Поиск по критериям + пагинация + facets   |
+| GET    | `/cards/:id`            | Карточка по ID (404 при отсутствии)       |
 | POST   | `/cards/batch/retrieve` | Пакетное получение по `{ ids: string[] }` |
-| POST   | `/cards`             | Создание карточки (201)                   |
-| PUT    | `/cards/:id`         | Обновление карточки                       |
-| DELETE | `/cards/:id`         | Удаление карточки                         |
+| POST   | `/cards`                | Создание карточки (201)                   |
+| PUT    | `/cards/:id`            | Обновление карточки                       |
+| DELETE | `/cards/:id`            | Удаление карточки                         |
 
 Критерии поиска (`CardSearchCriteria`): `query`, `knownLanguage`, `learningLanguage`, `tags`, `difficulty`, `kinds`, `page` (`page` / `pageSize`), `sort`. Параметры сериализуются через `buildCardSearchParams`.
 
@@ -84,16 +84,16 @@ type LanguagePairDto = {
 
 Реализация: `CoursesApiService` · порт `CourseCatalogPort` · mock `coursesApiMockInterceptor`.
 
-| Метод  | Путь                               | Описание                             |
-| ------ | ---------------------------------- | ------------------------------------ |
-| GET    | `/courses/search`                  | Поиск + пагинация                    |
-| GET    | `/courses/:id`                     | Курс с уроками (`CourseWithLessons`) |
-| GET    | `/courses/:id/bundle`              | Экспорт-пакет (`CourseExportBundle`) |
-| GET    | `/courses/by-scenario/:scenarioId` | Курсы, использующие сценарий         |
+| Метод  | Путь                               | Описание                                   |
+| ------ | ---------------------------------- | ------------------------------------------ |
+| GET    | `/courses/search`                  | Поиск + пагинация                          |
+| GET    | `/courses/:id`                     | Курс с уроками (`CourseWithLessons`)       |
+| GET    | `/courses/:id/bundle`              | Экспорт-пакет (`CourseExportBundle`)       |
+| GET    | `/courses/by-scenario/:scenarioId` | Курсы, использующие сценарий               |
 | GET    | `/scorm/export/courses/:id`        | Экспорт в SCORM/xAPI (`ScormExportBundle`) |
-| POST   | `/courses`                         | Создание курса (201)                 |
-| PUT    | `/courses/:id`                     | Обновление курса (403 на чужой)      |
-| DELETE | `/courses/:id`                     | Удаление курса                       |
+| POST   | `/courses`                         | Создание курса (201)                       |
+| PUT    | `/courses/:id`                     | Обновление курса (403 на чужой)            |
+| DELETE | `/courses/:id`                     | Удаление курса                             |
 
 Пейлоад записи: `CourseWritePayload` (`title`, `description`, `published`, `languagePair?`, `programs[]`, `authoring?`).
 На бэкенд отправляется: `courseDescription` (из `description`), `authorId` (из UserStore).
@@ -117,8 +117,8 @@ type CourseExportBundle = {
 
 Реализация: `ScormExportService` (backend) · mock `scormExportMockInterceptor` · типы `scorm-export.types.ts`.
 
-| Параметр | Значение | Описание |
-| -------- | -------- | -------- |
+| Параметр | Значение              | Описание                                                    |
+| -------- | --------------------- | ----------------------------------------------------------- |
 | `format` | `json` (по умолчанию) | `json` — JSON-объект, `zip` — ZIP-архив с `imsmanifest.xml` |
 
 Ответ: `ScormExportBundle`:
@@ -128,7 +128,7 @@ type ScormExportBundle = {
   format: 'linguacode-scorm-export';
   version: number;
   exportedAt: string;
-  manifest: ScormManifest;        // SCORM organization hierarchy
+  manifest: ScormManifest; // SCORM organization hierarchy
   courses: readonly Course[];
   programs: readonly Program[];
   lessons: readonly Lesson[];

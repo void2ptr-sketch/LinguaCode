@@ -112,10 +112,10 @@ export class CardsApiService implements CardCatalogPort {
    * @param card - The card to create.
    * @returns Promise resolving to the created card.
    *
-    * @example
-    * ```ts
-    * const created = await cardsApi.create(card);
-    * ```
+   * @example
+   * ```ts
+   * const created = await cardsApi.create(card);
+   * ```
    */
   create(card: Card): Promise<Card> {
     const payload = CardBackendAdapter.toCreatePayload(card);

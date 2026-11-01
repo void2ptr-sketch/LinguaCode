@@ -430,9 +430,13 @@ describe('CourseCatalogPageComponent', () => {
       totalItems: 2,
       totalPages: 1,
     };
-    (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockResolvedValueOnce(multiCoursePage);
+    (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockResolvedValueOnce(
+      multiCoursePage,
+    );
 
-    (mockCatalogStore.selectedCourseId as import('@angular/core').WritableSignal<string>).set('c-2');
+    (mockCatalogStore.selectedCourseId as import('@angular/core').WritableSignal<string>).set(
+      'c-2',
+    );
 
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     const component = fixture.componentInstance;
@@ -454,7 +458,9 @@ describe('CourseCatalogPageComponent', () => {
       totalItems: 2,
       totalPages: 1,
     };
-    (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockResolvedValueOnce(multiCoursePage);
+    (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockResolvedValueOnce(
+      multiCoursePage,
+    );
 
     (mockCatalogStore.selectedCourseId as import('@angular/core').WritableSignal<string>).set('');
 

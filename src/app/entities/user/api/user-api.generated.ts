@@ -23,7 +23,8 @@ function mapBackendUser(dto: any): User {
   return {
     id: dto.id,
     displayName: dto.displayName,
-    preferences: typeof dto.preferences === 'string' ? JSON.parse(dto.preferences) : (dto.preferences ?? {}),
+    preferences:
+      typeof dto.preferences === 'string' ? JSON.parse(dto.preferences) : (dto.preferences ?? {}),
   };
 }
 
@@ -32,9 +33,9 @@ export class UserApiService implements UserPort {
   private readonly http = inject(HttpClient);
 
   getMe(): Promise<User> {
-    return firstValueFrom(
-      this.http.get<UserResponse>(buildApiUrl('/users/me')),
-    ).then((response) => mapBackendUser(response.data));
+    return firstValueFrom(this.http.get<UserResponse>(buildApiUrl('/users/me'))).then((response) =>
+      mapBackendUser(response.data),
+    );
   }
 
   updateMe(payload: UpdateUserPayload): Promise<User> {

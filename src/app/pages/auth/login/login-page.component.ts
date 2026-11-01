@@ -55,9 +55,7 @@ export class LoginPageComponent {
   /** Whether to show the success indicator. */
   readonly showSuccess = computed(() => this.status() === 'success');
   /** Whether to show the error indicator. */
-  readonly showError = computed(
-    () => this.status() === 'error' && (this.error() ?? false),
-  );
+  readonly showError = computed(() => this.status() === 'error' && (this.error() ?? false));
 
   /** Redirects to journey after a brief success display. */
   private scheduleRedirect(): void {

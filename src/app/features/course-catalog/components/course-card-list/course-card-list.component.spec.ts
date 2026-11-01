@@ -130,7 +130,9 @@ describe('CourseCatalogCoursesComponent', () => {
 
   it('should call pairManager.setActive on onSetActive', () => {
     const mockSetActive = vi.fn();
-    (component as unknown as { pairManager: { setActive: ReturnType<typeof vi.fn> } }).pairManager.setActive = mockSetActive;
+    (
+      component as unknown as { pairManager: { setActive: ReturnType<typeof vi.fn> } }
+    ).pairManager.setActive = mockSetActive;
 
     component.onSetActive('pair-2');
 

@@ -81,7 +81,9 @@ describe('CoursesApiService', () => {
         CoursesApiService,
         {
           provide: LanguagePairsApiService,
-          useValue: { listAll: () => Promise.resolve([{ id: 1, knownCode: 'ru', learningCode: 'en' }]) },
+          useValue: {
+            listAll: () => Promise.resolve([{ id: 1, knownCode: 'ru', learningCode: 'en' }]),
+          },
         },
       ],
     });
@@ -90,7 +92,9 @@ describe('CoursesApiService', () => {
     httpMock = TestBed.inject(HttpTestingController);
 
     // Reset the language pair cache between tests
-    (service as unknown as { pairCacheLoaded: boolean; pairCache: Record<number, unknown> }).pairCacheLoaded = false;
+    (
+      service as unknown as { pairCacheLoaded: boolean; pairCache: Record<number, unknown> }
+    ).pairCacheLoaded = false;
     (service as unknown as { pairCache: Record<number, unknown> }).pairCache = {};
   });
 

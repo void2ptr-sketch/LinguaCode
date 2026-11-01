@@ -91,7 +91,10 @@ export class CoursesApiService implements CourseCatalogPort {
     try {
       const pairs = await this.languagePairsApi.listAll();
       for (const p of pairs) {
-        this.pairCache[p.id] = { known: p.knownCode as ContentLanguage, learning: p.learningCode as ContentLanguage };
+        this.pairCache[p.id] = {
+          known: p.knownCode as ContentLanguage,
+          learning: p.learningCode as ContentLanguage,
+        };
       }
     } catch {
       this.pairCache[1] = { known: 'ru' as ContentLanguage, learning: 'en' as ContentLanguage };
@@ -121,9 +124,9 @@ export class CoursesApiService implements CourseCatalogPort {
   }
 
   getById(courseId: string): Promise<CourseWithPrograms> {
-    return firstValueFrom(
-      this.http.get<CourseResponse>(buildApiUrl(`/courses/${courseId}`)),
-    ).then((response) => response.data as unknown as CourseWithPrograms);
+    return firstValueFrom(this.http.get<CourseResponse>(buildApiUrl(`/courses/${courseId}`))).then(
+      (response) => response.data as unknown as CourseWithPrograms,
+    );
   }
 
   create(payload: CourseWritePayload): Promise<CourseWithPrograms> {
@@ -137,7 +140,10 @@ export class CoursesApiService implements CourseCatalogPort {
       body['programs'] = payload.programs;
     }
     return firstValueFrom(
-      this.http.post<CourseResponse>(buildApiUrl('/courses'), body as unknown as CourseCreateRequest),
+      this.http.post<CourseResponse>(
+        buildApiUrl('/courses'),
+        body as unknown as CourseCreateRequest,
+      ),
     ).then((response) => response.data as unknown as CourseWithPrograms);
   }
 
@@ -148,19 +154,24 @@ export class CoursesApiService implements CourseCatalogPort {
       published: payload.published,
     };
     return firstValueFrom(
-      this.http.put<CourseResponse>(buildApiUrl(`/courses/${courseId}`), body as CourseUpdateRequest),
+      this.http.put<CourseResponse>(
+        buildApiUrl(`/courses/${courseId}`),
+        body as CourseUpdateRequest,
+      ),
     ).then((response) => response.data as unknown as CourseWithPrograms);
   }
 
   delete(courseId: string): Promise<void> {
-    return firstValueFrom(
-      this.http.delete<void>(buildApiUrl(`/courses/${courseId}`)),
-    ).then(() => undefined);
+    return firstValueFrom(this.http.delete<void>(buildApiUrl(`/courses/${courseId}`))).then(
+      () => undefined,
+    );
   }
 
   findUsingScenario(scenarioId: string): Promise<readonly CourseIndexEntry[]> {
     return firstValueFrom(
-      this.http.get<{ data: CourseIndexEntry[] }>(buildApiUrl(`/courses/by-scenario/${scenarioId}`)),
+      this.http.get<{ data: CourseIndexEntry[] }>(
+        buildApiUrl(`/courses/by-scenario/${scenarioId}`),
+      ),
     ).then((response) => response.data);
   }
 

@@ -35,14 +35,10 @@ export class RoleService {
   readonly isUser = computed(() => this.roles().includes('ROLE_USER'));
 
   /** Whether the user can perform write operations on languages. */
-  readonly canWriteLanguages = computed(
-    () => this.isAdmin(),
-  );
+  readonly canWriteLanguages = computed(() => this.isAdmin());
 
   /** Whether the user can perform write operations on language pairs. */
-  readonly canWritePairs = computed(
-    () => this.isAdmin() || this.isUser(),
-  );
+  readonly canWritePairs = computed(() => this.isAdmin() || this.isUser());
 
   /**
    * Checks if the user has a specific role.

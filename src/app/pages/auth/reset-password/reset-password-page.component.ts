@@ -49,7 +49,9 @@ export class ResetPasswordPageComponent {
     return p2 === '' || p1 === p2;
   });
 
-  readonly passwordTooShort = computed(() => this.password().length > 0 && this.password().length < 8);
+  readonly passwordTooShort = computed(
+    () => this.password().length > 0 && this.password().length < 8,
+  );
 
   readonly submitDisabled = computed(
     () =>

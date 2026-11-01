@@ -16,13 +16,7 @@ import { AuthStore } from '../../entities/auth/services/auth.store';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-menu-user',
-  imports: [
-    RouterLink,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatDividerModule,
-  ],
+  imports: [RouterLink, MatButtonModule, MatIconModule, MatMenuModule, MatDividerModule],
   templateUrl: './menu-user.component.html',
   styleUrl: './menu-user.component.scss',
 })
