@@ -21,6 +21,7 @@ export default defineConfig({
     },
     input: {
       target: './src/assets/openapi.json',
+      validation: false,
     },
   },
 });

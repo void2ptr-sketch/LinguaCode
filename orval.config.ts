@@ -19,18 +19,6 @@ export default defineConfig({
       client: 'angular',
       httpClient: 'angular',
       tsDeclaration: true,
-      // Don't export abstract classes — we use concrete services
-      override: {
-        operations: {
-          // Tag names in generated code
-        },
-        // Override Angular client options
-        angular: {
-          // Use HttpClient (not custom fetch wrapper)
-          // ConsumeTopLevelTags: false,
-        },
-      },
-      // Always overwrite generated files
       override: {
         validator: false,
       },
@@ -43,6 +31,10 @@ export default defineConfig({
       override: {
         header: {},
       },
+      // Skip strict OpenAPI spec validation.
+      // Backend specs (SpringDoc) sometimes omit optional fields like `content`
+      // on requestBody — orval would reject them without this flag.
+      validation: false,
     },
   },
 });

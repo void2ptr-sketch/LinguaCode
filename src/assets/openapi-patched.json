@@ -1,0 +1,5902 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Learning",
+      "description": "Трекинг обучения и прогресса"
+    },
+    {
+      "name": "Scenarios",
+      "description": "Операции с сценариями обучения"
+    },
+    {
+      "name": "Learning Behavior",
+      "description": "Анализ поведения пользователя"
+    },
+    {
+      "name": "Programs",
+      "description": "Операции с учебными программами"
+    },
+    {
+      "name": "Users",
+      "description": "Операции с пользователями"
+    },
+    {
+      "name": "Language Pairs",
+      "description": "Управление языковыми парами"
+    },
+    {
+      "name": "Learning Progress",
+      "description": "Прогресс обучения и домашняя панель"
+    },
+    {
+      "name": "Courses",
+      "description": "Операции с учебными курсами"
+    },
+    {
+      "name": "Cards",
+      "description": "Операции с карточками для изучения"
+    },
+    {
+      "name": "Languages",
+      "description": "Справочник поддерживаемых языков контента"
+    },
+    {
+      "name": "User Preferences",
+      "description": "Настройки пользователя"
+    },
+    {
+      "name": "Password Recovery",
+      "description": "Восстановление пароля по email"
+    },
+    {
+      "name": "Feedback",
+      "description": "Обратная связь по контенту"
+    },
+    {
+      "name": "SCORM",
+      "description": "Работа с курсами в SCORM/xAPI формате"
+    },
+    {
+      "name": "Subscription",
+      "description": "Subscription management"
+    },
+    {
+      "name": "Admin Tier Management",
+      "description": "Override content tier settings"
+    },
+    {
+      "name": "Auth",
+      "description": "Операции аутентификации"
+    }
+  ],
+  "paths": {
+    "/api/v1/users/me": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get current user",
+        "description": "Returns the current user profile from JWT token (without sensitive data)",
+        "operationId": "getMe",
+        "responses": {
+          "200": {
+            "description": "User found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update current user",
+        "description": "Updates the current user profile (JWT principal only, no cross-user updates)",
+        "operationId": "updateMe",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "User updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me/preferences": {
+      "get": {
+        "tags": [
+          "User Preferences"
+        ],
+        "summary": "Get user preferences",
+        "description": "Returns the current user's preferences",
+        "operationId": "getPreferences",
+        "responses": {
+          "200": {
+            "description": "Preferences found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserPreferencesDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserPreferencesDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserPreferencesDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User Preferences"
+        ],
+        "summary": "Replace preferences",
+        "description": "Fully replaces the current user's preferences",
+        "operationId": "putPreferences",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPreferencesDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Preferences updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserPreferencesDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserPreferencesDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserPreferencesDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserPreferencesDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User Preferences"
+        ],
+        "summary": "Reset preferences",
+        "description": "Resets the current user's preferences to defaults",
+        "operationId": "deletePreferences",
+        "responses": {
+          "204": {
+            "description": "Preferences reset"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "User Preferences"
+        ],
+        "summary": "Partial update preferences",
+        "description": "Partially updates the current user's preferences (merge with existing)",
+        "operationId": "patchPreferences",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPreferencesDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Preferences updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserPreferencesDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserPreferencesDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserPreferencesDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserPreferencesDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scenarios/{id}": {
+      "get": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Get scenario by ID",
+        "description": "Returns scenario details by ID",
+        "operationId": "getById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scenario found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScenarioDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Scenario not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScenarioDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Update scenario",
+        "description": "Updates an existing scenario",
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScenarioUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Scenario updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScenarioDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScenarioDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Scenario not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScenarioDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Delete scenario",
+        "description": "Deletes a scenario by ID",
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Scenario deleted"
+          },
+          "404": {
+            "description": "Scenario not found"
+          }
+        }
+      }
+    },
+    "/api/v1/programs/{id}": {
+      "get": {
+        "tags": [
+          "Programs"
+        ],
+        "summary": "Get program by ID",
+        "description": "Returns program details by ID",
+        "operationId": "getById_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Program found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseProgramDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Program not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseProgramDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Programs"
+        ],
+        "summary": "Update program",
+        "description": "Updates an existing program",
+        "operationId": "update_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgramUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Program updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseProgramDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseProgramDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Program not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseProgramDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Programs"
+        ],
+        "summary": "Delete program",
+        "description": "Deletes a program by ID",
+        "operationId": "delete_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Program deleted"
+          },
+          "404": {
+            "description": "Program not found"
+          }
+        }
+      }
+    },
+    "/api/v1/courses/{id}": {
+      "get": {
+        "tags": [
+          "Courses"
+        ],
+        "summary": "Get course by ID",
+        "description": "Returns course details by ID",
+        "operationId": "getById_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Course found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCourseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCourseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Courses"
+        ],
+        "summary": "Update course",
+        "description": "Updates an existing course",
+        "operationId": "update_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Course updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCourseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCourseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCourseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Courses"
+        ],
+        "summary": "Delete course",
+        "description": "Deletes a course by ID",
+        "operationId": "delete_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Course deleted"
+          },
+          "404": {
+            "description": "Course not found"
+          }
+        }
+      }
+    },
+    "/api/v1/cards/{id}": {
+      "get": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Get card by ID",
+        "description": "Returns card details by ID",
+        "operationId": "getById_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Card found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCardDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Card not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCardDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Update card",
+        "description": "Updates an existing card",
+        "operationId": "update_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Card updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCardDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCardDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Card not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCardDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Delete card",
+        "description": "Deletes a card by ID",
+        "operationId": "delete_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Card deleted"
+          },
+          "404": {
+            "description": "Card not found"
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Register user",
+        "description": "Registers a new user and returns the created user",
+        "operationId": "register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "User registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "User with this email already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscription/activate": {
+      "post": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Activate subscription",
+        "description": "Activates subscription via payment webhook",
+        "operationId": "activate",
+        "responses": {
+          "200": {
+            "description": "Subscription activated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid webhook payload",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scorm/import": {
+      "post": {
+        "tags": [
+          "SCORM"
+        ],
+        "summary": "Import course from SCORM package",
+        "description": "Imports a course from a SCORM ZIP package. Creates Course → Program → Lesson → Scenario → Card hierarchy.",
+        "operationId": "importScorm",
+        "parameters": [
+          {
+            "name": "authorId",
+            "in": "query",
+            "description": "Author user ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "description": "Optional title override",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "SCORM ZIP file"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Course imported successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScormImportResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid SCORM package or author not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScormImportResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scenarios": {
+      "get": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "List scenarios",
+        "description": "Returns a paginated list of scenarios with tier-based access control",
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scenarios found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseScenarioDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Create scenario",
+        "description": "Creates a new scenario",
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScenarioCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Scenario created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScenarioDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScenarioDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScenarioDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/programs": {
+      "get": {
+        "tags": [
+          "Programs"
+        ],
+        "summary": "List programs",
+        "description": "Returns a paginated list of published programs for a course with tier-based access control",
+        "operationId": "list_1",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Programs found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseProgramDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Programs"
+        ],
+        "summary": "Create program",
+        "description": "Creates a new program",
+        "operationId": "create_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgramCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Program created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseProgramDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseProgramDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseProgramDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/results": {
+      "post": {
+        "tags": [
+          "Learning"
+        ],
+        "summary": "Record learning result",
+        "description": "Records the authenticated user's answer result for a card (userId from JWT)",
+        "operationId": "recordResult",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LearningResultRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Result recorded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLearningResultDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Card not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLearningResultDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/languages": {
+      "get": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "List all active languages",
+        "description": "Returns all active languages ordered by code",
+        "operationId": "listAll",
+        "responses": {
+          "200": {
+            "description": "Languages found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseLanguageDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseLanguageDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "Create a new language",
+        "description": "Creates a new language with the given metadata",
+        "operationId": "create_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LanguageCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Language created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Language code already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/language-pairs": {
+      "get": {
+        "tags": [
+          "Language Pairs"
+        ],
+        "summary": "List all language pairs",
+        "description": "Returns all valid language pairs",
+        "operationId": "listAll_1",
+        "responses": {
+          "200": {
+            "description": "Language pairs found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseLanguagePairDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseLanguagePairDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Language Pairs"
+        ],
+        "summary": "Create a new language pair",
+        "description": "Creates a new language pair with the given known and learning codes",
+        "operationId": "create_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LanguagePairCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Language pair created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguagePairDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguagePairDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguagePairDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Language pair already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguagePairDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/feedback": {
+      "post": {
+        "tags": [
+          "Feedback"
+        ],
+        "summary": "Report an issue",
+        "description": "Creates a new feedback report for a content entity",
+        "operationId": "create_4",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Feedback created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseFeedbackDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseFeedbackDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseFeedbackDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/courses": {
+      "get": {
+        "tags": [
+          "Courses"
+        ],
+        "summary": "List courses",
+        "description": "Returns a paginated list of courses with optional filters and tier-based access control",
+        "operationId": "list_2",
+        "parameters": [
+          {
+            "name": "authorId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "published",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Courses found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseCourseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Courses"
+        ],
+        "summary": "Create course",
+        "description": "Creates a new course",
+        "operationId": "create_5",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Course created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCourseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCourseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCourseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cards": {
+      "get": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "List cards",
+        "description": "Returns a paginated list of cards with optional filters and tier-based access control",
+        "operationId": "list_3",
+        "parameters": [
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "SELECT",
+                "CODE_SELECT",
+                "MEMORY",
+                "SYMBOL",
+                "SOUND",
+                "TIMED",
+                "KEYBOARD",
+                "DRAW",
+                "TONE",
+                "READING",
+                "FLIP",
+                "CLOZE",
+                "CODE_TRACE"
+              ]
+            }
+          },
+          {
+            "name": "difficulty",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "BEGINNER",
+                "INTERMEDIATE",
+                "ADVANCED"
+              ]
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cards found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseCardDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Create card",
+        "description": "Creates a new card",
+        "operationId": "create_6",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Card created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCardDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCardDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCardDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cards/batch": {
+      "post": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Batch create cards",
+        "description": "Creates multiple cards in a single request",
+        "operationId": "batchCreate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CardCreateRequest"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Cards created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseCardDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseCardDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseCardDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cards/batch/retrieve": {
+      "post": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Batch retrieve cards",
+        "description": "Retrieves multiple cards by their IDs in a single request",
+        "operationId": "batchRetrieve",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchRetrieveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Cards found (may include notFound IDs)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseBatchRetrieveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseBatchRetrieveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/verify-code": {
+      "post": {
+        "tags": [
+          "Password Recovery"
+        ],
+        "summary": "Verify reset code",
+        "description": "Verifies the 6-digit code sent to the user's email",
+        "operationId": "verifyCode",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyCodeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Code verified",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or expired code",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/reset-password": {
+      "post": {
+        "tags": [
+          "Password Recovery"
+        ],
+        "summary": "Reset password",
+        "description": "Resets the password using a verified reset token",
+        "operationId": "resetPassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or expired token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/refresh": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Refresh token",
+        "description": "Refreshes the access token using a valid refresh token",
+        "operationId": "refresh",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRefreshRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Token refreshed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseAuthResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid refresh token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseAuthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Logout",
+        "description": "Logs out the user by clearing the refresh token cookie",
+        "operationId": "logout",
+        "responses": {
+          "200": {
+            "description": "Logout successful"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "description": "Authenticates a user by email and password, returns JWT tokens",
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthLoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseAuthResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseAuthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "Password Recovery"
+        ],
+        "summary": "Forgot password",
+        "description": "Sends a 6-digit reset code to the user's email address",
+        "operationId": "forgotPassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Reset code sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/languages/{id}": {
+      "get": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "Get a language by ID",
+        "description": "Returns a language by its ID",
+        "operationId": "getById_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Language ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Language found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Language not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "Delete a language",
+        "description": "Deletes a language by its ID",
+        "operationId": "delete_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Language ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Language deleted"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Language not found"
+          },
+          "409": {
+            "description": "Language is referenced in language pairs"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "Update a language",
+        "description": "Partially updates an existing language with the given fields",
+        "operationId": "update_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Language ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LanguageUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Language updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Language not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/language-pairs/{id}": {
+      "get": {
+        "tags": [
+          "Language Pairs"
+        ],
+        "summary": "Get language pair by ID",
+        "description": "Returns a language pair by its ID",
+        "operationId": "getById_5",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Language pair ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Language pair found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguagePairDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguagePairDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Language pair not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguagePairDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Language Pairs"
+        ],
+        "summary": "Delete a language pair",
+        "description": "Deletes a language pair by its ID",
+        "operationId": "delete_5",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Language pair ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Language pair deleted"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Language pair not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Language Pairs"
+        ],
+        "summary": "Update a language pair",
+        "description": "Updates an existing language pair with the given codes",
+        "operationId": "update_5",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Language pair ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LanguagePairUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Language pair updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguagePairDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguagePairDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguagePairDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Language pair not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguagePairDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/content/scenarios/{id}/tier": {
+      "patch": {
+        "tags": [
+          "Admin Tier Management"
+        ],
+        "summary": "Set scenario tier",
+        "description": "Admin override for scenario requiredTier",
+        "operationId": "setScenarioTier",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminSetTierRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Tier updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Scenario not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/content/programs/{id}/tier": {
+      "patch": {
+        "tags": [
+          "Admin Tier Management"
+        ],
+        "summary": "Set program tier",
+        "description": "Admin override for program requiredTier",
+        "operationId": "setProgramTier",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminSetTierRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Tier updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Program not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/content/courses/{id}/tier": {
+      "patch": {
+        "tags": [
+          "Admin Tier Management"
+        ],
+        "summary": "Set course tier",
+        "description": "Admin override for course requiredTier",
+        "operationId": "setCourseTier",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminSetTierRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Tier updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/content/cards/{id}/tier": {
+      "patch": {
+        "tags": [
+          "Admin Tier Management"
+        ],
+        "summary": "Set card tier",
+        "description": "Admin override for card requiredTier",
+        "operationId": "setCardTier",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminSetTierRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Tier updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Card not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user by ID",
+        "description": "Returns user details by ID",
+        "operationId": "getById_6",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscription/status": {
+      "get": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Current subscription status",
+        "description": "Returns the authenticated user's subscription status",
+        "operationId": "getStatus",
+        "responses": {
+          "200": {
+            "description": "Subscription status found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseSubscriptionStatusDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseSubscriptionStatusDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scorm/export/courses/{courseId}": {
+      "get": {
+        "tags": [
+          "SCORM"
+        ],
+        "summary": "Export course to SCORM",
+        "description": "Returns a complete SCORM/xAPI export package for a course including manifest, all nested entities, and xAPI statements for learning analytics",
+        "operationId": "exportScorm",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "description": "Course ID to export",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Export format (json is the only supported format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SCORM export generated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScormExportBundle"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScormExportBundle"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseScormExportBundle"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scenarios/search": {
+      "get": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Search scenarios",
+        "description": "Searches scenarios by title",
+        "operationId": "search",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseScenarioDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scenarios/by-card/{cardId}": {
+      "get": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Get scenarios by card",
+        "description": "Returns scenarios associated with a card",
+        "operationId": "getByCardId",
+        "parameters": [
+          {
+            "name": "cardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scenarios found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseScenarioDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/programs/{id}/lessons": {
+      "get": {
+        "tags": [
+          "Programs"
+        ],
+        "summary": "Get lessons by program",
+        "description": "Returns all lessons for a program, ordered by order field",
+        "operationId": "getLessons",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lessons found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseLessonDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Program not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseLessonDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/programs/search": {
+      "get": {
+        "tags": [
+          "Programs"
+        ],
+        "summary": "Search programs",
+        "description": "Searches programs by title with pagination",
+        "operationId": "search_1",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseProgramDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/programs/by-course/{courseId}": {
+      "get": {
+        "tags": [
+          "Programs"
+        ],
+        "summary": "Get programs by course",
+        "description": "Returns all programs for a course (404 if course not found)",
+        "operationId": "getByCourse",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Programs found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseProgramDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseProgramDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/streak": {
+      "get": {
+        "tags": [
+          "Learning Progress"
+        ],
+        "summary": "Get learning streak",
+        "description": "Returns the current learning streak in consecutive days",
+        "operationId": "getStreak",
+        "responses": {
+          "200": {
+            "description": "Streak calculated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseStreakDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseStreakDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/resume": {
+      "get": {
+        "tags": [
+          "Learning Progress"
+        ],
+        "summary": "Get resume information",
+        "description": "Returns the next scenario and card to continue learning",
+        "operationId": "getResume",
+        "responses": {
+          "200": {
+            "description": "Resume data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseResumeResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseResumeResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/results/{userId}": {
+      "get": {
+        "tags": [
+          "Learning"
+        ],
+        "summary": "Get user learning results",
+        "description": "Returns paginated learning results for the authenticated user (JWT only)",
+        "operationId": "getUserResults",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseLearningResultDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — not the resource owner",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseLearningResultDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/progress/{entityType}/{entityId}": {
+      "get": {
+        "tags": [
+          "Learning Progress"
+        ],
+        "summary": "Get progress by entity",
+        "description": "Returns progress for a specific entity (SCENARIO, LESSON, PROGRAM)",
+        "operationId": "getProgress",
+        "parameters": [
+          {
+            "name": "entityType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Progress found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLearningProgressDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLearningProgressDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/lessons/availability/{programId}": {
+      "get": {
+        "tags": [
+          "Learning Progress"
+        ],
+        "summary": "Get lessons availability",
+        "description": "Returns all lessons for a program with LOCKED/IN_PROGRESS/COMPLETED status",
+        "operationId": "getLessonsAvailability",
+        "parameters": [
+          {
+            "name": "programId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lessons found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseListLessonAvailabilityDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseListLessonAvailabilityDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/home": {
+      "get": {
+        "tags": [
+          "Learning Progress"
+        ],
+        "summary": "Learning Home Dashboard",
+        "description": "Returns active language pair, program, next lesson, resume, and streak",
+        "operationId": "getLearningHome",
+        "responses": {
+          "200": {
+            "description": "Dashboard data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLearningHomeDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLearningHomeDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/behavior/weak-cards": {
+      "get": {
+        "tags": [
+          "Learning Behavior"
+        ],
+        "summary": "Get weak cards",
+        "description": "Returns weak cards for the authenticated user (JWT only)",
+        "operationId": "getWeakCards",
+        "parameters": [
+          {
+            "name": "accuracyThreshold",
+            "in": "query",
+            "description": "Accuracy threshold for weak cards (default 0.5)",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "default": 0.5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Weak cards found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseWeakCardProfileDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseWeakCardProfileDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/behavior/snapshot": {
+      "get": {
+        "tags": [
+          "Learning Behavior"
+        ],
+        "summary": "Get behavior snapshot",
+        "description": "Returns the full behavior snapshot for the authenticated user (JWT only)",
+        "operationId": "getSnapshot",
+        "parameters": [
+          {
+            "name": "accuracyThreshold",
+            "in": "query",
+            "description": "Accuracy threshold for weak cards (default 0.5)",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "default": 0.5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Snapshot found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserBehaviorDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseUserBehaviorDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/behavior/pace": {
+      "get": {
+        "tags": [
+          "Learning Behavior"
+        ],
+        "summary": "Get learning pace",
+        "description": "Returns learning pace analytics for the authenticated user (JWT only)",
+        "operationId": "getPace",
+        "responses": {
+          "200": {
+            "description": "Pace data found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLearningPaceDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLearningPaceDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/behavior/difficulty": {
+      "get": {
+        "tags": [
+          "Learning Behavior"
+        ],
+        "summary": "Get difficulty curve",
+        "description": "Returns difficulty curve by card kind for the authenticated user (JWT only)",
+        "operationId": "getDifficulty",
+        "responses": {
+          "200": {
+            "description": "Difficulty data found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseDifficultyCurveDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseDifficultyCurveDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/accuracy/{userId}/{cardId}": {
+      "get": {
+        "tags": [
+          "Learning"
+        ],
+        "summary": "Get card accuracy",
+        "description": "Returns accuracy statistics for the authenticated user (JWT only)",
+        "operationId": "getCardAccuracy",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "cardId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Accuracy calculated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCardAccuracyDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden — not the resource owner",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCardAccuracyDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/languages/by-code": {
+      "get": {
+        "tags": [
+          "Languages"
+        ],
+        "summary": "Get a language by ISO code",
+        "description": "Returns a language by its ISO 639-1 code",
+        "operationId": "getByCode",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "ISO 639-1 code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "ru"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Language found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Language not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseLanguageDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/feedback/{id}": {
+      "get": {
+        "tags": [
+          "Feedback"
+        ],
+        "summary": "Get feedback by ID",
+        "description": "Returns feedback details by ID",
+        "operationId": "getById_7",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Feedback found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseFeedbackDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Feedback not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseFeedbackDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/feedback/my": {
+      "get": {
+        "tags": [
+          "Feedback"
+        ],
+        "summary": "List my feedbacks",
+        "description": "Returns a paginated list of feedbacks submitted by the current user",
+        "operationId": "myFeedback",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Feedbacks found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseFeedbackDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseFeedbackDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/courses/{id}/bundle": {
+      "get": {
+        "tags": [
+          "Courses"
+        ],
+        "summary": "Get course export bundle",
+        "description": "Returns a complete export package for a course including all nested entities",
+        "operationId": "getBundle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bundle exported",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCourseExportBundle"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseCourseExportBundle"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/courses/search": {
+      "get": {
+        "tags": [
+          "Courses"
+        ],
+        "summary": "Search courses",
+        "description": "Searches courses by title or description with optional author filter",
+        "operationId": "search_2",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Courses found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseCourseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/courses/by-scenario/{scenarioId}": {
+      "get": {
+        "tags": [
+          "Courses"
+        ],
+        "summary": "Find courses by scenario",
+        "description": "Returns all courses that contain programs referencing the given scenario",
+        "operationId": "findByScenario",
+        "parameters": [
+          {
+            "name": "scenarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Courses found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseListCourseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Scenario not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiOneResponseListCourseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cards/search": {
+      "get": {
+        "tags": [
+          "Cards"
+        ],
+        "summary": "Search cards",
+        "description": "Searches cards by title and filters",
+        "operationId": "search_3",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "knownLanguage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "learningLanguage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiListResponseCardDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AuthLoginRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "minLength": 1
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 2147483647,
+            "minLength": 8
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "AuthRefreshRequest": {
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "refreshToken"
+        ]
+      },
+      "AuthResponse": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "accessToken": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          }
+        }
+      },
+      "UserBehaviorDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "overallAccuracy": {
+            "type": "number",
+            "format": "double"
+          },
+          "selectAccuracy": {
+            "type": "number",
+            "format": "double"
+          },
+          "keyboardAccuracy": {
+            "type": "number",
+            "format": "double"
+          },
+          "drawAccuracy": {
+            "type": "number",
+            "format": "double"
+          },
+          "hardestKind": {
+            "type": "string"
+          },
+          "totalSessions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "avgCardsPerSession": {
+            "type": "number",
+            "format": "double"
+          },
+          "avgTimePerCardMs": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "longestStreak": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "weakCards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WeakCardProfileDto"
+            }
+          }
+        }
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "preferences": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "paymentTier": {
+            "type": "string"
+          },
+          "subscriptionExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UserPreferencesDto": {
+        "type": "object",
+        "properties": {
+          "interfaceLanguage": {
+            "type": "string",
+            "enum": [
+              "EN",
+              "ZH",
+              "RU"
+            ]
+          },
+          "learningPairKnown": {
+            "type": "string"
+          },
+          "learningPairLearning": {
+            "type": "string"
+          },
+          "selectedCourseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "selectedProgramId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "cardFontSize": {
+            "type": "string",
+            "enum": [
+              "SMALL",
+              "MEDIUM",
+              "LARGE"
+            ]
+          },
+          "darkMode": {
+            "type": "boolean"
+          },
+          "showPinyin": {
+            "type": "boolean"
+          },
+          "showTranscription": {
+            "type": "boolean"
+          },
+          "cardsPerDay": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 500,
+            "minimum": 1
+          }
+        }
+      },
+      "UserRegisterRequest": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 5
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 6
+          }
+        },
+        "required": [
+          "displayName",
+          "email",
+          "password"
+        ]
+      },
+      "UserUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          }
+        }
+      },
+      "LanguageCreateRequest": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "[a-zA-Z]{2,10}"
+          },
+          "displayName": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "nativeName": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "writingDir": {
+            "type": "string",
+            "pattern": "^(ltr|rtl)$"
+          },
+          "supportsTones": {
+            "type": "boolean"
+          },
+          "supportsPinyin": {
+            "type": "boolean"
+          },
+          "fontFamily": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "code",
+          "displayName",
+          "nativeName"
+        ]
+      },
+      "LanguageDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "code": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "nativeName": {
+            "type": "string"
+          },
+          "writingDir": {
+            "type": "string"
+          },
+          "supportsTones": {
+            "type": "boolean"
+          },
+          "supportsPinyin": {
+            "type": "boolean"
+          },
+          "fontFamily": {
+            "type": "string"
+          },
+          "activeFlag": {
+            "type": "boolean"
+          }
+        }
+      },
+      "LanguagePairCreateRequest": {
+        "type": "object",
+        "properties": {
+          "knownCode": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 2
+          },
+          "learningCode": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 2
+          }
+        },
+        "required": [
+          "knownCode",
+          "learningCode"
+        ]
+      },
+      "LanguagePairDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "knownCode": {
+            "type": "string"
+          },
+          "learningCode": {
+            "type": "string"
+          }
+        }
+      },
+      "LanguagePairUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "knownCode": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 2
+          },
+          "learningCode": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 2
+          }
+        }
+      },
+      "LanguageUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "[a-zA-Z]{2,10}"
+          },
+          "displayName": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "nativeName": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "writingDir": {
+            "type": "string",
+            "pattern": "^(ltr|rtl)$"
+          },
+          "supportsTones": {
+            "type": "boolean"
+          },
+          "supportsPinyin": {
+            "type": "boolean"
+          },
+          "fontFamily": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 0
+          },
+          "activeFlag": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CourseCreateRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "courseDescription": {
+            "type": "string"
+          },
+          "authorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "authorId",
+          "title"
+        ]
+      },
+      "CourseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "courseDescription": {
+            "type": "string"
+          },
+          "authorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "STARTER",
+              "GROWTH",
+              "PREMIUM"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CourseExportBundle": {
+        "type": "object",
+        "properties": {
+          "courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseDto"
+            }
+          },
+          "programs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramExportDto"
+            }
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonExportDto"
+            }
+          },
+          "scenarios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScenarioExportDto"
+            }
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CardExportDto"
+            }
+          }
+        }
+      },
+      "CourseUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "courseDescription": {
+            "type": "string"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "published": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ProgramCreateRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "programDescription": {
+            "type": "string"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "STARTER",
+              "GROWTH",
+              "PREMIUM"
+            ]
+          }
+        },
+        "required": [
+          "courseId",
+          "requiredTier",
+          "title"
+        ]
+      },
+      "ProgramDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "programDescription": {
+            "type": "string"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "authorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "STARTER",
+              "GROWTH",
+              "PREMIUM"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ProgramExportDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "authorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonExportDto"
+            }
+          }
+        }
+      },
+      "ProgramUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "programDescription": {
+            "type": "string"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "STARTER",
+              "GROWTH",
+              "PREMIUM"
+            ]
+          }
+        },
+        "required": [
+          "requiredTier"
+        ]
+      },
+      "LessonAvailabilityDto": {
+        "type": "object",
+        "properties": {
+          "lessonId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "LOCKED",
+              "IN_PROGRESS",
+              "COMPLETED"
+            ]
+          },
+          "progress": {
+            "$ref": "#/components/schemas/LessonProgressDto"
+          }
+        }
+      },
+      "LessonDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "lessonDescription": {
+            "type": "string"
+          },
+          "programId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lessonOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prerequisiteLessonIds": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "LessonExportDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "programId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prerequisiteLessonIds": {
+            "type": "string"
+          },
+          "scenarioIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "LessonProgressDto": {
+        "type": "object",
+        "properties": {
+          "completed": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ScenarioCreateRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "scenarioDescription": {
+            "type": "string"
+          },
+          "cardSource": {
+            "type": "string"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "STARTER",
+              "GROWTH",
+              "PREMIUM"
+            ]
+          }
+        },
+        "required": [
+          "requiredTier",
+          "title"
+        ]
+      },
+      "ScenarioDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "scenarioDescription": {
+            "type": "string"
+          },
+          "cardSource": {
+            "type": "string"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "authorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "STARTER",
+              "GROWTH",
+              "PREMIUM"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ScenarioExportDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "cardSource": {
+            "type": "string"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "authorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ScenarioUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "scenarioDescription": {
+            "type": "string"
+          },
+          "cardSource": {
+            "type": "string"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "STARTER",
+              "GROWTH",
+              "PREMIUM"
+            ]
+          }
+        },
+        "required": [
+          "requiredTier"
+        ]
+      },
+      "BatchRetrieveRequest": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "ids"
+        ]
+      },
+      "BatchRetrieveResponse": {
+        "type": "object",
+        "properties": {
+          "found": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CardDto"
+            }
+          },
+          "notFound": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "CardAccuracyDto": {
+        "type": "object",
+        "properties": {
+          "cardId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalAttempts": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "correctAttempts": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "accuracy": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "CardCreateRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "SELECT",
+              "CODE_SELECT",
+              "MEMORY",
+              "SYMBOL",
+              "SOUND",
+              "TIMED",
+              "KEYBOARD",
+              "DRAW",
+              "TONE",
+              "READING",
+              "FLIP",
+              "CLOZE",
+              "CODE_TRACE"
+            ]
+          },
+          "dataJson": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "BEGINNER",
+              "INTERMEDIATE",
+              "ADVANCED"
+            ]
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "STARTER",
+              "GROWTH",
+              "PREMIUM"
+            ]
+          }
+        },
+        "required": [
+          "kind",
+          "requiredTier",
+          "title"
+        ]
+      },
+      "CardDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "SELECT",
+              "CODE_SELECT",
+              "MEMORY",
+              "SYMBOL",
+              "SOUND",
+              "TIMED",
+              "KEYBOARD",
+              "DRAW",
+              "TONE",
+              "READING",
+              "FLIP",
+              "CLOZE",
+              "CODE_TRACE"
+            ]
+          },
+          "authorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dataJson": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "BEGINNER",
+              "INTERMEDIATE",
+              "ADVANCED"
+            ]
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "STARTER",
+              "GROWTH",
+              "PREMIUM"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CardExportDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "SELECT",
+              "CODE_SELECT",
+              "MEMORY",
+              "SYMBOL",
+              "SOUND",
+              "TIMED",
+              "KEYBOARD",
+              "DRAW",
+              "TONE",
+              "READING",
+              "FLIP",
+              "CLOZE",
+              "CODE_TRACE"
+            ]
+          },
+          "content": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "BEGINNER",
+              "INTERMEDIATE",
+              "ADVANCED"
+            ]
+          },
+          "programId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "scenarioId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CardUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "dataJson": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "BEGINNER",
+              "INTERMEDIATE",
+              "ADVANCED"
+            ]
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "STARTER",
+              "GROWTH",
+              "PREMIUM"
+            ]
+          }
+        },
+        "required": [
+          "requiredTier"
+        ]
+      },
+      "LearningHomeDto": {
+        "type": "object",
+        "properties": {
+          "activeLanguagePair": {
+            "$ref": "#/components/schemas/LanguagePairDto"
+          },
+          "activeProgram": {
+            "$ref": "#/components/schemas/ProgramDto"
+          },
+          "nextLesson": {
+            "$ref": "#/components/schemas/LessonAvailabilityDto"
+          },
+          "nextScenario": {
+            "$ref": "#/components/schemas/ResumeResponseDto"
+          },
+          "streak": {
+            "$ref": "#/components/schemas/StreakDto"
+          }
+        }
+      },
+      "LearningPaceDto": {
+        "type": "object",
+        "properties": {
+          "totalSessions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "avgCardsPerSession": {
+            "type": "number",
+            "format": "double"
+          },
+          "avgTimePerCardMs": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "longestStreak": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "LearningProgressDto": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string"
+          },
+          "entityId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "completedCards": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCards": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "accuracy": {
+            "type": "number",
+            "format": "double"
+          },
+          "completed": {
+            "type": "boolean"
+          },
+          "lastAttemptedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "LearningResultDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "cardId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "scenarioId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "correct": {
+            "type": "boolean"
+          },
+          "answeredAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "timeSpentMs": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "attemptNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hintUsed": {
+            "type": "boolean"
+          },
+          "optionIndex": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "LearningResultRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "deprecated": true
+          },
+          "cardId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "scenarioId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "correct": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "cardId",
+          "correct"
+        ]
+      },
+      "FeedbackCreateRequest": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entityId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "feedbackType": {
+            "type": "string",
+            "enum": [
+              "WRONG_TEXT",
+              "TOO_DIFFICULT",
+              "NEEDS_EXAMPLE",
+              "NEEDS_CODE",
+              "OTHER"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "CRITICAL"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "suggestedFix": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "entityId",
+          "entityType",
+          "feedbackType"
+        ]
+      },
+      "FeedbackDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "entityType": {
+            "type": "string"
+          },
+          "entityId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "feedbackType": {
+            "type": "string",
+            "enum": [
+              "WRONG_TEXT",
+              "TOO_DIFFICULT",
+              "NEEDS_EXAMPLE",
+              "NEEDS_CODE",
+              "OTHER"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "CRITICAL"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "suggestedFix": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "NEW",
+              "UNDER_REVIEW",
+              "RESOLVED",
+              "REJECTED"
+            ]
+          },
+          "resolvedBy": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resolvedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "SubscriptionStatusDto": {
+        "type": "object",
+        "properties": {
+          "tier": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ScormExportBundle": {
+        "type": "object",
+        "properties": {
+          "manifest": {
+            "$ref": "#/components/schemas/ScormManifest"
+          },
+          "courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseDto"
+            }
+          },
+          "programs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramExportDto"
+            }
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonExportDto"
+            }
+          },
+          "scenarios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScenarioExportDto"
+            }
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CardExportDto"
+            }
+          },
+          "xapiStatements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/XapiStatement"
+            }
+          },
+          "exportedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ScormImportResult": {
+        "type": "object",
+        "properties": {
+          "courseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "courseTitle": {
+            "type": "string"
+          },
+          "programCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lessonCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cardCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "importedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ScormManifest": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "organizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScormOrganization"
+            }
+          }
+        }
+      },
+      "ScormOrganization": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScormOrganizationItem"
+            }
+          }
+        }
+      },
+      "ScormOrganizationItem": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScormResource"
+            }
+          }
+        }
+      },
+      "ScormResource": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiListResponseCardDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CardDto"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ApiListResponseCourseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseDto"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ApiListResponseFeedbackDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeedbackDto"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ApiListResponseLanguageDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LanguageDto"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ApiListResponseLanguagePairDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LanguagePairDto"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ApiListResponseLearningResultDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LearningResultDto"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ApiListResponseLessonDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonDto"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ApiListResponseProgramDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramDto"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ApiListResponseScenarioDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScenarioDto"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ApiListResponseWeakCardProfileDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WeakCardProfileDto"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ApiOneResponseAuthResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AuthResponse"
+          }
+        }
+      },
+      "ApiOneResponseBatchRetrieveResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/BatchRetrieveResponse"
+          }
+        }
+      },
+      "ApiOneResponseCardAccuracyDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CardAccuracyDto"
+          }
+        }
+      },
+      "ApiOneResponseCardDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CardDto"
+          }
+        }
+      },
+      "ApiOneResponseCourseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CourseDto"
+          }
+        }
+      },
+      "ApiOneResponseCourseExportBundle": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CourseExportBundle"
+          }
+        }
+      },
+      "ApiOneResponseDifficultyCurveDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DifficultyCurveDto"
+          }
+        }
+      },
+      "ApiOneResponseFeedbackDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/FeedbackDto"
+          }
+        }
+      },
+      "ApiOneResponseLanguageDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/LanguageDto"
+          }
+        }
+      },
+      "ApiOneResponseLanguagePairDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/LanguagePairDto"
+          }
+        }
+      },
+      "ApiOneResponseLearningHomeDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/LearningHomeDto"
+          }
+        }
+      },
+      "ApiOneResponseLearningPaceDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/LearningPaceDto"
+          }
+        }
+      },
+      "ApiOneResponseLearningProgressDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/LearningProgressDto"
+          }
+        }
+      },
+      "ApiOneResponseLearningResultDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/LearningResultDto"
+          }
+        }
+      },
+      "ApiOneResponseListCourseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourseDto"
+            }
+          }
+        }
+      },
+      "ApiOneResponseListLessonAvailabilityDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonAvailabilityDto"
+            }
+          }
+        }
+      },
+      "ApiOneResponseProgramDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ProgramDto"
+          }
+        }
+      },
+      "ApiOneResponseResumeResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ResumeResponseDto"
+          }
+        }
+      },
+      "ApiOneResponseScenarioDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ScenarioDto"
+          }
+        }
+      },
+      "ApiOneResponseScormExportBundle": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ScormExportBundle"
+          }
+        }
+      },
+      "ApiOneResponseScormImportResult": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ScormImportResult"
+          }
+        }
+      },
+      "ApiOneResponseStreakDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/StreakDto"
+          }
+        }
+      },
+      "ApiOneResponseString": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiOneResponseSubscriptionStatusDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SubscriptionStatusDto"
+          }
+        }
+      },
+      "ApiOneResponseUserBehaviorDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UserBehaviorDto"
+          }
+        }
+      },
+      "ApiOneResponseUserDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UserDto"
+          }
+        }
+      },
+      "ApiOneResponseUserPreferencesDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UserPreferencesDto"
+          }
+        }
+      },
+      "VerifyCodeRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "minLength": 1
+          },
+          "code": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^\\d{6}$"
+          }
+        },
+        "required": [
+          "code",
+          "email"
+        ]
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "resetToken": {
+            "type": "string",
+            "minLength": 1
+          },
+          "newPassword": {
+            "type": "string",
+            "maxLength": 2147483647,
+            "minLength": 8
+          }
+        },
+        "required": [
+          "newPassword",
+          "resetToken"
+        ]
+      },
+      "ForgotPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "AdminSetTierRequest": {
+        "type": "object",
+        "properties": {
+          "requiredTier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "STARTER",
+              "GROWTH",
+              "PREMIUM"
+            ]
+          }
+        },
+        "required": [
+          "requiredTier"
+        ]
+      },
+      "XapiActor": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "mbox": {
+            "type": "string"
+          }
+        }
+      },
+      "XapiContext": {
+        "type": "object",
+        "properties": {
+          "contextActivities": {
+            "$ref": "#/components/schemas/XapiContextActivities"
+          }
+        }
+      },
+      "XapiContextActivities": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/XapiObject"
+            }
+          },
+          "grouping": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/XapiObject"
+            }
+          }
+        }
+      },
+      "XapiObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "objectType": {
+            "type": "string"
+          }
+        }
+      },
+      "XapiStatement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "actor": {
+            "$ref": "#/components/schemas/XapiActor"
+          },
+          "verb": {
+            "$ref": "#/components/schemas/XapiVerb"
+          },
+          "object": {
+            "$ref": "#/components/schemas/XapiObject"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "context": {
+            "$ref": "#/components/schemas/XapiContext"
+          }
+        }
+      },
+      "XapiVerb": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "display": {
+            "type": "string"
+          }
+        }
+      },
+      "Pageable": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1
+          },
+          "sort": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "StreakDto": {
+        "type": "object",
+        "properties": {
+          "currentDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastActiveDate": {
+            "type": "string"
+          }
+        }
+      },
+      "ResumeResponseDto": {
+        "type": "object",
+        "properties": {
+          "scenarioId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "programId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "cardId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "cardsInScenario": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cardsCompleted": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cardsRemaining": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "WeakCardProfileDto": {
+        "type": "object",
+        "properties": {
+          "cardId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalAttempts": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "accuracy": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "DifficultyCurveDto": {
+        "type": "object",
+        "properties": {
+          "selectAccuracy": {
+            "type": "number",
+            "format": "double"
+          },
+          "keyboardAccuracy": {
+            "type": "number",
+            "format": "double"
+          },
+          "drawAccuracy": {
+            "type": "number",
+            "format": "double"
+          },
+          "hardestKind": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
