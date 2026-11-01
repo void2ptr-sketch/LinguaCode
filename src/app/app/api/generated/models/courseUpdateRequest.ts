@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * Course update request
+ */
 export interface CourseUpdateRequest {
   /**
      * @minLength 1

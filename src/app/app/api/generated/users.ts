@@ -23,8 +23,8 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiOneResponseUserDto,
   UserRegisterRequest,
+  UserResponse,
   UserUpdateRequest
 } from './models';
 
@@ -86,10 +86,10 @@ export class UsersService {
  * Returns the current user profile from JWT token (without sensitive data)
  * @summary Get current user
  */
- getMe<TData = ApiOneResponseUserDto>( options?: HttpClientBodyOptions): Observable<TData>;
- getMe<TData = ApiOneResponseUserDto>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getMe<TData = ApiOneResponseUserDto>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getMe<TData = ApiOneResponseUserDto>(
+ usersGetMe<TData = UserResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ usersGetMe<TData = UserResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ usersGetMe<TData = UserResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  usersGetMe<TData = UserResponse>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -120,10 +120,10 @@ export class UsersService {
  * Updates the current user profile (JWT principal only, no cross-user updates)
  * @summary Update current user
  */
- updateMe<TData = ApiOneResponseUserDto>(userUpdateRequest: UserUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- updateMe<TData = ApiOneResponseUserDto>(userUpdateRequest: UserUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- updateMe<TData = ApiOneResponseUserDto>(userUpdateRequest: UserUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  updateMe<TData = ApiOneResponseUserDto>(
+ usersUpdateMe<TData = UserResponse>(userUpdateRequest: UserUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ usersUpdateMe<TData = UserResponse>(userUpdateRequest: UserUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ usersUpdateMe<TData = UserResponse>(userUpdateRequest: UserUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  usersUpdateMe<TData = UserResponse>(
     userUpdateRequest: UserUpdateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.put<TData>(
@@ -157,10 +157,10 @@ export class UsersService {
  * Registers a new user and returns the created user
  * @summary Register user
  */
- register<TData = ApiOneResponseUserDto>(userRegisterRequest: UserRegisterRequest, options?: HttpClientBodyOptions): Observable<TData>;
- register<TData = ApiOneResponseUserDto>(userRegisterRequest: UserRegisterRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- register<TData = ApiOneResponseUserDto>(userRegisterRequest: UserRegisterRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  register<TData = ApiOneResponseUserDto>(
+ usersRegister<TData = UserResponse>(userRegisterRequest: UserRegisterRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ usersRegister<TData = UserResponse>(userRegisterRequest: UserRegisterRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ usersRegister<TData = UserResponse>(userRegisterRequest: UserRegisterRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  usersRegister<TData = UserResponse>(
     userRegisterRequest: UserRegisterRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
@@ -194,10 +194,10 @@ export class UsersService {
  * Returns user details by ID
  * @summary Get user by ID
  */
- getById6<TData = ApiOneResponseUserDto>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- getById6<TData = ApiOneResponseUserDto>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getById6<TData = ApiOneResponseUserDto>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getById6<TData = ApiOneResponseUserDto>(
+ usersGetById<TData = UserResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ usersGetById<TData = UserResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ usersGetById<TData = UserResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  usersGetById<TData = UserResponse>(
     id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -226,7 +226,7 @@ export class UsersService {
   }
 };
 
-export type GetMeClientResult = NonNullable<ApiOneResponseUserDto>
-export type UpdateMeClientResult = NonNullable<ApiOneResponseUserDto>
-export type RegisterClientResult = NonNullable<ApiOneResponseUserDto>
-export type GetById6ClientResult = NonNullable<ApiOneResponseUserDto>
+export type UsersGetMeClientResult = NonNullable<UserResponse>
+export type UsersUpdateMeClientResult = NonNullable<UserResponse>
+export type UsersRegisterClientResult = NonNullable<UserResponse>
+export type UsersGetByIdClientResult = NonNullable<UserResponse>

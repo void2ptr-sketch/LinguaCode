@@ -7,6 +7,9 @@
 import type { FeedbackCreateRequestFeedbackType } from './feedbackCreateRequestFeedbackType';
 import type { FeedbackCreateRequestSeverity } from './feedbackCreateRequestSeverity';
 
+/**
+ * Feedback creation request
+ */
 export interface FeedbackCreateRequest {
   /** @minLength 1 */
   entityType: string;

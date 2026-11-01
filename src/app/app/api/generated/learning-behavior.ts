@@ -23,12 +23,12 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiListResponseWeakCardProfileDto,
-  ApiOneResponseDifficultyCurveDto,
-  ApiOneResponseLearningPaceDto,
-  ApiOneResponseUserBehaviorDto,
-  GetSnapshotParams,
-  GetWeakCardsParams
+  BehaviorGetSnapshotParams,
+  BehaviorGetWeakCardsParams,
+  LearningDifficultyCurveResponse,
+  LearningPaceResponse,
+  LearningWeakCardProfileoList,
+  UserBehaviorResponse
 } from './models';
 
 import type {
@@ -160,11 +160,11 @@ export class LearningBehaviorService {
  * Returns weak cards for the authenticated user (JWT only)
  * @summary Get weak cards
  */
- getWeakCards<TData = ApiListResponseWeakCardProfileDto>(params?: GetWeakCardsParams, options?: HttpClientBodyOptions): Observable<TData>;
- getWeakCards<TData = ApiListResponseWeakCardProfileDto>(params?: GetWeakCardsParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getWeakCards<TData = ApiListResponseWeakCardProfileDto>(params?: GetWeakCardsParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getWeakCards<TData = ApiListResponseWeakCardProfileDto>(
-    params?: GetWeakCardsParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ behaviorGetWeakCards<TData = LearningWeakCardProfileoList>(params?: BehaviorGetWeakCardsParams, options?: HttpClientBodyOptions): Observable<TData>;
+ behaviorGetWeakCards<TData = LearningWeakCardProfileoList>(params?: BehaviorGetWeakCardsParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ behaviorGetWeakCards<TData = LearningWeakCardProfileoList>(params?: BehaviorGetWeakCardsParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  behaviorGetWeakCards<TData = LearningWeakCardProfileoList>(
+    params?: BehaviorGetWeakCardsParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
 
     if (options?.observe === 'events') {
@@ -196,11 +196,11 @@ export class LearningBehaviorService {
  * Returns the full behavior snapshot for the authenticated user (JWT only)
  * @summary Get behavior snapshot
  */
- getSnapshot<TData = ApiOneResponseUserBehaviorDto>(params?: GetSnapshotParams, options?: HttpClientBodyOptions): Observable<TData>;
- getSnapshot<TData = ApiOneResponseUserBehaviorDto>(params?: GetSnapshotParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getSnapshot<TData = ApiOneResponseUserBehaviorDto>(params?: GetSnapshotParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getSnapshot<TData = ApiOneResponseUserBehaviorDto>(
-    params?: GetSnapshotParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ behaviorGetSnapshot<TData = UserBehaviorResponse>(params?: BehaviorGetSnapshotParams, options?: HttpClientBodyOptions): Observable<TData>;
+ behaviorGetSnapshot<TData = UserBehaviorResponse>(params?: BehaviorGetSnapshotParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ behaviorGetSnapshot<TData = UserBehaviorResponse>(params?: BehaviorGetSnapshotParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  behaviorGetSnapshot<TData = UserBehaviorResponse>(
+    params?: BehaviorGetSnapshotParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
 
     if (options?.observe === 'events') {
@@ -232,10 +232,10 @@ export class LearningBehaviorService {
  * Returns learning pace analytics for the authenticated user (JWT only)
  * @summary Get learning pace
  */
- getPace<TData = ApiOneResponseLearningPaceDto>( options?: HttpClientBodyOptions): Observable<TData>;
- getPace<TData = ApiOneResponseLearningPaceDto>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getPace<TData = ApiOneResponseLearningPaceDto>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getPace<TData = ApiOneResponseLearningPaceDto>(
+ behaviorGetPace<TData = LearningPaceResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ behaviorGetPace<TData = LearningPaceResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ behaviorGetPace<TData = LearningPaceResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  behaviorGetPace<TData = LearningPaceResponse>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -266,10 +266,10 @@ export class LearningBehaviorService {
  * Returns difficulty curve by card kind for the authenticated user (JWT only)
  * @summary Get difficulty curve
  */
- getDifficulty<TData = ApiOneResponseDifficultyCurveDto>( options?: HttpClientBodyOptions): Observable<TData>;
- getDifficulty<TData = ApiOneResponseDifficultyCurveDto>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getDifficulty<TData = ApiOneResponseDifficultyCurveDto>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getDifficulty<TData = ApiOneResponseDifficultyCurveDto>(
+ behaviorGetDifficulty<TData = LearningDifficultyCurveResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ behaviorGetDifficulty<TData = LearningDifficultyCurveResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ behaviorGetDifficulty<TData = LearningDifficultyCurveResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  behaviorGetDifficulty<TData = LearningDifficultyCurveResponse>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -298,7 +298,7 @@ export class LearningBehaviorService {
   }
 };
 
-export type GetWeakCardsClientResult = NonNullable<ApiListResponseWeakCardProfileDto>
-export type GetSnapshotClientResult = NonNullable<ApiOneResponseUserBehaviorDto>
-export type GetPaceClientResult = NonNullable<ApiOneResponseLearningPaceDto>
-export type GetDifficultyClientResult = NonNullable<ApiOneResponseDifficultyCurveDto>
+export type BehaviorGetWeakCardsClientResult = NonNullable<LearningWeakCardProfileoList>
+export type BehaviorGetSnapshotClientResult = NonNullable<UserBehaviorResponse>
+export type BehaviorGetPaceClientResult = NonNullable<LearningPaceResponse>
+export type BehaviorGetDifficultyClientResult = NonNullable<LearningDifficultyCurveResponse>

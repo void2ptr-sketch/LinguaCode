@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * Course creation request
+ */
 export interface CourseCreateRequest {
   /**
      * @minLength 1

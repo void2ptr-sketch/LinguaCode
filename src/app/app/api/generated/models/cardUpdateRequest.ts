@@ -7,6 +7,9 @@
 import type { CardUpdateRequestDifficulty } from './cardUpdateRequestDifficulty';
 import type { CardUpdateRequestRequiredTier } from './cardUpdateRequestRequiredTier';
 
+/**
+ * Card update request
+ */
 export interface CardUpdateRequest {
   /**
      * @minLength 1

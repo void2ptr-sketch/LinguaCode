@@ -23,12 +23,12 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiListResponseScenarioDto,
-  ApiOneResponseScenarioDto,
-  ListParams,
   ScenarioCreateRequest,
+  ScenarioList,
+  ScenarioResponse,
   ScenarioUpdateRequest,
-  SearchParams
+  ScenariosListParams,
+  ScenariosSearchParams
 } from './models';
 
 import type {
@@ -232,10 +232,10 @@ export class ScenariosService {
  * Returns scenario details by ID
  * @summary Get scenario by ID
  */
- getById<TData = ApiOneResponseScenarioDto>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- getById<TData = ApiOneResponseScenarioDto>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getById<TData = ApiOneResponseScenarioDto>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getById<TData = ApiOneResponseScenarioDto>(
+ scenariosGetById<TData = ScenarioResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosGetById<TData = ScenarioResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosGetById<TData = ScenarioResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosGetById<TData = ScenarioResponse>(
     id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -266,13 +266,13 @@ export class ScenariosService {
  * Updates an existing scenario
  * @summary Update scenario
  */
- update<TData = ApiOneResponseScenarioDto>(id: number,
+ scenariosUpdate<TData = ScenarioResponse>(id: number,
     scenarioUpdateRequest: ScenarioUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- update<TData = ApiOneResponseScenarioDto>(id: number,
+ scenariosUpdate<TData = ScenarioResponse>(id: number,
     scenarioUpdateRequest: ScenarioUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- update<TData = ApiOneResponseScenarioDto>(id: number,
+ scenariosUpdate<TData = ScenarioResponse>(id: number,
     scenarioUpdateRequest: ScenarioUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  update<TData = ApiOneResponseScenarioDto>(
+  scenariosUpdate<TData = ScenarioResponse>(
     id: number,
     scenarioUpdateRequest: ScenarioUpdateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
@@ -307,10 +307,10 @@ export class ScenariosService {
  * Deletes a scenario by ID
  * @summary Delete scenario
  */
- _delete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- _delete<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- _delete<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  _delete<TData = void>(
+ scenariosDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosDelete<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosDelete<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosDelete<TData = void>(
     id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.delete<TData>(
@@ -341,11 +341,11 @@ export class ScenariosService {
  * Returns a paginated list of scenarios with tier-based access control
  * @summary List scenarios
  */
- list<TData = ApiListResponseScenarioDto>(params: ListParams, options?: HttpClientBodyOptions): Observable<TData>;
- list<TData = ApiListResponseScenarioDto>(params: ListParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- list<TData = ApiListResponseScenarioDto>(params: ListParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  list<TData = ApiListResponseScenarioDto>(
-    params: ListParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ scenariosList<TData = ScenarioList>(params: ScenariosListParams, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosList<TData = ScenarioList>(params: ScenariosListParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosList<TData = ScenarioList>(params: ScenariosListParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosList<TData = ScenarioList>(
+    params: ScenariosListParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
 
     if (options?.observe === 'events') {
@@ -377,10 +377,10 @@ export class ScenariosService {
  * Creates a new scenario
  * @summary Create scenario
  */
- create<TData = ApiOneResponseScenarioDto>(scenarioCreateRequest: ScenarioCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- create<TData = ApiOneResponseScenarioDto>(scenarioCreateRequest: ScenarioCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- create<TData = ApiOneResponseScenarioDto>(scenarioCreateRequest: ScenarioCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  create<TData = ApiOneResponseScenarioDto>(
+ scenariosCreate<TData = ScenarioResponse>(scenarioCreateRequest: ScenarioCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosCreate<TData = ScenarioResponse>(scenarioCreateRequest: ScenarioCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosCreate<TData = ScenarioResponse>(scenarioCreateRequest: ScenarioCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosCreate<TData = ScenarioResponse>(
     scenarioCreateRequest: ScenarioCreateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
@@ -414,11 +414,11 @@ export class ScenariosService {
  * Searches scenarios by title
  * @summary Search scenarios
  */
- search<TData = ApiListResponseScenarioDto>(params: SearchParams, options?: HttpClientBodyOptions): Observable<TData>;
- search<TData = ApiListResponseScenarioDto>(params: SearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- search<TData = ApiListResponseScenarioDto>(params: SearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  search<TData = ApiListResponseScenarioDto>(
-    params: SearchParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ scenariosSearch<TData = ScenarioList>(params: ScenariosSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosSearch<TData = ScenarioList>(params: ScenariosSearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosSearch<TData = ScenarioList>(params: ScenariosSearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosSearch<TData = ScenarioList>(
+    params: ScenariosSearchParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
 
     if (options?.observe === 'events') {
@@ -450,10 +450,10 @@ export class ScenariosService {
  * Returns scenarios associated with a card
  * @summary Get scenarios by card
  */
- getByCardId<TData = ApiListResponseScenarioDto>(cardId: number, options?: HttpClientBodyOptions): Observable<TData>;
- getByCardId<TData = ApiListResponseScenarioDto>(cardId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getByCardId<TData = ApiListResponseScenarioDto>(cardId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getByCardId<TData = ApiListResponseScenarioDto>(
+ scenariosGetByCardId<TData = ScenarioList>(cardId: number, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosGetByCardId<TData = ScenarioList>(cardId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosGetByCardId<TData = ScenarioList>(cardId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosGetByCardId<TData = ScenarioList>(
     cardId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -482,10 +482,10 @@ export class ScenariosService {
   }
 };
 
-export type GetByIdClientResult = NonNullable<ApiOneResponseScenarioDto>
-export type UpdateClientResult = NonNullable<ApiOneResponseScenarioDto>
-export type _DeleteClientResult = NonNullable<void>
-export type ListClientResult = NonNullable<ApiListResponseScenarioDto>
-export type CreateClientResult = NonNullable<ApiOneResponseScenarioDto>
-export type SearchClientResult = NonNullable<ApiListResponseScenarioDto>
-export type GetByCardIdClientResult = NonNullable<ApiListResponseScenarioDto>
+export type ScenariosGetByIdClientResult = NonNullable<ScenarioResponse>
+export type ScenariosUpdateClientResult = NonNullable<ScenarioResponse>
+export type ScenariosDeleteClientResult = NonNullable<void>
+export type ScenariosListClientResult = NonNullable<ScenarioList>
+export type ScenariosCreateClientResult = NonNullable<ScenarioResponse>
+export type ScenariosSearchClientResult = NonNullable<ScenarioList>
+export type ScenariosGetByCardIdClientResult = NonNullable<ScenarioList>

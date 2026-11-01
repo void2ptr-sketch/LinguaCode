@@ -23,11 +23,11 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiListResponseLanguageDto,
-  ApiOneResponseLanguageDto,
-  GetByCodeParams,
-  LanguageCreateRequest,
-  LanguageUpdateRequest
+  LanguageCreate,
+  LanguageList,
+  LanguageResponse,
+  LanguageUpdateRequest,
+  LanguagesGetByCodeParams
 } from './models';
 
 import type {
@@ -159,10 +159,10 @@ export class LanguagesService {
  * Returns all active languages ordered by code
  * @summary List all active languages
  */
- listAll<TData = ApiListResponseLanguageDto>( options?: HttpClientBodyOptions): Observable<TData>;
- listAll<TData = ApiListResponseLanguageDto>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- listAll<TData = ApiListResponseLanguageDto>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  listAll<TData = ApiListResponseLanguageDto>(
+ languagesList<TData = LanguageList>( options?: HttpClientBodyOptions): Observable<TData>;
+ languagesList<TData = LanguageList>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ languagesList<TData = LanguageList>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  languagesList<TData = LanguageList>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -193,15 +193,15 @@ export class LanguagesService {
  * Creates a new language with the given metadata
  * @summary Create a new language
  */
- create2<TData = ApiOneResponseLanguageDto>(languageCreateRequest: LanguageCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- create2<TData = ApiOneResponseLanguageDto>(languageCreateRequest: LanguageCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- create2<TData = ApiOneResponseLanguageDto>(languageCreateRequest: LanguageCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  create2<TData = ApiOneResponseLanguageDto>(
-    languageCreateRequest: LanguageCreateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ languagesCreate<TData = LanguageResponse>(languageCreate: LanguageCreate, options?: HttpClientBodyOptions): Observable<TData>;
+ languagesCreate<TData = LanguageResponse>(languageCreate: LanguageCreate, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ languagesCreate<TData = LanguageResponse>(languageCreate: LanguageCreate, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  languagesCreate<TData = LanguageResponse>(
+    languageCreate: LanguageCreate, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
       `/api/v1/languages`,
-      languageCreateRequest,{
+      languageCreate,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
       }
@@ -211,7 +211,7 @@ export class LanguagesService {
     if (options?.observe === 'response') {
       return this.http.post<TData>(
       `/api/v1/languages`,
-      languageCreateRequest,{
+      languageCreate,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
       }
@@ -220,7 +220,7 @@ export class LanguagesService {
 
     return this.http.post<TData>(
       `/api/v1/languages`,
-      languageCreateRequest,{
+      languageCreate,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'body',
       }
@@ -230,10 +230,10 @@ export class LanguagesService {
  * Returns a language by its ID
  * @summary Get a language by ID
  */
- getById4<TData = ApiOneResponseLanguageDto>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- getById4<TData = ApiOneResponseLanguageDto>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getById4<TData = ApiOneResponseLanguageDto>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getById4<TData = ApiOneResponseLanguageDto>(
+ languagesGetById<TData = LanguageResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ languagesGetById<TData = LanguageResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ languagesGetById<TData = LanguageResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  languagesGetById<TData = LanguageResponse>(
     id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -264,10 +264,10 @@ export class LanguagesService {
  * Deletes a language by its ID
  * @summary Delete a language
  */
- delete4<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- delete4<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- delete4<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  delete4<TData = void>(
+ languagesDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ languagesDelete<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ languagesDelete<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  languagesDelete<TData = void>(
     id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.delete<TData>(
@@ -298,13 +298,13 @@ export class LanguagesService {
  * Partially updates an existing language with the given fields
  * @summary Update a language
  */
- update4<TData = ApiOneResponseLanguageDto>(id: number,
+ languagesUpdate<TData = LanguageResponse>(id: number,
     languageUpdateRequest: LanguageUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- update4<TData = ApiOneResponseLanguageDto>(id: number,
+ languagesUpdate<TData = LanguageResponse>(id: number,
     languageUpdateRequest: LanguageUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- update4<TData = ApiOneResponseLanguageDto>(id: number,
+ languagesUpdate<TData = LanguageResponse>(id: number,
     languageUpdateRequest: LanguageUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  update4<TData = ApiOneResponseLanguageDto>(
+  languagesUpdate<TData = LanguageResponse>(
     id: number,
     languageUpdateRequest: LanguageUpdateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
@@ -339,11 +339,11 @@ export class LanguagesService {
  * Returns a language by its ISO 639-1 code
  * @summary Get a language by ISO code
  */
- getByCode<TData = ApiOneResponseLanguageDto>(params: GetByCodeParams, options?: HttpClientBodyOptions): Observable<TData>;
- getByCode<TData = ApiOneResponseLanguageDto>(params: GetByCodeParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getByCode<TData = ApiOneResponseLanguageDto>(params: GetByCodeParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getByCode<TData = ApiOneResponseLanguageDto>(
-    params: GetByCodeParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ languagesGetByCode<TData = LanguageResponse>(params: LanguagesGetByCodeParams, options?: HttpClientBodyOptions): Observable<TData>;
+ languagesGetByCode<TData = LanguageResponse>(params: LanguagesGetByCodeParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ languagesGetByCode<TData = LanguageResponse>(params: LanguagesGetByCodeParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  languagesGetByCode<TData = LanguageResponse>(
+    params: LanguagesGetByCodeParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
 
     if (options?.observe === 'events') {
@@ -373,9 +373,9 @@ export class LanguagesService {
   }
 };
 
-export type ListAllClientResult = NonNullable<ApiListResponseLanguageDto>
-export type Create2ClientResult = NonNullable<ApiOneResponseLanguageDto>
-export type GetById4ClientResult = NonNullable<ApiOneResponseLanguageDto>
-export type Delete4ClientResult = NonNullable<void>
-export type Update4ClientResult = NonNullable<ApiOneResponseLanguageDto>
-export type GetByCodeClientResult = NonNullable<ApiOneResponseLanguageDto>
+export type LanguagesListClientResult = NonNullable<LanguageList>
+export type LanguagesCreateClientResult = NonNullable<LanguageResponse>
+export type LanguagesGetByIdClientResult = NonNullable<LanguageResponse>
+export type LanguagesDeleteClientResult = NonNullable<void>
+export type LanguagesUpdateClientResult = NonNullable<LanguageResponse>
+export type LanguagesGetByCodeClientResult = NonNullable<LanguageResponse>

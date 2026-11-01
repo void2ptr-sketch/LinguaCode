@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * Login authentication request
+ */
 export interface AuthLoginRequest {
   /** @minLength 1 */
   email: string;

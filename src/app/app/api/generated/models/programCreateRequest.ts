@@ -6,6 +6,9 @@
  */
 import type { ProgramCreateRequestRequiredTier } from './programCreateRequestRequiredTier';
 
+/**
+ * Program creation request
+ */
 export interface ProgramCreateRequest {
   /**
      * @minLength 1

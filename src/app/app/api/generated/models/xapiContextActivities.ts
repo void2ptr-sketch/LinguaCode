@@ -6,6 +6,9 @@
  */
 import type { XapiObject } from './xapiObject';
 
+/**
+ * xAPI contextual activities
+ */
 export interface XapiContextActivities {
   category?: XapiObject[];
   grouping?: XapiObject[];

@@ -6,6 +6,9 @@
  */
 import type { ProgramUpdateRequestRequiredTier } from './programUpdateRequestRequiredTier';
 
+/**
+ * Program update request
+ */
 export interface ProgramUpdateRequest {
   /**
      * @minLength 1

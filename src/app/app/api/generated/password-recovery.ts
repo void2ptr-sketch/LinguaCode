@@ -23,10 +23,10 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiOneResponseString,
-  ForgotPasswordRequest,
-  ResetPasswordRequest,
-  VerifyCodeRequest
+  PasswordForgotRequest,
+  PasswordResetRequest,
+  PasswordVerifyCodeRequest,
+  StringResponse
 } from './models';
 
 import type {
@@ -87,15 +87,15 @@ export class PasswordRecoveryService {
  * Verifies the 6-digit code sent to the user's email
  * @summary Verify reset code
  */
- verifyCode<TData = ApiOneResponseString>(verifyCodeRequest: VerifyCodeRequest, options?: HttpClientBodyOptions): Observable<TData>;
- verifyCode<TData = ApiOneResponseString>(verifyCodeRequest: VerifyCodeRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- verifyCode<TData = ApiOneResponseString>(verifyCodeRequest: VerifyCodeRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  verifyCode<TData = ApiOneResponseString>(
-    verifyCodeRequest: VerifyCodeRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ passwordRecoveryVerifyCode<TData = StringResponse>(passwordVerifyCodeRequest: PasswordVerifyCodeRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ passwordRecoveryVerifyCode<TData = StringResponse>(passwordVerifyCodeRequest: PasswordVerifyCodeRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ passwordRecoveryVerifyCode<TData = StringResponse>(passwordVerifyCodeRequest: PasswordVerifyCodeRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  passwordRecoveryVerifyCode<TData = StringResponse>(
+    passwordVerifyCodeRequest: PasswordVerifyCodeRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
       `/api/v1/auth/verify-code`,
-      verifyCodeRequest,{
+      passwordVerifyCodeRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
       }
@@ -105,7 +105,7 @@ export class PasswordRecoveryService {
     if (options?.observe === 'response') {
       return this.http.post<TData>(
       `/api/v1/auth/verify-code`,
-      verifyCodeRequest,{
+      passwordVerifyCodeRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
       }
@@ -114,7 +114,7 @@ export class PasswordRecoveryService {
 
     return this.http.post<TData>(
       `/api/v1/auth/verify-code`,
-      verifyCodeRequest,{
+      passwordVerifyCodeRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'body',
       }
@@ -124,15 +124,15 @@ export class PasswordRecoveryService {
  * Resets the password using a verified reset token
  * @summary Reset password
  */
- resetPassword<TData = ApiOneResponseString>(resetPasswordRequest: ResetPasswordRequest, options?: HttpClientBodyOptions): Observable<TData>;
- resetPassword<TData = ApiOneResponseString>(resetPasswordRequest: ResetPasswordRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- resetPassword<TData = ApiOneResponseString>(resetPasswordRequest: ResetPasswordRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  resetPassword<TData = ApiOneResponseString>(
-    resetPasswordRequest: ResetPasswordRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ passwordRecoveryResetPassword<TData = StringResponse>(passwordResetRequest: PasswordResetRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ passwordRecoveryResetPassword<TData = StringResponse>(passwordResetRequest: PasswordResetRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ passwordRecoveryResetPassword<TData = StringResponse>(passwordResetRequest: PasswordResetRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  passwordRecoveryResetPassword<TData = StringResponse>(
+    passwordResetRequest: PasswordResetRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
       `/api/v1/auth/reset-password`,
-      resetPasswordRequest,{
+      passwordResetRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
       }
@@ -142,7 +142,7 @@ export class PasswordRecoveryService {
     if (options?.observe === 'response') {
       return this.http.post<TData>(
       `/api/v1/auth/reset-password`,
-      resetPasswordRequest,{
+      passwordResetRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
       }
@@ -151,7 +151,7 @@ export class PasswordRecoveryService {
 
     return this.http.post<TData>(
       `/api/v1/auth/reset-password`,
-      resetPasswordRequest,{
+      passwordResetRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'body',
       }
@@ -161,15 +161,15 @@ export class PasswordRecoveryService {
  * Sends a 6-digit reset code to the user's email address
  * @summary Forgot password
  */
- forgotPassword<TData = ApiOneResponseString>(forgotPasswordRequest: ForgotPasswordRequest, options?: HttpClientBodyOptions): Observable<TData>;
- forgotPassword<TData = ApiOneResponseString>(forgotPasswordRequest: ForgotPasswordRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- forgotPassword<TData = ApiOneResponseString>(forgotPasswordRequest: ForgotPasswordRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  forgotPassword<TData = ApiOneResponseString>(
-    forgotPasswordRequest: ForgotPasswordRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ passwordRecoveryForgotPassword<TData = StringResponse>(passwordForgotRequest: PasswordForgotRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ passwordRecoveryForgotPassword<TData = StringResponse>(passwordForgotRequest: PasswordForgotRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ passwordRecoveryForgotPassword<TData = StringResponse>(passwordForgotRequest: PasswordForgotRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  passwordRecoveryForgotPassword<TData = StringResponse>(
+    passwordForgotRequest: PasswordForgotRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
       `/api/v1/auth/forgot-password`,
-      forgotPasswordRequest,{
+      passwordForgotRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
       }
@@ -179,7 +179,7 @@ export class PasswordRecoveryService {
     if (options?.observe === 'response') {
       return this.http.post<TData>(
       `/api/v1/auth/forgot-password`,
-      forgotPasswordRequest,{
+      passwordForgotRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
       }
@@ -188,7 +188,7 @@ export class PasswordRecoveryService {
 
     return this.http.post<TData>(
       `/api/v1/auth/forgot-password`,
-      forgotPasswordRequest,{
+      passwordForgotRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'body',
       }
@@ -196,6 +196,6 @@ export class PasswordRecoveryService {
   }
 };
 
-export type VerifyCodeClientResult = NonNullable<ApiOneResponseString>
-export type ResetPasswordClientResult = NonNullable<ApiOneResponseString>
-export type ForgotPasswordClientResult = NonNullable<ApiOneResponseString>
+export type PasswordRecoveryVerifyCodeClientResult = NonNullable<StringResponse>
+export type PasswordRecoveryResetPasswordClientResult = NonNullable<StringResponse>
+export type PasswordRecoveryForgotPasswordClientResult = NonNullable<StringResponse>

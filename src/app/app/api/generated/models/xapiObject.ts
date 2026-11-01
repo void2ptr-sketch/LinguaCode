@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * xAPI object (target of the action)
+ */
 export interface XapiObject {
   id?: string;
   objectType?: string;

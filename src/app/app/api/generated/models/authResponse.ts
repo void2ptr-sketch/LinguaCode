@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * Authentication response
+ */
 export interface AuthResponse {
   userId?: number;
   accessToken?: string;

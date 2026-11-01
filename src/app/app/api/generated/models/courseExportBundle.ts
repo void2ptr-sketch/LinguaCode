@@ -4,16 +4,19 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import type { CardExportDto } from './cardExportDto';
-import type { CourseDto } from './courseDto';
-import type { LessonExportDto } from './lessonExportDto';
-import type { ProgramExportDto } from './programExportDto';
-import type { ScenarioExportDto } from './scenarioExportDto';
+import type { CardExport } from './cardExport';
+import type { Course } from './course';
+import type { LessonExport } from './lessonExport';
+import type { ProgramExport } from './programExport';
+import type { ScenarioExport } from './scenarioExport';
 
+/**
+ * Course export bundle for authoring tools
+ */
 export interface CourseExportBundle {
-  courses?: CourseDto[];
-  programs?: ProgramExportDto[];
-  lessons?: LessonExportDto[];
-  scenarios?: ScenarioExportDto[];
-  cards?: CardExportDto[];
+  courses?: Course[];
+  programs?: ProgramExport[];
+  lessons?: LessonExport[];
+  scenarios?: ScenarioExport[];
+  cards?: CardExport[];
 }

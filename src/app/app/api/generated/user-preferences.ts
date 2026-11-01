@@ -23,8 +23,8 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiOneResponseUserPreferencesDto,
-  UserPreferencesDto
+  UserPreferences,
+  UserPreferencesResponse
 } from './models';
 
 import type {
@@ -85,10 +85,10 @@ export class UserPreferencesService {
  * Returns the current user's preferences
  * @summary Get user preferences
  */
- getPreferences<TData = ApiOneResponseUserPreferencesDto>( options?: HttpClientBodyOptions): Observable<TData>;
- getPreferences<TData = ApiOneResponseUserPreferencesDto>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getPreferences<TData = ApiOneResponseUserPreferencesDto>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getPreferences<TData = ApiOneResponseUserPreferencesDto>(
+ userPreferencesGet<TData = UserPreferencesResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ userPreferencesGet<TData = UserPreferencesResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ userPreferencesGet<TData = UserPreferencesResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  userPreferencesGet<TData = UserPreferencesResponse>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -119,15 +119,15 @@ export class UserPreferencesService {
  * Fully replaces the current user's preferences
  * @summary Replace preferences
  */
- putPreferences<TData = ApiOneResponseUserPreferencesDto>(userPreferencesDto: UserPreferencesDto, options?: HttpClientBodyOptions): Observable<TData>;
- putPreferences<TData = ApiOneResponseUserPreferencesDto>(userPreferencesDto: UserPreferencesDto, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- putPreferences<TData = ApiOneResponseUserPreferencesDto>(userPreferencesDto: UserPreferencesDto, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  putPreferences<TData = ApiOneResponseUserPreferencesDto>(
-    userPreferencesDto: UserPreferencesDto, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ userPreferencesPut<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientBodyOptions): Observable<TData>;
+ userPreferencesPut<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ userPreferencesPut<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  userPreferencesPut<TData = UserPreferencesResponse>(
+    userPreferences: UserPreferences, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.put<TData>(
       `/api/v1/users/me/preferences`,
-      userPreferencesDto,{
+      userPreferences,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
       }
@@ -137,7 +137,7 @@ export class UserPreferencesService {
     if (options?.observe === 'response') {
       return this.http.put<TData>(
       `/api/v1/users/me/preferences`,
-      userPreferencesDto,{
+      userPreferences,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
       }
@@ -146,7 +146,7 @@ export class UserPreferencesService {
 
     return this.http.put<TData>(
       `/api/v1/users/me/preferences`,
-      userPreferencesDto,{
+      userPreferences,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'body',
       }
@@ -156,10 +156,10 @@ export class UserPreferencesService {
  * Resets the current user's preferences to defaults
  * @summary Reset preferences
  */
- deletePreferences<TData = void>( options?: HttpClientBodyOptions): Observable<TData>;
- deletePreferences<TData = void>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- deletePreferences<TData = void>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  deletePreferences<TData = void>(
+ userPreferencesDelete<TData = void>( options?: HttpClientBodyOptions): Observable<TData>;
+ userPreferencesDelete<TData = void>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ userPreferencesDelete<TData = void>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  userPreferencesDelete<TData = void>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.delete<TData>(
@@ -190,15 +190,15 @@ export class UserPreferencesService {
  * Partially updates the current user's preferences (merge with existing)
  * @summary Partial update preferences
  */
- patchPreferences<TData = ApiOneResponseUserPreferencesDto>(userPreferencesDto: UserPreferencesDto, options?: HttpClientBodyOptions): Observable<TData>;
- patchPreferences<TData = ApiOneResponseUserPreferencesDto>(userPreferencesDto: UserPreferencesDto, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- patchPreferences<TData = ApiOneResponseUserPreferencesDto>(userPreferencesDto: UserPreferencesDto, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  patchPreferences<TData = ApiOneResponseUserPreferencesDto>(
-    userPreferencesDto: UserPreferencesDto, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ userPreferencesPatch<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientBodyOptions): Observable<TData>;
+ userPreferencesPatch<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ userPreferencesPatch<TData = UserPreferencesResponse>(userPreferences: UserPreferences, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  userPreferencesPatch<TData = UserPreferencesResponse>(
+    userPreferences: UserPreferences, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.patch<TData>(
       `/api/v1/users/me/preferences`,
-      userPreferencesDto,{
+      userPreferences,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
       }
@@ -208,7 +208,7 @@ export class UserPreferencesService {
     if (options?.observe === 'response') {
       return this.http.patch<TData>(
       `/api/v1/users/me/preferences`,
-      userPreferencesDto,{
+      userPreferences,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
       }
@@ -217,7 +217,7 @@ export class UserPreferencesService {
 
     return this.http.patch<TData>(
       `/api/v1/users/me/preferences`,
-      userPreferencesDto,{
+      userPreferences,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'body',
       }
@@ -225,7 +225,7 @@ export class UserPreferencesService {
   }
 };
 
-export type GetPreferencesClientResult = NonNullable<ApiOneResponseUserPreferencesDto>
-export type PutPreferencesClientResult = NonNullable<ApiOneResponseUserPreferencesDto>
-export type DeletePreferencesClientResult = NonNullable<void>
-export type PatchPreferencesClientResult = NonNullable<ApiOneResponseUserPreferencesDto>
+export type UserPreferencesGetClientResult = NonNullable<UserPreferencesResponse>
+export type UserPreferencesPutClientResult = NonNullable<UserPreferencesResponse>
+export type UserPreferencesDeleteClientResult = NonNullable<void>
+export type UserPreferencesPatchClientResult = NonNullable<UserPreferencesResponse>

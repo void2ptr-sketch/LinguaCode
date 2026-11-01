@@ -23,11 +23,11 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiListResponseLearningResultDto,
-  ApiOneResponseCardAccuracyDto,
-  ApiOneResponseLearningResultDto,
-  GetUserResultsParams,
-  LearningResultRequest
+  LearningCardAccuracyResponse,
+  LearningGetUserResultsParams,
+  LearningResultList,
+  LearningResultRequest,
+  LearningResultResponse
 } from './models';
 
 import type {
@@ -231,10 +231,10 @@ export class LearningService {
  * Records the authenticated user's answer result for a card (userId from JWT)
  * @summary Record learning result
  */
- recordResult<TData = ApiOneResponseLearningResultDto>(learningResultRequest: LearningResultRequest, options?: HttpClientBodyOptions): Observable<TData>;
- recordResult<TData = ApiOneResponseLearningResultDto>(learningResultRequest: LearningResultRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- recordResult<TData = ApiOneResponseLearningResultDto>(learningResultRequest: LearningResultRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  recordResult<TData = ApiOneResponseLearningResultDto>(
+ learningRecordResult<TData = LearningResultResponse>(learningResultRequest: LearningResultRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ learningRecordResult<TData = LearningResultResponse>(learningResultRequest: LearningResultRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ learningRecordResult<TData = LearningResultResponse>(learningResultRequest: LearningResultRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  learningRecordResult<TData = LearningResultResponse>(
     learningResultRequest: LearningResultRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
@@ -268,15 +268,15 @@ export class LearningService {
  * Returns paginated learning results for the authenticated user (JWT only)
  * @summary Get user learning results
  */
- getUserResults<TData = ApiListResponseLearningResultDto>(userId: number,
-    params: GetUserResultsParams, options?: HttpClientBodyOptions): Observable<TData>;
- getUserResults<TData = ApiListResponseLearningResultDto>(userId: number,
-    params: GetUserResultsParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getUserResults<TData = ApiListResponseLearningResultDto>(userId: number,
-    params: GetUserResultsParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getUserResults<TData = ApiListResponseLearningResultDto>(
+ learningGetUserResults<TData = LearningResultList>(userId: number,
+    params: LearningGetUserResultsParams, options?: HttpClientBodyOptions): Observable<TData>;
+ learningGetUserResults<TData = LearningResultList>(userId: number,
+    params: LearningGetUserResultsParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ learningGetUserResults<TData = LearningResultList>(userId: number,
+    params: LearningGetUserResultsParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  learningGetUserResults<TData = LearningResultList>(
     userId: number,
-    params: GetUserResultsParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    params: LearningGetUserResultsParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
 
     if (options?.observe === 'events') {
@@ -308,13 +308,13 @@ export class LearningService {
  * Returns accuracy statistics for the authenticated user (JWT only)
  * @summary Get card accuracy
  */
- getCardAccuracy<TData = ApiOneResponseCardAccuracyDto>(userId: number,
+ learningGetCardAccuracy<TData = LearningCardAccuracyResponse>(userId: number,
     cardId: number, options?: HttpClientBodyOptions): Observable<TData>;
- getCardAccuracy<TData = ApiOneResponseCardAccuracyDto>(userId: number,
+ learningGetCardAccuracy<TData = LearningCardAccuracyResponse>(userId: number,
     cardId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getCardAccuracy<TData = ApiOneResponseCardAccuracyDto>(userId: number,
+ learningGetCardAccuracy<TData = LearningCardAccuracyResponse>(userId: number,
     cardId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getCardAccuracy<TData = ApiOneResponseCardAccuracyDto>(
+  learningGetCardAccuracy<TData = LearningCardAccuracyResponse>(
     userId: number,
     cardId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
@@ -344,6 +344,6 @@ export class LearningService {
   }
 };
 
-export type RecordResultClientResult = NonNullable<ApiOneResponseLearningResultDto>
-export type GetUserResultsClientResult = NonNullable<ApiListResponseLearningResultDto>
-export type GetCardAccuracyClientResult = NonNullable<ApiOneResponseCardAccuracyDto>
+export type LearningRecordResultClientResult = NonNullable<LearningResultResponse>
+export type LearningGetUserResultsClientResult = NonNullable<LearningResultList>
+export type LearningGetCardAccuracyClientResult = NonNullable<LearningCardAccuracyResponse>

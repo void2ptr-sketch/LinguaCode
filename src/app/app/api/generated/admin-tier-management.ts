@@ -24,7 +24,7 @@ import type {
 
 import type {
   AdminSetTierRequest,
-  ApiOneResponseString
+  StringResponse
 } from './models';
 
 import type {
@@ -85,13 +85,13 @@ export class AdminTierManagementService {
  * Admin override for scenario requiredTier
  * @summary Set scenario tier
  */
- setScenarioTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetScenarioTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientBodyOptions): Observable<TData>;
- setScenarioTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetScenarioTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- setScenarioTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetScenarioTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  setScenarioTier<TData = ApiOneResponseString>(
+  adminTierSetScenarioTier<TData = StringResponse>(
     id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
@@ -126,13 +126,13 @@ export class AdminTierManagementService {
  * Admin override for program requiredTier
  * @summary Set program tier
  */
- setProgramTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetProgramTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientBodyOptions): Observable<TData>;
- setProgramTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetProgramTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- setProgramTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetProgramTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  setProgramTier<TData = ApiOneResponseString>(
+  adminTierSetProgramTier<TData = StringResponse>(
     id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
@@ -167,13 +167,13 @@ export class AdminTierManagementService {
  * Admin override for course requiredTier
  * @summary Set course tier
  */
- setCourseTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetCourseTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientBodyOptions): Observable<TData>;
- setCourseTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetCourseTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- setCourseTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetCourseTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  setCourseTier<TData = ApiOneResponseString>(
+  adminTierSetCourseTier<TData = StringResponse>(
     id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
@@ -208,13 +208,13 @@ export class AdminTierManagementService {
  * Admin override for card requiredTier
  * @summary Set card tier
  */
- setCardTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetCardTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientBodyOptions): Observable<TData>;
- setCardTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetCardTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- setCardTier<TData = ApiOneResponseString>(id: number,
+ adminTierSetCardTier<TData = StringResponse>(id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  setCardTier<TData = ApiOneResponseString>(
+  adminTierSetCardTier<TData = StringResponse>(
     id: number,
     adminSetTierRequest: AdminSetTierRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
@@ -247,7 +247,7 @@ export class AdminTierManagementService {
   }
 };
 
-export type SetScenarioTierClientResult = NonNullable<ApiOneResponseString>
-export type SetProgramTierClientResult = NonNullable<ApiOneResponseString>
-export type SetCourseTierClientResult = NonNullable<ApiOneResponseString>
-export type SetCardTierClientResult = NonNullable<ApiOneResponseString>
+export type AdminTierSetScenarioTierClientResult = NonNullable<StringResponse>
+export type AdminTierSetProgramTierClientResult = NonNullable<StringResponse>
+export type AdminTierSetCourseTierClientResult = NonNullable<StringResponse>
+export type AdminTierSetCardTierClientResult = NonNullable<StringResponse>

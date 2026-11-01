@@ -23,14 +23,14 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiListResponseCourseDto,
-  ApiOneResponseCourseDto,
-  ApiOneResponseCourseExportBundle,
-  ApiOneResponseListCourseDto,
   CourseCreateRequest,
+  CourseExportBundleResponse,
+  CourseList,
+  CourseResponse,
   CourseUpdateRequest,
-  List2Params,
-  Search2Params
+  CoursesListParams,
+  CoursesSearchParams,
+  ListCourseResponse
 } from './models';
 
 import type {
@@ -234,10 +234,10 @@ export class CoursesService {
  * Returns course details by ID
  * @summary Get course by ID
  */
- getById2<TData = ApiOneResponseCourseDto>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- getById2<TData = ApiOneResponseCourseDto>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getById2<TData = ApiOneResponseCourseDto>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getById2<TData = ApiOneResponseCourseDto>(
+ coursesGetById<TData = CourseResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesGetById<TData = CourseResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesGetById<TData = CourseResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesGetById<TData = CourseResponse>(
     id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -268,13 +268,13 @@ export class CoursesService {
  * Updates an existing course
  * @summary Update course
  */
- update2<TData = ApiOneResponseCourseDto>(id: number,
+ coursesUpdate<TData = CourseResponse>(id: number,
     courseUpdateRequest: CourseUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- update2<TData = ApiOneResponseCourseDto>(id: number,
+ coursesUpdate<TData = CourseResponse>(id: number,
     courseUpdateRequest: CourseUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- update2<TData = ApiOneResponseCourseDto>(id: number,
+ coursesUpdate<TData = CourseResponse>(id: number,
     courseUpdateRequest: CourseUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  update2<TData = ApiOneResponseCourseDto>(
+  coursesUpdate<TData = CourseResponse>(
     id: number,
     courseUpdateRequest: CourseUpdateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
@@ -309,10 +309,10 @@ export class CoursesService {
  * Deletes a course by ID
  * @summary Delete course
  */
- delete2<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- delete2<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- delete2<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  delete2<TData = void>(
+ coursesDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesDelete<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesDelete<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesDelete<TData = void>(
     id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.delete<TData>(
@@ -343,11 +343,11 @@ export class CoursesService {
  * Returns a paginated list of courses with optional filters and tier-based access control
  * @summary List courses
  */
- list2<TData = ApiListResponseCourseDto>(params: List2Params, options?: HttpClientBodyOptions): Observable<TData>;
- list2<TData = ApiListResponseCourseDto>(params: List2Params, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- list2<TData = ApiListResponseCourseDto>(params: List2Params, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  list2<TData = ApiListResponseCourseDto>(
-    params: List2Params, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ coursesList<TData = CourseList>(params: CoursesListParams, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesList<TData = CourseList>(params: CoursesListParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesList<TData = CourseList>(params: CoursesListParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesList<TData = CourseList>(
+    params: CoursesListParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
 
     if (options?.observe === 'events') {
@@ -379,10 +379,10 @@ export class CoursesService {
  * Creates a new course
  * @summary Create course
  */
- create5<TData = ApiOneResponseCourseDto>(courseCreateRequest: CourseCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- create5<TData = ApiOneResponseCourseDto>(courseCreateRequest: CourseCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- create5<TData = ApiOneResponseCourseDto>(courseCreateRequest: CourseCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  create5<TData = ApiOneResponseCourseDto>(
+ coursesCreate<TData = CourseResponse>(courseCreateRequest: CourseCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesCreate<TData = CourseResponse>(courseCreateRequest: CourseCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesCreate<TData = CourseResponse>(courseCreateRequest: CourseCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesCreate<TData = CourseResponse>(
     courseCreateRequest: CourseCreateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
@@ -416,10 +416,10 @@ export class CoursesService {
  * Returns a complete export package for a course including all nested entities
  * @summary Get course export bundle
  */
- getBundle<TData = ApiOneResponseCourseExportBundle>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- getBundle<TData = ApiOneResponseCourseExportBundle>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getBundle<TData = ApiOneResponseCourseExportBundle>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getBundle<TData = ApiOneResponseCourseExportBundle>(
+ coursesGetBundle<TData = CourseExportBundleResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesGetBundle<TData = CourseExportBundleResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesGetBundle<TData = CourseExportBundleResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesGetBundle<TData = CourseExportBundleResponse>(
     id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -450,11 +450,11 @@ export class CoursesService {
  * Searches courses by title or description with optional author filter
  * @summary Search courses
  */
- search2<TData = ApiListResponseCourseDto>(params: Search2Params, options?: HttpClientBodyOptions): Observable<TData>;
- search2<TData = ApiListResponseCourseDto>(params: Search2Params, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- search2<TData = ApiListResponseCourseDto>(params: Search2Params, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  search2<TData = ApiListResponseCourseDto>(
-    params: Search2Params, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ coursesSearch<TData = CourseList>(params: CoursesSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesSearch<TData = CourseList>(params: CoursesSearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesSearch<TData = CourseList>(params: CoursesSearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesSearch<TData = CourseList>(
+    params: CoursesSearchParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
 
     if (options?.observe === 'events') {
@@ -486,10 +486,10 @@ export class CoursesService {
  * Returns all courses that contain programs referencing the given scenario
  * @summary Find courses by scenario
  */
- findByScenario<TData = ApiOneResponseListCourseDto>(scenarioId: number, options?: HttpClientBodyOptions): Observable<TData>;
- findByScenario<TData = ApiOneResponseListCourseDto>(scenarioId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- findByScenario<TData = ApiOneResponseListCourseDto>(scenarioId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  findByScenario<TData = ApiOneResponseListCourseDto>(
+ coursesFindByScenario<TData = ListCourseResponse>(scenarioId: number, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesFindByScenario<TData = ListCourseResponse>(scenarioId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesFindByScenario<TData = ListCourseResponse>(scenarioId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesFindByScenario<TData = ListCourseResponse>(
     scenarioId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -518,11 +518,11 @@ export class CoursesService {
   }
 };
 
-export type GetById2ClientResult = NonNullable<ApiOneResponseCourseDto>
-export type Update2ClientResult = NonNullable<ApiOneResponseCourseDto>
-export type Delete2ClientResult = NonNullable<void>
-export type List2ClientResult = NonNullable<ApiListResponseCourseDto>
-export type Create5ClientResult = NonNullable<ApiOneResponseCourseDto>
-export type GetBundleClientResult = NonNullable<ApiOneResponseCourseExportBundle>
-export type Search2ClientResult = NonNullable<ApiListResponseCourseDto>
-export type FindByScenarioClientResult = NonNullable<ApiOneResponseListCourseDto>
+export type CoursesGetByIdClientResult = NonNullable<CourseResponse>
+export type CoursesUpdateClientResult = NonNullable<CourseResponse>
+export type CoursesDeleteClientResult = NonNullable<void>
+export type CoursesListClientResult = NonNullable<CourseList>
+export type CoursesCreateClientResult = NonNullable<CourseResponse>
+export type CoursesGetBundleClientResult = NonNullable<CourseExportBundleResponse>
+export type CoursesSearchClientResult = NonNullable<CourseList>
+export type CoursesFindByScenarioClientResult = NonNullable<ListCourseResponse>

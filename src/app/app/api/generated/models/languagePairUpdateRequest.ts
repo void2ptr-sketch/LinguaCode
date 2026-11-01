@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * Language pair update request
+ */
 export interface LanguagePairUpdateRequest {
   /**
      * @minLength 2

@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * xAPI verb (action type)
+ */
 export interface XapiVerb {
   id?: string;
   display?: string;

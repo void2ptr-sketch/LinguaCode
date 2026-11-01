@@ -23,11 +23,11 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiOneResponseLearningHomeDto,
-  ApiOneResponseLearningProgressDto,
-  ApiOneResponseListLessonAvailabilityDto,
-  ApiOneResponseResumeResponseDto,
-  ApiOneResponseStreakDto
+  LearningHomeResponse,
+  LearningProgressResponse,
+  LearningResumeResponse,
+  LearningStreakResponse,
+  ListLessonAvailabilityResponse
 } from './models';
 
 import type {
@@ -88,10 +88,10 @@ export class LearningProgressService {
  * Returns the current learning streak in consecutive days
  * @summary Get learning streak
  */
- getStreak<TData = ApiOneResponseStreakDto>( options?: HttpClientBodyOptions): Observable<TData>;
- getStreak<TData = ApiOneResponseStreakDto>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getStreak<TData = ApiOneResponseStreakDto>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getStreak<TData = ApiOneResponseStreakDto>(
+ progressGetStreak<TData = LearningStreakResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ progressGetStreak<TData = LearningStreakResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ progressGetStreak<TData = LearningStreakResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  progressGetStreak<TData = LearningStreakResponse>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -122,10 +122,10 @@ export class LearningProgressService {
  * Returns the next scenario and card to continue learning
  * @summary Get resume information
  */
- getResume<TData = ApiOneResponseResumeResponseDto>( options?: HttpClientBodyOptions): Observable<TData>;
- getResume<TData = ApiOneResponseResumeResponseDto>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getResume<TData = ApiOneResponseResumeResponseDto>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getResume<TData = ApiOneResponseResumeResponseDto>(
+ progressGetResume<TData = LearningResumeResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ progressGetResume<TData = LearningResumeResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ progressGetResume<TData = LearningResumeResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  progressGetResume<TData = LearningResumeResponse>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -156,13 +156,13 @@ export class LearningProgressService {
  * Returns progress for a specific entity (SCENARIO, LESSON, PROGRAM)
  * @summary Get progress by entity
  */
- getProgress<TData = ApiOneResponseLearningProgressDto>(entityType: string,
+ progressGetByEntity<TData = LearningProgressResponse>(entityType: string,
     entityId: number, options?: HttpClientBodyOptions): Observable<TData>;
- getProgress<TData = ApiOneResponseLearningProgressDto>(entityType: string,
+ progressGetByEntity<TData = LearningProgressResponse>(entityType: string,
     entityId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getProgress<TData = ApiOneResponseLearningProgressDto>(entityType: string,
+ progressGetByEntity<TData = LearningProgressResponse>(entityType: string,
     entityId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getProgress<TData = ApiOneResponseLearningProgressDto>(
+  progressGetByEntity<TData = LearningProgressResponse>(
     entityType: string,
     entityId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
@@ -194,10 +194,10 @@ export class LearningProgressService {
  * Returns all lessons for a program with LOCKED/IN_PROGRESS/COMPLETED status
  * @summary Get lessons availability
  */
- getLessonsAvailability<TData = ApiOneResponseListLessonAvailabilityDto>(programId: number, options?: HttpClientBodyOptions): Observable<TData>;
- getLessonsAvailability<TData = ApiOneResponseListLessonAvailabilityDto>(programId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getLessonsAvailability<TData = ApiOneResponseListLessonAvailabilityDto>(programId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getLessonsAvailability<TData = ApiOneResponseListLessonAvailabilityDto>(
+ progressGetLessonsAvailability<TData = ListLessonAvailabilityResponse>(programId: number, options?: HttpClientBodyOptions): Observable<TData>;
+ progressGetLessonsAvailability<TData = ListLessonAvailabilityResponse>(programId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ progressGetLessonsAvailability<TData = ListLessonAvailabilityResponse>(programId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  progressGetLessonsAvailability<TData = ListLessonAvailabilityResponse>(
     programId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -228,10 +228,10 @@ export class LearningProgressService {
  * Returns active language pair, program, next lesson, resume, and streak
  * @summary Learning Home Dashboard
  */
- getLearningHome<TData = ApiOneResponseLearningHomeDto>( options?: HttpClientBodyOptions): Observable<TData>;
- getLearningHome<TData = ApiOneResponseLearningHomeDto>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getLearningHome<TData = ApiOneResponseLearningHomeDto>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getLearningHome<TData = ApiOneResponseLearningHomeDto>(
+ progressGetHome<TData = LearningHomeResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ progressGetHome<TData = LearningHomeResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ progressGetHome<TData = LearningHomeResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  progressGetHome<TData = LearningHomeResponse>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -260,8 +260,8 @@ export class LearningProgressService {
   }
 };
 
-export type GetStreakClientResult = NonNullable<ApiOneResponseStreakDto>
-export type GetResumeClientResult = NonNullable<ApiOneResponseResumeResponseDto>
-export type GetProgressClientResult = NonNullable<ApiOneResponseLearningProgressDto>
-export type GetLessonsAvailabilityClientResult = NonNullable<ApiOneResponseListLessonAvailabilityDto>
-export type GetLearningHomeClientResult = NonNullable<ApiOneResponseLearningHomeDto>
+export type ProgressGetStreakClientResult = NonNullable<LearningStreakResponse>
+export type ProgressGetResumeClientResult = NonNullable<LearningResumeResponse>
+export type ProgressGetByEntityClientResult = NonNullable<LearningProgressResponse>
+export type ProgressGetLessonsAvailabilityClientResult = NonNullable<ListLessonAvailabilityResponse>
+export type ProgressGetHomeClientResult = NonNullable<LearningHomeResponse>

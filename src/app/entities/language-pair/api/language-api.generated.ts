@@ -19,8 +19,8 @@ import { buildApiUrl } from '../../../shared/api/api-url';
 import type { LanguageDto } from './language-dto.types';
 
 // Generated types — used for request/response shape only
-import type { LanguageDto as GeneratedLanguageDto } from '../../../app/api/generated/models/languageDto';
-import type { LanguageCreateRequest } from '../../../app/api/generated/models/languageCreateRequest';
+import type { Language } from '../../../app/api/generated/models/language';
+import type { LanguageCreate } from '../../../app/api/generated/models/languageCreate';
 import type { LanguageUpdateRequest } from '../../../app/api/generated/models/languageUpdateRequest';
 
 // Re-export for consumers
@@ -47,13 +47,13 @@ export class LanguageApiService {
 
   listAll(): Promise<LanguageDto[]> {
     return firstValueFrom(
-      this.http.get<{ data: GeneratedLanguageDto[] }>(buildApiUrl('/languages')),
+      this.http.get<{ data: Language[] }>(buildApiUrl('/languages')),
     ).then((res) => (res?.data ?? []).map(toLocal));
   }
 
   listActive(): Promise<LanguageDto[]> {
     return firstValueFrom(
-      this.http.get<{ data: GeneratedLanguageDto[] }>(buildApiUrl('/languages')),
+      this.http.get<{ data: Language[] }>(buildApiUrl('/languages')),
     ).then((res) =>
       (res?.data ?? [])
         .filter((l) => l.activeFlag)
@@ -63,7 +63,7 @@ export class LanguageApiService {
 
   getById(id: number): Promise<LanguageDto> {
     return firstValueFrom(
-      this.http.get<{ data: GeneratedLanguageDto }>(buildApiUrl(`/languages/${id}`)),
+      this.http.get<{ data: Language }>(buildApiUrl(`/languages/${id}`)),
     ).then((res) => {
       const data = res.data;
       if (!data) throw new Error('Language not found');
@@ -73,7 +73,7 @@ export class LanguageApiService {
 
   create(payload: LanguageCreatePayload): Promise<LanguageDto> {
     return firstValueFrom(
-      this.http.post<{ data: GeneratedLanguageDto }>(buildApiUrl('/languages'), payload),
+      this.http.post<{ data: Language }>(buildApiUrl('/languages'), payload as LanguageCreate),
     ).then((res) => {
       const data = res.data;
       if (!data) throw new Error('Failed to create language');
@@ -83,7 +83,7 @@ export class LanguageApiService {
 
   update(id: number, payload: LanguageUpdatePayload): Promise<LanguageDto> {
     return firstValueFrom(
-      this.http.patch<{ data: GeneratedLanguageDto }>(buildApiUrl(`/languages/${id}`), payload),
+      this.http.patch<{ data: Language }>(buildApiUrl(`/languages/${id}`), payload),
     ).then((res) => {
       const data = res.data;
       if (!data) throw new Error('Failed to update language');
@@ -99,7 +99,7 @@ export class LanguageApiService {
 }
 
 /** Map generated DTO to local DTO (defaults for optional fields). */
-function toLocal(g: GeneratedLanguageDto): LanguageDto {
+function toLocal(g: Language): LanguageDto {
   return {
     id: g.id ?? 0,
     code: g.code ?? '',

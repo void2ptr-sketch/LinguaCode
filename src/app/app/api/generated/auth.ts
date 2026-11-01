@@ -23,9 +23,9 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiOneResponseAuthResponse,
   AuthLoginRequest,
-  AuthRefreshRequest
+  AuthRefreshRequest,
+  AuthResponse
 } from './models';
 
 import type {
@@ -86,10 +86,10 @@ export class AuthService {
  * Refreshes the access token using a valid refresh token
  * @summary Refresh token
  */
- refresh<TData = ApiOneResponseAuthResponse>(authRefreshRequest: AuthRefreshRequest, options?: HttpClientBodyOptions): Observable<TData>;
- refresh<TData = ApiOneResponseAuthResponse>(authRefreshRequest: AuthRefreshRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- refresh<TData = ApiOneResponseAuthResponse>(authRefreshRequest: AuthRefreshRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  refresh<TData = ApiOneResponseAuthResponse>(
+ authRefresh<TData = AuthResponse>(authRefreshRequest: AuthRefreshRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ authRefresh<TData = AuthResponse>(authRefreshRequest: AuthRefreshRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ authRefresh<TData = AuthResponse>(authRefreshRequest: AuthRefreshRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  authRefresh<TData = AuthResponse>(
     authRefreshRequest: AuthRefreshRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
@@ -123,10 +123,10 @@ export class AuthService {
  * Logs out the user by clearing the refresh token cookie
  * @summary Logout
  */
- logout<TData = void>( options?: HttpClientBodyOptions): Observable<TData>;
- logout<TData = void>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- logout<TData = void>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  logout<TData = void>(
+ authLogout<TData = void>( options?: HttpClientBodyOptions): Observable<TData>;
+ authLogout<TData = void>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ authLogout<TData = void>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  authLogout<TData = void>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
@@ -160,10 +160,10 @@ export class AuthService {
  * Authenticates a user by email and password, returns JWT tokens
  * @summary Login
  */
- login<TData = ApiOneResponseAuthResponse>(authLoginRequest: AuthLoginRequest, options?: HttpClientBodyOptions): Observable<TData>;
- login<TData = ApiOneResponseAuthResponse>(authLoginRequest: AuthLoginRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- login<TData = ApiOneResponseAuthResponse>(authLoginRequest: AuthLoginRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  login<TData = ApiOneResponseAuthResponse>(
+ authLogin<TData = AuthResponse>(authLoginRequest: AuthLoginRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ authLogin<TData = AuthResponse>(authLoginRequest: AuthLoginRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ authLogin<TData = AuthResponse>(authLoginRequest: AuthLoginRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  authLogin<TData = AuthResponse>(
     authLoginRequest: AuthLoginRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
@@ -195,6 +195,6 @@ export class AuthService {
   }
 };
 
-export type RefreshClientResult = NonNullable<ApiOneResponseAuthResponse>
-export type LogoutClientResult = NonNullable<void>
-export type LoginClientResult = NonNullable<ApiOneResponseAuthResponse>
+export type AuthRefreshClientResult = NonNullable<AuthResponse>
+export type AuthLogoutClientResult = NonNullable<void>
+export type AuthLoginClientResult = NonNullable<AuthResponse>

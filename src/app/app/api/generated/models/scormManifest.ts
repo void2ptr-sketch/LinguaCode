@@ -6,6 +6,9 @@
  */
 import type { ScormOrganization } from './scormOrganization';
 
+/**
+ * SCORM manifest with course organization
+ */
 export interface ScormManifest {
   identifier?: string;
   title?: string;

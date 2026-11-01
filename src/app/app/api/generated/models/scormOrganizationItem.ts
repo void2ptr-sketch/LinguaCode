@@ -6,6 +6,9 @@
  */
 import type { ScormResource } from './scormResource';
 
+/**
+ * SCORM organization item (program or lesson)
+ */
 export interface ScormOrganizationItem {
   identifier?: string;
   title?: string;

@@ -23,8 +23,8 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiOneResponseString,
-  ApiOneResponseSubscriptionStatusDto
+  StringResponse,
+  SubscriptionStatusResponse
 } from './models';
 
 import type {
@@ -85,10 +85,10 @@ export class SubscriptionService {
  * Activates subscription via payment webhook
  * @summary Activate subscription
  */
- activate<TData = ApiOneResponseString>( options?: HttpClientBodyOptions): Observable<TData>;
- activate<TData = ApiOneResponseString>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- activate<TData = ApiOneResponseString>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  activate<TData = ApiOneResponseString>(
+ subscriptionActivate<TData = StringResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ subscriptionActivate<TData = StringResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ subscriptionActivate<TData = StringResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  subscriptionActivate<TData = StringResponse>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
@@ -122,10 +122,10 @@ export class SubscriptionService {
  * Returns the authenticated user's subscription status
  * @summary Current subscription status
  */
- getStatus<TData = ApiOneResponseSubscriptionStatusDto>( options?: HttpClientBodyOptions): Observable<TData>;
- getStatus<TData = ApiOneResponseSubscriptionStatusDto>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getStatus<TData = ApiOneResponseSubscriptionStatusDto>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getStatus<TData = ApiOneResponseSubscriptionStatusDto>(
+ subscriptionGetStatus<TData = SubscriptionStatusResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ subscriptionGetStatus<TData = SubscriptionStatusResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ subscriptionGetStatus<TData = SubscriptionStatusResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  subscriptionGetStatus<TData = SubscriptionStatusResponse>(
      options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -154,5 +154,5 @@ export class SubscriptionService {
   }
 };
 
-export type ActivateClientResult = NonNullable<ApiOneResponseString>
-export type GetStatusClientResult = NonNullable<ApiOneResponseSubscriptionStatusDto>
+export type SubscriptionActivateClientResult = NonNullable<StringResponse>
+export type SubscriptionGetStatusClientResult = NonNullable<SubscriptionStatusResponse>

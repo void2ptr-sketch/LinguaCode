@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * Language pair creation request
+ */
 export interface LanguagePairCreateRequest {
   /**
      * @minLength 2

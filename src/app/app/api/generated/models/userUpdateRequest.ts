@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * User profile update request
+ */
 export interface UserUpdateRequest {
   /**
      * @minLength 1

@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * xAPI actor (who performed the action)
+ */
 export interface XapiActor {
   name?: string;
   mbox?: string;

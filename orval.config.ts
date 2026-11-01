@@ -9,6 +9,12 @@ import { defineConfig } from 'orval';
  * - Port interfaces stay as the contract layer so consumers don't break
  *
  * To run: npm run generate:api
+ *
+ * Naming convention:
+ * - Backend operationId uses dot notation: "cards.list", "cards.getById"
+ * - Orval generates service methods: cards.list(), cards.getById()
+ * - Schema prefix = first word (e.g. "Cards" from "cards.list")
+ * - This avoids "listCardsKind" → "CardsKind" clarity
  */
 export default defineConfig({
   backend: {
@@ -24,9 +30,12 @@ export default defineConfig({
       },
     },
     input: {
-      // Download from backend during dev; or use local file during CI
+      // Download patched spec (with renamed schemas) from backend during dev
+      // The patch script fixes SpringDoc generic type naming:
+      //   ApiOneResponse<CardDto> → cardResponse (not CardResponse)
+      //   ApiListResponse<CardDto> → cardList (not CardList)
       target: 'http://localhost:8080/v3/api-docs',
-      // Or: target: './src/assets/openapi.json',
+      // Or: target: './src/assets/openapi-patched.json',
       // Override backend auth for swagger docs if needed
       override: {
         header: {},

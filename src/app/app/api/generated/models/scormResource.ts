@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * SCORM resource reference
+ */
 export interface ScormResource {
   identifier?: string;
   type?: string;

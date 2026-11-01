@@ -9,6 +9,9 @@ import type { XapiContext } from './xapiContext';
 import type { XapiObject } from './xapiObject';
 import type { XapiVerb } from './xapiVerb';
 
+/**
+ * xAPI statement for LRS
+ */
 export interface XapiStatement {
   id?: string;
   actor?: XapiActor;

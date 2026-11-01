@@ -23,11 +23,10 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiOneResponseScormExportBundle,
-  ApiOneResponseScormImportResult,
   ExportScormParams,
-  ImportScormBody,
-  ImportScormParams
+  ScormExportBundleResponse,
+  ScormImportRequest,
+  ScormImportResultResponse
 } from './models';
 
 import type {
@@ -159,56 +158,54 @@ export class ScormService {
  * Imports a course from a SCORM ZIP package. Creates Course → Program → Lesson → Scenario → Card hierarchy.
  * @summary Import course from SCORM package
  */
- importScorm<TData = ApiOneResponseScormImportResult>(params: ImportScormParams,
-    importScormBody?: ImportScormBody, options?: HttpClientBodyOptions): Observable<TData>;
- importScorm<TData = ApiOneResponseScormImportResult>(params: ImportScormParams,
-    importScormBody?: ImportScormBody, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- importScorm<TData = ApiOneResponseScormImportResult>(params: ImportScormParams,
-    importScormBody?: ImportScormBody, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  importScorm<TData = ApiOneResponseScormImportResult>(
-    params: ImportScormParams,
-    importScormBody?: ImportScormBody, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
+ importScorm<TData = ScormImportResultResponse>(scormImportRequest?: ScormImportRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ importScorm<TData = ScormImportResultResponse>(scormImportRequest?: ScormImportRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ importScorm<TData = ScormImportResultResponse>(scormImportRequest?: ScormImportRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  importScorm<TData = ScormImportResultResponse>(
+    scormImportRequest?: ScormImportRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {const formData = new FormData();
+if(scormImportRequest?.file !== undefined) {
+ formData.append(`file`, scormImportRequest.file);
+ }
 
     if (options?.observe === 'events') {
       return this.http.post<TData>(
       `/api/v1/scorm/import`,
-      importScormBody,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      formData,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-        params: filteredParams,}
+      }
     );
     }
 
     if (options?.observe === 'response') {
       return this.http.post<TData>(
       `/api/v1/scorm/import`,
-      importScormBody,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      formData,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,}
+      }
     );
     }
 
     return this.http.post<TData>(
       `/api/v1/scorm/import`,
-      importScormBody,{
-    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      formData,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'body',
-        params: filteredParams,}
+      }
     );
   }
 /**
  * Returns a complete SCORM/xAPI export package for a course including manifest, all nested entities, and xAPI statements for learning analytics
  * @summary Export course to SCORM
  */
- exportScorm<TData = ApiOneResponseScormExportBundle>(courseId: number,
+ exportScorm<TData = ScormExportBundleResponse>(courseId: number,
     params?: ExportScormParams, options?: HttpClientBodyOptions): Observable<TData>;
- exportScorm<TData = ApiOneResponseScormExportBundle>(courseId: number,
+ exportScorm<TData = ScormExportBundleResponse>(courseId: number,
     params?: ExportScormParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- exportScorm<TData = ApiOneResponseScormExportBundle>(courseId: number,
+ exportScorm<TData = ScormExportBundleResponse>(courseId: number,
     params?: ExportScormParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  exportScorm<TData = ApiOneResponseScormExportBundle>(
+  exportScorm<TData = ScormExportBundleResponse>(
     courseId: number,
     params?: ExportScormParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
@@ -240,5 +237,5 @@ export class ScormService {
   }
 };
 
-export type ImportScormClientResult = NonNullable<ApiOneResponseScormImportResult>
-export type ExportScormClientResult = NonNullable<ApiOneResponseScormExportBundle>
+export type ImportScormClientResult = NonNullable<ScormImportResultResponse>
+export type ExportScormClientResult = NonNullable<ScormExportBundleResponse>

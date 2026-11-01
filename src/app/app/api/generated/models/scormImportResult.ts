@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * SCORM package import result
+ */
 export interface ScormImportResult {
   courseId?: number;
   courseTitle?: string;

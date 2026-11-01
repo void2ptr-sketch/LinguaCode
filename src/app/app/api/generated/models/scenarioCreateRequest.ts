@@ -6,6 +6,9 @@
  */
 import type { ScenarioCreateRequestRequiredTier } from './scenarioCreateRequestRequiredTier';
 
+/**
+ * Scenario creation request
+ */
 export interface ScenarioCreateRequest {
   /**
      * @minLength 1

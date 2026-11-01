@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * Token refresh request
+ */
 export interface AuthRefreshRequest {
   /** @minLength 1 */
   refreshToken: string;

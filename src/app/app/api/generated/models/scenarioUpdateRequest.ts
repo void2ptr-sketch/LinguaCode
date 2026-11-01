@@ -6,6 +6,9 @@
  */
 import type { ScenarioUpdateRequestRequiredTier } from './scenarioUpdateRequestRequiredTier';
 
+/**
+ * Scenario update request
+ */
 export interface ScenarioUpdateRequest {
   id?: string;
   /**

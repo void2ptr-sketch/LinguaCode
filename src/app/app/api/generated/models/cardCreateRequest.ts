@@ -8,6 +8,9 @@ import type { CardCreateRequestDifficulty } from './cardCreateRequestDifficulty'
 import type { CardCreateRequestKind } from './cardCreateRequestKind';
 import type { CardCreateRequestRequiredTier } from './cardCreateRequestRequiredTier';
 
+/**
+ * Card creation request
+ */
 export interface CardCreateRequest {
   /**
      * @minLength 1

@@ -23,14 +23,14 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiListResponseCardDto,
-  ApiOneResponseBatchRetrieveResponse,
-  ApiOneResponseCardDto,
-  BatchRetrieveRequest,
+  CardBatchRetrieveRequest,
+  CardBatchRetrieveResponse,
   CardCreateRequest,
+  CardList,
+  CardResponse,
   CardUpdateRequest,
-  List3Params,
-  Search3Params
+  CardsListParams,
+  CardsSearchParams
 } from './models';
 
 import type {
@@ -234,10 +234,10 @@ export class CardsService {
  * Returns card details by ID
  * @summary Get card by ID
  */
- getById3<TData = ApiOneResponseCardDto>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- getById3<TData = ApiOneResponseCardDto>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getById3<TData = ApiOneResponseCardDto>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getById3<TData = ApiOneResponseCardDto>(
+ cardsGetById<TData = CardResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsGetById<TData = CardResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsGetById<TData = CardResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsGetById<TData = CardResponse>(
     id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -268,13 +268,13 @@ export class CardsService {
  * Updates an existing card
  * @summary Update card
  */
- update3<TData = ApiOneResponseCardDto>(id: number,
+ cardsUpdate<TData = CardResponse>(id: number,
     cardUpdateRequest: CardUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- update3<TData = ApiOneResponseCardDto>(id: number,
+ cardsUpdate<TData = CardResponse>(id: number,
     cardUpdateRequest: CardUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- update3<TData = ApiOneResponseCardDto>(id: number,
+ cardsUpdate<TData = CardResponse>(id: number,
     cardUpdateRequest: CardUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  update3<TData = ApiOneResponseCardDto>(
+  cardsUpdate<TData = CardResponse>(
     id: number,
     cardUpdateRequest: CardUpdateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
@@ -309,10 +309,10 @@ export class CardsService {
  * Deletes a card by ID
  * @summary Delete card
  */
- delete3<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- delete3<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- delete3<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  delete3<TData = void>(
+ cardsDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsDelete<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsDelete<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsDelete<TData = void>(
     id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.delete<TData>(
@@ -343,11 +343,11 @@ export class CardsService {
  * Returns a paginated list of cards with optional filters and tier-based access control
  * @summary List cards
  */
- list3<TData = ApiListResponseCardDto>(params: List3Params, options?: HttpClientBodyOptions): Observable<TData>;
- list3<TData = ApiListResponseCardDto>(params: List3Params, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- list3<TData = ApiListResponseCardDto>(params: List3Params, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  list3<TData = ApiListResponseCardDto>(
-    params: List3Params, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ cardsList<TData = CardList>(params: CardsListParams, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsList<TData = CardList>(params: CardsListParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsList<TData = CardList>(params: CardsListParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsList<TData = CardList>(
+    params: CardsListParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
 
     if (options?.observe === 'events') {
@@ -379,10 +379,10 @@ export class CardsService {
  * Creates a new card
  * @summary Create card
  */
- create6<TData = ApiOneResponseCardDto>(cardCreateRequest: CardCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- create6<TData = ApiOneResponseCardDto>(cardCreateRequest: CardCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- create6<TData = ApiOneResponseCardDto>(cardCreateRequest: CardCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  create6<TData = ApiOneResponseCardDto>(
+ cardsCreate<TData = CardResponse>(cardCreateRequest: CardCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsCreate<TData = CardResponse>(cardCreateRequest: CardCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsCreate<TData = CardResponse>(cardCreateRequest: CardCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsCreate<TData = CardResponse>(
     cardCreateRequest: CardCreateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
@@ -416,10 +416,10 @@ export class CardsService {
  * Creates multiple cards in a single request
  * @summary Batch create cards
  */
- batchCreate<TData = ApiListResponseCardDto>(cardCreateRequest: CardCreateRequest[], options?: HttpClientBodyOptions): Observable<TData>;
- batchCreate<TData = ApiListResponseCardDto>(cardCreateRequest: CardCreateRequest[], options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- batchCreate<TData = ApiListResponseCardDto>(cardCreateRequest: CardCreateRequest[], options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  batchCreate<TData = ApiListResponseCardDto>(
+ cardsBatchCreate<TData = CardList>(cardCreateRequest: CardCreateRequest[], options?: HttpClientBodyOptions): Observable<TData>;
+ cardsBatchCreate<TData = CardList>(cardCreateRequest: CardCreateRequest[], options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsBatchCreate<TData = CardList>(cardCreateRequest: CardCreateRequest[], options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsBatchCreate<TData = CardList>(
     cardCreateRequest: CardCreateRequest[], options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
@@ -453,15 +453,15 @@ export class CardsService {
  * Retrieves multiple cards by their IDs in a single request
  * @summary Batch retrieve cards
  */
- batchRetrieve<TData = ApiOneResponseBatchRetrieveResponse>(batchRetrieveRequest: BatchRetrieveRequest, options?: HttpClientBodyOptions): Observable<TData>;
- batchRetrieve<TData = ApiOneResponseBatchRetrieveResponse>(batchRetrieveRequest: BatchRetrieveRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- batchRetrieve<TData = ApiOneResponseBatchRetrieveResponse>(batchRetrieveRequest: BatchRetrieveRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  batchRetrieve<TData = ApiOneResponseBatchRetrieveResponse>(
-    batchRetrieveRequest: BatchRetrieveRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(
+    cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
       `/api/v1/cards/batch/retrieve`,
-      batchRetrieveRequest,{
+      cardBatchRetrieveRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
       }
@@ -471,7 +471,7 @@ export class CardsService {
     if (options?.observe === 'response') {
       return this.http.post<TData>(
       `/api/v1/cards/batch/retrieve`,
-      batchRetrieveRequest,{
+      cardBatchRetrieveRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
       }
@@ -480,7 +480,7 @@ export class CardsService {
 
     return this.http.post<TData>(
       `/api/v1/cards/batch/retrieve`,
-      batchRetrieveRequest,{
+      cardBatchRetrieveRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'body',
       }
@@ -490,11 +490,11 @@ export class CardsService {
  * Searches cards by title and filters
  * @summary Search cards
  */
- search3<TData = ApiListResponseCardDto>(params: Search3Params, options?: HttpClientBodyOptions): Observable<TData>;
- search3<TData = ApiListResponseCardDto>(params: Search3Params, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- search3<TData = ApiListResponseCardDto>(params: Search3Params, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  search3<TData = ApiListResponseCardDto>(
-    params: Search3Params, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ cardsSearch<TData = CardList>(params: CardsSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsSearch<TData = CardList>(params: CardsSearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsSearch<TData = CardList>(params: CardsSearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsSearch<TData = CardList>(
+    params: CardsSearchParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
 
     if (options?.observe === 'events') {
@@ -524,11 +524,11 @@ export class CardsService {
   }
 };
 
-export type GetById3ClientResult = NonNullable<ApiOneResponseCardDto>
-export type Update3ClientResult = NonNullable<ApiOneResponseCardDto>
-export type Delete3ClientResult = NonNullable<void>
-export type List3ClientResult = NonNullable<ApiListResponseCardDto>
-export type Create6ClientResult = NonNullable<ApiOneResponseCardDto>
-export type BatchCreateClientResult = NonNullable<ApiListResponseCardDto>
-export type BatchRetrieveClientResult = NonNullable<ApiOneResponseBatchRetrieveResponse>
-export type Search3ClientResult = NonNullable<ApiListResponseCardDto>
+export type CardsGetByIdClientResult = NonNullable<CardResponse>
+export type CardsUpdateClientResult = NonNullable<CardResponse>
+export type CardsDeleteClientResult = NonNullable<void>
+export type CardsListClientResult = NonNullable<CardList>
+export type CardsCreateClientResult = NonNullable<CardResponse>
+export type CardsBatchCreateClientResult = NonNullable<CardList>
+export type CardsBatchRetrieveClientResult = NonNullable<CardBatchRetrieveResponse>
+export type CardsSearchClientResult = NonNullable<CardList>

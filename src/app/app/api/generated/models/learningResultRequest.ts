@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * Learning result recording request
+ */
 export interface LearningResultRequest {
   /** @deprecated */
   userId?: number;

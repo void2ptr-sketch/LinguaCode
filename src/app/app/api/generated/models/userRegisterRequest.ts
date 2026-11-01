@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * User registration request
+ */
 export interface UserRegisterRequest {
   /**
      * @minLength 1

@@ -23,10 +23,10 @@ import type {
 } from 'rxjs';
 
 import type {
-  ApiListResponseFeedbackDto,
-  ApiOneResponseFeedbackDto,
   FeedbackCreateRequest,
-  MyFeedbackParams
+  FeedbackList,
+  FeedbackMyFeedbackParams,
+  FeedbackResponse
 } from './models';
 
 import type {
@@ -230,10 +230,10 @@ export class FeedbackService {
  * Creates a new feedback report for a content entity
  * @summary Report an issue
  */
- create4<TData = ApiOneResponseFeedbackDto>(feedbackCreateRequest: FeedbackCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
- create4<TData = ApiOneResponseFeedbackDto>(feedbackCreateRequest: FeedbackCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- create4<TData = ApiOneResponseFeedbackDto>(feedbackCreateRequest: FeedbackCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  create4<TData = ApiOneResponseFeedbackDto>(
+ feedbackCreate<TData = FeedbackResponse>(feedbackCreateRequest: FeedbackCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ feedbackCreate<TData = FeedbackResponse>(feedbackCreateRequest: FeedbackCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ feedbackCreate<TData = FeedbackResponse>(feedbackCreateRequest: FeedbackCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  feedbackCreate<TData = FeedbackResponse>(
     feedbackCreateRequest: FeedbackCreateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.post<TData>(
@@ -267,10 +267,10 @@ export class FeedbackService {
  * Returns feedback details by ID
  * @summary Get feedback by ID
  */
- getById7<TData = ApiOneResponseFeedbackDto>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- getById7<TData = ApiOneResponseFeedbackDto>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- getById7<TData = ApiOneResponseFeedbackDto>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  getById7<TData = ApiOneResponseFeedbackDto>(
+ feedbackGetById<TData = FeedbackResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ feedbackGetById<TData = FeedbackResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ feedbackGetById<TData = FeedbackResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  feedbackGetById<TData = FeedbackResponse>(
     id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -301,11 +301,11 @@ export class FeedbackService {
  * Returns a paginated list of feedbacks submitted by the current user
  * @summary List my feedbacks
  */
- myFeedback<TData = ApiListResponseFeedbackDto>(params: MyFeedbackParams, options?: HttpClientBodyOptions): Observable<TData>;
- myFeedback<TData = ApiListResponseFeedbackDto>(params: MyFeedbackParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- myFeedback<TData = ApiListResponseFeedbackDto>(params: MyFeedbackParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  myFeedback<TData = ApiListResponseFeedbackDto>(
-    params: MyFeedbackParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+ feedbackMyFeedback<TData = FeedbackList>(params: FeedbackMyFeedbackParams, options?: HttpClientBodyOptions): Observable<TData>;
+ feedbackMyFeedback<TData = FeedbackList>(params: FeedbackMyFeedbackParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ feedbackMyFeedback<TData = FeedbackList>(params: FeedbackMyFeedbackParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  feedbackMyFeedback<TData = FeedbackList>(
+    params: FeedbackMyFeedbackParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
 
     if (options?.observe === 'events') {
@@ -335,6 +335,6 @@ export class FeedbackService {
   }
 };
 
-export type Create4ClientResult = NonNullable<ApiOneResponseFeedbackDto>
-export type GetById7ClientResult = NonNullable<ApiOneResponseFeedbackDto>
-export type MyFeedbackClientResult = NonNullable<ApiListResponseFeedbackDto>
+export type FeedbackCreateClientResult = NonNullable<FeedbackResponse>
+export type FeedbackGetByIdClientResult = NonNullable<FeedbackResponse>
+export type FeedbackMyFeedbackClientResult = NonNullable<FeedbackList>
