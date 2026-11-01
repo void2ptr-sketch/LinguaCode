@@ -1,4 +1,8 @@
 // ===== ScormExportService — migrated to orval-generated client =====
-export { ScormExportService } from './scorm-export.generated';
+export { ScormExportService as ScormExportServiceGenerated } from './scorm-export.generated';
 // ===== CoursesApiService — migrated to orval-generated client =====
-export { CoursesApiService } from './courses-api.generated';
+export { CoursesApiService as CoursesApiServiceGenerated } from './courses-api.generated';
+
+// ===== Services =====
+export { CoursesApiService } from './courses-api.service';
+export { ScormExportService } from './scorm-export.service';
