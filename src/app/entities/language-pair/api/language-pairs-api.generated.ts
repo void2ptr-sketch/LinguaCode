@@ -10,7 +10,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { buildApiUrl } from '../../../shared/api/api-url';
-import type { LanguagePairResponse, LanguagePairList } from '../../../app/api/generated/models';
+import type { LanguagePairResponse, LanguagePairList } from '../../../shared/api/generated/models';
 import type { LanguagePairDto } from './language-pairs-api.types';
 
 export type { LanguagePairDto } from './language-pairs-api.types';

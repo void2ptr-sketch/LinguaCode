@@ -31,7 +31,7 @@ import type {
   CardBatchRetrieveRequest,
   CardCreateRequest,
   CardUpdateRequest,
-} from '../../../app/api/generated/models';
+} from '../../../shared/api/generated/models';
 
 // Re-export for consumers
 export type { Card, CardSearchCriteria, CardSearchPage } from '../model';

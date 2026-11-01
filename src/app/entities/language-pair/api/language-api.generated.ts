@@ -19,9 +19,9 @@ import { buildApiUrl } from '../../../shared/api/api-url';
 import type { LanguageDto } from './language-dto.types';
 
 // Generated types — used for request/response shape only
-import type { Language } from '../../../app/api/generated/models/language';
-import type { LanguageCreate } from '../../../app/api/generated/models/languageCreate';
-import type { LanguageUpdateRequest } from '../../../app/api/generated/models/languageUpdateRequest';
+import type { Language } from '../../../shared/api/generated/models/language';
+import type { LanguageCreate } from '../../../shared/api/generated/models/languageCreate';
+import type { LanguageUpdateRequest } from '../../../shared/api/generated/models/languageUpdateRequest';
 
 // Re-export for consumers
 export type { LanguageDto } from './language-dto.types';

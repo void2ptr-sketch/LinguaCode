@@ -27,7 +27,7 @@ import type {
   ScenarioResponse,
   ScenarioCreateRequest,
   ScenarioUpdateRequest,
-} from '../../../app/api/generated/models';
+} from '../../../shared/api/generated/models';
 
 export type { ScenarioWritePayload } from '../repository/scenario-catalog.port';
 export type { Scenario, ScenarioIndexEntry, ScenarioSearchCriteria, ScenarioSearchPage } from '../model';

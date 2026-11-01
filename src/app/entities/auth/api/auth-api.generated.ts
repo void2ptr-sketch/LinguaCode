@@ -15,10 +15,10 @@ import { buildApiUrl } from '../../../shared/api/api-url';
 import { AuthTokenStorage } from '../services/auth-token.storage';
 
 // Generated types — shape only
-import type { AuthResponse } from '../../../app/api/generated/models/authResponse';
-import type { AuthLoginRequest } from '../../../app/api/generated/models/authLoginRequest';
-import type { AuthRefreshRequest } from '../../../app/api/generated/models/authRefreshRequest';
-import type { PasswordForgotRequest, PasswordVerifyCodeRequest, PasswordResetRequest } from '../../../app/api/generated/models';
+import type { AuthResponse } from '../../../shared/api/generated/models/authResponse';
+import type { AuthLoginRequest } from '../../../shared/api/generated/models/authLoginRequest';
+import type { AuthRefreshRequest } from '../../../shared/api/generated/models/authRefreshRequest';
+import type { PasswordForgotRequest, PasswordVerifyCodeRequest, PasswordResetRequest } from '../../../shared/api/generated/models';
 
 // Local types
 import type { AuthSession, AuthTokens, LoginCredentials, ForgotPasswordRequest, ForgotPasswordResponse, VerifyCodeRequest, VerifyCodeResponse, ResetPasswordRequest } from '../model/auth.types';

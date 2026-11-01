@@ -35,7 +35,7 @@ import type {
   CourseResponse,
   CourseCreateRequest,
   CourseUpdateRequest,
-} from '../../../app/api/generated/models';
+} from '../../../shared/api/generated/models';
 
 export type {
   CourseWritePayload,

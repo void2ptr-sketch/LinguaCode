@@ -13,7 +13,7 @@ import { firstValueFrom } from 'rxjs';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import type { User } from '../model';
 import type { UpdateUserPayload, UserPort } from '../repository/user.port';
-import type { UserResponse, UserUpdateRequest } from '../../../app/api/generated/models';
+import type { UserResponse, UserUpdateRequest } from '../../../shared/api/generated/models';
 
 export type { UpdateUserPayload, UserPort } from '../repository/user.port';
 export type { User } from '../model';

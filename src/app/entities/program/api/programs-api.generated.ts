@@ -19,7 +19,7 @@ import type {
   ProgramResponse,
   ProgramCreateRequest,
   ProgramUpdateRequest,
-} from '../../../app/api/generated/models';
+} from '../../../shared/api/generated/models';
 
 export type { ProgramWritePayload } from '../repository/program-catalog.port';
 export type { Program, ProgramWithLessons, ProgramSearchCriteria, ProgramSearchPage } from '../model';

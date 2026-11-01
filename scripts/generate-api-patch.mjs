@@ -112,7 +112,7 @@ async function main() {
 async function cleanupOrphanFiles() {
   const fs = await import('fs');
   const path = await import('path');
-  const modelsDir = 'src/app/app/api/generated/models';
+  const modelsDir = 'src/app/shared/api/generated/models';
   const indexPath = path.join(modelsDir, 'index.ts');
 
   if (!fs.existsSync(indexPath)) return;

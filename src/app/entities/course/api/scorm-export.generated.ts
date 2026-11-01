@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import type { ScormExportBundle } from './mock/scorm-export.types';
-import type { ScormExportBundleResponse } from '../../../app/api/generated/models';
+import type { ScormExportBundleResponse } from '../../../shared/api/generated/models';
 
 export type { ScormExportBundle } from './mock/scorm-export.types';
 

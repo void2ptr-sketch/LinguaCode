@@ -17,7 +17,7 @@ import type {
   LearningResultRequest,
   LearningResultResponse,
   LearningCardAccuracyResponse,
-} from '../../../app/api/generated/models';
+} from '../../../shared/api/generated/models';
 
 export type { LearningResult } from '../model';
 export type { CardAccuracyData, LearningCatalogPort } from '../repository/learning-catalog.port';
