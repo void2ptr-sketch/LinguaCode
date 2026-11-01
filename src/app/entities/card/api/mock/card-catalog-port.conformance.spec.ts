@@ -1,5 +1,5 @@
 import type { CardCatalogPort } from '../../repository/card-catalog.port';
-import { CardsApiService } from '../cards-api.service';
+import { CardsApiService } from '..' ;
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
 
 /**

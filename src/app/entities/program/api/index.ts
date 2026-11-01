@@ -1,2 +1,3 @@
 // ===== Services =====
-export { ProgramsApiService } from './programs-api.service';
+// ===== ProgramsApiService — migrated to orval-generated client =====
+export { ProgramsApiService } from './programs-api.generated';
