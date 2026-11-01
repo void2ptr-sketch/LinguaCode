@@ -88,4 +88,4 @@ features/program-builder/
 
 ## Связанные документы
 
-- [DOMAIN.md](./COMMON/DOMAIN.md#иерархия-контента) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [TASKS.md](../TASKS.md)
+- [DOMAIN.md](../PRODUCT/DOMAIN.md#иерархия-контента) · [ARCHITECTURE.md](../PRODUCT/ARCHITECTURE.md) · [TASKS.md](../TASKS.md)

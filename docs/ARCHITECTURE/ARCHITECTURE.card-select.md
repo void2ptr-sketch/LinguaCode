@@ -78,4 +78,4 @@ Demo/radicals без `practiceSettings` — поведение без измен
 
 ## Связанные документы
 
-- [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./COMMON/DOMAIN.md#learning-home-g13) · [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)
+- [BUSINESS.md](../PRODUCT/BUSINESS.md) · [DOMAIN.md](../PRODUCT/DOMAIN.md#learning-home-g13) · [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)

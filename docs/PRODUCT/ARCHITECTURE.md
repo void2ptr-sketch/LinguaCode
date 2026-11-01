@@ -1,6 +1,6 @@
 # Архитектура LinguaCode
 
-Техническое описание frontend-приложения. Бизнес-контекст — в [BUSINESS.md](./BUSINESS.md); доменная модель — в [DOMAIN.md](./COMMON/DOMAIN.md). Оглавление: [INDEX.md](./INDEX.md).
+Техническое описание frontend-приложения. Бизнес-контекст — в [BUSINESS.md](./PRODUCT/BUSINESS.md); доменная модель — в [DOMAIN.md](./PRODUCT/DOMAIN.md). Оглавление: [INDEX.md](./INDEX.md).
 
 ## Принципы
 

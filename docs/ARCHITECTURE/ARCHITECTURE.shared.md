@@ -1,6 +1,6 @@
 # Архитектура: `shared` и доменный UI
 
-Переиспользуемые building blocks: `shared/` (доменно-агностичный код) и `entities/*/ui/` (доменный UI: рендер карточек, pickers). [INDEX.md](./INDEX.md) · [ARCHITECTURE.md](./ARCHITECTURE.md).
+Переиспользуемые building blocks: `shared/` (доменно-агностичный код) и `entities/*/ui/` (доменный UI: рендер карточек, pickers). [INDEX.md](./INDEX.md) · [ARCHITECTURE.md](../PRODUCT/ARCHITECTURE.md).
 
 ## Назначение
 

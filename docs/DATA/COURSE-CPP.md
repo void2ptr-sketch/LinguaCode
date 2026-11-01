@@ -244,6 +244,6 @@ public/data/cards/cpp-<slug>-cards.json
 
 ## Связанные документы
 
-- [DOMAIN.md](./COMMON/DOMAIN.md) — Доменная модель: иерархия Card → Scenario → Lesson → Course
+- [DOMAIN.md](../PRODUCT/DOMAIN.md) — Доменная модель: иерархия Card → Scenario → Lesson → Course
 - [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md) — Индекс карточек, поиск, пагинация
-- [API-CONTRACT.md](../API-CONTRACT.md) — HTTP API для работы с курсами и карточками
+- [API-CONTRACT.md](../API/API-CONTRACT.md) — HTTP API для работы с курсами и карточками

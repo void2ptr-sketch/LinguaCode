@@ -1,6 +1,6 @@
 # Бизнес-идеи LinguaCode
 
-Продуктовое видение и ценность приложения. Доменная модель и типы — в [DOMAIN.md](./COMMON/DOMAIN.md); техническая реализация — в [ARCHITECTURE.md](./ARCHITECTURE.md).
+Продуктовое видение и ценность приложения. Доменная модель и типы — в [DOMAIN.md](./PRODUCT/DOMAIN.md); техническая реализация — в [ARCHITECTURE.md](./PRODUCT/ARCHITECTURE.md).
 
 ## Миссия
 
