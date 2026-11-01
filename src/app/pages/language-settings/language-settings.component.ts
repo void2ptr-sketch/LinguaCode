@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, computed, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, computed, signal, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -75,6 +75,8 @@ export class LanguageSettingsComponent {
   /** Newly selected codes for the add-pair form. */
   readonly newKnownCode = signal<string>('');
   readonly newLearningCode = signal<string>('');
+
+  private readonly cdr = inject(ChangeDetectorRef);
 
   constructor() {
     // Ensure languages are loaded when the page opens (idempotent — also
@@ -189,21 +191,32 @@ export class LanguageSettingsComponent {
       return;
     }
 
+    const previousFlag = lang.activeFlag;
+
+    // Optimistic UI update — flip the switch immediately
+    lang.activeFlag = !previousFlag;
+    this.cdr.markForCheck();
+
     this.languageApi
-      .update(lang.id, { activeFlag: !lang.activeFlag })
+      .update(lang.id, { activeFlag: lang.activeFlag })
       .then((updated) => {
         this.snackBar.open(
           `Language ${updated.activeFlag ? 'activated' : 'deactivated'}`,
           'Close',
           { duration: 3000 },
         );
-        this.languageService.load();
+        // Reload in background for full consistency (only if loaded was false)
+        void this.languageService.load();
       })
       .catch((error: unknown) => {
+        // Rollback optimistic update on failure
+        lang.activeFlag = previousFlag;
+        this.cdr.markForCheck();
+
         const httpError = error as { status?: number; message?: string };
         const message =
           httpError.status === 403
-            ? 'Permission denied. You do not have permission to change language status.'
+            ? 'Session expired or access denied. Please refresh the page and try again.'
             : `Failed to update language: ${httpError.message ?? 'Unknown error'}`;
         this.snackBar.open(message, 'Close', { duration: 5000 });
       });

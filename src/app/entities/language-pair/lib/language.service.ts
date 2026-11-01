@@ -32,7 +32,7 @@ export class LanguageService {
   readonly loaded = signal(false);
 
   /**
-   * Loads all active languages from the backend.
+   * Loads all languages from the backend.
    *
    * @remarks
    * Idempotent — subsequent calls return the cached value.
@@ -51,8 +51,8 @@ export class LanguageService {
         this.http.get<ApiListResponse<LanguageDto>>(buildApiUrl('/languages')),
       );
       const all = response.data ?? [];
-      // Only active languages are available for selection
-      this.languages.set(all.filter((l) => l.activeFlag));
+      // Store all languages; callers filter for active-only as needed.
+      this.languages.set([...all]);
       this.loaded.set(true);
     } catch (error) {
       // Do NOT mark as loaded — otherwise a failed attempt is cached forever
@@ -68,10 +68,12 @@ export class LanguageService {
   /**
    * Returns codes of all active languages.
    *
-   * @returns Array of language codes, empty if not loaded.
+   * @returns Array of active language codes, empty if not loaded.
    */
   getCodes(): string[] {
-    return this.languages().map((l) => l.code);
+    return this.languages()
+      .filter((l) => l.activeFlag)
+      .map((l) => l.code);
   }
 
   /**

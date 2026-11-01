@@ -165,5 +165,26 @@
         color: var(--md-s-primary, #6750a4);
       }
     }
+
+    // Inactive language items — visually dimmed
+    &__language-item--inactive {
+      opacity: 0.55;
+      background: color-mix(in srgb, var(--md-s-surface) 90%, #ccc);
+
+      &:hover {
+        opacity: 0.85;
+      }
+
+      .settings-page__language-badge--inactive {
+        margin-left: 0.5rem;
+        padding: 0.15rem 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        background: var(--md-s-on-error-container, #fff);
+        color: var(--md-s-error-container, #f39);
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+    }
   }
 }

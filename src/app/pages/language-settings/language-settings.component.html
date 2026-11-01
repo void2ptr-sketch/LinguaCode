@@ -36,19 +36,31 @@
             } @else {
               <div class="settings-page__languages-grid">
                 @for (lang of availableLanguages(); track lang.id) {
-                  <mat-card class="settings-page__language-item">
+                  <mat-card
+                    class="settings-page__language-item"
+                    [class.settings-page__language-item--inactive]="!lang.activeFlag"
+                  >
                     <mat-card-content>
                       <div class="settings-page__language-info">
                         <span class="settings-page__language-name">{{ lang.displayName }}</span>
                         <span class="settings-page__language-native">({{ lang.nativeName }})</span>
                         <span class="settings-page__language-code">{{ lang.code }}</span>
+                        @if (!lang.activeFlag) {
+                          <span class="settings-page__language-badge--inactive">Inactive</span>
+                        }
                       </div>
 
                       <mat-checkbox
                         [checked]="selectedCodes().includes(lang.code)"
                         (change)="toggleLanguage(lang.code)"
                         [disabled]="
-                          selectedCodes().length === 1 && selectedCodes().includes(lang.code)
+                          !lang.activeFlag ||
+                          (selectedCodes().length === 1 && selectedCodes().includes(lang.code))
+                        "
+                        [matTooltip]="
+                          !lang.activeFlag
+                            ? 'Reactivate this language to use it in learning'
+                            : ''
                         "
                       >
                         Use in Learning
