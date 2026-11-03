@@ -39,9 +39,7 @@ export class AvailablePairsService {
     const selectedCodes = this.settingsStore.selectedCodes();
     const allLanguages = this.languageService.languages();
     const activeAndSelected = new Set(
-      allLanguages
-        .filter((l) => l.activeFlag && selectedCodes.includes(l.code))
-        .map((l) => l.code),
+      allLanguages.filter((l) => l.activeFlag && selectedCodes.includes(l.code)).map((l) => l.code),
     );
 
     return this.pairs().filter((pair) => {

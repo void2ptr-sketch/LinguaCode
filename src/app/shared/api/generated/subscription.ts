@@ -4,22 +4,44 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import { HttpClient } from '@angular/common/http';
-import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
+import {
+  HttpClient
+} from '@angular/common/http';
+import type {
+  HttpContext,
+  HttpEvent,
+  HttpParams
+} from '@angular/common/http';
 
-import { Injectable, inject } from '@angular/core';
+import {
+  Injectable,
+  inject
+} from '@angular/core';
 
-import type { Observable } from 'rxjs';
+import type {
+  Observable
+} from 'rxjs';
 
-import type { StringResponse, SubscriptionStatusResponse } from './models';
+import type {
+  ReferenceOptionDtoList,
+  StringResponse,
+  SubscriptionStatusResponse
+} from './models';
 
-import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
+import type {
+  HttpHeaders,
+  HttpResponse as AngularHttpResponse
+} from '@angular/common/http';
 
-type HttpClientOptions = {
+
+
+
+interface HttpClientOptions {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
+        | HttpParams
+      | Record<string, string | number | boolean | Array<string | number | boolean>>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -31,9 +53,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: { includeHeaders?: string[] } | boolean;
+  readonly transferCache?: {includeHeaders?: string[]} | boolean;
   readonly timeout?: number;
-};
+}
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -51,78 +73,122 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
+
+
+
+
+
+
 @Injectable({ providedIn: 'root' })
 export class SubscriptionService {
   private readonly http = inject(HttpClient);
-  /**
-   * Activates subscription via payment webhook
-   * @summary Activate subscription
-   */
-  subscriptionActivate<TData = StringResponse>(options?: HttpClientBodyOptions): Observable<TData>;
+/**
+ * Activates subscription via payment webhook
+ * @summary Activate subscription
+ */
+ subscriptionActivate<TData = StringResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ subscriptionActivate<TData = StringResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ subscriptionActivate<TData = StringResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   subscriptionActivate<TData = StringResponse>(
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  subscriptionActivate<TData = StringResponse>(
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  subscriptionActivate<TData = StringResponse>(
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/subscription/activate`, undefined, {
+      return this.http.post<TData>(
+      `/api/v1/subscription/activate`,
+      undefined,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/subscription/activate`, undefined, {
+      return this.http.post<TData>(
+      `/api/v1/subscription/activate`,
+      undefined,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.post<TData>(`/api/v1/subscription/activate`, undefined, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.post<TData>(
+      `/api/v1/subscription/activate`,
+      undefined,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-  /**
-   * Returns the authenticated user's subscription status
-   * @summary Current subscription status
-   */
+/**
+ * Returns the authenticated user's subscription status
+ * @summary Current subscription status
+ */
+ subscriptionGetStatus<TData = SubscriptionStatusResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ subscriptionGetStatus<TData = SubscriptionStatusResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ subscriptionGetStatus<TData = SubscriptionStatusResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   subscriptionGetStatus<TData = SubscriptionStatusResponse>(
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  subscriptionGetStatus<TData = SubscriptionStatusResponse>(
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  subscriptionGetStatus<TData = SubscriptionStatusResponse>(
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  subscriptionGetStatus<TData = SubscriptionStatusResponse>(
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/subscription/status`, {
+      return this.http.get<TData>(
+      `/api/v1/subscription/status`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/subscription/status`, {
+      return this.http.get<TData>(
+      `/api/v1/subscription/status`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/subscription/status`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.get<TData>(
+      `/api/v1/subscription/status`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-}
+/**
+ * Returns all payment tier definitions
+ * @summary List payment tiers
+ */
+ listAll<TData = ReferenceOptionDtoList>( options?: HttpClientBodyOptions): Observable<TData>;
+ listAll<TData = ReferenceOptionDtoList>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ listAll<TData = ReferenceOptionDtoList>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  listAll<TData = ReferenceOptionDtoList>(
+     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/subscription/payment-tiers`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
 
-export type SubscriptionActivateClientResult = NonNullable<StringResponse>;
-export type SubscriptionGetStatusClientResult = NonNullable<SubscriptionStatusResponse>;
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/subscription/payment-tiers`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/subscription/payment-tiers`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+};
+
+export type SubscriptionActivateClientResult = NonNullable<StringResponse>
+export type SubscriptionGetStatusClientResult = NonNullable<SubscriptionStatusResponse>
+export type ListAllClientResult = NonNullable<ReferenceOptionDtoList>

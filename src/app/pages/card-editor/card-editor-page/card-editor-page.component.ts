@@ -17,11 +17,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardKind } from '../../../entities/card/model';
 import { formatIndexLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
 import { LanguageService } from '../../../entities/language-pair';
-import {
-  CARD_KIND_LABELS,
-  tagLabel,
-} from '../../../entities/card/lib/catalog-labels';
-import { DIFFICULTY_LABELS } from '../../../entities/card/lib/catalog-labels';
+import { tagLabel } from '../../../entities/card/lib/catalog-labels';
 import { CardCatalogFiltersComponent } from '../../../entities/card/ui/card-catalog/card-catalog-filters/card-catalog-filters.component';
 import { CardCatalogSearchStore } from '../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
@@ -29,6 +25,7 @@ import { UserStore } from '../../../entities/user/model/user.store';
 import { CardEditorDialogService } from '../../../features/card-editor/components/card-editor-dialog/card-editor-dialog.service';
 import { CardTryDialogService } from '../../../features/card-editor/components/card-try-dialog/card-try-dialog.service';
 import { CardEditorStore } from '../../../features/card-editor/services/card-editor.store';
+import { CatalogService } from '../../../entities/card/api/catalog.service';
 import {
   CARD_CREATE_GROUP_HINTS,
   CARD_CREATE_GROUP_LABELS,
@@ -76,6 +73,7 @@ export class CardEditorPageComponent implements OnInit {
   private readonly cardTryDialog = inject(CardTryDialogService);
   private readonly userStore = inject(UserStore);
   private readonly languageService = inject(LanguageService);
+  private readonly catalogService = inject(CatalogService);
 
   /** Available card creation groups (e.g., 'basic', 'chinese'). */
   readonly createGroups = CARD_CREATE_GROUPS;
@@ -89,14 +87,18 @@ export class CardEditorPageComponent implements OnInit {
   /** Available card kinds organized by creation group. */
   readonly kindsByGroup = KINDS_BY_CREATE_GROUP;
 
-  /** Labels for all card kinds. */
-  readonly kindLabels = CARD_KIND_LABELS;
+  /** Labels for all card kinds from backend catalog. */
+  readonly kindLabels = computed<Record<string, string>>(() =>
+    Object.fromEntries(this.catalogService.cardKinds().map((k) => [k.code, k.label])),
+  );
 
   /** Labels for content languages. */
   readonly languageLabels = this.languageService.getLabels();
 
-  /** Labels for difficulty levels. */
-  readonly difficultyLabels = DIFFICULTY_LABELS;
+  /** Labels for difficulty levels from backend catalog. */
+  readonly difficultyLabels = computed<Record<string, string>>(() =>
+    Object.fromEntries(this.catalogService.difficulties().map((d) => [d.code, d.label])),
+  );
 
   /** Utility function to generate tag labels. */
   readonly tagLabel = tagLabel;

@@ -9,7 +9,7 @@ import type { LearningStreak } from './learningStreak';
 /**
  * Single resource API response wrapper
  */
-export type LearningStreakResponse = {
+export interface LearningStreakResponse {
   /** Response data */
   data?: LearningStreak;
 }

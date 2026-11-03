@@ -4,12 +4,23 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import { HttpClient } from '@angular/common/http';
-import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
+import {
+  HttpClient
+} from '@angular/common/http';
+import type {
+  HttpContext,
+  HttpEvent,
+  HttpParams
+} from '@angular/common/http';
 
-import { Injectable, inject } from '@angular/core';
+import {
+  Injectable,
+  inject
+} from '@angular/core';
 
-import type { Observable } from 'rxjs';
+import type {
+  Observable
+} from 'rxjs';
 
 import type {
   CardBatchRetrieveRequest,
@@ -19,16 +30,23 @@ import type {
   CardResponse,
   CardUpdateRequest,
   CardsListParams,
-  CardsSearchParams,
+  CardsSearchParams
 } from './models';
 
-import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
+import type {
+  HttpHeaders,
+  HttpResponse as AngularHttpResponse
+} from '@angular/common/http';
 
-type HttpClientOptions = {
+
+
+
+interface HttpClientOptions {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
+        | HttpParams
+      | Record<string, string | number | boolean | Array<string | number | boolean>>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -40,9 +58,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: { includeHeaders?: string[] } | boolean;
+  readonly transferCache?: {includeHeaders?: string[]} | boolean;
   readonly timeout?: number;
-};
+}
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -60,7 +78,7 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
-type AngularHttpParamValue = string | number | boolean | (string | number | boolean)[];
+type AngularHttpParamValue = string | number | boolean | Array<string | number | boolean>;
 type AngularHttpParamValueWithNullable = AngularHttpParamValue | null;
 type AngularObjectParamStrategy = 'flatten' | 'comma' | 'deepObject';
 
@@ -97,7 +115,9 @@ function filterParams(
   objectParamStrategies: Readonly<Record<string, AngularObjectParamStrategy>> = {},
 ): Record<string, unknown> {
   const filteredParams: Record<string, unknown> = {};
-  const filterPrimitiveArray = (value: unknown[]): (string | number | boolean)[] =>
+  const filterPrimitiveArray = (
+    value: unknown[],
+  ): Array<string | number | boolean> =>
     value
       .filter(
         (item) =>
@@ -107,9 +127,9 @@ function filterParams(
             typeof item === 'boolean' ||
             (item instanceof Date && !Number.isNaN(item.getTime()))),
       )
-      .map((item) => (item instanceof Date ? item.toISOString() : item)) as (
+      .map((item) => (item instanceof Date ? item.toISOString() : item)) as Array<
       string | number | boolean
-    )[];
+    >;
   for (const [key, value] of Object.entries(params)) {
     if (passthroughKeys.has(key)) {
       if (value !== undefined) {
@@ -140,7 +160,10 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             commaParts.push(prop, String(propValue));
-          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
+          } else if (
+            propValue instanceof Date &&
+            !Number.isNaN(propValue.getTime())
+          ) {
             commaParts.push(prop, propValue.toISOString());
           }
         }
@@ -149,7 +172,8 @@ function filterParams(
         }
       } else {
         for (const [prop, propValue] of entries) {
-          const targetKey = objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
+          const targetKey =
+            objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
           if (Array.isArray(propValue)) {
             const filteredProp = filterPrimitiveArray(propValue);
             if (filteredProp.length) {
@@ -162,7 +186,10 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             filteredParams[targetKey] = propValue;
-          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
+          } else if (
+            propValue instanceof Date &&
+            !Number.isNaN(propValue.getTime())
+          ) {
             filteredParams[targetKey] = propValue.toISOString();
           }
         }
@@ -186,7 +213,9 @@ function filterParams(
       filteredParams[key] = value.toISOString();
     } else if (
       value != null &&
-      (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')
+      (typeof value === 'string' ||
+        typeof value === 'number' ||
+        typeof value === 'boolean')
     ) {
       filteredParams[key] = value;
     }
@@ -194,351 +223,312 @@ function filterParams(
   return filteredParams;
 }
 
+
+
+
+
 @Injectable({ providedIn: 'root' })
 export class CardsService {
   private readonly http = inject(HttpClient);
-  /**
-   * Returns card details by ID
-   * @summary Get card by ID
-   */
+/**
+ * Returns card details by ID
+ * @summary Get card by ID
+ */
+ cardsGetById<TData = CardResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsGetById<TData = CardResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsGetById<TData = CardResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   cardsGetById<TData = CardResponse>(
-    id: number,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  cardsGetById<TData = CardResponse>(
-    id: number,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  cardsGetById<TData = CardResponse>(
-    id: number,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  cardsGetById<TData = CardResponse>(
-    id: number,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/cards/${id}`, {
+      return this.http.get<TData>(
+      `/api/v1/cards/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/cards/${id}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.get<TData>(`/api/v1/cards/${id}`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Updates an existing card
-   * @summary Update card
-   */
-  cardsUpdate<TData = CardResponse>(
-    id: number,
-    cardUpdateRequest: CardUpdateRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  cardsUpdate<TData = CardResponse>(
-    id: number,
-    cardUpdateRequest: CardUpdateRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  cardsUpdate<TData = CardResponse>(
-    id: number,
-    cardUpdateRequest: CardUpdateRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  cardsUpdate<TData = CardResponse>(
-    id: number,
-    cardUpdateRequest: CardUpdateRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.put<TData>(`/api/v1/cards/${id}`, cardUpdateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.put<TData>(`/api/v1/cards/${id}`, cardUpdateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.put<TData>(`/api/v1/cards/${id}`, cardUpdateRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Deletes a card by ID
-   * @summary Delete card
-   */
-  cardsDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
-  cardsDelete<TData = void>(
-    id: number,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  cardsDelete<TData = void>(
-    id: number,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  cardsDelete<TData = void>(
-    id: number,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.delete<TData>(`/api/v1/cards/${id}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.delete<TData>(`/api/v1/cards/${id}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.delete<TData>(`/api/v1/cards/${id}`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Returns a paginated list of cards with optional filters and tier-based access control
-   * @summary List cards
-   */
-  cardsList<TData = CardList>(
-    params: CardsListParams,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  cardsList<TData = CardList>(
-    params: CardsListParams,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  cardsList<TData = CardList>(
-    params: CardsListParams,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  cardsList<TData = CardList>(
-    params: CardsListParams,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams(
-      { ...params, ...options?.params },
-      new Set<string>([]),
-      false,
-      new Set<string>([]),
-      { pageable: 'flatten' } as const,
+      }
     );
-
-    if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/cards`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-        params: filteredParams,
-      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/cards`, {
+      return this.http.get<TData>(
+      `/api/v1/cards/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,
-      });
-    }
-
-    return this.http.get<TData>(`/api/v1/cards`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-      params: filteredParams,
-    });
-  }
-  /**
-   * Creates a new card
-   * @summary Create card
-   */
-  cardsCreate<TData = CardResponse>(
-    cardCreateRequest: CardCreateRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  cardsCreate<TData = CardResponse>(
-    cardCreateRequest: CardCreateRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  cardsCreate<TData = CardResponse>(
-    cardCreateRequest: CardCreateRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  cardsCreate<TData = CardResponse>(
-    cardCreateRequest: CardCreateRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/cards`, cardCreateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/cards`, cardCreateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.post<TData>(`/api/v1/cards`, cardCreateRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Creates multiple cards in a single request
-   * @summary Batch create cards
-   */
-  cardsBatchCreate<TData = CardList>(
-    cardCreateRequest: CardCreateRequest[],
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  cardsBatchCreate<TData = CardList>(
-    cardCreateRequest: CardCreateRequest[],
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  cardsBatchCreate<TData = CardList>(
-    cardCreateRequest: CardCreateRequest[],
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  cardsBatchCreate<TData = CardList>(
-    cardCreateRequest: CardCreateRequest[],
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/cards/batch`, cardCreateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/cards/batch`, cardCreateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.post<TData>(`/api/v1/cards/batch`, cardCreateRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Retrieves multiple cards by their IDs in a single request
-   * @summary Batch retrieve cards
-   */
-  cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(
-    cardBatchRetrieveRequest: CardBatchRetrieveRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(
-    cardBatchRetrieveRequest: CardBatchRetrieveRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(
-    cardBatchRetrieveRequest: CardBatchRetrieveRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(
-    cardBatchRetrieveRequest: CardBatchRetrieveRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/cards/batch/retrieve`, cardBatchRetrieveRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/cards/batch/retrieve`, cardBatchRetrieveRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.post<TData>(`/api/v1/cards/batch/retrieve`, cardBatchRetrieveRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Searches cards by title and filters
-   * @summary Search cards
-   */
-  cardsSearch<TData = CardList>(
-    params: CardsSearchParams,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  cardsSearch<TData = CardList>(
-    params: CardsSearchParams,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  cardsSearch<TData = CardList>(
-    params: CardsSearchParams,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  cardsSearch<TData = CardList>(
-    params: CardsSearchParams,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams(
-      { ...params, ...options?.params },
-      new Set<string>([]),
-      false,
-      new Set<string>([]),
-      { pageable: 'flatten' } as const,
+      }
     );
+    }
 
+    return this.http.get<TData>(
+      `/api/v1/cards/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Updates an existing card
+ * @summary Update card
+ */
+ cardsUpdate<TData = CardResponse>(id: number,
+    cardUpdateRequest: CardUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsUpdate<TData = CardResponse>(id: number,
+    cardUpdateRequest: CardUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsUpdate<TData = CardResponse>(id: number,
+    cardUpdateRequest: CardUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsUpdate<TData = CardResponse>(
+    id: number,
+    cardUpdateRequest: CardUpdateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/cards/search`, {
+      return this.http.put<TData>(
+      `/api/v1/cards/${id}`,
+      cardUpdateRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-        params: filteredParams,
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/cards/search`, {
+      return this.http.put<TData>(
+      `/api/v1/cards/${id}`,
+      cardUpdateRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,
-      });
+      }
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/cards/search`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-      params: filteredParams,
-    });
+    return this.http.put<TData>(
+      `/api/v1/cards/${id}`,
+      cardUpdateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-}
+/**
+ * Deletes a card by ID
+ * @summary Delete card
+ */
+ cardsDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsDelete<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsDelete<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsDelete<TData = void>(
+    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.delete<TData>(
+      `/api/v1/cards/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
 
-export type CardsGetByIdClientResult = NonNullable<CardResponse>;
-export type CardsUpdateClientResult = NonNullable<CardResponse>;
-export type CardsDeleteClientResult = NonNullable<void>;
-export type CardsListClientResult = NonNullable<CardList>;
-export type CardsCreateClientResult = NonNullable<CardResponse>;
-export type CardsBatchCreateClientResult = NonNullable<CardList>;
-export type CardsBatchRetrieveClientResult = NonNullable<CardBatchRetrieveResponse>;
-export type CardsSearchClientResult = NonNullable<CardList>;
+    if (options?.observe === 'response') {
+      return this.http.delete<TData>(
+      `/api/v1/cards/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.delete<TData>(
+      `/api/v1/cards/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Returns a paginated list of cards with optional filters and tier-based access control
+ * @summary List cards
+ */
+ cardsList<TData = CardList>(params: CardsListParams, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsList<TData = CardList>(params: CardsListParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsList<TData = CardList>(params: CardsListParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsList<TData = CardList>(
+    params: CardsListParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
+
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/cards`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+        params: filteredParams,}
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/cards`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+        params: filteredParams,}
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/cards`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+        params: filteredParams,}
+    );
+  }
+/**
+ * Creates a new card
+ * @summary Create card
+ */
+ cardsCreate<TData = CardResponse>(cardCreateRequest: CardCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsCreate<TData = CardResponse>(cardCreateRequest: CardCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsCreate<TData = CardResponse>(cardCreateRequest: CardCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsCreate<TData = CardResponse>(
+    cardCreateRequest: CardCreateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.post<TData>(
+      `/api/v1/cards`,
+      cardCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.post<TData>(
+      `/api/v1/cards`,
+      cardCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.post<TData>(
+      `/api/v1/cards`,
+      cardCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Creates multiple cards in a single request
+ * @summary Batch create cards
+ */
+ cardsBatchCreate<TData = CardList>(cardCreateRequest: CardCreateRequest[], options?: HttpClientBodyOptions): Observable<TData>;
+ cardsBatchCreate<TData = CardList>(cardCreateRequest: CardCreateRequest[], options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsBatchCreate<TData = CardList>(cardCreateRequest: CardCreateRequest[], options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsBatchCreate<TData = CardList>(
+    cardCreateRequest: CardCreateRequest[], options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.post<TData>(
+      `/api/v1/cards/batch`,
+      cardCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.post<TData>(
+      `/api/v1/cards/batch`,
+      cardCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.post<TData>(
+      `/api/v1/cards/batch`,
+      cardCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Retrieves multiple cards by their IDs in a single request
+ * @summary Batch retrieve cards
+ */
+ cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(
+    cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.post<TData>(
+      `/api/v1/cards/batch/retrieve`,
+      cardBatchRetrieveRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.post<TData>(
+      `/api/v1/cards/batch/retrieve`,
+      cardBatchRetrieveRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.post<TData>(
+      `/api/v1/cards/batch/retrieve`,
+      cardBatchRetrieveRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Searches cards by title and filters
+ * @summary Search cards
+ */
+ cardsSearch<TData = CardList>(params: CardsSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsSearch<TData = CardList>(params: CardsSearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsSearch<TData = CardList>(params: CardsSearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsSearch<TData = CardList>(
+    params: CardsSearchParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
+
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/cards/search`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+        params: filteredParams,}
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/cards/search`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+        params: filteredParams,}
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/cards/search`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+        params: filteredParams,}
+    );
+  }
+};
+
+export type CardsGetByIdClientResult = NonNullable<CardResponse>
+export type CardsUpdateClientResult = NonNullable<CardResponse>
+export type CardsDeleteClientResult = NonNullable<void>
+export type CardsListClientResult = NonNullable<CardList>
+export type CardsCreateClientResult = NonNullable<CardResponse>
+export type CardsBatchCreateClientResult = NonNullable<CardList>
+export type CardsBatchRetrieveClientResult = NonNullable<CardBatchRetrieveResponse>
+export type CardsSearchClientResult = NonNullable<CardList>

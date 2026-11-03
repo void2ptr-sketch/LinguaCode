@@ -21,3 +21,4 @@ export {
 // ===== Services =====
 export { LanguageService } from './language.service';
 export { LanguageSettingsStore } from './language-settings.store';
+export { AvailablePairsService } from './available-pairs.service';

@@ -9,7 +9,7 @@ import type { Feedback } from './feedback';
 /**
  * Paginated list API response wrapper
  */
-export type FeedbackList = {
+export interface FeedbackList {
   /** List of items */
   data?: Feedback[];
   /** Total item count */

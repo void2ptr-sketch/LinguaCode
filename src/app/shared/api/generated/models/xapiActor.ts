@@ -8,7 +8,7 @@
 /**
  * xAPI actor (who performed the action)
  */
-export type XapiActor = {
+export interface XapiActor {
   name?: string;
   mbox?: string;
 }

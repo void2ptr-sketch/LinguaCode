@@ -9,7 +9,7 @@ import type { Language } from './language';
 /**
  * Paginated list API response wrapper
  */
-export type LanguageList = {
+export interface LanguageList {
   /** List of items */
   data?: Language[];
   /** Total item count */

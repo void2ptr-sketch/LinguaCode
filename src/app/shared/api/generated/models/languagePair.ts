@@ -8,7 +8,7 @@
 /**
  * Language pair (known → learning)
  */
-export type LanguagePair = {
+export interface LanguagePair {
   id?: number;
   knownCode?: string;
   learningCode?: string;

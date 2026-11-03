@@ -8,7 +8,7 @@
 /**
  * User profile update request
  */
-export type UserUpdateRequest = {
+export interface UserUpdateRequest {
   /**
      * @minLength 1
      * @maxLength 100

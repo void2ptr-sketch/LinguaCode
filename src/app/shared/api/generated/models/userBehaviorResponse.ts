@@ -9,7 +9,7 @@ import type { UserBehavior } from './userBehavior';
 /**
  * Single resource API response wrapper
  */
-export type UserBehaviorResponse = {
+export interface UserBehaviorResponse {
   /** Response data */
   data?: UserBehavior;
 }

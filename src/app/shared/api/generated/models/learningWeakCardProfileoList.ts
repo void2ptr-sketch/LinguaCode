@@ -9,7 +9,7 @@ import type { LearningWeakCardProfileo } from './learningWeakCardProfileo';
 /**
  * Paginated list API response wrapper
  */
-export type LearningWeakCardProfileoList = {
+export interface LearningWeakCardProfileoList {
   /** List of items */
   data?: LearningWeakCardProfileo[];
   /** Total item count */

@@ -3,3 +3,7 @@ export { CardsApiService as CardsApiServiceGenerated } from './cards-api.generat
 
 // ===== Services =====
 export { CardsApiService } from './cards-api.service';
+
+// ===== Catalog =====
+export { CatalogService } from './catalog.service';
+export { TagsService } from './tags.service';

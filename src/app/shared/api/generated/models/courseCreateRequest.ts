@@ -8,7 +8,7 @@
 /**
  * Course creation request
  */
-export type CourseCreateRequest = {
+export interface CourseCreateRequest {
   /**
      * @minLength 1
      * @maxLength 200

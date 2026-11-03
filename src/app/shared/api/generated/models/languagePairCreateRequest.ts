@@ -8,7 +8,7 @@
 /**
  * Language pair creation request
  */
-export type LanguagePairCreateRequest = {
+export interface LanguagePairCreateRequest {
   /**
      * @minLength 2
      * @maxLength 10

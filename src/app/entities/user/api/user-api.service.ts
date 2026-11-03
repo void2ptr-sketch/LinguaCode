@@ -89,7 +89,9 @@ export class UserApiService implements UserPort {
   patchUserPreferences(patch: UserPreferencesPatch): Promise<void> {
     return firstValueFrom(
       this.http.patch<ApiResponse<unknown>>(buildApiUrl(`/users/me/preferences`), patch),
-    ).then(() => undefined).catch(() => undefined);
+    )
+      .then(() => undefined)
+      .catch(() => undefined);
   }
 }
 

@@ -16,36 +16,24 @@
       "description": "Трекинг обучения и прогресса"
     },
     {
-      "name": "Scenarios",
-      "description": "Операции с сценариями обучения"
-    },
-    {
       "name": "Learning Behavior",
       "description": "Анализ поведения пользователя"
-    },
-    {
-      "name": "Programs",
-      "description": "Операции с учебными программами"
     },
     {
       "name": "Users",
       "description": "Операции с пользователями"
     },
     {
+      "name": "Content Languages",
+      "description": "Справочник языков контента"
+    },
+    {
       "name": "Language Pairs",
       "description": "Управление языковыми парами"
     },
     {
-      "name": "Learning Progress",
-      "description": "Прогресс обучения и домашняя панель"
-    },
-    {
-      "name": "Courses",
-      "description": "Операции с учебными курсами"
-    },
-    {
-      "name": "Cards",
-      "description": "Операции с карточками для изучения"
+      "name": "Font Sizes",
+      "description": "Справочник размеров шрифта"
     },
     {
       "name": "Languages",
@@ -60,20 +48,64 @@
       "description": "Восстановление пароля по email"
     },
     {
-      "name": "Feedback",
-      "description": "Обратная связь по контенту"
-    },
-    {
-      "name": "SCORM",
-      "description": "Работа с курсами в SCORM/xAPI формате"
-    },
-    {
       "name": "Subscription",
       "description": "Subscription management"
     },
     {
+      "name": "Card Kinds",
+      "description": "Справочник типов карточек"
+    },
+    {
+      "name": "Feedback",
+      "description": "Справочник статусов обратной связи"
+    },
+    {
+      "name": "Subscription",
+      "description": "Справочник уровней подписки"
+    },
+    {
       "name": "Admin Tier Management",
       "description": "Override content tier settings"
+    },
+    {
+      "name": "Scenarios",
+      "description": "Операции с сценариями обучения"
+    },
+    {
+      "name": "Feedback",
+      "description": "Справочник типов обратной связи"
+    },
+    {
+      "name": "Programs",
+      "description": "Операции с учебными программами"
+    },
+    {
+      "name": "Learning Progress",
+      "description": "Прогресс обучения и домашняя панель"
+    },
+    {
+      "name": "Courses",
+      "description": "Операции с учебными курсами"
+    },
+    {
+      "name": "Feedback",
+      "description": "Справочник уровней серьёзности"
+    },
+    {
+      "name": "Cards",
+      "description": "Операции с карточками для изучения"
+    },
+    {
+      "name": "Feedback",
+      "description": "Обратная связь по контенту"
+    },
+    {
+      "name": "Learning",
+      "description": "Справочник статусов уроков"
+    },
+    {
+      "name": "SCORM",
+      "description": "Работа с курсами в SCORM/xAPI формате"
     },
     {
       "name": "Auth",
@@ -2468,6 +2500,36 @@
         }
       }
     },
+    "/api/v1/subscription/payment-tiers": {
+      "get": {
+        "tags": ["Subscription"],
+        "summary": "List payment tiers",
+        "description": "Returns all payment tier definitions",
+        "operationId": "listAll",
+        "responses": {
+          "200": {
+            "description": "Payment tiers found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/scorm/export/courses/{courseId}": {
       "get": {
         "tags": ["SCORM"],
@@ -2742,6 +2804,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LearningStreakResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/learning/statuses": {
+      "get": {
+        "tags": ["Learning"],
+        "summary": "List lesson statuses",
+        "description": "Returns all lesson status definitions",
+        "operationId": "listAll_1",
+        "responses": {
+          "200": {
+            "description": "Lesson statuses found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
                 }
               }
             }
@@ -3196,6 +3288,36 @@
         }
       }
     },
+    "/api/v1/font-sizes": {
+      "get": {
+        "tags": ["Font Sizes"],
+        "summary": "List font sizes",
+        "description": "Returns all font size definitions",
+        "operationId": "listAll_2",
+        "responses": {
+          "200": {
+            "description": "Font sizes found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/feedback/{id}": {
       "get": {
         "tags": ["Feedback"],
@@ -3230,6 +3352,96 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/FeedbackResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/feedback/types": {
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "List feedback types",
+        "description": "Returns all feedback type definitions",
+        "operationId": "listAll_3",
+        "responses": {
+          "200": {
+            "description": "Feedback types found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/feedback/statuses": {
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "List feedback statuses",
+        "description": "Returns all feedback status definitions",
+        "operationId": "listAll_4",
+        "responses": {
+          "200": {
+            "description": "Feedback statuses found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/feedback/severities": {
+      "get": {
+        "tags": ["Feedback"],
+        "summary": "List feedback severities",
+        "description": "Returns all feedback severity definitions",
+        "operationId": "listAll_5",
+        "responses": {
+          "200": {
+            "description": "Feedback severities found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
                 }
               }
             }
@@ -3406,6 +3618,36 @@
         }
       }
     },
+    "/api/v1/content-languages": {
+      "get": {
+        "tags": ["Content Languages"],
+        "summary": "List content languages",
+        "description": "Returns all content language definitions",
+        "operationId": "listAll_6",
+        "responses": {
+          "200": {
+            "description": "Content languages found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/cards/search": {
       "get": {
         "tags": ["Cards"],
@@ -3453,6 +3695,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CardList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cards/kinds": {
+      "get": {
+        "tags": ["Card Kinds"],
+        "summary": "List card kinds",
+        "description": "Returns all card kind definitions",
+        "operationId": "listAll_7",
+        "responses": {
+          "200": {
+            "description": "Card kinds found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
                 }
               }
             }
@@ -5538,6 +5810,35 @@
           }
         },
         "required": ["requiredTier"]
+      },
+      "ReferenceOptionDtoList": {
+        "type": "object",
+        "description": "Paginated list API response wrapper",
+        "properties": {
+          "data": {
+            "type": "array",
+            "description": "List of items",
+            "items": {
+              "$ref": "#/components/schemas/ReferenceOptionDto"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Total item count"
+          }
+        }
+      },
+      "ReferenceOptionDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
       },
       "XapiActor": {
         "type": "object",

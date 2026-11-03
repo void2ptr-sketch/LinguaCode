@@ -8,7 +8,7 @@
 /**
  * Language pair update request
  */
-export type LanguagePairUpdateRequest = {
+export interface LanguagePairUpdateRequest {
   /**
      * @minLength 2
      * @maxLength 10

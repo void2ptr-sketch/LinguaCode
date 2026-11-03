@@ -8,12 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 import type { CardDifficulty, CardKind, CardSearchFacets } from '../../../model';
-import {
-  CARD_KIND_LABELS,
-  DIFFICULTIES,
-  DIFFICULTY_LABELS,
-  tagLabel,
-} from '../../../lib/catalog-labels';
+import { CatalogService } from '../../../api/catalog.service';
+import { TagsService } from '../../../api/tags.service';
 import { groupCatalogTagFacets } from '../../../lib/catalog-tag-groups/catalog-tag-groups.util';
 import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
 
@@ -39,35 +35,49 @@ import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-ca
 })
 export class CardCatalogFiltersComponent {
   readonly store = inject(CardCatalogSearchStore);
+  private readonly catalogService = inject(CatalogService);
+  private readonly tagsService = inject(TagsService);
 
   /**
-   * Available difficulty levels for card filtering.
-   *
-   * @remarks
-   * Populated from the shared `DIFFICULTIES` constant.
+   * Available difficulty levels from backend catalog.
    */
-  readonly difficulties = DIFFICULTIES;
+  readonly difficulties = computed<CardDifficulty[]>(() =>
+    this.catalogService.difficulties().map((d) => d.code as CardDifficulty),
+  );
+
   /**
-   * Labels for difficulty levels.
-   *
-   * @remarks
-   * Maps each difficulty value to a human-readable string.
+   * Labels for difficulty levels from backend catalog.
    */
-  readonly difficultyLabels = DIFFICULTY_LABELS;
+  readonly difficultyLabels = computed<Record<CardDifficulty, string>>(
+    () =>
+      Object.fromEntries(
+        this.catalogService.difficulties().map((d) => [d.code, d.label]),
+      ) as Record<CardDifficulty, string>,
+  );
+
   /**
-   * Labels for card kinds.
-   *
-   * @remarks
-   * Maps each card kind to a human-readable string.
+   * Labels for card kinds from backend catalog.
    */
-  readonly kindLabels = CARD_KIND_LABELS;
+  readonly kindLabels = computed<Record<CardKind, string>>(
+    () =>
+      Object.fromEntries(this.catalogService.cardKinds().map((k) => [k.code, k.label])) as Record<
+        CardKind,
+        string
+      >,
+  );
+
   /**
-   * Utility function to generate tag labels.
-   *
-   * @remarks
-   * Used in templates to render tag names.
+   * Labels for tags from backend catalog.
    */
-  readonly tagLabel = tagLabel;
+  readonly tagLabels = computed<Record<string, string>>(() => this.tagsService.tagLabels());
+
+  /**
+   * Returns a human-readable label for a tag.
+   * Uses backend data when loaded, falls back to tag id.
+   */
+  getTagLabel(tag: string): string {
+    return this.tagsService.getLabel(tag);
+  }
 
   /**
    * Computed search facets from the catalog store.

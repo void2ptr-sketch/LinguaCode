@@ -4,27 +4,45 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import { HttpClient } from '@angular/common/http';
-import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
+import {
+  HttpClient
+} from '@angular/common/http';
+import type {
+  HttpContext,
+  HttpEvent,
+  HttpParams
+} from '@angular/common/http';
 
-import { Injectable, inject } from '@angular/core';
+import {
+  Injectable,
+  inject
+} from '@angular/core';
 
-import type { Observable } from 'rxjs';
+import type {
+  Observable
+} from 'rxjs';
 
 import type {
   ExportScormParams,
   ScormExportBundleResponse,
   ScormImportRequest,
-  ScormImportResultResponse,
+  ScormImportResultResponse
 } from './models';
 
-import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
+import type {
+  HttpHeaders,
+  HttpResponse as AngularHttpResponse
+} from '@angular/common/http';
 
-type HttpClientOptions = {
+
+
+
+interface HttpClientOptions {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
+        | HttpParams
+      | Record<string, string | number | boolean | Array<string | number | boolean>>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -36,9 +54,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: { includeHeaders?: string[] } | boolean;
+  readonly transferCache?: {includeHeaders?: string[]} | boolean;
   readonly timeout?: number;
-};
+}
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -56,7 +74,7 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
-type AngularHttpParamValue = string | number | boolean | (string | number | boolean)[];
+type AngularHttpParamValue = string | number | boolean | Array<string | number | boolean>;
 type AngularHttpParamValueWithNullable = AngularHttpParamValue | null;
 
 function filterParams(
@@ -101,9 +119,9 @@ function filterParams(
               typeof item === 'boolean' ||
               (item instanceof Date && !Number.isNaN(item.getTime()))),
         )
-        .map((item) => (item instanceof Date ? item.toISOString() : item)) as (
-        string | number | boolean
-      )[];
+        .map((item) =>
+          item instanceof Date ? item.toISOString() : item,
+        ) as Array<string | number | boolean>;
       if (filtered.length) {
         filteredParams[key] = filtered;
       }
@@ -119,7 +137,9 @@ function filterParams(
       filteredParams[key] = value.toISOString();
     } else if (
       value != null &&
-      (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')
+      (typeof value === 'string' ||
+        typeof value === 'number' ||
+        typeof value === 'boolean')
     ) {
       filteredParams[key] = value;
     }
@@ -127,102 +147,95 @@ function filterParams(
   return filteredParams;
 }
 
+
+
+
+
 @Injectable({ providedIn: 'root' })
 export class ScormService {
   private readonly http = inject(HttpClient);
-  /**
-   * Imports a course from a SCORM ZIP package. Creates Course → Program → Lesson → Scenario → Card hierarchy.
-   * @summary Import course from SCORM package
-   */
+/**
+ * Imports a course from a SCORM ZIP package. Creates Course → Program → Lesson → Scenario → Card hierarchy.
+ * @summary Import course from SCORM package
+ */
+ importScorm<TData = ScormImportResultResponse>(scormImportRequest?: ScormImportRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ importScorm<TData = ScormImportResultResponse>(scormImportRequest?: ScormImportRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ importScorm<TData = ScormImportResultResponse>(scormImportRequest?: ScormImportRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   importScorm<TData = ScormImportResultResponse>(
-    scormImportRequest?: ScormImportRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  importScorm<TData = ScormImportResultResponse>(
-    scormImportRequest?: ScormImportRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  importScorm<TData = ScormImportResultResponse>(
-    scormImportRequest?: ScormImportRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  importScorm<TData = ScormImportResultResponse>(
-    scormImportRequest?: ScormImportRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const formData = new FormData();
-    if (scormImportRequest?.file !== undefined) {
-      formData.append(`file`, scormImportRequest.file);
-    }
+    scormImportRequest?: ScormImportRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {const formData = new FormData();
+if(scormImportRequest?.file !== undefined) {
+ formData.append(`file`, scormImportRequest.file);
+ }
 
     if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/scorm/import`, formData, {
+      return this.http.post<TData>(
+      `/api/v1/scorm/import`,
+      formData,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/scorm/import`, formData, {
+      return this.http.post<TData>(
+      `/api/v1/scorm/import`,
+      formData,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.post<TData>(`/api/v1/scorm/import`, formData, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.post<TData>(
+      `/api/v1/scorm/import`,
+      formData,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-  /**
-   * Returns a complete SCORM/xAPI export package for a course including manifest, all nested entities, and xAPI statements for learning analytics
-   * @summary Export course to SCORM
-   */
+/**
+ * Returns a complete SCORM/xAPI export package for a course including manifest, all nested entities, and xAPI statements for learning analytics
+ * @summary Export course to SCORM
+ */
+ exportScorm<TData = ScormExportBundleResponse>(courseId: number,
+    params?: ExportScormParams, options?: HttpClientBodyOptions): Observable<TData>;
+ exportScorm<TData = ScormExportBundleResponse>(courseId: number,
+    params?: ExportScormParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ exportScorm<TData = ScormExportBundleResponse>(courseId: number,
+    params?: ExportScormParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   exportScorm<TData = ScormExportBundleResponse>(
     courseId: number,
-    params?: ExportScormParams,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  exportScorm<TData = ScormExportBundleResponse>(
-    courseId: number,
-    params?: ExportScormParams,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  exportScorm<TData = ScormExportBundleResponse>(
-    courseId: number,
-    params?: ExportScormParams,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  exportScorm<TData = ScormExportBundleResponse>(
-    courseId: number,
-    params?: ExportScormParams,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams({ ...params, ...options?.params }, new Set<string>([]));
+    params?: ExportScormParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
 
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/scorm/export/courses/${courseId}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(
+      `/api/v1/scorm/export/courses/${courseId}`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-        params: filteredParams,
-      });
+        params: filteredParams,}
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/scorm/export/courses/${courseId}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(
+      `/api/v1/scorm/export/courses/${courseId}`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,
-      });
+        params: filteredParams,}
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/scorm/export/courses/${courseId}`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-      params: filteredParams,
-    });
+    return this.http.get<TData>(
+      `/api/v1/scorm/export/courses/${courseId}`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+        params: filteredParams,}
+    );
   }
-}
+};
 
-export type ImportScormClientResult = NonNullable<ScormImportResultResponse>;
-export type ExportScormClientResult = NonNullable<ScormExportBundleResponse>;
+export type ImportScormClientResult = NonNullable<ScormImportResultResponse>
+export type ExportScormClientResult = NonNullable<ScormExportBundleResponse>

@@ -4,12 +4,23 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import { HttpClient } from '@angular/common/http';
-import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
+import {
+  HttpClient
+} from '@angular/common/http';
+import type {
+  HttpContext,
+  HttpEvent,
+  HttpParams
+} from '@angular/common/http';
 
-import { Injectable, inject } from '@angular/core';
+import {
+  Injectable,
+  inject
+} from '@angular/core';
 
-import type { Observable } from 'rxjs';
+import type {
+  Observable
+} from 'rxjs';
 
 import type {
   ScenarioCreateRequest,
@@ -17,16 +28,23 @@ import type {
   ScenarioResponse,
   ScenarioUpdateRequest,
   ScenariosListParams,
-  ScenariosSearchParams,
+  ScenariosSearchParams
 } from './models';
 
-import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
+import type {
+  HttpHeaders,
+  HttpResponse as AngularHttpResponse
+} from '@angular/common/http';
 
-type HttpClientOptions = {
+
+
+
+interface HttpClientOptions {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
+        | HttpParams
+      | Record<string, string | number | boolean | Array<string | number | boolean>>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -38,9 +56,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: { includeHeaders?: string[] } | boolean;
+  readonly transferCache?: {includeHeaders?: string[]} | boolean;
   readonly timeout?: number;
-};
+}
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -58,7 +76,7 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
-type AngularHttpParamValue = string | number | boolean | (string | number | boolean)[];
+type AngularHttpParamValue = string | number | boolean | Array<string | number | boolean>;
 type AngularHttpParamValueWithNullable = AngularHttpParamValue | null;
 type AngularObjectParamStrategy = 'flatten' | 'comma' | 'deepObject';
 
@@ -95,7 +113,9 @@ function filterParams(
   objectParamStrategies: Readonly<Record<string, AngularObjectParamStrategy>> = {},
 ): Record<string, unknown> {
   const filteredParams: Record<string, unknown> = {};
-  const filterPrimitiveArray = (value: unknown[]): (string | number | boolean)[] =>
+  const filterPrimitiveArray = (
+    value: unknown[],
+  ): Array<string | number | boolean> =>
     value
       .filter(
         (item) =>
@@ -105,9 +125,9 @@ function filterParams(
             typeof item === 'boolean' ||
             (item instanceof Date && !Number.isNaN(item.getTime()))),
       )
-      .map((item) => (item instanceof Date ? item.toISOString() : item)) as (
+      .map((item) => (item instanceof Date ? item.toISOString() : item)) as Array<
       string | number | boolean
-    )[];
+    >;
   for (const [key, value] of Object.entries(params)) {
     if (passthroughKeys.has(key)) {
       if (value !== undefined) {
@@ -138,7 +158,10 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             commaParts.push(prop, String(propValue));
-          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
+          } else if (
+            propValue instanceof Date &&
+            !Number.isNaN(propValue.getTime())
+          ) {
             commaParts.push(prop, propValue.toISOString());
           }
         }
@@ -147,7 +170,8 @@ function filterParams(
         }
       } else {
         for (const [prop, propValue] of entries) {
-          const targetKey = objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
+          const targetKey =
+            objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
           if (Array.isArray(propValue)) {
             const filteredProp = filterPrimitiveArray(propValue);
             if (filteredProp.length) {
@@ -160,7 +184,10 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             filteredParams[targetKey] = propValue;
-          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
+          } else if (
+            propValue instanceof Date &&
+            !Number.isNaN(propValue.getTime())
+          ) {
             filteredParams[targetKey] = propValue.toISOString();
           }
         }
@@ -184,7 +211,9 @@ function filterParams(
       filteredParams[key] = value.toISOString();
     } else if (
       value != null &&
-      (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')
+      (typeof value === 'string' ||
+        typeof value === 'number' ||
+        typeof value === 'boolean')
     ) {
       filteredParams[key] = value;
     }
@@ -192,311 +221,271 @@ function filterParams(
   return filteredParams;
 }
 
+
+
+
+
 @Injectable({ providedIn: 'root' })
 export class ScenariosService {
   private readonly http = inject(HttpClient);
-  /**
-   * Returns scenario details by ID
-   * @summary Get scenario by ID
-   */
+/**
+ * Returns scenario details by ID
+ * @summary Get scenario by ID
+ */
+ scenariosGetById<TData = ScenarioResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosGetById<TData = ScenarioResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosGetById<TData = ScenarioResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   scenariosGetById<TData = ScenarioResponse>(
-    id: number,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  scenariosGetById<TData = ScenarioResponse>(
-    id: number,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  scenariosGetById<TData = ScenarioResponse>(
-    id: number,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  scenariosGetById<TData = ScenarioResponse>(
-    id: number,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/scenarios/${id}`, {
+      return this.http.get<TData>(
+      `/api/v1/scenarios/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/scenarios/${id}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.get<TData>(`/api/v1/scenarios/${id}`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Updates an existing scenario
-   * @summary Update scenario
-   */
-  scenariosUpdate<TData = ScenarioResponse>(
-    id: number,
-    scenarioUpdateRequest: ScenarioUpdateRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  scenariosUpdate<TData = ScenarioResponse>(
-    id: number,
-    scenarioUpdateRequest: ScenarioUpdateRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  scenariosUpdate<TData = ScenarioResponse>(
-    id: number,
-    scenarioUpdateRequest: ScenarioUpdateRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  scenariosUpdate<TData = ScenarioResponse>(
-    id: number,
-    scenarioUpdateRequest: ScenarioUpdateRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.put<TData>(`/api/v1/scenarios/${id}`, scenarioUpdateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.put<TData>(`/api/v1/scenarios/${id}`, scenarioUpdateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.put<TData>(`/api/v1/scenarios/${id}`, scenarioUpdateRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Deletes a scenario by ID
-   * @summary Delete scenario
-   */
-  scenariosDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
-  scenariosDelete<TData = void>(
-    id: number,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  scenariosDelete<TData = void>(
-    id: number,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  scenariosDelete<TData = void>(
-    id: number,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.delete<TData>(`/api/v1/scenarios/${id}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.delete<TData>(`/api/v1/scenarios/${id}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.delete<TData>(`/api/v1/scenarios/${id}`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Returns a paginated list of scenarios with tier-based access control
-   * @summary List scenarios
-   */
-  scenariosList<TData = ScenarioList>(
-    params: ScenariosListParams,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  scenariosList<TData = ScenarioList>(
-    params: ScenariosListParams,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  scenariosList<TData = ScenarioList>(
-    params: ScenariosListParams,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  scenariosList<TData = ScenarioList>(
-    params: ScenariosListParams,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams(
-      { ...params, ...options?.params },
-      new Set<string>([]),
-      false,
-      new Set<string>([]),
-      { pageable: 'flatten' } as const,
+      }
     );
-
-    if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/scenarios`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-        params: filteredParams,
-      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/scenarios`, {
+      return this.http.get<TData>(
+      `/api/v1/scenarios/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,
-      });
-    }
-
-    return this.http.get<TData>(`/api/v1/scenarios`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-      params: filteredParams,
-    });
-  }
-  /**
-   * Creates a new scenario
-   * @summary Create scenario
-   */
-  scenariosCreate<TData = ScenarioResponse>(
-    scenarioCreateRequest: ScenarioCreateRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  scenariosCreate<TData = ScenarioResponse>(
-    scenarioCreateRequest: ScenarioCreateRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  scenariosCreate<TData = ScenarioResponse>(
-    scenarioCreateRequest: ScenarioCreateRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  scenariosCreate<TData = ScenarioResponse>(
-    scenarioCreateRequest: ScenarioCreateRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/scenarios`, scenarioCreateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/scenarios`, scenarioCreateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.post<TData>(`/api/v1/scenarios`, scenarioCreateRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Searches scenarios by title
-   * @summary Search scenarios
-   */
-  scenariosSearch<TData = ScenarioList>(
-    params: ScenariosSearchParams,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  scenariosSearch<TData = ScenarioList>(
-    params: ScenariosSearchParams,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  scenariosSearch<TData = ScenarioList>(
-    params: ScenariosSearchParams,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  scenariosSearch<TData = ScenarioList>(
-    params: ScenariosSearchParams,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams(
-      { ...params, ...options?.params },
-      new Set<string>([]),
-      false,
-      new Set<string>([]),
-      { pageable: 'flatten' } as const,
+      }
     );
+    }
 
+    return this.http.get<TData>(
+      `/api/v1/scenarios/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Updates an existing scenario
+ * @summary Update scenario
+ */
+ scenariosUpdate<TData = ScenarioResponse>(id: number,
+    scenarioUpdateRequest: ScenarioUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosUpdate<TData = ScenarioResponse>(id: number,
+    scenarioUpdateRequest: ScenarioUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosUpdate<TData = ScenarioResponse>(id: number,
+    scenarioUpdateRequest: ScenarioUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosUpdate<TData = ScenarioResponse>(
+    id: number,
+    scenarioUpdateRequest: ScenarioUpdateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/scenarios/search`, {
+      return this.http.put<TData>(
+      `/api/v1/scenarios/${id}`,
+      scenarioUpdateRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-        params: filteredParams,
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/scenarios/search`, {
+      return this.http.put<TData>(
+      `/api/v1/scenarios/${id}`,
+      scenarioUpdateRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,
-      });
+      }
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/scenarios/search`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-      params: filteredParams,
-    });
+    return this.http.put<TData>(
+      `/api/v1/scenarios/${id}`,
+      scenarioUpdateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-  /**
-   * Returns scenarios associated with a card
-   * @summary Get scenarios by card
-   */
-  scenariosGetByCardId<TData = ScenarioList>(
-    cardId: number,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  scenariosGetByCardId<TData = ScenarioList>(
-    cardId: number,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  scenariosGetByCardId<TData = ScenarioList>(
-    cardId: number,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  scenariosGetByCardId<TData = ScenarioList>(
-    cardId: number,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+/**
+ * Deletes a scenario by ID
+ * @summary Delete scenario
+ */
+ scenariosDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosDelete<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosDelete<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosDelete<TData = void>(
+    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/scenarios/by-card/${cardId}`, {
+      return this.http.delete<TData>(
+      `/api/v1/scenarios/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/scenarios/by-card/${cardId}`, {
+      return this.http.delete<TData>(
+      `/api/v1/scenarios/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/scenarios/by-card/${cardId}`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.delete<TData>(
+      `/api/v1/scenarios/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-}
+/**
+ * Returns a paginated list of scenarios with tier-based access control
+ * @summary List scenarios
+ */
+ scenariosList<TData = ScenarioList>(params: ScenariosListParams, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosList<TData = ScenarioList>(params: ScenariosListParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosList<TData = ScenarioList>(params: ScenariosListParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosList<TData = ScenarioList>(
+    params: ScenariosListParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
 
-export type ScenariosGetByIdClientResult = NonNullable<ScenarioResponse>;
-export type ScenariosUpdateClientResult = NonNullable<ScenarioResponse>;
-export type ScenariosDeleteClientResult = NonNullable<void>;
-export type ScenariosListClientResult = NonNullable<ScenarioList>;
-export type ScenariosCreateClientResult = NonNullable<ScenarioResponse>;
-export type ScenariosSearchClientResult = NonNullable<ScenarioList>;
-export type ScenariosGetByCardIdClientResult = NonNullable<ScenarioList>;
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/scenarios`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+        params: filteredParams,}
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/scenarios`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+        params: filteredParams,}
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/scenarios`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+        params: filteredParams,}
+    );
+  }
+/**
+ * Creates a new scenario
+ * @summary Create scenario
+ */
+ scenariosCreate<TData = ScenarioResponse>(scenarioCreateRequest: ScenarioCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosCreate<TData = ScenarioResponse>(scenarioCreateRequest: ScenarioCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosCreate<TData = ScenarioResponse>(scenarioCreateRequest: ScenarioCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosCreate<TData = ScenarioResponse>(
+    scenarioCreateRequest: ScenarioCreateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.post<TData>(
+      `/api/v1/scenarios`,
+      scenarioCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.post<TData>(
+      `/api/v1/scenarios`,
+      scenarioCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.post<TData>(
+      `/api/v1/scenarios`,
+      scenarioCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Searches scenarios by title
+ * @summary Search scenarios
+ */
+ scenariosSearch<TData = ScenarioList>(params: ScenariosSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosSearch<TData = ScenarioList>(params: ScenariosSearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosSearch<TData = ScenarioList>(params: ScenariosSearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosSearch<TData = ScenarioList>(
+    params: ScenariosSearchParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
+
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/scenarios/search`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+        params: filteredParams,}
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/scenarios/search`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+        params: filteredParams,}
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/scenarios/search`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+        params: filteredParams,}
+    );
+  }
+/**
+ * Returns scenarios associated with a card
+ * @summary Get scenarios by card
+ */
+ scenariosGetByCardId<TData = ScenarioList>(cardId: number, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosGetByCardId<TData = ScenarioList>(cardId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosGetByCardId<TData = ScenarioList>(cardId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosGetByCardId<TData = ScenarioList>(
+    cardId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/scenarios/by-card/${cardId}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/scenarios/by-card/${cardId}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/scenarios/by-card/${cardId}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+};
+
+export type ScenariosGetByIdClientResult = NonNullable<ScenarioResponse>
+export type ScenariosUpdateClientResult = NonNullable<ScenarioResponse>
+export type ScenariosDeleteClientResult = NonNullable<void>
+export type ScenariosListClientResult = NonNullable<ScenarioList>
+export type ScenariosCreateClientResult = NonNullable<ScenarioResponse>
+export type ScenariosSearchClientResult = NonNullable<ScenarioList>
+export type ScenariosGetByCardIdClientResult = NonNullable<ScenarioList>

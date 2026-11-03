@@ -9,7 +9,7 @@ import type { Scenario } from './scenario';
 /**
  * Paginated list API response wrapper
  */
-export type ScenarioList = {
+export interface ScenarioList {
   /** List of items */
   data?: Scenario[];
   /** Total item count */

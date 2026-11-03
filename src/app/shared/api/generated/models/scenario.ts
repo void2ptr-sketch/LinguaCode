@@ -9,7 +9,7 @@ import type { ScenarioRequiredTier } from './scenarioRequiredTier';
 /**
  * Educational scenario entity
  */
-export type Scenario = {
+export interface Scenario {
   id?: number;
   title?: string;
   scenarioDescription?: string;

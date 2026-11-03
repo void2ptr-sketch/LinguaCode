@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, input, output, computed, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, output, computed, Input } from '@angular/core';
 import { UpperCasePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -22,17 +22,10 @@ import type { DirectionCardHelpers } from './direction-card.component';
 @Component({
   selector: 'app-direction-card-inner',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    UpperCasePipe,
-    MatButtonModule,
-    MatTooltipModule,
-  ],
+  imports: [UpperCasePipe, MatButtonModule, MatTooltipModule],
   styleUrls: ['./direction-card-inner.component.scss'],
   template: `
-    <div
-      class="dc-card"
-      [class.dc-card--active]="isActive"
-    >
+    <div class="dc-card" [class.dc-card--active]="isActive">
       <div class="dc-card__info">
         <div class="dc-card__row">
           <span class="dc-card__code">{{ known | uppercase }}</span>
@@ -49,13 +42,29 @@ import type { DirectionCardHelpers } from './direction-card.component';
       <div class="dc-card__status">
         <div class="dc-card__radio">
           @if (isActive) {
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 8l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 8l3 3 5-5"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           }
         </div>
         <span class="dc-card__sublabel">
-          @if (isActive) { Active } @else { Not active }
+          @if (isActive) {
+            Active
+          } @else {
+            Not active
+          }
         </span>
       </div>
 
@@ -79,8 +88,20 @@ import type { DirectionCardHelpers } from './direction-card.component';
           (click)="remove.emit(pairId)"
           matTooltip="Remove this direction"
         >
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 4h10M5.33 4V2.67a1.33 1.33 0 011.34-1.34h2.66a1.33 1.33 0 011.34 1.34V4m1.06 0v9.33a1.33 1.33 0 01-1.33 1.34H5.33a1.33 1.33 0 01-1.33-1.34V4h9.34z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 4h10M5.33 4V2.67a1.33 1.33 0 011.34-1.34h2.66a1.33 1.33 0 011.34 1.34V4m1.06 0v9.33a1.33 1.33 0 01-1.33 1.34H5.33a1.33 1.33 0 01-1.33-1.34V4h9.34z"
+              stroke="currentColor"
+              stroke-width="1.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
           Remove
         </button>

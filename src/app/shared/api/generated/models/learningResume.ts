@@ -8,7 +8,7 @@
 /**
  * Continue learning resume information
  */
-export type LearningResume = {
+export interface LearningResume {
   scenarioId?: number;
   lessonId?: number;
   programId?: number;

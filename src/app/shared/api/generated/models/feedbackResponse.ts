@@ -9,7 +9,7 @@ import type { Feedback } from './feedback';
 /**
  * Single resource API response wrapper
  */
-export type FeedbackResponse = {
+export interface FeedbackResponse {
   /** Response data */
   data?: Feedback;
 }

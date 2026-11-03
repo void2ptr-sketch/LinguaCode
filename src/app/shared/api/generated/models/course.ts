@@ -9,7 +9,7 @@ import type { CourseRequiredTier } from './courseRequiredTier';
 /**
  * Educational course entity
  */
-export type Course = {
+export interface Course {
   id?: number;
   title?: string;
   courseDescription?: string;

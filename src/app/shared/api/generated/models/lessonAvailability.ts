@@ -10,7 +10,7 @@ import type { LessonProgress } from './lessonProgress';
 /**
  * Lesson availability with status
  */
-export type LessonAvailability = {
+export interface LessonAvailability {
   lessonId?: number;
   title?: string;
   /** Lesson availability status */

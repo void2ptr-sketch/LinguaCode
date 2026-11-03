@@ -9,7 +9,7 @@ import type { Lesson } from './lesson';
 /**
  * Paginated list API response wrapper
  */
-export type LessonList = {
+export interface LessonList {
   /** List of items */
   data?: Lesson[];
   /** Total item count */

@@ -8,7 +8,7 @@
 /**
  * SCORM resource reference
  */
-export type ScormResource = {
+export interface ScormResource {
   identifier?: string;
   type?: string;
   href?: string;

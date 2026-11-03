@@ -9,7 +9,7 @@ import type { Program } from './program';
 /**
  * Paginated list API response wrapper
  */
-export type ProgramList = {
+export interface ProgramList {
   /** List of items */
   data?: Program[];
   /** Total item count */

@@ -17,9 +17,9 @@
           >
             <span class="scenario-card-picker__title">{{ entry.title }}</span>
             <span class="scenario-card-picker__meta">
-              {{ kindLabels[entry.kind] }}
-              ·               {{ formatIndexLanguagePair(entry, languageService.getLabels()) }} ·
-              {{ difficultyLabels[entry.difficulty] }}
+              {{ kindLabels()[entry.kind] }}
+              · {{ formatIndexLanguagePair(entry, languageService.getLabels()) }} ·
+              {{ difficultyLabels()[entry.difficulty] }}
             </span>
           </mat-checkbox>
         </mat-list-item>

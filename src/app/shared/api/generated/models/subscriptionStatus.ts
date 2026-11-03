@@ -8,7 +8,7 @@
 /**
  * Subscription status response
  */
-export type SubscriptionStatus = {
+export interface SubscriptionStatus {
   tier?: string;
   expiresAt?: string;
   isActive?: boolean;

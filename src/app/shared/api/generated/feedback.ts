@@ -4,27 +4,46 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import { HttpClient } from '@angular/common/http';
-import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
+import {
+  HttpClient
+} from '@angular/common/http';
+import type {
+  HttpContext,
+  HttpEvent,
+  HttpParams
+} from '@angular/common/http';
 
-import { Injectable, inject } from '@angular/core';
+import {
+  Injectable,
+  inject
+} from '@angular/core';
 
-import type { Observable } from 'rxjs';
+import type {
+  Observable
+} from 'rxjs';
 
 import type {
   FeedbackCreateRequest,
   FeedbackList,
   FeedbackMyFeedbackParams,
   FeedbackResponse,
+  ReferenceOptionDtoList
 } from './models';
 
-import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
+import type {
+  HttpHeaders,
+  HttpResponse as AngularHttpResponse
+} from '@angular/common/http';
 
-type HttpClientOptions = {
+
+
+
+interface HttpClientOptions {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
+        | HttpParams
+      | Record<string, string | number | boolean | Array<string | number | boolean>>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -36,9 +55,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: { includeHeaders?: string[] } | boolean;
+  readonly transferCache?: {includeHeaders?: string[]} | boolean;
   readonly timeout?: number;
-};
+}
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -56,7 +75,7 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
-type AngularHttpParamValue = string | number | boolean | (string | number | boolean)[];
+type AngularHttpParamValue = string | number | boolean | Array<string | number | boolean>;
 type AngularHttpParamValueWithNullable = AngularHttpParamValue | null;
 type AngularObjectParamStrategy = 'flatten' | 'comma' | 'deepObject';
 
@@ -93,7 +112,9 @@ function filterParams(
   objectParamStrategies: Readonly<Record<string, AngularObjectParamStrategy>> = {},
 ): Record<string, unknown> {
   const filteredParams: Record<string, unknown> = {};
-  const filterPrimitiveArray = (value: unknown[]): (string | number | boolean)[] =>
+  const filterPrimitiveArray = (
+    value: unknown[],
+  ): Array<string | number | boolean> =>
     value
       .filter(
         (item) =>
@@ -103,9 +124,9 @@ function filterParams(
             typeof item === 'boolean' ||
             (item instanceof Date && !Number.isNaN(item.getTime()))),
       )
-      .map((item) => (item instanceof Date ? item.toISOString() : item)) as (
+      .map((item) => (item instanceof Date ? item.toISOString() : item)) as Array<
       string | number | boolean
-    )[];
+    >;
   for (const [key, value] of Object.entries(params)) {
     if (passthroughKeys.has(key)) {
       if (value !== undefined) {
@@ -136,7 +157,10 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             commaParts.push(prop, String(propValue));
-          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
+          } else if (
+            propValue instanceof Date &&
+            !Number.isNaN(propValue.getTime())
+          ) {
             commaParts.push(prop, propValue.toISOString());
           }
         }
@@ -145,7 +169,8 @@ function filterParams(
         }
       } else {
         for (const [prop, propValue] of entries) {
-          const targetKey = objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
+          const targetKey =
+            objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
           if (Array.isArray(propValue)) {
             const filteredProp = filterPrimitiveArray(propValue);
             if (filteredProp.length) {
@@ -158,7 +183,10 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             filteredParams[targetKey] = propValue;
-          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
+          } else if (
+            propValue instanceof Date &&
+            !Number.isNaN(propValue.getTime())
+          ) {
             filteredParams[targetKey] = propValue.toISOString();
           }
         }
@@ -182,7 +210,9 @@ function filterParams(
       filteredParams[key] = value.toISOString();
     } else if (
       value != null &&
-      (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')
+      (typeof value === 'string' ||
+        typeof value === 'number' ||
+        typeof value === 'boolean')
     ) {
       filteredParams[key] = value;
     }
@@ -190,139 +220,227 @@ function filterParams(
   return filteredParams;
 }
 
+
+
+
+
 @Injectable({ providedIn: 'root' })
 export class FeedbackService {
   private readonly http = inject(HttpClient);
-  /**
-   * Creates a new feedback report for a content entity
-   * @summary Report an issue
-   */
+/**
+ * Creates a new feedback report for a content entity
+ * @summary Report an issue
+ */
+ feedbackCreate<TData = FeedbackResponse>(feedbackCreateRequest: FeedbackCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ feedbackCreate<TData = FeedbackResponse>(feedbackCreateRequest: FeedbackCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ feedbackCreate<TData = FeedbackResponse>(feedbackCreateRequest: FeedbackCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   feedbackCreate<TData = FeedbackResponse>(
-    feedbackCreateRequest: FeedbackCreateRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  feedbackCreate<TData = FeedbackResponse>(
-    feedbackCreateRequest: FeedbackCreateRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  feedbackCreate<TData = FeedbackResponse>(
-    feedbackCreateRequest: FeedbackCreateRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  feedbackCreate<TData = FeedbackResponse>(
-    feedbackCreateRequest: FeedbackCreateRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    feedbackCreateRequest: FeedbackCreateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/feedback`, feedbackCreateRequest, {
+      return this.http.post<TData>(
+      `/api/v1/feedback`,
+      feedbackCreateRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/feedback`, feedbackCreateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.post<TData>(`/api/v1/feedback`, feedbackCreateRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Returns feedback details by ID
-   * @summary Get feedback by ID
-   */
-  feedbackGetById<TData = FeedbackResponse>(
-    id: number,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  feedbackGetById<TData = FeedbackResponse>(
-    id: number,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  feedbackGetById<TData = FeedbackResponse>(
-    id: number,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  feedbackGetById<TData = FeedbackResponse>(
-    id: number,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/feedback/${id}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/feedback/${id}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.get<TData>(`/api/v1/feedback/${id}`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Returns a paginated list of feedbacks submitted by the current user
-   * @summary List my feedbacks
-   */
-  feedbackMyFeedback<TData = FeedbackList>(
-    params: FeedbackMyFeedbackParams,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  feedbackMyFeedback<TData = FeedbackList>(
-    params: FeedbackMyFeedbackParams,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  feedbackMyFeedback<TData = FeedbackList>(
-    params: FeedbackMyFeedbackParams,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  feedbackMyFeedback<TData = FeedbackList>(
-    params: FeedbackMyFeedbackParams,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams(
-      { ...params, ...options?.params },
-      new Set<string>([]),
-      false,
-      new Set<string>([]),
-      { pageable: 'flatten' } as const,
+      }
     );
-
-    if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/feedback/my`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-        params: filteredParams,
-      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/feedback/my`, {
+      return this.http.post<TData>(
+      `/api/v1/feedback`,
+      feedbackCreateRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,
-      });
+      }
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/feedback/my`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-      params: filteredParams,
-    });
+    return this.http.post<TData>(
+      `/api/v1/feedback`,
+      feedbackCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-}
+/**
+ * Returns feedback details by ID
+ * @summary Get feedback by ID
+ */
+ feedbackGetById<TData = FeedbackResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ feedbackGetById<TData = FeedbackResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ feedbackGetById<TData = FeedbackResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  feedbackGetById<TData = FeedbackResponse>(
+    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/feedback/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
 
-export type FeedbackCreateClientResult = NonNullable<FeedbackResponse>;
-export type FeedbackGetByIdClientResult = NonNullable<FeedbackResponse>;
-export type FeedbackMyFeedbackClientResult = NonNullable<FeedbackList>;
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/feedback/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/feedback/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Returns all feedback type definitions
+ * @summary List feedback types
+ */
+ listAll3<TData = ReferenceOptionDtoList>( options?: HttpClientBodyOptions): Observable<TData>;
+ listAll3<TData = ReferenceOptionDtoList>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ listAll3<TData = ReferenceOptionDtoList>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  listAll3<TData = ReferenceOptionDtoList>(
+     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/feedback/types`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/feedback/types`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/feedback/types`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Returns all feedback status definitions
+ * @summary List feedback statuses
+ */
+ listAll4<TData = ReferenceOptionDtoList>( options?: HttpClientBodyOptions): Observable<TData>;
+ listAll4<TData = ReferenceOptionDtoList>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ listAll4<TData = ReferenceOptionDtoList>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  listAll4<TData = ReferenceOptionDtoList>(
+     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/feedback/statuses`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/feedback/statuses`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/feedback/statuses`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Returns all feedback severity definitions
+ * @summary List feedback severities
+ */
+ listAll5<TData = ReferenceOptionDtoList>( options?: HttpClientBodyOptions): Observable<TData>;
+ listAll5<TData = ReferenceOptionDtoList>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ listAll5<TData = ReferenceOptionDtoList>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  listAll5<TData = ReferenceOptionDtoList>(
+     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/feedback/severities`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/feedback/severities`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/feedback/severities`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Returns a paginated list of feedbacks submitted by the current user
+ * @summary List my feedbacks
+ */
+ feedbackMyFeedback<TData = FeedbackList>(params: FeedbackMyFeedbackParams, options?: HttpClientBodyOptions): Observable<TData>;
+ feedbackMyFeedback<TData = FeedbackList>(params: FeedbackMyFeedbackParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ feedbackMyFeedback<TData = FeedbackList>(params: FeedbackMyFeedbackParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  feedbackMyFeedback<TData = FeedbackList>(
+    params: FeedbackMyFeedbackParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
+
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/feedback/my`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+        params: filteredParams,}
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/feedback/my`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+        params: filteredParams,}
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/feedback/my`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+        params: filteredParams,}
+    );
+  }
+};
+
+export type FeedbackCreateClientResult = NonNullable<FeedbackResponse>
+export type FeedbackGetByIdClientResult = NonNullable<FeedbackResponse>
+export type ListAll3ClientResult = NonNullable<ReferenceOptionDtoList>
+export type ListAll4ClientResult = NonNullable<ReferenceOptionDtoList>
+export type ListAll5ClientResult = NonNullable<ReferenceOptionDtoList>
+export type FeedbackMyFeedbackClientResult = NonNullable<FeedbackList>

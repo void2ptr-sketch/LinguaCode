@@ -8,7 +8,7 @@
 /**
  * Educational lesson entity
  */
-export type Lesson = {
+export interface Lesson {
   id?: number;
   title?: string;
   lessonDescription?: string;

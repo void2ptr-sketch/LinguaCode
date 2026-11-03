@@ -9,7 +9,7 @@ import type { Language } from './language';
 /**
  * Single resource API response wrapper
  */
-export type LanguageResponse = {
+export interface LanguageResponse {
   /** Response data */
   data?: Language;
 }

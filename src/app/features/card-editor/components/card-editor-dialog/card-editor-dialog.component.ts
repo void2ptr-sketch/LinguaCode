@@ -19,13 +19,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { firstValueFrom } from 'rxjs';
 
-import {
-  CARD_KIND_LABELS,
-} from '../../../../entities/card/lib/catalog-labels';
 import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { CardEditorStore } from '../../services/card-editor.store';
+import { CatalogService } from '../../../../entities/card/api/catalog.service';
 import type { CardDraft, CardIndexMetaDraft, CardIndexMetaOverride } from '../../types';
 import { loadEditorUxMode, type CardEditorUxMode } from '../../utils/ux/card-editor-ux.utils';
 import { CardFormComponent } from '../card-form/card-form.component';
@@ -75,9 +73,12 @@ export class CardEditorDialogComponent implements OnInit {
   private readonly userStore = inject(UserStore);
   private readonly catalogHandler = inject(CardsCatalogMockHandler);
   private readonly languageService = inject(LanguageService);
+  private readonly catalogService = inject(CatalogService);
 
-  /** Labels for all card kinds. */
-  readonly kindLabels = CARD_KIND_LABELS;
+  /** Labels for all card kinds from backend catalog. */
+  readonly kindLabels = computed<Record<string, string>>(() =>
+    Object.fromEntries(this.catalogService.cardKinds().map((k) => [k.code, k.label])),
+  );
 
   /** Available content languages. */
   readonly languages = () => this.languageService.getCodes();
@@ -139,11 +140,12 @@ export class CardEditorDialogComponent implements OnInit {
    * or "Редактирование · [kind]" for edit mode.
    */
   readonly title = computed(() => {
+    const labels = this.kindLabels();
     if (this.data.mode === 'create') {
-      return `Новая карточка · ${this.kindLabels[this.data.kind]}`;
+      return `Новая карточка · ${labels[this.data.kind]}`;
     }
 
-    return `Редактирование · ${this.kindLabels[this.draft().kind]}`;
+    return `Редактирование · ${labels[this.draft().kind]}`;
   });
 
   /**

@@ -23,7 +23,7 @@
 
 | Документ                                                                            | Описание                                                  |
 | ----------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [ARCHITECTURE.md](./PRODUCT/ARCHITECTURE.md)                                          | Обзор: слои, layout, роутинг, signals, офлайн-кэширование |
+| [ARCHITECTURE.md](./PRODUCT/ARCHITECTURE.md)                                        | Обзор: слои, layout, роутинг, signals, офлайн-кэширование |
 | [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md)                         | Бывший `core`: карта переноса в entities/shared/widgets   |
 | [ARCHITECTURE.shared.md](./ARCHITECTURE/ARCHITECTURE.shared.md)                     | CardHost, pickers, lexeme, pagination                     |
 | [ARCHITECTURE.card-select.md](./ARCHITECTURE/ARCHITECTURE.card-select.md)           | Практика `/cards/select`                                  |
@@ -56,8 +56,8 @@
 
 ## Процесс разработки
 
-| Документ                              | Описание              |
-| ------------------------------------- | --------------------- |
+| Документ                               | Описание              |
+| -------------------------------------- | --------------------- |
 | [GIT-RULES.md](./PROCESS/GIT-RULES.md) | Ветки, коммиты, merge |
 
 ## Формат

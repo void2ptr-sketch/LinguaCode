@@ -9,7 +9,7 @@ import type { SubscriptionStatus } from './subscriptionStatus';
 /**
  * Single resource API response wrapper
  */
-export type SubscriptionStatusResponse = {
+export interface SubscriptionStatusResponse {
   /** Response data */
   data?: SubscriptionStatus;
 }

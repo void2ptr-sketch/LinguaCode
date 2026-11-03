@@ -30,28 +30,28 @@
     <mat-menu #choiceMenu="matMenu">
       @for (kind of kindsByGroup.choice; track kind) {
         <button mat-menu-item type="button" (click)="startCreate(kind)">
-          {{ kindLabels[kind] }}
+          {{ kindLabels()[kind] }}
         </button>
       }
     </mat-menu>
     <mat-menu #inputMenu="matMenu">
       @for (kind of kindsByGroup.input; track kind) {
         <button mat-menu-item type="button" (click)="startCreate(kind)">
-          {{ kindLabels[kind] }}
+          {{ kindLabels()[kind] }}
         </button>
       }
     </mat-menu>
     <mat-menu #pairsMenu="matMenu">
       @for (kind of kindsByGroup.pairs; track kind) {
         <button mat-menu-item type="button" (click)="startCreate(kind)">
-          {{ kindLabels[kind] }}
+          {{ kindLabels()[kind] }}
         </button>
       }
     </mat-menu>
     <mat-menu #mediaMenu="matMenu">
       @for (kind of kindsByGroup.media; track kind) {
         <button mat-menu-item type="button" (click)="startCreate(kind)">
-          {{ kindLabels[kind] }}
+          {{ kindLabels()[kind] }}
         </button>
       }
     </mat-menu>
@@ -118,8 +118,8 @@
                 <li class="card-editor-page__item">
                   <span class="card-editor-page__title">{{ entry.title }}</span>
                   <span class="card-editor-page__meta-text">
-                    {{ kindLabels[entry.kind] }}
-                    · {{ formatEntryLanguages(entry) }} · {{ difficultyLabels[entry.difficulty] }}
+                    {{ kindLabels()[entry.kind] }}
+                    · {{ formatEntryLanguages(entry) }} · {{ difficultyLabels()[entry.difficulty] }}
                   </span>
                   <mat-chip-set class="card-editor-page__tags" aria-label="Теги">
                     @for (tag of entry.tags; track $index) {

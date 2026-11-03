@@ -10,7 +10,7 @@ import type { CardUpdateRequestRequiredTier } from './cardUpdateRequestRequiredT
 /**
  * Card update request
  */
-export type CardUpdateRequest = {
+export interface CardUpdateRequest {
   /**
      * @minLength 1
      * @maxLength 200

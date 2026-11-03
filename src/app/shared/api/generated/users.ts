@@ -4,22 +4,44 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import { HttpClient } from '@angular/common/http';
-import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
+import {
+  HttpClient
+} from '@angular/common/http';
+import type {
+  HttpContext,
+  HttpEvent,
+  HttpParams
+} from '@angular/common/http';
 
-import { Injectable, inject } from '@angular/core';
+import {
+  Injectable,
+  inject
+} from '@angular/core';
 
-import type { Observable } from 'rxjs';
+import type {
+  Observable
+} from 'rxjs';
 
-import type { UserRegisterRequest, UserResponse, UserUpdateRequest } from './models';
+import type {
+  UserRegisterRequest,
+  UserResponse,
+  UserUpdateRequest
+} from './models';
 
-import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
+import type {
+  HttpHeaders,
+  HttpResponse as AngularHttpResponse
+} from '@angular/common/http';
 
-type HttpClientOptions = {
+
+
+
+interface HttpClientOptions {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
+        | HttpParams
+      | Record<string, string | number | boolean | Array<string | number | boolean>>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -31,9 +53,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: { includeHeaders?: string[] } | boolean;
+  readonly transferCache?: {includeHeaders?: string[]} | boolean;
   readonly timeout?: number;
-};
+}
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -51,160 +73,160 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
+
+
+
+
+
+
 @Injectable({ providedIn: 'root' })
 export class UsersService {
   private readonly http = inject(HttpClient);
-  /**
-   * Returns the current user profile from JWT token (without sensitive data)
-   * @summary Get current user
-   */
-  usersGetMe<TData = UserResponse>(options?: HttpClientBodyOptions): Observable<TData>;
-  usersGetMe<TData = UserResponse>(options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+/**
+ * Returns the current user profile from JWT token (without sensitive data)
+ * @summary Get current user
+ */
+ usersGetMe<TData = UserResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ usersGetMe<TData = UserResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ usersGetMe<TData = UserResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   usersGetMe<TData = UserResponse>(
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  usersGetMe<TData = UserResponse>(
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/users/me`, {
+      return this.http.get<TData>(
+      `/api/v1/users/me`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/users/me`, {
+      return this.http.get<TData>(
+      `/api/v1/users/me`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/users/me`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.get<TData>(
+      `/api/v1/users/me`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-  /**
-   * Updates the current user profile (JWT principal only, no cross-user updates)
-   * @summary Update current user
-   */
+/**
+ * Updates the current user profile (JWT principal only, no cross-user updates)
+ * @summary Update current user
+ */
+ usersUpdateMe<TData = UserResponse>(userUpdateRequest: UserUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ usersUpdateMe<TData = UserResponse>(userUpdateRequest: UserUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ usersUpdateMe<TData = UserResponse>(userUpdateRequest: UserUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   usersUpdateMe<TData = UserResponse>(
-    userUpdateRequest: UserUpdateRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  usersUpdateMe<TData = UserResponse>(
-    userUpdateRequest: UserUpdateRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  usersUpdateMe<TData = UserResponse>(
-    userUpdateRequest: UserUpdateRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  usersUpdateMe<TData = UserResponse>(
-    userUpdateRequest: UserUpdateRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    userUpdateRequest: UserUpdateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.put<TData>(`/api/v1/users/me`, userUpdateRequest, {
+      return this.http.put<TData>(
+      `/api/v1/users/me`,
+      userUpdateRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.put<TData>(`/api/v1/users/me`, userUpdateRequest, {
+      return this.http.put<TData>(
+      `/api/v1/users/me`,
+      userUpdateRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.put<TData>(`/api/v1/users/me`, userUpdateRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.put<TData>(
+      `/api/v1/users/me`,
+      userUpdateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-  /**
-   * Registers a new user and returns the created user
-   * @summary Register user
-   */
+/**
+ * Registers a new user and returns the created user
+ * @summary Register user
+ */
+ usersRegister<TData = UserResponse>(userRegisterRequest: UserRegisterRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ usersRegister<TData = UserResponse>(userRegisterRequest: UserRegisterRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ usersRegister<TData = UserResponse>(userRegisterRequest: UserRegisterRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   usersRegister<TData = UserResponse>(
-    userRegisterRequest: UserRegisterRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  usersRegister<TData = UserResponse>(
-    userRegisterRequest: UserRegisterRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  usersRegister<TData = UserResponse>(
-    userRegisterRequest: UserRegisterRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  usersRegister<TData = UserResponse>(
-    userRegisterRequest: UserRegisterRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    userRegisterRequest: UserRegisterRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/users`, userRegisterRequest, {
+      return this.http.post<TData>(
+      `/api/v1/users`,
+      userRegisterRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/users`, userRegisterRequest, {
+      return this.http.post<TData>(
+      `/api/v1/users`,
+      userRegisterRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.post<TData>(`/api/v1/users`, userRegisterRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.post<TData>(
+      `/api/v1/users`,
+      userRegisterRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-  /**
-   * Returns user details by ID
-   * @summary Get user by ID
-   */
+/**
+ * Returns user details by ID
+ * @summary Get user by ID
+ */
+ usersGetById<TData = UserResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ usersGetById<TData = UserResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ usersGetById<TData = UserResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   usersGetById<TData = UserResponse>(
-    id: number,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  usersGetById<TData = UserResponse>(
-    id: number,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  usersGetById<TData = UserResponse>(
-    id: number,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  usersGetById<TData = UserResponse>(
-    id: number,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/users/${id}`, {
+      return this.http.get<TData>(
+      `/api/v1/users/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/users/${id}`, {
+      return this.http.get<TData>(
+      `/api/v1/users/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/users/${id}`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.get<TData>(
+      `/api/v1/users/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-}
+};
 
-export type UsersGetMeClientResult = NonNullable<UserResponse>;
-export type UsersUpdateMeClientResult = NonNullable<UserResponse>;
-export type UsersRegisterClientResult = NonNullable<UserResponse>;
-export type UsersGetByIdClientResult = NonNullable<UserResponse>;
+export type UsersGetMeClientResult = NonNullable<UserResponse>
+export type UsersUpdateMeClientResult = NonNullable<UserResponse>
+export type UsersRegisterClientResult = NonNullable<UserResponse>
+export type UsersGetByIdClientResult = NonNullable<UserResponse>

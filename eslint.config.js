@@ -140,6 +140,18 @@ module.exports = tseslint.config(
       '@typescript-eslint/no-unused-vars': 'off',
     },
   },
+  // Orval-generated API services — skip linting entirely.
+  {
+    files: ['src/app/shared/api/generated/**/*.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
+      '@typescript-eslint/consistent-type-definitions': 'off',
+      '@typescript-eslint/array-type': 'off',
+      'no-restricted-imports': 'off',
+    },
+  },
   {
     files: ['**/*.html'],
     extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],

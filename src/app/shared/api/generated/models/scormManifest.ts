@@ -9,7 +9,7 @@ import type { ScormOrganization } from './scormOrganization';
 /**
  * SCORM manifest with course organization
  */
-export type ScormManifest = {
+export interface ScormManifest {
   identifier?: string;
   title?: string;
   organizations?: ScormOrganization[];

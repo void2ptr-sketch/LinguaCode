@@ -10,7 +10,7 @@ import type { CardExportKind } from './cardExportKind';
 /**
  * Card export DTO
  */
-export type CardExport = {
+export interface CardExport {
   id?: number;
   title?: string;
   kind?: CardExportKind;

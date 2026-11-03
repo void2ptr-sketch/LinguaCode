@@ -1,111 +1,43 @@
-import type { CardDifficulty, CardKind } from '../model';
-
-export const DIFFICULTY_LABELS: Record<CardDifficulty, string> = {
-  beginner: 'Начальный',
-  intermediate: 'Средний',
-  advanced: 'Продвинутый',
-};
-
-export const CARD_KIND_LABELS: Record<CardKind, string> = {
-  select: 'Выбор ответа',
-  'code-select': 'Код: выбор ответа',
-  memory: 'Запоминание',
-  symbol: 'Символы',
-  sound: 'Звук',
-  timed: 'На время',
-  keyboard: 'Клавиатура',
-  draw: 'Рисование',
-  tone: 'Тон',
-  reading: 'Чтение (полифония)',
-  flip: 'Переворот',
-  cloze: 'Пропуск в тексте',
-  'code-trace': 'Код: что выведет?',
-};
-
-export const CARD_KINDS: readonly CardKind[] = [
-  'select',
-  'code-select',
-  'memory',
-  'symbol',
-  'sound',
-  'timed',
-  'keyboard',
-  'draw',
-  'tone',
-  'reading',
-];
-
-export const DIFFICULTIES: readonly CardDifficulty[] = ['beginner', 'intermediate', 'advanced'];
-
-/** Подписи тегов каталога (id → label). Сложность — id без перевода. */
-export const TAG_LABELS: Record<string, string> = {
-  // Demo / общие
-  greetings: 'Приветствия',
-  vocabulary: 'Лексика',
-  memory: 'Память',
-  symbols: 'Символы',
-  visual: 'Визуальное',
-  listening: 'Аудирование',
-  timed: 'На время',
-  keyboard: 'Клавиатура',
-  ipa: 'IPA',
-  phonetics: 'Фонетика',
-  numbers: 'Числа',
-  reading: 'Чтение',
-  polyphony: 'Полифония',
-  // Perl interview — темы
-  intro: 'Введение',
-  basics: 'Основы',
-  'modern-perl': 'Современный Perl',
-  tools: 'Инструменты',
-  'architecture-legacy': 'Архитектура и работа с легаси',
-  practice: 'Практика',
-  oop: 'ООП',
-  // Perl interview — подтемы
-  'scalar-context': 'Scalar / list context',
-  'array-scalar': '@array в scalar context',
-  sigils: 'Sigils $, @, %',
-  undef: 'undef',
-  'use-strict': 'use strict',
-  'use-warnings': 'use warnings',
-  'my-our': 'my / our / globals',
-  'feature-say': "use feature 'say'",
-  'regex-captures': 'Захваты $1, $2',
-  'regex-modifiers': 'Модификаторы /g, /i, /x',
-  'match-operators': '=~ / !~',
-  'qr-compile': 'qr//',
-  'sub-args': '@_ в sub',
-  'map-grep': 'map / grep',
-  spaceship: '<=>',
-  sort: 'sort / block sort',
-  'use-require': 'use / require',
-  'bless-oop': 'bless / ООП',
-  'file-io': 'Файлы и ошибки',
-  'red-flags': 'Red flags на интервью',
-  'dbi-dbd': 'DBI и DBD',
-  'dbi-placeholders': 'Placeholders в DBI',
-  'dbi-prepare-execute': 'prepare / execute / do',
-  'dbi-transactions': 'Транзакции DBI',
-  'dbi-errors': 'Ошибки DBI',
-  'cgi-module': 'Модуль CGI',
-  'cgi-params': 'Параметры CGI',
-  'cgi-binmode': 'binmode в CGI',
-  'cgi-headers': 'HTTP-заголовки CGI',
-  'cgi-legacy': 'CGI vs PSGI',
-  oracle: 'Oracle',
-  'oracle-dsn': 'Oracle DSN',
-  'oracle-placeholders': 'Oracle placeholders',
-  'oracle-connect': 'SID / service name',
-  'oracle-plsql': 'PL/SQL через DBI',
-  'oracle-lob': 'CLOB / BLOB',
-};
-
-const DIFFICULTY_TAG_IDS = new Set<string>(['beginner', 'intermediate', 'advanced']);
+/**
+ * Returns a human-readable label for a tag.
+ *
+ * @param tag - Tag identifier.
+ * @returns Tag label from backend, or the tag id itself if not found.
+ *          Difficulty tags (`beginner`, `intermediate`, `advanced`) are returned as-is.
+ *
+ * @remarks
+ * Uses the root-level `TagsService` to get labels from the backend.
+ * Falls back to returning the tag id if the service is not available.
+ */
+import { inject } from '@angular/core';
+import { TagsService } from '../api/tags.service';
 
 export function tagLabel(tag: string): string {
-  if (DIFFICULTY_TAG_IDS.has(tag)) {
+  // Difficulty tags are never localized
+  if (tag === 'beginner' || tag === 'intermediate' || tag === 'advanced') {
     return tag;
   }
 
-  return TAG_LABELS[tag] ?? tag;
+  try {
+    const tagsService = inject(TagsService);
+    return tagsService.getLabel(tag);
+  } catch {
+    return tag;
+  }
+}
+
+/**
+ * Reactive provider for tag labels.
+ *
+ * @remarks
+ * Returns a computed map of tag code → label from `TagsService`.
+ * When tags are not loaded yet, returns an empty map.
+ */
+export function tagLabels(): Record<string, string> {
+  try {
+    const tagsService = inject(TagsService);
+    return tagsService.tagLabels();
+  } catch {
+    return {};
+  }
 }

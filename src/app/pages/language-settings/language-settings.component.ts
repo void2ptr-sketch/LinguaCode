@@ -1,4 +1,11 @@
-import { Component, ChangeDetectionStrategy, inject, computed, signal, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  inject,
+  computed,
+  signal,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
 import { Router } from '@angular/router';
@@ -36,17 +43,17 @@ import { DirectionCardInnerComponent } from './direction-card/direction-card-inn
 /** Alias map: display name / common variation → ContentLanguage code. */
 const CODE_ALIASES: Record<string, ContentLanguage> = {
   'c++': 'cpp',
-  'cpp': 'cpp',
+  cpp: 'cpp',
   'C++': 'cpp',
-  'javascript': 'js',
-  'js': 'js',
-  'JS': 'js',
-  'haskell': 'hs',
-  'hs': 'hs',
-  'Haskell': 'hs',
-  'rust': 'rs',
-  'rs': 'rs',
-  'Rust': 'rs',
+  javascript: 'js',
+  js: 'js',
+  JS: 'js',
+  haskell: 'hs',
+  hs: 'hs',
+  Haskell: 'hs',
+  rust: 'rs',
+  rs: 'rs',
+  Rust: 'rs',
 };
 
 /** Normalizes a language code from the backend to a valid ContentLanguage. */
@@ -61,14 +68,14 @@ function normalizeCode(code: string): ContentLanguage {
 }
 
 /** A grouped pair of mirror directions (e.g. EN↔RU). */
-export interface PairGroup {
+export type PairGroup = {
   /** Canonical key — sorted language codes joined by a pipe. */
   key: string;
   /** Both directions (0–2). */
   directions: DirectionItem[];
   /** Total configured directions for this pair. */
   count: number;
-}
+};
 
 /**
  * Language settings page component.
@@ -132,7 +139,11 @@ export class LanguageSettingsComponent {
 
   readonly selectedCodes = this.settingsStore.selectedCodes;
   readonly availableLanguages = computed(() => this.languageService.languages());
-  readonly loading = computed(() => this.languageService.loading() || this.availablePairs.loading() && !this.availablePairs.loaded());
+  readonly loading = computed(
+    () =>
+      this.languageService.loading() ||
+      (this.availablePairs.loading() && !this.availablePairs.loaded()),
+  );
   /** DB pairs filtered by selected + active languages. */
   readonly configuredPairs = computed(() =>
     this.availablePairs.visiblePairs().map((p) => ({
@@ -336,11 +347,9 @@ export class LanguageSettingsComponent {
       this.newLearningCode.set('');
       this.snackBar.open('Pair added', 'Close', { duration: 3000 });
     } catch (error) {
-      this.snackBar.open(
-        `Failed to create pair: ${(error as Error).message}`,
-        'Close',
-        { duration: 5000 },
-      );
+      this.snackBar.open(`Failed to create pair: ${(error as Error).message}`, 'Close', {
+        duration: 5000,
+      });
     }
   }
 
@@ -352,10 +361,9 @@ export class LanguageSettingsComponent {
     }
     // Find an existing entry in UserStore that matches this pair's known/learning codes.
     // Only activate — never create a new entry here (the pair already exists in the backend).
-    const existingEntry = this.userStore.languagePairs().find(
-      (e) =>
-        e.pair.known === pair.known && e.pair.learning === pair.learning,
-    );
+    const existingEntry = this.userStore
+      .languagePairs()
+      .find((e) => e.pair.known === pair.known && e.pair.learning === pair.learning);
     if (existingEntry) {
       this.userStore.setActiveLanguagePair(existingEntry.id);
     }
@@ -373,9 +381,9 @@ export class LanguageSettingsComponent {
       // Also remove from UserStore (find by known/learning codes)
       const pair = this.configuredPairs().find((p) => p.id === pairId);
       if (pair) {
-        const entry = this.userStore.languagePairs().find(
-          (e) => e.pair.known === pair.known && e.pair.learning === pair.learning,
-        );
+        const entry = this.userStore
+          .languagePairs()
+          .find((e) => e.pair.known === pair.known && e.pair.learning === pair.learning);
         if (entry) {
           this.userStore.removeLanguagePair(entry.id);
         }
@@ -386,11 +394,9 @@ export class LanguageSettingsComponent {
 
       this.snackBar.open('Pair removed', 'Close', { duration: 3000 });
     } catch (error) {
-      this.snackBar.open(
-        `Failed to remove pair: ${(error as Error).message}`,
-        'Close',
-        { duration: 5000 },
-      );
+      this.snackBar.open(`Failed to remove pair: ${(error as Error).message}`, 'Close', {
+        duration: 5000,
+      });
     }
   }
 

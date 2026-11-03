@@ -9,7 +9,7 @@ import type { User } from './user';
 /**
  * Single resource API response wrapper
  */
-export type UserResponse = {
+export interface UserResponse {
   /** Response data */
   data?: User;
 }

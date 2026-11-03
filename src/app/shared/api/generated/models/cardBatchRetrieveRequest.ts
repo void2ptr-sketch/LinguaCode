@@ -8,7 +8,7 @@
 /**
  * Batch card retrieval request
  */
-export type CardBatchRetrieveRequest = {
+export interface CardBatchRetrieveRequest {
   /** @minItems 1 */
   ids: number[];
 }

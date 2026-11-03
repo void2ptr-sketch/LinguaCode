@@ -6,3 +6,4 @@ package-lock.json
 
 # Generated API client
 src/app/shared/api/**/models/**
+src/app/shared/api/generated/**

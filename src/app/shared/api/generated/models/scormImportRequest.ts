@@ -5,7 +5,7 @@
  * OpenAPI spec version: v0
  */
 
-export type ScormImportRequest = {
+export interface ScormImportRequest {
   /** SCORM ZIP file */
   file: Blob | File;
 }

@@ -1,4 +1,4 @@
-import type { CardIndexEntry } from '../model';
+import type { CardDifficulty, CardIndexEntry, CardKind } from '../model';
 
 import {
   buildCardSearchFacets,
@@ -76,10 +76,30 @@ describe('card-search.utils', () => {
   });
 
   it('builds facets with counts for active filters', () => {
-    const facets = buildCardSearchFacets(entries, {
-      learningLanguage: 'en',
-      page: { page: 0, pageSize: 10 },
-    });
+    const facets = buildCardSearchFacets(
+      entries,
+      {
+        learningLanguage: 'en',
+        page: { page: 0, pageSize: 10 },
+      },
+      {
+        difficulties: ['beginner', 'intermediate', 'advanced'] as readonly CardDifficulty[],
+        kinds: [
+          'select',
+          'memory',
+          'keyboard',
+          'draw',
+          'sound',
+          'timed',
+          'tone',
+          'reading',
+          'code-select',
+          'flip',
+          'cloze',
+          'code-trace',
+        ] as readonly CardKind[],
+      },
+    );
 
     expect(facets.learningLanguages).toEqual([
       { value: 'en', count: 3 },
@@ -137,10 +157,30 @@ describe('card-search.utils', () => {
       },
     ];
 
-    const facets = buildCardSearchFacets(taggedEntries, {
-      tags: ['oracle'],
-      page: { page: 0, pageSize: 10 },
-    });
+    const facets = buildCardSearchFacets(
+      taggedEntries,
+      {
+        tags: ['oracle'],
+        page: { page: 0, pageSize: 10 },
+      },
+      {
+        difficulties: ['beginner', 'intermediate', 'advanced'] as readonly CardDifficulty[],
+        kinds: [
+          'select',
+          'memory',
+          'keyboard',
+          'draw',
+          'sound',
+          'timed',
+          'tone',
+          'reading',
+          'code-select',
+          'flip',
+          'cloze',
+          'code-trace',
+        ] as readonly CardKind[],
+      },
+    );
 
     expect(facets.tags.find((facet) => facet.value === 'oracle')?.count).toBe(1);
     expect(facets.tags.find((facet) => facet.value === 'practice')?.count).toBe(1);

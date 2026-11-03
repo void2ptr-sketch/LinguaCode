@@ -9,7 +9,7 @@ import type { CourseExportBundle } from './courseExportBundle';
 /**
  * Single resource API response wrapper
  */
-export type CourseExportBundleResponse = {
+export interface CourseExportBundleResponse {
   /** Response data */
   data?: CourseExportBundle;
 }

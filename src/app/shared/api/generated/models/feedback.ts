@@ -11,7 +11,7 @@ import type { FeedbackStatus } from './feedbackStatus';
 /**
  * Content feedback entity
  */
-export type Feedback = {
+export interface Feedback {
   id?: number;
   userId?: number;
   entityType?: string;

@@ -8,7 +8,7 @@
 /**
  * Verify code request
  */
-export type PasswordVerifyCodeRequest = {
+export interface PasswordVerifyCodeRequest {
   /** @minLength 1 */
   email: string;
   /**

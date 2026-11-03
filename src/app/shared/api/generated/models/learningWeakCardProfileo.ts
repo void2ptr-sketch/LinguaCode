@@ -8,7 +8,7 @@
 /**
  * Weak card profile with low accuracy
  */
-export type LearningWeakCardProfileo = {
+export interface LearningWeakCardProfileo {
   cardId?: number;
   totalAttempts?: number;
   accuracy?: number;

@@ -13,7 +13,7 @@ import type { Program } from './program';
 /**
  * Learning home dashboard response
  */
-export type LearningHome = {
+export interface LearningHome {
   activeLanguagePair?: LanguagePair;
   activeProgram?: Program;
   nextLesson?: LessonAvailability;

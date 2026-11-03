@@ -8,7 +8,7 @@
 /**
  * SCORM package import result
  */
-export type ScormImportResult = {
+export interface ScormImportResult {
   courseId?: number;
   courseTitle?: string;
   programCount?: number;

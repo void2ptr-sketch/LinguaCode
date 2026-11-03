@@ -10,7 +10,7 @@ import type { UserPreferencesInterfaceLanguage } from './userPreferencesInterfac
 /**
  * User preferences for interface and learning
  */
-export type UserPreferences = {
+export interface UserPreferences {
   interfaceLanguage?: UserPreferencesInterfaceLanguage;
   learningPairKnown?: string;
   learningPairLearning?: string;

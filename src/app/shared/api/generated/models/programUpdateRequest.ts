@@ -9,7 +9,7 @@ import type { ProgramUpdateRequestRequiredTier } from './programUpdateRequestReq
 /**
  * Program update request
  */
-export type ProgramUpdateRequest = {
+export interface ProgramUpdateRequest {
   /**
      * @minLength 1
      * @maxLength 200

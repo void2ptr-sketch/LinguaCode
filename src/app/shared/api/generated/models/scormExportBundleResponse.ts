@@ -9,7 +9,7 @@ import type { ScormExportBundle } from './scormExportBundle';
 /**
  * Single resource API response wrapper
  */
-export type ScormExportBundleResponse = {
+export interface ScormExportBundleResponse {
   /** Response data */
   data?: ScormExportBundle;
 }

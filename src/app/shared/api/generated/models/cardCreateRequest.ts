@@ -11,7 +11,7 @@ import type { CardCreateRequestRequiredTier } from './cardCreateRequestRequiredT
 /**
  * Card creation request
  */
-export type CardCreateRequest = {
+export interface CardCreateRequest {
   /**
      * @minLength 1
      * @maxLength 200

@@ -4,22 +4,44 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import { HttpClient } from '@angular/common/http';
-import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
+import {
+  HttpClient
+} from '@angular/common/http';
+import type {
+  HttpContext,
+  HttpEvent,
+  HttpParams
+} from '@angular/common/http';
 
-import { Injectable, inject } from '@angular/core';
+import {
+  Injectable,
+  inject
+} from '@angular/core';
 
-import type { Observable } from 'rxjs';
+import type {
+  Observable
+} from 'rxjs';
 
-import type { AuthLoginRequest, AuthRefreshRequest, AuthResponse } from './models';
+import type {
+  AuthLoginRequest,
+  AuthRefreshRequest,
+  AuthResponse
+} from './models';
 
-import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
+import type {
+  HttpHeaders,
+  HttpResponse as AngularHttpResponse
+} from '@angular/common/http';
 
-type HttpClientOptions = {
+
+
+
+interface HttpClientOptions {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
+        | HttpParams
+      | Record<string, string | number | boolean | Array<string | number | boolean>>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -31,9 +53,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: { includeHeaders?: string[] } | boolean;
+  readonly transferCache?: {includeHeaders?: string[]} | boolean;
   readonly timeout?: number;
-};
+}
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -51,120 +73,128 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
+
+
+
+
+
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly http = inject(HttpClient);
-  /**
-   * Refreshes the access token using a valid refresh token
-   * @summary Refresh token
-   */
+/**
+ * Refreshes the access token using a valid refresh token
+ * @summary Refresh token
+ */
+ authRefresh<TData = AuthResponse>(authRefreshRequest: AuthRefreshRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ authRefresh<TData = AuthResponse>(authRefreshRequest: AuthRefreshRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ authRefresh<TData = AuthResponse>(authRefreshRequest: AuthRefreshRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   authRefresh<TData = AuthResponse>(
-    authRefreshRequest: AuthRefreshRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  authRefresh<TData = AuthResponse>(
-    authRefreshRequest: AuthRefreshRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  authRefresh<TData = AuthResponse>(
-    authRefreshRequest: AuthRefreshRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  authRefresh<TData = AuthResponse>(
-    authRefreshRequest: AuthRefreshRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    authRefreshRequest: AuthRefreshRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/auth/refresh`, authRefreshRequest, {
+      return this.http.post<TData>(
+      `/api/v1/auth/refresh`,
+      authRefreshRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/auth/refresh`, authRefreshRequest, {
+      return this.http.post<TData>(
+      `/api/v1/auth/refresh`,
+      authRefreshRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.post<TData>(`/api/v1/auth/refresh`, authRefreshRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.post<TData>(
+      `/api/v1/auth/refresh`,
+      authRefreshRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-  /**
-   * Logs out the user by clearing the refresh token cookie
-   * @summary Logout
-   */
-  authLogout<TData = void>(options?: HttpClientBodyOptions): Observable<TData>;
-  authLogout<TData = void>(options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+/**
+ * Logs out the user by clearing the refresh token cookie
+ * @summary Logout
+ */
+ authLogout<TData = void>( options?: HttpClientBodyOptions): Observable<TData>;
+ authLogout<TData = void>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ authLogout<TData = void>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   authLogout<TData = void>(
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  authLogout<TData = void>(
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/auth/logout`, undefined, {
+      return this.http.post<TData>(
+      `/api/v1/auth/logout`,
+      undefined,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/auth/logout`, undefined, {
+      return this.http.post<TData>(
+      `/api/v1/auth/logout`,
+      undefined,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.post<TData>(`/api/v1/auth/logout`, undefined, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.post<TData>(
+      `/api/v1/auth/logout`,
+      undefined,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-  /**
-   * Authenticates a user by email and password, returns JWT tokens
-   * @summary Login
-   */
+/**
+ * Authenticates a user by email and password, returns JWT tokens
+ * @summary Login
+ */
+ authLogin<TData = AuthResponse>(authLoginRequest: AuthLoginRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ authLogin<TData = AuthResponse>(authLoginRequest: AuthLoginRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ authLogin<TData = AuthResponse>(authLoginRequest: AuthLoginRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   authLogin<TData = AuthResponse>(
-    authLoginRequest: AuthLoginRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  authLogin<TData = AuthResponse>(
-    authLoginRequest: AuthLoginRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  authLogin<TData = AuthResponse>(
-    authLoginRequest: AuthLoginRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  authLogin<TData = AuthResponse>(
-    authLoginRequest: AuthLoginRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    authLoginRequest: AuthLoginRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/auth/login`, authLoginRequest, {
+      return this.http.post<TData>(
+      `/api/v1/auth/login`,
+      authLoginRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/auth/login`, authLoginRequest, {
+      return this.http.post<TData>(
+      `/api/v1/auth/login`,
+      authLoginRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.post<TData>(`/api/v1/auth/login`, authLoginRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.post<TData>(
+      `/api/v1/auth/login`,
+      authLoginRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-}
+};
 
-export type AuthRefreshClientResult = NonNullable<AuthResponse>;
-export type AuthLogoutClientResult = NonNullable<void>;
-export type AuthLoginClientResult = NonNullable<AuthResponse>;
+export type AuthRefreshClientResult = NonNullable<AuthResponse>
+export type AuthLogoutClientResult = NonNullable<void>
+export type AuthLoginClientResult = NonNullable<AuthResponse>

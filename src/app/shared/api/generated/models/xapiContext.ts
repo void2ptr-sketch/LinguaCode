@@ -9,6 +9,6 @@ import type { XapiContextActivities } from './xapiContextActivities';
 /**
  * xAPI statement context
  */
-export type XapiContext = {
+export interface XapiContext {
   contextActivities?: XapiContextActivities;
 }

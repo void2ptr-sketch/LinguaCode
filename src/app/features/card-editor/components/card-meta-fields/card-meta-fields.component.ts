@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, inject, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import type { CardIndexMetaOverride } from '../../../../entities/card/model';
 import type { CardDifficulty } from '../../../../entities/card/model';
-import { DIFFICULTIES, DIFFICULTY_LABELS } from '../../../../entities/card/lib/catalog-labels';
+import { CatalogService } from '../../../../entities/card/api/catalog.service';
 
 /**
  * Form fields component for card metadata (difficulty, tags, last updated date).
@@ -19,15 +19,24 @@ import { DIFFICULTIES, DIFFICULTY_LABELS } from '../../../../entities/card/lib/c
   styleUrl: './card-meta-fields.component.scss',
 })
 export class CardMetaFieldsComponent {
+  private readonly catalogService = inject(CatalogService);
+
   /** Optional card index meta override. */
   readonly meta = input<CardIndexMetaOverride | undefined>();
   /** Emits the updated card index meta override. */
   readonly metaChange = output<CardIndexMetaOverride>();
 
-  /** Available difficulty levels. */
-  readonly difficultyOptions = DIFFICULTIES;
-  /** Labels for difficulty levels. */
-  readonly difficultyLabels = DIFFICULTY_LABELS;
+  /** Available difficulty levels from backend catalog. */
+  readonly difficultyOptions = computed<CardDifficulty[]>(() =>
+    this.catalogService.difficulties().map((d) => d.code as CardDifficulty),
+  );
+  /** Labels for difficulty levels from backend catalog. */
+  readonly difficultyLabels = computed<Record<CardDifficulty, string>>(
+    () =>
+      Object.fromEntries(
+        this.catalogService.difficulties().map((d) => [d.code, d.label]),
+      ) as Record<CardDifficulty, string>,
+  );
 
   /**
    * Updates the difficulty and emits the change.

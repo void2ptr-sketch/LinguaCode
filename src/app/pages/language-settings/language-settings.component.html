@@ -58,9 +58,7 @@
                           (selectedCodes().length === 1 && selectedCodes().includes(lang.code))
                         "
                         [matTooltip]="
-                          !lang.activeFlag
-                            ? 'Reactivate this language to use it in learning'
-                            : ''
+                          !lang.activeFlag ? 'Reactivate this language to use it in learning' : ''
                         "
                       >
                         Use in Learning
@@ -146,69 +144,92 @@
                 <div class="settings-page__pairs-grouped">
                   @for (group of groupedPairs(); track group.key) {
                     <div class="settings-page__pair-group">
-                        <!-- Group header -->
-                        <div class="settings-page__pair-group__header">
-                          <div class="settings-page__pair-group__title">
-                            @if (group.key.includes('|')) {
-                              @let codes = group.key.split('|');
-                              <span class="settings-page__pair-group__flag"
-                                    [style.background-color]="!getFlagEmoji(codes[0]) ? getBadgeColor(codes[0]) : null"
-                                    [style.color]="!getFlagEmoji(codes[0]) ? getBadgeTextColor(codes[0]) : null">
-                                {{ getFlagEmoji(codes[0]) || getBadgeCode(codes[0]) }}
-                              </span>
-                              <span class="settings-page__pair-group__name">
-                                {{ getLanguageLabel(codes[0]) }} ↔ {{ getLanguageLabel(codes[1]) }}
-                                <span class="settings-page__pair-group__flag"
-                                      [style.background-color]="!getFlagEmoji(codes[1]) ? getBadgeColor(codes[1]) : null"
-                                      [style.color]="!getFlagEmoji(codes[1]) ? getBadgeTextColor(codes[1]) : null">
-                                  {{ getFlagEmoji(codes[1]) || getBadgeCode(codes[1]) }}
-                                </span>
-                              </span>
-                            }
+                      <!-- Group header -->
+                      <div class="settings-page__pair-group__header">
+                        <div class="settings-page__pair-group__title">
+                          @if (group.key.includes('|')) {
+                            @let codes = group.key.split('|');
                             <span
-                              class="settings-page__pair-group__badge"
-                              [class.settings-page__pair-group__badge--partial]="group.count === 1"
+                              class="settings-page__pair-group__flag"
+                              [style.background-color]="
+                                !getFlagEmoji(codes[0]) ? getBadgeColor(codes[0]) : null
+                              "
+                              [style.color]="
+                                !getFlagEmoji(codes[0]) ? getBadgeTextColor(codes[0]) : null
+                              "
                             >
-                              {{ group.count }} of 2
+                              {{ getFlagEmoji(codes[0]) || getBadgeCode(codes[0]) }}
                             </span>
-                          </div>
-                        </div>
-
-                        <!-- Direction cards -->
-                        <div class="settings-page__pair-group__directions">
-                          @for (dir of group.directions; track dir.id) {
-                            <app-direction-card-inner
-                              [pairId]="dir.id"
-                              [known]="dir.known"
-                              [learning]="dir.learning"
-                              [isActive]="dir.isActive"
-                              (activate)="setActivePair(dir.id)"
-                              (remove)="removePair(dir.id)"
-                            />
-                          }
-
-                          <!-- Empty slot placeholder -->
-                          @if (group.count === 1) {
-                            <div class="settings-page__direction settings-page__direction--empty">
-                              <div
-                                class="settings-page__direction__content"
-                                style="align-items: center; justify-content: center; padding: 2rem 1rem;"
+                            <span class="settings-page__pair-group__name">
+                              {{ getLanguageLabel(codes[0]) }} ↔ {{ getLanguageLabel(codes[1]) }}
+                              <span
+                                class="settings-page__pair-group__flag"
+                                [style.background-color]="
+                                  !getFlagEmoji(codes[1]) ? getBadgeColor(codes[1]) : null
+                                "
+                                [style.color]="
+                                  !getFlagEmoji(codes[1]) ? getBadgeTextColor(codes[1]) : null
+                                "
                               >
-                                @let codes = group.key.split('|');
-                                @let a = group.directions[0].known === codes[0] ? codes[1] : codes[0];
-                                @let b = group.directions[0].known === codes[0] ? codes[0] : codes[1];
-                                <div class="settings-page__direction__codes">
-                                  <span class="settings-page__direction__code">{{ a | uppercase }}</span>
-                                  <span class="settings-page__direction__arrow">→</span>
-                                  <span class="settings-page__direction__code">{{ b | uppercase }}</span>
-                                </div>
-                                <div class="settings-page__direction__sublabel" style="margin-top: 0.4rem;">
-                                  Not yet configured
-                                </div>
+                                {{ getFlagEmoji(codes[1]) || getBadgeCode(codes[1]) }}
+                              </span>
+                            </span>
+                          }
+                          <span
+                            class="settings-page__pair-group__badge"
+                            [class.settings-page__pair-group__badge--partial]="group.count === 1"
+                          >
+                            {{ group.count }} of 2
+                          </span>
+                        </div>
+                      </div>
+
+                      <!-- Direction cards -->
+                      <div class="settings-page__pair-group__directions">
+                        @for (dir of group.directions; track dir.id) {
+                          <app-direction-card-inner
+                            [pairId]="dir.id"
+                            [known]="dir.known"
+                            [learning]="dir.learning"
+                            [isActive]="dir.isActive"
+                            (activate)="setActivePair(dir.id)"
+                            (remove)="removePair(dir.id)"
+                          />
+                        }
+
+                        <!-- Empty slot placeholder -->
+                        @if (group.count === 1) {
+                          <div class="settings-page__direction settings-page__direction--empty">
+                            <div
+                              class="settings-page__direction__content"
+                              style="
+                                align-items: center;
+                                justify-content: center;
+                                padding: 2rem 1rem;
+                              "
+                            >
+                              @let codes = group.key.split('|');
+                              @let a = group.directions[0].known === codes[0] ? codes[1] : codes[0];
+                              @let b = group.directions[0].known === codes[0] ? codes[0] : codes[1];
+                              <div class="settings-page__direction__codes">
+                                <span class="settings-page__direction__code">{{
+                                  a | uppercase
+                                }}</span>
+                                <span class="settings-page__direction__arrow">→</span>
+                                <span class="settings-page__direction__code">{{
+                                  b | uppercase
+                                }}</span>
+                              </div>
+                              <div
+                                class="settings-page__direction__sublabel"
+                                style="margin-top: 0.4rem"
+                              >
+                                Not yet configured
                               </div>
                             </div>
-                          }
-                        </div>
+                          </div>
+                        }
+                      </div>
                     </div>
                   }
                 </div>

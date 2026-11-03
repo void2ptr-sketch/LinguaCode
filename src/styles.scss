@@ -109,6 +109,10 @@ body.card-focus-shell-open {
 }
 
 @keyframes directionPop {
-  from { transform: scale(0); }
-  to   { transform: scale(1); }
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }

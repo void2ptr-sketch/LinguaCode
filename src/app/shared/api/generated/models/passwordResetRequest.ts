@@ -8,7 +8,7 @@
 /**
  * Reset password request
  */
-export type PasswordResetRequest = {
+export interface PasswordResetRequest {
   /** @minLength 1 */
   resetToken: string;
   /**

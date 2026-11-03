@@ -8,7 +8,7 @@
 /**
  * Single resource API response wrapper
  */
-export type StringResponse = {
+export interface StringResponse {
   /** Response data */
   data?: string;
 }

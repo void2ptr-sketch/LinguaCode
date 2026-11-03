@@ -8,7 +8,7 @@
 /**
  * Authentication response
  */
-export type AuthResponse = {
+export interface AuthResponse {
   userId?: number;
   accessToken?: string;
   refreshToken?: string;

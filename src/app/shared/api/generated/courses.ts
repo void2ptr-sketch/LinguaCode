@@ -4,12 +4,23 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import { HttpClient } from '@angular/common/http';
-import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
+import {
+  HttpClient
+} from '@angular/common/http';
+import type {
+  HttpContext,
+  HttpEvent,
+  HttpParams
+} from '@angular/common/http';
 
-import { Injectable, inject } from '@angular/core';
+import {
+  Injectable,
+  inject
+} from '@angular/core';
 
-import type { Observable } from 'rxjs';
+import type {
+  Observable
+} from 'rxjs';
 
 import type {
   CourseCreateRequest,
@@ -19,16 +30,23 @@ import type {
   CourseUpdateRequest,
   CoursesListParams,
   CoursesSearchParams,
-  ListCourseResponse,
+  ListCourseResponse
 } from './models';
 
-import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
+import type {
+  HttpHeaders,
+  HttpResponse as AngularHttpResponse
+} from '@angular/common/http';
 
-type HttpClientOptions = {
+
+
+
+interface HttpClientOptions {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
+        | HttpParams
+      | Record<string, string | number | boolean | Array<string | number | boolean>>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -40,9 +58,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: { includeHeaders?: string[] } | boolean;
+  readonly transferCache?: {includeHeaders?: string[]} | boolean;
   readonly timeout?: number;
-};
+}
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -60,7 +78,7 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
-type AngularHttpParamValue = string | number | boolean | (string | number | boolean)[];
+type AngularHttpParamValue = string | number | boolean | Array<string | number | boolean>;
 type AngularHttpParamValueWithNullable = AngularHttpParamValue | null;
 type AngularObjectParamStrategy = 'flatten' | 'comma' | 'deepObject';
 
@@ -97,7 +115,9 @@ function filterParams(
   objectParamStrategies: Readonly<Record<string, AngularObjectParamStrategy>> = {},
 ): Record<string, unknown> {
   const filteredParams: Record<string, unknown> = {};
-  const filterPrimitiveArray = (value: unknown[]): (string | number | boolean)[] =>
+  const filterPrimitiveArray = (
+    value: unknown[],
+  ): Array<string | number | boolean> =>
     value
       .filter(
         (item) =>
@@ -107,9 +127,9 @@ function filterParams(
             typeof item === 'boolean' ||
             (item instanceof Date && !Number.isNaN(item.getTime()))),
       )
-      .map((item) => (item instanceof Date ? item.toISOString() : item)) as (
+      .map((item) => (item instanceof Date ? item.toISOString() : item)) as Array<
       string | number | boolean
-    )[];
+    >;
   for (const [key, value] of Object.entries(params)) {
     if (passthroughKeys.has(key)) {
       if (value !== undefined) {
@@ -140,7 +160,10 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             commaParts.push(prop, String(propValue));
-          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
+          } else if (
+            propValue instanceof Date &&
+            !Number.isNaN(propValue.getTime())
+          ) {
             commaParts.push(prop, propValue.toISOString());
           }
         }
@@ -149,7 +172,8 @@ function filterParams(
         }
       } else {
         for (const [prop, propValue] of entries) {
-          const targetKey = objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
+          const targetKey =
+            objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
           if (Array.isArray(propValue)) {
             const filteredProp = filterPrimitiveArray(propValue);
             if (filteredProp.length) {
@@ -162,7 +186,10 @@ function filterParams(
               typeof propValue === 'boolean')
           ) {
             filteredParams[targetKey] = propValue;
-          } else if (propValue instanceof Date && !Number.isNaN(propValue.getTime())) {
+          } else if (
+            propValue instanceof Date &&
+            !Number.isNaN(propValue.getTime())
+          ) {
             filteredParams[targetKey] = propValue.toISOString();
           }
         }
@@ -186,7 +213,9 @@ function filterParams(
       filteredParams[key] = value.toISOString();
     } else if (
       value != null &&
-      (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')
+      (typeof value === 'string' ||
+        typeof value === 'number' ||
+        typeof value === 'boolean')
     ) {
       filteredParams[key] = value;
     }
@@ -194,351 +223,306 @@ function filterParams(
   return filteredParams;
 }
 
+
+
+
+
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
   private readonly http = inject(HttpClient);
-  /**
-   * Returns course details by ID
-   * @summary Get course by ID
-   */
+/**
+ * Returns course details by ID
+ * @summary Get course by ID
+ */
+ coursesGetById<TData = CourseResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesGetById<TData = CourseResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesGetById<TData = CourseResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   coursesGetById<TData = CourseResponse>(
-    id: number,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  coursesGetById<TData = CourseResponse>(
-    id: number,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  coursesGetById<TData = CourseResponse>(
-    id: number,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  coursesGetById<TData = CourseResponse>(
-    id: number,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/courses/${id}`, {
+      return this.http.get<TData>(
+      `/api/v1/courses/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/courses/${id}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.get<TData>(`/api/v1/courses/${id}`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Updates an existing course
-   * @summary Update course
-   */
-  coursesUpdate<TData = CourseResponse>(
-    id: number,
-    courseUpdateRequest: CourseUpdateRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  coursesUpdate<TData = CourseResponse>(
-    id: number,
-    courseUpdateRequest: CourseUpdateRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  coursesUpdate<TData = CourseResponse>(
-    id: number,
-    courseUpdateRequest: CourseUpdateRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  coursesUpdate<TData = CourseResponse>(
-    id: number,
-    courseUpdateRequest: CourseUpdateRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.put<TData>(`/api/v1/courses/${id}`, courseUpdateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.put<TData>(`/api/v1/courses/${id}`, courseUpdateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.put<TData>(`/api/v1/courses/${id}`, courseUpdateRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Deletes a course by ID
-   * @summary Delete course
-   */
-  coursesDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
-  coursesDelete<TData = void>(
-    id: number,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  coursesDelete<TData = void>(
-    id: number,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  coursesDelete<TData = void>(
-    id: number,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.delete<TData>(`/api/v1/courses/${id}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.delete<TData>(`/api/v1/courses/${id}`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.delete<TData>(`/api/v1/courses/${id}`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Returns a paginated list of courses with optional filters and tier-based access control
-   * @summary List courses
-   */
-  coursesList<TData = CourseList>(
-    params: CoursesListParams,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  coursesList<TData = CourseList>(
-    params: CoursesListParams,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  coursesList<TData = CourseList>(
-    params: CoursesListParams,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  coursesList<TData = CourseList>(
-    params: CoursesListParams,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams(
-      { ...params, ...options?.params },
-      new Set<string>([]),
-      false,
-      new Set<string>([]),
-      { pageable: 'flatten' } as const,
+      }
     );
-
-    if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/courses`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-        params: filteredParams,
-      });
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/courses`, {
+      return this.http.get<TData>(
+      `/api/v1/courses/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,
-      });
-    }
-
-    return this.http.get<TData>(`/api/v1/courses`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-      params: filteredParams,
-    });
-  }
-  /**
-   * Creates a new course
-   * @summary Create course
-   */
-  coursesCreate<TData = CourseResponse>(
-    courseCreateRequest: CourseCreateRequest,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  coursesCreate<TData = CourseResponse>(
-    courseCreateRequest: CourseCreateRequest,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  coursesCreate<TData = CourseResponse>(
-    courseCreateRequest: CourseCreateRequest,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  coursesCreate<TData = CourseResponse>(
-    courseCreateRequest: CourseCreateRequest,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.post<TData>(`/api/v1/courses`, courseCreateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.post<TData>(`/api/v1/courses`, courseCreateRequest, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.post<TData>(`/api/v1/courses`, courseCreateRequest, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Returns a complete export package for a course including all nested entities
-   * @summary Get course export bundle
-   */
-  coursesGetBundle<TData = CourseExportBundleResponse>(
-    id: number,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  coursesGetBundle<TData = CourseExportBundleResponse>(
-    id: number,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  coursesGetBundle<TData = CourseExportBundleResponse>(
-    id: number,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  coursesGetBundle<TData = CourseExportBundleResponse>(
-    id: number,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/courses/${id}/bundle`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      });
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/courses/${id}/bundle`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      });
-    }
-
-    return this.http.get<TData>(`/api/v1/courses/${id}/bundle`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
-  }
-  /**
-   * Searches courses by title or description with optional author filter
-   * @summary Search courses
-   */
-  coursesSearch<TData = CourseList>(
-    params: CoursesSearchParams,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  coursesSearch<TData = CourseList>(
-    params: CoursesSearchParams,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  coursesSearch<TData = CourseList>(
-    params: CoursesSearchParams,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  coursesSearch<TData = CourseList>(
-    params: CoursesSearchParams,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams(
-      { ...params, ...options?.params },
-      new Set<string>([]),
-      false,
-      new Set<string>([]),
-      { pageable: 'flatten' } as const,
+      }
     );
+    }
 
+    return this.http.get<TData>(
+      `/api/v1/courses/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Updates an existing course
+ * @summary Update course
+ */
+ coursesUpdate<TData = CourseResponse>(id: number,
+    courseUpdateRequest: CourseUpdateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesUpdate<TData = CourseResponse>(id: number,
+    courseUpdateRequest: CourseUpdateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesUpdate<TData = CourseResponse>(id: number,
+    courseUpdateRequest: CourseUpdateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesUpdate<TData = CourseResponse>(
+    id: number,
+    courseUpdateRequest: CourseUpdateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/courses/search`, {
+      return this.http.put<TData>(
+      `/api/v1/courses/${id}`,
+      courseUpdateRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-        params: filteredParams,
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/courses/search`, {
+      return this.http.put<TData>(
+      `/api/v1/courses/${id}`,
+      courseUpdateRequest,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,
-      });
+      }
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/courses/search`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-      params: filteredParams,
-    });
+    return this.http.put<TData>(
+      `/api/v1/courses/${id}`,
+      courseUpdateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-  /**
-   * Returns all courses that contain programs referencing the given scenario
-   * @summary Find courses by scenario
-   */
-  coursesFindByScenario<TData = ListCourseResponse>(
-    scenarioId: number,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  coursesFindByScenario<TData = ListCourseResponse>(
-    scenarioId: number,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  coursesFindByScenario<TData = ListCourseResponse>(
-    scenarioId: number,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  coursesFindByScenario<TData = ListCourseResponse>(
-    scenarioId: number,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+/**
+ * Deletes a course by ID
+ * @summary Delete course
+ */
+ coursesDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesDelete<TData = void>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesDelete<TData = void>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesDelete<TData = void>(
+    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/courses/by-scenario/${scenarioId}`, {
+      return this.http.delete<TData>(
+      `/api/v1/courses/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/courses/by-scenario/${scenarioId}`, {
+      return this.http.delete<TData>(
+      `/api/v1/courses/${id}`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/courses/by-scenario/${scenarioId}`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.delete<TData>(
+      `/api/v1/courses/${id}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-}
+/**
+ * Returns a paginated list of courses with optional filters and tier-based access control
+ * @summary List courses
+ */
+ coursesList<TData = CourseList>(params: CoursesListParams, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesList<TData = CourseList>(params: CoursesListParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesList<TData = CourseList>(params: CoursesListParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesList<TData = CourseList>(
+    params: CoursesListParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
 
-export type CoursesGetByIdClientResult = NonNullable<CourseResponse>;
-export type CoursesUpdateClientResult = NonNullable<CourseResponse>;
-export type CoursesDeleteClientResult = NonNullable<void>;
-export type CoursesListClientResult = NonNullable<CourseList>;
-export type CoursesCreateClientResult = NonNullable<CourseResponse>;
-export type CoursesGetBundleClientResult = NonNullable<CourseExportBundleResponse>;
-export type CoursesSearchClientResult = NonNullable<CourseList>;
-export type CoursesFindByScenarioClientResult = NonNullable<ListCourseResponse>;
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/courses`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+        params: filteredParams,}
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/courses`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+        params: filteredParams,}
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/courses`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+        params: filteredParams,}
+    );
+  }
+/**
+ * Creates a new course
+ * @summary Create course
+ */
+ coursesCreate<TData = CourseResponse>(courseCreateRequest: CourseCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesCreate<TData = CourseResponse>(courseCreateRequest: CourseCreateRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesCreate<TData = CourseResponse>(courseCreateRequest: CourseCreateRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesCreate<TData = CourseResponse>(
+    courseCreateRequest: CourseCreateRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.post<TData>(
+      `/api/v1/courses`,
+      courseCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.post<TData>(
+      `/api/v1/courses`,
+      courseCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.post<TData>(
+      `/api/v1/courses`,
+      courseCreateRequest,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Returns a complete export package for a course including all nested entities
+ * @summary Get course export bundle
+ */
+ coursesGetBundle<TData = CourseExportBundleResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesGetBundle<TData = CourseExportBundleResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesGetBundle<TData = CourseExportBundleResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesGetBundle<TData = CourseExportBundleResponse>(
+    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/courses/${id}/bundle`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/courses/${id}/bundle`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/courses/${id}/bundle`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
+ * Searches courses by title or description with optional author filter
+ * @summary Search courses
+ */
+ coursesSearch<TData = CourseList>(params: CoursesSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesSearch<TData = CourseList>(params: CoursesSearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesSearch<TData = CourseList>(params: CoursesSearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesSearch<TData = CourseList>(
+    params: CoursesSearchParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
+
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/courses/search`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+        params: filteredParams,}
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/courses/search`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+        params: filteredParams,}
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/courses/search`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+        params: filteredParams,}
+    );
+  }
+/**
+ * Returns all courses that contain programs referencing the given scenario
+ * @summary Find courses by scenario
+ */
+ coursesFindByScenario<TData = ListCourseResponse>(scenarioId: number, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesFindByScenario<TData = ListCourseResponse>(scenarioId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesFindByScenario<TData = ListCourseResponse>(scenarioId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesFindByScenario<TData = ListCourseResponse>(
+    scenarioId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/courses/by-scenario/${scenarioId}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/courses/by-scenario/${scenarioId}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/courses/by-scenario/${scenarioId}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+};
+
+export type CoursesGetByIdClientResult = NonNullable<CourseResponse>
+export type CoursesUpdateClientResult = NonNullable<CourseResponse>
+export type CoursesDeleteClientResult = NonNullable<void>
+export type CoursesListClientResult = NonNullable<CourseList>
+export type CoursesCreateClientResult = NonNullable<CourseResponse>
+export type CoursesGetBundleClientResult = NonNullable<CourseExportBundleResponse>
+export type CoursesSearchClientResult = NonNullable<CourseList>
+export type CoursesFindByScenarioClientResult = NonNullable<ListCourseResponse>

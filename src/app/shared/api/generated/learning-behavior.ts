@@ -4,12 +4,23 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import { HttpClient } from '@angular/common/http';
-import type { HttpContext, HttpEvent, HttpParams } from '@angular/common/http';
+import {
+  HttpClient
+} from '@angular/common/http';
+import type {
+  HttpContext,
+  HttpEvent,
+  HttpParams
+} from '@angular/common/http';
 
-import { Injectable, inject } from '@angular/core';
+import {
+  Injectable,
+  inject
+} from '@angular/core';
 
-import type { Observable } from 'rxjs';
+import type {
+  Observable
+} from 'rxjs';
 
 import type {
   BehaviorGetSnapshotParams,
@@ -17,16 +28,23 @@ import type {
   LearningDifficultyCurveResponse,
   LearningPaceResponse,
   LearningWeakCardProfileoList,
-  UserBehaviorResponse,
+  UserBehaviorResponse
 } from './models';
 
-import type { HttpHeaders, HttpResponse as AngularHttpResponse } from '@angular/common/http';
+import type {
+  HttpHeaders,
+  HttpResponse as AngularHttpResponse
+} from '@angular/common/http';
 
-type HttpClientOptions = {
+
+
+
+interface HttpClientOptions {
   readonly headers?: HttpHeaders | Record<string, string | string[]>;
   readonly context?: HttpContext;
   readonly params?:
-    HttpParams | Record<string, string | number | boolean | (string | number | boolean)[]>;
+        | HttpParams
+      | Record<string, string | number | boolean | Array<string | number | boolean>>;
   readonly reportProgress?: boolean;
   readonly withCredentials?: boolean;
   readonly credentials?: RequestCredentials;
@@ -38,9 +56,9 @@ type HttpClientOptions = {
   readonly referrer?: string;
   readonly integrity?: string;
   readonly referrerPolicy?: ReferrerPolicy;
-  readonly transferCache?: { includeHeaders?: string[] } | boolean;
+  readonly transferCache?: {includeHeaders?: string[]} | boolean;
   readonly timeout?: number;
-};
+}
 
 type HttpClientBodyOptions = HttpClientOptions & {
   readonly observe?: 'body';
@@ -58,7 +76,7 @@ type HttpClientObserveOptions = HttpClientOptions & {
   readonly observe?: 'body' | 'events' | 'response';
 };
 
-type AngularHttpParamValue = string | number | boolean | (string | number | boolean)[];
+type AngularHttpParamValue = string | number | boolean | Array<string | number | boolean>;
 type AngularHttpParamValueWithNullable = AngularHttpParamValue | null;
 
 function filterParams(
@@ -103,9 +121,9 @@ function filterParams(
               typeof item === 'boolean' ||
               (item instanceof Date && !Number.isNaN(item.getTime()))),
         )
-        .map((item) => (item instanceof Date ? item.toISOString() : item)) as (
-        string | number | boolean
-      )[];
+        .map((item) =>
+          item instanceof Date ? item.toISOString() : item,
+        ) as Array<string | number | boolean>;
       if (filtered.length) {
         filteredParams[key] = filtered;
       }
@@ -121,7 +139,9 @@ function filterParams(
       filteredParams[key] = value.toISOString();
     } else if (
       value != null &&
-      (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')
+      (typeof value === 'string' ||
+        typeof value === 'number' ||
+        typeof value === 'boolean')
     ) {
       filteredParams[key] = value;
     }
@@ -129,168 +149,156 @@ function filterParams(
   return filteredParams;
 }
 
+
+
+
+
 @Injectable({ providedIn: 'root' })
 export class LearningBehaviorService {
   private readonly http = inject(HttpClient);
-  /**
-   * Returns weak cards for the authenticated user (JWT only)
-   * @summary Get weak cards
-   */
+/**
+ * Returns weak cards for the authenticated user (JWT only)
+ * @summary Get weak cards
+ */
+ behaviorGetWeakCards<TData = LearningWeakCardProfileoList>(params?: BehaviorGetWeakCardsParams, options?: HttpClientBodyOptions): Observable<TData>;
+ behaviorGetWeakCards<TData = LearningWeakCardProfileoList>(params?: BehaviorGetWeakCardsParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ behaviorGetWeakCards<TData = LearningWeakCardProfileoList>(params?: BehaviorGetWeakCardsParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   behaviorGetWeakCards<TData = LearningWeakCardProfileoList>(
-    params?: BehaviorGetWeakCardsParams,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  behaviorGetWeakCards<TData = LearningWeakCardProfileoList>(
-    params?: BehaviorGetWeakCardsParams,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  behaviorGetWeakCards<TData = LearningWeakCardProfileoList>(
-    params?: BehaviorGetWeakCardsParams,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  behaviorGetWeakCards<TData = LearningWeakCardProfileoList>(
-    params?: BehaviorGetWeakCardsParams,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams({ ...params, ...options?.params }, new Set<string>([]));
+    params?: BehaviorGetWeakCardsParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
 
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/learning/behavior/weak-cards`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(
+      `/api/v1/learning/behavior/weak-cards`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-        params: filteredParams,
-      });
+        params: filteredParams,}
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/learning/behavior/weak-cards`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(
+      `/api/v1/learning/behavior/weak-cards`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,
-      });
+        params: filteredParams,}
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/learning/behavior/weak-cards`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-      params: filteredParams,
-    });
+    return this.http.get<TData>(
+      `/api/v1/learning/behavior/weak-cards`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+        params: filteredParams,}
+    );
   }
-  /**
-   * Returns the full behavior snapshot for the authenticated user (JWT only)
-   * @summary Get behavior snapshot
-   */
+/**
+ * Returns the full behavior snapshot for the authenticated user (JWT only)
+ * @summary Get behavior snapshot
+ */
+ behaviorGetSnapshot<TData = UserBehaviorResponse>(params?: BehaviorGetSnapshotParams, options?: HttpClientBodyOptions): Observable<TData>;
+ behaviorGetSnapshot<TData = UserBehaviorResponse>(params?: BehaviorGetSnapshotParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ behaviorGetSnapshot<TData = UserBehaviorResponse>(params?: BehaviorGetSnapshotParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   behaviorGetSnapshot<TData = UserBehaviorResponse>(
-    params?: BehaviorGetSnapshotParams,
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  behaviorGetSnapshot<TData = UserBehaviorResponse>(
-    params?: BehaviorGetSnapshotParams,
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  behaviorGetSnapshot<TData = UserBehaviorResponse>(
-    params?: BehaviorGetSnapshotParams,
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  behaviorGetSnapshot<TData = UserBehaviorResponse>(
-    params?: BehaviorGetSnapshotParams,
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams({ ...params, ...options?.params }, new Set<string>([]));
+    params?: BehaviorGetSnapshotParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
 
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/learning/behavior/snapshot`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(
+      `/api/v1/learning/behavior/snapshot`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-        params: filteredParams,
-      });
+        params: filteredParams,}
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/learning/behavior/snapshot`, {
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      return this.http.get<TData>(
+      `/api/v1/learning/behavior/snapshot`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-        params: filteredParams,
-      });
+        params: filteredParams,}
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/learning/behavior/snapshot`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-      params: filteredParams,
-    });
+    return this.http.get<TData>(
+      `/api/v1/learning/behavior/snapshot`,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+        params: filteredParams,}
+    );
   }
-  /**
-   * Returns learning pace analytics for the authenticated user (JWT only)
-   * @summary Get learning pace
-   */
-  behaviorGetPace<TData = LearningPaceResponse>(options?: HttpClientBodyOptions): Observable<TData>;
+/**
+ * Returns learning pace analytics for the authenticated user (JWT only)
+ * @summary Get learning pace
+ */
+ behaviorGetPace<TData = LearningPaceResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ behaviorGetPace<TData = LearningPaceResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ behaviorGetPace<TData = LearningPaceResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   behaviorGetPace<TData = LearningPaceResponse>(
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  behaviorGetPace<TData = LearningPaceResponse>(
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  behaviorGetPace<TData = LearningPaceResponse>(
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/learning/behavior/pace`, {
+      return this.http.get<TData>(
+      `/api/v1/learning/behavior/pace`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/learning/behavior/pace`, {
+      return this.http.get<TData>(
+      `/api/v1/learning/behavior/pace`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/learning/behavior/pace`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.get<TData>(
+      `/api/v1/learning/behavior/pace`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-  /**
-   * Returns difficulty curve by card kind for the authenticated user (JWT only)
-   * @summary Get difficulty curve
-   */
+/**
+ * Returns difficulty curve by card kind for the authenticated user (JWT only)
+ * @summary Get difficulty curve
+ */
+ behaviorGetDifficulty<TData = LearningDifficultyCurveResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ behaviorGetDifficulty<TData = LearningDifficultyCurveResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ behaviorGetDifficulty<TData = LearningDifficultyCurveResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   behaviorGetDifficulty<TData = LearningDifficultyCurveResponse>(
-    options?: HttpClientBodyOptions,
-  ): Observable<TData>;
-  behaviorGetDifficulty<TData = LearningDifficultyCurveResponse>(
-    options?: HttpClientEventOptions,
-  ): Observable<HttpEvent<TData>>;
-  behaviorGetDifficulty<TData = LearningDifficultyCurveResponse>(
-    options?: HttpClientResponseOptions,
-  ): Observable<AngularHttpResponse<TData>>;
-  behaviorGetDifficulty<TData = LearningDifficultyCurveResponse>(
-    options?: HttpClientObserveOptions,
-  ): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
-      return this.http.get<TData>(`/api/v1/learning/behavior/difficulty`, {
+      return this.http.get<TData>(
+      `/api/v1/learning/behavior/difficulty`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      });
+      }
+    );
     }
 
     if (options?.observe === 'response') {
-      return this.http.get<TData>(`/api/v1/learning/behavior/difficulty`, {
+      return this.http.get<TData>(
+      `/api/v1/learning/behavior/difficulty`,{
         ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      });
+      }
+    );
     }
 
-    return this.http.get<TData>(`/api/v1/learning/behavior/difficulty`, {
-      ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-      observe: 'body',
-    });
+    return this.http.get<TData>(
+      `/api/v1/learning/behavior/difficulty`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
   }
-}
+};
 
-export type BehaviorGetWeakCardsClientResult = NonNullable<LearningWeakCardProfileoList>;
-export type BehaviorGetSnapshotClientResult = NonNullable<UserBehaviorResponse>;
-export type BehaviorGetPaceClientResult = NonNullable<LearningPaceResponse>;
-export type BehaviorGetDifficultyClientResult = NonNullable<LearningDifficultyCurveResponse>;
+export type BehaviorGetWeakCardsClientResult = NonNullable<LearningWeakCardProfileoList>
+export type BehaviorGetSnapshotClientResult = NonNullable<UserBehaviorResponse>
+export type BehaviorGetPaceClientResult = NonNullable<LearningPaceResponse>
+export type BehaviorGetDifficultyClientResult = NonNullable<LearningDifficultyCurveResponse>
