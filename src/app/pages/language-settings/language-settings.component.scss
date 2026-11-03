@@ -14,7 +14,7 @@
   &__pair-form { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.75rem; flex-wrap: wrap; .settings-page__pair-select { flex: 1; min-width: 180px; } .settings-page__pair-arrow { font-size: 1.3rem; color: var(--mat-sys-on-surface-variant); } }
   &__pair-add { height: 42px; font-weight: 600; }
 }
-.settings-page__pairs-grouped { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1rem; }
+.settings-page__pairs-grouped { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 1rem; }
 
 .settings-page__pair-group {
   border-radius: 16px; overflow: hidden; transition: box-shadow 220ms ease, border-color 220ms ease;
@@ -44,7 +44,7 @@
   &__radio { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--mat-sys-outline); transition: all 220ms ease; display: grid; place-items: center; .settings-page__direction--active & { border-color: var(--mat-sys-primary); background: var(--mat-sys-primary); svg { color: var(--mat-sys-on-primary); animation: directionPop 300ms ease-out both; } } }
   &__sublabel { font-size: 0.74rem; color: var(--mat-sys-on-surface-variant); }
   &__divider { height: 1px; background: var(--mat-sys-outline-variant); margin: 0.1rem 0; }
-  &__actions { display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+  &__actions { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
   &__btn { font-family: 'Manrope', system-ui, sans-serif; font-size: 0.7rem; font-weight: 600; padding: 0.35rem 0.65rem; border-radius: 8px; min-height: auto; transition: all 200ms ease; &--primary { background: var(--mat-sys-primary); color: var(--mat-sys-on-primary); &:hover { filter: brightness(1.1); box-shadow: 0 2px 8px rgba(90,113,148,.3); } } &--remove { background: transparent; color: var(--mat-sys-error); &:hover { background: var(--mat-sys-error-container); } } }
 }
 
