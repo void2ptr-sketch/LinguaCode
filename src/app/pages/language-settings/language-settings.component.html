@@ -216,16 +216,15 @@
                                 </div>
                                 <div class="settings-page__direction__divider"></div>
                                 <div class="settings-page__direction__actions">
-                                  @if (!dir.isActive) {
-                                    <button
-                                      mat-button
-                                      type="button"
-                                      class="settings-page__direction__btn settings-page__direction__btn--primary"
-                                      (click)="setActivePair(dir.id)"
-                                    >
-                                      Activate
-                                    </button>
-                                  }
+                                  <button
+                                    mat-button
+                                    type="button"
+                                    class="settings-page__direction__btn settings-page__direction__btn--primary settings-page__direction__btn--activate"
+                                    [class.settings-page__direction__btn--hidden]="dir.isActive"
+                                    (click)="setActivePair(dir.id)"
+                                  >
+                                    Activate
+                                  </button>
                                   <button
                                     mat-button
                                     type="button"
