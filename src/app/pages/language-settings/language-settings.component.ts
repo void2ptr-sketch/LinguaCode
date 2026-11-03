@@ -28,6 +28,7 @@ import { UserStore } from '../../entities/user/model';
 import { RoleService } from '../../entities/auth/services/role.service';
 import { LanguagePairsService } from '../../shared/api/generated/language-pairs';
 import type { ContentLanguage } from '../../entities/card/model';
+import { DirectionCardComponent, DIRECTION_CARD_HELPERS, DirectionItem } from './direction-card/direction-card.component';
 
 // ── Grouping types ──────────────────────────────────────────────
 
@@ -56,15 +57,6 @@ function normalizeCode(code: string): ContentLanguage {
   if (alias) return alias;
   // Return as-is if already valid
   return trimmed as ContentLanguage;
-}
-
-/** A single direction within a grouped card. */
-export interface DirectionItem {
-  /** DB pair ID (stringified number). */
-  id: string;
-  known: string;
-  learning: string;
-  isActive: boolean;
 }
 
 /** A grouped pair of mirror directions (e.g. EN↔RU). */
@@ -107,6 +99,20 @@ export interface PairGroup {
     MatSlideToggleModule,
     MatTooltipModule,
     MatDialogModule,
+    DirectionCardComponent,
+  ],
+  providers: [
+    {
+      provide: DIRECTION_CARD_HELPERS,
+      useFactory: (comp: LanguageSettingsComponent) => ({
+        getLanguageLabel: (code: string) => comp.getLanguageLabel(code),
+        getFlagEmoji: (code: string) => comp.getFlagEmoji(code),
+        getBadgeColor: (code: string) => comp.getBadgeColor(code),
+        getBadgeTextColor: (code: string) => comp.getBadgeTextColor(code),
+        getBadgeCode: (code: string) => comp.getBadgeCode(code),
+      }),
+      deps: [LanguageSettingsComponent],
+    },
   ],
   templateUrl: './language-settings.component.html',
   styleUrl: './language-settings.component.scss',
@@ -340,14 +346,21 @@ export class LanguageSettingsComponent {
     }
   }
 
-  /** Sets the active pair by backend ID. Finds/creates entry in UserStore. */
+  /** Sets the active pair by backend ID. Finds existing entry in UserStore and activates it. */
   setActivePair(pairId: string): void {
     const pair = this.configuredPairs().find((p) => p.id === pairId);
     if (!pair) {
       return;
     }
-    // Ensure entry exists in UserStore (creates if needed, activates if exists)
-    this.userStore.addLanguagePair({ known: pair.known, learning: pair.learning });
+    // Find an existing entry in UserStore that matches this pair's known/learning codes.
+    // Only activate — never create a new entry here (the pair already exists in the backend).
+    const existingEntry = this.userStore.languagePairs().find(
+      (e) =>
+        e.pair.known === pair.known && e.pair.learning === pair.learning,
+    );
+    if (existingEntry) {
+      this.userStore.setActiveLanguagePair(existingEntry.id);
+    }
   }
 
   /** Removes a configured pair. */

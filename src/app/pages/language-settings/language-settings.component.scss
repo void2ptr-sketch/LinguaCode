@@ -21,7 +21,6 @@
   border: 2px solid var(--mat-sys-surface-container-high);
   background: var(--mat-sys-surface-container-low);
   &:hover { box-shadow: 0 4px 20px rgba(0,0,0,.06); }
-  &--active { border-left: 4px solid var(--mat-sys-primary); border-color: var(--mat-sys-primary); background: linear-gradient(135deg, rgba(90,113,148,.06) 0%, transparent 40%); }
   &__header { display: flex; align-items: center; justify-content: center; padding: 1.1rem 1.35rem 0.75rem; }
   &__title { display: flex; align-items: center; gap: 0.6rem; }
   &__flag { font-size: 1.5rem; line-height: 1; transition: all 200ms ease; &--badge { font-size: 0.7rem; font-weight: 700; line-height: 1; padding: 0.15rem 0.45rem; border-radius: 8px; min-width: 2rem; text-align: center; display: inline-flex; align-items: center; justify-content: center; } }

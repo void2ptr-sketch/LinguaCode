@@ -145,12 +145,7 @@
               } @else {
                 <div class="settings-page__pairs-grouped">
                   @for (group of groupedPairs(); track group.key) {
-                    <div
-                      class="settings-page__pair-group"
-                      [class.settings-page__pair-group--active]="
-                        group.directions.some((d) => d.isActive)
-                      "
-                    >
+                    <div class="settings-page__pair-group">
                         <!-- Group header -->
                         <div class="settings-page__pair-group__header">
                           <div class="settings-page__pair-group__title">
@@ -182,65 +177,11 @@
                         <!-- Direction cards -->
                         <div class="settings-page__pair-group__directions">
                           @for (dir of group.directions; track dir.id) {
-                            <div
-                              class="settings-page__direction"
-                              [class.settings-page__direction--active]="dir.isActive"
-                              [class.settings-page__direction--available]="true"
-                            >
-                              <div class="settings-page__direction__content">
-                                <!-- 2×3 grid: both rows share the same columns -->
-                                <div class="settings-page__direction__matrix">
-                                  <span class="settings-page__direction__code">{{ dir.known | uppercase }}</span>
-                                  <span class="settings-page__direction__arrow">→</span>
-                                  <span class="settings-page__direction__code">{{ dir.learning | uppercase }}</span>
-                                  <span class="settings-page__direction__label-text">{{ getLanguageLabel(dir.known) }}</span>
-                                  <span class="settings-page__direction__arrow">→</span>
-                                  <span class="settings-page__direction__label-text">{{ getLanguageLabel(dir.learning) }}</span>
-                                </div>
-                                <!-- Status row: radio + status label -->
-                                <div class="settings-page__direction__status">
-                                  <div class="settings-page__direction__radio">
-                                    @if (dir.isActive) {
-                                      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M4 8l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                      </svg>
-                                    }
-                                  </div>
-                                  <span class="settings-page__direction__sublabel">
-                                    @if (dir.isActive) {
-                                      Active
-                                    } @else {
-                                      Not active
-                                    }
-                                  </span>
-                                </div>
-                                <div class="settings-page__direction__divider"></div>
-                                <div class="settings-page__direction__actions">
-                                  <button
-                                    mat-button
-                                    type="button"
-                                    class="settings-page__direction__btn settings-page__direction__btn--primary settings-page__direction__btn--activate"
-                                    [class.settings-page__direction__btn--hidden]="dir.isActive"
-                                    (click)="setActivePair(dir.id)"
-                                  >
-                                    Activate
-                                  </button>
-                                  <button
-                                    mat-button
-                                    type="button"
-                                    color="warn"
-                                    class="settings-page__direction__btn settings-page__direction__btn--remove"
-                                    (click)="removePair(dir.id)"
-                                    matTooltip="Remove this direction"
-                                  >
-                                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M3 4h10M5.33 4V2.67a1.33 1.33 0 011.34-1.34h2.66a1.33 1.33 0 011.34 1.34V4m1.06 0v9.33a1.33 1.33 0 01-1.33 1.34H5.33a1.33 1.33 0 01-1.33-1.34V4h9.34z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                    Remove
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
+                            <app-direction-card
+                              [dirItem]="dir"
+                              (activate)="setActivePair(dir.id)"
+                              (remove)="removePair(dir.id)"
+                            />
                           }
 
                           <!-- Empty slot placeholder -->
