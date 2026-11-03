@@ -151,13 +151,9 @@ export class LanguageSettingsStore {
   /**
    * Sets the active language pair.
    *
-   * @param pairId - The pair ID (must exist in configuredPairs).
+   * @param pairId - The pair ID (backend ID).
    */
   setActivePair(pairId: string): void {
-    const pairs = this.configuredPairs();
-    if (!pairs.find((p) => p.id === pairId)) {
-      return;
-    }
     this.#state.update((s) => ({
       ...s,
       activePairId: pairId,
