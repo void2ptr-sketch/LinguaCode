@@ -107,3 +107,8 @@ body.card-focus-shell-open {
     max-height: calc(100vh - 8rem);
   }
 }
+
+@keyframes directionPop {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}

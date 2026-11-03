@@ -89,8 +89,8 @@
           <div class="settings-page__tab-panel">
             <h2 class="settings-page__section-title">Configured Pairs</h2>
             <p class="settings-page__hint">
-              Create pairs from your selected languages. The first pair created is active by
-              default.
+              Mirror pairs (e.g. EN↔RU) are grouped. Tap a direction to activate it, or remove
+              individually.
             </p>
 
             @if (selectedCodes().length < 2) {
@@ -110,7 +110,7 @@
                   </mat-select>
                 </mat-form-field>
 
-                <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+                <span class="settings-page__pair-arrow">→</span>
 
                 <mat-form-field appearance="outline" class="settings-page__pair-select">
                   <mat-label>Learning</mat-label>
@@ -137,43 +137,135 @@
                 </button>
               </div>
 
-              <!-- Existing pairs list -->
-              <div class="settings-page__pairs-list">
-                @for (pair of configuredPairs(); track pair.id) {
-                  <mat-card
-                    class="settings-page__pair-item"
-                    [class.settings-page__pair-item--active]="pair.id === activePairId()"
-                  >
-                    <mat-card-content>
-                      <div class="settings-page__pair-label">
-                        <strong>{{ getLanguageLabel(pair.known) }}</strong>
-                        <mat-icon>arrow_forward</mat-icon>
-                        <strong>{{ getLanguageLabel(pair.learning) }}</strong>
-                      </div>
-                      <div class="settings-page__pair-actions">
-                        <button
-                          mat-icon-button
-                          type="button"
-                          matTooltip="Activate"
-                          [class.settings-page__pair-actions--active]="pair.id === activePairId()"
-                          (click)="setActivePair(pair.id)"
-                        >
-                          <mat-icon>radio_button_checked</mat-icon>
-                        </button>
-                        <button
-                          mat-icon-button
-                          type="button"
-                          color="warn"
-                          matTooltip="Remove"
-                          (click)="removePair(pair.id)"
-                        >
-                          <mat-icon>delete</mat-icon>
-                        </button>
-                      </div>
-                    </mat-card-content>
-                  </mat-card>
-                }
-              </div>
+              <!-- Existing pairs grouped by mirror languages -->
+              @if (groupedPairs().length === 0) {
+                <div class="settings-page__empty">
+                  No pairs found for your selected languages. Create one above.
+                </div>
+              } @else {
+                <div class="settings-page__pairs-grouped">
+                  @for (group of groupedPairs(); track group.key) {
+                    <div
+                      class="settings-page__pair-group"
+                      [class.settings-page__pair-group--active]="
+                        group.directions.some((d) => d.isActive)
+                      "
+                    >
+                        <!-- Group header -->
+                        <div class="settings-page__pair-group__header">
+                          <div class="settings-page__pair-group__title">
+                            <span class="settings-page__pair-group__flag">
+                              {{ getFlagEmoji(group.key.split('|')[0]) }}
+                            </span>
+                            <span class="settings-page__pair-group__name">
+                              @if (group.key.includes('|')) {
+                                @let codes = group.key.split('|');
+                                {{ getLanguageLabel(codes[0]) }} ↔ {{ getLanguageLabel(codes[1]) }}
+                              }
+                            </span>
+                            <span
+                              class="settings-page__pair-group__badge"
+                              [class.settings-page__pair-group__badge--partial]="group.count === 1"
+                            >
+                              {{ group.count }} of 2
+                            </span>
+                          </div>
+                        </div>
+
+                        <!-- Direction cards -->
+                        <div class="settings-page__pair-group__directions">
+                          @for (dir of group.directions; track dir.id) {
+                            <div
+                              class="settings-page__direction"
+                              [class.settings-page__direction--active]="dir.isActive"
+                              [class.settings-page__direction--available]="true"
+                            >
+                              <div class="settings-page__direction__content">
+                                <!-- Top row: codes -->
+                                <div class="settings-page__direction__codes">
+                                  <span class="settings-page__direction__code">{{ dir.known | uppercase }}</span>
+                                  <span class="settings-page__direction__arrow">→</span>
+                                  <span class="settings-page__direction__code">{{ dir.learning | uppercase }}</span>
+                                </div>
+                                <!-- Bottom row: full names — same 3-column grid -->
+                                <div class="settings-page__direction__codes">
+                                  <span class="settings-page__direction__label-text">{{ getLanguageLabel(dir.known) }}</span>
+                                  <span class="settings-page__direction__arrow">→</span>
+                                  <span class="settings-page__direction__label-text">{{ getLanguageLabel(dir.learning) }}</span>
+                                </div>
+                                <!-- Status row: radio + status label -->
+                                <div class="settings-page__direction__status">
+                                  <div class="settings-page__direction__radio">
+                                    @if (dir.isActive) {
+                                      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 8l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                      </svg>
+                                    }
+                                  </div>
+                                  <span class="settings-page__direction__sublabel">
+                                    @if (dir.isActive) {
+                                      Active
+                                    } @else {
+                                      Not active
+                                    }
+                                  </span>
+                                </div>
+                                <div class="settings-page__direction__divider"></div>
+                                <div class="settings-page__direction__actions">
+                                  @if (!dir.isActive) {
+                                    <button
+                                      mat-button
+                                      type="button"
+                                      class="settings-page__direction__btn settings-page__direction__btn--primary"
+                                      (click)="setActivePair(dir.id)"
+                                    >
+                                      Activate
+                                    </button>
+                                  }
+                                  <button
+                                    mat-button
+                                    type="button"
+                                    color="warn"
+                                    class="settings-page__direction__btn settings-page__direction__btn--remove"
+                                    (click)="removePair(dir.id)"
+                                    matTooltip="Remove this direction"
+                                  >
+                                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M3 4h10M5.33 4V2.67a1.33 1.33 0 011.34-1.34h2.66a1.33 1.33 0 011.34 1.34V4m1.06 0v9.33a1.33 1.33 0 01-1.33 1.34H5.33a1.33 1.33 0 01-1.33-1.34V4h9.34z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    Remove
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          }
+
+                          <!-- Empty slot placeholder -->
+                          @if (group.count === 1) {
+                            <div class="settings-page__direction settings-page__direction--empty">
+                              <div
+                                class="settings-page__direction__content"
+                                style="align-items: center; justify-content: center; padding: 2rem 1rem;"
+                              >
+                                @let codes = group.key.split('|');
+                                @let a = group.directions[0].known === codes[0] ? codes[1] : codes[0];
+                                @let b = group.directions[0].known === codes[0] ? codes[0] : codes[1];
+                                <div class="settings-page__direction__codes">
+                                  <span class="settings-page__direction__code">{{ a | uppercase }}</span>
+                                  <span class="settings-page__direction__arrow">→</span>
+                                  <span class="settings-page__direction__code">{{ b | uppercase }}</span>
+                                </div>
+                                <div class="settings-page__direction__sublabel" style="margin-top: 0.4rem;">
+                                  Not yet configured
+                                </div>
+                              </div>
+                            </div>
+                          }
+                        </div>
+                    </div>
+                  }
+                </div>
+              }
             }
           </div>
         </mat-tab>

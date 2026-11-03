@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, inject, computed, signal, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { UpperCasePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -22,7 +23,30 @@ import {
   LanguageCreatePayload,
 } from '../../entities/language-pair/api/language-api.service';
 import { LanguageService, LanguageSettingsStore } from '../../entities/language-pair';
+import { AvailablePairsService } from '../../entities/language-pair/lib/available-pairs.service';
 import { RoleService } from '../../entities/auth/services/role.service';
+import { LanguagePairsService } from '../../shared/api/generated/language-pairs';
+
+// ── Grouping types ──────────────────────────────────────────────
+
+/** A single direction within a grouped card. */
+export interface DirectionItem {
+  /** DB pair ID (stringified number). */
+  id: string;
+  known: string;
+  learning: string;
+  isActive: boolean;
+}
+
+/** A grouped pair of mirror directions (e.g. EN↔RU). */
+export interface PairGroup {
+  /** Canonical key — sorted language codes joined by a pipe. */
+  key: string;
+  /** Both directions (0–2). */
+  directions: DirectionItem[];
+  /** Total configured directions for this pair. */
+  count: number;
+}
 
 /**
  * Language settings page component.
@@ -40,6 +64,7 @@ import { RoleService } from '../../entities/auth/services/role.service';
   selector: 'app-language-settings',
   imports: [
     FormsModule,
+    UpperCasePipe,
     MatCardModule,
     MatCheckboxModule,
     MatDividerModule,
@@ -60,6 +85,8 @@ import { RoleService } from '../../entities/auth/services/role.service';
 export class LanguageSettingsComponent {
   private readonly settingsStore: LanguageSettingsStore = inject(LanguageSettingsStore);
   private readonly languageService: LanguageService = inject(LanguageService);
+  private readonly availablePairs: AvailablePairsService = inject(AvailablePairsService);
+  private readonly languagePairsApi: LanguagePairsService = inject(LanguagePairsService);
   private readonly languageApi: LanguageApiService = inject(LanguageApiService);
   private readonly roleService: RoleService = inject(RoleService);
   private readonly router: Router = inject(Router);
@@ -68,7 +95,14 @@ export class LanguageSettingsComponent {
   readonly selectedCodes = this.settingsStore.selectedCodes;
   readonly availableLanguages = computed(() => this.languageService.languages());
   readonly loading = this.languageService.loading;
-  readonly configuredPairs = this.settingsStore.configuredPairs;
+  /** DB pairs filtered by selected + active languages. */
+  readonly configuredPairs = computed(() =>
+    this.availablePairs.visiblePairs().map((p) => ({
+      id: String(p.id),
+      known: p.knownCode,
+      learning: p.learningCode,
+    })),
+  );
   readonly activePairId = this.settingsStore.activePairId;
   readonly canWriteLanguages = this.roleService.canWriteLanguages;
 
@@ -76,12 +110,42 @@ export class LanguageSettingsComponent {
   readonly newKnownCode = signal<string>('');
   readonly newLearningCode = signal<string>('');
 
+  /** Pairs grouped by mirror languages (EN↔RU, EN↔DE …). */
+  readonly groupedPairs = computed(() => {
+    const pairs = this.configuredPairs();
+    const activeId = this.activePairId();
+    const groups = new Map<string, DirectionItem[]>();
+
+    for (const p of pairs) {
+      // Canonical key: sorted codes so EN|RU === RU|EN
+      const sorted = [p.known, p.learning].sort();
+      const key = sorted.join('|');
+      if (!groups.has(key)) {
+        groups.set(key, []);
+      }
+      groups.get(key)!.push({
+        id: p.id,
+        known: p.known,
+        learning: p.learning,
+        isActive: p.id === (activeId ?? ''),
+      });
+    }
+
+    return Array.from(groups.entries()).map(([key, directions]) => ({
+      key,
+      directions,
+      count: directions.length,
+    }));
+  });
+
   private readonly cdr = inject(ChangeDetectorRef);
 
   constructor() {
     // Ensure languages are loaded when the page opens (idempotent — also
     // retries if an earlier attempt failed while unauthenticated).
     void this.languageService.load();
+    // Load language pairs from the backend
+    void this.availablePairs.load();
   }
 
   /** Whether the currently active pair exists. */
@@ -102,6 +166,79 @@ export class LanguageSettingsComponent {
     return lang?.displayName ?? code;
   }
 
+  /** Returns a flag emoji for a language code. */
+  getFlagEmoji(code: string): string {
+    if (!code || code.length < 2) return '🏳';
+    const upper = code.toUpperCase();
+    // Language flag mapping (ISO 639-1 codes)
+    const emojiMap: Record<string, string> = {
+      EN: '\u{1F1EC}\u{1F1E7}',
+      RU: '\u{1F1F7}\u{1F1FA}',
+      DE: '\u{1F1E9}\u{1F1EA}',
+      ZH: '\u{1F1E8}\u{1F1F3}',
+      JA: '\u{1F1EF}\u{1F1F5}',
+      FR: '\u{1F1EB}\u{1F1F7}',
+      ES: '\u{1F1EA}\u{1F1F8}',
+      KO: '\u{1F1F0}\u{1F1F7}',
+      AR: '\u{1F1E6}\u{1F1E8}',
+      PT: '\u{1F1F5}\u{1F1F9}',
+      IT: '\u{1F1EE}\u{1F1F9}',
+      NL: '\u{1F1F3}\u{1F1F1}',
+      PL: '\u{1F1F5}\u{1F1F1}',
+      TR: '\u{1F1F9}\u{1F1F7}',
+      CS: '\u{1F1E8}\u{1F1F8}',
+      SV: '\u{1F1F8}\u{1F1FB}',
+      DA: '\u{1F1E9}\u{1F1F0}',
+      FI: '\u{1F1EB}\u{1F1EE}',
+      NO: '\u{1F1F3}\u{1F1F4}',
+      HU: '\u{1F1ED}\u{1F1FA}',
+      HE: '\u{1F1EE}\u{1F1F1}',
+      TH: '\u{1F1F9}\u{1F1ED}',
+      VI: '\u{1F1FB}\u{1F1EE}',
+      UK: '\u{1F1FA}\u{1F1F6}',
+      LT: '\u{1F1F1}\u{1F1F9}',
+      LV: '\u{1F1F1}\u{1F1FB}',
+      EE: '\u{1F1EA}\u{1F1EA}',
+      RO: '\u{1F1F7}\u{1F1F4}',
+      BG: '\u{1F1E7}\u{1F1EC}',
+      HR: '\u{1F1ED}\u{1F1F7}',
+      SK: '\u{1F1F8}\u{1F1F0}',
+      SL: '\u{1F1F1}\u{1F1EE}',
+      CA: '\u{1F1E8}\u{1F1E6}',
+      GL: '\u{1F1EC}\u{1F1F1}',
+      EU: '\u{1F1EA}\u{1F1FA}',
+      ID: '\u{1F1EE}\u{1F1E9}',
+      MS: '\u{1F1F2}\u{1F1F8}',
+      TL: '\u{1F1F5}\u{1F1FD}',
+    };
+
+    const found = emojiMap[upper];
+    if (found) return found;
+
+    // Two-letter code that isn't in the map → try to build a flag
+    if (code.length === 2 && this._isValidCountryCode(code)) {
+      return this._codeToEmoji(code);
+    }
+
+    // 3+ letters (e.g. C++ → C, PERL → PER) → just uppercase
+    return upper.slice(0, 2);
+  }
+
+  private _isValidCountryCode(code: string): boolean {
+    // RFC 3066 / ISO 3166-1: only A-Z
+    return /^[A-Z]{2}$/.test(code.toUpperCase());
+  }
+
+  private _codeToEmoji(code: string): string {
+    if (code.length < 2) return '🏳';
+    const c1 = code[0].toUpperCase().charCodeAt(0);
+    const c2 = code[1].toUpperCase().charCodeAt(0);
+    if (c1 < 65 || c1 > 90 || c2 < 65 || c2 > 90) return '🏳';
+    const f1 = String.fromCodePoint(0x1f1e6 + (c1 - 65));
+    const f2 = String.fromCodePoint(0x1f1e6 + (c2 - 65));
+    return f1 + f2;
+  }
+
   /** Toggles a language in the user's selection. */
   toggleLanguage(code: string): void {
     if (this.selectedCodes().includes(code)) {
@@ -112,21 +249,54 @@ export class LanguageSettingsComponent {
   }
 
   /** Creates a new language pair from selected codes. */
-  createPair(): void {
+  async createPair(): Promise<void> {
     const known = this.newKnownCode();
     const learning = this.newLearningCode();
     if (!known || !learning || known === learning) {
       return;
     }
-    this.settingsStore.createPair(known, learning);
-    this.newKnownCode.set('');
-    this.newLearningCode.set('');
-    this.snackBar.open('Pair added', 'Close', { duration: 3000 });
+
+    try {
+      await this.languagePairsApi.languagePairsCreate({
+        knownCode: known,
+        learningCode: learning,
+      });
+
+      // Refresh the pairs list
+      await this.availablePairs.load();
+
+      this.newKnownCode.set('');
+      this.newLearningCode.set('');
+      this.snackBar.open('Pair added', 'Close', { duration: 3000 });
+    } catch (error) {
+      this.snackBar.open(
+        `Failed to create pair: ${(error as Error).message}`,
+        'Close',
+        { duration: 5000 },
+      );
+    }
   }
 
   /** Removes a configured pair. */
-  removePair(pairId: string): void {
-    this.settingsStore.removePair(pairId);
+  async removePair(pairId: string): Promise<void> {
+    try {
+      const numericId = Number(pairId);
+      if (Number.isNaN(numericId)) {
+        return;
+      }
+      await this.languagePairsApi.languagePairsDelete(numericId);
+
+      // Refresh the pairs list
+      await this.availablePairs.load();
+
+      this.snackBar.open('Pair removed', 'Close', { duration: 3000 });
+    } catch (error) {
+      this.snackBar.open(
+        `Failed to remove pair: ${(error as Error).message}`,
+        'Close',
+        { duration: 5000 },
+      );
+    }
   }
 
   /** Sets the active pair by ID. */
