@@ -188,14 +188,11 @@
                               [class.settings-page__direction--available]="true"
                             >
                               <div class="settings-page__direction__content">
-                                <!-- Top row: codes -->
-                                <div class="settings-page__direction__codes">
+                                <!-- 2×3 grid: both rows share the same columns -->
+                                <div class="settings-page__direction__matrix">
                                   <span class="settings-page__direction__code">{{ dir.known | uppercase }}</span>
                                   <span class="settings-page__direction__arrow">→</span>
                                   <span class="settings-page__direction__code">{{ dir.learning | uppercase }}</span>
-                                </div>
-                                <!-- Bottom row: full names — same 3-column grid -->
-                                <div class="settings-page__direction__codes">
                                   <span class="settings-page__direction__label-text">{{ getLanguageLabel(dir.known) }}</span>
                                   <span class="settings-page__direction__arrow">→</span>
                                   <span class="settings-page__direction__label-text">{{ getLanguageLabel(dir.learning) }}</span>
