@@ -69,7 +69,7 @@ describe('ScenarioEditorFormComponent', () => {
   describe('constants', () => {
     it('should have languages', () => {
       expect(component.languages).toBeDefined();
-      expect(Array.isArray(component.languages)).toBe(true);
+      expect(Array.isArray(component.languages())).toBe(true);
     });
 
     it('should have languageLabels', () => {

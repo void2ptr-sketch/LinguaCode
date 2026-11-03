@@ -9,7 +9,7 @@ const baseEntry: ScenarioIndexEntry = {
   cardSourceSummary: '1 карточек',
   published: true,
   updatedAt: '2026-01-01T00:00:00.000Z',
-  languagePairSummary: 'Русский → English',
+  languagePairSummary: 'ru → en',
 };
 
 describe('scenario-search.utils', () => {

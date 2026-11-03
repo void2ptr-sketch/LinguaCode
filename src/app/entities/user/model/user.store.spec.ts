@@ -27,7 +27,7 @@ describe('UserStore', () => {
     expect(store.learningProficiencyLevel()).toBe('beginner');
     expect(store.languagePairs()).toHaveLength(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
-    expect(store.languagePairLabel()).toBe('Русский → English');
+    expect(store.languagePairLabel()).toBe('ru → en');
     expect(store.isActiveEntry(store.languagePairs()[0])).toBe(true);
     expect(store.cjkLearning().displayRomanizations).toEqual(['pinyin']);
     expect(store.phonetic().showIpa).toBe(false);

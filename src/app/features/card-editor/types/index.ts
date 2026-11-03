@@ -25,5 +25,5 @@ export type {
   TimedCardDraft,
   ToneCardDraft,
 } from './card-draft.types';
-export { CARD_KIND_LABELS, CARD_KINDS, DEFAULT_CARD_DIRECTION } from './card-draft.types';
+export { DEFAULT_CARD_DIRECTION } from './card-draft.types';
 export { emptyLexemeCardDraft, emptyMemoryPairDraft, emptyOptionLexemes } from './card-draft.types';

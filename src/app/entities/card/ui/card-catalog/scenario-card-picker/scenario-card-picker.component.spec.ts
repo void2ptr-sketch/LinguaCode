@@ -70,8 +70,8 @@ describe('ScenarioCardPickerComponent', () => {
 
   it('should expose kindLabels from CatalogService', () => {
     const labels = component.kindLabels();
-    expect(labels.select).toBe('Выбор ответа');
-    expect(labels.memory).toBe('Запоминание');
+    expect(labels['select']).toBe('Выбор ответа');
+    expect(labels['memory']).toBe('Запоминание');
   });
 
   it('should expose languageLabels', () => {
@@ -80,8 +80,8 @@ describe('ScenarioCardPickerComponent', () => {
 
   it('should expose difficultyLabels from CatalogService', () => {
     const labels = component.difficultyLabels();
-    expect(labels.beginner).toBe('Начальный');
-    expect(labels.intermediate).toBe('Средний');
+    expect(labels['beginner']).toBe('Начальный');
+    expect(labels['intermediate']).toBe('Средний');
   });
 
   it('should expose getTagLabel method', () => {

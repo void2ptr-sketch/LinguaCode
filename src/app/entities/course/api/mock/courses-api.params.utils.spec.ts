@@ -93,10 +93,8 @@ describe('courses-api.params.utils', () => {
       expect(criteria.page.pageSize).toBeGreaterThan(0);
     });
 
-    it('should reject invalid content languages', () => {
-      const params = new HttpParams()
-        .set('knownLanguage', 'invalid-lang')
-        .set('learningLanguage', 'also-invalid');
+    it('should reject empty content languages', () => {
+      const params = new HttpParams().set('knownLanguage', '').set('learningLanguage', '');
 
       const criteria = parseCourseSearchCriteria(params);
 

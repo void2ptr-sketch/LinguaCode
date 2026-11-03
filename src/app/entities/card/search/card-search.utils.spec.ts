@@ -83,6 +83,7 @@ describe('card-search.utils', () => {
         page: { page: 0, pageSize: 10 },
       },
       {
+        languageCodes: ['en', 'zh'] as readonly string[],
         difficulties: ['beginner', 'intermediate', 'advanced'] as readonly CardDifficulty[],
         kinds: [
           'select',

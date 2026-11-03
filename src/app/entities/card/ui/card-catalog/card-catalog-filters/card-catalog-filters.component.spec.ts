@@ -77,21 +77,21 @@ describe('CardCatalogFiltersComponent', () => {
 
   it('should expose difficultyLabels from CatalogService', () => {
     const labels = component.difficultyLabels();
-    expect(labels.beginner).toBe('Начальный');
-    expect(labels.intermediate).toBe('Средний');
-    expect(labels.advanced).toBe('Продвинутый');
+    expect(labels['beginner']).toBe('Начальный');
+    expect(labels['intermediate']).toBe('Средний');
+    expect(labels['advanced']).toBe('Продвинутый');
   });
 
   it('should expose kindLabels from CatalogService', () => {
     const labels = component.kindLabels();
-    expect(labels.select).toBe('Выбор ответа');
-    expect(labels.memory).toBe('Запоминание');
-    expect(labels.keyboard).toBe('Клавиатура');
+    expect(labels['select']).toBe('Выбор ответа');
+    expect(labels['memory']).toBe('Запоминание');
+    expect(labels['keyboard']).toBe('Клавиатура');
   });
 
   it('should expose tagLabels from TagsService', () => {
     const labels = component.tagLabels();
-    expect(labels.greetings).toBe('Приветствия');
+    expect(labels['greetings']).toBe('Приветствия');
   });
 
   it('should expose getTagLabel method', () => {

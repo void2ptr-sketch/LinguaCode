@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
-import type { ContentLanguage } from '../../../../entities/card/model';
-import { CARD_KIND_LABELS } from '../../types';
+import type { ContentLanguage, CardKind } from '../../../../entities/card/model';
+import { CatalogService } from '../../../../entities/card/api/catalog.service';
 import { cardFormKindGroup } from '../../utils/form/card-form.registry';
 import { editorVariantLabel } from '../../utils/index-meta/card-kind-index-meta.utils';
 import type { CardDraft, MemoryCardDraft, SoundCardDraft } from '../../types';
@@ -41,6 +41,8 @@ import type { InputCardDraft } from '../card-form/kind-forms/input-card-form/inp
   styleUrl: './card-create-wizard.component.scss',
 })
 export class CardCreateWizardComponent {
+  private readonly catalogService = inject(CatalogService);
+
   /** Required card draft being created. */
   readonly draft = input.required<CardDraft>();
   /** Known (source) language for the card content. */
@@ -53,8 +55,14 @@ export class CardCreateWizardComponent {
   /** Emits when the user requests to expand to the full editor. */
   readonly expandToFull = output<void>();
 
-  /** Labels for all card kinds. */
-  readonly kindLabels = CARD_KIND_LABELS;
+  /** Labels for all card kinds from backend catalog. */
+  readonly kindLabels = computed<Record<CardKind, string>>(
+    () =>
+      Object.fromEntries(this.catalogService.cardKinds().map((k) => [k.code, k.label])) as Record<
+        CardKind,
+        string
+      >,
+  );
 
   /**
    * Computed kind group (e.g., 'choice', 'input', 'code-select') for the current draft.

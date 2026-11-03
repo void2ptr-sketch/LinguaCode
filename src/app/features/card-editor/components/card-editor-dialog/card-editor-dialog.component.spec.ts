@@ -8,6 +8,7 @@ import { UserStore } from '../../../../entities/user/model/user.store';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
 import { seedTestContentCache } from '../../../../entities/content-seed/content-seed.test-utils';
 import { provideHttpClient } from '@angular/common/http';
+import { CatalogService } from '../../../../entities/card/api/catalog.service';
 import type { CardEditorDialogData } from './card-editor-dialog.types';
 import type { CardDraft } from '../../types';
 
@@ -52,6 +53,20 @@ describe('CardEditorDialogComponent', () => {
         { provide: MatDialogRef, useValue: mockDialogRef },
         { provide: MatDialog, useValue: mockMatDialog },
         { provide: MAT_DIALOG_DATA, useValue: createCreateData() },
+        {
+          provide: CatalogService,
+          useValue: {
+            loaded: vi.fn(() => true),
+            cardKinds: vi.fn(() => [
+              { code: 'select', label: 'Выбор' },
+              { code: 'memory', label: 'Запоминание' },
+            ]),
+            difficulties: vi.fn(() => []),
+            contentLanguageCodes: vi.fn(() => ['ru', 'en', 'zh']),
+            isValid: vi.fn(() => true),
+            isContentLanguage: vi.fn(() => true),
+          },
+        },
       ],
     }).compileComponents();
 
@@ -83,7 +98,7 @@ describe('CardEditorDialogComponent', () => {
 
   it('should expose languages', () => {
     expect(component.languages).toBeDefined();
-    expect(Array.isArray(component.languages)).toBe(true);
+    expect(Array.isArray(component.languages())).toBe(true);
   });
 
   it('should expose languageLabels', () => {
