@@ -166,10 +166,11 @@ export class LanguageSettingsComponent {
     return lang?.displayName ?? code;
   }
 
-  /** Returns a flag emoji for a language code. */
+  /** Returns a flag emoji for a language code, or empty string if no flag is available. */
   getFlagEmoji(code: string): string {
-    if (!code || code.length < 2) return '🏳';
+    if (!code || code.length < 2) return '';
     const upper = code.toUpperCase();
+
     // Language flag mapping (ISO 639-1 codes)
     const emojiMap: Record<string, string> = {
       EN: '\u{1F1EC}\u{1F1E7}',
@@ -220,8 +221,38 @@ export class LanguageSettingsComponent {
       return this._codeToEmoji(code);
     }
 
-    // 3+ letters (e.g. C++ → C, PERL → PER) → just uppercase
-    return upper.slice(0, 2);
+    // No flag available (e.g. C++, PERL, JS) → return empty; template shows CSS badge
+    return '';
+  }
+
+  /** Deterministic background color from language code hash. */
+  getBadgeColor(code: string): string {
+    if (!code) return 'var(--mat-sys-outline-variant)';
+    let hash = 0;
+    for (let i = 0; i < code.length; i++) {
+      hash = code.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const hue = Math.abs(hash) % 360;
+    return `hsl(${hue}, 45%, 82%)`;
+  }
+
+  /** Deterministic text color matching the background hue. */
+  getBadgeTextColor(code: string): string {
+    if (!code) return 'var(--mat-sys-on-surface-variant)';
+    let hash = 0;
+    for (let i = 0; i < code.length; i++) {
+      hash = code.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const hue = Math.abs(hash) % 360;
+    return `hsl(${hue}, 50%, 25%)`;
+  }
+
+  /** First two letters for the CSS badge fallback. */
+  getBadgeCode(code: string): string {
+    if (!code) return '';
+    // Strip non-alpha (C++ → CC, JavaScript → JS)
+    const alpha = code.replace(/[^a-zA-Z]/g, '').toUpperCase();
+    return alpha.length >= 2 ? alpha.slice(0, 2) : code.toUpperCase().slice(0, 2);
   }
 
   private _isValidCountryCode(code: string): boolean {

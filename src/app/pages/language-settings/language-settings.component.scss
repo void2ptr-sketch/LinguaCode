@@ -24,8 +24,8 @@
   &--active { border-left: 4px solid var(--mat-sys-primary); border-color: var(--mat-sys-primary); background: linear-gradient(135deg, rgba(90,113,148,.06) 0%, transparent 40%); }
   &__header { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.35rem 0.75rem; }
   &__title { display: flex; align-items: center; gap: 0.6rem; }
-  &__flag { font-size: 1.5rem; line-height: 1; }
-  &__name { font-weight: 600; font-size: 1.05rem; }
+  &__flag { font-size: 1.5rem; line-height: 1; transition: all 200ms ease; &--badge { font-size: 0.7rem; font-weight: 700; line-height: 1; padding: 0.15rem 0.45rem; border-radius: 8px; min-width: 2rem; text-align: center; display: inline-flex; align-items: center; justify-content: center; } }
+  &__name { font-weight: 600; font-size: 1.05rem; display: flex; align-items: center; gap: 0.35rem; }
   &__badge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--mat-sys-primary); color: #fff; margin-left: 0.25rem; &--partial { background: var(--mat-sys-on-surface-variant); } }
   &__directions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; padding: 0 1.35rem 1.25rem; overflow: hidden; }
 }

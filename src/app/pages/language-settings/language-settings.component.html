@@ -154,15 +154,22 @@
                         <!-- Group header -->
                         <div class="settings-page__pair-group__header">
                           <div class="settings-page__pair-group__title">
-                            <span class="settings-page__pair-group__flag">
-                              {{ getFlagEmoji(group.key.split('|')[0]) }}
-                            </span>
-                            <span class="settings-page__pair-group__name">
-                              @if (group.key.includes('|')) {
-                                @let codes = group.key.split('|');
+                            @if (group.key.includes('|')) {
+                              @let codes = group.key.split('|');
+                              <span class="settings-page__pair-group__flag"
+                                    [style.background-color]="!getFlagEmoji(codes[0]) ? getBadgeColor(codes[0]) : null"
+                                    [style.color]="!getFlagEmoji(codes[0]) ? getBadgeTextColor(codes[0]) : null">
+                                {{ getFlagEmoji(codes[0]) || getBadgeCode(codes[0]) }}
+                              </span>
+                              <span class="settings-page__pair-group__name">
                                 {{ getLanguageLabel(codes[0]) }} ↔ {{ getLanguageLabel(codes[1]) }}
-                              }
-                            </span>
+                                <span class="settings-page__pair-group__flag"
+                                      [style.background-color]="!getFlagEmoji(codes[1]) ? getBadgeColor(codes[1]) : null"
+                                      [style.color]="!getFlagEmoji(codes[1]) ? getBadgeTextColor(codes[1]) : null">
+                                  {{ getFlagEmoji(codes[1]) || getBadgeCode(codes[1]) }}
+                                </span>
+                              </span>
+                            }
                             <span
                               class="settings-page__pair-group__badge"
                               [class.settings-page__pair-group__badge--partial]="group.count === 1"
