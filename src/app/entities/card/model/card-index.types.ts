@@ -4,10 +4,16 @@ import type { CardKind } from './card.types';
  * Content language used for cards and UI.
  *
  * @remarks
- * Includes natural languages (en, zh, ru) and programming languages (perl, java, cpp).
+ * Includes natural languages, programming languages, and a few common
+ * aliases (e.g. `c++` → cpp, `javascript` → js).
  * Do not confuse with UiLocale (see docs/FEATURES/LANGUAGE-PAIR.md).
  */
-export type ContentLanguage = 'en' | 'zh' | 'ru' | 'perl' | 'java' | 'cpp';
+export type ContentLanguage =
+  | 'en' | 'zh' | 'ru' | 'ja' | 'de' | 'fr' | 'es' | 'ko' | 'ar' | 'pt' | 'it'
+  | 'nl' | 'pl' | 'tr' | 'cs' | 'sv' | 'da' | 'fi' | 'no' | 'hu' | 'he' | 'th'
+  | 'vi' | 'uk' | 'lt' | 'lv' | 'ee' | 'ro' | 'bg' | 'hr' | 'sk' | 'sl' | 'ca'
+  | 'gl' | 'eu' | 'id' | 'ms' | 'tl'
+  | 'cpp' | 'java' | 'perl' | 'hs' | 'rs' | 'js';
 
 /**
  * Difficulty level of a card.

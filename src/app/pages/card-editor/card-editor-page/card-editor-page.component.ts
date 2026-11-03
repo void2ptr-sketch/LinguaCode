@@ -16,9 +16,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardKind } from '../../../entities/card/model';
 import { formatIndexLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
+import { LanguageService } from '../../../entities/language-pair';
 import {
   CARD_KIND_LABELS,
-  CONTENT_LANGUAGE_LABELS,
   tagLabel,
 } from '../../../entities/card/lib/catalog-labels';
 import { DIFFICULTY_LABELS } from '../../../entities/card/lib/catalog-labels';
@@ -75,6 +75,7 @@ export class CardEditorPageComponent implements OnInit {
   private readonly cardEditorDialog = inject(CardEditorDialogService);
   private readonly cardTryDialog = inject(CardTryDialogService);
   private readonly userStore = inject(UserStore);
+  private readonly languageService = inject(LanguageService);
 
   /** Available card creation groups (e.g., 'basic', 'chinese'). */
   readonly createGroups = CARD_CREATE_GROUPS;
@@ -92,7 +93,7 @@ export class CardEditorPageComponent implements OnInit {
   readonly kindLabels = CARD_KIND_LABELS;
 
   /** Labels for content languages. */
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  readonly languageLabels = this.languageService.getLabels();
 
   /** Labels for difficulty levels. */
   readonly difficultyLabels = DIFFICULTY_LABELS;
@@ -126,10 +127,7 @@ export class CardEditorPageComponent implements OnInit {
    * @param entry - The card index entry with language pair information.
    * @returns Formatted language pair string (e.g., "zh → en").
    */
-  formatEntryLanguages(entry: {
-    knownLanguage: keyof typeof CONTENT_LANGUAGE_LABELS;
-    learningLanguage: keyof typeof CONTENT_LANGUAGE_LABELS;
-  }): string {
+  formatEntryLanguages(entry: Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage'>): string {
     return formatIndexLanguagePair(entry, this.languageLabels);
   }
 

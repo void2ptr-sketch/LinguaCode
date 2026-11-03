@@ -12,8 +12,7 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import type { ContentLanguage, CardIndexMetaOverride } from '../../../../entities/card/model';
 import type { CardAppearance } from '../../../../entities/card/model';
-import { CONTENT_LANGUAGE_LABELS } from '../../../../entities/card/lib/catalog-labels';
-import { contentLanguages } from '../../../../entities/language-pair/lib/language-pair.utils';
+import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
 import type { CardDraft, ChoiceCardDraft } from '../../types';
 import { cardFormKindGroup } from '../../utils/form/card-form.registry';
 import { normalizeCardDraft } from '../../utils/validation/card-validation.utils';
@@ -85,6 +84,7 @@ import { CardFormAnswersTabComponent } from '../card-form-answers-tab/card-form-
 })
 export class CardFormComponent implements OnInit {
   private readonly hierarchyService = inject(CardCatalogHierarchyService);
+  private readonly languageService = inject(LanguageService);
 
   /** Required card draft being edited or created. */
   readonly draft = input.required<CardDraft>();
@@ -152,8 +152,8 @@ export class CardFormComponent implements OnInit {
   /** Computed font size from the effective appearance. */
   readonly previewFontSize = computed(() => this.effectiveAppearance().fontSize);
 
-  readonly languages = contentLanguages();
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  readonly languages = () => this.languageService.getCodes();
+  readonly languageLabels = () => this.languageService.getLabels();
 
   /** Currently selected tab label (explicitly chosen by user). */
   private readonly selectedTabLabel = signal<string | undefined>(undefined);

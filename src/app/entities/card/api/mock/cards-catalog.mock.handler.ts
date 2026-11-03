@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import type { Card, CardSearchCriteria, CardSearchPage } from '../../model';
 import type { CardIndexEntry } from '../../model';
 import { paginateArray } from '../../../../shared/utils/pagination';
+import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
 
 import { buildCardIndex } from '../../mapping/card-index.mapper';
 import { loadCardIndexMetaOverrides } from '../../storage/card-index-meta.storage';
@@ -12,6 +13,7 @@ import { buildCardSearchFacets, filterCardIndex } from '../../search/card-search
 @Injectable({ providedIn: 'root' })
 export class CardsCatalogMockHandler {
   private readonly cardRepository = inject(CardRepository);
+  private readonly languageService = inject(LanguageService);
 
   private cards: readonly Card[] | null = null;
   private index: readonly CardIndexEntry[] | null = null;
@@ -20,7 +22,8 @@ export class CardsCatalogMockHandler {
     await this.ensureData();
 
     const filtered = filterCardIndex(this.index!, criteria);
-    const facets = buildCardSearchFacets(this.index!, criteria);
+    const codes = this.languageService.getCodes();
+    const facets = buildCardSearchFacets(this.index!, criteria, codes);
     const page = paginateArray(filtered, criteria.page);
 
     return {

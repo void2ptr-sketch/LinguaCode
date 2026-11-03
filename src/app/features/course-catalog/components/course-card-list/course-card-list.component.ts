@@ -7,10 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 import type { ContentLanguage } from '../../../../entities/card/model';
 import type { UserLanguagePairEntry } from '../../../../entities/user/model';
-import {
-  CONTENT_LANGUAGE_LABELS,
-  contentLanguages,
-} from '../../../../entities/language-pair/lib/language-pair.utils';
+import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { CourseCatalogLanguagePairManagerService, DraftsStore } from '../../services';
 
@@ -31,6 +28,7 @@ export class CourseCatalogCoursesComponent {
   private readonly userStore = inject(UserStore);
   private readonly pairManager = inject(CourseCatalogLanguagePairManagerService);
   private readonly drafts = inject(DraftsStore);
+  private readonly languageService = inject(LanguageService);
 
   /** Current user's display name from the store. */
   readonly displayName = this.userStore.displayName;
@@ -60,9 +58,9 @@ export class CourseCatalogCoursesComponent {
   readonly learningLanguageDraft = this.drafts.courseTabLearningLanguageDraft;
 
   /** Available content languages. */
-  readonly languages = contentLanguages();
+  readonly languages = () => this.languageService.getCodes();
   /** Labels for content languages. */
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  readonly languageLabels = () => this.languageService.getLabels();
 
   /** Whether the current language pair draft is invalid. */
   readonly languagePairInvalid = this.drafts.courseTabLanguagePairInvalid;

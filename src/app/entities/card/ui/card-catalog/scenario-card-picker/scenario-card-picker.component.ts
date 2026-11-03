@@ -13,10 +13,10 @@ import { MatListModule } from '@angular/material/list';
 
 import { UiPaginationComponent } from '../../../../../shared/utils/pagination';
 import { formatIndexLanguagePair } from '../../../../language-pair/lib/language-pair.utils';
+import { LanguageService } from '../../../../language-pair/lib/language.service';
 import { UserStore } from '../../../../user/model/user.store';
 import {
   CARD_KIND_LABELS,
-  CONTENT_LANGUAGE_LABELS,
   DIFFICULTY_LABELS,
 } from '../../../lib/catalog-labels';
 import { CardCatalogFiltersComponent } from '../card-catalog-filters/card-catalog-filters.component';
@@ -51,6 +51,7 @@ let lastKnownPickerActiveLanguagePairId: string | null = null;
 export class ScenarioCardPickerComponent implements OnInit {
   readonly store = inject<CardCatalogSearchStore>(CardCatalogSearchStore);
   private readonly userStore = inject(UserStore);
+  private readonly languageService = inject(LanguageService);
 
   /**
    * Required array of currently selected card IDs.
@@ -81,7 +82,7 @@ export class ScenarioCardPickerComponent implements OnInit {
    * @remarks
    * Used in templates to display human-readable language names.
    */
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  readonly languageLabels = () => this.languageService.getLabels();
   /**
    * Labels for difficulty levels.
    *

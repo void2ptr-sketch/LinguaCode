@@ -21,9 +21,8 @@ import { firstValueFrom } from 'rxjs';
 
 import {
   CARD_KIND_LABELS,
-  CONTENT_LANGUAGE_LABELS,
 } from '../../../../entities/card/lib/catalog-labels';
-import { contentLanguages } from '../../../../entities/language-pair/lib/language-pair.utils';
+import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { CardEditorStore } from '../../services/card-editor.store';
@@ -75,15 +74,16 @@ export class CardEditorDialogComponent implements OnInit {
   readonly store = inject(CardEditorStore);
   private readonly userStore = inject(UserStore);
   private readonly catalogHandler = inject(CardsCatalogMockHandler);
+  private readonly languageService = inject(LanguageService);
 
   /** Labels for all card kinds. */
   readonly kindLabels = CARD_KIND_LABELS;
 
   /** Available content languages. */
-  readonly languages = contentLanguages();
+  readonly languages = () => this.languageService.getCodes();
 
   /** Labels for content languages. */
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  readonly languageLabels = () => this.languageService.getLabels();
 
   /** Current card draft being edited or created. */
   readonly draft = signal<CardDraft>(this.store.emptyDraft('select'));

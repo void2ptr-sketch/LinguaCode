@@ -4,6 +4,9 @@ import { LanguageSettingsStore } from './language-settings.store';
 import { LanguagePairsApiService } from '../api/language-pairs-api.service';
 import type { LanguagePairDto } from '../api/language-pairs-api.types';
 
+/** Cache TTL for language pairs — 5 minutes. */
+const CACHE_TTL_MS = 5 * 60 * 1000;
+
 /**
  * Service that loads language pairs from the backend and filters them
  * to show only pairs where both languages are selected ("Use in Learning")
@@ -20,6 +23,12 @@ export class AvailablePairsService {
 
   /** Whether pairs are currently being loaded. */
   readonly loading = signal(false);
+
+  /** Whether pairs have been successfully loaded. */
+  readonly loaded = signal(false);
+
+  /** Timestamp of the last successful load. */
+  private lastLoadTime = 0;
 
   /**
    * Pairs filtered to only include those where both languages are:
@@ -43,19 +52,44 @@ export class AvailablePairsService {
   });
 
   /**
-   * Loads pairs from the backend and filters them by available languages.
+   * Loads pairs from the backend.
    *
+   * @remarks
+   * Uses a 5-minute cache. Subsequent calls within the TTL return the cached value.
+   * Force reload with `force: true`.
+   *
+   * @param force - When true, bypasses cache and fetches fresh data.
    * @returns Promise that resolves when loading completes.
    */
-  async load(): Promise<void> {
+  async load(force = false): Promise<void> {
+    // Return cached data if still valid
+    if (!force && this.loaded() && !this.isLoadingStale()) {
+      return;
+    }
+
     this.loading.set(true);
     try {
       const allPairs = await this.pairsApi.listAll();
       this.pairs.set(allPairs);
+      this.lastLoadTime = Date.now();
+      this.loaded.set(true);
     } catch {
       this.pairs.set([]);
     } finally {
       this.loading.set(false);
     }
+  }
+
+  /**
+   * Invalidates the cache and forces a reload on the next `load()` call.
+   */
+  invalidate(): void {
+    this.pairs.set([]);
+    this.loaded.set(false);
+    this.lastLoadTime = 0;
+  }
+
+  private isLoadingStale(): boolean {
+    return Date.now() - this.lastLoadTime > CACHE_TTL_MS;
   }
 }

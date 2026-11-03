@@ -32,6 +32,26 @@ export class LanguageService {
   readonly loaded = signal(false);
 
   /**
+   * Returns active language codes from backend.
+   */
+  getCodes(): string[] {
+    return this.languages()
+      .filter((l) => l.activeFlag)
+      .map((l) => l.code);
+  }
+
+  /**
+   * Returns `{ code → displayName }` map from backend.
+   */
+  getLabels(): Record<string, string> {
+    const map: Record<string, string> = {};
+    for (const lang of this.languages()) {
+      map[lang.code] = lang.displayName;
+    }
+    return map;
+  }
+
+  /**
    * Loads all languages from the backend.
    *
    * @remarks
@@ -63,17 +83,6 @@ export class LanguageService {
     } finally {
       this.loading.set(false);
     }
-  }
-
-  /**
-   * Returns codes of all active languages.
-   *
-   * @returns Array of active language codes, empty if not loaded.
-   */
-  getCodes(): string[] {
-    return this.languages()
-      .filter((l) => l.activeFlag)
-      .map((l) => l.code);
   }
 
   /**

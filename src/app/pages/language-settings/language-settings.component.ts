@@ -25,11 +25,38 @@ import {
 import { LanguageService, LanguageSettingsStore } from '../../entities/language-pair';
 import { AvailablePairsService } from '../../entities/language-pair/lib/available-pairs.service';
 import { UserStore } from '../../entities/user/model';
-import { UserApiService } from '../../entities/user/api/user-api.service';
 import { RoleService } from '../../entities/auth/services/role.service';
 import { LanguagePairsService } from '../../shared/api/generated/language-pairs';
+import type { ContentLanguage } from '../../entities/card/model';
 
 // ── Grouping types ──────────────────────────────────────────────
+
+/** Alias map: display name / common variation → ContentLanguage code. */
+const CODE_ALIASES: Record<string, ContentLanguage> = {
+  'c++': 'cpp',
+  'cpp': 'cpp',
+  'C++': 'cpp',
+  'javascript': 'js',
+  'js': 'js',
+  'JS': 'js',
+  'haskell': 'hs',
+  'hs': 'hs',
+  'Haskell': 'hs',
+  'rust': 'rs',
+  'rs': 'rs',
+  'Rust': 'rs',
+};
+
+/** Normalizes a language code from the backend to a valid ContentLanguage. */
+function normalizeCode(code: string): ContentLanguage {
+  const trimmed = code.trim();
+  // Check direct match first
+  const lower = trimmed.toLowerCase();
+  const alias = CODE_ALIASES[trimmed] || CODE_ALIASES[lower];
+  if (alias) return alias;
+  // Return as-is if already valid
+  return trimmed as ContentLanguage;
+}
 
 /** A single direction within a grouped card. */
 export interface DirectionItem {
@@ -87,7 +114,6 @@ export interface PairGroup {
 export class LanguageSettingsComponent {
   private readonly settingsStore: LanguageSettingsStore = inject(LanguageSettingsStore);
   private readonly userStore: UserStore = inject(UserStore);
-  private readonly userApi: UserApiService = inject(UserApiService);
   private readonly languageService: LanguageService = inject(LanguageService);
   private readonly availablePairs: AvailablePairsService = inject(AvailablePairsService);
   private readonly languagePairsApi: LanguagePairsService = inject(LanguagePairsService);
@@ -98,13 +124,13 @@ export class LanguageSettingsComponent {
 
   readonly selectedCodes = this.settingsStore.selectedCodes;
   readonly availableLanguages = computed(() => this.languageService.languages());
-  readonly loading = this.languageService.loading;
+  readonly loading = computed(() => this.languageService.loading() || this.availablePairs.loading() && !this.availablePairs.loaded());
   /** DB pairs filtered by selected + active languages. */
   readonly configuredPairs = computed(() =>
     this.availablePairs.visiblePairs().map((p) => ({
       id: String(p.id),
-      known: p.knownCode,
-      learning: p.learningCode,
+      known: normalizeCode(p.knownCode),
+      learning: normalizeCode(p.learningCode),
     })),
   );
   readonly canWriteLanguages = this.roleService.canWriteLanguages;
@@ -299,8 +325,8 @@ export class LanguageSettingsComponent {
         learningCode: learning,
       });
 
-      // Refresh the pairs list
-      await this.availablePairs.load();
+      // Refresh the pairs list (force reload after mutation)
+      await this.availablePairs.load(true);
 
       this.newKnownCode.set('');
       this.newLearningCode.set('');
@@ -314,24 +340,14 @@ export class LanguageSettingsComponent {
     }
   }
 
-  /** Sets the active pair by backend ID. Finds matching entry in UserStore + syncs to backend. */
-  async setActivePair(pairId: string): Promise<void> {
+  /** Sets the active pair by backend ID. Finds/creates entry in UserStore. */
+  setActivePair(pairId: string): void {
     const pair = this.configuredPairs().find((p) => p.id === pairId);
     if (!pair) {
       return;
     }
-    // Find matching entry in UserStore by known/learning codes
-    const entry = this.userStore.languagePairs().find(
-      (e) => e.pair.known === pair.known && e.pair.learning === pair.learning,
-    );
-    if (entry) {
-      this.userStore.setActiveLanguagePair(entry.id);
-    }
-    // Sync to backend: PATCH /api/v1/users/me/preferences
-    await this.userApi.patchUserPreferences({
-      learningPairKnown: pair.known,
-      learningPairLearning: pair.learning,
-    });
+    // Ensure entry exists in UserStore (creates if needed, activates if exists)
+    this.userStore.addLanguagePair({ known: pair.known, learning: pair.learning });
   }
 
   /** Removes a configured pair. */
@@ -354,8 +370,8 @@ export class LanguageSettingsComponent {
         }
       }
 
-      // Refresh the pairs list
-      await this.availablePairs.load();
+      // Refresh the pairs list (force reload after mutation)
+      await this.availablePairs.load(true);
 
       this.snackBar.open('Pair removed', 'Close', { duration: 3000 });
     } catch (error) {

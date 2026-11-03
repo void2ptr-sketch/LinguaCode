@@ -1,7 +1,5 @@
 // ===== Utils =====
 export {
-  CONTENT_LANGUAGE_LABELS,
-  contentLanguages,
   formatLanguagePair,
   isContentLanguage,
   normalizeLanguagePair,
@@ -10,6 +8,7 @@ export {
   cardSearchCriteriaMatchesPair,
   languagePairFromIndexEntry,
   formatIndexLanguagePair,
+  buildLanguageLabels,
 } from './language-pair.utils';
 export {
   activeLanguagePairCriteria,

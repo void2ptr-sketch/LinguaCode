@@ -37,8 +37,8 @@
         [ngModel]="draft().languagePair.known"
         (ngModelChange)="onKnownLanguageChange($event)"
       >
-        @for (language of languages; track language) {
-          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+        @for (language of languageService.getCodes(); track language) {
+          <mat-option [value]="language">{{ languageService.getLabels()[language] }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
@@ -50,8 +50,8 @@
         [ngModel]="draft().languagePair.learning"
         (ngModelChange)="onLearningLanguageChange($event)"
       >
-        @for (language of languages; track language) {
-          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+        @for (language of languageService.getCodes(); track language) {
+          <mat-option [value]="language">{{ languageService.getLabels()[language] }}</mat-option>
         }
       </mat-select>
     </mat-form-field>

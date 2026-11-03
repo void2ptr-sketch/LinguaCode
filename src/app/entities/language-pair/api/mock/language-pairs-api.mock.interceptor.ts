@@ -52,6 +52,12 @@ const MOCK_LANGUAGE_PAIRS: LanguagePairDto[] = [
   { id: 23, knownCode: 'java', learningCode: 'zh' },
   { id: 24, knownCode: 'java', learningCode: 'ru' },
   { id: 25, knownCode: 'perl', learningCode: 'en' },
+  { id: 26, knownCode: 'hs', learningCode: 'en' },
+  { id: 27, knownCode: 'hs', learningCode: 'ru' },
+  { id: 28, knownCode: 'rs', learningCode: 'en' },
+  { id: 29, knownCode: 'rs', learningCode: 'ru' },
+  { id: 30, knownCode: 'js', learningCode: 'en' },
+  { id: 31, knownCode: 'js', learningCode: 'ru' },
 ];
 
 /**
