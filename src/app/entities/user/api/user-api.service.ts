@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
 import type { User } from '../model';
+import type { UserPreferences } from '../model/user.types';
 import type { ApiResponse } from '../../../shared/api/api.types';
 import type { UpdateUserPayload, UserPort } from '../repository/user.port';
 import { buildApiUrl } from '../../../shared/api/api-url';
@@ -17,6 +18,20 @@ type BackendUserDto = {
   preferences: string | Record<string, unknown>;
   createdAt: string;
   updatedAt: string;
+};
+
+/**
+ * Payload for updating user preferences via PATCH.
+ */
+type UserPreferencesPatch = {
+  learningPairKnown?: string;
+  learningPairLearning?: string;
+  interfaceLanguage?: string;
+  cardFontSize?: string;
+  darkMode?: boolean;
+  showPinyin?: boolean;
+  showTranscription?: boolean;
+  cardsPerDay?: number;
 };
 
 /**
@@ -64,6 +79,18 @@ export class UserApiService implements UserPort {
       this.http.put<ApiResponse<BackendUserDto>>(buildApiUrl(`/users/me`), payload),
     ).then((response) => mapBackendUser(response.data));
   }
+
+  /**
+   * Partially updates user preferences (PATCH /api/v1/users/me/preferences).
+   *
+   * @param patch - Fields to update (e.g. learningPairKnown/learningPairLearning).
+   * @returns Promise resolving to void (errors are silently ignored).
+   */
+  patchUserPreferences(patch: UserPreferencesPatch): Promise<void> {
+    return firstValueFrom(
+      this.http.patch<ApiResponse<unknown>>(buildApiUrl(`/users/me/preferences`), patch),
+    ).then(() => undefined).catch(() => undefined);
+  }
 }
 
 /**
@@ -73,7 +100,7 @@ function mapBackendUser(dto: BackendUserDto): User {
   return {
     id: dto.id,
     displayName: dto.displayName,
-    preferences: parsePreferences(dto.preferences),
+    preferences: parsePreferences(dto.preferences) as UserPreferences,
   };
 }
 

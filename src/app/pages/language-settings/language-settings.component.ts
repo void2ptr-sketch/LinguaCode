@@ -24,6 +24,8 @@ import {
 } from '../../entities/language-pair/api/language-api.service';
 import { LanguageService, LanguageSettingsStore } from '../../entities/language-pair';
 import { AvailablePairsService } from '../../entities/language-pair/lib/available-pairs.service';
+import { UserStore } from '../../entities/user/model';
+import { UserApiService } from '../../entities/user/api/user-api.service';
 import { RoleService } from '../../entities/auth/services/role.service';
 import { LanguagePairsService } from '../../shared/api/generated/language-pairs';
 
@@ -84,6 +86,8 @@ export interface PairGroup {
 })
 export class LanguageSettingsComponent {
   private readonly settingsStore: LanguageSettingsStore = inject(LanguageSettingsStore);
+  private readonly userStore: UserStore = inject(UserStore);
+  private readonly userApi: UserApiService = inject(UserApiService);
   private readonly languageService: LanguageService = inject(LanguageService);
   private readonly availablePairs: AvailablePairsService = inject(AvailablePairsService);
   private readonly languagePairsApi: LanguagePairsService = inject(LanguagePairsService);
@@ -103,7 +107,6 @@ export class LanguageSettingsComponent {
       learning: p.learningCode,
     })),
   );
-  readonly activePairId = this.settingsStore.activePairId;
   readonly canWriteLanguages = this.roleService.canWriteLanguages;
 
   /** Newly selected codes for the add-pair form. */
@@ -113,7 +116,7 @@ export class LanguageSettingsComponent {
   /** Pairs grouped by mirror languages (EN↔RU, EN↔DE …). */
   readonly groupedPairs = computed(() => {
     const pairs = this.configuredPairs();
-    const activeId = this.activePairId();
+    const activeEntry = this.userStore.activeLanguagePairEntry();
     const groups = new Map<string, DirectionItem[]>();
 
     for (const p of pairs) {
@@ -123,11 +126,14 @@ export class LanguageSettingsComponent {
       if (!groups.has(key)) {
         groups.set(key, []);
       }
+      // Match by known/learning codes, not by ID (UUID vs backend numeric)
+      const isActive =
+        activeEntry?.pair.known === p.known && activeEntry?.pair.learning === p.learning;
       groups.get(key)!.push({
         id: p.id,
         known: p.known,
         learning: p.learning,
-        isActive: p.id === (activeId ?? ''),
+        isActive,
       });
     }
 
@@ -308,6 +314,26 @@ export class LanguageSettingsComponent {
     }
   }
 
+  /** Sets the active pair by backend ID. Finds matching entry in UserStore + syncs to backend. */
+  async setActivePair(pairId: string): Promise<void> {
+    const pair = this.configuredPairs().find((p) => p.id === pairId);
+    if (!pair) {
+      return;
+    }
+    // Find matching entry in UserStore by known/learning codes
+    const entry = this.userStore.languagePairs().find(
+      (e) => e.pair.known === pair.known && e.pair.learning === pair.learning,
+    );
+    if (entry) {
+      this.userStore.setActiveLanguagePair(entry.id);
+    }
+    // Sync to backend: PATCH /api/v1/users/me/preferences
+    await this.userApi.patchUserPreferences({
+      learningPairKnown: pair.known,
+      learningPairLearning: pair.learning,
+    });
+  }
+
   /** Removes a configured pair. */
   async removePair(pairId: string): Promise<void> {
     try {
@@ -316,6 +342,17 @@ export class LanguageSettingsComponent {
         return;
       }
       await this.languagePairsApi.languagePairsDelete(numericId);
+
+      // Also remove from UserStore (find by known/learning codes)
+      const pair = this.configuredPairs().find((p) => p.id === pairId);
+      if (pair) {
+        const entry = this.userStore.languagePairs().find(
+          (e) => e.pair.known === pair.known && e.pair.learning === pair.learning,
+        );
+        if (entry) {
+          this.userStore.removeLanguagePair(entry.id);
+        }
+      }
 
       // Refresh the pairs list
       await this.availablePairs.load();
@@ -328,11 +365,6 @@ export class LanguageSettingsComponent {
         { duration: 5000 },
       );
     }
-  }
-
-  /** Sets the active pair by ID. */
-  setActivePair(pairId: string): void {
-    this.settingsStore.setActivePair(pairId);
   }
 
   /** Opens a dialog to create a new language. */
