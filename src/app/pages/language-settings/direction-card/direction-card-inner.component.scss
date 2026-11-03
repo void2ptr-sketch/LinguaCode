@@ -1,0 +1,144 @@
+.dc-card {
+  position: relative;
+  border: 1.5px solid var(--mat-sys-outline-variant);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: all 220ms ease;
+  background: var(--mat-sys-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dc-card:hover {
+  border-color: var(--mat-sys-outline);
+  background: var(--mat-sys-surface-container-low);
+}
+
+.dc-card--active {
+  border-color: var(--mat-sys-primary);
+  background: rgba(90,113,148,.07);
+  box-shadow: inset 0 0 0 1px rgba(90,113,148,.08);
+}
+
+.dc-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dc-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.dc-card__code {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  background: var(--mat-sys-surface-container);
+  color: var(--mat-sys-on-surface-variant);
+  white-space: nowrap;
+}
+
+.dc-card--active .dc-card__code {
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+}
+
+.dc-card__arrow {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.85rem;
+  padding: 0 0.1rem;
+}
+
+.dc-card__label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.dc-card__status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.dc-card__radio {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--mat-sys-outline);
+  transition: all 220ms ease;
+  display: grid;
+  place-items: center;
+}
+
+.dc-card--active .dc-card__radio {
+  border-color: var(--mat-sys-primary);
+  background: var(--mat-sys-primary);
+}
+
+.dc-card--active .dc-card__radio svg {
+  color: var(--mat-sys-on-primary);
+  animation: directionPop 300ms ease-out both;
+}
+
+.dc-card__sublabel {
+  font-size: 0.74rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.dc-card__divider {
+  height: 1px;
+  background: var(--mat-sys-outline-variant);
+}
+
+.dc-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.dc-card__btn {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  min-height: auto;
+  transition: all 200ms ease;
+}
+
+.dc-card__btn--primary {
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+}
+
+.dc-card__btn--primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 2px 8px rgba(90,113,148,.3);
+}
+
+.dc-card__btn--remove {
+  background: transparent;
+  color: var(--mat-sys-error);
+}
+
+.dc-card__btn--remove:hover {
+  background: var(--mat-sys-error-container);
+}
+
+.dc-card__btn--hidden {
+  visibility: hidden;
+  pointer-events: none;
+}

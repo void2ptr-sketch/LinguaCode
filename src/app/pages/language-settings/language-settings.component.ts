@@ -28,7 +28,8 @@ import { UserStore } from '../../entities/user/model';
 import { RoleService } from '../../entities/auth/services/role.service';
 import { LanguagePairsService } from '../../shared/api/generated/language-pairs';
 import type { ContentLanguage } from '../../entities/card/model';
-import { DirectionCardComponent, DIRECTION_CARD_HELPERS, DirectionItem } from './direction-card/direction-card.component';
+import { DIRECTION_CARD_HELPERS, DirectionItem } from './direction-card/direction-card.component';
+import { DirectionCardInnerComponent } from './direction-card/direction-card-inner.component';
 
 // ── Grouping types ──────────────────────────────────────────────
 
@@ -99,7 +100,7 @@ export interface PairGroup {
     MatSlideToggleModule,
     MatTooltipModule,
     MatDialogModule,
-    DirectionCardComponent,
+    DirectionCardInnerComponent,
   ],
   providers: [
     {
@@ -127,6 +128,7 @@ export class LanguageSettingsComponent {
   private readonly roleService: RoleService = inject(RoleService);
   private readonly router: Router = inject(Router);
   private readonly snackBar: MatSnackBar = inject(MatSnackBar);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   readonly selectedCodes = this.settingsStore.selectedCodes;
   readonly availableLanguages = computed(() => this.languageService.languages());
@@ -152,13 +154,11 @@ export class LanguageSettingsComponent {
     const groups = new Map<string, DirectionItem[]>();
 
     for (const p of pairs) {
-      // Canonical key: sorted codes so EN|RU === RU|EN
       const sorted = [p.known, p.learning].sort();
       const key = sorted.join('|');
       if (!groups.has(key)) {
         groups.set(key, []);
       }
-      // Match by known/learning codes, not by ID (UUID vs backend numeric)
       const isActive =
         activeEntry?.pair.known === p.known && activeEntry?.pair.learning === p.learning;
       groups.get(key)!.push({
@@ -175,8 +175,6 @@ export class LanguageSettingsComponent {
       count: directions.length,
     }));
   });
-
-  private readonly cdr = inject(ChangeDetectorRef);
 
   constructor() {
     // Ensure languages are loaded when the page opens (idempotent — also

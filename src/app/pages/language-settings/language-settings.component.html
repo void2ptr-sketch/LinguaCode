@@ -177,8 +177,11 @@
                         <!-- Direction cards -->
                         <div class="settings-page__pair-group__directions">
                           @for (dir of group.directions; track dir.id) {
-                            <app-direction-card
-                              [dirItem]="dir"
+                            <app-direction-card-inner
+                              [pairId]="dir.id"
+                              [known]="dir.known"
+                              [learning]="dir.learning"
+                              [isActive]="dir.isActive"
                               (activate)="setActivePair(dir.id)"
                               (remove)="removePair(dir.id)"
                             />

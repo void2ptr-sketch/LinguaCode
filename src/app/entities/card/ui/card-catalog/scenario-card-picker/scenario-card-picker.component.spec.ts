@@ -5,19 +5,33 @@ import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-ca
 import { UserStore } from '../../../../user/model/user.store';
 import {
   CARD_KIND_LABELS,
-  CONTENT_LANGUAGE_LABELS,
   DIFFICULTY_LABELS,
 } from '../../../lib/catalog-labels';
+import { LanguageService } from '../../../../language-pair/lib/language.service';
 import { formatIndexLanguagePair } from '../../../../language-pair/lib/language-pair.utils';
 
 describe('ScenarioCardPickerComponent', () => {
   let component: ScenarioCardPickerComponent;
   let fixture: ComponentFixture<ScenarioCardPickerComponent>;
+  let languageService: LanguageService;
+
+  const mockLabels: Record<string, string> = {
+    ru: 'Русский',
+    en: 'English',
+  };
 
   beforeEach(async () => {
+    languageService = {
+      getLabels: () => mockLabels,
+    } as unknown as LanguageService;
+
     await TestBed.configureTestingModule({
       imports: [ScenarioCardPickerComponent],
-      providers: [CardCatalogSearchStore, UserStore],
+      providers: [
+        CardCatalogSearchStore,
+        UserStore,
+        { provide: LanguageService, useValue: languageService },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScenarioCardPickerComponent);
@@ -33,7 +47,7 @@ describe('ScenarioCardPickerComponent', () => {
   });
 
   it('should expose languageLabels', () => {
-    expect(component.languageLabels).toBe(CONTENT_LANGUAGE_LABELS);
+    expect(component.languageLabels()).toBe(mockLabels);
   });
 
   it('should expose difficultyLabels', () => {
@@ -92,7 +106,7 @@ describe('ScenarioCardPickerComponent', () => {
       expect(spy).toHaveBeenCalledWith(['card-1', 'card-3']);
     });
 
-    it('should not emit when unchecking non-selected card', () => {
+    it('should emit filtered array when unchecking non-selected card (no-op filter)', () => {
       const spy = vi.spyOn(component.selectedIdsChange, 'emit');
       fixture.componentRef.setInput('selectedIds', ['card-1']);
       component.toggleCard('card-2', false);
