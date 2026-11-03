@@ -27,7 +27,7 @@
   &__flag { font-size: 1.5rem; line-height: 1; }
   &__name { font-weight: 600; font-size: 1.05rem; }
   &__badge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--mat-sys-primary); color: #fff; margin-left: 0.25rem; &--partial { background: var(--mat-sys-on-surface-variant); } }
-  &__directions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; padding: 0 1.35rem 1.1rem; overflow: hidden; }
+  &__directions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; padding: 0 1.1rem 1rem; overflow: hidden; }
 }
 
 .settings-page__direction {
