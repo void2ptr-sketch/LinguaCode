@@ -137,7 +137,11 @@ async function cleanupOrphanFiles() {
       removedCount++;
       console.log(`  🗑️  Removed orphan: ${file}`);
     }
-    indexContent = indexContent.replace(`export * from './${file}';\n`, '');
+    // Remove ALL occurrences of the export line (string replace + replaceAll)
+    const exportLine = `export * from './${file.replace('.ts', '')}';\n`;
+    const before = indexContent;
+    indexContent = indexContent.split(exportLine).join('');
+    if (indexContent !== before) removedCount++;
   }
 
   if (removedCount > 0) {

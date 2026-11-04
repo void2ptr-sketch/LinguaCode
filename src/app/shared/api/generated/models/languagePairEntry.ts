@@ -5,7 +5,7 @@
  * OpenAPI spec version: v0
  */
 
-export type LanguagesGetByCodeParams = {
-  /** ISO 639-1 code */
-  code: string;
-};
+export interface LanguagePairEntry {
+  known?: string;
+  learning?: string;
+}

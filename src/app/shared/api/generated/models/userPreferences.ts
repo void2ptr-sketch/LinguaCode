@@ -4,6 +4,7 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
+import type { LanguagePairEntry } from './languagePairEntry';
 import type { UserPreferencesCardFontSize } from './userPreferencesCardFontSize';
 import type { UserPreferencesInterfaceLanguage } from './userPreferencesInterfaceLanguage';
 
@@ -12,8 +13,7 @@ import type { UserPreferencesInterfaceLanguage } from './userPreferencesInterfac
  */
 export interface UserPreferences {
   interfaceLanguage?: UserPreferencesInterfaceLanguage;
-  learningPairKnown?: string;
-  learningPairLearning?: string;
+  learningPairs?: LanguagePairEntry[];
   selectedCourseId?: number;
   selectedProgramId?: number;
   cardFontSize?: UserPreferencesCardFontSize;

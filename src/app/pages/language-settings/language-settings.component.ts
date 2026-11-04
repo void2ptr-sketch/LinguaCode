@@ -167,6 +167,9 @@ export class LanguageSettingsComponent {
   readonly newKnownCode = signal<string>('');
   readonly newLearningCode = signal<string>('');
 
+  /** Loading state for the "Add Pair" button. */
+  readonly creatingPair = signal(false);
+
   /**
    * Pairs grouped by mirror languages (EN↔RU, EN↔DE …).
    *
@@ -346,9 +349,11 @@ export class LanguageSettingsComponent {
   async createPair(): Promise<void> {
     const known = this.newKnownCode();
     const learning = this.newLearningCode();
-    if (!known || !learning || known === learning) {
+    if (!known || !learning || known === learning || this.creatingPair()) {
       return;
     }
+
+    this.creatingPair.set(true);
 
     try {
       await this.languagePairsApi.languagePairsCreate({
@@ -370,56 +375,79 @@ export class LanguageSettingsComponent {
 
       this.newKnownCode.set('');
       this.newLearningCode.set('');
-      this.snackBar.open('Pair added', 'Close', { duration: 3000 });
+      this.snackBar.open('Пара добавлена', 'Закрыть', { duration: 3000 });
     } catch (error) {
-      this.snackBar.open(`Failed to create pair: ${(error as Error).message}`, 'Close', {
-        duration: 5000,
-      });
+      this.snackBar.open(
+        `Не удалось создать пару: ${(error as Error).message}`,
+        'Закрыть',
+        { duration: 5000 },
+      );
+    } finally {
+      this.creatingPair.set(false);
     }
   }
 
   /**
-   * Activates a single direction card.
-   *
-   * @remarks
-   * Strictly scoped to the card's own mirror pair group: the highlight moves
-   * to this card within its group (its mirror sibling is the only other card
-   * that may change). Cards of other mirror pairs are never affected. The
-   * global active learning pair is synced so the header switcher follows the
-   * user's explicit choice.
-   */
-  setActivePair(event: DirectionCardEvent): void {
-    // Resolve the card strictly by its full identity — no ambiguous lookups.
-    const pair = this.configuredPairs().find((p) => p.id === event.pairId);
-    if (!pair || pair.known !== event.known || pair.learning !== event.learning) {
-      return;
-    }
-    // Validate that both codes are recognized content languages before proceeding.
-    if (!isContentLanguage(pair.known) || !isContentLanguage(pair.learning)) {
-      return;
-    }
+    * Activates a single direction card.
+    *
+    * @remarks
+    * Strictly scoped to the card's own mirror pair group: the highlight moves
+    * to this card within its group (its mirror sibling is the only other card
+    * that may change). Cards of other mirror pairs are never affected. The
+    * global active learning pair is synced so the header switcher follows the
+    * user's explicit choice.
+    */
+   async setActivePair(event: DirectionCardEvent): Promise<void> {
+     // Resolve the card strictly by its full identity — no ambiguous lookups.
+     const pair = this.configuredPairs().find((p) => p.id === event.pairId);
+     if (!pair || pair.known !== event.known || pair.learning !== event.learning) {
+       return;
+     }
+     // Validate that both codes are recognized content languages before proceeding.
+     if (!isContentLanguage(pair.known) || !isContentLanguage(pair.learning)) {
+       return;
+     }
 
-    const direction: LanguagePair = {
-      known: pair.known as ContentLanguage,
-      learning: pair.learning as ContentLanguage,
-    };
-    const groupKey = buildMirrorGroupKey(direction.known, direction.learning);
+     const direction: LanguagePair = {
+       known: pair.known as ContentLanguage,
+       learning: pair.learning as ContentLanguage,
+     };
+     const groupKey = buildMirrorGroupKey(direction.known, direction.learning);
 
-    // Ensure a UserStore entry exists for the exact direction — without
-    // any activation side effects.
-    this.userStore.addLanguagePair(direction, { activate: false });
+     // Ensure a UserStore entry exists for the exact direction — without
+     // any activation side effects.
+     this.userStore.addLanguagePair(direction, { activate: false });
 
-    // Highlight within this mirror pair group only.
-    this.userStore.setActivePairInGroup(groupKey, direction);
+     // Highlight within this mirror pair group only.
+     this.userStore.setActivePairInGroup(groupKey, direction);
 
-    // Sync the global active learning pair (header switcher, learning scope).
-    const entry = this.userStore
-      .languagePairs()
-      .find((e) => e.pair.known === direction.known && e.pair.learning === direction.learning);
-    if (entry) {
-      this.userStore.setActiveLanguagePair(entry.id);
-    }
-  }
+     // Sync the global active learning pair (header switcher, learning scope).
+     const entry = this.userStore
+       .languagePairs()
+       .find((e) => e.pair.known === direction.known && e.pair.learning === direction.learning);
+     if (entry) {
+       this.userStore.setActiveLanguagePair(entry.id);
+     }
+
+     // Send activation to backend
+     const numericId = Number(event.pairId);
+     if (Number.isNaN(numericId)) {
+       return;
+     }
+
+     try {
+       await this.languagePairsApi.languagePairsUpdate(numericId, {
+         knownCode: direction.known,
+         learningCode: direction.learning,
+       });
+     } catch (error) {
+       this.snackBar.open(
+         `Не удалось активировать пару: ${(error as Error).message}`,
+         'Закрыть',
+         { duration: 5000 },
+       );
+     }
+   }
 
   /**
    * Removes a configured pair (single-card event).
@@ -473,11 +501,13 @@ export class LanguageSettingsComponent {
         }
       }
 
-      this.snackBar.open('Pair removed', 'Close', { duration: 3000 });
+      this.snackBar.open('Пара удалена', 'Закрыть', { duration: 3000 });
     } catch (error) {
-      this.snackBar.open(`Failed to remove pair: ${(error as Error).message}`, 'Close', {
-        duration: 5000,
-      });
+      this.snackBar.open(
+        `Не удалось удалить пару: ${(error as Error).message}`,
+        'Закрыть',
+        { duration: 5000 },
+      );
     }
   }
 

@@ -40,6 +40,7 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
   let pairsSignal: ReturnType<typeof signal<LanguagePairDto[]>>;
   let createSpy: ReturnType<typeof vi.fn>;
   let deleteSpy: ReturnType<typeof vi.fn>;
+  let updateSpy: ReturnType<typeof vi.fn>;
   let snackBarSpy: ReturnType<typeof vi.fn>;
 
   const pairCard = (pairId: string) => {
@@ -60,6 +61,7 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
     pairsSignal = signal<LanguagePairDto[]>([...PAIRS]);
     createSpy = vi.fn(async () => ({}));
     deleteSpy = vi.fn(async () => undefined);
+    updateSpy = vi.fn(async () => ({}));
     snackBarSpy = vi.fn();
 
     const languageServiceMock = {
@@ -102,7 +104,7 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
         { provide: RoleService, useValue: roleServiceMock },
         {
           provide: LanguagePairsService,
-          useValue: { languagePairsCreate: createSpy, languagePairsDelete: deleteSpy },
+          useValue: { languagePairsCreate: createSpy, languagePairsDelete: deleteSpy, languagePairsUpdate: updateSpy },
         },
         { provide: LanguageApiService, useValue: {} },
         { provide: Router, useValue: { navigate: vi.fn() } },
@@ -133,10 +135,10 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
     expect(pairCard('4').card.isActive).toBe(false); // zh→ja
   });
 
-  it('should scope activation to its own mirror group only', () => {
+  it('should scope activation to its own mirror group only', async () => {
     userStore.setActivePairInGroup('ja|zh', { known: 'ja', learning: 'zh' });
 
-    component.setActivePair({ pairId: '1', known: 'en', learning: 'ru' });
+    await component.setActivePair({ pairId: '1', known: 'en', learning: 'ru' });
 
     // EN↔RU: highlight moved to en→ru.
     expect(userStore.activeByMirrorGroup()['en|ru']).toEqual({ known: 'en', learning: 'ru' });
@@ -149,17 +151,17 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
     expect(pairCard('4').card.isActive).toBe(false);
   });
 
-  it('should sync the global active pair on activation', () => {
-    component.setActivePair({ pairId: '3', known: 'ja', learning: 'zh' });
+  it('should sync the global active pair on activation', async () => {
+    await component.setActivePair({ pairId: '3', known: 'ja', learning: 'zh' });
 
     expect(userStore.languagePair()).toEqual({ known: 'ja', learning: 'zh' });
   });
 
-  it('should create a UserStore entry without activation side effects', () => {
+  it('should create a UserStore entry without activation side effects', async () => {
     const activeIdBefore = userStore.activeLanguagePairId();
     const markersBefore = { ...userStore.activeByMirrorGroup() };
 
-    component.setActivePair({ pairId: '3', known: 'ja', learning: 'zh' });
+    await component.setActivePair({ pairId: '3', known: 'ja', learning: 'zh' });
 
     const entry = userStore
       .languagePairs()
@@ -192,6 +194,40 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
     expect(createSpy).toHaveBeenCalledOnce();
     expect(userStore.activeLanguagePairId()).toBe(activeIdBefore);
     expect(userStore.activeByMirrorGroup()).toEqual(markersBefore);
+  });
+
+  it('should disable the add-pair button during creation', async () => {
+    component.newKnownCode.set('ja');
+    component.newLearningCode.set('zh');
+
+    expect(component.creatingPair()).toBe(false);
+
+    await component.createPair();
+
+    expect(component.creatingPair()).toBe(false);
+  });
+
+  it('should show Russian toast messages on pair creation', async () => {
+    component.newKnownCode.set('ja');
+    component.newLearningCode.set('zh');
+    await component.createPair();
+
+    expect(snackBarSpy).toHaveBeenCalledWith('Пара добавлена', 'Закрыть', { duration: 3000 });
+  });
+
+  it('should show Russian toast messages on pair removal', async () => {
+    await component.removePair({ pairId: '1', known: 'en', learning: 'ru' });
+
+    expect(snackBarSpy).toHaveBeenCalledWith('Пара удалена', 'Закрыть', { duration: 3000 });
+  });
+
+  it('should send update request to backend on activation', async () => {
+    await component.setActivePair({ pairId: '3', known: 'ja', learning: 'zh' });
+
+    expect(updateSpy).toHaveBeenCalledExactlyOnceWith(3, {
+      knownCode: 'ja',
+      learningCode: 'zh',
+    });
   });
 
   it('should remove only the targeted pair and keep other groups intact', async () => {

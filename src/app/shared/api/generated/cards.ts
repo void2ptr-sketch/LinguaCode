@@ -23,8 +23,6 @@ import type {
 } from 'rxjs';
 
 import type {
-  CardBatchRetrieveRequest,
-  CardBatchRetrieveResponse,
   CardCreateRequest,
   CardList,
   CardResponse,
@@ -413,80 +411,6 @@ export class CardsService {
     );
   }
 /**
- * Creates multiple cards in a single request
- * @summary Batch create cards
- */
- cardsBatchCreate<TData = CardList>(cardCreateRequest: CardCreateRequest[], options?: HttpClientBodyOptions): Observable<TData>;
- cardsBatchCreate<TData = CardList>(cardCreateRequest: CardCreateRequest[], options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- cardsBatchCreate<TData = CardList>(cardCreateRequest: CardCreateRequest[], options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  cardsBatchCreate<TData = CardList>(
-    cardCreateRequest: CardCreateRequest[], options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.post<TData>(
-      `/api/v1/cards/batch`,
-      cardCreateRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      }
-    );
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.post<TData>(
-      `/api/v1/cards/batch`,
-      cardCreateRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      }
-    );
-    }
-
-    return this.http.post<TData>(
-      `/api/v1/cards/batch`,
-      cardCreateRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
-  }
-/**
- * Retrieves multiple cards by their IDs in a single request
- * @summary Batch retrieve cards
- */
- cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientBodyOptions): Observable<TData>;
- cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  cardsBatchRetrieve<TData = CardBatchRetrieveResponse>(
-    cardBatchRetrieveRequest: CardBatchRetrieveRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    if (options?.observe === 'events') {
-      return this.http.post<TData>(
-      `/api/v1/cards/batch/retrieve`,
-      cardBatchRetrieveRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'events',
-      }
-    );
-    }
-
-    if (options?.observe === 'response') {
-      return this.http.post<TData>(
-      `/api/v1/cards/batch/retrieve`,
-      cardBatchRetrieveRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'response',
-      }
-    );
-    }
-
-    return this.http.post<TData>(
-      `/api/v1/cards/batch/retrieve`,
-      cardBatchRetrieveRequest,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
-        observe: 'body',
-      }
-    );
-  }
-/**
  * Searches cards by title and filters
  * @summary Search cards
  */
@@ -529,6 +453,4 @@ export type CardsUpdateClientResult = NonNullable<CardResponse>
 export type CardsDeleteClientResult = NonNullable<void>
 export type CardsListClientResult = NonNullable<CardList>
 export type CardsCreateClientResult = NonNullable<CardResponse>
-export type CardsBatchCreateClientResult = NonNullable<CardList>
-export type CardsBatchRetrieveClientResult = NonNullable<CardBatchRetrieveResponse>
 export type CardsSearchClientResult = NonNullable<CardList>
