@@ -38,7 +38,6 @@ import { AvailablePairsService } from '../../entities/language-pair/lib/availabl
 import { UserStore } from '../../entities/user/model';
 import { UserApiService } from '../../entities/user/api/user-api.service';
 import { RoleService } from '../../entities/auth/services/role.service';
-import { LanguagePairsService } from '../../shared/api/generated/language-pairs';
 import type { ContentLanguage } from '../../entities/card/model';
 import type { LanguagePair } from '../../entities/language-pair/model/language-pair.types';
 import {
@@ -144,7 +143,6 @@ export class LanguageSettingsComponent {
   private readonly userStore: UserStore = inject(UserStore);
   private readonly languageService: LanguageService = inject(LanguageService);
   private readonly availablePairs: AvailablePairsService = inject(AvailablePairsService);
-  private readonly languagePairsApi: LanguagePairsService = inject(LanguagePairsService);
   private readonly userApi: UserApiService = inject(UserApiService);
   private readonly languageApi: LanguageApiService = inject(LanguageApiService);
   private readonly roleService: RoleService = inject(RoleService);
@@ -363,11 +361,6 @@ export class LanguageSettingsComponent {
     this.creatingPair.set(true);
 
     try {
-      await this.languagePairsApi.languagePairsCreate({
-        knownCode: known,
-        learningCode: learning,
-      });
-
       // Sync the newly created pair to UserStore so that setActivePair
       // can find a matching entry.  Creating a pair is a single-card
       // event: it must NOT activate the pair or change any mirror-group
@@ -376,6 +369,13 @@ export class LanguageSettingsComponent {
         { known: known as ContentLanguage, learning: learning as ContentLanguage },
         { activate: false },
       );
+
+      // Persist updated pairs to backend (users/preferences only).
+      await this.userApi.patchUserPreferences({
+        learningPairs: this.userStore
+          .languagePairs()
+          .map((p) => ({ known: p.pair.known, learning: p.pair.learning })),
+      });
 
       // Refresh the pairs list (force reload after mutation)
       await this.availablePairs.load(true);
@@ -424,26 +424,8 @@ export class LanguageSettingsComponent {
       .languagePairs()
       .find((e) => e.pair.known === direction.learning && e.pair.learning === direction.known);
 
-    // Find the mirror sibling in configured pairs (to get the backend ID for deletion).
-    const mirrorSibling = mirrorSiblingInStore
-      ? this.configuredPairs().find(
-          (p) => p.known === direction.learning && p.learning === direction.known,
-        )
-      : null;
-
-    // Delete mirror sibling from backend.
-    if (mirrorSibling) {
-      try {
-        await this.languagePairsApi.languagePairsDelete(Number(mirrorSibling.id));
-      } catch {
-        // Ignore deletion errors — continue with activation.
-      }
-    }
-
     // Remove mirror sibling from UserStore if it exists.
     if (mirrorSiblingInStore) {
-      // Use userState.update to explicitly remove the pair (bypass removeLanguagePair's
-      // "don't remove last pair" guard).
       this.userStore['userState'].update((user) => {
         const nextPairs = user.preferences.languagePairs.filter(
           (e) => e.id !== mirrorSiblingInStore.id,
@@ -474,32 +456,16 @@ export class LanguageSettingsComponent {
       this.userStore.setActiveLanguagePair(entry.id);
     }
 
-    // Send activation to backend
-    const numericId = Number(event.pairId);
-    if (Number.isNaN(numericId)) {
-      return;
-    }
-
+    // Persist active pair to backend (users/preferences only).
     try {
-      await this.languagePairsApi.languagePairsUpdate(numericId, {
-        knownCode: direction.known,
-        learningCode: direction.learning,
+      await this.userApi.patchUserPreferences({
+        activeLanguagePairId: entry?.id,
+        learningPairs: this.userStore
+          .languagePairs()
+          .map((p) => ({ known: p.pair.known, learning: p.pair.learning })),
       });
-
-      // Persist active pair to backend
-      const activeEntry = this.userStore
-        .languagePairs()
-        .find((e) => e.pair.known === direction.known && e.pair.learning === direction.learning);
-      if (activeEntry) {
-        await this.userApi.patchUserPreferences({
-          activeLanguagePairId: activeEntry.id,
-          learningPairs: this.userStore
-            .languagePairs()
-            .map((p) => ({ known: p.pair.known, learning: p.pair.learning })),
-        });
-      }
     } catch (error) {
-      this.snackBar.open(`Не удалось активировать пару: ${(error as Error).message}`, 'Закрыть', {
+      this.snackBar.open(`Не удалось сохранить пару: ${(error as Error).message}`, 'Закрыть', {
         duration: 5000,
       });
     }
@@ -529,17 +495,12 @@ export class LanguageSettingsComponent {
     }
 
     try {
-      const numericId = Number(event.pairId);
-      if (Number.isNaN(numericId)) {
-        return;
-      }
       // Resolve the card strictly by its full identity — no ambiguous lookups.
       const pair = this.configuredPairs().find((p) => p.id === event.pairId);
       if (!pair || pair.known !== event.known || pair.learning !== event.learning) {
+        this.snackBar.open('Пара не найдена', 'Закрыть', { duration: 3000 });
         return;
       }
-
-      await this.languagePairsApi.languagePairsDelete(numericId);
 
       // Remove the matching UserStore entry (exact codes). The store moves
       // this group's highlight to the mirror sibling or clears it.
@@ -569,6 +530,13 @@ export class LanguageSettingsComponent {
           });
         }
       }
+
+      // Persist updated pairs to backend (users/preferences only).
+      await this.userApi.patchUserPreferences({
+        learningPairs: this.userStore
+          .languagePairs()
+          .map((p) => ({ known: p.pair.known, learning: p.pair.learning })),
+      });
 
       this.snackBar.open('Пара удалена', 'Закрыть', { duration: 3000 });
     } catch (error) {

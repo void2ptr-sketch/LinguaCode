@@ -1,9 +1,9 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { of, Subject } from 'rxjs';
+import { of } from 'rxjs';
 
 import { LanguageSettingsComponent } from './language-settings.component';
 import { LanguageService } from '../../entities/language-pair/lib/language.service';
@@ -46,8 +46,6 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
   let updateSpy: ReturnType<typeof vi.fn>;
   let patchPrefsSpy: ReturnType<typeof vi.fn>;
   let snackBarSpy: ReturnType<typeof vi.fn>;
-  let mockDialogOpenSpy: ReturnType<typeof vi.fn>;
-  let dialogOpenSpy: ReturnType<typeof vi.fn>;
 
   const pairCard = (pairId: string) => {
     const groups = component.groupedPairs();
@@ -70,9 +68,6 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
     updateSpy = vi.fn(async () => ({}));
     patchPrefsSpy = vi.fn(async () => undefined);
     snackBarSpy = vi.fn();
-    mockDialogOpenSpy = vi.fn().mockImplementation(() => ({
-      afterClosed: () => of(true as boolean),
-    }));
 
     const languageServiceMock = {
       languages: signal<LanguageDto[]>(LANGUAGES),
@@ -215,7 +210,8 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
     component.newLearningCode.set('zh');
     await component.createPair();
 
-    expect(createSpy).toHaveBeenCalledOnce();
+    // Should update user preferences, not call language pairs API
+    expect(patchPrefsSpy).toHaveBeenCalledOnce();
     expect(userStore.activeLanguagePairId()).toBe(activeIdBefore);
     expect(userStore.activeByMirrorGroup()).toEqual(markersBefore);
   });
@@ -248,10 +244,10 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
   it('should send update request to backend on activation', async () => {
     await component.setActivePair({ pairId: '3', known: 'ja', learning: 'zh' });
 
-    expect(updateSpy).toHaveBeenCalledExactlyOnceWith(3, {
-      knownCode: 'ja',
-      learningCode: 'zh',
-    });
+    // Activation should update user preferences, not language pairs API
+    expect(patchPrefsSpy).toHaveBeenCalledOnce();
+    const callArgs = patchPrefsSpy.mock.calls[0][0];
+    expect(callArgs.activeLanguagePairId).toBeDefined();
   });
 
   it('should persist active pair to backend on activation', async () => {
@@ -267,20 +263,15 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
     // Initial state: UserStore has default pair (ru→en).
     expect(userStore.languagePairs()).toHaveLength(1);
 
-    // Activate EN→RU (id 1), which should remove RU→EN from the same mirror group.
+    // Activate EN→RU, which should remove RU→EN from the same mirror group.
     await component.setActivePair({ pairId: '1', known: 'en', learning: 'ru' });
 
-    // The mirror sibling (RU→EN) should be deleted from backend.
-    expect(deleteSpy).toHaveBeenCalledExactlyOnceWith(2);
-    // The activated pair (EN→RU) should be updated.
-    expect(updateSpy).toHaveBeenCalledExactlyOnceWith(1, {
-      knownCode: 'en',
-      learningCode: 'ru',
-    });
     // UserStore should only contain the activated direction, not the mirror sibling.
     const pairsAfter = userStore.languagePairs();
     expect(pairsAfter).toHaveLength(1);
     expect(pairsAfter[0].pair).toEqual({ known: 'en', learning: 'ru' });
+    // User preferences should be updated.
+    expect(patchPrefsSpy).toHaveBeenCalledOnce();
   });
 
   it('should remove only the targeted pair and keep other groups intact', async () => {
@@ -289,7 +280,8 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
 
     await component.removePair({ pairId: '1', known: 'en', learning: 'ru' });
 
-    expect(deleteSpy).toHaveBeenCalledExactlyOnceWith(1);
+    // Should update user preferences, not call language pairs API
+    expect(patchPrefsSpy).toHaveBeenCalledOnce();
     // Other groups' markers are untouched.
     expect(userStore.activeByMirrorGroup()['ja|zh']).toEqual(markersBefore['ja|zh']);
   });

@@ -33,6 +33,19 @@ type LanguagePairDto = {
 };
 ```
 
+> **⚠️ Важно: `language_pairs` — справочник, НЕ настройки пользователя.**
+>
+> Таблица `language_pairs` (эндпоинт `/api/v1/language-pairs`) служит **только источником информации** для фронтенда — карточки "Зеркальная пара" и вложенные карточки "Языковые пары" получают из неё список **всех доступных** языковых пар.
+>
+> **Пользовательские настройки** (выбранные пары, активная пара) хранятся **исключительно** в таблице `users` (поле `preferences`):
+>
+> - `activeLanguagePairId` — ID активной пары
+> - `learningPairs` — массив `{ known, learning }` выбранных пар
+>
+> Фронтенд работает с настройками пользователя через `PATCH /api/v1/users/me/preferences` (`UserApiService.patchUserPreferences()`). **Никакие операции записи (POST/PUT/PATCH/DELETE) на `/api/v1/language-pairs` не выполняются.**
+>
+> Ошибка: попытка обновлять/удалять пары через `language-pairs` API. Это справочник, а не пользовательские данные.
+
 ## Карточки (`/cards`)
 
 Реализация: `CardsApiService` · порт `CardCatalogPort` · mock `cardsApiMockInterceptor`.
