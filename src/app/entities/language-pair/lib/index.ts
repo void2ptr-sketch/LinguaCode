@@ -4,6 +4,7 @@ export {
   isContentLanguage,
   normalizeLanguagePair,
   languagePairsEqual,
+  buildMirrorGroupKey,
   cardIndexMatchesPair,
   cardSearchCriteriaMatchesPair,
   languagePairFromIndexEntry,

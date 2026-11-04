@@ -1,6 +1,7 @@
 import type { CardAppearance } from '../../card/model/card.types';
 import type { AppColorScheme } from '../../../shared/theme/app-color-scheme.types';
 import type { LearningProficiencyLevel } from '../../learning/model/learning-proficiency.types';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
 import type { UserLanguagePairEntry } from './user-language-pair.types';
 
 /**
@@ -21,6 +22,17 @@ export type UserPreferences = CardAppearance & {
   languagePairs: readonly UserLanguagePairEntry[];
   /** ID of the currently active language pair. */
   activeLanguagePairId: string;
+  /**
+   * Per-mirror-group active pair direction: mirror-group key (sorted codes,
+   * see `buildMirrorGroupKey`) → the exact direction ({ known, learning })
+   * that is highlighted as active within that mirror pair group.
+   *
+   * @remarks
+   * Scoped per mirror group so that activation events within one mirror
+   * pair (e.g. EN↔RU) never affect cards of other mirror pairs (e.g.
+   * JA↔ZH). Optional for backward compatibility with persisted profiles.
+   */
+  activeByMirrorGroup?: Record<string, LanguagePair>;
 };
 
 /**

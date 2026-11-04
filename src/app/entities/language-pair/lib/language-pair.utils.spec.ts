@@ -1,5 +1,6 @@
 import type { ContentLanguage } from '../../card/model';
 import {
+  buildMirrorGroupKey,
   formatLanguagePair,
   isContentLanguage,
   normalizeLanguagePair,
@@ -22,6 +23,22 @@ describe('language-pair.utils', () => {
     expect(
       normalizeLanguagePair({ known: 'xx' as ContentLanguage, learning: 'xx' as ContentLanguage }),
     ).toEqual(DEFAULT_LANGUAGE_PAIR);
+  });
+
+  describe('buildMirrorGroupKey', () => {
+    it('should produce the same key for both mirror directions', () => {
+      expect(buildMirrorGroupKey('ru', 'en')).toBe('en|ru');
+      expect(buildMirrorGroupKey('en', 'ru')).toBe('en|ru');
+    });
+
+    it('should produce distinct keys for distinct mirror pairs', () => {
+      expect(buildMirrorGroupKey('ja', 'zh')).not.toBe(buildMirrorGroupKey('en', 'ru'));
+    });
+
+    it('should sort codes canonically', () => {
+      expect(buildMirrorGroupKey('zh', 'ja')).toBe('ja|zh');
+      expect(buildMirrorGroupKey('cpp', 'ru')).toBe('cpp|ru');
+    });
   });
 
   it('should accept valid content languages', () => {

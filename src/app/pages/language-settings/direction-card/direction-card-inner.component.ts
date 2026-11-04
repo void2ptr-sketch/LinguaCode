@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { DIRECTION_CARD_HELPERS } from './direction-card.component';
-import type { DirectionCardHelpers } from './direction-card.component';
+import type { DirectionCardEvent, DirectionCardHelpers } from './direction-card.component';
 
 /**
  * A single direction card (e.g. RU → EN or EN → Ru).
@@ -76,7 +76,7 @@ import type { DirectionCardHelpers } from './direction-card.component';
           type="button"
           class="dc-card__btn dc-card__btn--primary"
           [class.dc-card__btn--hidden]="isActive"
-          (click)="activate.emit(pairId)"
+          (click)="activate.emit({ pairId, known, learning })"
         >
           Activate
         </button>
@@ -85,7 +85,7 @@ import type { DirectionCardHelpers } from './direction-card.component';
           type="button"
           color="warn"
           class="dc-card__btn dc-card__btn--remove"
-          (click)="remove.emit(pairId)"
+          (click)="remove.emit({ pairId, known, learning })"
           matTooltip="Remove this direction"
         >
           <svg
@@ -115,8 +115,10 @@ export class DirectionCardInnerComponent {
   @Input() learning = '';
   @Input() isActive = false;
 
-  readonly activate = output<string>();
-  readonly remove = output<string>();
+  /** Emits the full pair identity of this card when `Activate` is pressed. */
+  readonly activate = output<DirectionCardEvent>();
+  /** Emits the full pair identity of this card when `Remove` is pressed. */
+  readonly remove = output<DirectionCardEvent>();
 
   protected labelKnown = computed(() => this._helpers.getLanguageLabel(this.known));
   protected labelLearning = computed(() => this._helpers.getLanguageLabel(this.learning));

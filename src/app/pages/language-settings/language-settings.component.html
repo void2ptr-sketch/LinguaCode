@@ -192,8 +192,8 @@
                             [known]="dir.known"
                             [learning]="dir.learning"
                             [isActive]="dir.isActive"
-                            (activate)="setActivePair(dir.id)"
-                            (remove)="removePair(dir.id)"
+                            (activate)="setActivePair($event)"
+                            (remove)="removePair($event)"
                           />
                         }
 

@@ -35,7 +35,16 @@ import { UserStore } from '../../entities/user/model';
 import { RoleService } from '../../entities/auth/services/role.service';
 import { LanguagePairsService } from '../../shared/api/generated/language-pairs';
 import type { ContentLanguage } from '../../entities/card/model';
-import { DIRECTION_CARD_HELPERS, DirectionItem } from './direction-card/direction-card.component';
+import type { LanguagePair } from '../../entities/language-pair/model/language-pair.types';
+import {
+  buildMirrorGroupKey,
+  isContentLanguage,
+} from '../../entities/language-pair/lib/language-pair.utils';
+import {
+  DIRECTION_CARD_HELPERS,
+  DirectionCardEvent,
+  DirectionItem,
+} from './direction-card/direction-card.component';
 import { DirectionCardInnerComponent } from './direction-card/direction-card-inner.component';
 
 // ── Grouping types ──────────────────────────────────────────────
@@ -158,20 +167,27 @@ export class LanguageSettingsComponent {
   readonly newKnownCode = signal<string>('');
   readonly newLearningCode = signal<string>('');
 
-  /** Pairs grouped by mirror languages (EN↔RU, EN↔DE …). */
+  /**
+   * Pairs grouped by mirror languages (EN↔RU, EN↔DE …).
+   *
+   * @remarks
+   * The `isActive` flag of each direction card is derived from the
+   * per-mirror-group highlight (`UserStore.activeByMirrorGroup`), NOT from
+   * the global active pair. This isolates events: activation within one
+   * mirror pair group never changes the highlight of other mirror pairs.
+   */
   readonly groupedPairs = computed(() => {
     const pairs = this.configuredPairs();
-    const activeEntry = this.userStore.activeLanguagePairEntry();
+    const groupActive = this.userStore.activeByMirrorGroup();
     const groups = new Map<string, DirectionItem[]>();
 
     for (const p of pairs) {
-      const sorted = [p.known, p.learning].sort();
-      const key = sorted.join('|');
+      const key = buildMirrorGroupKey(p.known, p.learning);
       if (!groups.has(key)) {
         groups.set(key, []);
       }
-      const isActive =
-        activeEntry?.pair.known === p.known && activeEntry?.pair.learning === p.learning;
+      const marker = groupActive[key];
+      const isActive = !!marker && marker.known === p.known && marker.learning === p.learning;
       groups.get(key)!.push({
         id: p.id,
         known: p.known,
@@ -196,15 +212,15 @@ export class LanguageSettingsComponent {
   }
 
   /** Whether the currently active pair exists. */
-  readonly hasActivePair = computed(() => !!this.settingsStore.getActivePair());
+  readonly hasActivePair = computed(() => !!this.userStore.activeLanguagePairEntry());
 
   /** Currently active pair label (e.g. "English → Russian"). */
   readonly activePairLabel = computed(() => {
-    const pair = this.settingsStore.getActivePair();
-    if (!pair) {
+    const entry = this.userStore.activeLanguagePairEntry();
+    if (!entry) {
       return 'No active pair';
     }
-    return `${this.getLanguageLabel(pair.known)} → ${this.getLanguageLabel(pair.learning)}`;
+    return `${this.getLanguageLabel(entry.pair.known)} → ${this.getLanguageLabel(entry.pair.learning)}`;
   });
 
   /** Returns the selected label for a language code. */
@@ -340,6 +356,15 @@ export class LanguageSettingsComponent {
         learningCode: learning,
       });
 
+      // Sync the newly created pair to UserStore so that setActivePair
+      // can find a matching entry.  Creating a pair is a single-card
+      // event: it must NOT activate the pair or change any mirror-group
+      // highlight (hence `activate: false`).
+      this.userStore.addLanguagePair(
+        { known: known as ContentLanguage, learning: learning as ContentLanguage },
+        { activate: false },
+      );
+
       // Refresh the pairs list (force reload after mutation)
       await this.availablePairs.load(true);
 
@@ -353,44 +378,100 @@ export class LanguageSettingsComponent {
     }
   }
 
-  /** Sets the active pair by backend ID. Finds existing entry in UserStore and activates it. */
-  setActivePair(pairId: string): void {
-    const pair = this.configuredPairs().find((p) => p.id === pairId);
-    if (!pair) {
+  /**
+   * Activates a single direction card.
+   *
+   * @remarks
+   * Strictly scoped to the card's own mirror pair group: the highlight moves
+   * to this card within its group (its mirror sibling is the only other card
+   * that may change). Cards of other mirror pairs are never affected. The
+   * global active learning pair is synced so the header switcher follows the
+   * user's explicit choice.
+   */
+  setActivePair(event: DirectionCardEvent): void {
+    // Resolve the card strictly by its full identity — no ambiguous lookups.
+    const pair = this.configuredPairs().find((p) => p.id === event.pairId);
+    if (!pair || pair.known !== event.known || pair.learning !== event.learning) {
       return;
     }
-    // Find an existing entry in UserStore that matches this pair's known/learning codes.
-    // Only activate — never create a new entry here (the pair already exists in the backend).
-    const existingEntry = this.userStore
+    // Validate that both codes are recognized content languages before proceeding.
+    if (!isContentLanguage(pair.known) || !isContentLanguage(pair.learning)) {
+      return;
+    }
+
+    const direction: LanguagePair = {
+      known: pair.known as ContentLanguage,
+      learning: pair.learning as ContentLanguage,
+    };
+    const groupKey = buildMirrorGroupKey(direction.known, direction.learning);
+
+    // Ensure a UserStore entry exists for the exact direction — without
+    // any activation side effects.
+    this.userStore.addLanguagePair(direction, { activate: false });
+
+    // Highlight within this mirror pair group only.
+    this.userStore.setActivePairInGroup(groupKey, direction);
+
+    // Sync the global active learning pair (header switcher, learning scope).
+    const entry = this.userStore
       .languagePairs()
-      .find((e) => e.pair.known === pair.known && e.pair.learning === pair.learning);
-    if (existingEntry) {
-      this.userStore.setActiveLanguagePair(existingEntry.id);
+      .find((e) => e.pair.known === direction.known && e.pair.learning === direction.learning);
+    if (entry) {
+      this.userStore.setActiveLanguagePair(entry.id);
     }
   }
 
-  /** Removes a configured pair. */
-  async removePair(pairId: string): Promise<void> {
+  /**
+   * Removes a configured pair (single-card event).
+   *
+   * @remarks
+   * Affects only the removed direction: the backend row is deleted, the
+   * matching UserStore entry is removed, and this group's highlight moves to
+   * the mirror sibling (if still configured) or is cleared. Other mirror
+   * pair groups are never touched.
+   */
+  async removePair(event: DirectionCardEvent): Promise<void> {
     try {
-      const numericId = Number(pairId);
+      const numericId = Number(event.pairId);
       if (Number.isNaN(numericId)) {
         return;
       }
+      // Resolve the card strictly by its full identity — no ambiguous lookups.
+      const pair = this.configuredPairs().find((p) => p.id === event.pairId);
+      if (!pair || pair.known !== event.known || pair.learning !== event.learning) {
+        return;
+      }
+
       await this.languagePairsApi.languagePairsDelete(numericId);
 
-      // Also remove from UserStore (find by known/learning codes)
-      const pair = this.configuredPairs().find((p) => p.id === pairId);
-      if (pair) {
-        const entry = this.userStore
-          .languagePairs()
-          .find((e) => e.pair.known === pair.known && e.pair.learning === pair.learning);
-        if (entry) {
-          this.userStore.removeLanguagePair(entry.id);
-        }
+      // Remove the matching UserStore entry (exact codes). The store moves
+      // this group's highlight to the mirror sibling or clears it.
+      const entry = this.userStore
+        .languagePairs()
+        .find((e) => e.pair.known === pair.known && e.pair.learning === pair.learning);
+      if (entry) {
+        this.userStore.removeLanguagePair(entry.id);
       }
 
       // Refresh the pairs list (force reload after mutation)
       await this.availablePairs.load(true);
+
+      // If the removed direction was this group's highlight and the mirror
+      // sibling is still configured, move the highlight to it. This only
+      // ever affects the group the removed card belonged to.
+      const groupKey = buildMirrorGroupKey(pair.known, pair.learning);
+      const marker = this.userStore.activeByMirrorGroup()[groupKey];
+      if (marker && marker.known === pair.known && marker.learning === pair.learning) {
+        const sibling = this.configuredPairs().find(
+          (p) => p.known === pair.learning && p.learning === pair.known,
+        );
+        if (sibling) {
+          this.userStore.setActivePairInGroup(groupKey, {
+            known: sibling.known as ContentLanguage,
+            learning: sibling.learning as ContentLanguage,
+          });
+        }
+      }
 
       this.snackBar.open('Pair removed', 'Close', { duration: 3000 });
     } catch (error) {

@@ -40,6 +40,20 @@ export function languagePairsEqual(left: LanguagePair, right: LanguagePair): boo
 }
 
 /**
+ * Builds the canonical mirror-group key for a language pair.
+ *
+ * @remarks
+ * A mirror pair (e.g. ru→en + en→ru) consists of two backend rows; both
+ * directions share the same group key built from their sorted language
+ * codes (e.g. `'en|ru'`). Used to group pairs in the UI and to scope
+ * per-group activation state so that events within one mirror pair never
+ * leak into other mirror pairs.
+ */
+export function buildMirrorGroupKey(known: string, learning: string): string {
+  return [known, learning].sort().join('|');
+}
+
+/**
  * Formats a language pair as a human-readable string.
  *
  * Uses `labels` if provided, otherwise falls back to the language codes.
