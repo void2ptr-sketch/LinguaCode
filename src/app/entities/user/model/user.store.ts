@@ -96,9 +96,7 @@ export class UserStore {
    * Scoped per group so that activation events within one mirror pair
    * (e.g. EN↔RU) never affect cards of other mirror pairs (e.g. JA↔ZH).
    */
-  readonly activeByMirrorGroup = computed(
-    () => this.user().preferences.activeByMirrorGroup ?? {},
-  );
+  readonly activeByMirrorGroup = computed(() => this.user().preferences.activeByMirrorGroup ?? {});
 
   /** Resolved language pair for the active entry. */
   readonly languagePair = computed(() => {

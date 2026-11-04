@@ -107,7 +107,11 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
         { provide: RoleService, useValue: roleServiceMock },
         {
           provide: LanguagePairsService,
-          useValue: { languagePairsCreate: createSpy, languagePairsDelete: deleteSpy, languagePairsUpdate: updateSpy },
+          useValue: {
+            languagePairsCreate: createSpy,
+            languagePairsDelete: deleteSpy,
+            languagePairsUpdate: updateSpy,
+          },
         },
         { provide: LanguageApiService, useValue: {} },
         { provide: UserApiService, useValue: { patchUserPreferences: patchPrefsSpy } },
@@ -241,6 +245,26 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
     const callArgs = patchPrefsSpy.mock.calls[0][0];
     expect(callArgs.activeLanguagePairId).toBeDefined();
     expect(callArgs.learningPairs).toContainEqual({ known: 'ja', learning: 'zh' });
+  });
+
+  it('should remove mirror sibling when activating the opposite direction', async () => {
+    // Initial state: UserStore has default pair (ru→en).
+    expect(userStore.languagePairs()).toHaveLength(1);
+
+    // Activate EN→RU (id 1), which should remove RU→EN from the same mirror group.
+    await component.setActivePair({ pairId: '1', known: 'en', learning: 'ru' });
+
+    // The mirror sibling (RU→EN) should be deleted from backend.
+    expect(deleteSpy).toHaveBeenCalledExactlyOnceWith(2);
+    // The activated pair (EN→RU) should be updated.
+    expect(updateSpy).toHaveBeenCalledExactlyOnceWith(1, {
+      knownCode: 'en',
+      learningCode: 'ru',
+    });
+    // UserStore should only contain the activated direction, not the mirror sibling.
+    const pairsAfter = userStore.languagePairs();
+    expect(pairsAfter).toHaveLength(1);
+    expect(pairsAfter[0].pair).toEqual({ known: 'en', learning: 'ru' });
   });
 
   it('should remove only the targeted pair and keep other groups intact', async () => {

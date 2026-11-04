@@ -208,7 +208,12 @@ function normalizeActiveByMirrorGroup(
     }
   }
 
-  if (Object.keys(result).length === 0 && isContentLanguage(seedPair?.known) && isContentLanguage(seedPair?.learning) && seedPair.known !== seedPair.learning) {
+  if (
+    Object.keys(result).length === 0 &&
+    isContentLanguage(seedPair?.known) &&
+    isContentLanguage(seedPair?.learning) &&
+    seedPair.known !== seedPair.learning
+  ) {
     result[buildMirrorGroupKey(seedPair.known, seedPair.learning)] = {
       known: seedPair.known,
       learning: seedPair.learning,
@@ -323,7 +328,8 @@ export function normalizeUserPreferences(
         ? preferences.activeLanguagePairId
         : normalizedEntries[0].id;
 
-    const activeEntry = normalizedEntries.find((entry) => entry.id === activeLanguagePairId) ?? null;
+    const activeEntry =
+      normalizedEntries.find((entry) => entry.id === activeLanguagePairId) ?? null;
     const activeByMirrorGroup = normalizeActiveByMirrorGroup(
       preferences.activeByMirrorGroup,
       activeEntry?.pair ?? null,

@@ -127,7 +127,10 @@
                   type="button"
                   class="settings-page__pair-add"
                   [disabled]="
-                    !newKnownCode() || !newLearningCode() || newKnownCode() === newLearningCode() || creatingPair()
+                    !newKnownCode() ||
+                    !newLearningCode() ||
+                    newKnownCode() === newLearningCode() ||
+                    creatingPair()
                   "
                   (click)="createPair()"
                 >

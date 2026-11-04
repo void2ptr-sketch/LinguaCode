@@ -188,10 +188,7 @@ describe('UserStore', () => {
     it('should not activate pair or change markers when activate is false', () => {
       const beforeActiveId = store.activeLanguagePairId();
 
-      const newId = store.addLanguagePair(
-        { known: 'ja', learning: 'zh' },
-        { activate: false },
-      );
+      const newId = store.addLanguagePair({ known: 'ja', learning: 'zh' }, { activate: false });
 
       expect(newId).not.toBe('');
       expect(store.activeLanguagePairId()).toBe(beforeActiveId);

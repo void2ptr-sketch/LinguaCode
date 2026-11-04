@@ -379,90 +379,126 @@ export class LanguageSettingsComponent {
       this.newLearningCode.set('');
       this.snackBar.open('Пара добавлена', 'Закрыть', { duration: 3000 });
     } catch (error) {
-      this.snackBar.open(
-        `Не удалось создать пару: ${(error as Error).message}`,
-        'Закрыть',
-        { duration: 5000 },
-      );
+      this.snackBar.open(`Не удалось создать пару: ${(error as Error).message}`, 'Закрыть', {
+        duration: 5000,
+      });
     } finally {
       this.creatingPair.set(false);
     }
   }
 
   /**
-    * Activates a single direction card.
-    *
-    * @remarks
-    * Strictly scoped to the card's own mirror pair group: the highlight moves
-    * to this card within its group (its mirror sibling is the only other card
-    * that may change). Cards of other mirror pairs are never affected. The
-    * global active learning pair is synced so the header switcher follows the
-    * user's explicit choice.
-    */
-   async setActivePair(event: DirectionCardEvent): Promise<void> {
-     // Resolve the card strictly by its full identity — no ambiguous lookups.
-     const pair = this.configuredPairs().find((p) => p.id === event.pairId);
-     if (!pair || pair.known !== event.known || pair.learning !== event.learning) {
-       return;
-     }
-     // Validate that both codes are recognized content languages before proceeding.
-     if (!isContentLanguage(pair.known) || !isContentLanguage(pair.learning)) {
-       return;
-     }
+   * Activates a single direction card.
+   *
+   * @remarks
+   * Strictly scoped to the card's own mirror pair group: the highlight moves
+   * to this card within its group (its mirror sibling is the only other card
+   * that may change). Cards of other mirror pairs are never affected. The
+   * global active learning pair is synced so the header switcher follows the
+   * user's explicit choice.
+   */
+  async setActivePair(event: DirectionCardEvent): Promise<void> {
+    // Resolve the card strictly by its full identity — no ambiguous lookups.
+    const pair = this.configuredPairs().find((p) => p.id === event.pairId);
+    if (!pair || pair.known !== event.known || pair.learning !== event.learning) {
+      return;
+    }
+    // Validate that both codes are recognized content languages before proceeding.
+    if (!isContentLanguage(pair.known) || !isContentLanguage(pair.learning)) {
+      return;
+    }
 
-     const direction: LanguagePair = {
-       known: pair.known as ContentLanguage,
-       learning: pair.learning as ContentLanguage,
-     };
-     const groupKey = buildMirrorGroupKey(direction.known, direction.learning);
+    const direction: LanguagePair = {
+      known: pair.known as ContentLanguage,
+      learning: pair.learning as ContentLanguage,
+    };
+    const groupKey = buildMirrorGroupKey(direction.known, direction.learning);
 
-     // Ensure a UserStore entry exists for the exact direction — without
-     // any activation side effects.
-     this.userStore.addLanguagePair(direction, { activate: false });
+    // Find the mirror sibling in UserStore (by known/learning, not by backend ID).
+    const mirrorSiblingInStore = this.userStore
+      .languagePairs()
+      .find((e) => e.pair.known === direction.learning && e.pair.learning === direction.known);
 
-     // Highlight within this mirror pair group only.
-     this.userStore.setActivePairInGroup(groupKey, direction);
+    // Find the mirror sibling in configured pairs (to get the backend ID for deletion).
+    const mirrorSibling = mirrorSiblingInStore
+      ? this.configuredPairs().find(
+          (p) => p.known === direction.learning && p.learning === direction.known,
+        )
+      : null;
 
-     // Sync the global active learning pair (header switcher, learning scope).
-     const entry = this.userStore
-       .languagePairs()
-       .find((e) => e.pair.known === direction.known && e.pair.learning === direction.learning);
-     if (entry) {
-       this.userStore.setActiveLanguagePair(entry.id);
-     }
-
-      // Send activation to backend
-      const numericId = Number(event.pairId);
-      if (Number.isNaN(numericId)) {
-        return;
-      }
-
+    // Delete mirror sibling from backend.
+    if (mirrorSibling) {
       try {
-        await this.languagePairsApi.languagePairsUpdate(numericId, {
-          knownCode: direction.known,
-          learningCode: direction.learning,
-        });
-
-        // Persist active pair to backend
-        const entry = this.userStore
-          .languagePairs()
-          .find((e) => e.pair.known === direction.known && e.pair.learning === direction.learning);
-        if (entry) {
-          await this.userApi.patchUserPreferences({
-            activeLanguagePairId: entry.id,
-            learningPairs: this.userStore
-              .languagePairs()
-              .map((p) => ({ known: p.pair.known, learning: p.pair.learning })),
-          });
-        }
-      } catch (error) {
-        this.snackBar.open(
-          `Не удалось активировать пару: ${(error as Error).message}`,
-          'Закрыть',
-          { duration: 5000 },
-        );
+        await this.languagePairsApi.languagePairsDelete(Number(mirrorSibling.id));
+      } catch {
+        // Ignore deletion errors — continue with activation.
       }
-   }
+    }
+
+    // Remove mirror sibling from UserStore if it exists.
+    if (mirrorSiblingInStore) {
+      // Use userState.update to explicitly remove the pair (bypass removeLanguagePair's
+      // "don't remove last pair" guard).
+      this.userStore['userState'].update((user) => {
+        const nextPairs = user.preferences.languagePairs.filter(
+          (e) => e.id !== mirrorSiblingInStore.id,
+        );
+        return {
+          ...user,
+          preferences: {
+            ...user.preferences,
+            languagePairs: nextPairs,
+          },
+        };
+      });
+      this.userStore['persist']();
+    }
+
+    // Ensure a UserStore entry exists for the exact direction — without
+    // any activation side effects.
+    this.userStore.addLanguagePair(direction, { activate: false });
+
+    // Highlight within this mirror pair group only.
+    this.userStore.setActivePairInGroup(groupKey, direction);
+
+    // Sync the global active learning pair (header switcher, learning scope).
+    const entry = this.userStore
+      .languagePairs()
+      .find((e) => e.pair.known === direction.known && e.pair.learning === direction.learning);
+    if (entry) {
+      this.userStore.setActiveLanguagePair(entry.id);
+    }
+
+    // Send activation to backend
+    const numericId = Number(event.pairId);
+    if (Number.isNaN(numericId)) {
+      return;
+    }
+
+    try {
+      await this.languagePairsApi.languagePairsUpdate(numericId, {
+        knownCode: direction.known,
+        learningCode: direction.learning,
+      });
+
+      // Persist active pair to backend
+      const activeEntry = this.userStore
+        .languagePairs()
+        .find((e) => e.pair.known === direction.known && e.pair.learning === direction.learning);
+      if (activeEntry) {
+        await this.userApi.patchUserPreferences({
+          activeLanguagePairId: activeEntry.id,
+          learningPairs: this.userStore
+            .languagePairs()
+            .map((p) => ({ known: p.pair.known, learning: p.pair.learning })),
+        });
+      }
+    } catch (error) {
+      this.snackBar.open(`Не удалось активировать пару: ${(error as Error).message}`, 'Закрыть', {
+        duration: 5000,
+      });
+    }
+  }
 
   /**
    * Removes a configured pair (single-card event).
@@ -518,11 +554,9 @@ export class LanguageSettingsComponent {
 
       this.snackBar.open('Пара удалена', 'Закрыть', { duration: 3000 });
     } catch (error) {
-      this.snackBar.open(
-        `Не удалось удалить пару: ${(error as Error).message}`,
-        'Закрыть',
-        { duration: 5000 },
-      );
+      this.snackBar.open(`Не удалось удалить пару: ${(error as Error).message}`, 'Закрыть', {
+        duration: 5000,
+      });
     }
   }
 
