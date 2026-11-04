@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
+import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -22,7 +23,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { RemovePairDialogComponent } from './remove-pair-dialog.component';
 
 import { LanguageDto } from '../../entities/language-pair/api/language-dto.types';
 import {
@@ -146,6 +150,7 @@ export class LanguageSettingsComponent {
   private readonly roleService: RoleService = inject(RoleService);
   private readonly router: Router = inject(Router);
   private readonly snackBar: MatSnackBar = inject(MatSnackBar);
+  private readonly dialog: MatDialog = inject(MatDialog);
   private readonly cdr = inject(ChangeDetectorRef);
 
   readonly selectedCodes = this.settingsStore.selectedCodes;
@@ -510,6 +515,19 @@ export class LanguageSettingsComponent {
    * pair groups are never touched.
    */
   async removePair(event: DirectionCardEvent): Promise<void> {
+    // Show confirmation dialog
+    const confirmed = await firstValueFrom(
+      this.dialog
+        .open(RemovePairDialogComponent, {
+          data: event,
+          width: '400px',
+        })
+        .afterClosed(),
+    );
+    if (!confirmed) {
+      return;
+    }
+
     try {
       const numericId = Number(event.pairId);
       if (Number.isNaN(numericId)) {

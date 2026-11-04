@@ -1,7 +1,9 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { of, Subject } from 'rxjs';
 
 import { LanguageSettingsComponent } from './language-settings.component';
 import { LanguageService } from '../../entities/language-pair/lib/language.service';
@@ -44,6 +46,8 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
   let updateSpy: ReturnType<typeof vi.fn>;
   let patchPrefsSpy: ReturnType<typeof vi.fn>;
   let snackBarSpy: ReturnType<typeof vi.fn>;
+  let mockDialogOpenSpy: ReturnType<typeof vi.fn>;
+  let dialogOpenSpy: ReturnType<typeof vi.fn>;
 
   const pairCard = (pairId: string) => {
     const groups = component.groupedPairs();
@@ -66,6 +70,9 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
     updateSpy = vi.fn(async () => ({}));
     patchPrefsSpy = vi.fn(async () => undefined);
     snackBarSpy = vi.fn();
+    mockDialogOpenSpy = vi.fn().mockImplementation(() => ({
+      afterClosed: () => of(true as boolean),
+    }));
 
     const languageServiceMock = {
       languages: signal<LanguageDto[]>(LANGUAGES),
@@ -118,6 +125,15 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
         { provide: Router, useValue: { navigate: vi.fn() } },
         { provide: MatSnackBar, useValue: { open: snackBarSpy } },
       ],
+    });
+
+    // Override MatDialog provider to use a mock
+    TestBed.overrideProvider(MatDialog, {
+      useValue: {
+        open: () => ({
+          afterClosed: () => of(true as boolean),
+        }),
+      },
     });
 
     const fixture = TestBed.createComponent(LanguageSettingsComponent);
