@@ -24,8 +24,14 @@ type BackendUserDto = {
  * Payload for updating user preferences via PATCH.
  */
 type UserPreferencesPatch = {
+  /** @deprecated use learningPairs instead */
   learningPairKnown?: string;
+  /** @deprecated use learningPairs instead */
   learningPairLearning?: string;
+  /** Active language pair ID (from UserLanguagePairEntry.id) */
+  activeLanguagePairId?: string;
+  /** All configured language pairs */
+  learningPairs?: Array<{ known: string; learning: string }>;
   interfaceLanguage?: string;
   cardFontSize?: string;
   darkMode?: boolean;

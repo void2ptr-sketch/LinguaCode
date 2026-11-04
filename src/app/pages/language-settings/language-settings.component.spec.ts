@@ -10,6 +10,7 @@ import { LanguageSettingsStore } from '../../entities/language-pair/lib/language
 import { RoleService } from '../../entities/auth/services/role.service';
 import { UserStore } from '../../entities/user/model/user.store';
 import { UserPersistence } from '../../entities/user/model/user.persistence';
+import { UserApiService } from '../../entities/user/api/user-api.service';
 import { LanguagePairsService } from '../../shared/api/generated/language-pairs';
 import { LanguageApiService } from '../../entities/language-pair/api/language-api.service';
 import type { LanguageDto } from '../../entities/language-pair/api/language-dto.types';
@@ -41,6 +42,7 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
   let createSpy: ReturnType<typeof vi.fn>;
   let deleteSpy: ReturnType<typeof vi.fn>;
   let updateSpy: ReturnType<typeof vi.fn>;
+  let patchPrefsSpy: ReturnType<typeof vi.fn>;
   let snackBarSpy: ReturnType<typeof vi.fn>;
 
   const pairCard = (pairId: string) => {
@@ -62,6 +64,7 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
     createSpy = vi.fn(async () => ({}));
     deleteSpy = vi.fn(async () => undefined);
     updateSpy = vi.fn(async () => ({}));
+    patchPrefsSpy = vi.fn(async () => undefined);
     snackBarSpy = vi.fn();
 
     const languageServiceMock = {
@@ -107,6 +110,7 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
           useValue: { languagePairsCreate: createSpy, languagePairsDelete: deleteSpy, languagePairsUpdate: updateSpy },
         },
         { provide: LanguageApiService, useValue: {} },
+        { provide: UserApiService, useValue: { patchUserPreferences: patchPrefsSpy } },
         { provide: Router, useValue: { navigate: vi.fn() } },
         { provide: MatSnackBar, useValue: { open: snackBarSpy } },
       ],
@@ -228,6 +232,15 @@ describe('LanguageSettingsComponent — mirror pair event isolation', () => {
       knownCode: 'ja',
       learningCode: 'zh',
     });
+  });
+
+  it('should persist active pair to backend on activation', async () => {
+    await component.setActivePair({ pairId: '3', known: 'ja', learning: 'zh' });
+
+    expect(patchPrefsSpy).toHaveBeenCalledOnce();
+    const callArgs = patchPrefsSpy.mock.calls[0][0];
+    expect(callArgs.activeLanguagePairId).toBeDefined();
+    expect(callArgs.learningPairs).toContainEqual({ known: 'ja', learning: 'zh' });
   });
 
   it('should remove only the targeted pair and keep other groups intact', async () => {

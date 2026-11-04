@@ -32,6 +32,7 @@ import {
 import { LanguageService, LanguageSettingsStore } from '../../entities/language-pair';
 import { AvailablePairsService } from '../../entities/language-pair/lib/available-pairs.service';
 import { UserStore } from '../../entities/user/model';
+import { UserApiService } from '../../entities/user/api/user-api.service';
 import { RoleService } from '../../entities/auth/services/role.service';
 import { LanguagePairsService } from '../../shared/api/generated/language-pairs';
 import type { ContentLanguage } from '../../entities/card/model';
@@ -140,6 +141,7 @@ export class LanguageSettingsComponent {
   private readonly languageService: LanguageService = inject(LanguageService);
   private readonly availablePairs: AvailablePairsService = inject(AvailablePairsService);
   private readonly languagePairsApi: LanguagePairsService = inject(LanguagePairsService);
+  private readonly userApi: UserApiService = inject(UserApiService);
   private readonly languageApi: LanguageApiService = inject(LanguageApiService);
   private readonly roleService: RoleService = inject(RoleService);
   private readonly router: Router = inject(Router);
@@ -429,24 +431,37 @@ export class LanguageSettingsComponent {
        this.userStore.setActiveLanguagePair(entry.id);
      }
 
-     // Send activation to backend
-     const numericId = Number(event.pairId);
-     if (Number.isNaN(numericId)) {
-       return;
-     }
+      // Send activation to backend
+      const numericId = Number(event.pairId);
+      if (Number.isNaN(numericId)) {
+        return;
+      }
 
-     try {
-       await this.languagePairsApi.languagePairsUpdate(numericId, {
-         knownCode: direction.known,
-         learningCode: direction.learning,
-       });
-     } catch (error) {
-       this.snackBar.open(
-         `Не удалось активировать пару: ${(error as Error).message}`,
-         'Закрыть',
-         { duration: 5000 },
-       );
-     }
+      try {
+        await this.languagePairsApi.languagePairsUpdate(numericId, {
+          knownCode: direction.known,
+          learningCode: direction.learning,
+        });
+
+        // Persist active pair to backend
+        const entry = this.userStore
+          .languagePairs()
+          .find((e) => e.pair.known === direction.known && e.pair.learning === direction.learning);
+        if (entry) {
+          await this.userApi.patchUserPreferences({
+            activeLanguagePairId: entry.id,
+            learningPairs: this.userStore
+              .languagePairs()
+              .map((p) => ({ known: p.pair.known, learning: p.pair.learning })),
+          });
+        }
+      } catch (error) {
+        this.snackBar.open(
+          `Не удалось активировать пару: ${(error as Error).message}`,
+          'Закрыть',
+          { duration: 5000 },
+        );
+      }
    }
 
   /**
