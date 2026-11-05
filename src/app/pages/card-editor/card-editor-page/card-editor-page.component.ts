@@ -34,7 +34,7 @@ import {
 } from '../../../features/card-editor/utils/form/card-create-groups.utils';
 import type { CardIndexEntry } from '../../../entities/card/model';
 
-let lastKnownActiveLanguagePairId: string | null = null;
+let lastKnownActiveLanguagePairId: string | null | undefined = null;
 
 /**
  * Page component for the card editor catalog.

@@ -29,7 +29,7 @@ export class CourseCatalogLanguagePairManagerService {
    * @param onLoadCallback — колбэк для перезагрузки каталога.
    */
   trackActivePairChange(onLoadCallback: () => Promise<void>): void {
-    let lastKnownId: string | null = null;
+    let lastKnownId: string | null | undefined = null;
 
     effect(() => {
       const activeId = this.userStore.activeLanguagePairId();

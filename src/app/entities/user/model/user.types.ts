@@ -20,8 +20,8 @@ export type UserPreferences = CardAppearance & {
   learningProficiencyLevel: LearningProficiencyLevel;
   /** All configured language pairs for this user. */
   languagePairs: readonly UserLanguagePairEntry[];
-  /** ID of the currently active language pair. */
-  activeLanguagePairId: string;
+  /** ID of the currently active language pair (undefined when no pairs remain). */
+  activeLanguagePairId: string | undefined;
   /**
    * Per-mirror-group active pair direction: mirror-group key (sorted codes,
    * see `buildMirrorGroupKey`) → the exact direction ({ known, learning })

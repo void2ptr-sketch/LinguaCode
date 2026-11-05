@@ -22,7 +22,7 @@ import type { ScenarioIndexEntry, ScenarioListScope } from '../../model';
 import { UserStore } from '../../../user/model/user.store';
 import { UiPaginationComponent } from '../../../../shared/utils/pagination';
 
-let lastKnownScenarioPickerActiveLanguagePairId: string | null = null;
+let lastKnownScenarioPickerActiveLanguagePairId: string | null | undefined = null;
 
 /**
  * Scenario picker component. Provides a searchable, paginated list of scenarios

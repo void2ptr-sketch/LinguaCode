@@ -23,7 +23,7 @@ import type { CourseIndexEntry, CourseListScope } from '../../model';
 import { UserStore } from '../../../user/model/user.store';
 import { UiPaginationComponent } from '../../../../shared/utils/pagination';
 
-let lastKnownCoursePickerActiveLanguagePairId: string | null = null;
+let lastKnownCoursePickerActiveLanguagePairId: string | null | undefined = null;
 
 /**
  * Course picker component. Provides a searchable, paginated list of courses

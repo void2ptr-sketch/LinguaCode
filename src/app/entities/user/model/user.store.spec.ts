@@ -141,15 +141,17 @@ describe('UserStore', () => {
     store.addLanguagePair({ known: 'ru', learning: 'zh' });
     const activeId = store.activeLanguagePairId();
 
-    store.removeLanguagePair(activeId);
+    store.removeLanguagePair(activeId!);
 
     expect(store.languagePairs()).toHaveLength(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
   });
 
-  it('should not remove the last language pair', () => {
-    store.removeLanguagePair(store.activeLanguagePairId());
-    expect(store.languagePairs()).toHaveLength(1);
+  it('should remove the last language pair and clear active id', () => {
+    const activeId = store.activeLanguagePairId();
+    store.removeLanguagePair(activeId!);
+    expect(store.languagePairs()).toHaveLength(0);
+    expect(store.activeLanguagePairId()).toBeUndefined();
   });
 
   it('should update and persist active language pair via legacy API', () => {
@@ -227,7 +229,7 @@ describe('UserStore', () => {
       store.addLanguagePair({ known: 'ru', learning: 'en' }, { activate: false });
       const activeId = store.activeLanguagePairId();
 
-      store.removeLanguagePair(activeId);
+      store.removeLanguagePair(activeId!);
 
       expect(store.activeByMirrorGroup()['en|ru']).toEqual({ known: 'ru', learning: 'en' });
     });
@@ -236,7 +238,7 @@ describe('UserStore', () => {
       store.addLanguagePair({ known: 'ja', learning: 'zh' });
       const jaZhId = store.activeLanguagePairId();
 
-      store.removeLanguagePair(jaZhId);
+      store.removeLanguagePair(jaZhId!);
 
       expect(store.activeByMirrorGroup()['ja|zh']).toBeUndefined();
     });

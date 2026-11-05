@@ -40,7 +40,7 @@ import { CourseBuilderStore } from '../../../features/course-builder/services/co
  * При смене языка приложения — перезагружает список курсов.
  * Используется для предотвращения лишних запросов при инициализации.
  */
-let lastKnownCourseBuilderActiveLanguagePairId: string | null = null;
+let lastKnownCourseBuilderActiveLanguagePairId: string | null | undefined = null;
 
 /**
  * Компонент страницы конструктора курсов.

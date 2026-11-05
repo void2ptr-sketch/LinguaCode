@@ -105,7 +105,7 @@ describe('DraftsStore', () => {
   // ── Settings section ──
 
   it('should have initial settings draft values', () => {
-    expect(store.settingsPairIdDraft()).toBe('');
+    expect(store.settingsPairIdDraft()).toBeUndefined();
     expect(store.settingsDisplayRomanizationsDraft()).toEqual(['pinyin']);
     expect(store.settingsAnswerRomanizationsDraft()).toEqual(['pinyin', 'palladius']);
     expect(store.settingsShowIpaDraft()).toBe(false);

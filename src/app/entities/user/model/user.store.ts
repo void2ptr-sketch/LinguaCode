@@ -217,7 +217,10 @@ export class UserStore {
    * @param patch - Partial settings to merge.
    */
   updateActiveLanguagePairSettings(patch: Partial<UserLanguagePairSettings>): void {
-    this.updateLanguagePairSettings(this.activeLanguagePairId(), patch);
+    const activeId = this.activeLanguagePairId();
+    if (activeId) {
+      this.updateLanguagePairSettings(activeId, patch);
+    }
   }
 
   /**
@@ -354,17 +357,17 @@ export class UserStore {
    * Removes a language pair from the user's profile.
    *
    * @param id - The ID of the language pair entry to remove.
-   * @remarks Cannot remove the last remaining pair. If the removed pair is active, the first remaining becomes active. If the removed pair was its mirror group's highlight, the highlight moves to the mirror sibling (when configured) or is cleared — never touching other groups.
+   * @remarks If the removed pair is active, the first remaining becomes active (or `undefined` when no pairs remain). If the removed pair was its mirror group's highlight, the highlight moves to the mirror sibling (when configured) or is cleared — never touching other groups.
    */
   removeLanguagePair(id: string): void {
     const pairs = this.languagePairs();
-    if (pairs.length <= 1) {
+    const removed = pairs.find((entry) => entry.id === id);
+    if (!removed) {
       return;
     }
 
-    const removed = pairs.find((entry) => entry.id === id);
     const nextPairs = pairs.filter((entry) => entry.id !== id);
-    if (!removed || nextPairs.length === pairs.length) {
+    if (nextPairs.length === pairs.length) {
       return;
     }
 
@@ -387,7 +390,11 @@ export class UserStore {
     }
 
     const nextActiveId =
-      this.activeLanguagePairId() === id ? nextPairs[0].id : this.activeLanguagePairId();
+      this.activeLanguagePairId() === id
+        ? nextPairs.length > 0
+          ? nextPairs[0].id
+          : undefined
+        : this.activeLanguagePairId();
 
     this.userState.update((user) => ({
       ...user,

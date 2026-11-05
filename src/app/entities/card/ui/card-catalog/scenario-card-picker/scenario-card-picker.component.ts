@@ -37,7 +37,7 @@ import type { CardIndexEntry } from '../../../model';
  * </app-scenario-card-picker>
  * ```
  */
-let lastKnownPickerActiveLanguagePairId: string | null = null;
+let lastKnownPickerActiveLanguagePairId: string | null | undefined = null;
 
 @Component({
   selector: 'app-scenario-card-picker',

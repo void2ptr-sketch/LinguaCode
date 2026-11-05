@@ -17,7 +17,7 @@ import { UserStore } from '../../../entities/user/model/user.store';
 import { ScenarioBuilderDialogService } from '../../../features/scenario-builder/components/scenario-builder-dialog/scenario-builder-dialog.service';
 import { ScenarioBuilderStore } from '../../../features/scenario-builder/services/scenario-builder.store';
 
-let lastKnownScenarioBuilderActiveLanguagePairId: string | null = null;
+let lastKnownScenarioBuilderActiveLanguagePairId: string | null | undefined = null;
 
 /**
  * Scenario builder page component. Displays a paginated list of scenarios with search,

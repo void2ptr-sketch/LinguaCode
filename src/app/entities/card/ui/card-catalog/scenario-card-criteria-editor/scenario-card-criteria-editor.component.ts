@@ -30,7 +30,7 @@ const SORT_OPTIONS: readonly { value: ScenarioCardSort; label: string }[] = [
   { value: 'random', label: 'Случайно' },
 ];
 
-let lastKnownCriteriaEditorActiveLanguagePairId: string | null = null;
+let lastKnownCriteriaEditorActiveLanguagePairId: string | null | undefined = null;
 
 /**
  * Scenario card criteria editor component. Allows users to define search criteria for

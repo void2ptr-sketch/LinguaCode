@@ -442,24 +442,24 @@ export class LanguageSettingsComponent {
     }
 
     // Ensure a UserStore entry exists for the exact direction — without
-    // any activation side effects.
-    this.userStore.addLanguagePair(direction, { activate: false });
+    // any activation side effects. Capture the returned ID to avoid a
+    // redundant store lookup that could fail and send `null` to the backend.
+    const entryId = this.userStore.addLanguagePair(direction, { activate: false });
+    if (!entryId) {
+      this.snackBar.open('Не удалось добавить пару', 'Закрыть', { duration: 3000 });
+      return;
+    }
 
     // Highlight within this mirror pair group only.
     this.userStore.setActivePairInGroup(groupKey, direction);
 
     // Sync the global active learning pair (header switcher, learning scope).
-    const entry = this.userStore
-      .languagePairs()
-      .find((e) => e.pair.known === direction.known && e.pair.learning === direction.learning);
-    if (entry) {
-      this.userStore.setActiveLanguagePair(entry.id);
-    }
+    this.userStore.setActiveLanguagePair(entryId);
 
     // Persist active pair to backend (users/preferences only).
     try {
       await this.userApi.patchUserPreferences({
-        activeLanguagePairId: entry?.id,
+        activeLanguagePairId: entryId,
         learningPairs: this.userStore
           .languagePairs()
           .map((p) => ({ known: p.pair.known, learning: p.pair.learning })),
