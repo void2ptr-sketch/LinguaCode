@@ -12,14 +12,11 @@ import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import type { CourseIndexEntry } from '../../../entities/course/model';
-import type { UserLanguagePairEntry } from '../../../entities/user/model';
 import type { PageEvent } from '@angular/material/paginator';
 import { CourseCatalogStore, DraftsStore } from '../../../features/course-catalog/services';
 import { CourseCatalogCoursesComponent } from '../../../features/course-catalog/components/course-card-list/course-card-list.component';
-import { CourseCatalogSettingsComponent } from '../../../features/course-catalog/components/course-settings/course-settings.component';
 import { CourseCatalogProgramsComponent } from '../../../features/course-catalog/components/program-list/program-list.component';
 import { CourseCatalogLanguagePairManagerService } from '../../../features/course-catalog/services/course-catalog-language-pair-manager.service';
-import { CourseCatalogPreferencesService } from '../../../features/course-catalog/services/course-catalog-preferences.service';
 
 /**
  * Course catalog page component. Main entry point for browsing courses, managing user profiles,
@@ -35,7 +32,6 @@ import { CourseCatalogPreferencesService } from '../../../features/course-catalo
     MatCardModule,
     MatTabsModule,
     CourseCatalogCoursesComponent,
-    CourseCatalogSettingsComponent,
     CourseCatalogProgramsComponent,
   ],
   standalone: true,
@@ -49,13 +45,11 @@ export class CourseCatalogPageComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly logger = inject(AppLoggerService);
   private readonly pairManager = inject(CourseCatalogLanguagePairManagerService);
-  private readonly catalogPreferences = inject(CourseCatalogPreferencesService);
   readonly catalogStore = inject(CourseCatalogStore);
   readonly drafts = inject(DraftsStore);
 
   /** Direct references to sub-tab components. */
   readonly coursesComponent = CourseCatalogCoursesComponent;
-  readonly settingsComponent = CourseCatalogSettingsComponent;
   readonly programsComponent = CourseCatalogProgramsComponent;
 
   /**
@@ -137,30 +131,6 @@ export class CourseCatalogPageComponent implements OnInit {
   /** Draft value for the card focus fullscreen preference. */
   readonly cardFocusFullscreenDraft = this.drafts.profileCardFocusFullscreenDraft;
 
-  /** Draft value for the known (source) language. */
-  readonly knownLanguageDraft = this.drafts.courseTabKnownLanguageDraft;
-  /** Draft value for the learning (target) language. */
-  readonly learningLanguageDraft = this.drafts.courseTabLearningLanguageDraft;
-
-  /** Draft ID for the settings language pair. */
-  readonly settingsPairIdDraft = this.drafts.settingsPairIdDraft;
-  /** Draft display romanization systems. */
-  readonly displayRomanizationsDraft = this.drafts.settingsDisplayRomanizationsDraft;
-  /** Draft answer romanization systems. */
-  readonly answerRomanizationsDraft = this.drafts.settingsAnswerRomanizationsDraft;
-  /** Draft IPA display preference. */
-  readonly showIpaDraft = this.drafts.settingsShowIpaDraft;
-  /** Draft custom IPA variant label. */
-  readonly ipaVariantLabelDraft = this.drafts.settingsIpaVariantLabelDraft;
-  /** Draft answer display modes. */
-  readonly answerModesDraft = this.drafts.settingsAnswerModesDraft;
-  /** Draft tone color enabled preference. */
-  readonly toneColorEnabledDraft = this.drafts.settingsToneColorEnabledDraft;
-  /** Draft tone color scheme preference. */
-  readonly toneColorSchemeDraft = this.drafts.settingsToneColorSchemeDraft;
-  /** Draft tracing stroke duration preference. */
-  readonly tracingStrokeDurationDraft = this.drafts.settingsTracingStrokeDurationDraft;
-
   /** Currently selected tab index. */
   readonly selectedTabIndex = this.catalogStore.selectedTabIndex;
 
@@ -179,7 +149,7 @@ export class CourseCatalogPageComponent implements OnInit {
    * Syncs `selectedCourseId` from `learningSession` when on the Programs tab.
    *
    * @remarks
-   * When the user switches to tab 2 ("Программы курса"), the store's
+   * When the user switches to tab 1 ("Программы курса"), the store's
    * `selectedCourseId` is set to `learningSession().activeCourseId` and the
    * catalog is reloaded so that client-side filtering is applied.
    * Auto-sync is suppressed when `filterDismissedUntilTabChange` is true.
@@ -190,7 +160,7 @@ export class CourseCatalogPageComponent implements OnInit {
     const activeCourseId = this.userStore.learningSession().activeCourseId;
     const currentSelectedId = this.catalogStore.selectedCourseId();
 
-    if (tabIndex === 2 && activeCourseId && !dismissed && currentSelectedId !== activeCourseId) {
+    if (tabIndex === 1 && activeCourseId && !dismissed && currentSelectedId !== activeCourseId) {
       this.catalogStore.setSelectedCourseId(activeCourseId);
       // reload applies client-side filter by selectedCourseId
       void this.load();
@@ -207,97 +177,7 @@ export class CourseCatalogPageComponent implements OnInit {
 
   // ---- Computed ----
 
-  /**
-   * Whether the known and learning language drafts are identical (invalid).
-   *
-   * @remarks
-   * Tied directly to `DraftsStore.courseTabLanguagePairInvalid`. Used to disable
-   * the "Add Pair" button when both languages are the same.
-   */
-  readonly languagePairInvalid = this.drafts.courseTabLanguagePairInvalid;
-
-  /**
-   * Whether there is more than one language pair (enables removal).
-   *
-   * @remarks
-   * When `true`, the "Remove" button is shown for each language pair entry.
-   */
-  readonly canRemovePair = this.catalogPreferences.canRemovePair;
-
-  /**
-   * Label for the settings course entry (known → learning).
-   *
-   * @remarks
-   * Derived from `settingsEntry` via `entryLabel`. Returns an empty string when
-   * no settings entry is available.
-   */
-  readonly settingsCourseLabel = this.catalogPreferences.settingsCourseLabel;
-
-  /**
-   * Whether CJK-specific preferences (romanization, tone coloring) should be shown.
-   *
-   * @remarks
-   * Returns `true` when the known language supports Palladius romanization
-   * (e.g., Russian) and the learning language is CJK (e.g., Chinese).
-   */
-  readonly showCjkPreferences = this.catalogPreferences.showCjkPreferences;
-
-  /**
-   * Whether phonetic preferences (IPA, answer modes) should be shown.
-   *
-   * @remarks
-   * Returns `true` when the learning language is English ('en') or Chinese ('zh').
-   */
-  readonly showPhoneticPreferences = this.catalogPreferences.showPhoneticPreferences;
-
-  /**
-   * Whether tracing stroke duration settings should be shown.
-   *
-   * @remarks
-   * Returns `true` only when the learning language is Chinese ('zh').
-   */
-  readonly showTracingSettings = this.catalogPreferences.showTracingSettings;
-
-  /**
-   * Available romanization options for display and answer settings.
-   *
-   * @remarks
-   * Always includes Pinyin and Zhuyin. Palladius is added when `showCjkPreferences` is `true`.
-   * Options are ordered by `ROMANIZATION_DISPLAY_ORDER`.
-   */
-  readonly romanizationOptions = this.catalogPreferences.romanizationOptions;
-
   // ---- Methods ----
-
-  /**
-   * Formats a language pair entry as a human-readable label.
-   *
-   * @param entry - The language pair entry to format.
-   * @returns A formatted label string from `UserStore.formatEntryLabel`.
-   */
-  entryLabel(entry: UserLanguagePairEntry): string {
-    return this.userStore.formatEntryLabel(entry);
-  }
-
-  /**
-   * Formats a tracing duration value in seconds with one decimal place.
-   *
-   * @param value - The duration in seconds.
-   * @returns A formatted string with one decimal place and a Cyrillic 'с' suffix.
-   */
-  formatTracingDurationSec(value: number): string {
-    return `${value.toFixed(1)} с`;
-  }
-
-  /**
-   * Checks whether the given entry is the active language pair.
-   *
-   * @param entry - The language pair entry to check.
-   * @returns `true` if the entry is the active one.
-   */
-  isActive(entry: UserLanguagePairEntry): boolean {
-    return this.userStore.isActiveEntry(entry);
-  }
 
   /**
    * Sets the active language pair and syncs settings drafts.
@@ -334,7 +214,7 @@ export class CourseCatalogPageComponent implements OnInit {
    * to the newly added pair's ID and syncs its settings.
    */
   addPair(): void {
-    if (this.languagePairInvalid()) {
+    if (this.drafts.courseTabLanguagePairInvalid()) {
       return;
     }
 
@@ -342,11 +222,10 @@ export class CourseCatalogPageComponent implements OnInit {
   }
 
   /**
-   * Saves the user profile and language pair settings.
+   * Saves the user profile.
    *
    * @remarks
-   * Persists the display name, user preferences, and (if applicable) CJK learning
-   * preferences and phonetic settings for the current settings entry.
+   * Persists the display name and user preferences.
    */
   saveProfile(): void {
     this.userStore.updateDisplayName(this.nameDraft());
@@ -357,13 +236,6 @@ export class CourseCatalogPageComponent implements OnInit {
       cardFocusFullscreen: this.cardFocusFullscreenDraft(),
       learningProficiencyLevel: this.learningProficiencyDraft(),
     });
-
-    const entry = this.pairManager.settingsEntry();
-    if (!entry) {
-      return;
-    }
-
-    this.pairManager.savePairSettings(entry);
   }
 
   // ---- Course catalog methods ----

@@ -50,6 +50,8 @@ import {
   DirectionItem,
 } from './direction-card/direction-card.component';
 import { DirectionCardInnerComponent } from './direction-card/direction-card-inner.component';
+import { CourseCatalogSettingsComponent } from '../../features/course-catalog/components/course-settings/course-settings.component';
+import { CourseCatalogLanguagePairManagerService } from '../../features/course-catalog/services/course-catalog-language-pair-manager.service';
 
 // ── Grouping types ──────────────────────────────────────────────
 
@@ -121,6 +123,7 @@ export type PairGroup = {
     MatTooltipModule,
     MatDialogModule,
     DirectionCardInnerComponent,
+    CourseCatalogSettingsComponent,
   ],
   providers: [
     {
@@ -150,6 +153,7 @@ export class LanguageSettingsComponent {
   private readonly snackBar: MatSnackBar = inject(MatSnackBar);
   private readonly dialog: MatDialog = inject(MatDialog);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly pairManager = inject(CourseCatalogLanguagePairManagerService);
 
   readonly selectedCodes = this.settingsStore.selectedCodes;
   readonly availableLanguages = computed(() => this.languageService.languages());
@@ -217,6 +221,8 @@ export class LanguageSettingsComponent {
     void this.languageService.load();
     // Load language pairs from the backend
     void this.availablePairs.load();
+    // Sync pair settings drafts for the course catalog settings tab
+    this.pairManager.syncPairSettingsDrafts();
   }
 
   /** Whether the currently active pair exists. */

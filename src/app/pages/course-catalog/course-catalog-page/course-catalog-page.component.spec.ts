@@ -27,10 +27,8 @@ import type { ToneColorSchemeId } from '../../../entities/phonetic/model';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
-import { CourseDisplaySettingsMatrixComponent } from '../../../entities/course/ui/course-display-settings-matrix';
 import { CourseCatalogStore, DraftsStore } from '../../../features/course-catalog/services';
 import { CourseCatalogLanguagePairManagerService } from '../../../features/course-catalog/services/course-catalog-language-pair-manager.service';
-import { CourseCatalogPreferencesService } from '../../../features/course-catalog/services/course-catalog-preferences.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CourseCatalogPageComponent } from './course-catalog-page.component';
 
@@ -68,7 +66,6 @@ describe('CourseCatalogPageComponent', () => {
   let mockCatalogStore: Partial<CourseCatalogStore>;
   let mockDrafts: Partial<DraftsStore>;
   let mockPairManager: Partial<CourseCatalogLanguagePairManagerService>;
-  let mockPreferences: Partial<CourseCatalogPreferencesService>;
 
   const mockPairs: UserLanguagePairEntry[] = [makePair('pair-1', 'ru', 'en')];
 
@@ -189,19 +186,6 @@ describe('CourseCatalogPageComponent', () => {
       shouldShowPhoneticPreferences: vi.fn(() => false),
       shouldShowTracingSettings: vi.fn(() => false),
       romanizationOptions: vi.fn(() => [
-        { value: 'pinyin' as const, label: 'Пиньинь' },
-        { value: 'zhuyin' as const, label: 'Жуинь (Bopomofo)' },
-      ]),
-    };
-
-    mockPreferences = {
-      canRemovePair: computed(() => mockPairs.length > 1),
-      settingsEntry: signal(mockPairs[0] ?? null),
-      settingsCourseLabel: computed(() => 'ru → en'),
-      showCjkPreferences: signal(false),
-      showPhoneticPreferences: signal(false),
-      showTracingSettings: signal(false),
-      romanizationOptions: computed(() => [
         { value: 'pinyin' as const, label: 'Пиньинь' },
         { value: 'zhuyin' as const, label: 'Жуинь (Bopomofo)' },
       ]),
@@ -350,7 +334,6 @@ describe('CourseCatalogPageComponent', () => {
         MatSliderModule,
         MatTabsModule,
         UiPaginationComponent,
-        CourseDisplaySettingsMatrixComponent,
         CourseCatalogPageComponent,
       ],
       providers: [
@@ -365,7 +348,6 @@ describe('CourseCatalogPageComponent', () => {
         },
         { provide: Router, useValue: mockRouter },
         { provide: CourseCatalogLanguagePairManagerService, useValue: mockPairManager },
-        { provide: CourseCatalogPreferencesService, useValue: mockPreferences },
       ],
     }).compileComponents();
   });
@@ -509,12 +491,10 @@ describe('CourseCatalogPageComponent', () => {
     });
   });
 
-  it('should compute languagePairInvalid correctly', () => {
+  it('should not add language pair when known and learning are the same', () => {
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
-
-    expect(component.languagePairInvalid()).toBe(false);
 
     (
       mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
@@ -522,9 +502,9 @@ describe('CourseCatalogPageComponent', () => {
     (
       mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
-    fixture.detectChanges();
+    component.addPair();
 
-    expect(component.languagePairInvalid()).toBe(true);
+    expect(mockUserStore.addLanguagePair).not.toHaveBeenCalled();
   });
 
   it('should call pair manager setActive when setActive called', async () => {
@@ -549,24 +529,6 @@ describe('CourseCatalogPageComponent', () => {
     await fixture.whenStable();
 
     expect(mockPairManager.removePair).toHaveBeenCalledWith('pair-1');
-  });
-
-  it('should not add language pair when languages are the same', async () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    (
-      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-    (
-      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-    component.addPair();
-    await fixture.whenStable();
-
-    expect(mockUserStore.addLanguagePair).not.toHaveBeenCalled();
   });
 
   it('should save profile settings', async () => {
@@ -641,15 +603,6 @@ describe('CourseCatalogPageComponent', () => {
     ).set(new Set(['c-1']) as ReadonlySet<string>);
     expect(component.isCourseCompleted('c-1')).toBe(true);
     expect(component.isCourseCompleted('c-2')).toBe(false);
-  });
-
-  it('should format tracing duration with one decimal', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    expect(component.formatTracingDurationSec(0.5)).toBe('0.5 с');
-    expect(component.formatTracingDurationSec(1.25)).toBe('1.3 с');
   });
 
   it('should render header with title', () => {

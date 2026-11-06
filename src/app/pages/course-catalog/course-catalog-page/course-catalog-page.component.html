@@ -16,11 +16,6 @@
         <app-course-catalog-courses />
       </mat-tab>
 
-      <!-- Tab: Настройка курса -->
-      <mat-tab label="Настройка курса">
-        <app-course-catalog-settings />
-      </mat-tab>
-
       <!-- Tab: Программы курса -->
       <mat-tab label="Программы курса">
         <app-course-catalog-programs (startCourse)="startCourse($event)" (loadRequested)="load()" />
