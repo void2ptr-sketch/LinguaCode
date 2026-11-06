@@ -23,6 +23,7 @@ import { shouldShowPalladius } from '../../../../entities/phonetic/lib/phonetic-
 import type { RomanizationOption } from '../../../../entities/course/ui/course-display-settings-matrix';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { DraftsStore } from '../../services';
+import { CourseCatalogLanguagePairManagerService } from '../../services/course-catalog-language-pair-manager.service';
 
 /**
  * Course catalog settings component. Manages language pair settings including
@@ -48,6 +49,7 @@ import { DraftsStore } from '../../services';
 export class CourseCatalogSettingsComponent {
   private readonly userStore = inject(UserStore);
   private readonly drafts = inject(DraftsStore);
+  private readonly pairManager = inject(CourseCatalogLanguagePairManagerService);
 
   /** Available language pairs from the store. */
   readonly languagePairs = this.userStore.languagePairs;
@@ -88,11 +90,11 @@ export class CourseCatalogSettingsComponent {
    * The settings language pair entry.
    *
    * @remarks
-   * Resolves the entry matching the active language pair ID, falling back to the first
+   * Resolves the entry matching the settings pair ID draft, falling back to the first
    * available pair or `null` if none exist.
    */
   readonly settingsEntry = computed(() => {
-    const id = this.activeLanguagePairId();
+    const id = this.drafts.settingsPairIdDraft();
     const pairs = this.languagePairs();
     return pairs.find((entry) => entry.id === id) ?? pairs[0] ?? null;
   });
@@ -214,6 +216,16 @@ export class CourseCatalogSettingsComponent {
    */
   formatTracingDurationSec(value: number): string {
     return `${value.toFixed(1)} с`;
+  }
+
+  /**
+   * Handles language pair selection changes from the combo-box.
+   *
+   * @param pairId - The ID of the selected language pair.
+   */
+  onSettingsPairChange(pairId: string): void {
+    this.drafts.setSettingsPairIdDraft(pairId);
+    this.pairManager.syncPairSettingsDrafts();
   }
 
   // ---- Settings change handlers ----

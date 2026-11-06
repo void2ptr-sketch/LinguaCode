@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import { CourseCatalogSettingsComponent } from './course-settings.component';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { DraftsStore } from '../../services';
+import { CourseCatalogLanguagePairManagerService } from '../../services/course-catalog-language-pair-manager.service';
 import type { ToneColorSchemeId } from '../../../../entities/phonetic/model';
 
 describe('CourseCatalogSettingsComponent', () => {
@@ -49,6 +50,7 @@ describe('CourseCatalogSettingsComponent', () => {
         {
           provide: DraftsStore,
           useValue: {
+            settingsPairIdDraft: signal('pair-1'),
             settingsDisplayRomanizationsDraft: signal([]),
             settingsAnswerRomanizationsDraft: signal([]),
             settingsShowIpaDraft: signal(false),
@@ -57,6 +59,7 @@ describe('CourseCatalogSettingsComponent', () => {
             settingsToneColorEnabledDraft: signal(false),
             settingsToneColorSchemeDraft: signal('default' as ToneColorSchemeId),
             settingsTracingStrokeDurationDraft: signal(0.5),
+            setSettingsPairIdDraft: vi.fn(),
             setSettingsDisplayRomanizationsDraft: vi.fn(),
             setSettingsAnswerRomanizationsDraft: vi.fn(),
             setSettingsShowIpaDraft: vi.fn(),
@@ -65,6 +68,12 @@ describe('CourseCatalogSettingsComponent', () => {
             setSettingsToneColorEnabledDraft: vi.fn(),
             setSettingsToneColorSchemeDraft: vi.fn(),
             setSettingsTracingStrokeDurationDraft: vi.fn(),
+          },
+        },
+        {
+          provide: CourseCatalogLanguagePairManagerService,
+          useValue: {
+            syncPairSettingsDrafts: vi.fn(),
           },
         },
       ],

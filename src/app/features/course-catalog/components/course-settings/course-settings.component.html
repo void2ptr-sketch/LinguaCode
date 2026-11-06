@@ -1,5 +1,18 @@
 <section class="page-card__tab-panel">
   <section class="page-card__section">
+    <mat-form-field appearance="outline">
+        <mat-label>Language Pair</mat-label>
+        <mat-select
+          [ngModel]="drafts.settingsPairIdDraft()"
+          (ngModelChange)="onSettingsPairChange($event)"
+          name="settingsPair"
+        >
+          @for (pair of languagePairs(); track pair.id) {
+            <mat-option [value]="pair.id">{{ entryLabel(pair) }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
     @if (settingsCourseLabel()) {
       <h2 class="page-card__section-title">
         Курс: {{ settingsCourseLabel() }}. Настройка карточек:
