@@ -40,6 +40,9 @@ describe('CourseCatalogCourseListComponent', () => {
     items: readonly CourseIndexEntry[];
     progressByCourseId: Record<string, number>;
     completedCourseIds: ReadonlySet<string>;
+    totalItems: number;
+    pageIndex: number;
+    pageSize: number;
   };
 
   const defaultItems: readonly CourseIndexEntry[] = [
@@ -54,6 +57,9 @@ describe('CourseCatalogCourseListComponent', () => {
       items: [] as readonly CourseIndexEntry[],
       progressByCourseId: {} as Record<string, number>,
       completedCourseIds: new Set<string>() as ReadonlySet<string>,
+      totalItems: 0,
+      pageIndex: 0,
+      pageSize: 10,
     };
 
     const loadingSignal = signal(stateRef.loading);
@@ -61,6 +67,9 @@ describe('CourseCatalogCourseListComponent', () => {
     const itemsSignal = signal(stateRef.items);
     const progressByCourseIdSignal = signal(stateRef.progressByCourseId);
     const completedCourseIdsSignal = signal(stateRef.completedCourseIds);
+    const totalItemsSignal = signal(stateRef.totalItems);
+    const pageIndexSignal = signal(stateRef.pageIndex);
+    const pageSizeSignal = signal(stateRef.pageSize);
 
     mockStoreState = new Proxy(stateRef, {
       set(target, prop, value) {
@@ -81,6 +90,15 @@ describe('CourseCatalogCourseListComponent', () => {
           case 'completedCourseIds':
             completedCourseIdsSignal.set(value as ReadonlySet<string>);
             break;
+          case 'totalItems':
+            totalItemsSignal.set(value as number);
+            break;
+          case 'pageIndex':
+            pageIndexSignal.set(value as number);
+            break;
+          case 'pageSize':
+            pageSizeSignal.set(value as number);
+            break;
         }
         return true;
       },
@@ -92,6 +110,9 @@ describe('CourseCatalogCourseListComponent', () => {
       items: itemsSignal,
       progressByCourseId: progressByCourseIdSignal,
       completedCourseIds: completedCourseIdsSignal,
+      totalItems: totalItemsSignal,
+      pageIndex: pageIndexSignal,
+      pageSize: pageSizeSignal,
     };
 
     await TestBed.configureTestingModule({

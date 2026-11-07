@@ -47,6 +47,13 @@
           </li>
         }
       </ul>
+
+      <app-pagination
+        [length]="totalItemsValue()"
+        [pageIndex]="pageIndexValue()"
+        [pageSize]="pageSizeValue()"
+        (pageChange)="onPageChange($event)"
+      />
     </mat-card-content>
   </mat-card>
 }

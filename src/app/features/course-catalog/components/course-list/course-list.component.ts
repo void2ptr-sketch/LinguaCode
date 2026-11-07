@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, output, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, output, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { CourseCatalogStore } from '../../services/course-catalog.store';
+import { UiPaginationComponent } from '../../../../shared/utils/pagination';
 
 /**
  * Course catalog course list component. Displays all courses matching the active
@@ -15,7 +16,14 @@ import { CourseCatalogStore } from '../../services/course-catalog.store';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-course-catalog-course-list',
-  imports: [MatButtonModule, MatCardModule, MatChipsModule, MatIconModule, MatProgressSpinnerModule],
+  imports: [
+    MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    UiPaginationComponent,
+  ],
   standalone: true,
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss',
@@ -42,6 +50,21 @@ export class CourseCatalogCourseListComponent {
   readonly progressByCourseId = this.catalogStore.progressByCourseId;
   /** Set of completed course IDs. */
   readonly completedCourseIds = this.catalogStore.completedCourseIds;
+  /** Total number of courses. */
+  readonly totalItems = this.catalogStore.totalItems;
+  /** Current page index. */
+  readonly pageIndex = this.catalogStore.pageIndex;
+  /** Page size. */
+  readonly pageSize = this.catalogStore.pageSize;
+
+  // ---- Computed signals for template ----
+
+  /** Total items value for template. */
+  readonly totalItemsValue = computed(() => this.catalogStore.totalItems());
+  /** Page index value for template. */
+  readonly pageIndexValue = computed(() => this.catalogStore.pageIndex());
+  /** Page size value for template. */
+  readonly pageSizeValue = computed(() => this.catalogStore.pageSize());
 
   // ---- Methods ----
 
@@ -63,5 +86,14 @@ export class CourseCatalogCourseListComponent {
    */
   progressPercent(courseId: string): number {
     return this.progressByCourseId()[courseId] ?? 0;
+  }
+
+  /**
+   * Handles page change events from the paginator.
+   *
+   * @param event - The page event from Angular Material paginator.
+   */
+  onPageChange(event: import('@angular/material/paginator').PageEvent): void {
+    this.catalogStore.onPageChange(event);
   }
 }
