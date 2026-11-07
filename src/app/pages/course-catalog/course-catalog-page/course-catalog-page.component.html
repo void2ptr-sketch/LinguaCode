@@ -13,7 +13,7 @@
     >
       <!-- Tab: Курсы -->
       <mat-tab label="Курсы">
-        <app-course-catalog-courses />
+        <app-course-catalog-course-list (startCourse)="startCourse($event)" />
       </mat-tab>
 
       <!-- Tab: Программы курса -->
@@ -23,7 +23,5 @@
     </mat-tab-group>
   </mat-card-content>
 
-  <mat-card-actions align="end">
-    <button mat-flat-button type="button" (click)="saveProfile()">Сохранить</button>
-  </mat-card-actions>
+
 </mat-card>

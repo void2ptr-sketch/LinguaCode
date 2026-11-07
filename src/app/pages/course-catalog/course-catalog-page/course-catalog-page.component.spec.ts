@@ -26,6 +26,7 @@ import type { UserLanguagePairEntry } from '../../../entities/user/model';
 import type { ToneColorSchemeId } from '../../../entities/phonetic/model';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { LanguagePairsApiService } from '../../../entities/language-pair/api';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { CourseCatalogStore, DraftsStore } from '../../../features/course-catalog/services';
 import { CourseCatalogLanguagePairManagerService } from '../../../features/course-catalog/services/course-catalog-language-pair-manager.service';
@@ -66,6 +67,7 @@ describe('CourseCatalogPageComponent', () => {
   let mockCatalogStore: Partial<CourseCatalogStore>;
   let mockDrafts: Partial<DraftsStore>;
   let mockPairManager: Partial<CourseCatalogLanguagePairManagerService>;
+  let mockLanguagePairsApi: Partial<LanguagePairsApiService>;
 
   const mockPairs: UserLanguagePairEntry[] = [makePair('pair-1', 'ru', 'en')];
 
@@ -76,6 +78,8 @@ describe('CourseCatalogPageComponent', () => {
     totalItems: 1,
     totalPages: 1,
   };
+
+  const mockBackendPairs = [{ id: 1, knownCode: 'ru', learningCode: 'en' }];
 
   const mockCourse: CourseWithPrograms = {
     id: 'c-1',
@@ -136,6 +140,10 @@ describe('CourseCatalogPageComponent', () => {
     mockCourseSearchService = {
       search: vi.fn().mockResolvedValue(mockPage),
       getById: vi.fn().mockResolvedValue(mockCourse),
+    };
+
+    mockLanguagePairsApi = {
+      listAll: vi.fn().mockResolvedValue(mockBackendPairs),
     };
 
     mockUserStore = {
@@ -348,6 +356,7 @@ describe('CourseCatalogPageComponent', () => {
         },
         { provide: Router, useValue: mockRouter },
         { provide: CourseCatalogLanguagePairManagerService, useValue: mockPairManager },
+        { provide: LanguagePairsApiService, useValue: mockLanguagePairsApi },
       ],
     }).compileComponents();
   });
@@ -491,62 +500,6 @@ describe('CourseCatalogPageComponent', () => {
     });
   });
 
-  it('should not add language pair when known and learning are the same', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    (
-      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-    (
-      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-    component.addPair();
-
-    expect(mockUserStore.addLanguagePair).not.toHaveBeenCalled();
-  });
-
-  it('should call pair manager setActive when setActive called', async () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    component.setActive('pair-1');
-    await fixture.whenStable();
-
-    expect(mockPairManager.setActive).toHaveBeenCalledWith('pair-1');
-  });
-
-  it('should call pair manager removePair when removePair called', async () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    component.removePair('pair-1');
-    await fixture.whenStable();
-
-    expect(mockPairManager.removePair).toHaveBeenCalledWith('pair-1');
-  });
-
-  it('should save profile settings', async () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    (mockDrafts.profileNameDraft as import('@angular/core').WritableSignal<string>).set(
-      'Новое имя',
-    );
-    component.saveProfile();
-    await fixture.whenStable();
-
-    expect(mockUserStore.updateDisplayName).toHaveBeenCalledWith('Новое имя');
-    expect(mockUserStore.updatePreferences).toHaveBeenCalled();
-  });
-
   it('should change tab index when selected', () => {
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     const component = fixture.componentInstance;
@@ -621,17 +574,4 @@ describe('CourseCatalogPageComponent', () => {
     expect(tabGroup).toBeTruthy();
   });
 
-  it('should render save button', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    fixture.detectChanges();
-
-    const buttons = fixture.nativeElement.querySelectorAll('button');
-    let saveBtn: HTMLButtonElement | undefined;
-    buttons.forEach((btn: HTMLButtonElement) => {
-      if (btn.textContent?.trim() === 'Сохранить') {
-        saveBtn = btn;
-      }
-    });
-    expect(saveBtn).toBeTruthy();
-  });
 });

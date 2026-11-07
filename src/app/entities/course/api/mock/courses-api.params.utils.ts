@@ -35,6 +35,12 @@ export function buildCourseSearchParams(criteria: CourseSearchCriteria): HttpPar
     params = params.set('learningLanguage', criteria.learningLanguage);
   }
 
+  if (criteria.languagePairIds && criteria.languagePairIds.length > 0) {
+    for (const id of criteria.languagePairIds) {
+      params = params.append('languagePairIds', String(id));
+    }
+  }
+
   return params;
 }
 

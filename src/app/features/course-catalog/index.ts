@@ -1,5 +1,5 @@
 // ===== Components =====
-export { CourseCatalogCoursesComponent } from './components/course-card-list/course-card-list.component';
+export { CourseCatalogCourseListComponent } from './components/course-list';
 export { CourseCatalogSettingsComponent } from './components/course-settings/course-settings.component';
 export { CourseCatalogProgramsComponent } from './components/program-list/program-list.component';
 

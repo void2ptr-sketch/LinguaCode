@@ -10,8 +10,8 @@ export default defineConfig({
   backend: {
     output: {
       mode: 'tags',
-      target: 'src/app/app/api/generated',
-      schemas: 'src/app/app/api/generated/models',
+      target: 'src/app/shared/api/generated',
+      schemas: 'src/app/shared/api/generated/models',
       client: 'angular',
       httpClient: 'angular',
       tsDeclaration: true,

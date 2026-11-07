@@ -1,37 +1,37 @@
 import { Component, ChangeDetectionStrategy, inject, OnInit, effect } from '@angular/core';
-
-import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CourseSearchService } from '../../../entities/course';
-import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
+import {
+  activeLanguagePairCriteria,
+} from '../../../entities/language-pair/lib/language-pair-scope.utils';
+import { LanguagePairsApiService } from '../../../entities/language-pair/api';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import type { CourseIndexEntry } from '../../../entities/course/model';
 import type { PageEvent } from '@angular/material/paginator';
-import { CourseCatalogStore, DraftsStore } from '../../../features/course-catalog/services';
-import { CourseCatalogCoursesComponent } from '../../../features/course-catalog/components/course-card-list/course-card-list.component';
+import { CourseCatalogStore } from '../../../features/course-catalog/services';
+import { CourseCatalogCourseListComponent } from '../../../features/course-catalog/components/course-list';
 import { CourseCatalogProgramsComponent } from '../../../features/course-catalog/components/program-list/program-list.component';
 import { CourseCatalogLanguagePairManagerService } from '../../../features/course-catalog/services/course-catalog-language-pair-manager.service';
 
 /**
- * Course catalog page component. Main entry point for browsing courses, managing user profiles,
- * and configuring language pair settings.
+ * Course catalog page component. Main entry point for browsing courses and
+ * configuring language pair settings.
  * @remarks Composed of three sub-tabs: Courses, Programs, and Settings.
  */
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-course-catalog-page',
   imports: [
-    FormsModule,
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
-    CourseCatalogCoursesComponent,
+    CourseCatalogCourseListComponent,
     CourseCatalogProgramsComponent,
   ],
   standalone: true,
@@ -40,17 +40,13 @@ import { CourseCatalogLanguagePairManagerService } from '../../../features/cours
 })
 export class CourseCatalogPageComponent implements OnInit {
   private readonly courseSearchService = inject(CourseSearchService);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
   private readonly router = inject(Router);
   private readonly logger = inject(AppLoggerService);
   private readonly pairManager = inject(CourseCatalogLanguagePairManagerService);
   readonly catalogStore = inject(CourseCatalogStore);
-  readonly drafts = inject(DraftsStore);
-
-  /** Direct references to sub-tab components. */
-  readonly coursesComponent = CourseCatalogCoursesComponent;
-  readonly programsComponent = CourseCatalogProgramsComponent;
 
   /**
    * Paginated course items from the catalog store.
@@ -109,28 +105,6 @@ export class CourseCatalogPageComponent implements OnInit {
    */
   readonly completedCourseIds = this.catalogStore.completedCourseIds;
 
-  /** Current user's display name from the store. */
-  readonly displayName = this.userStore.displayName;
-  /** User preferences signal from the store. */
-  readonly preferences = this.userStore.preferences;
-  /** Available language pairs from the store. */
-  readonly languagePairs = this.userStore.languagePairs;
-  /** Active language pair ID from the store. */
-  readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
-
-  /** Draft value for the user's display name. */
-  readonly nameDraft = this.drafts.profileNameDraft;
-  /** Draft value for the learning proficiency level. */
-  readonly learningProficiencyDraft = this.drafts.profileLearningProficiencyDraft;
-  /** Draft value for the application theme. */
-  readonly themeDraft = this.drafts.profileThemeDraft;
-  /** Draft value for the font size preference. */
-  readonly fontSizeDraft = this.drafts.profileFontSizeDraft;
-  /** Draft value for the color scheme. */
-  readonly colorSchemeDraft = this.drafts.profileColorSchemeDraft;
-  /** Draft value for the card focus fullscreen preference. */
-  readonly cardFocusFullscreenDraft = this.drafts.profileCardFocusFullscreenDraft;
-
   /** Currently selected tab index. */
   readonly selectedTabIndex = this.catalogStore.selectedTabIndex;
 
@@ -168,74 +142,7 @@ export class CourseCatalogPageComponent implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
-    this.drafts.setProfileLearningProficiencyDraft(
-      this.userStore.preferences().learningProficiencyLevel,
-    );
-    this.pairManager.syncPairSettingsDrafts();
     await this.load();
-  }
-
-  // ---- Computed ----
-
-  // ---- Methods ----
-
-  /**
-   * Sets the active language pair and syncs settings drafts.
-   *
-   * @param id - The ID of the language pair to activate.
-   *
-   * @remarks
-   * Updates both the user store and catalog store, then syncs the pair-specific
-   * settings (romanizations, IPA, tone colors) into the draft signals.
-   */
-  setActive(id: string): void {
-    this.pairManager.setActive(id);
-  }
-
-  /**
-   * Removes a language pair and syncs settings drafts.
-   *
-   * @param id - The ID of the language pair to remove.
-   *
-   * @remarks
-   * If the removed pair was the settings target, the settings draft is updated
-   * to the current active pair. Then all pair settings drafts are re-synced.
-   */
-  removePair(id: string): void {
-    this.pairManager.removePair(id);
-  }
-
-  /**
-   * Adds a new language pair from the draft values and syncs settings.
-   *
-   * @remarks
-   * Only adds the pair if the known and learning languages are different
-   * (checked via `languagePairInvalid`). Sets the settings pair ID draft
-   * to the newly added pair's ID and syncs its settings.
-   */
-  addPair(): void {
-    if (this.drafts.courseTabLanguagePairInvalid()) {
-      return;
-    }
-
-    this.pairManager.addPair();
-  }
-
-  /**
-   * Saves the user profile.
-   *
-   * @remarks
-   * Persists the display name and user preferences.
-   */
-  saveProfile(): void {
-    this.userStore.updateDisplayName(this.nameDraft());
-    this.userStore.updatePreferences({
-      theme: this.themeDraft(),
-      fontSize: this.fontSizeDraft(),
-      colorScheme: this.colorSchemeDraft(),
-      cardFocusFullscreen: this.cardFocusFullscreenDraft(),
-      learningProficiencyLevel: this.learningProficiencyDraft(),
-    });
   }
 
   // ---- Course catalog methods ----
@@ -259,21 +166,36 @@ export class CourseCatalogPageComponent implements OnInit {
       // the target course is included regardless of its position.
       const pageSize = selectedCourseId ? 1000 : this.pageSize();
 
+      // Build language pair IDs from ALL user language pairs (not just active)
+      // Map local pairs → backend pair IDs via /language-pairs API
+      const allPairs = this.userStore.languagePairs();
+      const backendPairs = await this.languagePairsApi.listAll();
+      const pairIdMap = new Map<string, number>();
+      for (const bp of backendPairs) {
+        pairIdMap.set(`${bp.knownCode}→${bp.learningCode}`, bp.id);
+      }
+
+      const languagePairIds = allPairs
+        .map((entry) => pairIdMap.get(`${entry.pair.known}→${entry.pair.learning}`))
+        .filter((id): id is number => id != null);
+
       const page = await this.courseSearchService.search({
         scope: 'published',
         ...activeLanguagePairCriteria(pair),
+        languagePairIds: languagePairIds.length > 0 ? languagePairIds : undefined,
         page: { page: this.pageIndex(), pageSize },
       });
 
       const allItems = page.items ?? [];
 
-      const filteredItems = selectedCourseId
+      // Client-side filter by selectedCourseId only (backend already filters by languagePairIds)
+      const filteredByPair = selectedCourseId
         ? allItems.filter((item) => item.id === selectedCourseId)
         : allItems;
 
-      this.catalogStore.setItems(filteredItems);
-      this.catalogStore.setTotalItems(filteredItems.length);
-      await this.loadProgress(filteredItems);
+      this.catalogStore.setItems(filteredByPair);
+      this.catalogStore.setTotalItems(filteredByPair.length);
+      await this.loadProgress(filteredByPair);
     } catch (error) {
       this.logger.error('CourseCatalog: failed to load catalog', error);
       this.catalogStore.setError('Не удалось загрузить каталог курсов');

@@ -6,13 +6,12 @@
  */
 import type { LanguagePairEntry } from './languagePairEntry';
 import type { UserPreferencesCardFontSize } from './userPreferencesCardFontSize';
-import type { UserPreferencesInterfaceLanguage } from './userPreferencesInterfaceLanguage';
 
 /**
  * User preferences for interface and learning
  */
 export interface UserPreferences {
-  interfaceLanguage?: UserPreferencesInterfaceLanguage;
+  interfaceLanguage?: string;
   learningPairs?: LanguagePairEntry[];
   selectedCourseId?: number;
   selectedProgramId?: number;

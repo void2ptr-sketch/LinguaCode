@@ -49,6 +49,8 @@ export type CourseSearchCriteria = {
   knownLanguage?: ContentLanguage;
   /** Filter by learning (target) language. */
   learningLanguage?: ContentLanguage;
+  /** Filter by language pair IDs (multiple pairs). Takes precedence over knownLanguage/learningLanguage. */
+  languagePairIds?: number[];
   /** Pagination parameters. */
   page: import('../../../shared/utils/pagination').PageRequest;
 };

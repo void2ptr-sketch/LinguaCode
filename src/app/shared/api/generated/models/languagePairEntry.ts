@@ -4,8 +4,10 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
+import type { LanguagePairEntrySettings } from './languagePairEntrySettings';
 
 export interface LanguagePairEntry {
   known?: string;
   learning?: string;
+  settings?: LanguagePairEntrySettings;
 }

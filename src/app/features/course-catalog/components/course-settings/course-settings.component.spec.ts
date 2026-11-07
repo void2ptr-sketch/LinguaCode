@@ -59,6 +59,9 @@ describe('CourseCatalogSettingsComponent', () => {
             settingsToneColorEnabledDraft: signal(false),
             settingsToneColorSchemeDraft: signal('default' as ToneColorSchemeId),
             settingsTracingStrokeDurationDraft: signal(0.5),
+            courseTabKnownLanguageDraft: signal('ru'),
+            courseTabLearningLanguageDraft: signal('en'),
+            courseTabLanguagePairInvalid: signal(false),
             setSettingsPairIdDraft: vi.fn(),
             setSettingsDisplayRomanizationsDraft: vi.fn(),
             setSettingsAnswerRomanizationsDraft: vi.fn(),
@@ -68,6 +71,8 @@ describe('CourseCatalogSettingsComponent', () => {
             setSettingsToneColorEnabledDraft: vi.fn(),
             setSettingsToneColorSchemeDraft: vi.fn(),
             setSettingsTracingStrokeDurationDraft: vi.fn(),
+            setCourseTabKnownLanguageDraft: vi.fn(),
+            setCourseTabLearningLanguageDraft: vi.fn(),
           },
         },
         {

@@ -136,8 +136,8 @@ export const routes: Routes = [
           {
             path: 'tabs/courses',
             loadComponent: () =>
-              import('../features/course-catalog/components/course-card-list/course-card-list.component').then(
-                (m) => m.CourseCatalogCoursesComponent,
+              import('../features/course-catalog/components/course-list/course-list.component').then(
+                (m) => m.CourseCatalogCourseListComponent,
               ),
           },
           {

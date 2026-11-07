@@ -24,8 +24,9 @@ import type {
 
 import type {
   ExportScormParams,
+  ImportScormBody,
+  ImportScormParams,
   ScormExportBundleResponse,
-  ScormImportRequest,
   ScormImportResultResponse
 } from './models';
 
@@ -158,41 +159,43 @@ export class ScormService {
  * Imports a course from a SCORM ZIP package. Creates Course → Program → Lesson → Scenario → Card hierarchy.
  * @summary Import course from SCORM package
  */
- importScorm<TData = ScormImportResultResponse>(scormImportRequest?: ScormImportRequest, options?: HttpClientBodyOptions): Observable<TData>;
- importScorm<TData = ScormImportResultResponse>(scormImportRequest?: ScormImportRequest, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- importScorm<TData = ScormImportResultResponse>(scormImportRequest?: ScormImportRequest, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+ importScorm<TData = ScormImportResultResponse>(params: ImportScormParams,
+    importScormBody?: ImportScormBody, options?: HttpClientBodyOptions): Observable<TData>;
+ importScorm<TData = ScormImportResultResponse>(params: ImportScormParams,
+    importScormBody?: ImportScormBody, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ importScorm<TData = ScormImportResultResponse>(params: ImportScormParams,
+    importScormBody?: ImportScormBody, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   importScorm<TData = ScormImportResultResponse>(
-    scormImportRequest?: ScormImportRequest, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {const formData = new FormData();
-if(scormImportRequest?.file !== undefined) {
- formData.append(`file`, scormImportRequest.file);
- }
+    params: ImportScormParams,
+    importScormBody?: ImportScormBody, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
 
     if (options?.observe === 'events') {
       return this.http.post<TData>(
       `/api/v1/scorm/import`,
-      formData,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      importScormBody,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'events',
-      }
+        params: filteredParams,}
     );
     }
 
     if (options?.observe === 'response') {
       return this.http.post<TData>(
       `/api/v1/scorm/import`,
-      formData,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      importScormBody,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'response',
-      }
+        params: filteredParams,}
     );
     }
 
     return this.http.post<TData>(
       `/api/v1/scorm/import`,
-      formData,{
-        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+      importScormBody,{
+    ...(options as Omit<NonNullable<typeof options>, 'observe'>),
         observe: 'body',
-      }
+        params: filteredParams,}
     );
   }
 /**

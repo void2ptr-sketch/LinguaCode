@@ -447,7 +447,7 @@ export class CoursesService {
     );
   }
 /**
- * Searches courses by title or description with optional author filter
+ * Searches courses by title or description with optional author, language pair filters
  * @summary Search courses
  */
  coursesSearch<TData = CourseList>(params: CoursesSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
