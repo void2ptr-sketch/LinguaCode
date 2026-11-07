@@ -1,5 +1,8 @@
 <section class="page-card__tab-panel">
   <section class="page-card__section">
+
+    <h2 class="page-card__section-title">Настройка карточек</h2>
+    <p>
     <mat-form-field appearance="outline">
         <mat-label>Language Pair</mat-label>
         <mat-select
@@ -11,19 +14,12 @@
             <mat-option [value]="pair.id">{{ entryLabel(pair) }}</mat-option>
           }
         </mat-select>
-      </mat-form-field>
+    </mat-form-field>
 
-    @if (settingsCourseLabel()) {
-      <h2 class="page-card__section-title">
-        Курс: {{ settingsCourseLabel() }}. Настройка карточек:
-      </h2>
-    } @else {
-      <h2 class="page-card__section-title">Настройка карточек курса</h2>
-    }
 
     @if (showDisplaySettings()) {
-      <h3 class="page-card__subsection-title">Романизация и фонетика для выбранного курса:</h3>
-
+      <h3 class="page-card__subsection-title">Романизация и фонетика для выбранного курса</h3>
+      <p>
       <app-course-display-settings-matrix
         [showCjk]="showCjkPreferences()"
         [showPhonetic]="showPhoneticPreferences()"
