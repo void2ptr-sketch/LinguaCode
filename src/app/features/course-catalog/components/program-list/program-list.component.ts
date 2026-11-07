@@ -9,6 +9,7 @@ import { ProgramsApiService } from '../../../../entities/program/api';
 import type { Program } from '../../../../entities/program/model';
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast.service';
+import { CourseCatalogStore } from '../../services';
 
 /**
  * Course programs list component. Displays programs for selected courses.
@@ -38,6 +39,17 @@ export class CourseCatalogProgramsComponent {
   private readonly programsApi = inject(ProgramsApiService);
   private readonly logger = inject(AppLoggerService);
   private readonly errorToast = inject(ErrorToastService);
+  private readonly catalogStore = inject(CourseCatalogStore);
+
+  /** Map of course ID → title from the catalog (keys normalized to string). */
+  private readonly courseTitleMap = computed(() => {
+    const items = this.catalogStore.items();
+    const map = new Map<string, string>();
+    for (const item of items) {
+      map.set(String(item.id), item.title);
+    }
+    return map;
+  });
 
   /** Loaded programs for the selected courses. */
   private readonly programs = signal<readonly Program[]>([]);
@@ -85,6 +97,37 @@ export class CourseCatalogProgramsComponent {
   });
 
   // ---- Methods ----
+
+  /**
+   * Returns the number of lessons for a program.
+   * Uses program.lessonIds as the source (seed catalog may not have lessons).
+   */
+  getLessonCount(programId: string): number {
+    const program = this.programs().find((p) => p.id === programId);
+    return program?.lessonIds?.length ?? 0;
+  }
+
+  /**
+   * Declines "урок" correctly: 1 урок, 2 урока, 5 уроков, нет уроков.
+   */
+  declineLesson(count: number): string {
+    if (count === 0) return 'нет уроков';
+
+    const abs = Math.abs(count) % 100;
+    const lastDigit = abs % 10;
+
+    if (abs > 10 && abs < 20) return `${count} уроков`;
+    if (lastDigit > 1 && lastDigit < 5) return `${count} урока`;
+    if (lastDigit === 1) return `${count} урок`;
+    return `${count} уроков`;
+  }
+
+  /**
+   * Normalizes a course ID to string for map lookup.
+   */
+  normalizeCourseId(courseId: string | number): string {
+    return String(courseId);
+  }
 
   /**
    * Handles "Start" button click for a program.
