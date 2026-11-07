@@ -72,7 +72,15 @@ export class CoursesCatalogMockHandler {
   async getById(courseId: string): Promise<CourseWithPrograms> {
     await this.ensureData();
 
-    const course = this.catalog!.courses.find((item) => item.id === courseId);
+    // 1. Прямой поиск по ID (numeric или string seed ID)
+    let course = this.catalog!.courses.find((item) => item.id === courseId);
+
+    // 2. Fallback: courseId — это seed string ID (например 'course-cpp-complete'),
+    //    а в каталоге ID может отличаться от title — ищем по title
+    if (!course) {
+      course = this.catalog!.courses.find((item) => item.title === courseId);
+    }
+
     if (!course) {
       throw notFound('Курс не найден');
     }

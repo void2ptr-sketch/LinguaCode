@@ -35,8 +35,9 @@ export const appConfig: ApplicationConfig = {
       // вызовы `inject()` после асинхронной операции падают с NG0203.
       const injector = inject(Injector);
 
-      // Content seed loading is non-blocking — failure doesn't prevent app startup
-      injector
+      // Content seed loading — awaited so buildNodes() sees populated cache
+      // Failure doesn't prevent app startup (best-effort content)
+      await injector
         .get(ContentSeedRepository)
         .preload()
         .catch(() => {
