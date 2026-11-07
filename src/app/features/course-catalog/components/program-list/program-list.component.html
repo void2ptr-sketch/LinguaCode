@@ -37,7 +37,7 @@
                 <h2 class="course-catalog-page__title">{{ program.title }}</h2>
               </div>
               <p class="course-catalog-page__meta">
-                {{ program.lessonIds.length }} уроков
+                {{ program.lessonIds?.length ?? 0 }} уроков
                 @if (program.description) {
                   · {{ program.description }}
                 }

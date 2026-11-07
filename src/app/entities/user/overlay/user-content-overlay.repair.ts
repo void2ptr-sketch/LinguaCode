@@ -101,7 +101,7 @@ export function bindPerlInterviewCourseLanguagePair(overlay: UserContentOverlay)
         continue;
       }
 
-      for (const lessonId of program.lessonIds) {
+        for (const lessonId of program.lessonIds ?? []) {
         const lesson = lessons[lessonId];
         if (lesson && isOverlayLesson(lesson)) {
           for (const scenarioId of lesson.scenarioIds) {
@@ -305,7 +305,7 @@ export function migratePerlInterviewAuthoringToSeed(overlay: UserContentOverlay)
     for (const programId of entry.programIds) {
       const program = programs[programId];
       if (program && isOverlayProgram(program)) {
-        for (const lessonId of program.lessonIds) {
+      for (const lessonId of program.lessonIds ?? []) {
           const lesson = lessons[lessonId];
           if (lesson && isOverlayLesson(lesson) && lesson.programId === programId) {
             delete lessons[lessonId];

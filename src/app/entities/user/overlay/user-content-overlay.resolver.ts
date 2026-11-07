@@ -671,8 +671,8 @@ function diffProgram(resolved: Program, seed: Program): ProgramPatch {
     patch.updatedAt = resolved.updatedAt;
   }
 
-  if (!sameStringArray(resolved.lessonIds, seed.lessonIds)) {
-    patch.lessonIds = [...resolved.lessonIds];
+  if (!sameStringArray(resolved.lessonIds ?? [], seed.lessonIds ?? [])) {
+    patch.lessonIds = [...(resolved.lessonIds ?? [])];
   }
 
   return patch;

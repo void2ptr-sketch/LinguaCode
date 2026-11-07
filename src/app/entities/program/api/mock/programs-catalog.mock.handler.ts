@@ -62,7 +62,7 @@ export class ProgramsCatalogMockHandler {
         courseId: program.courseId,
         title: program.title,
         order: program.order,
-        lessonCount: program.lessonIds.length,
+        lessonCount: program.lessonIds?.length ?? 0,
         updatedAt: program.updatedAt,
       }));
 

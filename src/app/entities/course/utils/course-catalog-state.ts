@@ -59,7 +59,7 @@ export function normalizeStoredLesson(lesson: Lesson): Lesson {
 export function normalizeStoredProgram(program: Program): Program {
   return {
     ...program,
-    lessonIds: [...program.lessonIds],
+    lessonIds: [...(program.lessonIds ?? [])],
   };
 }
 
@@ -118,7 +118,7 @@ export function mergeStoredProgram(stored: Program, defaultProgram?: Program): P
   return normalizeStoredProgram({
     ...defaultProgram,
     ...stored,
-    lessonIds: stored.lessonIds.length > 0 ? stored.lessonIds : defaultProgram.lessonIds,
+    lessonIds: (stored.lessonIds?.length ?? 0) > 0 ? stored.lessonIds ?? [] : defaultProgram.lessonIds,
   });
 }
 

@@ -120,12 +120,12 @@ export class CourseCatalogPageComponent implements OnInit {
   });
 
   /**
-   * Syncs `selectedCourseId` from `learningSession` when on the Programs tab.
+   * Syncs `selectedCourseId` when on the Programs tab.
    *
    * @remarks
    * When the user switches to tab 1 ("Программы курса"), the store's
-   * `selectedCourseId` is set to `learningSession().activeCourseId` and the
-   * catalog is reloaded so that client-side filtering is applied.
+   * `selectedCourseId` is set to `learningSession().activeCourseId` if available,
+   * otherwise to the first course from the loaded items.
    * Auto-sync is suppressed when `filterDismissedUntilTabChange` is true.
    */
   private readonly syncSelectedCourseIdEffect = effect(() => {
@@ -133,8 +133,13 @@ export class CourseCatalogPageComponent implements OnInit {
     const dismissed = this.catalogStore.filterDismissedUntilTabChange();
     const activeCourseId = this.userStore.learningSession().activeCourseId;
     const currentSelectedId = this.catalogStore.selectedCourseId();
+    const items = this.items();
 
-    if (tabIndex === 1 && activeCourseId && !dismissed && currentSelectedId !== activeCourseId) {
+    if (tabIndex === 1 && !dismissed && currentSelectedId.length === 0 && items.length > 0) {
+      // No course selected — pick the first one automatically
+      this.catalogStore.setSelectedCourseId(items[0].id);
+    } else if (tabIndex === 1 && activeCourseId && !dismissed && currentSelectedId !== activeCourseId) {
+      // learningSession has an active course — use it
       this.catalogStore.setSelectedCourseId(activeCourseId);
       // reload applies client-side filter by selectedCourseId
       void this.load();

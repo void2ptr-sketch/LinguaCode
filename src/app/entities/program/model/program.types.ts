@@ -18,7 +18,7 @@ export type Program = {
   /** Program description shown in the catalog. */
   description: string;
   /** IDs of lessons contained in this program, in order. */
-  lessonIds: readonly string[];
+  lessonIds?: readonly string[];
   /** Display order within the parent Course. */
   order: number;
   /** ISO 8601 timestamp of the last update. */
