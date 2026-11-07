@@ -32,6 +32,12 @@ type UserPreferencesPatch = {
   activeLanguagePairId?: string;
   /** All configured language pairs */
   learningPairs?: { known: string; learning: string }[];
+  /** Language pairs with settings for persistence */
+  languagePairsWithSettings?: {
+    id: string;
+    pair: { known: string; learning: string };
+    settings?: Record<string, unknown>;
+  }[];
   interfaceLanguage?: string;
   cardFontSize?: string;
   darkMode?: boolean;

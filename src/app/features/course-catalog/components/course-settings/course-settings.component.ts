@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import type {
   ToneColorSchemeId,
@@ -22,6 +23,7 @@ import type { AnswerDisplayMode } from '../../../../entities/course/ui/course-di
 import { shouldShowPalladius } from '../../../../entities/phonetic/lib/phonetic-preferences.utils';
 import type { RomanizationOption } from '../../../../entities/course/ui/course-display-settings-matrix';
 import { UserStore } from '../../../../entities/user/model/user.store';
+import { UserApiService } from '../../../../entities/user/api/user-api.service';
 import { DraftsStore } from '../../services';
 import { CourseCatalogLanguagePairManagerService } from '../../services/course-catalog-language-pair-manager.service';
 
@@ -50,6 +52,8 @@ export class CourseCatalogSettingsComponent {
   private readonly userStore = inject(UserStore);
   private readonly drafts = inject(DraftsStore);
   private readonly pairManager = inject(CourseCatalogLanguagePairManagerService);
+  private readonly userApi = inject(UserApiService);
+  private readonly snackBar = inject(MatSnackBar);
 
   /** Available language pairs from the store. */
   readonly languagePairs = this.userStore.languagePairs;
@@ -226,6 +230,33 @@ export class CourseCatalogSettingsComponent {
   onSettingsPairChange(pairId: string): void {
     this.drafts.setSettingsPairIdDraft(pairId);
     this.pairManager.syncPairSettingsDrafts();
+  }
+
+  /**
+   * Saves the current settings to the store and persists to the backend.
+   */
+  async saveSettings(): Promise<void> {
+    const entry = this.settingsEntry();
+    if (!entry) {
+      return;
+    }
+
+    // Save to local store (updates localStorage)
+    this.pairManager.savePairSettings(entry);
+
+    // Persist to backend (users.preferences table)
+    try {
+      await this.userApi.patchUserPreferences({
+        languagePairsWithSettings: this.languagePairs().map((p) => ({
+          id: p.id,
+          pair: p.pair,
+          settings: p.settings,
+        })),
+      });
+      this.snackBar.open('Настройки сохранены', 'Закрыть', { duration: 3000 });
+    } catch {
+      this.snackBar.open('Не удалось сохранить настройки', 'Закрыть', { duration: 5000 });
+    }
   }
 
   // ---- Settings change handlers ----
