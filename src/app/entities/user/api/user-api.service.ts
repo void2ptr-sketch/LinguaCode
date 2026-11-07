@@ -30,12 +30,10 @@ type UserPreferencesPatch = {
   learningPairLearning?: string;
   /** Active language pair ID (from UserLanguagePairEntry.id) */
   activeLanguagePairId?: string;
-  /** All configured language pairs */
-  learningPairs?: { known: string; learning: string }[];
-  /** Language pairs with settings for persistence */
-  languagePairsWithSettings?: {
-    id: string;
-    pair: { known: string; learning: string };
+  /** All configured language pairs with their settings */
+  learningPairs?: {
+    known: string;
+    learning: string;
     settings?: Record<string, unknown>;
   }[];
   interfaceLanguage?: string;

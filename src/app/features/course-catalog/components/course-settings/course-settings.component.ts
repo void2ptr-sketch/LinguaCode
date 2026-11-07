@@ -24,6 +24,7 @@ import { shouldShowPalladius } from '../../../../entities/phonetic/lib/phonetic-
 import type { RomanizationOption } from '../../../../entities/course/ui/course-display-settings-matrix';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { UserApiService } from '../../../../entities/user/api/user-api.service';
+import type { UpdateUserPayload } from '../../../../entities/user/repository/user.port';
 import { DraftsStore } from '../../services';
 import { CourseCatalogLanguagePairManagerService } from '../../services/course-catalog-language-pair-manager.service';
 
@@ -244,15 +245,18 @@ export class CourseCatalogSettingsComponent {
     // Save to local store (updates localStorage)
     this.pairManager.savePairSettings(entry);
 
-    // Persist to backend (users.preferences table)
+    // Persist to backend (PUT /users/me with full preferences)
     try {
-      await this.userApi.patchUserPreferences({
-        languagePairsWithSettings: this.languagePairs().map((p) => ({
-          id: p.id,
-          pair: p.pair,
-          settings: p.settings,
-        })),
-      });
+      const payload: UpdateUserPayload = {
+        preferences: {
+          learningPairs: this.languagePairs().map((p) => ({
+            known: p.pair.known,
+            learning: p.pair.learning,
+            settings: p.settings,
+          })),
+        },
+      };
+      await this.userApi.updateMe(payload);
       this.snackBar.open('Настройки сохранены', 'Закрыть', { duration: 3000 });
     } catch {
       this.snackBar.open('Не удалось сохранить настройки', 'Закрыть', { duration: 5000 });
