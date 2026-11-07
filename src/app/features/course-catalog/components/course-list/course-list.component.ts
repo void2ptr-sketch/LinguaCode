@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, computed, signal, output, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, signal, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -13,7 +13,7 @@ import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast
 
 /**
  * Course catalog course list component. Displays all courses matching the active
- * language pair, with progress indicators and a "Start" button.
+ * language pair, with progress indicators and SCORM export.
  * @remarks Delegates state to `CourseCatalogStore`.
  */
 @Component({
@@ -32,15 +32,6 @@ import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast
   styleUrl: './course-list.component.scss',
 })
 export class CourseCatalogCourseListComponent {
-  /**
-   * Emits the course ID when the user clicks "Start".
-   *
-   * @remarks
-   * The parent component should listen for this output to initiate
-   * navigation to the journey map (learning path) for the given course.
-   */
-  readonly startCourse = output<string>();
-
   readonly catalogStore = inject(CourseCatalogStore);
   private readonly scormExportService = inject(ScormExportService);
   private readonly logger = inject(AppLoggerService);

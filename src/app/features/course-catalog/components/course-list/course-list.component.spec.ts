@@ -241,41 +241,6 @@ describe('CourseCatalogCourseListComponent', () => {
       const metas = fixture.nativeElement.querySelectorAll('.course-catalog-page__meta');
       expect(metas[0]?.textContent?.trim()).not.toContain('%');
     });
-
-    it('should show start button for each course', () => {
-      const buttons = fixture.nativeElement.querySelectorAll('button');
-      let count = 0;
-      buttons.forEach((btn: HTMLElement) => {
-        if (btn.textContent?.trim() === 'Начать') {
-          count++;
-        }
-      });
-      expect(count).toBe(2);
-    });
-
-    it('should emit startCourse when start button clicked', () => {
-      mockStoreState.completedCourseIds = new Set();
-      mockStoreState.progressByCourseId = {};
-      fixture.detectChanges();
-
-      let emitted: string | undefined;
-      component.startCourse.subscribe((id) => {
-        emitted = id;
-      });
-
-      const buttons = fixture.nativeElement.querySelectorAll('button');
-      const startButtons: HTMLElement[] = [];
-      buttons.forEach((btn: HTMLElement) => {
-        if (btn.textContent?.trim() === 'Начать') {
-          startButtons.push(btn);
-        }
-      });
-      startButtons[0].dispatchEvent(new Event('click'));
-      expect(emitted).toBe('c-1');
-
-      startButtons[1].dispatchEvent(new Event('click'));
-      expect(emitted).toBe('c-2');
-    });
   });
 
   describe('isCourseCompleted', () => {
