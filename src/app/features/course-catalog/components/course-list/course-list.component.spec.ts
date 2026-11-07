@@ -43,6 +43,7 @@ describe('CourseCatalogCourseListComponent', () => {
     totalItems: number;
     pageIndex: number;
     pageSize: number;
+    selectedCourseId: string;
   };
 
   const defaultItems: readonly CourseIndexEntry[] = [
@@ -60,6 +61,7 @@ describe('CourseCatalogCourseListComponent', () => {
       totalItems: 0,
       pageIndex: 0,
       pageSize: 10,
+      selectedCourseId: '',
     };
 
     const loadingSignal = signal(stateRef.loading);
@@ -70,6 +72,7 @@ describe('CourseCatalogCourseListComponent', () => {
     const totalItemsSignal = signal(stateRef.totalItems);
     const pageIndexSignal = signal(stateRef.pageIndex);
     const pageSizeSignal = signal(stateRef.pageSize);
+    const selectedCourseIdSignal = signal(stateRef.selectedCourseId);
 
     mockStoreState = new Proxy(stateRef, {
       set(target, prop, value) {
@@ -99,6 +102,9 @@ describe('CourseCatalogCourseListComponent', () => {
           case 'pageSize':
             pageSizeSignal.set(value as number);
             break;
+          case 'selectedCourseId':
+            selectedCourseIdSignal.set(value as string);
+            break;
         }
         return true;
       },
@@ -113,6 +119,7 @@ describe('CourseCatalogCourseListComponent', () => {
       totalItems: totalItemsSignal,
       pageIndex: pageIndexSignal,
       pageSize: pageSizeSignal,
+      selectedCourseId: selectedCourseIdSignal,
     };
 
     await TestBed.configureTestingModule({

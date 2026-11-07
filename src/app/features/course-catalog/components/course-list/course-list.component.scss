@@ -1,1 +1,12 @@
 @use '../program-list/program-list.component';
+
+.course-catalog-page__activate {
+  margin-left: auto;
+  padding-left: 1rem;
+
+  ::ng-deep {
+    .mdc-checkbox__background {
+      border-color: var(--mat-sys-outline);
+    }
+  }
+}

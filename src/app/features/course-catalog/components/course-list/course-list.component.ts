@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, computed, signal, inject } from '@a
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -23,6 +24,7 @@ import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
+    MatCheckboxModule,
     MatIconModule,
     MatProgressSpinnerModule,
     UiPaginationComponent,
@@ -62,6 +64,8 @@ export class CourseCatalogCourseListComponent {
   readonly pageIndexValue = computed(() => this.catalogStore.pageIndex());
   /** Page size value for template. */
   readonly pageSizeValue = computed(() => this.catalogStore.pageSize());
+  /** Currently active course ID (used by programs tab). */
+  readonly activeCourseId = this.catalogStore.selectedCourseId;
 
   // ---- SCORM Export ----
 
@@ -145,5 +149,19 @@ export class CourseCatalogCourseListComponent {
    */
   onPageChange(event: import('@angular/material/paginator').PageEvent): void {
     this.catalogStore.onPageChange(event);
+  }
+
+  /**
+   * Toggles the active course for the programs tab.
+   *
+   * @param courseId - The course ID to activate.
+   *
+   * @remarks
+   * When a course is activated, its programs are displayed on the
+   * "Программы курса" tab. Only one course can be active at a time.
+   */
+  onToggleActive(courseId: string): void {
+    const current = this.catalogStore.selectedCourseId();
+    this.catalogStore.setSelectedCourseId(current === courseId ? '' : courseId);
   }
 }

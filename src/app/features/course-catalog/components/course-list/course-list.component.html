@@ -30,6 +30,14 @@
                     Завершён
                   </mat-chip>
                 }
+                <mat-checkbox
+                  class="course-catalog-page__activate"
+                  [checked]="activeCourseId() === course.id"
+                  (change)="onToggleActive(course.id)"
+                  aria-label="Активировать"
+                >
+                  Активировать
+                </mat-checkbox>
               </div>
               <p class="course-catalog-page__meta">
                 {{ course.programCount }} программ · {{ course.languagePairSummary }}
