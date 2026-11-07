@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import type { RomanizationSystem } from '../../../phonetic/model';
 import {
   type AnswerDisplayMode,
@@ -32,7 +33,7 @@ export type RomanizationOption = {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-course-display-settings-matrix',
-  imports: [FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule],
+  imports: [FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatTooltipModule],
   templateUrl: './course-display-settings-matrix.component.html',
   styleUrl: './course-display-settings-matrix.component.scss',
 })
@@ -235,6 +236,12 @@ export class CourseDisplaySettingsMatrixComponent {
   answerRomanizationAriaLabel(option: RomanizationOption): string {
     return `${option.label} в ответах${this.courseLabelSuffix()}`;
   }
+
+  /** Tooltip text for the "Задание" column header. */
+  readonly tooltipPromptText = '«Задание» — текст вопроса на карточке';
+
+  /** Tooltip text for the "Ответы" column header. */
+  readonly tooltipAnswerText = '«Ответы» — варианты, плитки memory и блок «Правильный ответ»';
 
   private courseLabelSuffix(): string {
     const label = this.courseLabel().trim();
