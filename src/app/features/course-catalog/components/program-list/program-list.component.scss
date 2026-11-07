@@ -81,10 +81,20 @@
 }
 
 .course-catalog-page__title {
-  font-size: 1.0625rem;
   font-weight: 500;
-  line-height: 1.35;
-  margin: 0;
+  line-height: 1.4;
+}
+
+.course-catalog-page__description {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 68%, transparent);
+  display: block;
+  font-size: 0.8125rem;
+  margin-top: 0.25rem;
+}
+
+.course-catalog-page__td--code {
+  font-family: monospace;
+  font-size: 0.8125rem;
 }
 
 .course-catalog-page__meta {

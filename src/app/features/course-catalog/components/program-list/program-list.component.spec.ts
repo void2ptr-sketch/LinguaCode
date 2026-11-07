@@ -110,7 +110,7 @@ describe('CourseCatalogProgramsComponent', () => {
       fixture.detectChanges();
       await fixture.whenStable();
 
-      const startBtn = fixture.nativeElement.querySelector('button[mat-flat-button]');
+      const startBtn = fixture.nativeElement.querySelector('button[mat-stroked-button]');
       expect(startBtn).toBeTruthy();
       startBtn!.click();
       fixture.detectChanges();
