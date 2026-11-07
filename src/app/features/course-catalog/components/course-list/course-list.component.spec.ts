@@ -206,7 +206,7 @@ describe('CourseCatalogCourseListComponent', () => {
       mockStoreState.items = defaultItems;
       fixture.detectChanges();
 
-      const itemCards = fixture.nativeElement.querySelectorAll('.course-catalog-page__item');
+      const itemCards = fixture.nativeElement.querySelectorAll('.course-catalog-page__row');
       expect(itemCards.length).toBe(2);
     });
 
@@ -217,9 +217,9 @@ describe('CourseCatalogCourseListComponent', () => {
     });
 
     it('should render course meta with program count', () => {
-      const metas = fixture.nativeElement.querySelectorAll('.course-catalog-page__meta');
-      expect(metas[0]?.textContent?.trim()).toContain('10 программ');
-      expect(metas[1]?.textContent?.trim()).toContain('20 программ');
+      const rows = fixture.nativeElement.querySelectorAll('.course-catalog-page__row');
+      expect(rows[0].textContent).toContain('10');
+      expect(rows[1].textContent).toContain('20');
     });
 
     it('should show completed badge for completed courses', () => {
@@ -236,8 +236,8 @@ describe('CourseCatalogCourseListComponent', () => {
       mockStoreState.progressByCourseId = { 'c-1': 50, 'c-2': 30 };
       fixture.detectChanges();
 
-      const metas = fixture.nativeElement.querySelectorAll('.course-catalog-page__meta');
-      expect(metas[0]?.textContent?.trim()).toContain('50%');
+      const rows = fixture.nativeElement.querySelectorAll('.course-catalog-page__row');
+      expect(rows[0].textContent).toContain('50%');
     });
 
     it('should not show progress for completed courses', () => {
@@ -245,8 +245,8 @@ describe('CourseCatalogCourseListComponent', () => {
       mockStoreState.progressByCourseId = { 'c-1': 75 };
       fixture.detectChanges();
 
-      const metas = fixture.nativeElement.querySelectorAll('.course-catalog-page__meta');
-      expect(metas[0]?.textContent?.trim()).not.toContain('%');
+      const rows = fixture.nativeElement.querySelectorAll('.course-catalog-page__row');
+      expect(rows[0].textContent).not.toContain('%');
     });
   });
 

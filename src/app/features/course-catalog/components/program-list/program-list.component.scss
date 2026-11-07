@@ -1,3 +1,9 @@
+:host {
+  display: block;
+  height: 100%;
+  min-height: 0;
+}
+
 .course-catalog-page__filter-indicator {
   align-items: center;
   display: flex;
@@ -19,12 +25,18 @@
 }
 
 .course-catalog-page__panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
 }
 
 .course-catalog-page__content {
   display: grid;
   gap: 1rem;
+  overflow-y: auto;
+  padding-bottom: 1rem;
 }
 
 .course-catalog-page__list {

@@ -18,18 +18,37 @@
 
   <mat-card class="course-catalog-page__panel">
     <mat-card-content class="course-catalog-page__content">
-      <ul class="course-catalog-page__list">
-        @for (course of items(); track course.id) {
-          <li class="course-catalog-page__item">
-            <div class="course-catalog-page__item-body">
-              <div class="course-catalog-page__title-row">
-                <h2 class="course-catalog-page__title">{{ course.title }}</h2>
-                @if (isCourseCompleted(course.id)) {
-                  <mat-chip class="course-catalog-page__badge" disabled>
-                    <mat-icon>workspace_premium</mat-icon>
-                    Завершён
-                  </mat-chip>
+      <table class="course-catalog-page__table">
+        <thead>
+          <tr>
+            <th class="course-catalog-page__th">Курс</th>
+            <th class="course-catalog-page__th">Программы</th>
+            <th class="course-catalog-page__th">Языки</th>
+            <th class="course-catalog-page__th">Прогресс</th>
+            <th class="course-catalog-page__th">Статус</th>
+            <th class="course-catalog-page__th">Экспорт</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (course of items(); track course.id) {
+            <tr class="course-catalog-page__row" [class.course-catalog-page__row--completed]="isCourseCompleted(course.id)">
+              <td class="course-catalog-page__td">
+                <span class="course-catalog-page__title">{{ course.title }}</span>
+              </td>
+              <td class="course-catalog-page__td course-catalog-page__td--number">
+                {{ course.programCount }}
+              </td>
+              <td class="course-catalog-page__td">
+                {{ course.languagePairSummary }}
+              </td>
+              <td class="course-catalog-page__td course-catalog-page__td--number">
+                @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
+                  {{ progressPercent(course.id) }}%
+                } @else {
+                  —
                 }
+              </td>
+              <td class="course-catalog-page__td">
                 <mat-checkbox
                   class="course-catalog-page__activate"
                   [checked]="activeCourseIds().has(course.id)"
@@ -38,34 +57,33 @@
                 >
                   Активировать
                 </mat-checkbox>
-              </div>
-              <p class="course-catalog-page__meta">
-                {{ course.programCount }} программ · {{ course.languagePairSummary }}
-                @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
-                  · {{ progressPercent(course.id) }}%
+                @if (isCourseCompleted(course.id)) {
+                  <mat-chip class="course-catalog-page__badge" disabled>
+                    <mat-icon>workspace_premium</mat-icon>
+                    Завершён
+                  </mat-chip>
                 }
-              </p>
-            </div>
-
-            <div class="course-catalog-page__actions">
-              <button
-                mat-stroked-button
-                type="button"
-                (click)="exportToScorm(course.id)"
-                [disabled]="isExporting(course.id)"
-                aria-label="Экспорт в SCORM"
-              >
-                @if (isExporting(course.id)) {
-                  <mat-spinner diameter="20" />
-                  Экспорт…
-                } @else {
-                  Экспорт SCORM
-                }
-              </button>
-            </div>
-          </li>
-        }
-      </ul>
+              </td>
+              <td class="course-catalog-page__td course-catalog-page__td--actions">
+                <button
+                  mat-stroked-button
+                  type="button"
+                  size="small"
+                  (click)="exportToScorm(course.id)"
+                  [disabled]="isExporting(course.id)"
+                  aria-label="Экспорт в SCORM"
+                >
+                  @if (isExporting(course.id)) {
+                    <mat-spinner diameter="16" />
+                  } @else {
+                    SCORM
+                  }
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
 
       <app-pagination
         [length]="totalItemsValue()"
