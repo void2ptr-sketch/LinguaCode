@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, computed, output, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, signal, output, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -74,8 +74,8 @@ export class CourseCatalogCourseListComponent {
 
   // ---- SCORM Export ----
 
-  /** Track which courses are currently exporting. */
-  private readonly exportingIds = new Set<string>();
+  /** Set of course IDs currently being exported. */
+  private readonly exportingIds = signal<ReadonlySet<string>>(new Set());
 
   /**
    * Checks if a course is currently being exported.
@@ -84,7 +84,7 @@ export class CourseCatalogCourseListComponent {
    * @returns `true` if the course is currently exporting.
    */
   isExporting(courseId: string): boolean {
-    return this.exportingIds.has(courseId);
+    return this.exportingIds().has(courseId);
   }
 
   /**
@@ -93,11 +93,11 @@ export class CourseCatalogCourseListComponent {
    * @param courseId - The course ID to export.
    */
   async exportToScorm(courseId: string): Promise<void> {
-    if (this.exportingIds.has(courseId)) {
+    if (this.exportingIds().has(courseId)) {
       return;
     }
 
-    this.exportingIds.add(courseId);
+    this.exportingIds.update((ids) => new Set(ids).add(courseId));
 
     try {
       const bundle = await this.scormExportService.export(courseId);
@@ -119,7 +119,11 @@ export class CourseCatalogCourseListComponent {
       this.logger.error('SCORM export failed for course', { courseId, error });
       this.errorToast.show('Не удалось экспортировать курс в SCORM');
     } finally {
-      this.exportingIds.delete(courseId);
+      this.exportingIds.update((ids) => {
+        const next = new Set(ids);
+        next.delete(courseId);
+        return next;
+      });
     }
   }
 
