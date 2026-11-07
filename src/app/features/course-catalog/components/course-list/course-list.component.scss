@@ -63,21 +63,26 @@
 }
 
 .course-catalog-page__row {
-  border-bottom: 1px solid color-mix(in srgb, var(--mat-sys-outline) 20%, transparent);
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:nth-child(even) {
+    background: var(--mat-sys-surface-container-lowest);
+  }
 
   &:hover {
-    background: var(--mat-sys-surface-container-low);
+    background: var(--mat-sys-surface-container-high);
+    box-shadow: inset 3px 0 0 var(--mat-sys-primary);
   }
 
   &--completed {
-    opacity: 0.7;
+    opacity: 0.6;
   }
 }
 
 .course-catalog-page__td {
-  padding: 0.875rem 1rem;
+  padding: 1rem 1rem;
   vertical-align: middle;
+  border-bottom: 1px solid color-mix(in srgb, var(--mat-sys-outline) 12%, transparent);
 
   &--number {
     text-align: right;

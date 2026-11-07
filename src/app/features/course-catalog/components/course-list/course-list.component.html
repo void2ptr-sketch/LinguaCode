@@ -14,7 +14,7 @@
     </mat-card-content>
   </mat-card>
 } @else {
-  <p>Опубликованные курсы для активного языка.</p>
+  <p>Опубликованные курсы для активных языков.</p>
 
   <mat-card class="course-catalog-page__panel">
     <mat-card-content class="course-catalog-page__content">
@@ -22,7 +22,6 @@
         <thead>
           <tr>
             <th class="course-catalog-page__th">Курс</th>
-            <th class="course-catalog-page__th">Программы</th>
             <th class="course-catalog-page__th">Языки</th>
             <th class="course-catalog-page__th">Прогресс</th>
             <th class="course-catalog-page__th">Статус</th>
@@ -34,9 +33,6 @@
             <tr class="course-catalog-page__row" [class.course-catalog-page__row--completed]="isCourseCompleted(course.id)">
               <td class="course-catalog-page__td">
                 <span class="course-catalog-page__title">{{ course.title }}</span>
-              </td>
-              <td class="course-catalog-page__td course-catalog-page__td--number">
-                {{ course.programCount }}
               </td>
               <td class="course-catalog-page__td">
                 {{ course.languagePairSummary }}

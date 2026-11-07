@@ -19,6 +19,7 @@ import type {
 import { UserStore } from '../../user/model/user.store';
 import type { ContentLanguage } from '../../card/model/card-index.types';
 import { LanguagePairsApiService } from '../../language-pair/api';
+import { formatLanguagePair } from '../../language-pair/lib/language-pair.utils';
 
 /** Backend DTO for a course (matches `CourseDto`). */
 type BackendCourseDto = {
@@ -47,6 +48,8 @@ function toIndexEntry(
 ): CourseIndexEntry {
   const pairId = dto.languagePairId;
   const cached = pairId ? pairCache[pairId] : null;
+  const known = cached?.known ?? 'ru';
+  const learning = cached?.learning ?? 'en';
 
   return {
     id: String(dto.id),
@@ -55,9 +58,9 @@ function toIndexEntry(
     programCount: 0, // not available in the list response
     published: dto.published,
     updatedAt: dto.updatedAt,
-    languagePairSummary: pairId ? String(pairId) : '',
-    knownLanguage: cached?.known ?? 'ru',
-    learningLanguage: cached?.learning ?? 'en',
+    languagePairSummary: formatLanguagePair({ known, learning }),
+    knownLanguage: known,
+    learningLanguage: learning,
   };
 }
 

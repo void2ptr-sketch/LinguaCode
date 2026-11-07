@@ -80,6 +80,68 @@
   gap: 0.5rem;
 }
 
+.course-catalog-page__table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+.course-catalog-page__th {
+  background: var(--mat-sys-surface-container-high);
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &:first-child {
+    border-top-left-radius: 0.5rem;
+  }
+
+  &:last-child {
+    border-top-right-radius: 0.5rem;
+    text-align: right;
+  }
+}
+
+.course-catalog-page__row {
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:nth-child(even) {
+    background: var(--mat-sys-surface-container-lowest);
+  }
+
+  &:hover {
+    background: var(--mat-sys-surface-container-high);
+    box-shadow: inset 3px 0 0 var(--mat-sys-primary);
+  }
+}
+
+.course-catalog-page__td {
+  padding: 1rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid color-mix(in srgb, var(--mat-sys-outline) 12%, transparent);
+
+  &--number {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  &--actions {
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+
 .course-catalog-page__title {
   font-weight: 500;
   line-height: 1.4;

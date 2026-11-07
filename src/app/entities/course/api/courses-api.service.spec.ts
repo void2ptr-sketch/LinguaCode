@@ -51,7 +51,7 @@ describe('CoursesApiService', () => {
     programCount: 0,
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
-    languagePairSummary: '1', // derived from languagePairId: 1
+    languagePairSummary: 'ru → en', // derived from languagePairId: 1
     knownLanguage: 'ru',
     learningLanguage: 'en',
   };

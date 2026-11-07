@@ -216,10 +216,10 @@ describe('CourseCatalogCourseListComponent', () => {
       expect(titles[1]?.textContent?.trim()).toBe('Course 2');
     });
 
-    it('should render course meta with program count', () => {
+    it('should render language pair summary', () => {
       const rows = fixture.nativeElement.querySelectorAll('.course-catalog-page__row');
-      expect(rows[0].textContent).toContain('10');
-      expect(rows[1].textContent).toContain('20');
+      expect(rows[0].textContent).toContain('Русский');
+      expect(rows[1].textContent).toContain('English');
     });
 
     it('should show completed badge for completed courses', () => {
