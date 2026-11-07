@@ -159,8 +159,17 @@ export class CourseCatalogCourseListComponent {
    * @remarks
    * Multiple courses can be active simultaneously. Their programs are
    * all displayed on the "Программы курса" tab.
+   * When the last course is deselected, auto-sync is suppressed so the
+   * user can switch tabs without an unwanted course being re-activated.
    */
   onToggleActive(courseId: string): void {
+    const before = this.catalogStore.activeCourseIds();
     this.catalogStore.toggleActiveCourseId(courseId);
+    const after = this.catalogStore.activeCourseIds();
+
+    // If user just deselected the last course, suppress auto-activation
+    if (before.size === 1 && after.size === 0) {
+      this.catalogStore.setFilterDismissed(true);
+    }
   }
 }

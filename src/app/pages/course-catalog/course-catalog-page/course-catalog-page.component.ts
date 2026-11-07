@@ -120,22 +120,38 @@ export class CourseCatalogPageComponent implements OnInit {
   });
 
   /**
-   * Syncs `activeCourseIds` when on the Programs tab.
-   *
-   * @remarks
-   * When the user switches to tab 1 ("Программы курса"), if no courses are
-   * activated, the first course from items is automatically activated.
-   * Auto-sync is suppressed when `filterDismissedUntilTabChange` is true.
+   * Handles tab changes: clears active courses and loads the catalog.
+   * When switching to the Programs tab with no active courses,
+   * the first course is auto-activated (deferred until items load).
    */
-  private readonly syncActiveCourseIdsEffect = effect(() => {
-    const tabIndex = this.selectedTabIndex();
-    const dismissed = this.catalogStore.filterDismissedUntilTabChange();
-    const currentActiveIds = this.catalogStore.activeCourseIds();
-    const items = this.items();
+  onTabChange(index: number): void {
+    this.catalogStore.setSelectedTabIndex(index);
 
-    if (tabIndex === 1 && !dismissed && currentActiveIds.size === 0 && items.length > 0) {
-      // No course activated — activate the first one automatically
+    // Clear active courses when switching to Courses tab
+    // so checkboxes don't show stale state from Programs tab
+    if (index === 0) {
+      this.catalogStore.clearActiveCourseIds();
+    }
+  }
+
+  /**
+   * Auto-activates the first course when items load and we're on the Programs tab.
+   * Only activates once per tab switch (suppressed after user clears all courses).
+   */
+  private readonly autoActivateFirstCourse = effect(() => {
+    const tabIndex = this.selectedTabIndex();
+    const activeIds = this.catalogStore.activeCourseIds();
+    const items = this.items();
+    const loading = this.loading();
+
+    // Wait for items to finish loading
+    if (loading) return;
+
+    // Only on Programs tab with no active courses
+    if (tabIndex === 1 && activeIds.size === 0 && items.length > 0) {
       this.catalogStore.toggleActiveCourseId(items[0].id);
+      // Mark as auto-activated so we don't re-activate on subsequent effect runs
+      this.catalogStore.setFilterDismissed(true);
     }
   });
 

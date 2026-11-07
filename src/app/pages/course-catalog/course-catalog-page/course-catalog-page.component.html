@@ -9,7 +9,7 @@
       class="page-card__tabs"
       dynamicHeight
       [selectedIndex]="selectedTabIndex()"
-      (selectedIndexChange)="catalogStore.setSelectedTabIndex($event)"
+      (selectedIndexChange)="onTabChange($event)"
     >
       <!-- Tab: Курсы -->
       <mat-tab label="Курсы">
