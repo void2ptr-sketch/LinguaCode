@@ -18,7 +18,10 @@
 
       <!-- Tab: Программы курса -->
       <mat-tab label="Программы курса">
-        <app-course-catalog-programs (startCourse)="startCourse($event)" (loadRequested)="load()" />
+        <app-course-catalog-programs
+          [courseId]="catalogStore.selectedCourseId()"
+          (startProgram)="startCourse($event)"
+        />
       </mat-tab>
     </mat-tab-group>
   </mat-card-content>

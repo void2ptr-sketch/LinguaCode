@@ -219,17 +219,16 @@ export class CourseCatalogPageComponent implements OnInit {
   }
 
   /**
-   * Navigates to the journey map (learning path) for the given course.
+   * Navigates to the journey map (learning path) for the given course or program.
    *
-   * @param courseId - The ID of the course to start.
+   * @param id - The course or program ID to start.
    *
    * @remarks
-   * Uses the Angular router to navigate to `/journey` with the course ID
-   * passed as a query parameter. The journey page renders the "Путь обучения"
-   * map for the selected course.
+   * Uses the Angular router to navigate to `/journey` with the ID
+   * passed as a query parameter.
    */
-  async startCourse(courseId: string): Promise<void> {
-    await this.router.navigate(['/journey'], { queryParams: { courseId } });
+  async startCourse(id: string): Promise<void> {
+    await this.router.navigate(['/journey'], { queryParams: { courseId: id } });
   }
 
   /**

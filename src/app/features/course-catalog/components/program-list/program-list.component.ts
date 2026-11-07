@@ -1,20 +1,18 @@
-import { Component, ChangeDetectionStrategy, output, inject, computed } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, ChangeDetectionStrategy, input, output, inject, computed, signal, effect, DestroyRef } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { UiPaginationComponent } from '../../../../shared/utils/pagination';
-import { ScormExportButtonComponent } from '../scorm-export-button';
-import type { PageEvent } from '@angular/material/paginator';
-import { CourseCatalogStore } from '../../services/course-catalog.store';
+import { ProgramsApiService } from '../../../../entities/program/api';
+import type { Program } from '../../../../entities/program/model';
+import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
+import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast.service';
 
 /**
- * Course programs list component. Displays paginated course cards with progress indicators
- * and a "Start" button to launch practice sessions.
- * @remarks Delegates state to `CourseCatalogStore`.
+ * Course programs list component. Displays programs for a selected course.
+ * @remarks Receives courseId via input and loads programs from the API.
  */
 @Component({
   selector: 'app-course-catalog-programs',
@@ -25,101 +23,74 @@ import { CourseCatalogStore } from '../../services/course-catalog.store';
     MatChipsModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    RouterLink,
-    UiPaginationComponent,
-    ScormExportButtonComponent,
   ],
   standalone: true,
   templateUrl: './program-list.component.html',
   styleUrl: './program-list.component.scss',
 })
 export class CourseCatalogProgramsComponent {
-  /**
-   * Emits when the user requests to reload the course list.
-   *
-   * @remarks
-   * Currently unused; reserved for future refresh functionality.
-   */
-  readonly loadRequested = output<void>();
-  /**
-   * Emits the course ID when the user clicks "Start".
-   *
-   * @remarks
-   * The parent component should listen for this output to initiate
-   * navigation to the journey map (learning path) for the given course.
-   */
-  readonly startCourse = output<string>();
+  /** ID of the course whose programs to display. Empty means no course selected. */
+  readonly courseId = input.required<string>();
 
-  readonly catalogStore = inject(CourseCatalogStore);
+  /** Emits when the user clicks "Start" on a program. */
+  readonly startProgram = output<string>();
 
-  /** Whether the catalog is currently loading. */
-  readonly loading = this.catalogStore.loading;
-  /** Error message if the catalog failed to load. */
-  readonly error = this.catalogStore.error;
-  /** Paginated course items from the catalog store. */
-  readonly items = this.catalogStore.items;
-  /** Total number of course items. */
-  readonly totalItems = this.catalogStore.totalItems;
-  /** Current page index. */
-  readonly pageIndex = this.catalogStore.pageIndex;
-  /** Page size for pagination. */
-  readonly pageSize = this.catalogStore.pageSize;
-  /** Progress percentage by course ID. */
-  readonly progressByCourseId = this.catalogStore.progressByCourseId;
-  /** Set of completed course IDs. */
-  readonly completedCourseIds = this.catalogStore.completedCourseIds;
-  /** ID of the currently filtered course (empty when no filter). */
-  readonly selectedCourseId = this.catalogStore.selectedCourseId;
+  private readonly programsApi = inject(ProgramsApiService);
+  private readonly logger = inject(AppLoggerService);
+  private readonly errorToast = inject(ErrorToastService);
 
-  /** Whether a course filter is active. */
-  readonly hasCourseFilter = computed(() => this.selectedCourseId().length > 0);
+  /** Loaded programs for the selected course. */
+  private readonly programs = signal<readonly Program[]>([]);
+  /** Whether programs are currently loading. */
+  readonly loading = signal(false);
+  /** Error message if loading failed. */
+  readonly error = signal<string | null>(null);
+
+  /** Whether a course is selected. */
+  readonly hasCourse = computed(() => this.courseId().length > 0);
+
+  /** Total number of programs. */
+  readonly totalItems = computed(() => this.programs().length);
+
+  // ---- Lifecycle ----
+
+  /** Loads programs when courseId changes. */
+  private loadPrograms(): void {
+    const id = this.courseId();
+    if (!id) {
+      this.programs.set([]);
+      this.error.set(null);
+      return;
+    }
+
+    this.loading.set(true);
+    this.error.set(null);
+
+    this.programsApi.getByCourse(id)
+      .then((items) => this.programs.set(items))
+      .catch((err) => {
+        this.logger.error('Failed to load programs for course', { courseId: id, error: err });
+        this.error.set('Не удалось загрузить программы курса');
+        this.programs.set([]);
+      })
+      .finally(() => this.loading.set(false));
+  }
+
+  // Watch courseId changes
+  private readonly loadOnCourseChange = inject(DestroyRef).destroyed;
+  private readonly courseIdEffect = effect(() => {
+    this.courseId();
+    this.loadPrograms();
+  });
 
   // ---- Methods ----
 
   /**
-   * Checks whether a course has been fully completed.
+   * Handles "Start" button click for a program.
    *
-   * @param courseId - The ID of the course to check.
-   * @returns `true` if the course ID is in the completed set.
+   * @param programId - The program ID to start.
    */
-  isCourseCompleted(courseId: string): boolean {
-    return this.completedCourseIds().has(courseId);
-  }
-
-  /**
-   * Returns the progress percentage for a given course.
-   *
-   * @param courseId - The ID of the course.
-   * @returns The completion percentage (0-100), or `0` if no progress data exists.
-   */
-  progressPercent(courseId: string): number {
-    return this.progressByCourseId()[courseId] ?? 0;
-  }
-
-  /**
-   * Handles paginator page changes.
-   *
-   * @param event - The page event from Angular Material paginator.
-   *
-   * @remarks
-   * Updates the catalog store's page index and page size. Does not trigger a reload;
-   * the parent component must call `load()` separately.
-   */
-  onPageChange(event: PageEvent): void {
-    this.catalogStore.setPageIndex(event.pageIndex);
-    this.catalogStore.setPageSize(event.pageSize);
-  }
-
-  /**
-   * Clears the course filter and reloads the catalog.
-   *
-   * @remarks
-   * Sets `filterDismissedUntilTabChange` so that auto-sync from learningSession
-   * is suppressed until the user switches tabs. Notifies the parent to reload.
-   */
-  clearFilter(): void {
-    this.catalogStore.setFilterDismissed(true);
-    this.catalogStore.setSelectedCourseId('');
-    this.loadRequested.emit();
+  onStartProgram(programId: string): void {
+    this.startProgram.emit(programId);
   }
 }

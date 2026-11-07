@@ -65,7 +65,7 @@ export class ProgramsApiService implements ProgramCatalogPort {
   getById(programId: string): Promise<ProgramWithLessons> {
     return firstValueFrom(
       this.http.get<ProgramResponse>(buildApiUrl(`/programs/${programId}`)),
-    ).then((response) => response.data as ProgramWithLessons);
+    ).then((response) => response.data as unknown as ProgramWithLessons);
   }
 
   getByCourse(courseId: string): Promise<readonly Program[]> {
@@ -81,8 +81,8 @@ export class ProgramsApiService implements ProgramCatalogPort {
       courseId: this.userStore.user().id,
     };
     return firstValueFrom(
-      this.http.post<ProgramResponse>(buildApiUrl('/programs'), body as ProgramCreateRequest),
-    ).then((response) => response.data as Program);
+      this.http.post<ProgramResponse>(buildApiUrl('/programs'), body as unknown as ProgramCreateRequest),
+    ).then((response) => response.data as unknown as Program);
   }
 
   update(programId: string, payload: ProgramWritePayload): Promise<Program> {
@@ -93,9 +93,9 @@ export class ProgramsApiService implements ProgramCatalogPort {
     return firstValueFrom(
       this.http.put<ProgramResponse>(
         buildApiUrl(`/programs/${programId}`),
-        body as ProgramUpdateRequest,
+        body as unknown as ProgramUpdateRequest,
       ),
-    ).then((response) => response.data as Program);
+    ).then((response) => response.data as unknown as Program);
   }
 
   delete(programId: string): Promise<void> {

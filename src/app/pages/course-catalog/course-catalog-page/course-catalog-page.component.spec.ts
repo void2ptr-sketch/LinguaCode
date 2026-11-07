@@ -27,6 +27,7 @@ import type { ToneColorSchemeId } from '../../../entities/phonetic/model';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { LanguagePairsApiService } from '../../../entities/language-pair/api';
+import { ProgramsApiService } from '../../../entities/program/api';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { CourseCatalogStore, DraftsStore } from '../../../features/course-catalog/services';
 import { CourseCatalogLanguagePairManagerService } from '../../../features/course-catalog/services/course-catalog-language-pair-manager.service';
@@ -68,6 +69,7 @@ describe('CourseCatalogPageComponent', () => {
   let mockDrafts: Partial<DraftsStore>;
   let mockPairManager: Partial<CourseCatalogLanguagePairManagerService>;
   let mockLanguagePairsApi: Partial<LanguagePairsApiService>;
+  let mockProgramsApi: Partial<ProgramsApiService>;
 
   const mockPairs: UserLanguagePairEntry[] = [makePair('pair-1', 'ru', 'en')];
 
@@ -146,20 +148,24 @@ describe('CourseCatalogPageComponent', () => {
       listAll: vi.fn().mockResolvedValue(mockBackendPairs),
     };
 
+    mockProgramsApi = {
+      getByCourse: vi.fn().mockResolvedValue([]),
+    };
+
     mockUserStore = {
       displayName: signal('Ученик'),
-      preferences: signal({
+      preferences: computed(() => ({
         theme: 'azure-blue',
         fontSize: 'md',
         colorScheme: 'light',
         cardFocusFullscreen: false,
-        learningProficiencyLevel: 'beginner',
+        learningProficiencyLevel: 'beginner' as const,
         languagePairs: mockPairs,
         activeLanguagePairId: 'pair-1',
-      }),
-      languagePairs: signal(mockPairs),
-      activeLanguagePairId: signal('pair-1'),
-      languagePair: signal({ known: 'ru', learning: 'en' }),
+      })),
+      languagePairs: computed(() => mockPairs),
+      activeLanguagePairId: computed(() => 'pair-1'),
+      languagePair: computed(() => ({ known: 'ru' as const, learning: 'en' as const })),
       learningSession: computed(() => ({ activeCourseId: 'c-1' })),
       formatEntryLabel: vi.fn(
         (entry: UserLanguagePairEntry) => `${entry.pair.known} → ${entry.pair.learning}`,
@@ -357,6 +363,7 @@ describe('CourseCatalogPageComponent', () => {
         { provide: Router, useValue: mockRouter },
         { provide: CourseCatalogLanguagePairManagerService, useValue: mockPairManager },
         { provide: LanguagePairsApiService, useValue: mockLanguagePairsApi },
+        { provide: ProgramsApiService, useValue: mockProgramsApi },
       ],
     }).compileComponents();
   });
