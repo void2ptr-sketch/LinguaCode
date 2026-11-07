@@ -32,7 +32,7 @@
                 }
                 <mat-checkbox
                   class="course-catalog-page__activate"
-                  [checked]="activeCourseId() === course.id"
+                  [checked]="activeCourseIds().has(course.id)"
                   (change)="onToggleActive(course.id)"
                   aria-label="Активировать"
                 >

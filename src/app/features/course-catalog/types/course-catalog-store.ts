@@ -16,7 +16,7 @@ export type CourseCatalogState = {
   selectedTabIndex: number;
 
   // Course filter (programs tab)
-  selectedCourseId: string;
+  activeCourseIds: ReadonlySet<string>;
   /** When true, auto-sync from learningSession is suppressed until tab changes. */
   filterDismissedUntilTabChange: boolean;
 };
@@ -36,6 +36,6 @@ export const initialState: CourseCatalogState = {
   selectedTabIndex: 0,
 
   // Course filter (programs tab)
-  selectedCourseId: '',
+  activeCourseIds: new Set() as ReadonlySet<string>,
   filterDismissedUntilTabChange: false,
 };

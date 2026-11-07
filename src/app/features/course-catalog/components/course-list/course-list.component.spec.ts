@@ -119,7 +119,7 @@ describe('CourseCatalogCourseListComponent', () => {
       totalItems: totalItemsSignal,
       pageIndex: pageIndexSignal,
       pageSize: pageSizeSignal,
-      selectedCourseId: selectedCourseIdSignal,
+      activeCourseIds: signal(new Set() as ReadonlySet<string>),
     };
 
     await TestBed.configureTestingModule({

@@ -49,8 +49,8 @@ describe('CourseCatalogStore', () => {
       expect(store.selectedTabIndex()).toBe(0);
     });
 
-    it('should have default selectedCourseId', () => {
-      expect(store.selectedCourseId()).toBe('');
+    it('should have default activeCourseIds', () => {
+      expect(store.activeCourseIds().size).toBe(0);
     });
   });
 
@@ -131,15 +131,32 @@ describe('CourseCatalogStore', () => {
   });
 
   describe('course filter mutations', () => {
-    it('should set selectedCourseId', () => {
-      store.setSelectedCourseId('course-123');
-      expect(store.selectedCourseId()).toBe('course-123');
+    it('should toggle activeCourseId', () => {
+      expect(store.activeCourseIds().size).toBe(0);
+      store.toggleActiveCourseId('course-123');
+      expect(store.activeCourseIds().has('course-123')).toBe(true);
+      expect(store.activeCourseIds().size).toBe(1);
     });
 
-    it('should reset selectedCourseId to empty string', () => {
-      store.setSelectedCourseId('course-123');
-      store.setSelectedCourseId('');
-      expect(store.selectedCourseId()).toBe('');
+    it('should remove activeCourseId when toggled again', () => {
+      store.toggleActiveCourseId('course-123');
+      store.toggleActiveCourseId('course-123');
+      expect(store.activeCourseIds().size).toBe(0);
+    });
+
+    it('should support multiple active courses', () => {
+      store.toggleActiveCourseId('course-1');
+      store.toggleActiveCourseId('course-2');
+      expect(store.activeCourseIds().size).toBe(2);
+      expect(store.activeCourseIds().has('course-1')).toBe(true);
+      expect(store.activeCourseIds().has('course-2')).toBe(true);
+    });
+
+    it('should clear activeCourseIds', () => {
+      store.toggleActiveCourseId('course-1');
+      store.toggleActiveCourseId('course-2');
+      store.clearActiveCourseIds();
+      expect(store.activeCourseIds().size).toBe(0);
     });
 
     it('should set filterDismissed', () => {

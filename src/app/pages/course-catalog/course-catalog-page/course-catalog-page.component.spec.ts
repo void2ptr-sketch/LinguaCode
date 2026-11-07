@@ -246,7 +246,7 @@ describe('CourseCatalogPageComponent', () => {
     const mockToneColorSchemeDraftSignal = signal('default' as ToneColorSchemeId);
     const mockTracingStrokeDurationDraftSignal = signal(0.5);
     const mockSelectedTabIndexSignal = signal(0);
-    const mockSelectedCourseIdSignal = signal('');
+    const mockActiveCourseIdsSignal = signal(new Set() as ReadonlySet<string>);
     const mockFilterDismissedSignal = signal(false);
 
     mockCatalogStore = {
@@ -259,7 +259,7 @@ describe('CourseCatalogPageComponent', () => {
       progressByCourseId: mockProgressByCourseIdSignal,
       completedCourseIds: mockCompletedCourseIdsSignal,
       selectedTabIndex: mockSelectedTabIndexSignal,
-      selectedCourseId: mockSelectedCourseIdSignal,
+      activeCourseIds: mockActiveCourseIdsSignal,
       filterDismissedUntilTabChange: mockFilterDismissedSignal,
       setItems: (items: readonly CourseIndexEntry[]) => mockItemsSignal.set(items),
       setTotalItems: (total: number) => mockTotalItemsSignal.set(total),
@@ -272,8 +272,16 @@ describe('CourseCatalogPageComponent', () => {
       setCompletedCourseIds: (completed: Set<string>) =>
         mockCompletedCourseIdsSignal.set(completed as ReadonlySet<string>),
       setSelectedTabIndex: (index: number) => mockSelectedTabIndexSignal.set(index),
-      setSelectedCourseId: (id: string) => mockSelectedCourseIdSignal.set(id),
+      toggleActiveCourseId: (id: string) => {
+        const current = mockActiveCourseIdsSignal();
+        const next = new Set(current);
+        if (next.has(id)) next.delete(id);
+        else next.add(id);
+        mockActiveCourseIdsSignal.set(next as ReadonlySet<string>);
+      },
+      clearActiveCourseIds: () => mockActiveCourseIdsSignal.set(new Set() as ReadonlySet<string>),
       setFilterDismissed: (dismissed: boolean) => mockFilterDismissedSignal.set(dismissed),
+      onPageChange: vi.fn(),
     };
 
     mockDrafts = {
@@ -420,7 +428,7 @@ describe('CourseCatalogPageComponent', () => {
     expect(component.totalItems()).toBe(1);
   });
 
-  it('should filter items by selectedCourseId when set', async () => {
+  it('should load all items without filtering', async () => {
     const multiCoursePage: CourseSearchPage = {
       items: [makeCourse('c-1', 'Course 1', 10), makeCourse('c-2', 'Course 2', 20)],
       page: 0,
@@ -431,36 +439,6 @@ describe('CourseCatalogPageComponent', () => {
     (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockResolvedValueOnce(
       multiCoursePage,
     );
-
-    (mockCatalogStore.selectedCourseId as import('@angular/core').WritableSignal<string>).set(
-      'c-2',
-    );
-
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(component.items().length).toBe(1);
-    expect(component.items()[0].id).toBe('c-2');
-    expect(component.totalItems()).toBe(1);
-
-    (mockCatalogStore.selectedCourseId as import('@angular/core').WritableSignal<string>).set('');
-  });
-
-  it('should not filter when selectedCourseId is empty', async () => {
-    const multiCoursePage: CourseSearchPage = {
-      items: [makeCourse('c-1', 'Course 1', 10), makeCourse('c-2', 'Course 2', 20)],
-      page: 0,
-      pageSize: 10,
-      totalItems: 2,
-      totalPages: 1,
-    };
-    (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockResolvedValueOnce(
-      multiCoursePage,
-    );
-
-    (mockCatalogStore.selectedCourseId as import('@angular/core').WritableSignal<string>).set('');
 
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     const component = fixture.componentInstance;

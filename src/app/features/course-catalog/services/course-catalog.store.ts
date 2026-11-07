@@ -55,9 +55,9 @@ export class CourseCatalogStore {
     return computed(() => this.#state().selectedTabIndex);
   }
 
-  /** ID выбранного курса (фильтр для вкладки программ). */
-  get selectedCourseId(): Signal<string> {
-    return computed(() => this.#state().selectedCourseId);
+  /** Множество активных курсов (фильтр для вкладки программ). */
+  get activeCourseIds(): Signal<ReadonlySet<string>> {
+    return computed(() => this.#state().activeCourseIds);
   }
 
   /** Флаг: пользователь явно сбросил фильтр (suppress auto-sync). */
@@ -107,8 +107,20 @@ export class CourseCatalogStore {
     }));
   }
 
-  setSelectedCourseId(id: string): void {
-    this.#state.update((s) => ({ ...s, selectedCourseId: id }));
+  toggleActiveCourseId(id: string): void {
+    this.#state.update((s) => {
+      const next = new Set(s.activeCourseIds);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return { ...s, activeCourseIds: next as ReadonlySet<string> };
+    });
+  }
+
+  clearActiveCourseIds(): void {
+    this.#state.update((s) => ({ ...s, activeCourseIds: new Set() as ReadonlySet<string> }));
   }
 
   setFilterDismissed(dismissed: boolean): void {

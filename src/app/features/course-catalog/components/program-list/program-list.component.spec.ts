@@ -28,10 +28,10 @@ function makeProgram(
   selector: 'app-test-wrapper',
   standalone: true,
   imports: [CourseCatalogProgramsComponent],
-  template: `<app-course-catalog-programs [courseId]="courseId" (startProgram)="onStart($event)" />`,
+  template: `<app-course-catalog-programs [courseIds]="courseIds" (startProgram)="onStart($event)" />`,
 })
 class TestWrapperComponent {
-  courseId = '';
+  courseIds = new Set() as ReadonlySet<string>;
   onStart = vi.fn<(id: string) => void>();
 }
 
@@ -64,7 +64,7 @@ describe('CourseCatalogProgramsComponent', () => {
   it('should create', () => {
     fixture = TestBed.createComponent(TestWrapperComponent);
     component = fixture.componentInstance;
-    component.courseId = 'course-1';
+    component.courseIds = new Set(['course-1']);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('app-course-catalog-programs')).toBeTruthy();
   });
@@ -73,14 +73,14 @@ describe('CourseCatalogProgramsComponent', () => {
     it('should show message when no course is selected', async () => {
       fixture = TestBed.createComponent(TestWrapperComponent);
       component = fixture.componentInstance;
-      component.courseId = '';
+      component.courseIds = new Set();
       fixture.detectChanges();
       await fixture.whenStable();
 
       const content = fixture.nativeElement;
       const message = content.querySelector('.course-catalog-page__message');
       expect(message).toBeTruthy();
-      expect(message.textContent).toContain('Выберите курс');
+      expect(message.textContent).toContain('Отметьте курсы');
     });
   });
 
@@ -88,7 +88,7 @@ describe('CourseCatalogProgramsComponent', () => {
     it('should display programs when loaded', async () => {
       fixture = TestBed.createComponent(TestWrapperComponent);
       component = fixture.componentInstance;
-      component.courseId = 'course-1';
+      component.courseIds = new Set(['course-1']);
       fixture.detectChanges();
       await fixture.whenStable();
       fixture.detectChanges();
@@ -104,7 +104,7 @@ describe('CourseCatalogProgramsComponent', () => {
     it('should emit startProgram when button is clicked', async () => {
       fixture = TestBed.createComponent(TestWrapperComponent);
       component = fixture.componentInstance;
-      component.courseId = 'course-1';
+      component.courseIds = new Set(['course-1']);
       fixture.detectChanges();
       await fixture.whenStable();
       fixture.detectChanges();

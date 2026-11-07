@@ -7,20 +7,20 @@
   <mat-card class="course-catalog-page__message">
     <mat-card-content>{{ error() }}</mat-card-content>
   </mat-card>
-} @else if (!hasCourse()) {
+} @else if (!hasCourses()) {
   <mat-card class="course-catalog-page__message">
     <mat-card-content>
-      Выберите курс во вкладке «Курсы», чтобы увидеть его программы.
+      Отметьте курсы галочкой «Активировать» во вкладке «Курсы», чтобы увидеть их программы.
     </mat-card-content>
   </mat-card>
 } @else if (programs().length === 0) {
   <mat-card class="course-catalog-page__message">
     <mat-card-content>
-      Для выбранного курса программ пока нет.
+      Для выбранных курсов программ пока нет.
     </mat-card-content>
   </mat-card>
 } @else {
-  <p>Программы для выбранного курса.</p>
+  <p>Программы для выбранных курсов.</p>
 
   <mat-card class="course-catalog-page__panel">
     <mat-card-header>
@@ -37,7 +37,8 @@
                 <h2 class="course-catalog-page__title">{{ program.title }}</h2>
               </div>
               <p class="course-catalog-page__meta">
-                {{ program.lessonIds?.length ?? 0 }} уроков
+                Курс: {{ program.courseId }}
+                · {{ program.lessonIds?.length ?? 0 }} уроков
                 @if (program.description) {
                   · {{ program.description }}
                 }

@@ -64,8 +64,8 @@ export class CourseCatalogCourseListComponent {
   readonly pageIndexValue = computed(() => this.catalogStore.pageIndex());
   /** Page size value for template. */
   readonly pageSizeValue = computed(() => this.catalogStore.pageSize());
-  /** Currently active course ID (used by programs tab). */
-  readonly activeCourseId = this.catalogStore.selectedCourseId;
+  /** Set of active course IDs (used by programs tab). */
+  readonly activeCourseIds = this.catalogStore.activeCourseIds;
 
   // ---- SCORM Export ----
 
@@ -152,16 +152,15 @@ export class CourseCatalogCourseListComponent {
   }
 
   /**
-   * Toggles the active course for the programs tab.
+   * Toggles a course in the active set for the programs tab.
    *
-   * @param courseId - The course ID to activate.
+   * @param courseId - The course ID to toggle.
    *
    * @remarks
-   * When a course is activated, its programs are displayed on the
-   * "Программы курса" tab. Only one course can be active at a time.
+   * Multiple courses can be active simultaneously. Their programs are
+   * all displayed on the "Программы курса" tab.
    */
   onToggleActive(courseId: string): void {
-    const current = this.catalogStore.selectedCourseId();
-    this.catalogStore.setSelectedCourseId(current === courseId ? '' : courseId);
+    this.catalogStore.toggleActiveCourseId(courseId);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, input, output, inject, computed, signal, effect, DestroyRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output, inject, computed, signal, effect } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -11,8 +11,8 @@ import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast.service';
 
 /**
- * Course programs list component. Displays programs for a selected course.
- * @remarks Receives courseId via input and loads programs from the API.
+ * Course programs list component. Displays programs for selected courses.
+ * @remarks Receives courseIds via input and loads programs from the API.
  */
 @Component({
   selector: 'app-course-catalog-programs',
@@ -29,8 +29,8 @@ import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast
   styleUrl: './program-list.component.scss',
 })
 export class CourseCatalogProgramsComponent {
-  /** ID of the course whose programs to display. Empty means no course selected. */
-  readonly courseId = input.required<string>();
+  /** IDs of courses whose programs to display. Empty means no courses selected. */
+  readonly courseIds = input.required<ReadonlySet<string>>();
 
   /** Emits when the user clicks "Start" on a program. */
   readonly startProgram = output<string>();
@@ -39,25 +39,25 @@ export class CourseCatalogProgramsComponent {
   private readonly logger = inject(AppLoggerService);
   private readonly errorToast = inject(ErrorToastService);
 
-  /** Loaded programs for the selected course. */
+  /** Loaded programs for the selected courses. */
   private readonly programs = signal<readonly Program[]>([]);
   /** Whether programs are currently loading. */
   readonly loading = signal(false);
   /** Error message if loading failed. */
   readonly error = signal<string | null>(null);
 
-  /** Whether a course is selected. */
-  readonly hasCourse = computed(() => this.courseId().length > 0);
+  /** Whether any course is selected. */
+  readonly hasCourses = computed(() => this.courseIds().size > 0);
 
   /** Total number of programs. */
   readonly totalItems = computed(() => this.programs().length);
 
   // ---- Lifecycle ----
 
-  /** Loads programs when courseId changes. */
+  /** Loads programs when courseIds changes. */
   private loadPrograms(): void {
-    const id = this.courseId();
-    if (!id) {
+    const ids = this.courseIds();
+    if (ids.size === 0) {
       this.programs.set([]);
       this.error.set(null);
       return;
@@ -66,20 +66,21 @@ export class CourseCatalogProgramsComponent {
     this.loading.set(true);
     this.error.set(null);
 
-    this.programsApi.getByCourse(id)
-      .then((items) => this.programs.set(items))
-      .catch((err) => {
-        this.logger.error('Failed to load programs for course', { courseId: id, error: err });
-        this.error.set('Не удалось загрузить программы курса');
-        this.programs.set([]);
-      })
+    Promise.all(
+      Array.from(ids).map((id) =>
+        this.programsApi.getByCourse(id).catch((err) => {
+          this.logger.error('Failed to load programs for course', { courseId: id, error: err });
+          return [] as readonly Program[];
+        })
+      )
+    )
+      .then((results) => this.programs.set(results.flat()))
       .finally(() => this.loading.set(false));
   }
 
-  // Watch courseId changes
-  private readonly loadOnCourseChange = inject(DestroyRef).destroyed;
-  private readonly courseIdEffect = effect(() => {
-    this.courseId();
+  // Watch courseIds changes
+  private readonly loadOnCourseIdsChange = effect(() => {
+    this.courseIds();
     this.loadPrograms();
   });
 

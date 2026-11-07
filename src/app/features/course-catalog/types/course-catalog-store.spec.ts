@@ -41,8 +41,9 @@ describe('course-catalog-store model', () => {
       expect(initialState.selectedTabIndex).toBe(0);
     });
 
-    it('should have empty selectedCourseId', () => {
-      expect(initialState.selectedCourseId).toBe('');
+    it('should have empty activeCourseIds Set', () => {
+      expect(initialState.activeCourseIds).toBeInstanceOf(Set);
+      expect(initialState.activeCourseIds.size).toBe(0);
     });
 
     it('should have filterDismissedUntilTabChange set to false', () => {

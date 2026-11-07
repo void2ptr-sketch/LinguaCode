@@ -115,28 +115,27 @@ export class CourseCatalogPageComponent implements OnInit {
    * Delegates to `CourseCatalogLanguagePairManagerService.trackActivePairChange`.
    */
   private readonly reloadOnActivePairChange = this.pairManager.trackActivePairChange(async () => {
-    this.catalogStore.setSelectedCourseId('');
+    this.catalogStore.clearActiveCourseIds();
     await this.load();
   });
 
   /**
-   * Syncs `selectedCourseId` when on the Programs tab.
+   * Syncs `activeCourseIds` when on the Programs tab.
    *
    * @remarks
-   * When the user switches to tab 1 ("Программы курса"), the store's
-   * `selectedCourseId` is set to the activated course (via checkbox).
-   * If no course is activated, it defaults to the first course from items.
+   * When the user switches to tab 1 ("Программы курса"), if no courses are
+   * activated, the first course from items is automatically activated.
    * Auto-sync is suppressed when `filterDismissedUntilTabChange` is true.
    */
-  private readonly syncSelectedCourseIdEffect = effect(() => {
+  private readonly syncActiveCourseIdsEffect = effect(() => {
     const tabIndex = this.selectedTabIndex();
     const dismissed = this.catalogStore.filterDismissedUntilTabChange();
-    const currentSelectedId = this.catalogStore.selectedCourseId();
+    const currentActiveIds = this.catalogStore.activeCourseIds();
     const items = this.items();
 
-    if (tabIndex === 1 && !dismissed && currentSelectedId.length === 0 && items.length > 0) {
-      // No course activated — pick the first one automatically
-      this.catalogStore.setSelectedCourseId(items[0].id);
+    if (tabIndex === 1 && !dismissed && currentActiveIds.size === 0 && items.length > 0) {
+      // No course activated — activate the first one automatically
+      this.catalogStore.toggleActiveCourseId(items[0].id);
     }
   });
 
@@ -159,11 +158,6 @@ export class CourseCatalogPageComponent implements OnInit {
 
     try {
       const pair = this.userStore.languagePair();
-      const selectedCourseId = this.catalogStore.selectedCourseId();
-
-      // When filtering by course, fetch all items (no pagination) to ensure
-      // the target course is included regardless of its position.
-      const pageSize = selectedCourseId ? 1000 : this.pageSize();
 
       // Build language pair IDs from ALL user language pairs (not just active)
       // Map local pairs → backend pair IDs via /language-pairs API
@@ -182,19 +176,14 @@ export class CourseCatalogPageComponent implements OnInit {
         scope: 'published',
         ...activeLanguagePairCriteria(pair),
         languagePairIds: languagePairIds.length > 0 ? languagePairIds : undefined,
-        page: { page: this.pageIndex(), pageSize },
+        page: { page: this.pageIndex(), pageSize: this.pageSize() },
       });
 
       const allItems = page.items ?? [];
 
-      // Client-side filter by selectedCourseId only (backend already filters by languagePairIds)
-      const filteredByPair = selectedCourseId
-        ? allItems.filter((item) => item.id === selectedCourseId)
-        : allItems;
-
-      this.catalogStore.setItems(filteredByPair);
-      this.catalogStore.setTotalItems(filteredByPair.length);
-      await this.loadProgress(filteredByPair);
+      this.catalogStore.setItems(allItems);
+      this.catalogStore.setTotalItems(allItems.length);
+      await this.loadProgress(allItems);
     } catch (error) {
       this.logger.error('CourseCatalog: failed to load catalog', error);
       this.catalogStore.setError('Не удалось загрузить каталог курсов');
