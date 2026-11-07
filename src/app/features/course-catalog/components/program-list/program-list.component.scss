@@ -83,6 +83,8 @@
 }
 
 .course-catalog-page__actions {
+  display: flex;
+  gap: 0.75rem;
   grid-area: actions;
   justify-self: start;
 

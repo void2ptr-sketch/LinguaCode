@@ -43,6 +43,20 @@
               <button mat-flat-button type="button" (click)="startCourse.emit(course.id)">
                 Начать
               </button>
+              <button
+                mat-stroked-button
+                type="button"
+                (click)="exportToScorm(course.id)"
+                [disabled]="isExporting(course.id)"
+                aria-label="Экспорт в SCORM"
+              >
+                @if (isExporting(course.id)) {
+                  <mat-spinner diameter="20" />
+                  Экспорт…
+                } @else {
+                  Экспорт SCORM
+                }
+              </button>
             </div>
           </li>
         }
