@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, OnInit, effect } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -120,40 +120,12 @@ export class CourseCatalogPageComponent implements OnInit {
   });
 
   /**
-   * Handles tab changes: clears active courses and loads the catalog.
-   * When switching to the Programs tab with no active courses,
-   * the first course is auto-activated (deferred until items load).
+   * Handles tab changes: just updates the selected tab index.
+   * Active course selections are preserved across tab switches.
    */
   onTabChange(index: number): void {
     this.catalogStore.setSelectedTabIndex(index);
-
-    // Clear active courses when switching to Courses tab
-    // so checkboxes don't show stale state from Programs tab
-    if (index === 0) {
-      this.catalogStore.clearActiveCourseIds();
-    }
   }
-
-  /**
-   * Auto-activates the first course when items load and we're on the Programs tab.
-   * Only activates once per tab switch (suppressed after user clears all courses).
-   */
-  private readonly autoActivateFirstCourse = effect(() => {
-    const tabIndex = this.selectedTabIndex();
-    const activeIds = this.catalogStore.activeCourseIds();
-    const items = this.items();
-    const loading = this.loading();
-
-    // Wait for items to finish loading
-    if (loading) return;
-
-    // Only on Programs tab with no active courses
-    if (tabIndex === 1 && activeIds.size === 0 && items.length > 0) {
-      this.catalogStore.toggleActiveCourseId(items[0].id);
-      // Mark as auto-activated so we don't re-activate on subsequent effect runs
-      this.catalogStore.setFilterDismissed(true);
-    }
-  });
 
   async ngOnInit(): Promise<void> {
     await this.load();
