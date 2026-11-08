@@ -58,7 +58,7 @@
         [isOpenPractice]="isOpenPractice()"
         [showDifficultyFilter]="showDifficultyFilter()"
         [difficultyLevels]="difficultyLevels"
-        [difficultyLabels]="difficultyLabels"
+        [difficultyLabels]="difficultyLabels()"
         [selectedDifficulty]="selectedDifficulty()"
         [allowedScenarioIds]="allowedScenarioIdsForPicker()"
         [selectedScenarioId]="selectedScenarioId()"
@@ -105,7 +105,7 @@
         (drawAnswerChange)="store.setDrawAnswer($event)"
         (timeExpired)="store.handleTimeExpired()"
         (checkAnswer)="checkAnswer()"
-        (nextCard)="store.nextCard()"
+        (nextCard)="onNextCard()"
       />
     </mat-tab>
   </mat-tab-group>

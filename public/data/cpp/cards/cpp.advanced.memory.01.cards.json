@@ -172,27 +172,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "memory",
           "modern-cpp"
-        ],
-        "tags": "delete только для памяти из new — иначе UB."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario",
       "question": "Что произойдёт при delete на int, созданный без new?",
       "code": {
-        "code": [
-          "Неопределённое поведение",
-          "Ничего",
-          "Очистка",
-          "0"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Неопределённое поведение",
+        "Ничего",
+        "Очистка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "delete только для памяти из new — иначе UB."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-07",

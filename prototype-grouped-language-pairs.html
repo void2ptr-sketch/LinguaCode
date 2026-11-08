@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Language Pairs — Grouped Cards</title>
+
+<!-- Typography: Playfair Display for headings (editorial warmth) + Manrope for UI clarity -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+/* ═══════════════════════════════════════════════════
+   Design Tokens
+   ═══════════════════════════════════════════════════ */
+:root {
+  /* Palette — warm earth + deep teal accent */
+  --surface:      #faf9f7;
+  --surface-2:    #f3f0ec;
+  --surface-3:    #eae6e0;
+  --on-surface:   #1c1b17;
+  --on-surface-2: #5c584f;
+  --on-surface-3: #8e8a80;
+
+  --primary:      #0f6b63;
+  --primary-glow: rgba(15, 107, 99, 0.08);
+  --primary-text: #0a4f49;
+
+  --error:        #b43a28;
+  --error-glow:   rgba(180, 58, 40, 0.06);
+
+  --radius:       16px;
+  --radius-sm:    10px;
+  --shadow-sm:    0 1px 3px rgba(28,27,23,.04), 0 1px 2px rgba(28,27,23,.06);
+  --shadow-md:    0 4px 16px rgba(28,27,23,.06), 0 1px 4px rgba(28,27,23,.06);
+  --shadow-lg:    0 12px 40px rgba(28,27,23,.09), 0 4px 12px rgba(28,27,23,.04);
+
+  --transition:   220ms cubic-bezier(.22,.68,0,1.1);
+}
+
+/* ═══════════════════════════════════════════════════
+   Reset & Base
+   ═══════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--on-surface);
+  background: var(--surface);
+  /* Subtle noise texture */
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(15,107,99,.04) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════════════
+   Layout
+   ═══════════════════════════════════════════════════ */
+.page {
+  width: 100%;
+  max-width: 720px;
+  animation: pageIn 600ms cubic-bezier(.22,.68,0,1.1) both;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page__header {
+  margin-bottom: 2rem;
+}
+
+.page__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--on-surface);
+}
+
+.page__subtitle {
+  font-size: 0.9rem;
+  color: var(--on-surface-3);
+  margin-top: 0.35rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   Tab Bar
+   ═══════════════════════════════════════════════════ */
+.tab-bar {
+  display: inline-flex;
+  background: var(--surface-2);
+  border-radius: 999px;
+  padding: 4px;
+  margin-bottom: 2rem;
+  gap: 2px;
+}
+
+.tab-bar__tab {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.45rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: var(--on-surface-2);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 0.01em;
+}
+
+.tab-bar__tab:hover {
+  color: var(--on-surface);
+}
+
+.tab-bar__tab.active {
+  background: var(--surface);
+  color: var(--primary-text);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ═══════════════════════════════════════════════════
+   Group Card
+   ═══════════════════════════════════════════════════ */
+.pair-group {
+  background: var(--surface);
+  border: 1px solid var(--surface-3);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  transition:
+    box-shadow var(--transition),
+    border-color var(--transition);
+  animation: cardIn 500ms cubic-bezier(.22,.68,0,1.1) both;
+}
+
+.pair-group:nth-child(1) { animation-delay: 80ms; }
+.pair-group:nth-child(2) { animation-delay: 160ms; }
+.pair-group:nth-child(3) { animation-delay: 240ms; }
+.pair-group:nth-child(4) { animation-delay: 320ms; }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pair-group:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Active group — left accent bar */
+.pair-group--active {
+  border-color: var(--primary);
+  border-left: 4px solid var(--primary);
+  background: linear-gradient(135deg, var(--primary-glow) 0%, var(--surface) 40%);
+}
+
+.pair-group__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.4rem 0.85rem;
+}
+
+.pair-group__title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.pair-group__flag {
+  font-size: 1.6rem;
+  line-height: 1;
+  filter: saturate(0.9);
+}
+
+.pair-group__name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.pair-group__badge {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+}
+
+.pair-group__actions-top {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pair-group__collapse {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--on-surface-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all var(--transition);
+}
+
+.pair-group__collapse:hover {
+  background: var(--surface-2);
+  color: var(--on-surface);
+}
+
+.pair-group__collapse svg {
+  transition: transform var(--transition);
+}
+
+.pair-group__collapse.open svg {
+  transform: rotate(180deg);
+}
+
+/* ── Direction Cards Grid ── */
+.pair-group__directions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding: 0 1.4rem 1.2rem;
+}
+
+/* ── Direction Card ── */
+.direction {
+  position: relative;
+  border: 1.5px solid var(--surface-3);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem;
+  transition: all var(--transition);
+  background: var(--surface);
+  cursor: default;
+  animation: dirIn 400ms cubic-bezier(.22,.68,0,1.1) both;
+}
+
+.direction:nth-child(1) { animation-delay: 120ms; }
+.direction:nth-child(2) { animation-delay: 180ms; }
+
+@keyframes dirIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.direction:hover {
+  border-color: var(--surface-2);
+  background: var(--surface-2);
+}
+
+/* Active direction */
+.direction--active {
+  border-color: var(--primary);
+  background: var(--primary-glow);
+  box-shadow: inset 0 0 0 1px rgba(15,107,99,.08);
+}
+
+/* Available direction (mirror exists) */
+.direction--available {
+  cursor: pointer;
+}
+
+.direction--available:active {
+  transform: scale(0.985);
+}
+
+/* Inactive direction (no mirror pair) */
+.direction--empty {
+  opacity: 0.45;
+  border-style: dashed;
+  cursor: default;
+}
+
+.direction__radio {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--surface-3);
+  transition: all var(--transition);
+  display: grid;
+  place-items: center;
+}
+
+.direction--active .direction__radio {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.direction--active .direction__radio::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  animation: popIn 300ms cubic-bezier(.22,.68,0,1.1) both;
+}
+
+@keyframes popIn {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+.direction__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.direction__codes {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.direction__code {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  background: var(--surface-3);
+  color: var(--on-surface-2);
+}
+
+.direction--active .direction__code {
+  background: var(--primary);
+  color: #fff;
+}
+
+.direction__arrow {
+  color: var(--on-surface-3);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.direction__label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--on-surface);
+}
+
+.direction__sublabel {
+  font-size: 0.75rem;
+  color: var(--on-surface-3);
+}
+
+.direction__divider {
+  height: 1px;
+  background: var(--surface-3);
+  margin: 0.15rem 0;
+}
+
+.direction__btn {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  letter-spacing: 0.01em;
+}
+
+.direction__btn--activate {
+  background: var(--primary);
+  color: #fff;
+}
+
+.direction__btn--activate:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 2px 8px rgba(15,107,99,.25);
+}
+
+.direction__btn--remove {
+  background: transparent;
+  color: var(--error);
+}
+
+.direction__btn--remove:hover {
+  background: var(--error-glow);
+}
+
+/* ── Group Footer ── */
+.pair-group__footer {
+  padding: 0.75rem 1.4rem;
+  border-top: 1px solid var(--surface-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pair-group__pair-count {
+  font-size: 0.72rem;
+  color: var(--on-surface-3);
+  font-weight: 500;
+}
+
+.pair-group__remove {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--on-surface-3);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.pair-group__remove:hover {
+  color: var(--error);
+  background: var(--error-glow);
+  border-color: rgba(180,58,40,.15);
+}
+
+/* ═══════════════════════════════════════════════════
+   Create Pair Section
+   ═══════════════════════════════════════════════════ */
+.create-section {
+  margin-top: 1.75rem;
+  padding: 1.5rem;
+  background: var(--surface-2);
+  border-radius: var(--radius);
+  border: 1.5px dashed var(--surface-3);
+  animation: cardIn 500ms cubic-bezier(.22,.68,0,1.1) 400ms both;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.create-section__title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--on-surface-3);
+  margin-bottom: 1rem;
+}
+
+.create-section__form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.create-section__select {
+  flex: 1;
+  min-width: 160px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  border: 1.5px solid var(--surface-3);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--on-surface);
+  appearance: none;
+  cursor: pointer;
+  transition: border-color var(--transition);
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%238e8a80' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.create-section__select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.create-section__arrow {
+  color: var(--on-surface-3);
+  font-size: 1.3rem;
+}
+
+.create-section__add {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 0.01em;
+}
+
+.create-section__add:hover {
+  box-shadow: 0 4px 16px rgba(15,107,99,.3);
+  filter: brightness(1.05);
+}
+
+.create-section__add:active {
+  transform: scale(0.97);
+}
+
+/* ═══════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  body { padding: 1.5rem 1rem; }
+  .page__title { font-size: 1.6rem; }
+  .pair-group__directions { grid-template-columns: 1fr; }
+  .create-section__form { flex-direction: column; align-items: stretch; }
+  .create-section__arrow { transform: rotate(90deg); justify-self: center; }
+}
+
+/* ═══════════════════════════════════════════════════
+   Tab panels (CSS-only show/hide)
+   ═══════════════════════════════════════════════════ */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── Languages tab (simplified) ── */
+.lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--surface-3);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+  animation: cardIn 400ms cubic-bezier(.22,.68,0,1.1) both;
+}
+
+.lang-item:nth-child(1) { animation-delay: 60ms; }
+.lang-item:nth-child(2) { animation-delay: 120ms; }
+.lang-item:nth-child(3) { animation-delay: 180ms; }
+.lang-item:nth-child(4) { animation-delay: 240ms; }
+
+.lang-item__info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lang-item__flag { font-size: 1.3rem; }
+
+.lang-item__name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.lang-item__native {
+  color: var(--on-surface-3);
+  font-size: 0.82rem;
+  font-style: italic;
+}
+
+.lang-item__code {
+  font-family: monospace;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 5px;
+  background: var(--surface-2);
+  color: var(--on-surface-2);
+}
+
+.lang-item__check {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--on-surface);
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transition: all 350ms cubic-bezier(.22,.68,0,1.1);
+  pointer-events: none;
+  z-index: 100;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="page__header">
+    <h1 class="page__title">Language Settings</h1>
+    <p class="page__subtitle">Select languages and manage learning pairs</p>
+  </div>
+
+  <!-- Tab Bar -->
+  <div class="tab-bar">
+    <button class="tab-bar__tab active" data-tab="pairs">Language Pairs</button>
+    <button class="tab-bar__tab" data-tab="languages">Languages</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       Tab 1: Language Pairs
+       ═══════════════════════════════════════════ -->
+  <div class="tab-panel active" id="tab-pairs">
+
+    <!-- Group 1: English ↔ Russian (both directions exist) -->
+    <div class="pair-group pair-group--active">
+      <div class="pair-group__header">
+        <div class="pair-group__title">
+          <span class="pair-group__flag">🇬🇧</span>
+          <span class="pair-group__name">English ↔ Russian</span>
+          <span class="pair-group__badge">2 pairs</span>
+        </div>
+        <div class="pair-group__actions-top">
+          <button class="pair-group__collapse open" aria-label="Toggle">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="pair-group__directions">
+        <!-- Active direction -->
+        <div class="direction direction--active direction--available">
+          <div class="direction__radio"></div>
+          <div class="direction__content">
+            <div class="direction__codes">
+              <span class="direction__code">EN</span>
+              <span class="direction__arrow">→</span>
+              <span class="direction__code">RU</span>
+            </div>
+            <div class="direction__label">English → Russian</div>
+            <div class="direction__sublabel">Known → Learning</div>
+            <div class="direction__divider"></div>
+            <button class="direction__btn direction__btn--remove" onclick="removePair('en-ru')">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M5.33 4V2.67a1.33 1.33 0 011.34-1.34h2.66a1.33 1.33 0 011.34 1.34V4m1.06 0v9.33a1.33 1.33 0 01-1.33 1.34H5.33a1.33 1.33 0 01-1.33-1.34V4h9.34z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Remove
+            </button>
+          </div>
+        </div>
+
+        <!-- Mirror direction — clickable to activate -->
+        <div class="direction direction--available" onclick="activatePair(this)">
+          <div class="direction__radio"></div>
+          <div class="direction__content">
+            <div class="direction__codes">
+              <span class="direction__code">RU</span>
+              <span class="direction__arrow">→</span>
+              <span class="direction__code">EN</span>
+            </div>
+            <div class="direction__label">Russian → English</div>
+            <div class="direction__sublabel">Tap to activate</div>
+            <div class="direction__divider"></div>
+            <button class="direction__btn direction__btn--activate" onclick="event.stopPropagation(); activatePair(this.closest('.direction'))">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="8" cy="8" r="2.5" fill="currentColor"/></svg>
+              Activate
+            </button>
+            <button class="direction__btn direction__btn--remove" onclick="event.stopPropagation(); removePair('ru-en')">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M5.33 4V2.67a1.33 1.33 0 011.34-1.34h2.66a1.33 1.33 0 011.34 1.34V4m1.06 0v9.33a1.33 1.33 0 01-1.33 1.34H5.33a1.33 1.33 0 01-1.33-1.34V4h9.34z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pair-group__footer">
+        <span class="pair-group__pair-count">2 directions</span>
+        <button class="pair-group__remove" onclick="removeGroup('en-ru')">Remove group</button>
+      </div>
+    </div>
+
+    <!-- Group 2: English ↔ German (one direction only) -->
+    <div class="pair-group">
+      <div class="pair-group__header">
+        <div class="pair-group__title">
+          <span class="pair-group__flag">🇬🇧</span>
+          <span class="pair-group__name">English ↔ German</span>
+          <span class="pair-group__badge" style="background:var(--on-surface-3);">1 pair</span>
+        </div>
+        <div class="pair-group__actions-top">
+          <button class="pair-group__collapse" aria-label="Toggle">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="pair-group__directions">
+        <!-- Active direction -->
+        <div class="direction direction--active direction--available">
+          <div class="direction__radio"></div>
+          <div class="direction__content">
+            <div class="direction__codes">
+              <span class="direction__code">EN</span>
+              <span class="direction__arrow">→</span>
+              <span class="direction__code">DE</span>
+            </div>
+            <div class="direction__label">English → German</div>
+            <div class="direction__sublabel">Known → Learning</div>
+            <div class="direction__divider"></div>
+            <button class="direction__btn direction__btn--remove" onclick="removePair('en-de')">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M5.33 4V2.67a1.33 1.33 0 011.34-1.34h2.66a1.33 1.33 0 011.34 1.34V4m1.06 0v9.33a1.33 1.33 0 01-1.33 1.34H5.33a1.33 1.33 0 01-1.33-1.34V4h9.34z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Remove
+            </button>
+          </div>
+        </div>
+
+        <!-- Empty mirror (not created yet) -->
+        <div class="direction direction--empty">
+          <div class="direction__content" style="align-items:center; justify-content:center; padding:1.5rem 0;">
+            <div class="direction__codes">
+              <span class="direction__code">DE</span>
+              <span class="direction__arrow">→</span>
+              <span class="direction__code">EN</span>
+            </div>
+            <div class="direction__sublabel" style="margin-top:.3rem;">Not yet configured</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pair-group__footer">
+        <span class="pair-group__pair-count">1 of 2 directions</span>
+        <button class="pair-group__remove" onclick="removeGroup('en-de')">Remove group</button>
+      </div>
+    </div>
+
+    <!-- Group 3: Chinese ↔ Japanese (neither active, one exists) -->
+    <div class="pair-group">
+      <div class="pair-group__header">
+        <div class="pair-group__title">
+          <span class="pair-group__flag">🇨🇳</span>
+          <span class="pair-group__name">Chinese ↔ Japanese</span>
+          <span class="pair-group__badge" style="background:var(--on-surface-3);">1 pair</span>
+        </div>
+        <div class="pair-group__actions-top">
+          <button class="pair-group__collapse" aria-label="Toggle">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="pair-group__directions">
+        <div class="direction direction--available">
+          <div class="direction__radio"></div>
+          <div class="direction__content">
+            <div class="direction__codes">
+              <span class="direction__code">ZH</span>
+              <span class="direction__arrow">→</span>
+              <span class="direction__code">JA</span>
+            </div>
+            <div class="direction__label">Chinese → Japanese</div>
+            <div class="direction__sublabel">Tap to activate</div>
+            <div class="direction__divider"></div>
+            <button class="direction__btn direction__btn--activate" onclick="event.stopPropagation(); activatePair(this.closest('.direction'))">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="8" cy="8" r="2.5" fill="currentColor"/></svg>
+              Activate
+            </button>
+            <button class="direction__btn direction__btn--remove" onclick="event.stopPropagation(); removePair('zh-ja')">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M5.33 4V2.67a1.33 1.33 0 011.34-1.34h2.66a1.33 1.33 0 011.34 1.34V4m1.06 0v9.33a1.33 1.33 0 01-1.33 1.34H5.33a1.33 1.33 0 01-1.33-1.34V4h9.34z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Remove
+            </button>
+          </div>
+        </div>
+
+        <div class="direction direction--empty">
+          <div class="direction__content" style="align-items:center; justify-content:center; padding:1.5rem 0;">
+            <div class="direction__codes">
+              <span class="direction__code">JA</span>
+              <span class="direction__arrow">→</span>
+              <span class="direction__code">ZH</span>
+            </div>
+            <div class="direction__sublabel" style="margin-top:.3rem;">Not yet configured</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pair-group__footer">
+        <span class="pair-group__pair-count">1 of 2 directions</span>
+        <button class="pair-group__remove" onclick="removeGroup('zh-ja')">Remove group</button>
+      </div>
+    </div>
+
+    <!-- Create new pair -->
+    <div class="create-section">
+      <div class="create-section__title">Create New Pair</div>
+      <div class="create-section__form">
+        <select class="create-section__select">
+          <option value="" disabled selected>Known language</select>
+          <option value="en">English</option>
+          <option value="ru">Russian</option>
+          <option value="de">German</option>
+          <option value="zh">Chinese</option>
+        </select>
+        <span class="create-section__arrow">→</span>
+        <select class="create-section__select">
+          <option value="" disabled selected>Learning language</select>
+          <option value="en">English</option>
+          <option value="ru">Russian</option>
+          <option value="de">German</option>
+          <option value="zh">Chinese</option>
+        </select>
+        <button class="create-section__add" onclick="createPair()">Add Pair</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       Tab 2: Languages (simplified)
+       ═══════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-languages">
+    <div class="lang-list">
+      <div class="lang-item">
+        <div class="lang-item__info">
+          <span class="lang-item__flag">🇬🇧</span>
+          <span class="lang-item__name">English</span>
+          <span class="lang-item__native">English</span>
+          <span class="lang-item__code">en</span>
+        </div>
+        <input type="checkbox" class="lang-item__check" checked />
+      </div>
+      <div class="lang-item">
+        <div class="lang-item__info">
+          <span class="lang-item__flag">🇷🇺</span>
+          <span class="lang-item__name">Russian</span>
+          <span class="lang-item__native">Русский</span>
+          <span class="lang-item__code">ru</span>
+        </div>
+        <input type="checkbox" class="lang-item__check" checked />
+      </div>
+      <div class="lang-item">
+        <div class="lang-item__info">
+          <span class="lang-item__flag">🇩🇪</span>
+          <span class="lang-item__name">German</span>
+          <span class="lang-item__native">Deutsch</span>
+          <span class="lang-item__code">de</span>
+        </div>
+        <input type="checkbox" class="lang-item__check" checked />
+      </div>
+      <div class="lang-item">
+        <div class="lang-item__info">
+          <span class="lang-item__flag">🇨🇳</span>
+          <span class="lang-item__name">Chinese</span>
+          <span class="lang-item__native">中文</span>
+          <span class="lang-item__code">zh</span>
+        </div>
+        <input type="checkbox" class="lang-item__check" />
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── Tabs ── */
+document.querySelectorAll('.tab-bar__tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab-bar__tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+/* ── Collapse ── */
+document.querySelectorAll('.pair-group__collapse').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    const directions = btn.closest('.pair-group').querySelector('.pair-group__directions');
+    const footer = btn.closest('.pair-group').querySelector('.pair-group__footer');
+    const isOpen = btn.classList.contains('open');
+    directions.style.display = isOpen ? 'grid' : 'none';
+    footer.style.display = isOpen ? 'flex' : 'none';
+  });
+});
+
+/* ── Activate pair ── */
+function activatePair(el) {
+  const group = el.closest('.pair-group');
+  group.querySelectorAll('.direction').forEach(d => d.classList.remove('direction--active'));
+  el.classList.add('direction--active');
+  group.classList.add('pair-group--active');
+  showToast('Pair activated');
+}
+
+/* ── Remove pair (demo) ── */
+function removePair(id) {
+  showToast('Pair ' + id + ' removed');
+}
+
+/* ── Remove group (demo) ── */
+function removeGroup(id) {
+  const group = event.target.closest('.pair-group');
+  group.style.transition = 'all 300ms cubic-bezier(.22,.68,0,1.1)';
+  group.style.opacity = '0';
+  group.style.transform = 'translateY(-10px) scale(0.97)';
+  setTimeout(() => group.remove(), 300);
+  showToast('Group removed');
+}
+
+/* ── Create pair (demo) ── */
+function createPair() {
+  showToast('Pair created!');
+}
+
+/* ── Toast ── */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+</script>
+</body>
+</html>

@@ -172,27 +172,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "oop",
           "design-patterns"
-        ],
-        "tags": "Pub/sub: наблюдатели реагируют."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.design-patterns.01.scenario",
       "question": "Что такое Observer?",
       "code": {
-        "code": [
-          "Уведомление подписчиков об изменениях",
-          "Печать",
-          "Сортировку",
-          "Хеш"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Уведомление подписчиков об изменениях",
+        "Печать",
+        "Сортировку",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pub/sub: наблюдатели реагируют."
     },
     {
       "id": "cpp.advanced.design-patterns.01.scenario.card-07",
@@ -365,28 +366,29 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "oop",
           "design-patterns",
           "performance"
-        ],
-        "tags": "Изоляция ABI и заголовков."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.design-patterns.01.scenario",
       "question": "Плюс pimpl?",
       "code": {
-        "code": [
-          "Меньше пересборок и скрытие деталей",
-          "Скорость",
-          "Память",
-          "Ничего"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Меньше пересборок и скрытие деталей",
+        "Скорость",
+        "Память",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Изоляция ABI и заголовков."
     },
     {
       "id": "cpp.advanced.design-patterns.01.scenario.card-13",

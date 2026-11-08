@@ -89,10 +89,10 @@ describe('ScenariosCatalogMockHandler', () => {
 
   describe('getById', () => {
     it('returns scenario by ID', async () => {
-      const scenario = await api.getById('demo-scenario');
+      const scenario = await api.getById('scenario-zh-greetings');
 
       expect(scenario).toBeDefined();
-      expect(scenario.id).toBe('demo-scenario');
+      expect(scenario.id).toBe('scenario-zh-greetings');
       expect(scenario.title).toBeDefined();
     });
 
@@ -143,7 +143,7 @@ describe('ScenariosCatalogMockHandler', () => {
         },
       };
 
-      const updated = await api.update('demo-scenario', payload);
+      const updated = await api.update('scenario-zh-greetings', payload);
 
       expect(updated.title).toBe('Updated Scenario Title');
       expect(updated.description).toBe('Updated description');

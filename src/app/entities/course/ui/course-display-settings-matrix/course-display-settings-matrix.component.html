@@ -1,19 +1,21 @@
 @if (showCjk() || showPhonetic()) {
   <div class="display-matrix" role="grid" aria-describedby="display-matrix-hint">
     <p id="display-matrix-hint" class="display-matrix__hint">
-      «Задание» — текст вопроса на карточке; «Ответы» — варианты, плитки memory и блок «Правильный
-      ответ». Отметьте системы, которые нужно отображать.
+      Выберите системы, которые нужно отображать:
     </p>
+
     <div class="display-matrix__header" role="row">
       <span class="display-matrix__header-label" role="rowheader">Система</span>
       <span
         class="display-matrix__header-col display-matrix__header-col--prompt"
         role="columnheader"
+        [matTooltip]="tooltipPromptText"
         >Задание</span
       >
       <span
         class="display-matrix__header-col display-matrix__header-col--answer"
         role="columnheader"
+        [matTooltip]="tooltipAnswerText"
         >Ответы</span
       >
     </div>

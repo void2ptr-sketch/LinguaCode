@@ -29,6 +29,8 @@ describe('course-index.mapper', () => {
       expect(entry.updatedAt).toBe('2026-10-10T12:00:00.000Z');
       expect(entry.languagePairSummary).toBeTruthy();
       expect(typeof entry.languagePairSummary).toBe('string');
+      expect(entry.knownLanguage).toBe('ru');
+      expect(entry.learningLanguage).toBe('zh');
     });
 
     it('should use provided lessonCount', () => {

@@ -16,12 +16,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardKind } from '../../../entities/card/model';
 import { formatIndexLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
-import {
-  CARD_KIND_LABELS,
-  CONTENT_LANGUAGE_LABELS,
-  tagLabel,
-} from '../../../entities/card/lib/catalog-labels';
-import { DIFFICULTY_LABELS } from '../../../entities/card/lib/catalog-labels';
+import { LanguageService } from '../../../entities/language-pair';
+import { tagLabel } from '../../../entities/card/lib/catalog-labels';
 import { CardCatalogFiltersComponent } from '../../../entities/card/ui/card-catalog/card-catalog-filters/card-catalog-filters.component';
 import { CardCatalogSearchStore } from '../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
@@ -29,6 +25,7 @@ import { UserStore } from '../../../entities/user/model/user.store';
 import { CardEditorDialogService } from '../../../features/card-editor/components/card-editor-dialog/card-editor-dialog.service';
 import { CardTryDialogService } from '../../../features/card-editor/components/card-try-dialog/card-try-dialog.service';
 import { CardEditorStore } from '../../../features/card-editor/services/card-editor.store';
+import { CatalogService } from '../../../entities/card/api/catalog.service';
 import {
   CARD_CREATE_GROUP_HINTS,
   CARD_CREATE_GROUP_LABELS,
@@ -37,7 +34,7 @@ import {
 } from '../../../features/card-editor/utils/form/card-create-groups.utils';
 import type { CardIndexEntry } from '../../../entities/card/model';
 
-let lastKnownActiveLanguagePairId: string | null = null;
+let lastKnownActiveLanguagePairId: string | null | undefined = null;
 
 /**
  * Page component for the card editor catalog.
@@ -75,6 +72,8 @@ export class CardEditorPageComponent implements OnInit {
   private readonly cardEditorDialog = inject(CardEditorDialogService);
   private readonly cardTryDialog = inject(CardTryDialogService);
   private readonly userStore = inject(UserStore);
+  private readonly languageService = inject(LanguageService);
+  private readonly catalogService = inject(CatalogService);
 
   /** Available card creation groups (e.g., 'basic', 'chinese'). */
   readonly createGroups = CARD_CREATE_GROUPS;
@@ -88,14 +87,18 @@ export class CardEditorPageComponent implements OnInit {
   /** Available card kinds organized by creation group. */
   readonly kindsByGroup = KINDS_BY_CREATE_GROUP;
 
-  /** Labels for all card kinds. */
-  readonly kindLabels = CARD_KIND_LABELS;
+  /** Labels for all card kinds from backend catalog. */
+  readonly kindLabels = computed<Record<string, string>>(() =>
+    Object.fromEntries(this.catalogService.cardKinds().map((k) => [k.code, k.label])),
+  );
 
   /** Labels for content languages. */
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  readonly languageLabels = this.languageService.getLabels();
 
-  /** Labels for difficulty levels. */
-  readonly difficultyLabels = DIFFICULTY_LABELS;
+  /** Labels for difficulty levels from backend catalog. */
+  readonly difficultyLabels = computed<Record<string, string>>(() =>
+    Object.fromEntries(this.catalogService.difficulties().map((d) => [d.code, d.label])),
+  );
 
   /** Utility function to generate tag labels. */
   readonly tagLabel = tagLabel;
@@ -126,10 +129,7 @@ export class CardEditorPageComponent implements OnInit {
    * @param entry - The card index entry with language pair information.
    * @returns Formatted language pair string (e.g., "zh → en").
    */
-  formatEntryLanguages(entry: {
-    knownLanguage: keyof typeof CONTENT_LANGUAGE_LABELS;
-    learningLanguage: keyof typeof CONTENT_LANGUAGE_LABELS;
-  }): string {
+  formatEntryLanguages(entry: Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage'>): string {
     return formatIndexLanguagePair(entry, this.languageLabels);
   }
 

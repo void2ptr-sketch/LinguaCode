@@ -17,7 +17,7 @@ import { UserStore } from '../../../entities/user/model/user.store';
 import { ScenarioBuilderDialogService } from '../../../features/scenario-builder/components/scenario-builder-dialog/scenario-builder-dialog.service';
 import { ScenarioBuilderStore } from '../../../features/scenario-builder/services/scenario-builder.store';
 
-let lastKnownScenarioBuilderActiveLanguagePairId: string | null = null;
+let lastKnownScenarioBuilderActiveLanguagePairId: string | null | undefined = null;
 
 /**
  * Scenario builder page component. Displays a paginated list of scenarios with search,
@@ -49,6 +49,16 @@ export class ScenarioBuilderPageComponent implements OnInit {
   /** User store for authentication and language pair data. */
   readonly userStore = inject(UserStore);
   private readonly scenarioBuilderDialog = inject(ScenarioBuilderDialogService);
+
+  /** Safe accessor for indexItems. */
+  protected getIndexItems(): readonly import('../../../entities/scenario/model').ScenarioIndexEntry[] {
+    return this.store.indexItems() ?? [];
+  }
+
+  /** Safe accessor for courses. */
+  protected getCourses(): readonly import('../../../entities/course/model').CourseIndexEntry[] {
+    return this.store.courses() ?? [];
+  }
 
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();
@@ -162,7 +172,7 @@ export class ScenarioBuilderPageComponent implements OnInit {
       return null;
     }
 
-    const course = this.store.courses().find((c) => c.id === courseId);
+    const course = this.getCourses().find((c) => c.id === courseId);
     return course?.title ?? null;
   }
 }

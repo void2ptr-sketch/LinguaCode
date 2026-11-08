@@ -64,3 +64,9 @@
   height: 1.25rem;
   width: 1.25rem;
 }
+
+.page-card__actions {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid color-mix(in srgb, var(--mat-sys-outline) 20%, transparent);
+}

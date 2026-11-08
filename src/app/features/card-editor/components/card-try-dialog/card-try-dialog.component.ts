@@ -7,10 +7,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { CardsApiService } from '../../../../entities/card/api/cards-api.service';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
+import { CatalogService } from '../../../../entities/card/api/catalog.service';
 import { cardIndexMatchesPair } from '../../../../entities/language-pair/lib/language-pair.utils';
 import type { CardDirection } from '../../../../entities/language-pair/model/language-pair.types';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { CARD_KIND_LABELS } from '../../../../entities/card/lib/catalog-labels';
+import type { CardKind } from '../../../../entities/card/model';
 import { CardHostComponent } from '../../../../entities/card/ui/card-host';
 import type { CardTryDialogData } from './card-try-dialog.types';
 import { SingleCardPlayStore } from './single-card-play.store';
@@ -41,9 +42,16 @@ export class CardTryDialogComponent implements OnInit {
   private readonly cardsApi = inject(CardsApiService);
   private readonly cardsCatalogHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
+  private readonly catalogService = inject(CatalogService);
 
-  /** Labels for all card kinds. */
-  readonly kindLabels = CARD_KIND_LABELS;
+  /** Labels for all card kinds from backend catalog. */
+  readonly kindLabels = computed<Record<CardKind, string>>(
+    () =>
+      Object.fromEntries(this.catalogService.cardKinds().map((k) => [k.code, k.label])) as Record<
+        CardKind,
+        string
+      >,
+  );
 
   /**
    * Computed font size from user preferences.
@@ -58,7 +66,8 @@ export class CardTryDialogComponent implements OnInit {
       return 'Прогон карточки';
     }
 
-    return `${card.title} · ${this.kindLabels[card.kind]}`;
+    const labels = this.kindLabels();
+    return `${card.title} · ${labels[card.kind]}`;
   });
 
   async ngOnInit(): Promise<void> {

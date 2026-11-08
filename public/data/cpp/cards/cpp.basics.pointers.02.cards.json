@@ -595,27 +595,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "pointers",
           "memory"
-        ],
-        "tags": "(116-100)/4 = 4 элемента."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.pointers.02.scenario",
       "question": "Сколько элементов между адресами 100 и 116 для int (4 байта)?",
       "code": {
-        "code": [
-          "4",
-          "16",
-          "5",
-          "3"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "4",
+        "16",
+        "5",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "(116-100)/4 = 4 элемента."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-20",

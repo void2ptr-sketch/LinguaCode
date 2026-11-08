@@ -27,7 +27,7 @@ describe('UserStore', () => {
     expect(store.learningProficiencyLevel()).toBe('beginner');
     expect(store.languagePairs()).toHaveLength(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
-    expect(store.languagePairLabel()).toBe('Русский → English');
+    expect(store.languagePairLabel()).toBe('ru → en');
     expect(store.isActiveEntry(store.languagePairs()[0])).toBe(true);
     expect(store.cjkLearning().displayRomanizations).toEqual(['pinyin']);
     expect(store.phonetic().showIpa).toBe(false);
@@ -141,15 +141,17 @@ describe('UserStore', () => {
     store.addLanguagePair({ known: 'ru', learning: 'zh' });
     const activeId = store.activeLanguagePairId();
 
-    store.removeLanguagePair(activeId);
+    store.removeLanguagePair(activeId!);
 
     expect(store.languagePairs()).toHaveLength(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
   });
 
-  it('should not remove the last language pair', () => {
-    store.removeLanguagePair(store.activeLanguagePairId());
-    expect(store.languagePairs()).toHaveLength(1);
+  it('should remove the last language pair and clear active id', () => {
+    const activeId = store.activeLanguagePairId();
+    store.removeLanguagePair(activeId!);
+    expect(store.languagePairs()).toHaveLength(0);
+    expect(store.activeLanguagePairId()).toBeUndefined();
   });
 
   it('should update and persist active language pair via legacy API', () => {
@@ -174,5 +176,105 @@ describe('UserStore', () => {
 
     expect(store.phonetic().showIpa).toBe(true);
     expect(store.phonetic().ipaVariantLabel).toBe('BrE');
+  });
+
+  describe('mirror-group isolation', () => {
+    it('should seed the mirror-group marker when activating a pair', () => {
+      store.addLanguagePair({ known: 'en', learning: 'ru' });
+
+      expect(store.activeByMirrorGroup()['en|ru']).toEqual({ known: 'en', learning: 'ru' });
+      // Other mirror groups stay untouched.
+      expect(store.activeByMirrorGroup()['ja|zh']).toBeUndefined();
+    });
+
+    it('should not activate pair or change markers when activate is false', () => {
+      const beforeActiveId = store.activeLanguagePairId();
+
+      const newId = store.addLanguagePair({ known: 'ja', learning: 'zh' }, { activate: false });
+
+      expect(newId).not.toBe('');
+      expect(store.activeLanguagePairId()).toBe(beforeActiveId);
+      expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
+      expect(store.activeByMirrorGroup()['ja|zh']).toBeUndefined();
+      expect(store.activeByMirrorGroup()['en|ru']).toEqual({ known: 'ru', learning: 'en' });
+    });
+
+    it('should set a group marker scoped to a single mirror group', () => {
+      store.addLanguagePair({ known: 'en', learning: 'ru' });
+      store.setActivePairInGroup('ja|zh', { known: 'ja', learning: 'zh' });
+
+      expect(store.activeByMirrorGroup()['en|ru']).toEqual({ known: 'en', learning: 'ru' });
+      expect(store.activeByMirrorGroup()['ja|zh']).toEqual({ known: 'ja', learning: 'zh' });
+    });
+
+    it('should reject a group marker whose key does not match the pair', () => {
+      store.setActivePairInGroup('ja|zh', { known: 'en', learning: 'ru' });
+
+      expect(store.activeByMirrorGroup()['ja|zh']).toBeUndefined();
+    });
+
+    it('should isolate activation events between mirror groups', () => {
+      store.addLanguagePair({ known: 'en', learning: 'ru' });
+      store.addLanguagePair({ known: 'ja', learning: 'zh' });
+
+      // Re-activate the EN↔RU direction — the JA↔ZH marker must not change.
+      store.addLanguagePair({ known: 'ru', learning: 'en' });
+
+      expect(store.activeByMirrorGroup()['en|ru']).toEqual({ known: 'ru', learning: 'en' });
+      expect(store.activeByMirrorGroup()['ja|zh']).toEqual({ known: 'ja', learning: 'zh' });
+    });
+
+    it('should move the group marker to the mirror sibling when the active pair is removed', () => {
+      store.addLanguagePair({ known: 'en', learning: 'ru' });
+      store.addLanguagePair({ known: 'ru', learning: 'en' }, { activate: false });
+      const activeId = store.activeLanguagePairId();
+
+      store.removeLanguagePair(activeId!);
+
+      expect(store.activeByMirrorGroup()['en|ru']).toEqual({ known: 'ru', learning: 'en' });
+    });
+
+    it('should clear the group marker when the mirror sibling is not configured', () => {
+      store.addLanguagePair({ known: 'ja', learning: 'zh' });
+      const jaZhId = store.activeLanguagePairId();
+
+      store.removeLanguagePair(jaZhId!);
+
+      expect(store.activeByMirrorGroup()['ja|zh']).toBeUndefined();
+    });
+
+    it('should not touch other groups when removing a pair', () => {
+      store.addLanguagePair({ known: 'en', learning: 'ru' });
+      store.addLanguagePair({ known: 'ja', learning: 'zh' }, { activate: false });
+      const enRuId = store.languagePairs().find((e) => e.pair.known === 'en')!.id;
+
+      store.removeLanguagePair(enRuId);
+
+      expect(store.activeByMirrorGroup()['ja|zh']).toBeUndefined();
+    });
+
+    it('should seed mirror-group markers when loading a legacy profile', () => {
+      localStorage.setItem(
+        USER_STORAGE_KEY,
+        JSON.stringify({
+          id: 'local-user',
+          displayName: 'Ученик',
+          preferences: {
+            theme: 'azure-blue',
+            fontSize: 'md',
+            languagePairs: [{ id: 'pair-1', pair: { known: 'ru', learning: 'en' } }],
+            activeLanguagePairId: 'pair-1',
+          },
+        }),
+      );
+
+      const loaded = TestBed.inject(UserPersistence).load();
+      expect(loaded).not.toBeNull();
+      expect(loaded?.preferences.activeLanguagePairId).toBe('pair-1');
+      expect(loaded?.preferences.activeByMirrorGroup?.['en|ru']).toEqual({
+        known: 'ru',
+        learning: 'en',
+      });
+    });
   });
 });

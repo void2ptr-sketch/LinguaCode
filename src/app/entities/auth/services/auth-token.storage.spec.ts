@@ -7,7 +7,6 @@ describe('AuthTokenStorage', () => {
   const tokens: AuthTokens = {
     accessToken: 'access-1',
     refreshToken: 'refresh-1',
-    expiresAt: 1_700_000_000_000,
   };
 
   beforeEach(() => {

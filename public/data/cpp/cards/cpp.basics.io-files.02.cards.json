@@ -75,27 +75,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "beginner",
+        "tags": [
           "io",
           "syntax"
-        ],
-        "tags": "Конструктор ifstream принимает имя файла."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.io-files.02.scenario",
       "question": "Какая строка правильно открывает файл data.txt на чтение?",
       "code": {
-        "code": [
-          "std::ifstream file(\"data.txt\");",
-          "ifstream = data.txt;",
-          "file.open() в C",
-          "std::cin >> data.txt"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "beginner"
+      "outputOptions": [
+        "std::ifstream file(\"data.txt\");",
+        "ifstream = data.txt;",
+        "file.open() в C",
+        "std::cin >> data.txt"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор ifstream принимает имя файла."
     },
     {
       "id": "cpp.basics.io-files.02.scenario.card-04",

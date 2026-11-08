@@ -40,7 +40,7 @@ import { CourseBuilderStore } from '../../../features/course-builder/services/co
  * При смене языка приложения — перезагружает список курсов.
  * Используется для предотвращения лишних запросов при инициализации.
  */
-let lastKnownCourseBuilderActiveLanguagePairId: string | null = null;
+let lastKnownCourseBuilderActiveLanguagePairId: string | null | undefined = null;
 
 /**
  * Компонент страницы конструктора курсов.
@@ -88,6 +88,11 @@ export class CourseBuilderPageComponent implements OnInit {
   private readonly snackBar = inject(MatSnackBar);
   /** Сервис Dialog для модальных окон */
   private readonly dialog = inject(MatDialog);
+
+  /** Safe accessor for indexItems (defensive against early template rendering). */
+  protected getIndexItems(): readonly import('../../../entities/course/model').CourseIndexEntry[] {
+    return this.store.indexItems() ?? [];
+  }
 
   /**
    * Effect: отслеживает смену activeLanguagePairId.

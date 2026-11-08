@@ -40,7 +40,7 @@ export const initialCourseTabDraftsState: CourseTabDraftsState = {
 
 /** Состояние черновиков вкладки «Настройки» (отображение курса). */
 export type SettingsDraftsState = {
-  settingsPairIdDraft: string;
+  settingsPairIdDraft: string | undefined;
   displayRomanizationsDraft: readonly RomanizationSystem[];
   answerRomanizationsDraft: readonly RomanizationSystem[];
   showIpaDraft: boolean;
@@ -52,7 +52,7 @@ export type SettingsDraftsState = {
 };
 
 export const initialSettingsDraftsState: SettingsDraftsState = {
-  settingsPairIdDraft: '',
+  settingsPairIdDraft: undefined,
   displayRomanizationsDraft: ['pinyin'],
   answerRomanizationsDraft: ['pinyin', 'palladius'],
   showIpaDraft: false,
@@ -185,7 +185,7 @@ export class DraftsStore {
   // ===== Settings section =====
 
   /** Черновик ID активной пары для настроек. */
-  get settingsPairIdDraft(): Signal<string> {
+  get settingsPairIdDraft(): Signal<string | undefined> {
     return computed(() => this.#settings().settingsPairIdDraft);
   }
 
@@ -229,7 +229,7 @@ export class DraftsStore {
     return computed(() => this.#settings().tracingStrokeDurationDraft);
   }
 
-  setSettingsPairIdDraft(id: string): void {
+  setSettingsPairIdDraft(id: string | undefined): void {
     this.#settings.update((s) => ({ ...s, settingsPairIdDraft: id }));
   }
 

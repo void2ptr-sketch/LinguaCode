@@ -18,10 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import type { ContentLanguage, ScenarioCardSort } from '../../../../entities/card/model';
-import {
-  CONTENT_LANGUAGE_LABELS,
-  contentLanguages,
-} from '../../../../entities/language-pair/lib/language-pair.utils';
+import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
 import { ScenarioCardCriteriaEditorComponent } from '../../../../entities/card/ui/card-catalog/scenario-card-criteria-editor/scenario-card-criteria-editor.component';
 import { ScenarioCardPickerComponent } from '../../../../entities/card/ui/card-catalog/scenario-card-picker/scenario-card-picker.component';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
@@ -63,11 +60,12 @@ export class ScenarioEditorFormComponent {
   readonly draftChange = output<ScenarioFormDraft>();
 
   private readonly store = inject(ScenarioBuilderStore);
+  private readonly languageService = inject(LanguageService);
 
   /** Available content languages. */
-  readonly languages = contentLanguages();
+  readonly languages = () => this.languageService.getCodes();
   /** Labels for content languages. */
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  readonly languageLabels = () => this.languageService.getLabels();
   /**
    * Card titles indexed by card ID, loaded asynchronously.
    *

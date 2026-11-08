@@ -4,7 +4,8 @@ import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CardCatalogFiltersComponent } from './card-catalog-filters.component';
 import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
 import { CardSearchService } from '../../../search/card-search.service';
-import { DIFFICULTIES, DIFFICULTY_LABELS, CARD_KIND_LABELS } from '../../../lib/catalog-labels';
+import { CatalogService } from '../../../api/catalog.service';
+import { TagsService } from '../../../api/tags.service';
 
 describe('CardCatalogFiltersComponent', () => {
   let component: CardCatalogFiltersComponent;
@@ -25,6 +26,33 @@ describe('CardCatalogFiltersComponent', () => {
             search: vi.fn().mockResolvedValue({ items: [], totalItems: 0, facets: null }),
           },
         },
+        {
+          provide: CatalogService,
+          useValue: {
+            loaded: signal(true),
+            difficulties: signal([
+              { code: 'beginner', label: 'Начальный' },
+              { code: 'intermediate', label: 'Средний' },
+              { code: 'advanced', label: 'Продвинутый' },
+            ]),
+            cardKinds: signal([
+              { code: 'select', label: 'Выбор ответа' },
+              { code: 'memory', label: 'Запоминание' },
+              { code: 'keyboard', label: 'Клавиатура' },
+            ]),
+          },
+        },
+        {
+          provide: TagsService,
+          useValue: {
+            loaded: signal(true),
+            tagLabels: signal({
+              greetings: 'Приветствия',
+              vocabulary: 'Лексика',
+            }),
+            getLabel: (tag: string) => tag,
+          },
+        },
       ],
     }).compileComponents();
 
@@ -40,21 +68,35 @@ describe('CardCatalogFiltersComponent', () => {
     expect(component.store).toBe(store);
   });
 
-  it('should expose difficulties constant', () => {
-    expect(component.difficulties).toBe(DIFFICULTIES);
+  it('should expose difficulties from CatalogService', () => {
+    const difficulties = component.difficulties();
+    expect(difficulties).toContain('beginner');
+    expect(difficulties).toContain('intermediate');
+    expect(difficulties).toContain('advanced');
   });
 
-  it('should expose difficultyLabels constant', () => {
-    expect(component.difficultyLabels).toBe(DIFFICULTY_LABELS);
+  it('should expose difficultyLabels from CatalogService', () => {
+    const labels = component.difficultyLabels();
+    expect(labels['beginner']).toBe('Начальный');
+    expect(labels['intermediate']).toBe('Средний');
+    expect(labels['advanced']).toBe('Продвинутый');
   });
 
-  it('should expose kindLabels constant', () => {
-    expect(component.kindLabels).toBe(CARD_KIND_LABELS);
+  it('should expose kindLabels from CatalogService', () => {
+    const labels = component.kindLabels();
+    expect(labels['select']).toBe('Выбор ответа');
+    expect(labels['memory']).toBe('Запоминание');
+    expect(labels['keyboard']).toBe('Клавиатура');
   });
 
-  it('should expose tagLabel utility', () => {
-    expect(typeof component.tagLabel).toBe('function');
-    expect(component.tagLabel('test-tag')).toBe('test-tag');
+  it('should expose tagLabels from TagsService', () => {
+    const labels = component.tagLabels();
+    expect(labels['greetings']).toBe('Приветствия');
+  });
+
+  it('should expose getTagLabel method', () => {
+    expect(typeof component.getTagLabel).toBe('function');
+    expect(component.getTagLabel('test-tag')).toBe('test-tag');
   });
 
   describe('facets computed', () => {

@@ -9,13 +9,15 @@ import { JourneyPageComponent } from './journey-page.component';
 import { LearningDashboardService } from '../../../entities/learning/services';
 import { JourneyAnalyticsService } from '../../../features/journey/services/journey-analytics.service';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
-import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
 import { CourseSearchService } from '../../../entities/course';
+import { ScenariosApiService } from '../../../entities/scenario/api/scenarios-api.service';
+import { CardsApiService } from '../../../entities/card/api/cards-api.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CPP_COMPLETE_COURSE_ID } from '../../../entities/course/model';
 import type { CourseWithPrograms, Lesson } from '../../../entities/course/model';
 import type { Scenario } from '../../../entities/scenario/model';
 import type { JourneyLocationNode } from '../../../entities/learning/model';
+import type { CardBase } from '../../../entities/card/model';
 function makeLesson(
   id: string,
   title: string,
@@ -91,10 +93,19 @@ describe('JourneyPageComponent', () => {
     makeScenario('scenario-3', 'Scenario 3', ['card-4', 'card-5']),
   ];
 
+  const mockCards: CardBase[] = [
+    { id: 'card-1', kind: 'select' } as CardBase,
+    { id: 'card-2', kind: 'reading' } as CardBase,
+    { id: 'card-3', kind: 'memory' } as CardBase,
+    { id: 'card-4', kind: 'keyboard' } as CardBase,
+    { id: 'card-5', kind: 'sound' } as CardBase,
+  ];
+
   let mockDashboardService: Partial<LearningDashboardService>;
   let mockAnalyticsService: Partial<JourneyAnalyticsService>;
   let mockResultsStore: Partial<LearningResultsStore>;
-  let mockContentSeedRepo: Partial<ContentSeedRepository>;
+  let mockScenariosApi: Partial<ScenariosApiService>;
+  let mockCardsApi: Partial<CardsApiService>;
   let mockCourseSearchService: { getById: ReturnType<typeof vi.fn> };
   let mockActivatedRoute: Partial<ActivatedRoute>;
   let mockRouter: { navigate: ReturnType<typeof vi.fn> };
@@ -138,15 +149,15 @@ describe('JourneyPageComponent', () => {
       resultsForScenario: vi.fn().mockReturnValue([]),
     };
 
-    mockContentSeedRepo = {
-      getScenarioSeed: vi.fn().mockReturnValue(mockScenarios),
-      getCardSeed: vi.fn().mockReturnValue([
-        { id: 'card-1', kind: 'select' },
-        { id: 'card-2', kind: 'reading' },
-        { id: 'card-3', kind: 'memory' },
-        { id: 'card-4', kind: 'keyboard' },
-        { id: 'card-5', kind: 'sound' },
-      ]),
+    mockScenariosApi = {
+      getById: vi.fn().mockImplementation((scenarioId: string) => {
+        const scenario = mockScenarios.find((s) => s.id === scenarioId);
+        return Promise.resolve(scenario || makeScenario(scenarioId, `Scenario ${scenarioId}`, []));
+      }),
+    };
+
+    mockCardsApi = {
+      getByIds: vi.fn().mockResolvedValue(mockCards),
     };
 
     const mockLogger = {
@@ -191,7 +202,8 @@ describe('JourneyPageComponent', () => {
         { provide: LearningDashboardService, useValue: mockDashboardService },
         { provide: JourneyAnalyticsService, useValue: mockAnalyticsService },
         { provide: LearningResultsStore, useValue: mockResultsStore },
-        { provide: ContentSeedRepository, useValue: mockContentSeedRepo },
+        { provide: ScenariosApiService, useValue: mockScenariosApi },
+        { provide: CardsApiService, useValue: mockCardsApi },
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: AppLoggerService, useValue: mockLogger },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
@@ -227,12 +239,12 @@ describe('JourneyPageComponent', () => {
     expect(component.courseId()).toBe('course-1');
   });
 
-  it('should call content seed repo to build nodes', async () => {
+  it('should call scenarios API and cards API to build nodes', async () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    expect(mockContentSeedRepo.getScenarioSeed).toHaveBeenCalled();
-    expect(mockContentSeedRepo.getCardSeed).toHaveBeenCalled();
+    expect(mockScenariosApi.getById).toHaveBeenCalled();
+    expect(mockCardsApi.getByIds).toHaveBeenCalled();
   });
 
   it('should build nodes from course data', async () => {
@@ -259,7 +271,7 @@ describe('JourneyPageComponent', () => {
     const firstNode = component.nodes()[0];
     expect(firstNode).toBeDefined();
 
-    component.onLocationSelect(firstNode.id);
+    component.onLocationSelect(firstNode.id!);
 
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/cards/select'], {
       queryParams: {

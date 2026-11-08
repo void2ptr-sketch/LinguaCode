@@ -73,26 +73,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "compilers"
-        ],
-        "tags": "Литералы — листья."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
       "question": "Что находится в листьях AST для выражения 1+2?",
       "code": {
-        "code": [
-          "Литералы 1 и 2",
-          "Оператор",
-          "Скобки",
-          "Логи"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Литералы 1 и 2",
+        "Оператор",
+        "Скобки",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Литералы — листья."
     },
     {
       "id": "cpp.advanced.compiler-construction.01.scenario.card-04",
@@ -166,26 +167,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "compilers"
-        ],
-        "tags": "Диагностика синтаксических ошибок."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
       "question": "Что сделает парсер при некорректном синтаксисе?",
       "code": {
-        "code": [
-          "Сообщит об ошибке",
-          "Игнорирует",
-          "Исправит",
-          "Запустит"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Сообщит об ошибке",
+        "Игнорирует",
+        "Исправит",
+        "Запустит"
+      ],
+      "correctIndex": 0,
+      "explanation": "Диагностика синтаксических ошибок."
     },
     {
       "id": "cpp.advanced.compiler-construction.01.scenario.card-07",
@@ -259,26 +261,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "compilers"
-        ],
-        "tags": ".o / .obj."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
       "question": "Что выводит компилятор после когенерации?",
       "code": {
-        "code": [
-          "Объектный файл",
-          "Исходник",
-          "Токены",
-          "AST"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Объектный файл",
+        "Исходник",
+        "Токены",
+        "AST"
+      ],
+      "correctIndex": 0,
+      "explanation": ".o / .obj."
     },
     {
       "id": "cpp.advanced.compiler-construction.01.scenario.card-10",
@@ -353,26 +356,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "compilers"
-        ],
-        "tags": "Каждая переменная присваивается один раз."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
       "question": "Что такое SSA?",
       "code": {
-        "code": [
-          "Static Single Assignment — формы для анализа",
-          "Строка",
-          "Код",
-          "Ошибка"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Static Single Assignment — формы для анализа",
+        "Строка",
+        "Код",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждая переменная присваивается один раз."
     },
     {
       "id": "cpp.advanced.compiler-construction.01.scenario.card-13",
@@ -447,26 +451,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "compilers"
-        ],
-        "tags": "LLVM IR — единый мост."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
       "question": "Сколько фрондээндов у LLVM?",
       "code": {
-        "code": [
-          "Много (C, C++, Rust, Swift...)",
-          "Один",
-          "Два",
-          "Ноль"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Много (C, C++, Rust, Swift...)",
+        "Один",
+        "Два",
+        "Ноль"
+      ],
+      "correctIndex": 0,
+      "explanation": "LLVM IR — единый мост."
     },
     {
       "id": "cpp.advanced.compiler-construction.01.scenario.card-16",
@@ -541,27 +546,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "compilers",
           "performance"
-        ],
-        "tags": "Меньше повторного препроцессинга."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.compiler-construction.01.scenario",
       "question": "Что из этого ускоряет сборку?",
       "code": {
-        "code": [
-          "Precompiled headers / modules",
-          "Комментарии",
-          "Пустые строки",
-          "Макросы много"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Precompiled headers / modules",
+        "Комментарии",
+        "Пустые строки",
+        "Макросы много"
+      ],
+      "correctIndex": 0,
+      "explanation": "Меньше повторного препроцессинга."
     },
     {
       "id": "cpp.advanced.compiler-construction.01.scenario.card-19",

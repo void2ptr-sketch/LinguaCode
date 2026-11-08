@@ -25,8 +25,9 @@ describe('AuthApiService', () => {
 
   it('should login and return the session', async () => {
     const session: AuthSession = {
-      user: { id: 'u1', displayName: 'User', email: 'user@example.com' },
-      tokens: { accessToken: 'a', refreshToken: 'r', expiresAt: 1_700_000_000_000 },
+      userId: 'u1',
+      accessToken: 'a',
+      refreshToken: 'r',
     };
 
     const promise = service.login({ email: 'user@example.com', password: 'secret' });
@@ -43,7 +44,6 @@ describe('AuthApiService', () => {
     const tokens: AuthTokens = {
       accessToken: 'a2',
       refreshToken: 'r2',
-      expiresAt: 1_700_000_000_000,
     };
 
     const promise = service.refresh('r1');
@@ -51,7 +51,7 @@ describe('AuthApiService', () => {
     const req = httpMock.expectOne(buildApiUrl('/auth/refresh'));
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({ refreshToken: 'r1' });
-    req.flush({ data: tokens });
+    req.flush({ data: { userId: 'u1', accessToken: 'a2', refreshToken: 'r2' } });
 
     await expect(promise).resolves.toEqual(tokens);
   });

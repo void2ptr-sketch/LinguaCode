@@ -13,8 +13,8 @@
 
 | Документ                                        | Описание                                                |
 | ----------------------------------------------- | ------------------------------------------------------- |
-| [BUSINESS.md](./BUSINESS.md)                    | Бизнес-идеи, миссия, ценность для пользователя          |
-| [DOMAIN.md](./COMMON/DOMAIN.md)                 | Доменная модель: сущности, типы, иерархия контента      |
+| [BUSINESS.md](./PRODUCT/BUSINESS.md)            | Бизнес-идеи, миссия, ценность для пользователя          |
+| [DOMAIN.md](./PRODUCT/DOMAIN.md)                | Доменная модель: сущности, типы, иерархия контента      |
 | [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) | Пара языков known → learning, G7–G8, Learning Home      |
 | [COURSE-CPP.md](./DATA/COURSE-CPP.md)           | Курс C++ Complete Course: структура, сценарии, карточки |
 | [FILE-FORMATS.md](./DATA/FILE-FORMATS.md)       | Форматы seed-файлов: courses, scenarios, cards          |
@@ -23,7 +23,7 @@
 
 | Документ                                                                            | Описание                                                  |
 | ----------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [ARCHITECTURE.md](./ARCHITECTURE.md)                                                | Обзор: слои, layout, роутинг, signals, офлайн-кэширование |
+| [ARCHITECTURE.md](./PRODUCT/ARCHITECTURE.md)                                        | Обзор: слои, layout, роутинг, signals, офлайн-кэширование |
 | [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md)                         | Бывший `core`: карта переноса в entities/shared/widgets   |
 | [ARCHITECTURE.shared.md](./ARCHITECTURE/ARCHITECTURE.shared.md)                     | CardHost, pickers, lexeme, pagination                     |
 | [ARCHITECTURE.card-select.md](./ARCHITECTURE/ARCHITECTURE.card-select.md)           | Практика `/cards/select`                                  |
@@ -56,9 +56,9 @@
 
 ## Процесс разработки
 
-| Документ                              | Описание              |
-| ------------------------------------- | --------------------- |
-| [GIT-RULES.md](./SYSTEM/GIT-RULES.md) | Ветки, коммиты, merge |
+| Документ                               | Описание              |
+| -------------------------------------- | --------------------- |
+| [GIT-RULES.md](./PROCESS/GIT-RULES.md) | Ветки, коммиты, merge |
 
 ## Формат
 
@@ -67,11 +67,11 @@
 
 ## Быстрая навигация по темам
 
-- **Объект изучения vs карточка (компоненты, затенение известного)** — [BUSINESS.md § Объект и карточка](./BUSINESS.md#объект-изучения-и-карточка)
-- **Иерархия Card → Scenario → Lesson → Program → Course** — [DOMAIN.md § Иерархия](./COMMON/DOMAIN.md#иерархия-контента) · [BUSINESS.md § Иерархия](./BUSINESS.md#иерархия-учебного-контента)
-- **«Курс» vs программа (`Course`) vs трек (`Program`)** — [DOMAIN.md § Термины](./COMMON/DOMAIN.md#термины-не-путать-курс-и-languagepair) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md)
-- **Dashboard `/home` и практика `/cards/select`** — [DOMAIN.md § Learning Home](./COMMON/DOMAIN.md#learning-home-g13)
-- **Модели TypeScript** — [DOMAIN.md § Модели](./COMMON/DOMAIN.md#модели)
-- **Уровень подготовки в профиле** — [DOMAIN.md § UserPreferences](./COMMON/DOMAIN.md#сущности) · `learning-proficiency.types.ts`
+- **Объект изучения vs карточка (компоненты, затенение известного)** — [BUSINESS.md § Объект и карточка](./PRODUCT/BUSINESS.md#объект-изучения-и-карточка)
+- **Иерархия Card → Scenario → Lesson → Program → Course** — [DOMAIN.md § Иерархия](./PRODUCT/DOMAIN.md#иерархия-контента) · [BUSINESS.md § Иерархия](./PRODUCT/BUSINESS.md#иерархия-учебного-контента)
+- **«Курс» vs программа (`Course`) vs трек (`Program`)** — [DOMAIN.md § Термины](./PRODUCT/DOMAIN.md#термины-не-путать-курс-и-languagepair) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md)
+- **Dashboard `/home` и практика `/cards/select`** — [DOMAIN.md § Learning Home](./PRODUCT/DOMAIN.md#learning-home-g13)
+- **Модели TypeScript** — [DOMAIN.md § Модели](./PRODUCT/DOMAIN.md#модели)
+- **Уровень подготовки в профиле** — [DOMAIN.md § UserPreferences](./PRODUCT/DOMAIN.md#сущности) · `learning-proficiency.types.ts`
 - **Цвета тонов (Dummit 2008)** — [CONTENT/CJK-CONTENT.md § Цветовая маркировка](./CONTENT/CJK-CONTENT.md#цветовая-маркировка-тонов)
-- **Структура `src/app`** — [ARCHITECTURE.md § Структура](./ARCHITECTURE.md)
+- **Структура `src/app`** — [ARCHITECTURE.md § Структура](./PRODUCT/ARCHITECTURE.md)

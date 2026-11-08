@@ -75,27 +75,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "system",
           "syntax"
-        ],
-        "tags": "Родитель получает PID ребёнка; ребёнок — 0."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.system-programming.02.scenario",
       "question": "Что вернёт fork() в родительском процессе?",
       "code": {
-        "code": [
-          "PID дочернего процесса",
-          "0",
-          "-1",
-          "Адрес"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "PID дочернего процесса",
+        "0",
+        "-1",
+        "Адрес"
+      ],
+      "correctIndex": 0,
+      "explanation": "Родитель получает PID ребёнка; ребёнок — 0."
     },
     {
       "id": "cpp.basics.system-programming.02.scenario.card-04",
@@ -171,27 +172,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "system",
           "syntax"
-        ],
-        "tags": "Зомби существует до вызова wait() родителем."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.system-programming.02.scenario",
       "question": "Что такое зомби-процесс?",
       "code": {
-        "code": [
-          "Завершённый процесс, чей статус ещё не забран wait",
-          "Мёртвый поток",
-          "Бесконечный цикл",
-          "Фоновый процесс"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Завершённый процесс, чей статус ещё не забран wait",
+        "Мёртвый поток",
+        "Бесконечный цикл",
+        "Фоновый процесс"
+      ],
+      "correctIndex": 0,
+      "explanation": "Зомби существует до вызова wait() родителем."
     },
     {
       "id": "cpp.basics.system-programming.02.scenario.card-07",
@@ -267,27 +269,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "system",
           "syntax"
-        ],
-        "tags": "kill отправляет сигнал указанному процессу."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.system-programming.02.scenario",
       "question": "Что делает kill(pid, SIGTERM)?",
       "code": {
-        "code": [
-          "Отправляет сигнал завершения процессу",
-          "Удаляет pid",
-          "Создаёт процесс",
-          "Ставит на паузу"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Отправляет сигнал завершения процессу",
+        "Удаляет pid",
+        "Создаёт процесс",
+        "Ставит на паузу"
+      ],
+      "correctIndex": 0,
+      "explanation": "kill отправляет сигнал указанному процессу."
     },
     {
       "id": "cpp.basics.system-programming.02.scenario.card-10",
@@ -363,27 +366,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "system",
           "syntax"
-        ],
-        "tags": "open возвращает неотрицательный fd либо -1."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.system-programming.02.scenario",
       "question": "Что возвращает open(\"f.txt\", O_RDONLY)?",
       "code": {
-        "code": [
-          "Дескриптор (>=0) или -1 при ошибке",
-          "Имя файла",
-          "Указатель",
-          "0 всегда"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Дескриптор (>=0) или -1 при ошибке",
+        "Имя файла",
+        "Указатель",
+        "0 всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "open возвращает неотрицательный fd либо -1."
     },
     {
       "id": "cpp.basics.system-programming.02.scenario.card-13",
@@ -459,27 +463,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "system",
           "syntax"
-        ],
-        "tags": "pipe(fds) даёт fds[0] для чтения, fds[1] для записи."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.system-programming.02.scenario",
       "question": "Сколько концов у pipe(), представленных в массиве?",
       "code": {
-        "code": [
-          "2 (чтение и запись)",
-          "1",
-          "3",
-          "4"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "2 (чтение и запись)",
+        "1",
+        "3",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "pipe(fds) даёт fds[0] для чтения, fds[1] для записи."
     },
     {
       "id": "cpp.basics.system-programming.02.scenario.card-16",

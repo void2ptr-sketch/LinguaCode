@@ -74,27 +74,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "wasm",
           "compilers"
-        ],
-        "tags": "Популярные тулчейны."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.wasm.01.scenario",
       "question": "Как компилировать C++ в wasm?",
       "code": {
-        "code": [
-          "Emscripten / clang --target=wasm32",
-          "gcc",
-          "cmake",
-          "нет"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Emscripten / clang --target=wasm32",
+        "gcc",
+        "cmake",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Популярные тулчейны."
     },
     {
       "id": "cpp.advanced.wasm.01.scenario.card-04",
@@ -168,26 +169,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "wasm"
-        ],
-        "tags": "Экспортируемые API."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.wasm.01.scenario",
       "question": "Что экспортирует .wasm модуль?",
       "code": {
-        "code": [
-          "Функции для вызова из JS",
-          "массив",
-          "хэш",
-          "лог"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Функции для вызова из JS",
+        "массив",
+        "хэш",
+        "лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Экспортируемые API."
     },
     {
       "id": "cpp.advanced.wasm.01.scenario.card-07",
@@ -261,26 +263,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "wasm"
-        ],
-        "tags": "Обмен данными через буфер."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.wasm.01.scenario",
       "question": "Что такое linear memory?",
       "code": {
-        "code": [
-          "Непрерывная память wasm-модуля",
-          "куча JS",
-          "стек",
-          "лог"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Непрерывная память wasm-модуля",
+        "куча JS",
+        "стек",
+        "лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Обмен данными через буфер."
     },
     {
       "id": "cpp.advanced.wasm.01.scenario.card-10",
@@ -355,26 +358,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "wasm"
-        ],
-        "tags": "Основной вызов."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.wasm.01.scenario",
       "question": "Что делает emcc?",
       "code": {
-        "code": [
-          "Компилирует C/C++ в wasm/JS",
-          "линкует JS",
-          "хэширует",
-          "сети"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Компилирует C/C++ в wasm/JS",
+        "линкует JS",
+        "хэширует",
+        "сети"
+      ],
+      "correctIndex": 0,
+      "explanation": "Основной вызов."
     },
     {
       "id": "cpp.advanced.wasm.01.scenario.card-13",
@@ -480,26 +484,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "wasm"
-        ],
-        "tags": "Связь с окружением."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.wasm.01.scenario",
       "question": "Что делает import в wasm?",
       "code": {
-        "code": [
-          "Подтягивает внешние функции/память",
-          "компилирует",
-          "сортирует",
-          "логирует"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Подтягивает внешние функции/память",
+        "компилирует",
+        "сортирует",
+        "логирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Связь с окружением."
     },
     {
       "id": "cpp.advanced.wasm.01.scenario.card-17",

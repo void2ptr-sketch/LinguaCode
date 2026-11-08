@@ -335,27 +335,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "concurrency",
           "modern-cpp"
-        ],
-        "tags": "notify будит ожидающие потоки."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.threading.01.scenario",
       "question": "Какой метод пробудит ждущих?",
       "code": {
-        "code": [
-          "cv.notify_one() / notify_all()",
-          "cv.wait",
-          "cv.unlock",
-          "cv.stop"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "cv.notify_one() / notify_all()",
+        "cv.wait",
+        "cv.unlock",
+        "cv.stop"
+      ],
+      "correctIndex": 0,
+      "explanation": "notify будит ожидающие потоки."
     },
     {
       "id": "cpp.advanced.threading.01.scenario.card-12",

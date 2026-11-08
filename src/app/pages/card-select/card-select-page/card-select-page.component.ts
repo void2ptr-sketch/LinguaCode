@@ -35,7 +35,7 @@ import { ScenarioPickerSectionComponent } from '../../../features/card-select/co
 import { LearningZoneComponent } from '../../../features/card-select/components/learning-zone/learning-zone.component';
 import type { CardDifficulty } from '../../../entities/card/model';
 import type { LessonPickPayload } from '../../../entities/lesson/ui/lesson-picker';
-import { DIFFICULTY_LABELS } from '../../../entities/card/lib/catalog-labels';
+import { CatalogService } from '../../../entities/card/api/catalog.service';
 import { cardSupportsSessionDirection } from '../../../entities/card/utils/card-direction.utils';
 
 /**
@@ -72,6 +72,7 @@ export class CardSelectPageComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly logger = inject(AppLoggerService);
+  private readonly catalogService = inject(CatalogService);
   /** Guard so the journey return fires exactly once per completed session. */
   private journeyReturnFired = false;
 
@@ -79,7 +80,9 @@ export class CardSelectPageComponent implements OnInit {
   readonly flow = inject(CardSelectFlowService);
 
   readonly difficultyLevels: readonly CardDifficulty[] = ['beginner', 'intermediate', 'advanced'];
-  readonly difficultyLabels = DIFFICULTY_LABELS;
+  readonly difficultyLabels = computed<Record<string, string>>(() =>
+    Object.fromEntries(this.catalogService.difficulties().map((d) => [d.code, d.label])),
+  );
   readonly LEARNING_TAB = LEARNING_TAB;
 
   // ─── Delegated signals (exposed for template) ─────────────────────────
@@ -125,7 +128,7 @@ export class CardSelectPageComponent implements OnInit {
   );
 
   readonly cardProgressPercent = computed(() => {
-    const total = this.store.cards().length;
+    const total = this.store.allCardIds().length;
     if (total === 0) return 0;
     return Math.round(((this.store.currentIndex() + 1) / total) * 100);
   });
@@ -386,11 +389,17 @@ export class CardSelectPageComponent implements OnInit {
         session.scenarioSourceLabel,
         session.missingCardIds,
       );
-      this.store.setScenario(session.scenarioId, session.cards);
+      // Pass card IDs for pagination - cards are loaded on-demand
+      this.store.setScenario(session.scenarioId, session.cardIds);
     } catch (error) {
       this.logger.error('CardSelect: failed to load scenario cards', error);
       this.store.setError('Не удалось загрузить карточки сценария');
     }
+  }
+
+  /** Retries loading cards after an error. */
+  async retryLoad(): Promise<void> {
+    await this.loadCards();
   }
 
   /** Checks the current answer and records the result. */
@@ -411,6 +420,11 @@ export class CardSelectPageComponent implements OnInit {
       lessonId: this.selectedLessonId() || undefined,
       courseId: this.selectedCourseId() || undefined,
     });
+  }
+
+  /** Handles next card navigation with pagination support. */
+  async onNextCard(): Promise<void> {
+    await this.store.nextCard();
   }
 
   async goToNextLessonScenario(): Promise<void> {

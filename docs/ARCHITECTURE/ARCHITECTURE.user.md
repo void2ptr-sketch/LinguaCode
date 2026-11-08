@@ -150,6 +150,6 @@ flowchart LR
 
 ## Связанные документы
 
-- [ARCHITECTURE.md](../ARCHITECTURE.md) — обзор архитектуры
+- [ARCHITECTURE.md](../PRODUCT/ARCHITECTURE.md) — обзор архитектуры
 - [ARCHITECTURE.core.md](./ARCHITECTURE.core.md) — UserStore, overlay, content seed
 - [LANGUAGE-PAIR.md](../FEATURES/LANGUAGE-PAIR.md) — языковые пары

@@ -331,27 +331,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "types",
           "language-basics"
-        ],
-        "tags": "В арифметике IEEE 754 деление на ±0.0 даёт ±inf для ненулевого числителя."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario",
       "question": "Что произойдёт при делении double на 0.0?",
       "code": {
-        "code": [
-          "Результат inf или -inf (не ошибка)",
-          "Ошибка компиляции",
-          "Исключение всегда",
-          "Программа завершится"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Результат inf или -inf (не ошибка)",
+        "Ошибка компиляции",
+        "Исключение всегда",
+        "Программа завершится"
+      ],
+      "correctIndex": 0,
+      "explanation": "В арифметике IEEE 754 деление на ±0.0 даёт ±inf для ненулевого числителя."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-12",

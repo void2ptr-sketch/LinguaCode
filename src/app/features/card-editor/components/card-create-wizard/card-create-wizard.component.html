@@ -1,5 +1,5 @@
 <p class="card-create-wizard__intro">
-  Быстрое создание: {{ kindLabels[draft().kind] }}.
+  Быстрое создание: {{ kindLabels()[draft().kind] }}.
   @if (variantHint(); as hint) {
     <span class="card-create-wizard__variant">{{ hint }}</span>
   }

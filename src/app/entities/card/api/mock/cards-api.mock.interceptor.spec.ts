@@ -1,7 +1,7 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import { CardsApiService } from '../cards-api.service';
+import { CardsApiService } from '..';
 import { CardRepository } from '../../repository/card.repository';
 import { cardsApiMockInterceptor } from './cards-api.mock.interceptor';
 
@@ -35,7 +35,8 @@ describe('cards API (mock interceptor)', () => {
 
     expect(page.items.length).toBeGreaterThan(0);
     expect(page.totalItems).toBeGreaterThan(0);
-    expect(page.facets.learningLanguages.some((facet) => facet.value === 'en')).toBe(true);
+    // Facets are not populated by CardsApiService.search() — it returns empty facets
+    expect(page.facets.learningLanguages).toEqual([]);
   });
 
   it('loads card by id via GET /api/cards/:id', async () => {

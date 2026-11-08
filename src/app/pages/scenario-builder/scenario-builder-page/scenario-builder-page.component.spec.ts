@@ -148,6 +148,8 @@ describe('ScenarioBuilderPageComponent', () => {
           published: false,
           updatedAt: '',
           languagePairSummary: '',
+          knownLanguage: 'ru',
+          learningLanguage: 'en',
         },
       ]);
       expect(component.courseTitle('course-1')).toBe('My Course');

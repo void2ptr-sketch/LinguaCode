@@ -99,7 +99,7 @@ describe('CardTryDialogComponent', () => {
       const card = component.playStore.card();
       if (card) {
         expect(component.title()).toContain(card.title);
-        expect(component.title()).toContain(component.kindLabels[card.kind]);
+        expect(component.title()).toContain(component.kindLabels()[card.kind]);
       }
     });
   });

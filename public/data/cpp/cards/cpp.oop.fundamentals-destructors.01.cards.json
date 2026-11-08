@@ -397,27 +397,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "oop",
           "syntax"
-        ],
-        "tags": "LIFO: позже созданные разрушаются раньше."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
       "question": "В каком порядке разрушаются объекты в области?",
       "code": {
-        "code": [
-          "В обратном порядке создания",
-          "В порядке создания",
-          "Случайно",
-          "Алфавитном"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "В обратном порядке создания",
+        "В порядке создания",
+        "Случайно",
+        "Алфавитном"
+      ],
+      "correctIndex": 0,
+      "explanation": "LIFO: позже созданные разрушаются раньше."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-14",

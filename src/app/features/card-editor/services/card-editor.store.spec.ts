@@ -10,7 +10,7 @@ import { USER_CONTENT_OVERLAY_KEY } from '../../../entities/user/overlay/user-co
 import type { ScenarioIndexEntry } from '../../../entities/scenario/model';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
-import { CardsApiService } from '../../../entities/card/api/cards-api.service';
+import { CardsApiService } from '../../../entities/card';
 import { IndexedDbService } from '../../../shared/storage';
 import { SyncQueueService } from '../../../shared/sync';
 import { CardEditorStore } from './card-editor.store';

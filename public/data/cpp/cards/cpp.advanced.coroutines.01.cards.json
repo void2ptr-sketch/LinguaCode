@@ -75,27 +75,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "modern-cpp",
           "c++20"
-        ],
-        "tags": "co_yield приостанавливает и отдаёт значение."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.coroutines.01.scenario",
       "question": "Какой синтаксис выдаёт значение?",
       "code": {
-        "code": [
-          "co_yield value;",
-          "yield value",
-          "return с value",
-          "emit"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "co_yield value;",
+        "yield value",
+        "return с value",
+        "emit"
+      ],
+      "correctIndex": 0,
+      "explanation": "co_yield приостанавливает и отдаёт значение."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-04",
@@ -171,27 +172,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "modern-cpp",
           "c++20"
-        ],
-        "tags": "Минимальный контракт корутин."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.coroutines.01.scenario",
       "question": "Что обязано быть в promise_type?",
       "code": {
-        "code": [
-          "get_return_object, initial_suspend, final_suspend, return_void/return_value",
-          "ничего",
-          "main",
-          "typeid"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "get_return_object, initial_suspend, final_suspend, return_void/return_value",
+        "ничего",
+        "main",
+        "typeid"
+      ],
+      "correctIndex": 0,
+      "explanation": "Минимальный контракт корутин."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-07",
@@ -268,27 +270,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "modern-cpp",
           "c++20"
-        ],
-        "tags": "Генераторы отдают последовательность."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.coroutines.01.scenario",
       "question": "Что возвращает co_yield в генераторе?",
       "code": {
-        "code": [
-          "Значение, которое можно забрать извне",
-          "Поток",
-          "Пустоту",
-          "Ошибку"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Значение, которое можно забрать извне",
+        "Поток",
+        "Пустоту",
+        "Ошибку"
+      ],
+      "correctIndex": 0,
+      "explanation": "Генераторы отдают последовательность."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-10",
@@ -364,27 +367,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "modern-cpp",
           "c++20"
-        ],
-        "tags": "coroutine_handle::resume."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.coroutines.01.scenario",
       "question": "Какая функция возобновляет корутину?",
       "code": {
-        "code": [
-          "handle.resume()",
-          "handle.start",
-          "run()",
-          "go"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "handle.resume()",
+        "handle.start",
+        "run()",
+        "go"
+      ],
+      "correctIndex": 0,
+      "explanation": "coroutine_handle::resume."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-13",
@@ -491,27 +495,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "modern-cpp",
           "c++20"
-        ],
-        "tags": "Незавершённая корутина должна уничтожаться destroy()."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.coroutines.01.scenario",
       "question": "Что вызывает утечку фрейма?",
       "code": {
-        "code": [
-          "Потеря корутины без финализации",
-          "Мало памяти",
-          "Поток",
-          "Ошибку"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Потеря корутины без финализации",
+        "Мало памяти",
+        "Поток",
+        "Ошибку"
+      ],
+      "correctIndex": 0,
+      "explanation": "Незавершённая корутина должна уничтожаться destroy()."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-17",

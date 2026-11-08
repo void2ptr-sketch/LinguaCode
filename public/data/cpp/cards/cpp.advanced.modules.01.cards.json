@@ -76,27 +76,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "modern-cpp",
           "c++20"
-        ],
-        "tags": "Ключевое слово import."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.modules.01.scenario",
       "question": "Как импортировать модуль?",
       "code": {
-        "code": [
-          "import module;",
-          "#include module",
-          "using module",
-          "imported;"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "import module;",
+        "#include module",
+        "using module",
+        "imported;"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ключевое слово import."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-04",
@@ -301,27 +302,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "modern-cpp",
           "c++20"
-        ],
-        "tags": "export module задаёт имя модуля."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.modules.01.scenario",
       "question": "Какое слово начинают определения в module interface?",
       "code": {
-        "code": [
-          "export module math;",
-          "module math",
-          "using math",
-          "import math"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "export module math;",
+        "module math",
+        "using math",
+        "import math"
+      ],
+      "correctIndex": 0,
+      "explanation": "export module задаёт имя модуля."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-11",
@@ -397,27 +399,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "modern-cpp",
           "c++20"
-        ],
-        "tags": "Один импорт — без повторного препроцессинга."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.modules.01.scenario",
       "question": "Что избавляет модуль от include guards?",
       "code": {
-        "code": [
-          "Сама природа модулей",
-          "Макросы",
-          "pragma once",
-          "Ничего"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Сама природа модулей",
+        "Макросы",
+        "pragma once",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Один импорт — без повторного препроцессинга."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-14",
@@ -524,27 +527,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "modern-cpp",
           "c++20"
-        ],
-        "tags": "Импорт модуля по имени."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.modules.01.scenario",
       "question": "Какой символ обозначает импорт всех?",
       "code": {
-        "code": [
-          "import module;",
-          "import *",
-          "import all",
-          "include"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "import module;",
+        "import *",
+        "import all",
+        "include"
+      ],
+      "correctIndex": 0,
+      "explanation": "Импорт модуля по имени."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-18",

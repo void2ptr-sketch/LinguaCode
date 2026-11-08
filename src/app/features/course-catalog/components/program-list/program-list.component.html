@@ -1,68 +1,65 @@
-@if (loading() && items().length === 0) {
+@if (loading() && programs().length === 0) {
   <div class="course-catalog-page__state">
     <mat-spinner diameter="40" />
-    <p>Загрузка…</p>
+    <p>Загрузка программ…</p>
   </div>
-} @else if (error() && items().length === 0) {
+} @else if (error() && programs().length === 0) {
   <mat-card class="course-catalog-page__message">
     <mat-card-content>{{ error() }}</mat-card-content>
-    <mat-card-actions align="end">
-      <button mat-flat-button type="button" (click)="loadRequested.emit()">Повторить</button>
-    </mat-card-actions>
   </mat-card>
-} @else if (items().length === 0) {
+} @else if (!hasCourses()) {
   <mat-card class="course-catalog-page__message">
     <mat-card-content>
-      Опубликованных программ для активного курса пока нет. Смените курс в
-      <a routerLink="/courses">каталоге курсов</a> или создайте программу в
-      <a routerLink="/tools/courses">конструкторе</a>.
+      Отметьте курсы галочкой «Активировать» во вкладке «Курсы», чтобы увидеть их программы.
     </mat-card-content>
   </mat-card>
+} @else if (programs().length === 0) {
+  <mat-card class="course-catalog-page__message">
+    <mat-card-content> Для выбранных курсов программ пока нет. </mat-card-content>
+  </mat-card>
 } @else {
-  <p>Опубликованные учебные программы для активного курса.</p>
+  <p>Программы для выбранных курсов.</p>
+
   <mat-card class="course-catalog-page__panel">
-    <mat-card-header>
-      <mat-card-title>Курсы</mat-card-title>
-      <mat-card-subtitle>{{ totalItems() }} программ</mat-card-subtitle>
-    </mat-card-header>
-
     <mat-card-content class="course-catalog-page__content">
-      <ul class="course-catalog-page__list">
-        @for (course of items(); track course.id) {
-          <li class="course-catalog-page__item">
-            <div class="course-catalog-page__item-body">
-              <div class="course-catalog-page__title-row">
-                <h2 class="course-catalog-page__title">{{ course.title }}</h2>
-                @if (isCourseCompleted(course.id)) {
-                  <mat-chip class="course-catalog-page__badge" disabled>
-                    <mat-icon>workspace_premium</mat-icon>
-                    Завершён
-                  </mat-chip>
+      <table class="course-catalog-page__table">
+        <thead>
+          <tr>
+            <th class="course-catalog-page__th">Программа</th>
+            <th class="course-catalog-page__th">Курс</th>
+            <th class="course-catalog-page__th">Уроки</th>
+            <th class="course-catalog-page__th">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (program of programs(); track program.id) {
+            <tr class="course-catalog-page__row">
+              <td class="course-catalog-page__td">
+                <span class="course-catalog-page__title">{{ program.title }}</span>
+                @if (program.description) {
+                  <span class="course-catalog-page__description">{{ program.description }}</span>
                 }
-              </div>
-              <p class="course-catalog-page__meta">
-                {{ course.programCount }} программ · {{ course.languagePairSummary }}
-                @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
-                  · {{ progressPercent(course.id) }}%
-                }
-              </p>
-            </div>
-
-            <div class="course-catalog-page__actions">
-              <button mat-flat-button type="button" (click)="startCourse.emit(course.id)">
-                Начать
-              </button>
-            </div>
-          </li>
-        }
-      </ul>
-
-      <app-pagination
-        [length]="totalItems()"
-        [pageIndex]="pageIndex()"
-        [pageSize]="pageSize()"
-        (pageChange)="onPageChange($event)"
-      />
+              </td>
+              <td class="course-catalog-page__td course-catalog-page__td--code">
+                {{ courseTitleMap().get(normalizeCourseId(program.courseId)) ?? program.courseId }}
+              </td>
+              <td class="course-catalog-page__td course-catalog-page__td--number">
+                {{ declineLesson(getLessonCount(program.id)) }}
+              </td>
+              <td class="course-catalog-page__td course-catalog-page__td--actions">
+                <button
+                  mat-stroked-button
+                  type="button"
+                  size="small"
+                  (click)="onStartProgram(program.courseId)"
+                >
+                  Начать
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
     </mat-card-content>
   </mat-card>
 }

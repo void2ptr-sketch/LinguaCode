@@ -11,6 +11,7 @@ import {
   type LessonRoadmapItem,
 } from '../lib/learning-resume.utils';
 import { CourseSearchService } from '../../../entities/course/search/course-search.service';
+import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import { resolveLearningSessionForPair } from '../lib/learning-session.utils';
 import { getScenarioSeedCache } from '../../../entities/content-seed/content-seed.cache';
 import type { Course, ProgramWithLessons } from '../../../entities/course/model';
@@ -29,6 +30,7 @@ import { RADICALS_COURSE_ID } from '../../../entities/chinese/lib/tones/radicals
 @Injectable({ providedIn: 'root' })
 export class LearningDashboardService {
   private readonly courseSearchService = inject<CourseSearchService>(CourseSearchService);
+  private readonly programsApi = inject(ProgramsApiService);
   private readonly userStore = inject<UserStore>(UserStore);
   private readonly resultsStore = inject<LearningResultsStore>(LearningResultsStore);
   private readonly logger = inject<AppLoggerService>(AppLoggerService);
@@ -140,13 +142,8 @@ export class LearningDashboardService {
       let courseId = inferActiveCourseId(saved, pairResults, null);
 
       if (courseId) {
-        try {
-          const candidate = await this.courseSearchService.getById(courseId);
-          if (!courseMatchesActiveLanguagePair(candidate, pair)) {
-            courseId = null;
-          }
-        } catch (error) {
-          this.logger.warn('LearningDashboard: failed to validate active course', error);
+        const candidate = await this.courseSearchService.getByIdOrNull(courseId);
+        if (!candidate || !courseMatchesActiveLanguagePair(candidate, pair)) {
           courseId = null;
         }
       }
@@ -155,13 +152,9 @@ export class LearningDashboardService {
         // Гарантированный fallback — курс радикалов (как раньше).
         courseId = RADICALS_COURSE_ID;
         // По умолчанию предпочитаем C++ Complete Course, если он доступен.
-        try {
-          const cppCourse = await this.courseSearchService.getById(CPP_COMPLETE_COURSE_ID);
-          if (cppCourse) {
-            courseId = CPP_COMPLETE_COURSE_ID;
-          }
-        } catch {
-          // C++ курс недоступен — остаёмся на курсе радикалов.
+        const cppCourse = await this.courseSearchService.getByIdOrNull(CPP_COMPLETE_COURSE_ID);
+        if (cppCourse) {
+          courseId = CPP_COMPLETE_COURSE_ID;
         }
       }
 
@@ -183,14 +176,41 @@ export class LearningDashboardService {
         return;
       }
 
-      const course = await this.courseSearchService.getById(courseId);
-      this.course.set(course);
+      const course = await this.courseSearchService.getByIdOrNull(courseId);
+      if (!course) {
+        // Course not found — fall back to radicals course
+        courseId = RADICALS_COURSE_ID;
+        const fallbackCourse = await this.courseSearchService.getByIdOrNull(courseId);
+        if (!fallbackCourse) {
+          this.course.set(null);
+          this.program.set(null);
+          this.resumeTarget.set({
+            kind: 'no-program',
+            courseId: '',
+            courseTitle: '',
+            programId: '',
+            programTitle: '',
+            lessonId: '',
+            lessonTitle: '',
+            scenarioId: '',
+            scenarioTitle: '',
+          });
+          this.roadmap.set([]);
+          return;
+        }
+        this.course.set(fallbackCourse);
+      } else {
+        this.course.set(course);
+      }
+
+      // course is guaranteed to be non-null at this point
+      const resolvedCourse = this.course()!;
 
       // Resolve active program from saved state or use the first program
       const savedProgramId = saved.activeProgramId;
       const programs =
         (
-          course as unknown as {
+          resolvedCourse as unknown as {
             programs: import('../../../entities/program/model/program.types').Program[];
           }
         ).programs ?? [];
@@ -198,7 +218,7 @@ export class LearningDashboardService {
 
       if (!activeProgram && programs.length > 0) {
         // Load first program with lessons
-        activeProgram = (await this.courseSearchService.getProgramById(
+        activeProgram = (await this.programsApi.getById(
           programs[0].id,
         )) as unknown as import('../../../entities/program/model/program.types').ProgramWithLessons;
       }
@@ -229,7 +249,7 @@ export class LearningDashboardService {
         collectScenarioIds(activeProgramForResume),
       );
       const target = resolveLearningResumeTarget({
-        course,
+        course: resolvedCourse,
         program: activeProgramForResume,
         saved,
         pairResults,

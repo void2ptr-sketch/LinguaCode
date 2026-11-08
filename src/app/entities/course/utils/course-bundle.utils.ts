@@ -54,7 +54,7 @@ export function collectCourseBundle(
   // 3. Собрать уроки из программ
   const lessons: Lesson[] = [];
   for (const program of programs) {
-    for (const lessonId of program.lessonIds) {
+    for (const lessonId of program.lessonIds ?? []) {
       const lesson = catalog.lessons.find((l) => l.id === lessonId);
       if (!lesson) {
         errors.push(`Урок ${lessonId} не найден в каталоге`);
@@ -197,7 +197,7 @@ export function validateCourseBundle(bundle: CourseBundle): CourseBundleValidati
   const bundleLessonIds = new Set(bundle.course.lessons.map((l) => l.id));
   const allPrograms = bundle.course.programs;
   for (const program of allPrograms) {
-    for (const lessonId of program.lessonIds) {
+    for (const lessonId of program.lessonIds ?? []) {
       if (!bundleLessonIds.has(lessonId)) {
         errors.push(`Урок ${lessonId} указан в программе, но отсутствует в пакете`);
       }

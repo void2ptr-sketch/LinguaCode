@@ -1,6 +1,7 @@
 .display-matrix {
   display: grid;
   gap: 0.35rem;
+  justify-content: start;
 }
 
 .display-matrix__hint {
@@ -14,7 +15,7 @@
 .display-matrix__row {
   align-items: center;
   display: grid;
-  gap: 0 0.75rem;
+  gap: 0 0.5rem;
   grid-template-areas: 'label prompt answer';
   grid-template-columns: minmax(7rem, 1fr) 3.5rem 3.5rem;
 }

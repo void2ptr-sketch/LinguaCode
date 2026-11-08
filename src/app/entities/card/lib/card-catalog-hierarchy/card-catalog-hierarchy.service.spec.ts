@@ -3,10 +3,12 @@ import { vi } from 'vitest';
 
 import { CardCatalogHierarchyService } from './card-catalog-hierarchy.service';
 import { CourseSearchService } from '../../../course/search/course-search.service';
+import { ProgramsApiService } from '../../../program/api/programs-api.service';
 
 describe('CardCatalogHierarchyService', () => {
   let service: CardCatalogHierarchyService;
   let courseSearchServiceMock: Partial<CourseSearchService>;
+  let programsApiMock: Partial<ProgramsApiService>;
 
   const mockCourseIndexEntry = {
     id: 'course-1',
@@ -73,13 +75,17 @@ describe('CardCatalogHierarchyService', () => {
     courseSearchServiceMock = {
       search: vi.fn().mockResolvedValue(mockPaginatedCourses),
       getById: vi.fn().mockResolvedValue(mockCourseWithLessons),
-      getProgramById: vi.fn().mockResolvedValue(mockCourseWithLessons.programs[0]),
+    };
+
+    programsApiMock = {
+      getById: vi.fn().mockResolvedValue(mockCourseWithLessons.programs[0]),
     };
 
     TestBed.configureTestingModule({
       providers: [
         CardCatalogHierarchyService,
         { provide: CourseSearchService, useValue: courseSearchServiceMock },
+        { provide: ProgramsApiService, useValue: programsApiMock },
       ],
     });
 
@@ -148,7 +154,7 @@ describe('CardCatalogHierarchyService', () => {
       await service.loadLessons('course-1');
       await service.loadLessons('course-1');
 
-      expect(courseSearchServiceMock.getProgramById).toHaveBeenCalledTimes(1);
+      expect(programsApiMock.getById).toHaveBeenCalledTimes(1);
     });
   });
 

@@ -1,0 +1,253 @@
+@if (loading()) {
+  <div class="settings-page__loading">Loading languages...</div>
+} @else {
+  <mat-card class="settings-page__card">
+    <mat-card-header>
+      <mat-card-title>Language Settings</mat-card-title>
+      <mat-card-subtitle>
+        Select available languages and configure learning pairs
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-tab-group dynamicHeight class="settings-page__tabs">
+        <!-- Tab 1: Languages -->
+        <mat-tab label="Languages">
+          <div class="settings-page__tab-panel">
+            <div class="settings-page__header">
+              <div>
+                <h2 class="settings-page__section-title">Available Languages</h2>
+                <p class="settings-page__hint">
+                  Choose which languages are available for learning. At least one language is
+                  required to create pairs.
+                </p>
+              </div>
+
+              @if (canWriteLanguages()) {
+                <button mat-flat-button type="button" (click)="openCreateLanguageDialog()">
+                  <mat-icon>add</mat-icon>
+                  Add Language
+                </button>
+              }
+            </div>
+
+            @if (availableLanguages().length === 0) {
+              <div class="settings-page__empty">No languages available.</div>
+            } @else {
+              <div class="settings-page__languages-grid">
+                @for (lang of availableLanguages(); track lang.id) {
+                  <mat-card
+                    class="settings-page__language-item"
+                    [class.settings-page__language-item--inactive]="!lang.activeFlag"
+                  >
+                    <mat-card-content>
+                      <div class="settings-page__language-info">
+                        <span class="settings-page__language-name">{{ lang.displayName }}</span>
+                        <span class="settings-page__language-native">({{ lang.nativeName }})</span>
+                        <span class="settings-page__language-code">{{ lang.code }}</span>
+                        @if (!lang.activeFlag) {
+                          <span class="settings-page__language-badge--inactive">Inactive</span>
+                        }
+                      </div>
+
+                      <mat-checkbox
+                        [checked]="selectedCodes().includes(lang.code)"
+                        (change)="toggleLanguage(lang.code)"
+                        [disabled]="
+                          !lang.activeFlag ||
+                          (selectedCodes().length === 1 && selectedCodes().includes(lang.code))
+                        "
+                        [matTooltip]="
+                          !lang.activeFlag ? 'Reactivate this language to use it in learning' : ''
+                        "
+                      >
+                        Use in Learning
+                      </mat-checkbox>
+
+                      @if (canWriteLanguages()) {
+                        <div class="settings-page__language-admin">
+                          <mat-slide-toggle
+                            [checked]="lang.activeFlag"
+                            (change)="toggleActiveLanguage(lang)"
+                          >
+                            Active
+                          </mat-slide-toggle>
+                        </div>
+                      }
+                    </mat-card-content>
+                  </mat-card>
+                }
+              </div>
+            }
+          </div>
+        </mat-tab>
+
+        <!-- Tab 2: Language Pairs -->
+        <mat-tab label="Language Pairs">
+          <div class="settings-page__tab-panel">
+            <h2 class="settings-page__section-title">Configured Pairs</h2>
+            <p class="settings-page__hint">
+              Mirror pairs (e.g. EN↔RU) are grouped. Tap a direction to activate it, or remove
+              individually.
+            </p>
+
+            @if (selectedCodes().length < 2) {
+              <div class="settings-page__warning">Select at least 2 languages to create pairs.</div>
+            } @else {
+              <!-- Create new pair form -->
+              <div class="settings-page__pair-form">
+                <mat-form-field appearance="outline" class="settings-page__pair-select">
+                  <mat-label>Known</mat-label>
+                  <mat-select
+                    [value]="newKnownCode()"
+                    (selectionChange)="newKnownCode.set($event.value)"
+                  >
+                    @for (code of selectedCodes(); track code) {
+                      <mat-option [value]="code">{{ getLanguageLabel(code) }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+
+                <span class="settings-page__pair-arrow">→</span>
+
+                <mat-form-field appearance="outline" class="settings-page__pair-select">
+                  <mat-label>Learning</mat-label>
+                  <mat-select
+                    [value]="newLearningCode()"
+                    (selectionChange)="newLearningCode.set($event.value)"
+                  >
+                    @for (code of selectedCodes(); track code) {
+                      <mat-option [value]="code">{{ getLanguageLabel(code) }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+
+                <button
+                  mat-flat-button
+                  type="button"
+                  class="settings-page__pair-add"
+                  [disabled]="
+                    !newKnownCode() ||
+                    !newLearningCode() ||
+                    newKnownCode() === newLearningCode() ||
+                    creatingPair()
+                  "
+                  (click)="createPair()"
+                >
+                  Add Pair
+                </button>
+              </div>
+
+              <!-- Existing pairs grouped by mirror languages -->
+              @if (groupedPairs().length === 0) {
+                <div class="settings-page__empty">
+                  No pairs found for your selected languages. Create one above.
+                </div>
+              } @else {
+                <div class="settings-page__pairs-grouped">
+                  @for (group of groupedPairs(); track group.key) {
+                    <div class="settings-page__pair-group">
+                      <!-- Group header -->
+                      <div class="settings-page__pair-group__header">
+                        <div class="settings-page__pair-group__title">
+                          @if (group.key.includes('|')) {
+                            @let codes = group.key.split('|');
+                            <span
+                              class="settings-page__pair-group__flag"
+                              [style.background-color]="
+                                !getFlagEmoji(codes[0]) ? getBadgeColor(codes[0]) : null
+                              "
+                              [style.color]="
+                                !getFlagEmoji(codes[0]) ? getBadgeTextColor(codes[0]) : null
+                              "
+                            >
+                              {{ getFlagEmoji(codes[0]) || getBadgeCode(codes[0]) }}
+                            </span>
+                            <span class="settings-page__pair-group__name">
+                              {{ getLanguageLabel(codes[0]) }} ↔ {{ getLanguageLabel(codes[1]) }}
+                              <span
+                                class="settings-page__pair-group__flag"
+                                [style.background-color]="
+                                  !getFlagEmoji(codes[1]) ? getBadgeColor(codes[1]) : null
+                                "
+                                [style.color]="
+                                  !getFlagEmoji(codes[1]) ? getBadgeTextColor(codes[1]) : null
+                                "
+                              >
+                                {{ getFlagEmoji(codes[1]) || getBadgeCode(codes[1]) }}
+                              </span>
+                            </span>
+                          }
+                          <span
+                            class="settings-page__pair-group__badge"
+                            [class.settings-page__pair-group__badge--partial]="group.count === 1"
+                          >
+                            {{ group.count }} of 2
+                          </span>
+                        </div>
+                      </div>
+
+                      <!-- Direction cards -->
+                      <div class="settings-page__pair-group__directions">
+                        @for (dir of group.directions; track dir.id) {
+                          <app-direction-card-inner
+                            [pairId]="dir.id"
+                            [known]="dir.known"
+                            [learning]="dir.learning"
+                            [isActive]="dir.isActive"
+                            (activate)="setActivePair($event)"
+                            (remove)="removePair($event)"
+                          />
+                        }
+
+                        <!-- Empty slot placeholder -->
+                        @if (group.count === 1) {
+                          <div class="settings-page__direction settings-page__direction--empty">
+                            <div
+                              class="settings-page__direction__content"
+                              style="
+                                align-items: center;
+                                justify-content: center;
+                                padding: 2rem 1rem;
+                              "
+                            >
+                              @let codes = group.key.split('|');
+                              @let a = group.directions[0].known === codes[0] ? codes[1] : codes[0];
+                              @let b = group.directions[0].known === codes[0] ? codes[0] : codes[1];
+                              <div class="settings-page__direction__codes">
+                                <span class="settings-page__direction__code">{{
+                                  a | uppercase
+                                }}</span>
+                                <span class="settings-page__direction__arrow">→</span>
+                                <span class="settings-page__direction__code">{{
+                                  b | uppercase
+                                }}</span>
+                              </div>
+                              <div
+                                class="settings-page__direction__sublabel"
+                                style="margin-top: 0.4rem"
+                              >
+                                Not yet configured
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              }
+            }
+          </div>
+        </mat-tab>
+
+        <!-- Tab 3: Course Catalog Settings -->
+        <mat-tab label="Setup Language Pairs">
+          <div class="settings-page__tab-panel">
+            <app-course-catalog-settings />
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+}

@@ -48,6 +48,10 @@ describe('CourseCatalogStore', () => {
     it('should have default selectedTabIndex', () => {
       expect(store.selectedTabIndex()).toBe(0);
     });
+
+    it('should have default activeCourseIds', () => {
+      expect(store.activeCourseIds().size).toBe(0);
+    });
   });
 
   describe('course catalog mutations', () => {
@@ -61,6 +65,8 @@ describe('CourseCatalogStore', () => {
           published: true,
           updatedAt: '2024-01-01T00:00:00.000Z',
           languagePairSummary: 'Русский → English',
+          knownLanguage: 'ru',
+          learningLanguage: 'en',
         },
       ];
       store.setItems(items);
@@ -114,6 +120,49 @@ describe('CourseCatalogStore', () => {
     it('should set selectedTabIndex', () => {
       store.setSelectedTabIndex(2);
       expect(store.selectedTabIndex()).toBe(2);
+    });
+
+    it('should reset filterDismissed when setting tab index', () => {
+      store.setFilterDismissed(true);
+      expect(store.filterDismissedUntilTabChange()).toBe(true);
+      store.setSelectedTabIndex(1);
+      expect(store.filterDismissedUntilTabChange()).toBe(false);
+    });
+  });
+
+  describe('course filter mutations', () => {
+    it('should toggle activeCourseId', () => {
+      expect(store.activeCourseIds().size).toBe(0);
+      store.toggleActiveCourseId('course-123');
+      expect(store.activeCourseIds().has('course-123')).toBe(true);
+      expect(store.activeCourseIds().size).toBe(1);
+    });
+
+    it('should remove activeCourseId when toggled again', () => {
+      store.toggleActiveCourseId('course-123');
+      store.toggleActiveCourseId('course-123');
+      expect(store.activeCourseIds().size).toBe(0);
+    });
+
+    it('should support multiple active courses', () => {
+      store.toggleActiveCourseId('course-1');
+      store.toggleActiveCourseId('course-2');
+      expect(store.activeCourseIds().size).toBe(2);
+      expect(store.activeCourseIds().has('course-1')).toBe(true);
+      expect(store.activeCourseIds().has('course-2')).toBe(true);
+    });
+
+    it('should clear activeCourseIds', () => {
+      store.toggleActiveCourseId('course-1');
+      store.toggleActiveCourseId('course-2');
+      store.clearActiveCourseIds();
+      expect(store.activeCourseIds().size).toBe(0);
+    });
+
+    it('should set filterDismissed', () => {
+      expect(store.filterDismissedUntilTabChange()).toBe(false);
+      store.setFilterDismissed(true);
+      expect(store.filterDismissedUntilTabChange()).toBe(true);
     });
   });
 

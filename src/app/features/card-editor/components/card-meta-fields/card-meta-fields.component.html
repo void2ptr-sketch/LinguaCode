@@ -5,8 +5,8 @@
     <mat-form-field appearance="outline">
       <mat-label>Сложность</mat-label>
       <mat-select [ngModel]="m.difficulty" (ngModelChange)="updateDifficulty($event)">
-        @for (difficulty of difficultyOptions; track difficulty) {
-          <mat-option [value]="difficulty">{{ difficultyLabels[difficulty] }}</mat-option>
+        @for (difficulty of difficultyOptions(); track difficulty) {
+          <mat-option [value]="difficulty">{{ difficultyLabels()[difficulty] }}</mat-option>
         }
       </mat-select>
     </mat-form-field>

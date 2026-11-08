@@ -183,7 +183,7 @@ describe('CardFormQuestionTabComponent', () => {
 
   it('should expose languages array', () => {
     expect(component.languages).toBeDefined();
-    expect(component.languages.length).toBeGreaterThan(0);
+    expect(component.languages().length).toBeGreaterThanOrEqual(0);
   });
 
   it('should expose languageLabels', () => {

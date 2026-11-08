@@ -74,26 +74,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "cross-platform"
-        ],
-        "tags": "CMakeLists.txt → билд."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.cross-platform.01.scenario",
       "question": "Что делает CMake?",
       "code": {
-        "code": [
-          "Конфигурирует проект для целевой платформы",
-          "Компилирует",
-          "Логирует",
-          "Хеширует"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Конфигурирует проект для целевой платформы",
+        "Компилирует",
+        "Логирует",
+        "Хеширует"
+      ],
+      "correctIndex": 0,
+      "explanation": "CMakeLists.txt → билд."
     },
     {
       "id": "cpp.advanced.cross-platform.01.scenario.card-04",
@@ -388,26 +389,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "cross-platform"
-        ],
-        "tags": "Без «натива»."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.cross-platform.01.scenario",
       "question": "Как хранить число в файл переносимо?",
       "code": {
-        "code": [
-          "Явная сериализация порядка байт",
-          "как int",
-          "строка",
-          "нет"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Явная сериализация порядка байт",
+        "как int",
+        "строка",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без «натива»."
     },
     {
       "id": "cpp.advanced.cross-platform.01.scenario.card-14",
@@ -513,27 +515,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "cross-platform",
           "ci"
-        ],
-        "tags": "Разные компиляторы ловят разное."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.cross-platform.01.scenario",
       "question": "Зачем компилировать на всех ОС?",
       "code": {
-        "code": [
-          "Поймать специфичные ошибки",
-          "Стиль",
-          "Логи",
-          "быстрее"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Поймать специфичные ошибки",
+        "Стиль",
+        "Логи",
+        "быстрее"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разные компиляторы ловят разное."
     },
     {
       "id": "cpp.advanced.cross-platform.01.scenario.card-18",

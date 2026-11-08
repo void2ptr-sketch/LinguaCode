@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard, notAuthGuard } from '../entities/auth';
 
 /**
  * Корневые маршруты приложения.
@@ -6,8 +7,39 @@ import { Routes } from '@angular/router';
  * TypeScript-модуль фичи не попадает в начальный чанк.
  */
 export const routes: Routes = [
+  // ── Auth (outside layout shell) ─────────────────────────────────
+  {
+    path: 'login',
+    canMatch: [notAuthGuard],
+    loadComponent: () =>
+      import('../pages/auth/login/login-page.component').then((m) => m.LoginPageComponent),
+  },
+  {
+    path: 'auth/forgot-password',
+    loadComponent: () =>
+      import('../pages/auth/forgot-password/forgot-password-page.component').then(
+        (m) => m.ForgotPasswordPageComponent,
+      ),
+  },
+  {
+    path: 'auth/verify-code',
+    loadComponent: () =>
+      import('../pages/auth/verify-code/verify-code-page.component').then(
+        (m) => m.VerifyCodePageComponent,
+      ),
+  },
+  {
+    path: 'auth/reset-password',
+    loadComponent: () =>
+      import('../pages/auth/reset-password/reset-password-page.component').then(
+        (m) => m.ResetPasswordPageComponent,
+      ),
+  },
+
+  // ── Main layout shell ───────────────────────────────────────────
   {
     path: '',
+    canMatch: [authGuard],
     loadComponent: () =>
       import('../widgets/main-layout/main-layout.component').then((m) => m.MainLayoutComponent),
     children: [
@@ -104,8 +136,8 @@ export const routes: Routes = [
           {
             path: 'tabs/courses',
             loadComponent: () =>
-              import('../features/course-catalog/components/course-card-list/course-card-list.component').then(
-                (m) => m.CourseCatalogCoursesComponent,
+              import('../features/course-catalog/components/course-list/course-list.component').then(
+                (m) => m.CourseCatalogCourseListComponent,
               ),
           },
           {
@@ -172,6 +204,13 @@ export const routes: Routes = [
         path: 'user',
         loadComponent: () =>
           import('../pages/user/user-page.component').then((m) => m.UserPageComponent),
+      },
+      {
+        path: 'settings/languages',
+        loadComponent: () =>
+          import('../pages/language-settings/language-settings.component').then(
+            (m) => m.LanguageSettingsComponent,
+          ),
       },
 
       { path: '**', redirectTo: 'home' },

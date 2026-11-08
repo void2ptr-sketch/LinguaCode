@@ -1,0 +1,93 @@
+@if (loading() && items().length === 0) {
+  <div class="course-catalog-page__state">
+    <mat-spinner diameter="40" />
+    <p>Загрузка…</p>
+  </div>
+} @else if (error() && items().length === 0) {
+  <mat-card class="course-catalog-page__message">
+    <mat-card-content>{{ error() }}</mat-card-content>
+  </mat-card>
+} @else if (items().length === 0) {
+  <mat-card class="course-catalog-page__message">
+    <mat-card-content> Опубликованных курсов для активного языка пока нет. </mat-card-content>
+  </mat-card>
+} @else {
+  <p>Опубликованные курсы для активных языков.</p>
+
+  <mat-card class="course-catalog-page__panel">
+    <mat-card-content class="course-catalog-page__content">
+      <table class="course-catalog-page__table">
+        <thead>
+          <tr>
+            <th class="course-catalog-page__th">Курс</th>
+            <th class="course-catalog-page__th">Языки</th>
+            <th class="course-catalog-page__th">Прогресс</th>
+            <th class="course-catalog-page__th">Статус</th>
+            <th class="course-catalog-page__th">Экспорт</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (course of items(); track course.id) {
+            <tr
+              class="course-catalog-page__row"
+              [class.course-catalog-page__row--completed]="isCourseCompleted(course.id)"
+            >
+              <td class="course-catalog-page__td">
+                <span class="course-catalog-page__title">{{ course.title }}</span>
+              </td>
+              <td class="course-catalog-page__td">
+                {{ course.languagePairSummary }}
+              </td>
+              <td class="course-catalog-page__td course-catalog-page__td--number">
+                @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
+                  {{ progressPercent(course.id) }}%
+                } @else {
+                  —
+                }
+              </td>
+              <td class="course-catalog-page__td">
+                <mat-checkbox
+                  class="course-catalog-page__activate"
+                  [checked]="activeCourseIds().has(course.id)"
+                  (change)="onToggleActive(course.id)"
+                  aria-label="Активировать"
+                >
+                  Активировать
+                </mat-checkbox>
+                @if (isCourseCompleted(course.id)) {
+                  <mat-chip class="course-catalog-page__badge" disabled>
+                    <mat-icon>workspace_premium</mat-icon>
+                    Завершён
+                  </mat-chip>
+                }
+              </td>
+              <td class="course-catalog-page__td course-catalog-page__td--actions">
+                <button
+                  mat-stroked-button
+                  type="button"
+                  size="small"
+                  (click)="exportToScorm(course.id)"
+                  [disabled]="isExporting(course.id)"
+                  aria-label="Экспорт в SCORM"
+                >
+                  @if (isExporting(course.id)) {
+                    <mat-spinner diameter="16" />
+                  } @else {
+                    SCORM
+                  }
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <app-pagination
+        [length]="totalItemsValue()"
+        [pageIndex]="pageIndexValue()"
+        [pageSize]="pageSizeValue()"
+        (pageChange)="onPageChange($event)"
+      />
+    </mat-card-content>
+  </mat-card>
+}

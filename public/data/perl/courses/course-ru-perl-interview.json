@@ -1,0 +1,732 @@
+{
+  "id": "course-ru-perl-interview",
+  "title": "Собеседование на языке Perl",
+  "description": "Подготовка к техническому собеседованию по Perl: программа сгенерирована из «Идеи программы».",
+  "languagePair": {
+    "known": "ru",
+    "learning": "perl"
+  },
+  "practiceSettings": {
+    "mode": "open",
+    "requireLessonForScenarios": false,
+    "enforceLessonPrerequisites": false,
+    "allowDifficultyFilter": true
+  },
+  "published": true,
+  "authoring": {
+    "idea": "# Идея программы: Собеседование на языке Perl\n\n<!-- Формат материализации:\n     ## Этап N: название  → 1 урок\n     - вопрос             → 1 сценарий (тема)\n     Карточки генерируются автоматически (2–3 на сценарий).\n     npm run export:content-seed -->\n\n## Цели\n\nПодготовка к техническому собеседованию по Perl: базовый синтаксис, контексты, модули, регулярные выражения, работа с данными.\n\n## Аудитория\n\nРазработчики с опытом в других языках, которым нужно быстро освежить Perl перед интервью.\n\n## Формат\n\n- Короткие сценарии с карточками «вопрос → ответ»\n- Акцент на типовых вопросах интервью, а не на полном учебнике\n\n## Темы (для тегов каталога)\n\n- Введение\n- Основы\n- Современный Perl\n- Инструменты\n- Архитектура и работа с легаси\n- Практика\n- ООП\n\n## Этап 1: Контексты и sigils\n\n- Что такое scalar context и list context?\n- Что вернёт `@array` в scalar context?\n- Чем отличаются sigils `$`, `@`, `%`?\n- Когда используется `undef`?\n\n## Этап 2: Строгость и объявления\n\n- Зачем подключать `use strict`?\n- Что даёт `use warnings`?\n- Разница между `my`, `our` и глобальными переменными?\n- Что такое `use feature 'say'`?\n\n## Этап 3: Регулярные выражения\n\n- Как работают захваты `$1`, `$2` в regex?\n- Что делают модификаторы `/g`, `/i`, `/x`?\n- Разница между `=~` и `!~`?\n- Зачем использовать `qr//`?\n\n## Этап 4: Подпрограммы и встроенные функции\n\n- Как устроен `@_` в подпрограмме?\n- Когда применять `map` и `grep`?\n- Что делает оператор `<=>` (spaceship)?\n- Разница между `sort` и `sort { ... }`?\n\n## Этап 5: Модули, ООП и практика на интервью\n\n- Как подключить модуль через `use` и `require`?\n- Базовый синтаксис bless для ООП в Perl?\n- Как безопасно открыть файл и обработать ошибки?\n- Типовые red flags в Perl-коде на собеседовании?\n\n## Этап 6: Базы данных\n\n- Что такое DBI и DBD в Perl?\n- Как безопасно передать параметры в SQL через DBI?\n- Чем `$sth->execute` отличается от `$dbh->do`?\n- Как отключить AutoCommit для транзакции в DBI?\n- Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)?\n\n## Этап 7: CGI\n\n- Для чего использовался модуль CGI в Perl?\n- Как получить параметры GET/POST через CGI?\n- Зачем в CGI-скрипте вызывают `binmode STDOUT`?\n- Как отправить заголовок Content-Type перед телом ответа?\n- Почему CGI-серверный Perl часто заменяют PSGI/Plack?\n\n## Этап 8: Oracle (DBD::Oracle)\n\n- Какой DSN используют для подключения к Oracle через DBI?\n- Какие placeholders поддерживает DBD::Oracle?\n- Как указать SID или service name в DBI DSN?\n- Как вызвать хранимую процедуру PL/SQL через DBI?\n- Как читать CLOB/BLOB через DBD::Oracle?",
+    "status": "planned",
+    "ideaUpdatedAt": "2026-06-14T18:00:00.000Z"
+  },
+  "updatedAt": "2026-06-14T18:00:00.000Z",
+  "programs": [
+    {
+      "id": "course-ru-perl-interview-program",
+      "title": "Собеседование на языке Perl",
+      "description": "Подготовка к техническому собеседованию по Perl: программа сгенерирована из «Идеи программы».",
+      "order": 0,
+      "prerequisiteProgramIds": [],
+      "lessons": [
+        {
+          "id": "lesson-perl-interview-01",
+          "title": "Контексты и sigils",
+          "description": "4 тем (сценариев) для этапа «Контексты и sigils».",
+          "order": 0,
+          "prerequisiteLessonIds": [],
+          "scenarios": [
+            {
+              "id": "scenario-perl-s01-q01",
+              "title": "Что такое scalar context и list context?",
+              "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s01-q01-c1",
+                "card-perl-s01-q01-c2",
+                "card-perl-s01-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s01-q02",
+              "title": "Что вернёт `@array` в scalar context?",
+              "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s01-q02-c1",
+                "card-perl-s01-q02-c2",
+                "card-perl-s01-q02-c3",
+                "card-perl-s01-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s01-q03",
+              "title": "Чем отличаются sigils `$`, `@`, `%`?",
+              "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s01-q03-c1",
+                "card-perl-s01-q03-c2",
+                "card-perl-s01-q03-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s01-q04",
+              "title": "Когда используется `undef`?",
+              "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s01-q04-c1",
+                "card-perl-s01-q04-c2",
+                "card-perl-s01-q04-c3",
+                "card-perl-s01-q04-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-interview-02",
+          "title": "Строгость и объявления",
+          "description": "4 тем (сценариев) для этапа «Строгость и объявления».",
+          "order": 1,
+          "prerequisiteLessonIds": [
+            "lesson-perl-interview-01"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-s02-q01",
+              "title": "Зачем подключать `use strict`?",
+              "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s02-q01-c1",
+                "card-perl-s02-q01-c2",
+                "card-perl-s02-q01-c3",
+                "card-perl-s02-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s02-q02",
+              "title": "Что даёт `use warnings`?",
+              "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s02-q02-c1",
+                "card-perl-s02-q02-c2",
+                "card-perl-s02-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s02-q03",
+              "title": "Разница между `my`, `our` и глобальными переменными?",
+              "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s02-q03-c1",
+                "card-perl-s02-q03-c2",
+                "card-perl-s02-q03-c3",
+                "card-perl-s02-q03-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s02-q04",
+              "title": "Что такое `use feature 'say'`?",
+              "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s02-q04-c1",
+                "card-perl-s02-q04-c2",
+                "card-perl-s02-q04-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-interview-03",
+          "title": "Регулярные выражения",
+          "description": "4 тем (сценариев) для этапа «Регулярные выражения».",
+          "order": 2,
+          "prerequisiteLessonIds": [
+            "lesson-perl-interview-02"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-s03-q01",
+              "title": "Как работают захваты `$1`, `$2` в regex?",
+              "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s03-q01-c1",
+                "card-perl-s03-q01-c2",
+                "card-perl-s03-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s03-q02",
+              "title": "Что делают модификаторы `/g`, `/i`, `/x`?",
+              "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s03-q02-c1",
+                "card-perl-s03-q02-c2",
+                "card-perl-s03-q02-c3",
+                "card-perl-s03-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s03-q03",
+              "title": "Разница между `=~` и `!~`?",
+              "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s03-q03-c1",
+                "card-perl-s03-q03-c2",
+                "card-perl-s03-q03-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s03-q04",
+              "title": "Зачем использовать `qr//`?",
+              "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s03-q04-c1",
+                "card-perl-s03-q04-c2",
+                "card-perl-s03-q04-c3",
+                "card-perl-s03-q04-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-interview-04",
+          "title": "Подпрограммы и встроенные функции",
+          "description": "4 тем (сценариев) для этапа «Подпрограммы и встроенные функции».",
+          "order": 3,
+          "prerequisiteLessonIds": [
+            "lesson-perl-interview-03"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-s04-q01",
+              "title": "Как устроен `@_` в подпрограмме?",
+              "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s04-q01-c1",
+                "card-perl-s04-q01-c2",
+                "card-perl-s04-q01-c3",
+                "card-perl-s04-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s04-q02",
+              "title": "Когда применять `map` и `grep`?",
+              "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s04-q02-c1",
+                "card-perl-s04-q02-c2",
+                "card-perl-s04-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s04-q03",
+              "title": "Что делает оператор `<=>` (spaceship)?",
+              "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s04-q03-c1",
+                "card-perl-s04-q03-c2",
+                "card-perl-s04-q03-c3",
+                "card-perl-s04-q03-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s04-q04",
+              "title": "Разница между `sort` и `sort { ... }`?",
+              "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s04-q04-c1",
+                "card-perl-s04-q04-c2",
+                "card-perl-s04-q04-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-interview-05",
+          "title": "Модули, ООП и практика на интервью",
+          "description": "4 тем (сценариев) для этапа «Модули, ООП и практика на интервью».",
+          "order": 4,
+          "prerequisiteLessonIds": [
+            "lesson-perl-interview-04"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-s05-q01",
+              "title": "Как подключить модуль через `use` и `require`?",
+              "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s05-q01-c1",
+                "card-perl-s05-q01-c2",
+                "card-perl-s05-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s05-q02",
+              "title": "Базовый синтаксис bless для ООП в Perl?",
+              "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s05-q02-c1",
+                "card-perl-s05-q02-c2",
+                "card-perl-s05-q02-c3",
+                "card-perl-s05-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s05-q03",
+              "title": "Как безопасно открыть файл и обработать ошибки?",
+              "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s05-q03-c1",
+                "card-perl-s05-q03-c2",
+                "card-perl-s05-q03-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s05-q04",
+              "title": "Типовые red flags в Perl-коде на собеседовании?",
+              "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s05-q04-c1",
+                "card-perl-s05-q04-c2",
+                "card-perl-s05-q04-c3",
+                "card-perl-s05-q04-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-interview-06",
+          "title": "Базы данных",
+          "description": "5 тем (сценариев) для этапа «Базы данных».",
+          "order": 5,
+          "prerequisiteLessonIds": [
+            "lesson-perl-interview-05"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-s06-q01",
+              "title": "Что такое DBI и DBD в Perl?",
+              "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s06-q01-c1",
+                "card-perl-s06-q01-c2",
+                "card-perl-s06-q01-c3",
+                "card-perl-s06-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s06-q02",
+              "title": "Как безопасно передать параметры в SQL через DBI?",
+              "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s06-q02-c1",
+                "card-perl-s06-q02-c2",
+                "card-perl-s06-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s06-q03",
+              "title": "Чем `$sth->execute` отличается от `$dbh->do`?",
+              "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s06-q03-c1",
+                "card-perl-s06-q03-c2",
+                "card-perl-s06-q03-c3",
+                "card-perl-s06-q03-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s06-q04",
+              "title": "Как отключить AutoCommit для транзакции в DBI?",
+              "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s06-q04-c1",
+                "card-perl-s06-q04-c2",
+                "card-perl-s06-q04-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s06-q05",
+              "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)?",
+              "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s06-q05-c1",
+                "card-perl-s06-q05-c2",
+                "card-perl-s06-q05-c3",
+                "card-perl-s06-q05-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-interview-07",
+          "title": "CGI",
+          "description": "5 тем (сценариев) для этапа «CGI».",
+          "order": 6,
+          "prerequisiteLessonIds": [
+            "lesson-perl-interview-06"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-s07-q01",
+              "title": "Для чего использовался модуль CGI в Perl?",
+              "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s07-q01-c1",
+                "card-perl-s07-q01-c2",
+                "card-perl-s07-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s07-q02",
+              "title": "Как получить параметры GET/POST через CGI?",
+              "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s07-q02-c1",
+                "card-perl-s07-q02-c2",
+                "card-perl-s07-q02-c3",
+                "card-perl-s07-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s07-q03",
+              "title": "Зачем в CGI-скрипте вызывают `binmode STDOUT`?",
+              "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s07-q03-c1",
+                "card-perl-s07-q03-c2",
+                "card-perl-s07-q03-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s07-q04",
+              "title": "Как отправить заголовок Content-Type перед телом ответа?",
+              "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s07-q04-c1",
+                "card-perl-s07-q04-c2",
+                "card-perl-s07-q04-c3",
+                "card-perl-s07-q04-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s07-q05",
+              "title": "Почему CGI-серверный Perl часто заменяют PSGI/Plack?",
+              "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s07-q05-c1",
+                "card-perl-s07-q05-c2",
+                "card-perl-s07-q05-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-interview-08",
+          "title": "Oracle (DBD::Oracle)",
+          "description": "5 тем (сценариев) для этапа «Oracle (DBD::Oracle)».",
+          "order": 7,
+          "prerequisiteLessonIds": [
+            "lesson-perl-interview-07"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-s08-q01",
+              "title": "Какой DSN используют для подключения к Oracle через DBI?",
+              "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s08-q01-c1",
+                "card-perl-s08-q01-c2",
+                "card-perl-s08-q01-c3",
+                "card-perl-s08-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s08-q02",
+              "title": "Какие placeholders поддерживает DBD::Oracle?",
+              "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s08-q02-c1",
+                "card-perl-s08-q02-c2",
+                "card-perl-s08-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s08-q03",
+              "title": "Как указать SID или service name в DBI DSN?",
+              "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s08-q03-c1",
+                "card-perl-s08-q03-c2",
+                "card-perl-s08-q03-c3",
+                "card-perl-s08-q03-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s08-q04",
+              "title": "Как вызвать хранимую процедуру PL/SQL через DBI?",
+              "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s08-q04-c1",
+                "card-perl-s08-q04-c2",
+                "card-perl-s08-q04-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-s08-q05",
+              "title": "Как читать CLOB/BLOB через DBD::Oracle?",
+              "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-s08-q05-c1",
+                "card-perl-s08-q05-c2",
+                "card-perl-s08-q05-c3",
+                "card-perl-s08-q05-code"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -53,4 +53,4 @@ flowchart TB
 
 ## Связанные документы
 
-- [DOMAIN.md](./COMMON/DOMAIN.md#learning-home-g13) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md#learning-home-g13) · [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md)
+- [DOMAIN.md](../PRODUCT/DOMAIN.md#learning-home-g13) · [LANGUAGE-PAIR.md](../FEATURES/LANGUAGE-PAIR.md#learning-home-g13) · [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md)

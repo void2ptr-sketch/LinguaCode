@@ -1,40 +1,25 @@
 import type { CardSearchCriteria, ContentLanguage } from '../../card/model';
+import type { LanguageDto } from '../api/language-dto.types';
 import type { LanguagePair } from '../model/language-pair.types';
 import type { CardIndexEntry } from '../../card/model';
 import { DEFAULT_LANGUAGE_PAIR } from '../model/language-pair.types';
-const CONTENT_LANGUAGES: readonly ContentLanguage[] = ['en', 'zh', 'ru', 'perl', 'java', 'cpp'];
 
 /**
- * Display labels for each supported content language.
+ * Type guard: checks if `value` is a valid content language code.
  *
- * Maps content language codes to their human-readable names.
- */
-export const CONTENT_LANGUAGE_LABELS: Record<ContentLanguage, string> = {
-  en: 'English',
-  zh: '中文',
-  ru: 'Русский',
-  perl: 'Perl',
-  java: 'Java',
-  cpp: 'C++',
-};
-
-/**
- * Type guard that checks whether the given value is a valid content language.
- *
- * @param value — Value to validate.
- * @returns `true` if `value` is a recognised `ContentLanguage`.
+ * @remarks
+ * Accepts any non-empty string.  Actual filtering by available
+ * languages is delegated to `LanguageService.getCodes()` — callers
+ * that need strict validation should pass `languages` explicitly.
  */
 export function isContentLanguage(value: unknown): value is ContentLanguage {
-  return typeof value === 'string' && CONTENT_LANGUAGES.includes(value as ContentLanguage);
+  return typeof value === 'string' && value.length > 0;
 }
 
 /**
- * Normalises a partial or invalid language pair, falling back to defaults for missing or incorrect values.
+ * Normalises a partial or invalid language pair, falling back to defaults.
  *
  * If both `known` and `learning` resolve to the same language, returns the default language pair.
- *
- * @param pair — Partial or full language pair, possibly `null` or `undefined`.
- * @returns A valid `LanguagePair` with both `known` and `learning` set.
  */
 export function normalizeLanguagePair(pair?: Partial<LanguagePair> | null): LanguagePair {
   const known = isContentLanguage(pair?.known) ? pair.known : DEFAULT_LANGUAGE_PAIR.known;
@@ -49,76 +34,41 @@ export function normalizeLanguagePair(pair?: Partial<LanguagePair> | null): Lang
   return { known, learning };
 }
 
-/**
- * Checks whether two language pairs are identical.
- *
- * @param left — First language pair.
- * @param right — Second language pair.
- * @returns `true` if both `known` and `learning` languages match.
- */
+/** Checks whether two language pairs are identical. */
 export function languagePairsEqual(left: LanguagePair, right: LanguagePair): boolean {
   return left.known === right.known && left.learning === right.learning;
 }
 
 /**
- * Formats a language pair as a human-readable string with an arrow separator.
+ * Builds the canonical mirror-group key for a language pair.
  *
- * Example: 'English -> Chinese'
- *
- * @param pair — Language pair to format.
- * @returns Formatted string representation.
+ * @remarks
+ * A mirror pair (e.g. ru→en + en→ru) consists of two backend rows; both
+ * directions share the same group key built from their sorted language
+ * codes (e.g. `'en|ru'`). Used to group pairs in the UI and to scope
+ * per-group activation state so that events within one mirror pair never
+ * leak into other mirror pairs.
  */
-export function formatLanguagePair(pair: LanguagePair): string {
-  return `${CONTENT_LANGUAGE_LABELS[pair.known]} → ${CONTENT_LANGUAGE_LABELS[pair.learning]}`;
+export function buildMirrorGroupKey(known: string, learning: string): string {
+  return [known, learning].sort().join('|');
 }
 
 /**
- * Returns the list of all supported content languages.
+ * Formats a language pair as a human-readable string.
  *
- * @returns Read-only array of content language codes.
+ * Uses `labels` if provided, otherwise falls back to the language codes.
  */
-export function contentLanguages(): readonly ContentLanguage[] {
-  return CONTENT_LANGUAGES;
-}
-
-/**
- * Checks whether a card index entry matches the given language pair.
- *
- * @param entry — Card index entry to check.
- * @param pair — Language pair to compare against.
- * @returns `true` if both `knownLanguage` and `learningLanguage` match.
- */
-export function cardIndexMatchesPair(
-  entry: Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage'>,
+export function formatLanguagePair(
   pair: LanguagePair,
-): boolean {
-  return entry.knownLanguage === pair.known && entry.learningLanguage === pair.learning;
-}
-
-/**
- * Checks whether card search criteria match the given language pair.
- *
- * Omitted criteria fields are treated as wildcards — only non-empty fields are compared.
- *
- * @param criteria — Search criteria to check.
- * @param pair — Language pair to compare against.
- * @returns `true` if all specified criteria fields match the pair.
- */
-export function cardSearchCriteriaMatchesPair(
-  criteria: Pick<CardSearchCriteria, 'knownLanguage' | 'learningLanguage'>,
-  pair: LanguagePair,
-): boolean {
-  const knownMatches = !criteria.knownLanguage || criteria.knownLanguage === pair.known;
-  const learningMatches = !criteria.learningLanguage || criteria.learningLanguage === pair.learning;
-
-  return knownMatches && learningMatches;
+  labels: Record<string, string> = {},
+): string {
+  const knownLabel = labels[pair.known] ?? pair.known;
+  const learningLabel = labels[pair.learning] ?? pair.learning;
+  return `${knownLabel} → ${learningLabel}`;
 }
 
 /**
  * Extracts a language pair from a card index entry.
- *
- * @param entry — Card index entry containing language information.
- * @returns A `LanguagePair` constructed from the entry's language fields.
  */
 export function languagePairFromIndexEntry(
   entry: Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage'>,
@@ -130,17 +80,46 @@ export function languagePairFromIndexEntry(
 }
 
 /**
- * Formats a language pair from a card index entry as a human-readable string.
- *
- * Uses the provided `labels` map or falls back to the default `CONTENT_LANGUAGE_LABELS`.
- *
- * @param entry — Card index entry containing language information.
- * @param labels — Optional custom labels map for language names.
- * @returns Formatted string representation of the language pair.
+ * Formats a language pair from a card index entry.
  */
 export function formatIndexLanguagePair(
   entry: Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage'>,
-  labels: Record<ContentLanguage, string> = CONTENT_LANGUAGE_LABELS,
+  labels: Record<string, string> = {},
 ): string {
-  return `${labels[entry.knownLanguage]} → ${labels[entry.learningLanguage]}`;
+  const knownLabel = labels[entry.knownLanguage] ?? entry.knownLanguage;
+  const learningLabel = labels[entry.learningLanguage] ?? entry.learningLanguage;
+  return `${knownLabel} → ${learningLabel}`;
+}
+
+/** Checks whether a card index entry matches the given language pair. */
+export function cardIndexMatchesPair(
+  entry: Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage'>,
+  pair: LanguagePair,
+): boolean {
+  return entry.knownLanguage === pair.known && entry.learningLanguage === pair.learning;
+}
+
+/**
+ * Checks whether card search criteria match the given language pair.
+ *
+ * Omitted criteria fields are treated as wildcards.
+ */
+export function cardSearchCriteriaMatchesPair(
+  criteria: Pick<CardSearchCriteria, 'knownLanguage' | 'learningLanguage'>,
+  pair: LanguagePair,
+): boolean {
+  const knownMatches = !criteria.knownLanguage || criteria.knownLanguage === pair.known;
+  const learningMatches = !criteria.learningLanguage || criteria.learningLanguage === pair.learning;
+  return knownMatches && learningMatches;
+}
+
+/**
+ * Builds a `{ code → displayName }` map from backend `LanguageDto[]`.
+ */
+export function buildLanguageLabels(languages: LanguageDto[]): Record<string, string> {
+  const labels: Record<string, string> = {};
+  for (const lang of languages) {
+    labels[lang.code] = lang.displayName;
+  }
+  return labels;
 }

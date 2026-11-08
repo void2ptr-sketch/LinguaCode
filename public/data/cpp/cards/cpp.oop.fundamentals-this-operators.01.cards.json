@@ -463,27 +463,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "oop",
           "c++20"
-        ],
-        "tags": "Spaceship даёт полный набор сравнений через = default."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
       "question": "Что делает оператор <=> в C++20?",
       "code": {
-        "code": [
-          "Возвращает ordering (less/equal/greater)",
-          "Сравнивает адреса",
-          "Считает",
-          "Копирует"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Возвращает ordering (less/equal/greater)",
+        "Сравнивает адреса",
+        "Считает",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Spaceship даёт полный набор сравнений через = default."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-16",

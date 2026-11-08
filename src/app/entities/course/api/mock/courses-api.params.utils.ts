@@ -16,11 +16,8 @@ import { DEFAULT_PAGE_SIZE } from '../../../../shared/utils/pagination';
 export function buildCourseSearchParams(criteria: CourseSearchCriteria): HttpParams {
   let params = new HttpParams()
     .set('page', String(criteria.page.page))
-    .set('pageSize', String(criteria.page.pageSize));
-
-  if (criteria.query) {
-    params = params.set('query', criteria.query);
-  }
+    .set('pageSize', String(criteria.page.pageSize))
+    .set('query', criteria.query ?? '');
 
   if (criteria.authorId) {
     params = params.set('authorId', criteria.authorId);
@@ -36,6 +33,12 @@ export function buildCourseSearchParams(criteria: CourseSearchCriteria): HttpPar
 
   if (criteria.learningLanguage) {
     params = params.set('learningLanguage', criteria.learningLanguage);
+  }
+
+  if (criteria.languagePairIds && criteria.languagePairIds.length > 0) {
+    for (const id of criteria.languagePairIds) {
+      params = params.append('languagePairIds', String(id));
+    }
   }
 
   return params;

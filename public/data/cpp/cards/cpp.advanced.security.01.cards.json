@@ -297,27 +297,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "security",
           "memory"
-        ],
-        "tags": "RAII сокращает риски."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.security.01.scenario",
       "question": "Как защититься от UAF?",
       "code": {
-        "code": [
-          "Smart pointers, не хранить сырые указатели",
-          "new везде",
-          "Логи",
-          "ignore"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Smart pointers, не хранить сырые указатели",
+        "new везде",
+        "Логи",
+        "ignore"
+      ],
+      "correctIndex": 0,
+      "explanation": "RAII сокращает риски."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-11",
@@ -393,27 +394,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "security",
           "crypto"
-        ],
-        "tags": "SHA-256 и др."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.security.01.scenario",
       "question": "Что делает хеш?",
       "code": {
-        "code": [
-          "Одностороннее преобразование (необратимое)",
-          "Шифрование",
-          "Сжатие",
-          "Сортировку"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Одностороннее преобразование (необратимое)",
+        "Шифрование",
+        "Сжатие",
+        "Сортировку"
+      ],
+      "correctIndex": 0,
+      "explanation": "SHA-256 и др."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-14",
@@ -489,27 +491,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "security",
           "crypto"
-        ],
-        "tags": "Время сравнения выдаёт информацию."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.security.01.scenario",
       "question": "Чем опасен временный непараллельный memcmp секретов?",
       "code": {
-        "code": [
-          "Timing-атака",
-          "Ничего",
-          "Быстрее",
-          "Ошибка"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Timing-атака",
+        "Ничего",
+        "Быстрее",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Время сравнения выдаёт информацию."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-17",

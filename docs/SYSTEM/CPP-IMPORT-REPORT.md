@@ -138,5 +138,5 @@ public/data/cpp/
 
 - [all_cpp_content.json](../../public/data/import/all_cpp_content.json) — исходные данные
 - [content-manifest.json](../../public/data/cpp/content-manifest.json) — обновлённый манифест
-- [docs/COMMON/DOMAIN.md](./COMMON/DOMAIN.md) — доменная модель карточек
+- [docs/PRODUCT/DOMAIN.md](../PRODUCT/DOMAIN.md) — доменная модель карточек
 - [docs/CONTENT/CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md) — контент CJK

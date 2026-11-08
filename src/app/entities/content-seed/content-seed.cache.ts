@@ -87,9 +87,5 @@ export function resetContentSeedCache(): void {
  * Used to verify that the content seed has been fully loaded before proceeding.
  */
 export function isContentSeedCacheReady(): boolean {
-  return (
-    getScenarioSeedCache().length > 0 &&
-    getCourseSeedCache().courses.length > 0 &&
-    getCardSeedCache().length > 0
-  );
+  return getCourseSeedCache().courses.length > 0 && getCardSeedCache().length > 0;
 }

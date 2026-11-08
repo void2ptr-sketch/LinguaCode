@@ -35,7 +35,7 @@ const extractCourseId = (url: string): string | null => {
     return null;
   }
 
-  if (rest.startsWith('by-scenario/')) {
+  if (rest.startsWith('by-scenario/') || rest.endsWith('/journey')) {
     return null;
   }
 
@@ -75,6 +75,23 @@ const extractBundleCourseId = (url: string): string | null => {
 };
 
 /**
+ * Extracts the course ID from a "courses/{id}/journey" URL.
+ *
+ * @param url - The request URL.
+ * @returns The course ID, or `null` if the URL does not target a course journey.
+ */
+const extractJourneyCourseId = (url: string): string | null => {
+  const marker = `${buildApiUrl('/courses/')}`;
+  const suffix = '/journey';
+  if (!url.includes(marker) || !url.endsWith(suffix)) {
+    return null;
+  }
+
+  const rest = url.slice(url.indexOf(marker) + marker.length, -suffix.length);
+  return rest || null;
+};
+
+/**
  * HTTP interceptor that mocks courses API responses for development.
  *
  * @remarks
@@ -97,6 +114,19 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     const criteria = parseCourseSearchCriteria(req.params);
 
     return defer(() => handler.search(criteria)).pipe(
+      map((result) => {
+        // handler.search() returns CourseSearchPage; the service expects
+        // ApiListResponse<BackendCourseDto> — i.e. { data: BackendCourseDto[] }.
+        // Extract the items array so the service can map DTOs → index entries.
+        const body = 'items' in result ? { data: result.items } : { data: result };
+        return new HttpResponse({ status: 200, body });
+      }),
+    );
+  }
+
+  const journeyCourseId = extractJourneyCourseId(req.url);
+  if (req.method === 'GET' && journeyCourseId) {
+    return defer(() => handler.getById(journeyCourseId)).pipe(
       map((data) => new HttpResponse({ status: 200, body: { data } })),
     );
   }
@@ -123,7 +153,15 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/courses'))) {
-    const payload = req.body as CourseWritePayload;
+    // Convert backend field names back to frontend format for the mock handler
+    const raw = req.body as Record<string, unknown>;
+    const payload: CourseWritePayload = {
+      title: String(raw['title'] ?? ''),
+      description: String(raw['courseDescription'] ?? ''),
+      published: Boolean(raw['published'] ?? false),
+      programs: (raw['programs'] as CourseWritePayload['programs']) ?? [],
+      authoring: raw['authoring'] as CourseWritePayload['authoring'],
+    };
 
     return defer(() => handler.create(payload)).pipe(
       map((data) => new HttpResponse({ status: 201, body: { data } })),
@@ -131,7 +169,15 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   if (req.method === 'PUT' && courseId) {
-    const payload = req.body as CourseWritePayload;
+    // Convert backend field names back to frontend format for the mock handler
+    const raw = req.body as Record<string, unknown>;
+    const payload: CourseWritePayload = {
+      title: String(raw['title'] ?? ''),
+      description: String(raw['courseDescription'] ?? ''),
+      published: Boolean(raw['published'] ?? false),
+      programs: (raw['programs'] as CourseWritePayload['programs']) ?? [],
+      authoring: raw['authoring'] as CourseWritePayload['authoring'],
+    };
 
     return defer(() => handler.update(courseId, payload)).pipe(
       map((data) => new HttpResponse({ status: 200, body: { data } })),

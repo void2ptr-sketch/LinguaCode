@@ -33,7 +33,7 @@ describe('SidebarNavigationLeftComponent', () => {
   it('should have learning group', () => {
     const learningGroup = component.groups.find((g) => g.id === 'learning');
     expect(learningGroup).toBeDefined();
-    expect(learningGroup?.items).toHaveLength(4);
+    expect(learningGroup?.items).toHaveLength(5);
   });
 
   it('should have tools group', () => {
@@ -63,7 +63,7 @@ describe('SidebarNavigationLeftComponent', () => {
   it('should render all group items', () => {
     fixture.detectChanges();
     const links = fixture.nativeElement.querySelectorAll('a[mat-list-item]');
-    expect(links.length).toBe(8);
+    expect(links.length).toBe(9);
   });
 
   it('should render learning group items', () => {
@@ -105,6 +105,6 @@ describe('SidebarNavigationLeftComponent', () => {
   it('should render mat-icons for each item', () => {
     fixture.detectChanges();
     const icons = fixture.nativeElement.querySelectorAll('mat-icon');
-    expect(icons.length).toBe(8);
+    expect(icons.length).toBe(9);
   });
 });

@@ -172,27 +172,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "oop",
           "inheritance"
-        ],
-        "tags": "Порядок объявления базовых классов определяет порядок."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
       "question": "В каком порядке инициализируются базы?",
       "code": {
-        "code": [
-          "В порядке объявления",
-          "По алфавиту",
-          "Случайно",
-          "Наоборот"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "В порядке объявления",
+        "По алфавиту",
+        "Случайно",
+        "Наоборот"
+      ],
+      "correctIndex": 0,
+      "explanation": "Порядок объявления базовых классов определяет порядок."
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-07",
@@ -237,27 +238,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "oop",
           "inheritance"
-        ],
-        "tags": "Без виртуального наследования A дублируется."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
       "question": "Сколько копий A будет в D при ромбе без virtual?",
       "code": {
-        "code": [
-          "Две (по одной через каждую ветку)",
-          "Одна",
-          "Ноль",
-          "Три"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Две (по одной через каждую ветку)",
+        "Одна",
+        "Ноль",
+        "Три"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без виртуального наследования A дублируется."
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-09",

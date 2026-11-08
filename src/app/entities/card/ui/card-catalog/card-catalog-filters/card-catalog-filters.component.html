@@ -57,8 +57,8 @@
       <mat-label>Сложность</mat-label>
       <mat-select [ngModel]="store.difficulty()" (ngModelChange)="onDifficultyChange($event)">
         <mat-option [value]="null">Все</mat-option>
-        @for (level of difficulties; track level) {
-          <mat-option [value]="level">{{ difficultyLabels[level] }}</mat-option>
+        @for (level of difficulties(); track level) {
+          <mat-option [value]="level">{{ difficultyLabels()[level] }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
@@ -80,7 +80,7 @@
               [class.card-catalog-filters__chip--active]="isKindSelected(facet.value)"
               (click)="toggleKind(facet.value)"
             >
-              {{ kindLabels[facet.value] }} ({{ facet.count }})
+              {{ kindLabels()[facet.value] }} ({{ facet.count }})
             </mat-chip>
           }
         </mat-chip-set>
@@ -99,7 +99,7 @@
                   [class.card-catalog-filters__chip--active]="isTagSelected(facet.value)"
                   (click)="toggleTag(facet.value)"
                 >
-                  {{ tagLabel(facet.value) }} ({{ facet.count }})
+                  {{ getTagLabel(facet.value) }} ({{ facet.count }})
                 </mat-chip>
               }
             </mat-chip-set>

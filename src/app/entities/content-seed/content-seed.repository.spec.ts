@@ -23,7 +23,7 @@ import {
 } from './content-seed.cache';
 import type { ContentSeedSnapshot } from './content-seed.idb';
 import { ContentSeedRepository } from './content-seed.repository';
-import type { ContentManifest } from './content-seed.types';
+import type { ContentManifest, CoursesNestedFixture } from './content-seed.types';
 
 const MANIFEST_URL = '/data/content-manifest.json';
 
@@ -417,6 +417,206 @@ describe('ContentSeedRepository', () => {
       expect(courses.courses[0]?.title).toBe('B');
       expect(courses.lessons).toHaveLength(1);
       expect(courses.lessons[0]?.title).toBe('B1');
+    });
+  });
+
+  describe('nested course format', () => {
+    function makeNestedFixture(overrides?: Partial<CoursesNestedFixture>): CoursesNestedFixture {
+      return {
+        id: 'nested-course-1',
+        title: 'Nested Course',
+        description: 'Test nested course',
+        languagePair: { known: 'ru', learning: 'en' },
+        published: true,
+        authoring: null,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        programs: [
+          {
+            id: 'nested-program-1',
+            title: 'Program 1',
+            description: 'First program',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'nested-lesson-1',
+                title: 'Lesson 1',
+                description: 'First lesson',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 'nested-scenario-1',
+                    title: 'Scenario 1',
+                    description: 'First scenario',
+                    order: 0,
+                    published: true,
+                    cards: [
+                      {
+                        id: 'nested-card-1',
+                        kind: 'select',
+                        title: 'Nested Card 1',
+                        appearance: { theme: 'azure-blue', fontSize: 'md' },
+                        direction: 'known-to-learning' as const,
+                        promptKnown: 'Hello',
+                        optionsLearning: ['Привет'],
+                        correctIndex: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        ...overrides,
+      };
+    }
+
+    it('should load nested course fixture and extract cards', async () => {
+      resetContentSeedCache();
+      createRepository();
+
+      const promise = repository.preload();
+      flushManifest(makeManifest({ courseFiles: ['courses/nested.json'] }));
+      await flushFixture('/data/courses/nested.json', makeNestedFixture());
+      await promise;
+
+      const courses = getCourseSeedCache();
+      expect(courses.courses).toHaveLength(1);
+      expect(courses.courses[0].id).toBe('nested-course-1');
+      expect(courses.courses[0].title).toBe('Nested Course');
+      expect(courses.programs).toHaveLength(1);
+      expect(courses.programs[0].id).toBe('nested-program-1');
+      expect(courses.programs[0].courseId).toBe('nested-course-1');
+      expect(courses.lessons).toHaveLength(1);
+      expect(courses.lessons[0].id).toBe('nested-lesson-1');
+      expect(courses.lessons[0].programId).toBe('nested-program-1');
+
+      const cards = getCardSeedCache();
+      expect(cards).toHaveLength(1);
+      expect(cards[0].id).toBe('nested-card-1');
+    });
+
+    it('should handle nested fixture with multiple programs and lessons', async () => {
+      resetContentSeedCache();
+      createRepository();
+
+      const nested = makeNestedFixture({
+        programs: [
+          {
+            id: 'prog-a',
+            title: 'Program A',
+            description: '',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'lesson-a1',
+                title: 'Lesson A1',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 'scenario-a1',
+                    title: 'Scenario A1',
+                    description: '',
+                    order: 0,
+                    published: true,
+                    cards: [
+                      {
+                        id: 'card-a1',
+                        kind: 'flip',
+                        title: 'Card A1',
+                        appearance: { theme: 'a', fontSize: 'md' },
+                        front: 'a',
+                        back: 'b',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: 'prog-b',
+            title: 'Program B',
+            description: '',
+            order: 1,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'lesson-b1',
+                title: 'Lesson B1',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 'scenario-b1',
+                    title: 'Scenario B1',
+                    description: '',
+                    order: 0,
+                    published: true,
+                    cards: [
+                      {
+                        id: 'card-b1',
+                        kind: 'flip',
+                        title: 'Card B1',
+                        appearance: { theme: 'a', fontSize: 'md' },
+                        front: 'c',
+                        back: 'd',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+
+      const promise = repository.preload();
+      flushManifest(makeManifest({ courseFiles: ['courses/multi.json'] }));
+      await flushFixture('/data/courses/multi.json', nested);
+      await promise;
+
+      const courses = getCourseSeedCache();
+      expect(courses.courses).toHaveLength(1);
+      expect(courses.programs).toHaveLength(2);
+      expect(courses.lessons).toHaveLength(2);
+      expect(courses.courses[0].programIds).toEqual(['prog-a', 'prog-b']);
+      expect(courses.programs[0].lessonIds).toEqual(['lesson-a1']);
+      expect(courses.programs[1].lessonIds).toEqual(['lesson-b1']);
+
+      const cards = getCardSeedCache();
+      expect(cards).toHaveLength(2);
+      expect(cards.map((c) => c.id)).toEqual(['card-a1', 'card-b1']);
+    });
+
+    it('should mix nested and legacy course fixtures', async () => {
+      resetContentSeedCache();
+      createRepository();
+
+      const nested = makeNestedFixture({ id: 'nested-course' });
+      const legacyCourse = makeCourseFixture();
+      const legacyLesson = makeLessonFixture();
+
+      const promise = repository.preload();
+      flushManifest(makeManifest({ courseFiles: ['courses/nested.json', 'courses/legacy.json'] }));
+      await flushFixture('/data/courses/nested.json', nested);
+      await flushFixture('/data/courses/legacy.json', {
+        courses: [legacyCourse],
+        lessons: [legacyLesson],
+      });
+      await promise;
+
+      const courses = getCourseSeedCache();
+      // Both courses should be present since they have different IDs
+      expect(courses.courses).toHaveLength(2);
+      expect(courses.courses.map((c) => c.id)).toContain('nested-course');
+      expect(courses.courses.map((c) => c.id)).toContain('c1');
     });
   });
 });

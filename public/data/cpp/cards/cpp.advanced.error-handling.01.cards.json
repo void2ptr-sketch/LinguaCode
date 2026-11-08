@@ -299,27 +299,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "debugging",
           "syntax"
-        ],
-        "tags": "ASan ловит переполнения и use-after-free."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.error-handling.01.scenario",
       "question": "Как включить AddressSanitizer?",
       "code": {
-        "code": [
-          "-fsanitize=address",
-          "-g",
-          "-Wall",
-          "-o"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "-fsanitize=address",
+        "-g",
+        "-Wall",
+        "-o"
+      ],
+      "correctIndex": 0,
+      "explanation": "ASan ловит переполнения и use-after-free."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-11",

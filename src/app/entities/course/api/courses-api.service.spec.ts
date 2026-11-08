@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { CoursesApiService, CourseWritePayload } from './courses-api.service';
 import type { CourseIndexEntry, CourseWithPrograms } from '../model';
+import { LanguagePairsApiService } from '../../language-pair/api';
 
 describe('CoursesApiService', () => {
   let service: CoursesApiService;
@@ -44,13 +45,15 @@ describe('CoursesApiService', () => {
   };
 
   const mockCourseIndexEntry: CourseIndexEntry = {
-    id: 'course-1',
+    id: '1',
     title: 'Test Course',
-    authorId: 'author-1',
-    programCount: 1,
+    authorId: '1',
+    programCount: 0,
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
-    languagePairSummary: 'Русский → English',
+    languagePairSummary: 'ru → en', // derived from languagePairId: 1
+    knownLanguage: 'ru',
+    learningLanguage: 'en',
   };
 
   const mockPayload: CourseWritePayload = {
@@ -70,14 +73,29 @@ describe('CoursesApiService', () => {
     ],
   };
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    TestBed.resetTestingModule();
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [CoursesApiService],
+      providers: [
+        CoursesApiService,
+        {
+          provide: LanguagePairsApiService,
+          useValue: {
+            listAll: () => Promise.resolve([{ id: 1, knownCode: 'ru', learningCode: 'en' }]),
+          },
+        },
+      ],
     });
 
     service = TestBed.inject(CoursesApiService);
     httpMock = TestBed.inject(HttpTestingController);
+
+    // Reset the language pair cache between tests
+    (
+      service as unknown as { pairCacheLoaded: boolean; pairCache: Record<number, unknown> }
+    ).pairCacheLoaded = false;
+    (service as unknown as { pairCache: Record<number, unknown> }).pairCache = {};
   });
 
   afterEach(() => {
@@ -86,7 +104,18 @@ describe('CoursesApiService', () => {
 
   describe('search', () => {
     it('should search courses and return paginated results', async () => {
-      const mockPage = {
+      const mockDto = {
+        id: 1,
+        title: 'Test Course',
+        courseDescription: 'Test description',
+        authorId: 1,
+        languagePairId: 1,
+        published: true,
+        createdAt: '2024-01-01T00:00:00.000Z',
+        updatedAt: '2024-01-01T00:00:00.000Z',
+      };
+
+      const expectedPage = {
         items: [mockCourseIndexEntry],
         totalItems: 1,
         page: 0,
@@ -100,12 +129,23 @@ describe('CoursesApiService', () => {
         page: { page: 0, pageSize: 20 },
       });
 
-      const req = httpMock.expectOne((r) => r.url === buildApiUrl('/courses/search'));
-      expect(req.request.method).toBe('GET');
-      req.flush({ data: mockPage });
+      // Wait for async operations to complete
+      await Promise.resolve();
+      await Promise.resolve();
+
+      // Flush language-pairs request if present (from ensurePairCache)
+      const lpMatches = httpMock.match((r) => r.url.indexOf('/language-pairs') !== -1);
+      for (const match of lpMatches) {
+        match.flush({ data: [{ id: 1, knownCode: 'ru', learningCode: 'en' }] });
+      }
+
+      // Flush courses search request
+      const coursesMatches = httpMock.match((r) => r.url.indexOf('/courses/search') !== -1);
+      expect(coursesMatches.length).toBeGreaterThan(0);
+      coursesMatches[0].flush({ data: [mockDto] });
 
       const result = await promise;
-      expect(result).toEqual(mockPage);
+      expect(result).toEqual(expectedPage);
     });
   });
 
@@ -128,7 +168,12 @@ describe('CoursesApiService', () => {
 
       const req = httpMock.expectOne(buildApiUrl('/courses'));
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual(mockPayload);
+      const body = req.request.body as Record<string, unknown>;
+      expect(body['title']).toBe(mockPayload.title);
+      expect(body['courseDescription']).toBe(mockPayload.description);
+      expect(body['published']).toBe(mockPayload.published);
+      expect(body['programs']).toEqual(mockPayload.programs);
+      expect(body['authorId']).toBeDefined();
       req.flush({ data: mockCourseWithPrograms });
 
       const result = await promise;
@@ -142,7 +187,10 @@ describe('CoursesApiService', () => {
 
       const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
       expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(mockPayload);
+      const body = req.request.body as Record<string, unknown>;
+      expect(body['title']).toBe(mockPayload.title);
+      expect(body['courseDescription']).toBe(mockPayload.description);
+      expect(body['published']).toBe(mockPayload.published);
       req.flush({ data: mockCourseWithPrograms });
 
       const result = await promise;

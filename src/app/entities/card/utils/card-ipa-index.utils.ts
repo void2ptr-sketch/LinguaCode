@@ -52,12 +52,12 @@ export function collectCardIpaReadings(card: Card): readonly string[] {
       }
       break;
     case 'memory':
-      for (const pair of card.pairs) {
+      for (const pair of card.pairs ?? []) {
         addLexeme(pair.learningLexeme);
       }
       break;
     case 'keyboard':
-      for (const answer of card.acceptedAnswersKnown) {
+      for (const answer of card.acceptedAnswersKnown ?? []) {
         if (isLikelyIpa(answer)) {
           readings.add(answer.trim());
         }

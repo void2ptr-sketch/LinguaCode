@@ -84,6 +84,15 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     );
   }
 
+  // GET /scenarios — list scenarios (no query filter)
+  if (req.method === 'GET' && req.url.endsWith(buildApiUrl('/scenarios'))) {
+    const criteria = parseScenarioSearchCriteria(req.params);
+
+    return defer(() => handler.search(criteria)).pipe(
+      map((data) => new HttpResponse({ status: 200, body: { data } })),
+    );
+  }
+
   const usageCardId = extractCardIdFromScenarioUsage(req.url);
   if (req.method === 'GET' && usageCardId) {
     return defer(() => handler.findUsingCard(usageCardId)).pipe(
@@ -99,7 +108,17 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/scenarios'))) {
-    const payload = req.body as ScenarioWritePayload;
+    // Convert backend field names back to frontend format for the mock handler
+    const raw = req.body as Record<string, unknown>;
+    const payload: ScenarioWritePayload = {
+      title: String(raw['title'] ?? ''),
+      description: String(raw['scenarioDescription'] ?? ''),
+      cardSource:
+        typeof raw['cardSource'] === 'string'
+          ? JSON.parse(raw['cardSource'] as string)
+          : (raw['cardSource'] as ScenarioWritePayload['cardSource']),
+      published: Boolean(raw['published'] ?? false),
+    };
 
     return defer(() => handler.create(payload)).pipe(
       map((data) => new HttpResponse({ status: 201, body: { data } })),
@@ -107,7 +126,17 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   if (req.method === 'PUT' && scenarioId) {
-    const payload = req.body as ScenarioWritePayload;
+    // Convert backend field names back to frontend format for the mock handler
+    const raw = req.body as Record<string, unknown>;
+    const payload: ScenarioWritePayload = {
+      title: String(raw['title'] ?? ''),
+      description: String(raw['scenarioDescription'] ?? ''),
+      cardSource:
+        typeof raw['cardSource'] === 'string'
+          ? JSON.parse(raw['cardSource'] as string)
+          : (raw['cardSource'] as ScenarioWritePayload['cardSource']),
+      published: Boolean(raw['published'] ?? false),
+    };
 
     return defer(() => handler.update(scenarioId, payload)).pipe(
       map((data) => new HttpResponse({ status: 200, body: { data } })),

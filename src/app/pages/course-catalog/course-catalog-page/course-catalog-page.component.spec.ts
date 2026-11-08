@@ -26,11 +26,11 @@ import type { UserLanguagePairEntry } from '../../../entities/user/model';
 import type { ToneColorSchemeId } from '../../../entities/phonetic/model';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { LanguagePairsApiService } from '../../../entities/language-pair/api';
+import { ProgramsApiService } from '../../../entities/program/api';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
-import { CourseDisplaySettingsMatrixComponent } from '../../../entities/course/ui/course-display-settings-matrix';
 import { CourseCatalogStore, DraftsStore } from '../../../features/course-catalog/services';
 import { CourseCatalogLanguagePairManagerService } from '../../../features/course-catalog/services/course-catalog-language-pair-manager.service';
-import { CourseCatalogPreferencesService } from '../../../features/course-catalog/services/course-catalog-preferences.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CourseCatalogPageComponent } from './course-catalog-page.component';
 
@@ -55,6 +55,8 @@ function makeCourse(id: string, title: string, programCount: number): CourseInde
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
     languagePairSummary: 'Русский → English',
+    knownLanguage: 'ru',
+    learningLanguage: 'en',
   };
 }
 
@@ -66,7 +68,8 @@ describe('CourseCatalogPageComponent', () => {
   let mockCatalogStore: Partial<CourseCatalogStore>;
   let mockDrafts: Partial<DraftsStore>;
   let mockPairManager: Partial<CourseCatalogLanguagePairManagerService>;
-  let mockPreferences: Partial<CourseCatalogPreferencesService>;
+  let mockLanguagePairsApi: Partial<LanguagePairsApiService>;
+  let mockProgramsApi: Partial<ProgramsApiService>;
 
   const mockPairs: UserLanguagePairEntry[] = [makePair('pair-1', 'ru', 'en')];
 
@@ -77,6 +80,8 @@ describe('CourseCatalogPageComponent', () => {
     totalItems: 1,
     totalPages: 1,
   };
+
+  const mockBackendPairs = [{ id: 1, knownCode: 'ru', learningCode: 'en' }];
 
   const mockCourse: CourseWithPrograms = {
     id: 'c-1',
@@ -139,20 +144,29 @@ describe('CourseCatalogPageComponent', () => {
       getById: vi.fn().mockResolvedValue(mockCourse),
     };
 
+    mockLanguagePairsApi = {
+      listAll: vi.fn().mockResolvedValue(mockBackendPairs),
+    };
+
+    mockProgramsApi = {
+      getByCourse: vi.fn().mockResolvedValue([]),
+    };
+
     mockUserStore = {
       displayName: signal('Ученик'),
-      preferences: signal({
+      preferences: computed(() => ({
         theme: 'azure-blue',
         fontSize: 'md',
         colorScheme: 'light',
         cardFocusFullscreen: false,
-        learningProficiencyLevel: 'beginner',
+        learningProficiencyLevel: 'beginner' as const,
         languagePairs: mockPairs,
         activeLanguagePairId: 'pair-1',
-      }),
-      languagePairs: signal(mockPairs),
-      activeLanguagePairId: signal('pair-1'),
-      languagePair: signal({ known: 'ru', learning: 'en' }),
+      })),
+      languagePairs: computed(() => mockPairs),
+      activeLanguagePairId: computed(() => 'pair-1'),
+      languagePair: computed(() => ({ known: 'ru' as const, learning: 'en' as const })),
+      learningSession: computed(() => ({ activeCourseId: 'c-1' })),
       formatEntryLabel: vi.fn(
         (entry: UserLanguagePairEntry) => `${entry.pair.known} → ${entry.pair.learning}`,
       ),
@@ -186,19 +200,6 @@ describe('CourseCatalogPageComponent', () => {
       shouldShowPhoneticPreferences: vi.fn(() => false),
       shouldShowTracingSettings: vi.fn(() => false),
       romanizationOptions: vi.fn(() => [
-        { value: 'pinyin' as const, label: 'Пиньинь' },
-        { value: 'zhuyin' as const, label: 'Жуинь (Bopomofo)' },
-      ]),
-    };
-
-    mockPreferences = {
-      canRemovePair: computed(() => mockPairs.length > 1),
-      settingsEntry: signal(mockPairs[0] ?? null),
-      settingsCourseLabel: computed(() => 'ru → en'),
-      showCjkPreferences: signal(false),
-      showPhoneticPreferences: signal(false),
-      showTracingSettings: signal(false),
-      romanizationOptions: computed(() => [
         { value: 'pinyin' as const, label: 'Пиньинь' },
         { value: 'zhuyin' as const, label: 'Жуинь (Bopomofo)' },
       ]),
@@ -245,6 +246,8 @@ describe('CourseCatalogPageComponent', () => {
     const mockToneColorSchemeDraftSignal = signal('default' as ToneColorSchemeId);
     const mockTracingStrokeDurationDraftSignal = signal(0.5);
     const mockSelectedTabIndexSignal = signal(0);
+    const mockActiveCourseIdsSignal = signal(new Set() as ReadonlySet<string>);
+    const mockFilterDismissedSignal = signal(false);
 
     mockCatalogStore = {
       items: mockItemsSignal,
@@ -256,6 +259,8 @@ describe('CourseCatalogPageComponent', () => {
       progressByCourseId: mockProgressByCourseIdSignal,
       completedCourseIds: mockCompletedCourseIdsSignal,
       selectedTabIndex: mockSelectedTabIndexSignal,
+      activeCourseIds: mockActiveCourseIdsSignal,
+      filterDismissedUntilTabChange: mockFilterDismissedSignal,
       setItems: (items: readonly CourseIndexEntry[]) => mockItemsSignal.set(items),
       setTotalItems: (total: number) => mockTotalItemsSignal.set(total),
       setPageIndex: (page: number) => mockPageIndexSignal.set(page),
@@ -267,6 +272,16 @@ describe('CourseCatalogPageComponent', () => {
       setCompletedCourseIds: (completed: Set<string>) =>
         mockCompletedCourseIdsSignal.set(completed as ReadonlySet<string>),
       setSelectedTabIndex: (index: number) => mockSelectedTabIndexSignal.set(index),
+      toggleActiveCourseId: (id: string) => {
+        const current = mockActiveCourseIdsSignal();
+        const next = new Set(current);
+        if (next.has(id)) next.delete(id);
+        else next.add(id);
+        mockActiveCourseIdsSignal.set(next as ReadonlySet<string>);
+      },
+      clearActiveCourseIds: () => mockActiveCourseIdsSignal.set(new Set() as ReadonlySet<string>),
+      setFilterDismissed: (dismissed: boolean) => mockFilterDismissedSignal.set(dismissed),
+      onPageChange: vi.fn(),
     };
 
     mockDrafts = {
@@ -341,7 +356,6 @@ describe('CourseCatalogPageComponent', () => {
         MatSliderModule,
         MatTabsModule,
         UiPaginationComponent,
-        CourseDisplaySettingsMatrixComponent,
         CourseCatalogPageComponent,
       ],
       providers: [
@@ -356,7 +370,8 @@ describe('CourseCatalogPageComponent', () => {
         },
         { provide: Router, useValue: mockRouter },
         { provide: CourseCatalogLanguagePairManagerService, useValue: mockPairManager },
-        { provide: CourseCatalogPreferencesService, useValue: mockPreferences },
+        { provide: LanguagePairsApiService, useValue: mockLanguagePairsApi },
+        { provide: ProgramsApiService, useValue: mockProgramsApi },
       ],
     }).compileComponents();
   });
@@ -413,6 +428,27 @@ describe('CourseCatalogPageComponent', () => {
     expect(component.totalItems()).toBe(1);
   });
 
+  it('should load all items without filtering', async () => {
+    const multiCoursePage: CourseSearchPage = {
+      items: [makeCourse('c-1', 'Course 1', 10), makeCourse('c-2', 'Course 2', 20)],
+      page: 0,
+      pageSize: 10,
+      totalItems: 2,
+      totalPages: 1,
+    };
+    (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockResolvedValueOnce(
+      multiCoursePage,
+    );
+
+    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
+    const component = fixture.componentInstance;
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.items().length).toBe(2);
+    expect(component.totalItems()).toBe(2);
+  });
+
   it('should set error on load failure', async () => {
     (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockRejectedValueOnce(
       new Error('Network error'),
@@ -447,82 +483,6 @@ describe('CourseCatalogPageComponent', () => {
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/journey'], {
       queryParams: { courseId: 'c-1' },
     });
-  });
-
-  it('should compute languagePairInvalid correctly', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    expect(component.languagePairInvalid()).toBe(false);
-
-    (
-      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-    (
-      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-    fixture.detectChanges();
-
-    expect(component.languagePairInvalid()).toBe(true);
-  });
-
-  it('should call pair manager setActive when setActive called', async () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    component.setActive('pair-1');
-    await fixture.whenStable();
-
-    expect(mockPairManager.setActive).toHaveBeenCalledWith('pair-1');
-  });
-
-  it('should call pair manager removePair when removePair called', async () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    component.removePair('pair-1');
-    await fixture.whenStable();
-
-    expect(mockPairManager.removePair).toHaveBeenCalledWith('pair-1');
-  });
-
-  it('should not add language pair when languages are the same', async () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    (
-      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-    (
-      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-    component.addPair();
-    await fixture.whenStable();
-
-    expect(mockUserStore.addLanguagePair).not.toHaveBeenCalled();
-  });
-
-  it('should save profile settings', async () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    (mockDrafts.profileNameDraft as import('@angular/core').WritableSignal<string>).set(
-      'Новое имя',
-    );
-    component.saveProfile();
-    await fixture.whenStable();
-
-    expect(mockUserStore.updateDisplayName).toHaveBeenCalledWith('Новое имя');
-    expect(mockUserStore.updatePreferences).toHaveBeenCalled();
   });
 
   it('should change tab index when selected', () => {
@@ -583,15 +543,6 @@ describe('CourseCatalogPageComponent', () => {
     expect(component.isCourseCompleted('c-2')).toBe(false);
   });
 
-  it('should format tracing duration with one decimal', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    expect(component.formatTracingDurationSec(0.5)).toBe('0.5 с');
-    expect(component.formatTracingDurationSec(1.25)).toBe('1.3 с');
-  });
-
   it('should render header with title', () => {
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     fixture.detectChanges();
@@ -606,19 +557,5 @@ describe('CourseCatalogPageComponent', () => {
 
     const tabGroup = fixture.nativeElement.querySelector('mat-tab-group');
     expect(tabGroup).toBeTruthy();
-  });
-
-  it('should render save button', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    fixture.detectChanges();
-
-    const buttons = fixture.nativeElement.querySelectorAll('button');
-    let saveBtn: HTMLButtonElement | undefined;
-    buttons.forEach((btn: HTMLButtonElement) => {
-      if (btn.textContent?.trim() === 'Сохранить') {
-        saveBtn = btn;
-      }
-    });
-    expect(saveBtn).toBeTruthy();
   });
 });

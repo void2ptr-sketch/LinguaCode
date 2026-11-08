@@ -15,5 +15,7 @@ export function courseToIndexEntry(course: Course, programCount: number): Course
     published: course.published,
     updatedAt: course.updatedAt,
     languagePairSummary: formatLanguagePair(course.languagePair),
+    knownLanguage: course.languagePair.known,
+    learningLanguage: course.languagePair.learning,
   };
 }

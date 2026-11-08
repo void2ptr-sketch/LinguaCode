@@ -172,27 +172,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "strings",
           "arrays"
-        ],
-        "tags": "strcmp возвращает <0, если первая строка лексикографически меньше."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.strings-c-style.01.scenario",
       "question": "Что вернёт strcmp(\"abc\", \"abd\")?",
       "code": {
-        "code": [
-          "Отрицательное число",
-          "0",
-          "Положительное",
-          "Ошибку"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Отрицательное число",
+        "0",
+        "Положительное",
+        "Ошибку"
+      ],
+      "correctIndex": 0,
+      "explanation": "strcmp возвращает <0, если первая строка лексикографически меньше."
     },
     {
       "id": "cpp.basics.strings-c-style.01.scenario.card-07",

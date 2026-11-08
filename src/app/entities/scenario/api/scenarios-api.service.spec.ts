@@ -62,14 +62,30 @@ describe('ScenariosApiService', () => {
   });
 
   describe('search', () => {
-    it('should search scenarios and return paginated results', async () => {
+    it('should search scenarios with query via GET /scenarios/search', async () => {
+      const promise = service.search({
+        query: 'test',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
+        page: { page: 0, pageSize: 20 },
+      });
+
+      const req = httpMock.expectOne((r) => r.url === buildApiUrl('/scenarios/search'));
+      expect(req.request.method).toBe('GET');
+      req.flush({ data: mockSearchPage });
+
+      const result = await promise;
+      expect(result).toEqual(mockSearchPage);
+    });
+
+    it('should list scenarios without query via GET /scenarios', async () => {
       const promise = service.search({
         knownLanguage: 'ru',
         learningLanguage: 'en',
         page: { page: 0, pageSize: 20 },
       });
 
-      const req = httpMock.expectOne((req) => req.url === buildApiUrl('/scenarios/search'));
+      const req = httpMock.expectOne((r) => r.url === buildApiUrl('/scenarios'));
       expect(req.request.method).toBe('GET');
       req.flush({ data: mockSearchPage });
 
@@ -106,7 +122,11 @@ describe('ScenariosApiService', () => {
 
       const req = httpMock.expectOne(buildApiUrl('/scenarios'));
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual(mockPayload);
+      expect(req.request.body).toEqual({
+        title: mockPayload.title,
+        scenarioDescription: mockPayload.description,
+        cardSource: JSON.stringify(mockPayload.cardSource),
+      });
       req.flush({ data: mockScenario });
 
       const result = await promise;
@@ -120,7 +140,12 @@ describe('ScenariosApiService', () => {
 
       const req = httpMock.expectOne(buildApiUrl('/scenarios/scenario-1'));
       expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(mockPayload);
+      expect(req.request.body).toEqual({
+        title: mockPayload.title,
+        scenarioDescription: mockPayload.description,
+        cardSource: JSON.stringify(mockPayload.cardSource),
+        published: mockPayload.published,
+      });
       req.flush({ data: mockScenario });
 
       const result = await promise;

@@ -3,6 +3,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import type { CourseIndexEntry } from '../../../course/model';
 import type { Lesson } from '../../../course/model/lesson.types';
 import { CourseSearchService } from '../../../course/search/course-search.service';
+import { ProgramsApiService } from '../../../program/api/programs-api.service';
 import type { ContentLanguage } from '../../model';
 /**
  * A course option for dropdown/select UI components.
@@ -47,6 +48,7 @@ export type ScenarioOption = {
 @Injectable({ providedIn: 'root' })
 export class CardCatalogHierarchyService {
   private readonly courseSearchService = inject(CourseSearchService);
+  private readonly programsApi = inject(ProgramsApiService);
 
   /**
    * Whether courses are currently being loaded from the server.
@@ -110,7 +112,7 @@ export class CardCatalogHierarchyService {
         page: { page: 0, pageSize: 100 },
       });
 
-      const courses = page.items.map(toCourseOption);
+      const courses = (page?.items ?? []).map(toCourseOption);
       this.coursesCache.set(languagePairKey, courses);
       return courses;
     } finally {
@@ -164,7 +166,7 @@ export class CardCatalogHierarchyService {
     this.lessonsLoading.set(true);
 
     try {
-      const program = await this.courseSearchService.getProgramById(programId);
+      const program = await this.programsApi.getById(programId);
       this.programLessonsCache.set(programId, program.lessons);
       return program.lessons.map(toLessonOption);
     } finally {

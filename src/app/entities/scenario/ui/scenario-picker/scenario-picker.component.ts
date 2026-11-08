@@ -22,7 +22,7 @@ import type { ScenarioIndexEntry, ScenarioListScope } from '../../model';
 import { UserStore } from '../../../user/model/user.store';
 import { UiPaginationComponent } from '../../../../shared/utils/pagination';
 
-let lastKnownScenarioPickerActiveLanguagePairId: string | null = null;
+let lastKnownScenarioPickerActiveLanguagePairId: string | null | undefined = null;
 
 /**
  * Scenario picker component. Provides a searchable, paginated list of scenarios
@@ -136,6 +136,13 @@ export class ScenarioPickerComponent implements OnInit {
    */
   readonly loading = signal(false);
 
+  /**
+   * Safe accessor for items (defensive against early template rendering).
+   */
+  protected getItems(): readonly ScenarioIndexEntry[] {
+    return this.items() ?? [];
+  }
+
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();
 
@@ -182,10 +189,11 @@ export class ScenarioPickerComponent implements OnInit {
         },
       });
 
+      const rawItems = page.items ?? [];
       const filtered =
         allowed && allowed.length > 0
-          ? page.items.filter((item: ScenarioIndexEntry) => allowed.includes(item.id))
-          : page.items;
+          ? rawItems.filter((item: ScenarioIndexEntry) => allowed.includes(item.id))
+          : rawItems;
 
       this.items.set(filtered);
       this.totalItems.set(filtered.length);

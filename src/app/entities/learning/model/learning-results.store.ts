@@ -51,7 +51,9 @@ export class LearningResultsStore {
     const pair = this.userStore.languagePair();
     return this.userResults().filter(
       (item) =>
-        item.languagePair.known === pair.known && item.languagePair.learning === pair.learning,
+        item.languagePair != null &&
+        item.languagePair.known === pair.known &&
+        item.languagePair.learning === pair.learning,
     );
   });
 
@@ -98,6 +100,10 @@ export class LearningResultsStore {
     const grouped = new Map<string, { total: number; correct: number }>();
 
     for (const result of this.pairResults()) {
+      if (!result.scenarioId) {
+        continue;
+      }
+
       const current = grouped.get(result.scenarioId) ?? { total: 0, correct: 0 };
       grouped.set(result.scenarioId, {
         total: current.total + 1,

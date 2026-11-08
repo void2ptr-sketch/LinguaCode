@@ -7,11 +7,8 @@ import type {
   CourseSearchCriteria,
   CourseSearchPage,
   CourseWithPrograms,
-  Lesson,
-  Program,
 } from '../../model';
 import type { ProgramWithLessons } from '../../../program/model/program.types';
-import type { ProgramWritePayload } from '../../repository/course-catalog.port';
 import { paginateArray } from '../../../../shared/utils/pagination';
 import { UserStore } from '../../../user/model/user.store';
 
@@ -75,7 +72,15 @@ export class CoursesCatalogMockHandler {
   async getById(courseId: string): Promise<CourseWithPrograms> {
     await this.ensureData();
 
-    const course = this.catalog!.courses.find((item) => item.id === courseId);
+    // 1. Прямой поиск по ID (numeric или string seed ID)
+    let course = this.catalog!.courses.find((item) => item.id === courseId);
+
+    // 2. Fallback: courseId — это seed string ID (например 'course-cpp-complete'),
+    //    а в каталоге ID может отличаться от title — ищем по title
+    if (!course) {
+      course = this.catalog!.courses.find((item) => item.title === courseId);
+    }
+
     if (!course) {
       throw notFound('Курс не найден');
     }
@@ -259,84 +264,6 @@ export class CoursesCatalogMockHandler {
       cards: this.cardRepository.loadStored(),
       cardIndexMeta: loadCardIndexMetaOverrides(),
     };
-  }
-
-  // ── Program operations ──
-
-  async getProgramById(programId: string): Promise<ProgramWithLessons> {
-    await this.ensureData();
-    const program = this.catalog!.programs?.find((p) => p.id === programId);
-    if (!program) {
-      throw notFound(`Program '${programId}' not found`);
-    }
-    const lessons = (this.catalog!.lessons ?? [])
-      .filter((lesson) => lesson.programId === programId)
-      .sort((left, right) => left.order - right.order);
-    return { ...program, lessons };
-  }
-
-  async createProgram(payload: ProgramWritePayload): Promise<ProgramWithLessons> {
-    await this.ensureData();
-    const id = payload.id ?? `program-${Date.now()}`;
-    const newProgram: Program = {
-      id,
-      courseId: payload.courseId,
-      title: payload.title,
-      description: payload.description,
-      lessonIds: payload.lessonIds,
-      order: payload.order,
-      updatedAt: new Date().toISOString(),
-    };
-    this.catalog!.programs ??= [];
-    this.catalog!.programs.push(newProgram);
-    this.persist();
-    const lessons = (this.catalog!.lessons ?? [])
-      .filter((lesson) => lesson.programId === id)
-      .sort((left, right) => left.order - right.order);
-    return { ...newProgram, lessons };
-  }
-
-  async updateProgram(
-    programId: string,
-    payload: ProgramWritePayload,
-  ): Promise<ProgramWithLessons> {
-    await this.ensureData();
-    const idx = this.catalog!.programs?.findIndex((p) => p.id === programId);
-    if (idx === undefined || idx === -1) {
-      throw notFound(`Program '${programId}' not found`);
-    }
-    const existing = this.catalog!.programs![idx];
-    const updated: Program = {
-      ...existing,
-      title: payload.title,
-      description: payload.description,
-      lessonIds: payload.lessonIds,
-      order: payload.order,
-      updatedAt: new Date().toISOString(),
-    };
-    this.catalog!.programs![idx] = updated;
-    this.persist();
-    const lessons = (this.catalog!.lessons ?? [])
-      .filter((lesson) => lesson.programId === programId)
-      .sort((left, right) => left.order - right.order);
-    return { ...updated, lessons };
-  }
-
-  async deleteProgram(programId: string): Promise<void> {
-    await this.ensureData();
-    const idx = this.catalog!.programs?.findIndex((p) => p.id === programId);
-    if (idx === undefined || idx === -1) {
-      throw notFound(`Program '${programId}' not found`);
-    }
-    this.catalog!.programs!.splice(idx, 1);
-    this.persist();
-  }
-
-  async getLessons(programId: string): Promise<readonly Lesson[]> {
-    await this.ensureData();
-    return (this.catalog!.lessons ?? [])
-      .filter((lesson) => lesson.programId === programId)
-      .sort((left, right) => left.order - right.order);
   }
 
   /**

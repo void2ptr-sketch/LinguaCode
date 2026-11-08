@@ -1,0 +1,175 @@
+import { Component, ChangeDetectionStrategy, computed, signal, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+import { CourseCatalogStore } from '../../services/course-catalog.store';
+import { UiPaginationComponent } from '../../../../shared/utils/pagination';
+import { ScormExportService } from '../../../../entities/course/api';
+import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
+import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast.service';
+
+/**
+ * Course catalog course list component. Displays all courses matching the active
+ * language pair, with progress indicators and SCORM export.
+ * @remarks Delegates state to `CourseCatalogStore`.
+ */
+@Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-course-catalog-course-list',
+  imports: [
+    MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    UiPaginationComponent,
+  ],
+  standalone: true,
+  templateUrl: './course-list.component.html',
+  styleUrl: './course-list.component.scss',
+})
+export class CourseCatalogCourseListComponent {
+  readonly catalogStore = inject(CourseCatalogStore);
+  private readonly scormExportService = inject(ScormExportService);
+  private readonly logger = inject(AppLoggerService);
+  private readonly errorToast = inject(ErrorToastService);
+
+  /** Whether the catalog is currently loading. */
+  readonly loading = this.catalogStore.loading;
+  /** Error message if the catalog failed to load. */
+  readonly error = this.catalogStore.error;
+  /** Course items from the catalog store. */
+  readonly items = this.catalogStore.items;
+  /** Progress percentage by course ID. */
+  readonly progressByCourseId = this.catalogStore.progressByCourseId;
+  /** Set of completed course IDs. */
+  readonly completedCourseIds = this.catalogStore.completedCourseIds;
+  /** Total number of courses. */
+  readonly totalItems = this.catalogStore.totalItems;
+  /** Current page index. */
+  readonly pageIndex = this.catalogStore.pageIndex;
+  /** Page size. */
+  readonly pageSize = this.catalogStore.pageSize;
+
+  // ---- Computed signals for template ----
+
+  /** Total items value for template. */
+  readonly totalItemsValue = computed(() => this.catalogStore.totalItems());
+  /** Page index value for template. */
+  readonly pageIndexValue = computed(() => this.catalogStore.pageIndex());
+  /** Page size value for template. */
+  readonly pageSizeValue = computed(() => this.catalogStore.pageSize());
+  /** Set of active course IDs (used by programs tab). */
+  readonly activeCourseIds = this.catalogStore.activeCourseIds;
+
+  // ---- SCORM Export ----
+
+  /** Set of course IDs currently being exported. */
+  private readonly exportingIds = signal<ReadonlySet<string>>(new Set());
+
+  /**
+   * Checks if a course is currently being exported.
+   *
+   * @param courseId - The course ID.
+   * @returns `true` if the course is currently exporting.
+   */
+  isExporting(courseId: string): boolean {
+    return this.exportingIds().has(courseId);
+  }
+
+  /**
+   * Exports a course to SCORM format and downloads the bundle as JSON.
+   *
+   * @param courseId - The course ID to export.
+   */
+  async exportToScorm(courseId: string): Promise<void> {
+    if (this.exportingIds().has(courseId)) {
+      return;
+    }
+
+    this.exportingIds.update((ids) => new Set(ids).add(courseId));
+
+    try {
+      const bundle = await this.scormExportService.export(courseId);
+      const courseTitle = this.items().find((c) => c.id === courseId)?.title ?? courseId;
+      const filename = `${courseTitle}-scorm-export.json`;
+
+      const blob = new Blob([JSON.stringify(bundle, null, 2)], {
+        type: 'application/json',
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      this.logger.error('SCORM export failed for course', { courseId, error });
+      this.errorToast.show('Не удалось экспортировать курс в SCORM');
+    } finally {
+      this.exportingIds.update((ids) => {
+        const next = new Set(ids);
+        next.delete(courseId);
+        return next;
+      });
+    }
+  }
+
+  /**
+   * Checks whether a course has been fully completed.
+   *
+   * @param courseId - The ID of the course to check.
+   * @returns `true` if the course ID is in the completed set.
+   */
+  isCourseCompleted(courseId: string): boolean {
+    return this.completedCourseIds().has(courseId);
+  }
+
+  /**
+   * Returns the progress percentage for a given course.
+   *
+   * @param courseId - The ID of the course.
+   * @returns The completion percentage (0-100), or `0` if no progress data exists.
+   */
+  progressPercent(courseId: string): number {
+    return this.progressByCourseId()[courseId] ?? 0;
+  }
+
+  /**
+   * Handles page change events from the paginator.
+   *
+   * @param event - The page event from Angular Material paginator.
+   */
+  onPageChange(event: import('@angular/material/paginator').PageEvent): void {
+    this.catalogStore.onPageChange(event);
+  }
+
+  /**
+   * Toggles a course in the active set for the programs tab.
+   *
+   * @param courseId - The course ID to toggle.
+   *
+   * @remarks
+   * Multiple courses can be active simultaneously. Their programs are
+   * all displayed on the "Программы курса" tab.
+   * When the last course is deselected, auto-sync is suppressed so the
+   * user can switch tabs without an unwanted course being re-activated.
+   */
+  onToggleActive(courseId: string): void {
+    const before = this.catalogStore.activeCourseIds();
+    this.catalogStore.toggleActiveCourseId(courseId);
+    const after = this.catalogStore.activeCourseIds();
+
+    // If user just deselected the last course, suppress auto-activation
+    if (before.size === 1 && after.size === 0) {
+      this.catalogStore.setFilterDismissed(true);
+    }
+  }
+}

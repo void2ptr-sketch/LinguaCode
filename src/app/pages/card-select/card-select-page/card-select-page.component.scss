@@ -64,7 +64,8 @@
 }
 
 .card-select-page__card-progress {
-  // Progress bar styles
+  position: relative;
+  z-index: 2001;
 }
 
 .card-select-page__warning {

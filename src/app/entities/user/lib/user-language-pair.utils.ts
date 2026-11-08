@@ -11,6 +11,7 @@ import { normalizeColorScheme } from './app-color-scheme.utils';
 import { normalizeCardFocusFullscreen } from '../../card/utils/card-focus-preference.utils';
 import { normalizeLearningProficiencyLevel } from '../../learning/lib/learning-proficiency.utils';
 import {
+  buildMirrorGroupKey,
   isContentLanguage,
   languagePairsEqual,
   normalizeLanguagePair,
@@ -163,14 +164,63 @@ export function createUserLanguagePairEntry(
 
 export function createDefaultLanguagePairPreferences(): Pick<
   UserPreferences,
-  'languagePairs' | 'activeLanguagePairId'
+  'languagePairs' | 'activeLanguagePairId' | 'activeByMirrorGroup'
 > {
   const entry = createUserLanguagePairEntry(DEFAULT_LANGUAGE_PAIR);
 
   return {
     languagePairs: [entry],
     activeLanguagePairId: entry.id,
+    activeByMirrorGroup: {
+      [buildMirrorGroupKey(entry.pair.known, entry.pair.learning)]: { ...entry.pair },
+    },
   };
+}
+
+/**
+ * Normalizes the per-mirror-group active pair map.
+ *
+ * @remarks
+ * Keeps only well-formed entries whose key matches `buildMirrorGroupKey` of
+ * the stored direction. When the map is empty (legacy profile), seeds it
+ * from the `seedPair` direction so existing highlights survive migration.
+ */
+function normalizeActiveByMirrorGroup(
+  raw: unknown,
+  seedPair?: LanguagePair | null,
+): Record<string, LanguagePair> {
+  const result: Record<string, LanguagePair> = {};
+
+  if (raw && typeof raw === 'object') {
+    for (const [key, value] of Object.entries(raw as Record<string, unknown>)) {
+      const candidate = value as Partial<LanguagePair> | null | undefined;
+      if (!isContentLanguage(candidate?.known) || !isContentLanguage(candidate?.learning)) {
+        continue;
+      }
+      if (candidate.known === candidate.learning) {
+        continue;
+      }
+      const pair: LanguagePair = { known: candidate.known, learning: candidate.learning };
+      if (buildMirrorGroupKey(pair.known, pair.learning) !== key) {
+        continue;
+      }
+      result[key] = pair;
+    }
+  }
+
+  if (
+    Object.keys(result).length === 0 &&
+    isContentLanguage(seedPair?.known) &&
+    isContentLanguage(seedPair?.learning) &&
+    seedPair.known !== seedPair.learning
+  ) {
+    result[buildMirrorGroupKey(seedPair.known, seedPair.learning)] = {
+      known: seedPair.known,
+      learning: seedPair.learning,
+    };
+  }
+
+  return result;
 }
 
 function normalizeLanguagePairEntry(
@@ -278,6 +328,13 @@ export function normalizeUserPreferences(
         ? preferences.activeLanguagePairId
         : normalizedEntries[0].id;
 
+    const activeEntry =
+      normalizedEntries.find((entry) => entry.id === activeLanguagePairId) ?? null;
+    const activeByMirrorGroup = normalizeActiveByMirrorGroup(
+      preferences.activeByMirrorGroup,
+      activeEntry?.pair ?? null,
+    );
+
     return {
       theme,
       fontSize,
@@ -286,6 +343,7 @@ export function normalizeUserPreferences(
       learningProficiencyLevel,
       languagePairs: normalizedEntries,
       activeLanguagePairId,
+      activeByMirrorGroup,
     };
   }
 
@@ -305,6 +363,7 @@ export function normalizeUserPreferences(
       learningProficiencyLevel,
       languagePairs: [entry],
       activeLanguagePairId: entry.id,
+      activeByMirrorGroup: normalizeActiveByMirrorGroup(undefined, entry.pair),
     };
   }
 
@@ -315,6 +374,10 @@ export function normalizeUserPreferences(
     cardFocusFullscreen,
     learningProficiencyLevel,
     ...defaults,
+    activeByMirrorGroup: normalizeActiveByMirrorGroup(
+      preferences?.activeByMirrorGroup,
+      defaults.languagePairs[0].pair,
+    ),
   };
 }
 

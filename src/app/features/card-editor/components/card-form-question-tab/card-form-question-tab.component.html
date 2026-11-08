@@ -3,8 +3,8 @@
 <mat-form-field appearance="outline">
   <mat-label>Известный язык</mat-label>
   <mat-select [ngModel]="knownLanguage()" (ngModelChange)="knownLanguageChange.emit($event)">
-    @for (language of languages; track language) {
-      <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+    @for (language of languageService.getCodes(); track language) {
+      <mat-option [value]="language">{{ languageService.getLabels()[language] }}</mat-option>
     }
   </mat-select>
 </mat-form-field>
@@ -12,8 +12,8 @@
 <mat-form-field appearance="outline">
   <mat-label>Новый язык</mat-label>
   <mat-select [ngModel]="learningLanguage()" (ngModelChange)="learningLanguageChange.emit($event)">
-    @for (language of languages; track language) {
-      <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+    @for (language of languageService.getCodes(); track language) {
+      <mat-option [value]="language">{{ languageService.getLabels()[language] }}</mat-option>
     }
   </mat-select>
 </mat-form-field>

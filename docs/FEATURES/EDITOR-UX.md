@@ -2,7 +2,7 @@
 
 Цель: упростить создание и редактирование карточек. Базовый сценарий — select ru→en за **≤ 8 полей** и **< 2 мин**.
 
-Связанные документы: [INDEX.md](./INDEX.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [ARCHITECTURE.md](../PRODUCT/ARCHITECTURE.md) · [TASKS.md](../TASKS.md).
 
 ## Режимы
 

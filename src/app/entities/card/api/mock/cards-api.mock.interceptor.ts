@@ -10,7 +10,7 @@
  * Supported requests:
  * - POST /cards/search — search cards with filters
  * - GET /cards/{id} — fetch a single card by ID
- * - POST /cards/batch — fetch multiple cards by IDs
+ * - POST /cards/batch/retrieve — fetch multiple cards by IDs
  *
  * @example
  * ```typescript
@@ -23,13 +23,15 @@
  */
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { defer } from 'rxjs';
+import { defer, switchMap } from 'rxjs';
 import { map } from 'rxjs';
 
 import { parseCardSearchCriteria } from './cards-api.params.utils';
 import { buildApiUrl, isApiRequest } from '../../../../shared/api/api-url';
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
 import type { Card } from '../../model';
+import type { BackendCardDto } from '../../model/card-backend-dto.types';
+import type { ApiListResponse } from '../../../../shared/api/api.types';
 
 /**
  * Checks whether the given URL is a cards search request.
@@ -81,8 +83,8 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
-  // POST /cards/batch — пакетное получение карточек
-  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/cards/batch'))) {
+  // POST /cards/batch/retrieve — пакетное получение карточек
+  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/cards/batch/retrieve'))) {
     const body = req.body as { ids?: readonly string[] };
     const ids = body?.ids ?? [];
 
@@ -93,7 +95,34 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
 
   // POST /cards — создание карточки
   if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/cards'))) {
-    return defer(() => handler.create(req.body as Card)).pipe(
+    // Convert BackendCardCreatePayload back to Card for the mock handler
+    const payload = req.body as Record<string, unknown>;
+    const card = {
+      id: String(payload['id'] ?? crypto.randomUUID()),
+      title: String(payload['title'] ?? ''),
+      kind: String(payload['kind'] ?? 'SELECT').toLowerCase() as Card['kind'],
+      appearance: { theme: 'default', fontSize: 'md' },
+    } as Card;
+    // Parse content JSON to extract kind-specific fields
+    try {
+      const content = JSON.parse(String(payload['dataJson'] ?? '{}'));
+      Object.assign(card, content);
+    } catch {
+      // ignore parse errors
+    }
+    // Parse tags
+    const c = card as Record<string, unknown>;
+    try {
+      c['tags'] = JSON.parse(String(payload['tags'] ?? '[]'));
+    } catch {
+      // ignore
+    }
+    // Add difficulty
+    if (payload['difficulty']) {
+      c['difficulty'] = String(payload['difficulty']).toLowerCase();
+    }
+
+    return defer(() => handler.create(card)).pipe(
       map((data) => new HttpResponse({ status: 201, body: { data } })),
     );
   }
@@ -102,7 +131,37 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
 
   // PUT /cards/{id} — обновление карточки
   if (req.method === 'PUT' && cardId) {
-    return defer(() => handler.update(cardId, req.body as Card)).pipe(
+    // Convert BackendCardUpdatePayload back to Card for the mock handler
+    const payload = req.body as Record<string, unknown>;
+    // Fetch current card first, then apply updates
+    return defer(() => handler.getById(cardId)).pipe(
+      map((current: Card) => {
+        const updated: Card = { ...current };
+        const u = updated as Record<string, unknown>;
+        if (payload['title'] !== undefined) {
+          u['title'] = String(payload['title']);
+        }
+        if (payload['dataJson'] !== undefined) {
+          try {
+            const content = JSON.parse(String(payload['dataJson']));
+            Object.assign(updated, content);
+          } catch {
+            // ignore
+          }
+        }
+        if (payload['tags'] !== undefined) {
+          try {
+            u['tags'] = JSON.parse(String(payload['tags']));
+          } catch {
+            // ignore
+          }
+        }
+        if (payload['difficulty'] !== undefined) {
+          u['difficulty'] = String(payload['difficulty']).toLowerCase();
+        }
+        return updated;
+      }),
+      switchMap((updated) => handler.update(cardId, updated)),
       map((data) => new HttpResponse({ status: 200, body: { data } })),
     );
   }
@@ -119,7 +178,16 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     const criteria = parseCardSearchCriteria(req.params);
 
     return defer(() => handler.search(criteria)).pipe(
-      map((data) => new HttpResponse({ status: 200, body: { data } })),
+      map((page) => {
+        // handler.search() returns CardSearchPage, but the service expects
+        // ApiListResponse<BackendCardDto> with { data: BackendCardDto[], total }
+        // Extract items (CardIndexEntry[]) and cast to BackendCardDto[] for the adapter
+        const dtos = page.items as unknown as BackendCardDto[];
+        return new HttpResponse<ApiListResponse<BackendCardDto>>({
+          status: 200,
+          body: { data: dtos, total: page.totalItems },
+        });
+      }),
     );
   }
 

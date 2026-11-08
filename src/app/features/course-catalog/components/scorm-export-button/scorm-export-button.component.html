@@ -1,0 +1,25 @@
+<button
+  mat-stroked-button
+  color="primary"
+  [disabled]="exporting()"
+  (click)="onExport()"
+  aria-label="Экспорт в SCORM"
+>
+  @if (exporting()) {
+    <ng-container>
+      <mat-icon aria-hidden="true">hourglass_empty</mat-icon>
+      Экспорт...
+    </ng-container>
+  } @else {
+    <ng-container>
+      <mat-icon aria-hidden="true">download</mat-icon>
+      Экспорт в SCORM
+    </ng-container>
+  }
+</button>
+
+@if (error()) {
+  <div class="scorm-export-button__error" aria-live="polite">
+    {{ error() }}
+  </div>
+}

@@ -39,7 +39,7 @@ describe('UserPageComponent', () => {
 
   it('should expose languages', () => {
     expect(component.languages).toBeDefined();
-    expect(Array.isArray(component.languages)).toBe(true);
+    expect(Array.isArray(component.languages())).toBe(true);
   });
 
   it('should expose languageLabels', () => {

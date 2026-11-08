@@ -525,27 +525,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "beginner",
+        "tags": [
           "io",
           "syntax"
-        ],
-        "tags": "ofstream создаёт файл, если его нет, и перезаписывает существующий (по умолчанию)."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.strings-streams.01.scenario",
       "question": "Что произойдёт с ofstream при попытке открыть файл на запись?",
       "code": {
-        "code": [
-          "Файл создастся (или перезапишется)",
-          "Ошибка чтения",
-          "Файл удалится",
-          "Ничего"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "beginner"
+      "outputOptions": [
+        "Файл создастся (или перезапишется)",
+        "Ошибка чтения",
+        "Файл удалится",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "ofstream создаёт файл, если его нет, и перезаписывает существующий (по умолчанию)."
     },
     {
       "id": "cpp.basics.strings-streams.01.scenario.card-18",

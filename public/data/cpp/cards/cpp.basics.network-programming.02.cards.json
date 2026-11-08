@@ -104,26 +104,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "beginner",
+        "tags": [
           "networking"
-        ],
-        "tags": "HTTP — порт 80; HTTPS — 443."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.network-programming.02.scenario",
       "question": "Какой порт по умолчанию у HTTP?",
       "code": {
-        "code": [
-          "80",
-          "443",
-          "22",
-          "53"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "beginner"
+      "outputOptions": [
+        "80",
+        "443",
+        "22",
+        "53"
+      ],
+      "correctIndex": 0,
+      "explanation": "HTTP — порт 80; HTTPS — 443."
     },
     {
       "id": "cpp.basics.network-programming.02.scenario.card-05",
@@ -197,26 +198,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "networking"
-        ],
-        "tags": "accept возвращает новый сокет для соединения с клиентом."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.network-programming.02.scenario",
       "question": "Какая функция сервера принимает входящее соединение?",
       "code": {
-        "code": [
-          "accept()",
-          "connect()",
-          "bind()",
-          "send()"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "accept()",
+        "connect()",
+        "bind()",
+        "send()"
+      ],
+      "correctIndex": 0,
+      "explanation": "accept возвращает новый сокет для соединения с клиентом."
     },
     {
       "id": "cpp.basics.network-programming.02.scenario.card-08",
@@ -320,26 +322,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "networking"
-        ],
-        "tags": "htons конвертирует порядок байт хоста в сетевой."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.network-programming.02.scenario",
       "question": "Что вернёт htons(port)?",
       "code": {
-        "code": [
-          "Порт в сетевом порядке байт (big-endian)",
-          "Порт в кодировке ASCII",
-          "Хэш порта",
-          "Тот же порт"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Порт в сетевом порядке байт (big-endian)",
+        "Порт в кодировке ASCII",
+        "Хэш порта",
+        "Тот же порт"
+      ],
+      "correctIndex": 0,
+      "explanation": "htons конвертирует порядок байт хоста в сетевой."
     },
     {
       "id": "cpp.basics.network-programming.02.scenario.card-12",
@@ -443,26 +446,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "networking"
-        ],
-        "tags": "recv возвращает 0 при закрытии соединения другой стороной."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.network-programming.02.scenario",
       "question": "Что означает возврат recv() == 0?",
       "code": {
-        "code": [
-          "Соединение закрыто (EOF)",
-          "Нет данных, но соединение живо",
-          "Ошибка",
-          "Данные получены"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Соединение закрыто (EOF)",
+        "Нет данных, но соединение живо",
+        "Ошибка",
+        "Данные получены"
+      ],
+      "correctIndex": 0,
+      "explanation": "recv возвращает 0 при закрытии соединения другой стороной."
     },
     {
       "id": "cpp.basics.network-programming.02.scenario.card-16",

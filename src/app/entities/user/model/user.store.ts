@@ -1,8 +1,10 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
 import {
+  buildMirrorGroupKey,
   formatLanguagePair,
   isContentLanguage,
+  languagePairsEqual,
   normalizeLanguagePair,
 } from '../../language-pair/lib/language-pair.utils';
 import {
@@ -71,16 +73,30 @@ export class UserStore {
   readonly activeLanguagePairId = computed(() => this.user().preferences.activeLanguagePairId);
 
   /**
-   * The currently active language pair entry (or the first one as fallback).
+   * The currently active language pair entry.
    *
    * @remarks
-   * Returns `null` only if no language pairs are configured.
+   * Returns `null` when no language pairs are configured or when the
+   * persisted `activeLanguagePairId` is stale. There is no silent fallback
+   * to the first entry: an invalid active id must never highlight an
+   * unrelated card.
    */
   readonly activeLanguagePairEntry = computed(() => {
     const pairs = this.languagePairs();
     const activeId = this.activeLanguagePairId();
-    return pairs.find((entry) => entry.id === activeId) ?? pairs[0] ?? null;
+    return pairs.find((entry) => entry.id === activeId) ?? null;
   });
+
+  /**
+   * Per-mirror-group active pair directions.
+   *
+   * @remarks
+   * Maps a mirror-group key (see `buildMirrorGroupKey`) to the exact
+   * direction that is highlighted as active within that mirror pair group.
+   * Scoped per group so that activation events within one mirror pair
+   * (e.g. EN↔RU) never affect cards of other mirror pairs (e.g. JA↔ZH).
+   */
+  readonly activeByMirrorGroup = computed(() => this.user().preferences.activeByMirrorGroup ?? {});
 
   /** Resolved language pair for the active entry. */
   readonly languagePair = computed(() => {
@@ -201,7 +217,10 @@ export class UserStore {
    * @param patch - Partial settings to merge.
    */
   updateActiveLanguagePairSettings(patch: Partial<UserLanguagePairSettings>): void {
-    this.updateLanguagePairSettings(this.activeLanguagePairId(), patch);
+    const activeId = this.activeLanguagePairId();
+    if (activeId) {
+      this.updateLanguagePairSettings(activeId, patch);
+    }
   }
 
   /**
@@ -212,22 +231,39 @@ export class UserStore {
   updateLanguagePair(languagePair: LanguagePair): void {
     const normalized = normalizeLanguagePair(languagePair);
     const activeId = this.activeLanguagePairId();
+    const previous = this.languagePairs().find((entry) => entry.id === activeId);
 
-    this.userState.update((user) => ({
-      ...user,
-      preferences: {
-        ...user.preferences,
-        languagePairs: user.preferences.languagePairs.map((entry) =>
-          entry.id === activeId
-            ? {
-                ...entry,
-                pair: normalized,
-                settings: defaultSettingsForPair(normalized) ?? entry.settings,
-              }
-            : entry,
-        ),
-      },
-    }));
+    this.userState.update((user) => {
+      const groupMarkers = { ...(user.preferences.activeByMirrorGroup ?? {}) };
+
+      // Drop a stale group marker pointing at the previous direction of the
+      // active entry, then mark the new direction as active in its group.
+      if (previous) {
+        const previousKey = buildMirrorGroupKey(previous.pair.known, previous.pair.learning);
+        const previousMarker = groupMarkers[previousKey];
+        if (previousMarker && languagePairsEqual(previousMarker, previous.pair)) {
+          delete groupMarkers[previousKey];
+        }
+      }
+      groupMarkers[buildMirrorGroupKey(normalized.known, normalized.learning)] = { ...normalized };
+
+      return {
+        ...user,
+        preferences: {
+          ...user.preferences,
+          languagePairs: user.preferences.languagePairs.map((entry) =>
+            entry.id === activeId
+              ? {
+                  ...entry,
+                  pair: normalized,
+                  settings: defaultSettingsForPair(normalized) ?? entry.settings,
+                }
+              : entry,
+          ),
+          activeByMirrorGroup: groupMarkers,
+        },
+      };
+    });
     this.persist();
   }
 
@@ -235,9 +271,63 @@ export class UserStore {
    * Adds a new language pair to the user's profile.
    *
    * @param pair - The language pair to add (known → learning).
-   * @remarks If a pair with the same known/learning languages already exists, it becomes active instead.
+   * @param options - `activate: false` adds the pair without changing the
+   *        global active pair or any mirror-group highlight (default `true`).
+   * @returns The entry ID of the (possibly pre-existing) pair, or `''` when rejected.
+   * @remarks If a pair with the same known/learning languages already exists
+   * and activation is requested, it becomes active instead of duplicating.
    */
-  addLanguagePair(pair: LanguagePair): void {
+  addLanguagePair(pair: LanguagePair, options?: { activate?: boolean }): string {
+    if (
+      !isContentLanguage(pair.known) ||
+      !isContentLanguage(pair.learning) ||
+      pair.known === pair.learning
+    ) {
+      return '';
+    }
+
+    const normalized: LanguagePair = { known: pair.known, learning: pair.learning };
+    const existingId = findLanguagePairEntryId(this.languagePairs(), normalized);
+    const activate = options?.activate ?? true;
+    const groupKey = buildMirrorGroupKey(normalized.known, normalized.learning);
+
+    if (existingId) {
+      if (activate) {
+        this.setActiveLanguagePair(existingId);
+        this.setActivePairInGroup(groupKey, normalized);
+      }
+      return existingId;
+    }
+
+    const entry = createUserLanguagePairEntry(normalized);
+    this.userState.update((user) => {
+      const nextPreferences: UserPreferences = {
+        ...user.preferences,
+        languagePairs: [...user.preferences.languagePairs, entry],
+      };
+      if (activate) {
+        nextPreferences.activeLanguagePairId = entry.id;
+        nextPreferences.activeByMirrorGroup = {
+          ...(user.preferences.activeByMirrorGroup ?? {}),
+          [groupKey]: { ...normalized },
+        };
+      }
+      return { ...user, preferences: nextPreferences };
+    });
+    this.persist();
+    return entry.id;
+  }
+
+  /**
+   * Sets the active pair highlight for a single mirror group.
+   *
+   * @param groupKey - Canonical mirror-group key (see `buildMirrorGroupKey`).
+   * @param pair - The exact direction to highlight within that group.
+   * @remarks
+   * Scoped strictly to the given mirror group: cards of other mirror pairs
+   * are never affected. Does not change the global active learning pair.
+   */
+  setActivePairInGroup(groupKey: string, pair: LanguagePair): void {
     if (
       !isContentLanguage(pair.known) ||
       !isContentLanguage(pair.learning) ||
@@ -246,21 +336,18 @@ export class UserStore {
       return;
     }
 
-    const normalized: LanguagePair = { known: pair.known, learning: pair.learning };
-    const existingId = findLanguagePairEntryId(this.languagePairs(), normalized);
-
-    if (existingId) {
-      this.setActiveLanguagePair(existingId);
+    if (buildMirrorGroupKey(pair.known, pair.learning) !== groupKey) {
       return;
     }
 
-    const entry = createUserLanguagePairEntry(normalized);
     this.userState.update((user) => ({
       ...user,
       preferences: {
         ...user.preferences,
-        languagePairs: [...user.preferences.languagePairs, entry],
-        activeLanguagePairId: entry.id,
+        activeByMirrorGroup: {
+          ...(user.preferences.activeByMirrorGroup ?? {}),
+          [groupKey]: { known: pair.known, learning: pair.learning },
+        },
       },
     }));
     this.persist();
@@ -270,11 +357,12 @@ export class UserStore {
    * Removes a language pair from the user's profile.
    *
    * @param id - The ID of the language pair entry to remove.
-   * @remarks Cannot remove the last remaining pair. If the removed pair is active, the first remaining becomes active.
+   * @remarks If the removed pair is active, the first remaining becomes active (or `undefined` when no pairs remain). If the removed pair was its mirror group's highlight, the highlight moves to the mirror sibling (when configured) or is cleared — never touching other groups.
    */
   removeLanguagePair(id: string): void {
     const pairs = this.languagePairs();
-    if (pairs.length <= 1) {
+    const removed = pairs.find((entry) => entry.id === id);
+    if (!removed) {
       return;
     }
 
@@ -283,8 +371,30 @@ export class UserStore {
       return;
     }
 
+    const groupKey = buildMirrorGroupKey(removed.pair.known, removed.pair.learning);
+    const groupMarkers = { ...(this.user().preferences.activeByMirrorGroup ?? {}) };
+    const groupMarker = groupMarkers[groupKey];
+
+    if (groupMarker && languagePairsEqual(groupMarker, removed.pair)) {
+      const sibling = nextPairs.find((entry) =>
+        languagePairsEqual(entry.pair, {
+          known: removed.pair.learning,
+          learning: removed.pair.known,
+        }),
+      );
+      if (sibling) {
+        groupMarkers[groupKey] = { ...sibling.pair };
+      } else {
+        delete groupMarkers[groupKey];
+      }
+    }
+
     const nextActiveId =
-      this.activeLanguagePairId() === id ? nextPairs[0].id : this.activeLanguagePairId();
+      this.activeLanguagePairId() === id
+        ? nextPairs.length > 0
+          ? nextPairs[0].id
+          : undefined
+        : this.activeLanguagePairId();
 
     this.userState.update((user) => ({
       ...user,
@@ -292,6 +402,7 @@ export class UserStore {
         ...user.preferences,
         languagePairs: nextPairs,
         activeLanguagePairId: nextActiveId,
+        activeByMirrorGroup: groupMarkers,
       },
     }));
     this.persist();

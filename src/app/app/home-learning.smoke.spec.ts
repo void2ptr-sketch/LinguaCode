@@ -1,16 +1,17 @@
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
-import { provideApiHttp } from './api/provide-api.http';
+import { provideApiHttpTesting } from './api/provide-api.http';
 import {
   getTestDefaultScenarios,
   getTestDemoCourseWithLessons,
   seedTestContentCache,
 } from '../entities/content-seed/content-seed.test-utils';
+import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
+import { AuthStore } from '../entities/auth/services/auth.store';
 
 describe('Home learning dashboard smoke', () => {
   beforeEach(async () => {
@@ -22,11 +23,22 @@ describe('Home learning dashboard smoke', () => {
       providers: [
         provideRouter(routes),
         provideNoopAnimations(),
-        provideApiHttp(),
-        provideHttpClient(),
+        provideApiHttpTesting(),
         provideHttpClientTesting(),
+        {
+          provide: AuthStore,
+          useValue: {
+            isAuthenticated: () => true,
+            user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: [] }),
+            logout: () => Promise.resolve(),
+          },
+        },
       ],
     }).compileComponents();
+
+    // Clear IndexedDB snapshot so seed loads cleanly
+    const seedRepo = TestBed.inject(ContentSeedRepository);
+    await seedRepo.resetForTests();
   });
 
   afterEach(() => {

@@ -13,7 +13,7 @@ describe('courses-api.params.utils', () => {
 
       expect(params.get('page')).toBe('2');
       expect(params.get('pageSize')).toBe('15');
-      expect(params.has('query')).toBe(false);
+      expect(params.get('query')).toBe('');
       expect(params.has('authorId')).toBe(false);
       expect(params.has('scope')).toBe(false);
       expect(params.has('knownLanguage')).toBe(false);
@@ -51,7 +51,7 @@ describe('courses-api.params.utils', () => {
 
       const params = buildCourseSearchParams(criteria);
 
-      expect(params.has('query')).toBe(false);
+      expect(params.get('query')).toBe('');
       expect(params.has('authorId')).toBe(false);
       expect(params.has('scope')).toBe(false);
       expect(params.has('knownLanguage')).toBe(false);
@@ -93,10 +93,8 @@ describe('courses-api.params.utils', () => {
       expect(criteria.page.pageSize).toBeGreaterThan(0);
     });
 
-    it('should reject invalid content languages', () => {
-      const params = new HttpParams()
-        .set('knownLanguage', 'invalid-lang')
-        .set('learningLanguage', 'also-invalid');
+    it('should reject empty content languages', () => {
+      const params = new HttpParams().set('knownLanguage', '').set('learningLanguage', '');
 
       const criteria = parseCourseSearchCriteria(params);
 

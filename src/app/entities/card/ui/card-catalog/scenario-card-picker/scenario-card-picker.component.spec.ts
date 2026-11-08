@@ -1,23 +1,63 @@
+import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { ScenarioCardPickerComponent } from './scenario-card-picker.component';
 import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
 import { UserStore } from '../../../../user/model/user.store';
-import {
-  CARD_KIND_LABELS,
-  CONTENT_LANGUAGE_LABELS,
-  DIFFICULTY_LABELS,
-} from '../../../lib/catalog-labels';
+import { LanguageService } from '../../../../language-pair/lib/language.service';
+import { CatalogService } from '../../../api/catalog.service';
+import { TagsService } from '../../../api/tags.service';
 import { formatIndexLanguagePair } from '../../../../language-pair/lib/language-pair.utils';
 
 describe('ScenarioCardPickerComponent', () => {
   let component: ScenarioCardPickerComponent;
   let fixture: ComponentFixture<ScenarioCardPickerComponent>;
+  let languageService: LanguageService;
+
+  const mockLabels: Record<string, string> = {
+    ru: 'Русский',
+    en: 'English',
+  };
 
   beforeEach(async () => {
+    languageService = {
+      getLabels: () => mockLabels,
+    } as unknown as LanguageService;
+
     await TestBed.configureTestingModule({
       imports: [ScenarioCardPickerComponent],
-      providers: [CardCatalogSearchStore, UserStore],
+      providers: [
+        CardCatalogSearchStore,
+        UserStore,
+        { provide: LanguageService, useValue: languageService },
+        {
+          provide: CatalogService,
+          useValue: {
+            loaded: signal(true),
+            difficulties: signal([
+              { code: 'beginner', label: 'Начальный' },
+              { code: 'intermediate', label: 'Средний' },
+              { code: 'advanced', label: 'Продвинутый' },
+            ]),
+            cardKinds: signal([
+              { code: 'select', label: 'Выбор ответа' },
+              { code: 'memory', label: 'Запоминание' },
+              { code: 'keyboard', label: 'Клавиатура' },
+            ]),
+          },
+        },
+        {
+          provide: TagsService,
+          useValue: {
+            loaded: signal(true),
+            tagLabels: signal({
+              greetings: 'Приветствия',
+              vocabulary: 'Лексика',
+            }),
+            getLabel: (tag: string) => mockLabels[tag] ?? tag,
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScenarioCardPickerComponent);
@@ -28,16 +68,25 @@ describe('ScenarioCardPickerComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it('should expose kindLabels', () => {
-    expect(component.kindLabels).toBe(CARD_KIND_LABELS);
+  it('should expose kindLabels from CatalogService', () => {
+    const labels = component.kindLabels();
+    expect(labels['select']).toBe('Выбор ответа');
+    expect(labels['memory']).toBe('Запоминание');
   });
 
   it('should expose languageLabels', () => {
-    expect(component.languageLabels).toBe(CONTENT_LANGUAGE_LABELS);
+    expect(component.languageLabels()).toBe(mockLabels);
   });
 
-  it('should expose difficultyLabels', () => {
-    expect(component.difficultyLabels).toBe(DIFFICULTY_LABELS);
+  it('should expose difficultyLabels from CatalogService', () => {
+    const labels = component.difficultyLabels();
+    expect(labels['beginner']).toBe('Начальный');
+    expect(labels['intermediate']).toBe('Средний');
+  });
+
+  it('should expose getTagLabel method', () => {
+    expect(typeof component.getTagLabel).toBe('function');
+    expect(component.getTagLabel('greetings')).toBe('greetings');
   });
 
   it('should expose formatIndexLanguagePair utility', () => {
@@ -92,7 +141,7 @@ describe('ScenarioCardPickerComponent', () => {
       expect(spy).toHaveBeenCalledWith(['card-1', 'card-3']);
     });
 
-    it('should not emit when unchecking non-selected card', () => {
+    it('should emit filtered array when unchecking non-selected card (no-op filter)', () => {
       const spy = vi.spyOn(component.selectedIdsChange, 'emit');
       fixture.componentRef.setInput('selectedIds', ['card-1']);
       component.toggleCard('card-2', false);

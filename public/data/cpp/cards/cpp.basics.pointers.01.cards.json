@@ -172,27 +172,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "pointers",
           "memory"
-        ],
-        "tags": "Разыменование nullptr — UB; часто segfault."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.pointers.01.scenario",
       "question": "Что произойдёт при разыменовании nullptr?",
       "code": {
-        "code": [
-          "Неопределённое поведение (обычно крах)",
-          "Возврат 0",
-          "Ошибка компиляции",
-          "Выброс исключения гарантированно"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Неопределённое поведение (обычно крах)",
+        "Возврат 0",
+        "Ошибка компиляции",
+        "Выброс исключения гарантированно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разыменование nullptr — UB; часто segfault."
     },
     {
       "id": "cpp.basics.pointers.01.scenario.card-07",

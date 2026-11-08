@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import type { ContentLanguage, CardKind } from '../../../../entities/card/model';
-import { CONTENT_LANGUAGE_LABELS } from '../../../../entities/card/lib/catalog-labels';
-import { contentLanguages } from '../../../../entities/language-pair/lib/language-pair.utils';
+import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
 import type { CardDraft, ChoiceCardDraft } from '../../types';
 import { cardFormKindGroup } from '../../utils/form/card-form.registry';
 import type {
@@ -29,6 +28,8 @@ import type {
   templateUrl: './card-form-question-tab.component.html',
 })
 export class CardFormQuestionTabComponent {
+  private readonly languageService = inject(LanguageService);
+
   /** Available courses for the current language pair. */
   readonly availableCourses = input.required<readonly CourseOption[]>();
 
@@ -68,8 +69,8 @@ export class CardFormQuestionTabComponent {
   /** Emits the updated choice prompt known. */
   readonly choicePromptKnownChange = output<string>();
 
-  readonly languages = contentLanguages();
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  readonly languages = () => this.languageService.getCodes();
+  readonly languageLabels = () => this.languageService.getLabels();
 
   /** Computed choice card draft, or null if not a choice type. */
   readonly choiceDraft = computed((): ChoiceCardDraft | null => {

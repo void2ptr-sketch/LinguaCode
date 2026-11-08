@@ -2,7 +2,7 @@
 
 > **Статус: удалён.** Слой `src/app/core/` **полностью удалён** — shim-баррели больше не нужны, потребители импортируют напрямую из `entities/*/`, `shared/`, `widgets/`, `app/`. Этот документ описывает, куда переехала бывшая функциональность `core/`.
 
-Оглавление: [INDEX.md](./INDEX.md) · обзор: [ARCHITECTURE.md](./ARCHITECTURE.md).
+Оглавление: [INDEX.md](./INDEX.md) · обзор: [ARCHITECTURE.md](../PRODUCT/ARCHITECTURE.md).
 
 ## Куда переехал `core/`
 
@@ -125,4 +125,4 @@ docs/FEATURES/COURSE-BUNDLE.md
 
 ## Связанные документы
 
-- [DOMAIN.md](./COMMON/DOMAIN.md#модели) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md)
+- [DOMAIN.md](../PRODUCT/DOMAIN.md#модели) · [ARCHITECTURE.md](../PRODUCT/ARCHITECTURE.md) · [LANGUAGE-PAIR.md](../FEATURES/LANGUAGE-PAIR.md)

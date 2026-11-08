@@ -13,12 +13,10 @@ import { MatListModule } from '@angular/material/list';
 
 import { UiPaginationComponent } from '../../../../../shared/utils/pagination';
 import { formatIndexLanguagePair } from '../../../../language-pair/lib/language-pair.utils';
+import { LanguageService } from '../../../../language-pair/lib/language.service';
 import { UserStore } from '../../../../user/model/user.store';
-import {
-  CARD_KIND_LABELS,
-  CONTENT_LANGUAGE_LABELS,
-  DIFFICULTY_LABELS,
-} from '../../../lib/catalog-labels';
+import { CatalogService } from '../../../api/catalog.service';
+import { TagsService } from '../../../api/tags.service';
 import { CardCatalogFiltersComponent } from '../card-catalog-filters/card-catalog-filters.component';
 import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
 import type { CardIndexEntry } from '../../../model';
@@ -39,7 +37,7 @@ import type { CardIndexEntry } from '../../../model';
  * </app-scenario-card-picker>
  * ```
  */
-let lastKnownPickerActiveLanguagePairId: string | null = null;
+let lastKnownPickerActiveLanguagePairId: string | null | undefined = null;
 
 @Component({
   selector: 'app-scenario-card-picker',
@@ -51,6 +49,9 @@ let lastKnownPickerActiveLanguagePairId: string | null = null;
 export class ScenarioCardPickerComponent implements OnInit {
   readonly store = inject<CardCatalogSearchStore>(CardCatalogSearchStore);
   private readonly userStore = inject(UserStore);
+  private readonly languageService = inject(LanguageService);
+  private readonly catalogService = inject(CatalogService);
+  private readonly tagsService = inject(TagsService);
 
   /**
    * Required array of currently selected card IDs.
@@ -69,33 +70,33 @@ export class ScenarioCardPickerComponent implements OnInit {
   readonly selectedIdsChange = output<readonly string[]>();
 
   /**
-   * Labels for card kinds.
-   *
-   * @remarks
-   * Used in templates to display human-readable kind names.
+   * Labels for card kinds from backend catalog.
    */
-  readonly kindLabels = CARD_KIND_LABELS;
+  readonly kindLabels = computed<Record<string, string>>(() =>
+    Object.fromEntries(this.catalogService.cardKinds().map((k) => [k.code, k.label])),
+  );
   /**
    * Labels for content languages.
-   *
-   * @remarks
-   * Used in templates to display human-readable language names.
    */
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  readonly languageLabels = () => this.languageService.getLabels();
   /**
-   * Labels for difficulty levels.
-   *
-   * @remarks
-   * Used in templates to display human-readable difficulty names.
+   * Labels for difficulty levels from backend catalog.
    */
-  readonly difficultyLabels = DIFFICULTY_LABELS;
+  readonly difficultyLabels = computed<Record<string, string>>(() =>
+    Object.fromEntries(this.catalogService.difficulties().map((d) => [d.code, d.label])),
+  );
   /**
    * Utility function to format index language pairs.
-   *
-   * @remarks
-   * Used in templates to render language pair labels.
    */
   readonly formatIndexLanguagePair = formatIndexLanguagePair;
+
+  /**
+   * Returns a human-readable label for a tag.
+   * Uses backend data when loaded, falls back to tag id.
+   */
+  getTagLabel(tag: string): string {
+    return this.tagsService.getLabel(tag);
+  }
 
   /**
    * Computed search result entries from the catalog store.

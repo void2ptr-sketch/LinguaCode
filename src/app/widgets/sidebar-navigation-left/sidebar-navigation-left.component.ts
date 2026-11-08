@@ -36,6 +36,7 @@ export class SidebarNavigationLeftComponent {
         { label: 'Карта', path: '/journey', icon: 'map' },
         { label: 'Практика', path: '/cards/select', icon: 'style' },
         { label: 'Обучение', path: '/home', icon: 'school' },
+        { label: 'Языковые настройки', path: '/settings/languages', icon: 'language' },
         { label: 'Каталог курсов', path: '/courses', icon: 'menu_book' },
       ],
     },

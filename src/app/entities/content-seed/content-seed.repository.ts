@@ -31,7 +31,7 @@ import { AppLoggerService } from '../../shared/logger/app-logger.service';
 import { firstValueFrom } from 'rxjs';
 
 import { buildFixtureUrl } from '../../shared/api/api-url';
-import { IndexedDbService } from '../../shared/storage';
+import { IndexedDbService, IDB_STORE_CONTENT_SEED } from '../../shared/storage';
 import type { Card } from '../card/model';
 import type { Course } from '../course/model';
 import type { LegacyScenario, Scenario } from '../scenario/model';
@@ -55,11 +55,16 @@ import {
 import type {
   CardsSeedFixture,
   ContentManifest,
+  CoursesNestedFixture,
   CoursesSeedFixture,
   ScenariosSeedFixture,
 } from './content-seed.types';
 import type { CourseCatalogState } from '../course/utils/course-catalog-state';
-import { normalizeStoredCourseCatalog } from '../course/utils/course-catalog-state';
+import {
+  normalizeStoredCourseCatalog,
+  isNestedFormat,
+  normalizeNestedCourseCatalog,
+} from '../course/utils/course-catalog-state';
 
 /**
  * Репозиторий seed-данных (начальных данных).
@@ -106,6 +111,20 @@ export class ContentSeedRepository {
   resetForTest(): void {
     this.preloadPromise = null;
     this.preloadSuccess = false;
+  }
+
+  /**
+   * Полностью сбрасывает seed-кэш (in-memory + IndexedDB) для тестов.
+   * @internal
+   */
+  async resetForTests(): Promise<void> {
+    this.preloadPromise = null;
+    this.preloadSuccess = false;
+    try {
+      await this.idb.clear(IDB_STORE_CONTENT_SEED);
+    } catch {
+      // IndexedDB may not be available in test environments — ignore
+    }
   }
 
   /**
@@ -198,6 +217,11 @@ export class ContentSeedRepository {
     }
 
     // Сетевой путь: загружаем фикстуры, нормализуем и обновляем кэш
+    if (!manifest?.scenarioFiles || !manifest.courseFiles || !manifest.cardFiles) {
+      this.logger.warn('ContentSeed: manifest missing required fields, skipping seed load');
+      return;
+    }
+
     const [scenarioFixtures, courseFixtures, cardFixtures] = await Promise.all([
       Promise.all(manifest.scenarioFiles.map((file) => this.loadScenarioFixture(file))),
       Promise.all(manifest.courseFiles.map((file) => this.loadCourseFixture(file))),
@@ -206,7 +230,9 @@ export class ContentSeedRepository {
 
     const scenarios = scenarioFixtures.flatMap((fixture) => fixture.scenarios);
     const courses = mergeCourseFixtures(courseFixtures);
-    const cards = normalizeLegacyCards(cardFixtures.flatMap((fixture) => fixture.cards));
+    // Collect cards from nested course fixtures and from card fixture files
+    const nestedCards = courseFixtures.flatMap((f) => f.cards ?? []);
+    const cards = normalizeLegacyCards([...nestedCards, ...cardFixtures.flatMap((f) => f.cards)]);
 
     setScenarioSeedCache(scenarios);
     setCourseSeedCache(courses);
@@ -261,14 +287,32 @@ export class ContentSeedRepository {
   /**
    * Загружает файл курсов и нормализует данные.
    *
+   * Detects the format (nested vs legacy) and delegates to the appropriate
+   * normalizer.  Returns a flat `CourseCatalogState` with an additional
+   * `cards` array for nested fixtures.
+   *
    * @param path — путь к файлу
-   * @returns нормализованный каталог курсов
-   * @private
+   * @returns нормализованный каталог курсов (и cards для nested-формата)
    */
-  private loadCourseFixture(path: string): Promise<CoursesSeedFixture> {
-    return firstValueFrom(this.http.get<CoursesSeedFixture>(buildFixtureUrl(path))).then(
-      (fixture) => normalizeStoredCourseCatalog(fixture),
-    );
+  private loadCourseFixture(path: string): Promise<{
+    courses: import('../course/model/course.types').Course[];
+    programs: import('../program/model/program.types').Program[];
+    lessons: import('../course/model/lesson.types').Lesson[];
+    cards?: Card[];
+  }> {
+    return firstValueFrom(this.http.get<unknown>(buildFixtureUrl(path))).then((raw) => {
+      if (isNestedFormat(raw)) {
+        const nested = raw as CoursesNestedFixture;
+        const result = normalizeNestedCourseCatalog(nested);
+        return {
+          courses: result.catalog.courses,
+          programs: result.catalog.programs,
+          lessons: result.catalog.lessons,
+          cards: result.cards,
+        };
+      }
+      return normalizeStoredCourseCatalog(raw as Partial<CoursesSeedFixture>);
+    });
   }
 
   /**
@@ -291,33 +335,35 @@ export class ContentSeedRepository {
  * Объединяет несколько файлов курсов в один каталог.
  *
  * Использует уникальные ID для устранения дубликатов.
+ * Fixtures are already normalized by `loadCourseFixture` (legacy → normalizeStoredCourseCatalog,
+ * nested → normalizeNestedCourseCatalog), so we merge them directly without re-normalizing.
  *
- * @param fixtures — массив файлов курсов
+ * @param fixtures — массив файлов курсов (уже нормализованных)
  * @returns объединённый каталог курсов
  * @private
  */
-function mergeCourseFixtures(fixtures: readonly CoursesSeedFixture[]): CourseCatalogState {
-  // Normalize each fixture through normalizeStoredCourseCatalog to handle
-  // legacy format (courses with lessonIds, lessons with courseId) and produce
-  // the canonical format with programs.
-  const normalized = fixtures.map((f) =>
-    normalizeStoredCourseCatalog(f as Partial<CoursesSeedFixture>),
-  );
-
+function mergeCourseFixtures(
+  fixtures: readonly {
+    courses: import('../course/model/course.types').Course[];
+    programs: import('../program/model/program.types').Program[];
+    lessons: import('../course/model/lesson.types').Lesson[];
+    cards?: Card[];
+  }[],
+): CourseCatalogState {
   const coursesById = new Map<string, Course>();
   const programsById = new Map<string, import('../program/model/program.types').Program>();
   const lessonsById = new Map<string, import('../course/model/lesson.types').Lesson>();
 
-  for (const catalog of normalized) {
-    for (const course of catalog.courses) {
+  for (const fixture of fixtures) {
+    for (const course of fixture.courses ?? []) {
       coursesById.set(course.id, course);
     }
 
-    for (const program of catalog.programs) {
+    for (const program of fixture.programs ?? []) {
       programsById.set(program.id, program);
     }
 
-    for (const lesson of catalog.lessons) {
+    for (const lesson of fixture.lessons ?? []) {
       lessonsById.set(lesson.id, lesson);
     }
   }

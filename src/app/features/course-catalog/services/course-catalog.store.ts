@@ -55,6 +55,16 @@ export class CourseCatalogStore {
     return computed(() => this.#state().selectedTabIndex);
   }
 
+  /** Множество активных курсов (фильтр для вкладки программ). */
+  get activeCourseIds(): Signal<ReadonlySet<string>> {
+    return computed(() => this.#state().activeCourseIds);
+  }
+
+  /** Флаг: пользователь явно сбросил фильтр (suppress auto-sync). */
+  get filterDismissedUntilTabChange(): Signal<boolean> {
+    return computed(() => this.#state().filterDismissedUntilTabChange);
+  }
+
   // --- Мутации ---
 
   setItems(items: readonly CourseIndexEntry[]): void {
@@ -90,7 +100,31 @@ export class CourseCatalogStore {
   }
 
   setSelectedTabIndex(index: number): void {
-    this.#state.update((s) => ({ ...s, selectedTabIndex: index }));
+    this.#state.update((s) => ({
+      ...s,
+      selectedTabIndex: index,
+      filterDismissedUntilTabChange: false,
+    }));
+  }
+
+  toggleActiveCourseId(id: string): void {
+    this.#state.update((s) => {
+      const next = new Set(s.activeCourseIds);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return { ...s, activeCourseIds: next as ReadonlySet<string> };
+    });
+  }
+
+  clearActiveCourseIds(): void {
+    this.#state.update((s) => ({ ...s, activeCourseIds: new Set() as ReadonlySet<string> }));
+  }
+
+  setFilterDismissed(dismissed: boolean): void {
+    this.#state.update((s) => ({ ...s, filterDismissedUntilTabChange: dismissed }));
   }
 
   /**

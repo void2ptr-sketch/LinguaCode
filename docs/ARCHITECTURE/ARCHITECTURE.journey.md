@@ -202,7 +202,7 @@ flowchart TB
 
 ## Связанные документы
 
-- [ARCHITECTURE.md](../ARCHITECTURE.md) — обзор архитектуры
+- [ARCHITECTURE.md](../PRODUCT/ARCHITECTURE.md) — обзор архитектуры
 - [ARCHITECTURE.home.md](./ARCHITECTURE.home.md) — dashboard
 - [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md) — практика
 - [ARCHITECTURE.learning-results.md](./ARCHITECTURE.learning-results.md) — результаты обучения

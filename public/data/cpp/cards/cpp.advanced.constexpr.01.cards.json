@@ -170,26 +170,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "modern-cpp"
-        ],
-        "tags": "C++14 разрешил циклы, условия, local в constexpr."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.constexpr.01.scenario",
       "question": "Можно ли в C++14 использовать циклы в constexpr?",
       "code": {
-        "code": [
-          "Да (C++14 упростил)",
-          "Нет",
-          "Только for",
-          "Только while"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Да (C++14 упростил)",
+        "Нет",
+        "Только for",
+        "Только while"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++14 разрешил циклы, условия, local в constexpr."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-07",

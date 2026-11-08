@@ -13,10 +13,7 @@ import type { AppColorScheme, UserPreferences } from '../../entities/user/model'
 import type { LearningProficiencyLevel } from '../../entities/learning/model';
 import { LEARNING_PROFICIENCY_LEVELS } from '../../entities/learning/model';
 import { UserStore } from '../../entities/user/model/user.store';
-import {
-  CONTENT_LANGUAGE_LABELS,
-  contentLanguages,
-} from '../../entities/language-pair/lib/language-pair.utils';
+import { LanguageService } from '../../entities/language-pair';
 
 /**
  * User profile page component. Allows users to manage their display name, theme preferences,
@@ -43,15 +40,16 @@ import {
 })
 export class UserPageComponent implements OnInit {
   private readonly userStore = inject(UserStore);
+  private readonly languageService = inject(LanguageService);
 
   /** Current user's display name from the store. */
   readonly displayName = this.userStore.displayName;
   /** User preferences signal from the store. */
   readonly preferences = this.userStore.preferences;
   /** Available content languages. */
-  readonly languages = contentLanguages();
+  readonly languages = () => this.languageService.getCodes();
   /** Labels for content languages. */
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  readonly languageLabels = () => this.languageService.getLabels();
 
   /** Draft value for the user's display name. */
   readonly nameDraft = signal(this.displayName());

@@ -371,47 +371,6 @@ export type ChoiceCardDraft =
 export type EditableCardKind = CardKind;
 
 /**
- * Human-readable labels for each card kind (Russian).
- *
- * @remarks
- * Used in the card editor UI for kind selector dropdowns and display.
- */
-export const CARD_KIND_LABELS: Record<CardKind, string> = {
-  select: 'Выбор ответа',
-  'code-select': 'Код: выбор ответа',
-  memory: 'Запоминание',
-  symbol: 'Символы',
-  sound: 'Звук',
-  timed: 'На время',
-  keyboard: 'Клавиатура',
-  draw: 'Рисование',
-  tone: 'Тон',
-  reading: 'Чтение (полифония)',
-  flip: 'Переворот',
-  cloze: 'Пропуск в тексте',
-  'code-trace': 'Код: что выведет?',
-};
-
-/**
- * Array of all supported card kinds.
- *
- * @remarks
- * Used in the card editor for kind selector and validation.
- */
-export const CARD_KINDS: readonly CardKind[] = [
-  'select',
-  'code-select',
-  'memory',
-  'symbol',
-  'sound',
-  'timed',
-  'keyboard',
-  'draw',
-  'tone',
-  'reading',
-];
-
-/**
  * Creates an empty lexeme card draft.
  *
  * @returns A `LexemeCardDraft` with empty prompt lexeme and empty audio URL.

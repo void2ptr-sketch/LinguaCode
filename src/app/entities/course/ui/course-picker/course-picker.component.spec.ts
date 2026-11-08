@@ -20,6 +20,8 @@ describe('CoursePickerComponent', () => {
       published: true,
       updatedAt: '2024-01-01',
       languagePairSummary: 'EN-RU',
+      knownLanguage: 'en',
+      learningLanguage: 'ru',
     },
     {
       id: 'course-2',
@@ -29,6 +31,8 @@ describe('CoursePickerComponent', () => {
       published: true,
       updatedAt: '2024-01-02',
       languagePairSummary: 'EN-RU',
+      knownLanguage: 'en',
+      learningLanguage: 'ru',
     },
   ];
 

@@ -108,7 +108,7 @@ export class CardSelectFlowService {
     this._lastKnownActiveLanguagePairId = activeId;
   });
 
-  private _lastKnownActiveLanguagePairId: string | null = null;
+  private _lastKnownActiveLanguagePairId: string | null | undefined = null;
 
   // ─── Flow state signals ────────────────────────────────────────────────
 

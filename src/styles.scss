@@ -23,8 +23,6 @@ body.card-focus-shell-open {
   .card-select-page__header,
   .card-select-page__tabs > .mat-mdc-tab-header,
   .card-select-page__learning-toolbar,
-  .card-select-page__context,
-  .card-select-page__card-progress,
   .card-select-page__warning {
     visibility: hidden;
     pointer-events: none;
@@ -107,5 +105,14 @@ body.card-focus-shell-open {
 
   @media (max-width: 47.99rem) {
     max-height: calc(100vh - 8rem);
+  }
+}
+
+@keyframes directionPop {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
   }
 }

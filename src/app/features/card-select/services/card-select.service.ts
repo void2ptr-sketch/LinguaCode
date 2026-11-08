@@ -12,14 +12,14 @@ import { UserStore } from '../../../entities/user/model/user.store';
  * Represents a card selection session loaded from a scenario.
  *
  * @remarks
- * Includes the scenario metadata, assembled cards, and any missing card IDs
+ * Includes the scenario metadata, card IDs for pagination, and any missing card IDs
  * that could not be resolved from the card source.
  */
 export type CardSelectSession = {
   scenarioId: string;
   scenarioTitle: string;
   scenarioSourceLabel: string;
-  cards: readonly Card[];
+  cardIds: readonly string[];
   missingCardIds: readonly string[];
 };
 
@@ -60,10 +60,10 @@ export class CardSelectService {
   }
 
   /**
-   * Loads a scenario and assembles a card selection session.
+   * Loads a scenario and resolves all card IDs for pagination.
    *
    * @param scenarioId - The ID of the scenario to load.
-   * @returns A Promise resolving to the card selection session.
+   * @returns A Promise resolving to the card selection session with card IDs.
    * @throws Error if the scenario's language pair doesn't match or if no cards are found.
    */
   async loadScenario(scenarioId: string): Promise<CardSelectSession> {
@@ -74,21 +74,9 @@ export class CardSelectService {
       throw new Error('SCENARIO_LANGUAGE_PAIR_MISMATCH');
     }
     const cardIds = await resolveScenarioCardIds(scenario.cardSource, this.cardSearchService);
-    const cards = await this.cardsApiService.getByIds(cardIds);
-    const cardsById = new Map(cards.map((card) => [card.id, card]));
-    const sessionCards: Card[] = [];
-    const missingCardIds: string[] = [];
 
-    for (const cardId of cardIds) {
-      const card = cardsById.get(cardId);
-      if (card) {
-        sessionCards.push(card);
-      } else {
-        missingCardIds.push(cardId);
-      }
-    }
-
-    if (sessionCards.length === 0) {
+    // Validate that at least some cards exist
+    if (cardIds.length === 0) {
       throw new Error('SCENARIO_EMPTY');
     }
 
@@ -96,9 +84,21 @@ export class CardSelectService {
       scenarioId: scenario.id,
       scenarioTitle: scenario.title,
       scenarioSourceLabel: this.formatSourceLabel(scenario.cardSource),
-      cards: sessionCards,
-      missingCardIds,
+      cardIds,
+      missingCardIds: [],
     };
+  }
+
+  /**
+   * Loads a page of cards by their IDs.
+   * Used for on-demand card loading in scenarios.
+   *
+   * @param cardIds - Array of card IDs to load.
+   * @returns Promise resolving to the array of cards.
+   */
+  async loadPageByIds(cardIds: readonly string[]): Promise<readonly Card[]> {
+    if (cardIds.length === 0) return [];
+    return this.cardsApiService.getByIds(cardIds);
   }
 
   private formatSourceLabel(

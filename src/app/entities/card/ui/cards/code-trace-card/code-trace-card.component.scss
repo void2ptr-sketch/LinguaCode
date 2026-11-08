@@ -6,6 +6,12 @@
   }
 }
 
+.code-trace-card__code-wrapper {
+  max-height: 12rem;
+  overflow: auto;
+  width: 100%;
+}
+
 .code-trace-card__options {
   button {
     code {

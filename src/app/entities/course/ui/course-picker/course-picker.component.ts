@@ -23,7 +23,7 @@ import type { CourseIndexEntry, CourseListScope } from '../../model';
 import { UserStore } from '../../../user/model/user.store';
 import { UiPaginationComponent } from '../../../../shared/utils/pagination';
 
-let lastKnownCoursePickerActiveLanguagePairId: string | null = null;
+let lastKnownCoursePickerActiveLanguagePairId: string | null | undefined = null;
 
 /**
  * Course picker component. Provides a searchable, paginated list of courses
@@ -146,6 +146,13 @@ export class CoursePickerComponent implements OnInit {
    * When true, overrides pagination and shows all matching results.
    */
   readonly showFullList = signal(false);
+
+  /**
+   * Safe accessor for items (defensive against early template rendering).
+   */
+  protected getItems(): readonly CourseIndexEntry[] {
+    return this.items() ?? [];
+  }
 
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();

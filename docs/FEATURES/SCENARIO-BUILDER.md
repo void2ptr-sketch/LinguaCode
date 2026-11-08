@@ -2,7 +2,7 @@
 
 Переход от legacy `localStorage`-ключей к каталогу сценариев (seed + overlay) и точечной загрузке карточек при прохождении.
 
-Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](../COMMON/DOMAIN.md) · [ARCHITECTURE.md](../ARCHITECTURE.md) · [ARCHITECTURE.program.md](../ARCHITECTURE/ARCHITECTURE.program.md) · [CARD-CATALOG.md](../COMMON/CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](../PRODUCT/BUSINESS.md) · [DOMAIN.md](../PRODUCT/DOMAIN.md) · [ARCHITECTURE.md](../PRODUCT/ARCHITECTURE.md) · [ARCHITECTURE.program.md](../ARCHITECTURE/ARCHITECTURE.program.md) · [CARD-CATALOG.md](../COMMON/CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
 
 ## Контекст иерархии
 

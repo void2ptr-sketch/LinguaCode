@@ -1,9 +1,14 @@
 import type { Course, Lesson } from '../model';
 import type { Program } from '../../program/model';
+import type { Scenario } from '../../scenario/model';
+import type { CourseAuthoring } from '../model/course-authoring.types';
 
 import { normalizeLanguagePair } from '../../language-pair/lib/language-pair.utils';
 import { normalizeCourseAuthoring } from './course-authoring.utils';
-import type { CoursesSeedFixture } from '../../content-seed/content-seed.types';
+import type {
+  CoursesNestedFixture,
+  CoursesSeedFixture,
+} from '../../content-seed/content-seed.types';
 
 /**
  * Resolved course catalog containing the normalised list of courses, programs, and lessons.
@@ -59,7 +64,7 @@ export function normalizeStoredLesson(lesson: Lesson): Lesson {
 export function normalizeStoredProgram(program: Program): Program {
   return {
     ...program,
-    lessonIds: [...program.lessonIds],
+    lessonIds: [...(program.lessonIds ?? [])],
   };
 }
 
@@ -118,7 +123,8 @@ export function mergeStoredProgram(stored: Program, defaultProgram?: Program): P
   return normalizeStoredProgram({
     ...defaultProgram,
     ...stored,
-    lessonIds: stored.lessonIds.length > 0 ? stored.lessonIds : defaultProgram.lessonIds,
+    lessonIds:
+      (stored.lessonIds?.length ?? 0) > 0 ? (stored.lessonIds ?? []) : defaultProgram.lessonIds,
   });
 }
 
@@ -226,6 +232,150 @@ export function cloneCourseCatalog(catalog: CourseCatalogState): CourseCatalogSt
     courses: catalog.courses.map((course) => normalizeStoredCourse(course)),
     programs: catalog.programs.map((program) => normalizeStoredProgram(program)),
     lessons: catalog.lessons.map((lesson) => normalizeStoredLesson(lesson)),
+  };
+}
+
+/**
+ * Result of normalizing a nested course fixture.
+ */
+export type NestedCourseResult = {
+  catalog: CourseCatalogState;
+  cards: Card[];
+};
+
+import type { Card } from '../../card/model';
+
+/**
+ * Detects whether the catalog is in the new nested format.
+ *
+ * The nested format has a top-level `programs` array and no `courses` array.
+ *
+ * @param catalog - The catalog to check.
+ * @returns `true` if the catalog uses the nested format.
+ */
+export function isNestedFormat(catalog: unknown): boolean {
+  if (!catalog || typeof catalog !== 'object') return false;
+  const obj = catalog as Record<string, unknown>;
+  return Array.isArray(obj['programs']) && !Array.isArray(obj['courses']);
+}
+
+/**
+ * Normalises a nested course fixture into a `CourseCatalogState` and extracts cards.
+ *
+ * Traverses `programs[] → lessons[] → scenarios[] → cards[]`, creates flat
+ * `Course`, `Program`, `Lesson`, and `Scenario` objects, and collects all
+ * inline cards into a flat array for the card seed cache.
+ *
+ * @param fixture - The nested course fixture to normalise.
+ * @returns An object containing the normalised catalog and extracted cards.
+ */
+export function normalizeNestedCourseCatalog(fixture: CoursesNestedFixture): NestedCourseResult {
+  const courses: Course[] = [];
+  const programs: Program[] = [];
+  const lessons: Lesson[] = [];
+  const scenarios: Scenario[] = [];
+  const allCards: Card[] = [];
+
+  const courseId = fixture.id;
+
+  // Create the course object
+  courses.push({
+    id: courseId,
+    title: fixture.title,
+    description: fixture.description ?? '',
+    authorId: 'local-user',
+    languagePair: normalizeLanguagePair(fixture.languagePair),
+    programIds: [],
+    published: fixture.published ?? false,
+    updatedAt: fixture.updatedAt ?? new Date(0).toISOString(),
+    authoring: normalizeCourseAuthoring(fixture.authoring as CourseAuthoring | undefined),
+    practiceSettings: fixture.practiceSettings as Course['practiceSettings'],
+  });
+
+  for (const program of fixture.programs) {
+    const programObj: Program = {
+      id: program.id,
+      courseId,
+      title: program.title,
+      description: program.description ?? '',
+      lessonIds: [],
+      order: program.order,
+      updatedAt: new Date(0).toISOString(),
+    };
+    programs.push(programObj);
+
+    const programLessonIds: string[] = [];
+
+    for (const lesson of program.lessons) {
+      const lessonObj: Lesson = {
+        id: lesson.id,
+        programId: program.id,
+        title: lesson.title,
+        description: lesson.description ?? '',
+        scenarioIds: [],
+        prerequisiteLessonIds: [...(lesson.prerequisiteLessonIds ?? [])],
+        order: lesson.order,
+        updatedAt: new Date(0).toISOString(),
+      };
+      lessons.push(lessonObj);
+
+      const lessonScenarioIds: string[] = [];
+
+      for (const scenario of lesson.scenarios) {
+        // Collect cards from inline cards[]
+        const cardIds: string[] = [];
+        if (Array.isArray(scenario.cards) && scenario.cards.length > 0) {
+          for (const card of scenario.cards) {
+            allCards.push({
+              ...card,
+              courseId,
+              lessonId: lesson.id,
+              scenarioId: scenario.id,
+            });
+            cardIds.push(card.id);
+          }
+        }
+
+        // Fallback to _cardIds when cards[] is empty
+        if (cardIds.length === 0 && Array.isArray(scenario._cardIds)) {
+          for (const cardId of scenario._cardIds) {
+            cardIds.push(cardId);
+          }
+        }
+
+        const scenarioObj: Scenario = {
+          id: scenario.id,
+          title: scenario.title,
+          description: scenario.description ?? '',
+          authorId: 'local-user',
+          cardSource: {
+            mode: 'fixed' as const,
+            cardIds,
+          },
+          published: scenario.published ?? false,
+          updatedAt: new Date(0).toISOString(),
+          languagePair: scenario.languagePair
+            ? normalizeLanguagePair(scenario.languagePair)
+            : undefined,
+          courseId,
+        };
+        scenarios.push(scenarioObj);
+        lessonScenarioIds.push(scenario.id);
+      }
+
+      lessonObj.scenarioIds = lessonScenarioIds;
+      programLessonIds.push(lesson.id);
+    }
+
+    programObj.lessonIds = programLessonIds;
+  }
+
+  // Update course programIds
+  courses[0].programIds = programs.map((p) => p.id);
+
+  return {
+    catalog: { courses, programs, lessons },
+    cards: allCards,
   };
 }
 

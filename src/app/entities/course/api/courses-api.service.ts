@@ -7,23 +7,70 @@ import type {
   CourseSearchCriteria,
   CourseSearchPage,
   CourseWithPrograms,
-  ProgramWithLessons,
 } from '../model';
-import type { ApiResponse } from '../../../shared/api/api.types';
+import type { ApiResponse, ApiListResponse } from '../../../shared/api/api.types';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCourseSearchParams } from './mock/courses-api.params.utils';
 import type {
   CourseCatalogPort,
   CourseExportBundle,
   CourseWritePayload,
-  ProgramWritePayload,
 } from '../repository/course-catalog.port';
+import { UserStore } from '../../user/model/user.store';
+import type { ContentLanguage } from '../../card/model/card-index.types';
+import { LanguagePairsApiService } from '../../language-pair/api';
+import { formatLanguagePair } from '../../language-pair/lib/language-pair.utils';
+
+/** Backend DTO for a course (matches `CourseDto`). */
+type BackendCourseDto = {
+  id: number;
+  title: string;
+  courseDescription: string;
+  authorId: number;
+  languagePairId: number | null;
+  published: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+/**
+ * Maps a backend course DTO to a frontend `CourseIndexEntry`.
+ *
+ * @remarks
+ * The backend `CourseDto` does not include `programCount` or
+ * `languagePairSummary` — these are derived client-side.
+ * `languagePairId` is resolved to `knownLanguage`/`learningLanguage`
+ * via the `LanguagePairsApiService` cache.
+ */
+function toIndexEntry(
+  dto: BackendCourseDto,
+  pairCache: Record<number, { known: ContentLanguage; learning: ContentLanguage }>,
+): CourseIndexEntry {
+  const pairId = dto.languagePairId;
+  const cached = pairId ? pairCache[pairId] : null;
+  const known = cached?.known ?? 'ru';
+  const learning = cached?.learning ?? 'en';
+
+  return {
+    id: String(dto.id),
+    title: dto.title,
+    authorId: String(dto.authorId),
+    programCount: 0, // not available in the list response
+    published: dto.published,
+    updatedAt: dto.updatedAt,
+    languagePairSummary: formatLanguagePair({ known, learning }),
+    knownLanguage: known,
+    learningLanguage: learning,
+  };
+}
 
 export type {
   CourseWritePayload,
   LessonWritePayload,
   ProgramWritePayload,
 } from '../repository/course-catalog.port';
+
+// ── Program operations are now in ProgramsApiService ──
 
 /**
  * HTTP API service for course operations.
@@ -35,6 +82,31 @@ export type {
 @Injectable({ providedIn: 'root' })
 export class CoursesApiService implements CourseCatalogPort {
   private readonly http = inject(HttpClient);
+  private readonly userStore = inject(UserStore);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
+
+  /** Cache: languagePairId → { known, learning } resolved from `/language-pairs`. */
+  private pairCache: Record<number, { known: ContentLanguage; learning: ContentLanguage }> = {};
+  private pairCacheLoaded = false;
+
+  private async ensurePairCache(): Promise<void> {
+    if (this.pairCacheLoaded) return;
+
+    try {
+      const pairs = await this.languagePairsApi.listAll();
+      for (const p of pairs) {
+        this.pairCache[p.id] = {
+          known: p.knownCode as ContentLanguage,
+          learning: p.learningCode as ContentLanguage,
+        };
+      }
+    } catch {
+      // /language-pairs may require auth (403) — fallback to default mapping
+      this.pairCache[1] = { known: 'ru' as ContentLanguage, learning: 'en' as ContentLanguage };
+    }
+
+    this.pairCacheLoaded = true;
+  }
 
   /**
    * Searches courses by criteria.
@@ -43,11 +115,27 @@ export class CoursesApiService implements CourseCatalogPort {
    * @returns A page of course index entries.
    */
   search(criteria: CourseSearchCriteria): Promise<CourseSearchPage> {
-    return firstValueFrom(
-      this.http.get<ApiResponse<CourseSearchPage>>(buildApiUrl('/courses/search'), {
-        params: buildCourseSearchParams(criteria),
+    return this.ensurePairCache().then(() =>
+      firstValueFrom(
+        this.http.get<ApiListResponse<BackendCourseDto>>(buildApiUrl('/courses/search'), {
+          params: buildCourseSearchParams(criteria),
+        }),
+      ).then((response) => {
+        const dtos = response.data;
+        const totalItems = response.total ?? dtos.length;
+        const pageSize = criteria.page.pageSize;
+        const page = criteria.page.page;
+        const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 0;
+
+        return {
+          items: dtos.map((dto) => toIndexEntry(dto, this.pairCache)),
+          page,
+          pageSize,
+          totalItems,
+          totalPages,
+        };
       }),
-    ).then((response) => response.data);
+    );
   }
 
   /**
@@ -63,14 +151,40 @@ export class CoursesApiService implements CourseCatalogPort {
   }
 
   /**
+   * Retrieves a course with its programs and lessons for the journey map.
+   *
+   * @remarks
+   * Uses the `/courses/{id}/journey` endpoint which returns the full
+   * course structure with programs and lessons resolved.
+   *
+   * @param courseId - The course ID.
+   * @returns The course with programs and lessons.
+   */
+  getJourney(courseId: string): Promise<CourseWithPrograms> {
+    return firstValueFrom(
+      this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}/journey`)),
+    ).then((response) => response.data);
+  }
+
+  /**
    * Creates a new course.
    *
    * @param payload - The course write payload.
    * @returns The created course with programs.
    */
   create(payload: CourseWritePayload): Promise<CourseWithPrograms> {
+    const body: Record<string, unknown> = {
+      title: payload.title,
+      courseDescription: payload.description,
+      authorId: this.userStore.user().id,
+      published: payload.published,
+    };
+    // Programs are sent for mock handler compatibility (backend creates them separately)
+    if (payload.programs && payload.programs.length > 0) {
+      body['programs'] = payload.programs;
+    }
     return firstValueFrom(
-      this.http.post<ApiResponse<CourseWithPrograms>>(buildApiUrl('/courses'), payload),
+      this.http.post<ApiResponse<CourseWithPrograms>>(buildApiUrl('/courses'), body),
     ).then((response) => response.data);
   }
 
@@ -82,8 +196,13 @@ export class CoursesApiService implements CourseCatalogPort {
    * @returns The updated course with programs.
    */
   update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
+    const body = {
+      title: payload.title,
+      courseDescription: payload.description,
+      published: payload.published,
+    };
     return firstValueFrom(
-      this.http.put<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`), payload),
+      this.http.put<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`), body),
     ).then((response) => response.data);
   }
 
@@ -131,73 +250,6 @@ export class CoursesApiService implements CourseCatalogPort {
   getBundle(courseId: string): Promise<CourseExportBundle> {
     return firstValueFrom(
       this.http.get<ApiResponse<CourseExportBundle>>(buildApiUrl(`/courses/${courseId}/bundle`)),
-    ).then((response) => response.data);
-  }
-
-  // ── Program operations ──
-
-  /**
-   * Retrieves a program with its lessons by ID.
-   *
-   * @param programId - The program ID.
-   * @returns The program with lessons.
-   */
-  getProgramById(programId: string): Promise<ProgramWithLessons> {
-    return firstValueFrom(
-      this.http.get<ApiResponse<ProgramWithLessons>>(buildApiUrl(`/programs/${programId}`)),
-    ).then((response) => response.data);
-  }
-
-  /**
-   * Creates a new program within a course.
-   *
-   * @param payload - The program write payload.
-   * @returns The created program with lessons.
-   */
-  createProgram(payload: ProgramWritePayload): Promise<ProgramWithLessons> {
-    return firstValueFrom(
-      this.http.post<ApiResponse<ProgramWithLessons>>(buildApiUrl('/programs'), payload),
-    ).then((response) => response.data);
-  }
-
-  /**
-   * Updates an existing program.
-   *
-   * @param programId - The program ID.
-   * @param payload - The program write payload.
-   * @returns The updated program with lessons.
-   */
-  updateProgram(programId: string, payload: ProgramWritePayload): Promise<ProgramWithLessons> {
-    return firstValueFrom(
-      this.http.put<ApiResponse<ProgramWithLessons>>(
-        buildApiUrl(`/programs/${programId}`),
-        payload,
-      ),
-    ).then((response) => response.data);
-  }
-
-  /**
-   * Deletes a program by ID.
-   *
-   * @param programId - The program ID.
-   */
-  deleteProgram(programId: string): Promise<void> {
-    return firstValueFrom(
-      this.http.delete<ApiResponse<null>>(buildApiUrl(`/programs/${programId}`)),
-    ).then(() => undefined);
-  }
-
-  /**
-   * Retrieves all lessons for a given program.
-   *
-   * @param programId - The program ID.
-   * @returns Array of lessons in the program.
-   */
-  getLessons(programId: string): Promise<readonly import('../model').Lesson[]> {
-    return firstValueFrom(
-      this.http.get<ApiResponse<readonly import('../model').Lesson[]>>(
-        buildApiUrl(`/programs/${programId}/lessons`),
-      ),
     ).then((response) => response.data);
   }
 }

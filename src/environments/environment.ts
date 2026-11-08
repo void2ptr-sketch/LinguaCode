@@ -8,6 +8,8 @@
  * - useCardsApiMock: true — использует ContentSeedRepository для карточек
  * - useScenariosApiMock: true — использует ContentSeedRepository для сценариев
  * - useCoursesApiMock: true — использует ContentSeedRepository для курсов
+ * - useProgramsApiMock: true — использует ContentSeedRepository для программ
+ * - useScormMock: true — использует mock-данные для SCORM-экспорта курсов
  *
  * Для отключения mock-интерсепторов установите значения в false.
  * В этом случае запросы будут идти к реальному бэкенду (apiUrl).
@@ -28,8 +30,12 @@ export const environment: Environment = {
   apiVersion: 'v1',
   fixturesUrl: '/data',
   appName: 'LinguaCode',
-  useCardsApiMock: true,
-  useScenariosApiMock: true,
-  useCoursesApiMock: true,
+  useCardsApiMock: false,
+  useScenariosApiMock: false,
+  useCoursesApiMock: false,
+  useProgramsApiMock: false,
+  useScormMock: false,
+  useLanguagePairsApiMock: false,
+  useAuthApiMock: false,
   authEnabled: false,
 };

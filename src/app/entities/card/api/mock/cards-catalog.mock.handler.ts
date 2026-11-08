@@ -3,6 +3,8 @@ import { Injectable, inject } from '@angular/core';
 import type { Card, CardSearchCriteria, CardSearchPage } from '../../model';
 import type { CardIndexEntry } from '../../model';
 import { paginateArray } from '../../../../shared/utils/pagination';
+import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
+import { CatalogService } from '../catalog.service';
 
 import { buildCardIndex } from '../../mapping/card-index.mapper';
 import { loadCardIndexMetaOverrides } from '../../storage/card-index-meta.storage';
@@ -12,6 +14,8 @@ import { buildCardSearchFacets, filterCardIndex } from '../../search/card-search
 @Injectable({ providedIn: 'root' })
 export class CardsCatalogMockHandler {
   private readonly cardRepository = inject(CardRepository);
+  private readonly languageService = inject(LanguageService);
+  private readonly catalogService = inject(CatalogService);
 
   private cards: readonly Card[] | null = null;
   private index: readonly CardIndexEntry[] | null = null;
@@ -20,7 +24,17 @@ export class CardsCatalogMockHandler {
     await this.ensureData();
 
     const filtered = filterCardIndex(this.index!, criteria);
-    const facets = buildCardSearchFacets(this.index!, criteria);
+    const codes = this.languageService.getCodes();
+    const catalogOptions = {
+      languageCodes: codes,
+      difficulties: this.catalogService
+        .difficulties()
+        .map((d) => d.code as Exclude<CardSearchCriteria['difficulty'], undefined>),
+      kinds: this.catalogService
+        .cardKinds()
+        .map((k) => k.code as Exclude<CardSearchCriteria['kinds'], undefined>[number]),
+    };
+    const facets = buildCardSearchFacets(this.index!, criteria, catalogOptions);
     const page = paginateArray(filtered, criteria.page);
 
     return {

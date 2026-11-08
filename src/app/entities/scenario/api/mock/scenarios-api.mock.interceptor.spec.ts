@@ -3,12 +3,14 @@ import { TestBed } from '@angular/core/testing';
 
 import { ScenariosApiService } from '../scenarios-api.service';
 import { scenariosApiMockInterceptor } from './scenarios-api.mock.interceptor';
+import { seedTestContentCache } from '../../../content-seed/content-seed.test-utils';
 
 describe('scenarios API (mock interceptor)', () => {
   let api: ScenariosApiService;
 
   beforeEach(() => {
     localStorage.clear();
+    seedTestContentCache();
 
     TestBed.configureTestingModule({
       providers: [
@@ -37,10 +39,10 @@ describe('scenarios API (mock interceptor)', () => {
   });
 
   it('loads scenario by id via GET /api/scenarios/:id', async () => {
-    const scenario = await api.getById('demo-scenario');
+    const scenario = await api.getById('scenario-zh-greetings');
 
     expect(scenario).toBeDefined();
-    expect(scenario.id).toBe('demo-scenario');
+    expect(scenario.id).toBe('scenario-zh-greetings');
   });
 
   it('returns 404 for unknown scenario id', async () => {
