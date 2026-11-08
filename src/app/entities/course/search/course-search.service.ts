@@ -88,7 +88,7 @@ export class CourseSearchService {
 
           const items = (response.data as unknown as CourseIndexEntry[]) ?? [];
           for (const item of items) {
-            // item.id is the numeric ID; title is the string seed ID
+            // item.id is the numeric ID (as string); title is the seed string ID.
             map.set(item.title, String(item.id));
             // Also store numeric ID as-is for direct lookup
             map.set(item.id, String(item.id));

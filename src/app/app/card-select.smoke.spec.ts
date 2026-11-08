@@ -10,6 +10,7 @@ import { resetContentSeedCache } from '../entities/content-seed/content-seed.cac
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 import { LanguagePairsApiService } from '../entities/language-pair/api';
 import { AuthStore } from '../entities/auth/services/auth.store';
+import { UserPreferencesSyncService } from '../entities/user/services/user-preferences-sync.service';
 
 describe('Card select smoke', () => {
   beforeEach(async () => {
@@ -35,6 +36,14 @@ describe('Card select smoke', () => {
             isAuthenticated: () => true,
             user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: [] }),
             logout: () => Promise.resolve(),
+          },
+        },
+        {
+          provide: UserPreferencesSyncService,
+          useValue: {
+            selectedCourseId: () => null,
+            loadPreferences: () => Promise.resolve(),
+            saveSelectedCourse: () => Promise.resolve(),
           },
         },
       ],

@@ -14,6 +14,7 @@ import {
 import { ScenarioSearchService } from '../../../entities/scenario';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { UserPreferencesSyncService } from '../../../entities/user/services/user-preferences-sync.service';
 
 /** Tab indices for the learning flow: course → lessons → scenarios → learning. */
 export const LEARNING_TAB = {
@@ -37,6 +38,11 @@ export class CardSelectFlowService {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly logger = inject(AppLoggerService);
   private readonly userStore = inject(UserStore);
+  private readonly prefsSync = inject(UserPreferencesSyncService);
+
+  constructor() {
+    this.resumeLastCourse();
+  }
 
   // ─── Persistence effect ────────────────────────────────────────────────
 
@@ -109,6 +115,24 @@ export class CardSelectFlowService {
   });
 
   private _lastKnownActiveLanguagePairId: string | null | undefined = null;
+
+  // ─── Auto-resume ─────────────────────────────────────────────────────────
+
+  /**
+   * Restores the last-selected course from backend preferences.
+   *
+   * @remarks
+   * Called once after preferences are loaded. If a `selectedCourseId` exists
+   * in the backend, the course is loaded automatically so the user resumes
+   * exactly where they left off.
+   */
+  private async resumeLastCourse(): Promise<void> {
+    const courseId = this.prefsSync.selectedCourseId();
+    if (!courseId) {
+      return;
+    }
+    await this.loadCourse(courseId);
+  }
 
   // ─── Flow state signals ────────────────────────────────────────────────
 
@@ -280,6 +304,8 @@ export class CardSelectFlowService {
       const course = await this.courseSearchService.getById(courseId);
       this.currentCourse.set(course);
       this.courseTitle.set(course.title);
+      // Persist the selected course to backend preferences
+      this.prefsSync.saveSelectedCourse(courseId);
       // Extract lessons from all programs
       const allLessons: { lessonId: string; scenarioIds: readonly string[] }[] = [];
       for (const program of course.programs) {
