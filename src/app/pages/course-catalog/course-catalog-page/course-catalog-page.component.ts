@@ -6,10 +6,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CourseSearchService } from '../../../entities/course';
-import {
-  activeLanguagePairCriteria,
-} from '../../../entities/language-pair/lib/language-pair-scope.utils';
-import { LanguagePairsApiService } from '../../../entities/language-pair/api';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import type { CourseIndexEntry } from '../../../entities/course/model';
@@ -40,7 +36,6 @@ import { CourseCatalogLanguagePairManagerService } from '../../../features/cours
 })
 export class CourseCatalogPageComponent implements OnInit {
   private readonly courseSearchService = inject(CourseSearchService);
-  private readonly languagePairsApi = inject(LanguagePairsApiService);
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
   private readonly router = inject(Router);
@@ -145,25 +140,8 @@ export class CourseCatalogPageComponent implements OnInit {
     this.catalogStore.setError(null);
 
     try {
-      const pair = this.userStore.languagePair();
-
-      // Build language pair IDs from ALL user language pairs (not just active)
-      // Map local pairs → backend pair IDs via /language-pairs API
-      const allPairs = this.userStore.languagePairs();
-      const backendPairs = await this.languagePairsApi.listAll();
-      const pairIdMap = new Map<string, number>();
-      for (const bp of backendPairs) {
-        pairIdMap.set(`${bp.knownCode}→${bp.learningCode}`, bp.id);
-      }
-
-      const languagePairIds = allPairs
-        .map((entry) => pairIdMap.get(`${entry.pair.known}→${entry.pair.learning}`))
-        .filter((id): id is number => id != null);
-
       const page = await this.courseSearchService.search({
         scope: 'published',
-        ...activeLanguagePairCriteria(pair),
-        languagePairIds: languagePairIds.length > 0 ? languagePairIds : undefined,
         page: { page: this.pageIndex(), pageSize: this.pageSize() },
       });
 

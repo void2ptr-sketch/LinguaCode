@@ -28,7 +28,7 @@ import type { ApiListResponse, ApiResponse } from '../../../../shared/api/api.ty
 import type { LanguageDto } from '../language-dto.types';
 
 /** Mock languages used during development without a live backend. */
-const MOCK_LANGUAGES: LanguageDto[] = [
+const INITIAL_LANGUAGES: LanguageDto[] = [
   {
     id: 1,
     code: 'en',
@@ -64,20 +64,20 @@ const MOCK_LANGUAGES: LanguageDto[] = [
   },
   {
     id: 4,
-    code: 'ja',
-    displayName: 'Japanese',
-    nativeName: '日本語',
+    code: 'cpp',
+    displayName: 'C++',
+    nativeName: 'C++',
     writingDir: 'ltr',
-    supportsTones: true,
+    supportsTones: false,
     supportsPinyin: false,
     fontFamily: 'Noto Sans',
     activeFlag: true,
   },
   {
     id: 5,
-    code: 'de',
-    displayName: 'German',
-    nativeName: 'Deutsch',
+    code: 'perl',
+    displayName: 'Perl',
+    nativeName: 'Perl',
     writingDir: 'ltr',
     supportsTones: false,
     supportsPinyin: false,
@@ -86,9 +86,9 @@ const MOCK_LANGUAGES: LanguageDto[] = [
   },
   {
     id: 6,
-    code: 'fr',
-    displayName: 'French',
-    nativeName: 'Français',
+    code: 'hs',
+    displayName: 'Haskell',
+    nativeName: 'Haskell',
     writingDir: 'ltr',
     supportsTones: false,
     supportsPinyin: false,
@@ -97,9 +97,9 @@ const MOCK_LANGUAGES: LanguageDto[] = [
   },
   {
     id: 7,
-    code: 'ko',
-    displayName: 'Korean',
-    nativeName: '한국어',
+    code: 'rs',
+    displayName: 'Rust',
+    nativeName: 'Rust',
     writingDir: 'ltr',
     supportsTones: false,
     supportsPinyin: false,
@@ -108,9 +108,9 @@ const MOCK_LANGUAGES: LanguageDto[] = [
   },
   {
     id: 8,
-    code: 'es',
-    displayName: 'Spanish',
-    nativeName: 'Español',
+    code: 'js',
+    displayName: 'JavaScript',
+    nativeName: 'JavaScript',
     writingDir: 'ltr',
     supportsTones: false,
     supportsPinyin: false,
@@ -120,7 +120,22 @@ const MOCK_LANGUAGES: LanguageDto[] = [
 ];
 
 /** Mutable copy of mock languages for PATCH operations. */
-let mockLanguagesState: LanguageDto[] = [...MOCK_LANGUAGES];
+let mockLanguagesState: LanguageDto[] = [...INITIAL_LANGUAGES];
+
+/**
+ * Resets languages to the original mock entries.
+ *
+ * @example
+ * ```ts
+ * // In browser DevTools console:
+ * (window as any).__resetLanguages();
+ * location.reload();
+ * ```
+ */
+(window as any).__resetLanguages = () => {
+  mockLanguagesState = [...INITIAL_LANGUAGES];
+  console.log('Languages reset to', mockLanguagesState.length, 'entries');
+};
 
 /**
  * Extracts the language ID from an API URL.

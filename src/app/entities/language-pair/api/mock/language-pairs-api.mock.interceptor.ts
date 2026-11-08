@@ -28,39 +28,43 @@ import type { ApiListResponse } from '../../../../shared/api/api.types';
 import type { LanguagePairDto } from '../language-pairs-api.types';
 
 /** Hardcoded language pairs used during development without a live backend. */
-let MOCK_LANGUAGE_PAIRS: LanguagePairDto[] = [
+const INITIAL_LANGUAGE_PAIRS: LanguagePairDto[] = [
   { id: 1, knownCode: 'en', learningCode: 'ru' },
   { id: 2, knownCode: 'en', learningCode: 'zh' },
   { id: 3, knownCode: 'ru', learningCode: 'en' },
   { id: 4, knownCode: 'ru', learningCode: 'zh' },
   { id: 5, knownCode: 'zh', learningCode: 'en' },
   { id: 6, knownCode: 'zh', learningCode: 'ru' },
-  { id: 7, knownCode: 'en', learningCode: 'ja' },
-  { id: 8, knownCode: 'en', learningCode: 'de' },
-  { id: 9, knownCode: 'de', learningCode: 'en' },
-  { id: 10, knownCode: 'ja', learningCode: 'en' },
-  { id: 11, knownCode: 'fr', learningCode: 'en' },
-  { id: 12, knownCode: 'en', learningCode: 'fr' },
-  { id: 13, knownCode: 'en', learningCode: 'ko' },
-  { id: 14, knownCode: 'ko', learningCode: 'en' },
-  { id: 15, knownCode: 'es', learningCode: 'en' },
-  { id: 16, knownCode: 'en', learningCode: 'es' },
-  { id: 17, knownCode: 'ru', learningCode: 'ja' },
-  { id: 18, knownCode: 'ja', learningCode: 'ru' },
-  { id: 19, knownCode: 'cpp', learningCode: 'en' },
-  { id: 20, knownCode: 'cpp', learningCode: 'zh' },
-  { id: 21, knownCode: 'cpp', learningCode: 'ru' },
-  { id: 22, knownCode: 'java', learningCode: 'en' },
-  { id: 23, knownCode: 'java', learningCode: 'zh' },
-  { id: 24, knownCode: 'java', learningCode: 'ru' },
-  { id: 25, knownCode: 'perl', learningCode: 'en' },
-  { id: 26, knownCode: 'hs', learningCode: 'en' },
-  { id: 27, knownCode: 'hs', learningCode: 'ru' },
-  { id: 28, knownCode: 'rs', learningCode: 'en' },
-  { id: 29, knownCode: 'rs', learningCode: 'ru' },
-  { id: 30, knownCode: 'js', learningCode: 'en' },
-  { id: 31, knownCode: 'js', learningCode: 'ru' },
+  { id: 7, knownCode: 'en', learningCode: 'cpp' },
+  { id: 8, knownCode: 'zh', learningCode: 'cpp' },
+  { id: 9, knownCode: 'ru', learningCode: 'cpp' },
+  { id: 10, knownCode: 'en', learningCode: 'perl' },
+  { id: 11, knownCode: 'ru', learningCode: 'perl' },
+  { id: 12, knownCode: 'en', learningCode: 'hs' },
+  { id: 13, knownCode: 'ru', learningCode: 'hs' },
+  { id: 14, knownCode: 'en', learningCode: 'rs' },
+  { id: 15, knownCode: 'ru', learningCode: 'rs' },
+  { id: 16, knownCode: 'en', learningCode: 'js' },
+  { id: 17, knownCode: 'ru', learningCode: 'js' },
 ];
+
+/** Mutable language pairs — starts as a copy of INITIAL_LANGUAGE_PAIRS. */
+let MOCK_LANGUAGE_PAIRS: LanguagePairDto[] = [...INITIAL_LANGUAGE_PAIRS];
+
+/**
+ * Resets language pairs to the original 31 mock entries.
+ *
+ * @example
+ * ```ts
+ * // In browser DevTools console:
+ * (window as any).__resetLanguagePairs();
+ * location.reload();
+ * ```
+ */
+(window as any).__resetLanguagePairs = () => {
+  MOCK_LANGUAGE_PAIRS = [...INITIAL_LANGUAGE_PAIRS];
+  console.log('Language pairs reset to', MOCK_LANGUAGE_PAIRS.length, 'entries');
+};
 
 /**
  * HTTP interceptor that mocks language pairs API responses for development.

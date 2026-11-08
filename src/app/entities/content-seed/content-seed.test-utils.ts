@@ -3,11 +3,10 @@ import type { Scenario } from '../scenario/model';
 
 import { setCardSeedCache, setCourseSeedCache, setScenarioSeedCache } from './content-seed.cache';
 import type { CourseCatalogState } from '../course/utils/course-catalog-state';
-import { normalizeStoredCourseCatalog } from '../course/utils/course-catalog-state';
+import { normalizeNestedCourseCatalog, isNestedFormat } from '../course/utils/course-catalog-state';
 import type {
   CardsSeedFixture,
-  CoursesSeedFixture,
-  ScenariosSeedFixture,
+  CoursesNestedFixture,
 } from './content-seed.types';
 import { normalizeLegacyCards } from '../card/mapping/card-legacy.mapper';
 import { getDefaultCourseCatalog } from '../course/storage/courses-storage';
@@ -15,51 +14,56 @@ import { getDefaultScenarios } from '../scenario/utils/scenario-catalog.defaults
 import { normalizeScenario } from '../scenario/utils/scenario-card-source.utils';
 import { USER_CONTENT_MIGRATED_KEY } from '../user/overlay/user-content-overlay.types';
 
-import demoCoursesFixture from '../../../../public/data/demo/courses/demo-courses.json';
-import perlInterviewCourseFixture from '../../../../public/data/perl/courses/perl-interview-course.json';
-import radicalsCourseFixture from '../../../../public/data/chinese/courses/radicals-214-course.json';
-import demoScenariosFixture from '../../../../public/data/demo/scenarios/demo-scenarios.json';
-import perlInterviewScenariosFixture from '../../../../public/data/perl/scenarios/perl-interview-scenarios.json';
-import radicalsScenariosFixture from '../../../../public/data/chinese/scenarios/radicals-scenarios.json';
-import selectCardsFixture from '../../../../public/data/demo/cards/demo-cards.json';
-import perlInterviewCardsFixture from '../../../../public/data/perl/cards/perl-interview-cards.json';
-import radicalsCardsFixture from '../../../../public/data/chinese/cards/radicals-course-cards.json';
+import demoCardsFixture from '../../../../public/data/demo/cards/demo-cards.json';
+import perlCardsFixture from '../../../../public/data/perl/cards/perl-interview-cards.json';
 
 export function seedTestContentCache(): void {
-  const demoScenarios = (demoScenariosFixture as ScenariosSeedFixture).scenarios.map((scenario) =>
-    normalizeScenario(scenario),
-  );
-  const radicalsScenarios = (radicalsScenariosFixture as ScenariosSeedFixture).scenarios.map(
-    (scenario) => normalizeScenario(scenario),
-  );
-  const perlScenarios = (perlInterviewScenariosFixture as ScenariosSeedFixture).scenarios.map(
-    (scenario) => normalizeScenario(scenario),
-  );
+  // No scenarios in the new format — empty array
+  setScenarioSeedCache([]);
 
-  setScenarioSeedCache([...demoScenarios, ...radicalsScenarios, ...perlScenarios]);
+  // Load nested course fixtures
+  const nestedFixtures: CoursesNestedFixture[] = [];
 
-  const demoCourses = normalizeStoredCourseCatalog(
-    demoCoursesFixture as unknown as CoursesSeedFixture,
-  );
-  const radicalsCourses = normalizeStoredCourseCatalog(
-    radicalsCourseFixture as unknown as CoursesSeedFixture,
-  );
-  const perlCourses = normalizeStoredCourseCatalog(
-    perlInterviewCourseFixture as unknown as CoursesSeedFixture,
-  );
+  // Load course fixtures dynamically (nested format)
+  const courseFiles = [
+    '../../../../public/data/demo/courses/course-demo-card-kinds.json',
+    '../../../../public/data/demo/courses/course-zh-a1.json',
+    '../../../../public/data/demo/courses/course-zh-conversation.json',
+    '../../../../public/data/cpp/courses/course-cpp-complete.json',
+    '../../../../public/data/perl/courses/course-ru-perl-db.json',
+    '../../../../public/data/perl/courses/course-ru-perl-interview.json',
+    '../../../../public/data/chinese/courses/course-zh-radicals-214.json',
+  ];
+
+  const allCatalogs: CourseCatalogState[] = [];
+  const allCards: import('../card/model').Card[] = [];
+
+  for (const file of courseFiles) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const fixture = require(file) as CoursesNestedFixture;
+      if (isNestedFormat(fixture)) {
+        const result = normalizeNestedCourseCatalog(fixture);
+        allCatalogs.push(result.catalog);
+        allCards.push(...result.cards);
+      }
+    } catch {
+      // File not found or invalid — skip
+    }
+  }
 
   const catalog: CourseCatalogState = {
-    courses: [...demoCourses.courses, ...radicalsCourses.courses, ...perlCourses.courses],
-    programs: [...demoCourses.programs, ...radicalsCourses.programs, ...perlCourses.programs],
-    lessons: [...demoCourses.lessons, ...radicalsCourses.lessons, ...perlCourses.lessons],
+    courses: allCatalogs.flatMap(c => c.courses),
+    programs: allCatalogs.flatMap(c => c.programs),
+    lessons: allCatalogs.flatMap(c => c.lessons),
   };
 
   setCourseSeedCache(catalog);
   setCardSeedCache(
     normalizeLegacyCards([
-      ...(selectCardsFixture as CardsSeedFixture).cards,
-      ...(radicalsCardsFixture as CardsSeedFixture).cards,
-      ...(perlInterviewCardsFixture as CardsSeedFixture).cards,
+      ...(demoCardsFixture as CardsSeedFixture).cards,
+      ...(perlCardsFixture as CardsSeedFixture).cards,
+      ...allCards,
     ]),
   );
   localStorage.setItem(USER_CONTENT_MIGRATED_KEY, '1');

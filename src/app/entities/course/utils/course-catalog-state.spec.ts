@@ -6,9 +6,12 @@ import {
   mergeStoredLesson,
   normalizeStoredCourseCatalog,
   cloneCourseCatalog,
+  isNestedFormat,
+  normalizeNestedCourseCatalog,
 } from './course-catalog-state';
 import type { Course, Lesson } from '../model';
 import type { Program } from '../../program/model';
+import type { CoursesNestedFixture } from '../../content-seed/content-seed.types';
 
 function makeCourse(overrides?: Partial<Course>): Course {
   return {
@@ -285,6 +288,360 @@ describe('course-catalog-state', () => {
       catalog.courses[0].title = 'Modified';
 
       expect(cloned.courses[0].title).toBe('Original');
+    });
+  });
+
+  describe('isNestedFormat', () => {
+    it('should return true for nested format (programs array, no courses)', () => {
+      const nested = { programs: [{ id: 'p1', title: 'P', description: '', order: 0, lessons: [] }] };
+      expect(isNestedFormat(nested as unknown as Partial<Course[]>)).toBe(true);
+    });
+
+    it('should return false for legacy format (courses array present)', () => {
+      const legacy = { courses: [{ id: 'c1', title: 'C', programIds: [] }] };
+      expect(isNestedFormat(legacy as unknown as Partial<Course[]>)).toBe(false);
+    });
+
+    it('should return false for empty object', () => {
+      expect(isNestedFormat({} as unknown as Partial<Course[]>)).toBe(false);
+    });
+
+    it('should return false for null', () => {
+      expect(isNestedFormat(null as unknown as Partial<Course[]>)).toBe(false);
+    });
+
+    it('should return false when both programs and courses are arrays', () => {
+      const mixed = {
+        programs: [{ id: 'p1', title: 'P', description: '', order: 0, lessons: [] }],
+        courses: [{ id: 'c1', title: 'C', programIds: [] }],
+      };
+      expect(isNestedFormat(mixed as unknown as Partial<Course[]>)).toBe(false);
+    });
+  });
+
+  describe('normalizeNestedCourseCatalog', () => {
+    function makeNestedFixture(overrides?: Partial<CoursesNestedFixture>): CoursesNestedFixture {
+      return {
+        id: 'course-nested-1',
+        title: 'Nested Course',
+        description: 'A nested course for testing',
+        languagePair: { known: 'ru', learning: 'en' },
+        published: true,
+        authoring: null,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        programs: [
+          {
+            id: 'program-1',
+            title: 'Program 1',
+            description: 'First program',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'lesson-1',
+                title: 'Lesson 1',
+                description: 'First lesson',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 'scenario-1',
+                    title: 'Scenario 1',
+                    description: 'First scenario',
+                    order: 0,
+                    published: true,
+                    cards: [
+                      {
+                        id: 'card-1',
+                        kind: 'select',
+                        title: 'Card 1',
+                        appearance: { theme: 'azure-blue', fontSize: 'md' },
+                        direction: 'known-to-learning' as const,
+                        promptKnown: 'Hello',
+                        optionsLearning: ['Привет'],
+                        correctIndex: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        ...overrides,
+      };
+    }
+
+    it('should return a catalog with one course, one program, one lesson', () => {
+      const fixture = makeNestedFixture();
+      const result = normalizeNestedCourseCatalog(fixture);
+
+      expect(result.catalog.courses).toHaveLength(1);
+      expect(result.catalog.courses[0].id).toBe('course-nested-1');
+      expect(result.catalog.courses[0].title).toBe('Nested Course');
+      expect(result.catalog.programs).toHaveLength(1);
+      expect(result.catalog.programs[0].id).toBe('program-1');
+      expect(result.catalog.programs[0].courseId).toBe('course-nested-1');
+      expect(result.catalog.lessons).toHaveLength(1);
+      expect(result.catalog.lessons[0].id).toBe('lesson-1');
+      expect(result.catalog.lessons[0].programId).toBe('program-1');
+    });
+
+    it('should assign programIds to the course', () => {
+      const fixture = makeNestedFixture();
+      const result = normalizeNestedCourseCatalog(fixture);
+
+      expect(result.catalog.courses[0].programIds).toEqual(['program-1']);
+    });
+
+    it('should assign lessonIds to the program', () => {
+      const fixture = makeNestedFixture();
+      const result = normalizeNestedCourseCatalog(fixture);
+
+      expect(result.catalog.programs[0].lessonIds).toEqual(['lesson-1']);
+    });
+
+    it('should create scenarios with cardSource from inline cards', () => {
+      const fixture = makeNestedFixture();
+      const result = normalizeNestedCourseCatalog(fixture);
+
+      expect(result.catalog.lessons[0].scenarioIds).toHaveLength(1);
+      // Scenarios are not directly returned in catalog — they are stored separately
+      // The cards should be in the cards array
+    });
+
+    it('should extract cards and assign courseId/lessonId/scenarioId', () => {
+      const fixture = makeNestedFixture();
+      const result = normalizeNestedCourseCatalog(fixture);
+
+      expect(result.cards).toHaveLength(1);
+      expect(result.cards[0].id).toBe('card-1');
+      expect((result.cards[0] as { courseId?: string }).courseId).toBe('course-nested-1');
+      expect((result.cards[0] as { lessonId?: string }).lessonId).toBe('lesson-1');
+    });
+
+    it('should handle multiple programs, lessons, and scenarios', () => {
+      const fixture = makeNestedFixture({
+        programs: [
+          {
+            id: 'program-1',
+            title: 'Program 1',
+            description: '',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'lesson-1',
+                title: 'Lesson 1',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 'scenario-1',
+                    title: 'Scenario 1',
+                    description: '',
+                    order: 0,
+                    published: true,
+                    cards: [{ id: 'card-1', kind: 'select', title: 'C1', appearance: { theme: 'a', fontSize: 'md' }, direction: 'known-to-learning' as const, promptKnown: 'a', optionsLearning: ['b'], correctIndex: 0 }],
+                  },
+                  {
+                    id: 'scenario-2',
+                    title: 'Scenario 2',
+                    description: '',
+                    order: 1,
+                    published: true,
+                    cards: [{ id: 'card-2', kind: 'flip', title: 'C2', appearance: { theme: 'a', fontSize: 'md' }, front: 'a', back: 'b' }],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: 'program-2',
+            title: 'Program 2',
+            description: '',
+            order: 1,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'lesson-2',
+                title: 'Lesson 2',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 'scenario-3',
+                    title: 'Scenario 3',
+                    description: '',
+                    order: 0,
+                    published: true,
+                    cards: [{ id: 'card-3', kind: 'select', title: 'C3', appearance: { theme: 'a', fontSize: 'md' }, direction: 'known-to-learning' as const, promptKnown: 'c', optionsLearning: ['d'], correctIndex: 0 }],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      const result = normalizeNestedCourseCatalog(fixture);
+
+      expect(result.catalog.courses).toHaveLength(1);
+      expect(result.catalog.programs).toHaveLength(2);
+      expect(result.catalog.lessons).toHaveLength(2);
+      expect(result.cards).toHaveLength(3);
+      expect(result.catalog.courses[0].programIds).toEqual(['program-1', 'program-2']);
+      expect(result.catalog.programs[0].lessonIds).toEqual(['lesson-1']);
+      expect(result.catalog.programs[1].lessonIds).toEqual(['lesson-2']);
+    });
+
+    it('should handle empty cards array with _cardIds fallback', () => {
+      const fixture = makeNestedFixture({
+        programs: [
+          {
+            id: 'program-1',
+            title: 'Program 1',
+            description: '',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'lesson-1',
+                title: 'Lesson 1',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 'scenario-1',
+                    title: 'Scenario 1',
+                    description: '',
+                    order: 0,
+                    published: true,
+                    cards: [],
+                    _cardIds: ['external-card-1', 'external-card-2'],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      const result = normalizeNestedCourseCatalog(fixture);
+
+      expect(result.cards).toHaveLength(0); // _cardIds are references, not full cards
+      expect(result.catalog.lessons[0].scenarioIds).toHaveLength(1);
+    });
+
+    it('should handle scenarios without cards and without _cardIds', () => {
+      const fixture = makeNestedFixture({
+        programs: [
+          {
+            id: 'program-1',
+            title: 'Program 1',
+            description: '',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'lesson-1',
+                title: 'Lesson 1',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 'scenario-empty',
+                    title: 'Empty Scenario',
+                    description: '',
+                    order: 0,
+                    published: true,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      const result = normalizeNestedCourseCatalog(fixture);
+
+      expect(result.cards).toHaveLength(0);
+      expect(result.catalog.lessons[0].scenarioIds).toHaveLength(1);
+    });
+
+    it('should default missing description and published fields', () => {
+      const fixture = makeNestedFixture({
+        description: undefined as unknown as string,
+        published: undefined as unknown as boolean,
+        programs: [
+          {
+            id: 'program-1',
+            title: 'Program 1',
+            description: undefined as unknown as string,
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'lesson-1',
+                title: 'Lesson 1',
+                description: undefined as unknown as string,
+                order: 0,
+                prerequisiteLessonIds: undefined as unknown as string[],
+                scenarios: [
+                  {
+                    id: 'scenario-1',
+                    title: 'Scenario 1',
+                    description: undefined as unknown as string,
+                    order: 0,
+                    published: undefined as unknown as boolean,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      const result = normalizeNestedCourseCatalog(fixture);
+
+      expect(result.catalog.courses[0].description).toBe('');
+      expect(result.catalog.courses[0].published).toBe(false);
+      expect(result.catalog.programs[0].description).toBe('');
+    });
+
+    it('should preserve prerequisiteLessonIds', () => {
+      const fixture = makeNestedFixture({
+        programs: [
+          {
+            id: 'program-1',
+            title: 'Program 1',
+            description: '',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'lesson-1',
+                title: 'Lesson 1',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: ['lesson-0'],
+                scenarios: [
+                  {
+                    id: 'scenario-1',
+                    title: 'Scenario 1',
+                    description: '',
+                    order: 0,
+                    published: true,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      const result = normalizeNestedCourseCatalog(fixture);
+
+      expect(result.catalog.lessons[0].prerequisiteLessonIds).toEqual(['lesson-0']);
     });
   });
 });
