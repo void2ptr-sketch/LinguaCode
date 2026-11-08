@@ -389,11 +389,17 @@ export class CardSelectPageComponent implements OnInit {
         session.scenarioSourceLabel,
         session.missingCardIds,
       );
-      this.store.setScenario(session.scenarioId, session.cards);
+      // Pass card IDs for pagination - cards are loaded on-demand
+      this.store.setScenario(session.scenarioId, session.cardIds);
     } catch (error) {
       this.logger.error('CardSelect: failed to load scenario cards', error);
       this.store.setError('Не удалось загрузить карточки сценария');
     }
+  }
+
+  /** Retries loading cards after an error. */
+  async retryLoad(): Promise<void> {
+    await this.loadCards();
   }
 
   /** Checks the current answer and records the result. */
@@ -414,6 +420,11 @@ export class CardSelectPageComponent implements OnInit {
       lessonId: this.selectedLessonId() || undefined,
       courseId: this.selectedCourseId() || undefined,
     });
+  }
+
+  /** Handles next card navigation with pagination support. */
+  async onNextCard(): Promise<void> {
+    await this.store.nextCard();
   }
 
   async goToNextLessonScenario(): Promise<void> {

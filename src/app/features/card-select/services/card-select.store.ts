@@ -10,6 +10,8 @@ import {
 } from '../../../entities/card/lib/card-answer/card-answer.util';
 import { CardFeedback } from '../../../entities/card/model/card-interaction.types';
 import type { DrawAnswerPayload } from '../../../entities/chinese/model/draw-answer.types';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
+import { CardSelectService } from './card-select.service';
 
 /**
  * Store for card selection and practice session state.
@@ -22,9 +24,14 @@ import type { DrawAnswerPayload } from '../../../entities/chinese/model/draw-ans
 export class CardSelectStore {
   private readonly userStore = inject(UserStore);
   private readonly hanziData = inject(HanziDataService);
+  private readonly logger = inject(AppLoggerService);
+  private readonly cardSelectService = inject(CardSelectService);
 
   /** Array of cards in the current session. */
   readonly cards = signal<readonly Card[]>([]);
+
+  /** All card IDs for the current scenario (used for pagination). */
+  readonly allCardIds = signal<readonly string[]>([]);
 
   /** ID of the current scenario. */
   readonly scenarioId = signal<string>('demo-scenario');
@@ -40,6 +47,15 @@ export class CardSelectStore {
 
   /** Zero-based index of the current card. */
   readonly currentIndex = signal(0);
+
+  /** Current page index (0-based). */
+  readonly currentPage = signal(0);
+
+  /** Set of loaded page indices for caching. */
+  readonly loadedPages = signal<Set<number>>(new Set());
+
+  /** Number of cards per page. */
+  readonly pageSize = 25;
 
   /** Index of the selected option (for multiple-choice cards). */
   readonly selectedIndex = signal<number | null>(null);
@@ -102,6 +118,14 @@ export class CardSelectStore {
   /** Whether the current card is the last one in the session. */
   readonly isLastCard = computed(() => {
     const cards = this.cards();
+    const allIds = this.allCardIds();
+    if (allIds.length === 0) return false;
+
+    // If cards.length < pageSize, there are more pages coming
+    if (cards.length < this.pageSize) {
+      return false;
+    }
+
     return cards.length > 0 && this.currentIndex() >= cards.length - 1;
   });
 
@@ -122,17 +146,77 @@ export class CardSelectStore {
    * Sets up a new card selection session.
    *
    * @param scenarioId - The scenario ID.
-   * @param cards - Array of cards for this session.
+   * @param allCardIds - All card IDs for this scenario (used for pagination).
    */
-  setScenario(scenarioId: string, cards: readonly Card[]): void {
+  setScenario(scenarioId: string, allCardIds: readonly string[]): void {
     this.scenarioId.set(scenarioId);
-    this.cards.set(cards);
-    this.sessionDirection.set(cards[0] ? cardDefaultDirection(cards[0]) : 'known-to-learning');
+    this.allCardIds.set(allCardIds);
+    this.currentPage.set(0);
+    this.cards.set([]);
+    this.loadedPages.set(new Set());
+    this.currentIndex.set(0);
+    this.sessionDirection.set('known-to-learning');
     this.resetInteraction();
     this.completed.set(false);
     this.loading.set(false);
     this.error.set(null);
     this.shuffleNonce.update((n) => n + 1);
+
+    // Asynchronously load the first page
+    this.loadPage(0).then(() => {
+      // Update direction once first card is loaded
+      const firstCard = this.cards()[0];
+      if (firstCard) {
+        this.sessionDirection.set(cardDefaultDirection(firstCard));
+      }
+    }).catch(() => {});
+  }
+
+  /**
+   * Loads a page of cards by their IDs.
+   *
+   * @param pageIndex - The zero-based page index to load.
+   * @returns Promise that resolves when the page is loaded.
+   */
+  async loadPage(pageIndex: number): Promise<void> {
+    const pages = this.loadedPages();
+    if (pages.has(pageIndex)) return; // Already loaded
+
+    this.loading.set(true);
+    try {
+      const allIds = this.allCardIds();
+      const start = pageIndex * this.pageSize;
+      const end = Math.min(start + this.pageSize, allIds.length);
+      const pageIds = allIds.slice(start, end);
+
+      if (pageIds.length === 0) {
+        this.loading.set(false);
+        return;
+      }
+
+      const cards = await this.cardSelectService.loadPageByIds(pageIds);
+      const newPages = new Set(pages);
+      newPages.add(pageIndex);
+      this.loadedPages.set(newPages);
+      this.cards.set(cards);
+    } catch (error) {
+      this.logger.error(`CardSelect: failed to load page ${pageIndex}`, error);
+      this.setError('Не удалось загрузить карточки');
+    } finally {
+      this.loading.set(false);
+    }
+  }
+
+  /**
+   * Preloads the next page in the background.
+   */
+  preloadNext(): void {
+    const currentPage = this.currentPage();
+    const loadedPages = this.loadedPages();
+    if (!loadedPages.has(currentPage + 1)) {
+      // Background loading without blocking
+      this.loadPage(currentPage + 1).catch(() => {});
+    }
   }
 
   /**
@@ -310,8 +394,9 @@ export class CardSelectStore {
    * No-op if feedback has not been provided yet.
    * If the current card is the last one, sets `completed` to `true`.
    * Otherwise, increments `currentIndex` and resets the interaction state.
+   * Automatically loads the next page when reaching the end of the current page.
    */
-  nextCard(): void {
+  async nextCard(): Promise<void> {
     if (this.feedback() === null) {
       return;
     }
@@ -321,8 +406,19 @@ export class CardSelectStore {
       return;
     }
 
-    this.currentIndex.update((index) => index + 1);
+    const newCurrentIndex = this.currentIndex() + 1;
+
+    // If we're at the end of the current page, load the next page
+    if (newCurrentIndex >= this.cards().length - 1) {
+      await this.loadPage(this.currentPage() + 1);
+      this.currentPage.update((p) => p + 1);
+    }
+
+    this.currentIndex.set(newCurrentIndex);
     this.resetInteraction();
+
+    // Preload the next page in the background
+    this.preloadNext();
   }
 
   /**
@@ -352,8 +448,11 @@ export class CardSelectStore {
    * and session direction resets to `'known-to-learning'`.
    */
   reset(): void {
+    this.allCardIds.set([]);
     this.cards.set([]);
     this.scenarioId.set('demo-scenario');
+    this.currentPage.set(0);
+    this.loadedPages.set(new Set());
     this.sessionDirection.set('known-to-learning');
     this.loading.set(false);
     this.error.set(null);
