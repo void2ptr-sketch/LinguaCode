@@ -10,7 +10,12 @@
     </mat-card-header>
 
     <mat-card-content>
-      <mat-tab-group dynamicHeight class="settings-page__tabs">
+      <mat-tab-group
+        dynamicHeight
+        class="settings-page__tabs"
+        [selectedIndex]="tabIndex()"
+        (selectedIndexChange)="tabIndex.set($event)"
+      >
         <!-- Tab 1: Languages -->
         <mat-tab label="Languages">
           <div class="settings-page__tab-panel">
@@ -241,9 +246,19 @@
           </div>
         </mat-tab>
 
-        <!-- Tab 3: Course Catalog Settings -->
-        <mat-tab label="Setup Language Pairs">
+        <!-- Tab 3: Course Settings (per-pair learning preferences) -->
+        <mat-tab label="Настройки курса">
           <div class="settings-page__tab-panel">
+            <p class="settings-page__hint">
+              Добавление, активация и удаление языковых пар выполняется на вкладке «Language Pairs».
+            </p>
+            <div class="settings-page__settings-actions">
+              <button mat-stroked-button type="button" (click)="goToPairsTab()">
+                <mat-icon>add</mat-icon>
+                Добавить пару…
+              </button>
+            </div>
+
             <app-course-catalog-settings />
           </div>
         </mat-tab>

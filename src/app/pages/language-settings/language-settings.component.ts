@@ -142,6 +142,9 @@ export type PairGroup = {
   styleUrl: './language-settings.component.scss',
 })
 export class LanguageSettingsComponent {
+  /** Index of the active tab (0 = Languages, 1 = Language Pairs, 2 = Course Settings). */
+  readonly tabIndex = signal(0);
+
   private readonly settingsStore: LanguageSettingsStore = inject(LanguageSettingsStore);
   private readonly userStore: UserStore = inject(UserStore);
   private readonly languageService: LanguageService = inject(LanguageService);
@@ -345,6 +348,11 @@ export class LanguageSettingsComponent {
     const f1 = String.fromCodePoint(0x1f1e6 + (c1 - 65));
     const f2 = String.fromCodePoint(0x1f1e6 + (c2 - 65));
     return f1 + f2;
+  }
+
+  /** Switches to the «Language Pairs» tab (used by the «Add pair…» shortcut). */
+  goToPairsTab(): void {
+    this.tabIndex.set(1);
   }
 
   /** Toggles a language in the user's selection. */

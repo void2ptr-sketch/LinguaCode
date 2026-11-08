@@ -15,8 +15,10 @@ import type { RomanizationOption } from '../../../entities/course/ui/course-disp
 /**
  * Сервис управления языковыми парами для course-catalog.
  *
- * Обрабатывает мутации пар (setActive, remove, add) и синхронизацию
- * настроек пары с черновиками в DraftsStore.
+ * Отвечает за активацию пары (setActive) и синхронизацию настроек пары
+ * с черновиками в DraftsStore. CRUD пар (add/remove) здесь не выполняется —
+ * управление парами живёт на вкладке «Language Pairs» страницы
+ * `/language-settings`.
  */
 @Injectable({ providedIn: 'root' })
 export class CourseCatalogLanguagePairManagerService {
@@ -51,41 +53,6 @@ export class CourseCatalogLanguagePairManagerService {
     this.userStore.setActiveLanguagePair(id);
     this.drafts.setSettingsPairIdDraft(id);
     this.syncPairSettingsDrafts();
-  }
-
-  /**
-   * Удаляет языковую пару и синхронизирует настройки.
-   *
-   * @param id — ID пары для удаления.
-   */
-  removePair(id: string): void {
-    const wasSettingsTarget = this.drafts.settingsPairIdDraft() === id;
-    this.userStore.removeLanguagePair(id);
-
-    if (wasSettingsTarget) {
-      this.drafts.setSettingsPairIdDraft(this.userStore.activeLanguagePairId());
-    }
-
-    this.syncPairSettingsDrafts();
-  }
-
-  /**
-   * Добавляет новую языковую пару из черновиков.
-   *
-   * @returns `true` если пара добавлена, `false` если known == learning.
-   */
-  addPair(): boolean {
-    const known = this.drafts.courseTabKnownLanguageDraft();
-    const learning = this.drafts.courseTabLearningLanguageDraft();
-
-    if (known === learning) {
-      return false;
-    }
-
-    this.userStore.addLanguagePair({ known, learning });
-    this.drafts.setSettingsPairIdDraft(this.userStore.activeLanguagePairId());
-    this.syncPairSettingsDrafts();
-    return true;
   }
 
   /**

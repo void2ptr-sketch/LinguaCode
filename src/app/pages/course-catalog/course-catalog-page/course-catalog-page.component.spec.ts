@@ -193,8 +193,6 @@ describe('CourseCatalogPageComponent', () => {
     mockPairManager = {
       trackActivePairChange: vi.fn(() => undefined),
       setActive: vi.fn(),
-      removePair: vi.fn(),
-      addPair: vi.fn().mockReturnValue(true),
       savePairSettings: vi.fn(),
       syncPairSettingsDrafts: vi.fn(),
       settingsEntry: vi.fn(() => mockPairs[0] ?? null),
