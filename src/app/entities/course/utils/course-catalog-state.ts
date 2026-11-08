@@ -241,6 +241,7 @@ export function cloneCourseCatalog(catalog: CourseCatalogState): CourseCatalogSt
 export type NestedCourseResult = {
   catalog: CourseCatalogState;
   cards: Card[];
+  scenarios: Scenario[];
 };
 
 import type { Card } from '../../card/model';
@@ -376,6 +377,7 @@ export function normalizeNestedCourseCatalog(fixture: CoursesNestedFixture): Nes
   return {
     catalog: { courses, programs, lessons },
     cards: allCards,
+    scenarios,
   };
 }
 
