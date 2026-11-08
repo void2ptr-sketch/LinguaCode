@@ -20,6 +20,7 @@ import { CourseSearchService } from '../../../../entities/course';
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast.service';
 import { CourseCatalogStore } from '../../services';
+import { environment } from '../../../../../environments/environment';
 
 /**
  * Course programs list component. Displays programs for selected courses.
@@ -52,6 +53,13 @@ export class CourseCatalogProgramsComponent {
   private readonly errorToast = inject(ErrorToastService);
   private readonly catalogStore = inject(CourseCatalogStore);
 
+  /**
+   * Whether courses are served by the local mock backend (seed data with
+   * string slug IDs). In mock mode slug IDs are valid for the programs API;
+   * against the real backend only numeric IDs (BIGINT PK) are accepted.
+   */
+  private readonly coursesMockEnabled = environment.useCoursesApiMock;
+
   /** Map of course ID → title from the catalog (keys normalized to string). */
   private readonly courseTitleMap = computed(() => {
     const items = this.catalogStore.items();
@@ -78,11 +86,19 @@ export class CourseCatalogProgramsComponent {
   // ---- Lifecycle ----
 
   /**
-   * Resolves a course ID to numeric form required by the backend.
-   * Slug IDs (e.g. 'course-zh-radicals-214') are resolved via
-   * `CourseSearchService.resolveCourseId`; numeric IDs pass through.
+   * Resolves a course ID for the programs API.
+   *
+   * @remarks
+   * Mirrors `CourseSearchService.resolveCourseIdForWrite`: when the mock
+   * backend serves courses (seed data with string slug IDs), the ID passes
+   * through unchanged — the mock programs API understands slugs. Otherwise
+   * slug IDs are resolved to the numeric form required by the real backend;
+   * numeric IDs always pass through.
    */
   private async resolveCourseId(courseId: string): Promise<string> {
+    if (this.coursesMockEnabled || /^\d+$/.test(courseId)) {
+      return courseId;
+    }
     const resolved = await this.courseSearch.resolveCourseId(courseId);
     return resolved ?? courseId;
   }
@@ -102,19 +118,20 @@ export class CourseCatalogProgramsComponent {
     try {
       const results: Program[] = [];
       for (const id of ids) {
-        const numericId = await this.resolveCourseId(id);
-        // Skip courses with non-numeric resolved IDs (slug → slug in mock mode)
-        if (!numericId || !/^\d+$/.test(numericId)) {
-          this.logger.warn(`[ProgramList] Skipping course with non-numeric resolved ID: "${id}" → "${numericId}"`);
+        const resolvedId = await this.resolveCourseId(id);
+        // Real backend requires numeric IDs (BIGINT PK). Non-numeric slugs
+        // are only valid when the mock backend serves the data.
+        if (!resolvedId || (!this.coursesMockEnabled && !/^\d+$/.test(resolvedId))) {
+          this.logger.warn(`[ProgramList] Skipping course with non-numeric resolved ID: "${id}" → "${resolvedId}"`);
           continue;
         }
         try {
-          const programs = await this.programsApi.getByCourse(numericId);
+          const programs = await this.programsApi.getByCourse(resolvedId);
           results.push(...programs);
         } catch (err) {
           this.logger.error('Failed to load programs for course', {
             originalId: id,
-            resolvedId: numericId,
+            resolvedId,
             error: err,
           });
         }

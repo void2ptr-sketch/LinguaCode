@@ -33,7 +33,7 @@ export const environment: Environment = {
   useCardsApiMock: true,
   useScenariosApiMock: true,
   useCoursesApiMock: true,
-  useProgramsApiMock: false,
+  useProgramsApiMock: true,
   useScormMock: false,
   useLanguagePairsApiMock: true,
   useAuthApiMock: false,
