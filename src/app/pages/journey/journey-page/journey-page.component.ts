@@ -24,10 +24,10 @@ import {
 import type { JourneyLocationNode } from '../../../entities/learning/model';
 import type { CardBase } from '../../../entities/card/model';
 import type { CourseWithPrograms } from '../../../entities/course/model';
-import { CPP_COMPLETE_COURSE_ID } from '../../../entities/course/model';
 import { ScenariosApiService } from '../../../entities/scenario/api/scenarios-api.service';
 import { CardsApiService } from '../../../entities/card/api/cards-api.service';
 import { scenarioCardIds } from '../../../entities/course/utils/course-practice.utils';
+import { UserPreferencesSyncService } from '../../../entities/user/services/user-preferences-sync.service';
 
 /**
  * Journey page component. Renders the learning journey map for the current course,
@@ -73,6 +73,7 @@ export class JourneyPageComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly prefsSync = inject(UserPreferencesSyncService);
 
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
@@ -108,13 +109,13 @@ export class JourneyPageComponent {
       }
 
       // Без query-параметра показываем активный курс дашборда;
-      // по умолчанию предпочитаем C++ Complete Course.
+      // если нет — проверяем выбранный курс из профиля пользователя.
       const targetId =
-        dashboardCourse?.id === CPP_COMPLETE_COURSE_ID
-          ? dashboardCourse.id
-          : CPP_COMPLETE_COURSE_ID;
+        dashboardCourse?.id ??
+        this.prefsSync.selectedCourseId() ??
+        '';
       this.courseId.set(targetId);
-      if (targetId !== this.lastLoadedCourseId) {
+      if (targetId && targetId !== this.lastLoadedCourseId) {
         void this.loadCourse(targetId);
       }
     });

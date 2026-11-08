@@ -13,11 +13,11 @@ import { CourseSearchService } from '../../../entities/course';
 import { ScenariosApiService } from '../../../entities/scenario/api/scenarios-api.service';
 import { CardsApiService } from '../../../entities/card/api/cards-api.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
-import { CPP_COMPLETE_COURSE_ID } from '../../../entities/course/model';
 import type { CourseWithPrograms, Lesson } from '../../../entities/course/model';
 import type { Scenario } from '../../../entities/scenario/model';
 import type { JourneyLocationNode } from '../../../entities/learning/model';
 import type { CardBase } from '../../../entities/card/model';
+import { UserPreferencesSyncService } from '../../../entities/user/services/user-preferences-sync.service';
 function makeLesson(
   id: string,
   title: string,
@@ -109,6 +109,7 @@ describe('JourneyPageComponent', () => {
   let mockCourseSearchService: { getById: ReturnType<typeof vi.fn> };
   let mockActivatedRoute: Partial<ActivatedRoute>;
   let mockRouter: { navigate: ReturnType<typeof vi.fn> };
+  let mockPrefsSync: UserPreferencesSyncService;
 
   beforeEach(async () => {
     mockDashboardService = {
@@ -194,6 +195,10 @@ describe('JourneyPageComponent', () => {
       navigate: vi.fn(),
     };
 
+    mockPrefsSync = {
+      selectedCourseId: signal<string | null>(null),
+    } as unknown as UserPreferencesSyncService;
+
     await TestBed.configureTestingModule({
       imports: [JourneyPageComponent],
       providers: [
@@ -208,6 +213,7 @@ describe('JourneyPageComponent', () => {
         { provide: AppLoggerService, useValue: mockLogger },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: Router, useValue: mockRouter },
+        { provide: UserPreferencesSyncService, useValue: mockPrefsSync },
       ],
     }).compileComponents();
   });
@@ -293,16 +299,17 @@ describe('JourneyPageComponent', () => {
     expect(component.loading()).toBe(false);
   });
 
-  it('should default to the C++ Complete Course without a query param', async () => {
-    // Без query-параметра карта по умолчанию открывает C++ Complete Course.
+  it('should default to the dashboard course without a query param', async () => {
+    // Без query-параметра и без выбранного курса из профиля компонент
+    // берёт курс из dashboard (mockDashboardService.course = signal(mockCourse)).
     (mockActivatedRoute.queryParams as BehaviorSubject<Record<string, string>>).next({});
     fixture.detectChanges();
     await fixture.whenStable();
 
-    expect(component.courseId()).toBe(CPP_COMPLETE_COURSE_ID);
-    expect(mockCourseSearchService.getById).toHaveBeenCalledWith(CPP_COMPLETE_COURSE_ID);
+    expect(component.courseId()).toBe('course-1');
+    expect(mockCourseSearchService.getById).toHaveBeenCalledWith('course-1');
     expect(component.nodes().length).toBeGreaterThan(0);
-    expect(component.nodes()[0]?.courseId).toBe(CPP_COMPLETE_COURSE_ID);
+    expect(component.nodes()[0]?.courseId).toBe('course-1');
   });
 
   it('should load the course from query params when it differs from the dashboard course', async () => {
