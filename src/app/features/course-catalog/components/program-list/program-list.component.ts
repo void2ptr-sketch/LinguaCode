@@ -130,11 +130,11 @@ export class CourseCatalogProgramsComponent {
   }
 
   /**
-   * Handles "Start" button click for a program.
-   *
-   * @param programId - The program ID to start.
-   */
-  onStartProgram(programId: string): void {
-    this.startProgram.emit(programId);
+    * Handles "Start" button click for a program.
+    *
+    * @param courseId - The parent course ID to start (program belongs to a course).
+    */
+  onStartProgram(courseId: string): void {
+    this.startProgram.emit(courseId);
   }
 }
