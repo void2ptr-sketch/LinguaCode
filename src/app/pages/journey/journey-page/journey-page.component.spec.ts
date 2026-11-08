@@ -43,6 +43,7 @@ function makeCourse(
   return {
     id,
     title,
+    slug: id,
     description: '',
     authorId: 'author-1',
     languagePair: { known: 'ru', learning: 'zh' },

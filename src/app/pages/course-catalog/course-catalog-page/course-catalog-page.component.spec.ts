@@ -50,6 +50,7 @@ function makeCourse(id: string, title: string, programCount: number): CourseInde
   return {
     id,
     title,
+    slug: id,
     authorId: 'author-1',
     programCount,
     published: true,
@@ -86,6 +87,7 @@ describe('CourseCatalogPageComponent', () => {
   const mockCourse: CourseWithPrograms = {
     id: 'c-1',
     title: 'Course 1',
+    slug: 'c-1',
     description: 'Test course',
     authorId: 'author-1',
     languagePair: { known: 'ru', learning: 'en' },

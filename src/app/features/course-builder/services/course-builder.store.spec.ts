@@ -18,6 +18,7 @@ describe('CourseBuilderStore', () => {
     create: vi.fn(),
     update: vi.fn(),
     delete: vi.fn(),
+    resolveCourseIdForWrite: vi.fn(async (courseId: string) => courseId),
   };
 
   const mockPdfExport = {

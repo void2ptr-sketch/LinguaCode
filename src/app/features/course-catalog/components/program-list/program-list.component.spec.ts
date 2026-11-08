@@ -59,7 +59,13 @@ describe('CourseCatalogProgramsComponent', () => {
         {
           provide: CourseSearchService,
           useValue: {
-            resolveCourseId: vi.fn().mockImplementation((id: string) => Promise.resolve(id)),
+            // The component requires numeric IDs for the backend (BIGINT PK):
+            // slugs resolve to a numeric ID, numeric IDs pass through.
+            resolveCourseId: vi
+              .fn()
+              .mockImplementation((id: string) =>
+                Promise.resolve(/^\d+$/.test(id) ? id : '101'),
+              ),
           },
         },
       ],

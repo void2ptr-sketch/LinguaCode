@@ -19,6 +19,8 @@ export type Course = {
   id: string;
   /** Display title of the course. */
   title: string;
+  /** Stable human-readable slug for API resolution (e.g. 'course-cpp-complete'). */
+  slug?: string;
   /** Course description shown in the catalog. */
   description: string;
   /** ID of the course author. */

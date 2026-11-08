@@ -60,6 +60,7 @@ describe('CourseCatalogStore', () => {
         {
           id: 'c1',
           title: 'Course 1',
+          slug: 'c1',
           authorId: 'user1',
           programCount: 5,
           published: true,

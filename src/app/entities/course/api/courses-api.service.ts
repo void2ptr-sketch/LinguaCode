@@ -25,6 +25,7 @@ import { formatLanguagePair } from '../../language-pair/lib/language-pair.utils'
 type BackendCourseDto = {
   id: number;
   title: string;
+  slug: string;
   courseDescription: string;
   authorId: number;
   languagePairId: number | null;
@@ -54,6 +55,7 @@ function toIndexEntry(
   return {
     id: String(dto.id),
     title: dto.title,
+    slug: dto.slug ?? '',
     authorId: String(dto.authorId),
     programCount: 0, // not available in the list response
     published: dto.published,

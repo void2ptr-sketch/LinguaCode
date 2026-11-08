@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
+import { environment } from '../../../../environments/environment';
+
 import type {
   CourseIndexEntry,
   CourseSearchCriteria,
@@ -28,6 +30,13 @@ export class CourseSearchService {
   private readonly programsApi = inject(ProgramsApiService);
   private readonly logger = inject(AppLoggerService);
   private readonly http = inject(HttpClient);
+
+  /**
+   * Whether course requests are served by the local mock backend
+   * (seed data with string IDs) instead of the real backend. Exposed as a
+   * field so tests can override it.
+   */
+  private readonly coursesMockEnabled = environment.useCoursesApiMock;
 
   /** Whether a course operation is in progress. */
   readonly loading = signal(false);
@@ -75,6 +84,7 @@ export class CourseSearchService {
         const map = new Map<string, string>();
         let page = 0;
         const pageSize = 100;
+        let fetched = 0;
         let hasMore = true;
 
         while (hasMore) {
@@ -87,15 +97,19 @@ export class CourseSearchService {
           );
 
           const items = (response.data as unknown as CourseIndexEntry[]) ?? [];
+          fetched += items.length;
           for (const item of items) {
-            // item.id is the numeric ID (as string); title is the seed string ID.
-            map.set(item.title, String(item.id));
+            // item.id is the numeric ID (as string); slug is the seed string ID.
+            const slug = item.slug ?? item.id;
+            map.set(slug, String(item.id));
             // Also store numeric ID as-is for direct lookup
             map.set(item.id, String(item.id));
           }
 
           page++;
-          hasMore = page < (response.total ?? 0);
+          // `total` is the number of items (not pages): stop when everything is fetched.
+          hasMore =
+            response.total !== undefined ? fetched < response.total : items.length === pageSize;
         }
 
         this.idResolutionCache = map;
@@ -114,8 +128,12 @@ export class CourseSearchService {
    * numeric IDs. This method resolves string IDs by looking up the cached
    * mapping (loaded from the backend). Numeric IDs pass through unchanged.
    *
+   * **Post-validation:** the resolved value is checked against `^\d+$`.
+   * If the cache maps a slug to a non-numeric ID (e.g. slug → slug in mock
+   * mode), the method returns `null` instead of propagating the slug.
+   *
    * @param courseId - The course ID to resolve.
-   * @returns The resolved numeric course ID, or `null` if not found.
+   * @returns The resolved numeric course ID, or `null` if not found or non-numeric.
    */
   async resolveCourseId(courseId: string): Promise<string | null> {
     // Numeric ID — pass through
@@ -133,15 +151,29 @@ export class CourseSearchService {
     // Try direct match first (numeric ID passed as string)
     const direct = this.idResolutionCache.get(courseId);
     if (direct) {
-      return direct;
+      // Post-validation: ensure the resolved value is numeric
+      if (/^\d+$/.test(direct)) {
+        return direct;
+      }
+      // Cache maps slug → slug (mock mode with seed data); reject non-numeric
+      this.logger.warn(
+        `[CourseSearch] resolveCourseId: cache maps "${courseId}" → "${direct}" (non-numeric), returning null`,
+      );
+      return null;
     }
 
-    // Try matching by title (seed string ID → numeric ID)
-    // The cache stores title → numeric ID, so we need to iterate
-    for (const [key, value] of this.idResolutionCache) {
-      if (key === courseId) {
-        return value;
+    // Try matching by slug (seed string ID → numeric ID)
+    // The cache stores slug → numeric ID
+    const slug = this.idResolutionCache.get(courseId);
+    if (slug) {
+      // Post-validation: ensure the resolved value is numeric
+      if (/^\d+$/.test(slug)) {
+        return slug;
       }
+      this.logger.warn(
+        `[CourseSearch] resolveCourseId: cache maps slug "${courseId}" → "${slug}" (non-numeric), returning null`,
+      );
+      return null;
     }
 
     return null;
@@ -195,6 +227,7 @@ export class CourseSearchService {
     const courseBase = {
       id: String(resolvedId),
       title: '',
+      slug: '',
       description: '',
       authorId: '',
       languagePair: { known: 'en' as const, learning: 'ru' as const },
@@ -254,21 +287,52 @@ export class CourseSearchService {
   /**
    * Updates an existing course.
    *
-   * @param courseId - The course ID.
+   * @param courseId - The course ID (numeric or resolvable slug).
    * @param payload - The course write payload.
    * @returns The updated course with programs.
    */
-  update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
-    return this.run(() => this.coursesApi.update(courseId, payload));
+  async update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
+    const resolvedId = await this.resolveCourseIdForWrite(courseId);
+    return this.run(() => this.coursesApi.update(resolvedId, payload));
   }
 
   /**
    * Deletes a course by ID.
    *
-   * @param courseId - The course ID.
+   * @param courseId - The course ID (numeric or resolvable slug).
    */
-  delete(courseId: string): Promise<void> {
-    return this.run(() => this.coursesApi.delete(courseId));
+  async delete(courseId: string): Promise<void> {
+    const resolvedId = await this.resolveCourseIdForWrite(courseId);
+    return this.run(() => this.coursesApi.delete(resolvedId));
+  }
+
+  /**
+   * Resolves a course ID to the numeric form required by backend write
+   * endpoints (`PUT`/`DELETE /courses/{id}`, bundle export, etc.).
+   *
+   * @remarks
+   * Backend binds `{id}` path variables to `Long` backed by a `BIGINT` PK —
+   * a string slug like `course-zh-radicals-214` fails binding with 400.
+   * Numeric IDs pass through unchanged. When the courses API is served by the
+   * local mock backend (seed data with string IDs), slugs pass through as-is.
+   * Otherwise the slug is resolved via the `/courses/search` ID mapping; if it
+   * cannot be resolved, a clear client-side error is thrown instead of sending
+   * a doomed request.
+   *
+   * @param courseId - The course ID (numeric or slug).
+   * @returns The numeric course ID for the real backend, or the original ID in mock mode.
+   * @throws Error when a non-numeric slug cannot be resolved against the backend.
+   */
+  async resolveCourseIdForWrite(courseId: string): Promise<string> {
+    if (this.coursesMockEnabled || /^\d+$/.test(courseId)) {
+      return courseId;
+    }
+
+    const resolved = await this.resolveCourseId(courseId);
+    if (!resolved) {
+      throw new Error(`Course not found: ${courseId}`);
+    }
+    return resolved;
   }
 
   /**

@@ -256,6 +256,7 @@ describe('CardSelectPageComponent', () => {
     component.currentCourse.set({
       id: 'test',
       title: 'Test',
+      slug: 'test',
       programs: [],
       programIds: ['lesson-1'],
       description: 'Test course',

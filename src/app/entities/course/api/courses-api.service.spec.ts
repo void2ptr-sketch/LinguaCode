@@ -13,6 +13,7 @@ describe('CoursesApiService', () => {
   const mockCourseWithPrograms: CourseWithPrograms = {
     id: 'course-1',
     title: 'Test Course',
+    slug: 'test-course',
     description: 'Test description',
     authorId: 'author-1',
     languagePair: { known: 'ru', learning: 'en' },
@@ -47,6 +48,7 @@ describe('CoursesApiService', () => {
   const mockCourseIndexEntry: CourseIndexEntry = {
     id: '1',
     title: 'Test Course',
+    slug: 'test-course',
     authorId: '1',
     programCount: 0,
     published: true,
@@ -107,6 +109,7 @@ describe('CoursesApiService', () => {
       const mockDto = {
         id: 1,
         title: 'Test Course',
+        slug: 'test-course',
         courseDescription: 'Test description',
         authorId: 1,
         languagePairId: 1,

@@ -11,6 +11,7 @@ import type { ContentLanguage } from '../../card/model/card-index.types';
 export type CourseIndexEntry = {
   id: string;
   title: string;
+  slug?: string;
   authorId: string;
   programCount: number;
   published: boolean;

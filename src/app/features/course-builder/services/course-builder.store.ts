@@ -385,10 +385,12 @@ export class CourseBuilderStore {
     }
 
     try {
-      const bundle = await this.coursesApi.getBundle(courseId);
+      // Backend expects the numeric course ID (BIGINT PK) — resolve slug IDs first.
+      const resolvedCourseId = await this.courseSearchService.resolveCourseIdForWrite(courseId);
+      const bundle = await this.coursesApi.getBundle(resolvedCourseId);
 
       const result = collectCourseBundle(
-        courseId,
+        resolvedCourseId,
         bundle.catalog,
         bundle.scenarios,
         bundle.cards,

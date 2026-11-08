@@ -6,6 +6,7 @@ import type { SyncQueueEntry } from '../../shared/sync';
 import { CardsApiService } from '../../entities/card/api/cards-api.service';
 import { ScenariosApiService } from '../../entities/scenario/api/scenarios-api.service';
 import { CoursesApiService } from '../../entities/course/api/courses-api.service';
+import { CourseSearchService } from '../../entities/course';
 
 describe('SyncQueueBootstrap', () => {
   let queue: SyncQueueService;
@@ -29,6 +30,9 @@ describe('SyncQueueBootstrap', () => {
       update: vi.fn().mockResolvedValue(undefined),
       delete: vi.fn().mockResolvedValue(undefined),
     };
+    const courseSearchMock = {
+      resolveCourseIdForWrite: vi.fn(async (courseId: string) => courseId),
+    };
 
     TestBed.configureTestingModule({
       providers: [
@@ -43,6 +47,7 @@ describe('SyncQueueBootstrap', () => {
         { provide: CardsApiService, useValue: cardsApiMock },
         { provide: ScenariosApiService, useValue: scenariosApiMock },
         { provide: CoursesApiService, useValue: coursesApiMock },
+        { provide: CourseSearchService, useValue: courseSearchMock },
       ],
     });
 

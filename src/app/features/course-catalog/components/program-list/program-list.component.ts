@@ -100,20 +100,26 @@ export class CourseCatalogProgramsComponent {
     this.error.set(null);
 
     try {
-      const results = await Promise.all(
-        Array.from(ids).map(async (id) => {
-          const numericId = await this.resolveCourseId(id);
-          return this.programsApi.getByCourse(numericId).catch((err) => {
-            this.logger.error('Failed to load programs for course', {
-              originalId: id,
-              resolvedId: numericId,
-              error: err,
-            });
-            return [] as readonly Program[];
+      const results: Program[] = [];
+      for (const id of ids) {
+        const numericId = await this.resolveCourseId(id);
+        // Skip courses with non-numeric resolved IDs (slug → slug in mock mode)
+        if (!numericId || !/^\d+$/.test(numericId)) {
+          this.logger.warn(`[ProgramList] Skipping course with non-numeric resolved ID: "${id}" → "${numericId}"`);
+          continue;
+        }
+        try {
+          const programs = await this.programsApi.getByCourse(numericId);
+          results.push(...programs);
+        } catch (err) {
+          this.logger.error('Failed to load programs for course', {
+            originalId: id,
+            resolvedId: numericId,
+            error: err,
           });
-        }),
-      );
-      this.programs.set(results.flat());
+        }
+      }
+      this.programs.set(results);
     } finally {
       this.loading.set(false);
     }

@@ -10,6 +10,7 @@ export function courseToIndexEntry(course: Course, programCount: number): Course
   return {
     id: course.id,
     title: course.title,
+    slug: course.slug,
     authorId: course.authorId,
     programCount,
     published: course.published,

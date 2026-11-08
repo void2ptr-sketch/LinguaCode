@@ -107,6 +107,7 @@ export class CoursesCatalogMockHandler {
     const course: Course = {
       id: courseId,
       title: payload.title,
+      slug: payload.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-zа-яё0-9-]/g, ''),
       description: payload.description,
       authorId: this.userStore.user().id,
       languagePair,

@@ -153,6 +153,7 @@ describe('ScenarioBuilderStore', () => {
       {
         id: 'existing',
         title: 'X',
+        slug: 'existing',
         authorId: 'u',
         programCount: 0,
         published: false,

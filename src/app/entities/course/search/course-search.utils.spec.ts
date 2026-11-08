@@ -4,6 +4,7 @@ import { matchesCourseIndexEntry } from './course-search.utils';
 const baseEntry: CourseIndexEntry = {
   id: 'c1',
   title: 'Demo course',
+  slug: 'demo-course',
   authorId: 'local-user',
   programCount: 1,
   published: true,

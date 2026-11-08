@@ -85,6 +85,7 @@ describe('CourseSearchService', () => {
       const mockCourse = {
         id: 'course-1',
         title: 'Test',
+        slug: 'test',
         description: '',
         authorId: 'user-1',
         languagePair: { known: 'en', learning: 'zh' },
@@ -116,6 +117,7 @@ describe('CourseSearchService', () => {
       const mockCourse = {
         id: 'course-1',
         title: 'Test',
+        slug: 'test',
         description: '',
         authorId: 'user-1',
         languagePair: { known: 'en', learning: 'zh' },
@@ -162,6 +164,7 @@ describe('CourseSearchService', () => {
       const mockCourse = {
         id: 'new-course',
         title: 'New',
+        slug: 'new',
         description: '',
         authorId: 'user-1',
         languagePair: { known: 'en', learning: 'zh' },
@@ -186,24 +189,51 @@ describe('CourseSearchService', () => {
   });
 
   describe('update', () => {
-    it('delegates to CoursesApiService.update', async () => {
-      const mockCourse = {
-        id: 'course-1',
-        title: 'Updated',
-        description: '',
-        authorId: 'user-1',
-        languagePair: { known: 'en', learning: 'zh' },
-        programIds: [],
-        published: true,
-        updatedAt: new Date().toISOString(),
-        programs: [],
-      };
-      const payload = {
-        title: 'Updated',
-        description: '',
-        published: true,
-        programs: [],
-      };
+    const payload = {
+      title: 'Updated',
+      description: '',
+      published: true,
+      programs: [],
+    };
+
+    const mockCourse = {
+      id: '42',
+      title: 'Updated',
+      slug: 'updated',
+      description: '',
+      authorId: 'user-1',
+      languagePair: { known: 'en', learning: 'zh' },
+      programIds: [],
+      published: true,
+      updatedAt: new Date().toISOString(),
+      programs: [],
+    };
+
+    it('passes numeric IDs through to CoursesApiService.update', async () => {
+      const spy = vi
+        .spyOn(apiService, 'update')
+        .mockResolvedValue(mockCourse as CourseWithPrograms);
+
+      await service.update('42', payload);
+
+      expect(spy).toHaveBeenCalledWith('42', payload);
+    });
+
+    it('resolves slug IDs to numeric IDs against the real backend', async () => {
+      // Emulate the real backend (mock mode disabled)
+      (service as unknown as { coursesMockEnabled: boolean }).coursesMockEnabled = false;
+      vi.spyOn(service, 'resolveCourseId').mockResolvedValue('42');
+      const spy = vi
+        .spyOn(apiService, 'update')
+        .mockResolvedValue(mockCourse as CourseWithPrograms);
+
+      await service.update('course-zh-radicals-214', payload);
+
+      expect(spy).toHaveBeenCalledWith('42', payload);
+    });
+
+    it('passes slugs through when the mock backend serves courses', async () => {
+      (service as unknown as { coursesMockEnabled: boolean }).coursesMockEnabled = true;
       const spy = vi
         .spyOn(apiService, 'update')
         .mockResolvedValue(mockCourse as CourseWithPrograms);
@@ -212,15 +242,38 @@ describe('CourseSearchService', () => {
 
       expect(spy).toHaveBeenCalledWith('course-1', payload);
     });
+
+    it('throws when a slug cannot be resolved against the real backend', async () => {
+      (service as unknown as { coursesMockEnabled: boolean }).coursesMockEnabled = false;
+      vi.spyOn(service, 'resolveCourseId').mockResolvedValue(null);
+      const spy = vi
+        .spyOn(apiService, 'update')
+        .mockResolvedValue(mockCourse as CourseWithPrograms);
+
+      await expect(service.update('unknown-course', payload)).rejects.toThrow(
+        'Course not found: unknown-course',
+      );
+      expect(spy).not.toHaveBeenCalled();
+    });
   });
 
   describe('delete', () => {
-    it('delegates to CoursesApiService.delete', async () => {
+    it('passes numeric IDs through to CoursesApiService.delete', async () => {
       const spy = vi.spyOn(apiService, 'delete').mockResolvedValue(undefined);
 
-      await service.delete('course-1');
+      await service.delete('42');
 
-      expect(spy).toHaveBeenCalledWith('course-1');
+      expect(spy).toHaveBeenCalledWith('42');
+    });
+
+    it('resolves slug IDs to numeric IDs against the real backend', async () => {
+      (service as unknown as { coursesMockEnabled: boolean }).coursesMockEnabled = false;
+      vi.spyOn(service, 'resolveCourseId').mockResolvedValue('42');
+      const spy = vi.spyOn(apiService, 'delete').mockResolvedValue(undefined);
+
+      await service.delete('course-zh-radicals-214');
+
+      expect(spy).toHaveBeenCalledWith('42');
     });
   });
 
@@ -230,6 +283,7 @@ describe('CourseSearchService', () => {
         {
           id: 'c1',
           title: 'Test',
+          slug: 'test',
           authorId: 'u1',
           programCount: 0,
           published: true,

@@ -21,6 +21,7 @@ function makeCourse(
   return {
     id,
     title,
+    slug: title.toLowerCase().replace(/\s+/g, '-'),
     authorId: 'author-1',
     programCount,
     published: true,

@@ -10,6 +10,7 @@ import { Injectable, inject } from '@angular/core';
 import { CardsApiService } from '../../entities/card/api/cards-api.service';
 import { ScenariosApiService } from '../../entities/scenario/api/scenarios-api.service';
 import { CoursesApiService } from '../../entities/course/api/courses-api.service';
+import { CourseSearchService } from '../../entities/course';
 import type { Card } from '../../entities/card/model';
 import type { ScenarioWritePayload } from '../../entities/scenario/repository/scenario-catalog.port';
 import type { CourseWritePayload } from '../../entities/course/repository/course-catalog.port';
@@ -31,6 +32,7 @@ export class SyncQueueBootstrap {
   private readonly cardsApi = inject(CardsApiService);
   private readonly scenariosApi = inject(ScenariosApiService);
   private readonly coursesApi = inject(CoursesApiService);
+  private readonly courseSearch = inject(CourseSearchService);
 
   constructor() {
     this.queue.registerExecutor({
@@ -82,12 +84,12 @@ export class SyncQueueBootstrap {
       }
       case 'course.update': {
         const { courseId, payload } = entry.payload as CourseUpdatePayloadEntry;
-        await this.coursesApi.update(courseId, payload);
+        await this.coursesApi.update(await this.courseSearch.resolveCourseIdForWrite(courseId), payload);
         return;
       }
       case 'course.delete': {
         const { courseId } = entry.payload as CourseDeletePayloadEntry;
-        await this.coursesApi.delete(courseId);
+        await this.coursesApi.delete(await this.courseSearch.resolveCourseIdForWrite(courseId));
         return;
       }
       default:

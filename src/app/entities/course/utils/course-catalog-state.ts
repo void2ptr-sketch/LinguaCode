@@ -283,6 +283,7 @@ export function normalizeNestedCourseCatalog(fixture: CoursesNestedFixture): Nes
   courses.push({
     id: courseId,
     title: fixture.title,
+    slug: courseId,
     description: fixture.description ?? '',
     authorId: 'local-user',
     languagePair: normalizeLanguagePair(fixture.languagePair),
