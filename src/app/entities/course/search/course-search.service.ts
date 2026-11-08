@@ -128,9 +128,14 @@ export class CourseSearchService {
    * numeric IDs. This method resolves string IDs by looking up the cached
    * mapping (loaded from the backend). Numeric IDs pass through unchanged.
    *
-   * **Post-validation:** the resolved value is checked against `^\d+$`.
-   * If the cache maps a slug to a non-numeric ID (e.g. slug → slug in mock
-   * mode), the method returns `null` instead of propagating the slug.
+   * **Mock mode:** when the courses API is served by the local mock backend
+   * (`useCoursesApiMock`), the search index itself contains string seed IDs
+   * (slug → slug mapping), so non-numeric IDs pass through as-is — the mock
+   * backend accepts them directly (mirrors {@link resolveCourseIdForWrite}).
+   *
+   * **Post-validation (real backend):** the resolved value is checked against
+   * `^\d+$`. If the cache maps a slug to a non-numeric ID, the method returns
+   * `null` instead of propagating the slug.
    *
    * @param courseId - The course ID to resolve.
    * @returns The resolved numeric course ID, or `null` if not found or non-numeric.
@@ -138,6 +143,11 @@ export class CourseSearchService {
   async resolveCourseId(courseId: string): Promise<string | null> {
     // Numeric ID — pass through
     if (/^\d+$/.test(courseId)) {
+      return courseId;
+    }
+
+    // Mock backend serves seed data with string IDs — pass through as-is
+    if (this.coursesMockEnabled) {
       return courseId;
     }
 
@@ -158,20 +168,6 @@ export class CourseSearchService {
       // Cache maps slug → slug (mock mode with seed data); reject non-numeric
       this.logger.warn(
         `[CourseSearch] resolveCourseId: cache maps "${courseId}" → "${direct}" (non-numeric), returning null`,
-      );
-      return null;
-    }
-
-    // Try matching by slug (seed string ID → numeric ID)
-    // The cache stores slug → numeric ID
-    const slug = this.idResolutionCache.get(courseId);
-    if (slug) {
-      // Post-validation: ensure the resolved value is numeric
-      if (/^\d+$/.test(slug)) {
-        return slug;
-      }
-      this.logger.warn(
-        `[CourseSearch] resolveCourseId: cache maps slug "${courseId}" → "${slug}" (non-numeric), returning null`,
       );
       return null;
     }

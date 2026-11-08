@@ -159,6 +159,61 @@ describe('CourseSearchService', () => {
     });
   });
 
+  describe('resolveCourseId', () => {
+    const setMockMode = (enabled: boolean) => {
+      (service as unknown as { coursesMockEnabled: boolean }).coursesMockEnabled = enabled;
+    };
+
+    it('passes numeric IDs through regardless of mock mode', async () => {
+      setMockMode(false);
+
+      await expect(service.resolveCourseId('42')).resolves.toBe('42');
+    });
+
+    it('passes seed string IDs through in mock mode', async () => {
+      setMockMode(true);
+
+      await expect(service.resolveCourseId('course-cpp-complete')).resolves.toBe(
+        'course-cpp-complete',
+      );
+    });
+
+    it('does not load the ID resolution map in mock mode', async () => {
+      setMockMode(true);
+
+      await service.resolveCourseId('course-cpp-complete');
+
+      const internal = service as unknown as {
+        idResolutionCache: Map<string, string> | null;
+      };
+      expect(internal.idResolutionCache).toBeNull();
+    });
+  });
+
+  describe('getByIdOrNull', () => {
+    it('fetches a course by seed slug in mock mode', async () => {
+      (service as unknown as { coursesMockEnabled: boolean }).coursesMockEnabled = true;
+      const mockCourse = {
+        id: 'course-cpp-complete',
+        title: 'C++',
+        slug: 'cpp-complete',
+        description: '',
+        authorId: 'user-1',
+        languagePair: { known: 'en', learning: 'ru' },
+        programIds: [],
+        published: true,
+        updatedAt: new Date().toISOString(),
+        programs: [],
+      };
+      const spy = vi
+        .spyOn(apiService, 'getById')
+        .mockResolvedValue(mockCourse as CourseWithPrograms);
+
+      await expect(service.getByIdOrNull('course-cpp-complete')).resolves.toEqual(mockCourse);
+      expect(spy).toHaveBeenCalledWith('course-cpp-complete');
+    });
+  });
+
   describe('create', () => {
     it('delegates to CoursesApiService.create', async () => {
       const mockCourse = {
