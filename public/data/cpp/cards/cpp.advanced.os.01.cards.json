@@ -74,27 +74,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "os",
           "memory"
-        ],
-        "tags": "Виртуальная память отделяет их."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.os.01.scenario",
       "question": "Сколько адресных пространств у двух процессов?",
       "code": {
-        "code": [
-          "Два (изолированы)",
-          "Одно",
-          "Два общее",
-          "Ноль"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Два (изолированы)",
+        "Одно",
+        "Два общее",
+        "Ноль"
+      ],
+      "correctIndex": 0,
+      "explanation": "Виртуальная память отделяет их."
     },
     {
       "id": "cpp.advanced.os.01.scenario.card-04",
@@ -169,27 +170,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "os",
           "memory"
-        ],
-        "tags": "Файловое отображение."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.os.01.scenario",
       "question": "Что делает mmap?",
       "code": {
-        "code": [
-          "Проецирует файл/память в адреса процесса",
-          "Блокирует",
-          "Сортирует",
-          "Логи"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Проецирует файл/память в адреса процесса",
+        "Блокирует",
+        "Сортирует",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Файловое отображение."
     },
     {
       "id": "cpp.advanced.os.01.scenario.card-07",
@@ -296,26 +298,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "os"
-        ],
-        "tags": "Родитель/ребёнок."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.os.01.scenario",
       "question": "Что делает fork()?",
       "code": {
-        "code": [
-          "Копирует процесс",
-          "Завершает",
-          "Ждёт",
-          "Сети"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Копирует процесс",
+        "Завершает",
+        "Ждёт",
+        "Сети"
+      ],
+      "correctIndex": 0,
+      "explanation": "Родитель/ребёнок."
     },
     {
       "id": "cpp.advanced.os.01.scenario.card-11",
@@ -390,27 +393,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "os",
           "concurrency"
-        ],
-        "tags": "Циклическое ожидание."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.os.01.scenario",
       "question": "Что такое deadlock в ОС?",
       "code": {
-        "code": [
-          "Взаимная блокировка ресурсов",
-          "Быстрый",
-          "Ошибка",
-          "Сеть"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Взаимная блокировка ресурсов",
+        "Быстрый",
+        "Ошибка",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Циклическое ожидание."
     },
     {
       "id": "cpp.advanced.os.01.scenario.card-14",
@@ -485,26 +489,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "os"
-        ],
-        "tags": "Проверка возврата обязательна."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.os.01.scenario",
       "question": "Что вернёт open() при ошибке?",
       "code": {
-        "code": [
-          "-1 (и errno)",
-          "0",
-          "nullptr",
-          "адрес"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "-1 (и errno)",
+        "0",
+        "nullptr",
+        "адрес"
+      ],
+      "correctIndex": 0,
+      "explanation": "Проверка возврата обязательна."
     },
     {
       "id": "cpp.advanced.os.01.scenario.card-17",

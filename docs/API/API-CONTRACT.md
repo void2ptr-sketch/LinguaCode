@@ -97,17 +97,17 @@ type LanguagePairDto = {
 
 Реализация: `CoursesApiService` · порт `CourseCatalogPort` · mock `coursesApiMockInterceptor`.
 
-| Метод  | Путь                               | Описание                                   |
-| ------ | ---------------------------------- | ------------------------------------------ |
-| GET    | `/courses/search`                  | Поиск + пагинация                          |
-| GET    | `/courses/:id`                     | Курс с уроками (`CourseWithLessons`)       |
-| GET    | `/courses/:id/journey`             | Курс с программами и уроками для карты    |
-| GET    | `/courses/:id/bundle`              | Экспорт-пакет (`CourseExportBundle`)       |
-| GET    | `/courses/by-scenario/:scenarioId` | Курсы, использующие сценарий               |
-| GET    | `/courses/scorm/export/courses/:id`        | Экспорт в SCORM/xAPI (`ScormExportBundle`) |
-| POST   | `/courses`                         | Создание курса (201)                       |
-| PUT    | `/courses/:id`                     | Обновление курса (403 на чужой)            |
-| DELETE | `/courses/:id`                     | Удаление курса                             |
+| Метод  | Путь                                | Описание                                   |
+| ------ | ----------------------------------- | ------------------------------------------ |
+| GET    | `/courses/search`                   | Поиск + пагинация                          |
+| GET    | `/courses/:id`                      | Курс с уроками (`CourseWithLessons`)       |
+| GET    | `/courses/:id/journey`              | Курс с программами и уроками для карты     |
+| GET    | `/courses/:id/bundle`               | Экспорт-пакет (`CourseExportBundle`)       |
+| GET    | `/courses/by-scenario/:scenarioId`  | Курсы, использующие сценарий               |
+| GET    | `/courses/scorm/export/courses/:id` | Экспорт в SCORM/xAPI (`ScormExportBundle`) |
+| POST   | `/courses`                          | Создание курса (201)                       |
+| PUT    | `/courses/:id`                      | Обновление курса (403 на чужой)            |
+| DELETE | `/courses/:id`                      | Удаление курса                             |
 
 Пейлоад записи: `CourseWritePayload` (`title`, `description`, `published`, `languagePair?`, `programs[]`, `authoring?`).
 На бэкенд отправляется: `courseDescription` (из `description`), `authorId` (из UserStore).

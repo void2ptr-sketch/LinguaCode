@@ -1,4 +1,11 @@
-import { Component, ChangeDetectionStrategy, inject, signal, effect, DestroyRef } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  inject,
+  signal,
+  effect,
+  DestroyRef,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -139,9 +146,7 @@ export class JourneyPageComponent {
       );
       if (course.programs) {
         for (const p of course.programs) {
-          this.logger.info(
-            `  Program: ${p.id} (${p.title}), lessons=${p.lessons?.length ?? 0}`,
-          );
+          this.logger.info(`  Program: ${p.id} (${p.title}), lessons=${p.lessons?.length ?? 0}`);
           if (p.lessons) {
             for (const l of p.lessons) {
               this.logger.info(`    Lesson: ${l.id}, scenarioIds=${l.scenarioIds?.length ?? 0}`);
@@ -186,7 +191,9 @@ export class JourneyPageComponent {
       course.programs.flatMap((p) => (p.lessons ?? []).flatMap((l) => l.scenarioIds.map(String))),
     );
 
-    this.logger.debug(`[JourneyPage] Loading scenarios for course ${course.id}: ${courseScenarioIds.size} scenarios`);
+    this.logger.debug(
+      `[JourneyPage] Loading scenarios for course ${course.id}: ${courseScenarioIds.size} scenarios`,
+    );
 
     // Загружаем сценарии через API по courseId
     const courseScenarios: import('../../../entities/scenario/model').Scenario[] = [];

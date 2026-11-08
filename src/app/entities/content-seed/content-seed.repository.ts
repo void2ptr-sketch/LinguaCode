@@ -285,35 +285,35 @@ export class ContentSeedRepository {
   }
 
   /**
-    * Загружает файл курсов и нормализует данные.
-    *
-    * Detects the format (nested vs legacy) and delegates to the appropriate
-    * normalizer.  Returns a flat `CourseCatalogState` with an additional
-    * `cards` array for nested fixtures.
-    *
-    * @param path — путь к файлу
-    * @returns нормализованный каталог курсов (и cards для nested-формата)
-    */
-    private loadCourseFixture(path: string): Promise<{
-      courses: import('../course/model/course.types').Course[];
-      programs: import('../program/model/program.types').Program[];
-      lessons: import('../course/model/lesson.types').Lesson[];
-      cards?: Card[];
-    }> {
-      return firstValueFrom(this.http.get<unknown>(buildFixtureUrl(path))).then((raw) => {
-        if (isNestedFormat(raw)) {
-          const nested = raw as CoursesNestedFixture;
-          const result = normalizeNestedCourseCatalog(nested);
-          return {
-            courses: result.catalog.courses,
-            programs: result.catalog.programs,
-            lessons: result.catalog.lessons,
-            cards: result.cards,
-          };
-        }
-        return normalizeStoredCourseCatalog(raw as Partial<CoursesSeedFixture>);
-      });
-    }
+   * Загружает файл курсов и нормализует данные.
+   *
+   * Detects the format (nested vs legacy) and delegates to the appropriate
+   * normalizer.  Returns a flat `CourseCatalogState` with an additional
+   * `cards` array for nested fixtures.
+   *
+   * @param path — путь к файлу
+   * @returns нормализованный каталог курсов (и cards для nested-формата)
+   */
+  private loadCourseFixture(path: string): Promise<{
+    courses: import('../course/model/course.types').Course[];
+    programs: import('../program/model/program.types').Program[];
+    lessons: import('../course/model/lesson.types').Lesson[];
+    cards?: Card[];
+  }> {
+    return firstValueFrom(this.http.get<unknown>(buildFixtureUrl(path))).then((raw) => {
+      if (isNestedFormat(raw)) {
+        const nested = raw as CoursesNestedFixture;
+        const result = normalizeNestedCourseCatalog(nested);
+        return {
+          courses: result.catalog.courses,
+          programs: result.catalog.programs,
+          lessons: result.catalog.lessons,
+          cards: result.cards,
+        };
+      }
+      return normalizeStoredCourseCatalog(raw as Partial<CoursesSeedFixture>);
+    });
+  }
 
   /**
    * Загружает файл карточек.

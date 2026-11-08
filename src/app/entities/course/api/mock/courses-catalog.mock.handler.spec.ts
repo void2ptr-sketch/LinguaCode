@@ -78,7 +78,7 @@ describe('CoursesCatalogMockHandler', () => {
   });
 
   it('returns course with lessons sorted by order', async () => {
-    const course = await api.getById('demo-course');
+    const course = await api.getById('course-demo-card-kinds');
 
     expect(course).toBeDefined();
     const allLessons = course.programs.flatMap((p) => p.lessons ?? []);
@@ -123,9 +123,9 @@ describe('CoursesCatalogMockHandler', () => {
     });
 
     it('returns course with correct ID', async () => {
-      const course = await api.getById('demo-course');
+      const course = await api.getById('course-demo-card-kinds');
 
-      expect(course.id).toBe('demo-course');
+      expect(course.id).toBe('course-demo-card-kinds');
       expect(course.title).toBeDefined();
     });
   });
@@ -183,7 +183,7 @@ describe('CoursesCatalogMockHandler', () => {
         programs: [],
       };
 
-      const updated = await api.update('demo-course', payload);
+      const updated = await api.update('course-demo-card-kinds', payload);
 
       expect(updated.title).toBe('Updated Course Title');
       expect(updated.description).toBe('Updated description');

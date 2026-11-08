@@ -61,7 +61,7 @@ let MOCK_LANGUAGE_PAIRS: LanguagePairDto[] = [...INITIAL_LANGUAGE_PAIRS];
  * location.reload();
  * ```
  */
-(window as any).__resetLanguagePairs = () => {
+(window as unknown as { __resetLanguagePairs: () => void }).__resetLanguagePairs = () => {
   MOCK_LANGUAGE_PAIRS = [...INITIAL_LANGUAGE_PAIRS];
   console.log('Language pairs reset to', MOCK_LANGUAGE_PAIRS.length, 'entries');
 };

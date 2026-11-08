@@ -74,26 +74,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "hpc"
-        ],
-        "tags": "Идентификация в коммуникаторе."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.hpc.01.scenario",
       "question": "Что делает MPI_Comm_rank?",
       "code": {
-        "code": [
-          "Возвращает номер процесса",
-          "Размер",
-          "Сумму",
-          "Лог"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Возвращает номер процесса",
+        "Размер",
+        "Сумму",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Идентификация в коммуникаторе."
     },
     {
       "id": "cpp.advanced.hpc.01.scenario.card-04",
@@ -234,26 +235,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "hpc"
-        ],
-        "tags": "Множество потоков на GPU."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.hpc.01.scenario",
       "question": "Что делает kernel в CUDA?",
       "code": {
-        "code": [
-          "Функцию, исполняемую на GPU",
-          "ОС",
-          "Буфер",
-          "Сеть"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Функцию, исполняемую на GPU",
+        "ОС",
+        "Буфер",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Множество потоков на GPU."
     },
     {
       "id": "cpp.advanced.hpc.01.scenario.card-09",
@@ -423,26 +425,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "hpc"
-        ],
-        "tags": "Закон Амдаля."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.hpc.01.scenario",
       "question": "Что показывает ускорение при p ядрах?",
       "code": {
-        "code": [
-          "зависит от последовательной части",
-          "p раз всегда",
-          "ноль",
-          "1"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "зависит от последовательной части",
+        "p раз всегда",
+        "ноль",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Закон Амдаля."
     },
     {
       "id": "cpp.advanced.hpc.01.scenario.card-15",

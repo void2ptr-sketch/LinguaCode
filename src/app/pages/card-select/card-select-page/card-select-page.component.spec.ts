@@ -13,6 +13,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CardSelectPageComponent } from './card-select-page.component';
+import type { Card } from '../../../entities/card/model';
 import { CardSelectStore } from '../../../features/card-select/services/card-select.store';
 import { CardSelectService } from '../../../features/card-select/services/card-select.service';
 import { CardSelectFlowService } from '../../../features/card-select/services/card-select-flow.service';
@@ -43,7 +44,7 @@ describe('CardSelectPageComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let component: CardSelectPageComponent;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         TestHostComponent,
@@ -90,6 +91,10 @@ describe('CardSelectPageComponent', () => {
     localStorage.clear();
     sessionStorage.clear();
     fixture = TestBed.createComponent(TestHostComponent);
+    fixture.detectChanges();
+    // Let UserStore finish async init so the flow's resetOnActivePairChange
+    // effect fires before a scenario is started (it would otherwise reset the store mid-test).
+    await fixture.whenStable();
     fixture.detectChanges();
     component = fixture.debugElement.children[0].componentInstance as CardSelectPageComponent;
   });
@@ -426,22 +431,11 @@ describe('CardSelectPageComponent', () => {
     const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
 
     component.selectedCourseId.set('course-1');
-    component.store.setScenario('scenario-1', [
-      {
-        id: 'c1',
-        kind: 'select',
-        title: 'Test 1',
-        appearance: { theme: 'azure-blue', fontSize: 'md' },
-        direction: 'known-to-learning',
-        promptKnown: 'Q1?',
-        optionsLearning: ['A', 'B'],
-        optionsKnown: ['A', 'B'],
-        correctIndex: 0,
-      },
-    ]);
-    component.store.selectOption(0);
+    await startSingleCardScenario();
+
+    component.store.setFlipKnown(true);
     component.store.checkAnswer();
-    component.store.nextCard();
+    await component.store.nextCard();
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -455,26 +449,35 @@ describe('CardSelectPageComponent', () => {
     const router = TestBed.inject(Router);
     const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
 
-    component.store.setScenario('scenario-1', [
-      {
-        id: 'c1',
-        kind: 'select',
-        title: 'Test 1',
-        appearance: { theme: 'azure-blue', fontSize: 'md' },
-        direction: 'known-to-learning',
-        promptKnown: 'Q1?',
-        optionsLearning: ['A', 'B'],
-        optionsKnown: ['A', 'B'],
-        correctIndex: 0,
-      },
-    ]);
-    component.store.selectOption(0);
+    await startSingleCardScenario();
+
+    component.store.setFlipKnown(true);
     component.store.checkAnswer();
-    component.store.nextCard();
+    await component.store.nextCard();
     fixture.detectChanges();
     await fixture.whenStable();
 
     expect(component.store.completed()).toBe(true);
     expect(navigateSpy).not.toHaveBeenCalled();
   });
+
+  /**
+   * Starts a one-card scenario: mocks `loadPageByIds` (pagination) and waits
+   * until the first card is loaded into the store.
+   */
+  async function startSingleCardScenario(): Promise<void> {
+    const card: Card = {
+      id: 'c1',
+      kind: 'flip',
+      title: 'Test 1',
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+      front: 'Front',
+      back: 'Back',
+    };
+    const cardSelectService = TestBed.inject(CardSelectService);
+    vi.spyOn(cardSelectService, 'loadPageByIds').mockResolvedValue([card]);
+
+    await component.store.setScenario('scenario-1', ['c1']);
+    expect(component.store.currentCard()).not.toBeNull();
+  }
 });

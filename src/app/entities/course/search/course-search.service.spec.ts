@@ -91,7 +91,17 @@ describe('CourseSearchService', () => {
         programIds: [],
         published: true,
         updatedAt: new Date().toISOString(),
-        programs: [{ id: 'prog-1', courseId: '1', title: 'P', description: '', order: 0, updatedAt: '', lessons: [] }],
+        programs: [
+          {
+            id: 'prog-1',
+            courseId: '1',
+            title: 'P',
+            description: '',
+            order: 0,
+            updatedAt: '',
+            lessons: [],
+          },
+        ],
       };
       const spy = vi
         .spyOn(apiService, 'getJourney')
@@ -112,7 +122,17 @@ describe('CourseSearchService', () => {
         programIds: [],
         published: true,
         updatedAt: new Date().toISOString(),
-        programs: [{ id: 'prog-1', courseId: '42', title: 'P', description: '', order: 0, updatedAt: '', lessons: [] }],
+        programs: [
+          {
+            id: 'prog-1',
+            courseId: '42',
+            title: 'P',
+            description: '',
+            order: 0,
+            updatedAt: '',
+            lessons: [],
+          },
+        ],
       };
       const getJourneySpy = vi
         .spyOn(apiService, 'getJourney')

@@ -131,9 +131,7 @@ describe('CourseCatalogCourseListComponent', () => {
         MatIconModule,
         MatProgressSpinnerModule,
       ],
-      providers: [
-        { provide: CourseCatalogStore, useValue: storeMock },
-      ],
+      providers: [{ provide: CourseCatalogStore, useValue: storeMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CourseCatalogCourseListComponent);

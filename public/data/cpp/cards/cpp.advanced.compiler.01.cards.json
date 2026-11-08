@@ -336,27 +336,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "beginner",
+        "tags": [
           "compilers",
           "syntax"
-        ],
-        "tags": "-O2 — оптимизация производительности."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.compiler.01.scenario",
       "question": "Какой флаг включает O2 оптимизации?",
       "code": {
-        "code": [
-          "-O2",
-          "-g",
-          "-Wall",
-          "-std=c++20"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "beginner"
+      "outputOptions": [
+        "-O2",
+        "-g",
+        "-Wall",
+        "-std=c++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "-O2 — оптимизация производительности."
     },
     {
       "id": "cpp.advanced.compiler.01.scenario.card-12",
@@ -432,27 +433,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "compilers",
           "syntax"
-        ],
-        "tags": "-flto включает линк-тайм оптимизацию."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.compiler.01.scenario",
       "question": "Как включить LTO?",
       "code": {
-        "code": [
-          "-flto",
-          "-O3",
-          "-g",
-          "-w"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "-flto",
+        "-O3",
+        "-g",
+        "-w"
+      ],
+      "correctIndex": 0,
+      "explanation": "-flto включает линк-тайм оптимизацию."
     },
     {
       "id": "cpp.advanced.compiler.01.scenario.card-15",

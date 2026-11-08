@@ -167,26 +167,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "exceptions"
-        ],
-        "tags": "Деструкторы должны быть noexcept."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.exception-handling.02.scenario",
       "question": "Что произойдёт при исключении из деструктора?",
       "code": {
-        "code": [
-          "std::terminate (при активном исключении)",
-          "Игнор",
-          "Лог",
-          "Нет"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "std::terminate (при активном исключении)",
+        "Игнор",
+        "Лог",
+        "Нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструкторы должны быть noexcept."
     },
     {
       "id": "cpp.advanced.exception-handling.02.scenario.card-07",

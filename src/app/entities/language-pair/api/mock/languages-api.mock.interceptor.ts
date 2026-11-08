@@ -132,7 +132,7 @@ let mockLanguagesState: LanguageDto[] = [...INITIAL_LANGUAGES];
  * location.reload();
  * ```
  */
-(window as any).__resetLanguages = () => {
+(window as unknown as { __resetLanguages: () => void }).__resetLanguages = () => {
   mockLanguagesState = [...INITIAL_LANGUAGES];
   console.log('Languages reset to', mockLanguagesState.length, 'entries');
 };

@@ -4,12 +4,14 @@ import { TestBed } from '@angular/core/testing';
 import { CoursesApiService } from '../courses-api.service';
 import { coursesApiMockInterceptor } from './courses-api.mock.interceptor';
 import { LanguagePairsApiService } from '../../../language-pair/api';
+import { seedTestContentCache } from '../../../content-seed/content-seed.test-utils';
 
 describe('courses API (mock interceptor)', () => {
   let api: CoursesApiService;
 
   beforeEach(() => {
     localStorage.clear();
+    seedTestContentCache();
 
     TestBed.configureTestingModule({
       providers: [
@@ -48,10 +50,10 @@ describe('courses API (mock interceptor)', () => {
   });
 
   it('loads course by id via GET /api/courses/:id', async () => {
-    const course = await api.getById('demo-course');
+    const course = await api.getById('course-demo-card-kinds');
 
     expect(course).toBeDefined();
-    expect(course.id).toBe('demo-course');
+    expect(course.id).toBe('course-demo-card-kinds');
   });
 
   it('returns 404 for unknown course id', async () => {
@@ -65,7 +67,7 @@ describe('courses API (mock interceptor)', () => {
   });
 
   it('loads course bundle via GET /api/courses/:id/bundle', async () => {
-    const bundle = await api.getBundle('demo-course');
+    const bundle = await api.getBundle('course-demo-card-kinds');
 
     expect(bundle.catalog.courses.length).toBeGreaterThan(0);
     expect(Array.isArray(bundle.scenarios)).toBe(true);

@@ -81,7 +81,10 @@ export class ProgramsApiService implements ProgramCatalogPort {
       courseId: this.userStore.user().id,
     };
     return firstValueFrom(
-      this.http.post<ProgramResponse>(buildApiUrl('/programs'), body as unknown as ProgramCreateRequest),
+      this.http.post<ProgramResponse>(
+        buildApiUrl('/programs'),
+        body as unknown as ProgramCreateRequest,
+      ),
     ).then((response) => response.data as unknown as Program);
   }
 

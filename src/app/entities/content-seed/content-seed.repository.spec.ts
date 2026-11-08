@@ -525,7 +525,14 @@ describe('ContentSeedRepository', () => {
                     order: 0,
                     published: true,
                     cards: [
-                      { id: 'card-a1', kind: 'flip', title: 'Card A1', appearance: { theme: 'a', fontSize: 'md' }, front: 'a', back: 'b' },
+                      {
+                        id: 'card-a1',
+                        kind: 'flip',
+                        title: 'Card A1',
+                        appearance: { theme: 'a', fontSize: 'md' },
+                        front: 'a',
+                        back: 'b',
+                      },
                     ],
                   },
                 ],
@@ -553,7 +560,14 @@ describe('ContentSeedRepository', () => {
                     order: 0,
                     published: true,
                     cards: [
-                      { id: 'card-b1', kind: 'flip', title: 'Card B1', appearance: { theme: 'a', fontSize: 'md' }, front: 'c', back: 'd' },
+                      {
+                        id: 'card-b1',
+                        kind: 'flip',
+                        title: 'Card B1',
+                        appearance: { theme: 'a', fontSize: 'md' },
+                        front: 'c',
+                        back: 'd',
+                      },
                     ],
                   },
                 ],

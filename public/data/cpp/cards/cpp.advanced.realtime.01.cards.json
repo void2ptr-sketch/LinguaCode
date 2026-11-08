@@ -75,27 +75,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "realtime",
           "memory"
-        ],
-        "tags": "Выделение может блокировать."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.realtime.01.scenario",
       "question": "Почему динамические аллокации нежелательны?",
       "code": {
-        "code": [
-          "Недетерминизм времени",
-          "Скорость",
-          "Память",
-          "нет"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Недетерминизм времени",
+        "Скорость",
+        "Память",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Выделение может блокировать."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-04",
@@ -170,26 +171,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "realtime"
-        ],
-        "tags": "Стабильность ритма."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.realtime.01.scenario",
       "question": "Что такое jitter?",
       "code": {
-        "code": [
-          "Отклонение времени реакции",
-          "ошибку",
-          "лог",
-          "хэш"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Отклонение времени реакции",
+        "ошибку",
+        "лог",
+        "хэш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стабильность ритма."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-07",
@@ -295,27 +297,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "realtime",
           "memory"
-        ],
-        "tags": "Без недетерминированных аллокаций."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.realtime.01.scenario",
       "question": "Какие структуры выбрать?",
       "code": {
-        "code": [
-          "Статические/фиксированные",
-          "динамические",
-          "list везде",
-          "vector всегда"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Статические/фиксированные",
+        "динамические",
+        "list везде",
+        "vector всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без недетерминированных аллокаций."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-11",
@@ -389,26 +392,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "realtime"
-        ],
-        "tags": "Профиль худших сценариев."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.realtime.01.scenario",
       "question": "Что важно измерять?",
       "code": {
-        "code": [
-          "WCET и jitter",
-          "среднее только",
-          "логи",
-          "нет"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "WCET и jitter",
+        "среднее только",
+        "логи",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Профиль худших сценариев."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-14",
@@ -545,26 +549,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "realtime"
-        ],
-        "tags": "Обработка перегрузки."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.realtime.01.scenario",
       "question": "Что будет при пропущенном deadline?",
       "code": {
-        "code": [
-          "Смотр system failure/hard",
-          "автоматизация",
-          "лог",
-          "нет"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Смотр system failure/hard",
+        "автоматизация",
+        "лог",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Обработка перегрузки."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-19",

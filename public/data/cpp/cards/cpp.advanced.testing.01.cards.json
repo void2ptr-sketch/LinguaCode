@@ -291,26 +291,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "testing"
-        ],
-        "tags": "Инструменты покрытия."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.testing.01.scenario",
       "question": "Как измерить COVERAGE в C++?",
       "code": {
-        "code": [
-          "gcov/lcov или фреймворки",
-          "cmake",
-          "git",
-          "нельзя"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "gcov/lcov или фреймворки",
+        "cmake",
+        "git",
+        "нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инструменты покрытия."
     },
     {
       "id": "cpp.advanced.testing.01.scenario.card-11",
@@ -385,27 +386,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "testing",
           "ci"
-        ],
-        "tags": "Быстрый фидбек о регрессиях."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.testing.01.scenario",
       "question": "Что делает CI на push?",
       "code": {
-        "code": [
-          "Собирает и прогоняет тесты",
-          "Пишет код",
-          "Деплоит всегда",
-          "Хеширует"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Собирает и прогоняет тесты",
+        "Пишет код",
+        "Деплоит всегда",
+        "Хеширует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Быстрый фидбек о регрессиях."
     },
     {
       "id": "cpp.advanced.testing.01.scenario.card-14",
@@ -480,26 +482,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "testing"
-        ],
-        "tags": "Поиск крахов и UB."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.testing.01.scenario",
       "question": "Что делает fuzzing?",
       "code": {
-        "code": [
-          "Подаёт случайные/мутированные входы",
-          "Сортирует",
-          "Компилирует",
-          "Хеширует"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Подаёт случайные/мутированные входы",
+        "Сортирует",
+        "Компилирует",
+        "Хеширует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Поиск крахов и UB."
     },
     {
       "id": "cpp.advanced.testing.01.scenario.card-17",
@@ -573,27 +576,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "testing",
           "ci"
-        ],
-        "tags": "CI должен сигналить."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.testing.01.scenario",
       "question": "Что выведет при сбое теста в CI?",
       "code": {
-        "code": [
-          "Падение пайплайна (non-zero exit)",
-          "0",
-          "лог только",
-          "продолжение"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Падение пайплайна (non-zero exit)",
+        "0",
+        "лог только",
+        "продолжение"
+      ],
+      "correctIndex": 0,
+      "explanation": "CI должен сигналить."
     },
     {
       "id": "cpp.advanced.testing.01.scenario.card-20",

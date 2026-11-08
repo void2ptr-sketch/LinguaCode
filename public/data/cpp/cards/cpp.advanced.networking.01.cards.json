@@ -73,26 +73,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "networking"
-        ],
-        "tags": "Другая сторона закрыла."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.networking.01.scenario",
       "question": "Что означает recv() == 0?",
       "code": {
-        "code": [
-          "Соединение закрыто (EOF)",
-          "Нет данных после",
-          "Ошибка",
-          "0 байт"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Соединение закрыто (EOF)",
+        "Нет данных после",
+        "Ошибка",
+        "0 байт"
+      ],
+      "correctIndex": 0,
+      "explanation": "Другая сторона закрыла."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-04",
@@ -166,26 +167,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "beginner",
+        "tags": [
           "networking"
-        ],
-        "tags": "TLS-шифрование."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.networking.01.scenario",
       "question": "Какой порт у HTTPS?",
       "code": {
-        "code": [
-          "443",
-          "80",
-          "22",
-          "53"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "beginner"
+      "outputOptions": [
+        "443",
+        "80",
+        "22",
+        "53"
+      ],
+      "correctIndex": 0,
+      "explanation": "TLS-шифрование."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-07",
@@ -260,26 +262,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "networking"
-        ],
-        "tags": "Бинарные эффективные сообщения."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.networking.01.scenario",
       "question": "Что отправляет gRPC по HTTP/2?",
       "code": {
-        "code": [
-          "Protobuf-сообщения",
-          "JSON всегда",
-          "текст",
-          "нет"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Protobuf-сообщения",
+        "JSON всегда",
+        "текст",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Бинарные эффективные сообщения."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-10",
@@ -383,26 +386,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "networking"
-        ],
-        "tags": "Установка защищённого канала."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.networking.01.scenario",
       "question": "Что делает handshake TLS?",
       "code": {
-        "code": [
-          "Обмен ключами и проверка",
-          "Отправку данных",
-          "Закрытие",
-          "Логи"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Обмен ключами и проверка",
+        "Отправку данных",
+        "Закрытие",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Установка защищённого канала."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-14",
@@ -477,27 +481,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "networking",
           "performance"
-        ],
-        "tags": "Событийная модель."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.networking.01.scenario",
       "question": "Что из этого масштабируемо до 100k соединений?",
       "code": {
-        "code": [
-          "epoll/kqueue + корутины",
-          "поток на соединение",
-          "while(true)",
-          "sleep"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "epoll/kqueue + корутины",
+        "поток на соединение",
+        "while(true)",
+        "sleep"
+      ],
+      "correctIndex": 0,
+      "explanation": "Событийная модель."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-17",

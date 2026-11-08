@@ -207,27 +207,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "oop",
           "inheritance"
-        ],
-        "tags": "Порядок: базы (по объявлению), потом члены производного."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
       "question": "В каком порядке инициализируются части объекта D из B?",
       "code": {
-        "code": [
-          "Сначала B (базы), потом члены D",
-          "Члены D первыми",
-          "Случайно",
-          "Параллельно"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Сначала B (базы), потом члены D",
+        "Члены D первыми",
+        "Случайно",
+        "Параллельно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Порядок: базы (по объявлению), потом члены производного."
     },
     {
       "id": "cpp.oop.inheritance-constructors.01.scenario.card-08",

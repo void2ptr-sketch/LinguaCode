@@ -172,27 +172,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "templates",
           "c++20"
-        ],
-        "tags": "requires-предложение и requires-выражения."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concepts.01.scenario",
       "question": "Что делает requires?",
       "code": {
-        "code": [
-          "Задаёт требования/floor выражения",
-          "Выбрасывает",
-          "Сортирует",
-          "Включает"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Задаёт требования/floor выражения",
+        "Выбрасывает",
+        "Сортирует",
+        "Включает"
+      ],
+      "correctIndex": 0,
+      "explanation": "requires-предложение и requires-выражения."
     },
     {
       "id": "cpp.advanced.concepts.01.scenario.card-07",

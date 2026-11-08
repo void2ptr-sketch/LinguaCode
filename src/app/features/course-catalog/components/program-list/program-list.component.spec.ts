@@ -6,12 +6,7 @@ import type { Program } from '../../../../entities/program/model';
 import { ProgramsApiService } from '../../../../entities/program/api';
 import { CourseCatalogProgramsComponent } from './program-list.component';
 
-function makeProgram(
-  id: string,
-  title: string,
-  lessonCount: number,
-  description = '',
-): Program {
+function makeProgram(id: string, title: string, lessonCount: number, description = ''): Program {
   return {
     id,
     courseId: 'course-1',
@@ -28,7 +23,10 @@ function makeProgram(
   selector: 'app-test-wrapper',
   standalone: true,
   imports: [CourseCatalogProgramsComponent],
-  template: `<app-course-catalog-programs [courseIds]="courseIds" (startProgram)="onStart($event)" />`,
+  template: `<app-course-catalog-programs
+    [courseIds]="courseIds"
+    (startProgram)="onStart($event)"
+  />`,
 })
 class TestWrapperComponent {
   courseIds = new Set() as ReadonlySet<string>;

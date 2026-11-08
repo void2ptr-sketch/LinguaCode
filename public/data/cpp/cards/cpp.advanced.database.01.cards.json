@@ -198,27 +198,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "database",
           "performance"
-        ],
-        "tags": "Логарифмический поиск."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.database.01.scenario",
       "question": "Почему индекс ускоряет?",
       "code": {
-        "code": [
-          "Быстрый поиск без полного скана",
-          "Память",
-          "Шифр",
-          "нет"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Быстрый поиск без полного скана",
+        "Память",
+        "Шифр",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Логарифмический поиск."
     },
     {
       "id": "cpp.advanced.database.01.scenario.card-08",
@@ -292,26 +293,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "database"
-        ],
-        "tags": "Удобство ценой абстракции."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.database.01.scenario",
       "question": "Что делает ORM reduce?",
       "code": {
-        "code": [
-          "Уменьшает ручной SQL",
-          "Удаляет",
-          "Хеширует",
-          "Логирует"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Уменьшает ручной SQL",
+        "Удаляет",
+        "Хеширует",
+        "Логирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Удобство ценой абстракции."
     },
     {
       "id": "cpp.advanced.database.01.scenario.card-11",
@@ -386,27 +388,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "database",
           "security"
-        ],
-        "tags": "Защита от инъекций."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.database.01.scenario",
       "question": "Что лучше для параметров?",
       "code": {
-        "code": [
-          "Prepared statement / параметризация",
-          "строки+",
-          "конкатенация",
-          "нет"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Prepared statement / параметризация",
+        "строки+",
+        "конкатенация",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Защита от инъекций."
     },
     {
       "id": "cpp.advanced.database.01.scenario.card-14",
@@ -511,26 +514,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "database"
-        ],
-        "tags": "Восстановление после сбоя."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.database.01.scenario",
       "question": "Что такое WAL (write-ahead log)?",
       "code": {
-        "code": [
-          "Журнал предзаписи для надёжности",
-          "Индекс",
-          "Хеш",
-          "сеть"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Журнал предзаписи для надёжности",
+        "Индекс",
+        "Хеш",
+        "сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Восстановление после сбоя."
     },
     {
       "id": "cpp.advanced.database.01.scenario.card-18",

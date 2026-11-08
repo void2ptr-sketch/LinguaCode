@@ -74,27 +74,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "beginner",
+        "tags": [
           "performance",
           "modern-cpp"
-        ],
-        "tags": "Хронометраж в C++11."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.performance.01.scenario",
       "question": "Какой инструмент замеряет время?",
       "code": {
-        "code": [
-          "std::chrono",
-          "cout",
-          "printf",
-          "sleep"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "beginner"
+      "outputOptions": [
+        "std::chrono",
+        "cout",
+        "printf",
+        "sleep"
+      ],
+      "correctIndex": 0,
+      "explanation": "Хронометраж в C++11."
     },
     {
       "id": "cpp.advanced.performance.01.scenario.card-04",
@@ -139,27 +140,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "performance",
           "types"
-        ],
-        "tags": "Algorithm + оптимизация."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.performance.01.scenario",
       "question": "Что выведет ((n*n) при n=100000? ",
       "code": {
-        "code": [
-          "Замер, зависящий от оптимизаций",
-          "1e10 неизменна",
-          "0",
-          "Исключение"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Замер, зависящий от оптимизаций",
+        "1e10 неизменна",
+        "0",
+        "Исключение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Algorithm + оптимизация."
     },
     {
       "id": "cpp.advanced.performance.01.scenario.card-06",
@@ -235,27 +237,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "performance",
           "modern-cpp"
-        ],
-        "tags": "Производительность через перемещение."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.performance.01.scenario",
       "question": "Как избежать излишних копий?",
       "code": {
-        "code": [
-          "std::move, const&, RVO",
-          "return копией",
-          "копии везде",
-          "нельзя"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "std::move, const&, RVO",
+        "return копией",
+        "копии везде",
+        "нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Производительность через перемещение."
     },
     {
       "id": "cpp.advanced.performance.01.scenario.card-09",
@@ -329,27 +332,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "beginner",
+        "tags": [
           "performance",
           "compilers"
-        ],
-        "tags": "В perf-critical release-сборках."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.performance.01.scenario",
       "question": "Что даст -O3?",
       "code": {
-        "code": [
-          "Агрессивные оптимизации",
-          "Отладку",
-          "Ошибки",
-          "Меньше кода"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "beginner"
+      "outputOptions": [
+        "Агрессивные оптимизации",
+        "Отладку",
+        "Ошибки",
+        "Меньше кода"
+      ],
+      "correctIndex": 0,
+      "explanation": "В perf-critical release-сборках."
     },
     {
       "id": "cpp.advanced.performance.01.scenario.card-12",
@@ -423,26 +427,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "performance"
-        ],
-        "tags": "Данные → понимание → оптимизация."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.performance.01.scenario",
       "question": "Чем опасен профиля-оптимизация без данных?",
       "code": {
-        "code": [
-          "Оптимизация не того места",
-          "Скорость растёт",
-          "Память",
-          "Ошибки"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Оптимизация не того места",
+        "Скорость растёт",
+        "Память",
+        "Ошибки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Данные → понимание → оптимизация."
     },
     {
       "id": "cpp.advanced.performance.01.scenario.card-15",
@@ -517,27 +522,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "beginner",
+        "tags": [
           "performance",
           "algorithms"
-        ],
-        "tags": "Introsort."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.performance.01.scenario",
       "question": "Сложность std::sort?",
       "code": {
-        "code": [
-          "O(n log n)",
-          "O(n)",
-          "O(n^2)",
-          "O(1)"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "beginner"
+      "outputOptions": [
+        "O(n log n)",
+        "O(n)",
+        "O(n^2)",
+        "O(1)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Introsort."
     },
     {
       "id": "cpp.advanced.performance.01.scenario.card-18",

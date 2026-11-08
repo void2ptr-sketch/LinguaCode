@@ -75,27 +75,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "types",
           "memory"
-        ],
-        "tags": "Signed overflow — UB."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario",
       "question": "Что произойдёт при int x = INT_MAX; x++?",
       "code": {
-        "code": [
-          "UB (can wrap or anything)",
-          "Всегда INT_MIN",
-          "Ошибка",
-          "0"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "UB (can wrap or anything)",
+        "Всегда INT_MIN",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Signed overflow — UB."
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-04",
@@ -299,26 +300,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "types"
-        ],
-        "tags": "Деление на 0 в int — UB."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario",
       "question": "Что произойдёт при делении int на 0?",
       "code": {
-        "code": [
-          "UB (обычно SIGFPE)",
-          "inf",
-          "Исключение C++",
-          "0"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "UB (обычно SIGFPE)",
+        "inf",
+        "Исключение C++",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деление на 0 в int — UB."
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-11",
@@ -456,26 +458,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "debugging"
-        ],
-        "tags": "С инструментом видно проблему."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario",
       "question": "Что выведет UBSan для 1/0?",
       "code": {
-        "code": [
-          "Сообщение о UB",
-          "inf",
-          "0",
-          "ничего"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Сообщение о UB",
+        "inf",
+        "0",
+        "ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "С инструментом видно проблему."
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-16",

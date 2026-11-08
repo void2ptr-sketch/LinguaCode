@@ -114,7 +114,9 @@
 }
 
 .course-catalog-page__row {
-  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
 
   &:nth-child(even) {
     background: var(--mat-sys-surface-container-lowest);

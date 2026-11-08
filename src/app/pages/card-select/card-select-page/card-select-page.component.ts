@@ -128,7 +128,7 @@ export class CardSelectPageComponent implements OnInit {
   );
 
   readonly cardProgressPercent = computed(() => {
-    const total = this.store.cards().length;
+    const total = this.store.allCardIds().length;
     if (total === 0) return 0;
     return Math.round(((this.store.currentIndex() + 1) / total) * 100);
   });

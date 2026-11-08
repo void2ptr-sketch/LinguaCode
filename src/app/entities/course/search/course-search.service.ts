@@ -170,9 +170,7 @@ export class CourseSearchService {
 
       // If journey returns programs with lessons, use them
       if (course.programs && course.programs.length > 0) {
-        this.logger.info(
-          `[CourseSearch] getJourney returned ${course.programs.length} programs`,
-        );
+        this.logger.info(`[CourseSearch] getJourney returned ${course.programs.length} programs`);
         return course;
       }
     } catch (error) {
@@ -180,7 +178,9 @@ export class CourseSearchService {
     }
 
     // Fallback: fetch course + programs + lessons separately
-    this.logger.info(`[CourseSearch] Fetching programs via ProgramsApiService for course ${resolvedId}`);
+    this.logger.info(
+      `[CourseSearch] Fetching programs via ProgramsApiService for course ${resolvedId}`,
+    );
     const programs = await this.programsApi.getByCourse(resolvedId);
 
     // Resolve each program with its lessons

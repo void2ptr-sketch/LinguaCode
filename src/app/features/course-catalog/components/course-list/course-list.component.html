@@ -9,9 +9,7 @@
   </mat-card>
 } @else if (items().length === 0) {
   <mat-card class="course-catalog-page__message">
-    <mat-card-content>
-      Опубликованных курсов для активного языка пока нет.
-    </mat-card-content>
+    <mat-card-content> Опубликованных курсов для активного языка пока нет. </mat-card-content>
   </mat-card>
 } @else {
   <p>Опубликованные курсы для активных языков.</p>
@@ -30,7 +28,10 @@
         </thead>
         <tbody>
           @for (course of items(); track course.id) {
-            <tr class="course-catalog-page__row" [class.course-catalog-page__row--completed]="isCourseCompleted(course.id)">
+            <tr
+              class="course-catalog-page__row"
+              [class.course-catalog-page__row--completed]="isCourseCompleted(course.id)"
+            >
               <td class="course-catalog-page__td">
                 <span class="course-catalog-page__title">{{ course.title }}</span>
               </td>

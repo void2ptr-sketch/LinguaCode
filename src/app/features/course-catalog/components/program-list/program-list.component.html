@@ -15,9 +15,7 @@
   </mat-card>
 } @else if (programs().length === 0) {
   <mat-card class="course-catalog-page__message">
-    <mat-card-content>
-      Для выбранных курсов программ пока нет.
-    </mat-card-content>
+    <mat-card-content> Для выбранных курсов программ пока нет. </mat-card-content>
   </mat-card>
 } @else {
   <p>Программы для выбранных курсов.</p>
@@ -49,7 +47,12 @@
                 {{ declineLesson(getLessonCount(program.id)) }}
               </td>
               <td class="course-catalog-page__td course-catalog-page__td--actions">
-                <button mat-stroked-button type="button" size="small" (click)="onStartProgram(program.courseId)">
+                <button
+                  mat-stroked-button
+                  type="button"
+                  size="small"
+                  (click)="onStartProgram(program.courseId)"
+                >
                   Начать
                 </button>
               </td>

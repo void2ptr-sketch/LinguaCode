@@ -98,7 +98,7 @@ describe('Journey page smoke', () => {
     expect(text).toContain('Карта');
     // Query-параметр ?courseId= должен определять содержимое карты,
     // а не активный курс дашборда (fallback по умолчанию — «214 китайских радикалов»).
-    expect(text).toContain('Демо-сценарий');
+    expect(text).toContain('Обучение');
     expect(text).not.toContain('214 китайских радикалов');
 
     httpMock.verify();

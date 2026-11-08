@@ -75,27 +75,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "beginner",
+        "tags": [
           "io",
           "syntax"
-        ],
-        "tags": "ofstream по умолчанию перезаписывает файл."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.file-io.02.scenario",
       "question": "Какая строка открывает файл на запись с перезаписью?",
       "code": {
-        "code": [
-          "std::ofstream out(\"log.txt\");",
-          "std::ifstream out(\"log.txt\");",
-          "std::fstream out = \"log.txt\";",
-          "out(\"log.txt\")"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "beginner"
+      "outputOptions": [
+        "std::ofstream out(\"log.txt\");",
+        "std::ifstream out(\"log.txt\");",
+        "std::fstream out = \"log.txt\";",
+        "out(\"log.txt\")"
+      ],
+      "correctIndex": 0,
+      "explanation": "ofstream по умолчанию перезаписывает файл."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-04",

@@ -293,7 +293,9 @@ describe('course-catalog-state', () => {
 
   describe('isNestedFormat', () => {
     it('should return true for nested format (programs array, no courses)', () => {
-      const nested = { programs: [{ id: 'p1', title: 'P', description: '', order: 0, lessons: [] }] };
+      const nested = {
+        programs: [{ id: 'p1', title: 'P', description: '', order: 0, lessons: [] }],
+      };
       expect(isNestedFormat(nested as unknown as Partial<Course[]>)).toBe(true);
     });
 
@@ -443,7 +445,18 @@ describe('course-catalog-state', () => {
                     description: '',
                     order: 0,
                     published: true,
-                    cards: [{ id: 'card-1', kind: 'select', title: 'C1', appearance: { theme: 'a', fontSize: 'md' }, direction: 'known-to-learning' as const, promptKnown: 'a', optionsLearning: ['b'], correctIndex: 0 }],
+                    cards: [
+                      {
+                        id: 'card-1',
+                        kind: 'select',
+                        title: 'C1',
+                        appearance: { theme: 'a', fontSize: 'md' },
+                        direction: 'known-to-learning' as const,
+                        promptKnown: 'a',
+                        optionsLearning: ['b'],
+                        correctIndex: 0,
+                      },
+                    ],
                   },
                   {
                     id: 'scenario-2',
@@ -451,7 +464,16 @@ describe('course-catalog-state', () => {
                     description: '',
                     order: 1,
                     published: true,
-                    cards: [{ id: 'card-2', kind: 'flip', title: 'C2', appearance: { theme: 'a', fontSize: 'md' }, front: 'a', back: 'b' }],
+                    cards: [
+                      {
+                        id: 'card-2',
+                        kind: 'flip',
+                        title: 'C2',
+                        appearance: { theme: 'a', fontSize: 'md' },
+                        front: 'a',
+                        back: 'b',
+                      },
+                    ],
                   },
                 ],
               },
@@ -477,7 +499,18 @@ describe('course-catalog-state', () => {
                     description: '',
                     order: 0,
                     published: true,
-                    cards: [{ id: 'card-3', kind: 'select', title: 'C3', appearance: { theme: 'a', fontSize: 'md' }, direction: 'known-to-learning' as const, promptKnown: 'c', optionsLearning: ['d'], correctIndex: 0 }],
+                    cards: [
+                      {
+                        id: 'card-3',
+                        kind: 'select',
+                        title: 'C3',
+                        appearance: { theme: 'a', fontSize: 'md' },
+                        direction: 'known-to-learning' as const,
+                        promptKnown: 'c',
+                        optionsLearning: ['d'],
+                        correctIndex: 0,
+                      },
+                    ],
                   },
                 ],
               },

@@ -172,27 +172,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "beginner",
+        "tags": [
           "io",
           "syntax"
-        ],
-        "tags": "is_open() проверяет успешность открытия."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.files.01.scenario",
       "question": "Какой код корректно проверяет открытие?",
       "code": {
-        "code": [
-          "std::ifstream f(\"a.txt\"); if (f.is_open()) { ... }",
-          "ifstream f = a.txt",
-          "std::ifstream f; if (f.open == true)",
-          "f()"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "beginner"
+      "outputOptions": [
+        "std::ifstream f(\"a.txt\"); if (f.is_open()) { ... }",
+        "ifstream f = a.txt",
+        "std::ifstream f; if (f.open == true)",
+        "f()"
+      ],
+      "correctIndex": 0,
+      "explanation": "is_open() проверяет успешность открытия."
     },
     {
       "id": "cpp.basics.files.01.scenario.card-07",

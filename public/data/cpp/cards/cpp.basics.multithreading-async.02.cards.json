@@ -234,27 +234,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "modern-cpp",
           "concurrency"
-        ],
-        "tags": "lock_guard блокирует при создании и разблокирует при разрушении."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.multithreading-async.02.scenario",
       "question": "Что делает std::lock_guard?",
       "code": {
-        "code": [
-          "RAII-блокировка мьютекса на время области видимости",
-          "Разблокирует вручную",
-          "Ждёт",
-          "Удаляет мьютекс"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "RAII-блокировка мьютекса на время области видимости",
+        "Разблокирует вручную",
+        "Ждёт",
+        "Удаляет мьютекс"
+      ],
+      "correctIndex": 0,
+      "explanation": "lock_guard блокирует при создании и разблокирует при разрушении."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-09",

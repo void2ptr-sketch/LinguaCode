@@ -48,7 +48,7 @@ export class CardSelectStore {
   /** Zero-based index of the current card. */
   readonly currentIndex = signal(0);
 
-  /** Current page index (0-based). */
+  /** Current page index (0-based). Derived from `currentIndex` when advancing. */
   readonly currentPage = signal(0);
 
   /** Set of loaded page indices for caching. */
@@ -56,6 +56,9 @@ export class CardSelectStore {
 
   /** Number of cards per page. */
   readonly pageSize = 25;
+
+  /** Page indices currently being loaded (deduplicates concurrent loads). */
+  private readonly pendingPages = new Set<number>();
 
   /** Index of the selected option (for multiple-choice cards). */
   readonly selectedIndex = signal<number | null>(null);
@@ -107,7 +110,7 @@ export class CardSelectStore {
 
   /** Human-readable progress label (e.g. "3 / 10"). */
   readonly progressLabel = computed(() => {
-    const total = this.cards().length;
+    const total = this.allCardIds().length;
     if (total === 0) {
       return '0 / 0';
     }
@@ -117,16 +120,10 @@ export class CardSelectStore {
 
   /** Whether the current card is the last one in the session. */
   readonly isLastCard = computed(() => {
-    const cards = this.cards();
     const allIds = this.allCardIds();
     if (allIds.length === 0) return false;
 
-    // If cards.length < pageSize, there are more pages coming
-    if (cards.length < this.pageSize) {
-      return false;
-    }
-
-    return cards.length > 0 && this.currentIndex() >= cards.length - 1;
+    return this.currentIndex() >= allIds.length - 1;
   });
 
   /** Whether the user can check their answer (card exists, feedback not shown, not completed). */
@@ -147,8 +144,9 @@ export class CardSelectStore {
    *
    * @param scenarioId - The scenario ID.
    * @param allCardIds - All card IDs for this scenario (used for pagination).
+   * @returns Promise that resolves when the first page is loaded (never rejects).
    */
-  setScenario(scenarioId: string, allCardIds: readonly string[]): void {
+  setScenario(scenarioId: string, allCardIds: readonly string[]): Promise<void> {
     this.scenarioId.set(scenarioId);
     this.allCardIds.set(allCardIds);
     this.currentPage.set(0);
@@ -163,26 +161,41 @@ export class CardSelectStore {
     this.shuffleNonce.update((n) => n + 1);
 
     // Asynchronously load the first page
-    this.loadPage(0).then(() => {
-      // Update direction once first card is loaded
-      const firstCard = this.cards()[0];
-      if (firstCard) {
-        this.sessionDirection.set(cardDefaultDirection(firstCard));
-      }
-    }).catch(() => {});
+    return this.loadPage(0)
+      .then(() => {
+        // Sync card-dependent context once the first card is loaded
+        const firstCard = this.cards()[0];
+        if (firstCard) {
+          this.sessionDirection.set(cardDefaultDirection(firstCard));
+          if (firstCard.kind === 'memory') {
+            this.memoryBoardNonce.update((nonce) => nonce + 1);
+          }
+        }
+      })
+      .catch((error: unknown) => {
+        this.logger.warn('CardSelect: failed to load first page', error);
+      });
   }
 
   /**
    * Loads a page of cards by their IDs.
    *
    * @param pageIndex - The zero-based page index to load.
+   * @param options - `background: true` skips the global loading state (for preloading).
    * @returns Promise that resolves when the page is loaded.
    */
-  async loadPage(pageIndex: number): Promise<void> {
-    const pages = this.loadedPages();
-    if (pages.has(pageIndex)) return; // Already loaded
+  async loadPage(pageIndex: number, options: { background?: boolean } = {}): Promise<void> {
+    // Already loaded or currently loading — skip to avoid duplicates
+    if (this.loadedPages().has(pageIndex) || this.pendingPages.has(pageIndex)) {
+      return;
+    }
 
-    this.loading.set(true);
+    this.pendingPages.add(pageIndex);
+    const background = options.background === true;
+    if (!background) {
+      this.loading.set(true);
+    }
+
     try {
       const allIds = this.allCardIds();
       const start = pageIndex * this.pageSize;
@@ -190,32 +203,38 @@ export class CardSelectStore {
       const pageIds = allIds.slice(start, end);
 
       if (pageIds.length === 0) {
-        this.loading.set(false);
         return;
       }
 
       const cards = await this.cardSelectService.loadPageByIds(pageIds);
-      const newPages = new Set(pages);
+      const newPages = new Set(this.loadedPages());
       newPages.add(pageIndex);
       this.loadedPages.set(newPages);
-      this.cards.set(cards);
+      // Append to the loaded set: `cards` accumulates pages as the user advances,
+      // while `currentIndex` stays global across the whole scenario.
+      this.cards.update((prev) => [...prev, ...cards]);
     } catch (error) {
       this.logger.error(`CardSelect: failed to load page ${pageIndex}`, error);
-      this.setError('Не удалось загрузить карточки');
+      if (!background) {
+        this.setError('Не удалось загрузить карточки');
+      }
     } finally {
-      this.loading.set(false);
+      this.pendingPages.delete(pageIndex);
+      if (!background) {
+        this.loading.set(false);
+      }
     }
   }
 
   /**
-   * Preloads the next page in the background.
+   * Preloads the next page in the background without blocking navigation.
    */
   preloadNext(): void {
-    const currentPage = this.currentPage();
-    const loadedPages = this.loadedPages();
-    if (!loadedPages.has(currentPage + 1)) {
-      // Background loading without blocking
-      this.loadPage(currentPage + 1).catch(() => {});
+    const nextPage = this.currentPage() + 1;
+    if (!this.loadedPages().has(nextPage)) {
+      this.loadPage(nextPage, { background: true }).catch((error: unknown) => {
+        this.logger.warn('CardSelect: failed to preload next page', error);
+      });
     }
   }
 
@@ -408,13 +427,19 @@ export class CardSelectStore {
 
     const newCurrentIndex = this.currentIndex() + 1;
 
-    // If we're at the end of the current page, load the next page
-    if (newCurrentIndex >= this.cards().length - 1) {
+    // Ensure the card at the new index is loaded (pages may be preloaded ahead)
+    if (newCurrentIndex >= this.cards().length) {
       await this.loadPage(this.currentPage() + 1);
-      this.currentPage.update((p) => p + 1);
+
+      // Page failed to load (error or empty) — stay on the current card
+      if (newCurrentIndex >= this.cards().length) {
+        return;
+      }
     }
 
     this.currentIndex.set(newCurrentIndex);
+    // The current page is the one containing the new index
+    this.currentPage.set(Math.floor(newCurrentIndex / this.pageSize));
     this.resetInteraction();
 
     // Preload the next page in the background

@@ -558,5 +558,4 @@ describe('CourseCatalogPageComponent', () => {
     const tabGroup = fixture.nativeElement.querySelector('mat-tab-group');
     expect(tabGroup).toBeTruthy();
   });
-
 });

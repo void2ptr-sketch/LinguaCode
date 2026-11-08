@@ -5,7 +5,10 @@ import type { CourseAuthoring } from '../model/course-authoring.types';
 
 import { normalizeLanguagePair } from '../../language-pair/lib/language-pair.utils';
 import { normalizeCourseAuthoring } from './course-authoring.utils';
-import type { CoursesNestedFixture, CoursesSeedFixture } from '../../content-seed/content-seed.types';
+import type {
+  CoursesNestedFixture,
+  CoursesSeedFixture,
+} from '../../content-seed/content-seed.types';
 
 /**
  * Resolved course catalog containing the normalised list of courses, programs, and lessons.
@@ -120,7 +123,8 @@ export function mergeStoredProgram(stored: Program, defaultProgram?: Program): P
   return normalizeStoredProgram({
     ...defaultProgram,
     ...stored,
-    lessonIds: (stored.lessonIds?.length ?? 0) > 0 ? stored.lessonIds ?? [] : defaultProgram.lessonIds,
+    lessonIds:
+      (stored.lessonIds?.length ?? 0) > 0 ? (stored.lessonIds ?? []) : defaultProgram.lessonIds,
   });
 }
 
@@ -265,9 +269,7 @@ export function isNestedFormat(catalog: unknown): boolean {
  * @param fixture - The nested course fixture to normalise.
  * @returns An object containing the normalised catalog and extracted cards.
  */
-export function normalizeNestedCourseCatalog(
-  fixture: CoursesNestedFixture,
-): NestedCourseResult {
+export function normalizeNestedCourseCatalog(fixture: CoursesNestedFixture): NestedCourseResult {
   const courses: Course[] = [];
   const programs: Program[] = [];
   const lessons: Lesson[] = [];

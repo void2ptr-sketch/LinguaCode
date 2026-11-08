@@ -331,27 +331,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "oop",
           "syntax"
-        ],
-        "tags": "friend-функция проходит сквозь инкапсуляцию."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
       "question": "Доступен ли private-член friend-функции?",
       "code": {
-        "code": [
-          "Да — friend имеет доступ к приватным",
-          "Нет",
-          "Только protected",
-          "Переменная зависит"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Да — friend имеет доступ к приватным",
+        "Нет",
+        "Только protected",
+        "Переменная зависит"
+      ],
+      "correctIndex": 0,
+      "explanation": "friend-функция проходит сквозь инкапсуляцию."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-12",

@@ -1,4 +1,13 @@
-import { Component, ChangeDetectionStrategy, input, output, inject, computed, signal, effect } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  input,
+  output,
+  inject,
+  computed,
+  signal,
+  effect,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -83,8 +92,8 @@ export class CourseCatalogProgramsComponent {
         this.programsApi.getByCourse(id).catch((err) => {
           this.logger.error('Failed to load programs for course', { courseId: id, error: err });
           return [] as readonly Program[];
-        })
-      )
+        }),
+      ),
     )
       .then((results) => this.programs.set(results.flat()))
       .finally(() => this.loading.set(false));
@@ -130,10 +139,10 @@ export class CourseCatalogProgramsComponent {
   }
 
   /**
-    * Handles "Start" button click for a program.
-    *
-    * @param courseId - The parent course ID to start (program belongs to a course).
-    */
+   * Handles "Start" button click for a program.
+   *
+   * @param courseId - The parent course ID to start (program belongs to a course).
+   */
   onStartProgram(courseId: string): void {
     this.startProgram.emit(courseId);
   }

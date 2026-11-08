@@ -76,27 +76,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "embedded",
           "modern-cpp"
-        ],
-        "tags": "Меньше runtime-вычислений."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.embedded.01.scenario",
       "question": "Что означает constexpr для embedded?",
       "code": {
-        "code": [
-          "Расчёт констант на этапе компиляции",
-          "Runtime",
-          "Память",
-          "Сеть"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Расчёт констант на этапе компиляции",
+        "Runtime",
+        "Память",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Меньше runtime-вычислений."
     },
     {
       "id": "cpp.advanced.embedded.01.scenario.card-04",
@@ -267,27 +268,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "embedded",
           "memory"
-        ],
-        "tags": "Для регистров и обмена с железом."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.embedded.01.scenario",
       "question": "Что делает volatile в embedded?",
       "code": {
-        "code": [
-          "Запрещает оптимизацию чтений/записей",
-          "Ускоряет",
-          "Константой",
-          "Безопасностью"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Запрещает оптимизацию чтений/записей",
+        "Ускоряет",
+        "Константой",
+        "Безопасностью"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для регистров и обмена с железом."
     },
     {
       "id": "cpp.advanced.embedded.01.scenario.card-10",
@@ -391,27 +393,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "embedded",
           "concurrency"
-        ],
-        "tags": "Длинная обработка — потерь событий."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.embedded.01.scenario",
       "question": "Почему в ISR нельзя блокироваться?",
       "code": {
-        "code": [
-          "Прерывание должно быть быстрым",
-          "Логи",
-          "RAM",
-          "Не после"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Прерывание должно быть быстрым",
+        "Логи",
+        "RAM",
+        "Не после"
+      ],
+      "correctIndex": 0,
+      "explanation": "Длинная обработка — потерь событий."
     },
     {
       "id": "cpp.advanced.embedded.01.scenario.card-14",

@@ -75,27 +75,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "oop",
           "inheritance"
-        ],
-        "tags": "protected создан для доступа наследников."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-access.01.scenario",
       "question": "Доступен ли protected-член производному классу?",
       "code": {
-        "code": [
-          "Да",
-          "Нет",
-          "Только public",
-          "Только в C++20"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Да",
+        "Нет",
+        "Только public",
+        "Только в C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "protected создан для доступа наследников."
     },
     {
       "id": "cpp.oop.inheritance-access.01.scenario.card-04",

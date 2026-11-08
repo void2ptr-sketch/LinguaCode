@@ -73,26 +73,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "graphics"
-        ],
-        "tags": "Финальный цвет."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.graphics.01.scenario",
       "question": "Что делает фрагментный шейдер?",
       "code": {
-        "code": [
-          "Считает цвет пикселя",
-          "Геометрию",
-          "Сеть",
-          "Хеш"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Считает цвет пикселя",
+        "Геометрию",
+        "Сеть",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Финальный цвет."
     },
     {
       "id": "cpp.advanced.graphics.01.scenario.card-04",
@@ -166,26 +167,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "graphics"
-        ],
-        "tags": "Контекстная привязка."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.graphics.01.scenario",
       "question": "Что делает bind в OpenGL?",
       "code": {
-        "code": [
-          "Активирует объект как текущий",
-          "Сортирует",
-          "Хеширует",
-          "Логирует"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Активирует объект как текущий",
+        "Сортирует",
+        "Хеширует",
+        "Логирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Контекстная привязка."
     },
     {
       "id": "cpp.advanced.graphics.01.scenario.card-07",
@@ -290,26 +292,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "graphics"
-        ],
-        "tags": "pos += speed * dt."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.graphics.01.scenario",
       "question": "Зачем использовать dt в движении?",
       "code": {
-        "code": [
-          "Независимость от FPS",
-          "Скорость",
-          "память",
-          "лог"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Независимость от FPS",
+        "Скорость",
+        "память",
+        "лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "pos += speed * dt."
     },
     {
       "id": "cpp.advanced.graphics.01.scenario.card-11",
@@ -384,26 +387,27 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "graphics"
-        ],
-        "tags": "Логика по категориям."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.graphics.01.scenario",
       "question": "Что делает система в ECS?",
       "code": {
-        "code": [
-          "Обрабатывает компоненты типов",
-          "Хранит данные",
-          "Рендерит",
-          "Логирует"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Обрабатывает компоненты типов",
+        "Хранит данные",
+        "Рендерит",
+        "Логирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Логика по категориям."
     },
     {
       "id": "cpp.advanced.graphics.01.scenario.card-14",
@@ -508,27 +512,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "advanced",
+        "tags": [
           "graphics",
           "performance"
-        ],
-        "tags": "Снижение нагрузки GPU/CPU."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.graphics.01.scenario",
       "question": "Что оптимизируют при низком FPS?",
       "code": {
-        "code": [
-          "Сложность сцены, батчинг, LOD",
-          "Сеть",
-          "ничего",
-          "логи"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "advanced"
+      "outputOptions": [
+        "Сложность сцены, батчинг, LOD",
+        "Сеть",
+        "ничего",
+        "логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Снижение нагрузки GPU/CPU."
     },
     {
       "id": "cpp.advanced.graphics.01.scenario.card-18",

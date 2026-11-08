@@ -530,27 +530,28 @@
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": [
+        "difficulty": "intermediate",
+        "tags": [
           "oop",
           "polymorphism"
-        ],
-        "tags": "Абстрактные классы нельзя инстанцировать напрямую."
+        ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
       "question": "Можно ли создать объект абстрактного класса?",
       "code": {
-        "code": [
-          "Нет",
-          "Да",
-          "Только в куче",
-          "Только с virtual"
-        ],
+        "code": "",
         "language": "cpp"
       },
-      "outputOptions": 0,
-      "correctIndex": "intermediate"
+      "outputOptions": [
+        "Нет",
+        "Да",
+        "Только в куче",
+        "Только с virtual"
+      ],
+      "correctIndex": 0,
+      "explanation": "Абстрактные классы нельзя инстанцировать напрямую."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-18",
