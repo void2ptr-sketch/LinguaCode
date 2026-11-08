@@ -51,6 +51,14 @@ export type ScenarioCatalogPort = {
   getById(scenarioId: string): Promise<Scenario>;
 
   /**
+   * Batch-retrieves scenarios by IDs.
+   *
+   * @param scenarioIds - Array of scenario IDs.
+   * @returns Array of scenarios.
+   */
+  getByIdBatch(scenarioIds: string[]): Promise<readonly Scenario[]>;
+
+  /**
    * Creates a new scenario.
    *
    * @param payload - The scenario write payload.

@@ -111,6 +111,29 @@ export class CoursesApiService implements CourseCatalogPort {
   }
 
   /**
+   * Attaches `languagePair` to a course payload when it only carries a numeric
+   * `languagePairId`.
+   *
+   * @remarks
+   * Backend course responses (including the journey payload) reference the
+   * language pair by `languagePairId` and may not include the
+   * `{ known, learning }` object. Callers such as the journey map and the
+   * card-select page activate the course's pair via `course.languagePair`,
+   * so a missing object silently disables that activation.
+   */
+  private async attachLanguagePair(data: Record<string, unknown>): Promise<void> {
+    if (data['languagePair'] || typeof data['languagePairId'] !== 'number') {
+      return;
+    }
+
+    await this.ensurePairCache();
+    const codes = this.pairCache[data['languagePairId'] as number];
+    if (codes) {
+      data['languagePair'] = codes;
+    }
+  }
+
+  /**
    * Searches courses by criteria.
    *
    * @param criteria - The search criteria.
@@ -149,7 +172,10 @@ export class CoursesApiService implements CourseCatalogPort {
   getById(courseId: string): Promise<CourseWithPrograms> {
     return firstValueFrom(
       this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`)),
-    ).then((response) => response.data);
+    ).then(async (response) => {
+      await this.attachLanguagePair(response.data as unknown as Record<string, unknown>);
+      return response.data;
+    });
   }
 
   /**
@@ -165,7 +191,10 @@ export class CoursesApiService implements CourseCatalogPort {
   getJourney(courseId: string): Promise<CourseWithPrograms> {
     return firstValueFrom(
       this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}/journey`)),
-    ).then((response) => response.data);
+    ).then(async (response) => {
+      await this.attachLanguagePair(response.data as unknown as Record<string, unknown>);
+      return response.data;
+    });
   }
 
   /**

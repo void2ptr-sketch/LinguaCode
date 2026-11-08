@@ -124,6 +124,8 @@ export * from './programUpdateRequestRequiredTier';
 export * from './referenceOptionDto';
 export * from './referenceOptionDtoList';
 export * from './scenario';
+export * from './scenarioBatchRetrieveRequest';
+export * from './scenarioBatchRetrieveResponse';
 export * from './scenarioCreateRequest';
 export * from './scenarioCreateRequestRequiredTier';
 export * from './scenarioExport';

@@ -17,6 +17,8 @@ export type Scenario = {
   updatedAt: string;
   languagePair?: LanguagePair;
   courseId?: string;
+  /** Количество карточек в сценарии (от бэкенда, может быть undefined для legacy-данных). */
+  cardCount?: number;
 };
 
 /**

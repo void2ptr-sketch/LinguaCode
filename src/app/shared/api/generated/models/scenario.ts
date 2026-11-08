@@ -20,5 +20,6 @@ export interface Scenario {
   requiredTier?: ScenarioRequiredTier;
   createdAt?: string;
   updatedAt?: string;
+  /** Количество карточек в сценарии */
   cardCount?: number;
 }

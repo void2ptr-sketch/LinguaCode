@@ -7,6 +7,7 @@ import { parseScenarioSearchCriteria } from './scenarios-api.params.utils';
 import { buildApiUrl, isApiRequest } from '../../../../shared/api/api-url';
 import { ScenariosCatalogMockHandler } from './scenarios-catalog.mock.handler';
 
+import type { Scenario } from '../../model';
 import type { ScenarioWritePayload } from '../scenarios-api.service';
 
 /**
@@ -146,6 +147,22 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   if (req.method === 'DELETE' && scenarioId) {
     return defer(() => handler.delete(scenarioId)).pipe(
       map(() => new HttpResponse({ status: 200, body: { data: null } })),
+    );
+  }
+
+  // POST /scenarios/batch/retrieve — batch get by IDs
+  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/scenarios/batch/retrieve'))) {
+    const body = req.body as { ids: string[] };
+    const ids = Array.from(body.ids ?? []);
+
+    return defer(() =>
+      Promise.all(
+        ids.map((id) =>
+          handler.getById(id).then((s) => s as Scenario).catch(() => null),
+        ),
+      ),
+    ).pipe(
+      map((data) => new HttpResponse({ status: 200, body: { data: data.filter(Boolean) } })),
     );
   }
 

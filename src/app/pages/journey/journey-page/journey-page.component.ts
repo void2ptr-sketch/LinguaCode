@@ -182,9 +182,38 @@ export class JourneyPageComponent {
     const hasScenarioVisit = (scenarioId: string) =>
       this.analyticsService.visitCountForScenario()(scenarioId) > 0;
 
-    // Не загружаем сценарии и карточки заранее — они нужны только при клике на локацию.
-    // Для построения карты используем пустые данные: title="Сценарий N", cardCount=0.
+    // Собираем все scenarioIds из уроков курса
+    const allScenarioIds = new Set<string>();
+    if (course.programs) {
+      for (const program of course.programs) {
+        for (const lesson of program.lessons ?? []) {
+          for (const scenarioId of lesson.scenarioIds ?? []) {
+            allScenarioIds.add(scenarioId);
+          }
+        }
+      }
+    }
+
+    // Загружаем сценарии батчем для получения cardCount и title
     const scenarioMap = new Map<string, import('../../../entities/scenario/model').Scenario>();
+    if (allScenarioIds.size > 0) {
+      try {
+        const scenarios = await this.scenariosApi.getByIdBatch([...allScenarioIds]);
+        for (const scenario of scenarios) {
+          scenarioMap.set(scenario.id, scenario);
+        }
+        this.logger.info(
+          `[JourneyPage] Loaded ${scenarios.length} scenarios for journey map`,
+        );
+      } catch (error) {
+        this.logger.warn(
+          '[JourneyPage] Failed to batch-load scenarios, falling back to minimal data',
+          error,
+        );
+        // Fallback: пустая карта — cardCount=0, title="Сценарий N"
+      }
+    }
+
     const allCards: readonly CardBase[] = [];
 
     const nodes = buildJourneyNodes(

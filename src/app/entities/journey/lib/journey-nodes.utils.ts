@@ -19,10 +19,16 @@ export function buildScenarioMap(scenarios: readonly Scenario[]): ScenarioMap {
 
 /**
  * Количество карточек в сценарии.
- * Для `fixed` и `snapshot` источников возвращается длина списка `cardIds`,
- * для `criteria`-сценариев карточки неизвестны заранее — возвращается 0.
+ *
+ * Приоритет:
+ * 1. `cardCount` из бэкенда (если есть)
+ * 2. Для `fixed`/`snapshot` — длина `cardIds`
+ * 3. Для `criteria` — 0 (карточки неизвестны заранее)
  */
 function scenarioCardCount(scenario: Scenario | undefined): number {
+  if (scenario?.cardCount !== undefined) {
+    return scenario.cardCount;
+  }
   return scenario ? scenarioCardIds(scenario).length : 0;
 }
 

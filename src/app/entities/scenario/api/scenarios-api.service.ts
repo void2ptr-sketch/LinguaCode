@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
 import type {
+  LegacyScenario,
   Scenario,
   ScenarioIndexEntry,
   ScenarioSearchCriteria,
@@ -15,6 +16,9 @@ import type {
   ScenarioCatalogPort,
   ScenarioWritePayload,
 } from '../repository/scenario-catalog.port';
+import { normalizeScenario } from '../utils/scenario-card-source.utils';
+import type { ContentLanguage } from '../../card/model/card-index.types';
+import { LanguagePairsApiService } from '../../language-pair/api';
 import { UserStore } from '../../user/model/user.store';
 
 export type { ScenarioWritePayload } from '../repository/scenario-catalog.port';
@@ -30,6 +34,74 @@ export type { ScenarioWritePayload } from '../repository/scenario-catalog.port';
 export class ScenariosApiService implements ScenarioCatalogPort {
   private readonly http = inject(HttpClient);
   private readonly userStore = inject(UserStore);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
+
+  /** Cache: languagePairId → { known, learning } resolved from `/language-pairs`. */
+  private pairCache: Record<number, { known: ContentLanguage; learning: ContentLanguage }> = {};
+  private pairCacheLoaded = false;
+
+  private async ensurePairCache(): Promise<void> {
+    if (this.pairCacheLoaded) return;
+
+    try {
+      const pairs = await this.languagePairsApi.listAll();
+      for (const p of pairs) {
+        this.pairCache[p.id] = {
+          known: p.knownCode as ContentLanguage,
+          learning: p.learningCode as ContentLanguage,
+        };
+      }
+    } catch {
+      // /language-pairs may require auth (403) — fallback to default mapping
+      // (same fallback as `CoursesApiService` so both entities resolve
+      // `languagePairId: 1` consistently).
+      this.pairCache[1] = { known: 'ru' as ContentLanguage, learning: 'en' as ContentLanguage };
+    }
+
+    this.pairCacheLoaded = true;
+  }
+
+  /**
+   * Maps a backend scenario DTO to the frontend `Scenario` contract.
+   *
+   * @remarks
+   * The backend stores `cardSource` as a JSON string and references the
+   * language pair by numeric `languagePairId` (see the `Scenario` schema in
+   * the OpenAPI spec) — it has no `languagePair` object. Without this
+   * mapping `scenario.languagePair` would be `undefined` and every
+   * `loadScenario()` call would fail with `SCENARIO_LANGUAGE_PAIR_MISMATCH`.
+   */
+  private async mapScenario(raw: Record<string, unknown>): Promise<Scenario> {
+    if (typeof raw['cardSource'] === 'string') {
+      try {
+        raw['cardSource'] = JSON.parse(raw['cardSource'] as string);
+      } catch {
+        // Invalid JSON — leave as-is; `normalizeScenario` will treat the
+        // source as an empty fixed list, which surfaces `SCENARIO_EMPTY`.
+      }
+    }
+
+    if (typeof raw['languagePairId'] === 'number') {
+      await this.ensurePairCache();
+      const codes = this.pairCache[raw['languagePairId'] as number];
+      if (codes) {
+        raw['languagePair'] = codes;
+      }
+    }
+
+    if (raw['description'] == null) {
+      raw['description'] = raw['scenarioDescription'] ?? '';
+    }
+
+    if (typeof raw['id'] === 'number') {
+      raw['id'] = String(raw['id']);
+    }
+    if (typeof raw['authorId'] === 'number') {
+      raw['authorId'] = String(raw['authorId']);
+    }
+
+    return normalizeScenario(raw as unknown as LegacyScenario);
+  }
 
   /**
    * Searches scenarios by criteria.
@@ -71,14 +143,29 @@ export class ScenariosApiService implements ScenarioCatalogPort {
   getById(scenarioId: string): Promise<Scenario> {
     return firstValueFrom(
       this.http.get<ApiResponse<Record<string, unknown>>>(buildApiUrl(`/scenarios/${scenarioId}`)),
-    ).then((response) => {
-      const raw = response.data;
-      // Бэкенд возвращает cardSource как JSON-строку — парсим в объект
-      if (typeof raw['cardSource'] === 'string') {
-        (raw as Record<string, unknown>)['cardSource'] = JSON.parse(raw['cardSource'] as string);
-      }
-      return raw as unknown as Scenario;
-    });
+    ).then((response) => this.mapScenario(response.data));
+  }
+
+  /**
+   * Batch-retrieves scenarios by IDs.
+   *
+   * @param scenarioIds - Array of scenario IDs.
+   * @returns Array of scenarios.
+   *
+   * @example
+   * ```ts
+   * const scenarios = await scenariosApi.getByIdBatch(['scenario-1', 'scenario-2']);
+   * ```
+   */
+  getByIdBatch(scenarioIds: string[]): Promise<readonly Scenario[]> {
+    return firstValueFrom(
+      this.http.post<ApiResponse<Record<string, unknown>[]>>(
+        buildApiUrl('/scenarios/batch/retrieve'),
+        { ids: scenarioIds },
+      ),
+    ).then((response) =>
+      Promise.all(response.data.map((raw) => this.mapScenario(raw))),
+    );
   }
 
   /**

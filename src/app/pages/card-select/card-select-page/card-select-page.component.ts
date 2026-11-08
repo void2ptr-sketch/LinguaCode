@@ -253,9 +253,13 @@ export class CardSelectPageComponent implements OnInit {
     // Активируем языковую пару курса/сценария ДО установки состояния флоу:
     // глобальный сброс флоу при смене пары должен отработать на пустом состоянии,
     // иначе он затрёт выбранные курс/урок/сценарий, и карточки не откроются.
+    // Пара сценария активируется последней: при переходе с карты обучения
+    // (/journey?courseId=…&scenarioId=…) открывается именно сценарий, и его
+    // пара может отличаться от пары курса, если курс не вернул languagePair.
     if (courseId) {
       await this.activateLanguagePairForCourse(courseId);
-    } else if (scenarioId) {
+    }
+    if (scenarioId) {
       await this.activateLanguagePairForScenario(scenarioId);
     }
 

@@ -58,6 +58,21 @@ export class ScenariosCatalogMockHandler {
     return scenario;
   }
 
+  async getByIdBatch(scenarioIds: string[]): Promise<readonly Scenario[]> {
+    await this.ensureData();
+
+    const ids = new Set(scenarioIds);
+    const results: Scenario[] = [];
+
+    for (const scenario of this.scenarios!) {
+      if (ids.has(scenario.id)) {
+        results.push(scenario);
+      }
+    }
+
+    return results;
+  }
+
   async create(payload: ScenarioWritePayload): Promise<Scenario> {
     await this.ensureData();
     const languagePair = normalizeLanguagePair(payload.languagePair);
