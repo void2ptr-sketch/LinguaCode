@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 
 import type { Program } from '../../../../entities/program/model';
 import { ProgramsApiService } from '../../../../entities/program/api';
+import { CourseSearchService } from '../../../../entities/course';
 import { CourseCatalogProgramsComponent } from './program-list.component';
 
 function makeProgram(id: string, title: string, lessonCount: number, description = ''): Program {
@@ -54,6 +55,12 @@ describe('CourseCatalogProgramsComponent', () => {
         {
           provide: ProgramsApiService,
           useValue: mockProgramsApi,
+        },
+        {
+          provide: CourseSearchService,
+          useValue: {
+            resolveCourseId: vi.fn().mockImplementation((id: string) => Promise.resolve(id)),
+          },
         },
       ],
     });

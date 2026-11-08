@@ -70,7 +70,7 @@ export class ProgramsApiService implements ProgramCatalogPort {
 
   getByCourse(courseId: string): Promise<readonly Program[]> {
     return firstValueFrom(
-      this.http.get<{ data: Program[] }>(buildApiUrl(`/programs/by-course/${Number(courseId)}`)),
+      this.http.get<{ data: Program[] }>(buildApiUrl(`/programs/by-course/${courseId}`)),
     ).then((response) => response.data);
   }
 

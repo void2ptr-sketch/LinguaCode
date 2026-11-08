@@ -16,6 +16,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ProgramsApiService } from '../../../../entities/program/api';
 import type { Program } from '../../../../entities/program/model';
+import { CourseSearchService } from '../../../../entities/course';
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast.service';
 import { CourseCatalogStore } from '../../services';
@@ -46,6 +47,7 @@ export class CourseCatalogProgramsComponent {
   readonly startProgram = output<string>();
 
   private readonly programsApi = inject(ProgramsApiService);
+  private readonly courseSearch = inject(CourseSearchService);
   private readonly logger = inject(AppLoggerService);
   private readonly errorToast = inject(ErrorToastService);
   private readonly catalogStore = inject(CourseCatalogStore);
@@ -75,8 +77,18 @@ export class CourseCatalogProgramsComponent {
 
   // ---- Lifecycle ----
 
+  /**
+   * Resolves a course ID to numeric form required by the backend.
+   * Slug IDs (e.g. 'course-zh-radicals-214') are resolved via
+   * `CourseSearchService.resolveCourseId`; numeric IDs pass through.
+   */
+  private async resolveCourseId(courseId: string): Promise<string> {
+    const resolved = await this.courseSearch.resolveCourseId(courseId);
+    return resolved ?? courseId;
+  }
+
   /** Loads programs when courseIds changes. */
-  private loadPrograms(): void {
+  private async loadPrograms(): Promise<void> {
     const ids = this.courseIds();
     if (ids.size === 0) {
       this.programs.set([]);
@@ -87,22 +99,30 @@ export class CourseCatalogProgramsComponent {
     this.loading.set(true);
     this.error.set(null);
 
-    Promise.all(
-      Array.from(ids).map((id) =>
-        this.programsApi.getByCourse(id).catch((err) => {
-          this.logger.error('Failed to load programs for course', { courseId: id, error: err });
-          return [] as readonly Program[];
+    try {
+      const results = await Promise.all(
+        Array.from(ids).map(async (id) => {
+          const numericId = await this.resolveCourseId(id);
+          return this.programsApi.getByCourse(numericId).catch((err) => {
+            this.logger.error('Failed to load programs for course', {
+              originalId: id,
+              resolvedId: numericId,
+              error: err,
+            });
+            return [] as readonly Program[];
+          });
         }),
-      ),
-    )
-      .then((results) => this.programs.set(results.flat()))
-      .finally(() => this.loading.set(false));
+      );
+      this.programs.set(results.flat());
+    } finally {
+      this.loading.set(false);
+    }
   }
 
   // Watch courseIds changes
   private readonly loadOnCourseIdsChange = effect(() => {
     this.courseIds();
-    this.loadPrograms();
+    void this.loadPrograms();
   });
 
   // ---- Methods ----
