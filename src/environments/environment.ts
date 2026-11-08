@@ -30,12 +30,12 @@ export const environment: Environment = {
   apiVersion: 'v1',
   fixturesUrl: '/data',
   appName: 'LinguaCode',
-  useCardsApiMock: true, // backend only 
-  useScenariosApiMock: true, // backend only 
-  useCoursesApiMock: true, // backend only 
-  useProgramsApiMock: true, // backend only 
-  useScormMock: false, // backend only 
-  useLanguagePairsApiMock: false, // backend only 
-  useAuthApiMock: false, // backend only 
+  useCardsApiMock: false, // backend only - do not change
+  useScenariosApiMock: false, // backend only - do not change
+  useCoursesApiMock: false, // backend only - do not change 
+  useProgramsApiMock: false, // backend only - do not change 
+  useScormMock: false, // backend only - do not change 
+  useLanguagePairsApiMock: false, // backend only - do not change 
+  useAuthApiMock: false, // backend only - do not change 
   authEnabled: false,
 };
