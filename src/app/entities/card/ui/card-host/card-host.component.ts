@@ -86,7 +86,7 @@ export class CardHostComponent {
   readonly memoryBoardNonce = input(0);
 
   /** Nonce for deterministic option shuffling on option-based cards. */
-  readonly shuffleNonce = input<number>(0);
+  readonly shuffleNonce = input<number | undefined>(undefined);
 
   /** Whether the draw card submission has been triggered. */
   readonly drawSubmitted = input(false);

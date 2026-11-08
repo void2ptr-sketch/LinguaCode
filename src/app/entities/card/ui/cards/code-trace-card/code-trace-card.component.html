@@ -1,40 +1,42 @@
 <mat-card class="quiz-card quiz-card--code quiz-card--font-{{ fontSize() }}">
-  <section class="quiz-card__question" aria-label="Вопрос">
-    <mat-card-header>
-      <mat-card-title>{{ questionHeadline() }}</mat-card-title>
-    </mat-card-header>
+  @if (resolved(); as resolved) {
+    <section class="quiz-card__question" aria-label="Вопрос">
+      <mat-card-header>
+        <mat-card-title>{{ questionHeadline() }}</mat-card-title>
+      </mat-card-header>
 
-    <mat-card-content class="code-trace-card__prompt">
-      <div class="code-trace-card__code-wrapper">
-        <app-code-highlight [code]="card().code.code" [language]="card().code.language" />
-      </div>
-    </mat-card-content>
-  </section>
+      <mat-card-content class="code-trace-card__prompt">
+        <div class="code-trace-card__code-wrapper">
+          <app-code-highlight [code]="card().code.code" [language]="card().code.language" />
+        </div>
+      </mat-card-content>
+    </section>
 
-  <section class="quiz-card__answer" aria-label="Ответ">
-    <p class="quiz-card__section-label">Что выведет код?</p>
-    <mat-card-content class="quiz-card__options code-trace-card__options">
-      @for (option of resolved().options; track option; let index = $index) {
-        <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
-          <code>{{ option }}</code>
-        </button>
-      }
-    </mat-card-content>
-  </section>
+    <section class="quiz-card__answer" aria-label="Ответ">
+      <p class="quiz-card__section-label">Что выведет код?</p>
+      <mat-card-content class="quiz-card__options code-trace-card__options">
+        @for (option of resolved.options; track $index; let index = $index) {
+          <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
+            <code>{{ option }}</code>
+          </button>
+        }
+      </mat-card-content>
+    </section>
 
-  @if (feedback() === 'correct') {
-    <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
-      <mat-icon>check_circle</mat-icon>
-      Верно!
-    </mat-card-content>
-  }
+    @if (feedback() === 'correct') {
+      <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
+        <mat-icon>check_circle</mat-icon>
+        Верно!
+      </mat-card-content>
+    }
 
-  @if (feedback() === 'incorrect') {
-    <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
-      <mat-icon>cancel</mat-icon>
-      Неверно. Правильный ответ:
-      <code>{{ resolved().options[resolved().correctIndex] }}</code>
-    </mat-card-content>
+    @if (feedback() === 'incorrect') {
+      <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
+        <mat-icon>cancel</mat-icon>
+        Неверно. Правильный ответ:
+        <code>{{ resolved.options[resolved.correctIndex] }}</code>
+      </mat-card-content>
+    }
   }
 
   <mat-card-actions align="end">

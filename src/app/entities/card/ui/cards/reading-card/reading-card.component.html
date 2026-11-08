@@ -1,46 +1,48 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
-  <section class="quiz-card__question" aria-label="Вопрос">
-    <app-quiz-card-question-header
-      [title]="card().title"
-      [prompt]="resolved().prompt"
-      [promptLexeme]="promptLexeme()"
-    />
-  </section>
-
-  <section class="quiz-card__answer" aria-label="Ответ">
-    <p class="quiz-card__section-label">Выберите чтение</p>
-    <mat-card-content class="quiz-card__options">
-      @for (option of resolved().options; track $index; let index = $index) {
-        <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
-          <app-lexeme-display
-            surface="answer"
-            [lexeme]="optionLexeme(index)"
-            [fallbackText]="option"
-            [inline]="true"
-          />
-        </button>
-      }
-    </mat-card-content>
-  </section>
-
-  @if (feedback() === 'correct') {
-    <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
-      <mat-icon>check_circle</mat-icon>
-      Верно!
-    </mat-card-content>
-  }
-
-  @if (feedback() === 'incorrect') {
-    <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
-      <mat-icon>cancel</mat-icon>
-      Неверно. Правильное чтение:
-      <app-lexeme-display
-        surface="answer"
-        [lexeme]="optionLexeme(resolved().correctIndex)"
-        [fallbackText]="resolved().options[resolved().correctIndex]"
-        [inline]="true"
+  @if (resolved(); as resolved) {
+    <section class="quiz-card__question" aria-label="Вопрос">
+      <app-quiz-card-question-header
+        [title]="card().title"
+        [prompt]="resolved.prompt"
+        [promptLexeme]="promptLexeme()"
       />
-    </mat-card-content>
+    </section>
+
+    <section class="quiz-card__answer" aria-label="Ответ">
+      <p class="quiz-card__section-label">Выберите чтение</p>
+      <mat-card-content class="quiz-card__options">
+        @for (option of resolved.options; track $index; let index = $index) {
+          <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
+            <app-lexeme-display
+              surface="answer"
+              [lexeme]="optionLexeme(index)"
+              [fallbackText]="option"
+              [inline]="true"
+            />
+          </button>
+        }
+      </mat-card-content>
+    </section>
+
+    @if (feedback() === 'correct') {
+      <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
+        <mat-icon>check_circle</mat-icon>
+        Верно!
+      </mat-card-content>
+    }
+
+    @if (feedback() === 'incorrect') {
+      <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
+        <mat-icon>cancel</mat-icon>
+        Неверно. Правильное чтение:
+        <app-lexeme-display
+          surface="answer"
+          [lexeme]="optionLexeme(resolved.correctIndex)"
+          [fallbackText]="resolved.options[resolved.correctIndex]"
+          [inline]="true"
+        />
+      </mat-card-content>
+    }
   }
 
   <mat-card-actions align="end">
