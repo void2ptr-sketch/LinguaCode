@@ -55,6 +55,17 @@ export function matchesCourseIndexEntry(
     }
   }
 
+  if (criteria.languagePairs && criteria.languagePairs.length > 0) {
+    // Multi-pair filter: the entry passes if its pair matches ANY of the listed pairs.
+    const matchesAnyPair = criteria.languagePairs.some(
+      (pair) => pair.known === entry.knownLanguage && pair.learning === entry.learningLanguage,
+    );
+    if (!matchesAnyPair) {
+      return false;
+    }
+    return true;
+  }
+
   if (
     !courseIndexMatchesLanguageCriteria(entry, criteria.knownLanguage, criteria.learningLanguage)
   ) {

@@ -36,11 +36,12 @@ import { CourseBuilderDialogService } from '../../../features/course-builder/com
 import { CourseBuilderStore } from '../../../features/course-builder/services/course-builder.store';
 
 /**
- * Глобальная переменная для отслеживания смены language pair.
- * При смене языка приложения — перезагружает список курсов.
+ * Глобальные переменные для отслеживания смены language pair и состава пар.
+ * При смене активной пары или набора выбранных пар — перезагружает список курсов.
  * Используется для предотвращения лишних запросов при инициализации.
  */
 let lastKnownCourseBuilderActiveLanguagePairId: string | null | undefined = null;
+let lastKnownCourseBuilderPairsSignature: string | null = null;
 
 /**
  * Компонент страницы конструктора курсов.
@@ -95,21 +96,27 @@ export class CourseBuilderPageComponent implements OnInit {
   }
 
   /**
-   * Effect: отслеживает смену activeLanguagePairId.
-   * При смене языка — перезагружает список курсов.
+   * Effect: отслеживает смену activeLanguagePairId и состава languagePairs.
+   * При смене языка или набора выбранных пар — перезагружает список курсов.
    * Игнорирует начальную инициализацию (когда lastKnown === null).
    */
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();
+    const pairsSignature = this.userStore
+      .languagePairs()
+      .map((entry) => entry.id)
+      .join(',');
 
     if (
       lastKnownCourseBuilderActiveLanguagePairId !== null &&
-      lastKnownCourseBuilderActiveLanguagePairId !== activeId
+      (lastKnownCourseBuilderActiveLanguagePairId !== activeId ||
+        lastKnownCourseBuilderPairsSignature !== pairsSignature)
     ) {
       void this.store.loadList();
     }
 
     lastKnownCourseBuilderActiveLanguagePairId = activeId;
+    lastKnownCourseBuilderPairsSignature = pairsSignature;
   });
 
   // -------------------------------------------------------------------------

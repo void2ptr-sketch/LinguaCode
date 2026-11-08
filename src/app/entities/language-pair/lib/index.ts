@@ -20,6 +20,7 @@ export {
 } from './language-pair-scope.utils';
 
 // ===== Services =====
+export { LanguagePairIdResolver } from './language-pair-id-resolver.service';
 export { LanguageService } from './language.service';
 export { LanguageSettingsStore } from './language-settings.store';
 export { AvailablePairsService } from './available-pairs.service';

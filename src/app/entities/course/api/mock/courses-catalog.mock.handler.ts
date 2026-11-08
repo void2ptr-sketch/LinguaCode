@@ -8,6 +8,8 @@ import type {
   CourseSearchPage,
   CourseWithPrograms,
 } from '../../model';
+import type { ContentLanguage } from '../../../card/model/card-index.types';
+import { LanguagePairsApiService } from '../../../language-pair/api/language-pairs-api.service';
 import type { ProgramWithLessons } from '../../../program/model/program.types';
 import { paginateArray } from '../../../../shared/utils/pagination';
 import { UserStore } from '../../../user/model/user.store';
@@ -41,8 +43,13 @@ export class CoursesCatalogMockHandler {
   private readonly userStore = inject(UserStore);
   private readonly contentSeed = inject(ContentSeedRepository);
   private readonly cardRepository = inject(CardRepository);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
 
   private catalog: CourseCatalogState | null = null;
+
+  /** Cache of numeric pair ID → `{ known, learning }` codes. */
+  private pairIdCache: Map<number, { known: ContentLanguage; learning: ContentLanguage }> | null =
+    null;
 
   /**
    * Searches the course index by the given criteria and returns a paginated result.
@@ -53,9 +60,14 @@ export class CoursesCatalogMockHandler {
   async search(criteria: CourseSearchCriteria): Promise<CourseSearchPage> {
     await this.ensureData();
 
+    // The backend contract filters by numeric `languagePairIds`. Seed courses
+    // have no numeric pair IDs, so translate them into `{ known, learning }`
+    // code pairs and apply an ANY-match filter client-side.
+    const languagePairs = await this.resolvePairCodes(criteria.languagePairIds);
+
     const filtered = filterCourseIndex(
       this.catalog!.courses.map((course) => courseToIndexEntry(course, course.programIds.length)),
-      criteria,
+      { ...criteria, languagePairs: languagePairs ?? undefined },
       this.userStore.user().id,
     );
 
@@ -295,6 +307,48 @@ export class CoursesCatalogMockHandler {
     }
 
     return results;
+  }
+
+  /**
+   * Translates numeric `languagePairIds` into `{ known, learning }` code pairs
+   * using the `/language-pairs` endpoint (mocked in dev). Returns `null` when
+   * the filter is absent or nothing can be resolved — callers then skip the
+   * pair filter entirely.
+   */
+  private async resolvePairCodes(
+    languagePairIds: readonly number[] | undefined,
+  ): Promise<readonly { known: ContentLanguage; learning: ContentLanguage }[] | null> {
+    if (!languagePairIds || languagePairIds.length === 0) {
+      return null;
+    }
+
+    if (!this.pairIdCache) {
+      try {
+        const all = await this.languagePairsApi.listAll();
+        this.pairIdCache = new Map(
+          all.map((pair) => [
+            pair.id,
+            {
+              known: pair.knownCode as ContentLanguage,
+              learning: pair.learningCode as ContentLanguage,
+            },
+          ]),
+        );
+      } catch {
+        // Pair list unavailable — skip the pair filter rather than return an empty page.
+        this.pairIdCache = new Map();
+      }
+    }
+
+    const pairs: { known: ContentLanguage; learning: ContentLanguage }[] = [];
+    for (const id of languagePairIds) {
+      const codes = this.pairIdCache.get(id);
+      if (codes) {
+        pairs.push(codes);
+      }
+    }
+
+    return pairs.length > 0 ? pairs : null;
   }
 
   private normalizePrograms(

@@ -52,6 +52,13 @@ export type CourseSearchCriteria = {
   learningLanguage?: ContentLanguage;
   /** Filter by language pair IDs (multiple pairs). Takes precedence over knownLanguage/learningLanguage. */
   languagePairIds?: number[];
+  /**
+   * Filter by multiple language pairs (codes). Matches entries whose pair
+   * equals ANY of the listed pairs. Takes precedence over knownLanguage/
+   * learningLanguage; used for client-side/mock filtering — not serialised
+   * to backend query params (the backend uses `languagePairIds` instead).
+   */
+  languagePairs?: readonly { known: ContentLanguage; learning: ContentLanguage }[];
   /** Pagination parameters. */
   page: import('../../../shared/utils/pagination').PageRequest;
 };

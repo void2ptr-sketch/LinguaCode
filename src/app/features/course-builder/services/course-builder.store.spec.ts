@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 
 import type { CourseWithPrograms } from '../../../entities/course/model';
 import { CourseSearchService, CoursesApiService } from '../../../entities/course';
+import { LanguagePairIdResolver } from '../../../entities/language-pair';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CourseBuilderStore } from './course-builder.store';
@@ -19,6 +20,10 @@ describe('CourseBuilderStore', () => {
     update: vi.fn(),
     delete: vi.fn(),
     resolveCourseIdForWrite: vi.fn(async (courseId: string) => courseId),
+  };
+
+  const mockPairIdResolver = {
+    resolveIds: vi.fn(async () => [7, 11]),
   };
 
   const mockPdfExport = {
@@ -38,6 +43,7 @@ describe('CourseBuilderStore', () => {
         CourseBuilderStore,
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: CoursePdfExportService, useValue: mockPdfExport },
+        { provide: LanguagePairIdResolver, useValue: mockPairIdResolver },
         { provide: CoursesApiService, useValue: mockCoursesApi },
         {
           provide: AppLoggerService,
@@ -55,7 +61,7 @@ describe('CourseBuilderStore', () => {
     vi.restoreAllMocks();
   });
 
-  it('should load course index from API scoped to active pair', async () => {
+  it('should load course index with languagePairIds for all user pairs', async () => {
     mockCourseSearchService.search.mockResolvedValue({
       items: [
         {
@@ -80,7 +86,27 @@ describe('CourseBuilderStore', () => {
 
     expect(store.indexItems().length).toBe(1);
     expect(store.indexItems()[0].title).toBe('Test course');
-    expect(mockCourseSearchService.search).toHaveBeenCalled();
+    expect(mockCourseSearchService.search).toHaveBeenCalledWith(
+      expect.objectContaining({ languagePairIds: [7, 11], scope: 'all' }),
+    );
+  });
+
+  it('should omit the pair filter when no pairs resolve to backend IDs', async () => {
+    mockPairIdResolver.resolveIds.mockResolvedValue([]);
+    mockCourseSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    await store.loadList();
+
+    const criteria = mockCourseSearchService.search.mock.calls[0][0];
+    expect(criteria).not.toHaveProperty('languagePairIds');
+    expect(criteria).not.toHaveProperty('knownLanguage');
+    expect(criteria).not.toHaveProperty('learningLanguage');
   });
 
   it('should set error message when loading list fails', async () => {

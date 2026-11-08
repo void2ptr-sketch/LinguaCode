@@ -48,6 +48,10 @@ export function parseCourseSearchCriteria(params: HttpParams): CourseSearchCrite
   const scope = params.get('scope') as CourseListScope | null;
   const knownLanguage = params.get('knownLanguage');
   const learningLanguage = params.get('learningLanguage');
+  const languagePairIds = params
+    .getAll('languagePairIds')
+    ?.map((raw) => Number(raw))
+    .filter((id) => Number.isFinite(id) && id > 0);
 
   return {
     query: params.get('query') ?? undefined,
@@ -55,6 +59,7 @@ export function parseCourseSearchCriteria(params: HttpParams): CourseSearchCrite
     scope: scope ?? undefined,
     knownLanguage: isContentLanguage(knownLanguage) ? knownLanguage : undefined,
     learningLanguage: isContentLanguage(learningLanguage) ? learningLanguage : undefined,
+    languagePairIds: languagePairIds && languagePairIds.length > 0 ? languagePairIds : undefined,
     page: {
       page: Number(params.get('page') ?? 0),
       pageSize: Number(params.get('pageSize') ?? DEFAULT_PAGE_SIZE),

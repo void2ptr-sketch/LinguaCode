@@ -15,7 +15,7 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
-import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
+import { LanguagePairIdResolver } from '../../../entities/language-pair/lib/language-pair-id-resolver.service';
 import { normalizeLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
 import { CourseSearchService, CoursesApiService } from '../../../entities/course';
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
@@ -68,6 +68,8 @@ export class CourseBuilderStore {
   private readonly coursesApi = inject(CoursesApiService);
   /** Service for exporting courses to PDF */
   private readonly pdfExport = inject(CoursePdfExportService);
+  /** Resolves user language pairs to numeric backend IDs for search filters */
+  private readonly pairIdResolver = inject(LanguagePairIdResolver);
   /** Central logging service */
   private readonly logger = inject(AppLoggerService);
 
@@ -85,8 +87,12 @@ export class CourseBuilderStore {
   readonly pageSize = signal(DEFAULT_PAGE_SIZE);
   /** Search query text */
   readonly listQuery = signal('');
-  /** Scope filter ('mine' | 'published' | 'all') */
-  readonly listScope = signal<CourseListScope>('mine');
+  /**
+   * Scope filter ('mine' | 'published' | 'all').
+   * Defaults to 'all' so courses from other authors (seed/backend content)
+   * are visible out of the box; they remain read-only.
+   */
+  readonly listScope = signal<CourseListScope>('all');
 
   // -------------------------------------------------------------------------
   // Signals: editor state
@@ -130,18 +136,24 @@ export class CourseBuilderStore {
    * Loads the course list considering current filters and pagination.
    *
    * @remarks
-   * Requests data from the API via CourseSearchService.
+   * Requests data from the API via CourseSearchService. Courses are filtered
+   * by ALL of the user's selected language pairs (`languagePairIds`, OR
+   * semantics on the backend) instead of only the active pair. If none of the
+   * user's pairs can be resolved to backend IDs, the pair filter is omitted
+   * so the list does not silently come back empty.
    */
   async loadList(): Promise<void> {
     this.loading.set(true);
     this.error.set(null);
 
     try {
-      const pair = this.userStore.languagePair();
+      const pairs = this.userStore.languagePairs().map((entry) => entry.pair);
+      const languagePairIds = await this.pairIdResolver.resolveIds(pairs);
+
       const page = await this.courseSearchService.search({
         query: this.listQuery().trim() || undefined,
         scope: this.listScope(),
-        ...activeLanguagePairCriteria(pair),
+        ...(languagePairIds.length > 0 ? { languagePairIds } : {}),
         page: { page: this.pageIndex(), pageSize: this.pageSize() },
       });
 
