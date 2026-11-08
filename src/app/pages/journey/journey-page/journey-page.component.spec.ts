@@ -11,12 +11,10 @@ import { JourneyAnalyticsService } from '../../../features/journey/services/jour
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { CourseSearchService } from '../../../entities/course';
 import { ScenariosApiService } from '../../../entities/scenario/api/scenarios-api.service';
-import { CardsApiService } from '../../../entities/card/api/cards-api.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type { CourseWithPrograms, Lesson } from '../../../entities/course/model';
-import type { Scenario } from '../../../entities/scenario/model';
 import type { JourneyLocationNode } from '../../../entities/learning/model';
-import type { CardBase } from '../../../entities/card/model';
+import type { Scenario } from '../../../entities/scenario/model';
 import { UserPreferencesSyncService } from '../../../entities/user/services/user-preferences-sync.service';
 function makeLesson(
   id: string,
@@ -55,18 +53,6 @@ function makeCourse(
   };
 }
 
-function makeScenario(id: string, title: string, cardIds: string[]): Scenario {
-  return {
-    id,
-    title,
-    description: '',
-    cardSource: { mode: 'fixed', cardIds },
-    authorId: 'author-1',
-    published: true,
-    updatedAt: '2024-01-01T00:00:00.000Z',
-  };
-}
-
 describe('JourneyPageComponent', () => {
   let component: JourneyPageComponent;
   let fixture: ComponentFixture<JourneyPageComponent>;
@@ -87,25 +73,10 @@ describe('JourneyPageComponent', () => {
 
   const mockCourse = makeCourse('course-1', 'Test Course', [mockProgram]);
 
-  const mockScenarios: Scenario[] = [
-    makeScenario('scenario-1', 'Scenario 1', ['card-1', 'card-2']),
-    makeScenario('scenario-2', 'Scenario 2', ['card-3']),
-    makeScenario('scenario-3', 'Scenario 3', ['card-4', 'card-5']),
-  ];
-
-  const mockCards: CardBase[] = [
-    { id: 'card-1', kind: 'select' } as CardBase,
-    { id: 'card-2', kind: 'reading' } as CardBase,
-    { id: 'card-3', kind: 'memory' } as CardBase,
-    { id: 'card-4', kind: 'keyboard' } as CardBase,
-    { id: 'card-5', kind: 'sound' } as CardBase,
-  ];
-
   let mockDashboardService: Partial<LearningDashboardService>;
   let mockAnalyticsService: Partial<JourneyAnalyticsService>;
   let mockResultsStore: Partial<LearningResultsStore>;
   let mockScenariosApi: Partial<ScenariosApiService>;
-  let mockCardsApi: Partial<CardsApiService>;
   let mockCourseSearchService: { getById: ReturnType<typeof vi.fn> };
   let mockActivatedRoute: Partial<ActivatedRoute>;
   let mockRouter: { navigate: ReturnType<typeof vi.fn> };
@@ -152,13 +123,17 @@ describe('JourneyPageComponent', () => {
 
     mockScenariosApi = {
       getById: vi.fn().mockImplementation((scenarioId: string) => {
-        const scenario = mockScenarios.find((s) => s.id === scenarioId);
-        return Promise.resolve(scenario || makeScenario(scenarioId, `Scenario ${scenarioId}`, []));
+        const mockScenario: Scenario = {
+          id: scenarioId,
+          title: `Scenario ${scenarioId}`,
+          description: '',
+          cardSource: { mode: 'fixed', cardIds: ['card-1', 'card-2', 'card-3'] },
+          authorId: 'author-1',
+          published: true,
+          updatedAt: '2024-01-01T00:00:00.000Z',
+        };
+        return Promise.resolve(mockScenario);
       }),
-    };
-
-    mockCardsApi = {
-      getByIds: vi.fn().mockResolvedValue(mockCards),
     };
 
     const mockLogger = {
@@ -208,7 +183,6 @@ describe('JourneyPageComponent', () => {
         { provide: JourneyAnalyticsService, useValue: mockAnalyticsService },
         { provide: LearningResultsStore, useValue: mockResultsStore },
         { provide: ScenariosApiService, useValue: mockScenariosApi },
-        { provide: CardsApiService, useValue: mockCardsApi },
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: AppLoggerService, useValue: mockLogger },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
@@ -245,12 +219,18 @@ describe('JourneyPageComponent', () => {
     expect(component.courseId()).toBe('course-1');
   });
 
-  it('should call scenarios API and cards API to build nodes', async () => {
+  it('should build nodes without loading scenarios or cards from API', async () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    expect(mockScenariosApi.getById).toHaveBeenCalled();
-    expect(mockCardsApi.getByIds).toHaveBeenCalled();
+    const nodes = component.nodes();
+    expect(Array.isArray(nodes)).toBe(true);
+    expect(nodes.length).toBeGreaterThan(0);
+
+    // Nodes are built from course data only (lesson.scenarioIds)
+    // without fetching scenarios or cards from the API.
+    expect(nodes[0].scenarioId).toBeDefined();
+    expect(typeof nodes[0].title).toBe('string');
   });
 
   it('should build nodes from course data', async () => {
@@ -273,11 +253,11 @@ describe('JourneyPageComponent', () => {
     }
   });
 
-  it('should navigate to cards/select on location select', () => {
+  it('should navigate to cards/select on location select', async () => {
     const firstNode = component.nodes()[0];
     expect(firstNode).toBeDefined();
 
-    component.onLocationSelect(firstNode.id!);
+    await component.onLocationSelect(firstNode.id!);
 
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/cards/select'], {
       queryParams: {
@@ -286,6 +266,21 @@ describe('JourneyPageComponent', () => {
         scenarioId: firstNode.scenarioId,
       },
     });
+  });
+
+  it('should lazy-load scenario and update cardCount on location select', async () => {
+    const firstNode = component.nodes()[0];
+    expect(firstNode.cardCount).toBe(0); // initially 0
+
+    await component.onLocationSelect(firstNode.id!);
+
+    expect(mockScenariosApi.getById).toHaveBeenCalledWith(firstNode.scenarioId);
+
+    // Node should be updated with cardCount from scenario
+    const updatedNodes = component.nodes();
+    const updatedNode = updatedNodes.find((n) => n.id === firstNode.id);
+    expect(updatedNode).toBeDefined();
+    expect(updatedNode!.cardCount).toBe(3); // mock scenario has 3 cardIds
   });
 
   it('should ignore unknown node id in onLocationSelect', () => {

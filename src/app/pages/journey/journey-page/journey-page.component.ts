@@ -17,16 +17,12 @@ import { LearningResultsStore } from '../../../entities/learning/model/learning-
 import { CourseSearchService } from '../../../entities/course';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
-import {
-  buildJourneyNodes,
-  buildScenarioMap,
-} from '../../../entities/journey/lib/journey-nodes.utils';
+import { buildJourneyNodes } from '../../../entities/journey/lib/journey-nodes.utils';
+import { scenarioCardIds } from '../../../entities/course/utils/course-practice.utils';
+import { ScenariosApiService } from '../../../entities/scenario/api/scenarios-api.service';
 import type { JourneyLocationNode } from '../../../entities/learning/model';
 import type { CardBase } from '../../../entities/card/model';
 import type { CourseWithPrograms } from '../../../entities/course/model';
-import { ScenariosApiService } from '../../../entities/scenario/api/scenarios-api.service';
-import { CardsApiService } from '../../../entities/card/api/cards-api.service';
-import { scenarioCardIds } from '../../../entities/course/utils/course-practice.utils';
 import { UserPreferencesSyncService } from '../../../entities/user/services/user-preferences-sync.service';
 
 /**
@@ -67,7 +63,6 @@ export class JourneyPageComponent {
   private readonly analyticsService = inject(JourneyAnalyticsService);
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly scenariosApi = inject(ScenariosApiService);
-  private readonly cardsApi = inject(CardsApiService);
   private readonly userStore = inject(UserStore);
   private readonly logger = inject(AppLoggerService);
   private readonly route = inject(ActivatedRoute);
@@ -187,52 +182,10 @@ export class JourneyPageComponent {
     const hasScenarioVisit = (scenarioId: string) =>
       this.analyticsService.visitCountForScenario()(scenarioId) > 0;
 
-    // Извлекаем все scenarioIds из курса (приводим к строке — бэкенд может возвращать числа)
-    const courseScenarioIds = new Set(
-      course.programs.flatMap((p) => (p.lessons ?? []).flatMap((l) => l.scenarioIds.map(String))),
-    );
-
-    this.logger.debug(
-      `[JourneyPage] Loading scenarios for course ${course.id}: ${courseScenarioIds.size} scenarios`,
-    );
-
-    // Загружаем сценарии через API по courseId
-    const courseScenarios: import('../../../entities/scenario/model').Scenario[] = [];
-    for (const scenarioId of courseScenarioIds) {
-      try {
-        const scenario = await this.scenariosApi.getById(scenarioId);
-        courseScenarios.push(scenario);
-      } catch (error) {
-        this.logger.warn(`[JourneyPage] Failed to load scenario ${scenarioId}`, error);
-      }
-    }
-
-    this.logger.debug(`[JourneyPage] Loaded ${courseScenarios.length} scenarios from API`);
-
-    const scenarioMap = buildScenarioMap(courseScenarios);
-
-    // Извлекаем все cardIds из сценариев
-    const allCardIds = new Set<string>();
-    for (const scenario of courseScenarios) {
-      const cardIds = scenarioCardIds(scenario);
-      for (const cardId of cardIds) {
-        allCardIds.add(cardId);
-      }
-    }
-
-    this.logger.debug(`[JourneyPage] Extracted ${allCardIds.size} unique card IDs from scenarios`);
-
-    // Загружаем карточки батчем через API
-    let allCards: readonly CardBase[] = [];
-    if (allCardIds.size > 0) {
-      try {
-        const cards = await this.cardsApi.getByIds([...allCardIds]);
-        allCards = cards as unknown as CardBase[];
-        this.logger.debug(`[JourneyPage] Loaded ${cards.length} cards from API`);
-      } catch (error) {
-        this.logger.error('[JourneyPage] Failed to load cards', error);
-      }
-    }
+    // Не загружаем сценарии и карточки заранее — они нужны только при клике на локацию.
+    // Для построения карты используем пустые данные: title="Сценарий N", cardCount=0.
+    const scenarioMap = new Map<string, import('../../../entities/scenario/model').Scenario>();
+    const allCards: readonly CardBase[] = [];
 
     const nodes = buildJourneyNodes(
       course,
@@ -253,15 +206,49 @@ export class JourneyPageComponent {
    * Handles location node selection from the journey map.
    *
    * @remarks
-   * Currently a placeholder — navigates to the selected scenario or opens detail view.
+   * Loads the scenario lazily (if cardCount is unknown), updates the node
+   * with the real card count, then navigates to the card selection page.
    */
-  onLocationSelect(nodeId: string): void {
+  async onLocationSelect(nodeId: string): Promise<void> {
     const node = this.nodes().find((item) => item.id === nodeId);
     if (!node) {
       return;
     }
-    // Переход к сценарию на страницу карточек с полным контекстом
-    // (курс, урок, сценарий) — сценарий открывается напрямую.
+
+    // Если cardCount уже известен — сразу навигируем
+    if (node.cardCount > 0) {
+      this.navigateToScenario(node);
+      return;
+    }
+
+    // Ленивая загрузка сценария для получения cardCount
+    try {
+      const scenario = await this.scenariosApi.getById(node.scenarioId);
+      const cardIds = scenarioCardIds(scenario);
+      const cardCount = cardIds.length;
+
+      // Обновляем узел в nodes signal
+      const nodes = this.nodes();
+      const idx = nodes.findIndex((n) => n.id === nodeId);
+      if (idx !== -1) {
+        nodes[idx] = { ...nodes[idx], cardCount, title: scenario.title ?? nodes[idx].title };
+        this.nodes.set([...nodes]);
+      }
+
+      this.logger.debug(
+        `[JourneyPage] Lazy loaded scenario ${node.scenarioId}: ${cardCount} cards`,
+      );
+    } catch (error) {
+      this.logger.warn(
+        `[JourneyPage] Failed to lazy-load scenario ${node.scenarioId}, navigating anyway`,
+        error,
+      );
+    }
+
+    this.navigateToScenario(node);
+  }
+
+  private navigateToScenario(node: JourneyLocationNode): void {
     void this.router.navigate(['/cards/select'], {
       queryParams: {
         courseId: node.courseId,
