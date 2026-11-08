@@ -13,6 +13,8 @@ import { CoursesApiService, type CourseWritePayload } from '../api/courses-api.s
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import type { ApiListResponse } from '../../../shared/api/api.types';
+import { ProgramsApiService } from '../../program/api';
+import type { ProgramWithLessons } from '../../program/model/program.types';
 
 /**
  * Service for course search and management operations.
@@ -23,6 +25,7 @@ import type { ApiListResponse } from '../../../shared/api/api.types';
 @Injectable({ providedIn: 'root' })
 export class CourseSearchService {
   private readonly coursesApi = inject(CoursesApiService);
+  private readonly programsApi = inject(ProgramsApiService);
   private readonly logger = inject(AppLoggerService);
   private readonly http = inject(HttpClient);
 
@@ -147,6 +150,10 @@ export class CourseSearchService {
   /**
    * Retrieves a course with its programs by ID.
    *
+   * @remarks
+   * Tries the `/courses/{id}/journey` endpoint first. If it returns no programs,
+   * falls back to fetching programs and lessons via the programs API.
+   *
    * @param courseId - The course ID.
    * @returns The course with programs.
    * @throws Error if the course is not found or on other errors.
@@ -156,7 +163,47 @@ export class CourseSearchService {
     if (!resolvedId) {
       throw new Error(`Course not found: ${courseId}`);
     }
-    return this.run(() => this.coursesApi.getById(resolvedId));
+
+    // Try /journey endpoint first
+    try {
+      const course = await this.run(() => this.coursesApi.getJourney(resolvedId));
+
+      // If journey returns programs with lessons, use them
+      if (course.programs && course.programs.length > 0) {
+        this.logger.info(
+          `[CourseSearch] getJourney returned ${course.programs.length} programs`,
+        );
+        return course;
+      }
+    } catch (error) {
+      this.logger.warn('[CourseSearch] getJourney failed, falling back to programs API', error);
+    }
+
+    // Fallback: fetch course + programs + lessons separately
+    this.logger.info(`[CourseSearch] Fetching programs via ProgramsApiService for course ${resolvedId}`);
+    const programs = await this.programsApi.getByCourse(resolvedId);
+
+    // Resolve each program with its lessons
+    const programsWithLessons: ProgramWithLessons[] = [];
+    for (const program of programs) {
+      const programWithLessons = await this.programsApi.getById(program.id);
+      programsWithLessons.push(programWithLessons);
+    }
+
+    // Build CourseWithPrograms — the course shape from /journey may differ from plain /courses/:id
+    // We need at least the course base fields
+    const courseBase = {
+      id: String(resolvedId),
+      title: '',
+      description: '',
+      authorId: '',
+      languagePair: { known: 'en' as const, learning: 'ru' as const },
+      programIds: programs.map((p) => p.id),
+      published: true,
+      updatedAt: new Date().toISOString(),
+    };
+
+    return { ...courseBase, programs: programsWithLessons };
   }
 
   /**

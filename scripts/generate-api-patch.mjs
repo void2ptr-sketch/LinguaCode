@@ -117,15 +117,9 @@ async function cleanupOrphanFiles() {
 
   if (!fs.existsSync(indexPath)) return;
 
-  const orphanFiles = [
-    'behaviorGetSnapshotParams.ts', 'behaviorGetWeakCardsParams.ts',
-    'cardsListParams.ts', 'cardsSearchParams.ts',
-    'coursesListParams.ts', 'coursesSearchParams.ts',
-    'exportScormParams.ts', 'feedbackMyFeedbackParams.ts',
-    'languagesGetByCodeParams.ts', 'learningGetUserResultsParams.ts',
-    'programsListParams.ts', 'programsSearchParams.ts',
-    'scenariosListParams.ts', 'scenariosSearchParams.ts',
-  ];
+  // NOTE: ALL *-Params.ts files are kept — service files import them.
+  // Only truly unused params files should be listed here for removal.
+  const orphanFiles = [];
 
   let indexContent = fs.readFileSync(indexPath, 'utf-8');
   let removedCount = 0;

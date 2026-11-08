@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, signal, effect } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, signal, effect, DestroyRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -7,7 +7,6 @@ import { LearningJourneyMapComponent } from '../../../features/journey/component
 import { JourneyAnalyticsService } from '../../../features/journey/services/journey-analytics.service';
 import { LearningDashboardService } from '../../../entities/learning/services';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
-import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
 import { CourseSearchService } from '../../../entities/course';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
@@ -19,6 +18,9 @@ import type { JourneyLocationNode } from '../../../entities/learning/model';
 import type { CardBase } from '../../../entities/card/model';
 import type { CourseWithPrograms } from '../../../entities/course/model';
 import { CPP_COMPLETE_COURSE_ID } from '../../../entities/course/model';
+import { ScenariosApiService } from '../../../entities/scenario/api/scenarios-api.service';
+import { CardsApiService } from '../../../entities/card/api/cards-api.service';
+import { scenarioCardIds } from '../../../entities/course/utils/course-practice.utils';
 
 /**
  * Journey page component. Renders the learning journey map for the current course,
@@ -57,11 +59,13 @@ export class JourneyPageComponent {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly analyticsService = inject(JourneyAnalyticsService);
   private readonly resultsStore = inject(LearningResultsStore);
-  private readonly contentSeedRepo = inject(ContentSeedRepository);
+  private readonly scenariosApi = inject(ScenariosApiService);
+  private readonly cardsApi = inject(CardsApiService);
   private readonly userStore = inject(UserStore);
   private readonly logger = inject(AppLoggerService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
 
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
@@ -71,12 +75,15 @@ export class JourneyPageComponent {
   /** ID курса, который сейчас загружается (защита от параллельных запросов). */
   private loadingCourseId: string | null = null;
 
+  /** ID последнего успешно загруженного курса (защита от повторных effect-триггеров). */
+  private lastLoadedCourseId: string | null = null;
+
   constructor() {
     // Загружаем активный курс дашборда — он используется как fallback,
     // когда курс не передан явно через query-параметр `?courseId=`.
     this.dashboardService.reload();
 
-    const queryParams = toSignal(
+    const queryParams = toSignal<string | undefined>(
       this.route.queryParams.pipe(map((params) => params['courseId'] as string | undefined)),
     );
 
@@ -87,26 +94,21 @@ export class JourneyPageComponent {
       // Явный выбор курса через `?courseId=` имеет приоритет над активным курсом дашборда.
       if (requestedId) {
         this.courseId.set(requestedId);
-        if (requestedId !== dashboardCourse?.id) {
+        if (requestedId !== this.lastLoadedCourseId) {
           void this.loadCourse(requestedId);
-        } else if (dashboardCourse) {
-          // Load course with programs for the dashboard course
-          void this.loadCourse(dashboardCourse.id);
         }
         return;
       }
 
       // Без query-параметра показываем активный курс дашборда;
       // по умолчанию предпочитаем C++ Complete Course.
-      if (dashboardCourse) {
-        if (dashboardCourse.id === CPP_COMPLETE_COURSE_ID) {
-          this.courseId.set(dashboardCourse.id);
-          // Load course with programs for the dashboard course
-          void this.loadCourse(dashboardCourse.id);
-        } else {
-          this.courseId.set(CPP_COMPLETE_COURSE_ID);
-          void this.loadCourse(CPP_COMPLETE_COURSE_ID);
-        }
+      const targetId =
+        dashboardCourse?.id === CPP_COMPLETE_COURSE_ID
+          ? dashboardCourse.id
+          : CPP_COMPLETE_COURSE_ID;
+      this.courseId.set(targetId);
+      if (targetId !== this.lastLoadedCourseId) {
+        void this.loadCourse(targetId);
       }
     });
   }
@@ -117,8 +119,8 @@ export class JourneyPageComponent {
    * @param courseId - ID курса для отображения на карте.
    */
   private async loadCourse(courseId: string): Promise<void> {
-    // Узлы для этого курса уже построены — не перезагружаем.
-    if (this.nodes().length > 0 && this.nodes()[0].courseId === courseId) {
+    // Курс уже был успешно загружен — не перезапускаем.
+    if (this.lastLoadedCourseId === courseId) {
       return;
     }
     // Запрос уже выполняется — не дублируем.
@@ -132,8 +134,30 @@ export class JourneyPageComponent {
 
     try {
       const course = await this.courseSearchService.getById(courseId);
-      if (this.courseId() === courseId && course.id === courseId) {
-        this.buildNodes(course);
+      this.logger.info(
+        `[JourneyPage] Course loaded: id=${course.id}, programs=${course.programs?.length ?? 0}`,
+      );
+      if (course.programs) {
+        for (const p of course.programs) {
+          this.logger.info(
+            `  Program: ${p.id} (${p.title}), lessons=${p.lessons?.length ?? 0}`,
+          );
+          if (p.lessons) {
+            for (const l of p.lessons) {
+              this.logger.info(`    Lesson: ${l.id}, scenarioIds=${l.scenarioIds?.length ?? 0}`);
+            }
+          }
+        }
+      }
+      // Compare as strings to handle numeric IDs from backend
+      const courseMatches = String(course.id) === String(courseId);
+      if (this.courseId() === courseId && courseMatches) {
+        await this.loadNodes(course);
+        this.lastLoadedCourseId = courseId;
+      } else {
+        this.logger.info(
+          `[JourneyPage] SKIP buildNodes: courseId()=${this.courseId()}, param=${courseId}, course.id=${course.id}, matches=${courseMatches}`,
+        );
       }
     } catch (error) {
       this.logger.error('[JourneyPage] Failed to load course from query param', error);
@@ -144,7 +168,7 @@ export class JourneyPageComponent {
     }
   }
 
-  private buildNodes(course: CourseWithPrograms): void {
+  private async loadNodes(course: CourseWithPrograms): Promise<void> {
     // Активируем языковую пару курса, чтобы открытие сценариев с карты
     // (переход на /cards/select) не блокировалось несовпадением пары.
     if (course.languagePair) {
@@ -157,23 +181,55 @@ export class JourneyPageComponent {
     const hasScenarioVisit = (scenarioId: string) =>
       this.analyticsService.visitCountForScenario()(scenarioId) > 0;
 
-    // Загружаем все сценарии и карточки из seed-кэша
-    const allScenarios = this.contentSeedRepo.getScenarioSeed();
-    const allCards = this.contentSeedRepo.getCardSeed();
-
-    this.logger.debug(`[JourneyPage] Cards loaded: ${allCards.length}`);
-    this.logger.debug(`[JourneyPage] Scenarios loaded: ${allScenarios.length}`);
-
+    // Извлекаем все scenarioIds из курса (приводим к строке — бэкенд может возвращать числа)
     const courseScenarioIds = new Set(
-      course.programs.flatMap((p) => (p.lessons ?? []).flatMap((l) => [...l.scenarioIds])),
+      course.programs.flatMap((p) => (p.lessons ?? []).flatMap((l) => l.scenarioIds.map(String))),
     );
-    const courseScenarios = allScenarios.filter((s) => courseScenarioIds.has(s.id));
+
+    this.logger.debug(`[JourneyPage] Loading scenarios for course ${course.id}: ${courseScenarioIds.size} scenarios`);
+
+    // Загружаем сценарии через API по courseId
+    const courseScenarios: import('../../../entities/scenario/model').Scenario[] = [];
+    for (const scenarioId of courseScenarioIds) {
+      try {
+        const scenario = await this.scenariosApi.getById(scenarioId);
+        courseScenarios.push(scenario);
+      } catch (error) {
+        this.logger.warn(`[JourneyPage] Failed to load scenario ${scenarioId}`, error);
+      }
+    }
+
+    this.logger.debug(`[JourneyPage] Loaded ${courseScenarios.length} scenarios from API`);
+
     const scenarioMap = buildScenarioMap(courseScenarios);
+
+    // Извлекаем все cardIds из сценариев
+    const allCardIds = new Set<string>();
+    for (const scenario of courseScenarios) {
+      const cardIds = scenarioCardIds(scenario);
+      for (const cardId of cardIds) {
+        allCardIds.add(cardId);
+      }
+    }
+
+    this.logger.debug(`[JourneyPage] Extracted ${allCardIds.size} unique card IDs from scenarios`);
+
+    // Загружаем карточки батчем через API
+    let allCards: readonly CardBase[] = [];
+    if (allCardIds.size > 0) {
+      try {
+        const cards = await this.cardsApi.getByIds([...allCardIds]);
+        allCards = cards as unknown as CardBase[];
+        this.logger.debug(`[JourneyPage] Loaded ${cards.length} cards from API`);
+      } catch (error) {
+        this.logger.error('[JourneyPage] Failed to load cards', error);
+      }
+    }
 
     const nodes = buildJourneyNodes(
       course,
       scenarioMap,
-      allCards as unknown as CardBase[],
+      allCards,
       hasScenarioResult,
       hasScenarioVisit,
     );

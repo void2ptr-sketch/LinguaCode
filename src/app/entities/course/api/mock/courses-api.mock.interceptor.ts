@@ -35,7 +35,7 @@ const extractCourseId = (url: string): string | null => {
     return null;
   }
 
-  if (rest.startsWith('by-scenario/')) {
+  if (rest.startsWith('by-scenario/') || rest.endsWith('/journey')) {
     return null;
   }
 
@@ -75,6 +75,23 @@ const extractBundleCourseId = (url: string): string | null => {
 };
 
 /**
+ * Extracts the course ID from a "courses/{id}/journey" URL.
+ *
+ * @param url - The request URL.
+ * @returns The course ID, or `null` if the URL does not target a course journey.
+ */
+const extractJourneyCourseId = (url: string): string | null => {
+  const marker = `${buildApiUrl('/courses/')}`;
+  const suffix = '/journey';
+  if (!url.includes(marker) || !url.endsWith(suffix)) {
+    return null;
+  }
+
+  const rest = url.slice(url.indexOf(marker) + marker.length, -suffix.length);
+  return rest || null;
+};
+
+/**
  * HTTP interceptor that mocks courses API responses for development.
  *
  * @remarks
@@ -104,6 +121,13 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
         const body = 'items' in result ? { data: result.items } : { data: result };
         return new HttpResponse({ status: 200, body });
       }),
+    );
+  }
+
+  const journeyCourseId = extractJourneyCourseId(req.url);
+  if (req.method === 'GET' && journeyCourseId) {
+    return defer(() => handler.getById(journeyCourseId)).pipe(
+      map((data) => new HttpResponse({ status: 200, body: { data } })),
     );
   }
 

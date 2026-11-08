@@ -25,6 +25,7 @@ import type {
 import type {
   CourseCreateRequest,
   CourseExportBundleResponse,
+  CourseJourneyResponse,
   CourseList,
   CourseResponse,
   CourseUpdateRequest,
@@ -413,6 +414,40 @@ export class CoursesService {
     );
   }
 /**
+ * Returns course with nested programs and lessons for the journey builder
+ * @summary Get course journey
+ */
+ coursesGetJourney<TData = CourseJourneyResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesGetJourney<TData = CourseJourneyResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesGetJourney<TData = CourseJourneyResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesGetJourney<TData = CourseJourneyResponse>(
+    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/courses/${id}/journey`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/courses/${id}/journey`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/courses/${id}/journey`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
  * Returns a complete export package for a course including all nested entities
  * @summary Get course export bundle
  */
@@ -523,6 +558,7 @@ export type CoursesUpdateClientResult = NonNullable<CourseResponse>
 export type CoursesDeleteClientResult = NonNullable<void>
 export type CoursesListClientResult = NonNullable<CourseList>
 export type CoursesCreateClientResult = NonNullable<CourseResponse>
+export type CoursesGetJourneyClientResult = NonNullable<CourseJourneyResponse>
 export type CoursesGetBundleClientResult = NonNullable<CourseExportBundleResponse>
 export type CoursesSearchClientResult = NonNullable<CourseList>
 export type CoursesFindByScenarioClientResult = NonNullable<ListCourseResponse>

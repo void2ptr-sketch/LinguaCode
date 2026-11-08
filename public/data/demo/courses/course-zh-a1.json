@@ -1,0 +1,732 @@
+{
+  "id": "course-zh-a1",
+  "title": "Китайский A1: первые шаги",
+  "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы.",
+  "languagePair": {
+    "known": "ru",
+    "learning": "zh"
+  },
+  "practiceSettings": null,
+  "published": true,
+  "authoring": null,
+  "updatedAt": "2026-06-14T10:00:00.000Z",
+  "programs": [
+    {
+      "id": "course-zh-a1-program",
+      "title": "Китайский A1: первые шаги",
+      "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы.",
+      "order": 0,
+      "prerequisiteProgramIds": [],
+      "lessons": [
+        {
+          "id": "lesson-zh-greetings",
+          "title": "Урок 1: Приветствия",
+          "description": "你好, 谢谢, 再见 — узнавание и сопоставление.",
+          "order": 0,
+          "prerequisiteLessonIds": [],
+          "scenarios": [
+            {
+              "id": "scenario-zh-greetings",
+              "title": "Приветствия (китайский)",
+              "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "zh"
+              },
+              "published": true,
+              "cards": [
+                {
+                  "id": "select-zh-1",
+                  "kind": "select",
+                  "title": "Приветствие (китайский)",
+                  "courseId": "course-zh-conversation",
+                  "lessonId": "lesson-zh-review",
+                  "scenarioId": "scenario-zh-review",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "direction": "known-to-learning",
+                  "promptKnown": "Как сказать «Привет» по-китайски?",
+                  "promptLexeme": {
+                    "primary": "你好",
+                    "script": "hani",
+                    "pinyin": "nǐ hǎo",
+                    "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                    "palladius": "ни хао",
+                    "ipa": "ni˨˩˦ xaʊ˨˩˦",
+                    "glossKnown": "Привет"
+                  },
+                  "optionsLearning": [
+                    "你好",
+                    "谢谢",
+                    "再见",
+                    "请"
+                  ],
+                  "optionsKnown": [
+                    "Привет",
+                    "Спасибо",
+                    "До свидания",
+                    "Пожалуйста"
+                  ],
+                  "optionsLexemes": [
+                    {
+                      "primary": "你好",
+                      "script": "hani",
+                      "pinyin": "nǐ hǎo",
+                      "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                      "palladius": "ни хао",
+                      "ipa": "ni˨˩˦ xaʊ˨˩˦",
+                      "glossKnown": "Привет"
+                    },
+                    {
+                      "primary": "谢谢",
+                      "script": "hani",
+                      "pinyin": "xièxie",
+                      "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+                      "palladius": "сие сие",
+                      "ipa": "ɕiɛ˥˩ ɕiɛ",
+                      "glossKnown": "Спасибо"
+                    },
+                    {
+                      "primary": "再见",
+                      "script": "hani",
+                      "pinyin": "zàijiàn",
+                      "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
+                      "palladius": "цзай цзянь",
+                      "ipa": "tsai˥˩ tɕiɛn˥˩",
+                      "glossKnown": "До свидания"
+                    },
+                    {
+                      "primary": "请",
+                      "script": "hani",
+                      "pinyin": "qǐng",
+                      "zhuyin": "ㄑㄧㄥˇ",
+                      "palladius": "цин",
+                      "ipa": "tɕʰiŋ˨˩˦",
+                      "glossKnown": "Пожалуйста"
+                    }
+                  ],
+                  "correctIndex": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                },
+                {
+                  "id": "memory-zh-1",
+                  "kind": "memory",
+                  "title": "Пары слов (китайский)",
+                  "courseId": "course-zh-conversation",
+                  "lessonId": "lesson-zh-review",
+                  "scenarioId": "scenario-zh-review",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "promptKnown": "Найдите пары: русский — китайский",
+                  "promptLexeme": {
+                    "primary": "配对",
+                    "script": "hani",
+                    "pinyin": "pèiduì",
+                    "zhuyin": "ㄆㄟˋ ㄉㄨㄟˋ",
+                    "palladius": "пэй дуй",
+                    "ipa": "pʰei˥˩ twei˥˩"
+                  },
+                  "pairs": [
+                    {
+                      "known": "Привет",
+                      "learning": "你好",
+                      "learningLexeme": {
+                        "primary": "你好",
+                        "script": "hani",
+                        "pinyin": "nǐ hǎo",
+                        "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                        "palladius": "ни хао",
+                        "ipa": "ni˨˩˦ xaʊ˨˩˦"
+                      }
+                    },
+                    {
+                      "known": "Спасибо",
+                      "learning": "谢谢",
+                      "learningLexeme": {
+                        "primary": "谢谢",
+                        "script": "hani",
+                        "pinyin": "xièxie",
+                        "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+                        "palladius": "сие сие",
+                        "ipa": "ɕiɛ˥˩ ɕiɛ"
+                      }
+                    },
+                    {
+                      "known": "До свидания",
+                      "learning": "再见",
+                      "learningLexeme": {
+                        "primary": "再见",
+                        "script": "hani",
+                        "pinyin": "zàijiàn",
+                        "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
+                        "palladius": "цзай цзянь",
+                        "ipa": "tsai˥˩ tɕiɛn˥˩"
+                      }
+                    }
+                  ],
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                },
+                {
+                  "id": "symbol-zh-1",
+                  "kind": "symbol",
+                  "title": "Иероглифы приветствия",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-quick-start",
+                  "scenarioId": "scenario-zh-greetings",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "direction": "known-to-learning",
+                  "promptKnown": "Выберите иероглиф слова «Привет»",
+                  "promptLexeme": {
+                    "primary": "Привет",
+                    "script": "latn",
+                    "glossKnown": "Привет"
+                  },
+                  "symbols": [
+                    "你好",
+                    "谢谢",
+                    "再见",
+                    "请"
+                  ],
+                  "optionsKnown": [
+                    "Привет",
+                    "Спасибо",
+                    "До свидания",
+                    "Пожалуйста"
+                  ],
+                  "symbolLexemes": [
+                    {
+                      "primary": "你好",
+                      "script": "hani",
+                      "pinyin": "nǐ hǎo",
+                      "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                      "palladius": "ни хао",
+                      "ipa": "ni˨˩˦ xaʊ˨˩˦",
+                      "glossKnown": "Привет"
+                    },
+                    {
+                      "primary": "谢谢",
+                      "script": "hani",
+                      "pinyin": "xièxie",
+                      "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+                      "palladius": "сие сие",
+                      "ipa": "ɕiɛ˥˩ ɕiɛ",
+                      "glossKnown": "Спасибо"
+                    },
+                    {
+                      "primary": "再见",
+                      "script": "hani",
+                      "pinyin": "zàijiàn",
+                      "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
+                      "palladius": "цзай цзянь",
+                      "ipa": "tsai˥˩ tɕiɛn˥˩",
+                      "glossKnown": "До свидания"
+                    },
+                    {
+                      "primary": "请",
+                      "script": "hani",
+                      "pinyin": "qǐng",
+                      "zhuyin": "ㄑㄧㄥˇ",
+                      "palladius": "цин",
+                      "ipa": "tɕʰiŋ˨˩˦",
+                      "glossKnown": "Пожалуйста"
+                    }
+                  ],
+                  "correctIndex": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                },
+                {
+                  "id": "sound-zh-1",
+                  "kind": "sound",
+                  "title": "Звук (китайский)",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-quick-start",
+                  "scenarioId": "scenario-zh-greetings",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "direction": "known-to-learning",
+                  "promptKnown": "Как переводится услышанное слово?",
+                  "promptLexeme": {
+                    "primary": "你好",
+                    "script": "hani",
+                    "pinyin": "nǐ hǎo",
+                    "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                    "palladius": "ни хао",
+                    "ipa": "ni˨˩˦ xaʊ˨˩˦"
+                  },
+                  "audioLabelLearning": "你好",
+                  "optionsKnown": [
+                    "Привет",
+                    "Спасибо",
+                    "До свидания",
+                    "Пожалуйста"
+                  ],
+                  "correctIndex": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-zh-phonetics",
+          "title": "Урок 2: Пиньинь и тоны",
+          "description": "Ввод пиньинь, IPA и выбор тона.",
+          "order": 1,
+          "prerequisiteLessonIds": [
+            "lesson-zh-greetings"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-zh-phonetics",
+              "title": "Фонетика: пиньинь и тоны",
+              "description": "3 карточки: пиньинь, IPA и тоны на примере 你好 и 妈.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "zh"
+              },
+              "published": true,
+              "cards": [
+                {
+                  "id": "keyboard-zh-pinyin-1",
+                  "kind": "keyboard",
+                  "title": "你好 — ввод пиньинь",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-phonetics",
+                  "scenarioId": "scenario-zh-phonetics",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "direction": "known-to-learning",
+                  "promptKnown": "Введите пиньинь для «你好»",
+                  "promptLexeme": {
+                    "primary": "你好",
+                    "script": "hani",
+                    "pinyin": "nǐ hǎo",
+                    "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                    "palladius": "ни хао",
+                    "ipa": "ni˨˩˦ xaʊ˨˩˦"
+                  },
+                  "acceptedAnswersKnown": [
+                    "nǐ hǎo",
+                    "ni hao"
+                  ],
+                  "answerMode": "pinyin",
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                },
+                {
+                  "id": "keyboard-zh-ipa-1",
+                  "kind": "keyboard",
+                  "title": "你好 (IPA из пиньинь)",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-phonetics",
+                  "scenarioId": "scenario-zh-phonetics",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "direction": "known-to-learning",
+                  "promptKnown": "Введите IPA для «你好» (nǐ hǎo)",
+                  "promptLexeme": {
+                    "primary": "你好",
+                    "script": "hani",
+                    "pinyin": "nǐ hǎo",
+                    "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                    "palladius": "ни хао",
+                    "ipa": "ni˨˩˦ xaʊ˨˩˦"
+                  },
+                  "acceptedAnswersKnown": [
+                    "ni˨˩˦ xaʊ˨˩˦"
+                  ],
+                  "answerMode": "ipa",
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                },
+                {
+                  "id": "tone-ma-1",
+                  "kind": "tone",
+                  "title": "Тон: 妈",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-phonetics",
+                  "scenarioId": "scenario-zh-phonetics",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "direction": "known-to-learning",
+                  "promptKnown": "Какой тон у иероглифа «妈»?",
+                  "promptLexeme": {
+                    "primary": "妈",
+                    "script": "hani",
+                    "pinyin": "mā",
+                    "zhuyin": "ㄇㄚ",
+                    "palladius": "ма",
+                    "ipa": "ma˥"
+                  },
+                  "syllableBase": "ma",
+                  "toneOptions": [
+                    1,
+                    2,
+                    3,
+                    4
+                  ],
+                  "correctIndex": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-zh-characters",
+          "title": "Урок 3: Иероглифы",
+          "description": "Черты, радикалы и чтение 行.",
+          "order": 2,
+          "prerequisiteLessonIds": [
+            "lesson-zh-phonetics"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-zh-characters",
+              "title": "Иероглифы и чтение",
+              "description": "7 карточек: черты 人 и 好, ввод перевода, полифония 行 в 银行.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "zh"
+              },
+              "published": true,
+              "cards": [
+                {
+                  "id": "draw-nihao-1",
+                  "kind": "draw",
+                  "title": "你好 — приветствие",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-characters",
+                  "scenarioId": "scenario-zh-characters",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "promptKnown": "Нарисуйте «你好»",
+                  "referenceHintKnown": "Привет",
+                  "meaningKnown": "Привет",
+                  "targetCharacter": "你好",
+                  "promptLexeme": {
+                    "primary": "你好",
+                    "script": "hani",
+                    "pinyin": "nǐ hǎo",
+                    "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                    "palladius": "ни хао",
+                    "ipa": "ni˨˩˦ xaʊ˨˩˦"
+                  },
+                  "characterTargets": [
+                    {
+                      "character": "你",
+                      "pinyin": "nǐ"
+                    },
+                    {
+                      "character": "好",
+                      "pinyin": "hǎo",
+                      "radicalHint": "女 + 子"
+                    }
+                  ],
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                },
+                {
+                  "id": "draw-henbang-1",
+                  "kind": "draw",
+                  "title": "很棒 — отлично",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-characters",
+                  "scenarioId": "scenario-zh-characters",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "promptKnown": "Нарисуйте «很棒»",
+                  "referenceHintKnown": "Отлично",
+                  "meaningKnown": "Отлично",
+                  "targetCharacter": "很棒",
+                  "promptLexeme": {
+                    "primary": "很棒",
+                    "script": "hani",
+                    "pinyin": "hěn bàng",
+                    "zhuyin": "ㄏㄣˇ ㄅㄤˋ",
+                    "palladius": "хэнь бан",
+                    "ipa": "xən˨˩˦ paŋ˥˩"
+                  },
+                  "characterTargets": [
+                    {
+                      "character": "很",
+                      "pinyin": "hěn",
+                      "radicalHint": "彳 + 艮"
+                    },
+                    {
+                      "character": "棒",
+                      "pinyin": "bàng",
+                      "radicalHint": "木 + 奉"
+                    }
+                  ],
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                },
+                {
+                  "id": "draw-bowuguan-1",
+                  "kind": "draw",
+                  "title": "博物馆 — музей",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-characters",
+                  "scenarioId": "scenario-zh-characters",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "promptKnown": "Нарисуйте «博物馆»",
+                  "referenceHintKnown": "Музей",
+                  "meaningKnown": "Музей",
+                  "targetCharacter": "博物馆",
+                  "promptLexeme": {
+                    "primary": "博物馆",
+                    "script": "hani",
+                    "pinyin": "bówùguǎn",
+                    "zhuyin": "ㄅㄛˊ ㄨˋ ㄍㄨㄢˇ",
+                    "palladius": "бо угуань",
+                    "ipa": "pwɔ˧˥ u˥˩ kwan˨˩˦"
+                  },
+                  "characterTargets": [
+                    {
+                      "character": "博",
+                      "pinyin": "bó",
+                      "radicalHint": "十 + 尃"
+                    },
+                    {
+                      "character": "物",
+                      "pinyin": "wù",
+                      "radicalHint": "牛 + 勿"
+                    },
+                    {
+                      "character": "馆",
+                      "pinyin": "guǎn",
+                      "radicalHint": "饣 + 官"
+                    }
+                  ],
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                },
+                {
+                  "id": "draw-ren-1",
+                  "kind": "draw",
+                  "title": "Иероглиф 人",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-characters",
+                  "scenarioId": "scenario-zh-characters",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "promptKnown": "Нарисуйте иероглиф «人» (человек)",
+                  "referenceHintKnown": "человек",
+                  "meaningKnown": "человек",
+                  "practiceMode": "stroke-order",
+                  "targetCharacter": "人",
+                  "promptLexeme": {
+                    "primary": "人",
+                    "script": "hani",
+                    "pinyin": "rén",
+                    "zhuyin": "ㄖㄣˊ",
+                    "palladius": "жэнь",
+                    "ipa": "ʐən˧˥"
+                  },
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                },
+                {
+                  "id": "draw-hao-1",
+                  "kind": "draw",
+                  "title": "Иероглиф 好",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-characters",
+                  "scenarioId": "scenario-zh-characters",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "promptKnown": "Нарисуйте иероглиф «好» (хорошо)",
+                  "referenceHintKnown": "хорошо",
+                  "meaningKnown": "хорошо",
+                  "practiceMode": "radicals",
+                  "targetCharacter": "好",
+                  "radicalHint": "女 + 子",
+                  "promptLexeme": {
+                    "primary": "好",
+                    "script": "hani",
+                    "pinyin": "hǎo",
+                    "zhuyin": "ㄏㄠˇ",
+                    "palladius": "хао",
+                    "ipa": "xaʊ˨˩˦"
+                  },
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                },
+                {
+                  "id": "keyboard-zh-1",
+                  "kind": "keyboard",
+                  "title": "Ввод перевода (китайский)",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-characters",
+                  "scenarioId": "scenario-zh-characters",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "direction": "known-to-learning",
+                  "promptKnown": "Введите перевод «你好» на русский",
+                  "promptLexeme": {
+                    "primary": "你好",
+                    "script": "hani",
+                    "pinyin": "nǐ hǎo",
+                    "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                    "palladius": "ни хао",
+                    "ipa": "ni˨˩˦ xaʊ˨˩˦"
+                  },
+                  "acceptedAnswersKnown": [
+                    "Привет",
+                    "привет"
+                  ],
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                },
+                {
+                  "id": "reading-xing-1",
+                  "kind": "reading",
+                  "title": "Полифония: 行",
+                  "courseId": "course-zh-a1",
+                  "lessonId": "lesson-zh-characters",
+                  "scenarioId": "scenario-zh-characters",
+                  "appearance": {
+                    "theme": "azure-blue",
+                    "fontSize": "md"
+                  },
+                  "direction": "known-to-learning",
+                  "promptKnown": "Как читается «银行»? (иероглиф «行» здесь читается не как xíng)",
+                  "promptLexeme": {
+                    "primary": "银行",
+                    "script": "hani",
+                    "pinyin": "yínháng",
+                    "zhuyin": "ㄧㄣˊ ㄏㄤˊ",
+                    "palladius": "инь хан",
+                    "ipa": "in˧˥ xaŋ˧˥",
+                    "glossKnown": "банк"
+                  },
+                  "optionsLearning": [
+                    "银行",
+                    "yínxíng"
+                  ],
+                  "optionsKnown": [
+                    "инь хан — банк",
+                    "неверное чтение «行» как xíng"
+                  ],
+                  "optionsLexemes": [
+                    {
+                      "primary": "银行",
+                      "script": "hani",
+                      "pinyin": "yínháng",
+                      "zhuyin": "ㄧㄣˊ ㄏㄤˊ",
+                      "palladius": "инь хан",
+                      "ipa": "in˧˥ xaŋ˧˥",
+                      "glossKnown": "инь хан — банк"
+                    },
+                    {
+                      "primary": "yínxíng",
+                      "script": "latn",
+                      "pinyin": "yínxíng",
+                      "glossKnown": "неверное чтение «行» как xíng"
+                    }
+                  ],
+                  "correctIndex": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

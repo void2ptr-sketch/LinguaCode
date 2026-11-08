@@ -151,6 +151,22 @@ export class CoursesApiService implements CourseCatalogPort {
   }
 
   /**
+   * Retrieves a course with its programs and lessons for the journey map.
+   *
+   * @remarks
+   * Uses the `/courses/{id}/journey` endpoint which returns the full
+   * course structure with programs and lessons resolved.
+   *
+   * @param courseId - The course ID.
+   * @returns The course with programs and lessons.
+   */
+  getJourney(courseId: string): Promise<CourseWithPrograms> {
+    return firstValueFrom(
+      this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}/journey`)),
+    ).then((response) => response.data);
+  }
+
+  /**
    * Creates a new course.
    *
    * @param payload - The course write payload.

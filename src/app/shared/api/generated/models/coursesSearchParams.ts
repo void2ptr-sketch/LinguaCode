@@ -12,5 +12,6 @@ export type CoursesSearchParams = {
   knownLanguage?: string;
   learningLanguage?: string;
   languagePairId?: number;
+  languagePairIds?: number[];
   pageable: Pageable;
 };

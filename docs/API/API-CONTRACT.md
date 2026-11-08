@@ -101,9 +101,10 @@ type LanguagePairDto = {
 | ------ | ---------------------------------- | ------------------------------------------ |
 | GET    | `/courses/search`                  | Поиск + пагинация                          |
 | GET    | `/courses/:id`                     | Курс с уроками (`CourseWithLessons`)       |
+| GET    | `/courses/:id/journey`             | Курс с программами и уроками для карты    |
 | GET    | `/courses/:id/bundle`              | Экспорт-пакет (`CourseExportBundle`)       |
 | GET    | `/courses/by-scenario/:scenarioId` | Курсы, использующие сценарий               |
-| GET    | `/scorm/export/courses/:id`        | Экспорт в SCORM/xAPI (`ScormExportBundle`) |
+| GET    | `/courses/scorm/export/courses/:id`        | Экспорт в SCORM/xAPI (`ScormExportBundle`) |
 | POST   | `/courses`                         | Создание курса (201)                       |
 | PUT    | `/courses/:id`                     | Обновление курса (403 на чужой)            |
 | DELETE | `/courses/:id`                     | Удаление курса                             |

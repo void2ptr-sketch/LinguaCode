@@ -1,0 +1,589 @@
+{
+  "id": "course-ru-perl-db",
+  "title": "Программирование на Perl для работы с базами данных",
+  "description": "Полный курс по работе с базами данных в Perl: DBI, Oracle, PostgreSQL, транзакции, оптимизация.",
+  "languagePair": {
+    "known": "ru",
+    "learning": "perl"
+  },
+  "practiceSettings": {
+    "mode": "open",
+    "requireLessonForScenarios": false,
+    "enforceLessonPrerequisites": false,
+    "allowDifficultyFilter": true
+  },
+  "published": true,
+  "authoring": {
+    "idea": ""
+  },
+  "updatedAt": "2026-06-28T00:00:00.000Z",
+  "programs": [
+    {
+      "id": "course-ru-perl-db-program",
+      "title": "Программирование на Perl для работы с базами данных",
+      "description": "Полный курс по работе с базами данных в Perl: DBI, Oracle, PostgreSQL, транзакции, оптимизация.",
+      "order": 0,
+      "prerequisiteProgramIds": [],
+      "lessons": [
+        {
+          "id": "lesson-perl-db-01",
+          "title": "Введение в DBI",
+          "description": "Обзор DBI и DBD-драйверов, установка, настройка окружения.",
+          "order": 0,
+          "prerequisiteLessonIds": [],
+          "scenarios": [
+            {
+              "id": "scenario-perl-db-s01-q01",
+              "title": "Что такое DBI и DBD?",
+              "description": "Тема курса Perl и БД (Модуль 1: Введение в DBI). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s01-q01-c1",
+                "card-perl-db-s01-q01-c2",
+                "card-perl-db-s01-q01-c3",
+                "card-perl-db-s01-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s01-q02",
+              "title": "Установка DBI и драйверов",
+              "description": "Тема курса Perl и БД (Модуль 1: Введение в DBI). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s01-q02-c1",
+                "card-perl-db-s01-q02-c2",
+                "card-perl-db-s01-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s01-q03",
+              "title": "Подключение к Oracle и Postgres",
+              "description": "Тема курса Perl и БД (Модуль 1: Введение в DBI). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s01-q03-c1",
+                "card-perl-db-s01-q03-c2",
+                "card-perl-db-s01-q03-c3",
+                "card-perl-db-s01-q03-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-db-02",
+          "title": "Базовые операции CRUD",
+          "description": "SELECT, INSERT, UPDATE, DELETE через DBI.",
+          "order": 1,
+          "prerequisiteLessonIds": [
+            "lesson-perl-db-01"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-db-s02-q01",
+              "title": "Выполнение запросов через DBI",
+              "description": "Тема курса Perl и БД (Модуль 2: Базовые операции CRUD). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s02-q01-c1",
+                "card-perl-db-s02-q01-c2",
+                "card-perl-db-s02-q01-c3",
+                "card-perl-db-s02-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s02-q02",
+              "title": "Параметризованные запросы",
+              "description": "Тема курса Perl и БД (Модуль 2: Базовые операции CRUD). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s02-q02-c1",
+                "card-perl-db-s02-q02-c2",
+                "card-perl-db-s02-q02-c3",
+                "card-perl-db-s02-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s02-q03",
+              "title": "Работа с результатами",
+              "description": "Тема курса Perl и БД (Модуль 2: Базовые операции CRUD). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s02-q03-c1",
+                "card-perl-db-s02-q03-c2",
+                "card-perl-db-s02-q03-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s02-q04",
+              "title": "Сравнение Oracle и Postgres",
+              "description": "Тема курса Perl и БД (Модуль 2: Базовые операции CRUD). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s02-q04-c1",
+                "card-perl-db-s02-q04-c2",
+                "card-perl-db-s02-q04-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-db-03",
+          "title": "Транзакции и обработка ошибок",
+          "description": "Управление транзакциями, обработка ошибок, блокировки.",
+          "order": 2,
+          "prerequisiteLessonIds": [
+            "lesson-perl-db-02"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-db-s03-q01",
+              "title": "Управление транзакциями",
+              "description": "Тема курса Perl и БД (Модуль 3: Транзакции и обработка ошибок). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s03-q01-c1",
+                "card-perl-db-s03-q01-c2",
+                "card-perl-db-s03-q01-c3",
+                "card-perl-db-s03-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s03-q02",
+              "title": "Обработка ошибок",
+              "description": "Тема курса Perl и БД (Модуль 3: Транзакции и обработка ошибок). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s03-q02-c1",
+                "card-perl-db-s03-q02-c2",
+                "card-perl-db-s03-q02-c3",
+                "card-perl-db-s03-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s03-q03",
+              "title": "Блокировки и уровни изоляции",
+              "description": "Тема курса Perl и БД (Модуль 3: Транзакции и обработка ошибок). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s03-q03-c1",
+                "card-perl-db-s03-q03-c2",
+                "card-perl-db-s03-q03-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-db-04",
+          "title": "Продвинутые выборки и оптимизация",
+          "description": "Курсоры, пагинация, массовые операции, EXPLAIN.",
+          "order": 3,
+          "prerequisiteLessonIds": [
+            "lesson-perl-db-03"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-db-s04-q01",
+              "title": "Курсоры и постраничная выборка",
+              "description": "Тема курса Perl и БД (Модуль 4: Продвинутые выборки и оптимизация). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s04-q01-c1",
+                "card-perl-db-s04-q01-c2",
+                "card-perl-db-s04-q01-c3",
+                "card-perl-db-s04-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s04-q02",
+              "title": "Массовое чтение и запись",
+              "description": "Тема курса Perl и БД (Модуль 4: Продвинутые выборки и оптимизация). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s04-q02-c1",
+                "card-perl-db-s04-q02-c2",
+                "card-perl-db-s04-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s04-q03",
+              "title": "Индексы и план запроса",
+              "description": "Тема курса Perl и БД (Модуль 4: Продвинутые выборки и оптимизация). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s04-q03-c1",
+                "card-perl-db-s04-q03-c2",
+                "card-perl-db-s04-q03-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s04-q04",
+              "title": "Особенности типов данных",
+              "description": "Тема курса Perl и БД (Модуль 4: Продвинутые выборки и оптимизация). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s04-q04-c1",
+                "card-perl-db-s04-q04-c2",
+                "card-perl-db-s04-q04-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-db-05",
+          "title": "Специфика Oracle",
+          "description": "PL/SQL, хранимые процедуры, REF CURSOR.",
+          "order": 4,
+          "prerequisiteLessonIds": [
+            "lesson-perl-db-04"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-db-s05-q01",
+              "title": "Вызов хранимых процедур PL/SQL",
+              "description": "Тема курса Perl и БД (Модуль 5: Специфика Oracle). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s05-q01-c1",
+                "card-perl-db-s05-q01-c2",
+                "card-perl-db-s05-q01-c3",
+                "card-perl-db-s05-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s05-q02",
+              "title": "Работа с OUT-параметрами и REF CURSOR",
+              "description": "Тема курса Perl и БД (Модуль 5: Специфика Oracle). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s05-q02-c1",
+                "card-perl-db-s05-q02-c2",
+                "card-perl-db-s05-q02-c3",
+                "card-perl-db-s05-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s05-q03",
+              "title": "Обработка исключений на стороне БД",
+              "description": "Тема курса Perl и БД (Модуль 5: Специфика Oracle). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s05-q03-c1",
+                "card-perl-db-s05-q03-c2",
+                "card-perl-db-s05-q03-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s05-q04",
+              "title": "Оптимизация для Oracle",
+              "description": "Тема курса Perl и БД (Модуль 5: Специфика Oracle). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s05-q04-c1",
+                "card-perl-db-s05-q04-c2",
+                "card-perl-db-s05-q04-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-db-06",
+          "title": "Специфика Postgres",
+          "description": "JSONB, массивы, оконные функции.",
+          "order": 5,
+          "prerequisiteLessonIds": [
+            "lesson-perl-db-05"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-db-s06-q01",
+              "title": "Работа с JSONB и массивами",
+              "description": "Тема курса Perl и БД (Модуль 6: Специфика Postgres). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s06-q01-c1",
+                "card-perl-db-s06-q01-c2",
+                "card-perl-db-s06-q01-c3",
+                "card-perl-db-s06-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s06-q02",
+              "title": "Оконные функции и агрегации",
+              "description": "Тема курса Perl и БД (Модуль 6: Специфика Postgres). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s06-q02-c1",
+                "card-perl-db-s06-q02-c2",
+                "card-perl-db-s06-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s06-q03",
+              "title": "Миграции и управление схемой",
+              "description": "Тема курса Perl и БД (Модуль 6: Специфика Postgres). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s06-q03-c1",
+                "card-perl-db-s06-q03-c2",
+                "card-perl-db-s06-q03-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-db-07",
+          "title": "Архитектура и интеграция",
+          "description": "Пулы соединений, логирование, безопасность, тестирование.",
+          "order": 6,
+          "prerequisiteLessonIds": [
+            "lesson-perl-db-06"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-db-s07-q01",
+              "title": "Пулы соединений",
+              "description": "Тема курса Perl и БД (Модуль 7: Архитектура и интеграция). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s07-q01-c1",
+                "card-perl-db-s07-q01-c2",
+                "card-perl-db-s07-q01-c3",
+                "card-perl-db-s07-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s07-q02",
+              "title": "Логирование и мониторинг",
+              "description": "Тема курса Perl и БД (Модуль 7: Архитектура и интеграция). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s07-q02-c1",
+                "card-perl-db-s07-q02-c2",
+                "card-perl-db-s07-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s07-q03",
+              "title": "Безопасность и тестирование",
+              "description": "Тема курса Perl и БД (Модуль 7: Архитектура и интеграция). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s07-q03-c1",
+                "card-perl-db-s07-q03-c2",
+                "card-perl-db-s07-q03-c3",
+                "card-perl-db-s07-q03-code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lesson-perl-db-08",
+          "title": "Итоговый проект",
+          "description": "ETL-процесс, выбор СУБД, code review.",
+          "order": 7,
+          "prerequisiteLessonIds": [
+            "lesson-perl-db-07"
+          ],
+          "scenarios": [
+            {
+              "id": "scenario-perl-db-s08-q01",
+              "title": "Проектирование ETL-процесса",
+              "description": "Тема курса Perl и БД (Модуль 8: Итоговый проект). Карточек: 4.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s08-q01-c1",
+                "card-perl-db-s08-q01-c2",
+                "card-perl-db-s08-q01-c3",
+                "card-perl-db-s08-q01-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s08-q02",
+              "title": "Выбор СУБД под задачу",
+              "description": "Тема курса Perl и БД (Модуль 8: Итоговый проект). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s08-q02-c1",
+                "card-perl-db-s08-q02-c2",
+                "card-perl-db-s08-q02-code"
+              ]
+            },
+            {
+              "id": "scenario-perl-db-s08-q03",
+              "title": "Code review и Perl Best Practices",
+              "description": "Тема курса Perl и БД (Модуль 8: Итоговый проект). Карточек: 3.",
+              "order": 0,
+              "languagePair": {
+                "known": "ru",
+                "learning": "perl"
+              },
+              "published": true,
+              "cards": [],
+              "_cardIds": [
+                "card-perl-db-s08-q03-c1",
+                "card-perl-db-s08-q03-c2",
+                "card-perl-db-s08-q03-code"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

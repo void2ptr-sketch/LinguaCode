@@ -81,7 +81,7 @@ describe('CourseSearchService', () => {
   });
 
   describe('getById', () => {
-    it('delegates to CoursesApiService.getById with numeric ID', async () => {
+    it('delegates to CoursesApiService.getJourney with numeric ID', async () => {
       const mockCourse = {
         id: 'course-1',
         title: 'Test',
@@ -91,10 +91,10 @@ describe('CourseSearchService', () => {
         programIds: [],
         published: true,
         updatedAt: new Date().toISOString(),
-        programs: [],
+        programs: [{ id: 'prog-1', courseId: '1', title: 'P', description: '', order: 0, updatedAt: '', lessons: [] }],
       };
       const spy = vi
-        .spyOn(apiService, 'getById')
+        .spyOn(apiService, 'getJourney')
         .mockResolvedValue(mockCourse as CourseWithPrograms);
 
       await service.getById('1');
@@ -102,7 +102,7 @@ describe('CourseSearchService', () => {
       expect(spy).toHaveBeenCalledWith('1');
     });
 
-    it('resolves string ID and delegates to CoursesApiService.getById', async () => {
+    it('resolves string ID and delegates to CoursesApiService.getJourney', async () => {
       const mockCourse = {
         id: 'course-1',
         title: 'Test',
@@ -112,10 +112,10 @@ describe('CourseSearchService', () => {
         programIds: [],
         published: true,
         updatedAt: new Date().toISOString(),
-        programs: [],
+        programs: [{ id: 'prog-1', courseId: '42', title: 'P', description: '', order: 0, updatedAt: '', lessons: [] }],
       };
-      const getByIdSpy = vi
-        .spyOn(apiService, 'getById')
+      const getJourneySpy = vi
+        .spyOn(apiService, 'getJourney')
         .mockResolvedValue(mockCourse as CourseWithPrograms);
 
       // Mock resolveCourseId to return a numeric ID
@@ -124,7 +124,7 @@ describe('CourseSearchService', () => {
       await service.getById('course-1');
 
       expect(resolveSpy).toHaveBeenCalledWith('course-1');
-      expect(getByIdSpy).toHaveBeenCalledWith('42');
+      expect(getJourneySpy).toHaveBeenCalledWith('42');
     });
 
     it('throws when string ID cannot be resolved', async () => {

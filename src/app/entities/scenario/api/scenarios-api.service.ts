@@ -70,8 +70,15 @@ export class ScenariosApiService implements ScenarioCatalogPort {
    */
   getById(scenarioId: string): Promise<Scenario> {
     return firstValueFrom(
-      this.http.get<ApiResponse<Scenario>>(buildApiUrl(`/scenarios/${scenarioId}`)),
-    ).then((response) => response.data);
+      this.http.get<ApiResponse<Record<string, unknown>>>(buildApiUrl(`/scenarios/${scenarioId}`)),
+    ).then((response) => {
+      const raw = response.data;
+      // Бэкенд возвращает cardSource как JSON-строку — парсим в объект
+      if (typeof raw['cardSource'] === 'string') {
+        (raw as Record<string, unknown>)['cardSource'] = JSON.parse(raw['cardSource'] as string);
+      }
+      return raw as unknown as Scenario;
+    });
   }
 
   /**
