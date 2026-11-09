@@ -116,6 +116,10 @@
       "description": "Работа с курсами в SCORM/xAPI формате"
     },
     {
+      "name": "Scenario Batch",
+      "description": "Пакетные операции с сценариями"
+    },
+    {
       "name": "Auth",
       "description": "Операции аутентификации"
     }
@@ -1123,6 +1127,58 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScenarioResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scenarios/batch/retrieve": {
+      "post": {
+        "tags": [
+          "Scenario Batch"
+        ],
+        "summary": "Batch retrieve scenarios",
+        "description": "Retrieves multiple scenarios by their IDs in a single request",
+        "operationId": "scenarios.batchRetrieve",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScenarioBatchRetrieveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Scenarios found (may include notFound IDs)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScenarioBatchRetrieveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScenarioBatchRetrieveResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScenarioBatchRetrieveResponse"
                 }
               }
             }
@@ -5308,6 +5364,14 @@
           "cardSource": {
             "type": "string"
           },
+          "programId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int64"
+          },
           "published": {
             "type": "boolean"
           },
@@ -5338,7 +5402,43 @@
           },
           "cardCount": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Количество карточек в сценарии"
+          }
+        }
+      },
+      "ScenarioBatchRetrieveRequest": {
+        "type": "object",
+        "description": "Batch scenario retrieval request",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "description": "Array of scenario IDs to retrieve",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "ids"
+        ]
+      },
+      "ScenarioBatchRetrieveResponse": {
+        "type": "object",
+        "description": "Batch scenario retrieval response",
+        "properties": {
+          "found": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Scenario"
+            }
+          },
+          "notFound": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -5356,6 +5456,14 @@
           },
           "cardSource": {
             "type": "string"
+          },
+          "programId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int64"
           },
           "languagePairId": {
             "type": "integer",
@@ -5461,6 +5569,14 @@
           "cardSource": {
             "type": "string"
           },
+          "programId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int64"
+          },
           "languagePairId": {
             "type": "integer",
             "format": "int64"
@@ -5554,9 +5670,9 @@
         "properties": {
           "ids": {
             "type": "array",
+            "description": "Array of card IDs to retrieve",
             "items": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             },
             "minItems": 1
           }
@@ -5577,9 +5693,9 @@
           },
           "notFound": {
             "type": "array",
+            "description": "Array of card IDs that were not found",
             "items": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         }

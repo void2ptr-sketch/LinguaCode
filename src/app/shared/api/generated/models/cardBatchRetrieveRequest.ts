@@ -9,6 +9,9 @@
  * Batch card retrieval request
  */
 export interface CardBatchRetrieveRequest {
-  /** @minItems 1 */
-  ids: number[];
+  /**
+     * Array of card IDs to retrieve
+     * @minItems 1
+     */
+  ids: string[];
 }

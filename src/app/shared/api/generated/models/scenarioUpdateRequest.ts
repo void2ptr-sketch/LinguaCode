@@ -18,6 +18,8 @@ export interface ScenarioUpdateRequest {
   title?: string;
   scenarioDescription?: string;
   cardSource?: string;
+  programId?: number;
+  lessonId?: number;
   languagePairId?: number;
   published?: boolean;
   requiredTier: ScenarioUpdateRequestRequiredTier;

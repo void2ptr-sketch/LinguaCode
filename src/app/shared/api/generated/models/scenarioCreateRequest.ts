@@ -17,6 +17,8 @@ export interface ScenarioCreateRequest {
   title: string;
   scenarioDescription?: string;
   cardSource?: string;
+  programId?: number;
+  lessonId?: number;
   languagePairId?: number;
   requiredTier: ScenarioCreateRequestRequiredTier;
 }

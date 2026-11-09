@@ -14,6 +14,8 @@ export interface Scenario {
   title?: string;
   scenarioDescription?: string;
   cardSource?: string;
+  programId?: number;
+  lessonId?: number;
   published?: boolean;
   languagePairId?: number;
   authorId?: number;

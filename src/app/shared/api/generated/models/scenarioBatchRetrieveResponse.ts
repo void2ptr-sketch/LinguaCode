@@ -11,5 +11,5 @@ import type { Scenario } from './scenario';
  */
 export interface ScenarioBatchRetrieveResponse {
   found?: Scenario[];
-  notFound?: number[];
+  notFound?: string[];
 }

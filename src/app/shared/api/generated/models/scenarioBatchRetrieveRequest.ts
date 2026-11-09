@@ -9,6 +9,9 @@
  * Batch scenario retrieval request
  */
 export interface ScenarioBatchRetrieveRequest {
-  /** @minItems 1 */
-  ids: number[];
+  /**
+     * Array of scenario IDs to retrieve
+     * @minItems 1
+     */
+  ids: string[];
 }
