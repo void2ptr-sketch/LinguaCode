@@ -20,6 +20,7 @@ import { normalizeScenario } from '../utils/scenario-card-source.utils';
 import type { ContentLanguage } from '../../card/model/card-index.types';
 import { LanguagePairsApiService } from '../../language-pair/api';
 import { UserStore } from '../../user/model/user.store';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 
 export type { ScenarioWritePayload } from '../repository/scenario-catalog.port';
 
@@ -35,6 +36,7 @@ export class ScenariosApiService implements ScenarioCatalogPort {
   private readonly http = inject(HttpClient);
   private readonly userStore = inject(UserStore);
   private readonly languagePairsApi = inject(LanguagePairsApiService);
+  private readonly logger = inject(AppLoggerService);
 
   /** Cache: languagePairId → { known, learning } resolved from `/language-pairs`. */
   private pairCache: Record<number, { known: ContentLanguage; learning: ContentLanguage }> = {};
@@ -157,17 +159,29 @@ export class ScenariosApiService implements ScenarioCatalogPort {
    * const scenarios = await scenariosApi.getByIdBatch(['scenario-1', 'scenario-2']);
    * ```
    */
-    getByIdBatch(scenarioIds: string[]): Promise<readonly Scenario[]> {
-      return firstValueFrom(
+    async getByIdBatch(scenarioIds: string[]): Promise<readonly Scenario[]> {
+      if (scenarioIds.length === 0) return [];
+
+      const { data } = await firstValueFrom(
         this.http.post<ApiResponse<unknown>>(
           buildApiUrl('/scenarios/batch/retrieve'),
           { ids: scenarioIds },
         ),
-      ).then((response) => {
-      const items = Array.isArray(response.data) ? response.data : [];
+      );
+
+      // Backend may return: [{...}, ...] or { data: [{...}, ...], total: N }
+      let items: unknown[];
+      if (Array.isArray(data)) {
+        items = data;
+      } else if (data && typeof data === 'object' && Array.isArray((data as Record<string, unknown>)['data'])) {
+        items = (data as Record<string, unknown>)['data'] as unknown[];
+      } else {
+        this.logger?.warn('[ScenariosApi] batch/retrieve returned unexpected shape', data);
+        items = [];
+      }
+
       return Promise.all(items.map((raw) => this.mapScenario(raw as Record<string, unknown>)));
-    });
-  }
+    }
 
   /**
    * Creates a new scenario.
