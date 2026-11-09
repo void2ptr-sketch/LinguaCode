@@ -169,12 +169,20 @@ export class ScenariosApiService implements ScenarioCatalogPort {
         ),
       );
 
-      // Backend may return: [{...}, ...] or { data: [{...}, ...], total: N }
+      // Backend may return: [{...}, ...] | { data: [{...}, ...] } | { found: [{...}], notFound: [...] }
       let items: unknown[];
       if (Array.isArray(data)) {
         items = data;
-      } else if (data && typeof data === 'object' && Array.isArray((data as Record<string, unknown>)['data'])) {
-        items = (data as Record<string, unknown>)['data'] as unknown[];
+      } else if (data && typeof data === 'object') {
+        const record = data as Record<string, unknown>;
+        if (Array.isArray(record['data'])) {
+          items = record['data'] as unknown[];
+        } else if (Array.isArray(record['found'])) {
+          items = record['found'] as unknown[];
+        } else {
+          this.logger?.warn('[ScenariosApi] batch/retrieve returned unexpected shape', data);
+          items = [];
+        }
       } else {
         this.logger?.warn('[ScenariosApi] batch/retrieve returned unexpected shape', data);
         items = [];
