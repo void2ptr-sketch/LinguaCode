@@ -7,6 +7,7 @@ import {
   OnInit,
   output,
   signal,
+  DestroyRef,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -50,6 +51,14 @@ let lastKnownScenarioPickerActiveLanguagePairId: string | null | undefined = nul
 export class ScenarioPickerComponent implements OnInit {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly userStore = inject(UserStore);
+  private readonly destroyRef = inject(DestroyRef);
+
+  /** Tracks component destruction to guard async emits (NG0953). */
+  private readonly destroyed = signal(false);
+
+  constructor() {
+    this.destroyRef.onDestroy(() => this.destroyed.set(true));
+  }
 
   /**
    * ID of the currently selected scenario.
@@ -205,11 +214,11 @@ export class ScenarioPickerComponent implements OnInit {
       } else if (hasCurrent) {
         const entry = filtered.find((item: ScenarioIndexEntry) => item.id === current);
         if (entry) {
-          this.scenarioLabelChange.emit(this.formatLabel(entry));
+          this.safeEmit(this.scenarioLabelChange, this.formatLabel(entry));
         }
       } else if (filtered.length === 0) {
-        this.selectedScenarioIdChange.emit('');
-        this.scenarioLabelChange.emit('');
+        this.safeEmit(this.selectedScenarioIdChange, '');
+        this.safeEmit(this.scenarioLabelChange, '');
       }
     } finally {
       this.loading.set(false);
@@ -222,8 +231,8 @@ export class ScenarioPickerComponent implements OnInit {
    * @param entry - The scenario index entry to pick.
    */
   pick(entry: ScenarioIndexEntry): void {
-    this.selectedScenarioIdChange.emit(entry.id);
-    this.scenarioLabelChange.emit(this.formatLabel(entry));
+    this.safeEmit(this.selectedScenarioIdChange, entry.id);
+    this.safeEmit(this.scenarioLabelChange, this.formatLabel(entry));
   }
 
   /**
@@ -260,6 +269,16 @@ export class ScenarioPickerComponent implements OnInit {
     this.pageIndex.set(event.pageIndex);
     this.pageSize.set(event.pageSize);
     void this.load();
+  }
+
+  /**
+   * Safely emits an output — no-op if the component is destroyed.
+   * Prevents NG0953 "Unexpected emit for destroyed OutputRef".
+   */
+  private safeEmit<T>(emitter: { emit(value: T): void }, value: T): void {
+    if (!this.destroyed()) {
+      emitter.emit(value);
+    }
   }
 
   /**

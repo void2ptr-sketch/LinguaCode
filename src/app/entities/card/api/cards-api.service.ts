@@ -5,6 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import type { Card, CardSearchCriteria, CardSearchPage } from '../model';
 import type { ApiResponse, ApiListResponse } from '../../../shared/api/api.types';
 import type { BackendCardDto } from '../model/card-backend-dto.types';
+import type { CardBatchRetrieveResponse } from '../../../shared/api/generated/models/cardBatchRetrieveResponse';
 import { CardBackendAdapter } from '../model/card-backend-adapter';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCardSearchParams } from './mock/cards-api.params.utils';
@@ -99,11 +100,14 @@ export class CardsApiService implements CardCatalogPort {
       return Promise.resolve([]);
     }
 
-    return firstValueFrom(
-      this.http.post<ApiResponse<BackendCardDto[]>>(buildApiUrl('/cards/batch/retrieve'), {
+    return firstValueFrom<CardBatchRetrieveResponse>(
+      this.http.post(buildApiUrl('/cards/batch/retrieve'), {
         ids: cardIds,
       }),
-    ).then((response) => CardBackendAdapter.toCards(response.data));
+    ).then((response) => {
+      const found = response.found ?? [];
+      return CardBackendAdapter.toCards(found as BackendCardDto[]);
+    });
   }
 
   /**

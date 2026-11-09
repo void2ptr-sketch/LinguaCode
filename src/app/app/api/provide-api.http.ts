@@ -14,11 +14,6 @@ import { scenariosApiMockInterceptor } from '../../entities/scenario/api/mock/sc
 import { coursesApiMockInterceptor } from '../../entities/course/api/mock/courses-api.mock.interceptor';
 import { programsApiMockInterceptor } from '../../entities/program/api/mock/programs-api.mock.interceptor';
 import { scormExportMockInterceptor } from '../../entities/course/api/mock/scorm-export.mock.interceptor';
-import {
-  languagePairsApiMockInterceptor,
-  languagesApiMockInterceptor,
-} from '../../entities/language-pair/api';
-import { authApiMockInterceptor } from '../../entities/auth/api';
 
 /**
  * Provides HTTP client configuration for the API layer.
@@ -30,16 +25,25 @@ import { authApiMockInterceptor } from '../../entities/auth/api';
  * @returns An `EnvironmentProviders` configuration for Angular's HTTP client.
  */
 export const provideApiHttp = () => {
+  // ── Mock lock: prevent accidental mock usage during backend integration ──
+  const mockFlags: Record<string, boolean> = {
+    useCardsApiMock: environment.useCardsApiMock,
+    useScenariosApiMock: environment.useScenariosApiMock,
+    useCoursesApiMock: environment.useCoursesApiMock,
+    useProgramsApiMock: environment.useProgramsApiMock,
+    useScormMock: environment.useScormMock,
+    useLanguagePairsApiMock: environment.useLanguagePairsApiMock,
+    useAuthApiMock: environment.useAuthApiMock,
+  };
+
+  const enabledMocks = Object.entries(mockFlags).filter(([, v]) => v);
+  if (enabledMocks.length > 0) {
+    const msg = `Mock API interceptors are ENABLED — backend integration in progress:\n  ${enabledMocks.map(([k]) => `  - ${k}`).join('\n  ')}`;
+    console.error('[LinguaCode] ' + msg);
+    throw new Error(msg);
+  }
+
   const interceptors = [
-    ...(environment.useCardsApiMock ? [cardsApiMockInterceptor] : []),
-    ...(environment.useScenariosApiMock ? [scenariosApiMockInterceptor] : []),
-    ...(environment.useCoursesApiMock ? [coursesApiMockInterceptor] : []),
-    ...(environment.useProgramsApiMock ? [programsApiMockInterceptor] : []),
-    ...(environment.useScormMock ? [scormExportMockInterceptor] : []),
-    ...(environment.useLanguagePairsApiMock
-      ? [languagePairsApiMockInterceptor, languagesApiMockInterceptor]
-      : []),
-    ...(environment.useAuthApiMock ? [authApiMockInterceptor] : []),
     offlineInterceptor,
     authRefreshInterceptor,
     authInterceptor,
