@@ -1,18 +1,11 @@
 /**
  * Окружение для разработки.
  *
- * Включает mock-интерсепторы для работы без бэкенда.
- * Данные загружаются из файлов в папке public/data/.
+ * Интеграция с реальным бэкендом (apiUrl).
+ * Mock-интерсепторы отключены — запросы идут к реальному бэкенду.
  *
- * Mock-интерсепторы:
- * - useCardsApiMock: true — использует ContentSeedRepository для карточек
- * - useScenariosApiMock: true — использует ContentSeedRepository для сценариев
- * - useCoursesApiMock: true — использует ContentSeedRepository для курсов
- * - useProgramsApiMock: true — использует ContentSeedRepository для программ
- * - useScormMock: true — использует mock-данные для SCORM-экспорта курсов
- *
- * Для отключения mock-интерсепторов установите значения в false.
- * В этом случае запросы будут идти к реальному бэкенду (apiUrl).
+ * Для временного включения mock-интерсепторов установите нужные флаги в true.
+ * В этом случае запросы будут идти к mock-обработчикам вместо бэкенда.
  */
 import type { Environment } from './environment.types';
 
@@ -30,12 +23,12 @@ export const environment: Environment = {
   apiVersion: 'v1',
   fixturesUrl: '/data',
   appName: 'LinguaCode',
-  useCardsApiMock: true,
-  useScenariosApiMock: true,
-  useCoursesApiMock: true,
-  useProgramsApiMock: true,
-  useScormMock: true,
-  useLanguagePairsApiMock: true,
-  useAuthApiMock: true, 
-  authEnabled: false,
+  useCardsApiMock: false,
+  useScenariosApiMock: false,
+  useCoursesApiMock: false,
+  useProgramsApiMock: false,
+  useScormMock: false,
+  useLanguagePairsApiMock: false,
+  useAuthApiMock: false,
+  authEnabled: true,
 };

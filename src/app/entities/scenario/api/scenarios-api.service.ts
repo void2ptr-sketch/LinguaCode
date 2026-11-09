@@ -157,13 +157,13 @@ export class ScenariosApiService implements ScenarioCatalogPort {
    * const scenarios = await scenariosApi.getByIdBatch(['scenario-1', 'scenario-2']);
    * ```
    */
-  getByIdBatch(scenarioIds: string[]): Promise<readonly Scenario[]> {
-    return firstValueFrom(
-      this.http.post<ApiResponse<unknown>>(
-        buildApiUrl('/scenarios/batch/retrieve'),
-        { ids: scenarioIds },
-      ),
-    ).then((response) => {
+    getByIdBatch(scenarioIds: string[]): Promise<readonly Scenario[]> {
+      return firstValueFrom(
+        this.http.post<ApiResponse<unknown>>(
+          buildApiUrl('/scenarios/batch/retrieve'),
+          { ids: scenarioIds },
+        ),
+      ).then((response) => {
       const items = Array.isArray(response.data) ? response.data : [];
       return Promise.all(items.map((raw) => this.mapScenario(raw as Record<string, unknown>)));
     });
