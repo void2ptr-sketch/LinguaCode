@@ -15,6 +15,7 @@ import { AvailablePairsService } from '../../entities/language-pair/lib/availabl
 import { LanguageSettingsStore } from '../../entities/language-pair/lib/language-settings.store';
 import { RoleService } from '../../entities/auth/services/role.service';
 import { UserApiService } from '../../entities/user/api/user-api.service';
+import { UserPreferencesApiService } from '../../entities/user/api/user-preferences-api.service';
 import { LanguageApiService } from '../../entities/language-pair/api/language-api.service';
 import { CourseCatalogLanguagePairManagerService } from '../../features/course-catalog/services/course-catalog-language-pair-manager.service';
 import type { LanguageDto } from '../../entities/language-pair/api/language-dto.types';
@@ -114,6 +115,12 @@ describe('UserPageComponent', () => {
           useValue: {
             patchUserPreferences: patchPrefsSpy,
             updateMe: vi.fn(async () => undefined),
+          },
+        },
+        {
+          provide: UserPreferencesApiService,
+          useValue: {
+            save: vi.fn(async () => undefined),
           },
         },
         { provide: Router, useValue: { navigate: vi.fn() } },
@@ -253,15 +260,28 @@ describe('UserPageComponent', () => {
       });
     });
 
-    it('should call userApi.updateMe with learningPairs', async () => {
+    it('should call userApi.updateMe with displayName only', async () => {
       const userApi = TestBed.inject(UserApiService) as UserApiService;
       const updateMeSpy = vi.spyOn(userApi, 'updateMe');
       await component.saveProfile();
 
       expect(updateMeSpy).toHaveBeenCalled();
       const callArgs = updateMeSpy.mock.calls[0][0] as Record<string, unknown>;
-      expect(callArgs['preferences']).toBeDefined();
-      expect((callArgs['preferences'] as Record<string, unknown>)?.['learningPairs']).toBeDefined();
+      expect(callArgs['displayName']).toBeDefined();
+      // preferences are NOT sent to updateMe — they go to userPreferencesApi.save()
+      expect(callArgs['preferences']).toBeUndefined();
+    });
+
+    it('should call userPreferencesApi.save with learningPairs', async () => {
+      const userPrefsApi = TestBed.inject(UserPreferencesApiService) as UserPreferencesApiService;
+      const saveSpy = vi.spyOn(userPrefsApi, 'save');
+      await component.saveProfile();
+
+      expect(saveSpy).toHaveBeenCalled();
+      const prefsArg = saveSpy.mock.calls[0][0] as Record<string, unknown>;
+      expect(prefsArg['learningPairs']).toBeDefined();
+      expect(prefsArg['theme']).toBeDefined();
+      expect(prefsArg['colorScheme']).toBeDefined();
     });
 
     it('should show success toast on API success', async () => {
@@ -272,10 +292,13 @@ describe('UserPageComponent', () => {
 
     it('should show error toast on API failure', async () => {
       const userApi = TestBed.inject(UserApiService) as UserApiService;
-      vi.spyOn(userApi, 'updateMe').mockRejectedValue(new Error('API error'));
+      const userPrefsApi = TestBed.inject(UserPreferencesApiService) as UserPreferencesApiService;
+      vi.spyOn(userApi, 'updateMe').mockResolvedValue(undefined as never);
+      vi.spyOn(userPrefsApi, 'save').mockRejectedValue(new Error('API error'));
 
       await component.saveProfile();
 
+      // displayName save succeeds, preferences save fails → "Не удалось сохранить профиль"
       expect(snackBarSpy).toHaveBeenCalledWith(
         'Не удалось сохранить профиль',
         'Закрыть',

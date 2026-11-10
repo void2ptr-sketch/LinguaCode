@@ -1,4 +1,4 @@
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { EnvironmentProviders } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import {
@@ -18,9 +18,9 @@ import { scormExportMockInterceptor } from '../../entities/course/api/mock/scorm
 /**
  * Provides HTTP client configuration for the API layer.
  *
- * Registers `provideHttpClient` with fetch strategy and composes the
- * interceptor pipeline. Mock interceptors are included conditionally based
- * on environment flags; `authInterceptor` and `errorInterceptor` are always present.
+ * Registers `provideHttpClient` and composes the interceptor pipeline.
+ * Mock interceptors are included conditionally based on environment flags;
+ * `authInterceptor` and `errorInterceptor` are always present.
  *
  * @returns An `EnvironmentProviders` configuration for Angular's HTTP client.
  */
@@ -52,7 +52,7 @@ export const provideApiHttp = () => {
     errorInterceptor,
   ];
 
-  return provideHttpClient(withFetch(), withInterceptors(interceptors));
+  return provideHttpClient(withInterceptors(interceptors));
 };
 
 /**

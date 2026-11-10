@@ -38,6 +38,7 @@ import { LanguageService, LanguageSettingsStore } from '../../entities/language-
 import { AvailablePairsService } from '../../entities/language-pair/lib/available-pairs.service';
 import { UserStore } from '../../entities/user/model';
 import { UserApiService } from '../../entities/user/api/user-api.service';
+import { UserPreferencesApiService } from '../../entities/user/api/user-preferences-api.service';
 import { RoleService } from '../../entities/auth/services/role.service';
 import type { ContentLanguage } from '../../entities/card/model';
 import type { LanguagePair } from '../../entities/language-pair/model/language-pair.types';
@@ -53,7 +54,7 @@ import {
 import { DirectionCardInnerComponent } from '../../entities/language-pair/ui/direction-card-inner.component';
 import { CourseCatalogSettingsComponent } from '../../features/course-catalog/components/course-settings/course-settings.component';
 import { CourseCatalogLanguagePairManagerService } from '../../features/course-catalog/services/course-catalog-language-pair-manager.service';
-import type { AppColorScheme, UserPreferences } from '../../entities/user/model';
+import type { AppColorScheme, UserPreferences, UserLanguagePairSettings } from '../../entities/user/model';
 import type { LearningProficiencyLevel } from '../../entities/learning/model';
 import { LEARNING_PROFICIENCY_LEVELS } from '../../entities/learning/model';
 import type { UserPreferences as GeneratedUserPreferences } from '../../shared/api/generated/models';
@@ -160,6 +161,7 @@ export class UserPageComponent implements OnInit {
   private readonly languageService: LanguageService = inject(LanguageService);
   private readonly availablePairs: AvailablePairsService = inject(AvailablePairsService);
   private readonly userApi: UserApiService = inject(UserApiService);
+  private readonly userPreferencesApi: UserPreferencesApiService = inject(UserPreferencesApiService);
   private readonly languageApi: LanguageApiService = inject(LanguageApiService);
   private readonly roleService: RoleService = inject(RoleService);
   private readonly router: Router = inject(Router);
@@ -289,6 +291,10 @@ export class UserPageComponent implements OnInit {
     * Updates both the display name and all preferences (theme, font size, color scheme,
     * card focus fullscreen, learning proficiency level) in a single call.
     * Also saves per-pair settings (romanization, IPA, tone colors, tracing) for all pairs.
+    *
+    * Split into two API calls:
+    * - `PUT /users/me` — only `displayName` (backend `UserUpdateRequest` has no `preferences`)
+    * - `PUT /users/me/preferences` — full preferences via dedicated endpoint
     */
    async saveProfile(): Promise<void> {
      // 1. User-level preferences (local + localStorage)
@@ -301,40 +307,74 @@ export class UserPageComponent implements OnInit {
        learningProficiencyLevel: this.learningProficiencyDraft(),
      });
 
-     // 2. Отправить ВСЕ preferences на бэкенд (user-level + per-pair settings)
+     // 2a. Отправить displayName на бэкенд (PUT /users/me)
      try {
-       const pairs = this.userStore.languagePairs();
+       await this.userApi.updateMe({
+         displayName: this.nameDraft(),
+       });
+     } catch {
+       this.snackBar.open('Не удалось сохранить имя', 'Закрыть', { duration: 5000 });
+     }
 
-       // Map fontSize ('sm' | 'md' | 'lg') → cardFontSize ('SMALL' | 'MEDIUM' | 'LARGE')
-       const fontSizeMap: Record<string, GeneratedUserPreferences['cardFontSize']> = {
-         sm: 'SMALL',
-         md: 'MEDIUM',
-         lg: 'LARGE',
-       };
+      // 2b. Отправить ВСЕ preferences на бэкенд (PUT /users/me/preferences)
+      try {
+        const pairs = this.userStore.languagePairs();
 
-       const payload: Partial<GeneratedUserPreferences> = {
-         theme: this.themeDraft(),
-         cardFontSize: fontSizeMap[this.fontSizeDraft()] ?? 'MEDIUM',
-         colorScheme: this.colorSchemeDraft(),
-         cardFocusFullscreen: this.cardFocusFullscreenDraft(),
-         learningProficiencyLevel: this.learningProficiencyDraft(),
+        // Map fontSize ('sm' | 'md' | 'lg') → cardFontSize ('SMALL' | 'MEDIUM' | 'LARGE')
+        const fontSizeMap: Record<string, GeneratedUserPreferences['cardFontSize']> = {
+          sm: 'SMALL',
+          md: 'MEDIUM',
+          lg: 'LARGE',
+        };
+
+        // Map frontend answerModes ('orthography' | 'ipa') → backend enum ('ORTHOGRAPHY' | 'IPA' | 'AUDIO')
+        const answerModeMap: Record<string, string> = {
+          orthography: 'ORTHOGRAPHY',
+          ipa: 'IPA',
+          audio: 'AUDIO',
+        };
+
+        function toBackendSettings(
+          settings: UserLanguagePairSettings | undefined,
+        ): LanguagePairEntrySettings | undefined {
+          if (!settings) return undefined;
+          const phonetic = settings.phonetic;
+
+          // Transform answerModes from lowercase frontend values to uppercase backend enum
+          const transformedPhonetic = phonetic
+            ? {
+                ...phonetic,
+                answerModes: (phonetic.answerModes ?? []).map(
+                  (m: string) => answerModeMap[m] ?? m.toUpperCase(),
+                ),
+              }
+            : undefined;
+
+          // Cast the rest — types differ slightly between frontend/backend
+          return {
+            ...transformedPhonetic,
+            cjkLearning: settings.cjkLearning as unknown as LanguagePairEntrySettings['cjkLearning'],
+            learning: settings.learning as unknown as LanguagePairEntrySettings['learning'],
+          } as LanguagePairEntrySettings;
+        }
+
+        const payload: GeneratedUserPreferences = {
+          theme: this.themeDraft(),
+          cardFontSize: fontSizeMap[this.fontSizeDraft()] ?? 'MEDIUM',
+          colorScheme: this.colorSchemeDraft(),
+          cardFocusFullscreen: this.cardFocusFullscreenDraft(),
+          learningProficiencyLevel: this.learningProficiencyDraft(),
           // Flatten frontend languagePairs → backend learningPairs
-          // Cast settings to mutable type (backend deserializes JSON anyway)
           learningPairs: pairs.map((p) => ({
             known: p.pair.known,
             learning: p.pair.learning,
-            settings: p.settings as unknown as LanguagePairEntrySettings,
+            settings: toBackendSettings(p.settings),
           })),
-         // activeByMirrorGroup: frontend stores { known, learning } (no settings)
-         // backend expects { known, learning, settings? } — omit settings
-         activeLanguagePairId: this.userStore.activeLanguagePairId(),
-         activeByMirrorGroup: this.userStore.activeByMirrorGroup(),
-       };
+          activeLanguagePairId: this.userStore.activeLanguagePairId(),
+          activeByMirrorGroup: this.userStore.activeByMirrorGroup(),
+        };
 
-       await this.userApi.updateMe({
-         displayName: this.nameDraft(),
-         preferences: payload,
-       });
+       await this.userPreferencesApi.save(payload);
        this.snackBar.open('Профиль сохранён', 'Закрыть', { duration: 3000 });
      } catch {
        this.snackBar.open('Не удалось сохранить профиль', 'Закрыть', { duration: 5000 });

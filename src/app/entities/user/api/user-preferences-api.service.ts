@@ -32,6 +32,7 @@ export class UserPreferencesApiService implements UserPreferencesPort {
    * @param prefs — новые предпочтения.
    */
   async save(prefs: UserPreferences): Promise<void> {
+    // Pass object directly — HttpClient auto-serializes to JSON.
     await firstValueFrom(this.prefsApi.userPreferencesPut(prefs));
   }
 
