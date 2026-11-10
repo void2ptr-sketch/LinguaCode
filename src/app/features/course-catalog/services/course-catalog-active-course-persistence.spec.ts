@@ -1,7 +1,15 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-import { readActiveCourseIds, writeActiveCourseIds } from './course-catalog-active-course-persistence';
-import { COURSE_CATALOG_ACTIVE_IDS_STORAGE_KEY } from './course-catalog-active-course-persistence.types';
+import {
+  readActiveCourseIds,
+  writeActiveCourseIds,
+  readSelectedTabIndex,
+  writeSelectedTabIndex,
+} from './course-catalog-active-course-persistence';
+import {
+  COURSE_CATALOG_ACTIVE_IDS_STORAGE_KEY,
+  COURSE_CATALOG_TAB_INDEX_STORAGE_KEY,
+} from './course-catalog-active-course-persistence.types';
 
 describe('course-catalog-active-course-persistence', () => {
   const testPairId = 'test-pair-1';
@@ -85,6 +93,70 @@ describe('course-catalog-active-course-persistence', () => {
       const ids = ['alpha', 'beta', 'gamma'];
       writeActiveCourseIds(testPairId, ids);
       expect(readActiveCourseIds(testPairId)).toEqual(ids);
+    });
+  });
+
+  describe('readSelectedTabIndex', () => {
+    it('should return 0 when key does not exist', () => {
+      expect(readSelectedTabIndex()).toBe(0);
+    });
+
+    it('should return 0 when value is empty string', () => {
+      localStorage.setItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY, '');
+      expect(readSelectedTabIndex()).toBe(0);
+    });
+
+    it('should return 0 when value is not a number', () => {
+      localStorage.setItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY, 'not-a-number');
+      expect(readSelectedTabIndex()).toBe(0);
+    });
+
+    it('should return 0 when value is NaN', () => {
+      localStorage.setItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY, 'NaN');
+      expect(readSelectedTabIndex()).toBe(0);
+    });
+
+    it('should return 0 when value is negative', () => {
+      localStorage.setItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY, '-1');
+      expect(readSelectedTabIndex()).toBe(0);
+    });
+
+    it('should return the parsed number when value is valid', () => {
+      localStorage.setItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY, '2');
+      expect(readSelectedTabIndex()).toBe(2);
+    });
+
+    it('should return 0 for the default tab', () => {
+      localStorage.setItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY, '0');
+      expect(readSelectedTabIndex()).toBe(0);
+    });
+
+    it('should handle large tab indices', () => {
+      localStorage.setItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY, '999');
+      expect(readSelectedTabIndex()).toBe(999);
+    });
+  });
+
+  describe('writeSelectedTabIndex', () => {
+    it('should write the index to localStorage', () => {
+      writeSelectedTabIndex(2);
+      expect(localStorage.getItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY)).toBe('2');
+    });
+
+    it('should write 0 for the default tab', () => {
+      writeSelectedTabIndex(0);
+      expect(localStorage.getItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY)).toBe('0');
+    });
+
+    it('should overwrite previous values', () => {
+      writeSelectedTabIndex(1);
+      writeSelectedTabIndex(3);
+      expect(localStorage.getItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY)).toBe('3');
+    });
+
+    it('should be readable back via readSelectedTabIndex', () => {
+      writeSelectedTabIndex(5);
+      expect(readSelectedTabIndex()).toBe(5);
     });
   });
 });

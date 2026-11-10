@@ -75,10 +75,16 @@ export class ProgramsApiService implements ProgramCatalogPort {
    */
   getByCourse(courseId: string): Promise<readonly Program[]> {
     return firstValueFrom(
-      this.http.get<ApiResponse<readonly Program[]>>(
+      this.http.get<ApiResponse<{ id: number; lessonIds?: number[] }[]>>(
         buildApiUrl(`/programs/by-course/${courseId}`),
       ),
-    ).then((response) => response.data);
+    ).then((response) =>
+      (response.data ?? []).map((p) => ({
+        ...p,
+        id: String(p.id),
+        lessonIds: p.lessonIds?.map((l) => String(l)),
+      })) as unknown as readonly Program[],
+    );
   }
 
   /**

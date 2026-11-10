@@ -18,6 +18,7 @@ export interface Program {
   languagePairId?: number;
   published?: boolean;
   requiredTier?: ProgramRequiredTier;
+  lessonIds?: number[];
   createdAt?: string;
   updatedAt?: string;
 }

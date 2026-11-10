@@ -5,6 +5,8 @@ import { UserStore } from '../../../entities/user/model/user.store';
 import {
   readActiveCourseIds,
   writeActiveCourseIds,
+  readSelectedTabIndex,
+  writeSelectedTabIndex,
 } from './course-catalog-active-course-persistence';
 import { CourseCatalogState, initialState } from '../types/course-catalog-store';
 
@@ -14,6 +16,10 @@ export class CourseCatalogStore {
   private readonly userStore = inject(UserStore);
 
   #state = signal<CourseCatalogState>({ ...initialState });
+
+  constructor() {
+    this.#restoreSelectedTabIndex();
+  }
 
   // --- Селекторы (read-only) ---
 
@@ -112,6 +118,7 @@ export class CourseCatalogStore {
       selectedTabIndex: index,
       filterDismissedUntilTabChange: false,
     }));
+    writeSelectedTabIndex(index);
   }
 
   toggleActiveCourseId(id: string): void {
@@ -173,5 +180,15 @@ export class CourseCatalogStore {
       ...s,
       activeCourseIds: new Set(saved) as ReadonlySet<string>,
     }));
+  }
+
+  /**
+   * Восстанавливает индекс вкладки из localStorage.
+   * Ничего не делает, если сохранённое значение совпадает с дефолтным (0).
+   */
+  #restoreSelectedTabIndex(): void {
+    const saved = readSelectedTabIndex();
+    if (saved === 0) return;
+    this.#state.update((s) => ({ ...s, selectedTabIndex: saved }));
   }
 }

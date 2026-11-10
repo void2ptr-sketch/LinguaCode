@@ -1,4 +1,7 @@
-import { COURSE_CATALOG_ACTIVE_IDS_STORAGE_KEY } from './course-catalog-active-course-persistence.types';
+import {
+  COURSE_CATALOG_ACTIVE_IDS_STORAGE_KEY,
+  COURSE_CATALOG_TAB_INDEX_STORAGE_KEY,
+} from './course-catalog-active-course-persistence.types';
 
 /**
  * Читает массив ID активных курсов из localStorage по ключу языковой пары.
@@ -29,4 +32,22 @@ export function writeActiveCourseIds(pairId: string, ids: readonly string[]): vo
     `${COURSE_CATALOG_ACTIVE_IDS_STORAGE_KEY}.${pairId}`,
     JSON.stringify([...ids]),
   );
+}
+
+/**
+ * Читает сохранённый индекс вкладки из localStorage.
+ * Возвращает 0 (по умолчанию), если значение не сохранено.
+ */
+export function readSelectedTabIndex(): number {
+  const raw = localStorage.getItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY);
+  if (!raw) return 0;
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0;
+}
+
+/**
+ * Сохраняет выбранный индекс вкладки в localStorage.
+ */
+export function writeSelectedTabIndex(index: number): void {
+  localStorage.setItem(COURSE_CATALOG_TAB_INDEX_STORAGE_KEY, String(index));
 }
