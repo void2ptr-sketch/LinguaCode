@@ -5,6 +5,7 @@
  * OpenAPI spec version: v0
  */
 import type { CjkLearningSettings } from './cjkLearningSettings';
+import type { LearningSessionSettings } from './learningSessionSettings';
 import type { PhoneticSettings } from './phoneticSettings';
 
 /**
@@ -13,4 +14,5 @@ import type { PhoneticSettings } from './phoneticSettings';
 export interface LanguagePairEntrySettings {
   phonetic?: PhoneticSettings;
   cjkLearning?: CjkLearningSettings;
+  learning?: LearningSessionSettings;
 }

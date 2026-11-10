@@ -5,6 +5,7 @@
  * OpenAPI spec version: v0
  */
 import type { LanguagePairEntry } from './languagePairEntry';
+import type { UserPreferencesActiveByMirrorGroup } from './userPreferencesActiveByMirrorGroup';
 import type { UserPreferencesCardFontSize } from './userPreferencesCardFontSize';
 
 /**
@@ -24,4 +25,10 @@ export interface UserPreferences {
      * @maximum 500
      */
   cardsPerDay?: number;
+  theme?: string;
+  colorScheme?: string;
+  cardFocusFullscreen?: boolean;
+  learningProficiencyLevel?: string;
+  activeLanguagePairId?: string;
+  activeByMirrorGroup?: UserPreferencesActiveByMirrorGroup;
 }

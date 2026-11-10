@@ -29,6 +29,7 @@ import { UserCatalogMockHandler } from './user-catalog.mock.handler';
 
 import type { User } from '../../model';
 import type { UpdateUserPayload } from '../../repository/user.port';
+import type { UserPreferences } from '../../../../shared/api/generated/models';
 
 /**
  * HTTP interceptor that mocks user API responses for development.
@@ -70,6 +71,26 @@ export const userApiMockInterceptor: HttpInterceptorFn = (req, next) => {
           ...(payload.preferences !== undefined && {
             preferences: { ...currentUser.preferences, ...payload.preferences },
           }),
+        };
+        return updated;
+      }),
+      map((updated) => handler.updateMe(updated)),
+      map((data) => new HttpResponse({ status: 200, body: { data } })),
+    );
+  }
+
+  // PATCH /users/me/preferences — частичное обновление предпочтений
+  if (req.method === 'PATCH' && req.url.endsWith(buildApiUrl('/users/me/preferences'))) {
+    const patch = req.body as Partial<UserPreferences>;
+
+    return defer(() => Promise.resolve(handler.getMe())).pipe(
+      map((currentUser: User | null) => {
+        if (!currentUser) {
+          throw new Error('Пользователь не найден');
+        }
+        const updated: User = {
+          ...currentUser,
+          preferences: { ...currentUser.preferences, ...patch },
         };
         return updated;
       }),

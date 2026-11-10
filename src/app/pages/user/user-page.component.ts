@@ -56,6 +56,8 @@ import { CourseCatalogLanguagePairManagerService } from '../../features/course-c
 import type { AppColorScheme, UserPreferences } from '../../entities/user/model';
 import type { LearningProficiencyLevel } from '../../entities/learning/model';
 import { LEARNING_PROFICIENCY_LEVELS } from '../../entities/learning/model';
+import type { UserPreferences as GeneratedUserPreferences } from '../../shared/api/generated/models';
+import type { LanguagePairEntrySettings } from '../../shared/api/generated/models';
 
 // ── Grouping types ──────────────────────────────────────────────
 
@@ -288,39 +290,56 @@ export class UserPageComponent implements OnInit {
     * card focus fullscreen, learning proficiency level) in a single call.
     * Also saves per-pair settings (romanization, IPA, tone colors, tracing) for all pairs.
     */
-  async saveProfile(): Promise<void> {
-    // 1. User-level preferences (local + localStorage)
-    this.userStore.updateDisplayName(this.nameDraft());
-    this.userStore.updatePreferences({
-      theme: this.themeDraft(),
-      fontSize: this.fontSizeDraft(),
-      colorScheme: this.colorSchemeDraft(),
-      cardFocusFullscreen: this.cardFocusFullscreenDraft(),
-      learningProficiencyLevel: this.learningProficiencyDraft(),
-    });
+   async saveProfile(): Promise<void> {
+     // 1. User-level preferences (local + localStorage)
+     this.userStore.updateDisplayName(this.nameDraft());
+     this.userStore.updatePreferences({
+       theme: this.themeDraft(),
+       fontSize: this.fontSizeDraft(),
+       colorScheme: this.colorSchemeDraft(),
+       cardFocusFullscreen: this.cardFocusFullscreenDraft(),
+       learningProficiencyLevel: this.learningProficiencyDraft(),
+     });
 
-    // 2. Отправить ВСЕ preferences на бэкенд (user-level + per-pair settings)
-    try {
-      await this.userApi.updateMe({
-        displayName: this.nameDraft(),
-        preferences: {
-          theme: this.themeDraft(),
-          fontSize: this.fontSizeDraft(),
-          colorScheme: this.colorSchemeDraft(),
-          cardFocusFullscreen: this.cardFocusFullscreenDraft(),
-          learningProficiencyLevel: this.learningProficiencyDraft(),
-          learningPairs: this.userStore.languagePairs().map((p) => ({
+     // 2. Отправить ВСЕ preferences на бэкенд (user-level + per-pair settings)
+     try {
+       const pairs = this.userStore.languagePairs();
+
+       // Map fontSize ('sm' | 'md' | 'lg') → cardFontSize ('SMALL' | 'MEDIUM' | 'LARGE')
+       const fontSizeMap: Record<string, GeneratedUserPreferences['cardFontSize']> = {
+         sm: 'SMALL',
+         md: 'MEDIUM',
+         lg: 'LARGE',
+       };
+
+       const payload: Partial<GeneratedUserPreferences> = {
+         theme: this.themeDraft(),
+         cardFontSize: fontSizeMap[this.fontSizeDraft()] ?? 'MEDIUM',
+         colorScheme: this.colorSchemeDraft(),
+         cardFocusFullscreen: this.cardFocusFullscreenDraft(),
+         learningProficiencyLevel: this.learningProficiencyDraft(),
+          // Flatten frontend languagePairs → backend learningPairs
+          // Cast settings to mutable type (backend deserializes JSON anyway)
+          learningPairs: pairs.map((p) => ({
             known: p.pair.known,
             learning: p.pair.learning,
-            settings: p.settings,
+            settings: p.settings as unknown as LanguagePairEntrySettings,
           })),
-        } as Record<string, unknown>,
-      });
-      this.snackBar.open('Профиль сохранён', 'Закрыть', { duration: 3000 });
-    } catch {
-      this.snackBar.open('Не удалось сохранить профиль', 'Закрыть', { duration: 5000 });
-    }
-  }
+         // activeByMirrorGroup: frontend stores { known, learning } (no settings)
+         // backend expects { known, learning, settings? } — omit settings
+         activeLanguagePairId: this.userStore.activeLanguagePairId(),
+         activeByMirrorGroup: this.userStore.activeByMirrorGroup(),
+       };
+
+       await this.userApi.updateMe({
+         displayName: this.nameDraft(),
+         preferences: payload,
+       });
+       this.snackBar.open('Профиль сохранён', 'Закрыть', { duration: 3000 });
+     } catch {
+       this.snackBar.open('Не удалось сохранить профиль', 'Закрыть', { duration: 5000 });
+     }
+   }
 
   // ── Language settings helpers ───────────────────────────────────
 
@@ -468,6 +487,7 @@ export class UserPageComponent implements OnInit {
         learningPairs: this.userStore
           .languagePairs()
           .map((p) => ({ known: p.pair.known, learning: p.pair.learning })),
+        activeLanguagePairId: this.userStore.activeLanguagePairId(),
       });
 
       // Refresh the pairs list (force reload after mutation)
@@ -629,6 +649,7 @@ export class UserPageComponent implements OnInit {
         learningPairs: this.userStore
           .languagePairs()
           .map((p) => ({ known: p.pair.known, learning: p.pair.learning })),
+        activeLanguagePairId: this.userStore.activeLanguagePairId(),
       });
 
       this.snackBar.open('Пара удалена', 'Закрыть', { duration: 3000 });

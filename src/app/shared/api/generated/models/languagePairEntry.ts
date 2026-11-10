@@ -7,6 +7,7 @@
 import type { LanguagePairEntrySettings } from './languagePairEntrySettings';
 
 export interface LanguagePairEntry {
+  id?: string;
   known?: string;
   learning?: string;
   settings?: LanguagePairEntrySettings;
