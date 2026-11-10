@@ -9,6 +9,13 @@
  * @see card-backend-adapter.ts
  */
 
+import type {
+  DrawCharacterTarget,
+  DrawPracticeMode,
+  DrawStrokeGuide,
+} from '../../phonetic/model/draw-practice.types';
+import type { PhoneticLexeme } from '../../phonetic/model/phonetic-content.types';
+
 /**
  * Card difficulty levels — matches backend `CardDifficulty` enum.
  */
@@ -118,7 +125,18 @@ export type ParsedCardContent =
       direction?: string;
     }
   | { kind: 'KEYBOARD'; promptKnown: string; acceptedAnswers: string[]; direction?: string }
-  | { kind: 'DRAW'; promptKnown: string; referenceHintKnown: string; meaningKnown?: string }
+  | {
+      kind: 'DRAW';
+      promptKnown: string;
+      referenceHintKnown: string;
+      meaningKnown?: string;
+      practiceMode?: DrawPracticeMode;
+      targetCharacter?: string;
+      promptLexeme?: PhoneticLexeme;
+      strokeGuides?: readonly DrawStrokeGuide[];
+      radicalHint?: string;
+      characterTargets?: readonly DrawCharacterTarget[];
+    }
   | {
       kind: 'TONE';
       promptKnown: string;

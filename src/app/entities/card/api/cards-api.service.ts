@@ -100,12 +100,17 @@ export class CardsApiService implements CardCatalogPort {
       return Promise.resolve([]);
     }
 
-    return firstValueFrom<CardBatchRetrieveResponse>(
+    return firstValueFrom<CardBatchRetrieveResponse | { data?: CardBatchRetrieveResponse }>(
       this.http.post(buildApiUrl('/cards/batch/retrieve'), {
         ids: cardIds,
       }),
     ).then((response) => {
-      const found = response.found ?? [];
+      // The backend returns `{found, notFound}` at the top level, but some
+      // interceptors wrap responses into an `ApiResponse` envelope
+      // (`{data: {found, notFound}}`) — support both shapes.
+      const withData = response as { data?: CardBatchRetrieveResponse };
+      const batch = (withData.data ?? response) as CardBatchRetrieveResponse;
+      const found = batch.found ?? [];
       return CardBackendAdapter.toCards(found as BackendCardDto[]);
     });
   }

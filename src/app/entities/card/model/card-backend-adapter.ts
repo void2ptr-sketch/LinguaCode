@@ -16,6 +16,12 @@ import type {
   CodeTraceCard,
 } from './card.types';
 import type {
+  DrawCharacterTarget,
+  DrawPracticeMode,
+  DrawStrokeGuide,
+} from '../../phonetic/model/draw-practice.types';
+import type { PhoneticLexeme } from '../../phonetic/model/phonetic-content.types';
+import type {
   BackendCardDto,
   BackendCardKind,
   BackendCardDifficulty,
@@ -192,13 +198,47 @@ function parseCardContent(dto: BackendCardDto): ParsedCardContent {
           direction: get('direction') ? String(get('direction')) : undefined,
         };
 
-      case 'DRAW':
+      case 'DRAW': {
+        const practiceModes: readonly string[] = [
+          'freehand',
+          'memory',
+          'tracing',
+          'hints',
+          'stroke-order',
+          'radicals',
+        ];
+        const practiceModeRaw = get('practiceMode');
+        const lexeme = get('promptLexeme') as
+          | { primary?: unknown; script?: unknown; pinyin?: unknown }
+          | undefined;
+        const characterTargetsRaw = get('characterTargets');
+
         return {
           kind: 'DRAW',
           promptKnown: getString('promptKnown'),
           referenceHintKnown: getString('referenceHintKnown'),
           meaningKnown: get('meaningKnown') ? String(get('meaningKnown')) : undefined,
+          practiceMode:
+            typeof practiceModeRaw === 'string' && practiceModes.includes(practiceModeRaw)
+              ? (practiceModeRaw as DrawPracticeMode)
+              : undefined,
+          targetCharacter: get('targetCharacter') ? String(get('targetCharacter')) : undefined,
+          promptLexeme: lexeme
+            ? ({
+                primary: String(lexeme.primary ?? ''),
+                script: String(lexeme.script ?? 'hani'),
+                pinyin: lexeme.pinyin ? String(lexeme.pinyin) : undefined,
+              } as PhoneticLexeme)
+            : undefined,
+          strokeGuides: Array.isArray(get('strokeGuides'))
+            ? (get('strokeGuides') as DrawStrokeGuide[])
+            : undefined,
+          radicalHint: get('radicalHint') ? String(get('radicalHint')) : undefined,
+          characterTargets: Array.isArray(characterTargetsRaw)
+            ? (characterTargetsRaw as DrawCharacterTarget[])
+            : undefined,
         };
+      }
 
       case 'TONE':
         return {
@@ -437,6 +477,12 @@ function extractCardContent(card: Card): Record<string, unknown> {
         promptKnown: c.promptKnown ?? '',
         referenceHintKnown: c.referenceHintKnown ?? '',
         meaningKnown: c.meaningKnown,
+        practiceMode: c.practiceMode,
+        targetCharacter: c.targetCharacter,
+        promptLexeme: c.promptLexeme,
+        strokeGuides: c.strokeGuides,
+        radicalHint: c.radicalHint,
+        characterTargets: c.characterTargets,
       };
     }
 
@@ -624,6 +670,12 @@ export const CardBackendAdapter = {
           promptKnown: parsed.promptKnown,
           referenceHintKnown: parsed.referenceHintKnown,
           meaningKnown: parsed.meaningKnown,
+          practiceMode: parsed.practiceMode,
+          targetCharacter: parsed.targetCharacter,
+          promptLexeme: parsed.promptLexeme,
+          strokeGuides: parsed.strokeGuides,
+          radicalHint: parsed.radicalHint,
+          characterTargets: parsed.characterTargets,
         } as unknown as Card;
 
       case 'TONE':
