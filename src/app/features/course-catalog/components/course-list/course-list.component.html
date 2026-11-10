@@ -21,6 +21,7 @@
           <tr>
             <th class="course-catalog-page__th">Курс</th>
             <th class="course-catalog-page__th">Языки</th>
+            <th class="course-catalog-page__th">Программы</th>
             <th class="course-catalog-page__th">Прогресс</th>
             <th class="course-catalog-page__th">Статус</th>
             <th class="course-catalog-page__th">Экспорт</th>
@@ -37,6 +38,9 @@
               </td>
               <td class="course-catalog-page__td">
                 {{ course.languagePairSummary }}
+              </td>
+              <td class="course-catalog-page__td course-catalog-page__td--number">
+                {{ course.programCount }}
               </td>
               <td class="course-catalog-page__td course-catalog-page__td--number">
                 @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
