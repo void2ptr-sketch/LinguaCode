@@ -44,6 +44,36 @@ export class CardSelectFlowService {
     this.resumeLastCourse();
   }
 
+  /**
+   * Marks the flow as (re)initializing.
+   *
+   * @remarks
+   * Called by the page component at the start of `ngOnInit`, BEFORE any
+   * query params (courseId, lessonId, scenarioId) are processed. The service
+   * is `providedIn: 'root'`, so it outlives the page component: without
+   * re-arming the flag on every page visit, `resetOnActivePairChange` would
+   * fire on the second and later deep-link navigations (e.g. from /journey
+   * with a scenario whose language pair differs from the active one) and
+   * wipe the state mid-initialization — cards would load but the learning
+   * tab would show "Выберите сценарий".
+   */
+  beginInitialization(): void {
+    this._isInitializing = true;
+  }
+
+  /**
+   * Marks the flow as initialized.
+   *
+   * @remarks
+   * Called by the page component in `ngOnInit` after all query params
+   * (courseId, lessonId, scenarioId) have been processed. Prevents
+   * `resetOnActivePairChange` from wiping the state during the initial
+   * page load when `activateLanguagePairFor*` methods fire.
+   */
+  markInitialized(): void {
+    this._isInitializing = false;
+  }
+
   // ─── Persistence effect ────────────────────────────────────────────────
 
   /**
@@ -88,35 +118,39 @@ export class CardSelectFlowService {
   readonly fontSize = inject(UserStore).preferences;
 
   /**
-   * Resets session state when the active language pair changes.
-   *
-   * @remarks
-   * This effect lives in a `providedIn: 'root'` service, so it is always
-   * active for the entire application lifetime — not just when the
-   * card-select page is open. This is intentional: it enables **global
-   * session resume**. When the user switches language pairs anywhere in the
-   * app (e.g. from the header switcher), the flow state is reset so that
-   * the next time the user opens the card-select page, they start fresh
-   * with the correct language pair.
-   *
-   * Behavior change vs. previous implementation: previously the reset was
-   * a page-level method called only from the page component. Now it fires
-   * globally, which means the reset happens even if the page is not mounted.
-   * The effect itself is harmless when the page is not open (signals just
-   * read and compare — no side effects in the untracked branch).
-   */
-  private readonly resetOnActivePairChange = effect(() => {
-    const activeId = this.userStore.activeLanguagePairId();
-    if (
-      this._lastKnownActiveLanguagePairId !== null &&
-      this._lastKnownActiveLanguagePairId !== activeId
-    ) {
-      untracked(() => this.resetAll());
-    }
-    this._lastKnownActiveLanguagePairId = activeId;
-  });
+    * Resets session state when the active language pair changes.
+    *
+    * @remarks
+    * This effect lives in a `providedIn: 'root'` service, so it is always
+    * active for the entire application lifetime — not just when the
+    * card-select page is open. This is intentional: it enables **global
+    * session resume**. When the user switches language pairs anywhere in the
+    * app (e.g. from the header switcher), the flow state is reset so that
+    * the next time the user opens the card-select page, they start fresh
+    * with the correct language pair.
+    *
+    * **Guard:** uses `untracked(() => this._isInitializing)` to read the
+    * initialization flag. When `markInitialized()` sets `_isInitializing = false`
+    * the effect does NOT re-run (because the flag is read inside `untracked`),
+    * so it won't accidentally call `resetAll()` on the very tick the page is
+    * ready.
+    */
+   private _isInitializing = true;
 
-  private _lastKnownActiveLanguagePairId: string | null | undefined = null;
+   private readonly resetOnActivePairChange = effect(() => {
+     const activeId = this.userStore.activeLanguagePairId();
+     if (
+       untracked(() => this._isInitializing) ||
+       this._lastKnownActiveLanguagePairId === null ||
+       this._lastKnownActiveLanguagePairId === activeId
+     ) {
+       this._lastKnownActiveLanguagePairId = activeId;
+       return;
+     }
+     untracked(() => this.resetAll());
+   });
+
+   private _lastKnownActiveLanguagePairId: string | null | undefined = null;
 
   // ─── Auto-resume ─────────────────────────────────────────────────────────
 
@@ -209,31 +243,35 @@ export class CardSelectFlowService {
   readonly practiceSettings = computed(() => resolveCoursePracticeSettings(this.currentCourse()));
 
   /**
-   * Computed list of scenario IDs available for the picker.
-   *
-   * @remarks
-   * Filters scenarios by selected lesson, course (open practice), and difficulty.
-   * Returns `null` when no scenarios are available.
-   */
-  readonly allowedScenarioIdsForPicker = computed(() => {
-    const lessonIds = this.lessonScenarioIds();
-    const course = this.currentCourse();
-    const difficulty = this.selectedDifficulty();
-    const difficultyMap = this.scenarioDifficultyMap();
+    * Computed list of scenario IDs available for the picker.
+    *
+    * @remarks
+    * Filters scenarios by selected lesson, course (open practice), and difficulty.
+    * Returns `null` when no scenarios are available.
+    */
+   readonly allowedScenarioIdsForPicker = computed(() => {
+     const lessonIds = this.lessonScenarioIds();
+     const course = this.currentCourse();
+     const difficulty = this.selectedDifficulty();
+     const difficultyMap = this.scenarioDifficultyMap();
 
-    const base: readonly string[] | null =
-      lessonIds.length > 0
-        ? lessonIds
-        : course && this.isOpenPractice()
-          ? extractAllScenarioIdsFromCourse(course)
-          : null;
+     const base: readonly string[] | null =
+       lessonIds.length > 0
+         ? lessonIds
+         : course && this.isOpenPractice()
+           ? extractAllScenarioIdsFromCourse(course)
+           : null;
 
-    if (!base || base.length === 0) {
-      return null;
-    }
+     this.logger.debug(
+       `[CardSelectFlow] allowedScenarioIdsForPicker: lessonIds=${lessonIds.length}, isOpenPractice=${this.isOpenPractice()}, course=${course?.id ?? 'null'}, base=${base?.length ?? 0}`,
+     );
 
-    return filterScenarioIdsByDifficulty(base, difficultyMap, difficulty);
-  });
+     if (!base || base.length === 0) {
+       return null;
+     }
+
+     return filterScenarioIdsByDifficulty(base, difficultyMap, difficulty);
+   });
 
   /** Whether there is a next scenario in the current lesson. */
   readonly hasNextLessonScenario = computed(() => {
@@ -288,6 +326,12 @@ export class CardSelectFlowService {
    * @param courseId - The course ID to load.
    */
   async loadCourse(courseId: string): Promise<void> {
+    // During initialization (deep link from /journey), preserve selectedScenarioId
+    // so the effect doesn't wipe it when loadCourse resets state.
+    const wasInitializing = untracked(() => this._isInitializing);
+    const preservedScenarioId = wasInitializing ? this.selectedScenarioId() : '';
+    const preservedLessonId = wasInitializing ? this.selectedLessonId() : '';
+
     this.selectedCourseId.set(courseId);
     this.selectedLessonId.set('');
     this.currentCourse.set(null);
@@ -319,6 +363,15 @@ export class CardSelectFlowService {
         }
       }
       this.courseLessons.set(allLessons);
+
+      // Restore preserved IDs if we were initializing (deep link scenario)
+      if (wasInitializing && preservedScenarioId) {
+        this.selectedScenarioId.set(preservedScenarioId);
+      }
+      if (wasInitializing && preservedLessonId) {
+        this.selectedLessonId.set(preservedLessonId);
+      }
+
       await this.loadScenarioDifficultyMap(course);
     } catch (error) {
       this.logger.warn('CardSelect: failed to load course', error);

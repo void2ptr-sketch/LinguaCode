@@ -259,6 +259,11 @@ export class CardSelectPageComponent implements OnInit {
   // ─── Lifecycle ────────────────────────────────────────────────────────
 
   async ngOnInit(): Promise<void> {
+    // Защищаем инициализацию от resetOnActivePairChange: сервис корневой и
+    // живёт дольше страницы, поэтому флаг нужно включать заново при каждом
+    // визите (иначе повторный deep-link с /journey затирается сменой пары).
+    this.flow.beginInitialization();
+
     const query = this.route.snapshot.queryParamMap;
     const courseId = query.get('courseId');
     const lessonId = query.get('lessonId');
@@ -304,6 +309,11 @@ export class CardSelectPageComponent implements OnInit {
     } else if (tab === 'course') {
       this.flow.setActiveTab(LEARNING_TAB.course);
     }
+
+    // Разрешаем глобальный сброс при смене языковой пары только после того,
+    // как все query-параметры обработаны — иначе эффект resetOnActivePairChange
+    // увидит transient-empty selectedScenarioId и вызовет resetAll().
+    this.flow.markInitialized();
   }
 
   /**

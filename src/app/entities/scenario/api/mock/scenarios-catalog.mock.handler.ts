@@ -58,7 +58,7 @@ export class ScenariosCatalogMockHandler {
     return scenario;
   }
 
-  async getByIdBatch(scenarioIds: string[]): Promise<readonly Scenario[]> {
+  async getByIdBatch(scenarioIds: readonly string[]): Promise<readonly Scenario[]> {
     await this.ensureData();
 
     const ids = new Set(scenarioIds);

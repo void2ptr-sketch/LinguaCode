@@ -1,8 +1,10 @@
 import { TestBed } from '@angular/core/testing';
+import { ApplicationRef } from '@angular/core';
 import { CourseSearchService } from '../../../entities/course';
 import { CardSearchService } from '../../../entities/card';
 import { ScenarioSearchService } from '../../../entities/scenario';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { CardSelectFlowService, LEARNING_TAB } from './card-select-flow.service';
 import type { CourseWithPrograms } from '../../../entities/course/model';
 
@@ -400,6 +402,32 @@ describe('CardSelectFlowService', () => {
       expect(service.selectedLessonId()).toBe('');
       expect(service.selectedScenarioId()).toBe('');
       expect(service.activeTabIndex()).toBe(LEARNING_TAB.course);
+    });
+  });
+
+  describe('initialization guard (resetOnActivePairChange)', () => {
+    it('should not wipe flow state when the active pair changes during initialization', async () => {
+      const userStore = TestBed.inject(UserStore);
+      const appRef = TestBed.inject(ApplicationRef);
+
+      // Deep-link init (e.g. /journey → /cards/select?...&scenarioId=…):
+      // the page re-arms the guard, then activateLanguagePairForScenario
+      // switches the active pair and the flow state is restored.
+      service.beginInitialization();
+      service.selectedScenarioId.set('s1');
+      userStore.addLanguagePair({ known: 'de', learning: 'ja' });
+      await appRef.whenStable();
+
+      expect(service.selectedScenarioId()).toBe('s1');
+      expect(service.activeTabIndex()).toBe(LEARNING_TAB.course);
+
+      service.markInitialized();
+
+      // After initialization a pair change must still reset the flow.
+      userStore.addLanguagePair({ known: 'ru', learning: 'en' });
+      await appRef.whenStable();
+
+      expect(service.selectedScenarioId()).toBe('');
     });
   });
 

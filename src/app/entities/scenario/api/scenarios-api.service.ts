@@ -159,7 +159,7 @@ export class ScenariosApiService implements ScenarioCatalogPort {
    * const scenarios = await scenariosApi.getByIdBatch(['scenario-1', 'scenario-2']);
    * ```
    */
-    async getByIdBatch(scenarioIds: string[]): Promise<readonly Scenario[]> {
+    async getByIdBatch(scenarioIds: readonly string[]): Promise<readonly Scenario[]> {
       if (scenarioIds.length === 0) return [];
 
       const { data } = await firstValueFrom(

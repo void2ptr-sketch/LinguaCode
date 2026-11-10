@@ -55,6 +55,16 @@ export class ScenarioSearchService {
   }
 
   /**
+   * Batch-retrieves scenarios by IDs.
+   *
+   * @param scenarioIds - Array of scenario IDs.
+   * @returns Array of scenarios.
+   */
+  getByIdBatch(scenarioIds: readonly string[]): Promise<readonly Scenario[]> {
+    return this.run(() => this.scenariosApi.getByIdBatch(scenarioIds));
+  }
+
+  /**
    * Creates a new scenario.
    *
    * @param payload - The scenario write payload.
