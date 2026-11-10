@@ -95,8 +95,9 @@ export function scenarioMatchesLanguagePair(
   scenario: Pick<Scenario, 'languagePair'>,
   pair: LanguagePair,
 ): boolean {
+  // Сценарии без явной языковой пары подходят для любой пары
   if (!scenario.languagePair) {
-    return false;
+    return true;
   }
 
   return (

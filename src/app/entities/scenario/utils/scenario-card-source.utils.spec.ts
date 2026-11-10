@@ -285,10 +285,10 @@ describe('scenario-card-source.utils', () => {
       expect(scenarioMatchesLanguagePair(scenario, pair)).toBe(false);
     });
 
-    it('should return false when scenario has no languagePair', () => {
+    it('should return true when scenario has no languagePair — matches any pair', () => {
       const scenario: Pick<Scenario, 'languagePair'> = { languagePair: undefined };
       const pair: LanguagePair = { known: 'en', learning: 'zh' };
-      expect(scenarioMatchesLanguagePair(scenario, pair)).toBe(false);
+      expect(scenarioMatchesLanguagePair(scenario, pair)).toBe(true);
     });
   });
 
