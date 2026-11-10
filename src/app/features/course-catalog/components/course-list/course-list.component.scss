@@ -30,6 +30,7 @@
 }
 
 .course-catalog-page__table {
+  table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
@@ -62,6 +63,31 @@
   }
 }
 
+.course-catalog-page__th--course {
+  width: auto;
+  min-width: 12rem;
+}
+
+.course-catalog-page__th--languages {
+  width: 14%;
+}
+
+.course-catalog-page__th--programs {
+  width: 8%;
+}
+
+.course-catalog-page__th--progress {
+  width: 10%;
+}
+
+.course-catalog-page__th--status {
+  width: 16%;
+}
+
+.course-catalog-page__th--export {
+  width: 12%;
+}
+
 .course-catalog-page__row {
   transition:
     background-color 0.15s ease,
@@ -87,7 +113,41 @@
   border-bottom: 1px solid color-mix(in srgb, var(--mat-sys-outline) 12%, transparent);
 
   &--number {
-    text-align: right;
+    white-space: nowrap;
+  }
+
+  &--course {
+    min-width: 12rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &--languages {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &--programs {
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  &--progress {
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  &--status {
+    mat-checkbox {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  &--export {
     white-space: nowrap;
   }
 
