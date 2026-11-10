@@ -282,6 +282,7 @@ describe('CourseCatalogPageComponent', () => {
       clearActiveCourseIds: () => mockActiveCourseIdsSignal.set(new Set() as ReadonlySet<string>),
       setFilterDismissed: (dismissed: boolean) => mockFilterDismissedSignal.set(dismissed),
       onPageChange: vi.fn(),
+      restoreActiveCourseIds: vi.fn(),
     };
 
     mockDrafts = {

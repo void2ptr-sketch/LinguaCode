@@ -213,4 +213,10 @@ describe('CourseCatalogStore', () => {
       expect(store.error()).toBeNull();
     });
   });
+
+  describe('active course persistence', () => {
+    it('should not throw restoreActiveCourseIds when no pairId', () => {
+      expect(() => store.restoreActiveCourseIds()).not.toThrow();
+    });
+  });
 });
