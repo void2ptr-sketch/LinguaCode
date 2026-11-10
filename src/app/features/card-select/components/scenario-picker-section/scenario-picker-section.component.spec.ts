@@ -68,6 +68,7 @@ describe('ScenarioPickerSectionComponent', () => {
             search: () => Promise.resolve({ items: [], total: 0, page: 0, pageSize: 10 }),
             getById: () =>
               Promise.resolve(null as unknown as Parameters<ScenarioSearchService['getById']>[0]),
+            getByIdBatch: () => Promise.resolve([] as readonly unknown[]),
           },
         },
       ],
