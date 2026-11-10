@@ -1,7 +1,6 @@
 <mat-card class="page-card">
   <mat-card-header>
-    <mat-card-title>Профиль пользователя</mat-card-title>
-    <mat-card-subtitle>{{ displayName() }}</mat-card-subtitle>
+    <mat-card-title>Профиль пользователя: {{ displayName() }}</mat-card-title>
   </mat-card-header>
 
   <mat-card-content class="page-card__content">
@@ -285,17 +284,6 @@
           @if (loading()) {
             <div class="settings-page__loading">Loading languages...</div>
           } @else {
-            <p class="page-card__hint">
-              Добавление, активация и удаление языковых пар выполняется на вкладке «Language
-              Pairs».
-            </p>
-            <div class="settings-page__settings-actions">
-              <button mat-stroked-button type="button" (click)="goToPairsTab()">
-                <mat-icon>add</mat-icon>
-                Добавить пару…
-              </button>
-            </div>
-
             <app-course-catalog-settings />
           }
         </div>

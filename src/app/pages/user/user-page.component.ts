@@ -434,11 +434,6 @@ export class UserPageComponent implements OnInit {
     return f1 + f2;
   }
 
-  /** Switches to the «Language Pairs» tab (used by the «Add pair…» shortcut). */
-  goToPairsTab(): void {
-    this.selectedTabIndex.set(2);
-  }
-
   /** Toggles a language in the user's selection. */
   toggleLanguage(code: string): void {
     if (this.selectedCodes().includes(code)) {

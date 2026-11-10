@@ -312,10 +312,7 @@ describe('UserPageComponent', () => {
       expect(component.configuredPairs()).toHaveLength(4);
     });
 
-    it('goToPairsTab should select the Language Pairs tab (index 2)', () => {
-      component.goToPairsTab();
-      expect(component.selectedTabIndex()).toBe(2);
-    });
+
   });
 
   describe('Language settings — mirror pair event isolation', () => {
