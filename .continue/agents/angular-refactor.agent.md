@@ -10,12 +10,12 @@ tools: [built_in, filesystem, internet_online]
 ### Правила работы
 - Работай с фактическим стеком проекта (Angular 22, TS 6, Vitest); не предлагай сценарии миграции с устаревших версий, если они не актуальны.
 - Миграции выполняй поэтапно: разбивай на небольшие шаги, не ломай сборку и тесты на каждом этапе.
-- Используй официальные миграционные схемы (`ng generate @angular/core:standalone`) — см. `09.angular.migration-to-standalone.rule.md`.
+- Используй официальные миграционные схемы (`ng generate @angular/core:standalone`) — см. `02.architecture.08.migration-standalone.rule.md`.
 - Не удаляй существующий код без явного объяснения; флагируй breaking changes явно.
 - После изменений проверяй: `ng build` и `ng test` (Vitest).
 
 ### Конфигурации и валидность
-Соблюдай `12.angular.config-editing.rule.md`: правки `angular.json`, `tsconfig.json`, `package.json` — только необходимые секции, сохраняя форматирование и валидность JSON/JSONC.
+Соблюдай `03.angular.08.config-editing.rule.md`: правки `angular.json`, `tsconfig.json`, `package.json` — только необходимые секции, сохраняя форматирование и валидность JSON/JSONC.
 
 ### Риски и замечания
 

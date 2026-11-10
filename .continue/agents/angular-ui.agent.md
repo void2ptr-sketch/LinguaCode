@@ -13,7 +13,7 @@ tools: [built_in, filesystem, internet_online]
 - Для шаблонов:
   - Предпочитай standalone-компоненты.
   - Не возвращай сырые Observable из методов шаблона — используй свойства или `async` pipe.
-  - Соблюдай правила RxJS из `05.angular.Reactive.rule.md`: `switchMap` — дефолт для пользовательских действий, но по контексту допустимы `mergeMap`/`concatMap`/`exhaustMap`; обрабатывай ошибки через `catchError`; для сайд-эффектов предпочитай `effect` вместо `tap`.
+  - Соблюдай правила RxJS из `03.angular.03.reactive.rule.md`: `switchMap` — дефолт для пользовательских действий, но по контексту допустимы `mergeMap`/`concatMap`/`exhaustMap`; обрабатывай ошибки через `catchError`; для сайд-эффектов предпочитай `effect` вместо `tap`.
 - Для стилей:
   - Если в проекте есть дизайн-система (Angular Material) — придерживайся её темы и токенов.
   - Для адаптивности используй медиа-запросы или Tailwind-классы, не смешивай подходы без необходимости.
@@ -21,7 +21,7 @@ tools: [built_in, filesystem, internet_online]
 - Избегай «магических чисел» и хардкода в шаблонах — выноси в константы или конфиги.
 
 ### Конфигурации и валидность
-Соблюдай `12.angular.config-editing.rule.md`: правки `angular.json`, `tsconfig.json`, `package.json` — только необходимые секции, сохраняя форматирование и валидность.
+Соблюдай `03.angular.08.config-editing.rule.md`: правки `angular.json`, `tsconfig.json`, `package.json` — только необходимые секции, сохраняя форматирование и валидность.
 
 ### Риски и замечания
 

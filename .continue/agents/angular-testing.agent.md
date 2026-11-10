@@ -22,7 +22,7 @@ tools: [built_in, filesystem, internet_online]
   - Разделяй стабильные и нестабильные тесты (flaky).
 
 ### Конфигурации и валидность
-Соблюдай `12.angular.config-editing.rule.md`: правки `package.json` (скрипты, зависимости), `vitest.config.ts` — только необходимые секции, сохраняя форматирование; проверяй совместимость версий (Vitest 5 + Angular 22 + jsdom 30).
+Соблюдай `03.angular.08.config-editing.rule.md`: правки `package.json` (скрипты, зависимости), `vitest.config.ts` — только необходимые секции, сохраняя форматирование; проверяй совместимость версий (Vitest 5 + Angular 22 + jsdom 30).
 
 ### Риски и замечания
 

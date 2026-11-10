@@ -22,7 +22,7 @@ tools: [built_in, filesystem, internet_online]
   - Не храни токены в localStorage без обоснования — оценивай XSS-риски; не логируй токены и заголовки.
 
 ### Конфигурации и валидность
-Соблюдай `12.angular.config-editing.rule.md`: правки `angular.json`, `proxy.conf.json`, `package.json`, `tsconfig.json` — только необходимые секции, сохраняя форматирование и валидность JSON/JSONC.
+Соблюдай `03.angular.08.config-editing.rule.md`: правки `angular.json`, `proxy.conf.json`, `package.json`, `tsconfig.json` — только необходимые секции, сохраняя форматирование и валидность JSON/JSONC.
 
 ### Риски и замечания
 

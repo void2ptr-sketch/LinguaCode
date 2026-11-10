@@ -22,6 +22,7 @@ tools: [built_in, filesystem, internet_online]
 | `angular-refactor-agent` | Рефакторинг, миграция Angular | При улучшении кода, исправлении code smells, оптимизации |
 | `angular-ui-agent` | UI/UX, шаблоны, SCSS, a11y | При создании/изменении компонентов, стилей, доступности |
 | `angular-business-analyst-agent` | Бизнес-аналитика, user stories, приоритизация | При планировании фич, оценке ROI, определении приоритетов |
+| ~~`ollama-rules-agent`~~ | ~~Настройка Ollama Modelfile~~ | ~~DEPRECATED — не используется~~ |
 
 ## Workflow-паттерны
 
