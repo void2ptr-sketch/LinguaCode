@@ -57,7 +57,7 @@ export function courseToFormDraft(
         id: program.id,
         title: program.title,
         description: program.description,
-        lessons: program.lessons
+        lessons: (program.lessons ?? [])
           .map((lesson) => ({
             clientId: lesson.id,
             id: lesson.id,

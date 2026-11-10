@@ -188,14 +188,35 @@ export class CoursesApiService implements CourseCatalogPort {
    * @param courseId - The course ID.
    * @returns The course with programs and lessons.
    */
-  getJourney(courseId: string): Promise<CourseWithPrograms> {
-    return firstValueFrom(
-      this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}/journey`)),
-    ).then(async (response) => {
-      await this.attachLanguagePair(response.data as unknown as Record<string, unknown>);
-      return response.data;
-    });
-  }
+   getJourney(courseId: string): Promise<CourseWithPrograms> {
+     return firstValueFrom(
+       this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}/journey`)),
+     ).then(async (response) => {
+       await this.attachLanguagePair(response.data as unknown as Record<string, unknown>);
+       const data = response.data as unknown as Record<string, unknown>;
+       // Backend returns numeric IDs — convert to strings for frontend consistency
+       if (Array.isArray(data['programs'])) {
+         data['programs'] = (data['programs'] as Record<string, unknown>[]).map((p) => {
+           const lessons = Array.isArray(p['lessons']) ? p['lessons'] : [];
+           return {
+             ...p,
+             id: String(p['id']),
+             lessons: lessons.map((l: Record<string, unknown>) => ({
+               ...l,
+               id: String(l['id']),
+               scenarioIds: Array.isArray(l['scenarioIds'])
+                 ? (l['scenarioIds'] as number[]).map((s) => String(s))
+                 : [],
+               prerequisiteLessonIds: Array.isArray(l['prerequisiteLessonIds'])
+                 ? (l['prerequisiteLessonIds'] as number[]).map((s) => String(s))
+                 : [],
+             })),
+           };
+         });
+       }
+       return data as CourseWithPrograms;
+     });
+   }
 
   /**
    * Creates a new course.
