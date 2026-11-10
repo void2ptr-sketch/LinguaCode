@@ -107,7 +107,7 @@ Deep link с dashboard:
 
 ```typescript
 type UserLanguagePairEntry = {
-  id: string; // стабильный UUID
+  id: string; // произвольная строка (не UUID)
   pair: LanguagePair;
   createdAt: string; // ISO
 };
@@ -162,12 +162,13 @@ setActiveLanguagePair(id: string): void;
 
 При смене активной пары — сброс `CardSelectStore` (текущая карточка, direction toggle). Опционально: confirm «Сменить пару? Сессия будет прервана».
 
-### Миграция persist
+### Миграция persist (план)
 
 ```typescript
 // user.persistence.ts — normalize legacy
 if ('languagePair' in prefs && !('languagePairs' in prefs)) {
-  const id = crypto.randomUUID();
+  // TODO: реализовать миграцию с простым ID, не UUID
+  const id = 'legacy-' + Date.now();
   return {
     ...prefs,
     languagePairs: [{ id, pair: normalizeLanguagePair(prefs.languagePair), createdAt: now }],

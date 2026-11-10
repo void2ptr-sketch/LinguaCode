@@ -274,16 +274,17 @@ export const routes: Routes = [
 - **Иерархия контента:** `Card → Scenario → Lesson → Program → Course` (G17)
 - **Конструктор сценариев** — инструмент для создания и редактирования `Scenario` (`features/scenario-builder/`); масштабирование — [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)
 - **Конструктор программ** — CRUD `Program` внутри `Course` (`features/program-builder/`)
+- **13 типов карточек** (`CardKind`): `select`, `code-select`, `memory`, `symbol`, `sound`, `timed`, `keyboard`, `draw`, `tone`, `reading`, `flip`, `cloze`, `code-trace` — все реализованы.
 
 ### Рендер карточек
 
 Общий `CardHostComponent` выбирает компонент по `card.kind`:
 
 ```
-Card (kind) → CardHostComponent → SelectCardComponent | CodeSelectCardComponent | MemoryCardComponent | SymbolCardComponent | SoundCardComponent | TimedCardComponent | KeyboardCardComponent | DrawCardComponent | ToneCardComponent | ReadingCardComponent
+Card (kind) → CardHostComponent → SelectCardComponent | CodeSelectCardComponent | MemoryCardComponent | SymbolCardComponent | SoundCardComponent | TimedCardComponent | KeyboardCardComponent | DrawCardComponent | ToneCardComponent | ReadingCardComponent | FlipCardComponent | ClozeCardComponent | CodeTraceCardComponent
 ```
 
-Все 10 типов карточек реализованы и рендерятся через `CardHostComponent`.
+Все 13 типов карточек реализованы и рендерятся через `CardHostComponent`.
 
 ## Управление состоянием
 
@@ -293,16 +294,40 @@ Card (kind) → CardHostComponent → SelectCardComponent | CodeSelectCardCompon
 @Injectable({ providedIn: 'root' })
 export class CardSelectStore {
   readonly cards = signal<readonly Card[]>([]);
+  readonly allCardIds = signal<readonly string[]>([]);
   readonly scenarioId = signal<string>('demo-scenario');
   readonly sessionDirection = signal<CardDirection>('known-to-learning');
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
   readonly currentIndex = signal(0);
+  readonly currentPage = signal(0);
+  readonly loadedPages = signal<Set<number>>(new Set());
+  readonly pageSize = 25;
   readonly selectedIndex = signal<number | null>(null);
   readonly answerText = signal('');
   readonly memoryComplete = signal(false);
+  readonly flipKnown = signal<boolean | null>(null);
+  readonly drawSubmitted = signal(false);
+  readonly drawAnswer = signal<DrawAnswerPayload | null>(null);
+  readonly feedback = signal<CardFeedback>(null);
+  readonly completed = signal(false);
+  readonly shuffleNonce = signal(0);
+  readonly memoryBoardNonce = signal(0);
 
-  // методы load(), selectAnswer(), reset() — mutating через update/set
+  // computed
+  readonly currentCard = computed(() => this.cards()[this.currentIndex()] ?? null);
+  readonly progressLabel = computed(() => `${this.currentIndex() + 1} / ${this.allCardIds().length}`);
+  readonly canCheckAnswer = computed(() => /* ... */);
+  readonly canGoNext = computed(() => this.feedback() !== null && !this.completed());
+
+  // actions
+  setScenario(scenarioId, allCardIds): Promise<void> { ... }
+  loadPage(pageIndex): Promise<void> { ... }
+  preloadNext(): void { ... }
+  checkAnswer(): boolean | null { ... }
+  nextCard(): Promise<void> { ... }
+  setSessionDirection(direction): void { ... }
+  reset(): void { ... }
 }
 ```
 

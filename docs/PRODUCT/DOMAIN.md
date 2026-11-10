@@ -172,7 +172,7 @@ erDiagram
     }
 ```
 
-> `Lesson`, `Course` — **реализовано** (G11). `Program` — **реализовано** (G17). Полная union `Card` — см. `card.types.ts` (10 kind).
+> `Lesson`, `Course` — **реализовано** (G11). `Program` — **реализовано** (G17). Полная union `Card` — см. `card.types.ts` (13 kind).
 
 ### Сущности
 
@@ -213,6 +213,9 @@ erDiagram
 | `draw`        | Рисование                      | реализовано |
 | `tone`        | Тоны / слоги                   | реализовано |
 | `reading`     | Чтение                         | реализовано |
+| `flip`        | Самопроверка (front/back)      | реализовано |
+| `cloze`       | Заполнение пропуска            | реализовано |
+| `code-trace`  | Предсказание вывода кода       | реализовано |
 
 ### Базовые типы
 
@@ -248,7 +251,20 @@ type SelectCard = CardBase & {
   correctIndex: number;
 };
 
-type Card = SelectCard; // union расширяется по мере добавления фич
+type Card =
+  | SelectCard
+  | CodeSelectCard
+  | MemoryCard
+  | SymbolCard
+  | SoundCard
+  | TimedCard
+  | KeyboardCard
+  | DrawCard
+  | ToneCard
+  | ReadingCard
+  | FlipCard
+  | ClozeCard
+  | CodeTraceCard;
 
 type Scenario = {
   id: string;

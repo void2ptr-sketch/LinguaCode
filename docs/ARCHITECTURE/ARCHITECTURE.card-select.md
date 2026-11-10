@@ -18,8 +18,9 @@ features/card-select/
 │   ├── practice-session-bar/        # sticky контекст сессии
 │   └── practice-stepper/            # визуализация прогресса по шагам
 ├── services/
-│   ├── card-select.service.ts       # загрузка сценария, batch cards
-│   └── card-select.store.ts         # сессия: index, feedback, direction
+│   ├── card-select-flow.service.ts  # управление flow-состоянием (course→lessons→scenarios→learning)
+│   ├── card-select.service.ts       # загрузка сценария, batch cards, pagination
+│   └── card-select.store.ts         # сессия: index, feedback, direction, pagination
 ├── types/                           # типы фичи
 ├── utils/                           # утилиты фичи
 └── index.ts                         # barrel-экспорт
@@ -27,23 +28,39 @@ features/card-select/
 
 > **Примечание:** `card-select-page` — это страница (page), а не компонент фичи. Она расположена в `pages/card-select/card-select-page/` и является точкой входа маршрута `/cards/select`. Компоненты фичи (`features/card-select/components/`) импортируются страницей.
 
+## Разделение ответственности
+
+| Сервис / Стор | Назначение |
+| ------------- | ---------- |
+| `CardSelectFlowService` | Flow-состояние: выбранный курс, урок, сценарий, таб, difficulty-фильтр, auto-resume, sync с `UserStore` |
+| `CardSelectService` | HTTP-слой: загрузка сценария, пакетная загрузка карточек, pagination (25 карточек на страницу), background preload |
+| `CardSelectStore` | Сессионное состояние: текущая карточка, ответ пользователя, feedback, completed, shuffle nonce, memory board nonce |
+
 ## Поток данных
 
 ```mermaid
 sequenceDiagram
   participant Page as CardSelectPage
+  participant Flow as CardSelectFlowService
   participant Store as CardSelectStore
   participant Svc as CardSelectService
   participant API as Scenarios/Cards API
   participant LR as LearningResultsStore
   participant User as UserStore
 
-  Page->>Svc: loadScenario(scenarioId)
+  Page->>Flow: loadCourse(courseId)
+  Flow->>API: GET /courses/:id
+  Flow->>Flow: extract lessons + scenarioIds
+  Page->>Flow: selectLesson(lessonId)
+  Flow->>Flow: update lessonScenarioIds
+  Page->>Flow: selectScenario(scenarioId)
+  Flow->>Svc: loadScenario(scenarioId)
   Svc->>API: GET scenario + POST /cards/batch
   Svc->>Store: setScenario(cards)
   Page->>Store: checkAnswer()
   Page->>LR: addResult()
   Page->>User: updateLearningSession()
+  Flow->>User: persist lastLessonId/lastScenarioId (effect)
 ```
 
 ## UI (G14)
