@@ -32,14 +32,15 @@ type BackendCourseDto = {
   published: boolean;
   createdAt: string;
   updatedAt: string;
+  programCount?: number;
 };
 
 /**
  * Maps a backend course DTO to a frontend `CourseIndexEntry`.
  *
  * @remarks
- * The backend `CourseDto` does not include `programCount` or
- * `languagePairSummary` — these are derived client-side.
+ * `programCount` is now provided by the backend search endpoint;
+ * `languagePairSummary` is derived client-side.
  * `languagePairId` is resolved to `knownLanguage`/`learningLanguage`
  * via the `LanguagePairsApiService` cache.
  */
@@ -57,7 +58,7 @@ function toIndexEntry(
     title: dto.title,
     slug: dto.slug ?? '',
     authorId: String(dto.authorId),
-    programCount: 0, // not available in the list response
+    programCount: dto.programCount ?? 0,
     published: dto.published,
     updatedAt: dto.updatedAt,
     languagePairSummary: formatLanguagePair({ known, learning }),

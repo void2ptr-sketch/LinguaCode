@@ -50,7 +50,7 @@ describe('CoursesApiService', () => {
     title: 'Test Course',
     slug: 'test-course',
     authorId: '1',
-    programCount: 0,
+    programCount: 3,
     published: true,
     updatedAt: '2024-01-01T00:00:00.000Z',
     languagePairSummary: 'ru → en', // derived from languagePairId: 1
@@ -116,6 +116,7 @@ describe('CoursesApiService', () => {
         published: true,
         createdAt: '2024-01-01T00:00:00.000Z',
         updatedAt: '2024-01-01T00:00:00.000Z',
+        programCount: 3,
       };
 
       const expectedPage = {
