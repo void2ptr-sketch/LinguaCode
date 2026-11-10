@@ -59,20 +59,22 @@ export class CardSelectFlowService {
    * signal-read → effect-trigger cycle. This is an intentional workaround —
    * the persistence is eventually consistent, not synchronous.
    *
+   * **activeCourseId is NOT persisted here** — it is managed exclusively by
+   * `LearningDashboardService` (which updates it on every dashboard reload).
+   * Persisting it here would create a race condition: CardSelectFlowService
+   * writes asynchronously via queueMicrotask, while LearningDashboardService
+   * writes synchronously. The async write would overwrite the correct value.
+   *
    * Limitations: no error handling for localStorage writes; the microtask
    * may run after the service is destroyed (harmless — UserStore handles it).
-   * If strict synchronous persistence is needed, move `updateLearningSession`
-   * calls into each mutator method instead of using an effect.
    */
   private readonly persistSessionEffect = effect(() => {
-    const courseId = this.selectedCourseId();
     const lessonId = this.selectedLessonId();
     const scenarioId = this.selectedScenarioId();
 
     untracked(() => {
       queueMicrotask(() => {
         this.userStore.updateLearningSession({
-          ...(courseId ? { activeCourseId: courseId } : {}),
           ...(lessonId ? { lastLessonId: lessonId } : {}),
           ...(scenarioId ? { lastScenarioId: scenarioId } : {}),
         });

@@ -84,7 +84,11 @@ export class JourneyPageComponent {
   constructor() {
     // Загружаем активный курс дашборда — он используется как fallback,
     // когда курс не передан явно через query-параметр `?courseId=`.
-    this.dashboardService.reload();
+    // При явном courseId в URL reload не нужен — effect загрузит курс напрямую.
+    const hasExplicitCourseId = !!this.route.snapshot?.queryParams?.['courseId'];
+    if (!hasExplicitCourseId) {
+      this.dashboardService.reload();
+    }
 
     const queryParams = toSignal<string | undefined>(
       this.route.queryParams.pipe(map((params) => params['courseId'] as string | undefined)),
