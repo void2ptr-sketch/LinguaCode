@@ -69,6 +69,7 @@ describe('CourseCatalogSettingsComponent', () => {
           provide: CourseCatalogLanguagePairManagerService,
           useValue: {
             syncPairSettingsDrafts: vi.fn(),
+            saveActivePairSettings: vi.fn().mockReturnValue('pair-1'),
           },
         },
       ],
@@ -144,10 +145,6 @@ describe('CourseCatalogSettingsComponent', () => {
   });
 
   it('should handle validation errors gracefully', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should persist settings correctly', () => {
     expect(component).toBeTruthy();
   });
 

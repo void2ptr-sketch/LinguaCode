@@ -95,8 +95,22 @@ export class CourseCatalogLanguagePairManagerService {
   }
 
   /**
-   * Синхронизирует настройки языковой пары с черновиками.
-   */
+    * Сохраняет настройки активной языковой пары из черновиков в UserStore.
+    *
+    * @returns ID сохранённой пары или `null`.
+    */
+  saveActivePairSettings(): string | null {
+    const entry = this.settingsEntry();
+    if (!entry) {
+      return null;
+    }
+    this.savePairSettings(entry);
+    return entry.id;
+  }
+
+  /**
+    * Синхронизирует настройки языковой пары с черновиками.
+    */
   syncPairSettingsDrafts(): void {
     const entry = this.settingsEntry();
     const cjk = resolveCjkLearningForPair(entry);

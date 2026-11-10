@@ -109,7 +109,13 @@ describe('UserPageComponent', () => {
         { provide: AvailablePairsService, useValue: availablePairsMock },
         { provide: RoleService, useValue: roleServiceMock },
         { provide: LanguageApiService, useValue: { create: createSpy, update: updateSpy } },
-        { provide: UserApiService, useValue: { patchUserPreferences: patchPrefsSpy } },
+        {
+          provide: UserApiService,
+          useValue: {
+            patchUserPreferences: patchPrefsSpy,
+            updateMe: vi.fn(async () => undefined),
+          },
+        },
         { provide: Router, useValue: { navigate: vi.fn() } },
         { provide: MatSnackBar, useValue: { open: snackBarSpy } },
         {
@@ -125,7 +131,10 @@ describe('UserPageComponent', () => {
         },
         {
           provide: CourseCatalogLanguagePairManagerService,
-          useValue: { syncPairSettingsDrafts: vi.fn() },
+          useValue: {
+            syncPairSettingsDrafts: vi.fn(),
+            saveActivePairSettings: vi.fn().mockReturnValue('pair-1'),
+          },
         },
       ],
     })
@@ -219,21 +228,21 @@ describe('UserPageComponent', () => {
   });
 
   describe('saveProfile', () => {
-    it('should call userStore.updateDisplayName', () => {
+    it('should call userStore.updateDisplayName', async () => {
       const updateDisplayNameSpy = vi.spyOn(userStore, 'updateDisplayName');
       component.nameDraft.set('New Name');
-      component.saveProfile();
+      await component.saveProfile();
       expect(updateDisplayNameSpy).toHaveBeenCalledWith('New Name');
     });
 
-    it('should call userStore.updatePreferences with all draft values', () => {
+    it('should call userStore.updatePreferences with all draft values', async () => {
       const updatePreferencesSpy = vi.spyOn(userStore, 'updatePreferences');
       component.themeDraft.set('dark');
       component.fontSizeDraft.set('lg');
       component.colorSchemeDraft.set('dark');
       component.cardFocusFullscreenDraft.set(true);
       component.learningProficiencyDraft.set('intermediate');
-      component.saveProfile();
+      await component.saveProfile();
 
       expect(updatePreferencesSpy).toHaveBeenCalledWith({
         theme: 'dark',
@@ -242,6 +251,36 @@ describe('UserPageComponent', () => {
         cardFocusFullscreen: true,
         learningProficiencyLevel: 'intermediate',
       });
+    });
+
+    it('should call userApi.updateMe with learningPairs', async () => {
+      const userApi = TestBed.inject(UserApiService) as UserApiService;
+      const updateMeSpy = vi.spyOn(userApi, 'updateMe');
+      await component.saveProfile();
+
+      expect(updateMeSpy).toHaveBeenCalled();
+      const callArgs = updateMeSpy.mock.calls[0][0] as Record<string, unknown>;
+      expect(callArgs['preferences']).toBeDefined();
+      expect((callArgs['preferences'] as Record<string, unknown>)?.['learningPairs']).toBeDefined();
+    });
+
+    it('should show success toast on API success', async () => {
+      await component.saveProfile();
+
+      expect(snackBarSpy).toHaveBeenCalledWith('Профиль сохранён', 'Закрыть', { duration: 3000 });
+    });
+
+    it('should show error toast on API failure', async () => {
+      const userApi = TestBed.inject(UserApiService) as UserApiService;
+      vi.spyOn(userApi, 'updateMe').mockRejectedValue(new Error('API error'));
+
+      await component.saveProfile();
+
+      expect(snackBarSpy).toHaveBeenCalledWith(
+        'Не удалось сохранить профиль',
+        'Закрыть',
+        { duration: 5000 },
+      );
     });
   });
 

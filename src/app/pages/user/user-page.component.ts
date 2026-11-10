@@ -281,13 +281,15 @@ export class UserPageComponent implements OnInit {
   }
 
   /**
-   * Commits all draft form values to the `UserStore`.
-   *
-   * @remarks
-   * Updates both the display name and all preferences (theme, font size, color scheme,
-   * card focus fullscreen, learning proficiency level) in a single call.
-   */
-  saveProfile(): void {
+    * Commits all draft form values to the `UserStore` and persists to backend.
+    *
+    * @remarks
+    * Updates both the display name and all preferences (theme, font size, color scheme,
+    * card focus fullscreen, learning proficiency level) in a single call.
+    * Also saves per-pair settings (romanization, IPA, tone colors, tracing) for all pairs.
+    */
+  async saveProfile(): Promise<void> {
+    // 1. User-level preferences (local + localStorage)
     this.userStore.updateDisplayName(this.nameDraft());
     this.userStore.updatePreferences({
       theme: this.themeDraft(),
@@ -296,6 +298,28 @@ export class UserPageComponent implements OnInit {
       cardFocusFullscreen: this.cardFocusFullscreenDraft(),
       learningProficiencyLevel: this.learningProficiencyDraft(),
     });
+
+    // 2. Отправить ВСЕ preferences на бэкенд (user-level + per-pair settings)
+    try {
+      await this.userApi.updateMe({
+        displayName: this.nameDraft(),
+        preferences: {
+          theme: this.themeDraft(),
+          fontSize: this.fontSizeDraft(),
+          colorScheme: this.colorSchemeDraft(),
+          cardFocusFullscreen: this.cardFocusFullscreenDraft(),
+          learningProficiencyLevel: this.learningProficiencyDraft(),
+          learningPairs: this.userStore.languagePairs().map((p) => ({
+            known: p.pair.known,
+            learning: p.pair.learning,
+            settings: p.settings,
+          })),
+        } as Record<string, unknown>,
+      });
+      this.snackBar.open('Профиль сохранён', 'Закрыть', { duration: 3000 });
+    } catch {
+      this.snackBar.open('Не удалось сохранить профиль', 'Закрыть', { duration: 5000 });
+    }
   }
 
   // ── Language settings helpers ───────────────────────────────────

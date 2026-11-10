@@ -1,11 +1,9 @@
 import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 import type {
   ToneColorSchemeId,
@@ -23,8 +21,6 @@ import type { AnswerDisplayMode } from '../../../../entities/course/ui/course-di
 import { shouldShowPalladius } from '../../../../entities/phonetic/lib/phonetic-preferences.utils';
 import type { RomanizationOption } from '../../../../entities/course/ui/course-display-settings-matrix';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { UserApiService } from '../../../../entities/user/api/user-api.service';
-import type { UpdateUserPayload } from '../../../../entities/user/repository/user.port';
 import { DraftsStore } from '../../services';
 import { CourseCatalogLanguagePairManagerService } from '../../services/course-catalog-language-pair-manager.service';
 
@@ -44,7 +40,6 @@ import { CourseCatalogLanguagePairManagerService } from '../../services/course-c
   imports: [
     CourseDisplaySettingsMatrixComponent,
     FormsModule,
-    MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
     MatSlideToggleModule,
@@ -58,8 +53,6 @@ export class CourseCatalogSettingsComponent {
   private readonly userStore = inject(UserStore);
   private readonly drafts = inject(DraftsStore);
   private readonly pairManager = inject(CourseCatalogLanguagePairManagerService);
-  private readonly userApi = inject(UserApiService);
-  private readonly snackBar = inject(MatSnackBar);
 
   /** Available language pairs from the store. */
   readonly languagePairs = this.userStore.languagePairs;
@@ -229,43 +222,17 @@ export class CourseCatalogSettingsComponent {
   }
 
   /**
-   * Handles language pair selection changes from the combo-box.
-   *
-   * @param pairId - The ID of the selected language pair.
-   */
+    * Handles language pair selection changes from the combo-box.
+    *
+    * @param pairId - The ID of the selected language pair.
+    */
   onSettingsPairChange(pairId: string): void {
+    // 1. Автосохранение текущей пары (сохраняет draft в UserStore)
+    this.pairManager.saveActivePairSettings();
+    // 2. Переключение на новую пару
     this.drafts.setSettingsPairIdDraft(pairId);
+    // 3. Загрузка settings новой пары в draft
     this.pairManager.syncPairSettingsDrafts();
-  }
-
-  /**
-   * Saves the current settings to the store and persists to the backend.
-   */
-  async saveSettings(): Promise<void> {
-    const entry = this.settingsEntry();
-    if (!entry) {
-      return;
-    }
-
-    // Save to local store (updates localStorage)
-    this.pairManager.savePairSettings(entry);
-
-    // Persist to backend (PUT /users/me with full preferences)
-    try {
-      const payload: UpdateUserPayload = {
-        preferences: {
-          learningPairs: this.languagePairs().map((p) => ({
-            known: p.pair.known,
-            learning: p.pair.learning,
-            settings: p.settings,
-          })),
-        },
-      };
-      await this.userApi.updateMe(payload);
-      this.snackBar.open('Настройки сохранены', 'Закрыть', { duration: 3000 });
-    } catch {
-      this.snackBar.open('Не удалось сохранить настройки', 'Закрыть', { duration: 5000 });
-    }
   }
 
   // ---- Settings change handlers ----
