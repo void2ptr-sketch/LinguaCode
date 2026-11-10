@@ -18,7 +18,7 @@ import type { RomanizationOption } from '../../../entities/course/ui/course-disp
  * Отвечает за активацию пары (setActive) и синхронизацию настроек пары
  * с черновиками в DraftsStore. CRUD пар (add/remove) здесь не выполняется —
  * управление парами живёт на вкладке «Language Pairs» страницы
- * `/language-settings`.
+ * `/user`.
  */
 @Injectable({ providedIn: 'root' })
 export class CourseCatalogLanguagePairManagerService {

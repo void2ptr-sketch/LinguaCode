@@ -35,8 +35,8 @@ import { CourseCatalogLanguagePairManagerService } from '../../services/course-c
  * @remarks
  * Settings are scoped to the selected language pair and persisted via `UserStore`.
  * This component does NOT perform pair CRUD (add/activate/remove) — language pair
- * management lives exclusively on the «Language Pairs» tab of the language settings
- * page (`/language-settings`).
+ * management lives exclusively on the «Language Pairs» tab of the user
+ * page (`/user`).
  */
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

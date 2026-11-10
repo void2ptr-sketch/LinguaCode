@@ -207,10 +207,7 @@ export const routes: Routes = [
       },
       {
         path: 'settings/languages',
-        loadComponent: () =>
-          import('../pages/language-settings/language-settings.component').then(
-            (m) => m.LanguageSettingsComponent,
-          ),
+        redirectTo: 'user',
       },
 
       { path: '**', redirectTo: 'home' },

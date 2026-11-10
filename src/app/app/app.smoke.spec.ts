@@ -2,10 +2,15 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { of } from 'rxjs';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { provideApiHttpTesting } from './api/provide-api.http';
 import { AuthStore } from '../entities/auth/services/auth.store';
+import { LanguageService } from '../entities/language-pair/lib/language.service';
+import { AvailablePairsService } from '../entities/language-pair/lib/available-pairs.service';
+import { signal, computed } from '@angular/core';
 
 describe('App smoke', () => {
   beforeEach(async () => {
@@ -22,6 +27,41 @@ describe('App smoke', () => {
             isAuthenticated: () => true,
             user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: [] }),
             logout: () => Promise.resolve(),
+          },
+        },
+        {
+          provide: MatDialog,
+          useValue: {
+            open: () => ({
+              afterClosed: () => of(true as boolean),
+              afterOpened: of(),
+              backdropClick: of(),
+              close: () => void 0,
+            }),
+          },
+        },
+        {
+          provide: LanguageService,
+          useValue: {
+            languages: signal([]),
+            loading: signal(false),
+            loaded: signal(true),
+            load: () => Promise.resolve(),
+            getCodes: () => [],
+            getLabels: () => ({}),
+            findByCode: () => undefined,
+            isValid: () => false,
+          },
+        },
+        {
+          provide: AvailablePairsService,
+          useValue: {
+            pairs: signal([]),
+            loading: signal(false),
+            loaded: signal(true),
+            visiblePairs: computed(() => []),
+            load: () => Promise.resolve(),
+            invalidate: () => void 0,
           },
         },
       ],

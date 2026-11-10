@@ -3,9 +3,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
-import { buildLanguageLabels } from '../../entities/language-pair/lib/language-pair.utils';
-import { LanguageService } from '../../entities/language-pair/lib/language.service';
-import type { DirectionCardEvent } from './direction-card/direction-card.component';
+import { buildLanguageLabels } from '../lib/language-pair.utils';
+import { LanguageService } from '../lib/language.service';
+import type { DirectionCardEvent } from './direction-card.component';
 
 /**
  * Confirmation dialog for removing a language pair direction.
