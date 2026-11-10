@@ -24,4 +24,6 @@ export interface Scenario {
   updatedAt?: string;
   /** Количество карточек в сценарии */
   cardCount?: number;
+  /** Числовые ID карточек, восстановленные из cardSource.cardIds в порядке следования */
+  resolvedCardIds?: number[];
 }

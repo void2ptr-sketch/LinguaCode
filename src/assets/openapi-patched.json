@@ -3889,6 +3889,14 @@
             }
           },
           {
+            "name": "slug",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "pageable",
             "in": "query",
             "required": true,
@@ -4828,6 +4836,10 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "slug": {
+            "type": "string",
+            "description": "Уникальный строковый идентификатор курса (content ID)"
           }
         }
       },
@@ -5404,6 +5416,14 @@
             "type": "integer",
             "format": "int32",
             "description": "Количество карточек в сценарии"
+          },
+          "resolvedCardIds": {
+            "type": "array",
+            "description": "Числовые ID карточек, восстановленные из cardSource.cardIds в порядке следования",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
           }
         }
       },
@@ -5626,6 +5646,9 @@
               "CLOZE",
               "CODE_TRACE"
             ]
+          },
+          "slug": {
+            "type": "string"
           },
           "authorId": {
             "type": "integer",

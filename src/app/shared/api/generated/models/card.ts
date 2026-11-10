@@ -15,6 +15,7 @@ export interface Card {
   id?: number;
   title?: string;
   kind?: CardKind;
+  slug?: string;
   authorId?: number;
   dataJson?: string;
   tags?: string;

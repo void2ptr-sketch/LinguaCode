@@ -19,4 +19,6 @@ export interface Course {
   requiredTier?: CourseRequiredTier;
   createdAt?: string;
   updatedAt?: string;
+  /** Уникальный строковый идентификатор курса (content ID) */
+  slug?: string;
 }
