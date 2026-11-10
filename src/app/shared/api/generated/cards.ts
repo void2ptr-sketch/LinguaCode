@@ -411,7 +411,7 @@ export class CardsService {
     );
   }
 /**
- * Searches cards by title and filters
+ * Searches cards by title with optional language pair filter. When no query is provided, returns published cards filtered by language pair.
  * @summary Search cards
  */
  cardsSearch<TData = CardList>(params: CardsSearchParams, options?: HttpClientBodyOptions): Observable<TData>;

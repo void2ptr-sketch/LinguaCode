@@ -6,6 +6,8 @@ import {
   inject,
   OnInit,
   untracked,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -213,6 +215,19 @@ export class CardSelectPageComponent implements OnInit {
 
   readonly fontSize = this.flow.fontSize;
 
+  // ─── Tab focus management ──────────────────────────────────────────────
+
+  @ViewChild('tabGroup') private readonly tabGroup!: ElementRef<HTMLElement>;
+
+  /** Moves focus to the newly selected tab header to prevent aria-hidden warning. */
+  private focusTabHeader(tabIndex: number): void {
+    const group = this.tabGroup?.nativeElement;
+    if (!group) return;
+    const tabHeaders = group.querySelectorAll('mat-tab-header button');
+    const button = tabHeaders[tabIndex] as HTMLButtonElement | undefined;
+    button?.focus();
+  }
+
   // ─── Effects ──────────────────────────────────────────────────────────
 
   /** Auto-checks draw card answers when the store receives them. */
@@ -324,6 +339,11 @@ export class CardSelectPageComponent implements OnInit {
 
   goToTab(tabIndex: number): void {
     this.flow.goToTab(tabIndex);
+  }
+
+  /** Moves focus to the tab header on tab change to prevent aria-hidden warning. */
+  onTabSelect(tabIndex: number): void {
+    this.focusTabHeader(tabIndex);
   }
 
   advanceFromCurrentTab(): void {

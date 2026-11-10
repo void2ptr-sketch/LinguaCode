@@ -56,6 +56,9 @@ export class CourseSearchService {
 
   private idResolutionPromise: Promise<void> | null = null;
 
+  /** Cache for getById results to prevent redundant API calls. */
+  private readonly getByIdCache = new Map<string, Promise<CourseWithPrograms>>();
+
   /**
    * Searches courses by criteria.
    *
@@ -192,9 +195,17 @@ export class CourseSearchService {
       throw new Error(`Course not found: ${courseId}`);
     }
 
+    // Return cached result if already loading or cached
+    const cached = this.getByIdCache.get(resolvedId);
+    if (cached) {
+      return cached;
+    }
+
     // Try /journey endpoint first
     try {
-      const course = await this.run(() => this.coursesApi.getJourney(resolvedId));
+      const promise = this.run(() => this.coursesApi.getJourney(resolvedId));
+      this.getByIdCache.set(resolvedId, promise);
+      const course = await promise;
 
       // If journey returns programs with lessons, use them
       if (course.programs && course.programs.length > 0) {
