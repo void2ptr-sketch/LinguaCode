@@ -1,0 +1,60 @@
+<div class="page-card__tab-panel">
+  @if (loading()) {
+    <div class="settings-page__loading">Загрузка языков...</div>
+  } @else {
+    <div class="settings-page__header">
+      <div>
+        <h2 class="page-card__section-title">Доступные языки</h2>
+        <p class="page-card__hint">
+          Выберите языки для изучения. Нужен хотя бы один язык, чтобы создавать пары.
+          @if (canManageLanguages()) {
+            Справочник языков редактируется в
+            <a href="#" (click)="$event.preventDefault(); openLanguageAdmin()"
+              >Панели администратора</a
+            >.
+          }
+        </p>
+      </div>
+    </div>
+
+    @if (availableLanguages().length === 0) {
+      <div class="settings-page__empty">No languages available.</div>
+    } @else {
+      <div class="settings-page__languages-grid">
+        @for (lang of availableLanguages(); track lang.id) {
+          <mat-card
+            class="settings-page__language-item"
+            [class.settings-page__language-item--inactive]="!lang.activeFlag"
+          >
+            <mat-card-content>
+              <div class="settings-page__language-info">
+                <span class="settings-page__language-name">{{ lang.displayName }}</span>
+                <span class="settings-page__language-native">({{ lang.nativeName }})</span>
+                <span class="settings-page__language-code">{{ lang.code }}</span>
+                @if (!lang.activeFlag) {
+                  <span class="settings-page__language-badge--inactive">Inactive</span>
+                }
+              </div>
+
+              <mat-checkbox
+                [checked]="selectedCodes().includes(lang.code)"
+                (change)="toggleLanguage(lang.code)"
+                [disabled]="
+                  !lang.activeFlag ||
+                  (selectedCodes().length === 1 && selectedCodes().includes(lang.code))
+                "
+                [matTooltip]="
+                  !lang.activeFlag
+                    ? 'Язык отключён администратором в справочнике (/admin)'
+                    : ''
+                "
+              >
+                Использовать в обучении
+              </mat-checkbox>
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+    }
+  }
+</div>

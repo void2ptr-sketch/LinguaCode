@@ -1,12 +1,8 @@
 import { InjectionToken } from '@angular/core';
 
-/** A single direction within a grouped card. */
-export type DirectionItem = {
-  id: string;
-  known: string;
-  learning: string;
-  isActive: boolean;
-};
+// DirectionItem lives in the model layer now; re-exported for backward
+// compatibility with existing imports from this file.
+export type { DirectionItem } from '../model/language-pair.types';
 
 /**
  * Payload emitted by a direction card event (`activate` / `remove`).

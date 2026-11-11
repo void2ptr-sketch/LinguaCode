@@ -409,6 +409,34 @@ export class UserStore {
   }
 
   /**
+   * Removes a language pair entry without any activation side effects.
+   *
+   * @param id - The ID of the language pair entry to remove.
+   * @remarks
+   * Used when a mirror sibling must be replaced by the opposite direction
+   * (see `UserLanguagePairManagerService.setActivePair`): the entry is
+   * deleted, but neither the global active pair nor any mirror-group
+   * highlight changes — the caller re-establishes those right after.
+   * @returns `true` when the entry existed and was removed.
+   */
+  removeMirrorSibling(id: string): boolean {
+    const pairs = this.languagePairs();
+    if (!pairs.some((entry) => entry.id === id)) {
+      return false;
+    }
+
+    this.userState.update((user) => ({
+      ...user,
+      preferences: {
+        ...user.preferences,
+        languagePairs: pairs.filter((entry) => entry.id !== id),
+      },
+    }));
+    this.persist();
+    return true;
+  }
+
+  /**
    * Sets the active language pair by ID.
    *
    * @param id - The ID of the language pair entry to activate.

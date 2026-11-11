@@ -18,3 +18,10 @@ export {
   scenarioIndexMatchesLanguageCriteria,
   courseIndexMatchesLanguageCriteria,
 } from './language-pair-scope.utils';
+export { normalizeLanguageCode } from './language-code.utils';
+export { getLanguageFlagEmoji } from './language-flag.utils';
+export {
+  getLanguageBadgeColor,
+  getLanguageBadgeTextColor,
+  getLanguageBadgeCode,
+} from './language-badge.utils';

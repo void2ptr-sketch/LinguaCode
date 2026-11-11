@@ -20,6 +20,24 @@ export type LanguagePair = {
  */
 export type CardDirection = 'known-to-learning' | 'learning-to-known';
 
+/** A single direction within a grouped mirror-pair card. */
+export type DirectionItem = {
+  id: string;
+  known: string;
+  learning: string;
+  isActive: boolean;
+};
+
+/** A grouped pair of mirror directions (e.g. EN↔RU). */
+export type PairGroup = {
+  /** Canonical key — sorted language codes joined by a pipe (see `buildMirrorGroupKey`). */
+  key: string;
+  /** Both directions (0–2). */
+  directions: DirectionItem[];
+  /** Total configured directions for this pair. */
+  count: number;
+};
+
 /**
  * Default language pair applied when no user preference exists.
  *
