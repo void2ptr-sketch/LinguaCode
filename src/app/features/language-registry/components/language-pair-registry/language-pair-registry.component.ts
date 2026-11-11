@@ -18,8 +18,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { LanguagePairsApiService } from '../../../../entities/language-pair/api/language-pairs-api.service';
 import type { LanguagePairDto } from '../../../../entities/language-pair/api/language-pairs-api.types';
-import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
-import { buildMirrorGroupKey } from '../../../../entities/language-pair/lib/language-pair.utils';
+import { LanguageService } from '../../../../entities/language-pair/services/language.service';
+import { buildMirrorGroupKey } from '../../../../entities/language-pair/utils/language-pair.utils';
 
 /** A registry pair direction normalized for display. */
 type RegistryPair = {
@@ -56,10 +56,10 @@ type RegistryPairGroup = {
     MatOptionModule,
     MatSelectModule,
   ],
-  templateUrl: './pair-registry.component.html',
-  styleUrl: './pair-registry.component.scss',
+  templateUrl: './language-pair-registry.component.html',
+  styleUrl: './language-pair-registry.component.scss',
 })
-export class PairRegistryComponent {
+export class LanguagePairRegistryComponent {
   private readonly pairsApi = inject(LanguagePairsApiService);
   private readonly languageService = inject(LanguageService);
   private readonly snackBar = inject(MatSnackBar);

@@ -1,3 +1,3 @@
 // ===== Components =====
-export { PairRegistryComponent } from './components/pair-registry/pair-registry.component';
-export { LanguageRegistryComponent } from './components/language-registry/language-registry.component';
+export { LanguagePairRegistryComponent } from './components/language-pair-registry/language-pair-registry.component';
+export { LanguageDictionaryComponent } from './components/language-dictionary/language-dictionary.component';

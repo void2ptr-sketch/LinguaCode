@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { LanguageService } from './language.service';
-import { LanguageSettingsStore } from './language-settings.store';
+import { LanguageSettingsStore } from '../store/language-settings.store';
 import { LanguagePairsApiService } from '../api/language-pairs-api.service';
 import type { LanguagePairDto } from '../api/language-pairs-api.types';
 

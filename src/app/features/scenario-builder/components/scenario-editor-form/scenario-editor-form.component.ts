@@ -18,7 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import type { ContentLanguage, ScenarioCardSort } from '../../../../entities/card/model';
-import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
+import { LanguageService } from '../../../../entities/language-pair/services/language.service';
 import { ScenarioCardCriteriaEditorComponent } from '../../../../entities/card/ui/card-catalog/scenario-card-criteria-editor/scenario-card-criteria-editor.component';
 import { ScenarioCardPickerComponent } from '../../../../entities/card/ui/card-catalog/scenario-card-picker/scenario-card-picker.component';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';

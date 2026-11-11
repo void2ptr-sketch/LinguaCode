@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { LanguageRegistryComponent } from '../../../features/language-registry/components/language-registry/language-registry.component';
+import { LanguageDictionaryComponent } from '../../../features/language-registry/components/language-dictionary/language-dictionary.component';
 
 /**
  * Admin page — system dictionary management (ROLE_ADMIN, `adminGuard`).
@@ -11,14 +11,14 @@ import { LanguageRegistryComponent } from '../../../features/language-registry/c
  * @remarks
  * Tab layout:
  * - **Справочник языков** — CRUD of the global `/languages` dictionary
- *   ([LanguageRegistryComponent](features/language-registry)). The learner
+ *   ([LanguageDictionaryComponent](features/language-registry)). The learner
  *   profile consumes the dictionary read-only.
  * - **Разделы в разработке** — placeholders for user management, logs.
  */
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-admin-page',
-  imports: [MatCardModule, MatIconModule, MatTabsModule, LanguageRegistryComponent],
+  imports: [MatCardModule, MatIconModule, MatTabsModule, LanguageDictionaryComponent],
   template: `
     <mat-card class="admin-page">
       <mat-card-content class="admin-page__content">

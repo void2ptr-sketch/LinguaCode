@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 
 import { CardSearchService, CardsApiService } from '../../../entities/card';
 import { resolveScenarioCardIds, ScenarioSearchService } from '../../../entities/scenario';
-import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
+import { activeLanguagePairCriteria } from '../../../entities/language-pair/utils/language-pair-scope.utils';
 import { scenarioMatchesLanguagePair } from '../../../entities/scenario/utils/scenario-card-source.utils';
 import type { Card } from '../../../entities/card/model';
 import type { ScenarioSearchPage } from '../../../entities/scenario/model';

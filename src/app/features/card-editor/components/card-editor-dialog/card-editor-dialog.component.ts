@@ -19,7 +19,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { firstValueFrom } from 'rxjs';
 
-import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
+import { LanguageService } from '../../../../entities/language-pair/services/language.service';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { CardEditorStore } from '../../services/card-editor.store';

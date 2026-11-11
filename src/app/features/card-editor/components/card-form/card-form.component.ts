@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import type { ContentLanguage, CardIndexMetaOverride } from '../../../../entities/card/model';
 import type { CardAppearance } from '../../../../entities/card/model';
-import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
+import { LanguageService } from '../../../../entities/language-pair/services/language.service';
 import type { CardDraft, ChoiceCardDraft } from '../../types';
 import { cardFormKindGroup } from '../../utils/form/card-form.registry';
 import { normalizeCardDraft } from '../../utils/validation/card-validation.utils';

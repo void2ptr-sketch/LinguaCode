@@ -10,9 +10,11 @@ import { UserPageComponent } from './user-page.component';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { UserPersistence } from '../../../entities/user/model/user.persistence';
 import { LEARNING_PROFICIENCY_LEVELS } from '../../../entities/learning/model';
-import { LanguageService } from '../../../entities/language-pair/lib/language.service';
-import { AvailablePairsService } from '../../../entities/language-pair/lib/available-pairs.service';
-import { LanguageSettingsStore } from '../../../entities/language-pair/lib/language-settings.store';
+import { LanguageService } from '../../../entities/language-pair/services/language.service';
+
+import { AvailablePairsService } from '../../../entities/language-pair/services/available-pairs.service';
+
+import { LanguageSettingsStore } from '../../../entities/language-pair/store/language-settings.store';
 import { RoleService } from '../../../entities/auth/services/role.service';
 import { UserApiService } from '../../../entities/user/api/user-api.service';
 import { UserPreferencesApiService } from '../../../entities/user/api/user-preferences-api.service';

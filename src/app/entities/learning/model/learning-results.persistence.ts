@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { normalizeLanguagePair } from '../../language-pair/lib/language-pair.utils';
+import { normalizeLanguagePair } from '../../language-pair/utils/language-pair.utils';
 import { LearningResult } from './';
 import { DEFAULT_LANGUAGE_PAIR } from '../../language-pair/model/language-pair.types';
 /**

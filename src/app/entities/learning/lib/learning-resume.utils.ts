@@ -4,7 +4,7 @@ import {
   isLessonUnlocked,
   prerequisiteBlockReason,
 } from '../../lesson/lib/lesson-prerequisites.utils';
-import { languagePairsEqual } from '../../language-pair/lib/language-pair.utils';
+import { languagePairsEqual } from '../../language-pair/utils/language-pair.utils';
 import { scenarioDisplayLabel } from '../../scenario/utils/scenario-display-label.utils';
 import type { LearningSessionPreferences } from '../model';
 import type { Course, ProgramWithLessons, Lesson } from '../../course/model';

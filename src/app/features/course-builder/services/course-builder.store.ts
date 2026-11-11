@@ -15,8 +15,8 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
-import { LanguagePairIdResolver } from '../../../entities/language-pair/lib/language-pair-id-resolver.service';
-import { normalizeLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
+import { LanguagePairIdResolver } from '../../../entities/language-pair/services/language-pair-id-resolver.service';
+import { normalizeLanguagePair } from '../../../entities/language-pair/utils/language-pair.utils';
 import { CourseSearchService, CoursesApiService } from '../../../entities/course';
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import type {

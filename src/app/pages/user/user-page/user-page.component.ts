@@ -29,7 +29,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { RemovePairDialogComponent } from '../../../entities/language-pair/ui/remove-pair-dialog.component';
 import { LanguageService, LanguageSettingsStore } from '../../../entities/language-pair';
-import { AvailablePairsService } from '../../../entities/language-pair/lib/available-pairs.service';
+import { AvailablePairsService } from '../../../entities/language-pair/services/available-pairs.service';
 import { UserStore } from '../../../entities/user/model';
 import { UserApiService } from '../../../entities/user/api/user-api.service';
 import { UserPreferencesApiService } from '../../../entities/user/api/user-preferences-api.service';
@@ -39,7 +39,7 @@ import type { LanguagePair } from '../../../entities/language-pair/model/languag
 import {
   buildMirrorGroupKey,
   isContentLanguage,
-} from '../../../entities/language-pair/lib/language-pair.utils';
+} from '../../../entities/language-pair/utils/language-pair.utils';
 import {
   DIRECTION_CARD_HELPERS,
   DirectionCardEvent,

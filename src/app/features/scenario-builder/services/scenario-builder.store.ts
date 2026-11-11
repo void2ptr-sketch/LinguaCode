@@ -11,8 +11,8 @@ import {
 import {
   cardIndexMatchesPair,
   normalizeLanguagePair,
-} from '../../../entities/language-pair/lib/language-pair.utils';
-import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
+} from '../../../entities/language-pair/utils/language-pair.utils';
+import { activeLanguagePairCriteria } from '../../../entities/language-pair/utils/language-pair-scope.utils';
 import { CardSearchService } from '../../../entities/card';
 import { CourseSearchService } from '../../../entities/course';
 import { ScenarioSearchService } from '../../../entities/scenario';

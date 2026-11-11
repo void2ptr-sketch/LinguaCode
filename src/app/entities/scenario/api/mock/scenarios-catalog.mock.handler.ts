@@ -19,7 +19,7 @@ import {
 import {
   cardIndexMatchesPair,
   normalizeLanguagePair,
-} from '../../../language-pair/lib/language-pair.utils';
+} from '../../../language-pair/utils/language-pair.utils';
 import { isEditableContentAuthor, isSystemAuthor } from '../../../user/lib/system-author.constants';
 import { CardsCatalogMockHandler } from '../../../card/api/mock/cards-catalog.mock.handler';
 import { ContentSeedRepository } from '../../../content-seed/content-seed.repository';

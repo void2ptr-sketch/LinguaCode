@@ -8,7 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardsApiService } from '../../../../entities/card/api/cards-api.service';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
 import { CatalogService } from '../../../../entities/card/api/catalog.service';
-import { cardIndexMatchesPair } from '../../../../entities/language-pair/lib/language-pair.utils';
+import { cardIndexMatchesPair } from '../../../../entities/language-pair/utils/language-pair.utils';
 import type { CardDirection } from '../../../../entities/language-pair/model/language-pair.types';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import type { CardKind } from '../../../../entities/card/model';

@@ -15,7 +15,7 @@ import {
   isContentLanguage,
   languagePairsEqual,
   normalizeLanguagePair,
-} from '../../language-pair/lib/language-pair.utils';
+} from '../../language-pair/utils/language-pair.utils';
 import {
   normalizeCjkLearningPreferences,
   normalizePhoneticPreferences,

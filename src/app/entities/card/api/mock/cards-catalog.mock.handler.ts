@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import type { Card, CardSearchCriteria, CardSearchPage } from '../../model';
 import type { CardIndexEntry } from '../../model';
 import { paginateArray } from '../../../../shared/utils/pagination';
-import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
+import { LanguageService } from '../../../../entities/language-pair/services/language.service';
 import { CatalogService } from '../catalog.service';
 
 import { buildCardIndex } from '../../mapping/card-index.mapper';

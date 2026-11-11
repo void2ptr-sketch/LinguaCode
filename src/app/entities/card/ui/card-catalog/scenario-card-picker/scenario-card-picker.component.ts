@@ -12,8 +12,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 
 import { UiPaginationComponent } from '../../../../../shared/utils/pagination';
-import { formatIndexLanguagePair } from '../../../../language-pair/lib/language-pair.utils';
-import { LanguageService } from '../../../../language-pair/lib/language.service';
+import { formatIndexLanguagePair } from '../../../../language-pair/utils/language-pair.utils';
+import { LanguageService } from '../../../../language-pair/services/language.service';
 import { UserStore } from '../../../../user/model/user.store';
 import { CatalogService } from '../../../api/catalog.service';
 import { TagsService } from '../../../api/tags.service';

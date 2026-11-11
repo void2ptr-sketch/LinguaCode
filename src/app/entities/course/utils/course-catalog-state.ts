@@ -3,7 +3,7 @@ import type { Program } from '../../program/model';
 import type { Scenario } from '../../scenario/model';
 import type { CourseAuthoring } from '../model/course-authoring.types';
 
-import { normalizeLanguagePair } from '../../language-pair/lib/language-pair.utils';
+import { normalizeLanguagePair } from '../../language-pair/utils/language-pair.utils';
 import { normalizeCourseAuthoring } from './course-authoring.utils';
 import type {
   CoursesNestedFixture,

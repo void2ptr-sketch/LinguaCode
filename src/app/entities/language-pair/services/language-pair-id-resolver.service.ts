@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 
 import { LanguagePairsApiService } from '../api/language-pairs-api.service';
 import type { LanguagePairDto } from '../api/language-pairs-api.types';
-import { normalizeLanguagePair } from './language-pair.utils';
+import { normalizeLanguagePair } from '../utils/language-pair.utils';
 import type { LanguagePair } from '../model/language-pair.types';
 
 /**

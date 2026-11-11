@@ -196,8 +196,8 @@ export const routes: Routes = [
       {
         path: 'tools/language-pairs',
         loadComponent: () =>
-          import('../features/language-registry/components/pair-registry/pair-registry.component').then(
-            (m) => m.PairRegistryComponent,
+          import('../features/language-registry/components/language-pair-registry/language-pair-registry.component').then(
+            (m) => m.LanguagePairRegistryComponent,
           ),
         canMatch: [authorGuard],
       },

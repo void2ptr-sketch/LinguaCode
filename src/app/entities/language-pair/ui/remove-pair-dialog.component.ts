@@ -3,8 +3,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
-import { buildLanguageLabels } from '../lib/language-pair.utils';
-import { LanguageService } from '../lib/language.service';
+import { buildLanguageLabels } from '../utils/language-pair.utils';
+import { LanguageService } from '../services/language.service';
 import type { DirectionCardEvent } from './direction-card.component';
 
 /**

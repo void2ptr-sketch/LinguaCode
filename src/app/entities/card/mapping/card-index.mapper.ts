@@ -2,7 +2,7 @@ import type { Card } from '../model';
 import type { CardIndexEntry, CardIndexMetaOverride } from '../model';
 import { DEFAULT_LANGUAGE_PAIR } from '../../language-pair/model/language-pair.types';
 import { collectCardIpaReadings } from '../utils/card-ipa-index.utils';
-import { isContentLanguage } from '../../language-pair/lib/language-pair.utils';
+import { isContentLanguage } from '../../language-pair/utils/language-pair.utils';
 /**
  * Преобразует карточку в запись индекса (`CardIndexEntry`) с учётом метаданных.
  * Приоритет метаданных: `card.meta` → `meta` (из overlay) → значения по умолчанию.

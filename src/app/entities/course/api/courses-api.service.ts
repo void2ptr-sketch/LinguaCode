@@ -19,7 +19,7 @@ import type {
 import { UserStore } from '../../user/model/user.store';
 import type { ContentLanguage } from '../../card/model/card-index.types';
 import { LanguagePairsApiService } from '../../language-pair/api';
-import { formatLanguagePair } from '../../language-pair/lib/language-pair.utils';
+import { formatLanguagePair } from '../../language-pair/utils/language-pair.utils';
 
 /** Backend DTO for a course (matches `CourseDto`). */
 type BackendCourseDto = {

@@ -18,7 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import type { PageEvent } from '@angular/material/paginator';
 
 import { CourseSearchService } from '../..';
-import { activeLanguagePairCriteria } from '../../../language-pair/lib/language-pair-scope.utils';
+import { activeLanguagePairCriteria } from '../../../language-pair/utils/language-pair-scope.utils';
 import type { CourseIndexEntry, CourseListScope } from '../../model';
 import { UserStore } from '../../../user/model/user.store';
 import { UiPaginationComponent } from '../../../../shared/utils/pagination';

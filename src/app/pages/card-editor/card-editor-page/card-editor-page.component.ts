@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardKind } from '../../../entities/card/model';
-import { formatIndexLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
+import { formatIndexLanguagePair } from '../../../entities/language-pair/utils/language-pair.utils';
 import { LanguageService } from '../../../entities/language-pair';
 import { tagLabel } from '../../../entities/card/lib/catalog-labels';
 import { CardCatalogFiltersComponent } from '../../../entities/card/ui/card-catalog/card-catalog-filters/card-catalog-filters.component';

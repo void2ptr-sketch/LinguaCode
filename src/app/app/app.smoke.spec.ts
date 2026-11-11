@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { provideApiHttpTesting } from './api/provide-api.http';
 import { AuthStore } from '../entities/auth/services/auth.store';
-import { LanguageService } from '../entities/language-pair/lib/language.service';
-import { AvailablePairsService } from '../entities/language-pair/lib/available-pairs.service';
+import { LanguageService } from '../entities/language-pair/services/language.service';
+import { AvailablePairsService } from '../entities/language-pair/services/available-pairs.service';
 import { signal, computed } from '@angular/core';
 
 describe('App smoke', () => {

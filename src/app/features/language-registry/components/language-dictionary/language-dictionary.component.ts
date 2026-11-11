@@ -16,7 +16,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { LanguageApiService } from '../../../../entities/language-pair/api/language-api.service';
 import type { LanguageCreatePayload } from '../../../../entities/language-pair/api/language-api.service';
 import type { LanguageDto } from '../../../../entities/language-pair/api/language-dto.types';
-import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
+import { LanguageService } from '../../../../entities/language-pair/services/language.service';
 
 /**
  * Registry CRUD for `languages` (admin zone, `/admin`).
@@ -37,10 +37,10 @@ import { LanguageService } from '../../../../entities/language-pair/lib/language
     MatSlideToggleModule,
     MatTooltipModule,
   ],
-  templateUrl: './language-registry.component.html',
-  styleUrl: './language-registry.component.scss',
+  templateUrl: './language-dictionary.component.html',
+  styleUrl: './language-dictionary.component.scss',
 })
-export class LanguageRegistryComponent {
+export class LanguageDictionaryComponent {
   private readonly languageApi = inject(LanguageApiService);
   private readonly languageService = inject(LanguageService);
   private readonly snackBar = inject(MatSnackBar);
