@@ -120,7 +120,7 @@ export class ProgramsApiService implements ProgramCatalogPort {
     const body = {
       title: payload.title,
       programDescription: payload.description,
-      courseId: this.userStore.user().id,
+      courseId: payload.courseId,
     };
     return firstValueFrom(
       this.http.post<ApiResponse<Program>>(buildApiUrl('/programs'), body),
@@ -149,6 +149,9 @@ export class ProgramsApiService implements ProgramCatalogPort {
     const body = {
       title: payload.title,
       programDescription: payload.description,
+      courseId: payload.courseId,
+      lessonIds: payload.lessonIds,
+      order: payload.order,
     };
     return firstValueFrom(
       this.http.put<ApiResponse<Program>>(buildApiUrl(`/programs/${programId}`), body),

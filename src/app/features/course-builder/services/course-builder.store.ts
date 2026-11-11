@@ -24,7 +24,6 @@ import type {
   CourseWithPrograms,
   CourseListScope,
 } from '../../../entities/course/model';
-import type { ProgramWithLessons } from '../../../entities/program/model';
 import { sanitizeMarkdownText, sanitizePlainText } from '../../../shared/security';
 import { COURSE_IDEA_MAX_LENGTH } from '../../../entities/course/utils/course-authoring.utils';
 import { UserStore } from '../../../entities/user/model/user.store';
@@ -237,12 +236,9 @@ export class CourseBuilderStore {
     try {
       const course = await this.courseSearchService.getById(courseId);
 
-      // Resolve programs with their lessons
-      const programsWithLessons: ProgramWithLessons[] = [];
-      for (const program of course.programs) {
-        const programWithLessons = await this.programsApi.getById(program.id);
-        programsWithLessons.push(programWithLessons);
-      }
+      const programsWithLessons = await Promise.all(
+        course.programs.map((program) => this.programsApi.getById(program.id))
+      );
 
       const resolvedCourse: CourseWithPrograms = {
         ...course,
@@ -297,6 +293,7 @@ export class CourseBuilderStore {
         ...payload,
         languagePair: this.userStore.languagePair(),
       });
+      this.courseSearchService.clearGetByIdCache();
       this.cancelEdit();
       await this.loadList();
       return true;
@@ -335,6 +332,7 @@ export class CourseBuilderStore {
         ...payload,
         languagePair: normalizeLanguagePair(current?.languagePair ?? this.userStore.languagePair()),
       });
+      this.courseSearchService.clearGetByIdCache();
       this.cancelEdit();
       await this.loadList();
       return true;
@@ -363,6 +361,7 @@ export class CourseBuilderStore {
 
     try {
       await this.courseSearchService.delete(courseId);
+      this.courseSearchService.clearGetByIdCache();
       if (this.editingCourseId() === courseId) {
         this.cancelEdit();
       }

@@ -1,7 +1,6 @@
 // ===== Components =====
 export { CourseBuilderDialogComponent } from './components/course-builder-dialog/course-builder-dialog.component';
 export { CourseFormComponent } from './components/course-form/course-form.component';
-export { ResetOverlayDialogComponent } from './components/reset-overlay-dialog/reset-overlay-dialog.component';
 
 // ===== Services / Stores =====
 export { CourseBuilderStore } from './services/course-builder.store';

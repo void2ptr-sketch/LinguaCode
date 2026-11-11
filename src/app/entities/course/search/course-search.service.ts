@@ -16,7 +16,6 @@ import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import type { ApiListResponse, ApiResponse } from '../../../shared/api/api.types';
 import { ProgramsApiService } from '../../program/api';
-import type { ProgramWithLessons } from '../../program/model/program.types';
 
 /**
  * Service for course search and management operations.
@@ -58,6 +57,16 @@ export class CourseSearchService {
 
   /** Cache for getById results to prevent redundant API calls. */
   private readonly getByIdCache = new Map<string, Promise<CourseWithPrograms>>();
+
+  /**
+   * Clears the getById cache.
+   *
+   * @remarks
+   * Call after create/update/delete operations so subsequent reads fetch fresh data.
+   */
+  clearGetByIdCache(): void {
+    this.getByIdCache.clear();
+  }
 
   /**
    * Searches courses by criteria.
@@ -220,14 +229,6 @@ export class CourseSearchService {
     this.logger.info(
       `[CourseSearch] Fetching programs via ProgramsApiService for course ${resolvedId}`,
     );
-    const programs = await this.programsApi.getByCourse(resolvedId);
-
-    // Resolve each program with its lessons
-    const programsWithLessons: ProgramWithLessons[] = [];
-    for (const program of programs) {
-      const programWithLessons = await this.programsApi.getById(program.id);
-      programsWithLessons.push(programWithLessons);
-    }
 
     // Fetch course base to preserve metadata (title, authorId, etc.)
     let courseBase: Record<string, unknown>;
@@ -253,6 +254,25 @@ export class CourseSearchService {
         updatedAt: new Date().toISOString(),
       };
     }
+
+    // Fetch programs and resolve lessons in parallel
+    const programs = await this.programsApi.getByCourse(resolvedId);
+
+    if (programs.length === 0) {
+      this.logger.warn(
+        `[CourseSearch] Fallback returned 0 programs for course ${resolvedId}`,
+      );
+      // Return course with empty programs — caller can handle gracefully
+      return {
+        ...courseBase,
+        programIds: [],
+        programs: [],
+      } as unknown as CourseWithPrograms;
+    }
+
+    const programsWithLessons = await Promise.all(
+      programs.map((program) => this.programsApi.getById(program.id)),
+    );
 
     const courseWithPrograms = {
       ...courseBase,

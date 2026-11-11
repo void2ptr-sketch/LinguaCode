@@ -20,6 +20,7 @@ describe('CourseBuilderStore', () => {
     update: vi.fn(),
     delete: vi.fn(),
     resolveCourseIdForWrite: vi.fn(async (courseId: string) => courseId),
+    clearGetByIdCache: vi.fn(),
   };
 
   const mockPairIdResolver = {

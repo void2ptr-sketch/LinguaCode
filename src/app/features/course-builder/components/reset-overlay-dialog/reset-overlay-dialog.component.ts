@@ -1,76 +1,67 @@
-/**
- * Диалоговое окно подтверждения сброса пользовательских данных (overlay).
- *
- * Используется при добавлении новых карточек/сценариев из файлов,
- * если они не отображаются в интерфейсе из-за конфликта с localStorage.
- *
- * Сценарий использования:
- * 1. Пользователь добавляет новые карточки в `public/data/*.json`
- * 2. Открывает курс в конструкторе
- * 3. Нажимает "Сбросить overlay"
- * 4. Подтверждает действие
- * 5. `localStorage` очищается, страница перезагружается
- * 6. Данные загружаются из файлов (seed)
- *
- * @remarks
- * Закрытие диалога с `true` (кнопка "Сбросить") приводит к удалению
- * пользовательского overlay из localStorage и перезагрузке страницы.
- */
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+// Key is documented in entities/user/overlay/user-content-overlay.types.ts
+const USER_CONTENT_OVERLAY_KEY = 'lingua-code.user-content.v1';
 
 /**
- * Диалоговое окно подтверждения сброса overlay.
+ * Dialog data for the reset overlay confirmation.
+ */
+export type ResetOverlayDialogData = {
+  /** Number of items that will be removed from the overlay. */
+  itemCount: number;
+};
+
+/**
+ * Result of the reset overlay dialog.
+ */
+export type ResetOverlayDialogResult = {
+  /** `true` if the user confirmed the reset. */
+  reset: boolean;
+};
+
+/**
+ * Confirmation dialog to clear the user-content overlay from localStorage.
  *
- * Отображает предупреждение о том, что все пользовательские данные
- * будут удалены, а seed-данные из файлов будут загружены заново.
- *
- * @example
- * ```typescript
- * const dialogRef = this.dialog.open(ResetOverlayDialogComponent);
- * dialogRef.afterClosed().subscribe((confirmed) => {
- *   if (confirmed) {
- *     localStorage.removeItem('lingua-code.user-content-overlay');
- *     location.reload();
- *   }
- * });
- * ```
+ * @remarks
+ * Shows the number of items that will be removed and asks for confirmation.
+ * On confirm, clears the overlay key and triggers a page reload to reinitialize
+ * with seed data only.
  */
 @Component({
-  selector: 'app-reset-overlay-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <h2 mat-dialog-title>Сбросить пользовательские данные?</h2>
-    <mat-dialog-content>
-      <p>
-        Это действие удалит все пользовательские карточки, сценарии и курсы, созданные в интерфейсе.
-      </p>
-      <p><strong>Seed-данные из файлов (public/data/) будут загружены заново.</strong></p>
-      <p>После сброса нужно перезагрузить страницу.</p>
-    </mat-dialog-content>
-    <mat-dialog-actions>
-      <button mat-button mat-dialog-close>Отмена</button>
-      <button mat-flat-button color="warn" (click)="dialogRef.close(true)">Сбросить</button>
-    </mat-dialog-actions>
-  `,
-  styles: [
-    `
-      mat-dialog-content {
-        margin: 20px 0;
-      }
-      mat-dialog-actions {
-        justify-content: flex-end;
-      }
-    `,
-  ],
+  selector: 'app-reset-overlay-dialog',
   imports: [MatButtonModule, MatDialogModule],
   standalone: true,
+  templateUrl: './reset-overlay-dialog.html',
+  styleUrl: './reset-overlay-dialog.scss',
 })
 export class ResetOverlayDialogComponent {
+  readonly data = inject<ResetOverlayDialogData>(MAT_DIALOG_DATA);
+  readonly dialogRef = inject<MatDialogRef<ResetOverlayDialogComponent, ResetOverlayDialogResult>>(
+    MatDialogRef,
+  );
+  private readonly snackBar = inject(MatSnackBar);
+
   /**
-   * Ссылка на диалоговое окно для управления закрытием.
-   * Вызывает dialogRef.close(true) при подтверждении сброса.
+   * Handles the confirm button click.
+   * Clears the overlay from localStorage and closes the dialog.
    */
-  readonly dialogRef = inject(MatDialogRef<ResetOverlayDialogComponent>);
+  onConfirm(): void {
+    localStorage.removeItem(USER_CONTENT_OVERLAY_KEY);
+    this.dialogRef.close({ reset: true });
+    this.snackBar.open('Пользовательские данные сброшены. Страница перезагрузится.', 'Закрыть', {
+      duration: 4000,
+    });
+  }
+
+  /**
+   * Handles the cancel button click.
+   * Closes the dialog without changes.
+   */
+  onCancel(): void {
+    this.dialogRef.close({ reset: false });
+  }
 }

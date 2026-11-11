@@ -29,6 +29,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import type { PageEvent } from '@angular/material/paginator';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
+import { ScormExportService } from '../../../entities/course/api/scorm-export.service';
+import type { ScormExportBundle } from '../../../entities/course/api/mock/scorm-export.types';
+import { USER_CONTENT_OVERLAY_KEY } from '../../../entities/user/overlay';
+import { ResetOverlayDialogService } from '../../../features/course-builder/components/reset-overlay-dialog/reset-overlay-dialog.service';
+
 import type { CourseListScope } from '../../../entities/course/model';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { UserStore } from '../../../entities/user/model/user.store';
@@ -89,6 +94,10 @@ export class CourseBuilderPageComponent implements OnInit {
   private readonly snackBar = inject(MatSnackBar);
   /** Сервис Dialog для модальных окон */
   private readonly dialog = inject(MatDialog);
+  /** Сервис экспорта в SCORM */
+  private readonly scormExportService = inject(ScormExportService);
+  /** Сервис диалога сброса overlay */
+  private readonly resetOverlayDialog = inject(ResetOverlayDialogService);
 
   /** Safe accessor for indexItems (defensive against early template rendering). */
   protected getIndexItems(): readonly import('../../../entities/course/model').CourseIndexEntry[] {
@@ -286,5 +295,70 @@ export class CourseBuilderPageComponent implements OnInit {
     this.snackBar.open('PDF с оглавлением и подсказками экспортирован', 'Закрыть', {
       duration: 4000,
     });
+  }
+
+  /**
+   * Экспортирует курс в SCORM/xAPI формат.
+   *
+   * @param courseId — ID курса для экспорта
+   */
+  async exportScorm(courseId: string): Promise<void> {
+    try {
+      const bundle = await this.scormExportService.export(courseId);
+      this.downloadScormJson(bundle, courseId);
+      this.snackBar.open('SCORM-пакет экспортирован', 'Закрыть', { duration: 4000 });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Ошибка экспорта в SCORM';
+      this.snackBar.open(message, 'Закрыть', { duration: 8000 });
+    }
+  }
+
+  /**
+   * Downloads the SCORM bundle as a JSON file.
+   *
+   * @param bundle - The SCORM export bundle to download.
+   * @param courseId - The course ID for the filename.
+   */
+  private downloadScormJson(bundle: ScormExportBundle, courseId: string): void {
+    const blob = new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = `${courseId}-scorm.json`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  }
+
+  /**
+   * Opens the reset overlay confirmation dialog.
+   * Counts the number of user content items to display in the dialog.
+   */
+  async openResetOverlayDialog(): Promise<void> {
+    const raw = localStorage.getItem(USER_CONTENT_OVERLAY_KEY);
+    let itemCount = 0;
+    if (raw) {
+      try {
+        const overlay = JSON.parse(raw);
+        itemCount =
+          Object.keys(overlay.courses ?? {}).length +
+          Object.keys(overlay.programs ?? {}).length +
+          Object.keys(overlay.lessons ?? {}).length +
+          Object.keys(overlay.scenarios ?? {}).length +
+          Object.keys(overlay.cards ?? {}).length;
+      } catch {
+        itemCount = 0;
+      }
+    }
+
+    if (itemCount === 0) {
+      this.snackBar.open('Пользовательских данных нет', 'Закрыть', { duration: 3000 });
+      return;
+    }
+
+    const ref = this.resetOverlayDialog.open({ itemCount });
+    const result = await ref.afterClosed().toPromise();
+    if (result?.reset) {
+      window.location.reload();
+    }
   }
 }

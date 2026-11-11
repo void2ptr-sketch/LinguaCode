@@ -101,6 +101,14 @@
                     <button
                       mat-icon-button
                       type="button"
+                      aria-label="Экспорт SCORM"
+                      (click)="exportScorm(course.id)"
+                    >
+                      <mat-icon>cloud_download</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      type="button"
                       aria-label="Удалить"
                       (click)="deleteCourse(course.id)"
                     >
@@ -123,6 +131,9 @@
 
       <mat-card-actions align="end">
         <button mat-flat-button type="button" (click)="startCreate()">Создать курс</button>
+        <button mat-stroked-button type="button" (click)="openResetOverlayDialog()">
+          Сбросить overlay
+        </button>
       </mat-card-actions>
     </mat-card>
   }
