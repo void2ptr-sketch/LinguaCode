@@ -3,7 +3,7 @@ import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CardFormComponent } from './card-form.component';
 import { CardFormTabsComponent } from '../card-form-tabs/card-form-tabs.component';
 import { CardFormQuestionTabComponent } from '../card-form-question-tab/card-form-question-tab.component';
-import { CardCatalogHierarchyService } from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
+import { CardCatalogHierarchyService } from '../../../../entities/card/lib/services/card-catalog-hierarchy.service';
 import type { CardDraft } from '../../types';
 
 describe('CardFormComponent', () => {

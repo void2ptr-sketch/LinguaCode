@@ -4,7 +4,7 @@ import { CodeSelectCardFormComponent } from './code-select-card-form.component';
 import {
   CODE_HIGHLIGHT_LANGUAGES,
   CODE_HIGHLIGHT_LANGUAGE_LABELS,
-} from '../../../../../../entities/card/lib/code-highlight/code-highlight.utils';
+} from '../../../../../../entities/card/lib/utils/code-highlight.utils';
 import type { CodeSelectCardDraft, CodeBlockDraft } from '../../../../types';
 import { emptyLexemeCardDraft } from '../../../../types';
 

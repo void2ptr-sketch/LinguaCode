@@ -6,7 +6,7 @@ import { resolveOptionCard } from '../../../utils/card-direction.utils';
 import { CodeSelectCard } from '../../../model';
 import { CodeHighlightComponent } from '../../code-highlight/code-highlight.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../../../lib/cards/option-card.util';
+import { buildOptionClass } from '../../../lib/utils/option-card.util';
 
 /**
  * UI component for code-select card exercises.

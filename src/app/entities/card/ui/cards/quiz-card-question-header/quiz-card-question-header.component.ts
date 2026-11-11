@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, computed, input } from '@angular/co
 import { MatCardModule } from '@angular/material/card';
 import type { PhoneticLexeme } from '../../../../phonetic/model';
 import { LexemeDisplayComponent } from '../../../../chinese/ui/lexeme-display/lexeme-display.component';
-import { resolveQuizQuestionHeaderDisplay } from '../../../lib/cards/quiz-card-question.util';
+import { resolveQuizQuestionHeaderDisplay } from '../../../lib/utils/quiz-card-question.util';
 
 /**
  * Quiz card question header component. Displays the question title and prompt

@@ -10,8 +10,8 @@ import { MatSelectModule } from '@angular/material/select';
 import type { CardDifficulty, CardKind, CardSearchFacets } from '../../../model';
 import { CatalogService } from '../../../api/catalog.service';
 import { TagsService } from '../../../api/tags.service';
-import { groupCatalogTagFacets } from '../../../lib/catalog-tag-groups/catalog-tag-groups.util';
-import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
+import { groupCatalogTagFacets } from '../../../lib/utils/catalog-tag-groups.util';
+import { CardCatalogSearchStore } from '../../../lib/store/card-catalog-search.store';
 
 /**
  * Card catalog filters component. Provides search, difficulty, kind, and tag filtering

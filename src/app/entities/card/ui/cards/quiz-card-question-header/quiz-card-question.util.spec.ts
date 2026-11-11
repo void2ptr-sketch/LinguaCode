@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import {
   quizQuestionPromptText,
   resolveQuizQuestionHeaderDisplay,
-} from '../../../lib/cards/quiz-card-question.util';
+} from '../../../lib/utils/quiz-card-question.util';
 
 describe('resolveQuizQuestionHeaderDisplay', () => {
   it('shows prompt when it is set', () => {

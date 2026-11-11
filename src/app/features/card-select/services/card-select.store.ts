@@ -7,7 +7,7 @@ import { UserStore } from '../../../entities/user/model/user.store';
 import {
   canCheckCardAnswer,
   checkCardAnswer,
-} from '../../../entities/card/lib/card-answer/card-answer.util';
+} from '../../../entities/card/lib/utils/card-answer.util';
 import { CardFeedback } from '../../../entities/card/model/card-interaction.types';
 import type { DrawAnswerPayload } from '../../../entities/chinese/model/draw-answer.types';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';

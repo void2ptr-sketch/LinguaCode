@@ -18,7 +18,7 @@ import { UserStore } from '../../../../user/model/user.store';
 import { CatalogService } from '../../../api/catalog.service';
 import { TagsService } from '../../../api/tags.service';
 import { CardCatalogFiltersComponent } from '../card-catalog-filters/card-catalog-filters.component';
-import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
+import { CardCatalogSearchStore } from '../../../lib/store/card-catalog-search.store';
 import type { CardIndexEntry } from '../../../model';
 
 /**

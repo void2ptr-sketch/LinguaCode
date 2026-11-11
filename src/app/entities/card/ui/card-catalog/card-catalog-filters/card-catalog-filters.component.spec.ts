@@ -2,7 +2,7 @@ import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CardCatalogFiltersComponent } from './card-catalog-filters.component';
-import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
+import { CardCatalogSearchStore } from '../../../lib/store/card-catalog-search.store';
 import { CardSearchService } from '../../../search/card-search.service';
 import { CatalogService } from '../../../api/catalog.service';
 import { TagsService } from '../../../api/tags.service';

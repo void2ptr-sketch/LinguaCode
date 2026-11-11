@@ -12,7 +12,7 @@ import type {
   CourseOption,
   LessonOption,
   ScenarioOption,
-} from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
+} from '../../../../entities/card/lib/services/card-catalog-hierarchy.service';
 
 /**
  * Question tab component for the card form.

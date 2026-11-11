@@ -1,26 +1,11 @@
-// ===== Card Answer =====
-export * from './card-answer';
+// Re-exports — services, stores, and utils have been split into dedicated sub-folders.
+// Importing from this barrel keeps existing import paths working.
 
-// ===== Cards =====
-export * from './cards';
+// ===== Utils =====
+export * from './utils';
 
-// ===== Catalog Labels =====
-export { tagLabel, tagLabels } from './catalog-labels';
+// ===== Services =====
+export * from './services';
 
-// ===== Code Highlight =====
-export * from './code-highlight';
-
-// ===== Keyboard Answer Mode =====
-export * from './keyboard-answer-mode';
-
-// ===== Catalog Tag Groups =====
-export {
-  groupCatalogTagFacets,
-  type CatalogTagFacetGroup,
-} from './catalog-tag-groups/catalog-tag-groups.util';
-
-// ===== Card Catalog Search =====
-export { CardCatalogSearchStore } from './card-catalog-search/card-catalog-search.store';
-
-// ===== Card Catalog Hierarchy =====
-export { CardCatalogHierarchyService } from './card-catalog-hierarchy/card-catalog-hierarchy.service';
+// ===== Stores =====
+export * from './store';

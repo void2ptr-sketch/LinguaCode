@@ -16,7 +16,7 @@ import {
   type CourseOption,
   type LessonOption,
   type ScenarioOption,
-} from '../card-catalog-hierarchy/card-catalog-hierarchy.service';
+} from '../services/card-catalog-hierarchy.service';
 
 /**
  * Store for the card catalog search feature.

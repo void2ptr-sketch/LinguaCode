@@ -6,7 +6,7 @@ import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ScenarioBuilderDialogComponent } from './scenario-builder-dialog.component';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { CardCatalogSearchStore } from '../../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
+import { CardCatalogSearchStore } from '../../../../entities/card/lib/store/card-catalog-search.store';
 import { seedTestContentCache } from '../../../../entities/content-seed/content-seed.test-utils';
 
 /** Mock for ScenarioEditorFormComponent to avoid deep dependency chain. */

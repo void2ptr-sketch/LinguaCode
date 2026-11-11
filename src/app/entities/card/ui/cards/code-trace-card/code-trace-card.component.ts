@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { resolveOptionCard } from '../../../utils/card-direction.utils';
 import { CodeTraceCard } from '../../../model';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../../../lib/cards/option-card.util';
+import { buildOptionClass } from '../../../lib/utils/option-card.util';
 import { CodeHighlightComponent } from '../../code-highlight/code-highlight.component';
 
 /**

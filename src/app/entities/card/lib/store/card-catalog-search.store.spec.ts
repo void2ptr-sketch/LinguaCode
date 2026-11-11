@@ -5,7 +5,7 @@ import { TestBed } from '@angular/core/testing';
 import { CardSearchService } from '../..';
 import { CourseSearchService } from '../../../course/search/course-search.service';
 import { ProgramsApiService } from '../../../program/api/programs-api.service';
-import { CardCatalogHierarchyService } from '../card-catalog-hierarchy/card-catalog-hierarchy.service';
+import { CardCatalogHierarchyService } from '../services/card-catalog-hierarchy.service';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
 
 describe('CardCatalogSearchStore', () => {

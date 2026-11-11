@@ -34,7 +34,7 @@ import {
   type CourseOption,
   type LessonOption,
   type ScenarioOption,
-} from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
+} from '../../../../entities/card/lib/services/card-catalog-hierarchy.service';
 import {
   CardFormTabsComponent,
   type TabDefinition,

@@ -10,7 +10,7 @@
  * Falls back to returning the tag id if the service is not available.
  */
 import { inject } from '@angular/core';
-import { TagsService } from '../api/tags.service';
+import { TagsService } from '../../api/tags.service';
 
 export function tagLabel(tag: string): string {
   // Difficulty tags are never localized

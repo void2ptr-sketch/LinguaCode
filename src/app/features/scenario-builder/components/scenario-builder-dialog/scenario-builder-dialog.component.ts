@@ -16,7 +16,7 @@ import {
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { firstValueFrom } from 'rxjs';
 
-import { CardCatalogSearchStore } from '../../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
+import { CardCatalogSearchStore } from '../../../../entities/card/lib/store/card-catalog-search.store';
 import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
