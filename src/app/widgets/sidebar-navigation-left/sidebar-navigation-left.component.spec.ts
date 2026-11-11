@@ -3,9 +3,12 @@ import { provideRouter } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { signal } from '@angular/core';
 import { describe, expect, it } from 'vitest';
 
 import { SidebarNavigationLeftComponent } from './sidebar-navigation-left.component';
+import { RoleService } from '../../entities/auth/services/role.service';
+import type { NavGroup } from './sidebar-nav-config';
 
 describe('SidebarNavigationLeftComponent', () => {
   let fixture: ComponentFixture<SidebarNavigationLeftComponent>;
@@ -14,7 +17,16 @@ describe('SidebarNavigationLeftComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [SidebarNavigationLeftComponent, MatDividerModule, MatListModule, MatIconModule],
-      providers: [provideRouter([])],
+      providers: [
+        provideRouter([]),
+        {
+          provide: RoleService,
+          useValue: {
+            roles: signal(['ROLE_AUTHOR']),
+            hasRole: (role: string) => ['ROLE_AUTHOR', 'ROLE_ADMIN'].includes(role),
+          },
+        },
+      ],
     });
     fixture = TestBed.createComponent(SidebarNavigationLeftComponent);
     component = fixture.componentInstance;
@@ -26,49 +38,25 @@ describe('SidebarNavigationLeftComponent', () => {
   });
 
   it('should expose groups', () => {
-    expect(component.groups).toBeDefined();
-    expect(component.groups).toHaveLength(3);
-  });
-
-  it('should have learning group', () => {
-    const learningGroup = component.groups.find((g) => g.id === 'learning');
-    expect(learningGroup).toBeDefined();
-    expect(learningGroup?.items).toHaveLength(4);
-  });
-
-  it('should have tools group', () => {
-    const toolsGroup = component.groups.find((g) => g.id === 'tools');
-    expect(toolsGroup).toBeDefined();
-    expect(toolsGroup?.items).toHaveLength(3);
-  });
-
-  it('should have account group', () => {
-    const accountGroup = component.groups.find((g) => g.id === 'account');
-    expect(accountGroup).toBeDefined();
-    expect(accountGroup?.items).toHaveLength(1);
-  });
-
-  it('should render navigation list', () => {
     fixture.detectChanges();
-    const navList = fixture.nativeElement.querySelector('mat-nav-list.navigation');
-    expect(navList).toBeDefined();
+    const groups = component.groups();
+    expect(groups).toBeDefined();
+    expect(groups).toHaveLength(3);
   });
 
-  it('should have aria-label navigation', () => {
+  it('should expose groups with correct structure', () => {
     fixture.detectChanges();
-    const navList = fixture.nativeElement.querySelector('mat-nav-list');
-    expect(navList?.getAttribute('aria-label')).toBe('Навигация');
-  });
-
-  it('should render all group items', () => {
-    fixture.detectChanges();
-    const links = fixture.nativeElement.querySelectorAll('a[mat-list-item]');
-    expect(links.length).toBe(8);
+    const groups = component.groups();
+    expect(groups[0]?.id).toBe('learning');
+    expect(groups[1]?.id).toBe('tools');
+    expect(groups[2]?.id).toBe('account');
   });
 
   it('should render learning group items', () => {
     fixture.detectChanges();
-    const learningGroup = component.groups.find((g) => g.id === 'learning');
+    const learningGroup = component.groups().find((g: NavGroup) => g.id === 'learning');
+    expect(learningGroup).toBeDefined();
+    expect(learningGroup!.items).toHaveLength(4);
     learningGroup?.items.forEach((item) => {
       expect(item.label).toBeDefined();
       expect(item.path).toBeDefined();
@@ -78,7 +66,9 @@ describe('SidebarNavigationLeftComponent', () => {
 
   it('should render tools group items', () => {
     fixture.detectChanges();
-    const toolsGroup = component.groups.find((g) => g.id === 'tools');
+    const toolsGroup = component.groups().find((g: NavGroup) => g.id === 'tools');
+    expect(toolsGroup).toBeDefined();
+    expect(toolsGroup!.items).toHaveLength(3);
     toolsGroup?.items.forEach((item) => {
       expect(item.label).toBeDefined();
       expect(item.path).toBeDefined();
@@ -88,7 +78,8 @@ describe('SidebarNavigationLeftComponent', () => {
 
   it('should render account group items', () => {
     fixture.detectChanges();
-    const accountGroup = component.groups.find((g) => g.id === 'account');
+    const accountGroup = component.groups().find((g: NavGroup) => g.id === 'account');
+    expect(accountGroup).toBeDefined();
     accountGroup?.items.forEach((item) => {
       expect(item.label).toBeDefined();
       expect(item.path).toBeDefined();

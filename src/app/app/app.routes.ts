@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard, notAuthGuard } from '../entities/auth';
+import { authGuard, authorGuard, adminGuard, notAuthGuard } from '../entities/auth';
 
 /**
  * Корневые маршруты приложения.
@@ -165,6 +165,7 @@ export const routes: Routes = [
           import('../pages/course-builder/course-builder-page/course-builder-page.component').then(
             (m) => m.CourseBuilderPageComponent,
           ),
+        canMatch: [authorGuard],
       },
 
       // ── Scenario Builder ───────────────────────────────────
@@ -174,6 +175,7 @@ export const routes: Routes = [
           import('../pages/scenario-builder/scenario-builder-page/scenario-builder-page.component').then(
             (m) => m.ScenarioBuilderPageComponent,
           ),
+        canMatch: [authorGuard],
       },
 
       // ── Card Editor ────────────────────────────────────────
@@ -183,6 +185,7 @@ export const routes: Routes = [
           import('../pages/card-editor/card-editor-page/card-editor-page.component').then(
             (m) => m.CardEditorPageComponent,
           ),
+        canMatch: [authorGuard],
       },
       { path: 'tools/card-editor', redirectTo: '/tools/cards', pathMatch: 'full' },
       { path: 'tools/card-catalog', redirectTo: '/tools/cards', pathMatch: 'full' },
@@ -208,6 +211,14 @@ export const routes: Routes = [
       {
         path: 'settings/languages',
         redirectTo: 'user',
+      },
+
+      // ── Admin ─────────────────────────────────────────────
+      {
+        path: 'admin',
+        loadComponent: () =>
+          import('../pages/admin/admin-page.component').then((m) => m.AdminPageComponent),
+        canMatch: [adminGuard],
       },
 
       { path: '**', redirectTo: 'home' },

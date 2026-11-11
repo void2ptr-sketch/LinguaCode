@@ -32,7 +32,7 @@ describe('Course builder smoke', () => {
           provide: AuthStore,
           useValue: {
             isAuthenticated: () => true,
-            user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: [] }),
+            user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: ['ROLE_AUTHOR'] }),
             logout: () => Promise.resolve(),
           },
         },

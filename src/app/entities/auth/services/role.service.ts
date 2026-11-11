@@ -6,10 +6,11 @@ import { AuthStore } from './auth.store';
  * User roles available in the system.
  *
  * @remarks
- * ROLE_USER — basic access (create pairs, select languages)
- * ROLE_ADMIN — full access (CRUD for languages/pairs)
+ * ROLE_USER — basic access (learning, practice, profile)
+ * ROLE_AUTHOR — extended access (content CRUD: courses, scenarios, cards)
+ * ROLE_ADMIN — full access (everything + system settings)
  */
-export type UserRole = 'ROLE_USER' | 'ROLE_ADMIN';
+export type UserRole = 'ROLE_USER' | 'ROLE_AUTHOR' | 'ROLE_ADMIN';
 
 /**
  * Service for managing user roles and permissions.
@@ -28,17 +29,26 @@ export class RoleService {
     return user?.roles ?? [];
   }) as import('@angular/core').Signal<string[]>;
 
+  /** Whether the user has the AUTHOR role. */
+  readonly isAuthor = computed(() => this.roles().includes('ROLE_AUTHOR'));
+
   /** Whether the user has the ADMIN role. */
   readonly isAdmin = computed(() => this.roles().includes('ROLE_ADMIN'));
 
   /** Whether the user has the USER role. */
   readonly isUser = computed(() => this.roles().includes('ROLE_USER'));
 
+  /** Whether the user can perform write operations on content. */
+  readonly canCreateContent = computed(() => this.isAuthor() || this.isAdmin());
+
   /** Whether the user can perform write operations on languages. */
   readonly canWriteLanguages = computed(() => this.isAdmin());
 
   /** Whether the user can perform write operations on language pairs. */
   readonly canWritePairs = computed(() => this.isAdmin() || this.isUser());
+
+  /** Whether the user can manage system settings. */
+  readonly canManageSystem = computed(() => this.isAdmin());
 
   /**
    * Checks if the user has a specific role.

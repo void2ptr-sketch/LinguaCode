@@ -1,24 +1,16 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-
-type NavItem = {
-  label: string;
-  path: string;
-  icon: string;
-};
-
-type NavGroup = {
-  id: string;
-  items: readonly NavItem[];
-};
+import { RoleService } from '../../entities/auth/services/role.service';
+import { SIDEBAR_NAV_CONFIG, type NavGroup } from './sidebar-nav-config';
+import type { UserRole } from '../../entities/auth/services/role.service';
 
 /**
  * Sidebar navigation component. Renders the left-side navigation menu with grouped links
  * for learning, tools, and account sections.
- * @remarks The navigation groups are defined inline as readonly class properties.
+ * @remarks Navigation groups are defined in `sidebar-nav-config.ts` and filtered by role.
  */
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,28 +20,14 @@ type NavGroup = {
   styleUrl: './sidebar-navigation-left.component.scss',
 })
 export class SidebarNavigationLeftComponent {
-  /** Navigation groups defining the sidebar menu structure. */
-  readonly groups: readonly NavGroup[] = [
-    {
-      id: 'learning',
-      items: [
-        { label: 'Карта', path: '/journey', icon: 'map' },
-        { label: 'Практика', path: '/cards/select', icon: 'style' },
-        { label: 'Обучение', path: '/home', icon: 'school' },
-        { label: 'Каталог курсов', path: '/courses', icon: 'menu_book' },
-      ],
-    },
-    {
-      id: 'tools',
-      items: [
-        { label: 'Конструктор курсов', path: '/tools/courses', icon: 'menu_book' },
-        { label: 'Конструктор сценариев', path: '/tools/scenario-builder', icon: 'view_list' },
-        { label: 'Карточки', path: '/tools/cards', icon: 'style' },
-      ],
-    },
-    {
-      id: 'account',
-      items: [{ label: 'Профиль', path: '/user', icon: 'person_outline' }],
-    },
-  ];
+  private readonly roleService = inject(RoleService);
+
+  readonly groups = computed<readonly NavGroup[]>(() =>
+    SIDEBAR_NAV_CONFIG.map(group => ({
+      ...group,
+      items: group.items.filter(item =>
+        !item.roles || item.roles.some(r => this.roleService.hasRole(r as UserRole))
+      ),
+    })).filter(group => group.items.length > 0),
+  );
 }
