@@ -27,6 +27,7 @@ import type {
 import { sanitizeMarkdownText, sanitizePlainText } from '../../../shared/security';
 import { COURSE_IDEA_MAX_LENGTH } from '../../../entities/course/utils/course-authoring.utils';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
@@ -61,8 +62,10 @@ export class CourseBuilderStore {
   /** Service for HTTP requests to the courses API */
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly programsApi = inject(ProgramsApiService);
-  /** User store (current language pair, user ID) */
+  /** User store (current language pair, preferences) */
   private readonly userStore = inject(UserStore);
+  /** Auth store (authenticated user ID, tokens) */
+  private readonly authStore = inject(AuthStore);
   /** API service for course data access */
   private readonly coursesApi = inject(CoursesApiService);
   /** Service for exporting courses to PDF */
@@ -113,19 +116,25 @@ export class CourseBuilderStore {
   readonly editingCourse = signal<CourseWithPrograms | null>(null);
 
   /**
-   * Computed signal: `true` if the current user cannot edit the course.
-   *
-   * @remarks
-   * A course is editable only if the user is the author or a system author.
-   */
-  readonly isReadOnly = computed(() => {
-    const course = this.editingCourse();
-    if (!course) {
-      return false;
-    }
+    * Computed signal: `true` if the current user cannot edit the course.
+    *
+    * @remarks
+    * A course is editable only if the user is the author, a system author,
+    * or has ROLE_ADMIN / ROLE_AUTHOR permissions.
+    */
+   readonly isReadOnly = computed(() => {
+     const course = this.editingCourse();
+     if (!course) {
+       return false;
+     }
 
-    return !isEditableContentAuthor(course.authorId, this.userStore.user().id);
-  });
+     const user = this.authStore.user();
+     if (!user) {
+       return true;
+     }
+
+     return !isEditableContentAuthor(course.authorId, user.id, user.roles);
+   });
 
   // -------------------------------------------------------------------------
   // Methods: list loading
@@ -354,7 +363,8 @@ export class CourseBuilderStore {
    */
   async deleteCourse(courseId: string): Promise<void> {
     const item = this.indexItems().find((course) => course.id === courseId);
-    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
+    const user = this.authStore.user();
+    if (item && (!user || !isEditableContentAuthor(item.authorId, user.id, user.roles))) {
       this.error.set('Нельзя удалять чужой курс');
       return;
     }
@@ -390,7 +400,8 @@ export class CourseBuilderStore {
     this.exportError.set(null);
 
     const item = this.indexItems().find((course) => course.id === courseId);
-    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
+    const user = this.authStore.user();
+    if (item && (!user || !isEditableContentAuthor(item.authorId, user.id, user.roles))) {
       this.exportError.set('Нельзя экспортировать чужой курс');
       return null;
     }
@@ -444,7 +455,8 @@ export class CourseBuilderStore {
     this.exportError.set(null);
 
     const item = this.indexItems().find((course) => course.id === courseId);
-    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
+    const user = this.authStore.user();
+    if (item && (!user || !isEditableContentAuthor(item.authorId, user.id, user.roles))) {
       this.exportError.set('Нельзя экспортировать чужой курс');
       return false;
     }

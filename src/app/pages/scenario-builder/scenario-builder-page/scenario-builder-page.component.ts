@@ -14,6 +14,8 @@ import type { PageEvent } from '@angular/material/paginator';
 import type { ScenarioListScope } from '../../../entities/scenario/model';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AuthStore } from '../../../entities/auth/services/auth.store';
+import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { ScenarioBuilderDialogService } from '../../../features/scenario-builder/components/scenario-builder-dialog/scenario-builder-dialog.service';
 import { ScenarioBuilderStore } from '../../../features/scenario-builder/services/scenario-builder.store';
 
@@ -48,6 +50,8 @@ export class ScenarioBuilderPageComponent implements OnInit {
   readonly store = inject(ScenarioBuilderStore);
   /** User store for authentication and language pair data. */
   readonly userStore = inject(UserStore);
+  /** Auth store for authenticated user ID. */
+  readonly authStore = inject(AuthStore);
   private readonly scenarioBuilderDialog = inject(ScenarioBuilderDialogService);
 
   /** Safe accessor for indexItems. */
@@ -158,7 +162,11 @@ export class ScenarioBuilderPageComponent implements OnInit {
    * @returns `true` if the author matches the current user.
    */
   isOwnScenario(authorId: string): boolean {
-    return authorId === this.userStore.user().id;
+    const user = this.authStore.user();
+    if (!user) {
+      return false;
+    }
+    return isEditableContentAuthor(authorId, user.id, user.roles);
   }
 
   /**

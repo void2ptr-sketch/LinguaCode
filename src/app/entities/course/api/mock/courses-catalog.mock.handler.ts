@@ -13,6 +13,7 @@ import { LanguagePairsApiService } from '../../../language-pair/api/language-pai
 import type { ProgramWithLessons } from '../../../program/model/program.types';
 import { paginateArray } from '../../../../shared/utils/pagination';
 import { UserStore } from '../../../user/model/user.store';
+import { AuthStore } from '../../../auth/services/auth.store';
 
 import { normalizeCourseAuthoring } from '../../utils/course-authoring.utils';
 import { courseToIndexEntry } from '../../mapping/course-index.mapper';
@@ -41,6 +42,7 @@ import type { CourseExportBundle, CourseWritePayload } from '../../repository/co
 @Injectable({ providedIn: 'root' })
 export class CoursesCatalogMockHandler {
   private readonly userStore = inject(UserStore);
+  private readonly authStore = inject(AuthStore);
   private readonly contentSeed = inject(ContentSeedRepository);
   private readonly cardRepository = inject(CardRepository);
   private readonly languagePairsApi = inject(LanguagePairsApiService);
@@ -392,7 +394,8 @@ export class CoursesCatalogMockHandler {
   }
 
   private assertCanEdit(course: Course): void {
-    if (!isEditableContentAuthor(course.authorId, this.userStore.user().id)) {
+    const user = this.authStore.user();
+    if (!user || !isEditableContentAuthor(course.authorId, user.id, user.roles)) {
       throw forbidden('Нельзя изменять чужой курс');
     }
   }

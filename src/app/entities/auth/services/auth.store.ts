@@ -69,12 +69,13 @@ export class AuthStore {
       return;
     }
     if (!isAccessTokenExpired(tokens)) {
-      // Extract roles from the stored access token
+      // Extract roles and userId from the stored access token
       const payload = parseJwtPayload(tokens.accessToken);
       const roles = ((payload as Record<string, unknown>)['roles'] as string[] | undefined) ?? [];
+      const userId = (payload as Record<string, unknown>)['userId'] as string | number | undefined;
       this.#state.set({
         status: 'authenticated',
-        user: { id: 'restored', displayName: '', email: '', roles },
+        user: { id: String(userId ?? 'restored'), displayName: '', email: '', roles },
         tokens,
         error: null,
       });
@@ -109,7 +110,7 @@ export class AuthStore {
       this.#state.set({
         status: 'authenticated',
         user: {
-          id: session.userId,
+          id: String(session.userId),
           displayName: userDisplayName,
           email: '',
           roles: backendRoles,

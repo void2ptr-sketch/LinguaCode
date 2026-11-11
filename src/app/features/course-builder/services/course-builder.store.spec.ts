@@ -6,9 +6,12 @@ import type { CourseWithPrograms } from '../../../entities/course/model';
 import { CourseSearchService, CoursesApiService } from '../../../entities/course';
 import { LanguagePairIdResolver } from '../../../entities/language-pair';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CourseBuilderStore } from './course-builder.store';
 import { CoursePdfExportService } from './course-pdf-export.service';
+
+const TEST_USER_ID = 'local-user';
 
 describe('CourseBuilderStore', () => {
   let store: CourseBuilderStore;
@@ -51,6 +54,10 @@ describe('CourseBuilderStore', () => {
           useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
         },
         UserStore,
+        {
+          provide: AuthStore,
+          useValue: { user: vi.fn(() => ({ id: TEST_USER_ID, displayName: '', email: '', roles: [] })) },
+        },
       ],
     });
 

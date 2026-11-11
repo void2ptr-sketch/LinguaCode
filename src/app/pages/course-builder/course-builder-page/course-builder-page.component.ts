@@ -37,6 +37,8 @@ import { ResetOverlayDialogService } from '../../../features/course-builder/comp
 import type { CourseListScope } from '../../../entities/course/model';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AuthStore } from '../../../entities/auth/services/auth.store';
+import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { CourseBuilderDialogService } from '../../../features/course-builder/components/course-builder-dialog/course-builder-dialog.service';
 import { CourseBuilderStore } from '../../../features/course-builder/services/course-builder.store';
 
@@ -88,6 +90,8 @@ export class CourseBuilderPageComponent implements OnInit {
   readonly store = inject(CourseBuilderStore);
   /** Хранилище пользователя (текущий язык, ID) */
   readonly userStore = inject(UserStore);
+  /** Хранилище аутентификации (ID авторизованного пользователя) */
+  readonly authStore = inject(AuthStore);
   /** Сервис диалогов для создания/редактирования курсов */
   private readonly courseBuilderDialog = inject(CourseBuilderDialogService);
   /** Сервис Snackbar для уведомлений */
@@ -218,7 +222,11 @@ export class CourseBuilderPageComponent implements OnInit {
    * @returns true если текущий пользователь — автор
    */
   isOwnCourse(authorId: string): boolean {
-    return authorId === this.userStore.user().id;
+    const user = this.authStore.user();
+    if (!user) {
+      return false;
+    }
+    return isEditableContentAuthor(authorId, user.id, user.roles);
   }
 
   // -------------------------------------------------------------------------

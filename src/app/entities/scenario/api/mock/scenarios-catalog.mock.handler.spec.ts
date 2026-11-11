@@ -12,6 +12,7 @@ import { ScenariosCatalogMockHandler } from './scenarios-catalog.mock.handler';
 import { scenariosApiMockInterceptor } from './scenarios-api.mock.interceptor';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { seedTestContentCache } from '../../../content-seed/content-seed.test-utils';
+import { AuthStore } from '../../../auth/services/auth.store';
 
 describe('ScenariosCatalogMockHandler', () => {
   let api: ScenariosApiService;
@@ -26,6 +27,17 @@ describe('ScenariosCatalogMockHandler', () => {
         ScenariosApiService,
         ScenariosCatalogMockHandler,
         provideHttpClient(withFetch(), withInterceptors([scenariosApiMockInterceptor])),
+        {
+          provide: AuthStore,
+          useValue: {
+            user: () => ({
+              id: 'seed-author',
+              displayName: '',
+              email: '',
+              roles: ['ROLE_ADMIN'],
+            }),
+          },
+        },
       ],
     });
 

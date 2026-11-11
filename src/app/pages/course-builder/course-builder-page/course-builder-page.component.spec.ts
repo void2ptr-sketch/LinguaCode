@@ -17,6 +17,7 @@ import { CourseBuilderPageComponent } from './course-builder-page.component';
 import { CourseBuilderStore } from '../../../features/course-builder/services/course-builder.store';
 import { CourseBuilderDialogService } from '../../../features/course-builder/components/course-builder-dialog/course-builder-dialog.service';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AuthStore } from '../../../entities/auth/services/auth.store';
 
 describe('CourseBuilderPageComponent', () => {
   let fixture: ComponentFixture<CourseBuilderPageComponent>;
@@ -62,6 +63,12 @@ describe('CourseBuilderPageComponent', () => {
             languagePairs: () => [],
             setActiveLanguagePair: vi.fn(),
             formatEntryLabel: () => '',
+          },
+        },
+        {
+          provide: AuthStore,
+          useValue: {
+            user: () => ({ id: TEST_USER_ID, displayName: '', email: '', roles: [] }),
           },
         },
         { provide: MatSnackBar, useValue: { open: snackBarOpen } },

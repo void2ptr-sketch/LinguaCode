@@ -8,8 +8,11 @@ import { CardSearchService } from '../../../entities/card';
 import { CourseSearchService } from '../../../entities/course';
 import { ScenarioSearchService } from '../../../entities/scenario';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { ScenarioBuilderStore } from './scenario-builder.store';
+
+const TEST_USER_ID = 'local-user';
 
 describe('ScenarioBuilderStore', () => {
   let store: ScenarioBuilderStore;
@@ -55,6 +58,10 @@ describe('ScenarioBuilderStore', () => {
           useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
         },
         UserStore,
+        {
+          provide: AuthStore,
+          useValue: { user: vi.fn(() => ({ id: TEST_USER_ID, displayName: '', email: '', roles: [] })) },
+        },
       ],
     });
 

@@ -93,7 +93,9 @@ export class ProgramsApiService implements ProgramCatalogPort {
           id: String(l.id),
           programId: String(l.programId),
           scenarioIds: (l.scenarioIds ?? []).map((s) => String(s)),
-          prerequisiteLessonIds: (l.prerequisiteLessonIds ?? []).map((p) => String(p)),
+          prerequisiteLessonIds: Array.isArray(l.prerequisiteLessonIds)
+            ? l.prerequisiteLessonIds.map((p) => String(p))
+            : [],
         })),
       })) as unknown as readonly ProgramWithLessons[],
     );

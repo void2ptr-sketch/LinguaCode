@@ -8,6 +8,7 @@ import { coursesApiMockInterceptor } from './courses-api.mock.interceptor';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { seedTestContentCache } from '../../../content-seed/content-seed.test-utils';
 import { LanguagePairsApiService } from '../../../language-pair/api';
+import { AuthStore } from '../../../auth/services/auth.store';
 
 const makeLanguagePair = (known: ContentLanguage, learning: ContentLanguage) => ({
   known,
@@ -35,6 +36,17 @@ describe('CoursesCatalogMockHandler', () => {
                 { id: 1, knownCode: 'ru', learningCode: 'en' },
                 { id: 2, knownCode: 'ru', learningCode: 'zh' },
               ]),
+          },
+        },
+        {
+          provide: AuthStore,
+          useValue: {
+            user: () => ({
+              id: 'seed-author',
+              displayName: '',
+              email: '',
+              roles: ['ROLE_ADMIN'],
+            }),
           },
         },
       ],

@@ -9,6 +9,7 @@ import type {
 } from '../../model';
 import { paginateArray } from '../../../../shared/utils/pagination';
 import { UserStore } from '../../../user/model/user.store';
+import { AuthStore } from '../../../auth/services/auth.store';
 
 import { scenarioToIndexEntry } from '../../mapping/scenario-index.mapper';
 import { filterScenarioIndex } from '../../search/scenario-search.utils';
@@ -31,6 +32,7 @@ import type { ScenarioWritePayload } from '../../repository/scenario-catalog.por
 export class ScenariosCatalogMockHandler {
   private readonly cardsHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
+  private readonly authStore = inject(AuthStore);
   private readonly contentSeed = inject(ContentSeedRepository);
 
   private scenarios: Scenario[] | null = null;
@@ -176,8 +178,8 @@ export class ScenariosCatalogMockHandler {
   }
 
   private assertCanEdit(scenario: Scenario): void {
-    const userId = this.userStore.user().id;
-    if (!isEditableContentAuthor(scenario.authorId, userId)) {
+    const user = this.authStore.user();
+    if (!user || !isEditableContentAuthor(scenario.authorId, user.id, user.roles)) {
       throw forbidden('Нельзя изменять чужой сценарий');
     }
   }

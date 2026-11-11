@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ProgramsApiService } from '../../../../entities/program/api';
-import type { Program } from '../../../../entities/program/model';
+import type { ProgramWithLessons } from '../../../../entities/program/model';
 import { CourseSearchService } from '../../../../entities/course';
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast.service';
@@ -71,7 +71,7 @@ export class CourseCatalogProgramsComponent {
   });
 
   /** Loaded programs for the selected courses. */
-  private readonly programs = signal<readonly Program[]>([]);
+  private readonly programs = signal<readonly ProgramWithLessons[]>([]);
   /** Whether programs are currently loading. */
   readonly loading = signal(false);
   /** Error message if loading failed. */
@@ -116,7 +116,7 @@ export class CourseCatalogProgramsComponent {
     this.error.set(null);
 
     try {
-      const results: Program[] = [];
+      const results: ProgramWithLessons[] = [];
       for (const id of ids) {
         const resolvedId = await this.resolveCourseId(id);
         // Real backend requires numeric IDs (BIGINT PK). Non-numeric slugs
@@ -151,12 +151,12 @@ export class CourseCatalogProgramsComponent {
   // ---- Methods ----
 
   /**
-   * Returns the number of lessons for a program.
-   * Uses program.lessonIds as the source (seed catalog may not have lessons).
-   */
+    * Returns the number of lessons for a program.
+    * Uses program.lessons as the source (resolved by the API).
+    */
   getLessonCount(programId: string): number {
     const program = this.programs().find((p) => p.id === programId);
-    return program?.lessonIds?.length ?? 0;
+    return program?.lessons?.length ?? 0;
   }
 
   /**

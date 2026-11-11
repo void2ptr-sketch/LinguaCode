@@ -26,6 +26,7 @@ import type {
 import type { ScenarioCardSource } from '../../../entities/card/model';
 import { sanitizePlainText } from '../../../shared/security';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import { ScenarioDraft, ScenarioEditorMode } from '../types';
@@ -47,6 +48,7 @@ export class ScenarioBuilderStore {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly cardsCatalogHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
+  private readonly authStore = inject(AuthStore);
   private readonly logger = inject(AppLoggerService);
 
   /** Current page of scenario index entries. */
@@ -86,7 +88,12 @@ export class ScenarioBuilderStore {
       return false;
     }
 
-    return !isEditableContentAuthor(scenario.authorId, this.userStore.user().id);
+    const user = this.authStore.user();
+    if (!user) {
+      return true;
+    }
+
+    return !isEditableContentAuthor(scenario.authorId, user.id, user.roles);
   });
 
   /**
@@ -313,7 +320,8 @@ export class ScenarioBuilderStore {
    */
   async deleteScenario(scenarioId: string): Promise<void> {
     const item = this.indexItems().find((scenario) => scenario.id === scenarioId);
-    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
+    const user = this.authStore.user();
+    if (item && (!user || !isEditableContentAuthor(item.authorId, user.id, user.roles))) {
       this.error.set('Нельзя удалять чужой сценарий');
       return;
     }
