@@ -19,4 +19,6 @@ export interface ProgramUpdateRequest {
   languagePairId?: number;
   published?: boolean;
   requiredTier: ProgramUpdateRequestRequiredTier;
+  /** Порядок в курсе */
+  order?: number;
 }

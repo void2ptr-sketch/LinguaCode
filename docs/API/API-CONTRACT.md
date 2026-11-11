@@ -109,8 +109,26 @@ type LanguagePairDto = {
 | PUT    | `/courses/:id`                      | Обновление курса (403 на чужой)            |
 | DELETE | `/courses/:id`                      | Удаление курса                             |
 
-Пейлоад записи: `CourseWritePayload` (`title`, `description`, `published`, `languagePair?`, `programs[]`, `authoring?`).
+Пейлоад записи: `CourseWritePayload` (`title`, `description`, `published`, `languagePair?`, `programs[]`, `authoring?`, `practiceSettings?`).
 На бэкенд отправляется: `courseDescription` (из `description`), `authorId` (из UserStore).
+
+### Настройки практики (`practiceSettings`)
+
+```typescript
+type CoursePracticeSettings = {
+  mode: 'guided' | 'open';
+  requireLessonForScenarios?: boolean;
+  enforceLessonPrerequisites?: boolean;
+  allowDifficultyFilter?: boolean;
+};
+```
+
+- `mode` — режим навигации: `guided` (линейный) или `open` (свободный выбор сценариев)
+- `requireLessonForScenarios` — обязательный выбор урока для доступа к сценариям
+- `enforceLessonPrerequisites` — принудительные предусловия уроков
+- `allowDifficultyFilter` — фильтр по сложности (beginner/intermediate/advanced)
+- Хранится как JSONB в бэкенде
+- Фронтенд автоматически парсит JSONB-строку в объект при получении от API
 
 ### Экспорт-пакет (`CourseExportBundle`)
 

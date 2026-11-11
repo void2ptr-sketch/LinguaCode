@@ -4,6 +4,7 @@ import type { Scenario } from '../../scenario/model';
 import type {
   CourseAuthoring,
   CourseIndexEntry,
+  CoursePracticeSettings,
   CourseSearchCriteria,
   CourseSearchPage,
   CourseWithPrograms,
@@ -74,6 +75,7 @@ export type CourseWritePayload = {
   languagePair?: LanguagePair;
   programs: readonly ProgramWritePayload[];
   authoring?: CourseAuthoring;
+  practiceSettings?: CoursePracticeSettings;
 };
 
 /**

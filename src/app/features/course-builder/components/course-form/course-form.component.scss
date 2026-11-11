@@ -132,3 +132,30 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
+
+.course-form__practice-settings {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.course-form__section-title {
+  color: var(--mat-sys-on-surface);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.course-form__checkbox-hint {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.course-form__practice-settings mat-radio-group {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.course-form__practice-settings mat-checkbox {
+  margin-top: 0.25rem;
+}

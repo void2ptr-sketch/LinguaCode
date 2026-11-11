@@ -15,6 +15,8 @@ export interface Lesson {
   programId?: number;
   lessonOrder?: number;
   prerequisiteLessonIds?: string;
+  /** IDs сценариев, привязанных к уроку */
+  scenarioIds?: number[];
   createdAt?: string;
   updatedAt?: string;
 }

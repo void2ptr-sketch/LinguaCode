@@ -127,6 +127,7 @@ export class CoursesCatalogMockHandler {
       published: payload.published,
       updatedAt: new Date().toISOString(),
       authoring: normalizeCourseAuthoring(payload.authoring),
+      practiceSettings: payload.practiceSettings,
     };
 
     this.catalog = {
@@ -168,6 +169,7 @@ export class CoursesCatalogMockHandler {
         published: payload.published,
         updatedAt: new Date().toISOString(),
         authoring: normalizeCourseAuthoring(payload.authoring ?? current.authoring),
+        practiceSettings: payload.practiceSettings ?? current.practiceSettings,
       };
       const programs = await this.programsWithLessonsForCourse(updated);
 
@@ -191,6 +193,7 @@ export class CoursesCatalogMockHandler {
       programIds: programs.map((p) => p.id),
       updatedAt: new Date().toISOString(),
       authoring: normalizeCourseAuthoring(payload.authoring ?? current.authoring),
+      practiceSettings: payload.practiceSettings ?? current.practiceSettings,
     };
 
     this.catalog = {

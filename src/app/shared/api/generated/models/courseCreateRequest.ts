@@ -4,6 +4,7 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
+import type { ProgramNestedDto } from './programNestedDto';
 
 /**
  * Course creation request
@@ -17,4 +18,17 @@ export interface CourseCreateRequest {
   courseDescription?: string;
   authorId: number;
   languagePairId?: number;
+  /** Настройки практики (JSONB) */
+  practiceSettings?: string;
+  /** Статус авторинга (draft/planned/generating/materialized/failed) */
+  authoringStatus?: string;
+  /** Markdown-идея каталога */
+  authoringIdea?: string;
+  /** Дата обновления идеи */
+  ideaUpdatedAt?: string;
+  /** Дата материализации */
+  materializedAt?: string;
+  /** Последняя ошибка */
+  lastError?: string;
+  programs?: ProgramNestedDto[];
 }

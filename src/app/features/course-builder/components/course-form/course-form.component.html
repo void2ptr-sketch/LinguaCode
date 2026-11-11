@@ -47,6 +47,61 @@
 
         <mat-divider class="course-form__divider"></mat-divider>
 
+        <!-- Practice Settings -->
+        <div class="course-form__practice-settings">
+          <h3 class="course-form__section-title">Настройки практики</h3>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Режим навигации</mat-label>
+            <mat-select
+              [disabled]="readOnly()"
+              [ngModel]="draft().practiceSettings?.mode ?? 'guided'"
+              (ngModelChange)="updatePracticeMode($event)"
+            >
+              <mat-option value="guided">Линейный (последовательный)</mat-option>
+              <mat-option value="open">Свободный (выбор сценариев)</mat-option>
+            </mat-select>
+            <mat-hint>
+              Линейный — прогрессия по урокам и сценариям; Свободный — произвольный выбор
+            </mat-hint>
+          </mat-form-field>
+
+          <mat-checkbox
+            [disabled]="readOnly()"
+            [ngModel]="draft().practiceSettings?.requireLessonForScenarios ?? true"
+            (ngModelChange)="updateRequireLessonForScenarios($event)"
+          >
+            Требовать выбор урока для сценариев
+          </mat-checkbox>
+          <mat-hint class="course-form__checkbox-hint">
+            В свободном режиме сценарии доступны без выбора урока
+          </mat-hint>
+
+          <mat-checkbox
+            [disabled]="readOnly()"
+            [ngModel]="draft().practiceSettings?.enforceLessonPrerequisites ?? true"
+            (ngModelChange)="updateEnforceLessonPrerequisites($event)"
+          >
+            Принудительные предусловия уроков
+          </mat-checkbox>
+          <mat-hint class="course-form__checkbox-hint">
+            Урок станет доступен после завершения выбранных предварительных уроков
+          </mat-hint>
+
+          <mat-checkbox
+            [disabled]="readOnly()"
+            [ngModel]="draft().practiceSettings?.allowDifficultyFilter ?? false"
+            (ngModelChange)="updateAllowDifficultyFilter($event)"
+          >
+            Фильтр по сложности (beginner / intermediate / advanced)
+          </mat-checkbox>
+          <mat-hint class="course-form__checkbox-hint">
+            Отображать чипы сложности на вкладке «Сценарии»
+          </mat-hint>
+        </div>
+
+        <mat-divider class="course-form__divider"></mat-divider>
+
         <div class="course-form__export-section">
           <span class="course-form__export-label">Экспорт PDF</span>
           <div class="course-form__export-controls">

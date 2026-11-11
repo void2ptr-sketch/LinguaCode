@@ -135,6 +135,29 @@ export class CoursesApiService implements CourseCatalogPort {
   }
 
   /**
+   * Parses `practiceSettings` from a JSONB string into an object.
+   *
+   * @remarks
+   * The backend stores `practiceSettings` as a JSONB column and may return
+   * it as a raw JSON string. This method parses it into a plain object so
+   * that consumers can spread/merge the settings correctly.
+   */
+  private parsePracticeSettings(data: Record<string, unknown>): void {
+    const raw = data['practiceSettings'];
+    if (raw === undefined || raw === null) {
+      return;
+    }
+    if (typeof raw === 'string') {
+      try {
+        data['practiceSettings'] = JSON.parse(raw);
+      } catch {
+        // Invalid JSON — leave as-is; downstream code will fall back to defaults
+        data['practiceSettings'] = null;
+      }
+    }
+  }
+
+  /**
    * Searches courses by criteria.
    *
    * @param criteria - The search criteria.
@@ -170,14 +193,20 @@ export class CoursesApiService implements CourseCatalogPort {
    * @param courseId - The course ID.
    * @returns The course with programs.
    */
-  getById(courseId: string): Promise<CourseWithPrograms> {
-    return firstValueFrom(
-      this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`)),
-    ).then(async (response) => {
-      await this.attachLanguagePair(response.data as unknown as Record<string, unknown>);
-      return response.data;
-    });
-  }
+   getById(courseId: string): Promise<CourseWithPrograms> {
+      return firstValueFrom(
+        this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`)),
+      ).then(async (response) => {
+        const data = response.data as unknown as Record<string, unknown>;
+        await this.attachLanguagePair(data);
+        this.parsePracticeSettings(data);
+        // Normalize numeric authorId to string
+        if (typeof data['authorId'] === 'number') {
+          data['authorId'] = String(data['authorId']);
+        }
+        return data as unknown as CourseWithPrograms;
+      });
+    }
 
   /**
    * Retrieves a course with its programs and lessons for the journey map.
@@ -189,35 +218,40 @@ export class CoursesApiService implements CourseCatalogPort {
    * @param courseId - The course ID.
    * @returns The course with programs and lessons.
    */
-   getJourney(courseId: string): Promise<CourseWithPrograms> {
-     return firstValueFrom(
-       this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}/journey`)),
-     ).then(async (response) => {
-       await this.attachLanguagePair(response.data as unknown as Record<string, unknown>);
-       const data = response.data as unknown as Record<string, unknown>;
-       // Backend returns numeric IDs — convert to strings for frontend consistency
-       if (Array.isArray(data['programs'])) {
-         data['programs'] = (data['programs'] as Record<string, unknown>[]).map((p) => {
-           const lessons = Array.isArray(p['lessons']) ? p['lessons'] : [];
-           return {
-             ...p,
-             id: String(p['id']),
-             lessons: lessons.map((l: Record<string, unknown>) => ({
-               ...l,
-               id: String(l['id']),
-               scenarioIds: Array.isArray(l['scenarioIds'])
-                 ? (l['scenarioIds'] as number[]).map((s) => String(s))
-                 : [],
-               prerequisiteLessonIds: Array.isArray(l['prerequisiteLessonIds'])
-                 ? (l['prerequisiteLessonIds'] as number[]).map((s) => String(s))
-                 : [],
-             })),
-           };
-         });
-       }
-       return data as CourseWithPrograms;
-     });
-   }
+    getJourney(courseId: string): Promise<CourseWithPrograms> {
+      return firstValueFrom(
+        this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}/journey`)),
+      ).then(async (response) => {
+        const data = response.data as unknown as Record<string, unknown>;
+        await this.attachLanguagePair(data);
+        this.parsePracticeSettings(data);
+        // Backend returns numeric IDs — convert to strings for frontend consistency
+        if (Array.isArray(data['programs'])) {
+          data['programs'] = (data['programs'] as Record<string, unknown>[]).map((p) => {
+            const lessons = Array.isArray(p['lessons']) ? p['lessons'] : [];
+            return {
+              ...p,
+              id: String(p['id']),
+              lessons: lessons.map((l: Record<string, unknown>) => ({
+                ...l,
+                id: String(l['id']),
+                scenarioIds: Array.isArray(l['scenarioIds'])
+                  ? (l['scenarioIds'] as number[]).map((s) => String(s))
+                  : [],
+                prerequisiteLessonIds: Array.isArray(l['prerequisiteLessonIds'])
+                  ? (l['prerequisiteLessonIds'] as number[]).map((s) => String(s))
+                  : [],
+              })),
+            };
+          });
+        }
+        // Convert numeric authorId to string for frontend consistency
+        if (typeof data['authorId'] === 'number') {
+          data['authorId'] = String(data['authorId']);
+        }
+        return data as CourseWithPrograms;
+      });
+    }
 
   /**
    * Creates a new course.
@@ -236,6 +270,14 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.programs && payload.programs.length > 0) {
       body['programs'] = payload.programs;
     }
+    // Authoring notes for course generation pipeline
+    if (payload.authoring) {
+      body['authoring'] = payload.authoring;
+    }
+    // Practice settings for navigation behavior
+    if (payload.practiceSettings) {
+      body['practiceSettings'] = payload.practiceSettings;
+    }
     return firstValueFrom(
       this.http.post<ApiResponse<CourseWithPrograms>>(buildApiUrl('/courses'), body),
     ).then((response) => response.data);
@@ -248,16 +290,27 @@ export class CoursesApiService implements CourseCatalogPort {
    * @param payload - The course write payload.
    * @returns The updated course with programs.
    */
-  update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
-    const body = {
-      title: payload.title,
-      courseDescription: payload.description,
-      published: payload.published,
-    };
-    return firstValueFrom(
-      this.http.put<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`), body),
-    ).then((response) => response.data);
-  }
+   update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
+      const body: Record<string, unknown> = {
+        title: payload.title,
+        courseDescription: payload.description,
+        published: payload.published,
+      };
+      // Programs and authoring are required for full course update
+      if (payload.programs && payload.programs.length > 0) {
+        body['programs'] = payload.programs;
+      }
+      if (payload.authoring) {
+        body['authoring'] = payload.authoring;
+      }
+      // Practice settings for navigation behavior
+      if (payload.practiceSettings) {
+        body['practiceSettings'] = payload.practiceSettings;
+      }
+      return firstValueFrom(
+        this.http.put<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`), body),
+      ).then((response) => response.data);
+    }
 
   /**
    * Deletes a course by ID.

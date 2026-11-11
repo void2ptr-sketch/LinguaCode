@@ -8,6 +8,7 @@ import {
   emptyCourseAuthoring,
   normalizeCourseAuthoring,
 } from '../../../entities/course/utils/course-authoring.utils';
+import { DEFAULT_COURSE_PRACTICE_SETTINGS } from '../../../entities/course/model';
 import type { CourseFormDraft, ProgramFormDraft, LessonFormDraft } from '../types';
 
 export function lessonDraftKey(lesson: Pick<LessonFormDraft, 'id' | 'clientId'>): string {
@@ -40,6 +41,7 @@ export const emptyCourseFormDraft = (): CourseFormDraft => ({
   description: '',
   published: true,
   authoring: emptyCourseAuthoring(),
+  practiceSettings: DEFAULT_COURSE_PRACTICE_SETTINGS,
   programs: [emptyProgramFormDraft(0)],
 });
 
@@ -51,6 +53,7 @@ export function courseToFormDraft(
     description: course.description,
     published: course.published,
     authoring: course.authoring ?? emptyCourseAuthoring(),
+    practiceSettings: course.practiceSettings ?? DEFAULT_COURSE_PRACTICE_SETTINGS,
     programs: course.programs
       .map((program) => ({
         clientId: program.id,
@@ -125,6 +128,7 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
     description: draft.description,
     published: draft.published,
     authoring: normalizeCourseAuthoring(draft.authoring),
+    practiceSettings: draft.practiceSettings,
     programs,
   };
 }

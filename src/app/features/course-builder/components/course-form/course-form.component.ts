@@ -21,8 +21,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { activeLanguagePairCriteria } from '../../../../entities/language-pair/utils/language-pair-scope.utils';
 import { courseAuthoringWithIdea } from '../../../../entities/course/utils/course-authoring.utils';
 import { ScenarioSearchService } from '../../../../entities/scenario';
-import type { CourseAuthoringStatus } from '../../../../entities/course/model';
-import { COURSE_AUTHORING_STATUSES } from '../../../../entities/course/model';
+import type { CourseAuthoringStatus, CoursePracticeMode } from '../../../../entities/course/model';
+import { COURSE_AUTHORING_STATUSES, DEFAULT_COURSE_PRACTICE_SETTINGS } from '../../../../entities/course/model';
 import type { ScenarioIndexEntry } from '../../../../entities/scenario/model';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { MarkdownFieldComponent } from '../../../../shared/utils/markdown-field';
@@ -139,6 +139,17 @@ export class CourseFormComponent implements OnInit {
     generating: 'Генерация',
     materialized: 'Материализовано',
     failed: 'Ошибка',
+  };
+
+  /**
+   * Human-readable labels for course practice mode values.
+   *
+   * @remarks
+   * Maps each `CoursePracticeMode` value to its display name in Russian.
+   */
+  readonly practiceModeLabels: Record<CoursePracticeMode, string> = {
+    guided: 'Линейный (последовательный)',
+    open: 'Свободный (выбор сценариев)',
   };
 
   async ngOnInit(): Promise<void> {
@@ -506,5 +517,75 @@ export class CourseFormComponent implements OnInit {
         prerequisiteLessonIds: lesson.prerequisiteLessonIds.filter((key) => key !== removedKey),
       }));
     this.updateLesson(programIndex, { ...program, lessons });
+  }
+
+  // ── Practice Settings ──
+
+  /**
+   * Updates the practice mode in the draft.
+   *
+   * @param value — The new `CoursePracticeMode` value.
+   */
+  updatePracticeMode(value: CoursePracticeMode): void {
+    const draft = this.draft();
+    this.updateDraft({
+      ...draft,
+      practiceSettings: {
+        ...DEFAULT_COURSE_PRACTICE_SETTINGS,
+        ...draft.practiceSettings,
+        mode: value,
+      },
+    });
+  }
+
+  /**
+   * Updates the `requireLessonForScenarios` setting.
+   *
+   * @param value — Whether scenarios require a lesson selection.
+   */
+  updateRequireLessonForScenarios(value: boolean): void {
+    const draft = this.draft();
+    this.updateDraft({
+      ...draft,
+      practiceSettings: {
+        ...DEFAULT_COURSE_PRACTICE_SETTINGS,
+        ...draft.practiceSettings,
+        requireLessonForScenarios: value,
+      },
+    });
+  }
+
+  /**
+   * Updates the `enforceLessonPrerequisites` setting.
+   *
+   * @param value — Whether lesson prerequisites are enforced during practice.
+   */
+  updateEnforceLessonPrerequisites(value: boolean): void {
+    const draft = this.draft();
+    this.updateDraft({
+      ...draft,
+      practiceSettings: {
+        ...DEFAULT_COURSE_PRACTICE_SETTINGS,
+        ...draft.practiceSettings,
+        enforceLessonPrerequisites: value,
+      },
+    });
+  }
+
+  /**
+   * Updates the `allowDifficultyFilter` setting.
+   *
+   * @param value — Whether difficulty filtering is allowed on the Scenarios tab.
+   */
+  updateAllowDifficultyFilter(value: boolean): void {
+    const draft = this.draft();
+    this.updateDraft({
+      ...draft,
+      practiceSettings: {
+        ...DEFAULT_COURSE_PRACTICE_SETTINGS,
+        ...draft.practiceSettings,
+        allowDifficultyFilter: value,
+      },
+    });
   }
 }

@@ -14,7 +14,7 @@ import type {
 import { CoursesApiService, type CourseWritePayload } from '../api/courses-api.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { buildApiUrl } from '../../../shared/api/api-url';
-import type { ApiListResponse } from '../../../shared/api/api.types';
+import type { ApiListResponse, ApiResponse } from '../../../shared/api/api.types';
 import { ProgramsApiService } from '../../program/api';
 import type { ProgramWithLessons } from '../../program/model/program.types';
 
@@ -229,21 +229,38 @@ export class CourseSearchService {
       programsWithLessons.push(programWithLessons);
     }
 
-    // Build CourseWithPrograms — the course shape from /journey may differ from plain /courses/:id
-    // We need at least the course base fields
-    const courseBase = {
-      id: String(resolvedId),
-      title: '',
-      slug: '',
-      description: '',
-      authorId: '',
-      languagePair: { known: 'en' as const, learning: 'ru' as const },
+    // Fetch course base to preserve metadata (title, authorId, etc.)
+    let courseBase: Record<string, unknown>;
+    try {
+      const courseResponse = await firstValueFrom(
+        this.http.get<ApiResponse<Record<string, unknown>>>(buildApiUrl(`/courses/${resolvedId}`)),
+      );
+      courseBase = courseResponse.data;
+      // Normalize numeric authorId to string
+      if (typeof courseBase['authorId'] === 'number') {
+        courseBase['authorId'] = String(courseBase['authorId']);
+      }
+    } catch {
+      // If course fetch fails, create a minimal base
+      courseBase = {
+        id: String(resolvedId),
+        title: '',
+        slug: '',
+        description: '',
+        authorId: '',
+        languagePair: { known: 'en' as const, learning: 'ru' as const },
+        published: true,
+        updatedAt: new Date().toISOString(),
+      };
+    }
+
+    const courseWithPrograms = {
+      ...courseBase,
       programIds: programs.map((p) => p.id),
-      published: true,
-      updatedAt: new Date().toISOString(),
+      programs: programsWithLessons,
     };
 
-    return { ...courseBase, programs: programsWithLessons };
+    return courseWithPrograms as unknown as CourseWithPrograms;
   }
 
   /**

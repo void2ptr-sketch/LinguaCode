@@ -63,27 +63,39 @@ export class ProgramsApiService implements ProgramCatalogPort {
   }
 
   /**
-   * Retrieves all programs for a given course.
+   * Retrieves all programs for a given course with lessons resolved.
+   *
+   * @remarks
+   * Uses the `/programs/by-course/{courseId}/with-lessons` endpoint which
+   * returns programs with full lesson details including scenario IDs.
    *
    * @param courseId - The course ID.
-   * @returns Array of programs in the course.
+   * @returns Array of programs with lessons in the course.
    *
    * @example
    * ```ts
    * const programs = await programsApi.getByCourse('course-456');
    * ```
    */
-  getByCourse(courseId: string): Promise<readonly Program[]> {
+  getByCourse(courseId: string): Promise<readonly ProgramWithLessons[]> {
     return firstValueFrom(
-      this.http.get<ApiResponse<{ id: number; lessonIds?: number[] }[]>>(
-        buildApiUrl(`/programs/by-course/${courseId}`),
+      this.http.get<ApiResponse<ProgramWithLessons[]>>(
+        buildApiUrl(`/programs/by-course/${courseId}/with-lessons`),
       ),
     ).then((response) =>
       (response.data ?? []).map((p) => ({
         ...p,
         id: String(p.id),
+        courseId: String(p.courseId),
         lessonIds: p.lessonIds?.map((l) => String(l)),
-      })) as unknown as readonly Program[],
+        lessons: (p.lessons ?? []).map((l) => ({
+          ...l,
+          id: String(l.id),
+          programId: String(l.programId),
+          scenarioIds: (l.scenarioIds ?? []).map((s) => String(s)),
+          prerequisiteLessonIds: (l.prerequisiteLessonIds ?? []).map((p) => String(p)),
+        })),
+      })) as unknown as readonly ProgramWithLessons[],
     );
   }
 

@@ -447,6 +447,40 @@ export class ScenariosService {
     );
   }
 /**
+ * Returns all scenarios for a lesson
+ * @summary Get scenarios by lesson
+ */
+ scenariosGetByLessonId<TData = ScenarioList>(lessonId: number, options?: HttpClientBodyOptions): Observable<TData>;
+ scenariosGetByLessonId<TData = ScenarioList>(lessonId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ scenariosGetByLessonId<TData = ScenarioList>(lessonId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  scenariosGetByLessonId<TData = ScenarioList>(
+    lessonId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/scenarios/by-lesson/${lessonId}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/scenarios/by-lesson/${lessonId}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/scenarios/by-lesson/${lessonId}`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
+/**
  * Returns scenarios associated with a card
  * @summary Get scenarios by card
  */
@@ -488,4 +522,5 @@ export type ScenariosDeleteClientResult = NonNullable<void>
 export type ScenariosListClientResult = NonNullable<ScenarioList>
 export type ScenariosCreateClientResult = NonNullable<ScenarioResponse>
 export type ScenariosSearchClientResult = NonNullable<ScenarioList>
+export type ScenariosGetByLessonIdClientResult = NonNullable<ScenarioList>
 export type ScenariosGetByCardIdClientResult = NonNullable<ScenarioList>
