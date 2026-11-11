@@ -35,6 +35,9 @@
 | [ARCHITECTURE.journey.md](./ARCHITECTURE/ARCHITECTURE.journey.md)                   | Путь обучения (`journey map`)                             |
 | [ARCHITECTURE.learning-results.md](./ARCHITECTURE/ARCHITECTURE.learning-results.md) | Прогресс и `LearningResult`                               |
 | [ARCHITECTURE.user.md](./ARCHITECTURE/ARCHITECTURE.user.md)                         | Профиль пользователя и настройки                          |
+| [ARCHITECTURE.roles-zones.md](./ARCHITECTURE/ARCHITECTURE.roles-zones.md)           | Роли и зоны доступа: ROLE_USER, ROLE_AUTHOR, ROLE_ADMIN   |
+| [ARCHITECTURE.roles-ui.md](./ARCHITECTURE/ARCHITECTURE.roles-ui.md)                 | UI по ролям: меню, виджеты, guards, шаблоны              |
+| [ARCHITECTURE.subscription.md](./ARCHITECTURE/ARCHITECTURE.subscription.md)         | Подписки, тарифы, уровни доступа, монетизация             |
 | [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md)                                         | Индекс карточек, поиск, пагинация, API                    |
 | [API-CONTRACT.md](./API-CONTRACT.md)                                                | HTTP API: эндпоинты, обёртки, ошибки                      |
 | [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)                               | Конструктор сценариев, `ScenarioCardSource`               |
