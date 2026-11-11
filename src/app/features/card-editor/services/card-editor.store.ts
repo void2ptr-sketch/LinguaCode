@@ -6,7 +6,7 @@ import type { CardIndexMetaOverride } from '../../../entities/card/model';
 import { upsertCardIndexMetaOverride } from '../../../entities/card/storage/card-index-meta.storage';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
-import { isNetworkError, isOfflineError } from '../../../shared/api/api-error.utils';
+import { executeWithOfflineFallback } from '../../../shared/api/offline-operation.util';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { SyncQueueService } from '../../../shared/sync';
 import { CardDraft, CardEditorMode } from '../types';
@@ -24,7 +24,7 @@ import {
  * no learning results) before deletion. Persists changes via `CardRepository` and refreshes the
  * catalog cache.
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CardEditorStore {
   private readonly cardsApi = inject(CardsApiService);
   private readonly cardSearchService = inject(CardSearchService);
@@ -138,27 +138,26 @@ export class CardEditorStore {
       return false;
     }
 
-    try {
-      await this.cardsApi.create(card);
-    } catch (error) {
-      if (isOfflineError(error) || isNetworkError(error)) {
-        // Офлайн: сохраняем операцию в очередь и применяем локально.
-        await this.syncQueue.enqueue('card.create', { card });
-        if (indexMeta) {
-          upsertCardIndexMetaOverride(card.id, indexMeta);
-        }
-        this.refreshCatalog();
-        this.cancelEdit();
-        return true;
+    const offlineHandler = async () => {
+      await this.syncQueue.enqueue('card.create', { card });
+      if (indexMeta) {
+        upsertCardIndexMetaOverride(card.id, indexMeta);
       }
-      throw error;
+      this.refreshCatalog();
+      this.cancelEdit();
+    };
+
+    const success = await executeWithOfflineFallback(
+      () => this.cardsApi.create(card),
+      offlineHandler,
+    );
+
+    if (success && !indexMeta) {
+      this.refreshCatalog();
+      this.cancelEdit();
     }
-    if (indexMeta) {
-      upsertCardIndexMetaOverride(card.id, indexMeta);
-    }
-    this.refreshCatalog();
-    this.cancelEdit();
-    return true;
+
+    return success;
   }
 
   /**
@@ -180,27 +179,26 @@ export class CardEditorStore {
       return false;
     }
 
-    try {
-      await this.cardsApi.update(cardId, card);
-    } catch (error) {
-      if (isOfflineError(error) || isNetworkError(error)) {
-        // Офлайн: сохраняем операцию в очередь и применяем локально.
-        await this.syncQueue.enqueue('card.update', { cardId, card });
-        if (indexMeta) {
-          upsertCardIndexMetaOverride(cardId, indexMeta);
-        }
-        this.refreshCatalog();
-        this.cancelEdit();
-        return true;
+    const offlineHandler = async () => {
+      await this.syncQueue.enqueue('card.update', { cardId, card });
+      if (indexMeta) {
+        upsertCardIndexMetaOverride(cardId, indexMeta);
       }
-      throw error;
+      this.refreshCatalog();
+      this.cancelEdit();
+    };
+
+    const success = await executeWithOfflineFallback(
+      () => this.cardsApi.update(cardId, card),
+      offlineHandler,
+    );
+
+    if (success && !indexMeta) {
+      this.refreshCatalog();
+      this.cancelEdit();
     }
-    if (indexMeta) {
-      upsertCardIndexMetaOverride(cardId, indexMeta);
-    }
-    this.refreshCatalog();
-    this.cancelEdit();
-    return true;
+
+    return success;
   }
 
   /**
@@ -231,31 +229,30 @@ export class CardEditorStore {
       return false;
     }
 
-    try {
-      await this.cardsApi.delete(cardId);
-    } catch (error) {
-      if (isOfflineError(error) || isNetworkError(error)) {
-        // Офлайн: сохраняем операцию в очередь и применяем локально.
-        await this.syncQueue.enqueue('card.delete', { cardId });
-        this.refreshCatalog();
-        this.error.set(null);
+    const offlineHandler = async () => {
+      await this.syncQueue.enqueue('card.delete', { cardId });
+      this.refreshCatalog();
+      this.error.set(null);
 
-        if (this.editingCardId() === cardId) {
-          this.cancelEdit();
-        }
-
-        return true;
+      if (this.editingCardId() === cardId) {
+        this.cancelEdit();
       }
-      throw error;
-    }
-    this.refreshCatalog();
-    this.error.set(null);
+    };
 
-    if (this.editingCardId() === cardId) {
-      this.cancelEdit();
+    const success = await executeWithOfflineFallback(
+      () => this.cardsApi.delete(cardId),
+      offlineHandler,
+    );
+
+    if (success) {
+      this.error.set(null);
+
+      if (this.editingCardId() === cardId) {
+        this.cancelEdit();
+      }
     }
 
-    return true;
+    return success;
   }
 
   /**
