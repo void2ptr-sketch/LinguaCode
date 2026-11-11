@@ -70,42 +70,6 @@ export const routes: Routes = [
         ],
       },
 
-      // ── Home Learning Tab (lazy-loaded sub-routes) ───────────────────────────
-      {
-        path: 'home-learning-tab',
-        loadComponent: () =>
-          import('../features/home/components/home-learning-tab/home-learning-tab.component').then(
-            (m) => m.HomeLearningTabComponent,
-          ),
-        children: [
-          // ── Continue Tab (lazy-loaded) ───────────────────────────────────────
-          {
-            path: 'continue',
-            loadComponent: () =>
-              import('../features/home/components/learning-continue-card/learning-continue-card.component').then(
-                (m) => m.LearningContinueCardComponent,
-              ),
-          },
-          // ── Progress Tab (lazy-loaded) ────────────────────────────────────────
-          {
-            path: 'progress',
-            loadComponent: () =>
-              import('../features/home/components/learning-program-progress/learning-program-progress.component').then(
-                (m) => m.LearningProgramProgressComponent,
-              ),
-          },
-          // ── Roadmap Tab (lazy-loaded) ────────────────────────────────────────
-          {
-            path: 'roadmap',
-            loadComponent: () =>
-              import('../features/home/components/learning-lesson-roadmap/learning-lesson-roadmap.component').then(
-                (m) => m.LearningLessonRoadmapComponent,
-              ),
-          },
-          { path: '**', redirectTo: 'continue', pathMatch: 'full' },
-        ],
-      },
-
       // ── Journey Map ───────────────────────────────────────
       {
         path: 'journey',
