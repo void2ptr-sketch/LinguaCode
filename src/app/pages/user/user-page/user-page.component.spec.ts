@@ -7,19 +7,19 @@ import { MatDialog } from '@angular/material/dialog';
 import { of } from 'rxjs';
 
 import { UserPageComponent } from './user-page.component';
-import { UserStore } from '../../entities/user/model/user.store';
-import { UserPersistence } from '../../entities/user/model/user.persistence';
-import { LEARNING_PROFICIENCY_LEVELS } from '../../entities/learning/model';
-import { LanguageService } from '../../entities/language-pair/lib/language.service';
-import { AvailablePairsService } from '../../entities/language-pair/lib/available-pairs.service';
-import { LanguageSettingsStore } from '../../entities/language-pair/lib/language-settings.store';
-import { RoleService } from '../../entities/auth/services/role.service';
-import { UserApiService } from '../../entities/user/api/user-api.service';
-import { UserPreferencesApiService } from '../../entities/user/api/user-preferences-api.service';
-import { LanguageApiService } from '../../entities/language-pair/api/language-api.service';
-import { CourseCatalogLanguagePairManagerService } from '../../features/course-catalog/services/course-catalog-language-pair-manager.service';
-import type { LanguageDto } from '../../entities/language-pair/api/language-dto.types';
-import type { LanguagePairDto } from '../../entities/language-pair/api/language-pairs-api.types';
+import { UserStore } from '../../../entities/user/model/user.store';
+import { UserPersistence } from '../../../entities/user/model/user.persistence';
+import { LEARNING_PROFICIENCY_LEVELS } from '../../../entities/learning/model';
+import { LanguageService } from '../../../entities/language-pair/lib/language.service';
+import { AvailablePairsService } from '../../../entities/language-pair/lib/available-pairs.service';
+import { LanguageSettingsStore } from '../../../entities/language-pair/lib/language-settings.store';
+import { RoleService } from '../../../entities/auth/services/role.service';
+import { UserApiService } from '../../../entities/user/api/user-api.service';
+import { UserPreferencesApiService } from '../../../entities/user/api/user-preferences-api.service';
+import { LanguageApiService } from '../../../entities/language-pair/api/language-api.service';
+import { CourseCatalogLanguagePairManagerService } from '../../../features/course-catalog/services/course-catalog-language-pair-manager.service';
+import type { LanguageDto } from '../../../entities/language-pair/api/language-dto.types';
+import type { LanguagePairDto } from '../../../entities/language-pair/api/language-pairs-api.types';
 
 /** Backend languages used by the mocks. */
 const LANGUAGES: LanguageDto[] = [

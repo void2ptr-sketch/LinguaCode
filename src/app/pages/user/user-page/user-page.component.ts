@@ -27,36 +27,36 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { RemovePairDialogComponent } from '../../entities/language-pair/ui/remove-pair-dialog.component';
-import { LanguageService, LanguageSettingsStore } from '../../entities/language-pair';
-import { AvailablePairsService } from '../../entities/language-pair/lib/available-pairs.service';
-import { UserStore } from '../../entities/user/model';
-import { UserApiService } from '../../entities/user/api/user-api.service';
-import { UserPreferencesApiService } from '../../entities/user/api/user-preferences-api.service';
-import { RoleService } from '../../entities/auth/services/role.service';
-import type { ContentLanguage } from '../../entities/card/model';
-import type { LanguagePair } from '../../entities/language-pair/model/language-pair.types';
+import { RemovePairDialogComponent } from '../../../entities/language-pair/ui/remove-pair-dialog.component';
+import { LanguageService, LanguageSettingsStore } from '../../../entities/language-pair';
+import { AvailablePairsService } from '../../../entities/language-pair/lib/available-pairs.service';
+import { UserStore } from '../../../entities/user/model';
+import { UserApiService } from '../../../entities/user/api/user-api.service';
+import { UserPreferencesApiService } from '../../../entities/user/api/user-preferences-api.service';
+import { RoleService } from '../../../entities/auth/services/role.service';
+import type { ContentLanguage } from '../../../entities/card/model';
+import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 import {
   buildMirrorGroupKey,
   isContentLanguage,
-} from '../../entities/language-pair/lib/language-pair.utils';
+} from '../../../entities/language-pair/lib/language-pair.utils';
 import {
   DIRECTION_CARD_HELPERS,
   DirectionCardEvent,
   DirectionItem,
-} from '../../entities/language-pair/ui/direction-card.component';
-import { DirectionCardInnerComponent } from '../../entities/language-pair/ui/direction-card-inner.component';
-import { CourseCatalogSettingsComponent } from '../../features/course-catalog/components/course-settings/course-settings.component';
-import { CourseCatalogLanguagePairManagerService } from '../../features/course-catalog/services/course-catalog-language-pair-manager.service';
+} from '../../../entities/language-pair/ui/direction-card.component';
+import { DirectionCardInnerComponent } from '../../../entities/language-pair/ui/direction-card-inner.component';
+import { CourseCatalogSettingsComponent } from '../../../features/course-catalog/components/course-settings/course-settings.component';
+import { CourseCatalogLanguagePairManagerService } from '../../../features/course-catalog/services/course-catalog-language-pair-manager.service';
 import type {
   AppColorScheme,
   UserPreferences,
   UserLanguagePairSettings,
-} from '../../entities/user/model';
-import type { LearningProficiencyLevel } from '../../entities/learning/model';
-import { LEARNING_PROFICIENCY_LEVELS } from '../../entities/learning/model';
-import type { UserPreferences as GeneratedUserPreferences } from '../../shared/api/generated/models';
-import type { LanguagePairEntrySettings } from '../../shared/api/generated/models';
+} from '../../../entities/user/model';
+import type { LearningProficiencyLevel } from '../../../entities/learning/model';
+import { LEARNING_PROFICIENCY_LEVELS } from '../../../entities/learning/model';
+import type { UserPreferences as GeneratedUserPreferences } from '../../../shared/api/generated/models';
+import type { LanguagePairEntrySettings } from '../../../shared/api/generated/models';
 
 // ── Grouping types ──────────────────────────────────────────────
 

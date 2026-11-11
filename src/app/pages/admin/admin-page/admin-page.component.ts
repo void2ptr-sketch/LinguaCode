@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { LanguageRegistryComponent } from '../../features/language-registry/components/language-registry/language-registry.component';
+import { LanguageRegistryComponent } from '../../../features/language-registry/components/language-registry/language-registry.component';
 
 /**
  * Admin page — system dictionary management (ROLE_ADMIN, `adminGuard`).

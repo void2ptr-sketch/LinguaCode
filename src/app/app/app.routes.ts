@@ -206,19 +206,19 @@ export const routes: Routes = [
       {
         path: 'help',
         loadComponent: () =>
-          import('../pages/help/help-page.component').then((m) => m.HelpPageComponent),
+          import('../pages/help/help-page/help-page.component').then((m) => m.HelpPageComponent),
       },
       {
         path: 'help/scenarios',
         loadComponent: () =>
-          import('../pages/help-usage-scenarios/help-usage-scenarios-page.component').then(
+          import('../pages/help-usage-scenarios/help-usage-scenarios-page/help-usage-scenarios-page.component').then(
             (m) => m.HelpUsageScenariosPageComponent,
           ),
       },
       {
         path: 'user',
         loadComponent: () =>
-          import('../pages/user/user-page.component').then((m) => m.UserPageComponent),
+          import('../pages/user/user-page/user-page.component').then((m) => m.UserPageComponent),
       },
       {
         path: 'settings/languages',
@@ -234,7 +234,7 @@ export const routes: Routes = [
       {
         path: 'admin',
         loadComponent: () =>
-          import('../pages/admin/admin-page.component').then((m) => m.AdminPageComponent),
+          import('../pages/admin/admin-page/admin-page.component').then((m) => m.AdminPageComponent),
         canMatch: [adminGuard],
       },
 
