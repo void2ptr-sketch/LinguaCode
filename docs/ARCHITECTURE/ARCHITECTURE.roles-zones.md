@@ -47,6 +47,7 @@
 - Прохождение сценариев в обучении (read-only использование контента)
 - Настройка профиля и языковых пар (`users.preferences` — только свои данные)
 - Просмотр прогресса обучения
+- Выбор пар из каталога реестра через поиск на вкладке «Мои пары» профиля (`/user`) — реестр read-only
 
 > **Примечание (решение по сценарию-билдеру):** CRUD сценариев (`scenario-builder`) доступен только `ROLE_AUTHOR` / `ROLE_ADMIN` — маршрут `/tools/scenario-builder` защищён `authorGuard`. Роль `ROLE_USER` не создаёт и не редактирует сценарии.
 
@@ -61,6 +62,7 @@
 | `/tools/cards` | `CardEditorPageComponent` | CRUD карточек, каталог |
 | `/tools/scenario-builder` | `ScenarioBuilderPageComponent` | Конструктор сценариев |
 | `/tools/courses` | `CourseBuilderPageComponent` | Конструктор курсов и программ |
+| `/tools/language-pairs` | `PairRegistryComponent` | CRUD реестра языковых пар (`/language-pairs`) |
 | `/courses` | `CourseCatalogPageComponent` | Каталог программ |
 
 ### Дополнительные виджеты
@@ -77,19 +79,20 @@
 
 ## 3. Администратор (ROLE_ADMIN)
 
-Полный доступ. Администратор управляет языковыми парами, системными настройками и просмотром данных.
+Полный доступ. Администратор управляет справочником языков, системными настройками и просмотром данных.
 
 ### Дополнительные маршруты
 
 | Маршрут | Компонент | Описание |
 |---------|-----------|----------|
-| `/admin/*` | — | Панель администратора (бэклог) |
-| `/language-pairs` | — | Управление справочником пар (бэклог) |
+| `/admin` | `AdminPageComponent` | Панель администратора: вкладка «Справочник языков» ([LanguageRegistryComponent](../../src/app/features/language-registry/components/language-registry/language-registry.component.ts)) |
+
+> CRUD **реестра пар** (`/language-pairs`) принадлежит author-зоне `/tools/language-pairs` — доступен и админу (`canCreateContent`). `/language-pairs` (legacy) редиректит на `/tools/language-pairs`.
 
 ### Права
 
 - Все права ROLE_AUTHOR
-- CRUD языковых пар (`language_pairs` API)
+- CRUD справочника языков (`languages` API)
 - Управление пользователями (бэклог)
 - Просмотр системных логов и метрик (бэклог)
 - Управление seed-контентом (бэклог)

@@ -57,24 +57,26 @@ type CardDirection = 'known-to-learning' | 'learning-to-known';
 
 Подпись пары: `formatLanguagePair()` → «Русский → English».
 
-## Управление парами: единое место CRUD (Language Settings)
+## Управление парами: разделение по зонам маршрутов
 
-Страница `/language-settings` разделена по слоям ответственности — **CRUD пар выполняется только в одном месте**:
+CRUD выполняется **только в зоне соответствующей роли**; другие зоны потребляют справочники read-only:
 
-| Вкладка                                            | Содержание                                                                                              | CRUD пар              |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------------------- |
-| **Languages**                                      | Выбор доступных языков (`LanguageSettingsStore.selectedCodes`)                                          | —                     |
-| **Language Pairs**                                 | Глобальный реестр пар (backend `/language-pairs`) + `UserStore`: add / activate / remove, mirror-группы | ✅ единственное место |
-| **Настройки курса** (бывш. «Setup Language Pairs») | Per-pair настройки обучения: романизация, IPA, тоны, трассировка (`course-settings.component`)          | ❌ read-only picker   |
+| Зона / маршрут                                  | Роль               | Сущность          | Операции                                                       |
+| ----------------------------------------------- | ------------------ | ----------------- | -------------------------------------------------------------- |
+| **Профиль `/user`** — вкладки «Мои языки», «Мои пары» | `ROLE_USER` +  | `users.preferences` | активация / удаление **личных** пар; поиск по каталогу реестра (`pairSearch` → `filteredGroupedPairs`); реестр и словарь языков — read-only |
+| **`/tools/language-pairs`** ([PairRegistryComponent](../../src/app/features/language-registry/components/pair-registry/pair-registry.component.ts)) | `ROLE_AUTHOR` / `ROLE_ADMIN` (`authorGuard`) | `language_pairs` | **Единственное место CRUD реестра пар**: create / delete, mirror-группы |
+| **`/admin`** ([LanguageRegistryComponent](../../src/app/features/language-registry/components/language-registry/language-registry.component.ts)) | `ROLE_ADMIN` (`adminGuard`) | `languages` | **Единственное место CRUD справочника языков**: create / update (`activeFlag`) / delete |
 
 Правила:
 
-| Правило                   | Поведение                                                                                                                           |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Добавление пары           | Только вкладка «Language Pairs» — синхронизирует backend-реестр и `UserStore` (`createPair()` в `language-settings.component`)      |
-| Активация / удаление      | Только вкладка «Language Pairs» (карточки направлений, mirror-group highlight)                                                      |
-| Вкладка «Настройки курса» | Только per-pair настройки; селектор пары — read-only цель настроек; кнопка «Добавить пару…» переключает на вкладку «Language Pairs» |
-| Запрещено                 | Создание «store-only» пар минуя backend-реестр (ранее — `onAddPair()` в `course-settings`)                                          |
+| Правило              | Поведение                                                                                                    |
+| -------------------- | ------------------------------------------------------------------------------------------------------------ |
+| CRUD реестра пар     | Только `/tools/language-pairs` (`LanguagePairsApiService.create/update/delete`)                              |
+| CRUD словаря языков  | Только `/admin` (`LanguageApiService.create/update/delete`)                                                  |
+| Профиль `/user`      | Пишет только в `users/preferences` (`patchUserPreferences`); «добавить пару» = выбрать из каталога реестра   |
+| Пары нет в каталоге  | Hint «запросите добавление у автора курса» — пользователь не расширяет реестр                                 |
+| «Настройки курса»    | Только per-pair настройки; селектор пары — read-only                                                          |
+| Legacy-редиректы     | `/language-pairs` → `/tools/language-pairs`; `/settings/languages` → `/user`                                  |
 
 ## Learning Home (G13)
 

@@ -26,9 +26,30 @@ export const SIDEBAR_NAV_CONFIG: readonly NavGroup[] = [
   {
     id: 'tools',
     items: [
-      { label: 'Конструктор курсов', path: '/tools/courses', icon: 'menu_book', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
-      { label: 'Конструктор сценариев', path: '/tools/scenario-builder', icon: 'view_list', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
-      { label: 'Карточки', path: '/tools/cards', icon: 'style', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
+      {
+        label: 'Языковые пары',
+        path: '/tools/language-pairs',
+        icon: 'swap_horiz',
+        roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'],
+      },
+      {
+        label: 'Конструктор курсов',
+        path: '/tools/courses',
+        icon: 'menu_book',
+        roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'],
+      },
+      {
+        label: 'Конструктор сценариев',
+        path: '/tools/scenario-builder',
+        icon: 'view_list',
+        roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'],
+      },
+      {
+        label: 'Карточки',
+        path: '/tools/cards',
+        icon: 'style',
+        roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'],
+      },
     ],
   },
   {

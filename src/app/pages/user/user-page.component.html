@@ -38,27 +38,25 @@
         </div>
       </mat-tab>
 
-      <!-- Tab 2: Languages -->
-      <mat-tab label="Languages">
+      <!-- Tab 2: Мои языки (user preferences — dictionary is read-only here) -->
+      <mat-tab label="Мои языки">
         <div class="page-card__tab-panel">
           @if (loading()) {
-            <div class="settings-page__loading">Loading languages...</div>
+            <div class="settings-page__loading">Загрузка языков...</div>
           } @else {
             <div class="settings-page__header">
               <div>
-                <h2 class="page-card__section-title">Available Languages</h2>
+                <h2 class="page-card__section-title">Доступные языки</h2>
                 <p class="page-card__hint">
-                  Choose which languages are available for learning. At least one language is
-                  required to create pairs.
+                  Выберите языки для изучения. Нужен хотя бы один язык, чтобы создавать пары.
+                  @if (canManageLanguages()) {
+                    Справочник языков редактируется в
+                    <a href="#" (click)="$event.preventDefault(); openLanguageAdmin()"
+                      >Панели администратора</a
+                    >.
+                  }
                 </p>
               </div>
-
-              @if (canWriteLanguages()) {
-                <button mat-flat-button type="button" (click)="openCreateLanguageDialog()">
-                  <mat-icon>add</mat-icon>
-                  Add Language
-                </button>
-              }
             </div>
 
             @if (availableLanguages().length === 0) {
@@ -88,22 +86,13 @@
                           (selectedCodes().length === 1 && selectedCodes().includes(lang.code))
                         "
                         [matTooltip]="
-                          !lang.activeFlag ? 'Reactivate this language to use it in learning' : ''
+                          !lang.activeFlag
+                            ? 'Язык отключён администратором в справочнике (/admin)'
+                            : ''
                         "
                       >
-                        Use in Learning
+                        Использовать в обучении
                       </mat-checkbox>
-
-                      @if (canWriteLanguages()) {
-                        <div class="settings-page__language-admin">
-                          <mat-slide-toggle
-                            [checked]="lang.activeFlag"
-                            (change)="toggleActiveLanguage(lang)"
-                          >
-                            Active
-                          </mat-slide-toggle>
-                        </div>
-                      }
                     </mat-card-content>
                   </mat-card>
                 }
@@ -113,75 +102,58 @@
         </div>
       </mat-tab>
 
-      <!-- Tab 3: Language Pairs -->
-      <mat-tab label="Language Pairs">
+      <!-- Tab 3: Мои пары (user preferences; registry CRUD lives in /tools/language-pairs) -->
+      <mat-tab label="Мои пары">
         <div class="page-card__tab-panel">
           @if (loading()) {
-            <div class="settings-page__loading">Loading languages...</div>
+            <div class="settings-page__loading">Загрузка языков...</div>
           } @else {
-            <h2 class="page-card__section-title">Configured Pairs</h2>
+            <h2 class="page-card__section-title">Мои пары</h2>
             <p class="page-card__hint">
-              Mirror pairs (e.g. EN↔RU) are grouped. Tap a direction to activate it, or remove
-              individually.
+              Mirror-пары (например EN↔RU) группируются. Нажмите на направление, чтобы сделать его
+              активным, или удалите отдельное направление.
             </p>
 
             @if (selectedCodes().length < 2) {
-              <div class="settings-page__warning">
-                Select at least 2 languages to create pairs.
-              </div>
+              <div class="settings-page__warning">Выберите хотя бы 2 языка, чтобы видеть пары.</div>
             } @else {
-              <!-- Create new pair form -->
+              <!-- Search filter over the read-only pair catalog -->
               <div class="settings-page__pair-form">
-                <mat-form-field appearance="outline" class="settings-page__pair-select">
-                  <mat-label>Known</mat-label>
-                  <mat-select
-                    [value]="newKnownCode()"
-                    (selectionChange)="newKnownCode.set($event.value)"
-                  >
-                    @for (code of selectedCodes(); track code) {
-                      <mat-option [value]="code">{{ getLanguageLabel(code) }}</mat-option>
-                    }
-                  </mat-select>
+                <mat-form-field appearance="outline" class="settings-page__pair-search">
+                  <mat-label>Поиск языковой пары</mat-label>
+                  <input
+                    matInput
+                    type="text"
+                    [value]="pairSearch()"
+                    (input)="pairSearch.set($any($event.target).value)"
+                    placeholder="Например: English, ru, 中文"
+                  />
+                  @if (pairSearch()) {
+                    <button
+                      mat-icon-button
+                      matSuffix
+                      type="button"
+                      aria-label="Очистить поиск"
+                      (click)="pairSearch.set('')"
+                    >
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  }
                 </mat-form-field>
-
-                <span class="settings-page__pair-arrow">→</span>
-
-                <mat-form-field appearance="outline" class="settings-page__pair-select">
-                  <mat-label>Learning</mat-label>
-                  <mat-select
-                    [value]="newLearningCode()"
-                    (selectionChange)="newLearningCode.set($event.value)"
-                  >
-                    @for (code of selectedCodes(); track code) {
-                      <mat-option [value]="code">{{ getLanguageLabel(code) }}</mat-option>
-                    }
-                  </mat-select>
-                </mat-form-field>
-
-                <button
-                  mat-flat-button
-                  type="button"
-                  class="settings-page__pair-add"
-                  [disabled]="
-                    !newKnownCode() ||
-                    !newLearningCode() ||
-                    newKnownCode() === newLearningCode() ||
-                    creatingPair()
-                  "
-                  (click)="createPair()"
-                >
-                  Add Pair
-                </button>
               </div>
 
               <!-- Existing pairs grouped by mirror languages -->
               @if (groupedPairs().length === 0) {
                 <div class="settings-page__empty">
-                  No pairs found for your selected languages. Create one above.
+                  В каталоге нет пар для выбранных языков. Запросите добавление у автора курса.
+                </div>
+              } @else if (filteredGroupedPairs().length === 0) {
+                <div class="settings-page__empty">
+                  Ничего не найдено по запросу «{{ pairSearch() }}».
                 </div>
               } @else {
                 <div class="settings-page__pairs-grouped">
-                  @for (group of groupedPairs(); track group.key) {
+                  @for (group of filteredGroupedPairs(); track group.key) {
                     <div class="settings-page__pair-group">
                       <!-- Group header -->
                       <div class="settings-page__pair-group__header">

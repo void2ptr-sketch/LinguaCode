@@ -1,0 +1,93 @@
+<div class="pair-registry">
+  <div class="pair-registry__header">
+    <div>
+      <h2 class="pair-registry__title">Реестр языковых пар</h2>
+      <p class="pair-registry__hint">
+        Глобальный справочник <code>/language-pairs</code>. Пары, добавленные здесь, появляются в
+        каталоге «Мои пары» в профиле пользователя. Mirror-направления (EN↔RU) группируются.
+      </p>
+    </div>
+  </div>
+
+  @if (loading() || languagesLoading()) {
+    <div class="pair-registry__loading">Загрузка реестра...</div>
+  } @else {
+    <!-- Create new pair form -->
+    <div class="pair-registry__form">
+      <mat-form-field appearance="outline" class="pair-registry__select">
+        <mat-label>Known</mat-label>
+        <mat-select [value]="newKnownCode()" (selectionChange)="newKnownCode.set($event.value)">
+          @for (lang of languages(); track lang.code) {
+            <mat-option [value]="lang.code">{{ getLanguageLabel(lang.code) }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <span class="pair-registry__arrow">→</span>
+
+      <mat-form-field appearance="outline" class="pair-registry__select">
+        <mat-label>Learning</mat-label>
+        <mat-select
+          [value]="newLearningCode()"
+          (selectionChange)="newLearningCode.set($event.value)"
+        >
+          @for (lang of languages(); track lang.code) {
+            <mat-option [value]="lang.code">{{ getLanguageLabel(lang.code) }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        type="button"
+        class="pair-registry__add"
+        [disabled]="
+          !newKnownCode() ||
+          !newLearningCode() ||
+          newKnownCode() === newLearningCode() ||
+          creating()
+        "
+        (click)="createPair()"
+      >
+        <mat-icon>add</mat-icon>
+        Добавить пару
+      </button>
+    </div>
+
+    <!-- Registry groups -->
+    @if (groupedPairs().length === 0) {
+      <div class="pair-registry__empty">Реестр пуст. Добавьте первую пару выше.</div>
+    } @else {
+      <div class="pair-registry__groups">
+        @for (group of groupedPairs(); track group.key) {
+          <div class="pair-registry__group">
+            <div class="pair-registry__group-title">
+              {{ group.key.split('|')[0] | uppercase }} ↔ {{ group.key.split('|')[1] | uppercase }}
+              <span class="pair-registry__group-count">{{ group.pairs.length }}</span>
+            </div>
+            <div class="pair-registry__group-pairs">
+              @for (pair of group.pairs; track pair.id) {
+                <div class="pair-registry__pair">
+                  <span class="pair-registry__pair-direction">
+                    {{ getLanguageLabel(pair.knownCode) }} →
+                    {{ getLanguageLabel(pair.learningCode) }}
+                  </span>
+                  <span class="pair-registry__pair-id">id: {{ pair.id }}</span>
+                  <button
+                    mat-icon-button
+                    type="button"
+                    class="pair-registry__pair-delete"
+                    (click)="deletePair(pair)"
+                    aria-label="Удалить пару из реестра"
+                  >
+                    <mat-icon>delete_outline</mat-icon>
+                  </button>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+</div>

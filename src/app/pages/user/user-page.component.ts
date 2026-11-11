@@ -1,7 +1,6 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   inject,
   computed,
   signal,
@@ -29,11 +28,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { RemovePairDialogComponent } from '../../entities/language-pair/ui/remove-pair-dialog.component';
-import { LanguageDto } from '../../entities/language-pair/api/language-dto.types';
-import {
-  LanguageApiService,
-  LanguageCreatePayload,
-} from '../../entities/language-pair/api/language-api.service';
 import { LanguageService, LanguageSettingsStore } from '../../entities/language-pair';
 import { AvailablePairsService } from '../../entities/language-pair/lib/available-pairs.service';
 import { UserStore } from '../../entities/user/model';
@@ -54,7 +48,11 @@ import {
 import { DirectionCardInnerComponent } from '../../entities/language-pair/ui/direction-card-inner.component';
 import { CourseCatalogSettingsComponent } from '../../features/course-catalog/components/course-settings/course-settings.component';
 import { CourseCatalogLanguagePairManagerService } from '../../features/course-catalog/services/course-catalog-language-pair-manager.service';
-import type { AppColorScheme, UserPreferences, UserLanguagePairSettings } from '../../entities/user/model';
+import type {
+  AppColorScheme,
+  UserPreferences,
+  UserLanguagePairSettings,
+} from '../../entities/user/model';
 import type { LearningProficiencyLevel } from '../../entities/learning/model';
 import { LEARNING_PROFICIENCY_LEVELS } from '../../entities/learning/model';
 import type { UserPreferences as GeneratedUserPreferences } from '../../shared/api/generated/models';
@@ -100,14 +98,17 @@ export type PairGroup = {
 };
 
 /**
- * User profile page component. Allows users to manage their display name, theme preferences,
- * language pair, and learning proficiency level.
+ * User profile page component (learner zone). Allows users to manage their display
+ * name, theme preferences, language pairs, and learning proficiency level.
  *
  * @remarks
- * Tab layout (0–4):
+ * Tab layout (0–4) — ALL tabs operate on the user's own `users/preferences`:
  * - **Пользователь** — profile name and proficiency
- * - **Languages** — select which languages are available for learning
- * - **Language Pairs** — configure language pairs from selected languages
+ * - **Мои языки** — pick languages for learning (read-only consumption of the
+ *   `/languages` dictionary; dictionary CRUD lives in `/admin`)
+ * - **Мои пары** — activate / remove the user's own pairs; new pairs are added
+ *   from the user's selected languages (registry `/language-pairs` CRUD lives
+ *   in `/tools/language-pairs`, author zone)
  * - **Настройки курса** — per-pair learning preferences (course catalog settings)
  * - **Внешний вид** — theme, font size, color scheme
  *
@@ -153,7 +154,7 @@ export type PairGroup = {
   styleUrl: './user-page.component.scss',
 })
 export class UserPageComponent implements OnInit {
-  /** Index of the active tab (0 = Пользователь, 1 = Languages, 2 = Language Pairs, 3 = Настройки курса, 4 = Внешний вид). */
+  /** Index of the active tab (0 = Пользователь, 1 = Мои языки, 2 = Мои пары, 3 = Настройки курса, 4 = Внешний вид). */
   readonly selectedTabIndex = signal(0);
 
   private readonly userStore: UserStore = inject(UserStore);
@@ -161,13 +162,12 @@ export class UserPageComponent implements OnInit {
   private readonly languageService: LanguageService = inject(LanguageService);
   private readonly availablePairs: AvailablePairsService = inject(AvailablePairsService);
   private readonly userApi: UserApiService = inject(UserApiService);
-  private readonly userPreferencesApi: UserPreferencesApiService = inject(UserPreferencesApiService);
-  private readonly languageApi: LanguageApiService = inject(LanguageApiService);
+  private readonly userPreferencesApi: UserPreferencesApiService =
+    inject(UserPreferencesApiService);
   private readonly roleService: RoleService = inject(RoleService);
   private readonly router: Router = inject(Router);
   private readonly snackBar: MatSnackBar = inject(MatSnackBar);
   private readonly dialog: MatDialog = inject(MatDialog);
-  private readonly cdr = inject(ChangeDetectorRef);
   private readonly pairManager = inject(CourseCatalogLanguagePairManagerService);
 
   /** Current user's display name from the store. */
@@ -213,14 +213,15 @@ export class UserPageComponent implements OnInit {
       learning: normalizeCode(p.learningCode),
     })),
   );
-  readonly canWriteLanguages = this.roleService.canWriteLanguages;
+  /**
+   * Whether the current user manages the language dictionary (ROLE_ADMIN).
+   * Used only to show the hint linking to `/admin` — the profile itself
+   * never mutates the dictionary.
+   */
+  readonly canManageLanguages = this.roleService.canManageSystem;
 
-  /** Newly selected codes for the add-pair form. */
-  readonly newKnownCode = signal<string>('');
-  readonly newLearningCode = signal<string>('');
-
-  /** Loading state for the "Add Pair" button. */
-  readonly creatingPair = signal(false);
+  /** Search text for filtering the pair catalog (label or code, e.g. "en", "English"). */
+  readonly pairSearch = signal('');
 
   /**
    * Pairs grouped by mirror languages (EN↔RU, EN↔DE …).
@@ -258,6 +259,30 @@ export class UserPageComponent implements OnInit {
     }));
   });
 
+  /**
+   * Pair catalog filtered by the search text.
+   *
+   * @remarks
+   * The catalog is the read-only view of the registry (`/language-pairs`
+   * via `AvailablePairsService`); the profile never writes to it. A direction
+   * card is matched when the search text appears in either language's label,
+   * native name or code — case-insensitive.
+   */
+  readonly filteredGroupedPairs = computed(() => {
+    const query = this.pairSearch().trim().toLowerCase();
+    const groups = this.groupedPairs();
+    if (!query) {
+      return groups;
+    }
+
+    return groups
+      .map((group) => ({
+        ...group,
+        directions: group.directions.filter((dir) => this._matchesPairSearch(dir, query)),
+      }))
+      .filter((group) => group.directions.length > 0);
+  });
+
   /** Whether the currently active pair exists. */
   readonly hasActivePair = computed(() => !!this.userStore.activeLanguagePairEntry());
 
@@ -285,101 +310,101 @@ export class UserPageComponent implements OnInit {
   }
 
   /**
-    * Commits all draft form values to the `UserStore` and persists to backend.
-    *
-    * @remarks
-    * Updates both the display name and all preferences (theme, font size, color scheme,
-    * card focus fullscreen, learning proficiency level) in a single call.
-    * Also saves per-pair settings (romanization, IPA, tone colors, tracing) for all pairs.
-    *
-    * Split into two API calls:
-    * - `PUT /users/me` — only `displayName` (backend `UserUpdateRequest` has no `preferences`)
-    * - `PUT /users/me/preferences` — full preferences via dedicated endpoint
-    */
-   async saveProfile(): Promise<void> {
-     // 1. User-level preferences (local + localStorage)
-     this.userStore.updateDisplayName(this.nameDraft());
-     this.userStore.updatePreferences({
-       theme: this.themeDraft(),
-       fontSize: this.fontSizeDraft(),
-       colorScheme: this.colorSchemeDraft(),
-       cardFocusFullscreen: this.cardFocusFullscreenDraft(),
-       learningProficiencyLevel: this.learningProficiencyDraft(),
-     });
+   * Commits all draft form values to the `UserStore` and persists to backend.
+   *
+   * @remarks
+   * Updates both the display name and all preferences (theme, font size, color scheme,
+   * card focus fullscreen, learning proficiency level) in a single call.
+   * Also saves per-pair settings (romanization, IPA, tone colors, tracing) for all pairs.
+   *
+   * Split into two API calls:
+   * - `PUT /users/me` — only `displayName` (backend `UserUpdateRequest` has no `preferences`)
+   * - `PUT /users/me/preferences` — full preferences via dedicated endpoint
+   */
+  async saveProfile(): Promise<void> {
+    // 1. User-level preferences (local + localStorage)
+    this.userStore.updateDisplayName(this.nameDraft());
+    this.userStore.updatePreferences({
+      theme: this.themeDraft(),
+      fontSize: this.fontSizeDraft(),
+      colorScheme: this.colorSchemeDraft(),
+      cardFocusFullscreen: this.cardFocusFullscreenDraft(),
+      learningProficiencyLevel: this.learningProficiencyDraft(),
+    });
 
-     // 2a. Отправить displayName на бэкенд (PUT /users/me)
-     try {
-       await this.userApi.updateMe({
-         displayName: this.nameDraft(),
-       });
-     } catch {
-       this.snackBar.open('Не удалось сохранить имя', 'Закрыть', { duration: 5000 });
-     }
+    // 2a. Отправить displayName на бэкенд (PUT /users/me)
+    try {
+      await this.userApi.updateMe({
+        displayName: this.nameDraft(),
+      });
+    } catch {
+      this.snackBar.open('Не удалось сохранить имя', 'Закрыть', { duration: 5000 });
+    }
 
-      // 2b. Отправить ВСЕ preferences на бэкенд (PUT /users/me/preferences)
-      try {
-        const pairs = this.userStore.languagePairs();
+    // 2b. Отправить ВСЕ preferences на бэкенд (PUT /users/me/preferences)
+    try {
+      const pairs = this.userStore.languagePairs();
 
-        // Map fontSize ('sm' | 'md' | 'lg') → cardFontSize ('SMALL' | 'MEDIUM' | 'LARGE')
-        const fontSizeMap: Record<string, GeneratedUserPreferences['cardFontSize']> = {
-          sm: 'SMALL',
-          md: 'MEDIUM',
-          lg: 'LARGE',
-        };
+      // Map fontSize ('sm' | 'md' | 'lg') → cardFontSize ('SMALL' | 'MEDIUM' | 'LARGE')
+      const fontSizeMap: Record<string, GeneratedUserPreferences['cardFontSize']> = {
+        sm: 'SMALL',
+        md: 'MEDIUM',
+        lg: 'LARGE',
+      };
 
-        // Map frontend answerModes ('orthography' | 'ipa') → backend enum ('ORTHOGRAPHY' | 'IPA' | 'AUDIO')
-        const answerModeMap: Record<string, string> = {
-          orthography: 'ORTHOGRAPHY',
-          ipa: 'IPA',
-          audio: 'AUDIO',
-        };
+      // Map frontend answerModes ('orthography' | 'ipa') → backend enum ('ORTHOGRAPHY' | 'IPA' | 'AUDIO')
+      const answerModeMap: Record<string, string> = {
+        orthography: 'ORTHOGRAPHY',
+        ipa: 'IPA',
+        audio: 'AUDIO',
+      };
 
-        function toBackendSettings(
-          settings: UserLanguagePairSettings | undefined,
-        ): LanguagePairEntrySettings | undefined {
-          if (!settings) return undefined;
-          const phonetic = settings.phonetic;
+      function toBackendSettings(
+        settings: UserLanguagePairSettings | undefined,
+      ): LanguagePairEntrySettings | undefined {
+        if (!settings) return undefined;
+        const phonetic = settings.phonetic;
 
-          // Transform answerModes from lowercase frontend values to uppercase backend enum
-          const transformedPhonetic = phonetic
-            ? {
-                ...phonetic,
-                answerModes: (phonetic.answerModes ?? []).map(
-                  (m: string) => answerModeMap[m] ?? m.toUpperCase(),
-                ),
-              }
-            : undefined;
+        // Transform answerModes from lowercase frontend values to uppercase backend enum
+        const transformedPhonetic = phonetic
+          ? {
+              ...phonetic,
+              answerModes: (phonetic.answerModes ?? []).map(
+                (m: string) => answerModeMap[m] ?? m.toUpperCase(),
+              ),
+            }
+          : undefined;
 
-          // Cast the rest — types differ slightly between frontend/backend
-          return {
-            ...transformedPhonetic,
-            cjkLearning: settings.cjkLearning as unknown as LanguagePairEntrySettings['cjkLearning'],
-            learning: settings.learning as unknown as LanguagePairEntrySettings['learning'],
-          } as LanguagePairEntrySettings;
-        }
+        // Cast the rest — types differ slightly between frontend/backend
+        return {
+          ...transformedPhonetic,
+          cjkLearning: settings.cjkLearning as unknown as LanguagePairEntrySettings['cjkLearning'],
+          learning: settings.learning as unknown as LanguagePairEntrySettings['learning'],
+        } as LanguagePairEntrySettings;
+      }
 
-        const payload: GeneratedUserPreferences = {
-          theme: this.themeDraft(),
-          cardFontSize: fontSizeMap[this.fontSizeDraft()] ?? 'MEDIUM',
-          colorScheme: this.colorSchemeDraft(),
-          cardFocusFullscreen: this.cardFocusFullscreenDraft(),
-          learningProficiencyLevel: this.learningProficiencyDraft(),
-          // Flatten frontend languagePairs → backend learningPairs
-          learningPairs: pairs.map((p) => ({
-            known: p.pair.known,
-            learning: p.pair.learning,
-            settings: toBackendSettings(p.settings),
-          })),
-          activeLanguagePairId: this.userStore.activeLanguagePairId(),
-          activeByMirrorGroup: this.userStore.activeByMirrorGroup(),
-        };
+      const payload: GeneratedUserPreferences = {
+        theme: this.themeDraft(),
+        cardFontSize: fontSizeMap[this.fontSizeDraft()] ?? 'MEDIUM',
+        colorScheme: this.colorSchemeDraft(),
+        cardFocusFullscreen: this.cardFocusFullscreenDraft(),
+        learningProficiencyLevel: this.learningProficiencyDraft(),
+        // Flatten frontend languagePairs → backend learningPairs
+        learningPairs: pairs.map((p) => ({
+          known: p.pair.known,
+          learning: p.pair.learning,
+          settings: toBackendSettings(p.settings),
+        })),
+        activeLanguagePairId: this.userStore.activeLanguagePairId(),
+        activeByMirrorGroup: this.userStore.activeByMirrorGroup(),
+      };
 
-       await this.userPreferencesApi.save(payload);
-       this.snackBar.open('Профиль сохранён', 'Закрыть', { duration: 3000 });
-     } catch {
-       this.snackBar.open('Не удалось сохранить профиль', 'Закрыть', { duration: 5000 });
-     }
-   }
+      await this.userPreferencesApi.save(payload);
+      this.snackBar.open('Профиль сохранён', 'Закрыть', { duration: 3000 });
+    } catch {
+      this.snackBar.open('Не удалось сохранить профиль', 'Закрыть', { duration: 5000 });
+    }
+  }
 
   // ── Language settings helpers ───────────────────────────────────
 
@@ -502,47 +527,21 @@ export class UserPageComponent implements OnInit {
     }
   }
 
-  /** Creates a new language pair from selected codes. */
-  async createPair(): Promise<void> {
-    const known = this.newKnownCode();
-    const learning = this.newLearningCode();
-    if (!known || !learning || known === learning || this.creatingPair()) {
-      return;
-    }
+  /** Opens the language dictionary management page (admin zone). */
+  openLanguageAdmin(): void {
+    void this.router.navigate(['/admin']);
+  }
 
-    this.creatingPair.set(true);
-
-    try {
-      // Sync the newly created pair to UserStore so that setActivePair
-      // can find a matching entry.  Creating a pair is a single-card
-      // event: it must NOT activate the pair or change any mirror-group
-      // highlight (hence `activate: false`).
-      this.userStore.addLanguagePair(
-        { known: known as ContentLanguage, learning: learning as ContentLanguage },
-        { activate: false },
-      );
-
-      // Persist updated pairs to backend (users/preferences only).
-      await this.userApi.patchUserPreferences({
-        learningPairs: this.userStore
-          .languagePairs()
-          .map((p) => ({ known: p.pair.known, learning: p.pair.learning })),
-        activeLanguagePairId: this.userStore.activeLanguagePairId(),
-      });
-
-      // Refresh the pairs list (force reload after mutation)
-      await this.availablePairs.load(true);
-
-      this.newKnownCode.set('');
-      this.newLearningCode.set('');
-      this.snackBar.open('Пара добавлена', 'Закрыть', { duration: 3000 });
-    } catch (error) {
-      this.snackBar.open(`Не удалось создать пару: ${(error as Error).message}`, 'Закрыть', {
-        duration: 5000,
-      });
-    } finally {
-      this.creatingPair.set(false);
-    }
+  private _matchesPairSearch(dir: { known: string; learning: string }, query: string): boolean {
+    const fields = [
+      dir.known,
+      dir.learning,
+      this.getLanguageLabel(dir.known),
+      this.getLanguageLabel(dir.learning),
+      this.languageService.findByCode(dir.known)?.nativeName ?? '',
+      this.languageService.findByCode(dir.learning)?.nativeName ?? '',
+    ];
+    return fields.some((f) => f.toLowerCase().includes(query));
   }
 
   /**
@@ -698,93 +697,5 @@ export class UserPageComponent implements OnInit {
         duration: 5000,
       });
     }
-  }
-
-  /** Opens a dialog to create a new language. */
-  openCreateLanguageDialog(): void {
-    if (!this.canWriteLanguages()) {
-      return;
-    }
-    // For now, use a simple prompt — in the future this could be a proper dialog component
-    const code = prompt('Enter language code (e.g., "de" for German):');
-    if (!code) return;
-
-    const displayName = prompt('Enter display name (e.g., "German"):');
-    if (!displayName) return;
-
-    const nativeName = prompt('Enter native name (e.g., "Deutsch"):');
-    if (!nativeName) return;
-
-    const writingDir = prompt('Writing direction (ltr/rtl):') || 'ltr';
-    const supportsTones = confirm('Supports tones? (OK=Yes, Cancel=No)');
-    const supportsPinyin = confirm('Supports pinyin? (OK=Yes, Cancel=No)');
-    const fontFamily = prompt('Font family (e.g., "Noto Sans"):') || 'Noto Sans';
-    const activeFlag = confirm('Active? (OK=Yes, Cancel=No)');
-
-    const payload: LanguageCreatePayload = {
-      code,
-      displayName,
-      nativeName,
-      writingDir,
-      supportsTones,
-      supportsPinyin,
-      fontFamily,
-      activeFlag,
-    };
-
-    this.languageApi
-      .create(payload)
-      .then((lang) => {
-        this.snackBar.open(`Language "${lang.displayName}" created`, 'Close', { duration: 3000 });
-        // Reload languages
-        this.languageService.load().then(() => {
-          this.settingsStore.addLanguage(code);
-        });
-      })
-      .catch((error) => {
-        this.snackBar.open(`Failed to create language: ${(error as Error).message}`, 'Close', {
-          duration: 5000,
-        });
-      });
-  }
-
-  /** Toggles active status for a language. */
-  toggleActiveLanguage(lang: LanguageDto): void {
-    if (!this.canWriteLanguages()) {
-      this.snackBar.open('You do not have permission to change language status', 'Close', {
-        duration: 5000,
-      });
-      return;
-    }
-
-    const previousFlag = lang.activeFlag;
-
-    // Optimistic UI update — flip the switch immediately
-    lang.activeFlag = !previousFlag;
-    this.cdr.markForCheck();
-
-    this.languageApi
-      .update(lang.id, { activeFlag: lang.activeFlag })
-      .then((updated) => {
-        this.snackBar.open(
-          `Language ${updated.activeFlag ? 'activated' : 'deactivated'}`,
-          'Close',
-          { duration: 3000 },
-        );
-        // Reload in background for full consistency (only if loaded was false)
-        void this.languageService.load();
-      })
-      .catch((error: unknown) => {
-        // Rollback optimistic update on failure
-        lang.activeFlag = previousFlag;
-        this.cdr.markForCheck();
-
-        const httpError = error as { status?: number; message?: string };
-        const message =
-          httpError.status === 403
-            ? 'Session expired or access denied. Please refresh the page and try again.'
-            : `Failed to update language: ${httpError.message ?? 'Unknown error'}`;
-        this.snackBar.open(message, 'Close', { duration: 5000 });
-      });
   }
 }

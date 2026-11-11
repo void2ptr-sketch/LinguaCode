@@ -1,6 +1,8 @@
 # Архитектура: профиль пользователя (`user`)
 
-Страница настроек пользователя — управление отображением, языковыми парами и уровнем подготовки. Маршрут `/user`.
+Страница настроек пользователя (learner-зона) — управление отображением, личными языками и парами, уровнем подготовки. Маршрут `/user`.
+
+> **Разделение ролей (зоны):** профиль работает **только** с `users.preferences`. CRUD глобального реестра `/language-pairs` — в author-зоне `/tools/language-pairs` ([PairRegistryComponent](../../src/app/features/language-registry/components/pair-registry/pair-registry.component.ts)); CRUD справочника `/languages` — в admin-зоне `/admin` ([LanguageRegistryComponent](../../src/app/features/language-registry/components/language-registry/language-registry.component.ts)). Профиль потребляет оба справочника **read-only**.
 
 ## Назначение
 
@@ -20,6 +22,11 @@ pages/user/
     ├── user-page.component.html   # шаблон с вкладками настроек
     ├── user-page.component.scss   # стили
     └── user-page.component.spec.ts# тесты
+
+features/language-registry/        # author/admin-зона (CRUD справочников)
+└── components/
+    ├── pair-registry/             # CRUD реестра /language-pairs → /tools/language-pairs
+    └── language-registry/         # CRUD справочника /languages → /admin
 ```
 
 > **Примечание:** `user-page` — standalone-страница, точка входа маршрута `/user`. Не содержит фичи (`features/`), вся логика — в `UserStore` (`entities/user/model/`).

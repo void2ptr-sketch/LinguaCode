@@ -95,6 +95,7 @@ describe('UserPageComponent', () => {
       roles: signal<string[]>([]),
       isAdmin: signal(false),
       isUser: signal(true),
+      canManageSystem: signal(false),
       canWriteLanguages: signal(false),
       canWritePairs: signal(true),
       hasRole: () => false,
@@ -325,10 +326,9 @@ describe('UserPageComponent', () => {
       expect(component.groupedPairs).toBeDefined();
       expect(component.hasActivePair).toBeDefined();
       expect(component.activePairLabel).toBeDefined();
-      expect(component.canWriteLanguages).toBeDefined();
-      expect(component.newKnownCode).toBeDefined();
-      expect(component.newLearningCode).toBeDefined();
-      expect(component.creatingPair).toBeDefined();
+      expect(component.canManageLanguages).toBeDefined();
+      expect(component.pairSearch).toBeDefined();
+      expect(component.filteredGroupedPairs).toBeDefined();
     });
 
     it('should derive configured pairs from AvailablePairsService', () => {
@@ -400,37 +400,28 @@ describe('UserPageComponent', () => {
       expect(userStore.activeLanguagePairId()).toBe(activeIdBefore);
     });
 
-    it('should not activate a newly created pair or touch any group marker', async () => {
-      const activeIdBefore = userStore.activeLanguagePairId();
-      const markersBefore = { ...userStore.activeByMirrorGroup() };
-
-      component.newKnownCode.set('ja');
-      component.newLearningCode.set('zh');
-      await component.createPair();
-
-      // Should update user preferences, not call language pairs API
-      expect(patchPrefsSpy).toHaveBeenCalledOnce();
-      expect(userStore.activeLanguagePairId()).toBe(activeIdBefore);
-      expect(userStore.activeByMirrorGroup()).toEqual(markersBefore);
+    it('should show all groups when the pair search is empty', () => {
+      component.pairSearch.set('');
+      expect(component.filteredGroupedPairs()).toHaveLength(2);
     });
 
-    it('should disable the add-pair button during creation', async () => {
-      component.newKnownCode.set('ja');
-      component.newLearningCode.set('zh');
-
-      expect(component.creatingPair()).toBe(false);
-
-      await component.createPair();
-
-      expect(component.creatingPair()).toBe(false);
+    it('should filter pair catalog by language code', () => {
+      component.pairSearch.set('ja');
+      const groups = component.filteredGroupedPairs();
+      expect(groups).toHaveLength(1);
+      expect(groups[0].key).toBe('ja|zh');
     });
 
-    it('should show Russian toast messages on pair creation', async () => {
-      component.newKnownCode.set('ja');
-      component.newLearningCode.set('zh');
-      await component.createPair();
+    it('should filter pair catalog by display label, case-insensitively', () => {
+      component.pairSearch.set('CHINESE');
+      const groups = component.filteredGroupedPairs();
+      expect(groups).toHaveLength(1);
+      expect(groups[0].key).toBe('ja|zh');
+    });
 
-      expect(snackBarSpy).toHaveBeenCalledWith('Пара добавлена', 'Закрыть', { duration: 3000 });
+    it('should return no groups for a non-matching search', () => {
+      component.pairSearch.set('klingon');
+      expect(component.filteredGroupedPairs()).toHaveLength(0);
     });
 
     it('should show Russian toast messages on pair removal', async () => {

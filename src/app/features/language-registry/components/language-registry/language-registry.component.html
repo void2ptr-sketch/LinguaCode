@@ -1,0 +1,60 @@
+<div class="language-registry">
+  <div class="language-registry__header">
+    <div>
+      <h2 class="language-registry__title">Справочник языков</h2>
+      <p class="language-registry__hint">
+        Глобальный словарь <code>/languages</code>. Активные языки доступны ученикам в «Мои языки» и
+        авторам в реестре пар.
+      </p>
+    </div>
+
+    <button mat-flat-button type="button" (click)="createLanguage()" [disabled]="creating()">
+      <mat-icon>add</mat-icon>
+      Добавить язык
+    </button>
+  </div>
+
+  @if (loading()) {
+    <div class="language-registry__loading">Загрузка справочника...</div>
+  } @else {
+    @if (languages().length === 0) {
+      <div class="language-registry__empty">Справочник пуст.</div>
+    } @else {
+      <div class="language-registry__grid">
+        @for (lang of languages(); track lang.id) {
+          <mat-card
+            class="language-registry__item"
+            [class.language-registry__item--inactive]="!lang.activeFlag"
+          >
+            <mat-card-content>
+              <div class="language-registry__info">
+                <span class="language-registry__name">{{ lang.displayName }}</span>
+                <span class="language-registry__native">({{ lang.nativeName }})</span>
+                <span class="language-registry__code">{{ lang.code }}</span>
+                @if (!lang.activeFlag) {
+                  <span class="language-registry__badge">Inactive</span>
+                }
+              </div>
+
+              <div class="language-registry__actions">
+                <mat-slide-toggle [checked]="lang.activeFlag" (change)="toggleActiveLanguage(lang)">
+                  Active
+                </mat-slide-toggle>
+
+                <button
+                  mat-icon-button
+                  type="button"
+                  class="language-registry__delete"
+                  (click)="deleteLanguage(lang)"
+                  aria-label="Удалить язык из справочника"
+                >
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+    }
+  }
+</div>

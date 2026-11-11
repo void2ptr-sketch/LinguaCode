@@ -92,7 +92,8 @@ graph TB
 | `/tools/courses` | `CourseBuilderPageComponent` | ❌ | ✅ | ✅ | `authorGuard` |
 | `/tools/scenario-builder` | `ScenarioBuilderPageComponent` | ❌ | ✅ | ✅ | `authorGuard` |
 | `/tools/cards` | `CardEditorPageComponent` | ❌ | ✅ | ✅ | `authorGuard` |
-| `/admin/*` | — | ❌ | ❌ | ✅ | `adminGuard` |
+| `/tools/language-pairs` | `PairRegistryComponent` | ❌ | ✅ | ✅ | `authorGuard` |
+| `/admin` | `AdminPageComponent` | ❌ | ❌ | ✅ | `adminGuard` |
 
 ## Карта меню и виджетов
 
@@ -120,6 +121,7 @@ graph TB
 │  🎓  Обучение                                                   │
 │  📚  Каталог курсов                                             │
 │  ─────────────────────────────────────────────────────────────  │
+│  🔄  Языковые пары         [только AUTHOR/ADMIN]               │
 │  📖  Конструктор курсов    [только AUTHOR/ADMIN]               │
 │  📋  Конструктор сценариев [только AUTHOR/ADMIN]               │
 │  🎨  Карточки              [только AUTHOR/ADMIN]               │
@@ -253,6 +255,7 @@ export const SIDEBAR_NAV_CONFIG: readonly NavGroup[] = [
   {
     id: 'tools',
     items: [
+      { label: 'Языковые пары', path: '/tools/language-pairs', icon: 'swap_horiz', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
       { label: 'Конструктор курсов', path: '/tools/courses', icon: 'menu_book', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
       { label: 'Конструктор сценариев', path: '/tools/scenario-builder', icon: 'view_list', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
       { label: 'Карточки', path: '/tools/cards', icon: 'style', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },

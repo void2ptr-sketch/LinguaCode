@@ -264,6 +264,11 @@
     padding-top: 0.5rem;
     border-top: 1px solid var(--mat-sys-outline-variant);
   }
+  &__pair-search {
+    flex: 1 1 320px;
+    min-width: 240px;
+    max-width: 480px;
+  }
   &__pair-form {
     display: flex;
     align-items: center;

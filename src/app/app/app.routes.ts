@@ -190,6 +190,18 @@ export const routes: Routes = [
       { path: 'tools/card-editor', redirectTo: '/tools/cards', pathMatch: 'full' },
       { path: 'tools/card-catalog', redirectTo: '/tools/cards', pathMatch: 'full' },
 
+      // ── Language Pairs Registry (author zone) ──────────────
+      // Единственное место CRUD глобального реестра `/language-pairs`.
+      // Профиль `/user` потребляет реестр read-only.
+      {
+        path: 'tools/language-pairs',
+        loadComponent: () =>
+          import('../features/language-registry/components/pair-registry/pair-registry.component').then(
+            (m) => m.PairRegistryComponent,
+          ),
+        canMatch: [authorGuard],
+      },
+
       // ── Core Pages ────────────────────────────────────────
       {
         path: 'help',
@@ -213,7 +225,12 @@ export const routes: Routes = [
         redirectTo: 'user',
       },
 
+      // ── Legacy redirects ──────────────────────────────────
+      { path: 'language-pairs', redirectTo: 'tools/language-pairs', pathMatch: 'full' },
+
       // ── Admin ─────────────────────────────────────────────
+      // Панель администратора: справочник языков (`/languages`) —
+      // единственное место его CRUD (learner-профиль читает read-only).
       {
         path: 'admin',
         loadComponent: () =>
