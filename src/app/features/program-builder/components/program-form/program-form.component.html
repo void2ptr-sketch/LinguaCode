@@ -1,0 +1,26 @@
+<div class="program-form">
+  <mat-form-field appearance="outline">
+    <mat-label>Название программы</mat-label>
+    <input
+      matInput
+      required
+      [disabled]="readOnly()"
+      [maxlength]="titleMaxLength"
+      [ngModel]="draft().title"
+      (ngModelChange)="updateTitle($event)"
+    />
+    <mat-hint>{{ draft().title.length }} / {{ titleMaxLength }}</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Описание</mat-label>
+    <textarea
+      matInput
+      rows="4"
+      [disabled]="readOnly()"
+      [ngModel]="draft().description"
+      (ngModelChange)="updateDescription($event)"
+    ></textarea>
+    <mat-hint>Короткий текст для каталога</mat-hint>
+  </mat-form-field>
+</div>

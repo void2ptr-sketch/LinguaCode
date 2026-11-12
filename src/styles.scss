@@ -91,6 +91,23 @@ body.card-focus-shell-open {
   }
 }
 
+.program-builder-dialog {
+  @media (max-width: 47.99rem) {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh;
+    max-height: 100vh !important;
+  }
+}
+
+.program-builder-dialog .mat-mdc-dialog-content {
+  max-height: calc(90vh - 8rem);
+
+  @media (max-width: 47.99rem) {
+    max-height: calc(100vh - 8rem);
+  }
+}
+
 .card-try-dialog {
   @media (max-width: 47.99rem) {
     width: 100vw !important;

@@ -122,7 +122,9 @@ export class ProgramsApiService implements ProgramCatalogPort {
     const body = {
       title: payload.title,
       programDescription: payload.description,
-      courseId: payload.courseId,
+      // Backend expects a numeric course ID (BIGINT PK); the mock backend
+      // understands slug IDs, so non-numeric IDs pass through unchanged.
+      courseId: /^\d+$/.test(payload.courseId) ? Number(payload.courseId) : payload.courseId,
     };
     return firstValueFrom(
       this.http.post<ApiResponse<Program>>(buildApiUrl('/programs'), body),

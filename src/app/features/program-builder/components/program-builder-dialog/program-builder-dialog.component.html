@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>{{ title() }}</h2>
+
+<mat-dialog-content>
+  @if (store.editorLoading()) {
+    <div class="program-builder-dialog__state">
+      <mat-spinner diameter="36" />
+    </div>
+  } @else {
+    @if (store.error()) {
+      <p class="program-builder-dialog__error">{{ store.error() }}</p>
+    }
+
+    <app-program-form
+      [draft]="draft()"
+      [readOnly]="store.isReadOnly()"
+      (draftChange)="updateDraft($event)"
+    />
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="cancel()">Отмена</button>
+  @if (!store.isReadOnly()) {
+    <button mat-flat-button type="button" [disabled]="!dirty()" (click)="saveProgram()">
+      Сохранить
+    </button>
+  }
+</mat-dialog-actions>

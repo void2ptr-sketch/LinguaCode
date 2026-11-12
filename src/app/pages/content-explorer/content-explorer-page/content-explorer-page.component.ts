@@ -21,6 +21,7 @@ import { ContentExplorerStore } from '../../../features/content-explorer/service
 import { ExplorerDetailComponent } from '../../../features/content-explorer/components/explorer-detail/explorer-detail.component';
 import { ExplorerTreeComponent } from '../../../features/content-explorer/components/explorer-tree/explorer-tree.component';
 import { CourseBuilderDialogService } from '../../../features/course-builder/components/course-builder-dialog/course-builder-dialog.service';
+import { ProgramBuilderDialogService } from '../../../features/program-builder/components/program-builder-dialog/program-builder-dialog.service';
 import { ScenarioBuilderDialogService } from '../../../features/scenario-builder/components/scenario-builder-dialog/scenario-builder-dialog.service';
 import { CardEditorDialogService } from '../../../features/card-editor/components/card-editor-dialog/card-editor-dialog.service';
 import { ScenarioSearchService } from '../../../entities/scenario/search/scenario-search.service';
@@ -40,6 +41,7 @@ export class ContentExplorerPageComponent implements OnInit {
   private readonly courseBuilderDialog = inject(CourseBuilderDialogService);
   private readonly scenarioBuilderDialog = inject(ScenarioBuilderDialogService);
   private readonly cardEditorDialog = inject(CardEditorDialogService);
+  private readonly programBuilderDialog = inject(ProgramBuilderDialogService);
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly snackBar = inject(MatSnackBar);
 
@@ -71,7 +73,13 @@ export class ContentExplorerPageComponent implements OnInit {
           }
           break;
         }
-        case 'program':
+        case 'program': {
+          const result = await this.programBuilderDialog.openEdit(node.id);
+          if (result?.saved) {
+            await this.store.refreshNode(node);
+          }
+          break;
+        }
         case 'lesson': {
           const courseNode = this.store.parentCourseOf(node);
           if (!courseNode) {
