@@ -8,11 +8,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { UserStore } from '../../../../entities/user/model/user.store';
 import { ContentExplorerStore } from '../../services/content-explorer.store';
-import { filterExplorerNodes } from '../../types/content-explorer.types';
+import { filterExplorerNodes, type ExplorerFilterableNode } from '../../types/content-explorer.types';
 import { ExplorerTreeNodeComponent } from '../explorer-tree-node/explorer-tree-node.component';
 
 @Component({
@@ -24,6 +26,7 @@ import { ExplorerTreeNodeComponent } from '../explorer-tree-node/explorer-tree-n
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
     ExplorerTreeNodeComponent,
@@ -33,12 +36,53 @@ import { ExplorerTreeNodeComponent } from '../explorer-tree-node/explorer-tree-n
 })
 export class ExplorerTreeComponent {
   protected readonly store = inject(ContentExplorerStore);
+  protected readonly userStore = inject(UserStore);
   protected readonly filterQuery = signal('');
+  /** Toggled language-pair keys (e.g. "ru→en"). Empty = show all. */
+  protected readonly selectedPairKeys = signal<Set<string>>(new Set());
 
-  /** Roots visible after applying the search filter to loaded nodes. */
-  protected readonly visibleRoots = computed(() =>
-    filterExplorerNodes(this.store.roots(), this.filterQuery()),
+  /** Unique language pairs present in the loaded roots. */
+  protected readonly availablePairKeys = computed(() => {
+    const roots = this.store.roots();
+    const keys = new Set<string>();
+    for (const root of roots) {
+      const pair = (root.data as { languagePair?: { known: string; learning: string } })
+        ?.languagePair;
+      if (pair) {
+        keys.add(`${pair.known}→${pair.learning}`);
+      }
+    }
+    return keys;
+  });
+
+  /** Show language filter only when there are enough distinct pairs. */
+  protected readonly showLanguageFilter = computed(
+    () => this.availablePairKeys().size > 2,
   );
+
+  /** UserStore.active pair key used for auto-selection and visual hint. */
+  protected readonly activePairKey = computed(() => {
+    const lp = this.userStore.languagePair();
+    return `${lp.known}→${lp.learning}`;
+  });
+
+  /** Roots visible after applying search + language pair filters to loaded nodes. */
+  protected readonly visibleRoots = computed(() => {
+    let roots = filterExplorerNodes(this.store.roots(), this.filterQuery());
+    const selected = this.selectedPairKeys();
+    if (selected.size === 0) {
+      return roots;
+    }
+    return roots.filter((node) => {
+      const pair = (node.data as { languagePair?: { known: string; learning: string } })
+        ?.languagePair;
+      if (!pair) {
+        return true;
+      }
+      const key = `${pair.known}→${pair.learning}`;
+      return selected.has(key);
+    });
+  });
 
   protected setFilter(query: string): void {
     this.filterQuery.set(query);
@@ -46,5 +90,23 @@ export class ExplorerTreeComponent {
 
   protected async onRefresh(): Promise<void> {
     await this.store.loadRoots();
+  }
+
+  /** Toggle a language-pair chip. If all are toggled off → reset to show all. */
+  protected togglePair(key: string): void {
+    this.selectedPairKeys.update((set) => {
+      const next = new Set(set);
+      if (next.has(key)) {
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+  }
+
+  /** Check if a pair key is currently selected. */
+  protected isPairSelected(key: string): boolean {
+    return this.selectedPairKeys().has(key);
   }
 }

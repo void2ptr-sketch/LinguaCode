@@ -17,6 +17,42 @@
       }
     </mat-form-field>
 
+    @if (showLanguageFilter()) {
+      <button
+        mat-icon-button
+        type="button"
+        class="explorer-tree__language-filter"
+        aria-label="Фильтр по языковым парам"
+        [matMenuTriggerFor]="languageMenu"
+        matTooltip="Фильтр по языковым парам"
+      >
+        <mat-icon>language</mat-icon>
+      </button>
+
+      <mat-menu #languageMenu="matMenu" class="explorer-tree__language-menu" yPosition="below">
+        <div class="explorer-tree__language-menu-content">
+          @for (pairKey of availablePairKeys(); track pairKey) {
+            <button
+              mat-button
+              type="button"
+              class="explorer-tree__language-chip"
+              [class.explorer-tree__language-chip--active]="isPairSelected(pairKey)"
+              [class.explorer-tree__language-chip--active-default]="pairKey === activePairKey()"
+              (click)="togglePair(pairKey)"
+            >
+              @if (isPairSelected(pairKey)) {
+                <mat-icon class="explorer-tree__language-chip--icon">check</mat-icon>
+              }
+              @if (pairKey === activePairKey()) {
+                <mat-icon class="explorer-tree__language-chip--dot" color="primary">radio_button_checked</mat-icon>
+              }
+              <span class="explorer-tree__language-chip--text">{{ pairKey }}</span>
+            </button>
+          }
+        </div>
+      </mat-menu>
+    }
+
     <button
       mat-icon-button
       type="button"
