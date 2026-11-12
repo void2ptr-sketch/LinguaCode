@@ -1,9 +1,10 @@
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { signal } from '@angular/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { describe, expect, it } from 'vitest';
 
 import { SidebarNavigationLeftComponent } from './sidebar-navigation-left.component';
@@ -16,7 +17,13 @@ describe('SidebarNavigationLeftComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [SidebarNavigationLeftComponent, MatDividerModule, MatListModule, MatIconModule],
+      imports: [
+        SidebarNavigationLeftComponent,
+        MatDividerModule,
+        MatListModule,
+        MatIconModule,
+        MatTooltipModule,
+      ],
       providers: [
         provideRouter([]),
         {
@@ -95,9 +102,58 @@ describe('SidebarNavigationLeftComponent', () => {
     expect(dividers.length).toBe(2);
   });
 
-  it('should render mat-icons for each item', () => {
+  it('should render mat-icons for each item plus toggle button', () => {
     fixture.detectChanges();
     const icons = fixture.nativeElement.querySelectorAll('mat-icon');
-    expect(icons.length).toBe(8);
+    expect(icons.length).toBe(9); // 8 nav icons + 1 toggle icon
+  });
+
+  it('should have collapsed input defaulting to false', () => {
+    fixture.detectChanges();
+    expect(component.collapsed()).toBe(false);
+  });
+
+  it('should emit toggle when toggle is called', () => {
+    let toggled = false;
+    component.toggle.subscribe(() => {
+      toggled = true;
+    });
+    component.toggle.emit();
+    expect(toggled).toBe(true);
+  });
+});
+
+describe('SidebarNavigationLeftComponent - collapsed state', () => {
+  it('should apply navigation--collapsed class when collapsed is true', () => {
+    @Component({
+      selector: 'app-test-wrapper',
+      template: `<app-sidebar-navigation-left [collapsed]="collapsed()" />`,
+      imports: [SidebarNavigationLeftComponent, MatDividerModule, MatListModule, MatIconModule, MatTooltipModule],
+    })
+    class TestWrapperComponent {
+      collapsed = signal(false);
+    }
+
+    TestBed.configureTestingModule({
+      imports: [TestWrapperComponent],
+      providers: [
+        provideRouter([]),
+        {
+          provide: RoleService,
+          useValue: {
+            roles: signal(['ROLE_AUTHOR']),
+            hasRole: (role: string) => ['ROLE_AUTHOR', 'ROLE_ADMIN'].includes(role),
+          },
+        },
+      ],
+    });
+
+    const wrapperFixture = TestBed.createComponent(TestWrapperComponent);
+    const wrapper = wrapperFixture.componentInstance;
+    wrapper.collapsed.set(true);
+    wrapperFixture.detectChanges();
+
+    const navList = wrapperFixture.nativeElement.querySelector('mat-nav-list');
+    expect(navList.classList).toContain('navigation--collapsed');
   });
 });

@@ -1,12 +1,20 @@
 .shell {
+  --nav-width: 14rem;
+  --nav-collapsed-width: 3rem;
+
   display: grid;
   grid-template-areas:
     'header header'
     'nav    main'
     'footer footer';
-  grid-template-columns: 14rem 1fr;
+  grid-template-columns: var(--nav-width) 1fr;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
+  transition: grid-template-columns 0.25s ease;
+
+  &.shell--collapsed {
+    --nav-width: var(--nav-collapsed-width);
+  }
 }
 
 .shell__header {

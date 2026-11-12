@@ -1,8 +1,16 @@
-import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  computed,
+  input,
+  output,
+  inject,
+} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RoleService } from '../../entities/auth/services/role.service';
 import { SIDEBAR_NAV_CONFIG, type NavGroup } from './sidebar-nav-config';
 import type { UserRole } from '../../entities/auth/services/role.service';
@@ -15,12 +23,25 @@ import type { UserRole } from '../../entities/auth/services/role.service';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-sidebar-navigation-left',
-  imports: [RouterLink, RouterLinkActive, MatDividerModule, MatListModule, MatIconModule],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    MatDividerModule,
+    MatListModule,
+    MatIconModule,
+    MatTooltipModule,
+  ],
   templateUrl: './sidebar-navigation-left.component.html',
   styleUrl: './sidebar-navigation-left.component.scss',
 })
 export class SidebarNavigationLeftComponent {
   private readonly roleService = inject(RoleService);
+
+  /** Whether the sidebar is in collapsed mode (only icons visible). */
+  readonly collapsed = input<boolean>(false);
+
+  /** Emits when the user toggles the sidebar collapse state. */
+  readonly toggle = output<void>();
 
   readonly groups = computed<readonly NavGroup[]>(() =>
     SIDEBAR_NAV_CONFIG.map(group => ({
