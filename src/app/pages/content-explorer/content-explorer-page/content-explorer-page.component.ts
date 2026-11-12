@@ -22,6 +22,7 @@ import { ExplorerDetailComponent } from '../../../features/content-explorer/comp
 import { ExplorerTreeComponent } from '../../../features/content-explorer/components/explorer-tree/explorer-tree.component';
 import { CourseBuilderDialogService } from '../../../features/course-builder/components/course-builder-dialog/course-builder-dialog.service';
 import { ProgramBuilderDialogService } from '../../../features/program-builder/components/program-builder-dialog/program-builder-dialog.service';
+import { LessonBuilderDialogService } from '../../../features/lesson-builder/components/lesson-builder-dialog/lesson-builder-dialog.service';
 import { ScenarioBuilderDialogService } from '../../../features/scenario-builder/components/scenario-builder-dialog/scenario-builder-dialog.service';
 import { CardEditorDialogService } from '../../../features/card-editor/components/card-editor-dialog/card-editor-dialog.service';
 import { ScenarioSearchService } from '../../../entities/scenario/search/scenario-search.service';
@@ -42,6 +43,7 @@ export class ContentExplorerPageComponent implements OnInit {
   private readonly scenarioBuilderDialog = inject(ScenarioBuilderDialogService);
   private readonly cardEditorDialog = inject(CardEditorDialogService);
   private readonly programBuilderDialog = inject(ProgramBuilderDialogService);
+  private readonly lessonBuilderDialog = inject(LessonBuilderDialogService);
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly snackBar = inject(MatSnackBar);
 
@@ -83,13 +85,9 @@ export class ContentExplorerPageComponent implements OnInit {
           break;
         }
         case 'lesson': {
-          const courseNode = this.store.parentCourseOf(node);
-          if (!courseNode) {
-            break;
-          }
-          const result = await this.courseBuilderDialog.openEdit(courseNode.id);
+          const result = await this.lessonBuilderDialog.openEdit(node.id);
           if (result?.saved) {
-            await this.store.refreshNode(courseNode);
+            await this.store.refreshNode(node);
           }
           break;
         }
@@ -131,6 +129,28 @@ export class ContentExplorerPageComponent implements OnInit {
     this.acting.set(true);
     try {
       const result = await this.programBuilderDialog.openCreate(node.id);
+      if (result?.saved) {
+        await this.store.refreshNode(node);
+      }
+    } finally {
+      this.acting.set(false);
+    }
+  }
+
+  /**
+   * «+ Урок» — открывает конструктор уроков в режиме создания
+   * с привязкой к выбранному треку. После сохранения обновляет узел трека,
+   * чтобы новый урок появился в дереве.
+   */
+  protected async onAddLessonRequested(): Promise<void> {
+    const node = this.store.selectedNode();
+    if (!node || node.kind !== 'program' || this.acting()) {
+      return;
+    }
+
+    this.acting.set(true);
+    try {
+      const result = await this.lessonBuilderDialog.openCreate(node.id);
       if (result?.saved) {
         await this.store.refreshNode(node);
       }

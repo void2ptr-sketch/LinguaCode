@@ -1,0 +1,54 @@
+<div class="lesson-form">
+  <mat-form-field appearance="outline">
+    <mat-label>Название урока</mat-label>
+    <input
+      matInput
+      required
+      [disabled]="readOnly()"
+      [maxlength]="titleMaxLength"
+      [ngModel]="draft().title"
+      (ngModelChange)="updateTitle($event)"
+    />
+    <mat-hint>{{ draft().title.length }} / {{ titleMaxLength }}</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Описание</mat-label>
+    <textarea
+      matInput
+      rows="4"
+      [disabled]="readOnly()"
+      [ngModel]="draft().description"
+      (ngModelChange)="updateDescription($event)"
+    ></textarea>
+    <mat-hint>Короткий текст для списка уроков</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Порядок</mat-label>
+    <input
+      matInput
+      type="number"
+      [disabled]="readOnly()"
+      min="0"
+      [ngModel]="draft().order ?? 0"
+      (ngModelChange)="updateOrder($event)"
+    />
+    <mat-hint>Позиция урока внутри трека</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Пререквизиты</mat-label>
+    <mat-select
+      multiple
+      [disabled]="readOnly()"
+      [ngModel]="draft().prerequisiteLessonIds ?? []"
+      (ngModelChange)="updatePrerequisiteLessonIds($event)"
+    >
+      @for (candidate of candidateLessons(); track candidate.id) {
+        <mat-option [value]="candidate.id">{{ candidate.title }}</mat-option>
+      }
+    </mat-select>
+    <mat-hint>Уроки, которые нужно завершить перед этим</mat-hint>
+  </mat-form-field>
+</div>

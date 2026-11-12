@@ -229,14 +229,14 @@ function filterParams(
 export class CardsService {
   private readonly http = inject(HttpClient);
 /**
- * Returns card details by ID
+ * Returns card details by ID. Supports both numeric IDs and content identifiers (slugs).
  * @summary Get card by ID
  */
- cardsGetById<TData = CardResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
- cardsGetById<TData = CardResponse>(id: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- cardsGetById<TData = CardResponse>(id: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+ cardsGetById<TData = CardResponse>(id: string, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsGetById<TData = CardResponse>(id: string, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsGetById<TData = CardResponse>(id: string, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   cardsGetById<TData = CardResponse>(
-    id: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    id: string, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     if (options?.observe === 'events') {
       return this.http.get<TData>(
       `/api/v1/cards/${id}`,{

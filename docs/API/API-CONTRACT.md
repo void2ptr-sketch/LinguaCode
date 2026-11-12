@@ -53,11 +53,13 @@ type LanguagePairDto = {
 | Метод  | Путь                    | Описание                                  |
 | ------ | ----------------------- | ----------------------------------------- |
 | GET    | `/cards/search`         | Поиск по критериям + пагинация + facets   |
-| GET    | `/cards/:id`            | Карточка по ID (404 при отсутствии)       |
+| GET    | `/cards/:id`            | Карточка по ID/Slug (404 при отсутствии)  |
 | POST   | `/cards/batch/retrieve` | Пакетное получение по `{ ids: string[] }` |
 | POST   | `/cards`                | Создание карточки (201)                   |
 | PUT    | `/cards/:id`            | Обновление карточки                       |
 | DELETE | `/cards/:id`            | Удаление карточки                         |
+
+> **Важно:** эндпоинт `GET /cards/:id` принимает **строковый ID** (numeric или slug). Бэкенд сначала пытается распарсить как число (`Long`), при ошибке ищет по slug (`findBySlug`). Это позволяет фронтенду использовать контентные идентификаторы типа `draw-radical-001`.
 
 Критерии поиска (`CardSearchCriteria`): `query`, `knownLanguage`, `learningLanguage`, `tags`, `difficulty`, `kinds`, `page` (`page` / `pageSize`), `sort`. Параметры сериализуются через `buildCardSearchParams`.
 

@@ -1,6 +1,13 @@
 // ===== Lib =====
 export * from './lib';
 
+// ===== API =====
+export {
+  LessonsApiService,
+  type LessonCreatePayload,
+  type LessonUpdatePayload,
+} from './api/lessons-api.service';
+
 // ===== UI =====
 export {
   LessonPickerComponent,

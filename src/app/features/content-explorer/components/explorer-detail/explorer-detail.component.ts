@@ -14,10 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import type { ScenarioIndexEntry } from '../../../../entities/scenario/model';
 import { ContentExplorerStore } from '../../services/content-explorer.store';
-import {
-  EXPLORER_KIND_ICONS,
-  EXPLORER_KIND_LABELS,
-} from '../../types/content-explorer.types';
+import { EXPLORER_KIND_ICONS, EXPLORER_KIND_LABELS } from '../../types/content-explorer.types';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -41,6 +38,8 @@ export class ExplorerDetailComponent {
   readonly editRequested = output<void>();
   /** «+ Программа» intent (course context). */
   readonly addProgramRequested = output<void>();
+  /** «+ Урок» intent (program context). */
+  readonly addLessonRequested = output<void>();
   /** «+ Сценарий» intent (lesson context). */
   readonly addScenarioRequested = output<void>();
   /** «Где используется» intent (card context). */
@@ -78,6 +77,10 @@ export class ExplorerDetailComponent {
 
   protected onAddProgram(): void {
     this.addProgramRequested.emit();
+  }
+
+  protected onAddLesson(): void {
+    this.addLessonRequested.emit();
   }
 
   protected onAddScenario(): void {
