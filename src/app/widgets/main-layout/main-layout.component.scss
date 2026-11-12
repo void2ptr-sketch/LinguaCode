@@ -9,8 +9,9 @@
     'footer footer';
   grid-template-columns: var(--nav-width) 1fr;
   grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
+  height: 100vh;
   transition: grid-template-columns 0.25s ease;
+  overflow: hidden;
 
   &.shell--collapsed {
     --nav-width: var(--nav-collapsed-width);
@@ -24,6 +25,7 @@
 .shell__nav {
   grid-area: nav;
   border-right: 1px solid color-mix(in srgb, var(--mat-sys-outline) 30%, transparent);
+  min-height: 0;
 }
 
 .shell__main {
