@@ -9,17 +9,113 @@
         Каталог программ → Трек → Урок → Сценарий → Карточка
       </p>
     </div>
-    <button
-      mat-flat-button
-      type="button"
-      class="content-explorer-page__create-course"
-      [disabled]="acting()"
-      (click)="onCreateCourseRequested()"
-    >
-      <mat-icon>add</mat-icon>
-      Создать курс
-    </button>
+    <div class="content-explorer-page__header-actions">
+      <button
+        mat-stroked-button
+        type="button"
+        class="content-explorer-page__catalog-toggle"
+        [color]="catalogOpen() ? 'primary' : undefined"
+        (click)="onToggleCatalog()"
+      >
+        <mat-icon>view_list</mat-icon>
+        Каталог сценариев
+      </button>
+      <button
+        mat-flat-button
+        type="button"
+        class="content-explorer-page__create-course"
+        [disabled]="acting()"
+        (click)="onCreateCourseRequested()"
+      >
+        <mat-icon>add</mat-icon>
+        Создать курс
+      </button>
+    </div>
   </header>
+
+  @if (catalogOpen()) {
+    <section class="content-explorer-page__catalog" aria-label="Каталог сценариев">
+      <div class="content-explorer-page__catalog-header">
+        <h2 class="content-explorer-page__catalog-title">Каталог сценариев</h2>
+        <button
+          mat-icon-button
+          type="button"
+          aria-label="Закрыть каталог"
+          (click)="onToggleCatalog()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <div class="content-explorer-page__catalog-toolbar">
+        <mat-button-toggle-group
+          class="content-explorer-page__catalog-scope"
+          [value]="scenarioBuilderStore.listScope()"
+          (change)="onCatalogScopeChange($event)"
+        >
+          <mat-button-toggle value="mine">Мои</mat-button-toggle>
+          <mat-button-toggle value="published">Опубликованные</mat-button-toggle>
+          <mat-button-toggle value="all">Все</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <button
+          mat-flat-button
+          type="button"
+          [disabled]="acting()"
+          (click)="onCatalogCreateRequested()"
+        >
+          <mat-icon>add</mat-icon>
+          Создать сценарий
+        </button>
+      </div>
+
+      @if (scenarioBuilderStore.loading() && catalogItems().length === 0) {
+        <div class="content-explorer-page__catalog-state">
+          <mat-spinner diameter="32" />
+        </div>
+      } @else {
+        @if (scenarioBuilderStore.error()) {
+          <p class="content-explorer-page__catalog-error">{{ scenarioBuilderStore.error() }}</p>
+        }
+
+        @if (catalogItems().length === 0) {
+          <p class="content-explorer-page__catalog-empty">Сценариев пока нет.</p>
+        } @else {
+          <mat-list class="content-explorer-page__catalog-list">
+            @for (scenario of catalogItems(); track scenario.id) {
+              <mat-list-item class="content-explorer-page__catalog-item">
+                <div matListItemTitle>{{ scenario.title }}</div>
+                <div matListItemLine>
+                  {{ scenario.cardSourceSummary }}
+                  @if (scenario.published) {
+                    · опубликован
+                  }
+                </div>
+                <div matListItemMeta>
+                  <button
+                    mat-icon-button
+                    type="button"
+                    aria-label="Редактировать"
+                    [disabled]="acting()"
+                    (click)="onCatalogEditRequested(scenario.id)"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+          <app-pagination
+            [length]="scenarioBuilderStore.totalItems()"
+            [pageIndex]="scenarioBuilderStore.pageIndex()"
+            [pageSize]="scenarioBuilderStore.pageSize()"
+            (pageChange)="onCatalogPageChange($event)"
+          />
+        }
+      }
+    </section>
+  }
 
   <div class="content-explorer-page__layout">
     <aside class="content-explorer-page__tree">
@@ -41,6 +137,7 @@
         (exportJsonRequested)="onExportJsonRequested()"
         (exportScormRequested)="onExportScormRequested()"
         (deleteRequested)="onDeleteCourseRequested()"
+        (deleteScenarioRequested)="onDeleteScenarioRequested()"
       />
     </section>
   </div>

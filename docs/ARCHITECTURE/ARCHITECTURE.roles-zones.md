@@ -49,7 +49,7 @@
 - Просмотр прогресса обучения
 - Выбор пар из каталога реестра через поиск на вкладке «Мои пары» профиля (`/user`) — реестр read-only
 
-> **Примечание (решение по сценарию-билдеру):** CRUD сценариев (`scenario-builder`) доступен только `ROLE_AUTHOR` / `ROLE_ADMIN` — маршрут `/tools/scenario-builder` защищён `authorGuard`. Роль `ROLE_USER` не создаёт и не редактирует сценарии.
+> **Примечание (решение по сценарию-билдеру):** CRUD сценариев (`scenario-builder`) доступен только `ROLE_AUTHOR` / `ROLE_ADMIN` — управление сценариями выполняется в Проводнике контента (`/tools/content`, под `authorGuard`; страница `/tools/scenario-builder` удалена, маршрут редиректит). Роль `ROLE_USER` не создаёт и не редактирует сценарии.
 
 ## 2. Автор курса (ROLE_AUTHOR)
 
@@ -61,7 +61,6 @@
 |---------|-----------|----------|
 | `/tools/content` | `ContentExplorerPageComponent` | Проводник контента: дерево Course → Program → Lesson → Scenario → Card (см. [content-explorer](./ARCHITECTURE.content-explorer.md)) |
 | `/tools/cards` | `CardEditorPageComponent` | CRUD карточек, каталог |
-| `/tools/scenario-builder` | `ScenarioBuilderPageComponent` | Конструктор сценариев |
 | `/tools/courses` | `CourseBuilderPageComponent` | Конструктор курсов и программ |
 | `/tools/language-pairs` | `PairRegistryComponent` | CRUD реестра языковых пар (`/language-pairs`) |
 | `/courses` | `CourseCatalogPageComponent` | Каталог программ |

@@ -56,6 +56,8 @@ export class ExplorerDetailComponent {
   readonly exportScormRequested = output<void>();
   /** Удаление курса (course context). */
   readonly deleteRequested = output<void>();
+  /** Удаление сценария (scenario context, только для своего сценария). */
+  readonly deleteScenarioRequested = output<void>();
 
   protected readonly kindIcon = computed(() => {
     const node = this.store.selectedNode();
@@ -83,6 +85,26 @@ export class ExplorerDetailComponent {
 
   protected readonly isCard = computed(() => this.store.selectedNode()?.kind === 'card');
 
+  /** Whether the selected node is a scenario. */
+  protected readonly isScenario = computed(() => this.store.selectedNode()?.kind === 'scenario');
+
+  /**
+   * Published/draft status of the selected scenario (badge source).
+   *
+   * @remarks
+   * `ExplorerNode.data` for scenario nodes carries the full `Scenario` entity
+   * (see `ContentExplorerStore` scenario mapping), so no extra store changes
+   * are needed — the badge reflects the same value as the tree meta line
+   * («опубликован» / «черновик»).
+   */
+  protected readonly scenarioPublished = computed(() => {
+    const node = this.store.selectedNode();
+    if (node?.kind !== 'scenario') {
+      return false;
+    }
+    return Boolean((node.data as { published?: boolean } | undefined)?.published);
+  });
+
   /** Whether the selected node is a course. */
   protected readonly isCourse = computed(() => this.store.selectedNode()?.kind === 'course');
 
@@ -97,6 +119,19 @@ export class ExplorerDetailComponent {
   protected readonly canManageCourse = computed(() => {
     const node = this.store.selectedNode();
     return node?.kind === 'course' && !node.virtual && node.editable;
+  });
+
+  /**
+   * Whether the selected scenario can be deleted.
+   *
+   * @remarks
+   * Scenario deletion is AUTHOR/ADMIN and own-scenario only: mirrors
+   * `ScenarioBuilderStore.isReadOnly` ownership semantics; the tree already
+   * sets `ExplorerNode.editable` from `isOwnAuthor(scenario.authorId)`.
+   */
+  protected readonly canEditOwnScenario = computed(() => {
+    const node = this.store.selectedNode();
+    return node?.kind === 'scenario' && !node.virtual && node.editable;
   });
 
   protected onEditNode(): void {
@@ -137,5 +172,9 @@ export class ExplorerDetailComponent {
 
   protected onDeleteCourse(): void {
     this.deleteRequested.emit();
+  }
+
+  protected onDeleteScenario(): void {
+    this.deleteScenarioRequested.emit();
   }
 }

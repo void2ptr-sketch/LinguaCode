@@ -116,7 +116,7 @@ type LearningSessionPreferences = {
 
 **Масштабирование (бэклог):** HTTP API сценариев, пагинация списка, snapshot criteria, точечная загрузка карточек — см. [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md).
 
-**Связь с UI:** точка входа — `menu-tools` в header и sidebar «Конструктор сценариев»; фича — `features/scenario-builder/`. Масштабирование: [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md).
+**Связь с UI:** управление сценариями — в Проводнике контента (`/tools/content`: дерево + «Каталог сценариев»); фича — `features/scenario-builder/` (общий диалог и store, страница удалена). Масштабирование: [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md).
 
 ## Модели
 

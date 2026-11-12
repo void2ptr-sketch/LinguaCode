@@ -78,6 +78,6 @@ export const HELP_USAGE_SCENARIOS: readonly HelpUsageScenario[] = [
     ],
     icon: 'auto_awesome',
     ctaLabel: 'Открыть инструменты',
-    ctaPath: '/tools/scenario-builder',
+    ctaPath: '/tools/content',
   },
 ];

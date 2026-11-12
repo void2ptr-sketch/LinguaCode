@@ -12,7 +12,11 @@ export type ScenarioBuilderDialogData = { mode: 'create' } | { mode: 'edit'; sce
  *
  * @remarks
  * `saved: true` indicates the scenario was successfully saved; `false` means the user discarded changes.
+ * `scenarioId` is set on successful save (create: ID of the newly created scenario;
+ * edit: ID of the updated scenario) and stays absent/undefined on cancel.
  */
 export type ScenarioBuilderDialogResult = {
   saved: boolean;
+  /** ID of the created/updated scenario (present only when `saved: true`). */
+  scenarioId?: string;
 };

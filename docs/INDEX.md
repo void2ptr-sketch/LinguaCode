@@ -30,7 +30,7 @@
 | [ARCHITECTURE.home.md](./ARCHITECTURE/ARCHITECTURE.home.md)                         | Dashboard `/home`                                         |
 | [ARCHITECTURE.content-explorer.md](./ARCHITECTURE/ARCHITECTURE.content-explorer.md) | Проводник контента `/tools/content` (дерево иерархии)     |
 | [ARCHITECTURE.card-editor.md](./ARCHITECTURE/ARCHITECTURE.card-editor.md)           | Редактор `/tools/cards`                                   |
-| [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) | Конструктор сценариев                                     |
+| [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) | Сценарии: диалог и store в Проводнике контента            |
 | [ARCHITECTURE.course.md](./ARCHITECTURE/ARCHITECTURE.course.md)                     | Программы и каталог                                       |
 | [ARCHITECTURE.program.md](./ARCHITECTURE/ARCHITECTURE.program.md)                   | Учебные треки (`Program`)                                 |
 | [ARCHITECTURE.journey.md](./ARCHITECTURE/ARCHITECTURE.journey.md)                   | Путь обучения (`journey map`)                             |
@@ -41,7 +41,7 @@
 | [ARCHITECTURE.subscription.md](./ARCHITECTURE/ARCHITECTURE.subscription.md)         | Подписки, тарифы, уровни доступа, монетизация             |
 | [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md)                                         | Индекс карточек, поиск, пагинация, API                    |
 | [API-CONTRACT.md](./API-CONTRACT.md)                                                | HTTP API: эндпоинты, обёртки, ошибки                      |
-| [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)                               | Конструктор сценариев, `ScenarioCardSource`               |
+| [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)                               | Сценарии: `ScenarioCardSource`, диалог, Проводник контента |
 | [EDITOR-UX.md](./FEATURES/EDITOR-UX.md)                                             | UX редактора карточек (G12)                               |
 
 ## Паттерны и архитектура

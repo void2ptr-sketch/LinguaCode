@@ -55,7 +55,7 @@ export const HELP_PAGE_FEATURES: readonly HelpPageFeature[] = [
     description:
       'Соберите прогон из карточек или задайте критерии — готовый сценарий для урока, повторения или интервью.',
     icon: 'view_list',
-    path: '/tools/scenario-builder',
+    path: '/tools/content',
   },
   {
     id: 'courses',

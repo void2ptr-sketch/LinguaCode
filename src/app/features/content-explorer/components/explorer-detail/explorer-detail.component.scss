@@ -90,6 +90,22 @@
   overflow-wrap: anywhere;
 }
 
+/** Status badge for scenario nodes («Опубликован» / «Черновик»). */
+.explorer-detail__status {
+  align-self: flex-start;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--mat-sys-outline, #79747e) 14%, transparent);
+  color: var(--mat-sys-outline, #79747e);
+
+  &--published {
+    background: color-mix(in srgb, var(--mat-sys-primary, #7b61ff) 12%, transparent);
+    color: var(--mat-sys-primary, #7b61ff);
+  }
+}
+
 .explorer-detail__actions {
   display: flex;
   flex-wrap: wrap;

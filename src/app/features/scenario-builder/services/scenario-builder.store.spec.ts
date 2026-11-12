@@ -60,7 +60,9 @@ describe('ScenarioBuilderStore', () => {
         UserStore,
         {
           provide: AuthStore,
-          useValue: { user: vi.fn(() => ({ id: TEST_USER_ID, displayName: '', email: '', roles: [] })) },
+          useValue: {
+            user: vi.fn(() => ({ id: TEST_USER_ID, displayName: '', email: '', roles: [] })),
+          },
         },
       ],
     });
@@ -344,8 +346,19 @@ describe('ScenarioBuilderStore', () => {
 
   // ── createScenario ──
 
-  it('should create a scenario successfully and reload list', async () => {
-    mockScenarioSearchService.create.mockResolvedValue(undefined);
+  it('should create a scenario and return it, then reload list', async () => {
+    const createdScenario: Scenario = {
+      id: 's-new',
+      title: 'New Scenario',
+      authorId: TEST_USER_ID,
+      description: 'Desc',
+      cardSource: { mode: 'fixed', cardIds: ['c1'] },
+      cardSourceMode: 'fixed',
+      cardSourceSummary: '1 карточек',
+      published: false,
+      updatedAt: '2026-01-01T00:00:00.000Z',
+    } as Scenario;
+    mockScenarioSearchService.create.mockResolvedValue(createdScenario);
     mockScenarioSearchService.search.mockResolvedValue({
       items: [],
       page: 0,
@@ -363,12 +376,13 @@ describe('ScenarioBuilderStore', () => {
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
 
-    expect(result).toBe(true);
+    expect(result).not.toBeNull();
+    expect(result?.id).toBe('s-new');
     expect(mockScenarioSearchService.create).toHaveBeenCalled();
     expect(store.editorMode()).toBe('list');
   });
 
-  it('should return false and set error when creation fails', async () => {
+  it('should return null and set error when creation fails', async () => {
     mockScenarioSearchService.create.mockRejectedValue(new Error('Conflict'));
     mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
 
@@ -380,11 +394,11 @@ describe('ScenarioBuilderStore', () => {
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
 
-    expect(result).toBe(false);
+    expect(result).toBeNull();
     expect(store.error()).toBe('Не удалось создать сценарий');
   });
 
-  it('should return false when draft has empty title', async () => {
+  it('should return null when draft has empty title', async () => {
     mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
 
     const result = await store.createScenario({
@@ -395,7 +409,7 @@ describe('ScenarioBuilderStore', () => {
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
 
-    expect(result).toBe(false);
+    expect(result).toBeNull();
     expect(store.error()).toBe('Укажите название сценария');
   });
 
@@ -588,6 +602,105 @@ describe('ScenarioBuilderStore', () => {
     await store.deleteScenario('s1');
 
     expect(store.error()).toBe('Не удалось удалить сценарий');
+  });
+
+  it('should fetch the scenario by ID when it is not in the current list (ownership bypass guard)', async () => {
+    mockScenarioSearchService.getById.mockResolvedValue({
+      id: 's-outside',
+      title: 'Foreign',
+      authorId: 'other-user',
+      cardSource: { mode: 'fixed', cardIds: [] },
+      published: false,
+      updatedAt: '',
+    });
+
+    store.indexItems.set([]);
+
+    await store.deleteScenario('s-outside');
+
+    expect(mockScenarioSearchService.getById).toHaveBeenCalledWith('s-outside');
+    expect(mockScenarioSearchService.delete).not.toHaveBeenCalled();
+    expect(store.error()).toBe('Нельзя удалять чужой сценарий');
+  });
+
+  it('should allow deleting a scenario outside the list when the fetched author is the current user', async () => {
+    mockScenarioSearchService.getById.mockResolvedValue({
+      id: 's-outside',
+      title: 'Mine outside list',
+      authorId: TEST_USER_ID,
+      cardSource: { mode: 'fixed', cardIds: [] },
+      published: false,
+      updatedAt: '',
+    });
+    mockScenarioSearchService.delete.mockResolvedValue(undefined);
+    mockScenarioSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    store.indexItems.set([]);
+
+    await store.deleteScenario('s-outside');
+
+    expect(mockScenarioSearchService.delete).toHaveBeenCalledWith('s-outside');
+    expect(store.error()).toBeNull();
+  });
+
+  it('should reject deletion when the fetched scenario cannot be resolved (fail-safe)', async () => {
+    mockScenarioSearchService.getById.mockRejectedValue(new Error('Not found'));
+
+    store.indexItems.set([]);
+
+    await store.deleteScenario('s-missing');
+
+    expect(mockScenarioSearchService.delete).not.toHaveBeenCalled();
+    expect(store.error()).toBe('Нельзя удалять чужой сценарий');
+  });
+
+  it('should validate ownership by the provided entry instead of the list page', async () => {
+    mockScenarioSearchService.delete.mockResolvedValue(undefined);
+    mockScenarioSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    store.indexItems.set([]);
+
+    await store.deleteScenario('s-node', {
+      id: 's-node',
+      title: 'From tree node',
+      authorId: TEST_USER_ID,
+      cardSourceMode: 'fixed',
+      cardSourceSummary: '0 карточек',
+      published: false,
+      updatedAt: '',
+    });
+
+    expect(mockScenarioSearchService.getById).not.toHaveBeenCalled();
+    expect(mockScenarioSearchService.delete).toHaveBeenCalledWith('s-node');
+  });
+
+  it('should reject deletion when the provided entry belongs to another user', async () => {
+    store.indexItems.set([]);
+
+    await store.deleteScenario('s-node', {
+      id: 's-node',
+      title: 'Foreign from tree node',
+      authorId: 'other-user',
+      cardSourceMode: 'fixed',
+      cardSourceSummary: '0 карточек',
+      published: false,
+      updatedAt: '',
+    });
+
+    expect(mockScenarioSearchService.delete).not.toHaveBeenCalled();
+    expect(store.error()).toBe('Нельзя удалять чужой сценарий');
   });
 
   // ── buildSnapshotFromCriteria ──

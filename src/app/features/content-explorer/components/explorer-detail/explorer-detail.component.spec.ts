@@ -37,6 +37,28 @@ describe('ExplorerDetailComponent — course management actions', () => {
     fixture = TestBed.createComponent(ExplorerDetailComponent);
   }
 
+  function selectScenarioNode(editable: boolean, published = false): ExplorerNode {
+    const node = new ExplorerNode({
+      kind: 'scenario',
+      id: 's1',
+      parentId: 'lesson:l1',
+      title: 'Мой сценарий',
+      meta: 'Сценарий · fixed',
+      editable,
+      data: {
+        id: 's1',
+        title: 'Мой сценарий',
+        authorId: 'user-1',
+        cardSource: { mode: 'fixed', cardIds: [] },
+        published,
+        updatedAt: '',
+      },
+    });
+    store.selectNode(node);
+    fixture.detectChanges();
+    return node;
+  }
+
   function selectCourseNode(editable: boolean): ExplorerNode {
     const node = new ExplorerNode({
       kind: 'course',
@@ -53,9 +75,7 @@ describe('ExplorerDetailComponent — course management actions', () => {
   }
 
   function findButton(label: string): HTMLButtonElement | undefined {
-    const buttons = [
-      ...fixture.nativeElement.querySelectorAll('button'),
-    ] as HTMLButtonElement[];
+    const buttons = [...fixture.nativeElement.querySelectorAll('button')] as HTMLButtonElement[];
     return buttons.find((b) => (b.textContent ?? '').includes(label));
   }
 
@@ -130,5 +150,71 @@ describe('ExplorerDetailComponent — course management actions', () => {
     fixture.detectChanges();
 
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should show the «Удалить» button for an own (editable) scenario', () => {
+    selectScenarioNode(true);
+    expect(findButton('Удалить')).toBeDefined();
+    expect(fixture.componentInstance['canEditOwnScenario']()).toBe(true);
+  });
+
+  it('should hide the «Удалить» button for a foreign (read-only) scenario', () => {
+    selectScenarioNode(false);
+    expect(findButton('Удалить')).toBeUndefined();
+    expect(fixture.componentInstance['canEditOwnScenario']()).toBe(false);
+  });
+
+  it('should emit deleteScenarioRequested when the scenario «Удалить» button is clicked', () => {
+    selectScenarioNode(true);
+    const spy = vi.fn();
+    fixture.componentInstance.deleteScenarioRequested.subscribe(spy);
+
+    findButton('Удалить')?.click();
+    fixture.detectChanges();
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should show the «Черновик» badge for an unpublished scenario node', () => {
+    selectScenarioNode(true, false);
+    const badge = fixture.nativeElement.querySelector('.explorer-detail__status');
+    expect(badge).not.toBeNull();
+    expect(badge.textContent).toContain('Черновик');
+    expect(badge.classList).not.toContain('explorer-detail__status--published');
+  });
+
+  it('should show the «Опубликован» badge for a published scenario node', () => {
+    selectScenarioNode(false, true);
+    const badge = fixture.nativeElement.querySelector('.explorer-detail__status');
+    expect(badge).not.toBeNull();
+    expect(badge.textContent).toContain('Опубликован');
+    expect(badge.classList).toContain('explorer-detail__status--published');
+  });
+
+  it('should read the badge status from node data (Scenario entity)', () => {
+    selectScenarioNode(true, true);
+    expect(fixture.componentInstance['scenarioPublished']()).toBe(true);
+
+    selectScenarioNode(true, false);
+    expect(fixture.componentInstance['scenarioPublished']()).toBe(false);
+  });
+
+  it('should not show the status badge for non-scenario nodes', () => {
+    selectCourseNode(true);
+    expect(fixture.nativeElement.querySelector('.explorer-detail__status')).toBeNull();
+  });
+
+  it('should not emit deleteRequested (course intent) from the scenario delete button', () => {
+    selectScenarioNode(true);
+    const courseDeleteSpy = vi.fn();
+    const scenarioDeleteSpy = vi.fn();
+    fixture.componentInstance.deleteRequested.subscribe(courseDeleteSpy);
+    fixture.componentInstance.deleteScenarioRequested.subscribe(scenarioDeleteSpy);
+
+    findButton('Удалить')?.click();
+    fixture.detectChanges();
+
+    expect(scenarioDeleteSpy).toHaveBeenCalled();
+    expect(courseDeleteSpy).not.toHaveBeenCalled();
   });
 });

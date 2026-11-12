@@ -218,7 +218,7 @@ G7 даёт **выбор активной пары**; G8 — **enforcement**: п
 | -------------------------------- | ------------------------ | ---------------------------------------------------------------- |
 | `/tools/cards` каталог           | Фильтры вручную          | `initWithActivePair` + locked подпись **«Курс: …»** + hint (G8a) |
 | `clearFilters()`                 | Сбрасывал known/learning | Сохраняет locked pair                                            |
-| `/tools/scenario-builder` список | Все сценарии             | API filter по активной паре                                      |
+| Каталог сценариев в Проводнике | Все сценарии             | API filter по активной паре                                      |
 | `ScenarioCardPicker`             | Без auto-scope           | `initWithActivePair` + reload                                    |
 | `ScenarioSearchCriteria`         | Нет полей пары           | `knownLanguage` / `learningLanguage`                             |
 | Смена пары на `/tools/*`         | Нет reload               | effect → reload списков                                          |

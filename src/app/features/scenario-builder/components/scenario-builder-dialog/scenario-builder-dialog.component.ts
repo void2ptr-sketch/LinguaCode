@@ -118,17 +118,22 @@ export class ScenarioBuilderDialogComponent implements OnInit {
    *
    * @remarks
    * Creates a new scenario in `create` mode or updates the existing one in `edit` mode.
-   * Closes the dialog with `{ saved: true }` on success.
+   * Closes the dialog with `{ saved: true, scenarioId }` on success.
    */
   async saveScenario(): Promise<void> {
     const payload = formDraftToScenarioDraft(this.draft());
-    const saved =
-      this.data.mode === 'create'
-        ? await this.store.createScenario(payload)
-        : await this.store.updateScenario(this.data.scenarioId, payload);
 
+    if (this.data.mode === 'create') {
+      const scenario = await this.store.createScenario(payload);
+      if (scenario) {
+        this.dialogRef.close({ saved: true, scenarioId: scenario.id });
+      }
+      return;
+    }
+
+    const saved = await this.store.updateScenario(this.data.scenarioId, payload);
     if (saved) {
-      this.dialogRef.close({ saved: true });
+      this.dialogRef.close({ saved: true, scenarioId: this.data.scenarioId });
     }
   }
 

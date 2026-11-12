@@ -138,15 +138,9 @@ export const routes: Routes = [
       // Редактирование/экспорт/удаление курсов живут в Проводнике контента.
       { path: 'tools/courses', redirectTo: 'tools/content', pathMatch: 'full' },
 
-      // ── Scenario Builder ───────────────────────────────────
-      {
-        path: 'tools/scenario-builder',
-        loadComponent: () =>
-          import('../pages/scenario-builder/scenario-builder-page/scenario-builder-page.component').then(
-            (m) => m.ScenarioBuilderPageComponent,
-          ),
-        canMatch: [authorGuard],
-      },
+      // ── Scenario Builder (removed — merged into Content Explorer) ──
+      // CRUD сценариев (привязка к уроку, удаление, каталог) живут в Проводнике контента.
+      { path: 'tools/scenario-builder', redirectTo: 'tools/content', pathMatch: 'full' },
 
       // ── Card Editor ────────────────────────────────────────
       {

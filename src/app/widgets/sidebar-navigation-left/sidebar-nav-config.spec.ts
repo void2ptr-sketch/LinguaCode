@@ -37,12 +37,9 @@ describe('SIDEBAR_NAV_CONFIG', () => {
     }
   });
 
-  it('contains scenario-builder under tools with author-only access', () => {
+  it('does not contain removed scenario-builder entry', () => {
     const items = flatItems(SIDEBAR_NAV_CONFIG);
-    const scenarioBuilder = items.find((item) => item.path === '/tools/scenario-builder');
-    expect(scenarioBuilder).toBeDefined();
-    expect(scenarioBuilder?.roles).toContain('ROLE_AUTHOR');
-    expect(scenarioBuilder?.roles).not.toContain('ROLE_USER');
+    expect(items.find((item) => item.path === '/tools/scenario-builder')).toBeUndefined();
   });
 
   it('all items have label, path and icon', () => {

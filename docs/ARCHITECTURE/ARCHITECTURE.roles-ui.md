@@ -63,7 +63,7 @@ graph TB
 
   subgraph "ROLE_AUTHOR — Автор"
     A1["/tools/courses — Конструктор курсов"]
-    A2["/tools/scenario-builder — Конструктор сценариев"]
+    A2["/tools/content — Проводник контента (в т.ч. сценарии)"]
     A3["/tools/cards — Карточки"]
   end
 
@@ -90,7 +90,8 @@ graph TB
 | `/help` | `HelpPageComponent` | ✅ | ✅ | ✅ | `authGuard` |
 | `/help/scenarios` | `HelpUsageScenariosPageComponent` | ✅ | ✅ | ✅ | `authGuard` |
 | `/tools/courses` | `CourseBuilderPageComponent` | ❌ | ✅ | ✅ | `authorGuard` |
-| `/tools/scenario-builder` | `ScenarioBuilderPageComponent` | ❌ | ✅ | ✅ | `authorGuard` |
+| `/tools/content` | `ContentExplorerPageComponent` | ❌ | ✅ | ✅ | `authorGuard` |
+| `/tools/scenario-builder` | — (redirect → `/tools/content`) | ❌ | ✅ | ✅ | `authorGuard` |
 | `/tools/cards` | `CardEditorPageComponent` | ❌ | ✅ | ✅ | `authorGuard` |
 | `/tools/language-pairs` | `PairRegistryComponent` | ❌ | ✅ | ✅ | `authorGuard` |
 | `/admin` | `AdminPageComponent` | ❌ | ❌ | ✅ | `adminGuard` |
@@ -123,7 +124,7 @@ graph TB
 │  ─────────────────────────────────────────────────────────────  │
 │  🔄  Языковые пары         [только AUTHOR/ADMIN]               │
 │  📖  Конструктор курсов    [только AUTHOR/ADMIN]               │
-│  📋  Конструктор сценариев [только AUTHOR/ADMIN]               │
+│  🌳  Проводник контента    [только AUTHOR/ADMIN]               │
 │  🎨  Карточки              [только AUTHOR/ADMIN]               │
 │  ─────────────────────────────────────────────────────────────  │
 │  👤  Профиль                                                  │
@@ -133,7 +134,7 @@ graph TB
 | Группа | Ссылки | ROLE_USER | ROLE_AUTHOR | ROLE_ADMIN |
 |--------|--------|:---------:|:-----------:|:----------:|
 | **Обучение** | Карта, Практика, Обучение, Каталог | ✅ | ✅ | ✅ |
-| **Инструменты** | Конструктор курсов, Конструктор сценариев, Карточки | ❌ | ✅ | ✅ |
+| **Инструменты** | Проводник контента, Конструктор курсов, Карточки | ❌ | ✅ | ✅ |
 | **Аккаунт** | Профиль | ✅ | ✅ | ✅ |
 
 ## Реализация
@@ -191,9 +192,9 @@ export const adminGuard: CanMatchFn = () => {
       <mat-icon>menu_book</mat-icon>
       <span>Конструктор курсов</span>
     </a>
-    <a mat-menu-item routerLink="/tools/scenario-builder" routerLinkActive="menu-link--active">
-      <mat-icon>view_list</mat-icon>
-      <span>Конструктор сценариев</span>
+    <a mat-menu-item routerLink="/tools/content" routerLinkActive="menu-link--active">
+      <mat-icon>account_tree</mat-icon>
+      <span>Проводник контента</span>
     </a>
     <a mat-menu-item routerLink="/tools/cards" routerLinkActive="menu-link--active">
       <mat-icon>style</mat-icon>
@@ -257,7 +258,7 @@ export const SIDEBAR_NAV_CONFIG: readonly NavGroup[] = [
     items: [
       { label: 'Языковые пары', path: '/tools/language-pairs', icon: 'swap_horiz', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
       { label: 'Конструктор курсов', path: '/tools/courses', icon: 'menu_book', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
-      { label: 'Конструктор сценариев', path: '/tools/scenario-builder', icon: 'view_list', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
+      { label: 'Проводник контента', path: '/tools/content', icon: 'account_tree', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
       { label: 'Карточки', path: '/tools/cards', icon: 'style', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
     ],
   },

@@ -68,8 +68,9 @@ describe('SidebarNavigationLeftComponent', () => {
     fixture.detectChanges();
     const toolsGroup = component.groups().find((g: NavGroup) => g.id === 'tools');
     expect(toolsGroup).toBeDefined();
-    // «Конструктор курсов» удалён — функции перенесены в «Проводник контента».
-    expect(toolsGroup!.items).toHaveLength(4);
+    // «Конструктор курсов» и «Конструктор сценариев» удалены —
+    // функции перенесены в «Проводник контента».
+    expect(toolsGroup!.items).toHaveLength(3);
     toolsGroup?.items.forEach((item) => {
       expect(item.label).toBeDefined();
       expect(item.path).toBeDefined();
@@ -97,6 +98,6 @@ describe('SidebarNavigationLeftComponent', () => {
   it('should render mat-icons for each item', () => {
     fixture.detectChanges();
     const icons = fixture.nativeElement.querySelectorAll('mat-icon');
-    expect(icons.length).toBe(9);
+    expect(icons.length).toBe(8);
   });
 });

@@ -259,23 +259,23 @@ export class ScenarioBuilderStore {
    * Creates a new scenario from a draft.
    *
    * @param draft - The scenario draft.
-   * @returns `true` if created successfully, `false` on validation or API error.
+   * @returns The created `Scenario`, or `null` on validation or API error.
    */
-  async createScenario(draft: ScenarioDraft): Promise<boolean> {
+  async createScenario(draft: ScenarioDraft): Promise<Scenario | null> {
     const payload = await this.normalizeDraft(draft);
     if (!payload) {
-      return false;
+      return null;
     }
 
     try {
-      await this.scenarioSearchService.create(payload);
+      const scenario = await this.scenarioSearchService.create(payload);
       this.cancelEdit();
       await this.loadList();
-      return true;
+      return scenario;
     } catch (error) {
       this.logger.error('ScenarioBuilder: failed to create scenario', error);
       this.error.set('Не удалось создать сценарий');
-      return false;
+      return null;
     }
   }
 
@@ -316,16 +316,39 @@ export class ScenarioBuilderStore {
    * Checks access rights (only the author can delete). If the deleted scenario is currently
    * being edited, cancels the editing state.
    *
+   * Ownership is validated for ANY scenario ID: the caller may pass an `entry`
+   * resolved outside the current list page (e.g. a scenario node in the
+   * Content Explorer tree); otherwise the entry is looked up in the loaded
+   * list; when the scenario is not present there either, it is fetched by ID.
+   * If ownership cannot be proven, deletion is rejected (fail-safe).
+   *
    * @param scenarioId - The scenario ID to delete.
+   * @param entry - Optional index entry of the scenario (from the caller's
+   *   own data source), used for the ownership check when the scenario is not
+   *   in the current list page.
    */
-  async deleteScenario(scenarioId: string): Promise<void> {
-    const item = this.indexItems().find((scenario) => scenario.id === scenarioId);
+  async deleteScenario(scenarioId: string, entry?: ScenarioIndexEntry): Promise<void> {
     const user = this.authStore.user();
-    if (item && (!user || !isEditableContentAuthor(item.authorId, user.id, user.roles))) {
+    const item = entry ?? this.indexItems().find((scenario) => scenario.id === scenarioId);
+
+    let authorId = item?.authorId;
+    if (!authorId && user) {
+      // Сценарий вне текущей страницы списка (и без entry от вызывающего):
+      // загружаем его по ID, чтобы проверить владение.
+      try {
+        const scenario = await this.scenarioSearchService.getById(scenarioId);
+        authorId = scenario.authorId;
+      } catch (error) {
+        this.logger.error('ScenarioBuilder: failed to load scenario for ownership check', error);
+      }
+    }
+
+    if (!user || !authorId || !isEditableContentAuthor(authorId, user.id, user.roles)) {
       this.error.set('Нельзя удалять чужой сценарий');
       return;
     }
 
+    this.error.set(null);
     try {
       await this.scenarioSearchService.delete(scenarioId);
       if (this.editingScenarioId() === scenarioId) {
