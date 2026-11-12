@@ -17,6 +17,15 @@ export type CourseBuilderDialogData = {
   mode: CourseBuilderDialogMode;
   /** Course ID when in edit mode; empty string in create mode. */
   courseId: string;
+  /**
+   * Forces the dialog into edit mode even when the current user is not
+   * recognized as an author on the frontend (e.g. authorId mismatch).
+   *
+   * @remarks
+   * Used by the content explorer («Редактировать в конструкторе курсов»).
+   * Backend permissions are still enforced on save.
+   */
+  forceEdit?: boolean;
 };
 
 /**

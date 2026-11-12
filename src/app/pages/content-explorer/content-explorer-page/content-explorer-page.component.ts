@@ -67,7 +67,9 @@ export class ContentExplorerPageComponent implements OnInit {
     try {
       switch (node.kind) {
         case 'course': {
-          const result = await this.courseBuilderDialog.openEdit(node.id);
+          // forceEdit — курс всегда открывается в режиме редактирования
+          // (frontend read-only fallback отключён; права проверяет бэкенд).
+          const result = await this.courseBuilderDialog.openEdit(node.id, { forceEdit: true });
           if (result?.saved) {
             await this.store.refreshNode(node);
           }
@@ -109,6 +111,28 @@ export class ContentExplorerPageComponent implements OnInit {
           }
           break;
         }
+      }
+    } finally {
+      this.acting.set(false);
+    }
+  }
+
+  /**
+   * «+ Программа» — открывает конструктор программ в режиме создания
+   * с привязкой к выбранному курсу. После сохранения обновляет узел курса,
+   * чтобы новая программа появилась в дереве.
+   */
+  protected async onAddProgramRequested(): Promise<void> {
+    const node = this.store.selectedNode();
+    if (!node || node.kind !== 'course' || this.acting()) {
+      return;
+    }
+
+    this.acting.set(true);
+    try {
+      const result = await this.programBuilderDialog.openCreate(node.id);
+      if (result?.saved) {
+        await this.store.refreshNode(node);
       }
     } finally {
       this.acting.set(false);

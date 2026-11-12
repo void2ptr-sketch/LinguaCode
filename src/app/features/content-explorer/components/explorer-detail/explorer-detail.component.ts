@@ -37,8 +37,10 @@ export class ExplorerDetailComponent {
   /** Whether backlinks are loading. */
   readonly cardUsagesLoading = input<boolean>(false);
 
-  /** «Открыть/редактировать» intent for the selected node. */
+  /** «Редактировать» intent for the selected node. */
   readonly editRequested = output<void>();
+  /** «+ Программа» intent (course context). */
+  readonly addProgramRequested = output<void>();
   /** «+ Сценарий» intent (lesson context). */
   readonly addScenarioRequested = output<void>();
   /** «Где используется» intent (card context). */
@@ -72,6 +74,10 @@ export class ExplorerDetailComponent {
 
   protected onEditNode(): void {
     this.editRequested.emit();
+  }
+
+  protected onAddProgram(): void {
+    this.addProgramRequested.emit();
   }
 
   protected onAddScenario(): void {

@@ -40,12 +40,19 @@
         >
           <mat-icon>edit</mat-icon>
           @switch (store.selectedNode()!.kind) {
-            @case ('course') { Открыть конструктор курсов }
+            @case ('course') { Редактировать в конструкторе курсов }
             @case ('program') { Редактировать в конструкторе курсов }
             @case ('lesson') { Редактировать в конструкторе курсов }
             @case ('scenario') { Редактировать сценарий }
             @case ('card') { Редактировать карточку }
           }
+        </button>
+      }
+
+      @if (store.selectedNode()!.kind === 'course' && canEdit()) {
+        <button mat-stroked-button type="button" [disabled]="acting()" (click)="onAddProgram()">
+          <mat-icon>add</mat-icon>
+          Добавить программу
         </button>
       }
 

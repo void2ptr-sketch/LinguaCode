@@ -74,6 +74,16 @@ export class CourseBuilderDialogComponent implements OnInit {
   );
 
   /**
+   * Whether the dialog is editable.
+   *
+   * @remarks
+   * Editable when the store allows editing, or when the dialog was opened
+   * with `forceEdit` (content explorer flow). Backend permissions are still
+   * enforced on save.
+   */
+  readonly isEditable = computed(() => !this.store.isReadOnly() || this.data.forceEdit === true);
+
+  /**
    * Dynamic dialog title based on the current mode.
    *
    * @remarks
@@ -85,7 +95,7 @@ export class CourseBuilderDialogComponent implements OnInit {
       return 'Новый курс';
     }
 
-    return this.store.isReadOnly() ? 'Просмотр курса' : 'Редактирование курса';
+    return this.isEditable() ? 'Редактирование курса' : 'Просмотр курса';
   });
 
   async ngOnInit(): Promise<void> {

@@ -338,4 +338,58 @@ describe('CourseBuilderDialogComponent', () => {
 
     expect(component.title()).toBe('Просмотр курса');
   });
+
+  // ── forceEdit (content explorer flow) ──
+
+  it('should force edit title when forceEdit is set despite read-only store', async () => {
+    const mockCourse: CourseWithPrograms = {
+      id: 'c1',
+      title: 'Test Course',
+      authorId: 'other-user',
+      description: '',
+      programs: [],
+      programIds: [],
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    };
+
+    const { component } = createComponent(
+      { mode: 'edit', courseId: 'c1', forceEdit: true },
+      {
+        isReadOnly: signal(true),
+        editingCourse: signal(mockCourse),
+        startEdit: async () => undefined,
+      },
+    );
+
+    expect(component.isEditable()).toBe(true);
+    expect(component.title()).toBe('Редактирование курса');
+  });
+
+  it('should keep read-only title when forceEdit is not set', async () => {
+    const mockCourse: CourseWithPrograms = {
+      id: 'c1',
+      title: 'Test Course',
+      authorId: 'other-user',
+      description: '',
+      programs: [],
+      programIds: [],
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    };
+
+    const { component } = createComponent(
+      { mode: 'edit', courseId: 'c1' },
+      {
+        isReadOnly: signal(true),
+        editingCourse: signal(mockCourse),
+        startEdit: async () => undefined,
+      },
+    );
+
+    expect(component.isEditable()).toBe(false);
+    expect(component.title()).toBe('Просмотр курса');
+  });
 });

@@ -73,11 +73,14 @@ classDiagram
 
 | Узел | Действие | Билдер | Обновление дерева |
 | ---- | -------- | ------ | ----------------- |
-| `course` | «Открыть конструктор курсов» | `CourseBuilderDialogService.openEdit` | `refreshNode(course)` |
+| `course` | «Редактировать в конструкторе курсов» | `CourseBuilderDialogService.openEdit(courseId, { forceEdit: true })` | `refreshNode(course)` |
+| `course` | «+ Программа» | `ProgramBuilderDialogService.openCreate(courseId)` | `refreshNode(course)` |
 | `program` / `lesson` | «Редактировать в конструкторе курсов» | `openEdit(parentCourseId)` | `refreshNode(course)` |
 | `lesson` | «+ Сценарий» | `ScenarioBuilderDialogService.openCreate` | snackbar-подсказка (связь — в course-builder) |
 | `scenario` | «Редактировать» / «Добавить карточку» | `ScenarioBuilderDialogService.openEdit` | `refreshNode(scenario)` |
 | `card` | «Редактировать карточку» | `CardEditorDialogService.openEdit` | `refreshNode(parentScenario)` |
+
+`forceEdit: true` отключает frontend read-only fallback в диалоге курса (курс всегда открывается в режиме «Редактирование курса»); права автора при сохранении по-прежнему проверяет бэкенд.
 
 Backlinks: для карточек — «Где используется» через `ScenarioSearchService.findUsingCard`.
 
