@@ -68,7 +68,7 @@ describe('SidebarNavigationLeftComponent', () => {
     fixture.detectChanges();
     const toolsGroup = component.groups().find((g: NavGroup) => g.id === 'tools');
     expect(toolsGroup).toBeDefined();
-    expect(toolsGroup!.items).toHaveLength(4);
+    expect(toolsGroup!.items).toHaveLength(5);
     toolsGroup?.items.forEach((item) => {
       expect(item.label).toBeDefined();
       expect(item.path).toBeDefined();
@@ -96,6 +96,6 @@ describe('SidebarNavigationLeftComponent', () => {
   it('should render mat-icons for each item', () => {
     fixture.detectChanges();
     const icons = fixture.nativeElement.querySelectorAll('mat-icon');
-    expect(icons.length).toBe(9);
+    expect(icons.length).toBe(10);
   });
 });
