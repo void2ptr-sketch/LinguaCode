@@ -122,6 +122,18 @@ export const routes: Routes = [
         ],
       },
 
+      // ── Content Explorer (единый проводник контента) ────────
+      // Дерево Course → Program → Lesson → Scenario → Card;
+      // редактирование — через существующие билдеры.
+      {
+        path: 'tools/content',
+        loadComponent: () =>
+          import('../pages/content-explorer/content-explorer-page/content-explorer-page.component').then(
+            (m) => m.ContentExplorerPageComponent,
+          ),
+        canMatch: [authorGuard],
+      },
+
       // ── Course Builder ────────────────────────────────────
       {
         path: 'tools/courses',

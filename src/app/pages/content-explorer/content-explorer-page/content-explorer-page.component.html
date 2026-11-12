@@ -1,0 +1,28 @@
+<div class="content-explorer-page">
+  <header class="content-explorer-page__header">
+    <h1 class="content-explorer-page__title">
+      <mat-icon>account_tree</mat-icon>
+      Проводник контента
+    </h1>
+    <p class="content-explorer-page__subtitle">
+      Каталог программ → Трек → Урок → Сценарий → Карточка
+    </p>
+  </header>
+
+  <div class="content-explorer-page__layout">
+    <aside class="content-explorer-page__tree">
+      <app-explorer-tree />
+    </aside>
+
+    <section class="content-explorer-page__detail">
+      <app-explorer-detail
+        [acting]="acting()"
+        [cardUsages]="cardUsages()"
+        [cardUsagesLoading]="cardUsagesLoading()"
+        (editRequested)="onEditRequested()"
+        (addScenarioRequested)="onAddScenarioRequested()"
+        (showUsagesRequested)="onShowUsagesRequested()"
+      />
+    </section>
+  </div>
+</div>

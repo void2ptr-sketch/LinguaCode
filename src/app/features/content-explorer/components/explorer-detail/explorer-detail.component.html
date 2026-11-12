@@ -1,0 +1,100 @@
+<div class="explorer-detail">
+  @if (!store.selectedNode()) {
+    <div class="explorer-detail__empty">
+      <mat-icon>schema</mat-icon>
+      <p>Выберите элемент в дереве контента</p>
+      <p class="explorer-detail__hint">
+        Каталог → Трек → Урок → Сценарий → Карточка
+      </p>
+    </div>
+  } @else {
+    <div class="explorer-detail__breadcrumbs">
+      @for (crumb of breadcrumbs(); track crumb.id; let last = $last) {
+        <span class="explorer-detail__crumb" [class.explorer-detail__crumb--last]="last">
+          {{ crumb.title() }}
+        </span>
+        @if (!last) {
+          <mat-icon class="explorer-detail__crumb-separator">chevron_right</mat-icon>
+        }
+      }
+    </div>
+
+    <div class="explorer-detail__header">
+      <mat-icon class="explorer-detail__kind-icon">{{ kindIcon() }}</mat-icon>
+      <div class="explorer-detail__titles">
+        <h2 class="explorer-detail__title">{{ store.selectedNode()!.title() }}</h2>
+        <span class="explorer-detail__meta">
+          {{ kindLabel() }}{{ store.selectedNode()!.meta().length > 0 ? ' · ' + store.selectedNode()!.meta() : '' }}
+        </span>
+        <span class="explorer-detail__id">ID: {{ store.selectedNode()!.id }}</span>
+      </div>
+    </div>
+
+    <div class="explorer-detail__actions">
+      @if (canEdit()) {
+        <button
+          mat-stroked-button
+          type="button"
+          [disabled]="acting()"
+          (click)="onEditNode()"
+        >
+          <mat-icon>edit</mat-icon>
+          @switch (store.selectedNode()!.kind) {
+            @case ('course') { Открыть конструктор курсов }
+            @case ('program') { Редактировать в конструкторе курсов }
+            @case ('lesson') { Редактировать в конструкторе курсов }
+            @case ('scenario') { Редактировать сценарий }
+            @case ('card') { Редактировать карточку }
+          }
+        </button>
+      }
+
+      @if (store.selectedNode()!.kind === 'lesson' && canEdit()) {
+        <button mat-stroked-button type="button" [disabled]="acting()" (click)="onAddScenario()">
+          <mat-icon>add</mat-icon>
+          Добавить сценарий
+        </button>
+      }
+
+      @if (store.selectedNode()!.kind === 'scenario' && canEdit()) {
+        <button
+          mat-stroked-button
+          type="button"
+          [disabled]="acting()"
+          matTooltip="Карточки добавляются внутри конструктора сценариев"
+          (click)="onEditNode()"
+        >
+          <mat-icon>add</mat-icon>
+          Добавить карточку
+        </button>
+      }
+    </div>
+
+    @if (isCard()) {
+      <section class="explorer-detail__section">
+        <h3>Где используется</h3>
+        @if (cardUsages() === null) {
+          <button
+            mat-button
+            type="button"
+            [disabled]="cardUsagesLoading()"
+            (click)="onLoadCardUsages()"
+          >
+            <mat-icon>manage_search</mat-icon>
+            Найти сценарии с этой карточкой
+          </button>
+        } @else if (cardUsages()!.length === 0) {
+          <p class="explorer-detail__hint">Сценариев с этой карточкой не найдено.</p>
+        } @else {
+          <mat-list>
+            @for (usage of cardUsages(); track usage.id) {
+              <mat-list-item>
+                <span class="explorer-detail__usage">{{ usage.title }}</span>
+              </mat-list-item>
+            }
+          </mat-list>
+        }
+      </section>
+    }
+  }
+</div>

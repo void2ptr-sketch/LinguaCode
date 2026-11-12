@@ -59,6 +59,7 @@
 
 | Маршрут | Компонент | Описание |
 |---------|-----------|----------|
+| `/tools/content` | `ContentExplorerPageComponent` | Проводник контента: дерево Course → Program → Lesson → Scenario → Card (см. [content-explorer](./ARCHITECTURE.content-explorer.md)) |
 | `/tools/cards` | `CardEditorPageComponent` | CRUD карточек, каталог |
 | `/tools/scenario-builder` | `ScenarioBuilderPageComponent` | Конструктор сценариев |
 | `/tools/courses` | `CourseBuilderPageComponent` | Конструктор курсов и программ |

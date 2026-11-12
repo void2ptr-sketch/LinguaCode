@@ -27,6 +27,12 @@ export const SIDEBAR_NAV_CONFIG: readonly NavGroup[] = [
     id: 'tools',
     items: [
       {
+        label: 'Проводник контента',
+        path: '/tools/content',
+        icon: 'account_tree',
+        roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'],
+      },
+      {
         label: 'Языковые пары',
         path: '/tools/language-pairs',
         icon: 'swap_horiz',

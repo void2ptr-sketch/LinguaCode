@@ -1,0 +1,54 @@
+<div class="explorer-tree">
+  <div class="explorer-tree__toolbar">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic" class="explorer-tree__filter">
+      <mat-label>Поиск по контенту</mat-label>
+      <input
+        matInput
+        type="text"
+        [ngModel]="filterQuery()"
+        (ngModelChange)="setFilter($event)"
+        placeholder="Каталог, трек, урок…"
+        aria-label="Поиск по контенту"
+      />
+      @if (filterQuery().length > 0) {
+        <button mat-icon-button matSuffix type="button" aria-label="Очистить" (click)="setFilter('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    <button
+      mat-icon-button
+      type="button"
+      class="explorer-tree__refresh"
+      aria-label="Обновить дерево"
+      matTooltip="Обновить дерево"
+      (click)="onRefresh()"
+    >
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </div>
+
+  @if (store.loading()) {
+    <div class="explorer-tree__state">
+      <mat-spinner diameter="28" />
+      <span>Загрузка каталога…</span>
+    </div>
+  } @else if (store.error()) {
+    <div class="explorer-tree__state explorer-tree__state--error">
+      <mat-icon>warning</mat-icon>
+      <span>{{ store.error() }}</span>
+    </div>
+  } @else if (visibleRoots().length === 0) {
+    <div class="explorer-tree__state">
+      <mat-icon>folder_off</mat-icon>
+      <span>Каталоги не найдены</span>
+    </div>
+  } @else {
+    <div class="explorer-tree__nodes" role="tree" aria-label="Иерархия контента">
+      @for (root of visibleRoots(); track root.id) {
+        <app-explorer-tree-node [node]="root" [depth]="0" />
+      }
+    </div>
+  }
+</div>
