@@ -96,6 +96,10 @@
   gap: 0.5rem;
 }
 
+.explorer-detail__danger {
+  color: var(--mat-sys-error, #b3261e);
+}
+
 .explorer-detail__section {
   display: flex;
   flex-direction: column;

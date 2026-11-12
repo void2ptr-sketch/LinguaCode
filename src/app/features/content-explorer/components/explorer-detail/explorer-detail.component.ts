@@ -8,8 +8,10 @@
  * forbids cross-feature imports between feature slices.
  */
 import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import type { ScenarioIndexEntry } from '../../../../entities/scenario/model';
@@ -19,7 +21,7 @@ import { EXPLORER_KIND_ICONS, EXPLORER_KIND_LABELS } from '../../types/content-e
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-explorer-detail',
-  imports: [MatIconModule, MatListModule, MatTooltipModule],
+  imports: [MatButtonModule, MatIconModule, MatListModule, MatMenuModule, MatTooltipModule],
   templateUrl: './explorer-detail.component.html',
   styleUrl: './explorer-detail.component.scss',
 })
@@ -44,6 +46,16 @@ export class ExplorerDetailComponent {
   readonly addScenarioRequested = output<void>();
   /** «Где используется» intent (card context). */
   readonly showUsagesRequested = output<void>();
+  /** Экспорт PDF без подсказок (course context). */
+  readonly exportPdfRequested = output<void>();
+  /** Экспорт PDF с подсказками (course context). */
+  readonly exportPdfWithHintsRequested = output<void>();
+  /** Экспорт JSON (CourseBundle) (course context). */
+  readonly exportJsonRequested = output<void>();
+  /** Экспорт SCORM (course context). */
+  readonly exportScormRequested = output<void>();
+  /** Удаление курса (course context). */
+  readonly deleteRequested = output<void>();
 
   protected readonly kindIcon = computed(() => {
     const node = this.store.selectedNode();
@@ -71,6 +83,22 @@ export class ExplorerDetailComponent {
 
   protected readonly isCard = computed(() => this.store.selectedNode()?.kind === 'card');
 
+  /** Whether the selected node is a course. */
+  protected readonly isCourse = computed(() => this.store.selectedNode()?.kind === 'course');
+
+  /**
+   * Whether course management actions (export/delete) are available.
+   *
+   * @remarks
+   * Unlike `canEdit` (which is `true` for all non-virtual non-scenario nodes),
+   * course management requires ownership: `ExplorerNode.editable` is set from
+   * `isOwnAuthor(entry.authorId)` for course root nodes.
+   */
+  protected readonly canManageCourse = computed(() => {
+    const node = this.store.selectedNode();
+    return node?.kind === 'course' && !node.virtual && node.editable;
+  });
+
   protected onEditNode(): void {
     this.editRequested.emit();
   }
@@ -89,5 +117,25 @@ export class ExplorerDetailComponent {
 
   protected onLoadCardUsages(): void {
     this.showUsagesRequested.emit();
+  }
+
+  protected onExportPdf(): void {
+    this.exportPdfRequested.emit();
+  }
+
+  protected onExportPdfWithHints(): void {
+    this.exportPdfWithHintsRequested.emit();
+  }
+
+  protected onExportJson(): void {
+    this.exportJsonRequested.emit();
+  }
+
+  protected onExportScorm(): void {
+    this.exportScormRequested.emit();
+  }
+
+  protected onDeleteCourse(): void {
+    this.deleteRequested.emit();
   }
 }

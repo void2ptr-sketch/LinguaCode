@@ -55,7 +55,7 @@
         </button>
       }
 
-      @if (store.selectedNode()!.kind === 'course' && canEdit()) {
+      @if (isCourse() && canManageCourse()) {
         <button mat-stroked-button type="button" [disabled]="acting()" (click)="onAddProgram()">
           <mat-icon>add</mat-icon>
           Добавить программу
@@ -73,6 +73,61 @@
         <button mat-stroked-button type="button" [disabled]="acting()" (click)="onAddScenario()">
           <mat-icon>add</mat-icon>
           Добавить сценарий
+        </button>
+      }
+
+      @if (isCourse() && canManageCourse()) {
+        <button
+          mat-stroked-button
+          type="button"
+          [disabled]="acting()"
+          [matMenuTriggerFor]="pdfExportMenu"
+        >
+          <mat-icon>picture_as_pdf</mat-icon>
+          Скачать PDF
+        </button>
+        <mat-menu #pdfExportMenu="matMenu">
+          <button mat-menu-item type="button" (click)="onExportPdf()">
+            <mat-icon>picture_as_pdf</mat-icon>
+            <span>Без подсказок</span>
+          </button>
+          <button mat-menu-item type="button" (click)="onExportPdfWithHints()">
+            <mat-icon>picture_as_pdf</mat-icon>
+            <span>С подсказками</span>
+          </button>
+        </mat-menu>
+
+        <button
+          mat-stroked-button
+          type="button"
+          [disabled]="acting()"
+          matTooltip="CourseBundle для передачи maintainer'у"
+          (click)="onExportJson()"
+        >
+          <mat-icon>file_download</mat-icon>
+          Экспорт JSON
+        </button>
+
+        <button
+          mat-stroked-button
+          type="button"
+          [disabled]="acting()"
+          matTooltip="SCORM/xAPI-пакет"
+          (click)="onExportScorm()"
+        >
+          <mat-icon>cloud_download</mat-icon>
+          Экспорт SCORM
+        </button>
+
+        <button
+          mat-stroked-button
+          type="button"
+          class="explorer-detail__danger"
+          [disabled]="acting()"
+          (click)="onDeleteCourse()"
+        >
+          <mat-icon>delete</mat-icon>
+          Удалить
         </button>
       }
 

@@ -134,15 +134,9 @@ export const routes: Routes = [
         canMatch: [authorGuard],
       },
 
-      // ── Course Builder ────────────────────────────────────
-      {
-        path: 'tools/courses',
-        loadComponent: () =>
-          import('../pages/course-builder/course-builder-page/course-builder-page.component').then(
-            (m) => m.CourseBuilderPageComponent,
-          ),
-        canMatch: [authorGuard],
-      },
+      // ── Course Builder (removed — merged into Content Explorer) ──
+      // Редактирование/экспорт/удаление курсов живут в Проводнике контента.
+      { path: 'tools/courses', redirectTo: 'tools/content', pathMatch: 'full' },
 
       // ── Scenario Builder ───────────────────────────────────
       {

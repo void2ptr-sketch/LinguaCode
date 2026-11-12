@@ -39,12 +39,6 @@ export const SIDEBAR_NAV_CONFIG: readonly NavGroup[] = [
         roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'],
       },
       {
-        label: 'Конструктор курсов',
-        path: '/tools/courses',
-        icon: 'menu_book',
-        roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'],
-      },
-      {
         label: 'Конструктор сценариев',
         path: '/tools/scenario-builder',
         icon: 'view_list',

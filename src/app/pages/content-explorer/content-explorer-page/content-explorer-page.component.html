@@ -1,12 +1,24 @@
 <div class="content-explorer-page">
   <header class="content-explorer-page__header">
-    <h1 class="content-explorer-page__title">
-      <mat-icon>account_tree</mat-icon>
-      Проводник контента
-    </h1>
-    <p class="content-explorer-page__subtitle">
-      Каталог программ → Трек → Урок → Сценарий → Карточка
-    </p>
+    <div class="content-explorer-page__heading">
+      <h1 class="content-explorer-page__title">
+        <mat-icon>account_tree</mat-icon>
+        Проводник контента
+      </h1>
+      <p class="content-explorer-page__subtitle">
+        Каталог программ → Трек → Урок → Сценарий → Карточка
+      </p>
+    </div>
+    <button
+      mat-flat-button
+      type="button"
+      class="content-explorer-page__create-course"
+      [disabled]="acting()"
+      (click)="onCreateCourseRequested()"
+    >
+      <mat-icon>add</mat-icon>
+      Создать курс
+    </button>
   </header>
 
   <div class="content-explorer-page__layout">
@@ -24,6 +36,11 @@
         (addLessonRequested)="onAddLessonRequested()"
         (addScenarioRequested)="onAddScenarioRequested()"
         (showUsagesRequested)="onShowUsagesRequested()"
+        (exportPdfRequested)="onExportPdfRequested()"
+        (exportPdfWithHintsRequested)="onExportPdfWithHintsRequested()"
+        (exportJsonRequested)="onExportJsonRequested()"
+        (exportScormRequested)="onExportScormRequested()"
+        (deleteRequested)="onDeleteCourseRequested()"
       />
     </section>
   </div>

@@ -160,6 +160,12 @@ export class ContentExplorerStore {
     this.selectedNode.set(node);
   }
 
+  /** Clears the detail-panel selection (e.g. after the selected node was deleted). */
+  clearSelection(): void {
+    this.selectedId.set(null);
+    this.selectedNode.set(null);
+  }
+
   /** Expands a node (lazy-loading children) or collapses it. */
   async toggleNode(node: ExplorerNode): Promise<void> {
     if (node.expanded()) {

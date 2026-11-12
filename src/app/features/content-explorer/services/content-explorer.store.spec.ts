@@ -155,6 +155,17 @@ describe('ContentExplorerStore', () => {
     expect(store.loading()).toBe(false);
   });
 
+  it('clearSelection resets selectedId and selectedNode (used after course deletion)', async () => {
+    await store.loadRoots();
+    store.selectNode(store.roots()[0]);
+    expect(store.selectedNode()).not.toBeNull();
+
+    store.clearSelection();
+
+    expect(store.selectedId()).toBeNull();
+    expect(store.selectedNode()).toBeNull();
+  });
+
   it('lazily loads course → program → lesson → scenario → card chain', async () => {
     await store.loadRoots();
     const courseNode = store.roots()[0];
