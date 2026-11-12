@@ -76,12 +76,17 @@ classDiagram
 | ---- | -------- | ------ | ----------------- |
 | `course` | «Редактировать в конструкторе курсов» | `CourseBuilderDialogService.openEdit(courseId, { forceEdit: true })` | `refreshNode(course)` |
 | `course` | «+ Программа» | `ProgramBuilderDialogService.openCreate(courseId)` | `refreshNode(course)` |
+| `course` | «Удалить» (confirm) | `CourseDeleteConfirmDialogComponent` + `CourseBuilderStore.deleteCourse()` | `clearSelection()`, `loadRoots()` |
 | `program` | «Редактировать в конструкторе программ» | `ProgramBuilderDialogService.openEdit(programId)` | `refreshNode(program)` |
+| `program` | «Удалить» (confirm) | `ProgramDeleteConfirmDialogComponent` + `programsApi.delete()` | `refreshNode(course)`, `clearSelection()` |
 | `lesson` | «Редактировать в конструкторе курсов» | `CourseBuilderDialogService.openEdit(parentCourseId)` | `refreshNode(course)` |
 | `lesson` | «+ Сценарий» | `ScenarioBuilderDialogService.openCreate` | привязка к уроку (PUT курса) + `refreshNode(lesson)`, выбор нового узла |
+| `lesson` | «Удалить» (confirm) | `LessonDeleteConfirmDialogComponent` + `lessonsApi.delete()` | `refreshNode(program)`, `clearSelection()` |
 | `scenario` | «Редактировать» / «Добавить карточку» | `ScenarioBuilderDialogService.openEdit` | `refreshNode(scenario)` |
 | `scenario` | «Удалить» (только свой, confirm) | `ScenarioDeleteConfirmDialogComponent` + `ScenarioBuilderStore.deleteScenario(id, entry)` | защитный каскад (PUT курса) + `refreshNode(lesson)`, снятие выделения |
 | `card` | «Редактировать карточку» | `CardEditorDialogService.openEdit` | `refreshNode(parentScenario)` |
+| `card` | «Создать карточку» | `CardEditorDialogService.openCreate(kind)` | `refreshNode(parentScenario)` |
+| `card` | «Удалить» (confirm) | `CardDeleteConfirmDialogComponent` + `cardEditorStore.deleteCard()` | `refreshNode(parentScenario)`, `clearSelection()` |
 
 `forceEdit: true` отключает frontend read-only fallback в диалоге курса (курс всегда открывается в режиме «Редактирование курса»); права автора при сохранении по-прежнему проверяет бэкенд.
 

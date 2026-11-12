@@ -12,7 +12,7 @@
  * Deep links: `/tools/content?courseId&programId&lessonId&scenarioId&cardId`
  * — авто-раскрытие цепочки и выбор узла (см. ExplorerRevealTarget).
  */
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -47,9 +47,15 @@ import { CardEditorDialogService } from '../../../features/card-editor/component
 import { ScormExportService } from '../../../entities/course/api/scorm-export.service';
 import { ScenarioSearchService } from '../../../entities/scenario/search/scenario-search.service';
 import type { Scenario, ScenarioIndexEntry } from '../../../entities/scenario/model';
+import { CardEditorStore } from '../../../features/card-editor/services/card-editor.store';
+import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
+import { LessonsApiService } from '../../../entities/lesson/api/lessons-api.service';
 
 import { CourseDeleteConfirmDialogComponent } from './course-delete-confirm-dialog.component';
 import { ScenarioDeleteConfirmDialogComponent } from './scenario-delete-confirm-dialog.component';
+import { ProgramDeleteConfirmDialogComponent } from './program-delete-confirm-dialog.component';
+import { LessonDeleteConfirmDialogComponent } from './lesson-delete-confirm-dialog.component';
+import { CardDeleteConfirmDialogComponent } from './card-delete-confirm-dialog.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -83,8 +89,12 @@ export class ContentExplorerPageComponent implements OnInit {
    */
   protected readonly scenarioBuilderStore = inject(ScenarioBuilderStore);
   private readonly cardEditorDialog = inject(CardEditorDialogService);
+  /** Store for card editor operations (delete, create). */
+  private readonly cardEditorStore = inject(CardEditorStore);
   private readonly programBuilderDialog = inject(ProgramBuilderDialogService);
   private readonly lessonBuilderDialog = inject(LessonBuilderDialogService);
+  private readonly programsApi = inject(ProgramsApiService);
+  private readonly lessonsApi = inject(LessonsApiService);
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly scormExportService = inject(ScormExportService);
@@ -99,6 +109,15 @@ export class ContentExplorerPageComponent implements OnInit {
   /** Backlinks «Где используется» for the selected card. */
   protected readonly cardUsages = signal<readonly ScenarioIndexEntry[] | null>(null);
   protected readonly cardUsagesLoading = signal(false);
+  /** Card kind derived from selected node (for create-card action). */
+  protected readonly cardKind = computed(() => {
+    const node = this.store.selectedNode();
+    if (node?.kind === 'card') {
+      const data = node.data as { kind?: string } | undefined;
+      return data?.kind ?? '';
+    }
+    return '';
+  });
 
   async ngOnInit(): Promise<void> {
     await this.store.loadRoots();
@@ -556,6 +575,165 @@ export class ContentExplorerPageComponent implements OnInit {
       }
       this.store.clearSelection();
       this.snackBar.open('Сценарий удалён', 'Закрыть', { duration: 4000 });
+    } finally {
+      this.acting.set(false);
+    }
+  }
+
+  /**
+   * Удаление выбранной программы (с подтверждением).
+   *
+   * Каскадно удаляет все вложенные данные (уроки, сценарии, карточки)
+   * через API. Обновляет родительский узел курса и снимает выделение.
+   */
+  protected async onDeleteProgramRequested(): Promise<void> {
+    const node = this.store.selectedNode();
+    if (!node || node.kind !== 'program' || this.acting()) {
+      return;
+    }
+
+    const confirmed = await this.dialog
+      .open(ProgramDeleteConfirmDialogComponent, {
+        minWidth: '400px',
+        data: { programTitle: node.title() },
+      })
+      .afterClosed()
+      .toPromise();
+
+    if (!confirmed) {
+      return;
+    }
+
+    this.acting.set(true);
+    try {
+      await this.programsApi.delete(node.id);
+      // Обновляем родительский курс (чтобы пересчитать количество уроков)
+      const courseNode = this.store.parentCourseOf(node);
+      if (courseNode) {
+        await this.store.refreshNode(courseNode);
+      }
+      this.store.clearSelection();
+      this.snackBar.open('Программа удалена', 'Закрыть', { duration: 4000 });
+    } catch (error) {
+      this.logger.error('ContentExplorer: failed to delete program', error);
+      this.snackBar.open('Не удалось удалить программу', 'Закрыть', { duration: 8000 });
+    } finally {
+      this.acting.set(false);
+    }
+  }
+
+  /**
+   * Удаление выбранного урока (с подтверждением).
+   *
+   * Каскадно удаляет все вложенные данные (сценарии, карточки)
+   * через API. Обновляет родительский трек и снимает выделение.
+   */
+  protected async onDeleteLessonRequested(): Promise<void> {
+    const node = this.store.selectedNode();
+    if (!node || node.kind !== 'lesson' || this.acting()) {
+      return;
+    }
+
+    const confirmed = await this.dialog
+      .open(LessonDeleteConfirmDialogComponent, {
+        minWidth: '400px',
+        data: { lessonTitle: node.title() },
+      })
+      .afterClosed()
+      .toPromise();
+
+    if (!confirmed) {
+      return;
+    }
+
+    this.acting.set(true);
+    try {
+      await this.lessonsApi.delete(node.id);
+      // Обновляем родительский трек (чтобы пересчитать количество сценариев)
+      const programNode = node.parentId ? this.store.getByKey(node.parentId) : null;
+      if (programNode && programNode.kind === 'program') {
+        await this.store.refreshNode(programNode);
+      }
+      this.store.clearSelection();
+      this.snackBar.open('Урок удалён', 'Закрыть', { duration: 4000 });
+    } catch (error) {
+      this.logger.error('ContentExplorer: failed to delete lesson', error);
+      this.snackBar.open('Не удалось удалить урок', 'Закрыть', { duration: 8000 });
+    } finally {
+      this.acting.set(false);
+    }
+  }
+
+  /**
+   * Создание карточки из проводника контента.
+   *
+   * Открывает диалог создания карточки. После успешного создания
+   * обновляет родительский сценарий в дереве.
+   */
+  protected async onCreateCardRequested(kind: string): Promise<void> {
+    const node = this.store.selectedNode();
+    if (!node || this.acting()) {
+      return;
+    }
+
+    this.acting.set(true);
+    try {
+      const result = await this.cardEditorDialog.openCreate(kind as import('../../../entities/card/model').CardKind);
+      if (result?.saved) {
+        const parentScenario = node.parentId ? this.store.getByKey(node.parentId) : null;
+        if (parentScenario && parentScenario.kind === 'scenario') {
+          await this.store.refreshNode(parentScenario);
+        }
+        this.snackBar.open('Карточка создана', 'Закрыть', { duration: 4000 });
+      }
+    } finally {
+      this.acting.set(false);
+    }
+  }
+
+  /**
+   * Удаление выбранной карточки (с подтверждением).
+   *
+   * Делегирует удаление в `CardEditorStore` (с проверкой: не используется
+   * в сценариях, нет результатов обучения). Обновляет родительский
+   * сценарий в дереве и снимает выделение.
+   */
+  protected async onDeleteCardRequested(): Promise<void> {
+    const node = this.store.selectedNode();
+    if (!node || node.kind !== 'card' || this.acting()) {
+      return;
+    }
+
+    const confirmed = await this.dialog
+      .open(CardDeleteConfirmDialogComponent, {
+        minWidth: '400px',
+        data: { cardTitle: node.title() },
+      })
+      .afterClosed()
+      .toPromise();
+
+    if (!confirmed) {
+      return;
+    }
+
+    this.acting.set(true);
+    try {
+      const success = await this.cardEditorStore.deleteCard(node.id);
+      const error = this.cardEditorStore.error();
+      if (!success && error) {
+        this.snackBar.open(error, 'Закрыть', { duration: 8000 });
+        return;
+      }
+      // Обновляем родительский сценарий
+      const parentScenario = node.parentId ? this.store.getByKey(node.parentId) : null;
+      if (parentScenario && parentScenario.kind === 'scenario') {
+        await this.store.refreshNode(parentScenario);
+      }
+      this.store.clearSelection();
+      this.snackBar.open('Карточка удалена', 'Закрыть', { duration: 4000 });
+    } catch (error) {
+      this.logger.error('ContentExplorer: failed to delete card', error);
+      this.snackBar.open('Не удалось удалить карточку', 'Закрыть', { duration: 8000 });
     } finally {
       this.acting.set(false);
     }

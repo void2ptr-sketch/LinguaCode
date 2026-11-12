@@ -164,6 +164,55 @@
           Удалить
         </button>
       }
+
+      @if (store.selectedNode()!.kind === 'program' && canEdit()) {
+        <button
+          mat-stroked-button
+          type="button"
+          class="explorer-detail__danger"
+          [disabled]="acting()"
+          (click)="onDeleteProgram()"
+        >
+          <mat-icon>delete</mat-icon>
+          Удалить
+        </button>
+      }
+
+      @if (store.selectedNode()!.kind === 'lesson' && canEdit()) {
+        <button
+          mat-stroked-button
+          type="button"
+          class="explorer-detail__danger"
+          [disabled]="acting()"
+          (click)="onDeleteLesson()"
+        >
+          <mat-icon>delete</mat-icon>
+          Удалить
+        </button>
+      }
+
+      @if (isCard()) {
+        <button
+          mat-stroked-button
+          type="button"
+          [disabled]="acting()"
+          (click)="onCreateCard()"
+        >
+          <mat-icon>add</mat-icon>
+          Создать карточку
+        </button>
+
+        <button
+          mat-stroked-button
+          type="button"
+          class="explorer-detail__danger"
+          [disabled]="acting()"
+          (click)="onDeleteCard()"
+        >
+          <mat-icon>delete</mat-icon>
+          Удалить
+        </button>
+      }
     </div>
 
     @if (isCard()) {

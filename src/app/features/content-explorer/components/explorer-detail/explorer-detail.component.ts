@@ -35,6 +35,8 @@ export class ExplorerDetailComponent {
   readonly cardUsages = input<readonly ScenarioIndexEntry[] | null>(null);
   /** Whether backlinks are loading. */
   readonly cardUsagesLoading = input<boolean>(false);
+  /** Card kind for the selected card node (for create-new-card action). */
+  readonly cardKind = input<string>('');
 
   /** «Редактировать» intent for the selected node. */
   readonly editRequested = output<void>();
@@ -58,6 +60,14 @@ export class ExplorerDetailComponent {
   readonly deleteRequested = output<void>();
   /** Удаление сценария (scenario context, только для своего сценария). */
   readonly deleteScenarioRequested = output<void>();
+  /** Удаление программы (program context). */
+  readonly deleteProgramRequested = output<void>();
+  /** Удаление урока (lesson context). */
+  readonly deleteLessonRequested = output<void>();
+  /** Создание карточки (card context). */
+  readonly createCardRequested = output<string>();
+  /** Удаление карточки (card context). */
+  readonly deleteCardRequested = output<void>();
 
   protected readonly kindIcon = computed(() => {
     const node = this.store.selectedNode();
@@ -176,5 +186,21 @@ export class ExplorerDetailComponent {
 
   protected onDeleteScenario(): void {
     this.deleteScenarioRequested.emit();
+  }
+
+  protected onDeleteProgram(): void {
+    this.deleteProgramRequested.emit();
+  }
+
+  protected onDeleteLesson(): void {
+    this.deleteLessonRequested.emit();
+  }
+
+  protected onCreateCard(): void {
+    this.createCardRequested.emit(this.cardKind());
+  }
+
+  protected onDeleteCard(): void {
+    this.deleteCardRequested.emit();
   }
 }

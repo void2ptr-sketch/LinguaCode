@@ -127,6 +127,7 @@
         [acting]="acting()"
         [cardUsages]="cardUsages()"
         [cardUsagesLoading]="cardUsagesLoading()"
+        [cardKind]="cardKind()"
         (editRequested)="onEditRequested()"
         (addProgramRequested)="onAddProgramRequested()"
         (addLessonRequested)="onAddLessonRequested()"
@@ -138,6 +139,10 @@
         (exportScormRequested)="onExportScormRequested()"
         (deleteRequested)="onDeleteCourseRequested()"
         (deleteScenarioRequested)="onDeleteScenarioRequested()"
+        (deleteProgramRequested)="onDeleteProgramRequested()"
+        (deleteLessonRequested)="onDeleteLessonRequested()"
+        (createCardRequested)="onCreateCardRequested($event)"
+        (deleteCardRequested)="onDeleteCardRequested()"
       />
     </section>
   </div>
