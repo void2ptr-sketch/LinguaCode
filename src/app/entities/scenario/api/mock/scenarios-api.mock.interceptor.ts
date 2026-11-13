@@ -158,12 +158,13 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     return defer(() =>
       Promise.all(
         ids.map((id) =>
-          handler.getById(id).then((s) => s as Scenario).catch(() => null),
+          handler
+            .getById(id)
+            .then((s) => s as Scenario)
+            .catch(() => null),
         ),
       ),
-    ).pipe(
-      map((data) => new HttpResponse({ status: 200, body: { data: data.filter(Boolean) } })),
-    );
+    ).pipe(map((data) => new HttpResponse({ status: 200, body: { data: data.filter(Boolean) } })));
   }
 
   return next(req);

@@ -222,10 +222,10 @@ export class CourseCatalogSettingsComponent {
   }
 
   /**
-    * Handles language pair selection changes from the combo-box.
-    *
-    * @param pairId - The ID of the selected language pair.
-    */
+   * Handles language pair selection changes from the combo-box.
+   *
+   * @param pairId - The ID of the selected language pair.
+   */
   onSettingsPairChange(pairId: string): void {
     // 1. Автосохранение текущей пары (сохраняет draft в UserStore)
     this.pairManager.saveActivePairSettings();

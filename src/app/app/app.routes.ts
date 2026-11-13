@@ -198,7 +198,9 @@ export const routes: Routes = [
       {
         path: 'admin',
         loadComponent: () =>
-          import('../pages/admin/admin-page/admin-page.component').then((m) => m.AdminPageComponent),
+          import('../pages/admin/admin-page/admin-page.component').then(
+            (m) => m.AdminPageComponent,
+          ),
         canMatch: [adminGuard],
       },
 

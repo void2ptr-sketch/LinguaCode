@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-  output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -21,12 +15,7 @@ import type { ScenarioFormDraft } from '../../utils/scenario-form-draft.utils';
 @Component({
   selector: 'app-scenario-editor-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-  ],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   templateUrl: './scenario-editor-form.component.html',
   styleUrl: './scenario-editor-form.component.scss',
 })

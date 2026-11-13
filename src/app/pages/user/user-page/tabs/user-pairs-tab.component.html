@@ -4,8 +4,8 @@
   } @else {
     <h2 class="page-card__section-title">Мои пары</h2>
     <p class="page-card__hint">
-      Mirror-пары (например EN↔RU) группируются. Нажмите на направление, чтобы сделать его
-      активным, или удалите отдельное направление.
+      Mirror-пары (например EN↔RU) группируются. Нажмите на направление, чтобы сделать его активным,
+      или удалите отдельное направление.
     </p>
 
     @if (selectedCodes().length < 2) {
@@ -59,9 +59,7 @@
                       [style.background-color]="
                         !getFlagEmoji(codes[0]) ? getBadgeColor(codes[0]) : null
                       "
-                      [style.color]="
-                        !getFlagEmoji(codes[0]) ? getBadgeTextColor(codes[0]) : null
-                      "
+                      [style.color]="!getFlagEmoji(codes[0]) ? getBadgeTextColor(codes[0]) : null"
                     >
                       {{ getFlagEmoji(codes[0]) || getBadgeCode(codes[0]) }}
                     </span>
@@ -73,9 +71,7 @@
                         [style.background-color]="
                           !getFlagEmoji(codes[1]) ? getBadgeColor(codes[1]) : null
                         "
-                        [style.color]="
-                          !getFlagEmoji(codes[1]) ? getBadgeTextColor(codes[1]) : null
-                        "
+                        [style.color]="!getFlagEmoji(codes[1]) ? getBadgeTextColor(codes[1]) : null"
                       >
                         {{ getFlagEmoji(codes[1]) || getBadgeCode(codes[1]) }}
                       </span>
@@ -114,18 +110,11 @@
                       @let a = group.directions[0].known === codes[0] ? codes[1] : codes[0];
                       @let b = group.directions[0].known === codes[0] ? codes[0] : codes[1];
                       <div class="settings-page__direction__codes">
-                        <span class="settings-page__direction__code">{{
-                          a | uppercase
-                        }}</span>
+                        <span class="settings-page__direction__code">{{ a | uppercase }}</span>
                         <span class="settings-page__direction__arrow">→</span>
-                        <span class="settings-page__direction__code">{{
-                          b | uppercase
-                        }}</span>
+                        <span class="settings-page__direction__code">{{ b | uppercase }}</span>
                       </div>
-                      <div
-                        class="settings-page__direction__sublabel"
-                        style="margin-top: 0.4rem"
-                      >
+                      <div class="settings-page__direction__sublabel" style="margin-top: 0.4rem">
                         Not yet configured
                       </div>
                     </div>

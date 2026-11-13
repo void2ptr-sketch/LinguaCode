@@ -192,12 +192,7 @@
       }
 
       @if (isCard()) {
-        <button
-          mat-stroked-button
-          type="button"
-          [disabled]="acting()"
-          (click)="onCreateCard()"
-        >
+        <button mat-stroked-button type="button" [disabled]="acting()" (click)="onCreateCard()">
           <mat-icon>add</mat-icon>
           Создать карточку
         </button>

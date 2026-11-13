@@ -109,10 +109,7 @@ export class JourneyPageComponent {
 
       // Без query-параметра показываем активный курс дашборда;
       // если нет — проверяем выбранный курс из профиля пользователя.
-      const targetId =
-        dashboardCourse?.id ??
-        this.prefsSync.selectedCourseId() ??
-        '';
+      const targetId = dashboardCourse?.id ?? this.prefsSync.selectedCourseId() ?? '';
       this.courseId.set(targetId);
       if (targetId && targetId !== this.lastLoadedCourseId) {
         void this.loadCourse(targetId);
@@ -206,9 +203,7 @@ export class JourneyPageComponent {
         for (const scenario of scenarios) {
           scenarioMap.set(scenario.id, scenario);
         }
-        this.logger.info(
-          `[JourneyPage] Loaded ${scenarios.length} scenarios for journey map`,
-        );
+        this.logger.info(`[JourneyPage] Loaded ${scenarios.length} scenarios for journey map`);
       } catch (error) {
         this.logger.warn(
           '[JourneyPage] Failed to batch-load scenarios, falling back to minimal data',

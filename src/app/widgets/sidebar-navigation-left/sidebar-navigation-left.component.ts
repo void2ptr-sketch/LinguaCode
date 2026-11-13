@@ -1,11 +1,4 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  computed,
-  input,
-  output,
-  inject,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input, output, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -44,11 +37,11 @@ export class SidebarNavigationLeftComponent {
   readonly toggle = output<void>();
 
   readonly groups = computed<readonly NavGroup[]>(() =>
-    SIDEBAR_NAV_CONFIG.map(group => ({
+    SIDEBAR_NAV_CONFIG.map((group) => ({
       ...group,
-      items: group.items.filter(item =>
-        !item.roles || item.roles.some(r => this.roleService.hasRole(r as UserRole))
+      items: group.items.filter(
+        (item) => !item.roles || item.roles.some((r) => this.roleService.hasRole(r as UserRole)),
       ),
-    })).filter(group => group.items.length > 0),
+    })).filter((group) => group.items.length > 0),
   );
 }

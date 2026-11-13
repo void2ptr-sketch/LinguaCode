@@ -159,37 +159,36 @@ export class ScenariosApiService implements ScenarioCatalogPort {
    * const scenarios = await scenariosApi.getByIdBatch(['scenario-1', 'scenario-2']);
    * ```
    */
-    async getByIdBatch(scenarioIds: readonly string[]): Promise<readonly Scenario[]> {
-      if (scenarioIds.length === 0) return [];
+  async getByIdBatch(scenarioIds: readonly string[]): Promise<readonly Scenario[]> {
+    if (scenarioIds.length === 0) return [];
 
-      const { data } = await firstValueFrom(
-        this.http.post<ApiResponse<unknown>>(
-          buildApiUrl('/scenarios/batch/retrieve'),
-          { ids: scenarioIds },
-        ),
-      );
+    const { data } = await firstValueFrom(
+      this.http.post<ApiResponse<unknown>>(buildApiUrl('/scenarios/batch/retrieve'), {
+        ids: scenarioIds,
+      }),
+    );
 
-      // Backend may return: [{...}, ...] | { data: [{...}, ...] } | { found: [{...}], notFound: [...] }
-      let items: unknown[];
-      if (Array.isArray(data)) {
-        items = data;
-      } else if (data && typeof data === 'object') {
-        const record = data as Record<string, unknown>;
-        if (Array.isArray(record['data'])) {
-          items = record['data'] as unknown[];
-        } else if (Array.isArray(record['found'])) {
-          items = record['found'] as unknown[];
-        } else {
-          this.logger?.warn('[ScenariosApi] batch/retrieve returned unexpected shape', data);
-          items = [];
-        }
+    // Backend may return: [{...}, ...] | { data: [{...}, ...] } | { found: [{...}], notFound: [...] }
+    let items: unknown[];
+    if (Array.isArray(data)) {
+      items = data;
+    } else if (data && typeof data === 'object') {
+      const record = data as Record<string, unknown>;
+      if (Array.isArray(record['data'])) {
+        items = record['data'] as unknown[];
+      } else if (Array.isArray(record['found'])) {
+        items = record['found'] as unknown[];
       } else {
         this.logger?.warn('[ScenariosApi] batch/retrieve returned unexpected shape', data);
         items = [];
       }
-
-      return Promise.all(items.map((raw) => this.mapScenario(raw as Record<string, unknown>)));
+    } else {
+      this.logger?.warn('[ScenariosApi] batch/retrieve returned unexpected shape', data);
+      items = [];
     }
+
+    return Promise.all(items.map((raw) => this.mapScenario(raw as Record<string, unknown>)));
+  }
 
   /**
    * Creates a new scenario.

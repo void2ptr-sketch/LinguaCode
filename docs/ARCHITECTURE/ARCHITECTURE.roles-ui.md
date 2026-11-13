@@ -6,11 +6,11 @@
 
 Этот документ — справочник по организации UI для трёх ролей:
 
-| Роль | Код | Доступ |
-|------|-----|--------|
-| Ученик | `ROLE_USER` | Обучение, практика, профиль |
-| Автор курса | `ROLE_AUTHOR` | Всё + CRUD контента |
-| Администратор | `ROLE_ADMIN` | Всё + системные настройки |
+| Роль          | Код           | Доступ                      |
+| ------------- | ------------- | --------------------------- |
+| Ученик        | `ROLE_USER`   | Обучение, практика, профиль |
+| Автор курса   | `ROLE_AUTHOR` | Всё + CRUD контента         |
+| Администратор | `ROLE_ADMIN`  | Всё + системные настройки   |
 
 > **Подписка и доступ** — отдельная доменная область. Подписка влияет на разблокировку контента, но не определяет роль. См. [ARCHITECTURE.subscription.md](./ARCHITECTURE.subscription.md).
 
@@ -79,22 +79,22 @@ graph TB
 
 ### Детальная таблица маршрутов
 
-| Маршрут | Компонент | ROLE_USER | ROLE_AUTHOR | ROLE_ADMIN | Guard |
-|---------|-----------|:---------:|:-----------:|:----------:|-------|
-| `/journey` | `JourneyPageComponent` | ✅ | ✅ | ✅ | `authGuard` |
-| `/cards/select` | `CardSelectPageComponent` | ✅ | ✅ | ✅ | `authGuard` |
-| `/home` | `HomePageComponent` | ✅ | ✅ | ✅ | `authGuard` |
-| `/home/progress` | `LearningProgressComponent` | ✅ | ✅ | ✅ | `authGuard` |
-| `/courses` | `CourseCatalogPageComponent` | ✅ | ✅ | ✅ | `authGuard` |
-| `/user` | `UserPageComponent` | ✅ | ✅ | ✅ | `authGuard` |
-| `/help` | `HelpPageComponent` | ✅ | ✅ | ✅ | `authGuard` |
-| `/help/scenarios` | `HelpUsageScenariosPageComponent` | ✅ | ✅ | ✅ | `authGuard` |
-| `/tools/courses` | `CourseBuilderPageComponent` | ❌ | ✅ | ✅ | `authorGuard` |
-| `/tools/content` | `ContentExplorerPageComponent` | ❌ | ✅ | ✅ | `authorGuard` |
-| `/tools/scenario-builder` | — (redirect → `/tools/content`) | ❌ | ✅ | ✅ | `authorGuard` |
-| `/tools/cards` | `CardEditorPageComponent` | ❌ | ✅ | ✅ | `authorGuard` |
-| `/tools/language-pairs` | `PairRegistryComponent` | ❌ | ✅ | ✅ | `authorGuard` |
-| `/admin` | `AdminPageComponent` | ❌ | ❌ | ✅ | `adminGuard` |
+| Маршрут                   | Компонент                         | ROLE_USER | ROLE_AUTHOR | ROLE_ADMIN | Guard         |
+| ------------------------- | --------------------------------- | :-------: | :---------: | :--------: | ------------- |
+| `/journey`                | `JourneyPageComponent`            |    ✅     |     ✅      |     ✅     | `authGuard`   |
+| `/cards/select`           | `CardSelectPageComponent`         |    ✅     |     ✅      |     ✅     | `authGuard`   |
+| `/home`                   | `HomePageComponent`               |    ✅     |     ✅      |     ✅     | `authGuard`   |
+| `/home/progress`          | `LearningProgressComponent`       |    ✅     |     ✅      |     ✅     | `authGuard`   |
+| `/courses`                | `CourseCatalogPageComponent`      |    ✅     |     ✅      |     ✅     | `authGuard`   |
+| `/user`                   | `UserPageComponent`               |    ✅     |     ✅      |     ✅     | `authGuard`   |
+| `/help`                   | `HelpPageComponent`               |    ✅     |     ✅      |     ✅     | `authGuard`   |
+| `/help/scenarios`         | `HelpUsageScenariosPageComponent` |    ✅     |     ✅      |     ✅     | `authGuard`   |
+| `/tools/courses`          | `CourseBuilderPageComponent`      |    ❌     |     ✅      |     ✅     | `authorGuard` |
+| `/tools/content`          | `ContentExplorerPageComponent`    |    ❌     |     ✅      |     ✅     | `authorGuard` |
+| `/tools/scenario-builder` | — (redirect → `/tools/content`)   |    ❌     |     ✅      |     ✅     | `authorGuard` |
+| `/tools/cards`            | `CardEditorPageComponent`         |    ❌     |     ✅      |     ✅     | `authorGuard` |
+| `/tools/language-pairs`   | `PairRegistryComponent`           |    ❌     |     ✅      |     ✅     | `authorGuard` |
+| `/admin`                  | `AdminPageComponent`              |    ❌     |     ❌      |     ✅     | `adminGuard`  |
 
 ## Карта меню и виджетов
 
@@ -106,12 +106,12 @@ graph TB
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-| Виджет | ROLE_USER | ROLE_AUTHOR | ROLE_ADMIN | Описание |
-|--------|:---------:|:-----------:|:----------:|----------|
-| `menu-cards` | ✅ | ✅ | ✅ | Обучение: Карта, Практика, Обучение, Каталог |
-| `menu-tools` | ❌ | ✅ | ✅ | Инструменты: Конструктор курсов, сценариев, Карточки |
-| `menu-help` | ✅ | ✅ | ✅ | Справка, Сценарии использования |
-| `menu-user` | ✅ | ✅ | ✅ | Профиль, Выйти |
+| Виджет       | ROLE_USER | ROLE_AUTHOR | ROLE_ADMIN | Описание                                             |
+| ------------ | :-------: | :---------: | :--------: | ---------------------------------------------------- |
+| `menu-cards` |    ✅     |     ✅      |     ✅     | Обучение: Карта, Практика, Обучение, Каталог         |
+| `menu-tools` |    ❌     |     ✅      |     ✅     | Инструменты: Конструктор курсов, сценариев, Карточки |
+| `menu-help`  |    ✅     |     ✅      |     ✅     | Справка, Сценарии использования                      |
+| `menu-user`  |    ✅     |     ✅      |     ✅     | Профиль, Выйти                                       |
 
 ### Sidebar (widgets/sidebar-navigation-left)
 
@@ -131,11 +131,11 @@ graph TB
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-| Группа | Ссылки | ROLE_USER | ROLE_AUTHOR | ROLE_ADMIN |
-|--------|--------|:---------:|:-----------:|:----------:|
-| **Обучение** | Карта, Практика, Обучение, Каталог | ✅ | ✅ | ✅ |
-| **Инструменты** | Проводник контента, Конструктор курсов, Карточки | ❌ | ✅ | ✅ |
-| **Аккаунт** | Профиль | ✅ | ✅ | ✅ |
+| Группа          | Ссылки                                           | ROLE_USER | ROLE_AUTHOR | ROLE_ADMIN |
+| --------------- | ------------------------------------------------ | :-------: | :---------: | :--------: |
+| **Обучение**    | Карта, Практика, Обучение, Каталог               |    ✅     |     ✅      |     ✅     |
+| **Инструменты** | Проводник контента, Конструктор курсов, Карточки |    ❌     |     ✅      |     ✅     |
+| **Аккаунт**     | Профиль                                          |    ✅     |     ✅      |     ✅     |
 
 ## Реализация
 
@@ -188,23 +188,23 @@ export const adminGuard: CanMatchFn = () => {
 
 <mat-menu #toolsMenu="matMenu">
   @if (roleService.canCreateContent()) {
-    <a mat-menu-item routerLink="/tools/courses" routerLinkActive="menu-link--active">
-      <mat-icon>menu_book</mat-icon>
-      <span>Конструктор курсов</span>
-    </a>
-    <a mat-menu-item routerLink="/tools/content" routerLinkActive="menu-link--active">
-      <mat-icon>account_tree</mat-icon>
-      <span>Проводник контента</span>
-    </a>
-    <a mat-menu-item routerLink="/tools/cards" routerLinkActive="menu-link--active">
-      <mat-icon>style</mat-icon>
-      <span>Карточки</span>
-    </a>
+  <a mat-menu-item routerLink="/tools/courses" routerLinkActive="menu-link--active">
+    <mat-icon>menu_book</mat-icon>
+    <span>Конструктор курсов</span>
+  </a>
+  <a mat-menu-item routerLink="/tools/content" routerLinkActive="menu-link--active">
+    <mat-icon>account_tree</mat-icon>
+    <span>Проводник контента</span>
+  </a>
+  <a mat-menu-item routerLink="/tools/cards" routerLinkActive="menu-link--active">
+    <mat-icon>style</mat-icon>
+    <span>Карточки</span>
+  </a>
   } @else {
-    <span mat-menu-item class="menu-link--disabled">
-      <mat-icon>lock</mat-icon>
-      <span>Доступно авторам</span>
-    </span>
+  <span mat-menu-item class="menu-link--disabled">
+    <mat-icon>lock</mat-icon>
+    <span>Доступно авторам</span>
+  </span>
   }
 </mat-menu>
 ```
@@ -256,10 +256,30 @@ export const SIDEBAR_NAV_CONFIG: readonly NavGroup[] = [
   {
     id: 'tools',
     items: [
-      { label: 'Языковые пары', path: '/tools/language-pairs', icon: 'swap_horiz', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
-      { label: 'Конструктор курсов', path: '/tools/courses', icon: 'menu_book', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
-      { label: 'Проводник контента', path: '/tools/content', icon: 'account_tree', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
-      { label: 'Карточки', path: '/tools/cards', icon: 'style', roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'] },
+      {
+        label: 'Языковые пары',
+        path: '/tools/language-pairs',
+        icon: 'swap_horiz',
+        roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'],
+      },
+      {
+        label: 'Конструктор курсов',
+        path: '/tools/courses',
+        icon: 'menu_book',
+        roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'],
+      },
+      {
+        label: 'Проводник контента',
+        path: '/tools/content',
+        icon: 'account_tree',
+        roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'],
+      },
+      {
+        label: 'Карточки',
+        path: '/tools/cards',
+        icon: 'style',
+        roles: ['ROLE_AUTHOR', 'ROLE_ADMIN'],
+      },
     ],
   },
   {
@@ -281,13 +301,14 @@ export const SIDEBAR_NAV_CONFIG: readonly NavGroup[] = [
 export class SidebarNavigationLeftComponent {
   private readonly roleService = inject(RoleService);
 
-  readonly groups = computed(() =>
-    SIDEBAR_NAV_CONFIG.map(group => ({
-      ...group,
-      items: group.items.filter(item =>
-        !item.roles || item.roles.some(r => this.roleService.hasRole(r as UserRole))
-      ),
-    })).filter(group => group.items.length > 0), // скрывать пустые группы
+  readonly groups = computed(
+    () =>
+      SIDEBAR_NAV_CONFIG.map((group) => ({
+        ...group,
+        items: group.items.filter(
+          (item) => !item.roles || item.roles.some((r) => this.roleService.hasRole(r as UserRole)),
+        ),
+      })).filter((group) => group.items.length > 0), // скрывать пустые группы
   );
 }
 ```
@@ -302,17 +323,15 @@ export class SidebarNavigationLeftComponent {
 
 ```html
 @if (roleService.canCreateContent()) {
-  <app-course-builder-dialog />
+<app-course-builder-dialog />
 } @else {
-  <mat-card class="locked-content">
-    <mat-icon>lock</mat-icon>
-    <p>Доступно авторам курсов</p>
-    @if (subscriptionStore.hasActiveSubscription()) {
-      <button mat-raised-button color="primary" routerLink="/subscribe">
-        Подписаться
-      </button>
-    }
-  </mat-card>
+<mat-card class="locked-content">
+  <mat-icon>lock</mat-icon>
+  <p>Доступно авторам курсов</p>
+  @if (subscriptionStore.hasActiveSubscription()) {
+  <button mat-raised-button color="primary" routerLink="/subscribe">Подписаться</button>
+  }
+</mat-card>
 }
 ```
 
@@ -320,27 +339,27 @@ export class SidebarNavigationLeftComponent {
 
 ### Уже реализовано
 
-| Элемент | Файл | Статус |
-|---------|------|--------|
-| `RoleService` | `entities/auth/services/role.service.ts` | ✅ `ROLE_USER` + `ROLE_ADMIN` |
-| `AuthStore` | `entities/auth/services/auth.store.ts` | ✅ извлекает roles из JWT |
-| `authGuard` | `entities/auth/guards/auth.guard.ts` | ✅ базовый guard |
-| `notAuthGuard` | `entities/auth/guards/not-auth.guard.ts` | ✅ редирект с `/login` |
-| `menu-cards` | `widgets/menu-cards/` | ✅ всем |
-| `menu-help` | `widgets/menu-help/` | ✅ всем |
-| `menu-user` | `widgets/menu-user/` | ✅ всем |
+| Элемент        | Файл                                     | Статус                        |
+| -------------- | ---------------------------------------- | ----------------------------- |
+| `RoleService`  | `entities/auth/services/role.service.ts` | ✅ `ROLE_USER` + `ROLE_ADMIN` |
+| `AuthStore`    | `entities/auth/services/auth.store.ts`   | ✅ извлекает roles из JWT     |
+| `authGuard`    | `entities/auth/guards/auth.guard.ts`     | ✅ базовый guard              |
+| `notAuthGuard` | `entities/auth/guards/not-auth.guard.ts` | ✅ редирект с `/login`        |
+| `menu-cards`   | `widgets/menu-cards/`                    | ✅ всем                       |
+| `menu-help`    | `widgets/menu-help/`                     | ✅ всем                       |
+| `menu-user`    | `widgets/menu-user/`                     | ✅ всем                       |
 
 ### Нужно добавить
 
-| Элемент | Файл | Роль |
-|---------|------|------|
-| `ROLE_AUTHOR` | `role.service.ts` | Добавить `isAuthor` |
-| `authorGuard` | `entities/auth/guards/author.guard.ts` | Новый guard |
-| `adminGuard` | `entities/auth/guards/admin.guard.ts` | Новый guard |
-| `menu-tools` | `widgets/menu-tools/menu-tools.component.ts` | Добавить `RoleService`, `@if` в шаблон |
-| `sidebar-nav-config` | `widgets/sidebar-navigation-left/sidebar-nav-config.ts` | Вынести конфиг в сервис |
-| `sidebar-navigation-left` | `sidebar-navigation-left.component.ts` | Использовать `RoleService` + `computed` |
-| Маршруты `/tools/*` | `app.routes.ts` | Добавить `canMatch: [authorGuard]` |
+| Элемент                   | Файл                                                    | Роль                                    |
+| ------------------------- | ------------------------------------------------------- | --------------------------------------- |
+| `ROLE_AUTHOR`             | `role.service.ts`                                       | Добавить `isAuthor`                     |
+| `authorGuard`             | `entities/auth/guards/author.guard.ts`                  | Новый guard                             |
+| `adminGuard`              | `entities/auth/guards/admin.guard.ts`                   | Новый guard                             |
+| `menu-tools`              | `widgets/menu-tools/menu-tools.component.ts`            | Добавить `RoleService`, `@if` в шаблон  |
+| `sidebar-nav-config`      | `widgets/sidebar-navigation-left/sidebar-nav-config.ts` | Вынести конфиг в сервис                 |
+| `sidebar-navigation-left` | `sidebar-navigation-left.component.ts`                  | Использовать `RoleService` + `computed` |
+| Маршруты `/tools/*`       | `app.routes.ts`                                         | Добавить `canMatch: [authorGuard]`      |
 
 ## Связанные документы
 

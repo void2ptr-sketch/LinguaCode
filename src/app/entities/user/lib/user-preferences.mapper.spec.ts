@@ -121,9 +121,7 @@ describe('buildPreferencesPayload', () => {
       activeByMirrorGroup: { 'en|ru': { known: 'en', learning: 'ru' } },
     });
 
-    expect(payload.learningPairs).toEqual([
-      { known: 'en', learning: 'ru', settings: undefined },
-    ]);
+    expect(payload.learningPairs).toEqual([{ known: 'en', learning: 'ru', settings: undefined }]);
     expect(payload.activeLanguagePairId).toBe('en-ru');
     expect(payload.activeByMirrorGroup).toEqual({ 'en|ru': { known: 'en', learning: 'ru' } });
     expect(payload.cardFocusFullscreen).toBe(true);

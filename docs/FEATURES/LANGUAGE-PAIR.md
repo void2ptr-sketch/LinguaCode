@@ -61,22 +61,22 @@ type CardDirection = 'known-to-learning' | 'learning-to-known';
 
 CRUD выполняется **только в зоне соответствующей роли**; другие зоны потребляют справочники read-only:
 
-| Зона / маршрут                                  | Роль               | Сущность          | Операции                                                       |
-| ----------------------------------------------- | ------------------ | ----------------- | -------------------------------------------------------------- |
-| **Профиль `/user`** — вкладки «Мои языки», «Мои пары» | `ROLE_USER` +  | `users.preferences` | активация / удаление **личных** пар; поиск по каталогу реестра (`pairSearch` → `filteredGroupedPairs`); реестр и словарь языков — read-only |
-| **`/tools/language-pairs`** ([PairRegistryComponent](../../src/app/features/language-registry/components/pair-registry/pair-registry.component.ts)) | `ROLE_AUTHOR` / `ROLE_ADMIN` (`authorGuard`) | `language_pairs` | **Единственное место CRUD реестра пар**: create / delete, mirror-группы |
-| **`/admin`** ([LanguageRegistryComponent](../../src/app/features/language-registry/components/language-registry/language-registry.component.ts)) | `ROLE_ADMIN` (`adminGuard`) | `languages` | **Единственное место CRUD справочника языков**: create / update (`activeFlag`) / delete |
+| Зона / маршрут                                                                                                                                      | Роль                                         | Сущность            | Операции                                                                                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Профиль `/user`** — вкладки «Мои языки», «Мои пары»                                                                                               | `ROLE_USER` +                                | `users.preferences` | активация / удаление **личных** пар; поиск по каталогу реестра (`pairSearch` → `filteredGroupedPairs`); реестр и словарь языков — read-only |
+| **`/tools/language-pairs`** ([PairRegistryComponent](../../src/app/features/language-registry/components/pair-registry/pair-registry.component.ts)) | `ROLE_AUTHOR` / `ROLE_ADMIN` (`authorGuard`) | `language_pairs`    | **Единственное место CRUD реестра пар**: create / delete, mirror-группы                                                                     |
+| **`/admin`** ([LanguageRegistryComponent](../../src/app/features/language-registry/components/language-registry/language-registry.component.ts))    | `ROLE_ADMIN` (`adminGuard`)                  | `languages`         | **Единственное место CRUD справочника языков**: create / update (`activeFlag`) / delete                                                     |
 
 Правила:
 
-| Правило              | Поведение                                                                                                    |
-| -------------------- | ------------------------------------------------------------------------------------------------------------ |
-| CRUD реестра пар     | Только `/tools/language-pairs` (`LanguagePairsApiService.create/update/delete`)                              |
-| CRUD словаря языков  | Только `/admin` (`LanguageApiService.create/update/delete`)                                                  |
-| Профиль `/user`      | Пишет только в `users/preferences` (`patchUserPreferences`); «добавить пару» = выбрать из каталога реестра   |
-| Пары нет в каталоге  | Hint «запросите добавление у автора курса» — пользователь не расширяет реестр                                 |
-| «Настройки курса»    | Только per-pair настройки; селектор пары — read-only                                                          |
-| Legacy-редиректы     | `/language-pairs` → `/tools/language-pairs`; `/settings/languages` → `/user`                                  |
+| Правило             | Поведение                                                                                                  |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- |
+| CRUD реестра пар    | Только `/tools/language-pairs` (`LanguagePairsApiService.create/update/delete`)                            |
+| CRUD словаря языков | Только `/admin` (`LanguageApiService.create/update/delete`)                                                |
+| Профиль `/user`     | Пишет только в `users/preferences` (`patchUserPreferences`); «добавить пару» = выбрать из каталога реестра |
+| Пары нет в каталоге | Hint «запросите добавление у автора курса» — пользователь не расширяет реестр                              |
+| «Настройки курса»   | Только per-pair настройки; селектор пары — read-only                                                       |
+| Legacy-редиректы    | `/language-pairs` → `/tools/language-pairs`; `/settings/languages` → `/user`                               |
 
 ## Learning Home (G13)
 
@@ -214,14 +214,14 @@ G7 даёт **выбор активной пары**; G8 — **enforcement**: п
 
 ### Пробелы (G8) — закрыто в MVP strict
 
-| Область                          | Было                     | Стало (G8)                                                       |
-| -------------------------------- | ------------------------ | ---------------------------------------------------------------- |
-| `/tools/cards` каталог           | Фильтры вручную          | `initWithActivePair` + locked подпись **«Курс: …»** + hint (G8a) |
-| `clearFilters()`                 | Сбрасывал known/learning | Сохраняет locked pair                                            |
+| Область                        | Было                     | Стало (G8)                                                       |
+| ------------------------------ | ------------------------ | ---------------------------------------------------------------- |
+| `/tools/cards` каталог         | Фильтры вручную          | `initWithActivePair` + locked подпись **«Курс: …»** + hint (G8a) |
+| `clearFilters()`               | Сбрасывал known/learning | Сохраняет locked pair                                            |
 | Каталог сценариев в Проводнике | Все сценарии             | API filter по активной паре                                      |
-| `ScenarioCardPicker`             | Без auto-scope           | `initWithActivePair` + reload                                    |
-| `ScenarioSearchCriteria`         | Нет полей пары           | `knownLanguage` / `learningLanguage`                             |
-| Смена пары на `/tools/*`         | Нет reload               | effect → reload списков                                          |
+| `ScenarioCardPicker`           | Без auto-scope           | `initWithActivePair` + reload                                    |
+| `ScenarioSearchCriteria`       | Нет полей пары           | `knownLanguage` / `learningLanguage`                             |
+| Смена пары на `/tools/*`       | Нет reload               | effect → reload списков                                          |
 
 ### Режимы
 

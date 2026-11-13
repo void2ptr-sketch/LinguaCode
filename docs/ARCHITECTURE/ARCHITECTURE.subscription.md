@@ -6,14 +6,14 @@
 
 Подписка определяет доступ к премиум-контенту независимо от роли пользователя:
 
-| Сценарий | Роль | Подписка | Доступ |
-|----------|------|----------|--------|
-| Гостий | — | нет | Только `/login`, `/help` |
-| Ученик | `ROLE_USER` | нет | Базовый контент, бесплатные курсы |
-| Ученик | `ROLE_USER` | Pro | Весь контент, включая премиум |
-| Автор | `ROLE_AUTHOR` | нет | Свой контент доступен всем подписчикам |
-| Автор | `ROLE_AUTHOR` | Pro | Свой контент + премиум-функции |
-| Админ | `ROLE_ADMIN` | любая | Полный доступ ко всему |
+| Сценарий | Роль          | Подписка | Доступ                                 |
+| -------- | ------------- | -------- | -------------------------------------- |
+| Гостий   | —             | нет      | Только `/login`, `/help`               |
+| Ученик   | `ROLE_USER`   | нет      | Базовый контент, бесплатные курсы      |
+| Ученик   | `ROLE_USER`   | Pro      | Весь контент, включая премиум          |
+| Автор    | `ROLE_AUTHOR` | нет      | Свой контент доступен всем подписчикам |
+| Автор    | `ROLE_AUTHOR` | Pro      | Свой контент + премиум-функции         |
+| Админ    | `ROLE_ADMIN`  | любая    | Полный доступ ко всему                 |
 
 ## Сущности
 
@@ -155,24 +155,18 @@ export const subscriptionGuard: CanMatchFn = (route, segments) => {
 
 ```html
 @if (subscriptionStore.hasAccess(contentAccess)) {
-  <app-course-card [course]="course" />
+<app-course-card [course]="course" />
 } @else {
-  <mat-card class="locked-content">
-    <mat-icon>lock</mat-icon>
-    <p>{{ contentAccess.level === 'premium' ? 'Премиум-контент' : 'Доступно авторам' }}</p>
+<mat-card class="locked-content">
+  <mat-icon>lock</mat-icon>
+  <p>{{ contentAccess.level === 'premium' ? 'Премиум-контент' : 'Доступно авторам' }}</p>
 
-    @if (contentAccess.level === 'premium') {
-      @if (subscriptionStore.hasActiveSubscription()) {
-        <button mat-raised-button color="primary" routerLink="/courses/premium">
-          Смотреть примеры
-        </button>
-      } @else {
-        <button mat-raised-button color="primary" routerLink="/subscribe">
-          Подписаться
-        </button>
-      }
-    }
-  </mat-card>
+  @if (contentAccess.level === 'premium') { @if (subscriptionStore.hasActiveSubscription()) {
+  <button mat-raised-button color="primary" routerLink="/courses/premium">Смотреть примеры</button>
+  } @else {
+  <button mat-raised-button color="primary" routerLink="/subscribe">Подписаться</button>
+  } }
+</mat-card>
 }
 ```
 
@@ -242,33 +236,33 @@ flowchart TD
 
 ### Матрица доступа
 
-| Роль | Подписка | Базовый контент | Премиум контент | CRUD контента | Системные настройки |
-|------|----------|:---------------:|:---------------:|:-------------:|:-------------------:|
-| `ROLE_USER` | нет | ✅ | ❌ | ❌ | ❌ |
-| `ROLE_USER` | Pro | ✅ | ✅ | ❌ | ❌ |
-| `ROLE_AUTHOR` | нет | ✅ | ❌ | ✅ | ❌ |
-| `ROLE_AUTHOR` | Pro | ✅ | ✅ | ✅ | ❌ |
-| `ROLE_ADMIN` | любая | ✅ | ✅ | ✅ | ✅ |
+| Роль          | Подписка | Базовый контент | Премиум контент | CRUD контента | Системные настройки |
+| ------------- | -------- | :-------------: | :-------------: | :-----------: | :-----------------: |
+| `ROLE_USER`   | нет      |       ✅        |       ❌        |      ❌       |         ❌          |
+| `ROLE_USER`   | Pro      |       ✅        |       ✅        |      ❌       |         ❌          |
+| `ROLE_AUTHOR` | нет      |       ✅        |       ❌        |      ✅       |         ❌          |
+| `ROLE_AUTHOR` | Pro      |       ✅        |       ✅        |      ✅       |         ❌          |
+| `ROLE_ADMIN`  | любая    |       ✅        |       ✅        |      ✅       |         ✅          |
 
 ## Billing (бэклог)
 
 ### API-эндпоинты
 
-| Метод | Путь | Описание |
-|-------|------|----------|
-| `GET` | `/api/v1/subscriptions` | Список подписок пользователя |
-| `POST` | `/api/v1/subscriptions` | Создание подписки |
-| `PATCH` | `/api/v1/subscriptions/:id` | Изменение подписки (отмена, смена тарифа) |
-| `GET` | `/api/v1/billing/events` | История платежей |
-| `POST` | `/api/v1/billing/promo-codes/verify` | Проверка промокода |
+| Метод   | Путь                                 | Описание                                  |
+| ------- | ------------------------------------ | ----------------------------------------- |
+| `GET`   | `/api/v1/subscriptions`              | Список подписок пользователя              |
+| `POST`  | `/api/v1/subscriptions`              | Создание подписки                         |
+| `PATCH` | `/api/v1/subscriptions/:id`          | Изменение подписки (отмена, смена тарифа) |
+| `GET`   | `/api/v1/billing/events`             | История платежей                          |
+| `POST`  | `/api/v1/billing/promo-codes/verify` | Проверка промокода                        |
 
 ### UI-страницы (бэклог)
 
-| Маршрут | Компонент | Описание |
-|---------|-----------|----------|
-| `/subscribe` | `SubscribePageComponent` | Выбор тарифа, оплата |
+| Маршрут            | Компонент                     | Описание                     |
+| ------------------ | ----------------------------- | ---------------------------- |
+| `/subscribe`       | `SubscribePageComponent`      | Выбор тарифа, оплата         |
 | `/my-subscription` | `MySubscriptionPageComponent` | Текущая подписка, управление |
-| `/billing` | `BillingPageComponent` | История платежей |
+| `/billing`         | `BillingPageComponent`        | История платежей             |
 
 ## Связанные документы
 

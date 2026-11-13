@@ -1,5 +1,9 @@
 <div class="navigation-container">
-  <mat-nav-list class="navigation" [class.navigation--collapsed]="collapsed()" aria-label="Навигация">
+  <mat-nav-list
+    class="navigation"
+    [class.navigation--collapsed]="collapsed()"
+    aria-label="Навигация"
+  >
     @for (group of groups(); track group.id; let last = $last) {
       @for (item of group.items; track item.path) {
         <a

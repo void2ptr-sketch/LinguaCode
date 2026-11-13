@@ -41,7 +41,9 @@ export class UserProfileDraftService {
   /** Draft value for the application theme. */
   readonly themeDraft = signal(this.userStore.preferences().theme);
   /** Draft value for the font size preference. */
-  readonly fontSizeDraft = signal<UserPreferences['fontSize']>(this.userStore.preferences().fontSize);
+  readonly fontSizeDraft = signal<UserPreferences['fontSize']>(
+    this.userStore.preferences().fontSize,
+  );
   /** Draft value for the color scheme (light/dark/system). */
   readonly colorSchemeDraft = signal<AppColorScheme>(this.userStore.preferences().colorScheme);
   /** Draft value for the card focus fullscreen preference. */

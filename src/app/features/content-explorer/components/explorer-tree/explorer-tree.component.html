@@ -11,7 +11,13 @@
         aria-label="Поиск по контенту"
       />
       @if (filterQuery().length > 0) {
-        <button mat-icon-button matSuffix type="button" aria-label="Очистить" (click)="setFilter('')">
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          aria-label="Очистить"
+          (click)="setFilter('')"
+        >
           <mat-icon>close</mat-icon>
         </button>
       }
@@ -44,7 +50,9 @@
                 <mat-icon class="explorer-tree__language-chip--icon">check</mat-icon>
               }
               @if (pairKey === activePairKey()) {
-                <mat-icon class="explorer-tree__language-chip--dot" color="primary">radio_button_checked</mat-icon>
+                <mat-icon class="explorer-tree__language-chip--dot" color="primary"
+                  >radio_button_checked</mat-icon
+                >
               }
               <span class="explorer-tree__language-chip--text">{{ pairKey }}</span>
             </button>

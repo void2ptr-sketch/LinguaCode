@@ -26,14 +26,14 @@
 
 ### Доступные маршруты
 
-| Маршрут | Компонент | Описание |
-|---------|-----------|----------|
-| `/home` | `HomePageComponent` | Dashboard: что делать дальше |
-| `/journey` | `JourneyPageComponent` | Путь обучения (roadmap) |
-| `/cards/select` | `CardSelectPageComponent` | Практика: выбор сценария, прогон |
-| `/user` | `UserPageComponent` | Профиль, настройки, языковые пары |
-| `/help` | `HelpPageComponent` | Справка |
-| `/help/scenarios` | `HelpUsageScenariosPageComponent` | Сценарии использования |
+| Маршрут           | Компонент                         | Описание                          |
+| ----------------- | --------------------------------- | --------------------------------- |
+| `/home`           | `HomePageComponent`               | Dashboard: что делать дальше      |
+| `/journey`        | `JourneyPageComponent`            | Путь обучения (roadmap)           |
+| `/cards/select`   | `CardSelectPageComponent`         | Практика: выбор сценария, прогон  |
+| `/user`           | `UserPageComponent`               | Профиль, настройки, языковые пары |
+| `/help`           | `HelpPageComponent`               | Справка                           |
+| `/help/scenarios` | `HelpUsageScenariosPageComponent` | Сценарии использования            |
 
 ### Доступные виджеты
 
@@ -57,13 +57,13 @@
 
 ### Дополнительные маршруты
 
-| Маршрут | Компонент | Описание |
-|---------|-----------|----------|
-| `/tools/content` | `ContentExplorerPageComponent` | Проводник контента: дерево Course → Program → Lesson → Scenario → Card (см. [content-explorer](./ARCHITECTURE.content-explorer.md)) |
-| `/tools/cards` | `CardEditorPageComponent` | CRUD карточек, каталог |
-| `/tools/courses` | `CourseBuilderPageComponent` | Конструктор курсов и программ |
-| `/tools/language-pairs` | `PairRegistryComponent` | CRUD реестра языковых пар (`/language-pairs`) |
-| `/courses` | `CourseCatalogPageComponent` | Каталог программ |
+| Маршрут                 | Компонент                      | Описание                                                                                                                            |
+| ----------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `/tools/content`        | `ContentExplorerPageComponent` | Проводник контента: дерево Course → Program → Lesson → Scenario → Card (см. [content-explorer](./ARCHITECTURE.content-explorer.md)) |
+| `/tools/cards`          | `CardEditorPageComponent`      | CRUD карточек, каталог                                                                                                              |
+| `/tools/courses`        | `CourseBuilderPageComponent`   | Конструктор курсов и программ                                                                                                       |
+| `/tools/language-pairs` | `PairRegistryComponent`        | CRUD реестра языковых пар (`/language-pairs`)                                                                                       |
+| `/courses`              | `CourseCatalogPageComponent`   | Каталог программ                                                                                                                    |
 
 ### Дополнительные виджеты
 
@@ -83,8 +83,8 @@
 
 ### Дополнительные маршруты
 
-| Маршрут | Компонент | Описание |
-|---------|-----------|----------|
+| Маршрут  | Компонент            | Описание                                                                                                                                                                               |
+| -------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/admin` | `AdminPageComponent` | Панель администратора: вкладка «Справочник языков» ([LanguageRegistryComponent](../../src/app/features/language-registry/components/language-registry/language-registry.component.ts)) |
 
 > CRUD **реестра пар** (`/language-pairs`) принадлежит author-зоне `/tools/language-pairs` — доступен и админу (`canCreateContent`). `/language-pairs` (legacy) редиректит на `/tools/language-pairs`.

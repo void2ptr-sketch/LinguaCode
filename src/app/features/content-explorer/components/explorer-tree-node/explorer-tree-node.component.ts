@@ -11,10 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ContentExplorerStore, ExplorerNode } from '../../services/content-explorer.store';
-import {
-  EXPLORER_KIND_ICONS,
-  EXPLORER_KIND_LABELS,
-} from '../../types/content-explorer.types';
+import { EXPLORER_KIND_ICONS, EXPLORER_KIND_LABELS } from '../../types/content-explorer.types';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

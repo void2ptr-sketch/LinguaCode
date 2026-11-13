@@ -73,12 +73,13 @@ export class ProgramsApiService implements ProgramCatalogPort {
       this.http.get<{ data: { id: number; lessonIds?: number[] }[] }>(
         buildApiUrl(`/programs/by-course/${courseId}`),
       ),
-    ).then((response) =>
-      (response.data ?? []).map((p) => ({
-        ...p,
-        id: String(p.id),
-        lessonIds: p.lessonIds?.map((l) => String(l)),
-      })) as unknown as readonly Program[],
+    ).then(
+      (response) =>
+        (response.data ?? []).map((p) => ({
+          ...p,
+          id: String(p.id),
+          lessonIds: p.lessonIds?.map((l) => String(l)),
+        })) as unknown as readonly Program[],
     );
   }
 

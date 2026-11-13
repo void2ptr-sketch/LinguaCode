@@ -82,22 +82,23 @@ export class ProgramsApiService implements ProgramCatalogPort {
       this.http.get<ApiResponse<ProgramWithLessons[]>>(
         buildApiUrl(`/programs/by-course/${courseId}/with-lessons`),
       ),
-    ).then((response) =>
-      (response.data ?? []).map((p) => ({
-        ...p,
-        id: String(p.id),
-        courseId: String(p.courseId),
-        lessonIds: p.lessonIds?.map((l) => String(l)),
-        lessons: (p.lessons ?? []).map((l) => ({
-          ...l,
-          id: String(l.id),
-          programId: String(l.programId),
-          scenarioIds: (l.scenarioIds ?? []).map((s) => String(s)),
-          prerequisiteLessonIds: Array.isArray(l.prerequisiteLessonIds)
-            ? l.prerequisiteLessonIds.map((p) => String(p))
-            : [],
-        })),
-      })) as unknown as readonly ProgramWithLessons[],
+    ).then(
+      (response) =>
+        (response.data ?? []).map((p) => ({
+          ...p,
+          id: String(p.id),
+          courseId: String(p.courseId),
+          lessonIds: p.lessonIds?.map((l) => String(l)),
+          lessons: (p.lessons ?? []).map((l) => ({
+            ...l,
+            id: String(l.id),
+            programId: String(l.programId),
+            scenarioIds: (l.scenarioIds ?? []).map((s) => String(s)),
+            prerequisiteLessonIds: Array.isArray(l.prerequisiteLessonIds)
+              ? l.prerequisiteLessonIds.map((p) => String(p))
+              : [],
+          })),
+        })) as unknown as readonly ProgramWithLessons[],
     );
   }
 

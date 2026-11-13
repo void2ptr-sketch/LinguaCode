@@ -34,10 +34,7 @@ const FONT_SIZE_TO_BACKEND: Record<UserPreferences['fontSize'], UserPreferencesC
 };
 
 /** Frontend answer mode → backend `PhoneticSettingsAnswerModesItem` enum. */
-const ANSWER_MODE_TO_BACKEND: Record<
-  'orthography' | 'ipa',
-  PhoneticSettingsAnswerModesItem
-> = {
+const ANSWER_MODE_TO_BACKEND: Record<'orthography' | 'ipa', PhoneticSettingsAnswerModesItem> = {
   orthography: 'ORTHOGRAPHY',
   ipa: 'IPA',
 };
@@ -71,7 +68,8 @@ export function toBackendPhoneticSettings(
   return {
     showIpa: phonetic.showIpa,
     answerModes: (phonetic.answerModes ?? []).map(
-      (mode) => ANSWER_MODE_TO_BACKEND[mode] ?? (mode.toUpperCase() as PhoneticSettingsAnswerModesItem),
+      (mode) =>
+        ANSWER_MODE_TO_BACKEND[mode] ?? (mode.toUpperCase() as PhoneticSettingsAnswerModesItem),
     ),
   };
 }

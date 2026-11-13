@@ -259,9 +259,7 @@ export class CourseSearchService {
     const programs = await this.programsApi.getByCourse(resolvedId);
 
     if (programs.length === 0) {
-      this.logger.warn(
-        `[CourseSearch] Fallback returned 0 programs for course ${resolvedId}`,
-      );
+      this.logger.warn(`[CourseSearch] Fallback returned 0 programs for course ${resolvedId}`);
       // Return course with empty programs — caller can handle gracefully
       return {
         ...courseBase,

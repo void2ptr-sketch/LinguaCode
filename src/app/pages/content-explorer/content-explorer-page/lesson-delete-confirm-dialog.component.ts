@@ -20,8 +20,8 @@ export type LessonDeleteConfirmDialogData = {
   template: `
     <h2 mat-dialog-title>Удалить урок?</h2>
     <mat-dialog-content>
-      Урок «{{ data.lessonTitle }}» и все связанные с ним данные (сценарии, карточки)
-      будут удалены безвозвратно.
+      Урок «{{ data.lessonTitle }}» и все связанные с ним данные (сценарии, карточки) будут удалены
+      безвозвратно.
     </mat-dialog-content>
     <mat-dialog-actions align="end">
       <button mat-button type="button" [mat-dialog-close]="false">Отмена</button>

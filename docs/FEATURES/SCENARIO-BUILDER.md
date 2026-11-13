@@ -19,12 +19,12 @@ Picker сценариев в конструкторе уроков (`ScenarioPic
 
 ## Решение: индекс сценария + полный Scenario
 
-| Слой      | Тип                                      | Назначение                                                    |
-| --------- | ---------------------------------------- | ------------------------------------------------------------- |
+| Слой      | Тип                                      | Назначение                                                             |
+| --------- | ---------------------------------------- | ---------------------------------------------------------------------- |
 | Каталог   | `ScenarioIndexEntry`                     | id, title, authorId, cardSourceSummary, courseId, published, updatedAt |
-| Детали    | `Scenario`                               | title, description, `cardSource`, `published`, `updatedAt`    |
-| Поиск     | `ScenarioSearchCriteria` + `PageRequest` | query, scope, courseId + пагинация                            |
-| Ответ API | `PageResponse<ScenarioIndexEntry>`       | items + totalItems + totalPages                               |
+| Детали    | `Scenario`                               | title, description, `cardSource`, `published`, `updatedAt`             |
+| Поиск     | `ScenarioSearchCriteria` + `PageRequest` | query, scope, courseId + пагинация                                     |
+| Ответ API | `PageResponse<ScenarioIndexEntry>`       | items + totalItems + totalPages                                        |
 
 Полный `Scenario` запрашивается по `id` только при открытии диалога редактора или прохождении.
 
@@ -70,13 +70,13 @@ Mock в dev: `useScenariosApiMock: true`, `scenariosApiMockInterceptor` + `Scena
 
 ## Multi-user (mock)
 
-| Возможность | Реализация                                              |
-| ----------- | ------------------------------------------------------- |
-| Scope       | `mine` · `published` · `all` в `ScenarioSearchCriteria` |
+| Возможность | Реализация                                                                                           |
+| ----------- | ---------------------------------------------------------------------------------------------------- |
+| Scope       | `mine` · `published` · `all` в `ScenarioSearchCriteria`                                              |
 | Публикация  | поле `Scenario.published`; toggle в UI редактора отсутствует (см. [Черновик формы](#черновик-формы)) |
-| Read-only   | чужой сценарий — просмотр без save/delete               |
-| Валидация   | `validateScenarioCardSource` в mock handler             |
-| 403         | PUT/DELETE чужого сценария                              |
+| Read-only   | чужой сценарий — просмотр без save/delete                                                            |
+| Валидация   | `validateScenarioCardSource` в mock handler                                                          |
+| 403         | PUT/DELETE чужого сценария                                                                           |
 
 ## UI — управление сценариями
 
@@ -113,13 +113,13 @@ Create / edit / view в modal (аналог [CARD-CATALOG.md — Dialog](../COMM
 
 ### Решение
 
-| Слой     | Компонент                        | Назначение                                                 |
-| -------- | -------------------------------- | ---------------------------------------------------------- |
+| Слой        | Компонент                                                  | Назначение                                                      |
+| ----------- | ---------------------------------------------------------- | --------------------------------------------------------------- |
 | Оркестрация | страница Проводника (`content-explorer-page.component.ts`) | вызов диалога из дерева и «Каталога сценариев», привязка/каскад |
-| Dialog   | `ScenarioBuilderDialogComponent` | shell: title, loading, errors, actions                     |
-| Форма    | `ScenarioEditorFormComponent`    | поля «Название», «Описание», «Известный язык», «Новый язык» |
-| Сервис   | `ScenarioBuilderDialogService`   | `openCreate`, `openEdit`                                   |
-| Store    | `ScenarioBuilderStore`           | CRUD-логика, валидация, каталог (scope + пагинация)         |
+| Dialog      | `ScenarioBuilderDialogComponent`                           | shell: title, loading, errors, actions                          |
+| Форма       | `ScenarioEditorFormComponent`                              | поля «Название», «Описание», «Известный язык», «Новый язык»     |
+| Сервис      | `ScenarioBuilderDialogService`                             | `openCreate`, `openEdit`                                        |
+| Store       | `ScenarioBuilderStore`                                     | CRUD-логика, валидация, каталог (scope + пагинация)             |
 
 ```typescript
 type ScenarioBuilderDialogData = { mode: 'create' } | { mode: 'edit'; scenarioId: string };
@@ -141,12 +141,12 @@ type ScenarioBuilderDialogResult = {
 
 Текущая форма (`ScenarioEditorFormComponent`) содержит ровно **4 поля**:
 
-| Поле             | Тип                       | Поведение                                                  |
-| ---------------- | ------------------------- | ---------------------------------------------------------- |
-| «Название»       | `input`                   | пишет в `draft().title`                                    |
-| «Описание»       | `textarea` (3 строки)     | пишет в `draft().description`                              |
-| «Известный язык» | `mat-select`              | `draft().languagePair.known`                               |
-| «Новый язык»     | `mat-select`              | `draft().languagePair.learning`                            |
+| Поле             | Тип                   | Поведение                       |
+| ---------------- | --------------------- | ------------------------------- |
+| «Название»       | `input`               | пишет в `draft().title`         |
+| «Описание»       | `textarea` (3 строки) | пишет в `draft().description`   |
+| «Известный язык» | `mat-select`          | `draft().languagePair.known`    |
+| «Новый язык»     | `mat-select`          | `draft().languagePair.learning` |
 
 - валидация: «Языки должны отличаться» (`languagePairInvalid()` — `known === learning`);
 - в read-only все поля disabled + подпись «Чужой сценарий — только просмотр.»;
@@ -164,13 +164,13 @@ Read-only определяется через `ScenarioBuilderStore.isReadOnly()
 
 ### Конфигурация MatDialog
 
-| Параметр       | Значение                            |
-| -------------- | ----------------------------------- |
-| `panelClass`   | `scenario-builder-dialog`           |
-| `width`        | `1100px` (с `maxWidth: 96vw`)       |
-| `maxHeight`    | `90vh`                              |
-| `disableClose` | `true`                              |
-| `autoFocus`    | `first-titled-element`              |
+| Параметр       | Значение                      |
+| -------------- | ----------------------------- |
+| `panelClass`   | `scenario-builder-dialog`     |
+| `width`        | `1100px` (с `maxWidth: 96vw`) |
+| `maxHeight`    | `90vh`                        |
+| `disableClose` | `true`                        |
+| `autoFocus`    | `first-titled-element`        |
 
 ### Зависимости внутри dialog
 
@@ -182,11 +182,11 @@ Read-only определяется через `ScenarioBuilderStore.isReadOnly()
 
 `ScenarioFormDraft` (`scenario-form-draft.utils.ts`) — промежуточная модель диалога. Часть полей **не выводится в UI** и остаётся зарезервированной (осознанный docs drift, зафиксирован планом миграции):
 
-| Поле                                              | Статус в UI                                                                 |
-| ------------------------------------------------- | --------------------------------------------------------------------------- |
-| `title`, `description`, `languagePair`            | редактируются в форме                                                       |
-| `published`                                       | зарезервировано; в форме toggle отсутствует (create → `false`, edit → как в `Scenario`) |
-| `sourceMode`, `fixedCardIds`, `criteria`, `criteriaLimit`, `criteriaSort`, `criteriaSeed`, `snapshotFrozenAt` | зарезервировано; редактора источника карточек в UI нет |
+| Поле                                                                                                          | Статус в UI                                                                             |
+| ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `title`, `description`, `languagePair`                                                                        | редактируются в форме                                                                   |
+| `published`                                                                                                   | зарезервировано; в форме toggle отсутствует (create → `false`, edit → как в `Scenario`) |
+| `sourceMode`, `fixedCardIds`, `criteria`, `criteriaLimit`, `criteriaSort`, `criteriaSeed`, `snapshotFrozenAt` | зарезервировано; редактора источника карточек в UI нет                                  |
 
 Поведение: `scenarioToFormDraft` переносит поля `cardSource` сценария в поля черновика, `formDraftToScenarioDraft` собирает `ScenarioDraft` обратно. Для нового сценария `sourceMode = 'fixed'` с пустым `fixedCardIds` (создаётся `mode: 'fixed', cardIds: []`); при редактировании существующий источник карточек сохраняется без изменений (round-trip через черновик).
 

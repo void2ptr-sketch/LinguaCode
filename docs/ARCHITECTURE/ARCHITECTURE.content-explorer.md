@@ -58,13 +58,13 @@ classDiagram
 
 ## Ленивая загрузка детей (по существующим ID-ссылкам)
 
-| Родитель | Источник детей | Режим загрузки |
-| -------- | -------------- | -------------- |
-| `course`  | `CourseSearchService.getById` → `programs` (ProgramWithLessons) | API |
-| `program` | `ProgramsApiService.getById` / `data.lessons` | API / кэш |
-| `lesson`  | `lesson.scenarioIds` → `ScenarioSearchService.getByIdBatch` | API |
+| Родитель   | Источник детей                                                                                                                       | Режим загрузки   |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------- |
+| `course`   | `CourseSearchService.getById` → `programs` (ProgramWithLessons)                                                                      | API              |
+| `program`  | `ProgramsApiService.getById` / `data.lessons`                                                                                        | API / кэш        |
+| `lesson`   | `lesson.scenarioIds` → `ScenarioSearchService.getByIdBatch`                                                                          | API              |
 | `scenario` | `cardSource.mode === 'criteria'` → виртуальный узел «Набор по критериям»; `fixed`/`snapshot` → индекс карточек (`CardSearchService`) | индекс / virtual |
-| `card` | — (лист, бейдж «shared») | — |
+| `card`     | — (лист, бейдж «shared»)                                                                                                             | —                |
 
 Новые бэкенд-эндпоинты не требуются.
 
@@ -72,21 +72,21 @@ classDiagram
 
 Редактирование выполняется через существующие диалоги; оркестрация — на странице (FSD: pages → features разрешены, features → features — нет):
 
-| Узел | Действие | Билдер | Обновление дерева |
-| ---- | -------- | ------ | ----------------- |
-| `course` | «Редактировать в конструкторе курсов» | `CourseBuilderDialogService.openEdit(courseId, { forceEdit: true })` | `refreshNode(course)` |
-| `course` | «+ Программа» | `ProgramBuilderDialogService.openCreate(courseId)` | `refreshNode(course)` |
-| `course` | «Удалить» (confirm) | `CourseDeleteConfirmDialogComponent` + `CourseBuilderStore.deleteCourse()` | `clearSelection()`, `loadRoots()` |
-| `program` | «Редактировать в конструкторе программ» | `ProgramBuilderDialogService.openEdit(programId)` | `refreshNode(program)` |
-| `program` | «Удалить» (confirm) | `ProgramDeleteConfirmDialogComponent` + `programsApi.delete()` | `refreshNode(course)`, `clearSelection()` |
-| `lesson` | «Редактировать в конструкторе курсов» | `CourseBuilderDialogService.openEdit(parentCourseId)` | `refreshNode(course)` |
-| `lesson` | «+ Сценарий» | `ScenarioBuilderDialogService.openCreate` | привязка к уроку (PUT курса) + `refreshNode(lesson)`, выбор нового узла |
-| `lesson` | «Удалить» (confirm) | `LessonDeleteConfirmDialogComponent` + `lessonsApi.delete()` | `refreshNode(program)`, `clearSelection()` |
-| `scenario` | «Редактировать» / «Добавить карточку» | `ScenarioBuilderDialogService.openEdit` | `refreshNode(scenario)` |
-| `scenario` | «Удалить» (только свой, confirm) | `ScenarioDeleteConfirmDialogComponent` + `ScenarioBuilderStore.deleteScenario(id, entry)` | защитный каскад (PUT курса) + `refreshNode(lesson)`, снятие выделения |
-| `card` | «Редактировать карточку» | `CardEditorDialogService.openEdit` | `refreshNode(parentScenario)` |
-| `card` | «Создать карточку» | `CardEditorDialogService.openCreate(kind)` | `refreshNode(parentScenario)` |
-| `card` | «Удалить» (confirm) | `CardDeleteConfirmDialogComponent` + `cardEditorStore.deleteCard()` | `refreshNode(parentScenario)`, `clearSelection()` |
+| Узел       | Действие                                | Билдер                                                                                    | Обновление дерева                                                       |
+| ---------- | --------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `course`   | «Редактировать в конструкторе курсов»   | `CourseBuilderDialogService.openEdit(courseId, { forceEdit: true })`                      | `refreshNode(course)`                                                   |
+| `course`   | «+ Программа»                           | `ProgramBuilderDialogService.openCreate(courseId)`                                        | `refreshNode(course)`                                                   |
+| `course`   | «Удалить» (confirm)                     | `CourseDeleteConfirmDialogComponent` + `CourseBuilderStore.deleteCourse()`                | `clearSelection()`, `loadRoots()`                                       |
+| `program`  | «Редактировать в конструкторе программ» | `ProgramBuilderDialogService.openEdit(programId)`                                         | `refreshNode(program)`                                                  |
+| `program`  | «Удалить» (confirm)                     | `ProgramDeleteConfirmDialogComponent` + `programsApi.delete()`                            | `refreshNode(course)`, `clearSelection()`                               |
+| `lesson`   | «Редактировать в конструкторе курсов»   | `CourseBuilderDialogService.openEdit(parentCourseId)`                                     | `refreshNode(course)`                                                   |
+| `lesson`   | «+ Сценарий»                            | `ScenarioBuilderDialogService.openCreate`                                                 | привязка к уроку (PUT курса) + `refreshNode(lesson)`, выбор нового узла |
+| `lesson`   | «Удалить» (confirm)                     | `LessonDeleteConfirmDialogComponent` + `lessonsApi.delete()`                              | `refreshNode(program)`, `clearSelection()`                              |
+| `scenario` | «Редактировать» / «Добавить карточку»   | `ScenarioBuilderDialogService.openEdit`                                                   | `refreshNode(scenario)`                                                 |
+| `scenario` | «Удалить» (только свой, confirm)        | `ScenarioDeleteConfirmDialogComponent` + `ScenarioBuilderStore.deleteScenario(id, entry)` | защитный каскад (PUT курса) + `refreshNode(lesson)`, снятие выделения   |
+| `card`     | «Редактировать карточку»                | `CardEditorDialogService.openEdit`                                                        | `refreshNode(parentScenario)`                                           |
+| `card`     | «Создать карточку»                      | `CardEditorDialogService.openCreate(kind)`                                                | `refreshNode(parentScenario)`                                           |
+| `card`     | «Удалить» (confirm)                     | `CardDeleteConfirmDialogComponent` + `cardEditorStore.deleteCard()`                       | `refreshNode(parentScenario)`, `clearSelection()`                       |
 
 `forceEdit: true` отключает frontend read-only fallback в диалоге курса (курс всегда открывается в режиме «Редактирование курса»); права автора при сохранении по-прежнему проверяет бэкенд.
 
@@ -123,8 +123,8 @@ Backlinks: для карточек — «Где используется» че�
 - После подтверждения — `ScenarioBuilderStore.deleteScenario(node.id, entry)`
   (владение в store проверяется по `entry` из данных узла, fallback — список и
   `getById`, fail-safe), затем защитный каскад: `removeScenarioFromLessonPayload`
-  + PUT курса (идемпотентно — если бэкенд уже убрал id из `lesson.scenarioIds`),
-  `store.refreshNode(lesson)`, снятие выделения.
+  - PUT курса (идемпотентно — если бэкенд уже убрал id из `lesson.scenarioIds`),
+    `store.refreshNode(lesson)`, снятие выделения.
 
 ### Бейдж «Опубликован» / «Черновик»
 

@@ -183,7 +183,10 @@ describe('ScenarioBuilderDialogComponent', () => {
           { provide: MatDialog, useValue: mockMatDialog },
           { provide: MAT_DIALOG_DATA, useValue: editData },
           { provide: ScenarioBuilderStore, useValue: mockEditStore },
-          { provide: UserStore, useValue: { languagePair: () => ({ known: 'ru', learning: 'en' }) } },
+          {
+            provide: UserStore,
+            useValue: { languagePair: () => ({ known: 'ru', learning: 'en' }) },
+          },
         ],
       }).compileComponents();
 

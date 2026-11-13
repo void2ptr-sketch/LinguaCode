@@ -56,7 +56,9 @@ describe('CourseBuilderStore', () => {
         UserStore,
         {
           provide: AuthStore,
-          useValue: { user: vi.fn(() => ({ id: TEST_USER_ID, displayName: '', email: '', roles: [] })) },
+          useValue: {
+            user: vi.fn(() => ({ id: TEST_USER_ID, displayName: '', email: '', roles: [] })),
+          },
         },
       ],
     });

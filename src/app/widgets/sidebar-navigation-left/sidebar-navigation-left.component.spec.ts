@@ -128,7 +128,13 @@ describe('SidebarNavigationLeftComponent - collapsed state', () => {
     @Component({
       selector: 'app-test-wrapper',
       template: `<app-sidebar-navigation-left [collapsed]="collapsed()" />`,
-      imports: [SidebarNavigationLeftComponent, MatDividerModule, MatListModule, MatIconModule, MatTooltipModule],
+      imports: [
+        SidebarNavigationLeftComponent,
+        MatDividerModule,
+        MatListModule,
+        MatIconModule,
+        MatTooltipModule,
+      ],
     })
     class TestWrapperComponent {
       collapsed = signal(false);

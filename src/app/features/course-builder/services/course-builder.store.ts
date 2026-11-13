@@ -116,25 +116,25 @@ export class CourseBuilderStore {
   readonly editingCourse = signal<CourseWithPrograms | null>(null);
 
   /**
-    * Computed signal: `true` if the current user cannot edit the course.
-    *
-    * @remarks
-    * A course is editable only if the user is the author, a system author,
-    * or has ROLE_ADMIN / ROLE_AUTHOR permissions.
-    */
-   readonly isReadOnly = computed(() => {
-     const course = this.editingCourse();
-     if (!course) {
-       return false;
-     }
+   * Computed signal: `true` if the current user cannot edit the course.
+   *
+   * @remarks
+   * A course is editable only if the user is the author, a system author,
+   * or has ROLE_ADMIN / ROLE_AUTHOR permissions.
+   */
+  readonly isReadOnly = computed(() => {
+    const course = this.editingCourse();
+    if (!course) {
+      return false;
+    }
 
-     const user = this.authStore.user();
-     if (!user) {
-       return true;
-     }
+    const user = this.authStore.user();
+    if (!user) {
+      return true;
+    }
 
-     return !isEditableContentAuthor(course.authorId, user.id, user.roles);
-   });
+    return !isEditableContentAuthor(course.authorId, user.id, user.roles);
+  });
 
   // -------------------------------------------------------------------------
   // Methods: list loading
@@ -246,7 +246,7 @@ export class CourseBuilderStore {
       const course = await this.courseSearchService.getById(courseId);
 
       const programsWithLessons = await Promise.all(
-        course.programs.map((program) => this.programsApi.getById(program.id))
+        course.programs.map((program) => this.programsApi.getById(program.id)),
       );
 
       const resolvedCourse: CourseWithPrograms = {

@@ -12,7 +12,14 @@
  * Deep links: `/tools/content?courseId&programId&lessonId&scenarioId&cardId`
  * — авто-раскрытие цепочки и выбор узла (см. ExplorerRevealTarget).
  */
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -678,7 +685,9 @@ export class ContentExplorerPageComponent implements OnInit {
 
     this.acting.set(true);
     try {
-      const result = await this.cardEditorDialog.openCreate(kind as import('../../../entities/card/model').CardKind);
+      const result = await this.cardEditorDialog.openCreate(
+        kind as import('../../../entities/card/model').CardKind,
+      );
       if (result?.saved) {
         const parentScenario = node.parentId ? this.store.getByKey(node.parentId) : null;
         if (parentScenario && parentScenario.kind === 'scenario') {

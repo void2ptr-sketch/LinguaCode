@@ -85,7 +85,7 @@ flowchart TD
 2. `createScenario` возвращает **созданный `Scenario | null`** (раньше —
    `boolean`): `null` — при ошибке валидации черновика или API.
 3. Страница Проводника (`content-explorer-page.component.ts →
-   onAddScenarioRequested`) при `saved && scenarioId` и выбранном
+onAddScenarioRequested`) при `saved && scenarioId` и выбранном
    lesson-узле (`kind === 'lesson'`, `editable`, не virtual):
    - course-узел ищется через `store.pathOf(lessonNode)`;
    - `courseSearchService.getById(courseId)` → `CourseWithPrograms`;
@@ -95,7 +95,7 @@ flowchart TD
    - `appendScenarioToLessonPayload(payload, lessonId, scenarioId)` —
      append с dedupe, порядок `scenarioIds` сохраняется;
    - `courseSearchService.update(courseId, payload)` (PUT `/courses/{id}`)
-     + `clearGetByIdCache()` (свежий `getById` перед PUT — защита от lost update);
+     - `clearGetByIdCache()` (свежий `getById` перед PUT — защита от lost update);
    - `store.refreshNode(lessonNode)` — сценарий появляется дочерним узлом
      урока; новый scenario-узел выбирается; snackbar «Сценарий создан
      и добавлен в урок».

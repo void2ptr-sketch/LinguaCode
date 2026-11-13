@@ -62,7 +62,9 @@
   border: 1px solid transparent;
   cursor: pointer;
   user-select: none;
-  transition: background 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
 
   &:hover {
     background: var(--mat-sys-secondary-container, #e1e0ec);

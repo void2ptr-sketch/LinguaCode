@@ -40,7 +40,13 @@ describe('course-search.utils — multi-pair criteria', () => {
   it('matches multiple pairs with OR semantics', () => {
     const result = filterCourseIndex(
       [ruEn, ruZh],
-      { scope: 'all', languagePairs: [{ known: 'ru', learning: 'en' }, { known: 'ru', learning: 'zh' }] },
+      {
+        scope: 'all',
+        languagePairs: [
+          { known: 'ru', learning: 'en' },
+          { known: 'ru', learning: 'zh' },
+        ],
+      },
       'user-1',
     );
 
@@ -76,7 +82,13 @@ describe('course-search.utils — multi-pair criteria', () => {
   it('matchesCourseIndexEntry returns true for ANY matching pair', () => {
     const matches = matchesCourseIndexEntry(
       ruZh,
-      { scope: 'all', languagePairs: [{ known: 'ru', learning: 'en' }, { known: 'ru', learning: 'zh' }] },
+      {
+        scope: 'all',
+        languagePairs: [
+          { known: 'ru', learning: 'en' },
+          { known: 'ru', learning: 'zh' },
+        ],
+      },
       'user-1',
     );
 

@@ -52,7 +52,10 @@ describe('course-catalog-active-course-persistence', () => {
 
     it('should return different arrays for different pair IDs', () => {
       localStorage.setItem(fullKey, JSON.stringify(['pair-1-courses']));
-      localStorage.setItem(`${COURSE_CATALOG_ACTIVE_IDS_STORAGE_KEY}.other-pair`, JSON.stringify(['other-courses']));
+      localStorage.setItem(
+        `${COURSE_CATALOG_ACTIVE_IDS_STORAGE_KEY}.other-pair`,
+        JSON.stringify(['other-courses']),
+      );
 
       expect(readActiveCourseIds(testPairId)).toEqual(['pair-1-courses']);
       expect(readActiveCourseIds('other-pair')).toEqual(['other-courses']);

@@ -6,11 +6,7 @@ const flatItems = (groups: readonly NavGroup[]): readonly NavItem[] =>
 
 describe('SIDEBAR_NAV_CONFIG', () => {
   it('defines learning, tools and account groups', () => {
-    expect(SIDEBAR_NAV_CONFIG.map((group) => group.id)).toEqual([
-      'learning',
-      'tools',
-      'account',
-    ]);
+    expect(SIDEBAR_NAV_CONFIG.map((group) => group.id)).toEqual(['learning', 'tools', 'account']);
   });
 
   it('learning items have no role restriction (accessible to all roles)', () => {

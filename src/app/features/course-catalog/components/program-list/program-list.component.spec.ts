@@ -63,9 +63,7 @@ describe('CourseCatalogProgramsComponent', () => {
             // slugs resolve to a numeric ID, numeric IDs pass through.
             resolveCourseId: vi
               .fn()
-              .mockImplementation((id: string) =>
-                Promise.resolve(/^\d+$/.test(id) ? id : '101'),
-              ),
+              .mockImplementation((id: string) => Promise.resolve(/^\d+$/.test(id) ? id : '101')),
           },
         },
       ],

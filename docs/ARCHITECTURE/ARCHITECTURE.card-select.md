@@ -30,11 +30,11 @@ features/card-select/
 
 ## Разделение ответственности
 
-| Сервис / Стор | Назначение |
-| ------------- | ---------- |
-| `CardSelectFlowService` | Flow-состояние: выбранный курс, урок, сценарий, таб, difficulty-фильтр, auto-resume, sync с `UserStore` |
-| `CardSelectService` | HTTP-слой: загрузка сценария, пакетная загрузка карточек, pagination (25 карточек на страницу), background preload |
-| `CardSelectStore` | Сессионное состояние: текущая карточка, ответ пользователя, feedback, completed, shuffle nonce, memory board nonce |
+| Сервис / Стор           | Назначение                                                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `CardSelectFlowService` | Flow-состояние: выбранный курс, урок, сценарий, таб, difficulty-фильтр, auto-resume, sync с `UserStore`            |
+| `CardSelectService`     | HTTP-слой: загрузка сценария, пакетная загрузка карточек, pagination (25 карточек на страницу), background preload |
+| `CardSelectStore`       | Сессионное состояние: текущая карточка, ответ пользователя, feedback, completed, shuffle nonce, memory board nonce |
 
 ## Поток данных
 

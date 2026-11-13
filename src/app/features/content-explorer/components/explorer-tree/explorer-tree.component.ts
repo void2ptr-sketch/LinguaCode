@@ -14,7 +14,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { ContentExplorerStore } from '../../services/content-explorer.store';
-import { filterExplorerNodes, type ExplorerFilterableNode } from '../../types/content-explorer.types';
+import {
+  filterExplorerNodes,
+  type ExplorerFilterableNode,
+} from '../../types/content-explorer.types';
 import { ExplorerTreeNodeComponent } from '../explorer-tree-node/explorer-tree-node.component';
 
 @Component({
@@ -56,9 +59,7 @@ export class ExplorerTreeComponent {
   });
 
   /** Show language filter only when there are enough distinct pairs. */
-  protected readonly showLanguageFilter = computed(
-    () => this.availablePairKeys().size > 2,
-  );
+  protected readonly showLanguageFilter = computed(() => this.availablePairKeys().size > 2);
 
   /** UserStore.active pair key used for auto-selection and visual hint. */
   protected readonly activePairKey = computed(() => {

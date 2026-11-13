@@ -40,14 +40,14 @@ features/lesson-builder/
 
 ## Отображение DTO ↔ домен (backend ↔ frontend)
 
-| Backend DTO            | Frontend `Lesson`        | Преобразование                     |
-| ---------------------- | ------------------------ | ---------------------------------- |
-| `id: number`           | `id: string`             | `String(id)` / `Number(id)`        |
-| `programId: number`    | `programId: string`      | `String(id)` / `Number(id)`        |
-| `lessonDescription`    | `description`            | переименование                     |
-| `lessonOrder`          | `order`                  | переименование                     |
+| Backend DTO                     | Frontend `Lesson`                 | Преобразование                  |
+| ------------------------------- | --------------------------------- | ------------------------------- |
+| `id: number`                    | `id: string`                      | `String(id)` / `Number(id)`     |
+| `programId: number`             | `programId: string`               | `String(id)` / `Number(id)`     |
+| `lessonDescription`             | `description`                     | переименование                  |
+| `lessonOrder`                   | `order`                           | переименование                  |
 | `prerequisiteLessonIds: string` | `prerequisiteLessonIds: string[]` | `JSON.parse` / `JSON.stringify` |
-| `scenarioIds: number[]` | `scenarioIds: string[]` | `String` на каждый элемент         |
+| `scenarioIds: number[]`         | `scenarioIds: string[]`           | `String` на каждый элемент      |
 
 Числовые ID конвертируются в `LessonsApiService` (`/^\d+$/`-проверка); slug-ID (мок-бэкенд) проходят как есть — паттерн повторяет `ProgramsApiService.create`.
 

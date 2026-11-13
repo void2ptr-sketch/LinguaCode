@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -16,7 +11,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { courseAuthoringWithIdea } from '../../../../entities/course/utils/course-authoring.utils';
 import type { CourseAuthoringStatus, CoursePracticeMode } from '../../../../entities/course/model';
-import { COURSE_AUTHORING_STATUSES, DEFAULT_COURSE_PRACTICE_SETTINGS } from '../../../../entities/course/model';
+import {
+  COURSE_AUTHORING_STATUSES,
+  DEFAULT_COURSE_PRACTICE_SETTINGS,
+} from '../../../../entities/course/model';
 import { MarkdownFieldComponent } from '../../../../shared/utils/markdown-field';
 import type { CourseFormDraft } from '../../types';
 

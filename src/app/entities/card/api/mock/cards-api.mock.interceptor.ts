@@ -89,8 +89,9 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     const ids = body?.ids ?? [];
 
     return defer(() => handler.getByIds(ids)).pipe(
-      map((data) =>
-        new HttpResponse({ status: 200, body: { found: data, notFound: [] as string[] } }),
+      map(
+        (data) =>
+          new HttpResponse({ status: 200, body: { found: data, notFound: [] as string[] } }),
       ),
     );
   }

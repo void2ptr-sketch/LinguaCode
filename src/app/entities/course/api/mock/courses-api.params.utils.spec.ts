@@ -168,7 +168,9 @@ describe('courses-api.params.utils', () => {
     });
 
     it('should drop invalid languagePairIds on parse', () => {
-      const params = new HttpParams().append('languagePairIds', '7').append('languagePairIds', 'abc');
+      const params = new HttpParams()
+        .append('languagePairIds', '7')
+        .append('languagePairIds', 'abc');
 
       const criteria = parseCourseSearchCriteria(params);
 

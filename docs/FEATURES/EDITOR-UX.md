@@ -59,8 +59,66 @@ Legacy JSON с расхождением текст/лексема: при load �
 | Строк на файл form shell/kind | < 200             |
 | Регрессия demo JSON           | без потери данных |
 
+## Каталог карточек `/tools/cards`
+
+> **Статус:** готово. Страница каталога карточек, открытая из sidebar «Инструменты → Каталог карточек».
+
+### Архитектура
+
+```
+CardEditorPageComponent
+├── CardCatalogSearchStore (поиск + пагинация)
+├── Фильтры (known/learning language, kind, tags)
+└── CardListComponent
+    ├── Пагинация
+    └── CardIndexEntry items
+```
+
+### Компоненты
+
+| Компонент                 | Назначение                                |
+| ------------------------- | ----------------------------------------- |
+| `CardEditorPageComponent` | Страница каталога: поиск, фильтры, список |
+| `CardEditorDialogService` | Открытие dialog create/edit/view          |
+| `CardEditorStore`         | CRUD карточек, delete, error state        |
+
+### Фильтры
+
+| Фильтр             | Тип               | Описание                      |
+| ------------------ | ----------------- | ----------------------------- |
+| `knownLanguage`    | `ContentLanguage` | Язык known (locked при G8)    |
+| `learningLanguage` | `ContentLanguage` | Язык learning (locked при G8) |
+| `kind`             | `CardKind[]`      | Тип карточки                  |
+| `tags`             | `string[]`        | Теги карточки                 |
+| `query`            | `string`          | Текстовый поиск               |
+
+### Locked language pair (G8)
+
+При активном `LanguagePair` фильтры `knownLanguage` / `learningLanguage` заблокированы:
+
+- Подпись **«Курс: …»** в шапке фильтров
+- Hint: «Сменить курс — в Профиле»
+- `clearFilters()` не сбрасывает known/learning
+
+### Диалог редактора
+
+| Режим        | Заголовок           | Save | Discard confirm |
+| ------------ | ------------------- | ---- | --------------- |
+| create       | «Новая карточка»    | да   | при dirty draft |
+| edit (свой)  | «Редактирование»    | да   | при dirty draft |
+| view (чужой) | «Просмотр карточки» | нет  | не требуется    |
+
+### Зависимости
+
+| Слой                   | Зависимости                                                     |
+| ---------------------- | --------------------------------------------------------------- |
+| entities/card          | `CardSearchService`, `CardCatalogSearchStore`, `CardIndexEntry` |
+| entities/language-pair | `UserStore.languagePair()`                                      |
+| features/card-editor   | `CardEditorDialogService`, `CardEditorStore`                    |
+
 ## Smoke checklist
 
 - [ ] Create/edit/preview/try — каждый kind, basic + advanced
 - [ ] Wizard create → expand → save
 - [ ] Demo cards в `select-cards.json` открываются без потери полей
+- [ ] Каталог `/tools/cards`: фильтры, пагинация, locked language pair

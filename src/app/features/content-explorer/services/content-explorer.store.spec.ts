@@ -91,8 +91,7 @@ function setup(overrides?: {
   scenarioById?: (id: string) => Scenario | undefined;
 }): ContentExplorerStore {
   const scenarioById =
-    overrides?.scenarioById ??
-    ((id: string) => (id === 'scenario-1' ? scenario : undefined));
+    overrides?.scenarioById ?? ((id: string) => (id === 'scenario-1' ? scenario : undefined));
 
   const courseSearchService = {
     search: vi.fn().mockResolvedValue({ items: [courseEntry], totalItems: 1 }),
@@ -105,9 +104,11 @@ function setup(overrides?: {
   };
 
   const scenarioSearchService = {
-    getByIdBatch: vi.fn().mockImplementation((ids: readonly string[]) =>
-      Promise.resolve(ids.map(scenarioById).filter((s): s is Scenario => Boolean(s))),
-    ),
+    getByIdBatch: vi
+      .fn()
+      .mockImplementation((ids: readonly string[]) =>
+        Promise.resolve(ids.map(scenarioById).filter((s): s is Scenario => Boolean(s))),
+      ),
   };
 
   const cardSearchService = {
@@ -126,7 +127,12 @@ function setup(overrides?: {
       {
         provide: AuthStore,
         useValue: {
-          user: vi.fn(() => ({ id: TEST_USER_ID, displayName: '', email: '', roles: ['ROLE_AUTHOR'] })),
+          user: vi.fn(() => ({
+            id: TEST_USER_ID,
+            displayName: '',
+            email: '',
+            roles: ['ROLE_AUTHOR'],
+          })),
         },
       },
       { provide: AppLoggerService, useValue: { error: vi.fn(), warn: vi.fn() } },

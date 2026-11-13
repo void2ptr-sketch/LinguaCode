@@ -84,7 +84,10 @@ export class SyncQueueBootstrap {
       }
       case 'course.update': {
         const { courseId, payload } = entry.payload as CourseUpdatePayloadEntry;
-        await this.coursesApi.update(await this.courseSearch.resolveCourseIdForWrite(courseId), payload);
+        await this.coursesApi.update(
+          await this.courseSearch.resolveCourseIdForWrite(courseId),
+          payload,
+        );
         return;
       }
       case 'course.delete': {

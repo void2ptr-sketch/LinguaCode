@@ -114,7 +114,12 @@ describe('ExplorerTreeComponent (DOM rendering)', () => {
         {
           provide: AuthStore,
           useValue: {
-            user: vi.fn(() => ({ id: TEST_USER_ID, displayName: '', email: '', roles: ['ROLE_AUTHOR'] })),
+            user: vi.fn(() => ({
+              id: TEST_USER_ID,
+              displayName: '',
+              email: '',
+              roles: ['ROLE_AUTHOR'],
+            })),
           },
         },
         { provide: AppLoggerService, useValue: { error: vi.fn(), warn: vi.fn() } },

@@ -16,4 +16,4 @@ export type UserPreferencesPort = {
 
   /** Сбросить предпочтения к значениям по умолчанию. */
   reset(): Promise<void>;
-}
+};

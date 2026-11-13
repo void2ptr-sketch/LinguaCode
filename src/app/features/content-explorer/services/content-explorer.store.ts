@@ -17,9 +17,7 @@ import { ProgramsApiService } from '../../../entities/program/api/programs-api.s
 import type { ProgramWithLessons } from '../../../entities/program/model/program.types';
 import { ScenarioSearchService } from '../../../entities/scenario/search/scenario-search.service';
 import type { Scenario } from '../../../entities/scenario/model/scenario.types';
-import type {
-  ScenarioCardSource,
-} from '../../../entities/scenario/model/scenario-card-source.types';
+import type { ScenarioCardSource } from '../../../entities/scenario/model/scenario-card-source.types';
 import { CardSearchService } from '../../../entities/card/search/card-search.service';
 import type { CardIndexEntry } from '../../../entities/card/model/card-index.types';
 import { AuthStore } from '../../../entities/auth/services/auth.store';
@@ -207,7 +205,10 @@ export class ContentExplorerStore {
           break;
       }
     } catch (error) {
-      this.logger.error(`ContentExplorer: failed to load children of ${node.kind}:${node.id}`, error);
+      this.logger.error(
+        `ContentExplorer: failed to load children of ${node.kind}:${node.id}`,
+        error,
+      );
       node.childError.set('Не удалось загрузить вложенные элементы');
       node.expanded.set(false);
     } finally {
@@ -236,7 +237,9 @@ export class ContentExplorerStore {
           const program = await this.programsApi.getById(node.id);
           node.title.set(program.title);
           node.data = program;
-          node.meta.set(`Трек · ${program.lessons?.length ?? program.lessonIds?.length ?? 0} урок(ов)`);
+          node.meta.set(
+            `Трек · ${program.lessons?.length ?? program.lessonIds?.length ?? 0} урок(ов)`,
+          );
           break;
         }
         case 'scenario': {
@@ -466,29 +469,28 @@ export class ContentExplorerStore {
     const scenarios = await this.scenarioSearchService.getByIdBatch(scenarioIds);
     const byId = new Map(scenarios.map((scenario) => [scenario.id, scenario]));
 
-    return scenarioIds
-      .map((scenarioId) => {
-        const scenario = byId.get(scenarioId);
-        if (!scenario) {
-          return this.createNode({
-            kind: 'scenario',
-            id: scenarioId,
-            parentId: lessonNode.key,
-            title: `Сценарий ${scenarioId}`,
-            meta: 'Сценарий (не найден в каталоге)',
-            editable: false,
-          });
-        }
+    return scenarioIds.map((scenarioId) => {
+      const scenario = byId.get(scenarioId);
+      if (!scenario) {
         return this.createNode({
           kind: 'scenario',
-          id: scenario.id,
+          id: scenarioId,
           parentId: lessonNode.key,
-          title: scenario.title,
-          meta: this.scenarioMeta(scenario),
-          editable: this.isOwnAuthor(scenario.authorId),
-          data: scenario,
+          title: `Сценарий ${scenarioId}`,
+          meta: 'Сценарий (не найден в каталоге)',
+          editable: false,
         });
+      }
+      return this.createNode({
+        kind: 'scenario',
+        id: scenario.id,
+        parentId: lessonNode.key,
+        title: scenario.title,
+        meta: this.scenarioMeta(scenario),
+        editable: this.isOwnAuthor(scenario.authorId),
+        data: scenario,
       });
+    });
   }
 
   private async loadCardChildren(scenarioNode: ExplorerNode): Promise<readonly ExplorerNode[]> {
@@ -523,7 +525,10 @@ export class ContentExplorerStore {
         resolved.set(entry.id, entry);
       }
     } catch (error) {
-      this.logger.warn?.('ContentExplorer: card index load failed, falling back to per-card lookups', error);
+      this.logger.warn?.(
+        'ContentExplorer: card index load failed, falling back to per-card lookups',
+        error,
+      );
     }
 
     let fallbackUsed = 0;
@@ -549,9 +554,10 @@ export class ContentExplorerStore {
       fallbackUsed += 1;
       try {
         const card = await this.cardSearchService.getCardById(cardId);
-        const cardTitle = typeof card.title === 'string' && card.title.length > 0
-          ? card.title
-          : `Карточка ${cardId}`;
+        const cardTitle =
+          typeof card.title === 'string' && card.title.length > 0
+            ? card.title
+            : `Карточка ${cardId}`;
         cards.push(this.createCardNode(scenarioNode, card.id, cardTitle, card.kind));
       } catch {
         cards.push(

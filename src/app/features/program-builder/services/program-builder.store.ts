@@ -162,7 +162,9 @@ export class ProgramBuilderStore {
 
     try {
       const resolvedCourseId = await this.courseSearch.resolveCourseIdForWrite(courseId);
-      await this.programsApi.create(formDraftToProgramCreatePayload({ ...draft, courseId: resolvedCourseId }));
+      await this.programsApi.create(
+        formDraftToProgramCreatePayload({ ...draft, courseId: resolvedCourseId }),
+      );
       return true;
     } catch (error) {
       this.logger.error('ProgramBuilder: failed to create program', error);

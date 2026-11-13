@@ -209,8 +209,7 @@ function parseCardContent(dto: BackendCardDto): ParsedCardContent {
         ];
         const practiceModeRaw = get('practiceMode');
         const lexeme = get('promptLexeme') as
-          | { primary?: unknown; script?: unknown; pinyin?: unknown }
-          | undefined;
+          { primary?: unknown; script?: unknown; pinyin?: unknown } | undefined;
         const characterTargetsRaw = get('characterTargets');
 
         return {

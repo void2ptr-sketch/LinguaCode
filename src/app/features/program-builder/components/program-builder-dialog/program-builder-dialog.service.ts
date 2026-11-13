@@ -45,9 +45,7 @@ export class ProgramBuilderDialogService {
     return this.open({ mode: 'edit', programId });
   }
 
-  private open(
-    data: ProgramBuilderDialogData,
-  ): Promise<ProgramBuilderDialogResult | undefined> {
+  private open(data: ProgramBuilderDialogData): Promise<ProgramBuilderDialogResult | undefined> {
     if (this.activeRef) {
       return Promise.resolve(undefined);
     }

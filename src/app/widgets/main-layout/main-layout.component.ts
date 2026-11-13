@@ -34,15 +34,12 @@ export class MainLayoutComponent {
       : false,
   );
 
-  readonly toggleSidebar = () => this.sidebarCollapsed.update(v => !v);
+  readonly toggleSidebar = () => this.sidebarCollapsed.update((v) => !v);
 
   constructor() {
     effect(() => {
       if (isPlatformBrowser(this.platformId)) {
-        localStorage.setItem(
-          SIDEBAR_COLLAPSED_KEY,
-          String(this.sidebarCollapsed()),
-        );
+        localStorage.setItem(SIDEBAR_COLLAPSED_KEY, String(this.sidebarCollapsed()));
       }
     });
   }

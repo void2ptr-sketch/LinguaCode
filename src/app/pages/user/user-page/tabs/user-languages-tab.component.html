@@ -44,9 +44,7 @@
                   (selectedCodes().length === 1 && selectedCodes().includes(lang.code))
                 "
                 [matTooltip]="
-                  !lang.activeFlag
-                    ? 'Язык отключён администратором в справочнике (/admin)'
-                    : ''
+                  !lang.activeFlag ? 'Язык отключён администратором в справочнике (/admin)' : ''
                 "
               >
                 Использовать в обучении

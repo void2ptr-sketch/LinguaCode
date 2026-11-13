@@ -67,18 +67,18 @@ export class UserApiService implements UserPort {
   }
 
   /**
-    * Partially updates user preferences (PATCH /api/v1/users/me/preferences).
-    *
-    * @param patch - Fields to update.
-    * @returns Promise resolving to void (errors are silently ignored).
-    */
-   patchUserPreferences(patch: Partial<GeneratedUserPreferences>): Promise<void> {
-     return firstValueFrom(
-       this.http.patch<ApiResponse<unknown>>(buildApiUrl(`/users/me/preferences`), patch),
-     )
-       .then(() => undefined)
-       .catch(() => undefined);
-   }
+   * Partially updates user preferences (PATCH /api/v1/users/me/preferences).
+   *
+   * @param patch - Fields to update.
+   * @returns Promise resolving to void (errors are silently ignored).
+   */
+  patchUserPreferences(patch: Partial<GeneratedUserPreferences>): Promise<void> {
+    return firstValueFrom(
+      this.http.patch<ApiResponse<unknown>>(buildApiUrl(`/users/me/preferences`), patch),
+    )
+      .then(() => undefined)
+      .catch(() => undefined);
+  }
 }
 
 /**

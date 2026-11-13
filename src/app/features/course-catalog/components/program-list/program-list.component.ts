@@ -122,7 +122,9 @@ export class CourseCatalogProgramsComponent {
         // Real backend requires numeric IDs (BIGINT PK). Non-numeric slugs
         // are only valid when the mock backend serves the data.
         if (!resolvedId || (!this.coursesMockEnabled && !/^\d+$/.test(resolvedId))) {
-          this.logger.warn(`[ProgramList] Skipping course with non-numeric resolved ID: "${id}" → "${resolvedId}"`);
+          this.logger.warn(
+            `[ProgramList] Skipping course with non-numeric resolved ID: "${id}" → "${resolvedId}"`,
+          );
           continue;
         }
         try {
@@ -151,9 +153,9 @@ export class CourseCatalogProgramsComponent {
   // ---- Methods ----
 
   /**
-    * Returns the number of lessons for a program.
-    * Uses program.lessons as the source (resolved by the API).
-    */
+   * Returns the number of lessons for a program.
+   * Uses program.lessons as the source (resolved by the API).
+   */
   getLessonCount(programId: string): number {
     const program = this.programs().find((p) => p.id === programId);
     return program?.lessons?.length ?? 0;

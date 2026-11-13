@@ -19,7 +19,4 @@ export * from './code-highlight.utils';
 export * from './keyboard-answer-mode.utils';
 
 // ===== Catalog Tag Groups =====
-export {
-  groupCatalogTagFacets,
-  type CatalogTagFacetGroup,
-} from './catalog-tag-groups.util';
+export { groupCatalogTagFacets, type CatalogTagFacetGroup } from './catalog-tag-groups.util';

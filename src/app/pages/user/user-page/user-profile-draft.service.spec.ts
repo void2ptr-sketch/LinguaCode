@@ -130,11 +130,9 @@ describe('UserProfileDraftService', () => {
       await service.saveProfile();
 
       // displayName save succeeds, preferences save fails → "Не удалось сохранить профиль"
-      expect(snackBarSpy).toHaveBeenCalledWith(
-        'Не удалось сохранить профиль',
-        'Закрыть',
-        { duration: 5000 },
-      );
+      expect(snackBarSpy).toHaveBeenCalledWith('Не удалось сохранить профиль', 'Закрыть', {
+        duration: 5000,
+      });
     });
   });
 });
