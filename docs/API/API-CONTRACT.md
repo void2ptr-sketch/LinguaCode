@@ -19,9 +19,12 @@
 
 Реализация: `LanguagePairsApiService` · mock: нет (данные с бэкенда).
 
-| Метод | Путь              | Описание                           |
-| ----- | ----------------- | ---------------------------------- |
-| GET   | `/language-pairs` | Список всех доступных языковых пар |
+| Метод | Путь                    | Описание                            |
+| ----- | ----------------------- | ----------------------------------- |
+| GET   | `/language-pairs`       | Список всех доступных языковых пар  |
+| POST  | `/language-pairs`       | Создание пары (201)                 |
+| PATCH | `/language-pairs/:id`   | Частичное обновление пары           |
+| DELETE| `/language-pairs/:id`   | Удаление пары                       |
 
 Ответ: `ApiListResponse<LanguagePairDto>`
 
@@ -62,6 +65,30 @@ type LanguagePairDto = {
 > **Важно:** эндпоинт `GET /cards/:id` принимает **строковый ID** (numeric или slug). Бэкенд сначала пытается распарсить как число (`Long`), при ошибке ищет по slug (`findBySlug`). Это позволяет фронтенду использовать контентные идентификаторы типа `draw-radical-001`.
 
 Критерии поиска (`CardSearchCriteria`): `query`, `knownLanguage`, `learningLanguage`, `tags`, `difficulty`, `kinds`, `page` (`page` / `pageSize`), `sort`. Параметры сериализуются через `buildCardSearchParams`.
+
+### Справочник тегов карточек (`/cards/tags`)
+
+Реализация: `TagsService`.
+
+| Метод | Путь                                  | Описание                                |
+| ----- | ------------------------------------- | --------------------------------------- |
+| GET   | `/cards/tags`                         | Все уникальные теги                     |
+| GET   | `/cards/tags/course/:id`              | Теги карточек конкретного курса         |
+| GET   | `/cards/tags/program/:id`             | Теги карточек конкретной программы      |
+| GET   | `/cards/tags/lesson/:id`              | Теги карточек конкретного урока         |
+| GET   | `/cards/tags/scenario/:id`            | Теги карточек конкретного сценария      |
+
+Ответ: `ApiListResponse<ReferenceOptionDto>` — `{ "code": string, "label": string }`.
+
+### Справочник типов карточек (`/cards/kinds`)
+
+Реализация: `CatalogService` (через `CardKindsService`).
+
+| Метод | Путь            | Описание                      |
+| ----- | --------------- | ----------------------------- |
+| GET   | `/cards/kinds`  | Список типов карточек         |
+
+Ответ: `ApiListResponse<ReferenceOptionDto>`. Типы включают `difficulty` с запятой-разделёнными опциями сложности.
 
 ## Сценарии (`/scenarios`)
 
@@ -233,6 +260,137 @@ type XapiStatement = {
 
 > **Важно:** оба эндпоинта извлекают `userId` из JWT-токена (через `Authentication`Spring Security). `userId` не передаётся в query-параметрах или теле запроса. Авторизация на этих эндпоинтах проверяет ownership через JWT. Пейлоад обновления: `UpdateUserPayload` (`displayName?`, `preferences?`).
 
+## Языки (`/languages`)
+
+Реализация: `LanguageApiService`.
+
+| Метод | Путь                    | Описание                                |
+| ----- | ----------------------- | --------------------------------------- |
+| GET   | `/languages`            | Список всех языков (activeFlag фильтр)  |
+| GET   | `/languages/:id`        | Язык по ID                              |
+| GET   | `/languages/by-code`    | Язык по ISO-коду (`?code=ru`)           |
+| POST  | `/languages`            | Создание языка (201)                    |
+| PATCH | `/languages/:id`        | Частичное обновление языка              |
+| DELETE| `/languages/:id`        | Удаление языка (204)                    |
+
+Пейлоад создания: `LanguageCreatePayload` (`code`, `displayName`, `nativeName`, `writingDir`, `supportsTones`, `supportsPinyin`, `fontFamily`, `activeFlag`).
+
+> **Примечание:** эндпоинт `GET /languages` возвращает только активные языки (activeFlag=true). Для полного списка используйте `GET /languages` без фильтрации на фронтенде.
+
+## Справочники (`/reference`)
+
+Реализация: `CatalogService` (через generated API-клиенты).
+
+| Метод | Путь                    | Описание                                |
+| ----- | ----------------------- | --------------------------------------- |
+| GET   | `/content-languages`    | Языки контента                          |
+| GET   | `/font-sizes`           | Размеры шрифта                          |
+| GET   | `/learning/statuses`    | Статусы уроков                          |
+
+Ответ: `ApiListResponse<ReferenceOptionDto>` — `{ "code": string, "label": string }`.
+
+## Восстановление пароля (`/auth`)
+
+Реализация: `PasswordRecoveryService` (backend only).
+
+| Метод | Путь                    | Описание                                |
+| ----- | ----------------------- | --------------------------------------- |
+| POST  | `/auth/forgot-password` | Запрос 6-значного кода на email         |
+| POST  | `/auth/verify-code`     | Проверка кода                           |
+| POST  | `/auth/reset-password`  | Сброс пароля по токену                  |
+
+Пейлоад `PasswordForgotRequest`: `{ "email": string }`.
+Пейлоад `PasswordVerifyCodeRequest`: `{ "email": string, "code": string }`.
+Пейлоад `PasswordResetRequest`: `{ "resetToken": string, "newPassword": string }`.
+
+> **Примечание:** в dev-режиме код возвращается в ответе; в production — отправка email без раскрытия факта регистрации.
+
+## Поведение обучения (`/learning`)
+
+Реализация: `BehaviorAnalysisService` (backend only).
+
+| Метод | Путь                                    | Описание                                |
+| ----- | --------------------------------------- | --------------------------------------- |
+| GET   | `/learning/behavior/snapshot`           | Полный снапшот поведения пользователя   |
+| GET   | `/learning/behavior/weak-cards`         | Список слабых карточек                  |
+| GET   | `/learning/behavior/pace`               | Аналитика темпа обучения                |
+| GET   | `/learning/behavior/difficulty`         | Кривая сложности по типам карточек      |
+
+Параметр `accuracyThreshold` (default: `0.5`) — порог точности для слабых карточек.
+
+Ответы:
+- `/snapshot` → `ApiOneResponse<UserBehaviorDto>`
+- `/weak-cards` → `ApiListResponse<LearningWeakCardProfileDto>`
+- `/pace` → `ApiOneResponse<LearningPaceDto>`
+- `/difficulty` → `ApiOneResponse<LearningDifficultyCurveDto>`
+
+> **Примечание:** все эндпоинты извлекают `userId` из JWT-токена — поле `userId` не передаётся в запросе.
+
+## Подписка (`/subscription`)
+
+Реализация: `SubscriptionService` (backend only).
+
+| Метод | Путь                | Описание                                |
+| ----- | ------------------- | --------------------------------------- |
+| GET   | `/subscription/status` | Текущий статус подписки пользователя |
+| POST  | `/subscription/activate` | Активация подписи (webhook, admin) |
+
+Ответ `/status` → `ApiOneResponse<SubscriptionStatusDto>`.
+
+## Обратная связь (`/feedback`)
+
+Реализация: `FeedbackService` (backend only).
+
+| Метод | Путь              | Описание                                |
+| ----- | ----------------- | --------------------------------------- |
+| POST  | `/feedback`       | Создать обращение (201)                |
+| GET   | `/feedback/:id`   | Детали обращения                      |
+| GET   | `/feedback/my`    | Мои обращения (paginated)              |
+
+Пейлоад создания: `FeedbackCreateRequest` (`entityType`, `entityId`, `feedbackType`, `message`).
+
+Справочники обратной связи:
+
+| Метод | Путь                    | Описание                                |
+| ----- | ----------------------- | --------------------------------------- |
+| GET   | `/feedback/types`       | Типы обратной связи                     |
+| GET   | `/feedback/statuses`    | Статусы обратной связи                  |
+| GET   | `/feedback/severities`  | Уровни серьёзности                      |
+
+Ответ: `ApiListResponse<ReferenceOptionDto>`.
+
+## SCORM (`/scorm`)
+
+Реализация: `ScormImportService` (backend only).
+
+| Метод | Путь            | Описание                                |
+| ----- | --------------- | --------------------------------------- |
+| POST  | `/scorm/import` | Импорт курса из SCORM ZIP (201)         |
+
+Параметры: `file` (MultipartFile, required), `authorId` (Long, required), `title` (String, optional).
+
+Ответ: `ApiOneResponse<ScormImportResult>` — содержит counts созданных сущностей.
+
+## Справочники подписок (`/subscription`)
+
+Реализация: `SubscriptionService` (backend only).
+
+| Метод | Путь                        | Описание                                |
+| ----- | --------------------------- | --------------------------------------- |
+| GET   | `/subscription/payment-tiers` | Список тарифов оплаты               |
+
+Ответ: `ApiListResponse<ReferenceOptionDto>`.
+
+## Админ (`/admin`)
+
+Реализация: `AdminTierService` (backend only).
+
+| Метод | Путь              | Описание                                |
+| ----- | ----------------- | --------------------------------------- |
+| GET   | `/admin/content`  | Админ-тарифы для контента               |
+
+Ответ: `ApiListResponse<ReferenceOptionDto>`.
+
 ## Аутентификация (`/auth`)
 
 Реализация: `AuthApiService` · порт `AuthPort` · стор `AuthStore` · хранилище `AuthTokenStorage` (sessionStorage).
@@ -270,3 +428,20 @@ type XapiStatement = {
 - Auth: `authEnabled` = `false` в dev (mock-бэкенд не требует токенов); `true` в production включает restore-сессии и refresh-интерсептор.
 - Контракт должен совпадать: порты + conformance-тесты (`*.port.conformance.spec.ts`) проверяют, что API-сервис и mock-хендлер структурно реализуют один и тот же порт.
 - Слой legacy-хранилищ (`courses-storage`, `scenarios-storage`, `CardRepository`) — внутренняя реализация mock-бэкенда; фронтенд через API-сервисы.
+
+## Не реализовано на фронтенде
+
+Следующие эндпоинты реализованы на бэкенде, но ещё не имеют фронтенд-сервисов:
+
+| Домен | Эндпоинты | Приоритет |
+|-------|-----------|-----------|
+| Password Recovery | `POST /auth/forgot-password`, `POST /auth/verify-code`, `POST /auth/reset-password` | Medium |
+| Learning Behavior | `GET /learning/behavior/*` (4 эндпоинта) | Low |
+| Subscription | `GET /subscription/status`, `POST /subscription/activate` | Low |
+| SCORM Import | `POST /scorm/import` | Low |
+| Feedback | `POST /feedback`, `GET /feedback/:id`, `GET /feedback/my` | Medium |
+| Feedback References | `GET /feedback/types`, `/statuses`, `/severities` | Low |
+| Font Sizes | `GET /font-sizes` | Low |
+| Learning Statuses | `GET /learning/statuses` | Low |
+| Payment Tiers | `GET /subscription/payment-tiers` | Low |
+| Admin Tiers | `GET /admin/content` | Low |
