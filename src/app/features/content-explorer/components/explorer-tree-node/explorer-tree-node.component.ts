@@ -25,6 +25,8 @@ export class ExplorerTreeNodeComponent {
   readonly node = input.required<ExplorerNode>();
   /** Depth level (for indentation). */
   readonly depth = input<number>(0);
+  /** Whether the node is inside the expanded subtree of a search match. */
+  readonly searchSubtree = input<boolean>(false);
 
   protected readonly store = inject(ContentExplorerStore);
   protected readonly kindIcon = computed(() => EXPLORER_KIND_ICONS[this.node().kind]);
@@ -33,37 +35,71 @@ export class ExplorerTreeNodeComponent {
   /** Whether a search filter is currently active. */
   protected readonly searchActive = computed(() => this.store.searchVisibleKeys() !== null);
 
+  /** Whether this node itself matched the active search query. */
+  protected readonly isSearchMatch = computed(() =>
+    this.store.searchMatchedKeys().has(this.node().key),
+  );
+
   /**
-   * Children to render: regular lazy children plus search-only card nodes,
-   * filtered down to the keys matched by the active search.
+   * Search mode where the branch is trimmed to the path of matches.
+   *
+   * @remarks
+   * Applies to context ancestors only: matched nodes (and their subtrees) keep
+   * the regular interactive behaviour.
+   */
+  protected readonly filteredSearchMode = computed(
+    () => this.searchActive() && !this.isSearchMatch() && !this.searchSubtree(),
+  );
+
+  /** Search-only children attached to this node by the store. */
+  protected readonly searchExtras = computed(
+    () => this.store.searchExtraChildren().get(this.node().key) ?? [],
+  );
+
+  /**
+   * Children to render: regular lazy children plus search-only nodes.
+   *
+   * @remarks
+   * Only context ancestors are filtered down to the matched path; matched
+   * nodes and their subtrees render all children so they stay explorable.
    */
   protected readonly visibleChildren = computed(() => {
     const node = this.node();
     const base = node.children() ?? [];
-    const extra = this.store.searchExtraChildren().get(node.key) ?? [];
+    const extra = this.searchExtras();
     const all = extra.length > 0 ? [...base, ...extra] : base;
+
+    if (!this.searchActive() || this.isSearchMatch() || this.searchSubtree()) {
+      return all;
+    }
     const visibleKeys = this.store.searchVisibleKeys();
-    return visibleKeys ? all.filter((child) => visibleKeys.has(child.key)) : base;
+    return visibleKeys ? all.filter((child) => visibleKeys.has(child.key)) : all;
   });
 
   /** Whether the node row has children (and therefore an expand toggle). */
   protected readonly hasChildren = computed(() => {
     const node = this.node();
-    if (this.searchActive()) {
+    if (this.filteredSearchMode()) {
       return this.visibleChildren().length > 0;
     }
     if (node.kind !== 'card') {
-      return true;
+      const children = node.children();
+      return children === null || children.length > 0;
     }
     return node.virtual && (node.children()?.length ?? 0) > 0;
   });
 
   /** Whether children should be rendered below the row. */
   protected readonly showChildren = computed(() => {
-    if (this.searchActive()) {
+    if (this.filteredSearchMode()) {
       return this.visibleChildren().length > 0;
     }
-    return this.node().expanded() && this.node().children() !== null;
+    const node = this.node();
+    if (node.expanded()) {
+      return node.children() !== null || this.searchExtras().length > 0;
+    }
+    // Matched nodes keep their search-only children visible even when collapsed.
+    return this.searchActive() && this.isSearchMatch() && this.searchExtras().length > 0;
   });
 
   protected onSelect(event: Event): void {

@@ -15,8 +15,10 @@ import { CourseSearchService } from '../../../entities/course/search/course-sear
 import type { CourseIndexEntry, CourseWithPrograms } from '../../../entities/course/model';
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import type { ProgramWithLessons } from '../../../entities/program/model/program.types';
+import type { ProgramIndexEntry } from '../../../entities/program/model/program-search.types';
 import { ScenarioSearchService } from '../../../entities/scenario/search/scenario-search.service';
 import type { Scenario } from '../../../entities/scenario/model/scenario.types';
+import type { ScenarioIndexEntry } from '../../../entities/scenario/model/scenario-index.types';
 import type { ScenarioCardSource } from '../../../entities/scenario/model/scenario-card-source.types';
 import { CardSearchService } from '../../../entities/card/search/card-search.service';
 import type { CardIndexEntry } from '../../../entities/card/model/card-index.types';
@@ -27,6 +29,8 @@ import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type { ExplorerNodeKind, ExplorerRevealTarget } from '../types/content-explorer.types';
 
 const ROOT_PAGE_SIZE = 100;
+/** Page size for entity catalog searches (courses / programs / scenarios). */
+const SEARCH_PAGE_SIZE = 100;
 /** Max number of per-card fallback lookups when the index cache misses. */
 const MAX_CARD_FALLBACK_LOOKUPS = 20;
 
@@ -140,6 +144,18 @@ export class ContentExplorerStore {
   readonly searchVisibleKeys = signal<ReadonlySet<string> | null>(null);
 
   /**
+   * Keys of the nodes that matched the active query themselves (not ancestors).
+   *
+   * @remarks
+   * Matched nodes stay interactive during search: they keep the expand toggle
+   * and, when expanded, render ALL their children (not only matching ones).
+   */
+  readonly searchMatchedKeys = signal<ReadonlySet<string>>(new Set());
+
+  /** Keys of ancestors of matched nodes (auto-expanded context branch). */
+  readonly searchAncestorKeys = signal<ReadonlySet<string>>(new Set());
+
+  /**
    * Extra card nodes produced by search, grouped by parent scenario key.
    *
    * @remarks
@@ -155,8 +171,12 @@ export class ContentExplorerStore {
   private searchSequence = 0;
   /** Node keys created only for the current search (cleaned up on clear). */
   private readonly searchCreatedNodeKeys = new Set<string>();
+  /** In-flight child loads by node key (dedupes concurrent requests). */
+  private readonly pendingChildLoads = new Map<string, Promise<void>>();
   /** Virtual root for cards that are not referenced by any scenario. */
   private orphanCardsRoot: ExplorerNode | null = null;
+  /** Virtual root for scenarios that are not attached to any lesson. */
+  private unattachedScenariosRoot: ExplorerNode | null = null;
 
   /**
    * Runs a tree search: title matches over loaded nodes + card catalog search.
@@ -190,23 +210,39 @@ export class ContentExplorerStore {
         return;
       }
 
-      const matches = this.collectTitleMatches(normalized);
-      const cardEntries = await this.searchCards(normalized);
+      const titleMatches = this.collectTitleMatches(normalized);
+      const [cardEntries, scenarioMatches, programMatches, courseMatches] = await Promise.all([
+        this.searchCards(normalized),
+        this.searchScenarioNodes(normalized),
+        this.searchProgramNodes(normalized),
+        this.searchCourseNodes(normalized),
+      ]);
       if (sequence !== this.searchSequence) {
         return;
       }
 
+      const matches = [...courseMatches, ...programMatches, ...scenarioMatches, ...titleMatches];
       matches.push(...(await this.attachCardMatches(cardEntries)));
       if (sequence !== this.searchSequence) {
         return;
       }
 
-      const visibleKeys = this.buildVisibleKeys(matches);
+      const uniqueMatches = [...new Map(matches.map((node) => [node.key, node])).values()];
+      const matchedKeys = new Set(uniqueMatches.map((node) => node.key));
+      const ancestorKeys = this.collectAncestorKeys(uniqueMatches);
+      this.expandAncestors(ancestorKeys);
+
+      const visibleKeys = this.buildVisibleKeys(uniqueMatches);
       const resultRoots = this.roots().filter((root) => visibleKeys.has(root.key));
       if (this.orphanCardsRoot) {
         resultRoots.push(this.orphanCardsRoot);
       }
+      if (this.unattachedScenariosRoot) {
+        resultRoots.push(this.unattachedScenariosRoot);
+      }
 
+      this.searchMatchedKeys.set(matchedKeys);
+      this.searchAncestorKeys.set(ancestorKeys);
       this.searchVisibleKeys.set(visibleKeys);
       this.searchResultRoots.set(resultRoots);
     } catch (error) {
@@ -234,9 +270,31 @@ export class ContentExplorerStore {
     }
     this.searchCreatedNodeKeys.clear();
     this.orphanCardsRoot = null;
+    this.unattachedScenariosRoot = null;
+    this.searchMatchedKeys.set(new Set());
+    this.searchAncestorKeys.set(new Set());
     this.searchVisibleKeys.set(null);
     this.searchExtraChildren.set(new Map());
     this.searchResultRoots.set([]);
+  }
+
+  /** Collects ancestors (context branch) of all matched nodes. */
+  private collectAncestorKeys(matches: readonly ExplorerNode[]): ReadonlySet<string> {
+    const keys = new Set<string>();
+    for (const node of matches) {
+      const path = this.pathOf(node);
+      for (const ancestor of path.slice(0, -1)) {
+        keys.add(ancestor.key);
+      }
+    }
+    return keys;
+  }
+
+  /** Auto-expands context ancestors so the matched path is visible. */
+  private expandAncestors(keys: ReadonlySet<string>): void {
+    for (const key of keys) {
+      this.nodeIndex.get(key)?.expanded.set(true);
+    }
   }
 
   private async ensureChildrenLoaded(node: ExplorerNode): Promise<void> {
@@ -325,7 +383,6 @@ export class ContentExplorerStore {
       return [];
     }
 
-    const extraByScenario = new Map<string, ExplorerNode[]>();
     const matches: ExplorerNode[] = [];
 
     for (const entry of entries) {
@@ -346,13 +403,10 @@ export class ContentExplorerStore {
       const cardNode = this.createCardNode(scenarioNode, entry.id, entry.title, entry.kind);
       cardNode.data = entry;
       this.searchCreatedNodeKeys.add(cardNode.key);
-      const bucket = extraByScenario.get(scenarioNode.key) ?? [];
-      bucket.push(cardNode);
-      extraByScenario.set(scenarioNode.key, bucket);
+      this.addSearchExtraChild(scenarioNode.key, cardNode);
       matches.push(cardNode);
     }
 
-    this.searchExtraChildren.set(extraByScenario);
     return matches;
   }
 
@@ -404,6 +458,236 @@ export class ContentExplorerStore {
     }
 
     return scenarios.find((node) => this.scenarioReferencesCard(node, entry.id)) ?? null;
+  }
+
+  // -------------------------------------------------------------------------
+  // Search — entity catalog lookups (courses / programs / scenarios)
+  // -------------------------------------------------------------------------
+
+  /**
+   * Finds courses by title through `/courses/search` and exposes them as roots.
+   *
+   * @remarks
+   * Roots are loaded page by page (`ROOT_PAGE_SIZE`), so a course beyond the
+   * first page would otherwise be invisible to search.
+   */
+  private async searchCourseNodes(query: string): Promise<ExplorerNode[]> {
+    try {
+      const page = await this.courseSearchService.search({
+        query,
+        scope: 'all',
+        page: { page: 0, pageSize: ROOT_PAGE_SIZE },
+      });
+
+      const known = new Set(this.roots().map((node) => node.id));
+      const discovered = page.items
+        .filter((entry) => !known.has(entry.id))
+        .map((entry) => this.createCourseNode(entry));
+      if (discovered.length > 0) {
+        this.roots.set([...this.roots(), ...discovered]);
+      }
+
+      const roots = this.roots();
+      return page.items
+        .map((entry) => roots.find((root) => root.id === entry.id) ?? null)
+        .filter((node): node is ExplorerNode => node !== null);
+    } catch (error) {
+      this.logger.warn('ContentExplorer: course search failed', error);
+      return [];
+    }
+  }
+
+  /**
+   * Finds programs (tracks) by title and attaches them to their course node.
+   *
+   * @remarks
+   * `ProgramIndexEntry` carries `courseId`, so the ancestor chain is just the
+   * course root. Missing program nodes are exposed through
+   * `searchExtraChildren` — the lazy tree is not mutated.
+   */
+  private async searchProgramNodes(query: string): Promise<ExplorerNode[]> {
+    try {
+      const page = await this.programsApi.search({
+        query,
+        page: { page: 0, pageSize: SEARCH_PAGE_SIZE },
+      });
+
+      const matches: ExplorerNode[] = [];
+      for (const entry of page.items) {
+        const registered = this.nodeIndex.get(`program:${entry.id}`);
+        if (registered) {
+          matches.push(registered);
+          continue;
+        }
+
+        const courseNode = this.findCourseNode(entry.courseId);
+        if (!courseNode) {
+          continue;
+        }
+        await this.ensureChildrenLoaded(courseNode);
+
+        const existing = (courseNode.children() ?? []).find(
+          (node) => node.kind === 'program' && node.id === entry.id,
+        );
+        if (existing) {
+          matches.push(existing);
+          continue;
+        }
+
+        const node = this.createNode({
+          kind: 'program',
+          id: entry.id,
+          parentId: courseNode.key,
+          title: entry.title,
+          meta: `Трек · ${entry.lessonCount} урок(ов)`,
+          editable: courseNode.editable,
+          // `lessons` отсутствуют — `loadLessonChildren()` доберёт их через getById().
+          data: {
+            id: entry.id,
+            courseId: entry.courseId,
+            title: entry.title,
+            order: entry.order,
+          } satisfies Partial<ProgramIndexEntry>,
+        });
+        this.searchCreatedNodeKeys.add(node.key);
+        this.addSearchExtraChild(courseNode.key, node);
+        matches.push(node);
+      }
+      return matches;
+    } catch (error) {
+      this.logger.warn('ContentExplorer: program search failed', error);
+      return [];
+    }
+  }
+
+  /**
+   * Finds scenarios by title and attaches them to their lesson node.
+   *
+   * @remarks
+   * `ScenarioIndexEntry` has `courseId` but no `lessonId`, so the lesson is
+   * resolved through `lesson.scenarioIds` (one `getByCourse` request).
+   */
+  private async searchScenarioNodes(query: string): Promise<ExplorerNode[]> {
+    try {
+      const page = await this.scenarioSearchService.search({
+        query,
+        scope: 'all',
+        page: { page: 0, pageSize: SEARCH_PAGE_SIZE },
+      });
+      if (page.items.length === 0) {
+        return [];
+      }
+
+      const scenarios = await this.scenarioSearchService.getByIdBatch(
+        page.items.map((entry) => entry.id),
+      );
+      const byId = new Map(scenarios.map((scenario) => [scenario.id, scenario]));
+
+      const matches: ExplorerNode[] = [];
+      for (const entry of page.items) {
+        const registered = this.nodeIndex.get(`scenario:${entry.id}`);
+        if (registered) {
+          matches.push(registered);
+          continue;
+        }
+
+        const courseNode = this.findCourseNode(entry.courseId);
+        const lessonNode = courseNode
+          ? await this.findLessonNodeByScenarioId(courseNode, entry.id)
+          : null;
+        if (!lessonNode) {
+          matches.push(this.createUnattachedScenarioNode(entry, byId.get(entry.id)));
+          continue;
+        }
+
+        await this.ensureChildrenLoaded(lessonNode);
+        const existing = (lessonNode.children() ?? []).find(
+          (node) => node.kind === 'scenario' && node.id === entry.id,
+        );
+        if (existing) {
+          matches.push(existing);
+          continue;
+        }
+
+        const node = this.createScenarioNode(lessonNode, entry.id, byId.get(entry.id));
+        this.searchCreatedNodeKeys.add(node.key);
+        this.addSearchExtraChild(lessonNode.key, node);
+        matches.push(node);
+      }
+      return matches;
+    } catch (error) {
+      this.logger.warn('ContentExplorer: scenario search failed', error);
+      return [];
+    }
+  }
+
+  /** Resolves a lesson containing the scenario (single `getByCourse` request). */
+  private async findLessonNodeByScenarioId(
+    courseNode: ExplorerNode,
+    scenarioId: string,
+  ): Promise<ExplorerNode | null> {
+    await this.ensureChildrenLoaded(courseNode);
+
+    const programs = await this.programsApi.getByCourse(courseNode.id);
+    const program = programs.find((candidate) =>
+      candidate.lessons?.some((lesson) => lesson.scenarioIds?.includes(scenarioId)),
+    );
+    const lessonId = program?.lessons?.find((lesson) =>
+      lesson.scenarioIds?.includes(scenarioId),
+    )?.id;
+    if (!program || !lessonId) {
+      return null;
+    }
+
+    const programNode = (courseNode.children() ?? []).find(
+      (node) => node.kind === 'program' && node.id === program.id,
+    );
+    if (!programNode) {
+      return null;
+    }
+    await this.ensureChildrenLoaded(programNode);
+    return (
+      (programNode.children() ?? []).find(
+        (node) => node.kind === 'lesson' && node.id === lessonId,
+      ) ?? null
+    );
+  }
+
+  /** Adds a scenario that is not reachable through any lesson (virtual root). */
+  private createUnattachedScenarioNode(
+    entry: ScenarioIndexEntry,
+    scenario: Scenario | undefined,
+  ): ExplorerNode {
+    if (!this.unattachedScenariosRoot) {
+      this.unattachedScenariosRoot = this.createNode({
+        kind: 'scenario',
+        id: 'search:unattached-scenarios',
+        parentId: null,
+        title: 'Сценарии вне уроков',
+        meta: 'Результаты поиска',
+        virtual: true,
+        editable: false,
+      });
+      this.unattachedScenariosRoot.children.set([]);
+      this.searchCreatedNodeKeys.add(this.unattachedScenariosRoot.key);
+    }
+
+    const node = this.createScenarioNode(this.unattachedScenariosRoot, entry.id, scenario);
+    this.searchCreatedNodeKeys.add(node.key);
+    this.unattachedScenariosRoot.children.set([
+      ...(this.unattachedScenariosRoot.children() ?? []),
+      node,
+    ]);
+    return node;
+  }
+
+  /** Appends an extra child rendered on top of the lazy children of `parentKey`. */
+  private addSearchExtraChild(parentKey: string, child: ExplorerNode): void {
+    this.searchExtraChildren.update((map) => {
+      const next = new Map(map);
+      next.set(parentKey, [...(next.get(parentKey) ?? []), child]);
+      return next;
+    });
   }
 
   private findCourseNode(courseId: string | undefined): ExplorerNode | null {
@@ -535,6 +819,9 @@ export class ContentExplorerStore {
     if (this.orphanCardsRoot) {
       keys.add(this.orphanCardsRoot.key);
     }
+    if (this.unattachedScenariosRoot) {
+      keys.add(this.unattachedScenariosRoot.key);
+    }
     return keys;
   }
 
@@ -592,12 +879,31 @@ export class ContentExplorerStore {
     }
   }
 
-  /** Loads children of a node based on its kind. */
+  /**
+   * Loads children of a node based on its kind.
+   *
+   * @remarks
+   * Concurrent callers share the same in-flight promise, so search resolvers
+   * running in parallel do not observe a half-loaded ancestor chain.
+   */
   async loadChildren(node: ExplorerNode): Promise<void> {
-    if (node.loadingChildren() || node.children() !== null) {
+    if (node.children() !== null) {
       return;
     }
 
+    const pending = this.pendingChildLoads.get(node.key);
+    if (pending) {
+      return pending;
+    }
+
+    const task = this.loadChildrenInternal(node).finally(() => {
+      this.pendingChildLoads.delete(node.key);
+    });
+    this.pendingChildLoads.set(node.key, task);
+    return task;
+  }
+
+  private async loadChildrenInternal(node: ExplorerNode): Promise<void> {
     node.loadingChildren.set(true);
     node.childError.set(null);
 

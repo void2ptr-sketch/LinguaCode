@@ -2,7 +2,7 @@
   class="tree-node"
   role="treeitem"
   tabindex="0"
-  [attr.aria-expanded]="hasChildren() ? searchActive() || node().expanded() : null"
+  [attr.aria-expanded]="hasChildren() ? showChildren() : null"
   [attr.aria-selected]="store.selectedId() === node().id"
   [class.tree-node--selected]="store.selectedId() === node().id"
   [style.padding-left.rem]="depth() + 0.5"
@@ -14,12 +14,12 @@
     mat-icon-button
     type="button"
     class="tree-node__toggle"
-    [class.tree-node__toggle--hidden]="!hasChildren() || searchActive()"
-    [attr.aria-label]="node().expanded() ? 'Свернуть' : 'Развернуть'"
-    [matTooltip]="node().expanded() ? 'Свернуть' : 'Развернуть'"
+    [class.tree-node__toggle--hidden]="!hasChildren() || filteredSearchMode()"
+    [attr.aria-label]="showChildren() ? 'Свернуть' : 'Развернуть'"
+    [matTooltip]="showChildren() ? 'Свернуть' : 'Развернуть'"
     (click)="onToggle($event)"
   >
-    <mat-icon>{{ node().expanded() ? 'expand_more' : 'chevron_right' }}</mat-icon>
+    <mat-icon>{{ showChildren() ? 'expand_more' : 'chevron_right' }}</mat-icon>
   </button>
 
   <span
@@ -64,7 +64,11 @@
 @if (showChildren()) {
   <div class="tree-node__children" role="treegroup">
     @for (child of visibleChildren(); track child.key) {
-      <app-explorer-tree-node [node]="child" [depth]="depth() + 1" />
+      <app-explorer-tree-node
+        [node]="child"
+        [depth]="depth() + 1"
+        [searchSubtree]="searchSubtree() || isSearchMatch()"
+      />
     }
   </div>
 }

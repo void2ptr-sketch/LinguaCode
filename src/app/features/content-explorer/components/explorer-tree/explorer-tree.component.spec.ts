@@ -93,15 +93,32 @@ describe('ExplorerTreeComponent (DOM rendering)', () => {
         {
           provide: CourseSearchService,
           useValue: {
-            search: vi.fn().mockResolvedValue({ items: [courseEntry], totalItems: 1 }),
+            // `loadRoots()` has no query; catalog searches are opt-in per test.
+            search: vi
+              .fn()
+              .mockImplementation((criteria: { query?: string }) =>
+                Promise.resolve(
+                  criteria.query
+                    ? { items: [], totalItems: 0 }
+                    : { items: [courseEntry], totalItems: 1 },
+                ),
+              ),
             getById: vi.fn().mockResolvedValue(course),
             clearGetByIdCache: vi.fn(),
           },
         },
-        { provide: ProgramsApiService, useValue: { getById: vi.fn().mockResolvedValue(program) } },
+        {
+          provide: ProgramsApiService,
+          useValue: {
+            getById: vi.fn().mockResolvedValue(program),
+            search: vi.fn().mockResolvedValue({ items: [], totalItems: 0 }),
+            getByCourse: vi.fn().mockResolvedValue([program]),
+          },
+        },
         {
           provide: ScenarioSearchService,
           useValue: {
+            search: vi.fn().mockResolvedValue({ items: [], totalItems: 0 }),
             getByIdBatch: vi.fn().mockResolvedValue([scenario]),
             findUsingCard: vi.fn().mockResolvedValue([]),
           },
@@ -195,6 +212,59 @@ describe('ExplorerTreeComponent (DOM rendering)', () => {
       expect(el.textContent).toContain('Basics');
       expect(el.textContent).toContain('Приветствия');
       expect(el.textContent).toContain('Демо: приветствие');
+      expect(el.textContent).toContain('Hello');
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('keeps the expand toggle on matched scenarios and expands them in place', async () => {
+    vi.useFakeTimers();
+    try {
+      const store = TestBed.inject(ContentExplorerStore);
+      vi.mocked(TestBed.inject(CardSearchService).search).mockResolvedValue({
+        items: [],
+      } as never);
+      vi.mocked(TestBed.inject(ScenarioSearchService).search).mockResolvedValue({
+        items: [
+          {
+            id: 'scenario-1',
+            title: 'Демо: приветствие',
+            authorId: TEST_USER_ID,
+            cardSourceMode: 'fixed',
+            cardSourceSummary: '1 карточка',
+            published: true,
+            updatedAt: '2026-01-01T00:00:00Z',
+            courseId: 'course-1',
+          },
+        ],
+        totalItems: 1,
+      } as never);
+
+      const treeFixture = TestBed.createComponent(ExplorerTreeComponent);
+      const el = treeFixture.nativeElement as HTMLElement;
+      await store.loadRoots();
+
+      (treeFixture.componentInstance as unknown as { setFilter(query: string): void }).setFilter(
+        'Демо',
+      );
+      treeFixture.detectChanges();
+      await vi.advanceTimersByTimeAsync(300);
+      treeFixture.detectChanges();
+
+      const scenarioRow = [...el.querySelectorAll('.tree-node')].find((row) =>
+        row.textContent?.includes('Демо: приветствие'),
+      ) as HTMLElement | undefined;
+      expect(scenarioRow).toBeDefined();
+
+      const toggle = scenarioRow!.querySelector('.tree-node__toggle') as HTMLButtonElement;
+      expect(toggle.classList.contains('tree-node__toggle--hidden')).toBe(false);
+
+      const scenarioNode = store.getByKey('scenario:scenario-1');
+      expect(scenarioNode).not.toBeNull();
+      await store.toggleNode(scenarioNode!);
+      treeFixture.detectChanges();
+
       expect(el.textContent).toContain('Hello');
     } finally {
       vi.useRealTimers();

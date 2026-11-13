@@ -97,16 +97,26 @@ function setup(overrides?: {
     overrides?.scenarioById ?? ((id: string) => (id === 'scenario-1' ? scenario : undefined));
 
   const courseSearchService = {
-    search: vi.fn().mockResolvedValue({ items: [courseEntry], totalItems: 1 }),
+    // `loadRoots()` has no query; catalog searches are opt-in per test.
+    search: vi
+      .fn()
+      .mockImplementation((criteria: { query?: string }) =>
+        Promise.resolve(
+          criteria.query ? { items: [], totalItems: 0 } : { items: [courseEntry], totalItems: 1 },
+        ),
+      ),
     getById: vi.fn().mockResolvedValue(course),
     clearGetByIdCache: vi.fn(),
   };
 
   const programsApi = {
     getById: vi.fn().mockResolvedValue(program),
+    search: vi.fn().mockResolvedValue({ items: [], totalItems: 0 }),
+    getByCourse: vi.fn().mockResolvedValue([program]),
   };
 
   const scenarioSearchService = {
+    search: vi.fn().mockResolvedValue({ items: [], totalItems: 0 }),
     getByIdBatch: vi
       .fn()
       .mockImplementation((ids: readonly string[]) =>
@@ -357,6 +367,107 @@ describe('ContentExplorerStore', () => {
       'scenario',
       'card',
     ]);
+
+    // The card itself matched; its ancestors form the context branch.
+    expect(store.searchMatchedKeys().has('card:card-1')).toBe(true);
+    expect(store.searchAncestorKeys().has('scenario:scenario-1')).toBe(true);
+    expect(store.searchAncestorKeys().has('card:card-1')).toBe(false);
+  });
+
+  it('search() finds programs through /programs/search and attaches them to the course', async () => {
+    await store.loadRoots();
+    vi.mocked(TestBed.inject(CardSearchService).search).mockResolvedValue({
+      items: [],
+    } as never);
+    vi.mocked(TestBed.inject(ProgramsApiService).search).mockResolvedValue({
+      items: [
+        {
+          id: 'program-2',
+          courseId: 'course-1',
+          title: 'Advanced',
+          order: 1,
+          lessonCount: 1,
+          updatedAt: '2026-01-01T00:00:00Z',
+        },
+      ],
+      totalItems: 1,
+    } as never);
+
+    await store.search('Advanced');
+
+    expect(store.searchMatchedKeys().has('program:program-2')).toBe(true);
+    const extras = store.searchExtraChildren().get('course:course-1') ?? [];
+    expect(extras.map((node) => node.id)).toEqual(['program-2']);
+    expect(store.searchVisibleKeys()?.has('course:course-1')).toBe(true);
+    expect(store.searchResultRoots().map((node) => node.key)).toEqual(['course:course-1']);
+    expect(store.pathOf(extras[0]).map((node) => node.kind)).toEqual(['course', 'program']);
+  });
+
+  it('search() finds scenarios through /scenarios/search and resolves the lesson chain', async () => {
+    await store.loadRoots();
+    vi.mocked(TestBed.inject(CardSearchService).search).mockResolvedValue({
+      items: [],
+    } as never);
+    vi.mocked(TestBed.inject(ScenarioSearchService).search).mockResolvedValue({
+      items: [
+        {
+          id: 'scenario-1',
+          title: 'Демо: приветствие',
+          authorId: TEST_USER_ID,
+          cardSourceMode: 'fixed',
+          cardSourceSummary: '2 карточки',
+          published: true,
+          updatedAt: '2026-01-01T00:00:00Z',
+          courseId: 'course-1',
+        },
+      ],
+      totalItems: 1,
+    } as never);
+
+    await store.search('Демо');
+
+    expect(store.searchMatchedKeys().has('scenario:scenario-1')).toBe(true);
+    const scenarioNode = store.getByKey('scenario:scenario-1');
+    expect(scenarioNode).not.toBeNull();
+    expect(store.pathOf(scenarioNode!).map((node) => node.kind)).toEqual([
+      'course',
+      'program',
+      'lesson',
+      'scenario',
+    ]);
+    expect(store.searchVisibleKeys()?.has('lesson:lesson-1')).toBe(true);
+  });
+
+  it('search() exposes scenarios without a lesson through a virtual root', async () => {
+    await store.loadRoots();
+    vi.mocked(TestBed.inject(CardSearchService).search).mockResolvedValue({
+      items: [],
+    } as never);
+    vi.mocked(TestBed.inject(ScenarioSearchService).search).mockResolvedValue({
+      items: [
+        {
+          id: 'scenario-orphan',
+          title: 'Свободный сценарий',
+          authorId: TEST_USER_ID,
+          cardSourceMode: 'fixed',
+          cardSourceSummary: '0 карточек',
+          published: false,
+          updatedAt: '2026-01-01T00:00:00Z',
+        },
+      ],
+      totalItems: 1,
+    } as never);
+    vi.mocked(TestBed.inject(ScenarioSearchService).getByIdBatch).mockResolvedValue([
+      { ...scenario, id: 'scenario-orphan', title: 'Свободный сценарий' },
+    ]);
+
+    await store.search('Свободный');
+
+    expect(store.searchMatchedKeys().has('scenario:scenario-orphan')).toBe(true);
+    expect(store.searchResultRoots().map((node) => node.key)).toContain(
+      'scenario:search:unattached-scenarios',
+    );
+    expect(store.searchVisibleKeys()?.has('scenario:search:unattached-scenarios')).toBe(true);
   });
 
   it('search() matches titles of already loaded nodes without card results', async () => {
@@ -398,6 +509,8 @@ describe('ContentExplorerStore', () => {
     store.clearSearch();
 
     expect(store.searchVisibleKeys()).toBeNull();
+    expect(store.searchMatchedKeys().size).toBe(0);
+    expect(store.searchAncestorKeys().size).toBe(0);
     expect(store.searchExtraChildren().size).toBe(0);
     expect(store.searchResultRoots()).toHaveLength(0);
     expect(store.getByKey('card:card-1')).toBeNull();

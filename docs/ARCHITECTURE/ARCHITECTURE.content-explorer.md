@@ -58,23 +58,38 @@ classDiagram
 
 ## Поиск по контенту
 
-Поиск построен поверх того же дерева и не требует новых бэкенд-эндпоинтов:
+Поиск построен поверх того же дерева и использует существующие search-эндпоинты:
 
 1. Совпадения по названиям уже загруженных курсов/треков/уроков/сценариев
    вычисляются локально (`collectTitleMatches`) — без дополнительных запросов.
-2. Карточки ищутся одним запросом `/cards/search`.
+2. Курсы, треки и сценарии ищутся на бэкенде параллельно с карточками:
+   - `/courses/search` — `searchCourseNodes()`; найденные курсы добавляются в `roots`
+     (каталог корней ограничен `ROOT_PAGE_SIZE`);
+   - `/programs/search` — `searchProgramNodes()`; `ProgramIndexEntry.courseId` даёт
+     родительский курс, узел трека добавляется в `searchExtraChildren`;
+   - `/scenarios/search` — `searchScenarioNodes()`; `ScenarioIndexEntry.courseId` даёт
+     курс, урок резолвится по `lesson.scenarioIds` через `findLessonNodeByScenarioId()`
+     (один `getByCourse`), полные сценарии — `getByIdBatch`.
 3. `CardIndexEntry` содержит `courseId` / `lessonId` / `scenarioId`; по ним
    `resolveScenarioNodeForCard()` догружает только недостающие узлы-предки
    (курс → трек → урок → сценарий), без полной индексации каталога.
    Быстрые пути используют уже загруженные сценарии (по `scenarioId` или
    `cardSource.cardIds`).
-4. `searchVisibleKeys` содержит совпадения и всех их предков; `searchExtraChildren`
-   хранит карточки, добавленные только для поиска (без мутации `children` дерева);
-   `searchResultRoots` — корни отфильтрованного дерева. `ExplorerTreeNodeComponent`
-   рендерит только видимые ключи, поэтому результат — дерево, а не плоский список.
+4. `searchVisibleKeys` — совпадения и все их предки; `searchMatchedKeys` — узлы,
+   совпавшие сами; `searchAncestorKeys` — контекстные предки (авто-раскрываются
+   через `expandAncestors()`); `searchExtraChildren` — узлы, добавленные только для
+   поиска (без мутации `children` дерева); `searchResultRoots` — корни результата.
+5. `ExplorerTreeNodeComponent`:
+   - совпадение (`isSearchMatch`) — обычное интерактивное поведение: кнопка
+     разворота видима, при раскрытии рендерятся все дети (флаг `searchSubtree`
+     распространяется вниз по поддереву);
+   - предок-контекст (`filteredSearchMode`) — раскрыт автоматически, дети
+     фильтруются по `searchVisibleKeys`, кнопка разворота скрыта.
 
 Debounce — 300 мс, устаревшие ответы отбрасываются по `searchSequence`,
 `clearSearch()` снимает overlay и удаляет поисковые узлы из `nodeIndex`.
+Параллельные резолверы делят один in-flight промис загрузки детей
+(`pendingChildLoads`), поэтому цепочка предков не наблюдается полузагруженной.
 
 ## Ленивая загрузка детей (по существующим ID-ссылкам)
 
