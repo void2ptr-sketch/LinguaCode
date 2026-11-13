@@ -83,6 +83,21 @@
       <mat-icon>warning</mat-icon>
       <span>{{ store.error() }}</span>
     </div>
+  } @else if (isSmartSearchActive() && store.smartSearchLoading()) {
+    <div class="explorer-tree__state">
+      <mat-spinner diameter="28" />
+      <span>Поиск карточек…</span>
+    </div>
+  } @else if (isSmartSearchActive() && store.smartSearchError()) {
+    <div class="explorer-tree__state explorer-tree__state--error">
+      <mat-icon>warning</mat-icon>
+      <span>{{ store.smartSearchError() }}</span>
+    </div>
+  } @else if (isSmartSearchActive() && visibleRoots().length === 0) {
+    <div class="explorer-tree__state">
+      <mat-icon>search_off</mat-icon>
+      <span>Карточки не найдены</span>
+    </div>
   } @else if (visibleRoots().length === 0) {
     <div class="explorer-tree__state">
       <mat-icon>folder_off</mat-icon>

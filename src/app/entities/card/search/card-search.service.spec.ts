@@ -137,7 +137,7 @@ describe('CardSearchService', () => {
     expect(cardsApiService.search).toHaveBeenCalledWith(criteria);
   });
 
-  it('should merge search results into index cache', async () => {
+  it('should return search results without merging into index cache', async () => {
     const criteria: CardSearchCriteria = {
       query: 'test',
       page: { page: 0, pageSize: 20 },
@@ -158,9 +158,14 @@ describe('CardSearchService', () => {
     };
     (cardsApiService.search as ReturnType<typeof vi.fn>).mockResolvedValue(newPage);
 
-    await service.search(criteria);
+    const result = await service.search(criteria);
 
-    expect(service.indexEntries().length).toBe(2);
+    // Search returns only the matching results, does not merge with index cache
+    expect(result.items.length).toBe(1);
+    expect(result.items[0].id).toBe('card-2');
+    // Index cache remains unchanged
+    expect(service.indexEntries().length).toBe(1);
+    expect(service.indexEntries()[0].id).toBe('card-1');
   });
 
   it('should set error when search fails', async () => {

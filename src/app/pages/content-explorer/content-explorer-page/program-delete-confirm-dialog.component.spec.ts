@@ -1,10 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { describe, expect, it, vi } from 'vitest';
-
 import { ProgramDeleteConfirmDialogComponent } from './program-delete-confirm-dialog.component';
-import type { ProgramDeleteConfirmDialogData } from './program-delete-confirm-dialog.component';
 
 describe('ProgramDeleteConfirmDialogComponent', () => {
   let fixture: ComponentFixture<ProgramDeleteConfirmDialogComponent>;

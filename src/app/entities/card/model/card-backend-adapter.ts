@@ -595,6 +595,9 @@ export const CardBackendAdapter = {
       ...base,
       difficulty,
       tags,
+      courseId: dto.courseId ? String(dto.courseId) : undefined,
+      lessonId: dto.lessonId ? String(dto.lessonId) : undefined,
+      scenarioId: dto.scenarioId ? String(dto.scenarioId) : undefined,
       createdAt: dto.createdAt,
       updatedAt: dto.updatedAt,
     } as unknown as Record<string, unknown>;

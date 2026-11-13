@@ -124,6 +124,67 @@ export class ContentExplorerStore {
   private readonly nodeIndex = new Map<string, ExplorerNode>();
 
   // -------------------------------------------------------------------------
+  // Smart search — card catalog search + path building
+  // -------------------------------------------------------------------------
+
+  /** Whether a smart card search is in progress. */
+  readonly smartSearchLoading = signal(false);
+
+  /** Error message from smart card search. */
+  readonly smartSearchError = signal<string | null>(null);
+
+  /**
+   * Searches cards by query and returns matching card entries.
+   * Does NOT expand the tree — returns search results as a flat list.
+   *
+   * @param query - Search query.
+   * @returns Array of matching card index entries.
+   */
+  async searchCardsAndBuildPaths(query: string): Promise<readonly ExplorerNode[]> {
+    if (!query.trim()) {
+      return [];
+    }
+
+    this.smartSearchLoading.set(true);
+    this.smartSearchError.set(null);
+
+    try {
+      // Search cards by query (no index loading needed)
+      const searchPage = await this.cardSearchService.search({
+        query: query.trim(),
+        page: { page: 0, pageSize: 100 },
+      });
+
+      const matchingCards = [...searchPage.items];
+      if (matchingCards.length === 0) {
+        return [];
+      }
+
+      // Create virtual nodes for matching cards (no tree expansion)
+      const resultNodes: ExplorerNode[] = matchingCards.map((card) =>
+        this.createNode({
+          kind: 'card',
+          id: card.id,
+          parentId: null,
+          title: card.title,
+          meta: `Карточка · ${card.kind} · Курс: ${card.courseId || 'N/A'}`,
+          virtual: true,
+          editable: false,
+          data: card,
+        }),
+      );
+
+      return resultNodes;
+    } catch (error) {
+      this.logger.error('ContentExplorer: smart search failed', error);
+      this.smartSearchError.set('Не удалось выполнить поиск карточек');
+      return [];
+    } finally {
+      this.smartSearchLoading.set(false);
+    }
+  }
+
+  // -------------------------------------------------------------------------
   // Roots
   // -------------------------------------------------------------------------
 

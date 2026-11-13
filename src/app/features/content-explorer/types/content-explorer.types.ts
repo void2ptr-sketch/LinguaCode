@@ -82,3 +82,27 @@ export function filterExplorerNodes<T extends ExplorerFilterableNode>(
   }
   return result;
 }
+
+/**
+ * Builds a path of nodes from root to a target node by following parent references.
+ *
+ * @param node - The target node.
+ * @param nodeIndex - Flat index of all nodes by key.
+ * @returns Array of nodes from root to target (inclusive).
+ */
+export function buildPathToNode(
+  node: ExplorerFilterableNode & { key: string; parentId: string | null },
+  nodeIndex: Map<string, ExplorerFilterableNode & { key: string; parentId: string | null }>,
+): (ExplorerFilterableNode & { key: string; parentId: string | null })[] {
+  const path: (ExplorerFilterableNode & { key: string; parentId: string | null })[] = [];
+  let current: (ExplorerFilterableNode & { key: string; parentId: string | null }) | null = node;
+  const visited = new Set<string>();
+
+  while (current && !visited.has(current.key)) {
+    visited.add(current.key);
+    path.unshift(current);
+    current = current.parentId ? nodeIndex.get(current.parentId) ?? null : null;
+  }
+
+  return path;
+}

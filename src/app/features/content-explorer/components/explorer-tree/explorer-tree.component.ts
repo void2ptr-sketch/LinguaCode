@@ -2,7 +2,14 @@
  * Left panel of the content explorer: search filter + root course list
  * with lazy-loading recursive tree nodes.
  */
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+  effect,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,11 +21,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { ContentExplorerStore } from '../../services/content-explorer.store';
-import {
-  filterExplorerNodes,
-  type ExplorerFilterableNode,
-} from '../../types/content-explorer.types';
+import { filterExplorerNodes } from '../../types/content-explorer.types';
 import { ExplorerTreeNodeComponent } from '../explorer-tree-node/explorer-tree-node.component';
+import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,9 +45,38 @@ import { ExplorerTreeNodeComponent } from '../explorer-tree-node/explorer-tree-n
 export class ExplorerTreeComponent {
   protected readonly store = inject(ContentExplorerStore);
   protected readonly userStore = inject(UserStore);
+  protected readonly logger = inject(AppLoggerService);
   protected readonly filterQuery = signal('');
   /** Toggled language-pair keys (e.g. "ru→en"). Empty = show all. */
   protected readonly selectedPairKeys = signal<Set<string>>(new Set());
+  /** Results from smart card search (paths to matching cards). */
+  protected readonly smartSearchResults = signal<readonly import('../../services/content-explorer.store').ExplorerNode[]>([]);
+
+  /** Debounce timer for smart search. */
+  private searchDebounceTimer: ReturnType<typeof setTimeout> | null = null;
+
+  constructor() {
+    // Debounced smart search on query change
+    effect(() => {
+      const query = this.filterQuery();
+      if (this.searchDebounceTimer) {
+        clearTimeout(this.searchDebounceTimer);
+      }
+      this.searchDebounceTimer = setTimeout(async () => {
+        if (query.trim().length > 0) {
+          try {
+            const results = await this.store.searchCardsAndBuildPaths(query);
+            this.smartSearchResults.set(results);
+          } catch (error) {
+            this.logger.error?.('Smart search failed:', error);
+            this.smartSearchResults.set([]);
+          }
+        } else {
+          this.smartSearchResults.set([]);
+        }
+      }, 300);
+    });
+  }
 
   /** Unique language pairs present in the loaded roots. */
   protected readonly availablePairKeys = computed(() => {
@@ -67,9 +101,18 @@ export class ExplorerTreeComponent {
     return `${lp.known}→${lp.learning}`;
   });
 
+  /** Whether smart search is active (non-empty query). */
+  protected readonly isSmartSearchActive = computed(() => this.filterQuery().trim().length > 0);
+
   /** Roots visible after applying search + language pair filters to loaded nodes. */
   protected readonly visibleRoots = computed(() => {
-    let roots = filterExplorerNodes(this.store.roots(), this.filterQuery());
+    // If smart search is active, use its results
+    if (this.isSmartSearchActive()) {
+      return this.smartSearchResults();
+    }
+
+    // Otherwise use regular tree filtering
+    const roots = filterExplorerNodes(this.store.roots(), this.filterQuery());
     const selected = this.selectedPairKeys();
     if (selected.size === 0) {
       return roots;

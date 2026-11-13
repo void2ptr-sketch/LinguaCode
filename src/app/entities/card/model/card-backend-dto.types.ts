@@ -59,6 +59,12 @@ export type BackendCardDto = {
   tags: string;
   /** Difficulty level (uppercase). */
   difficulty: BackendCardDifficulty | null;
+  /** ID of the Course this card belongs to (may be null). */
+  courseId?: number;
+  /** ID of the Lesson this card belongs to (may be null). */
+  lessonId?: number;
+  /** ID of the Scenario this card belongs to (may be null). */
+  scenarioId?: number;
   /** Creation timestamp (ISO 8601). */
   createdAt: string;
   /** Last update timestamp (ISO 8601). */
