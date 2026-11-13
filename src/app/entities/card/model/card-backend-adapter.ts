@@ -28,6 +28,7 @@ import type {
   ParsedCardContent,
   BackendCardCreatePayload,
   BackendCardUpdatePayload,
+  BackendPaymentTier,
 } from './card-backend-dto.types';
 
 /**
@@ -325,11 +326,18 @@ function parseTags(tagsJson: string): string[] {
 /**
  * Builds the common `CardBase` fields from a backend DTO.
  */
-function buildCardBase(dto: BackendCardDto): CardBase {
+function buildCardBase(dto: BackendCardDto): CardBase & {
+  slug: string;
+  authorId: string;
+  requiredTier: BackendPaymentTier;
+} {
   return {
     id: String(dto.id),
     kind: mapCardKind(dto.kind),
     title: dto.title,
+    slug: dto.slug ?? '',
+    authorId: String(dto.authorId),
+    requiredTier: dto.requiredTier ?? 'FREE',
     appearance: {
       theme: 'default',
       fontSize: 'md',
@@ -763,9 +771,12 @@ export const CardBackendAdapter = {
       id: card.id,
       title: card.title,
       kind,
+      slug: card.meta?.slug ?? '',
+      authorId: 0, // Backend assigns authorId from JWT token
       dataJson: contentJson,
       tags: tagsJson,
       difficulty,
+      requiredTier: 'FREE',
     };
   },
 
@@ -781,6 +792,11 @@ export const CardBackendAdapter = {
 
     // Always include title
     result.title = card.title;
+
+    // Slug from meta
+    if (card.meta?.slug) {
+      result.slug = card.meta.slug;
+    }
 
     // Content: encode kind-specific fields as JSON string
     const contentJson = JSON.stringify(extractCardContent(card));

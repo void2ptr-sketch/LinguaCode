@@ -96,7 +96,10 @@ export type CardIndexEntry = {
  */
 export type CardIndexMetaOverride = Partial<
   Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage' | 'difficulty' | 'tags' | 'updatedAt'>
->;
+> & {
+  /** Content-based slug identifier for the card. */
+  slug?: string;
+};
 
 /**
  * Card index metadata fixture with mapping by card ID.
