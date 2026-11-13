@@ -216,6 +216,12 @@ export class CourseSearchService {
       this.getByIdCache.set(resolvedId, promise);
       const course = await promise;
 
+      // Ensure languagePairId is available from the course response
+      if (typeof (course as Record<string, unknown>)['languagePairId'] !== 'number') {
+        const raw = course as Record<string, unknown>;
+        raw['languagePairId'] = undefined;
+      }
+
       // If journey returns programs with lessons, use them
       if (course.programs && course.programs.length > 0) {
         this.logger.info(`[CourseSearch] getJourney returned ${course.programs.length} programs`);
@@ -241,6 +247,10 @@ export class CourseSearchService {
       if (typeof courseBase['authorId'] === 'number') {
         courseBase['authorId'] = String(courseBase['authorId']);
       }
+      // Normalize numeric languagePairId to number (if backend returns it as string)
+      if (typeof courseBase['languagePairId'] === 'string') {
+        courseBase['languagePairId'] = Number(courseBase['languagePairId']);
+      }
     } catch {
       // If course fetch fails, create a minimal base
       courseBase = {
@@ -250,6 +260,7 @@ export class CourseSearchService {
         description: '',
         authorId: '',
         languagePair: { known: 'en' as const, learning: 'ru' as const },
+        languagePairId: undefined as number | undefined,
         published: true,
         updatedAt: new Date().toISOString(),
       };

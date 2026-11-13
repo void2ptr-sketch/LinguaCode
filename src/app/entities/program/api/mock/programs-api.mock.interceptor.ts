@@ -105,7 +105,6 @@ export const programsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
       order: Number(raw['order'] ?? 0),
       requiredTier: (raw['requiredTier'] as ProgramWritePayload['requiredTier']) ?? 'FREE',
       languagePairId: raw['languagePairId'] as number | undefined,
-      published: raw['published'] as boolean | undefined,
     };
 
     return defer(() => handler.create(payload)).pipe(

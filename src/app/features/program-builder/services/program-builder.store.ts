@@ -162,8 +162,20 @@ export class ProgramBuilderStore {
 
     try {
       const resolvedCourseId = await this.courseSearch.resolveCourseIdForWrite(courseId);
+      // Resolve languagePairId from the parent course
+      let languagePairId: number | undefined = draft.languagePairId;
+      if (!languagePairId) {
+        try {
+          const course = await this.courseSearch.getById(courseId);
+          languagePairId = (course as Record<string, unknown>)['languagePairId'] as
+            | number
+            | undefined;
+        } catch {
+          // languagePairId is optional — proceed without it
+        }
+      }
       await this.programsApi.create(
-        formDraftToProgramCreatePayload({ ...draft, courseId: resolvedCourseId }),
+        formDraftToProgramCreatePayload({ ...draft, courseId: resolvedCourseId, languagePairId }),
       );
       return true;
     } catch (error) {

@@ -119,8 +119,24 @@ type LanguagePairDto = {
 | PUT    | `/programs/:id`                 | Обновление программы (403 на чужой)    |
 | DELETE | `/programs/:id`                 | Удаление программы                     |
 
-Пейлоад записи: `ProgramWritePayload` (`courseId`, `title`, `description`, `lessonIds`, `order`).
-На бэкенд отправляется: `programDescription` (из `description`).
+Пейлоад записи: `ProgramWritePayload` (`courseId`, `title`, `description`, `lessonIds`, `order`, `requiredTier`, `languagePairId?`, `published?`).
+
+### Поля `ProgramWritePayload`
+
+| Поле              | Create | Update | Описание                                    |
+| ----------------- | ------ | ------ | ------------------------------------------- |
+| `title`           | required | optional | Название (1–200 символов)               |
+| `programDescription` | optional | optional | Описание для каталога (из `description`) |
+| `courseId`        | required | —      | ID родительского курса (BIGINT)             |
+| `requiredTier`    | required | required | `FREE` / `STARTER` / `GROWTH` / `PREMIUM` |
+| `order`           | optional | optional | Порядок в курсе (по умолчанию 0)          |
+| `languagePairId`  | optional | optional | Пара языков (извлекается из курса)        |
+| `published`       | —      | optional | Опубликовать (только update)              |
+
+> **`requiredTier`** — обязательное поле. Без него бэкенд возвращает 400 Bad Request.
+> **`languagePairId`** — опционально. Фронтенд извлекает из `Course` при создании.
+> **`lessonIds`** — не передаётся в payload (управляется через lesson-builder). При create бэкенд создаёт пустой массив.
+> **`authorId`** — не передаётся, бэкенд подставляет из токена.
 
 ## Курсы (`/courses`)
 

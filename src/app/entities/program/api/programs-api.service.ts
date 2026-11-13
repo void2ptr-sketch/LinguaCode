@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import type { Program, ProgramWithLessons } from '../model';
+import type { Program, ProgramRequiredTier, ProgramWithLessons } from '../model';
 import type { ProgramSearchCriteria, ProgramSearchPage } from '../model/program-search.types';
 import type { ApiResponse } from '../../../shared/api/api.types';
 import { buildApiUrl } from '../../../shared/api/api-url';
@@ -59,7 +59,29 @@ export class ProgramsApiService implements ProgramCatalogPort {
   getById(programId: string): Promise<ProgramWithLessons> {
     return firstValueFrom(
       this.http.get<ApiResponse<ProgramWithLessons>>(buildApiUrl(`/programs/${programId}`)),
-    ).then((response) => response.data);
+    ).then((response) => {
+      const raw = response.data as Record<string, unknown>;
+      return {
+        ...raw,
+        id: String(raw['id']),
+        courseId: String(raw['courseId']),
+        description: (raw['programDescription'] ?? raw['description']) as string,
+        lessonIds: raw['lessonIds'] ? (raw['lessonIds'] as number[]).map((l) => String(l)) : [],
+        requiredTier: raw['requiredTier'] as ProgramRequiredTier | undefined,
+        languagePairId: raw['languagePairId'] as number | undefined,
+        published: raw['published'] as boolean | undefined,
+        updatedAt: raw['updatedAt'] as string,
+        lessons: (raw['lessons'] as import('../../course/model').Lesson[] | undefined)?.map((l) => ({
+          ...l,
+          id: String(l.id),
+          programId: String(l.programId),
+          scenarioIds: (l.scenarioIds ?? []).map((s) => String(s)),
+          prerequisiteLessonIds: Array.isArray(l.prerequisiteLessonIds)
+            ? (l.prerequisiteLessonIds as number[]).map((p) => String(p))
+            : [],
+        })) ?? [],
+      } as unknown as ProgramWithLessons;
+    });
   }
 
   /**
@@ -84,21 +106,29 @@ export class ProgramsApiService implements ProgramCatalogPort {
       ),
     ).then(
       (response) =>
-        (response.data ?? []).map((p) => ({
-          ...p,
-          id: String(p.id),
-          courseId: String(p.courseId),
-          lessonIds: p.lessonIds?.map((l) => String(l)),
-          lessons: (p.lessons ?? []).map((l) => ({
-            ...l,
-            id: String(l.id),
-            programId: String(l.programId),
-            scenarioIds: (l.scenarioIds ?? []).map((s) => String(s)),
-            prerequisiteLessonIds: Array.isArray(l.prerequisiteLessonIds)
-              ? l.prerequisiteLessonIds.map((p) => String(p))
-              : [],
-          })),
-        })) as unknown as readonly ProgramWithLessons[],
+        (response.data ?? []).map((p) => {
+          const raw = p as Record<string, unknown>;
+          return {
+            ...p,
+            id: String(raw['id']),
+            courseId: String(raw['courseId']),
+            description: (raw['programDescription'] ?? raw['description']) as string,
+            lessonIds: (raw['lessonIds'] as string[] | undefined)?.map((l) => String(l)),
+            requiredTier: raw['requiredTier'] as ProgramRequiredTier | undefined,
+            languagePairId: raw['languagePairId'] as number | undefined,
+            published: raw['published'] as boolean | undefined,
+            updatedAt: raw['updatedAt'] as string,
+            lessons: ((raw['lessons'] as import('../../course/model').Lesson[] | undefined) ?? []).map((l: import('../../course/model').Lesson) => ({
+              ...l,
+              id: String(l.id),
+              programId: String(l.programId),
+              scenarioIds: (l.scenarioIds ?? []).map((s) => String(s)),
+              prerequisiteLessonIds: Array.isArray(l.prerequisiteLessonIds)
+                ? (l.prerequisiteLessonIds as number[]).map((p) => String(p))
+                : [],
+            })),
+          } as unknown as ProgramWithLessons;
+        }),
     );
   }
 
@@ -127,12 +157,25 @@ export class ProgramsApiService implements ProgramCatalogPort {
       // understands slug IDs, so non-numeric IDs pass through unchanged.
       courseId: /^\d+$/.test(payload.courseId) ? Number(payload.courseId) : payload.courseId,
       requiredTier: payload.requiredTier,
+      order: payload.order,
       languagePairId: payload.languagePairId,
-      published: payload.published,
     };
     return firstValueFrom(
       this.http.post<ApiResponse<Program>>(buildApiUrl('/programs'), body),
-    ).then((response) => response.data);
+    ).then((response) => {
+      const raw = response.data as Record<string, unknown>;
+      return {
+        ...raw,
+        id: String(raw['id']),
+        courseId: String(raw['courseId']),
+        description: (raw['programDescription'] ?? raw['description']) as string,
+        lessonIds: raw['lessonIds'] ? (raw['lessonIds'] as number[]).map((l) => String(l)) : [],
+        requiredTier: raw['requiredTier'] as ProgramRequiredTier | undefined,
+        languagePairId: raw['languagePairId'] as number | undefined,
+        published: raw['published'] as boolean | undefined,
+        updatedAt: raw['updatedAt'] as string,
+      } as unknown as Program;
+    });
   }
 
   /**
@@ -157,16 +200,27 @@ export class ProgramsApiService implements ProgramCatalogPort {
     const body = {
       title: payload.title,
       programDescription: payload.description,
-      courseId: payload.courseId,
-      lessonIds: payload.lessonIds,
-      order: payload.order,
       requiredTier: payload.requiredTier,
+      order: payload.order,
       languagePairId: payload.languagePairId,
       published: payload.published,
     };
     return firstValueFrom(
       this.http.put<ApiResponse<Program>>(buildApiUrl(`/programs/${programId}`), body),
-    ).then((response) => response.data);
+    ).then((response) => {
+      const raw = response.data as Record<string, unknown>;
+      return {
+        ...raw,
+        id: String(raw['id']),
+        courseId: String(raw['courseId']),
+        description: (raw['programDescription'] ?? raw['description']) as string,
+        lessonIds: raw['lessonIds'] ? (raw['lessonIds'] as number[]).map((l) => String(l)) : [],
+        requiredTier: raw['requiredTier'] as ProgramRequiredTier | undefined,
+        languagePairId: raw['languagePairId'] as number | undefined,
+        published: raw['published'] as boolean | undefined,
+        updatedAt: raw['updatedAt'] as string,
+      } as unknown as Program;
+    });
   }
 
   /**
