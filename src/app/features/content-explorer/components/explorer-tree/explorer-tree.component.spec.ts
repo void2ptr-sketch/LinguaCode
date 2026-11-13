@@ -122,7 +122,10 @@ describe('ExplorerTreeComponent (DOM rendering)', () => {
             })),
           },
         },
-        { provide: AppLoggerService, useValue: { error: vi.fn(), warn: vi.fn() } },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
       ],
     });
   });

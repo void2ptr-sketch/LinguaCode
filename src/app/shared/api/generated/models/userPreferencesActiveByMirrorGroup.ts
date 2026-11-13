@@ -6,6 +6,4 @@
  */
 import type { LanguagePair } from './languagePair';
 
-// Manual lint fix (orval generates an index signature; eslint prefers Record).
-// Change is safe: type alias is structurally identical.
-export type UserPreferencesActiveByMirrorGroup = Record<string, LanguagePair>;
+export type UserPreferencesActiveByMirrorGroup = {[key: string]: LanguagePair};

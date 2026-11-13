@@ -59,13 +59,21 @@ export class ExplorerTreeComponent {
     // Debounced smart search on query change
     effect(() => {
       const query = this.filterQuery();
+      // [search-diag] temporary: confirms what the current search actually queries.
+      this.logger.debug('[search-diag] query changed', { query, debounceMs: 300 });
       if (this.searchDebounceTimer) {
         clearTimeout(this.searchDebounceTimer);
       }
       this.searchDebounceTimer = setTimeout(async () => {
         if (query.trim().length > 0) {
           try {
+            // [search-diag] temporary: only the card catalog is queried here.
+            this.logger.debug('[search-diag] starting search', { query, catalog: 'cards-only' });
             const results = await this.store.searchCardsAndBuildPaths(query);
+            this.logger.debug('[search-diag] search finished', {
+              query,
+              resultNodes: results.length,
+            });
             this.smartSearchResults.set(results);
           } catch (error) {
             this.logger.error?.('Smart search failed:', error);

@@ -149,6 +149,13 @@ export class ContentExplorerStore {
     this.smartSearchError.set(null);
 
     try {
+      // [search-diag] temporary: proves that only /cards/search is called and
+      // that course/program/lesson/scenario catalogs are never queried.
+      this.logger.debug('[search-diag] store.searchCardsAndBuildPaths: card catalog only', {
+        query: query.trim(),
+        catalogsQueried: ['cards'],
+        catalogsMissing: ['courses', 'programs', 'lessons', 'scenarios'],
+      });
       // Search cards by query (no index loading needed)
       const searchPage = await this.cardSearchService.search({
         query: query.trim(),
@@ -156,6 +163,10 @@ export class ContentExplorerStore {
       });
 
       const matchingCards = [...searchPage.items];
+      this.logger.debug('[search-diag] card search page', {
+        totalItems: searchPage.totalItems,
+        items: matchingCards.length,
+      });
       if (matchingCards.length === 0) {
         return [];
       }

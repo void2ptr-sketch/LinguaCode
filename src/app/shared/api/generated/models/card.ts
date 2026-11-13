@@ -21,6 +21,9 @@ export interface Card {
   tags?: string;
   difficulty?: CardDifficulty;
   requiredTier?: CardRequiredTier;
+  courseId?: number;
+  lessonId?: number;
+  scenarioId?: number;
   createdAt?: string;
   updatedAt?: string;
 }
