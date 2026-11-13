@@ -4,14 +4,14 @@
 
 ## Статусы задач
 
-| Маркер | Значение | Когда использовать |
-|--------|----------|---------------------|
-| `[ ]` | Ожидает — не начато | Новая задача, не в работе |
-| `[→]` | В работе — агент реализует | Ветка создана, изменения в процессе |
-| `[x]` | Готово — код написан, нужен ревью | Реализация завершена, не верифицировано |
-| `[✓]` | Готово + верифицировано | `npm run verify` прошёл, docs синхронизированы |
-| `[⊘]` | Отменено / заменено | Заменено другой задачей или отменено |
-| `[!]` | Заблокировано | Ждёт решения, бэкенда, дизайна или внешнего ввода |
+| Маркер | Значение                          | Когда использовать                                |
+| ------ | --------------------------------- | ------------------------------------------------- |
+| `[ ]`  | Ожидает — не начато               | Новая задача, не в работе                         |
+| `[→]`  | В работе — агент реализует        | Ветка создана, изменения в процессе               |
+| `[x]`  | Готово — код написан, нужен ревью | Реализация завершена, не верифицировано           |
+| `[✓]`  | Готово + верифицировано           | `npm run verify` прошёл, docs синхронизированы    |
+| `[⊘]`  | Отменено / заменено               | Заменено другой задачей или отменено              |
+| `[!]`  | Заблокировано                     | Ждёт решения, бэкенда, дизайна или внешнего ввода |
 
 - `[→]` — только при активной реализации; `[x]` — сразу после кода, `[✓]` — только после `npm run verify`.
 - **Definition of Done** (см. [`.continue/rules/01.meta.04.tasks-workflow.rule.md`](.continue/rules/01.meta.04.tasks-workflow.rule.md)): файл существует + build + tests + `npm run verify` + docs synced.
@@ -20,16 +20,16 @@
 
 > Автоматически поддерживаемая таблица связи кода, задач и документации. Обновляется при реализации подзадачи.
 
-| Файл | Задача | Документ | Статус |
-|------|--------|----------|--------|
-| `entities/program/model/program.types.ts` | G17a | `ARCHITECTURE.program.md` | ⏳ |
-| `features/content-explorer/components/content-explorer-page/` | G? | `CONTENT-EXPLORER.md` | ✓ |
-| `features/scenario-builder/components/scenario-builder-dialog/` | G? | `SCENARIO-BUILDER.md` | ✓ |
-| `features/card-editor/components/card-editor-dialog/` | G? | `CARD-CATALOG.md`, `ARCHITECTURE.card-editor.md` | ✓ |
-| `features/card-select/components/card-focus-shell/` | Ca3 | `ARCHITECTURE.card-select.md` | ✓ |
-| `entities/chinese/lib/` | H15 | `CJK-CONTENT.md` | ✓ |
-| `shared/pagination/` | — | `CARD-CATALOG.md` | ✓ |
-| `entities/auth/services/auth.store.ts` | G7 | `LANGUAGE-PAIR.md` | ✓ |
+| Файл                                                            | Задача | Документ                                         | Статус |
+| --------------------------------------------------------------- | ------ | ------------------------------------------------ | ------ |
+| `entities/program/model/program.types.ts`                       | G17a   | `ARCHITECTURE.program.md`                        | ⏳     |
+| `features/content-explorer/components/content-explorer-page/`   | G?     | `CONTENT-EXPLORER.md`                            | ✓      |
+| `features/scenario-builder/components/scenario-builder-dialog/` | G?     | `SCENARIO-BUILDER.md`                            | ✓      |
+| `features/card-editor/components/card-editor-dialog/`           | G?     | `CARD-CATALOG.md`, `ARCHITECTURE.card-editor.md` | ✓      |
+| `features/card-select/components/card-focus-shell/`             | Ca3    | `ARCHITECTURE.card-select.md`                    | ✓      |
+| `entities/chinese/lib/`                                         | H15    | `CJK-CONTENT.md`                                 | ✓      |
+| `shared/pagination/`                                            | —      | `CARD-CATALOG.md`                                | ✓      |
+| `entities/auth/services/auth.store.ts`                          | G7     | `LANGUAGE-PAIR.md`                               | ✓      |
 
 ## 1. Инициализация проекта
 
@@ -609,6 +609,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 **G11a — домен и типы** ✅
 
 Definition of Done:
+
 - [✓] `Lesson`, `Course` в `core/models/` (`lesson.types.ts`, `course.types.ts`)
 - [✓] `Course.languagePair: LanguagePair` — фильтр и валидация при создании
 - [✓] `Lesson.scenarioIds` — порядок сценариев
@@ -684,6 +685,7 @@ Definition of Done:
 > **Статус:** частично готово · **Docs:** `ARCHITECTURE.card-select.md`
 
 Definition of Done:
+
 - [✓] Компонент `app-practice-session-bar` существует
 - [✓] Chips (программа, урок, сценарий) + «Карточка N/M»
 - [✓] `mat-progress-bar` по текущему сценарию (`CardSelectStore`)
@@ -820,6 +822,7 @@ Definition of Done:
 > **Статус:** запланировано · **Docs:** [ARCHITECTURE.program.md](./docs/ARCHITECTURE/ARCHITECTURE.program.md) · [DOMAIN.md](./docs/PRODUCT/DOMAIN.md)
 
 Definition of Done:
+
 - [ ] Модель `Program` в `entities/program/model/program.types.ts`
 - [ ] `ProgramWithLessons` — аналог `CourseWithLessons`
 - [ ] `Course.programIds: readonly string[]` (замена `lessonIds`)
@@ -928,6 +931,7 @@ Definition of Done:
 > **Статус:** не начато · **Docs:** `EDITOR-UX.md`
 
 Definition of Done:
+
 - [ ] **Метрика:** базовый select ru→en — ≤ 8 полей, создание < 2 мин
 - [ ] **Метрика:** `card-form` shell + kind-forms — < 200 строк на файл
 - [ ] Smoke: create / edit / preview / try для каждого kind в обоих режимах
@@ -1018,49 +1022,49 @@ Definition of Done:
 > Связь кода, задач и документации. Обновляется при реализации подзадачи.
 > Статус: `✓` = verified, `→` = в работе, `⏳` = запланировано, `—` = не применимо.
 
-| Файл (путь) | Задача | Документ | Статус |
-|-------------|--------|----------|--------|
-| `entities/program/model/program.types.ts` | G17a | `ARCHITECTURE.program.md` | ⏳ |
-| `entities/program/repository/program.repository.ts` | G17b | `ARCHITECTURE.program.md` | ⏳ |
-| `features/program-builder/components/` | G17e | `ARCHITECTURE.program.md` | ⏳ |
-| `features/content-explorer/components/content-explorer-page/` | G? | `CONTENT-EXPLORER.md` | ✓ |
-| `features/content-explorer/components/explorer-detail/` | G? | `CONTENT-EXPLORER.md` | ✓ |
-| `features/scenario-builder/components/scenario-builder-dialog/` | G? | `SCENARIO-BUILDER.md` | ✓ |
-| `features/scenario-builder/services/scenario-builder.store.ts` | G? | `SCENARIO-BUILDER.md` | ✓ |
-| `features/card-editor/components/card-editor-dialog/` | G? | `ARCHITECTURE.card-editor.md` | ✓ |
-| `features/card-editor/components/card-form/` | G12b | `EDITOR-UX.md` | ✓ |
-| `features/card-select/components/card-focus-shell/` | Ca3 | `ARCHITECTURE.card-select.md` | ✓ |
-| `features/card-select/components/card-select-page/` | G14 | `ARCHITECTURE.card-select.md` | ✓ |
-| `entities/chinese/lib/quiz/hanzi-quiz-session.ts` | H15 | `CJK-CONTENT.md` | ✓ |
-| `entities/chinese/lib/tone-marks/` | G9f | `CJK-CONTENT.md` | ✓ |
-| `entities/chinese/ui/pinyin-keyboard/` | G9f | `CJK-CONTENT.md` | ✓ |
-| `shared/pagination/` | — | `CARD-CATALOG.md` | ✓ |
-| `entities/auth/services/auth.store.ts` | G7 | `LANGUAGE-PAIR.md` | ✓ |
-| `entities/user/` | G1, G5 | `ARCHITECTURE.user.md` | ✓ |
-| `features/learning-results/` | G5 | `ARCHITECTURE.learning-results.md` | ✓ |
-| `features/home/` | G13 | `ARCHITECTURE.home.md` | ✓ |
-| `features/course-builder/` | G11 | `ARCHITECTURE.course.md` | ✓ |
-| `features/course-catalog/` | G11f | `COURSE-CATALOG.md` | ✓ |
-| `features/journey/` | — | `ARCHITECTURE.journey.md` | ✓ |
-| `shared/ui/error-toast/` | G7 | — | ✓ |
-| `shared/storage/` | G15 | `ARCHITECTURE.md` | ✓ |
-| `shared/sync/` | G15 | `ARCHITECTURE.md` | ✓ |
-| `entities/content-seed/` | G15 | `ARCHITECTURE.md` | ✓ |
-| `entities/course/` | G11, G16 | `ARCHITECTURE.course.md` | ✓ |
-| `entities/phonetic/` | G10 | `PHONETIC-CONTENT.md` | ✓ |
-| `shared/utils/markdown-field/` | — | — | ✓ |
-| `shared/utils/pagination/` | — | `CARD-CATALOG.md` | ✓ |
-| `shared/utils/cards/` | — | — | ✓ |
-| `app/app.routes.ts` | G14f | `ARCHITECTURE.md` | ✓ |
-| `app/app.config.ts` | G15 | `ARCHITECTURE.md` | ✓ |
-| `widgets/sidebar-navigation-left/` | G8 | — | ✓ |
-| `widgets/main-header/` | — | — | ✓ |
-| `widgets/main-layout/` | — | — | ✓ |
-| `pages/home/` | G13 | `ARCHITECTURE.home.md` | ✓ |
-| `pages/card-select/` | G14 | `ARCHITECTURE.card-select.md` | ✓ |
-| `pages/content-explorer/` | G? | `CONTENT-EXPLORER.md` | ✓ |
-| `pages/user/` | G1, G5, G9g | `ARCHITECTURE.user.md` | ✓ |
-| `pages/journey/` | — | `ARCHITECTURE.journey.md` | ✓ |
-| `pages/course-catalog/` | G11f | `COURSE-CATALOG.md` | ✓ |
-| `pages/scenario-builder/` | G? | `SCENARIO-BUILDER.md` | ✓ |
-| `pages/card-editor/` | G? | `ARCHITECTURE.card-editor.md` | ✓ |
+| Файл (путь)                                                     | Задача      | Документ                           | Статус |
+| --------------------------------------------------------------- | ----------- | ---------------------------------- | ------ |
+| `entities/program/model/program.types.ts`                       | G17a        | `ARCHITECTURE.program.md`          | ⏳     |
+| `entities/program/repository/program.repository.ts`             | G17b        | `ARCHITECTURE.program.md`          | ⏳     |
+| `features/program-builder/components/`                          | G17e        | `ARCHITECTURE.program.md`          | ⏳     |
+| `features/content-explorer/components/content-explorer-page/`   | G?          | `CONTENT-EXPLORER.md`              | ✓      |
+| `features/content-explorer/components/explorer-detail/`         | G?          | `CONTENT-EXPLORER.md`              | ✓      |
+| `features/scenario-builder/components/scenario-builder-dialog/` | G?          | `SCENARIO-BUILDER.md`              | ✓      |
+| `features/scenario-builder/services/scenario-builder.store.ts`  | G?          | `SCENARIO-BUILDER.md`              | ✓      |
+| `features/card-editor/components/card-editor-dialog/`           | G?          | `ARCHITECTURE.card-editor.md`      | ✓      |
+| `features/card-editor/components/card-form/`                    | G12b        | `EDITOR-UX.md`                     | ✓      |
+| `features/card-select/components/card-focus-shell/`             | Ca3         | `ARCHITECTURE.card-select.md`      | ✓      |
+| `features/card-select/components/card-select-page/`             | G14         | `ARCHITECTURE.card-select.md`      | ✓      |
+| `entities/chinese/lib/quiz/hanzi-quiz-session.ts`               | H15         | `CJK-CONTENT.md`                   | ✓      |
+| `entities/chinese/lib/tone-marks/`                              | G9f         | `CJK-CONTENT.md`                   | ✓      |
+| `entities/chinese/ui/pinyin-keyboard/`                          | G9f         | `CJK-CONTENT.md`                   | ✓      |
+| `shared/pagination/`                                            | —           | `CARD-CATALOG.md`                  | ✓      |
+| `entities/auth/services/auth.store.ts`                          | G7          | `LANGUAGE-PAIR.md`                 | ✓      |
+| `entities/user/`                                                | G1, G5      | `ARCHITECTURE.user.md`             | ✓      |
+| `features/learning-results/`                                    | G5          | `ARCHITECTURE.learning-results.md` | ✓      |
+| `features/home/`                                                | G13         | `ARCHITECTURE.home.md`             | ✓      |
+| `features/course-builder/`                                      | G11         | `ARCHITECTURE.course.md`           | ✓      |
+| `features/course-catalog/`                                      | G11f        | `COURSE-CATALOG.md`                | ✓      |
+| `features/journey/`                                             | —           | `ARCHITECTURE.journey.md`          | ✓      |
+| `shared/ui/error-toast/`                                        | G7          | —                                  | ✓      |
+| `shared/storage/`                                               | G15         | `ARCHITECTURE.md`                  | ✓      |
+| `shared/sync/`                                                  | G15         | `ARCHITECTURE.md`                  | ✓      |
+| `entities/content-seed/`                                        | G15         | `ARCHITECTURE.md`                  | ✓      |
+| `entities/course/`                                              | G11, G16    | `ARCHITECTURE.course.md`           | ✓      |
+| `entities/phonetic/`                                            | G10         | `PHONETIC-CONTENT.md`              | ✓      |
+| `shared/utils/markdown-field/`                                  | —           | —                                  | ✓      |
+| `shared/utils/pagination/`                                      | —           | `CARD-CATALOG.md`                  | ✓      |
+| `shared/utils/cards/`                                           | —           | —                                  | ✓      |
+| `app/app.routes.ts`                                             | G14f        | `ARCHITECTURE.md`                  | ✓      |
+| `app/app.config.ts`                                             | G15         | `ARCHITECTURE.md`                  | ✓      |
+| `widgets/sidebar-navigation-left/`                              | G8          | —                                  | ✓      |
+| `widgets/main-header/`                                          | —           | —                                  | ✓      |
+| `widgets/main-layout/`                                          | —           | —                                  | ✓      |
+| `pages/home/`                                                   | G13         | `ARCHITECTURE.home.md`             | ✓      |
+| `pages/card-select/`                                            | G14         | `ARCHITECTURE.card-select.md`      | ✓      |
+| `pages/content-explorer/`                                       | G?          | `CONTENT-EXPLORER.md`              | ✓      |
+| `pages/user/`                                                   | G1, G5, G9g | `ARCHITECTURE.user.md`             | ✓      |
+| `pages/journey/`                                                | —           | `ARCHITECTURE.journey.md`          | ✓      |
+| `pages/course-catalog/`                                         | G11f        | `COURSE-CATALOG.md`                | ✓      |
+| `pages/scenario-builder/`                                       | G?          | `SCENARIO-BUILDER.md`              | ✓      |
+| `pages/card-editor/`                                            | G?          | `ARCHITECTURE.card-editor.md`      | ✓      |

@@ -1,10 +1,24 @@
-<div class="shell" [class.shell--collapsed]="sidebarCollapsed()">
+<div
+  class="shell"
+  [class.shell--collapsed]="sidebarCollapsed()"
+  [style.--nav-width.px]="navWidth()"
+>
   <app-main-header class="shell__header" />
-  <app-sidebar-navigation-left
-    class="shell__nav"
-    [collapsed]="sidebarCollapsed()"
-    (toggle)="toggleSidebar()"
-  />
+  <div class="shell__nav">
+    <app-sidebar-navigation-left
+      [collapsed]="sidebarCollapsed()"
+      (toggle)="toggleSidebar()"
+    />
+  </div>
+  <div class="shell__resize-handle">
+    <div
+      class="shell__resize-handle__dots"
+      [class.shell__resize-handle__dots--active]="isResizing()"
+      (mousedown)="onMouseDownResize($event)"
+    >
+      <span></span>
+    </div>
+  </div>
   <main class="shell__main">
     <router-outlet />
   </main>

@@ -1,7 +1,8 @@
 .shell {
-  --nav-width: 14rem;
   --nav-collapsed-width: 3rem;
+  --handle-width: 6px;
 
+  position: relative;
   display: grid;
   grid-template-areas:
     'header header'
@@ -10,7 +11,6 @@
   grid-template-columns: var(--nav-width) 1fr;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
-  transition: grid-template-columns 0.25s ease;
   overflow: hidden;
 
   &.shell--collapsed {
@@ -26,12 +26,67 @@
   grid-area: nav;
   border-right: 1px solid color-mix(in srgb, var(--mat-sys-outline) 30%, transparent);
   min-height: 0;
+  overflow: hidden;
+}
+
+.shell__resize-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--nav-width);
+  width: var(--handle-width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  z-index: 10;
+  transform: translateX(calc(var(--handle-width) / -2));
+
+  &__dots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 16px;
+    height: 60%;
+    padding: 12px 0;
+    cursor: col-resize;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+
+    &::before,
+    &::after,
+    & span {
+      content: '';
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background-color: color-mix(in srgb, var(--mat-sys-on-surface) 60%, transparent);
+      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
+
+    &.shell__resize-handle__dots--active::before,
+    &.shell__resize-handle__dots--active::after,
+    &.shell__resize-handle__dots--active span,
+    &:hover::before,
+    &:hover::after,
+    &:hover span {
+      background-color: var(--mat-sys-primary);
+    }
+  }
+
+  &:hover &__dots,
+  &__dots.shell__resize-handle__dots--active {
+    opacity: 1;
+  }
 }
 
 .shell__main {
   grid-area: main;
   padding: 1.5rem;
   overflow: auto;
+  min-width: 0;
 }
 
 .shell__footer {
@@ -51,5 +106,9 @@
   .shell__nav {
     border-right: none;
     border-bottom: 1px solid color-mix(in srgb, var(--mat-sys-outline) 30%, transparent);
+  }
+
+  .shell__resize-handle {
+    display: none;
   }
 }
