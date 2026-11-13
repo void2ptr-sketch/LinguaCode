@@ -1,4 +1,11 @@
 /**
+ * Access tier for a program.
+ *
+ * Maps to backend `ProgramRequiredTier`: `FREE`, `STARTER`, `GROWTH`, `PREMIUM`.
+ */
+export type ProgramRequiredTier = 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+
+/**
  * A program: a learning track within a Course, containing ordered lessons.
  *
  * @remarks
@@ -21,6 +28,12 @@ export type Program = {
   lessonIds?: readonly string[];
   /** Display order within the parent Course. */
   order: number;
+  /** Required access tier. */
+  requiredTier?: ProgramRequiredTier;
+  /** Language pair ID — inherited from the parent course. */
+  languagePairId?: number;
+  /** Whether the program is published. */
+  published?: boolean;
   /** ISO 8601 timestamp of the last update. */
   updatedAt: string;
 };

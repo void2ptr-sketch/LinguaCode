@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
+import type { ProgramRequiredTier } from '../../../entities/program/model';
+
 import type { Program } from '../../../entities/program/model/program.types';
 import {
   PROGRAM_TITLE_MAX_LENGTH,
@@ -19,6 +21,7 @@ const mockProgram: Program = {
   description: 'Test description',
   lessonIds: ['lesson-1', 'lesson-2'],
   order: 3,
+  requiredTier: 'FREE',
   updatedAt: '2026-01-01T00:00:00.000Z',
 };
 
@@ -29,6 +32,7 @@ describe('program-form-draft.utils', () => {
         courseId: '',
         title: '',
         description: '',
+        requiredTier: 'FREE',
       });
     });
 
@@ -46,7 +50,13 @@ describe('program-form-draft.utils', () => {
         title: 'Test Program',
         description: 'Test description',
         order: 3,
+        requiredTier: 'FREE',
       });
+    });
+
+    it('should default requiredTier to FREE when missing', () => {
+      const draft = programToFormDraft({ ...mockProgram, requiredTier: undefined });
+      expect(draft.requiredTier).toBe('FREE');
     });
 
     it('should not include lessonIds in the draft', () => {
@@ -77,6 +87,7 @@ describe('program-form-draft.utils', () => {
         title: '',
         description: '',
         order: undefined,
+        requiredTier: 'FREE',
       });
     });
   });
@@ -114,11 +125,12 @@ describe('program-form-draft.utils', () => {
 
   describe('formDraftToProgramCreatePayload', () => {
     it('should map draft to a create payload', () => {
-      const draft = {
+      const draft: import('../types').ProgramFormDraft = {
         courseId: 'course-1',
         title: '  New Program  ',
         description: 'Desc',
         order: 2,
+        requiredTier: 'STARTER' as ProgramRequiredTier,
       };
       const payload = formDraftToProgramCreatePayload(draft, ['lesson-1']);
       expect(payload).toEqual({
@@ -127,6 +139,7 @@ describe('program-form-draft.utils', () => {
         description: 'Desc',
         lessonIds: ['lesson-1'],
         order: 2,
+        requiredTier: 'STARTER',
       });
     });
 
@@ -135,6 +148,7 @@ describe('program-form-draft.utils', () => {
         courseId: 'course-1',
         title: 'New Program',
         description: '',
+        requiredTier: 'FREE',
       });
       expect(payload.lessonIds).toEqual([]);
       expect(payload.order).toBe(0);
@@ -143,12 +157,13 @@ describe('program-form-draft.utils', () => {
 
   describe('formDraftToProgramUpdatePayload', () => {
     it('should include the draft id and preserve lessonIds', () => {
-      const draft = {
+      const draft: import('../types').ProgramFormDraft = {
         id: 'program-1',
         courseId: 'course-1',
         title: 'Updated',
         description: 'New desc',
         order: 1,
+        requiredTier: 'GROWTH' as ProgramRequiredTier,
       };
       const payload = formDraftToProgramUpdatePayload(draft, ['lesson-1', 'lesson-2']);
       expect(payload).toEqual({
@@ -158,6 +173,7 @@ describe('program-form-draft.utils', () => {
         description: 'New desc',
         lessonIds: ['lesson-1', 'lesson-2'],
         order: 1,
+        requiredTier: 'GROWTH',
       });
     });
   });

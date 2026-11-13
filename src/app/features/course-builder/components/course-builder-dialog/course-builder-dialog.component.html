@@ -14,7 +14,7 @@
       [draft]="draft()"
       [readOnly]="!isEditable()"
       (draftChange)="updateDraft($event)"
-      (exportPdf)="exportPdf($event)"
+      (exportRequested)="onExportRequested($event)"
     />
   }
 </mat-dialog-content>

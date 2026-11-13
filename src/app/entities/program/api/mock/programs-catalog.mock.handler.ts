@@ -130,6 +130,9 @@ export class ProgramsCatalogMockHandler {
       description: payload.description,
       lessonIds: payload.lessonIds,
       order: payload.order,
+      requiredTier: payload.requiredTier,
+      languagePairId: payload.languagePairId,
+      published: payload.published,
       updatedAt: new Date().toISOString(),
     };
 
@@ -165,6 +168,9 @@ export class ProgramsCatalogMockHandler {
       description: payload.description,
       lessonIds: payload.lessonIds,
       order: payload.order,
+      requiredTier: payload.requiredTier,
+      languagePairId: payload.languagePairId,
+      published: payload.published,
       updatedAt: new Date().toISOString(),
     };
 

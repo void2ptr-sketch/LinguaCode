@@ -46,6 +46,7 @@
 | [CONTENT-EXPLORER.md](./FEATURES/CONTENT-EXPLORER.md)                               | Проводник контента `/tools/content`: дерево иерархии, CRUD, экспорт      |
 | [CARD-SELECT.md](./FEATURES/CARD-SELECT.md)                                         | Выбор карточек и тренировка `/cards/select`: session flow, learning zone |
 | [COURSE-CATALOG.md](./FEATURES/COURSE-CATALOG.md)                                   | Каталог курсов `/courses`: обзор, прогресс, пагинация, вкладки           |
+| [COURSE-BUILDER.md](./FEATURES/COURSE-BUILDER.md)                                   | Конструктор курсов: dialog CRUD, 4 вкладки формы, экспорт                 |
 | [HOME.md](./FEATURES/HOME.md)                                                       | Главная `/home`: Learning Dashboard, roadmap, прогресс                   |
 | [JOURNEY.md](./FEATURES/JOURNEY.md)                                                 | Карта обучения `/journey`: интерактивная карта контента, аналитика       |
 | [LESSON-BUILDER.md](./FEATURES/LESSON-BUILDER.md)                                   | Конструктор уроков: dialog CRUD для уроков внутри программ               |

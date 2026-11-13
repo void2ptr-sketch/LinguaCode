@@ -1,11 +1,11 @@
-# Архитектура: программы (`course-builder`, `course-catalog`)
+# Архитектура: курсы (`course-builder`, `course-catalog`)
 
-Учебные программы (`Course`) и уроки (`Lesson`). Маршруты `/tools/courses`, `/courses`.
+Курсы (`Course`) и уроки (`Lesson`). Маршруты `/tools/courses`, `/courses`.
 
 ## Назначение
 
-- **course-builder** — CRUD программ и уроков для авторов.
-- **course-catalog** — каталог опубликованных программ для выбора в практике.
+- **course-builder** — CRUD курсов для авторов: создание, редактирование, просмотр, экспорт.
+- **course-catalog** — каталог опубликованных курсов для выбора в практике.
 
 ## Структура
 
@@ -61,6 +61,21 @@ classDiagram
   Course "1" --> "*" Lesson : contains
   Lesson "1" --> "*" Scenario : references
 ```
+
+## Форма курса (`CourseFormComponent`)
+
+Диалог «Редактирование курса» использует `mat-tab-group` с **4 вкладками**:
+
+| Вкладка | Содержание |
+|---------|-----------|
+| **Основное** | Название каталога, описание, статус авторства, published |
+| **Практика** | Режим навигации, requireLessonForScenarios, enforceLessonPrerequisites, allowDifficultyFilter |
+| **Идея каталога** | Markdown-поле для описания идеи (authoring.idea) |
+| **Экспорт** | PDF (без подсказок / с ответами), JSON (CourseBundle), SCORM/xAPI |
+
+Экспорт вынесен на отдельную вкладку — это операции, а не редактирование данных, поэтому они не влияют на dirty-state формы.
+
+Кнопки экспорта используют горизонтальное расположение: иконка слева, текст справа (`flex-direction: row`).
 
 ## Прогресс
 

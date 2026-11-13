@@ -1,15 +1,26 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
+import type { ProgramRequiredTier } from '../../../../entities/program/model';
 import type { ProgramFormDraft } from '../../types';
 import { PROGRAM_TITLE_MAX_LENGTH } from '../../utils';
+
+/** Labels for program access tiers (RU). */
+const TIER_LABELS: Record<ProgramRequiredTier, string> = {
+  FREE: 'Бесплатный',
+  STARTER: 'Стартовый',
+  GROWTH: 'Рост',
+  PREMIUM: 'Премиум',
+};
 
 /**
  * Presentational form component for creating and editing programs.
  *
- * Provides UI controls for the program title and description.
+ * Provides UI controls for the program title, access tier, and description.
  *
  * @remarks
  * Stateless by design: receives the draft via a required input and emits
@@ -20,7 +31,7 @@ import { PROGRAM_TITLE_MAX_LENGTH } from '../../utils';
 @Component({
   selector: 'app-program-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule],
   templateUrl: './program-form.component.html',
   styleUrl: './program-form.component.scss',
 })
@@ -53,6 +64,11 @@ export class ProgramFormComponent {
   /** Maximum allowed title length (backend contract). */
   readonly titleMaxLength = PROGRAM_TITLE_MAX_LENGTH;
 
+  /** Available access tier options. */
+  readonly tierOptions: ProgramRequiredTier[] = ['FREE', 'STARTER', 'GROWTH', 'PREMIUM'];
+  /** Tier labels for display. */
+  readonly tierLabels = TIER_LABELS;
+
   /** Emits the draft with an updated title. */
   updateTitle(title: string): void {
     this.draftChange.emit({ ...this.draft(), title });
@@ -61,5 +77,15 @@ export class ProgramFormComponent {
   /** Emits the draft with an updated description. */
   updateDescription(description: string): void {
     this.draftChange.emit({ ...this.draft(), description });
+  }
+
+  /** Emits the draft with an updated required tier. */
+  updateRequiredTier(tier: ProgramRequiredTier): void {
+    this.draftChange.emit({ ...this.draft(), requiredTier: tier });
+  }
+
+  /** Emits the draft with an updated published flag. */
+  updatePublished(published: boolean): void {
+    this.draftChange.emit({ ...this.draft(), published });
   }
 }

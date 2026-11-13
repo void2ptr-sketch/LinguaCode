@@ -1,3 +1,5 @@
+import type { ProgramRequiredTier } from '../../../entities/program/model';
+
 /**
  * Draft of a program being created or edited in the program builder dialog.
  *
@@ -17,6 +19,12 @@ export type ProgramFormDraft = {
   description: string;
   /** Display order within the parent course (kept from the loaded program). */
   order?: number;
+  /** Required access tier — sent to backend as `requiredTier`. */
+  requiredTier: ProgramRequiredTier;
+  /** Language pair ID — inherited from the parent course when available. */
+  languagePairId?: number;
+  /** Whether the program is published (update-only, optional on create). */
+  published?: boolean;
 };
 
 /**

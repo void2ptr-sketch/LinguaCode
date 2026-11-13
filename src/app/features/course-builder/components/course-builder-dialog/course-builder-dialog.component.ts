@@ -20,6 +20,7 @@ import {
   serializeCourseFormDraft,
 } from '../../utils/course-form-draft.utils';
 import { CourseFormComponent } from '../course-form/course-form.component';
+import type { CourseExportType } from '../course-form/course-form.component';
 import type {
   CourseBuilderDialogData,
   CourseBuilderDialogResult,
@@ -150,28 +151,41 @@ export class CourseBuilderDialogComponent implements OnInit {
   }
 
   /**
-   * Exports the current course to a PDF file.
+   * Handles export requests from the course form's Export tab.
    *
-   * @param withHints — If `true`, includes correct answers marked with ✓.
+   * @param type — The export type: pdf-without-hints, pdf-with-hints, json, or scorm.
    * @remarks
-   * Downloads the generated PDF as a file. Shows a snackbar notification
-   * on success or error. Requires a course to be loaded in the store.
+   * Currently only PDF export is implemented; JSON and SCORM are placeholder actions.
    */
-  async exportPdf(withHints: boolean): Promise<void> {
+  async onExportRequested(type: CourseExportType): Promise<void> {
     const course = this.store.editingCourse();
     if (!course) {
       this.snackBar.open('Курс не загружен', 'Закрыть', { duration: 3000 });
       return;
     }
 
-    try {
-      const blob = await this.pdfExportService.export(course, withHints);
-      this.downloadBlob(blob, `${course.id}${withHints ? '.hints' : ''}.pdf`);
-      this.snackBar.open('PDF успешно выгружен', 'Закрыть', { duration: 3000 });
-    } catch (err) {
-      this.logger.error('PDF export failed', err);
-      this.snackBar.open('Ошибка при выгрузке PDF', 'Закрыть', { duration: 5000 });
+    // ── PDF export ──
+    if (type === 'pdf-without-hints' || type === 'pdf-with-hints') {
+      const withHints = type === 'pdf-with-hints';
+      try {
+        const blob = await this.pdfExportService.export(course, withHints);
+        this.downloadBlob(blob, `${course.id}${withHints ? '.hints' : ''}.pdf`);
+        this.snackBar.open('PDF успешно выгружен', 'Закрыть', { duration: 3000 });
+      } catch (err) {
+        this.logger.error('PDF export failed', err);
+        this.snackBar.open('Ошибка при выгрузке PDF', 'Закрыть', { duration: 5000 });
+      }
+      return;
     }
+
+    // ── JSON / SCORM — placeholders ──
+    const labels: Record<CourseExportType, string> = {
+      'pdf-without-hints': 'PDF без подсказок',
+      'pdf-with-hints': 'PDF с ответами',
+      'json': 'JSON (CourseBundle)',
+      'scorm': 'SCORM / xAPI',
+    };
+    this.snackBar.open(`${labels[type]} — в разработке`, 'Закрыть', { duration: 3000 });
   }
 
   /**

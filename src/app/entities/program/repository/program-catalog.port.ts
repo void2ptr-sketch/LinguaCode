@@ -1,5 +1,6 @@
 import type { Program, ProgramWithLessons } from '../model';
 import type { ProgramSearchCriteria, ProgramSearchPage } from '../model/program-search.types';
+import type { ProgramRequiredTier } from '../model/program.types';
 
 /**
  * Payload for creating or updating a program via the programs API.
@@ -20,6 +21,12 @@ export type ProgramWritePayload = {
   lessonIds: readonly string[];
   /** Display order within the parent Course. */
   order: number;
+  /** Required access tier (`FREE`, `STARTER`, `GROWTH`, `PREMIUM`). */
+  requiredTier: ProgramRequiredTier;
+  /** Language pair ID — inherited from the parent course when available. */
+  languagePairId?: number;
+  /** Whether the program is published (update-only, optional on create). */
+  published?: boolean;
 };
 
 /**

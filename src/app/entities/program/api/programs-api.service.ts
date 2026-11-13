@@ -126,6 +126,9 @@ export class ProgramsApiService implements ProgramCatalogPort {
       // Backend expects a numeric course ID (BIGINT PK); the mock backend
       // understands slug IDs, so non-numeric IDs pass through unchanged.
       courseId: /^\d+$/.test(payload.courseId) ? Number(payload.courseId) : payload.courseId,
+      requiredTier: payload.requiredTier,
+      languagePairId: payload.languagePairId,
+      published: payload.published,
     };
     return firstValueFrom(
       this.http.post<ApiResponse<Program>>(buildApiUrl('/programs'), body),
@@ -157,6 +160,9 @@ export class ProgramsApiService implements ProgramCatalogPort {
       courseId: payload.courseId,
       lessonIds: payload.lessonIds,
       order: payload.order,
+      requiredTier: payload.requiredTier,
+      languagePairId: payload.languagePairId,
+      published: payload.published,
     };
     return firstValueFrom(
       this.http.put<ApiResponse<Program>>(buildApiUrl(`/programs/${programId}`), body),

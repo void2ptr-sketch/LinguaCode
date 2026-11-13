@@ -1,4 +1,4 @@
-import type { Program } from '../../../entities/program/model/program.types';
+import type { Program, ProgramRequiredTier } from '../../../entities/program/model';
 import type { ProgramWritePayload } from '../../../entities/program/api/programs-api.service';
 import { sanitizePlainText } from '../../../shared/security';
 import type { ProgramFormDraft } from '../types';
@@ -11,16 +11,21 @@ export const emptyProgramFormDraft = (courseId = ''): ProgramFormDraft => ({
   courseId,
   title: '',
   description: '',
+  requiredTier: 'FREE' as ProgramRequiredTier,
 });
 
 /** Maps a persisted program to its editable draft representation. */
 export function programToFormDraft(program: Program): ProgramFormDraft {
+  const raw = program as Record<string, unknown>;
   return {
     id: program.id,
     courseId: program.courseId,
     title: program.title,
     description: program.description,
     order: program.order,
+    requiredTier: (raw['requiredTier'] as ProgramRequiredTier | undefined) ?? 'FREE',
+    languagePairId: raw['languagePairId'] as number | undefined,
+    published: raw['published'] as boolean | undefined,
   };
 }
 
@@ -38,6 +43,9 @@ export function serializeProgramFormDraft(draft: ProgramFormDraft): string {
     title: draft.title,
     description: draft.description,
     order: draft.order,
+    requiredTier: draft.requiredTier,
+    languagePairId: draft.languagePairId,
+    published: draft.published,
   });
 }
 
@@ -83,6 +91,9 @@ export function formDraftToProgramCreatePayload(
     description: draft.description,
     lessonIds,
     order: draft.order ?? 0,
+    requiredTier: draft.requiredTier,
+    languagePairId: draft.languagePairId,
+    published: draft.published,
   };
 }
 
@@ -106,5 +117,8 @@ export function formDraftToProgramUpdatePayload(
     description: draft.description,
     lessonIds,
     order: draft.order ?? 0,
+    requiredTier: draft.requiredTier,
+    languagePairId: draft.languagePairId,
+    published: draft.published,
   };
 }

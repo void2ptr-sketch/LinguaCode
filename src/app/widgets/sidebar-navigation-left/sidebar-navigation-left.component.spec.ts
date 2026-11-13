@@ -115,10 +115,10 @@ describe('SidebarNavigationLeftComponent', () => {
 
   it('should emit toggle when toggle is called', () => {
     let toggled = false;
-    component.toggle.subscribe(() => {
+    component.toggleChange.subscribe(() => {
       toggled = true;
     });
-    component.toggle.emit();
+    component.toggleChange.emit();
     expect(toggled).toBe(true);
   });
 });

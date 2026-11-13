@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { courseAuthoringWithIdea } from '../../../../entities/course/utils/course-authoring.utils';
 import type { CourseAuthoringStatus, CoursePracticeMode } from '../../../../entities/course/model';
@@ -17,6 +18,9 @@ import {
 } from '../../../../entities/course/model';
 import { MarkdownFieldComponent } from '../../../../shared/utils/markdown-field';
 import type { CourseFormDraft } from '../../types';
+
+/** Types of course export operations. */
+export type CourseExportType = 'pdf-without-hints' | 'pdf-with-hints' | 'json' | 'scorm';
 
 /**
  * Full form component for creating and editing courses.
@@ -41,6 +45,7 @@ import type { CourseFormDraft } from '../../types';
     MatInputModule,
     MatSelectModule,
     MatTabsModule,
+    MatTooltipModule,
     MarkdownFieldComponent,
   ],
   templateUrl: './course-form.component.html',
@@ -71,12 +76,13 @@ export class CourseFormComponent {
    */
   readonly draftChange = output<CourseFormDraft>();
   /**
-   * Emits when the user requests PDF export.
+   * Emits when the user requests a course export.
    *
    * @remarks
-   * The payload indicates whether hints (correct answers) should be included.
+   * The payload indicates the export type: pdf-without-hints, pdf-with-hints,
+   * json (CourseBundle), or scorm (SCORM/xAPI package).
    */
-  readonly exportPdf = output<boolean>();
+  readonly exportRequested = output<CourseExportType>();
 
   /** Available authoring status options (e.g., 'draft', 'planned', 'generating'). */
   readonly authoringStatusOptions = COURSE_AUTHORING_STATUSES;
@@ -234,5 +240,17 @@ export class CourseFormComponent {
         allowDifficultyFilter: value,
       },
     });
+  }
+
+  // ── Export ──
+
+  /**
+   * Handles PDF export requests from the Export tab.
+   *
+   * @param withHints — Whether to include correct answers (hints) in the PDF.
+   */
+  onExportPdf(withHints: boolean): void {
+    const type: CourseExportType = withHints ? 'pdf-with-hints' : 'pdf-without-hints';
+    this.exportRequested.emit(type);
   }
 }

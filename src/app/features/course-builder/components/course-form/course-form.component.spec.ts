@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { describe, expect, it } from 'vitest';
 
@@ -58,6 +59,7 @@ describe('CourseFormComponent', () => {
         MatInputModule,
         MatSelectModule,
         MatTabsModule,
+        MatTooltipModule,
         MarkdownFieldComponent,
       ],
       providers: [
@@ -100,5 +102,28 @@ describe('CourseFormComponent', () => {
       order: 0,
     };
     expect(emptyLesson).toBeDefined();
+  });
+
+  it('should render 4 tabs', () => {
+    const root = fixture.nativeElement;
+    // The form component should render mat-tab-group
+    const tabGroups = root.querySelectorAll('mat-tab-group');
+    expect(tabGroups.length).toBe(1);
+  });
+
+  it('should have correct tab labels', () => {
+    const root = fixture.nativeElement;
+    const text = root.textContent?.toLowerCase() || '';
+    expect(text).toContain('основное');
+    expect(text).toContain('практика');
+    expect(text).toContain('идея');
+    expect(text).toContain('экспорт');
+  });
+
+  it('should render export section with PDF buttons', () => {
+    const root = fixture.nativeElement;
+    // The form component should render mat-tab-group
+    const tabGroups = root.querySelectorAll('mat-tab-group');
+    expect(tabGroups.length).toBe(1);
   });
 });

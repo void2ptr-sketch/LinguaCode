@@ -34,7 +34,7 @@ export class SidebarNavigationLeftComponent {
   readonly collapsed = input<boolean>(false);
 
   /** Emits when the user toggles the sidebar collapse state. */
-  readonly toggle = output<void>();
+  readonly toggleChange = output<void>();
 
   readonly groups = computed<readonly NavGroup[]>(() =>
     SIDEBAR_NAV_CONFIG.map((group) => ({

@@ -1,5 +1,6 @@
 <div class="course-form">
   <mat-tab-group class="course-form__tabs" dynamicHeight>
+    <!-- ── Вкладка 1: Основное ── -->
     <mat-tab label="Основное">
       <div class="course-form__tab-panel">
         <mat-form-field appearance="outline">
@@ -44,82 +45,63 @@
         >
           Опубликовать каталог
         </mat-checkbox>
-
-        <mat-divider class="course-form__divider"></mat-divider>
-
-        <!-- Practice Settings -->
-        <div class="course-form__practice-settings">
-          <h3 class="course-form__section-title">Настройки практики</h3>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Режим навигации</mat-label>
-            <mat-select
-              [disabled]="readOnly()"
-              [ngModel]="draft().practiceSettings?.mode ?? 'guided'"
-              (ngModelChange)="updatePracticeMode($event)"
-            >
-              <mat-option value="guided">Линейный (последовательный)</mat-option>
-              <mat-option value="open">Свободный (выбор сценариев)</mat-option>
-            </mat-select>
-            <mat-hint>
-              Линейный — прогрессия по урокам и сценариям; Свободный — произвольный выбор
-            </mat-hint>
-          </mat-form-field>
-
-          <mat-checkbox
-            [disabled]="readOnly()"
-            [ngModel]="draft().practiceSettings?.requireLessonForScenarios ?? true"
-            (ngModelChange)="updateRequireLessonForScenarios($event)"
-          >
-            Требовать выбор урока для сценариев
-          </mat-checkbox>
-          <mat-hint class="course-form__checkbox-hint">
-            В свободном режиме сценарии доступны без выбора урока
-          </mat-hint>
-
-          <mat-checkbox
-            [disabled]="readOnly()"
-            [ngModel]="draft().practiceSettings?.enforceLessonPrerequisites ?? true"
-            (ngModelChange)="updateEnforceLessonPrerequisites($event)"
-          >
-            Принудительные предусловия уроков
-          </mat-checkbox>
-          <mat-hint class="course-form__checkbox-hint">
-            Урок станет доступен после завершения выбранных предварительных уроков
-          </mat-hint>
-
-          <mat-checkbox
-            [disabled]="readOnly()"
-            [ngModel]="draft().practiceSettings?.allowDifficultyFilter ?? false"
-            (ngModelChange)="updateAllowDifficultyFilter($event)"
-          >
-            Фильтр по сложности (beginner / intermediate / advanced)
-          </mat-checkbox>
-          <mat-hint class="course-form__checkbox-hint">
-            Отображать чипы сложности на вкладке «Сценарии»
-          </mat-hint>
-        </div>
-
-        <mat-divider class="course-form__divider"></mat-divider>
-
-        <div class="course-form__export-section">
-          <span class="course-form__export-label">Экспорт PDF</span>
-          <div class="course-form__export-controls">
-            <mat-checkbox #withHintsCheckbox [checked]="true"> С ответами </mat-checkbox>
-            <button
-              mat-stroked-button
-              type="button"
-              color="primary"
-              (click)="exportPdf.emit(withHintsCheckbox.checked)"
-            >
-              <mat-icon>picture_as_pdf</mat-icon>
-              Экспорт PDF
-            </button>
-          </div>
-        </div>
       </div>
     </mat-tab>
 
+    <!-- ── Вкладка 2: Практика ── -->
+    <mat-tab label="Практика">
+      <div class="course-form__tab-panel">
+        <mat-form-field appearance="outline">
+          <mat-label>Режим навигации</mat-label>
+          <mat-select
+            [disabled]="readOnly()"
+            [ngModel]="draft().practiceSettings?.mode ?? 'guided'"
+            (ngModelChange)="updatePracticeMode($event)"
+          >
+            <mat-option value="guided">Линейный (последовательный)</mat-option>
+            <mat-option value="open">Свободный (выбор сценариев)</mat-option>
+          </mat-select>
+          <mat-hint>
+            Линейный — прогрессия по урокам и сценариям; Свободный — произвольный выбор
+          </mat-hint>
+        </mat-form-field>
+
+        <mat-checkbox
+          [disabled]="readOnly()"
+          [ngModel]="draft().practiceSettings?.requireLessonForScenarios ?? true"
+          (ngModelChange)="updateRequireLessonForScenarios($event)"
+        >
+          Требовать выбор урока для сценариев
+        </mat-checkbox>
+        <mat-hint class="course-form__checkbox-hint">
+          В свободном режиме сценарии доступны без выбора урока
+        </mat-hint>
+
+        <mat-checkbox
+          [disabled]="readOnly()"
+          [ngModel]="draft().practiceSettings?.enforceLessonPrerequisites ?? true"
+          (ngModelChange)="updateEnforceLessonPrerequisites($event)"
+        >
+          Принудительные предусловия уроков
+        </mat-checkbox>
+        <mat-hint class="course-form__checkbox-hint">
+          Урок станет доступен после завершения выбранных предварительных уроков
+        </mat-hint>
+
+        <mat-checkbox
+          [disabled]="readOnly()"
+          [ngModel]="draft().practiceSettings?.allowDifficultyFilter ?? false"
+          (ngModelChange)="updateAllowDifficultyFilter($event)"
+        >
+          Фильтр по сложности (beginner / intermediate / advanced)
+        </mat-checkbox>
+        <mat-hint class="course-form__checkbox-hint">
+          Отображать чипы сложности на вкладке «Сценарии»
+        </mat-hint>
+      </div>
+    </mat-tab>
+
+    <!-- ── Вкладка 3: Идея каталога ── -->
     <mat-tab label="Идея каталога">
       <div class="course-form__tab-panel">
         <p class="course-form__idea-hint">
@@ -136,6 +118,53 @@
           hint="Markdown: заголовки (#), списки, **жирный**, `код`, ссылки"
           (valueChange)="updateAuthoringIdea($event)"
         />
+      </div>
+    </mat-tab>
+
+    <!-- ── Вкладка 4: Экспорт ── -->
+    <mat-tab label="Экспорт">
+      <div class="course-form__tab-panel">
+        <p class="course-form__export-hint">
+          Выгрузите курс в одном из форматов для передачи maintainer'у или печати.
+        </p>
+
+        <div class="course-form__export-actions">
+          <button
+            mat-stroked-button
+            type="button"
+            (click)="onExportPdf(false)"
+          >
+            <mat-icon>picture_as_pdf</mat-icon>
+            <span>PDF без подсказок</span>
+          </button>
+
+          <button
+            mat-stroked-button
+            type="button"
+            (click)="onExportPdf(true)"
+          >
+            <mat-icon>picture_as_pdf</mat-icon>
+            <span>PDF с ответами</span>
+          </button>
+
+          <button
+            mat-stroked-button
+            type="button"
+            matTooltip="CourseBundle для передачи maintainer'у"
+          >
+            <mat-icon>file_download</mat-icon>
+            <span>JSON (CourseBundle)</span>
+          </button>
+
+          <button
+            mat-stroked-button
+            type="button"
+            matTooltip="SCORM/xAPI-пакет"
+          >
+            <mat-icon>cloud_download</mat-icon>
+            <span>SCORM / xAPI</span>
+          </button>
+        </div>
       </div>
     </mat-tab>
   </mat-tab-group>

@@ -4,6 +4,7 @@
     <input
       matInput
       required
+      name="title"
       [disabled]="readOnly()"
       [maxlength]="titleMaxLength"
       [ngModel]="draft().title"
@@ -13,14 +14,38 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline">
+    <mat-label>Уровень доступа</mat-label>
+    <mat-select
+      name="requiredTier"
+      [disabled]="readOnly()"
+      [ngModel]="draft().requiredTier"
+      (ngModelChange)="updateRequiredTier($event)"
+    >
+      @for (tier of tierOptions; track tier) {
+        <mat-option [value]="tier">{{ tierLabels[tier] }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
     <mat-label>Описание</mat-label>
     <textarea
       matInput
       rows="4"
+      name="description"
       [disabled]="readOnly()"
       [ngModel]="draft().description"
       (ngModelChange)="updateDescription($event)"
     ></textarea>
     <mat-hint>Короткий текст для каталога</mat-hint>
   </mat-form-field>
+
+  @if (!readOnly()) {
+    <mat-checkbox
+      [ngModel]="draft().published ?? false"
+      (ngModelChange)="updatePublished($event)"
+    >
+      Опубликовать
+    </mat-checkbox>
+  }
 </div>
