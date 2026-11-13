@@ -5,6 +5,12 @@ import { ScenarioSearchService } from '../../../entities/scenario';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { CardSelectService } from './card-select.service';
 
+const MOCK_LANGUAGE_PAIR = { known: 'ru' as const, learning: 'en' as const };
+
+const createMockUserStore = () => ({
+  languagePair: () => MOCK_LANGUAGE_PAIR,
+});
+
 const createMockScenario = (cardSource: {
   mode: 'fixed' | 'snapshot' | 'criteria';
   cardIds?: string[];
@@ -16,7 +22,7 @@ const createMockScenario = (cardSource: {
   authorId: 'local-user',
   published: true,
   updatedAt: '2026-01-01T00:00:00.000Z',
-  languagePair: { known: 'ru', learning: 'en' },
+  languagePair: MOCK_LANGUAGE_PAIR,
   cardSource,
 });
 
@@ -53,6 +59,10 @@ describe('CardSelectService', () => {
               getById: async () => createMockScenario({ mode: 'fixed', cardIds: ['select-1'] }),
             },
           },
+          {
+            provide: UserStore,
+            useValue: createMockUserStore(),
+          },
           provideHttpClient(),
         ],
       });
@@ -87,6 +97,10 @@ describe('CardSelectService', () => {
               ],
             },
           },
+          {
+            provide: UserStore,
+            useValue: createMockUserStore(),
+          },
           provideHttpClient(),
         ],
       });
@@ -111,6 +125,10 @@ describe('CardSelectService', () => {
             useValue: {
               getByIds: async () => [{ ...selectCard, id: 'c1' }],
             },
+          },
+          {
+            provide: UserStore,
+            useValue: createMockUserStore(),
           },
           provideHttpClient(),
         ],
@@ -148,6 +166,10 @@ describe('CardSelectService', () => {
               }),
             },
           },
+          {
+            provide: UserStore,
+            useValue: createMockUserStore(),
+          },
           provideHttpClient(),
         ],
       });
@@ -184,6 +206,10 @@ describe('CardSelectService', () => {
               }),
             },
           },
+          {
+            provide: UserStore,
+            useValue: createMockUserStore(),
+          },
           provideHttpClient(),
         ],
       });
@@ -217,6 +243,10 @@ describe('CardSelectService', () => {
               }),
             },
           },
+          {
+            provide: UserStore,
+            useValue: createMockUserStore(),
+          },
           provideHttpClient(),
         ],
       });
@@ -237,6 +267,10 @@ describe('CardSelectService', () => {
             useValue: {
               getById: async () => createMockScenario({ mode: 'fixed', cardIds: [] }),
             },
+          },
+          {
+            provide: UserStore,
+            useValue: createMockUserStore(),
           },
           provideHttpClient(),
         ],

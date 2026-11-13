@@ -55,12 +55,12 @@ export type ProgramCatalogPort = {
   getById(programId: string): Promise<ProgramWithLessons>;
 
   /**
-   * Retrieves all programs for a given course.
+   * Retrieves all programs for a given course with lessons resolved.
    *
    * @param courseId - The course ID.
-   * @returns Array of programs in the course.
+   * @returns Array of programs with lessons in the course.
    */
-  getByCourse(courseId: string): Promise<readonly Program[]>;
+  getByCourse(courseId: string): Promise<readonly ProgramWithLessons[]>;
 
   /**
    * Creates a new program within a course.

@@ -231,7 +231,7 @@ function filterParams(
 export class ProgramsService {
   private readonly http = inject(HttpClient);
 /**
- * Returns program details by ID
+ * Returns program details by ID (no access check — frontend handles permissions)
  * @summary Get program by ID
  */
  programsGetById<TData = ProgramResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;

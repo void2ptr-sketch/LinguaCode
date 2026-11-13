@@ -21,6 +21,8 @@ export interface ProgramWithLessons {
   requiredTier?: ProgramWithLessonsRequiredTier;
   /** Порядок в курсе */
   order?: number;
+  /** ID уроков программы */
+  lessonIds?: number[];
   lessons?: Lesson[];
   createdAt?: string;
   updatedAt?: string;
