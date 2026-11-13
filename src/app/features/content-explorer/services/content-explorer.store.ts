@@ -124,75 +124,418 @@ export class ContentExplorerStore {
   private readonly nodeIndex = new Map<string, ExplorerNode>();
 
   // -------------------------------------------------------------------------
-  // Smart search — card catalog search + path building
+  // Search — card catalog search + on-demand ancestor resolution
   // -------------------------------------------------------------------------
 
-  /** Whether a smart card search is in progress. */
+  /** Whether a search (card query + ancestor loading) is in progress. */
   readonly smartSearchLoading = signal(false);
 
-  /** Error message from smart card search. */
+  /** Error message from search. */
   readonly smartSearchError = signal<string | null>(null);
 
   /**
-   * Searches cards by query and returns matching card entries.
-   * Does NOT expand the tree — returns search results as a flat list.
-   *
-   * @param query - Search query.
-   * @returns Array of matching card index entries.
+   * Keys of the nodes visible for the active search query.
+   * `null` means «no active search» — the regular tree is rendered.
    */
-  async searchCardsAndBuildPaths(query: string): Promise<readonly ExplorerNode[]> {
-    if (!query.trim()) {
-      return [];
+  readonly searchVisibleKeys = signal<ReadonlySet<string> | null>(null);
+
+  /**
+   * Extra card nodes produced by search, grouped by parent scenario key.
+   *
+   * @remarks
+   * Rendered on top of the regular (lazy) children so matching cards can be
+   * shown inside their ancestor chain without mutating the tree.
+   */
+  readonly searchExtraChildren = signal<ReadonlyMap<string, readonly ExplorerNode[]>>(new Map());
+
+  /** Root nodes to render for the active search query. */
+  readonly searchResultRoots = signal<readonly ExplorerNode[]>([]);
+
+  /** Monotonic search sequence — used to drop stale async results. */
+  private searchSequence = 0;
+  /** Node keys created only for the current search (cleaned up on clear). */
+  private readonly searchCreatedNodeKeys = new Set<string>();
+  /** Virtual root for cards that are not referenced by any scenario. */
+  private orphanCardsRoot: ExplorerNode | null = null;
+
+  /**
+   * Runs a tree search: title matches over loaded nodes + card catalog search.
+   *
+   * @remarks
+   * Card search results carry `courseId` / `lessonId` / `scenarioId`
+   * (`CardIndexEntry`), so only the missing ancestor nodes are loaded on demand
+   * — no full-tree index and no per-card fan-out. Matching nodes and their
+   * ancestor chains are exposed through `searchVisibleKeys` /
+   * `searchResultRoots`, so the tree renders them as a filtered tree.
+   *
+   * @param query - Free-text query matched against node titles (and cards).
+   */
+  async search(query: string): Promise<void> {
+    const normalized = query.trim();
+    if (normalized.length === 0) {
+      this.clearSearch();
+      return;
     }
 
+    const sequence = ++this.searchSequence;
     this.smartSearchLoading.set(true);
     this.smartSearchError.set(null);
+    this.resetSearchOverlay();
 
     try {
-      // [search-diag] temporary: proves that only /cards/search is called and
-      // that course/program/lesson/scenario catalogs are never queried.
-      this.logger.debug('[search-diag] store.searchCardsAndBuildPaths: card catalog only', {
-        query: query.trim(),
-        catalogsQueried: ['cards'],
-        catalogsMissing: ['courses', 'programs', 'lessons', 'scenarios'],
-      });
-      // Search cards by query (no index loading needed)
-      const searchPage = await this.cardSearchService.search({
-        query: query.trim(),
-        page: { page: 0, pageSize: 100 },
-      });
-
-      const matchingCards = [...searchPage.items];
-      this.logger.debug('[search-diag] card search page', {
-        totalItems: searchPage.totalItems,
-        items: matchingCards.length,
-      });
-      if (matchingCards.length === 0) {
-        return [];
+      if (this.roots().length === 0) {
+        await this.loadRoots();
+      }
+      if (sequence !== this.searchSequence) {
+        return;
       }
 
-      // Create virtual nodes for matching cards (no tree expansion)
-      const resultNodes: ExplorerNode[] = matchingCards.map((card) =>
-        this.createNode({
-          kind: 'card',
-          id: card.id,
-          parentId: null,
-          title: card.title,
-          meta: `Карточка · ${card.kind} · Курс: ${card.courseId || 'N/A'}`,
-          virtual: true,
-          editable: false,
-          data: card,
-        }),
-      );
+      const matches = this.collectTitleMatches(normalized);
+      const cardEntries = await this.searchCards(normalized);
+      if (sequence !== this.searchSequence) {
+        return;
+      }
 
-      return resultNodes;
+      matches.push(...(await this.attachCardMatches(cardEntries)));
+      if (sequence !== this.searchSequence) {
+        return;
+      }
+
+      const visibleKeys = this.buildVisibleKeys(matches);
+      const resultRoots = this.roots().filter((root) => visibleKeys.has(root.key));
+      if (this.orphanCardsRoot) {
+        resultRoots.push(this.orphanCardsRoot);
+      }
+
+      this.searchVisibleKeys.set(visibleKeys);
+      this.searchResultRoots.set(resultRoots);
     } catch (error) {
-      this.logger.error('ContentExplorer: smart search failed', error);
-      this.smartSearchError.set('Не удалось выполнить поиск карточек');
-      return [];
+      this.logger.error('ContentExplorer: search failed', error);
+      this.smartSearchError.set('Не удалось выполнить поиск по контенту');
+      this.resetSearchOverlay();
     } finally {
-      this.smartSearchLoading.set(false);
+      if (sequence === this.searchSequence) {
+        this.smartSearchLoading.set(false);
+      }
     }
+  }
+
+  /** Clears search results and restores the regular tree. */
+  clearSearch(): void {
+    this.searchSequence += 1;
+    this.smartSearchLoading.set(false);
+    this.smartSearchError.set(null);
+    this.resetSearchOverlay();
+  }
+
+  private resetSearchOverlay(): void {
+    for (const key of this.searchCreatedNodeKeys) {
+      this.nodeIndex.delete(key);
+    }
+    this.searchCreatedNodeKeys.clear();
+    this.orphanCardsRoot = null;
+    this.searchVisibleKeys.set(null);
+    this.searchExtraChildren.set(new Map());
+    this.searchResultRoots.set([]);
+  }
+
+  private async ensureChildrenLoaded(node: ExplorerNode): Promise<void> {
+    if (node.children() === null) {
+      await this.loadChildren(node);
+    }
+  }
+
+  private createScenarioNode(
+    lessonNode: ExplorerNode,
+    scenarioId: string,
+    scenario: Scenario | undefined,
+  ): ExplorerNode {
+    if (!scenario) {
+      return this.createNode({
+        kind: 'scenario',
+        id: scenarioId,
+        parentId: lessonNode.key,
+        title: `Сценарий ${scenarioId}`,
+        meta: 'Сценарий (не найден в каталоге)',
+        editable: false,
+      });
+    }
+    return this.createNode({
+      kind: 'scenario',
+      id: scenario.id,
+      parentId: lessonNode.key,
+      title: scenario.title,
+      meta: this.scenarioMeta(scenario),
+      editable: this.isOwnAuthor(scenario.authorId),
+      data: scenario,
+    });
+  }
+
+  /** Collects all loaded nodes whose title matches the query. */
+  private collectTitleMatches(query: string): ExplorerNode[] {
+    const normalized = query.toLowerCase();
+    const matches: ExplorerNode[] = [];
+    const visited = new Set<string>();
+
+    const visit = (nodes: readonly ExplorerNode[]): void => {
+      for (const node of nodes) {
+        if (visited.has(node.key)) {
+          continue;
+        }
+        visited.add(node.key);
+        if (node.title().toLowerCase().includes(normalized)) {
+          matches.push(node);
+        }
+        const children = node.children();
+        if (children && children.length > 0) {
+          visit(children);
+        }
+      }
+    };
+
+    visit(this.roots());
+    return matches;
+  }
+
+  /** Runs the card catalog search (one backend request per query). */
+  private async searchCards(query: string): Promise<readonly CardIndexEntry[]> {
+    try {
+      const page = await this.cardSearchService.search({
+        query,
+        page: { page: 0, pageSize: 100 },
+      });
+      return page.items;
+    } catch (error) {
+      this.logger.warn('ContentExplorer: card search failed', error);
+      return [];
+    }
+  }
+
+  /**
+   * Attaches matching cards to their scenario ancestors.
+   *
+   * @remarks
+   * Uses the hierarchy IDs from the card search result (`courseId`,
+   * `lessonId`, `scenarioId`) to load only the missing ancestor nodes.
+   *
+   * @returns Card nodes (existing or search-only) that should be visible.
+   */
+  private async attachCardMatches(entries: readonly CardIndexEntry[]): Promise<ExplorerNode[]> {
+    if (entries.length === 0) {
+      return [];
+    }
+
+    const extraByScenario = new Map<string, ExplorerNode[]>();
+    const matches: ExplorerNode[] = [];
+
+    for (const entry of entries) {
+      const scenarioNode = await this.resolveScenarioNodeForCard(entry);
+      if (!scenarioNode) {
+        matches.push(this.createOrphanCardNode(entry));
+        continue;
+      }
+
+      const existing = (scenarioNode.children() ?? []).find(
+        (child) => child.kind === 'card' && child.id === entry.id,
+      );
+      if (existing) {
+        matches.push(existing);
+        continue;
+      }
+
+      const cardNode = this.createCardNode(scenarioNode, entry.id, entry.title, entry.kind);
+      cardNode.data = entry;
+      this.searchCreatedNodeKeys.add(cardNode.key);
+      const bucket = extraByScenario.get(scenarioNode.key) ?? [];
+      bucket.push(cardNode);
+      extraByScenario.set(scenarioNode.key, bucket);
+      matches.push(cardNode);
+    }
+
+    this.searchExtraChildren.set(extraByScenario);
+    return matches;
+  }
+
+  /**
+   * Resolves the scenario ancestor for a card search result.
+   *
+   * @remarks
+   * Fast paths use already loaded nodes; otherwise the missing chain is loaded
+   * by the card's `courseId` → `lessonId` → `scenarioId` references.
+   */
+  private async resolveScenarioNodeForCard(entry: CardIndexEntry): Promise<ExplorerNode | null> {
+    const loadedScenarios = this.collectNodesByKind('scenario');
+
+    if (entry.scenarioId) {
+      const loaded = loadedScenarios.find((node) => node.id === entry.scenarioId);
+      if (loaded) {
+        return loaded;
+      }
+    }
+
+    const byCardId = loadedScenarios.find((node) => this.scenarioReferencesCard(node, entry.id));
+    if (byCardId) {
+      return byCardId;
+    }
+
+    const courseNode = this.findCourseNode(entry.courseId);
+    if (!courseNode) {
+      return null;
+    }
+
+    await this.ensureChildrenLoaded(courseNode);
+    const lessonNode = await this.findOrLoadLessonNode(
+      courseNode,
+      entry.lessonId,
+      entry.scenarioId,
+    );
+    if (!lessonNode) {
+      return null;
+    }
+
+    await this.ensureChildrenLoaded(lessonNode);
+    const scenarios = (lessonNode.children() ?? []).filter((node) => node.kind === 'scenario');
+
+    if (entry.scenarioId) {
+      const scenarioNode = scenarios.find((node) => node.id === entry.scenarioId);
+      if (scenarioNode) {
+        return scenarioNode;
+      }
+    }
+
+    return scenarios.find((node) => this.scenarioReferencesCard(node, entry.id)) ?? null;
+  }
+
+  private findCourseNode(courseId: string | undefined): ExplorerNode | null {
+    if (!courseId) {
+      return null;
+    }
+    return this.roots().find((node) => node.kind === 'course' && node.id === courseId) ?? null;
+  }
+
+  /**
+   * Finds a lesson inside a course, loading program children only when the
+   * lesson cannot be located in the already loaded program metadata.
+   */
+  private async findOrLoadLessonNode(
+    courseNode: ExplorerNode,
+    lessonId: string | undefined,
+    scenarioId: string | undefined,
+  ): Promise<ExplorerNode | null> {
+    const programNodes = courseNode.children() ?? [];
+
+    if (lessonId) {
+      const matchingProgram = programNodes.find((programNode) => {
+        const program = programNode.data as ProgramWithLessons | undefined;
+        return program?.lessons?.some((lesson) => lesson.id === lessonId) ?? false;
+      });
+      const candidates = matchingProgram
+        ? [matchingProgram, ...programNodes.filter((node) => node !== matchingProgram)]
+        : programNodes;
+
+      for (const programNode of candidates) {
+        await this.ensureChildrenLoaded(programNode);
+        const lessonNode = (programNode.children() ?? []).find(
+          (node) => node.kind === 'lesson' && node.id === lessonId,
+        );
+        if (lessonNode) {
+          return lessonNode;
+        }
+      }
+      return null;
+    }
+
+    if (scenarioId) {
+      for (const programNode of programNodes) {
+        await this.ensureChildrenLoaded(programNode);
+        for (const lessonNode of programNode.children() ?? []) {
+          const lesson = (lessonNode.data ?? {}) as { scenarioIds?: readonly string[] };
+          if (lesson.scenarioIds?.includes(scenarioId)) {
+            return lessonNode;
+          }
+        }
+      }
+    }
+
+    return null;
+  }
+
+  private scenarioReferencesCard(node: ExplorerNode, cardId: string): boolean {
+    const scenario = node.data as Scenario | null;
+    if (!scenario) {
+      return false;
+    }
+    const source = scenario.cardSource;
+    return source.mode !== 'criteria' && source.cardIds.includes(cardId);
+  }
+
+  /** Creates a card node for cards not referenced by any scenario. */
+  private createOrphanCardNode(entry: CardIndexEntry): ExplorerNode {
+    if (!this.orphanCardsRoot) {
+      this.orphanCardsRoot = this.createNode({
+        kind: 'card',
+        id: 'search:orphan-cards',
+        parentId: null,
+        title: 'Карточки вне сценариев',
+        meta: 'Результаты поиска',
+        virtual: true,
+        editable: false,
+      });
+      this.orphanCardsRoot.children.set([]);
+      this.searchCreatedNodeKeys.add(this.orphanCardsRoot.key);
+    }
+
+    const cardNode = this.createNode({
+      kind: 'card',
+      id: entry.id,
+      parentId: this.orphanCardsRoot.key,
+      title: entry.title,
+      meta: `Карточка · ${entry.kind}`,
+      shared: true,
+      data: entry,
+    });
+    this.searchCreatedNodeKeys.add(cardNode.key);
+    this.orphanCardsRoot.children.set([...(this.orphanCardsRoot.children() ?? []), cardNode]);
+    return cardNode;
+  }
+
+  /** Collects all loaded nodes of a given kind. */
+  private collectNodesByKind(kind: ExplorerNodeKind): ExplorerNode[] {
+    const result: ExplorerNode[] = [];
+    const visited = new Set<string>();
+
+    const visit = (nodes: readonly ExplorerNode[]): void => {
+      for (const node of nodes) {
+        if (visited.has(node.key)) {
+          continue;
+        }
+        visited.add(node.key);
+        if (node.kind === kind) {
+          result.push(node);
+        }
+        const children = node.children();
+        if (children) {
+          visit(children);
+        }
+      }
+    };
+
+    visit(this.roots());
+    return result;
+  }
+
+  /** Builds the set of visible keys: matches plus all their ancestors. */
+  private buildVisibleKeys(matches: readonly ExplorerNode[]): ReadonlySet<string> {
+    const keys = new Set<string>();
+    for (const node of matches) {
+      for (const ancestor of this.pathOf(node)) {
+        keys.add(ancestor.key);
+      }
+    }
+    if (this.orphanCardsRoot) {
+      keys.add(this.orphanCardsRoot.key);
+    }
+    return keys;
   }
 
   // -------------------------------------------------------------------------
@@ -541,28 +884,9 @@ export class ContentExplorerStore {
     const scenarios = await this.scenarioSearchService.getByIdBatch(scenarioIds);
     const byId = new Map(scenarios.map((scenario) => [scenario.id, scenario]));
 
-    return scenarioIds.map((scenarioId) => {
-      const scenario = byId.get(scenarioId);
-      if (!scenario) {
-        return this.createNode({
-          kind: 'scenario',
-          id: scenarioId,
-          parentId: lessonNode.key,
-          title: `Сценарий ${scenarioId}`,
-          meta: 'Сценарий (не найден в каталоге)',
-          editable: false,
-        });
-      }
-      return this.createNode({
-        kind: 'scenario',
-        id: scenario.id,
-        parentId: lessonNode.key,
-        title: scenario.title,
-        meta: this.scenarioMeta(scenario),
-        editable: this.isOwnAuthor(scenario.authorId),
-        data: scenario,
-      });
-    });
+    return scenarioIds.map((scenarioId) =>
+      this.createScenarioNode(lessonNode, scenarioId, byId.get(scenarioId)),
+    );
   }
 
   private async loadCardChildren(scenarioNode: ExplorerNode): Promise<readonly ExplorerNode[]> {

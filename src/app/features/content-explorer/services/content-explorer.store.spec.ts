@@ -85,6 +85,9 @@ const cardEntry: CardIndexEntry = {
   tags: [],
   ipaReadings: [],
   updatedAt: '2026-01-01T00:00:00Z',
+  courseId: 'course-1',
+  lessonId: 'lesson-1',
+  scenarioId: 'scenario-1',
 } as unknown as CardIndexEntry;
 
 function setup(overrides?: {
@@ -112,6 +115,20 @@ function setup(overrides?: {
   };
 
   const cardSearchService = {
+    search: vi.fn().mockResolvedValue({
+      items: [cardEntry],
+      page: 0,
+      pageSize: 100,
+      totalItems: 1,
+      totalPages: 1,
+      facets: {
+        knownLanguages: [],
+        learningLanguages: [],
+        difficulties: [],
+        kinds: [],
+        tags: [],
+      },
+    }),
     ensureIndexLoaded: vi.fn().mockResolvedValue(undefined),
     indexEntries: vi.fn().mockReturnValue([cardEntry]),
     getCardById: vi.fn(),
@@ -310,6 +327,80 @@ describe('ContentExplorerStore', () => {
     const path = store.pathOf(scenarioNode);
     expect(path.map((entry) => entry.kind)).toEqual(['course', 'program', 'lesson', 'scenario']);
     expect(store.parentCourseOf(scenarioNode)?.kind).toBe('course');
+  });
+
+  it('search() builds a filtered tree with card ancestors', async () => {
+    await store.loadRoots();
+
+    await store.search('Hello');
+
+    const keys = store.searchVisibleKeys();
+    expect(keys).not.toBeNull();
+    expect([...keys!].sort()).toEqual(
+      [
+        'course:course-1',
+        'program:program-1',
+        'lesson:lesson-1',
+        'scenario:scenario-1',
+        'card:card-1',
+      ].sort(),
+    );
+
+    expect(store.searchResultRoots().map((node) => node.key)).toEqual(['course:course-1']);
+
+    const extraCards = store.searchExtraChildren().get('scenario:scenario-1') ?? [];
+    expect(extraCards.map((node) => node.id)).toEqual(['card-1']);
+    expect(store.pathOf(extraCards[0]).map((node) => node.kind)).toEqual([
+      'course',
+      'program',
+      'lesson',
+      'scenario',
+      'card',
+    ]);
+  });
+
+  it('search() matches titles of already loaded nodes without card results', async () => {
+    vi.mocked(TestBed.inject(CardSearchService).search).mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 100,
+      totalItems: 0,
+      totalPages: 0,
+      facets: {
+        knownLanguages: [],
+        learningLanguages: [],
+        difficulties: [],
+        kinds: [],
+        tags: [],
+      },
+    } as never);
+
+    await store.loadRoots();
+    const courseNode = store.roots()[0];
+    await store.toggleNode(courseNode);
+    const programNode = courseNode.children()![0];
+    await store.toggleNode(programNode);
+
+    await store.search('Приветствия');
+
+    const keys = store.searchVisibleKeys();
+    expect(keys?.has('lesson:lesson-1')).toBe(true);
+    expect(keys?.has('program:program-1')).toBe(true);
+    expect(keys?.has('course:course-1')).toBe(true);
+    expect(store.searchExtraChildren().size).toBe(0);
+    expect(store.searchResultRoots().map((node) => node.key)).toEqual(['course:course-1']);
+  });
+
+  it('clearSearch() removes the search overlay and search-only nodes', async () => {
+    await store.search('Hello');
+    expect(store.getByKey('card:card-1')).not.toBeNull();
+
+    store.clearSearch();
+
+    expect(store.searchVisibleKeys()).toBeNull();
+    expect(store.searchExtraChildren().size).toBe(0);
+    expect(store.searchResultRoots()).toHaveLength(0);
+    expect(store.getByKey('card:card-1')).toBeNull();
   });
 
   it('selectNode() updates selection', async () => {

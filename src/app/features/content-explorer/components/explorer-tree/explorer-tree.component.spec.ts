@@ -79,6 +79,9 @@ const cardEntry: CardIndexEntry = {
   tags: [],
   ipaReadings: [],
   updatedAt: '2026-01-01T00:00:00Z',
+  courseId: 'course-1',
+  lessonId: 'lesson-1',
+  scenarioId: 'scenario-1',
 } as unknown as CardIndexEntry;
 
 describe('ExplorerTreeComponent (DOM rendering)', () => {
@@ -106,6 +109,20 @@ describe('ExplorerTreeComponent (DOM rendering)', () => {
         {
           provide: CardSearchService,
           useValue: {
+            search: vi.fn().mockResolvedValue({
+              items: [cardEntry],
+              page: 0,
+              pageSize: 100,
+              totalItems: 1,
+              totalPages: 1,
+              facets: {
+                knownLanguages: [],
+                learningLanguages: [],
+                difficulties: [],
+                kinds: [],
+                tags: [],
+              },
+            }),
             ensureIndexLoaded: vi.fn().mockResolvedValue(undefined),
             indexEntries: vi.fn().mockReturnValue([cardEntry]),
             getCardById: vi.fn(),
@@ -157,6 +174,31 @@ describe('ExplorerTreeComponent (DOM rendering)', () => {
     await store.toggleNode(scenarioNode);
     treeFixture.detectChanges();
     expect(el.textContent).toContain('Hello');
+  });
+
+  it('renders search results as a filtered tree with ancestors', async () => {
+    vi.useFakeTimers();
+    try {
+      const store = TestBed.inject(ContentExplorerStore);
+      const treeFixture = TestBed.createComponent(ExplorerTreeComponent);
+      const el = treeFixture.nativeElement as HTMLElement;
+      await store.loadRoots();
+
+      (treeFixture.componentInstance as unknown as { setFilter(query: string): void }).setFilter(
+        'Hello',
+      );
+      treeFixture.detectChanges();
+      await vi.advanceTimersByTimeAsync(300);
+      treeFixture.detectChanges();
+
+      expect(el.textContent).toContain('Английский A1');
+      expect(el.textContent).toContain('Basics');
+      expect(el.textContent).toContain('Приветствия');
+      expect(el.textContent).toContain('Демо: приветствие');
+      expect(el.textContent).toContain('Hello');
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it('selecting a node does not recurse infinitely', async () => {

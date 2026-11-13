@@ -2,7 +2,7 @@
   class="tree-node"
   role="treeitem"
   tabindex="0"
-  [attr.aria-expanded]="hasChildren() ? node().expanded() : null"
+  [attr.aria-expanded]="hasChildren() ? searchActive() || node().expanded() : null"
   [attr.aria-selected]="store.selectedId() === node().id"
   [class.tree-node--selected]="store.selectedId() === node().id"
   [style.padding-left.rem]="depth() + 0.5"
@@ -14,7 +14,7 @@
     mat-icon-button
     type="button"
     class="tree-node__toggle"
-    [class.tree-node__toggle--hidden]="!hasChildren()"
+    [class.tree-node__toggle--hidden]="!hasChildren() || searchActive()"
     [attr.aria-label]="node().expanded() ? 'Свернуть' : 'Развернуть'"
     [matTooltip]="node().expanded() ? 'Свернуть' : 'Развернуть'"
     (click)="onToggle($event)"
@@ -61,9 +61,9 @@
   </div>
 }
 
-@if (node().expanded() && node().children()) {
+@if (showChildren()) {
   <div class="tree-node__children" role="treegroup">
-    @for (child of node().children(); track child.id) {
+    @for (child of visibleChildren(); track child.key) {
       <app-explorer-tree-node [node]="child" [depth]="depth() + 1" />
     }
   </div>

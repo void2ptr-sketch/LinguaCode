@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
   inject,
   signal,
   effect,
@@ -21,9 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { ContentExplorerStore } from '../../services/content-explorer.store';
-import { filterExplorerNodes } from '../../types/content-explorer.types';
 import { ExplorerTreeNodeComponent } from '../explorer-tree-node/explorer-tree-node.component';
-import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,45 +44,40 @@ import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 export class ExplorerTreeComponent {
   protected readonly store = inject(ContentExplorerStore);
   protected readonly userStore = inject(UserStore);
-  protected readonly logger = inject(AppLoggerService);
+  private readonly destroyRef = inject(DestroyRef);
   protected readonly filterQuery = signal('');
   /** Toggled language-pair keys (e.g. "ru→en"). Empty = show all. */
   protected readonly selectedPairKeys = signal<Set<string>>(new Set());
-  /** Results from smart card search (paths to matching cards). */
-  protected readonly smartSearchResults = signal<readonly import('../../services/content-explorer.store').ExplorerNode[]>([]);
 
-  /** Debounce timer for smart search. */
+  /** Debounce timer for the search. */
   private searchDebounceTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor() {
-    // Debounced smart search on query change
+    this.destroyRef.onDestroy(() => this.cancelPendingSearch());
+
+    // Debounced tree search on query change. Cards are searched with one
+    // `/cards/search` request; their hierarchy IDs load only missing ancestors.
     effect(() => {
       const query = this.filterQuery();
-      // [search-diag] temporary: confirms what the current search actually queries.
-      this.logger.debug('[search-diag] query changed', { query, debounceMs: 300 });
-      if (this.searchDebounceTimer) {
-        clearTimeout(this.searchDebounceTimer);
+      this.cancelPendingSearch();
+
+      if (query.trim().length === 0) {
+        this.store.clearSearch();
+        return;
       }
-      this.searchDebounceTimer = setTimeout(async () => {
-        if (query.trim().length > 0) {
-          try {
-            // [search-diag] temporary: only the card catalog is queried here.
-            this.logger.debug('[search-diag] starting search', { query, catalog: 'cards-only' });
-            const results = await this.store.searchCardsAndBuildPaths(query);
-            this.logger.debug('[search-diag] search finished', {
-              query,
-              resultNodes: results.length,
-            });
-            this.smartSearchResults.set(results);
-          } catch (error) {
-            this.logger.error?.('Smart search failed:', error);
-            this.smartSearchResults.set([]);
-          }
-        } else {
-          this.smartSearchResults.set([]);
-        }
+
+      this.searchDebounceTimer = setTimeout(() => {
+        this.searchDebounceTimer = null;
+        void this.store.search(query);
       }, 300);
     });
+  }
+
+  private cancelPendingSearch(): void {
+    if (this.searchDebounceTimer) {
+      clearTimeout(this.searchDebounceTimer);
+      this.searchDebounceTimer = null;
+    }
   }
 
   /** Unique language pairs present in the loaded roots. */
@@ -109,18 +103,20 @@ export class ExplorerTreeComponent {
     return `${lp.known}→${lp.learning}`;
   });
 
-  /** Whether smart search is active (non-empty query). */
+  /** Whether search is active (non-empty query). */
   protected readonly isSmartSearchActive = computed(() => this.filterQuery().trim().length > 0);
 
-  /** Roots visible after applying search + language pair filters to loaded nodes. */
+  /** Whether a search query or ancestor resolution is in progress. */
+  protected readonly searchBusy = computed(() => this.store.smartSearchLoading());
+
+  /** Roots visible after applying search + language pair filters. */
   protected readonly visibleRoots = computed(() => {
-    // If smart search is active, use its results
+    // Search results are already a filtered tree (matches + ancestors).
     if (this.isSmartSearchActive()) {
-      return this.smartSearchResults();
+      return this.store.searchResultRoots();
     }
 
-    // Otherwise use regular tree filtering
-    const roots = filterExplorerNodes(this.store.roots(), this.filterQuery());
+    const roots = this.store.roots();
     const selected = this.selectedPairKeys();
     if (selected.size === 0) {
       return roots;
@@ -142,6 +138,9 @@ export class ExplorerTreeComponent {
 
   protected async onRefresh(): Promise<void> {
     await this.store.loadRoots();
+    if (this.filterQuery().trim().length > 0) {
+      await this.store.search(this.filterQuery());
+    }
   }
 
   /** Toggle a language-pair chip. If all are toggled off → reset to show all. */
