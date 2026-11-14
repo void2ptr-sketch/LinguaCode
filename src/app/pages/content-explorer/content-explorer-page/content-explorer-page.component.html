@@ -117,10 +117,22 @@
     </section>
   }
 
-  <div class="content-explorer-page__layout">
+  <div class="content-explorer-page__layout" [style.--tree-width.px]="treeWidth()">
     <aside class="content-explorer-page__tree">
       <app-explorer-tree />
     </aside>
+
+    <div
+      class="content-explorer-page__resize-handle"
+      (mousedown)="onMouseDownResize($event)"
+    >
+      <div
+        class="content-explorer-page__resize-handle__dots"
+        [class.content-explorer-page__resize-handle__dots--active]="isResizing()"
+      >
+        <span></span>
+      </div>
+    </div>
 
     <section class="content-explorer-page__detail">
       <app-explorer-detail

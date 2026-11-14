@@ -16,10 +16,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   OnInit,
   signal,
+  DestroyRef,
+  NgZone,
+  PLATFORM_ID,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -57,6 +62,11 @@ import type { Scenario, ScenarioIndexEntry } from '../../../entities/scenario/mo
 import { CardEditorStore } from '../../../features/card-editor/services/card-editor.store';
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import { LessonsApiService } from '../../../entities/lesson/api/lessons-api.service';
+
+const TREE_WIDTH_KEY = 'content_explorer_tree_width';
+const TREE_MIN_WIDTH = 280;
+const TREE_MAX_WIDTH = 900;
+const TREE_DEFAULT_WIDTH = 360;
 
 import { CourseDeleteConfirmDialogComponent } from './course-delete-confirm-dialog.component';
 import { ScenarioDeleteConfirmDialogComponent } from './scenario-delete-confirm-dialog.component';
@@ -108,9 +118,71 @@ export class ContentExplorerPageComponent implements OnInit {
   private readonly dialog = inject(MatDialog);
   private readonly snackBar = inject(MatSnackBar);
   private readonly logger = inject(AppLoggerService);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly ngZone = inject(NgZone);
 
   /** Whether a dialog flow is in progress (passed to the detail panel). */
   protected readonly acting = signal(false);
+
+  // ── Tree resize logic ──────────────────────────────────────────
+
+  readonly treeWidth = signal<number>(
+    isPlatformBrowser(this.platformId)
+      ? Number(localStorage.getItem(TREE_WIDTH_KEY)) || TREE_DEFAULT_WIDTH
+      : TREE_DEFAULT_WIDTH,
+  );
+
+  readonly isResizing = signal(false);
+
+  private _isResizing = false;
+  private _startX = 0;
+  private _startWidth = 0;
+
+  readonly onMouseDownResize = (event: MouseEvent) => {
+    event.preventDefault();
+    this._isResizing = true;
+    this.isResizing.set(true);
+    this._startX = event.clientX;
+    this._startWidth = this.treeWidth();
+
+    // Listen outside Angular zone to avoid excessive change detection
+    this.ngZone.runOutsideAngular(() => {
+      const onMouseMove = (e: MouseEvent) => this._onMouseMove(e);
+      const onMouseUp = () => {
+        this._isResizing = false;
+        this.isResizing.set(false);
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+      };
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', onMouseUp);
+    });
+  };
+
+  private _onMouseMove = (event: MouseEvent) => {
+    if (!this._isResizing) return;
+    const delta = event.clientX - this._startX;
+    const newWidth = Math.min(
+      TREE_MAX_WIDTH,
+      Math.max(TREE_MIN_WIDTH, this._startWidth + delta),
+    );
+    this.treeWidth.set(newWidth);
+  };
+
+  constructor() {
+    // Persist tree width to localStorage
+    effect(() => {
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem(TREE_WIDTH_KEY, String(this.treeWidth()));
+      }
+    });
+
+    // Cleanup: stop resizing on destroy
+    this.destroyRef.onDestroy(() => {
+      this._isResizing = false;
+    });
+  }
   /** Открыт ли inline-каталог сценариев в header-зоне страницы. */
   protected readonly catalogOpen = signal(false);
   /** Backlinks «Где используется» for the selected card. */

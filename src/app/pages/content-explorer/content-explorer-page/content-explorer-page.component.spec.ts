@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { PLATFORM_ID } from '@angular/core';
 
 import {
   ContentExplorerStore,
@@ -733,5 +734,200 @@ describe('ContentExplorerPageComponent — scenario catalog (stage 4)', () => {
     mockScenarioBuilderStore.indexItems.mockReturnValue(null);
 
     expect(component['catalogItems']()).toEqual([]);
+  });
+});
+
+/**
+ * Спецификация resize-разделителя дерева:
+ * инициализация из localStorage, обновление ширины, ограничения min/max,
+ * сохранение в localStorage, корректная остановка при mouseup.
+ */
+describe('ContentExplorerPageComponent — tree resize handle', () => {
+  let component: ContentExplorerPageComponent;
+  let fixture: ComponentFixture<ContentExplorerPageComponent>;
+
+  let localStorageGetItemSpy: ReturnType<typeof vi.fn>;
+  let localStorageSetItemSpy: ReturnType<typeof vi.fn>;
+  let localStorageClearSpy: ReturnType<typeof vi.fn>;
+  let localStorageState: Record<string, string | null>;
+
+  const mockStore = {
+    selectedNode: vi.fn<() => ExplorerNode | null>(() => null),
+    pathOf: vi.fn<() => readonly ExplorerNode[]>(() => []),
+    refreshNode: vi.fn(async () => undefined),
+    selectNode: vi.fn(),
+    clearSelection: vi.fn(),
+    loadRoots: vi.fn(async () => undefined),
+    getByKey: vi.fn<() => ExplorerNode | null>(() => null),
+    clearSearch: vi.fn(),
+    search: vi.fn(async () => undefined),
+    roots: vi.fn<() => readonly ExplorerNode[]>(() => []),
+    smartSearchLoading: vi.fn(() => false),
+    searchResultRoots: vi.fn<() => readonly ExplorerNode[] | null>(() => null),
+    loading: vi.fn(() => false),
+    error: vi.fn<() => string | null>(() => null),
+    smartSearchError: vi.fn<() => string | null>(() => null),
+  };
+
+  beforeEach(async () => {
+    vi.clearAllMocks();
+    localStorageState = {};
+
+    localStorageGetItemSpy = vi.fn((key: string) => localStorageState[key] ?? null);
+    localStorageSetItemSpy = vi.fn();
+    localStorageClearSpy = vi.fn();
+
+    Object.defineProperty(window, 'localStorage', {
+      value: {
+        getItem: localStorageGetItemSpy,
+        setItem: localStorageSetItemSpy,
+        clear: localStorageClearSpy,
+      },
+      writable: true,
+    });
+
+    await TestBed.configureTestingModule({
+      imports: [ContentExplorerPageComponent],
+      providers: [
+        { provide: PLATFORM_ID, useValue: 'browser' },
+        { provide: ContentExplorerStore, useValue: mockStore },
+        {
+          provide: ScenarioBuilderDialogService,
+          useValue: { openCreate: vi.fn(), openEdit: vi.fn() },
+        },
+        { provide: CourseSearchService, useValue: {} },
+        { provide: ScenarioSearchService, useValue: {} },
+        { provide: MatSnackBar, useValue: { open: vi.fn() } },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
+        { provide: MatDialog, useValue: { open: vi.fn() } },
+        { provide: ScenarioBuilderStore, useValue: {} },
+        { provide: CourseBuilderDialogService, useValue: {} },
+        { provide: CourseBuilderStore, useValue: {} },
+        { provide: CardEditorDialogService, useValue: {} },
+        { provide: ProgramBuilderDialogService, useValue: {} },
+        { provide: LessonBuilderDialogService, useValue: {} },
+        { provide: ScormExportService, useValue: {} },
+        {
+          provide: ActivatedRoute,
+          useValue: { snapshot: { queryParamMap: { get: () => null } } },
+        },
+      ],
+    }).compileComponents();
+  });
+
+  async function createExplorerComponent(): Promise<void> {
+    fixture = TestBed.createComponent(ContentExplorerPageComponent);
+    component = fixture.componentInstance;
+  }
+
+  it('reads tree width from localStorage on initialization', async () => {
+    localStorageState['content_explorer_tree_width'] = '500';
+    await createExplorerComponent();
+    fixture.detectChanges();
+
+    expect(component['treeWidth']()).toBe(500);
+    expect(localStorageGetItemSpy).toHaveBeenCalledWith('content_explorer_tree_width');
+  });
+
+  it('falls back to default width when localStorage value is invalid', async () => {
+    localStorageState['content_explorer_tree_width'] = 'not-a-number';
+    await createExplorerComponent();
+    fixture.detectChanges();
+
+    expect(component['treeWidth']()).toBe(360);
+  });
+
+  it('falls back to default width when localStorage key is missing', async () => {
+    await createExplorerComponent();
+    fixture.detectChanges();
+
+    expect(component['treeWidth']()).toBe(360);
+  });
+
+  it('updates treeWidth on mousemove during resize', async () => {
+    await createExplorerComponent();
+    fixture.detectChanges();
+
+    const startX = 300;
+    const startWidth = 360;
+    component['treeWidth'].set(startWidth);
+    component['onMouseDownResize']({ clientX: startX, preventDefault: vi.fn() } as never);
+
+    // Simulate mousemove outside Angular zone (NgZone.runOutsideAngular)
+    component['_onMouseMove']({ clientX: startX + 50 } as never);
+
+    expect(component['treeWidth']()).toBe(410);
+  });
+
+  it('clamps tree width to minimum (280px)', async () => {
+    await createExplorerComponent();
+    fixture.detectChanges();
+
+    const startX = 300;
+    const startWidth = 300;
+    component['treeWidth'].set(startWidth);
+    component['onMouseDownResize']({ clientX: startX, preventDefault: vi.fn() } as never);
+
+    // Move left by 50px — should clamp at 280
+    component['_onMouseMove']({ clientX: startX - 50 } as never);
+
+    expect(component['treeWidth']()).toBe(280);
+  });
+
+  it('clamps tree width to maximum (900px)', async () => {
+    await createExplorerComponent();
+    fixture.detectChanges();
+
+    const startX = 300;
+    const startWidth = 880;
+    component['treeWidth'].set(startWidth);
+    component['onMouseDownResize']({ clientX: startX, preventDefault: vi.fn() } as never);
+
+    // Move right by 50px — should clamp at 900
+    component['_onMouseMove']({ clientX: startX + 50 } as never);
+
+    expect(component['treeWidth']()).toBe(900);
+  });
+
+  it('saves tree width to localStorage via effect when it changes', async () => {
+    await createExplorerComponent();
+    fixture.detectChanges();
+
+    component['treeWidth'].set(450);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(localStorageSetItemSpy).toHaveBeenCalledWith('content_explorer_tree_width', '450');
+  });
+
+  it('sets isResizing to true on mousedown and false after cleanup', async () => {
+    await createExplorerComponent();
+    fixture.detectChanges();
+
+    expect(component['isResizing']()).toBe(false);
+
+    const mockEvent = {
+      clientX: 300,
+      preventDefault: vi.fn(),
+    } as never;
+
+    component['onMouseDownResize'](mockEvent);
+
+    expect(component['isResizing']()).toBe(true);
+    expect(component['_isResizing']).toBe(true);
+  });
+
+  it('does not update width when resize is not active', async () => {
+    await createExplorerComponent();
+    fixture.detectChanges();
+
+    // _isResizing is false by default
+    component['_onMouseMove']({ clientX: 500 } as never);
+
+    // Width should remain at default (360) since _isResizing is false
+    expect(component['treeWidth']()).toBe(360);
   });
 });
