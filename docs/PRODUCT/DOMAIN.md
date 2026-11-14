@@ -220,7 +220,22 @@ erDiagram
 ### Базовые типы
 
 ```typescript
-type ContentLanguage = 'en' | 'zh' | 'ru';
+/**
+ * Supported content languages for cards and UI.
+ * Includes natural languages, programming languages (cpp, java, perl, hs, rs, js),
+ * and common aliases. Full list: src/app/entities/card/model/card-index.types.ts.
+ */
+type ContentLanguage =
+  | 'en'
+  | 'zh'
+  | 'ru'
+  | 'ja'
+  | 'de'
+  | 'fr'
+  | 'es'
+  | 'ko'
+  // ... и 30+ языков (полный список: card-index.types.ts)
+```
 
 /** Известный пользователю → изучаемый. См. LANGUAGE-PAIR.md */
 type LanguagePair = {
@@ -351,7 +366,8 @@ type User = {
 Для больших объёмов карточек полный `Card` не загружается в списки — только индексная запись:
 
 ```typescript
-type ContentLanguage = 'en' | 'zh' | 'ru';
+/** Content language — полный список: src/app/entities/card/model/card-index.types.ts */
+type ContentLanguage = 'en' | 'zh' | 'ru' | /* ... 40+ языков */;
 
 type CardDifficulty = 'beginner' | 'intermediate' | 'advanced';
 

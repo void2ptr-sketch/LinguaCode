@@ -265,8 +265,8 @@ export const routes: Routes = [
 Кратко:
 
 - `User`, `Card`, `Scenario`, `Program`, `Course`, `LearningResult`, `CardAppearance`
-- `Card` — discriminated union по полю `kind` (10 типов: `select`, `code-select`, `memory`, `symbol`, `sound`, `timed`, `keyboard`, `draw`, `tone`, `reading`)
-- Все 10 `CardKind` реализованы
+- `Card` — discriminated union по полю `kind` (13 типов: `select`, `code-select`, `memory`, `symbol`, `sound`, `timed`, `keyboard`, `draw`, `tone`, `reading`, `flip`, `cloze`, `code-trace`)
+- Все 13 `CardKind` реализованы
 - **Иерархия контента:** `Card → Scenario → Lesson → Program → Course` (G17)
 - **Сценарии** — создание и редактирование `Scenario` (`features/scenario-builder/` — общий диалог и store); управление — в Проводнике контента (`/tools/content`); см. [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)
 - **Конструктор программ** — CRUD `Program` внутри `Course` (`features/program-builder/`)

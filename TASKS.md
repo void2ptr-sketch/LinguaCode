@@ -1,6 +1,6 @@
 # `LinguaCode` — приложение для исследования и изучения языков
 
-Чеклист MVP и бэклога. Оглавление: [docs/INDEX.md](./docs/INDEX.md) · бизнес: [docs/BUSINESS.md](./docs/BUSINESS.md) · домен: [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md) · архитектура: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
+Чеклист MVP и бэклога. Оглавление: [docs/INDEX.md](./docs/INDEX.md) · бизнес: [docs/BUSINESS.md](./docs/BUSINESS.md) · домен: [docs/PRODUCT/DOMAIN.md](./docs/PRODUCT/DOMAIN.md) · архитектура: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
 
 ## Статусы задач
 
@@ -42,7 +42,7 @@
 
 ## 2. Базовая архитектура
 
-- [x] Домен описан — см. [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md)
+- [x] Домен описан — см. [docs/PRODUCT/DOMAIN.md](./docs/PRODUCT/DOMAIN.md)
 - [x] Настроить маршрутизацию (`app/app/app.routes.ts`, lazy `loadComponent`)
 - [x] Добавить layout (шапка, подвал, навигация, контент, menu-\*)
   - шапка — `/src/app/widgets/header`
@@ -604,7 +604,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G11 — уроки и курсы (Lesson, Course)**
 
-План: [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md#иерархия-контента). Над `Scenario` — тематические **уроки** и учебные **курсы**. `LanguagePair` остаётся scope контента (G7/G8); `Course` — программа из уроков в рамках пары.
+План: [docs/PRODUCT/DOMAIN.md](./docs/PRODUCT/DOMAIN.md#иерархия-контента). Над `Scenario` — тематические **уроки** и учебные **курсы**. `LanguagePair` остаётся scope контента (G7/G8); `Course` — программа из уроков в рамках пары.
 
 **G11a — домен и типы** ✅
 
@@ -660,7 +660,7 @@ Definition of Done:
 
 **G13 — Learning Home (dashboard обучения)**
 
-Контекст: `/home` — точка входа «куда учиться дальше»; `/cards/select` — сессия (курс / уроки / сценарии / карточки). См. [DOMAIN.md](./docs/SYSTEM/DOMAIN.md#learning-home-g13) · [LANGUAGE-PAIR.md](./docs/FEATURES/LANGUAGE-PAIR.md#learning-home-g13).
+Контекст: `/home` — точка входа «куда учиться дальше»; `/cards/select` — сессия (курс / уроки / сценарии / карточки). См. [DOMAIN.md](./docs/PRODUCT/DOMAIN.md#learning-home-g13) · [LANGUAGE-PAIR.md](./docs/FEATURES/LANGUAGE-PAIR.md#learning-home-g13).
 
 - [x] **G13a** — `LearningSessionPreferences` в `UserLanguagePairSettings` + persistence
 - [x] **G13b** — `learning-resume.utils` + `LearningDashboardService` (следующий шаг, roadmap)
@@ -976,7 +976,7 @@ Definition of Done:
   - Сводная информация об особенностях
   - UML-диаграммы (Mermaid) в каждом файле
 - [x] Файл `/docs/BUSINESS.md` содержит бизнес-идеи и use case проекта
-- [x] Файл `/docs/SYSTEM/DOMAIN.md` содержит модели проекта (таблица сущностей + схемы типов)
+- [x] Файл `/docs/PRODUCT/DOMAIN.md` содержит модели проекта (таблица сущностей + схемы типов)
 - [x] Документацию вести на русском языке
 - [x] Формат документации UTF-8 (см. [INDEX.md § Формат](./docs/INDEX.md))
 
