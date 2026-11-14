@@ -155,8 +155,9 @@ type LanguagePairDto = {
 | PUT    | `/courses/:id`                      | Обновление курса (403 на чужой)            |
 | DELETE | `/courses/:id`                      | Удаление курса                             |
 
-Пейлоад записи: `CourseWritePayload` (`title`, `description`, `published`, `languagePair?`, `programs[]`, `authoring?`, `practiceSettings?`).
+Пейлоад записи: `CourseWritePayload` (`title`, `description`, `published`, `languagePair?`, `programs[]`, `authoring?`, `practiceSettings?`, `requiredTier?`, `slug?`).
 На бэкенд отправляется: `courseDescription` (из `description`), `authorId` (из UserStore).
+`requiredTier` отправляется как есть; `slug` отправляется только если не пустая строка (бэкенд автогенерирует из `title`).
 
 ### Настройки практики (`practiceSettings`)
 

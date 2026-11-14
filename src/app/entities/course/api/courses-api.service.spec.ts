@@ -221,6 +221,42 @@ describe('CoursesApiService', () => {
       const result = await promise;
       expect(result).toEqual(mockCourseWithPrograms);
     });
+
+    it('should forward requiredTier to the body', async () => {
+      const promise = service.create({ ...mockPayload, requiredTier: 'PREMIUM' });
+      await flushMicrotasks();
+
+      const req = httpMock.expectOne(buildApiUrl('/courses'));
+      const body = req.request.body as Record<string, unknown>;
+      expect(body['requiredTier']).toBe('PREMIUM');
+      req.flush({ data: mockCourseWithPrograms });
+
+      await promise;
+    });
+
+    it('should forward slug to the body when present', async () => {
+      const promise = service.create({ ...mockPayload, slug: 'my-course' });
+      await flushMicrotasks();
+
+      const req = httpMock.expectOne(buildApiUrl('/courses'));
+      const body = req.request.body as Record<string, unknown>;
+      expect(body['slug']).toBe('my-course');
+      req.flush({ data: mockCourseWithPrograms });
+
+      await promise;
+    });
+
+    it('should not send slug when empty', async () => {
+      const promise = service.create({ ...mockPayload, slug: '' });
+      await flushMicrotasks();
+
+      const req = httpMock.expectOne(buildApiUrl('/courses'));
+      const body = req.request.body as Record<string, unknown>;
+      expect(body['slug']).toBeUndefined();
+      req.flush({ data: mockCourseWithPrograms });
+
+      await promise;
+    });
   });
 
   describe('update', () => {
@@ -270,6 +306,30 @@ describe('CoursesApiService', () => {
       const body = req.request.body as Record<string, unknown>;
       expect(body['authoringStatus']).toBe('draft');
       expect(body['authoringIdea']).toBe('');
+      req.flush({ data: mockCourseWithPrograms });
+
+      await promise;
+    });
+
+    it('should forward requiredTier to the body', async () => {
+      const promise = service.update('course-1', { ...mockPayload, requiredTier: 'STARTER' });
+      await flushMicrotasks();
+
+      const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
+      const body = req.request.body as Record<string, unknown>;
+      expect(body['requiredTier']).toBe('STARTER');
+      req.flush({ data: mockCourseWithPrograms });
+
+      await promise;
+    });
+
+    it('should forward slug to the body when present', async () => {
+      const promise = service.update('course-1', { ...mockPayload, slug: 'updated-slug' });
+      await flushMicrotasks();
+
+      const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
+      const body = req.request.body as Record<string, unknown>;
+      expect(body['slug']).toBe('updated-slug');
       req.flush({ data: mockCourseWithPrograms });
 
       await promise;

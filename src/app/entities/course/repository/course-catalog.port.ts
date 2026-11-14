@@ -46,6 +46,14 @@ export type ProgramWritePayload = {
 };
 
 /**
+ * Minimum subscription tier required to access a course.
+ *
+ * @remarks
+ * Matches the backend `CourseRequiredTier` enum: FREE / STARTER / GROWTH / PREMIUM.
+ */
+export type CourseRequiredTier = 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+
+/**
  * Payload for creating or updating a lesson via the courses API.
  *
  * @remarks
@@ -93,6 +101,20 @@ export type CourseWritePayload = {
   /** Last generation error message (present when status === 'failed') */
   lastError?: string;
   practiceSettings?: CoursePracticeSettings;
+  /**
+   * Minimum subscription tier required to access the course.
+   *
+   * @remarks
+   * Defaults to `FREE` on the backend if omitted.
+   */
+  requiredTier?: CourseRequiredTier;
+  /**
+   * URL-friendly identifier for the course.
+   *
+   * @remarks
+   * Auto-generated from `title` by the backend when omitted or empty.
+   */
+  slug?: string;
 };
 
 /**

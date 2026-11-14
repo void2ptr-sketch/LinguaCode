@@ -4,6 +4,7 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
+import type { CourseUpdateRequestRequiredTier } from './courseUpdateRequestRequiredTier';
 import type { ProgramNestedDto } from './programNestedDto';
 
 /**
@@ -30,5 +31,9 @@ export interface CourseUpdateRequest {
   materializedAt?: string;
   /** Последняя ошибка */
   lastError?: string;
+  /** Минимальный уровень подписки для доступа (FREE/STARTER/GROWTH/PREMIUM) */
+  requiredTier?: CourseUpdateRequestRequiredTier;
+  /** Уникальный строковый идентификатор (опционально) */
+  slug?: string;
   programs?: ProgramNestedDto[];
 }

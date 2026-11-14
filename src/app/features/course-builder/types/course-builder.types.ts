@@ -1,4 +1,5 @@
 import type { CourseAuthoring, CoursePracticeSettings } from '../../../entities/course/model';
+import type { CourseRequiredTier } from '../../../entities/course/repository/course-catalog.port';
 
 /**
  * Draft representation of a lesson for the program editor form.
@@ -45,6 +46,8 @@ export type CourseFormDraft = {
   authoring: CourseAuthoring;
   practiceSettings?: CoursePracticeSettings;
   programs: readonly ProgramFormDraft[];
+  requiredTier?: CourseRequiredTier;
+  slug?: string;
 };
 
 /**

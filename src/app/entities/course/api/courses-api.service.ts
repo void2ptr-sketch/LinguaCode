@@ -382,6 +382,12 @@ export class CoursesApiService implements CourseCatalogPort {
     if (practiceSettings !== undefined) {
       body['practiceSettings'] = practiceSettings;
     }
+    if (payload.requiredTier !== undefined) {
+      body['requiredTier'] = payload.requiredTier;
+    }
+    if (payload.slug) {
+      body['slug'] = payload.slug;
+    }
     const response = await firstValueFrom(
       this.http.post<ApiResponse<CourseWithPrograms>>(buildApiUrl('/courses'), body),
     );
@@ -434,6 +440,12 @@ export class CoursesApiService implements CourseCatalogPort {
     const practiceSettings = serializePracticeSettings(payload.practiceSettings);
     if (practiceSettings !== undefined) {
       body['practiceSettings'] = practiceSettings;
+    }
+    if (payload.requiredTier !== undefined) {
+      body['requiredTier'] = payload.requiredTier;
+    }
+    if (payload.slug) {
+      body['slug'] = payload.slug;
     }
     const response = await firstValueFrom(
       this.http.put<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`), body),

@@ -109,6 +109,16 @@ describe('course-form-draft.utils', () => {
       const draft = emptyCourseFormDraft();
       expect(draft.authoring).toBeDefined();
     });
+
+    it('should default requiredTier to FREE', () => {
+      const draft = emptyCourseFormDraft();
+      expect(draft.requiredTier).toBe('FREE');
+    });
+
+    it('should default slug to empty string', () => {
+      const draft = emptyCourseFormDraft();
+      expect(draft.slug).toBe('');
+    });
   });
 
   describe('courseToFormDraft', () => {
@@ -235,6 +245,29 @@ describe('course-form-draft.utils', () => {
       const draft = courseToFormDraft(course);
 
       expect(draft.authoring).toBeDefined();
+    });
+
+    it('should map requiredTier from course', () => {
+      const course = createCourse({
+        requiredTier: 'PREMIUM',
+      } as unknown as CourseWithPrograms);
+      const draft = courseToFormDraft(course);
+
+      expect(draft.requiredTier).toBe('PREMIUM');
+    });
+
+    it('should default requiredTier to FREE when absent', () => {
+      const course = createCourse();
+      const draft = courseToFormDraft(course);
+
+      expect(draft.requiredTier).toBe('FREE');
+    });
+
+    it('should map slug from course', () => {
+      const course = createCourse({ slug: 'my-custom-slug' } as unknown as CourseWithPrograms);
+      const draft = courseToFormDraft(course);
+
+      expect(draft.slug).toBe('my-custom-slug');
     });
   });
 
@@ -394,6 +427,20 @@ describe('course-form-draft.utils', () => {
       const payload = formDraftToCourseWritePayload(draft);
 
       expect(payload.programs).toEqual([]);
+    });
+
+    it('should include requiredTier in payload', () => {
+      const draft = createDraft({ requiredTier: 'GROWTH' });
+      const payload = formDraftToCourseWritePayload(draft);
+
+      expect(payload.requiredTier).toBe('GROWTH');
+    });
+
+    it('should include slug in payload', () => {
+      const draft = createDraft({ slug: 'my-slug' });
+      const payload = formDraftToCourseWritePayload(draft);
+
+      expect(payload.slug).toBe('my-slug');
     });
   });
 

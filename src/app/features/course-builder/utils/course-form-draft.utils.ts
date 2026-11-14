@@ -4,6 +4,7 @@ import type {
   ProgramWritePayload,
 } from '../../../entities/course/api/courses-api.service';
 import type { Course } from '../../../entities/course/model';
+import type { CourseRequiredTier } from '../../../entities/course/repository/course-catalog.port';
 import {
   emptyCourseAuthoring,
   normalizeCourseAuthoring,
@@ -65,6 +66,8 @@ export const emptyCourseFormDraft = (): CourseFormDraft => ({
   authoring: emptyCourseAuthoring(),
   practiceSettings: DEFAULT_COURSE_PRACTICE_SETTINGS,
   programs: [emptyProgramFormDraft(0)],
+  requiredTier: 'FREE',
+  slug: '',
 });
 
 export function courseToFormDraft(
@@ -96,6 +99,8 @@ export function courseToFormDraft(
         order: program.order,
       }))
       .sort((left, right) => left.order - right.order),
+    requiredTier: (course as unknown as { requiredTier?: CourseRequiredTier }).requiredTier ?? 'FREE',
+    slug: course.slug,
   };
 }
 
@@ -156,6 +161,8 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
     authoringStatus: draft.authoring.status,
     authoringIdea: draft.authoring.idea,
     practiceSettings: draft.practiceSettings,
+    requiredTier: draft.requiredTier,
+    slug: draft.slug,
     programs,
   };
 }

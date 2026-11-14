@@ -18,7 +18,8 @@ export interface ProgramUpdateRequest {
   programDescription?: string;
   languagePairId?: number;
   published?: boolean;
-  requiredTier: ProgramUpdateRequestRequiredTier;
+  /** Минимальный уровень подписки для доступа (опционально) */
+  requiredTier?: ProgramUpdateRequestRequiredTier;
   /** Порядок в курсе */
   order?: number;
 }

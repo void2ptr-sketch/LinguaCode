@@ -16,6 +16,7 @@ import {
   COURSE_AUTHORING_STATUSES,
   DEFAULT_COURSE_PRACTICE_SETTINGS,
 } from '../../../../entities/course/model';
+import type { CourseRequiredTier } from '../../../../entities/course/repository/course-catalog.port';
 import { MarkdownFieldComponent } from '../../../../shared/utils/markdown-field';
 import type { CourseFormDraft } from '../../types';
 
@@ -110,6 +111,27 @@ export class CourseFormComponent {
   readonly practiceModeLabels: Record<CoursePracticeMode, string> = {
     guided: 'Линейный (последовательный)',
     open: 'Свободный (выбор сценариев)',
+  };
+
+  /** Available required tier options for course access control. */
+  readonly requiredTierOptions: readonly CourseRequiredTier[] = [
+    'FREE',
+    'STARTER',
+    'GROWTH',
+    'PREMIUM',
+  ] as const;
+
+  /**
+   * Human-readable labels for course required tier values.
+   *
+   * @remarks
+   * Maps each `CourseRequiredTier` value to its display name in Russian.
+   */
+  readonly requiredTierLabels: Record<CourseRequiredTier, string> = {
+    FREE: 'Бесплатный',
+    STARTER: 'Starter',
+    GROWTH: 'Growth',
+    PREMIUM: 'Premium',
   };
 
   /**
@@ -240,6 +262,26 @@ export class CourseFormComponent {
         allowDifficultyFilter: value,
       },
     });
+  }
+
+  // ── Required Tier & Slug ──
+
+  /**
+   * Updates the required tier in the draft.
+   *
+   * @param value — The new `CourseRequiredTier` value.
+   */
+  updateRequiredTier(value: CourseRequiredTier): void {
+    this.updateDraft({ ...this.draft(), requiredTier: value });
+  }
+
+  /**
+   * Updates the slug in the draft.
+   *
+   * @param value — The new slug string.
+   */
+  updateSlug(value: string): void {
+    this.updateDraft({ ...this.draft(), slug: value });
   }
 
   // ── Export ──

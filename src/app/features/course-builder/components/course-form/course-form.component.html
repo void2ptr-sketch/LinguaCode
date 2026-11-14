@@ -45,6 +45,32 @@
         >
           Опубликовать каталог
         </mat-checkbox>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Уровень доступа</mat-label>
+          <mat-select
+            [disabled]="readOnly()"
+            [ngModel]="draft().requiredTier"
+            (ngModelChange)="updateRequiredTier($event)"
+          >
+            @for (tier of requiredTierOptions; track tier) {
+              <mat-option [value]="tier">{{ requiredTierLabels[tier] }}</mat-option>
+            }
+          </mat-select>
+          <mat-hint>Минимальный уровень подписки для доступа к курсу</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Slug (идентификатор)</mat-label>
+          <input
+            matInput
+            [disabled]="readOnly()"
+            [ngModel]="draft().slug"
+            (ngModelChange)="updateSlug($event)"
+            placeholder="Авто из названия"
+          />
+          <mat-hint>Оставьте пустым для автогенерации из title</mat-hint>
+        </mat-form-field>
       </div>
     </mat-tab>
 
