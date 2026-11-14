@@ -3,12 +3,16 @@ import { resetContentSeedCache, setScenarioSeedCache } from '../../content-seed/
 import {
   patchUserContentOverlay,
   readUserContentOverlay,
+  writeUserContentOverlay,
+  emptyUserContentOverlay,
 } from '../../user/overlay/user-content-overlay.storage';
 import {
   loadScenariosFromStorage,
   readStoredScenarios,
   saveScenariosToStorage,
 } from './scenarios-storage';
+import { USER_CONTENT_OVERLAY_KEY } from '../../user/overlay/user-content-overlay.types';
+import { USER_CONTENT_MIGRATED_KEY } from '../../user/overlay/user-content-overlay.types';
 
 function makeScenario(overrides?: Partial<Scenario>): Scenario {
   return {
@@ -23,11 +27,21 @@ function makeScenario(overrides?: Partial<Scenario>): Scenario {
   } as Scenario;
 }
 
+function clearOverlayState(): void {
+  localStorage.clear();
+  localStorage.setItem(USER_CONTENT_MIGRATED_KEY, '1');
+  writeUserContentOverlay(emptyUserContentOverlay());
+}
+
 describe('scenarios-storage', () => {
   beforeEach(() => {
-    localStorage.clear();
+    clearOverlayState();
     resetContentSeedCache();
     setScenarioSeedCache([makeScenario()]);
+  });
+
+  afterEach(() => {
+    clearOverlayState();
   });
 
   describe('readStoredScenarios', () => {

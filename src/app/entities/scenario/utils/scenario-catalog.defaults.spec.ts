@@ -4,10 +4,27 @@ import {
   seedTestContentCache,
 } from '../../content-seed/content-seed.test-utils';
 import { mergeScenariosWithDefaults } from './scenario-catalog.defaults';
+import { resetContentSeedCache } from '../../content-seed/content-seed.cache';
+import {
+  writeUserContentOverlay,
+  emptyUserContentOverlay,
+} from '../../user/overlay/user-content-overlay.storage';
+import { USER_CONTENT_MIGRATED_KEY } from '../../user/overlay/user-content-overlay.types';
 
 describe('scenario-catalog.defaults', () => {
   beforeEach(() => {
+    localStorage.clear();
+    localStorage.setItem(USER_CONTENT_MIGRATED_KEY, '1');
+    writeUserContentOverlay(emptyUserContentOverlay());
+    resetContentSeedCache();
     seedTestContentCache();
+  });
+
+  afterEach(() => {
+    localStorage.clear();
+    localStorage.setItem(USER_CONTENT_MIGRATED_KEY, '1');
+    writeUserContentOverlay(emptyUserContentOverlay());
+    resetContentSeedCache();
   });
 
   it('should include ru→zh demo scenarios', () => {

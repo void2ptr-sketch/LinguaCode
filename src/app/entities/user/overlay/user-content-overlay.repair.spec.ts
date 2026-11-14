@@ -14,15 +14,20 @@ import {
   USER_CONTENT_OVERLAY_REPAIR_VERSION,
   repairUserContentOverlayIfNeeded,
 } from './user-content-overlay.repair';
-import { USER_CONTENT_OVERLAY_KEY } from './user-content-overlay.types';
+import { USER_CONTENT_OVERLAY_KEY, USER_CONTENT_MIGRATED_KEY } from './user-content-overlay.types';
+import { writeUserContentOverlay, emptyUserContentOverlay } from './user-content-overlay.storage';
 
 describe('user-content-overlay.repair', () => {
   beforeEach(() => {
     localStorage.clear();
+    localStorage.setItem(USER_CONTENT_MIGRATED_KEY, '1');
+    writeUserContentOverlay(emptyUserContentOverlay());
   });
 
   afterEach(() => {
     localStorage.clear();
+    localStorage.setItem(USER_CONTENT_MIGRATED_KEY, '1');
+    writeUserContentOverlay(emptyUserContentOverlay());
   });
 
   it('should bind perl interview course and related content to ru→perl', () => {

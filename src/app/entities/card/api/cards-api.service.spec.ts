@@ -2,10 +2,12 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 
 import { CardsApiService } from '..';
+import { CardsCatalogMockHandler } from './mock/cards-catalog.mock.handler';
 import { cardsApiMockInterceptor } from './mock/cards-api.mock.interceptor';
 
 describe('CardsApiService', () => {
   let service: CardsApiService;
+  let handler: CardsCatalogMockHandler;
 
   beforeEach(() => {
     localStorage.clear();
@@ -13,15 +15,18 @@ describe('CardsApiService', () => {
     TestBed.configureTestingModule({
       providers: [
         CardsApiService,
+        CardsCatalogMockHandler,
         provideHttpClient(withFetch(), withInterceptors([cardsApiMockInterceptor])),
       ],
     });
 
     service = TestBed.inject(CardsApiService);
+    handler = TestBed.inject(CardsCatalogMockHandler);
   });
 
   afterEach(() => {
     localStorage.clear();
+    handler.resetCache();
   });
 
   describe('search', () => {

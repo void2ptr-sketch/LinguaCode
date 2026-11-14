@@ -751,6 +751,11 @@ describe('ContentExplorerPageComponent — tree resize handle', () => {
   let localStorageClearSpy: ReturnType<typeof vi.fn>;
   let localStorageState: Record<string, string | null>;
 
+  // Capture the real descriptor once so we can restore it after each test.
+  // Otherwise the partial localStorage mock leaks into other spec files that
+  // share the same worker and breaks them (e.g. missing removeItem()).
+  const originalLocalStorageDescriptor = Object.getOwnPropertyDescriptor(window, 'localStorage');
+
   const mockStore = {
     selectedNode: vi.fn<() => ExplorerNode | null>(() => null),
     pathOf: vi.fn<() => readonly ExplorerNode[]>(() => []),
@@ -781,7 +786,10 @@ describe('ContentExplorerPageComponent — tree resize handle', () => {
       value: {
         getItem: localStorageGetItemSpy,
         setItem: localStorageSetItemSpy,
+        removeItem: vi.fn(),
         clear: localStorageClearSpy,
+        key: vi.fn(() => null),
+        length: 0,
       },
       writable: true,
     });
@@ -816,6 +824,15 @@ describe('ContentExplorerPageComponent — tree resize handle', () => {
         },
       ],
     }).compileComponents();
+  });
+
+  afterEach(() => {
+    if (originalLocalStorageDescriptor) {
+      Object.defineProperty(window, 'localStorage', originalLocalStorageDescriptor);
+    } else {
+      delete (window as unknown as { localStorage?: Storage }).localStorage;
+    }
+    vi.restoreAllMocks();
   });
 
   async function createExplorerComponent(): Promise<void> {
