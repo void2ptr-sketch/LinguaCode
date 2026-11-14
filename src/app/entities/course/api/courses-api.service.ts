@@ -294,6 +294,7 @@ export class CoursesApiService implements CourseCatalogPort {
     const body: Record<string, unknown> = {
       title: payload.title,
       courseDescription: payload.description,
+      authorId: this.userStore.user().id,
       published: payload.published,
     };
     // Programs and authoring are required for full course update

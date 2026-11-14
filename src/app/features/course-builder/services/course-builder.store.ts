@@ -536,27 +536,6 @@ export class CourseBuilderStore {
       return null;
     }
 
-    if (programs.length === 0) {
-      this.error.set('Добавьте хотя бы одну программу');
-      return null;
-    }
-
-    for (const program of programs) {
-      if (program.lessons.length === 0) {
-        this.error.set(`Программа «${program.title}»: добавьте хотя бы один урок`);
-        return null;
-      }
-
-      for (const lesson of program.lessons) {
-        if (lesson.scenarioIds.length === 0) {
-          this.error.set(
-            `Урок «${lesson.title}» в программе «${program.title}»: добавьте хотя бы один сценарий`,
-          );
-          return null;
-        }
-      }
-    }
-
     return formDraftToCourseWritePayload({
       title,
       description,

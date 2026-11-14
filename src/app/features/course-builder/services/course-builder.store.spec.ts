@@ -283,50 +283,6 @@ describe('CourseBuilderStore', () => {
     expect(store.error()).toBe('Укажите название каталога');
   });
 
-  it('should return false when no lessons are provided', async () => {
-    const result = await store.createCourse({
-      title: 'Course',
-      description: '',
-      published: false,
-      authoring: { idea: '', status: 'draft' },
-      programs: [],
-    });
-
-    expect(result).toBe(false);
-    expect(store.error()).toBe('Добавьте хотя бы одну программу');
-  });
-
-  it('should return false when lesson has no scenarios', async () => {
-    const result = await store.createCourse({
-      title: 'Course',
-      description: '',
-      published: false,
-      authoring: { idea: '', status: 'draft' },
-      programs: [
-        {
-          clientId: 'lc-empty',
-          title: 'Empty Lesson',
-          description: '',
-          lessons: [
-            {
-              clientId: 'l-empty',
-              title: 'Empty',
-              description: '',
-              scenarioIds: [],
-              prerequisiteLessonIds: [],
-              order: 0,
-            },
-          ],
-          order: 0,
-        },
-      ],
-    });
-
-    expect(result).toBe(false);
-    expect(store.error()).toContain('Empty Lesson');
-    expect(store.error()).toContain('сценарий');
-  });
-
   it('should not update course when read-only', async () => {
     store.editingCourse.set({
       id: 'c1',
