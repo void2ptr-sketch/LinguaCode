@@ -31,6 +31,28 @@ import { loadCardIndexMetaOverrides } from '../../../card/storage/card-index-met
 import { loadScenariosFromStorage } from '../../../scenario/storage/scenarios-storage';
 
 import type { CourseExportBundle, CourseWritePayload } from '../../repository/course-catalog.port';
+import type { CourseAuthoring } from '../../model';
+
+/**
+ * Reconstructs a nested `CourseAuthoring` from flat payload fields.
+ *
+ * @remarks
+ * The backend contract uses flat fields (`authoringStatus`, `authoringIdea`, …)
+ * but the mock handler stores the nested `CourseAuthoring` shape. This helper
+ * bridges the gap.
+ */
+function buildAuthoringFromFlat(payload: CourseWritePayload): CourseAuthoring | undefined {
+  const status = payload.authoringStatus as 'draft' | 'planned' | 'generating' | 'materialized' | 'failed' | undefined;
+  if (!status) return undefined;
+
+  return {
+    idea: payload.authoringIdea ?? '',
+    status,
+    ideaUpdatedAt: payload.ideaUpdatedAt,
+    materializedAt: payload.materializedAt,
+    lastError: payload.lastError,
+  };
+}
 
 /**
  * Mock handler for course catalog operations.
@@ -131,7 +153,7 @@ export class CoursesCatalogMockHandler {
       programIds: programs.map((p) => p.id),
       published: payload.published,
       updatedAt: new Date().toISOString(),
-      authoring: normalizeCourseAuthoring(payload.authoring),
+      authoring: normalizeCourseAuthoring(buildAuthoringFromFlat(payload)),
       practiceSettings: payload.practiceSettings,
     };
 
@@ -173,7 +195,9 @@ export class CoursesCatalogMockHandler {
         description: payload.description,
         published: payload.published,
         updatedAt: new Date().toISOString(),
-        authoring: normalizeCourseAuthoring(payload.authoring ?? current.authoring),
+        authoring: normalizeCourseAuthoring(
+          buildAuthoringFromFlat(payload) ?? current.authoring,
+        ),
         practiceSettings: payload.practiceSettings ?? current.practiceSettings,
       };
       const programs = await this.programsWithLessonsForCourse(updated);
@@ -197,7 +221,9 @@ export class CoursesCatalogMockHandler {
       languagePair,
       programIds: programs.map((p) => p.id),
       updatedAt: new Date().toISOString(),
-      authoring: normalizeCourseAuthoring(payload.authoring ?? current.authoring),
+      authoring: normalizeCourseAuthoring(
+        buildAuthoringFromFlat(payload) ?? current.authoring,
+      ),
       practiceSettings: payload.practiceSettings ?? current.practiceSettings,
     };
 

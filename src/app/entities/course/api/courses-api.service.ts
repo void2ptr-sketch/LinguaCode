@@ -281,9 +281,21 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.programs && payload.programs.length > 0) {
       body['programs'] = payload.programs;
     }
-    // Authoring notes for course generation pipeline
-    if (payload.authoring) {
-      body['authoring'] = payload.authoring;
+    // Authoring fields (flat — matches backend CourseCreateRequest)
+    if (payload.authoringStatus) {
+      body['authoringStatus'] = payload.authoringStatus;
+    }
+    if (payload.authoringIdea) {
+      body['authoringIdea'] = payload.authoringIdea;
+    }
+    if (payload.ideaUpdatedAt) {
+      body['ideaUpdatedAt'] = payload.ideaUpdatedAt;
+    }
+    if (payload.materializedAt) {
+      body['materializedAt'] = payload.materializedAt;
+    }
+    if (payload.lastError) {
+      body['lastError'] = payload.lastError;
     }
     // Practice settings for navigation behavior
     if (payload.practiceSettings) {
@@ -316,8 +328,21 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.programs && payload.programs.length > 0) {
       body['programs'] = payload.programs;
     }
-    if (payload.authoring) {
-      body['authoring'] = payload.authoring;
+    // Authoring fields (flat — matches backend CourseUpdateRequest)
+    if (payload.authoringStatus) {
+      body['authoringStatus'] = payload.authoringStatus;
+    }
+    if (payload.authoringIdea) {
+      body['authoringIdea'] = payload.authoringIdea;
+    }
+    if (payload.ideaUpdatedAt) {
+      body['ideaUpdatedAt'] = payload.ideaUpdatedAt;
+    }
+    if (payload.materializedAt) {
+      body['materializedAt'] = payload.materializedAt;
+    }
+    if (payload.lastError) {
+      body['lastError'] = payload.lastError;
     }
     // Practice settings for navigation behavior
     if (payload.practiceSettings) {

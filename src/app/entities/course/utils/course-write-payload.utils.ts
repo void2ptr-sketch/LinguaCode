@@ -49,15 +49,25 @@ export function courseWithProgramsToWritePayload(course: CourseWithPrograms): Co
       };
     });
 
-  return {
+  const result: import('../repository/course-catalog.port').CourseWritePayload = {
     title: course.title,
     description: course.description,
     published: course.published,
     languagePair: course.languagePair,
     programs,
-    ...(course.authoring ? { authoring: course.authoring } : {}),
     ...(course.practiceSettings ? { practiceSettings: course.practiceSettings } : {}),
   };
+
+  // Flatten nested authoring → flat fields matching the backend contract
+  if (course.authoring) {
+    result.authoringStatus = course.authoring.status;
+    result.authoringIdea = course.authoring.idea;
+    result.ideaUpdatedAt = course.authoring.ideaUpdatedAt;
+    result.materializedAt = course.authoring.materializedAt;
+    result.lastError = course.authoring.lastError;
+  }
+
+  return result;
 }
 
 /**

@@ -379,7 +379,8 @@ describe('course-form-draft.utils', () => {
       const draft = createDraft();
       const payload = formDraftToCourseWritePayload(draft);
 
-      expect(payload.authoring).toBeDefined();
+      expect(payload.authoringStatus).toBe('draft');
+      expect(payload.authoringIdea).toBe('Test course idea');
     });
 
     it('should handle empty programs array', () => {

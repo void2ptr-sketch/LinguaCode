@@ -11,6 +11,28 @@ import {
 import { DEFAULT_COURSE_PRACTICE_SETTINGS } from '../../../entities/course/model';
 import type { CourseFormDraft, ProgramFormDraft, LessonFormDraft } from '../types';
 
+/**
+ * Flattens a `CourseAuthoring` object into top-level fields matching the
+ * backend `CourseCreateRequest` / `CourseUpdateRequest` contract.
+ *
+ * @param authoring — The nested authoring object (may be undefined).
+ * @returns A partial record with flat authoring fields.
+ */
+function flattenAuthoring(
+  authoring: ReturnType<typeof normalizeCourseAuthoring>,
+): Partial<CourseWritePayload> {
+  if (!authoring) {
+    return {};
+  }
+  return {
+    authoringStatus: authoring.status,
+    authoringIdea: authoring.idea,
+    ideaUpdatedAt: authoring.ideaUpdatedAt,
+    materializedAt: authoring.materializedAt,
+    lastError: authoring.lastError,
+  };
+}
+
 export function lessonDraftKey(lesson: Pick<LessonFormDraft, 'id' | 'clientId'>): string {
   return lesson.id ?? lesson.clientId;
 }
@@ -123,11 +145,12 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
     };
   });
 
+  const normalized = normalizeCourseAuthoring(draft.authoring);
   return {
     title: draft.title,
     description: draft.description,
     published: draft.published,
-    authoring: normalizeCourseAuthoring(draft.authoring),
+    ...flattenAuthoring(normalized),
     practiceSettings: draft.practiceSettings,
     programs,
   };

@@ -86,7 +86,8 @@ describe('courseWithProgramsToWritePayload', () => {
       description: 'Desc',
       published: true,
       languagePair: { known: 'ru', learning: 'en' },
-      authoring: { idea: 'Идея курса' },
+      authoringStatus: 'draft',
+      authoringIdea: 'Идея курса',
       practiceSettings: { mode: 'guided' },
     });
   });
@@ -153,7 +154,8 @@ describe('courseWithProgramsToWritePayload', () => {
 
     const payload = courseWithProgramsToWritePayload(course);
 
-    expect(payload.authoring).toBeUndefined();
+    expect(payload.authoringStatus).toBeUndefined();
+    expect(payload.authoringIdea).toBeUndefined();
     expect(payload.practiceSettings).toBeUndefined();
   });
 });
