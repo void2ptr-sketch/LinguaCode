@@ -8,6 +8,7 @@ import type { PageResponse } from '../../../shared/utils/pagination';
 import { CourseSearchService } from './course-search.service';
 import { CoursesApiService } from '../api/courses-api.service';
 import { coursesApiMockInterceptor } from '../api/mock/courses-api.mock.interceptor';
+import { ProgramsApiService } from '../../program/api/programs-api.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 
 describe('CourseSearchService', () => {
@@ -156,6 +157,42 @@ describe('CourseSearchService', () => {
       await expect(service.getById('unknown-course')).rejects.toThrow(
         'Course not found: unknown-course',
       );
+    });
+
+    it('falls back to CoursesApiService.getById and keeps normalised metadata', async () => {
+      const journeyCourse = {
+        id: '12',
+        title: 'Test',
+        slug: '',
+        description: '',
+        authorId: '1',
+        languagePair: { known: 'ru', learning: 'en' },
+        programIds: [],
+        published: true,
+        updatedAt: '',
+        programs: [],
+      };
+      vi.spyOn(apiService, 'getJourney').mockResolvedValue(journeyCourse as CourseWithPrograms);
+
+      const baseCourse = {
+        ...journeyCourse,
+        description: 'Backend description',
+        authoring: { idea: 'Idea', status: 'failed' },
+        practiceSettings: { mode: 'open' },
+      };
+      const getByIdSpy = vi
+        .spyOn(apiService, 'getById')
+        .mockResolvedValue(baseCourse as CourseWithPrograms);
+
+      const programsApi = TestBed.inject(ProgramsApiService);
+      vi.spyOn(programsApi, 'getByCourse').mockResolvedValue([]);
+
+      const result = await service.getById('12');
+
+      expect(getByIdSpy).toHaveBeenCalledWith('12');
+      expect(result.description).toBe('Backend description');
+      expect(result.authoring).toEqual({ idea: 'Idea', status: 'failed' });
+      expect(result.programs).toEqual([]);
     });
   });
 

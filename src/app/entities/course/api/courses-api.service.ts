@@ -20,7 +20,9 @@ import { AuthStore } from '../../auth/services/auth.store';
 import type { ContentLanguage } from '../../card/model/card-index.types';
 import { buildCourseAuthoringFromApi } from '../utils/course-authoring.utils';
 import { LanguagePairsApiService } from '../../language-pair/api';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
 import { formatLanguagePair } from '../../language-pair/utils/language-pair.utils';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 
 /** Backend DTO for a course (matches `CourseDto`). */
 type BackendCourseDto = {
@@ -68,6 +70,21 @@ function toIndexEntry(
   };
 }
 
+/**
+ * Serialises course practice settings for the backend JSONB column.
+ *
+ * @remarks
+ * The backend DTO expects a JSON string, but values coming from the fallback
+ * course loader may already be strings. Re-serialising an existing string
+ * would double-encode the JSONB payload, so strings pass through unchanged.
+ */
+function serializePracticeSettings(value: unknown): string | undefined {
+  if (value === undefined || value === null) {
+    return undefined;
+  }
+  return typeof value === 'string' ? value : JSON.stringify(value);
+}
+
 export type {
   CourseWritePayload,
   LessonWritePayload,
@@ -88,6 +105,7 @@ export class CoursesApiService implements CourseCatalogPort {
   private readonly http = inject(HttpClient);
   private readonly authStore = inject(AuthStore);
   private readonly languagePairsApi = inject(LanguagePairsApiService);
+  private readonly logger = inject(AppLoggerService);
 
   /** Cache: languagePairId → { known, learning } resolved from `/language-pairs`. */
   private pairCache: Record<number, { known: ContentLanguage; learning: ContentLanguage }> = {};
@@ -144,17 +162,80 @@ export class CoursesApiService implements CourseCatalogPort {
    * that consumers can spread/merge the settings correctly.
    */
   private parsePracticeSettings(data: Record<string, unknown>): void {
-    const raw = data['practiceSettings'];
-    if (raw === undefined || raw === null) {
+    let value: unknown = data['practiceSettings'];
+    if (value === undefined || value === null) {
       return;
     }
-    if (typeof raw === 'string') {
+
+    // Parse repeatedly: legacy records may contain a double-encoded JSON string
+    // (JSON.stringify applied to an already-stringified value).
+    for (let attempt = 0; typeof value === 'string' && attempt < 3; attempt++) {
       try {
-        data['practiceSettings'] = JSON.parse(raw);
+        value = JSON.parse(value);
       } catch {
-        // Invalid JSON — leave as-is; downstream code will fall back to defaults
-        data['practiceSettings'] = null;
+        // Invalid JSON — downstream code will fall back to defaults
+        value = null;
+        break;
       }
+    }
+
+    data['practiceSettings'] = value;
+  }
+
+  /**
+   * Normalises a raw backend course payload into the frontend `Course` shape.
+   *
+   * @remarks
+   * The backend uses `courseDescription`, flat authoring fields and a JSON
+   * string for `practiceSettings`, while the frontend entity expects
+   * `description`, a nested `authoring` object and parsed settings. Keeping
+   * this conversion in one place makes the journey, `getById` and fallback
+   * (`CourseSearchService.getById`) paths consistent.
+   */
+  async normalizeCourseData(data: Record<string, unknown>): Promise<Record<string, unknown>> {
+    await this.attachLanguagePair(data);
+    this.parsePracticeSettings(data);
+    data['authoring'] = buildCourseAuthoringFromApi(
+      data as unknown as Parameters<typeof buildCourseAuthoringFromApi>[0],
+    );
+
+    // Backend field name → frontend entity field name
+    if (typeof data['description'] !== 'string' && typeof data['courseDescription'] === 'string') {
+      data['description'] = data['courseDescription'];
+    }
+    if (typeof data['authorId'] === 'number') {
+      data['authorId'] = String(data['authorId']);
+    }
+    if (typeof data['languagePairId'] === 'string') {
+      data['languagePairId'] = Number(data['languagePairId']);
+    }
+
+    return data;
+  }
+
+  /**
+   * Resolves a frontend `{ known, learning }` pair to the backend numeric ID.
+   *
+   * @remarks
+   * Course create/update requests accept `languagePairId` (BIGINT). The
+   * frontend stores pairs as codes, so the ID is looked up in
+   * `/language-pairs`. Returns `undefined` when the pair is missing or cannot
+   * be resolved (the field is optional on the backend).
+   */
+  private async resolveLanguagePairId(pair: LanguagePair | undefined): Promise<number | undefined> {
+    if (!pair) {
+      return undefined;
+    }
+
+    try {
+      const pairs = await this.languagePairsApi.listAll();
+      return pairs.find(
+        (candidate) =>
+          candidate.knownCode === pair.known && candidate.learningCode === pair.learning,
+      )?.id;
+    } catch (error) {
+      this.logger.warn('CoursesApiService: failed to resolve languagePairId', error);
+      return undefined;
     }
   }
 
@@ -198,16 +279,9 @@ export class CoursesApiService implements CourseCatalogPort {
     return firstValueFrom(
       this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`)),
     ).then(async (response) => {
-      const data = response.data as unknown as Record<string, unknown>;
-      await this.attachLanguagePair(data);
-      this.parsePracticeSettings(data);
-      // Flatten authoring: generated Course model uses flat fields,
-      // rebuild nested CourseAuthoring for consumers.
-      data['authoring'] = buildCourseAuthoringFromApi(data);
-      // Normalize numeric authorId to string
-      if (typeof data['authorId'] === 'number') {
-        data['authorId'] = String(data['authorId']);
-      }
+      const data = await this.normalizeCourseData(
+        response.data as unknown as Record<string, unknown>,
+      );
       return data as unknown as CourseWithPrograms;
     });
   }
@@ -226,12 +300,9 @@ export class CoursesApiService implements CourseCatalogPort {
     return firstValueFrom(
       this.http.get<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}/journey`)),
     ).then(async (response) => {
-      const data = response.data as unknown as Record<string, unknown>;
-      await this.attachLanguagePair(data);
-      this.parsePracticeSettings(data);
-      // Flatten authoring: generated Course model uses flat fields,
-      // rebuild nested CourseAuthoring for consumers.
-      data['authoring'] = buildCourseAuthoringFromApi(data);
+      const data = await this.normalizeCourseData(
+        response.data as unknown as Record<string, unknown>,
+      );
       // Backend returns numeric IDs — convert to strings for frontend consistency
       if (Array.isArray(data['programs'])) {
         data['programs'] = (data['programs'] as Record<string, unknown>[]).map((p) => {
@@ -252,11 +323,7 @@ export class CoursesApiService implements CourseCatalogPort {
           };
         });
       }
-      // Convert numeric authorId to string for frontend consistency
-      if (typeof data['authorId'] === 'number') {
-        data['authorId'] = String(data['authorId']);
-      }
-      return data as CourseWithPrograms;
+      return data as unknown as CourseWithPrograms;
     });
   }
 
@@ -266,7 +333,7 @@ export class CoursesApiService implements CourseCatalogPort {
    * @param payload - The course write payload.
    * @returns The created course with programs.
    */
-  create(payload: CourseWritePayload): Promise<CourseWithPrograms> {
+  async create(payload: CourseWritePayload): Promise<CourseWithPrograms> {
     const body: Record<string, unknown> = {
       title: payload.title,
       courseDescription: payload.description,
@@ -277,15 +344,21 @@ export class CoursesApiService implements CourseCatalogPort {
     if (userId && /^\d+$/.test(userId)) {
       body['authorId'] = Number(userId);
     }
+    // Backend expects the numeric language pair ID (BIGINT)
+    const languagePairId = await this.resolveLanguagePairId(payload.languagePair);
+    if (languagePairId !== undefined) {
+      body['languagePairId'] = languagePairId;
+    }
     // Programs are sent for mock handler compatibility (backend creates them separately)
     if (payload.programs && payload.programs.length > 0) {
       body['programs'] = payload.programs;
     }
-    // Authoring fields (flat — matches backend CourseCreateRequest)
-    if (payload.authoringStatus) {
+    // Authoring fields (flat — matches backend CourseCreateRequest).
+    // `!== undefined` (not truthiness) so an empty idea/status can clear a value.
+    if (payload.authoringStatus !== undefined) {
       body['authoringStatus'] = payload.authoringStatus;
     }
-    if (payload.authoringIdea) {
+    if (payload.authoringIdea !== undefined) {
       body['authoringIdea'] = payload.authoringIdea;
     }
     if (payload.ideaUpdatedAt) {
@@ -294,16 +367,21 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.materializedAt) {
       body['materializedAt'] = payload.materializedAt;
     }
-    if (payload.lastError) {
+    if (payload.lastError !== undefined) {
       body['lastError'] = payload.lastError;
     }
-    // practiceSettings is a JSONB column — the backend DTO expects a JSON string
-    if (payload.practiceSettings) {
-      body['practiceSettings'] = JSON.stringify(payload.practiceSettings);
+    // practiceSettings is a JSONB column — the backend DTO expects a JSON string.
+    // Values coming from the fallback loader may already be strings; do not double-encode.
+    const practiceSettings = serializePracticeSettings(payload.practiceSettings);
+    if (practiceSettings !== undefined) {
+      body['practiceSettings'] = practiceSettings;
     }
-    return firstValueFrom(
+    const response = await firstValueFrom(
       this.http.post<ApiResponse<CourseWithPrograms>>(buildApiUrl('/courses'), body),
-    ).then((response) => response.data);
+    );
+    return (await this.normalizeCourseData(
+      response.data as unknown as Record<string, unknown>,
+    )) as unknown as CourseWithPrograms;
   }
 
   /**
@@ -313,21 +391,27 @@ export class CoursesApiService implements CourseCatalogPort {
    * @param payload - The course write payload.
    * @returns The updated course with programs.
    */
-  update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
+  async update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
     const body: Record<string, unknown> = {
       title: payload.title,
       courseDescription: payload.description,
       published: payload.published,
     };
+    // Backend expects the numeric language pair ID (BIGINT)
+    const languagePairId = await this.resolveLanguagePairId(payload.languagePair);
+    if (languagePairId !== undefined) {
+      body['languagePairId'] = languagePairId;
+    }
     // NOTE: This endpoint updates only the `education_courses` table. Nested
     // programs/lessons are persisted through ProgramsApiService/LessonsApiService,
     // so they must not be part of the course update body (the backend rejects the
     // internal ProgramWritePayload shape).
-    // Authoring fields (flat — matches backend CourseUpdateRequest)
-    if (payload.authoringStatus) {
+    // Authoring fields (flat — matches backend CourseUpdateRequest).
+    // `!== undefined` (not truthiness) so an empty idea/status can clear a value.
+    if (payload.authoringStatus !== undefined) {
       body['authoringStatus'] = payload.authoringStatus;
     }
-    if (payload.authoringIdea) {
+    if (payload.authoringIdea !== undefined) {
       body['authoringIdea'] = payload.authoringIdea;
     }
     if (payload.ideaUpdatedAt) {
@@ -336,16 +420,21 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.materializedAt) {
       body['materializedAt'] = payload.materializedAt;
     }
-    if (payload.lastError) {
+    if (payload.lastError !== undefined) {
       body['lastError'] = payload.lastError;
     }
-    // practiceSettings is a JSONB column — the backend DTO expects a JSON string
-    if (payload.practiceSettings) {
-      body['practiceSettings'] = JSON.stringify(payload.practiceSettings);
+    // practiceSettings is a JSONB column — the backend DTO expects a JSON string.
+    // Values coming from the fallback loader may already be strings; do not double-encode.
+    const practiceSettings = serializePracticeSettings(payload.practiceSettings);
+    if (practiceSettings !== undefined) {
+      body['practiceSettings'] = practiceSettings;
     }
-    return firstValueFrom(
+    const response = await firstValueFrom(
       this.http.put<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`), body),
-    ).then((response) => response.data);
+    );
+    return (await this.normalizeCourseData(
+      response.data as unknown as Record<string, unknown>,
+    )) as unknown as CourseWithPrograms;
   }
 
   /**

@@ -14,7 +14,7 @@ import type {
 import { CoursesApiService, type CourseWritePayload } from '../api/courses-api.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { buildApiUrl } from '../../../shared/api/api-url';
-import type { ApiListResponse, ApiResponse } from '../../../shared/api/api.types';
+import type { ApiListResponse } from '../../../shared/api/api.types';
 import { ProgramsApiService } from '../../program/api';
 
 /**
@@ -204,7 +204,7 @@ export class CourseSearchService {
       throw new Error(`Course not found: ${courseId}`);
     }
 
-    // Return cached result if already loading or cached
+    // Return cached result if already resolved
     const cached = this.getByIdCache.get(resolvedId);
     if (cached) {
       return cached;
@@ -212,21 +212,20 @@ export class CourseSearchService {
 
     // Try /journey endpoint first
     try {
-      const promise = this.run(() => this.coursesApi.getJourney(resolvedId));
-      this.getByIdCache.set(resolvedId, promise);
-      const course = await promise;
-
-      // Ensure languagePairId is available from the course response
-      if (typeof (course as Record<string, unknown>)['languagePairId'] !== 'number') {
-        const raw = course as Record<string, unknown>;
-        raw['languagePairId'] = undefined;
-      }
+      const journeyCourse = await this.run(() => this.coursesApi.getJourney(resolvedId));
 
       // If journey returns programs with lessons, use them
-      if (course.programs && course.programs.length > 0) {
-        this.logger.info(`[CourseSearch] getJourney returned ${course.programs.length} programs`);
-        return course;
+      if (journeyCourse.programs && journeyCourse.programs.length > 0) {
+        this.logger.info(
+          `[CourseSearch] getJourney returned ${journeyCourse.programs.length} programs`,
+        );
+        this.getByIdCache.set(resolvedId, Promise.resolve(journeyCourse));
+        return journeyCourse;
       }
+
+      this.logger.info(
+        `[CourseSearch] getJourney returned 0 programs for course ${resolvedId}; falling back to programs API`,
+      );
     } catch (error) {
       this.logger.warn('[CourseSearch] getJourney failed, falling back to programs API', error);
     }
@@ -236,21 +235,16 @@ export class CourseSearchService {
       `[CourseSearch] Fetching programs via ProgramsApiService for course ${resolvedId}`,
     );
 
-    // Fetch course base to preserve metadata (title, authorId, etc.)
+    // Fetch course base to preserve metadata (title, authorId, description,
+    // authoring, practiceSettings, languagePair). `CoursesApiService.getById`
+    // normalises the raw backend DTO (courseDescription → description, flat
+    // authoring → nested, JSON-string practiceSettings → object, languagePair).
     let courseBase: Record<string, unknown>;
     try {
-      const courseResponse = await firstValueFrom(
-        this.http.get<ApiResponse<Record<string, unknown>>>(buildApiUrl(`/courses/${resolvedId}`)),
-      );
-      courseBase = courseResponse.data;
-      // Normalize numeric authorId to string
-      if (typeof courseBase['authorId'] === 'number') {
-        courseBase['authorId'] = String(courseBase['authorId']);
-      }
-      // Normalize numeric languagePairId to number (if backend returns it as string)
-      if (typeof courseBase['languagePairId'] === 'string') {
-        courseBase['languagePairId'] = Number(courseBase['languagePairId']);
-      }
+      courseBase = (await this.coursesApi.getById(resolvedId)) as unknown as Record<
+        string,
+        unknown
+      >;
     } catch {
       // If course fetch fails, create a minimal base
       courseBase = {
@@ -269,27 +263,32 @@ export class CourseSearchService {
     // Fetch programs and resolve lessons in parallel
     const programs = await this.programsApi.getByCourse(resolvedId);
 
+    let result: CourseWithPrograms;
+
     if (programs.length === 0) {
       this.logger.warn(`[CourseSearch] Fallback returned 0 programs for course ${resolvedId}`);
       // Return course with empty programs — caller can handle gracefully
-      return {
+      result = {
         ...courseBase,
         programIds: [],
         programs: [],
       } as unknown as CourseWithPrograms;
+    } else {
+      const programsWithLessons = await Promise.all(
+        programs.map((program) => this.programsApi.getById(program.id)),
+      );
+
+      result = {
+        ...courseBase,
+        programIds: programs.map((p) => p.id),
+        programs: programsWithLessons,
+      } as unknown as CourseWithPrograms;
     }
 
-    const programsWithLessons = await Promise.all(
-      programs.map((program) => this.programsApi.getById(program.id)),
-    );
-
-    const courseWithPrograms = {
-      ...courseBase,
-      programIds: programs.map((p) => p.id),
-      programs: programsWithLessons,
-    };
-
-    return courseWithPrograms as unknown as CourseWithPrograms;
+    // Cache the final (normalised) result — not the intermediate journey
+    // response, which may have contained zero programs.
+    this.getByIdCache.set(resolvedId, Promise.resolve(result));
+    return result;
   }
 
   /**

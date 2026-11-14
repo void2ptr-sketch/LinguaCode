@@ -76,6 +76,9 @@ describe('CoursesApiService', () => {
     ],
   };
 
+  /** Flushes pending microtasks so async request preparation completes. */
+  const flushMicrotasks = (): Promise<void> => new Promise((resolve) => setTimeout(resolve, 0));
+
   beforeEach(async () => {
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
@@ -171,11 +174,38 @@ describe('CoursesApiService', () => {
       const result = await promise;
       expect(result).toEqual(mockCourseWithPrograms);
     });
+
+    it('normalises backend course fields to the frontend shape', async () => {
+      const promise = service.getById('12');
+
+      const req = httpMock.expectOne(buildApiUrl('/courses/12'));
+      req.flush({
+        data: {
+          id: 12,
+          title: 'Test',
+          courseDescription: 'Backend description',
+          authorId: 7,
+          languagePairId: 1,
+          published: true,
+          authoringStatus: 'failed',
+          authoringIdea: 'Idea',
+          practiceSettings: '{"mode":"open"}',
+        },
+      });
+
+      const result = (await promise) as unknown as Record<string, unknown>;
+      expect(result['description']).toBe('Backend description');
+      expect(result['authorId']).toBe('7');
+      expect(result['languagePair']).toEqual({ known: 'ru', learning: 'en' });
+      expect(result['authoring']).toEqual({ idea: 'Idea', status: 'failed' });
+      expect(result['practiceSettings']).toEqual({ mode: 'open' });
+    });
   });
 
   describe('create', () => {
     it('should create a new course', async () => {
       const promise = service.create(mockPayload);
+      await flushMicrotasks();
 
       const req = httpMock.expectOne(buildApiUrl('/courses'));
       expect(req.request.method).toBe('POST');
@@ -185,6 +215,7 @@ describe('CoursesApiService', () => {
       expect(body['published']).toBe(mockPayload.published);
       expect(body['programs']).toEqual(mockPayload.programs);
       expect(body['authorId']).toBe(42);
+      expect(body['languagePairId']).toBe(1);
       req.flush({ data: mockCourseWithPrograms });
 
       const result = await promise;
@@ -195,6 +226,7 @@ describe('CoursesApiService', () => {
   describe('update', () => {
     it('should update an existing course', async () => {
       const promise = service.update('course-1', mockPayload);
+      await flushMicrotasks();
 
       const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
       expect(req.request.method).toBe('PUT');
@@ -202,11 +234,45 @@ describe('CoursesApiService', () => {
       expect(body['title']).toBe(mockPayload.title);
       expect(body['courseDescription']).toBe(mockPayload.description);
       expect(body['published']).toBe(mockPayload.published);
-      expect(body['authorId']).toBe(42);
+      expect(body['languagePairId']).toBe(1);
+      // Programs are persisted through ProgramsApiService, not the course update.
+      expect(body['programs']).toBeUndefined();
       req.flush({ data: mockCourseWithPrograms });
 
       const result = await promise;
       expect(result).toEqual(mockCourseWithPrograms);
+    });
+
+    it('does not double-encode string practice settings', async () => {
+      const promise = service.update('course-1', {
+        ...mockPayload,
+        practiceSettings: '{"mode":"open"}' as unknown as CourseWritePayload['practiceSettings'],
+      });
+      await flushMicrotasks();
+
+      const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
+      const body = req.request.body as Record<string, unknown>;
+      expect(body['practiceSettings']).toBe('{"mode":"open"}');
+      req.flush({ data: mockCourseWithPrograms });
+
+      await promise;
+    });
+
+    it('forwards empty authoring fields so they can be cleared', async () => {
+      const promise = service.update('course-1', {
+        ...mockPayload,
+        authoringStatus: 'draft',
+        authoringIdea: '',
+      });
+      await flushMicrotasks();
+
+      const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
+      const body = req.request.body as Record<string, unknown>;
+      expect(body['authoringStatus']).toBe('draft');
+      expect(body['authoringIdea']).toBe('');
+      req.flush({ data: mockCourseWithPrograms });
+
+      await promise;
     });
   });
 

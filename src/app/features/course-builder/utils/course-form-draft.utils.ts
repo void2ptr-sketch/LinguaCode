@@ -151,6 +151,10 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
     description: draft.description,
     published: draft.published,
     ...flattenAuthoring(normalized),
+    // Always forward status/idea (even when empty) so the form can clear
+    // previously saved values. Timestamps/error are only forwarded when set.
+    authoringStatus: draft.authoring.status,
+    authoringIdea: draft.authoring.idea,
     practiceSettings: draft.practiceSettings,
     programs,
   };
