@@ -1,33 +1,5 @@
 <div class="program-form">
   <mat-form-field appearance="outline">
-    <mat-label>Название программы</mat-label>
-    <input
-      matInput
-      required
-      name="title"
-      [disabled]="readOnly()"
-      [maxlength]="titleMaxLength"
-      [ngModel]="draft().title"
-      (ngModelChange)="updateTitle($event)"
-    />
-    <mat-hint>{{ draft().title.length }} / {{ titleMaxLength }}</mat-hint>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Уровень доступа</mat-label>
-    <mat-select
-      name="requiredTier"
-      [disabled]="readOnly()"
-      [ngModel]="draft().requiredTier"
-      (ngModelChange)="updateRequiredTier($event)"
-    >
-      @for (tier of tierOptions; track tier) {
-        <mat-option [value]="tier">{{ tierLabels[tier] }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
     <mat-label>Порядок в курсе</mat-label>
     <input
       matInput
@@ -39,6 +11,20 @@
       (ngModelChange)="updateOrder($event)"
     />
     <mat-hint>Порядок отображения в курсе</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Название программы</mat-label>
+    <input
+      matInput
+      required
+      name="title"
+      [disabled]="readOnly()"
+      [maxlength]="titleMaxLength"
+      [ngModel]="draft().title"
+      (ngModelChange)="updateTitle($event)"
+    />
+    <mat-hint>{{ draft().title.length }} / {{ titleMaxLength }}</mat-hint>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
@@ -60,4 +46,18 @@
       Опубликовать
     </mat-checkbox>
   }
+
+  <mat-form-field appearance="outline">
+    <mat-label>Уровень доступа</mat-label>
+    <mat-select
+      name="requiredTier"
+      [disabled]="readOnly()"
+      [ngModel]="draft().requiredTier"
+      (ngModelChange)="updateRequiredTier($event)"
+    >
+      @for (tier of tierOptions; track tier) {
+        <mat-option [value]="tier">{{ tierLabels[tier] }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 </div>
