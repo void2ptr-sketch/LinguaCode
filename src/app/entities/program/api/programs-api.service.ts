@@ -12,10 +12,11 @@
  * @see ../../../app/api/generated/programs.ts
  */
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { firstValueFrom, catchError, throwError } from 'rxjs';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { UserStore } from '../../user/model/user.store';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type {
   Program,
   ProgramWithLessons,
@@ -46,7 +47,7 @@ function buildProgramSearchParams(
 ): Record<string, string> {
   const params: Record<string, string> = {};
   if (criteria.query) params['query'] = criteria.query;
-  if (criteria.courseId) params['courseId'] = String(Number(criteria.courseId));
+  if (criteria.courseId) params['courseId'] = String(criteria.courseId);
   if (criteria.page) {
     if (criteria.page.page !== undefined) params['page'] = String(criteria.page.page);
     if (criteria.page.pageSize !== undefined) params['pageSize'] = String(criteria.page.pageSize);
@@ -132,6 +133,7 @@ function mapLesson(raw: Record<string, unknown>): import('../../course/model').L
 export class ProgramsApiService implements ProgramCatalogPort {
   private readonly http = inject(HttpClient);
   private readonly userStore = inject(UserStore);
+  private readonly logger = inject(AppLoggerService);
 
   /**
    * Searches programs by criteria.
@@ -140,7 +142,12 @@ export class ProgramsApiService implements ProgramCatalogPort {
     return firstValueFrom(
       this.http.get<ProgramList>(buildApiUrl('/programs/search'), {
         params: buildProgramSearchParams(criteria),
-      }),
+      }).pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.logger.error('ProgramsApiService.search', error);
+          return throwError(() => error);
+        }),
+      ),
     ).then((response) => {
       const rawItems = (response.data ?? []) as Record<string, unknown>[];
       const items = rawItems.map((p) => mapProgramIndexEntry(p));
@@ -166,7 +173,12 @@ export class ProgramsApiService implements ProgramCatalogPort {
    */
   getById(programId: string): Promise<ProgramWithLessons> {
     return firstValueFrom(
-      this.http.get<ProgramResponse>(buildApiUrl(`/programs/${programId}`)),
+      this.http.get<ProgramResponse>(buildApiUrl(`/programs/${programId}`)).pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.logger.error('ProgramsApiService.getById', error);
+          return throwError(() => error);
+        }),
+      ),
     ).then((response) => {
       const raw = response.data as Record<string, unknown>;
       return mapProgramWithLessons(raw);
@@ -180,6 +192,11 @@ export class ProgramsApiService implements ProgramCatalogPort {
     return firstValueFrom(
       this.http.get<ProgramWithLessonsList>(
         buildApiUrl(`/programs/by-course/${courseId}`),
+      ).pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.logger.error('ProgramsApiService.getByCourse', error);
+          return throwError(() => error);
+        }),
       ),
     ).then((response) => {
       const programs = response.data ?? [];
@@ -194,6 +211,11 @@ export class ProgramsApiService implements ProgramCatalogPort {
     return firstValueFrom(
       this.http.get<ProgramWithLessonsList>(
         buildApiUrl(`/programs/by-course/${courseId}/with-lessons`),
+      ).pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.logger.error('ProgramsApiService.getByCourseWithLessons', error);
+          return throwError(() => error);
+        }),
       ),
     ).then((response) => {
       const programs = response.data ?? [];
@@ -206,7 +228,12 @@ export class ProgramsApiService implements ProgramCatalogPort {
    */
   getLessons(programId: string): Promise<readonly import('../../course/model').Lesson[]> {
     return firstValueFrom(
-      this.http.get<LessonList>(buildApiUrl(`/programs/${programId}/lessons`)),
+      this.http.get<LessonList>(buildApiUrl(`/programs/${programId}/lessons`)).pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.logger.error('ProgramsApiService.getLessons', error);
+          return throwError(() => error);
+        }),
+      ),
     ).then((response) => {
       const rawLessons = response.data ?? [];
       return rawLessons.map((l) => mapLesson(l as Record<string, unknown>));
@@ -217,10 +244,13 @@ export class ProgramsApiService implements ProgramCatalogPort {
    * Creates a new program within a course.
    */
   create(payload: ProgramWritePayload): Promise<Program> {
+    // Backend ProgramCreateRequest expects numeric courseId (BIGINT).
+    // Numeric string IDs are converted; slug IDs pass through unchanged
+    // (the mock backend accepts them directly).
     const body: ProgramCreateRequest = {
       title: payload.title,
       programDescription: payload.description,
-      courseId: Number(payload.courseId) ?? 0,
+      courseId: toNumericId(payload.courseId) as number,
       requiredTier: payload.requiredTier,
       order: payload.order,
       languagePairId: payload.languagePairId,
@@ -229,6 +259,11 @@ export class ProgramsApiService implements ProgramCatalogPort {
       this.http.post<ProgramResponse>(
         buildApiUrl('/programs'),
         body,
+      ).pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.logger.error('ProgramsApiService.create', error);
+          return throwError(() => error);
+        }),
       ),
     ).then((response) => {
       const raw = response.data as Record<string, unknown>;
@@ -251,6 +286,11 @@ export class ProgramsApiService implements ProgramCatalogPort {
       this.http.put<ProgramResponse>(
         buildApiUrl(`/programs/${programId}`),
         body,
+      ).pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.logger.error('ProgramsApiService.update', error);
+          return throwError(() => error);
+        }),
       ),
     ).then((response) => {
       const raw = response.data as Record<string, unknown>;
@@ -263,7 +303,27 @@ export class ProgramsApiService implements ProgramCatalogPort {
    */
   delete(programId: string): Promise<void> {
     return firstValueFrom(
-      this.http.delete<void>(buildApiUrl(`/programs/${programId}`)),
+      this.http.delete<void>(buildApiUrl(`/programs/${programId}`)).pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.logger.error('ProgramsApiService.delete', error);
+          return throwError(() => error);
+        }),
+      ),
     ).then(() => undefined);
   }
+}
+
+/**
+ * Converts a frontend ID to the numeric form expected by the backend.
+ *
+ * @remarks
+ * Numeric string IDs (e.g. `"42"`) are converted to `number`; slug-based
+ * IDs (e.g. `"course-zh-radicals-214"`) pass through unchanged — the mock
+ * backend accepts them directly.
+ *
+ * @param id - The frontend ID.
+ * @returns Numeric ID, or the original string for slugs.
+ */
+function toNumericId(id: string): number | string {
+  return /^\d+$/.test(id) ? Number(id) : id;
 }

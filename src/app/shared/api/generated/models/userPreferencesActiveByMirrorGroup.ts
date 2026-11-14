@@ -6,4 +6,4 @@
  */
 import type { LanguagePair } from './languagePair';
 
-export type UserPreferencesActiveByMirrorGroup = {[key: string]: LanguagePair};
+export type UserPreferencesActiveByMirrorGroup = Record<string, LanguagePair>;
