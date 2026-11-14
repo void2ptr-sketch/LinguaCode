@@ -119,12 +119,29 @@ describe('lesson-form-draft.utils', () => {
     });
 
     it('should accept a valid draft', () => {
-      expect(validateLessonFormDraft({ ...emptyLessonFormDraft(), title: 'Valid' })).toBeNull();
+      expect(validateLessonFormDraft({ ...emptyLessonFormDraft(), title: 'Valid', order: 1 })).toBeNull();
     });
 
     it('should reject a title longer than the max length', () => {
       const draft = { ...emptyLessonFormDraft(), title: 'a'.repeat(LESSON_TITLE_MAX_LENGTH + 1) };
       expect(validateLessonFormDraft(draft)).not.toBeNull();
+    });
+
+    it('should reject order equal to zero', () => {
+      const draft = { ...emptyLessonFormDraft(), title: 'Valid', order: 0 };
+      const result = validateLessonFormDraft(draft);
+      expect(result).toBe('Порядок должен быть больше нуля');
+    });
+
+    it('should reject undefined order (defaults to 0)', () => {
+      const draft = { ...emptyLessonFormDraft(), title: 'Valid', order: undefined };
+      const result = validateLessonFormDraft(draft);
+      expect(result).toBe('Порядок должен быть больше нуля');
+    });
+
+    it('should accept order greater than zero', () => {
+      expect(validateLessonFormDraft({ ...emptyLessonFormDraft(), title: 'Valid', order: 1 })).toBeNull();
+      expect(validateLessonFormDraft({ ...emptyLessonFormDraft(), title: 'Valid', order: 5 })).toBeNull();
     });
   });
 

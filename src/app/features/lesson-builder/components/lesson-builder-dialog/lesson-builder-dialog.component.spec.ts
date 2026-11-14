@@ -143,6 +143,47 @@ describe('LessonBuilderDialogComponent', () => {
     expect(component.title()).toBe('Редактирование урока');
   });
 
+  // ── auto-increment order in create mode ──
+
+  it('should compute next lesson order from existing lessons', async () => {
+    const lessonsWithOrders = [
+      { ...mockLesson, id: 'l1', order: 1 },
+      { ...mockLesson, id: 'l2', order: 3 },
+      { ...mockLesson, id: 'l3', order: 7 },
+    ];
+    const { component } = createComponent(
+      { mode: 'create', programId: 'p1' },
+      {
+        startCreate: () => undefined,
+        loadCandidateLessons: async () => {
+          const store = TestBed.inject(LessonBuilderStore);
+          store.candidateLessons.set(lessonsWithOrders);
+        },
+      },
+    );
+    await Promise.resolve();
+    // Wait for the then() callback to flush
+    await new Promise((r) => setTimeout(r, 0));
+    // Max order is 7, so next should be 8
+    expect(component.draft().order).toBe(8);
+  });
+
+  it('should default to order 1 when no existing lessons', async () => {
+    const { component } = createComponent(
+      { mode: 'create', programId: 'p1' },
+      {
+        startCreate: () => undefined,
+        loadCandidateLessons: async () => {
+          const store = TestBed.inject(LessonBuilderStore);
+          store.candidateLessons.set([]);
+        },
+      },
+    );
+    await Promise.resolve();
+    await new Promise((r) => setTimeout(r, 0));
+    expect(component.draft().order).toBe(1);
+  });
+
   // ── saveLesson ──
 
   it('should close dialog with saved:true on successful create', async () => {

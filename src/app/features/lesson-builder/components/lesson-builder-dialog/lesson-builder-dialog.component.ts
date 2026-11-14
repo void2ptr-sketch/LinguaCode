@@ -100,7 +100,13 @@ export class LessonBuilderDialogComponent implements OnInit {
       // Prerequisite candidates are loaded separately so that the draft is
       // initialized synchronously (mirrors `ProgramBuilderDialogComponent`).
       if (this.data.programId) {
-        void this.store.loadCandidateLessons(this.data.programId);
+        void this.store.loadCandidateLessons(this.data.programId).then(() => {
+          const lessons = this.store.candidateLessons();
+          const nextOrder = lessons.length > 0
+            ? Math.max(...lessons.map((l) => l.order)) + 1
+            : 1;
+          this.draft.update((d) => ({ ...d, order: nextOrder }));
+        });
       }
       return;
     }

@@ -70,6 +70,10 @@ export function validateLessonFormDraft(draft: LessonFormDraft): string | null {
     return `Название не должно превышать ${LESSON_TITLE_MAX_LENGTH} символов`;
   }
 
+  if ((draft.order ?? 0) <= 0) {
+    return 'Порядок должен быть больше нуля';
+  }
+
   return null;
 }
 
