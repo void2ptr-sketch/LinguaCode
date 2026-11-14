@@ -297,9 +297,9 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.lastError) {
       body['lastError'] = payload.lastError;
     }
-    // Practice settings for navigation behavior
+    // practiceSettings is a JSONB column — the backend DTO expects a JSON string
     if (payload.practiceSettings) {
-      body['practiceSettings'] = payload.practiceSettings;
+      body['practiceSettings'] = JSON.stringify(payload.practiceSettings);
     }
     return firstValueFrom(
       this.http.post<ApiResponse<CourseWithPrograms>>(buildApiUrl('/courses'), body),
@@ -319,15 +319,10 @@ export class CoursesApiService implements CourseCatalogPort {
       courseDescription: payload.description,
       published: payload.published,
     };
-    // Send numeric authorId from authenticated user (backend derives it from JWT token)
-    const userId = this.authStore.user()?.id;
-    if (userId && /^\d+$/.test(userId)) {
-      body['authorId'] = Number(userId);
-    }
-    // Programs and authoring are required for full course update
-    if (payload.programs && payload.programs.length > 0) {
-      body['programs'] = payload.programs;
-    }
+    // NOTE: This endpoint updates only the `education_courses` table. Nested
+    // programs/lessons are persisted through ProgramsApiService/LessonsApiService,
+    // so they must not be part of the course update body (the backend rejects the
+    // internal ProgramWritePayload shape).
     // Authoring fields (flat — matches backend CourseUpdateRequest)
     if (payload.authoringStatus) {
       body['authoringStatus'] = payload.authoringStatus;
@@ -344,9 +339,9 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.lastError) {
       body['lastError'] = payload.lastError;
     }
-    // Practice settings for navigation behavior
+    // practiceSettings is a JSONB column — the backend DTO expects a JSON string
     if (payload.practiceSettings) {
-      body['practiceSettings'] = payload.practiceSettings;
+      body['practiceSettings'] = JSON.stringify(payload.practiceSettings);
     }
     return firstValueFrom(
       this.http.put<ApiResponse<CourseWithPrograms>>(buildApiUrl(`/courses/${courseId}`), body),
