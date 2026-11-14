@@ -225,6 +225,12 @@ export class CourseSearchService {
         this.logger.debug(`[CourseSearch] course ${resolvedId} has no programs`);
       }
 
+      // `/courses/{id}/journey` is a minimal DTO: it does not include
+      // `languagePairId`/`languagePair`. Consumers (program creation, journey
+      // and card-select pair activation) rely on `course.languagePair`, so
+      // merge it from the full course record when the journey response omits it.
+      await this.attachCourseLanguagePair(journeyCourse, resolvedId);
+
       this.getByIdCache.set(resolvedId, Promise.resolve(journeyCourse));
       return journeyCourse;
     } catch (error) {
@@ -291,6 +297,46 @@ export class CourseSearchService {
     // response, which may have contained zero programs.
     this.getByIdCache.set(resolvedId, Promise.resolve(result));
     return result;
+  }
+
+  /**
+   * Ensures a course payload exposes `languagePair` (and `languagePairId`).
+   *
+   * @remarks
+   * The `/courses/{id}/journey` response is a minimal DTO that carries no
+   * language pair fields. When the payload lacks `languagePair`, the full
+   * course record (`GET /courses/{id}`) is fetched once and its pair metadata
+   * is merged in. Failures are non-fatal — callers handle a missing pair
+   * gracefully (the pair is optional on the backend).
+   *
+   * @param course - The course payload to enrich (mutated in place).
+   * @param resolvedId - The resolved numeric course ID.
+   */
+  private async attachCourseLanguagePair(
+    course: CourseWithPrograms,
+    resolvedId: string,
+  ): Promise<void> {
+    if (course.languagePair) {
+      return;
+    }
+
+    try {
+      const courseRecord = await this.coursesApi.getById(resolvedId);
+      const target = course as unknown as Record<string, unknown>;
+      const source = courseRecord as unknown as Record<string, unknown>;
+
+      if (source['languagePair']) {
+        target['languagePair'] = source['languagePair'];
+      }
+      if (typeof source['languagePairId'] === 'number') {
+        target['languagePairId'] = source['languagePairId'];
+      }
+    } catch (error) {
+      this.logger.warn(
+        `[CourseSearch] failed to resolve language pair for course ${resolvedId}`,
+        error,
+      );
+    }
   }
 
   /**

@@ -11,7 +11,6 @@ import {
   readStoredScenarios,
   saveScenariosToStorage,
 } from './scenarios-storage';
-import { USER_CONTENT_OVERLAY_KEY } from '../../user/overlay/user-content-overlay.types';
 import { USER_CONTENT_MIGRATED_KEY } from '../../user/overlay/user-content-overlay.types';
 
 function makeScenario(overrides?: Partial<Scenario>): Scenario {

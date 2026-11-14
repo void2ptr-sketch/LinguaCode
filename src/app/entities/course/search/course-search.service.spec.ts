@@ -184,6 +184,75 @@ describe('CourseSearchService', () => {
       expect(getByCourseSpy).not.toHaveBeenCalled();
     });
 
+    it('merges languagePair from CoursesApiService.getById when journey omits it', async () => {
+      const journeyCourse = {
+        id: '12',
+        title: 'Test',
+        slug: '',
+        description: '',
+        authorId: '1',
+        programIds: [],
+        published: true,
+        updatedAt: '',
+        programs: [],
+      } as unknown as CourseWithPrograms;
+      vi.spyOn(apiService, 'getJourney').mockResolvedValue(journeyCourse);
+
+      const getByIdSpy = vi.spyOn(apiService, 'getById').mockResolvedValue({
+        ...journeyCourse,
+        languagePair: { known: 'ru', learning: 'en' },
+        languagePairId: 7,
+      } as unknown as CourseWithPrograms);
+
+      const result = await service.getById('12');
+
+      expect(getByIdSpy).toHaveBeenCalledWith('12');
+      expect(result.languagePair).toEqual({ known: 'ru', learning: 'en' });
+      expect((result as unknown as { languagePairId?: number }).languagePairId).toBe(7);
+    });
+
+    it('does not fetch the full course when the journey already has languagePair', async () => {
+      const journeyCourse = {
+        id: '12',
+        title: 'Test',
+        slug: '',
+        description: '',
+        authorId: '1',
+        languagePair: { known: 'ru', learning: 'en' },
+        programIds: [],
+        published: true,
+        updatedAt: '',
+        programs: [],
+      } as unknown as CourseWithPrograms;
+      vi.spyOn(apiService, 'getJourney').mockResolvedValue(journeyCourse);
+      const getByIdSpy = vi.spyOn(apiService, 'getById');
+
+      await service.getById('12');
+
+      expect(getByIdSpy).not.toHaveBeenCalled();
+    });
+
+    it('keeps the journey response when language pair enrichment fails', async () => {
+      const journeyCourse = {
+        id: '12',
+        title: 'Test',
+        slug: '',
+        description: '',
+        authorId: '1',
+        programIds: [],
+        published: true,
+        updatedAt: '',
+        programs: [],
+      } as unknown as CourseWithPrograms;
+      vi.spyOn(apiService, 'getJourney').mockResolvedValue(journeyCourse);
+      vi.spyOn(apiService, 'getById').mockRejectedValue(new Error('course fetch failed'));
+
+      const result = await service.getById('12');
+
+      expect(result.programs).toEqual([]);
+      expect(result.languagePair).toBeUndefined();
+    });
+
     it('falls back to CoursesApiService.getById and keeps normalised metadata when journey fails', async () => {
       const journeyCourse = {
         id: '12',

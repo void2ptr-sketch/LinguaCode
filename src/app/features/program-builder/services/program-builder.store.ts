@@ -13,6 +13,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CourseSearchService } from '../../../entities/course';
+import { LanguagePairsApiService } from '../../../entities/language-pair/api/language-pairs-api.service';
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import type { Program } from '../../../entities/program/model/program.types';
 import { AuthStore } from '../../../entities/auth/services/auth.store';
@@ -39,6 +40,8 @@ export class ProgramBuilderStore {
   private readonly programsApi = inject(ProgramsApiService);
   /** Service for resolving slug course IDs to numeric backend IDs */
   private readonly courseSearch = inject(CourseSearchService);
+  /** API service for language pair catalog (used to resolve languagePairId from codes) */
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
   /** Auth store (authenticated user ID, roles) */
   private readonly authStore = inject(AuthStore);
   /** Central logging service */
@@ -162,13 +165,26 @@ export class ProgramBuilderStore {
 
     try {
       const resolvedCourseId = await this.courseSearch.resolveCourseIdForWrite(courseId);
-      // Resolve languagePairId from the parent course
+      // Inherit languagePairId from the parent course.
+      // `CourseSearchService.getById` enriches the journey payload with the
+      // numeric `languagePairId` (and `languagePair` codes) from the full
+      // course record, so prefer the numeric value and fall back to resolving
+      // it from the codes only when it is absent.
       let languagePairId: number | undefined = draft.languagePairId;
       if (!languagePairId) {
         try {
           const course = await this.courseSearch.getById(courseId);
-          languagePairId = (course as Record<string, unknown>)['languagePairId'] as
-            number | undefined;
+          const inheritedId = (course as unknown as { languagePairId?: number }).languagePairId;
+          if (typeof inheritedId === 'number') {
+            languagePairId = inheritedId;
+          } else if (course.languagePair) {
+            const pairs = await this.languagePairsApi.listAll();
+            languagePairId = pairs.find(
+              (p) =>
+                p.knownCode === course.languagePair.known &&
+                p.learningCode === course.languagePair.learning,
+            )?.id;
+          }
         } catch {
           // languagePairId is optional — proceed without it
         }
@@ -176,6 +192,9 @@ export class ProgramBuilderStore {
       await this.programsApi.create(
         formDraftToProgramCreatePayload({ ...draft, courseId: resolvedCourseId, languagePairId }),
       );
+      // Clear the course getById cache so the content explorer tree refreshes
+      // with the newly created program (see content-explorer-page 268-283).
+      this.courseSearch.clearGetByIdCache();
       return true;
     } catch (error) {
       this.logger.error('ProgramBuilder: failed to create program', error);
@@ -215,6 +234,9 @@ export class ProgramBuilderStore {
     try {
       const lessonIds = [...(this.editingProgram()?.lessonIds ?? [])];
       await this.programsApi.update(programId, formDraftToProgramUpdatePayload(draft, lessonIds));
+      // Clear the course getById cache so the content explorer tree refreshes
+      // with the updated program data.
+      this.courseSearch.clearGetByIdCache();
       return true;
     } catch (error) {
       this.logger.error('ProgramBuilder: failed to update program', error);

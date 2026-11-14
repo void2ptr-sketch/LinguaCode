@@ -193,6 +193,13 @@ export class CoursesApiService implements CourseCatalogPort {
    * (`CourseSearchService.getById`) paths consistent.
    */
   async normalizeCourseData(data: Record<string, unknown>): Promise<Record<string, unknown>> {
+    // Normalize languagePairId to number BEFORE attachLanguagePair — it expects
+    // a numeric value; the backend may return it as a string (JSON number
+    // serialized through a generic serializer).
+    if (typeof data['languagePairId'] === 'string') {
+      data['languagePairId'] = Number(data['languagePairId']);
+    }
+
     await this.attachLanguagePair(data);
     this.parsePracticeSettings(data);
     data['authoring'] = buildCourseAuthoringFromApi(
@@ -205,9 +212,6 @@ export class CoursesApiService implements CourseCatalogPort {
     }
     if (typeof data['authorId'] === 'number') {
       data['authorId'] = String(data['authorId']);
-    }
-    if (typeof data['languagePairId'] === 'string') {
-      data['languagePairId'] = Number(data['languagePairId']);
     }
 
     return data;
