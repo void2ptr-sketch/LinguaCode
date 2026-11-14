@@ -546,6 +546,7 @@ export class CourseBuilderStore {
       },
       practiceSettings: draft.practiceSettings,
       programs,
+      slug: draft.slug,
     });
   }
 }

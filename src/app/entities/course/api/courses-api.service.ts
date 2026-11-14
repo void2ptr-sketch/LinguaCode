@@ -385,7 +385,7 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.requiredTier !== undefined) {
       body['requiredTier'] = payload.requiredTier;
     }
-    if (payload.slug) {
+    if (payload.slug !== undefined) {
       body['slug'] = payload.slug;
     }
     const response = await firstValueFrom(
@@ -444,7 +444,7 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.requiredTier !== undefined) {
       body['requiredTier'] = payload.requiredTier;
     }
-    if (payload.slug) {
+    if (payload.slug !== undefined) {
       body['slug'] = payload.slug;
     }
     const response = await firstValueFrom(

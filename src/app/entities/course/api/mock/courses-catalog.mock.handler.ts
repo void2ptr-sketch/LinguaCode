@@ -192,6 +192,7 @@ export class CoursesCatalogMockHandler {
       const updated: Course = {
         ...current,
         title: payload.title,
+        slug: payload.slug ?? current.slug,
         description: payload.description,
         published: payload.published,
         updatedAt: new Date().toISOString(),
@@ -216,6 +217,7 @@ export class CoursesCatalogMockHandler {
     const updated: Course = {
       ...current,
       title: payload.title,
+      slug: payload.slug ?? current.slug,
       description: payload.description,
       published: payload.published,
       languagePair,

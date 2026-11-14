@@ -246,13 +246,13 @@ describe('CoursesApiService', () => {
       await promise;
     });
 
-    it('should not send slug when empty', async () => {
+    it('should send empty slug when explicitly set', async () => {
       const promise = service.create({ ...mockPayload, slug: '' });
       await flushMicrotasks();
 
       const req = httpMock.expectOne(buildApiUrl('/courses'));
       const body = req.request.body as Record<string, unknown>;
-      expect(body['slug']).toBeUndefined();
+      expect(body['slug']).toBe('');
       req.flush({ data: mockCourseWithPrograms });
 
       await promise;
