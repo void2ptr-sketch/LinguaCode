@@ -13,6 +13,7 @@ import { cardsApiMockInterceptor } from '../../entities/card/api/mock/cards-api.
 import { scenariosApiMockInterceptor } from '../../entities/scenario/api/mock/scenarios-api.mock.interceptor';
 import { coursesApiMockInterceptor } from '../../entities/course/api/mock/courses-api.mock.interceptor';
 import { programsApiMockInterceptor } from '../../entities/program/api/mock/programs-api.mock.interceptor';
+import { lessonsApiMockInterceptor } from '../../entities/lesson/api/mock/lessons-api.mock.interceptor';
 import { scormExportMockInterceptor } from '../../entities/course/api/mock/scorm-export.mock.interceptor';
 
 /**
@@ -31,6 +32,7 @@ export const provideApiHttp = () => {
     useScenariosApiMock: environment.useScenariosApiMock,
     useCoursesApiMock: environment.useCoursesApiMock,
     useProgramsApiMock: environment.useProgramsApiMock,
+    useLessonsApiMock: environment.useLessonsApiMock,
     useScormMock: environment.useScormMock,
     useLanguagePairsApiMock: environment.useLanguagePairsApiMock,
     useAuthApiMock: environment.useAuthApiMock,
@@ -70,6 +72,7 @@ export const provideApiHttpTesting = (): EnvironmentProviders => {
     scenariosApiMockInterceptor,
     coursesApiMockInterceptor,
     programsApiMockInterceptor,
+    lessonsApiMockInterceptor,
     scormExportMockInterceptor,
     offlineInterceptor,
     authRefreshInterceptor,

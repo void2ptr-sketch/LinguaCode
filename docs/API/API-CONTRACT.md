@@ -139,6 +139,45 @@ type LanguagePairDto = {
 > **`authorId`** — не передаётся, бэкенд подставляет из токена.
 > **`ownerId`** — не передаётся, бэкенд подставляет из токена (аналогично `authorId`).
 
+## Уроки (`/lessons`)
+
+Реализация: `LessonsApiService` · порт `LessonsCatalogPort` · mock `lessonsApiMockInterceptor`.
+
+| Метод  | Путь                              | Описание                                  |
+| ------ | --------------------------------- | ----------------------------------------- |
+| GET    | `/lessons/:id`                    | Урок по ID                                |
+| GET    | `/lessons/by-program/:programId`  | Уроки программы (сортировка по `order`)   |
+| GET    | `/lessons/by-course/:courseId`    | Уроки курса (сортировка по `order`)       |
+| POST   | `/lessons`                        | Создание урока (201)                      |
+| PUT    | `/lessons/:id`                    | Обновление урока                          |
+| DELETE | `/lessons/:id`                    | Удаление урока (каскад на cards/scenarios)|
+
+Пейлоад создания: `LessonCreatePayload` (`programId`, `title`, `description`, `order`, `prerequisiteLessonIds`).
+Пейлоад обновления: `LessonUpdatePayload` (`title`, `description`, `order`, `prerequisiteLessonIds`).
+
+### Поля `LessonCreatePayload`
+
+| Поле                      | Тип      | Описание                                         |
+| ------------------------- | -------- | ------------------------------------------------ |
+| `programId`               | string   | ID программы (обязательное)                      |
+| `title`                   | string   | Название (1–200 символов)                        |
+| `description`             | string   | Описание урока                                   |
+| `order`                   | number   | Порядок в программе (> 0)                        |
+| `prerequisiteLessonIds`   | string[] | JSON-массив ID пререквизитов (опционально)       |
+
+### Поля `LessonUpdatePayload`
+
+| Поле                      | Тип      | Описание                                         |
+| ------------------------- | -------- | ------------------------------------------------ |
+| `title`                   | string   | Название (1–200 символов)                        |
+| `description`             | string   | Описание урока                                   |
+| `order`                   | number   | Порядок в программе (> 0)                        |
+| `prerequisiteLessonIds`   | string[] | JSON-массив ID пререквизитов (опционально)       |
+
+> **`prerequisiteLessonIds`** — строка (JSON), а не массив. Фронтенд сериализует/десериализует через `stringifyPrerequisiteLessonIds` / `parsePrerequisiteLessonIds`.
+> **`programId`** — immutable, не передаётся в update-пейлоаде.
+> **`scenarioIds`** — не передаётся в payload (управляется через scenario-builder).
+
 ## Курсы (`/courses`)
 
 Реализация: `CoursesApiService` · порт `CourseCatalogPort` · mock `coursesApiMockInterceptor`.
@@ -442,7 +481,7 @@ type XapiStatement = {
 
 ## Mock vs реальный бэкенд
 
-- Dev: `useCardsApiMock` / `useScenariosApiMock` / `useCoursesApiMock` / `useUsersApiMock` / `useLearningApiMock` / `useScormMock` = `true` — ответы отдают mock-интерсепторы (данные: content seed + user overlay в `localStorage`).
+- Dev: `useCardsApiMock` / `useScenariosApiMock` / `useCoursesApiMock` / `useProgramsApiMock` / `useLessonsApiMock` / `useUsersApiMock` / `useLearningApiMock` / `useScormMock` = `true` — ответы отдают mock-интерсепторы (данные: content seed + user overlay в `localStorage`).
 - Production: флаги `false` — запросы идут на `environment.apiUrl` реального бэкенда.
 - Auth: `authEnabled` = `false` в dev (mock-бэкенд не требует токенов); `true` в production включает restore-сессии и refresh-интерсептор.
 - Контракт должен совпадать: порты + conformance-тесты (`*.port.conformance.spec.ts`) проверяют, что API-сервис и mock-хендлер структурно реализуют один и тот же порт.
