@@ -64,6 +64,9 @@ export class ProgramFormComponent {
   /** Maximum allowed title length (backend contract). */
   readonly titleMaxLength = PROGRAM_TITLE_MAX_LENGTH;
 
+  /** Maximum allowed description length. */
+  readonly descriptionMaxLength = 2000;
+
   /** Available access tier options. */
   readonly tierOptions: ProgramRequiredTier[] = ['FREE', 'STARTER', 'GROWTH', 'PREMIUM'];
   /** Tier labels for display. */
@@ -87,5 +90,10 @@ export class ProgramFormComponent {
   /** Emits the draft with an updated published flag. */
   updatePublished(published: boolean): void {
     this.draftChange.emit({ ...this.draft(), published });
+  }
+
+  /** Emits the draft with an updated order. */
+  updateOrder(order: number): void {
+    this.draftChange.emit({ ...this.draft(), order: Number(order) });
   }
 }

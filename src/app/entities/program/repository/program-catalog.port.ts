@@ -7,6 +7,8 @@ import type { ProgramRequiredTier } from '../model/program.types';
  *
  * @remarks
  * Used in `ProgramsApiService` to send program data to the backend.
+ * Fields `authorId` and `ownerId` are NOT part of this payload — the backend
+ * sets them from the authentication token.
  */
 export type ProgramWritePayload = {
   /** Program ID (optional for creation). */
