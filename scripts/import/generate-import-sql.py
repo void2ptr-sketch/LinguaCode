@@ -84,17 +84,33 @@ def main():
         fp = os.path.join(ROOT, f.lstrip('/'))
         try:
             data = json.load(open(fp))
-            for c in (data.get('courses') or []):
-                program_id_str = f'{c["id"]}-program'
+            # Handle both { courses: [...] } and flat structure with programs[]
+            courses = data.get('courses', [])
+            if not courses and 'id' in data:
+                raw_programs = data.get('programs', [])
+                program = raw_programs[0] if raw_programs else {}
+                lessons = program.get('lessons', [])
+                courses = [{
+                    'id': data['id'],
+                    'title': data['title'],
+                    'description': data.get('description', ''),
+                    'languagePair': data.get('languagePair'),
+                    'published': data.get('published', True),
+                    'programs': raw_programs,
+                    '_flat_lessons': lessons,
+                }]
+            for c in courses:
+                raw_programs = c.get('programs', [])
+                program = raw_programs[0] if raw_programs else {}
+                program_id_str = program.get('id', f'{c["id"]}-program')
                 s2id(program_id_str)
-                lessons = []
-                for lid in (c.get('lessonIds') or []):
-                    if lid in all_lessons:
-                        lessons.append(lid)
+                flat_lessons = c.pop('_flat_lessons', [])
+                lessons = flat_lessons if flat_lessons else []
                 course_map[c['id']] = {
                     'program_id_str': program_id_str,
                     'lessons': lessons,
                     'languagePair': c.get('languagePair'),
+                    'programOrder': program.get('order', 0),
                 }
         except Exception as e:
             print(f'--  Warning: {f}: {e}')
@@ -122,21 +138,45 @@ ON CONFLICT (id) DO UPDATE SET password_hash = EXCLUDED.password_hash;
         try:
             data = json.load(open(fp))
         except: continue
-        for c in (data.get('courses') or []):
-            cm = course_map[c['id']]
+        # Handle both { courses: [...] } and flat structure
+        courses = data.get('courses', [])
+        if not courses and 'id' in data:
+            raw_programs = data.get('programs', [])
+            program = raw_programs[0] if raw_programs else {}
+            lessons = program.get('lessons', [])
+            courses = [{
+                'id': data['id'],
+                'title': data['title'],
+                'description': data.get('description', ''),
+                'languagePair': data.get('languagePair'),
+                'published': data.get('published', True),
+                '_flat_lessons': lessons,
+            }]
+        for c in courses:
+            cm = course_map.get(c['id'])
+            if not cm:
+                continue
             cid = s2id(c['id'])
             pid = s2id(cm['program_id_str'])
             lpid = lp_id(c['languagePair']['known'], c['languagePair']['learning']) if c.get('languagePair') else None
+            program_order = cm.get('programOrder', 0)
             
             print(f'INSERT INTO app_data.courses (id, title, course_description, author_id, language_pair_id, published, created_at, updated_at)')
             print(f'VALUES ({cid}, {ss(c["title"])}, {ss(c.get("description", ""))}, 1, {sb(lpid)}, {c.get("published", True)}, NOW(), NOW());')
             
-            print(f'INSERT INTO app_data.programs (id, title, course_id, author_id, published, program_description, created_at, updated_at)')
-            print(f'VALUES ({pid}, {ss(c["title"] + " — Программа")}, {cid}, 1, true, {ss("Автоматически созданная программа")}, NOW(), NOW());')
+            print(f'INSERT INTO app_data.programs (id, title, course_id, author_id, published, program_description, program_order, created_at, updated_at)')
+            print(f'VALUES ({pid}, {ss(c["title"] + " — Программа")}, {cid}, 1, true, {ss("Автоматически созданная программа")}, {program_order}, NOW(), NOW());')
             
-            for lid in cm['lessons']:
-                ld = all_lessons[lid]
-                lid_int = s2id(lid)
+            flat_lessons = c.pop('_flat_lessons', [])
+            for lid in (flat_lessons or cm.get('lessons', [])):
+                # For flat structure, lessons are in the program; for array structure, in all_lessons
+                if isinstance(lid, dict):
+                    ld = lid
+                else:
+                    ld = all_lessons.get(lid)
+                if not ld:
+                    continue
+                lid_int = s2id(ld['id'] if isinstance(ld, dict) else lid)
                 lpid2 = lp_id(c['languagePair']['known'], c['languagePair']['learning']) if c.get('languagePair') else None
                 prereqs = ld.get('prerequisiteLessonIds', [])
                 if isinstance(prereqs, str): prereqs = [prereqs]

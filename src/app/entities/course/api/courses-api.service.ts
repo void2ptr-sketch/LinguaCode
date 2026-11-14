@@ -314,6 +314,7 @@ export class CoursesApiService implements CourseCatalogPort {
           return {
             ...p,
             id: String(p['id']),
+            order: Number(p['order'] ?? 0),
             lessons: lessons.map((l: Record<string, unknown>) => ({
               ...l,
               id: String(l['id']),
@@ -321,7 +322,8 @@ export class CoursesApiService implements CourseCatalogPort {
                 ? (l['scenarioIds'] as number[]).map((s) => String(s))
                 : [],
               prerequisiteLessonIds: Array.isArray(l['prerequisiteLessonIds'])
-                ? (l['prerequisiteLessonIds'] as number[]).map((s) => String(s))
+                ? (l['prerequisiteLessonIds'] as number[])
+                    .map((s) => String(s))
                 : [],
             })),
           };

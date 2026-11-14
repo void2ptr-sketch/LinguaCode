@@ -65,22 +65,23 @@ async function buildCourseStructure(manifest) {
   for (const file of manifest.courseFiles) {
     const filePath = path.join(ROOT, 'public/data', file);
     const data = JSON.parse(await fs.readFile(filePath, 'utf-8'));
-    if (!Array.isArray(data.courses)) continue;
 
-    for (const course of data.courses) {
-      const programStringId = `${course.id}-program`;
-      const lessons = [];
-      if (Array.isArray(data.lessons)) {
-        for (const lesson of data.lessons) {
-          if (course.lessonIds && course.lessonIds.includes(lesson.id)) {
-            lessons.push(lesson.id);
-          }
-        }
-      }
+    // Course files can have either { courses: [...] } or a flat structure with programs[]
+    const courses = Array.isArray(data.courses)
+      ? data.courses
+      : [{ id: data.id, title: data.title, description: data.description || '', languagePair: data.languagePair, published: data.published ?? true, programs: data.programs || [], lessons: [] }];
+
+    for (const course of courses) {
+      const rawPrograms = Array.isArray(course.programs) ? course.programs : [];
+      const program = rawPrograms.length > 0 ? rawPrograms[0] : null;
+      const programStringId = program?.id || `${course.id}-program`;
+      const lessons = program?.lessons || [];
+
       courseMap.set(course.id, {
         programStringId,
-        lessons,
+        lessons: lessons.map(l => l.id),
         languagePair: course.languagePair,
+        programOrder: program?.order ?? 0,
       });
     }
   }
@@ -206,20 +207,32 @@ ON CONFLICT (id) DO UPDATE SET password_hash = EXCLUDED.password_hash;
   console.log('-- ── 3. IMPORT COURSES ──');
   for (const file of manifest.courseFiles) {
     const data = JSON.parse(await fs.readFile(path.join(ROOT, 'public/data', file), 'utf-8'));
-    if (!Array.isArray(data.courses)) continue;
-    for (const course of data.courses) {
+
+    // Handle both { courses: [...] } and flat structure
+    const courses = Array.isArray(data.courses)
+      ? data.courses
+      : [{ id: data.id, title: data.title, description: data.description || '', languagePair: data.languagePair, published: data.published ?? true, programs: data.programs || [], lessons: [] }];
+
+    for (const course of courses) {
       const t = transformCourse(course, courseMap);
+      const cd = courseMap.get(course.id);
+      const programOrder = cd?.programOrder ?? 0;
+
       console.log(`INSERT INTO app_data.courses (id, title, course_description, author_id, language_pair_id, published, created_at, updated_at)
 VALUES (${t.id}, ${sqlString(t.title)}, ${sqlString(t.courseDescription)}, ${t.author_id},
   ${t.languagePairId ? sqlBigInt(t.languagePairId) : 'NULL'}, ${t.published}, NOW(), NOW());`);
-      console.log(`INSERT INTO app_data.programs (id, title, course_id, author_id, published, program_description, created_at, updated_at)
-VALUES (${t.programId}, ${sqlString(course.title + ' — Программа')}, ${t.id}, ${SYSTEM_USER_ID}, true,
-  ${sqlString('Автоматически созданная программа')}, NOW(), NOW());`);
 
-      const cd = courseMap.get(course.id);
-      if (cd.lessons.length > 0) {
+      console.log(`INSERT INTO app_data.programs (id, title, course_id, author_id, published, program_description, program_order, created_at, updated_at)
+VALUES (${t.programId}, ${sqlString(course.title + ' — Программа')}, ${t.id}, ${SYSTEM_USER_ID}, true,
+  ${sqlString('Автоматически созданная программа')}, ${programOrder}, NOW(), NOW());`);
+
+      if (cd && cd.lessons.length > 0) {
         for (const lid of cd.lessons) {
-          const ld = data.lessons?.find(l => l.id === lid);
+          // Lessons are nested inside programs[].lessons in the flat structure
+          const rawPrograms = Array.isArray(course.programs) ? course.programs : [];
+          const rawProgram = rawPrograms[0] || {};
+          const allLessons = Array.isArray(rawProgram.lessons) ? rawProgram.lessons : [];
+          const ld = allLessons.find(l => l.id === lid);
           if (ld) {
             const tl = transformLesson(ld, t.programId, cd.languagePair);
             const lpId = cd.languagePair ? getLanguagePairId(cd.languagePair.known, cd.languagePair.learning) : null;
