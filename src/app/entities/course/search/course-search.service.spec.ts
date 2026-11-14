@@ -159,7 +159,7 @@ describe('CourseSearchService', () => {
       );
     });
 
-    it('falls back to CoursesApiService.getById and keeps normalised metadata', async () => {
+    it('returns an empty-program journey response without falling back', async () => {
       const journeyCourse = {
         id: '12',
         title: 'Test',
@@ -173,6 +173,31 @@ describe('CourseSearchService', () => {
         programs: [],
       };
       vi.spyOn(apiService, 'getJourney').mockResolvedValue(journeyCourse as CourseWithPrograms);
+      const getByIdSpy = vi.spyOn(apiService, 'getById');
+      const programsApi = TestBed.inject(ProgramsApiService);
+      const getByCourseSpy = vi.spyOn(programsApi, 'getByCourse');
+
+      const result = await service.getById('12');
+
+      expect(result).toEqual(journeyCourse);
+      expect(getByIdSpy).not.toHaveBeenCalled();
+      expect(getByCourseSpy).not.toHaveBeenCalled();
+    });
+
+    it('falls back to CoursesApiService.getById and keeps normalised metadata when journey fails', async () => {
+      const journeyCourse = {
+        id: '12',
+        title: 'Test',
+        slug: '',
+        description: '',
+        authorId: '1',
+        languagePair: { known: 'ru', learning: 'en' },
+        programIds: [],
+        published: true,
+        updatedAt: '',
+        programs: [],
+      };
+      vi.spyOn(apiService, 'getJourney').mockRejectedValue(new Error('journey failed'));
 
       const baseCourse = {
         ...journeyCourse,

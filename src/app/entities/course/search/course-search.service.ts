@@ -191,8 +191,10 @@ export class CourseSearchService {
    * Retrieves a course with its programs by ID.
    *
    * @remarks
-   * Tries the `/courses/{id}/journey` endpoint first. If it returns no programs,
-   * falls back to fetching programs and lessons via the programs API.
+   * Tries the `/courses/{id}/journey` endpoint first. An empty program list is
+   * a valid state — e.g. a freshly created course — so the journey response is
+   * returned as-is. The programs-API fallback is used only when `/journey`
+   * itself fails.
    *
    * @param courseId - The course ID.
    * @returns The course with programs.
@@ -210,27 +212,27 @@ export class CourseSearchService {
       return cached;
     }
 
-    // Try /journey endpoint first
+    // Try /journey endpoint first. A course without programs is a normal state,
+    // so an empty list is returned directly instead of triggering a redundant
+    // programs-API fallback.
     try {
       const journeyCourse = await this.run(() => this.coursesApi.getJourney(resolvedId));
+      const programCount = journeyCourse.programs?.length ?? 0;
 
-      // If journey returns programs with lessons, use them
-      if (journeyCourse.programs && journeyCourse.programs.length > 0) {
-        this.logger.info(
-          `[CourseSearch] getJourney returned ${journeyCourse.programs.length} programs`,
-        );
-        this.getByIdCache.set(resolvedId, Promise.resolve(journeyCourse));
-        return journeyCourse;
+      if (programCount > 0) {
+        this.logger.info(`[CourseSearch] getJourney returned ${programCount} programs`);
+      } else {
+        this.logger.debug(`[CourseSearch] course ${resolvedId} has no programs`);
       }
 
-      this.logger.info(
-        `[CourseSearch] getJourney returned 0 programs for course ${resolvedId}; falling back to programs API`,
-      );
+      this.getByIdCache.set(resolvedId, Promise.resolve(journeyCourse));
+      return journeyCourse;
     } catch (error) {
       this.logger.warn('[CourseSearch] getJourney failed, falling back to programs API', error);
     }
 
-    // Fallback: fetch course + programs + lessons separately
+    // Fallback: fetch course + programs + lessons separately. Reached only when
+    // `/journey` failed — not when it legitimately returned no programs.
     this.logger.info(
       `[CourseSearch] Fetching programs via ProgramsApiService for course ${resolvedId}`,
     );
@@ -266,7 +268,7 @@ export class CourseSearchService {
     let result: CourseWithPrograms;
 
     if (programs.length === 0) {
-      this.logger.warn(`[CourseSearch] Fallback returned 0 programs for course ${resolvedId}`);
+      this.logger.debug(`[CourseSearch] fallback found no programs for course ${resolvedId}`);
       // Return course with empty programs — caller can handle gracefully
       result = {
         ...courseBase,
