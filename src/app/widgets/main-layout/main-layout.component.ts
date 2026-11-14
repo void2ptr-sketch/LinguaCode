@@ -17,8 +17,8 @@ import { MainFooterComponent } from '../main-footer/main-footer.component';
 
 const SIDEBAR_COLLAPSED_KEY = 'sidebar_collapsed';
 const SIDEBAR_WIDTH_KEY = 'sidebar_width';
-const SIDEBAR_MIN_WIDTH = 160;   // 160px minimum
-const SIDEBAR_MAX_WIDTH = 600;   // 600px maximum
+const SIDEBAR_MIN_WIDTH = 160; // 160px minimum
+const SIDEBAR_MAX_WIDTH = 600; // 600px maximum
 const SIDEBAR_DEFAULT_WIDTH = 224; // 14rem default
 
 /**

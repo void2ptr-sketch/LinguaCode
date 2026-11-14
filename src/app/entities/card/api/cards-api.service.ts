@@ -45,23 +45,23 @@ export class CardsApiService implements CardCatalogPort {
     ).then((response) => {
       const dtos = response.data;
       const totalItems = response.total ?? dtos.length;
-      
+
       // Debug: log response
       console.log('[CardsApiService] search response:', {
         totalItems,
         dtosCount: dtos.length,
         firstDto: dtos[0] ? JSON.stringify(dtos[0], null, 2) : null,
       });
-      
+
       const cards = CardBackendAdapter.toCards(dtos);
       const entries = buildCardIndex(cards, {});
-      
+
       // Debug: log entries
       console.log('[CardsApiService] built index entries:', {
         entriesCount: entries.length,
         firstEntry: entries[0] ? JSON.stringify(entries[0], null, 2) : null,
       });
-      
+
       const pageSize = criteria.page.pageSize;
       const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 0;
 

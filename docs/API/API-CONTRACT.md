@@ -19,12 +19,12 @@
 
 Реализация: `LanguagePairsApiService` · mock: нет (данные с бэкенда).
 
-| Метод | Путь                    | Описание                            |
-| ----- | ----------------------- | ----------------------------------- |
-| GET   | `/language-pairs`       | Список всех доступных языковых пар  |
-| POST  | `/language-pairs`       | Создание пары (201)                 |
-| PATCH | `/language-pairs/:id`   | Частичное обновление пары           |
-| DELETE| `/language-pairs/:id`   | Удаление пары                       |
+| Метод  | Путь                  | Описание                           |
+| ------ | --------------------- | ---------------------------------- |
+| GET    | `/language-pairs`     | Список всех доступных языковых пар |
+| POST   | `/language-pairs`     | Создание пары (201)                |
+| PATCH  | `/language-pairs/:id` | Частичное обновление пары          |
+| DELETE | `/language-pairs/:id` | Удаление пары                      |
 
 Ответ: `ApiListResponse<LanguagePairDto>`
 
@@ -70,13 +70,13 @@ type LanguagePairDto = {
 
 Реализация: `TagsService`.
 
-| Метод | Путь                                  | Описание                                |
-| ----- | ------------------------------------- | --------------------------------------- |
-| GET   | `/cards/tags`                         | Все уникальные теги                     |
-| GET   | `/cards/tags/course/:id`              | Теги карточек конкретного курса         |
-| GET   | `/cards/tags/program/:id`             | Теги карточек конкретной программы      |
-| GET   | `/cards/tags/lesson/:id`              | Теги карточек конкретного урока         |
-| GET   | `/cards/tags/scenario/:id`            | Теги карточек конкретного сценария      |
+| Метод | Путь                       | Описание                           |
+| ----- | -------------------------- | ---------------------------------- |
+| GET   | `/cards/tags`              | Все уникальные теги                |
+| GET   | `/cards/tags/course/:id`   | Теги карточек конкретного курса    |
+| GET   | `/cards/tags/program/:id`  | Теги карточек конкретной программы |
+| GET   | `/cards/tags/lesson/:id`   | Теги карточек конкретного урока    |
+| GET   | `/cards/tags/scenario/:id` | Теги карточек конкретного сценария |
 
 Ответ: `ApiListResponse<ReferenceOptionDto>` — `{ "code": string, "label": string }`.
 
@@ -84,9 +84,9 @@ type LanguagePairDto = {
 
 Реализация: `CatalogService` (через `CardKindsService`).
 
-| Метод | Путь            | Описание                      |
-| ----- | --------------- | ----------------------------- |
-| GET   | `/cards/kinds`  | Список типов карточек         |
+| Метод | Путь           | Описание              |
+| ----- | -------------- | --------------------- |
+| GET   | `/cards/kinds` | Список типов карточек |
 
 Ответ: `ApiListResponse<ReferenceOptionDto>`. Типы включают `difficulty` с запятой-разделёнными опциями сложности.
 
@@ -123,15 +123,15 @@ type LanguagePairDto = {
 
 ### Поля `ProgramWritePayload`
 
-| Поле              | Create | Update | Описание                                    |
-| ----------------- | ------ | ------ | ------------------------------------------- |
-| `title`           | required | optional | Название (1–200 символов)               |
-| `programDescription` | optional | optional | Описание для каталога (из `description`) |
-| `courseId`        | required | —      | ID родительского курса (BIGINT)             |
-| `requiredTier`    | required | required | `FREE` / `STARTER` / `GROWTH` / `PREMIUM` |
-| `order`           | optional | optional | Порядок в курсе (по умолчанию 0)          |
-| `languagePairId`  | optional | optional | Пара языков (извлекается из курса)        |
-| `published`       | —      | optional | Опубликовать (только update)              |
+| Поле                 | Create   | Update   | Описание                                  |
+| -------------------- | -------- | -------- | ----------------------------------------- |
+| `title`              | required | optional | Название (1–200 символов)                 |
+| `programDescription` | optional | optional | Описание для каталога (из `description`)  |
+| `courseId`           | required | —        | ID родительского курса (BIGINT)           |
+| `requiredTier`       | required | required | `FREE` / `STARTER` / `GROWTH` / `PREMIUM` |
+| `order`              | optional | optional | Порядок в курсе (по умолчанию 0)          |
+| `languagePairId`     | optional | optional | Пара языков (извлекается из курса)        |
+| `published`          | —        | optional | Опубликовать (только update)              |
 
 > **`requiredTier`** — обязательное поле. Без него бэкенд возвращает 400 Bad Request.
 > **`languagePairId`** — опционально. Фронтенд извлекает из `Course` при создании.
@@ -280,14 +280,14 @@ type XapiStatement = {
 
 Реализация: `LanguageApiService`.
 
-| Метод | Путь                    | Описание                                |
-| ----- | ----------------------- | --------------------------------------- |
-| GET   | `/languages`            | Список всех языков (activeFlag фильтр)  |
-| GET   | `/languages/:id`        | Язык по ID                              |
-| GET   | `/languages/by-code`    | Язык по ISO-коду (`?code=ru`)           |
-| POST  | `/languages`            | Создание языка (201)                    |
-| PATCH | `/languages/:id`        | Частичное обновление языка              |
-| DELETE| `/languages/:id`        | Удаление языка (204)                    |
+| Метод  | Путь                 | Описание                               |
+| ------ | -------------------- | -------------------------------------- |
+| GET    | `/languages`         | Список всех языков (activeFlag фильтр) |
+| GET    | `/languages/:id`     | Язык по ID                             |
+| GET    | `/languages/by-code` | Язык по ISO-коду (`?code=ru`)          |
+| POST   | `/languages`         | Создание языка (201)                   |
+| PATCH  | `/languages/:id`     | Частичное обновление языка             |
+| DELETE | `/languages/:id`     | Удаление языка (204)                   |
 
 Пейлоад создания: `LanguageCreatePayload` (`code`, `displayName`, `nativeName`, `writingDir`, `supportsTones`, `supportsPinyin`, `fontFamily`, `activeFlag`).
 
@@ -297,11 +297,11 @@ type XapiStatement = {
 
 Реализация: `CatalogService` (через generated API-клиенты).
 
-| Метод | Путь                    | Описание                                |
-| ----- | ----------------------- | --------------------------------------- |
-| GET   | `/content-languages`    | Языки контента                          |
-| GET   | `/font-sizes`           | Размеры шрифта                          |
-| GET   | `/learning/statuses`    | Статусы уроков                          |
+| Метод | Путь                 | Описание       |
+| ----- | -------------------- | -------------- |
+| GET   | `/content-languages` | Языки контента |
+| GET   | `/font-sizes`        | Размеры шрифта |
+| GET   | `/learning/statuses` | Статусы уроков |
 
 Ответ: `ApiListResponse<ReferenceOptionDto>` — `{ "code": string, "label": string }`.
 
@@ -309,11 +309,11 @@ type XapiStatement = {
 
 Реализация: `PasswordRecoveryService` (backend only).
 
-| Метод | Путь                    | Описание                                |
-| ----- | ----------------------- | --------------------------------------- |
-| POST  | `/auth/forgot-password` | Запрос 6-значного кода на email         |
-| POST  | `/auth/verify-code`     | Проверка кода                           |
-| POST  | `/auth/reset-password`  | Сброс пароля по токену                  |
+| Метод | Путь                    | Описание                        |
+| ----- | ----------------------- | ------------------------------- |
+| POST  | `/auth/forgot-password` | Запрос 6-значного кода на email |
+| POST  | `/auth/verify-code`     | Проверка кода                   |
+| POST  | `/auth/reset-password`  | Сброс пароля по токену          |
 
 Пейлоад `PasswordForgotRequest`: `{ "email": string }`.
 Пейлоад `PasswordVerifyCodeRequest`: `{ "email": string, "code": string }`.
@@ -325,16 +325,17 @@ type XapiStatement = {
 
 Реализация: `BehaviorAnalysisService` (backend only).
 
-| Метод | Путь                                    | Описание                                |
-| ----- | --------------------------------------- | --------------------------------------- |
-| GET   | `/learning/behavior/snapshot`           | Полный снапшот поведения пользователя   |
-| GET   | `/learning/behavior/weak-cards`         | Список слабых карточек                  |
-| GET   | `/learning/behavior/pace`               | Аналитика темпа обучения                |
-| GET   | `/learning/behavior/difficulty`         | Кривая сложности по типам карточек      |
+| Метод | Путь                            | Описание                              |
+| ----- | ------------------------------- | ------------------------------------- |
+| GET   | `/learning/behavior/snapshot`   | Полный снапшот поведения пользователя |
+| GET   | `/learning/behavior/weak-cards` | Список слабых карточек                |
+| GET   | `/learning/behavior/pace`       | Аналитика темпа обучения              |
+| GET   | `/learning/behavior/difficulty` | Кривая сложности по типам карточек    |
 
 Параметр `accuracyThreshold` (default: `0.5`) — порог точности для слабых карточек.
 
 Ответы:
+
 - `/snapshot` → `ApiOneResponse<UserBehaviorDto>`
 - `/weak-cards` → `ApiListResponse<LearningWeakCardProfileDto>`
 - `/pace` → `ApiOneResponse<LearningPaceDto>`
@@ -346,10 +347,10 @@ type XapiStatement = {
 
 Реализация: `SubscriptionService` (backend only).
 
-| Метод | Путь                | Описание                                |
-| ----- | ------------------- | --------------------------------------- |
-| GET   | `/subscription/status` | Текущий статус подписки пользователя |
-| POST  | `/subscription/activate` | Активация подписи (webhook, admin) |
+| Метод | Путь                     | Описание                             |
+| ----- | ------------------------ | ------------------------------------ |
+| GET   | `/subscription/status`   | Текущий статус подписки пользователя |
+| POST  | `/subscription/activate` | Активация подписи (webhook, admin)   |
 
 Ответ `/status` → `ApiOneResponse<SubscriptionStatusDto>`.
 
@@ -357,21 +358,21 @@ type XapiStatement = {
 
 Реализация: `FeedbackService` (backend only).
 
-| Метод | Путь              | Описание                                |
-| ----- | ----------------- | --------------------------------------- |
-| POST  | `/feedback`       | Создать обращение (201)                |
-| GET   | `/feedback/:id`   | Детали обращения                      |
-| GET   | `/feedback/my`    | Мои обращения (paginated)              |
+| Метод | Путь            | Описание                  |
+| ----- | --------------- | ------------------------- |
+| POST  | `/feedback`     | Создать обращение (201)   |
+| GET   | `/feedback/:id` | Детали обращения          |
+| GET   | `/feedback/my`  | Мои обращения (paginated) |
 
 Пейлоад создания: `FeedbackCreateRequest` (`entityType`, `entityId`, `feedbackType`, `message`).
 
 Справочники обратной связи:
 
-| Метод | Путь                    | Описание                                |
-| ----- | ----------------------- | --------------------------------------- |
-| GET   | `/feedback/types`       | Типы обратной связи                     |
-| GET   | `/feedback/statuses`    | Статусы обратной связи                  |
-| GET   | `/feedback/severities`  | Уровни серьёзности                      |
+| Метод | Путь                   | Описание               |
+| ----- | ---------------------- | ---------------------- |
+| GET   | `/feedback/types`      | Типы обратной связи    |
+| GET   | `/feedback/statuses`   | Статусы обратной связи |
+| GET   | `/feedback/severities` | Уровни серьёзности     |
 
 Ответ: `ApiListResponse<ReferenceOptionDto>`.
 
@@ -379,9 +380,9 @@ type XapiStatement = {
 
 Реализация: `ScormImportService` (backend only).
 
-| Метод | Путь            | Описание                                |
-| ----- | --------------- | --------------------------------------- |
-| POST  | `/scorm/import` | Импорт курса из SCORM ZIP (201)         |
+| Метод | Путь            | Описание                        |
+| ----- | --------------- | ------------------------------- |
+| POST  | `/scorm/import` | Импорт курса из SCORM ZIP (201) |
 
 Параметры: `file` (MultipartFile, required), `authorId` (Long, required), `title` (String, optional).
 
@@ -391,9 +392,9 @@ type XapiStatement = {
 
 Реализация: `SubscriptionService` (backend only).
 
-| Метод | Путь                        | Описание                                |
-| ----- | --------------------------- | --------------------------------------- |
-| GET   | `/subscription/payment-tiers` | Список тарифов оплаты               |
+| Метод | Путь                          | Описание              |
+| ----- | ----------------------------- | --------------------- |
+| GET   | `/subscription/payment-tiers` | Список тарифов оплаты |
 
 Ответ: `ApiListResponse<ReferenceOptionDto>`.
 
@@ -401,9 +402,9 @@ type XapiStatement = {
 
 Реализация: `AdminTierService` (backend only).
 
-| Метод | Путь              | Описание                                |
-| ----- | ----------------- | --------------------------------------- |
-| GET   | `/admin/content`  | Админ-тарифы для контента               |
+| Метод | Путь             | Описание                  |
+| ----- | ---------------- | ------------------------- |
+| GET   | `/admin/content` | Админ-тарифы для контента |
 
 Ответ: `ApiListResponse<ReferenceOptionDto>`.
 
@@ -449,15 +450,15 @@ type XapiStatement = {
 
 Следующие эндпоинты реализованы на бэкенде, но ещё не имеют фронтенд-сервисов:
 
-| Домен | Эндпоинты | Приоритет |
-|-------|-----------|-----------|
-| Password Recovery | `POST /auth/forgot-password`, `POST /auth/verify-code`, `POST /auth/reset-password` | Medium |
-| Learning Behavior | `GET /learning/behavior/*` (4 эндпоинта) | Low |
-| Subscription | `GET /subscription/status`, `POST /subscription/activate` | Low |
-| SCORM Import | `POST /scorm/import` | Low |
-| Feedback | `POST /feedback`, `GET /feedback/:id`, `GET /feedback/my` | Medium |
-| Feedback References | `GET /feedback/types`, `/statuses`, `/severities` | Low |
-| Font Sizes | `GET /font-sizes` | Low |
-| Learning Statuses | `GET /learning/statuses` | Low |
-| Payment Tiers | `GET /subscription/payment-tiers` | Low |
-| Admin Tiers | `GET /admin/content` | Low |
+| Домен               | Эндпоинты                                                                           | Приоритет |
+| ------------------- | ----------------------------------------------------------------------------------- | --------- |
+| Password Recovery   | `POST /auth/forgot-password`, `POST /auth/verify-code`, `POST /auth/reset-password` | Medium    |
+| Learning Behavior   | `GET /learning/behavior/*` (4 эндпоинта)                                            | Low       |
+| Subscription        | `GET /subscription/status`, `POST /subscription/activate`                           | Low       |
+| SCORM Import        | `POST /scorm/import`                                                                | Low       |
+| Feedback            | `POST /feedback`, `GET /feedback/:id`, `GET /feedback/my`                           | Medium    |
+| Feedback References | `GET /feedback/types`, `/statuses`, `/severities`                                   | Low       |
+| Font Sizes          | `GET /font-sizes`                                                                   | Low       |
+| Learning Statuses   | `GET /learning/statuses`                                                            | Low       |
+| Payment Tiers       | `GET /subscription/payment-tiers`                                                   | Low       |
+| Admin Tiers         | `GET /admin/content`                                                                | Low       |

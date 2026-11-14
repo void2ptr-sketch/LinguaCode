@@ -63,7 +63,9 @@
       height: 3px;
       border-radius: 50%;
       background-color: color-mix(in srgb, var(--mat-sys-on-surface) 60%, transparent);
-      transition: background-color 0.15s ease, transform 0.15s ease;
+      transition:
+        background-color 0.15s ease,
+        transform 0.15s ease;
     }
 
     &.shell__resize-handle__dots--active::before,

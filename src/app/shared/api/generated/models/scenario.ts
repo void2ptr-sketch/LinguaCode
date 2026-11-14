@@ -20,6 +20,8 @@ export interface Scenario {
   languagePairId?: number;
   authorId?: number;
   requiredTier?: ScenarioRequiredTier;
+  courseId?: number;
+  ownerId?: number;
   createdAt?: string;
   updatedAt?: string;
   /** Количество карточек в сценарии */

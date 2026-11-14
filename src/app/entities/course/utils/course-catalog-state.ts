@@ -1,10 +1,9 @@
 import type { Course, Lesson } from '../model';
 import type { Program } from '../../program/model';
 import type { Scenario } from '../../scenario/model';
-import type { CourseAuthoring } from '../model/course-authoring.types';
 
 import { normalizeLanguagePair } from '../../language-pair/utils/language-pair.utils';
-import { normalizeCourseAuthoring } from './course-authoring.utils';
+import { buildCourseAuthoringFromApi } from './course-authoring.utils';
 import type {
   CoursesNestedFixture,
   CoursesSeedFixture,
@@ -37,7 +36,7 @@ export function normalizeStoredCourse(course: Course): Course {
     programIds: [...course.programIds],
     published: course.published ?? false,
     updatedAt: course.updatedAt ?? new Date(0).toISOString(),
-    authoring: normalizeCourseAuthoring(course.authoring),
+    authoring: buildCourseAuthoringFromApi(course),
   };
 }
 
@@ -290,7 +289,7 @@ export function normalizeNestedCourseCatalog(fixture: CoursesNestedFixture): Nes
     programIds: [],
     published: fixture.published ?? false,
     updatedAt: fixture.updatedAt ?? new Date(0).toISOString(),
-    authoring: normalizeCourseAuthoring(fixture.authoring as CourseAuthoring | undefined),
+    authoring: buildCourseAuthoringFromApi(fixture),
     practiceSettings: fixture.practiceSettings as Course['practiceSettings'],
   });
 

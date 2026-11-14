@@ -225,139 +225,132 @@ erDiagram
  * Includes natural languages, programming languages (cpp, java, perl, hs, rs, js),
  * and common aliases. Full list: src/app/entities/card/model/card-index.types.ts.
  */
-type ContentLanguage =
-  | 'en'
-  | 'zh'
-  | 'ru'
-  | 'ja'
-  | 'de'
-  | 'fr'
-  | 'es'
-  | 'ko'
-  // ... и 30+ языков (полный список: card-index.types.ts)
+type ContentLanguage = 'en' | 'zh' | 'ru' | 'ja' | 'de' | 'fr' | 'es' | 'ko';
+// ... и 30+ языков (полный список: card-index.types.ts)
 ```
 
 /** Известный пользователю → изучаемый. См. LANGUAGE-PAIR.md */
 type LanguagePair = {
-  known: ContentLanguage;
-  learning: ContentLanguage;
+known: ContentLanguage;
+learning: ContentLanguage;
 };
 
 type CardAppearance = {
-  theme: string;
-  fontSize: 'sm' | 'md' | 'lg';
+theme: string;
+fontSize: 'sm' | 'md' | 'lg';
 };
 
 type CardBase = {
-  id: string;
-  kind: CardKind;
-  title: string;
-  appearance: CardAppearance;
-  meta?: CardIndexMetaOverride; // метаданные карточки (из overlay)
-  courseId?: string; // ID курса, к которому привязана карточка
-  lessonId?: string; // ID урока, к которому привязана карточка
-  scenarioId?: string; // ID сценария, к которому привязана карточка
+id: string;
+kind: CardKind;
+title: string;
+appearance: CardAppearance;
+meta?: CardIndexMetaOverride; // метаданные карточки (из overlay)
+courseId?: string; // ID курса, к которому привязана карточка
+lessonId?: string; // ID урока, к которому привязана карточка
+scenarioId?: string; // ID сценария, к которому привязана карточка
 };
 
 type SelectCard = CardBase & {
-  kind: 'select';
-  question: string;
-  options: readonly string[];
-  correctIndex: number;
+kind: 'select';
+question: string;
+options: readonly string[];
+correctIndex: number;
 };
 
 type Card =
-  | SelectCard
-  | CodeSelectCard
-  | MemoryCard
-  | SymbolCard
-  | SoundCard
-  | TimedCard
-  | KeyboardCard
-  | DrawCard
-  | ToneCard
-  | ReadingCard
-  | FlipCard
-  | ClozeCard
-  | CodeTraceCard;
+| SelectCard
+| CodeSelectCard
+| MemoryCard
+| SymbolCard
+| SoundCard
+| TimedCard
+| KeyboardCard
+| DrawCard
+| ToneCard
+| ReadingCard
+| FlipCard
+| ClozeCard
+| CodeTraceCard;
 
 type Scenario = {
-  id: string;
-  title: string;
-  description: string;
-  authorId: string;
-  cardSource: ScenarioCardSource;
-  published: boolean;
-  updatedAt: string; // ISO 8601
-  languagePair?: LanguagePair; // scope контента сценария
-  courseId?: string; // ID курса, к которому привязан сценарий
+id: string;
+title: string;
+description: string;
+authorId: string;
+cardSource: ScenarioCardSource;
+published: boolean;
+updatedAt: string; // ISO 8601
+languagePair?: LanguagePair; // scope контента сценария
+courseId?: string; // ID курса, к которому привязан сценарий
 };
 
 /** G11 — см. `entities/course/model/lesson.types.ts` */
 type Lesson = {
-  id: string;
-  programId: string;
-  title: string;
-  description: string;
-  scenarioIds: readonly string[];
-  prerequisiteLessonIds: readonly string[];
-  order: number;
-  updatedAt: string; // ISO 8601
+id: string;
+programId: string;
+title: string;
+description: string;
+scenarioIds: readonly string[];
+prerequisiteLessonIds: readonly string[];
+order: number;
+updatedAt: string; // ISO 8601
 };
 
 /** G17 — см. `entities/program/model/program.types.ts`. Трек внутри Course */
 type Program = {
-  id: string;
-  courseId: string;
-  title: string;
-  description: string;
-  lessonIds: readonly string[];
-  order: number;
-  updatedAt: string; // ISO 8601
+id: string;
+courseId: string;
+title: string;
+description: string;
+lessonIds: readonly string[];
+order: number;
+updatedAt: string; // ISO 8601
 };
 
-/** G11 — см. `entities/course/model/course.types.ts`. languagePair задаёт scope контента каталога */
+/** G11 — см. `entities/course/model/course.types.ts`. languagePair задаёт scope контента каталога _/
 type Course = {
-  id: string;
-  title: string;
-  description: string;
-  authorId: string;
-  languagePair: LanguagePair;
-  programIds: readonly string[];
-  published: boolean;
-  updatedAt: string; // ISO 8601
-  /** Авторская идея программы (G16); не в CourseIndexEntry */
-  authoring?: {
-    idea: string;
-    status: 'draft' | 'planned' | 'generating' | 'materialized' | 'failed';
-    ideaUpdatedAt?: string;
-    materializedAt?: string;
-    lastError?: string;
-  };
-  /** Настройки вкладки «Практика»; по умолчанию guided (линейный курс). */
-  practiceSettings?: CoursePracticeSettings;
+id: string;
+title: string;
+description: string;
+authorId: string;
+languagePair: LanguagePair;
+programIds: readonly string[];
+published: boolean;
+updatedAt: string; // ISO 8601
+/_* Авторская идея программы (G16); не в CourseIndexEntry _/
+authoring?: {
+idea: string;
+status: 'draft' | 'planned' | 'generating' | 'materialized' | 'failed';
+ideaUpdatedAt?: string;
+materializedAt?: string;
+lastError?: string;
+};
+/_* Настройки вкладки «Практика»; по умолчанию guided (линейный курс). */
+practiceSettings?: CoursePracticeSettings;
 };
 
 type LearningResult = {
-  id: string;
-  userId: string;
-  cardId: string;
-  scenarioId: string;
-  correct: boolean;
-  answeredAt: string; // ISO 8601
-  languagePair: LanguagePair;
-  direction?: CardDirection;
-  programId?: string; // G17 — опционально для агрегации прогресса по треку
-  lessonId?: string; // G11 — опционально для агрегации прогресса по уроку
-  courseId?: string; // G11 — опционально для агрегации прогресса по каталогу
+id: string;
+userId: string;
+cardId: string;
+scenarioId: string;
+correct: boolean;
+answeredAt: string; // ISO 8601
+languagePair: LanguagePair;
+direction?: CardDirection;
+programId?: string; // G17 — опционально для агрегации прогресса по треку
+lessonId?: string; // G11 — опционально для агрегации прогресса по уроку
+courseId?: string; // G11 — опционально для агрегации прогресса по каталогу
 };
 
 type User = {
-  id: string;
-  displayName: string;
-  preferences: UserPreferences; // CardAppearance + colorScheme + cardFocusFullscreen + learningProficiencyLevel + languagePairs + activeLanguagePairId
+id: string;
+displayName: string;
+preferences: UserPreferences; // CardAppearance + colorScheme + cardFocusFullscreen + learningProficiencyLevel + languagePairs + activeLanguagePairId
 };
-```
+
+````
 
 Подробнее о паре языков: [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md).
 
@@ -403,7 +396,7 @@ type ScenarioCardSource =
       criteria: Omit<CardSearchCriteria, 'page'>;
       frozenAt: string;
     };
-```
+````
 
 Расположение в коде: `src/app/entities/*/model/` (общие типы), `src/app/shared/pagination/` (`PageRequest`, `PageResponse`), `src/app/features/*/types/` (типы фичи).
 

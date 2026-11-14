@@ -101,7 +101,7 @@ export function buildPathToNode(
   while (current && !visited.has(current.key)) {
     visited.add(current.key);
     path.unshift(current);
-    current = current.parentId ? nodeIndex.get(current.parentId) ?? null : null;
+    current = current.parentId ? (nodeIndex.get(current.parentId) ?? null) : null;
   }
 
   return path;

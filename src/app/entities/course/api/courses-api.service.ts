@@ -18,6 +18,7 @@ import type {
 } from '../repository/course-catalog.port';
 import { UserStore } from '../../user/model/user.store';
 import type { ContentLanguage } from '../../card/model/card-index.types';
+import { buildCourseAuthoringFromApi } from '../utils/course-authoring.utils';
 import { LanguagePairsApiService } from '../../language-pair/api';
 import { formatLanguagePair } from '../../language-pair/utils/language-pair.utils';
 
@@ -200,6 +201,9 @@ export class CoursesApiService implements CourseCatalogPort {
       const data = response.data as unknown as Record<string, unknown>;
       await this.attachLanguagePair(data);
       this.parsePracticeSettings(data);
+      // Flatten authoring: generated Course model uses flat fields,
+      // rebuild nested CourseAuthoring for consumers.
+      data['authoring'] = buildCourseAuthoringFromApi(data);
       // Normalize numeric authorId to string
       if (typeof data['authorId'] === 'number') {
         data['authorId'] = String(data['authorId']);
@@ -225,6 +229,9 @@ export class CoursesApiService implements CourseCatalogPort {
       const data = response.data as unknown as Record<string, unknown>;
       await this.attachLanguagePair(data);
       this.parsePracticeSettings(data);
+      // Flatten authoring: generated Course model uses flat fields,
+      // rebuild nested CourseAuthoring for consumers.
+      data['authoring'] = buildCourseAuthoringFromApi(data);
       // Backend returns numeric IDs — convert to strings for frontend consistency
       if (Array.isArray(data['programs'])) {
         data['programs'] = (data['programs'] as Record<string, unknown>[]).map((p) => {

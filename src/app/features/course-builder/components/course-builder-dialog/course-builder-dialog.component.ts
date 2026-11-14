@@ -182,8 +182,8 @@ export class CourseBuilderDialogComponent implements OnInit {
     const labels: Record<CourseExportType, string> = {
       'pdf-without-hints': 'PDF без подсказок',
       'pdf-with-hints': 'PDF с ответами',
-      'json': 'JSON (CourseBundle)',
-      'scorm': 'SCORM / xAPI',
+      json: 'JSON (CourseBundle)',
+      scorm: 'SCORM / xAPI',
     };
     this.snackBar.open(`${labels[type]} — в разработке`, 'Закрыть', { duration: 3000 });
   }

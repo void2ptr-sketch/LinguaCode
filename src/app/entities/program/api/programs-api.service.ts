@@ -42,9 +42,7 @@ export type {
 } from '../model';
 
 /** Build query params for program search. */
-function buildProgramSearchParams(
-  criteria: ProgramSearchCriteria,
-): Record<string, string> {
+function buildProgramSearchParams(criteria: ProgramSearchCriteria): Record<string, string> {
   const params: Record<string, string> = {};
   if (criteria.query) params['query'] = criteria.query;
   if (criteria.courseId) params['courseId'] = String(criteria.courseId);
@@ -64,9 +62,7 @@ function mapProgram(raw: Record<string, unknown>): Program {
     courseId: String(raw['courseId'] ?? ''),
     title: String(raw['title'] ?? ''),
     description: String(raw['programDescription'] ?? raw['description'] ?? ''),
-    lessonIds: raw['lessonIds']
-      ? (raw['lessonIds'] as number[]).map((l) => String(l))
-      : [],
+    lessonIds: raw['lessonIds'] ? (raw['lessonIds'] as number[]).map((l) => String(l)) : [],
     order: Number(raw['order'] ?? 0),
     requiredTier: raw['requiredTier'] as Program['requiredTier'],
     languagePairId: raw['languagePairId'] as number | undefined,
@@ -111,9 +107,7 @@ function mapLesson(raw: Record<string, unknown>): import('../../course/model').L
   const scenarioIds = raw['scenarioIds'] as number[] | undefined;
   const prerequisiteLessonIds =
     typeof raw['prerequisiteLessonIds'] === 'string'
-      ? (raw['prerequisiteLessonIds'] as string)
-          .split(',')
-          .filter(Boolean)
+      ? (raw['prerequisiteLessonIds'] as string).split(',').filter(Boolean)
       : Array.isArray(raw['prerequisiteLessonIds'])
         ? (raw['prerequisiteLessonIds'] as number[])
         : [];
@@ -140,14 +134,16 @@ export class ProgramsApiService implements ProgramCatalogPort {
    */
   search(criteria: ProgramSearchCriteria): Promise<ProgramSearchPage> {
     return firstValueFrom(
-      this.http.get<ProgramList>(buildApiUrl('/programs/search'), {
-        params: buildProgramSearchParams(criteria),
-      }).pipe(
-        catchError((error: HttpErrorResponse) => {
-          this.logger.error('ProgramsApiService.search', error);
-          return throwError(() => error);
-        }),
-      ),
+      this.http
+        .get<ProgramList>(buildApiUrl('/programs/search'), {
+          params: buildProgramSearchParams(criteria),
+        })
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.logger.error('ProgramsApiService.search', error);
+            return throwError(() => error);
+          }),
+        ),
     ).then((response) => {
       const rawItems = (response.data ?? []) as Record<string, unknown>[];
       const items = rawItems.map((p) => mapProgramIndexEntry(p));
@@ -190,9 +186,7 @@ export class ProgramsApiService implements ProgramCatalogPort {
    */
   getByCourse(courseId: string): Promise<readonly ProgramWithLessons[]> {
     return firstValueFrom(
-      this.http.get<ProgramWithLessonsList>(
-        buildApiUrl(`/programs/by-course/${courseId}`),
-      ).pipe(
+      this.http.get<ProgramWithLessonsList>(buildApiUrl(`/programs/by-course/${courseId}`)).pipe(
         catchError((error: HttpErrorResponse) => {
           this.logger.error('ProgramsApiService.getByCourse', error);
           return throwError(() => error);
@@ -209,14 +203,14 @@ export class ProgramsApiService implements ProgramCatalogPort {
    */
   getByCourseWithLessons(courseId: string): Promise<readonly ProgramWithLessons[]> {
     return firstValueFrom(
-      this.http.get<ProgramWithLessonsList>(
-        buildApiUrl(`/programs/by-course/${courseId}/with-lessons`),
-      ).pipe(
-        catchError((error: HttpErrorResponse) => {
-          this.logger.error('ProgramsApiService.getByCourseWithLessons', error);
-          return throwError(() => error);
-        }),
-      ),
+      this.http
+        .get<ProgramWithLessonsList>(buildApiUrl(`/programs/by-course/${courseId}/with-lessons`))
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.logger.error('ProgramsApiService.getByCourseWithLessons', error);
+            return throwError(() => error);
+          }),
+        ),
     ).then((response) => {
       const programs = response.data ?? [];
       return programs.map((p) => mapProgramWithLessons(p as Record<string, unknown>));
@@ -256,10 +250,7 @@ export class ProgramsApiService implements ProgramCatalogPort {
       languagePairId: payload.languagePairId,
     };
     return firstValueFrom(
-      this.http.post<ProgramResponse>(
-        buildApiUrl('/programs'),
-        body,
-      ).pipe(
+      this.http.post<ProgramResponse>(buildApiUrl('/programs'), body).pipe(
         catchError((error: HttpErrorResponse) => {
           this.logger.error('ProgramsApiService.create', error);
           return throwError(() => error);
@@ -283,10 +274,7 @@ export class ProgramsApiService implements ProgramCatalogPort {
       published: payload.published,
     };
     return firstValueFrom(
-      this.http.put<ProgramResponse>(
-        buildApiUrl(`/programs/${programId}`),
-        body,
-      ).pipe(
+      this.http.put<ProgramResponse>(buildApiUrl(`/programs/${programId}`), body).pipe(
         catchError((error: HttpErrorResponse) => {
           this.logger.error('ProgramsApiService.update', error);
           return throwError(() => error);

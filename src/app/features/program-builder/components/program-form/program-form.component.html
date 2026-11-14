@@ -41,10 +41,7 @@
   </mat-form-field>
 
   @if (!readOnly()) {
-    <mat-checkbox
-      [ngModel]="draft().published ?? false"
-      (ngModelChange)="updatePublished($event)"
-    >
+    <mat-checkbox [ngModel]="draft().published ?? false" (ngModelChange)="updatePublished($event)">
       Опубликовать
     </mat-checkbox>
   }

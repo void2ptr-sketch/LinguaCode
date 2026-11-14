@@ -11,9 +11,9 @@
 
 ## Маршрут
 
-| Маршрут           | Компонент                       | Статус |
-| ----------------- | ------------------------------- | ------ |
-| `/tools/content`  | CourseBuilderDialog (из Проводника) | Dialog |
+| Маршрут          | Компонент                           | Статус |
+| ---------------- | ----------------------------------- | ------ |
+| `/tools/content` | CourseBuilderDialog (из Проводника) | Dialog |
 
 Диалог также открывается из Проводника контента при клике «Редактировать» на course-узле.
 
@@ -23,16 +23,16 @@
 
 Modal dialog для создания и редактирования курсов.
 
-| Input  | Тип                         | Назначение                                                        |
-| ------ | --------------------------- | ----------------------------------------------------------------- |
-| `data` | `CourseBuilderDialogData`   | `{ mode: 'create' }` или `{ mode: 'edit', courseId, forceEdit? }` |
+| Input  | Тип                       | Назначение                                                        |
+| ------ | ------------------------- | ----------------------------------------------------------------- |
+| `data` | `CourseBuilderDialogData` | `{ mode: 'create' }` или `{ mode: 'edit', courseId, forceEdit? }` |
 
-| Сигнал     | Тип                       | Назначение                                                                |
-| ---------- | ------------------------- | ------------------------------------------------------------------------- |
-| `draft`    | `signal<CourseFormDraft>` | Черновик формы                                                            |
-| `dirty`    | `computed<boolean>`       | Есть ли несохранённые изменения                                           |
-| `title`    | `computed<string>`        | «Новый курс» / «Редактирование курса» / «Просмотр курса»                 |
-| `isEditable` | `computed<boolean>`     | Доступно ли редактирование (store.isReadOnly || data.forceEdit)          |
+| Сигнал       | Тип                       | Назначение                                               |
+| ------------ | ------------------------- | -------------------------------------------------------- |
+| `draft`      | `signal<CourseFormDraft>` | Черновик формы                                           |
+| `dirty`      | `computed<boolean>`       | Есть ли несохранённые изменения                          |
+| `title`      | `computed<string>`        | «Новый курс» / «Редактирование курса» / «Просмотр курса» |
+| `isEditable` | `computed<boolean>`       | Доступно ли редактирование (store.isReadOnly             |     | data.forceEdit) |
 
 **Методы:**
 
@@ -54,21 +54,21 @@ Modal dialog для создания и редактирования курсо�
 
 Многовкладочная форма курса с 4 вкладками:
 
-| Вкладка | Содержание |
-|---------|-----------|
-| **Основное** | Название каталога, описание, статус авторства, published |
-| **Практика** | Режим навигации (guided/open), requireLessonForScenarios, enforceLessonPrerequisites, allowDifficultyFilter |
-| **Идея каталога** | Markdown-поле для описания идеи курса |
-| **Экспорт** | PDF без подсказок, PDF с ответами, JSON (CourseBundle), SCORM/xAPI |
+| Вкладка           | Содержание                                                                                                  |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Основное**      | Название каталога, описание, статус авторства, published                                                    |
+| **Практика**      | Режим навигации (guided/open), requireLessonForScenarios, enforceLessonPrerequisites, allowDifficultyFilter |
+| **Идея каталога** | Markdown-поле для описания идеи курса                                                                       |
+| **Экспорт**       | PDF без подсказок, PDF с ответами, JSON (CourseBundle), SCORM/xAPI                                          |
 
-| Input    | Тип                      | Назначение     |
-| -------- | ------------------------ | -------------- |
-| `draft`  | `CourseFormDraft`        | Черновик формы |
-| `readOnly` | `boolean`              | Режим просмотра |
+| Input      | Тип               | Назначение      |
+| ---------- | ----------------- | --------------- |
+| `draft`    | `CourseFormDraft` | Черновик формы  |
+| `readOnly` | `boolean`         | Режим просмотра |
 
-| Output         | Назначение                                              |
-| -------------- | ------------------------------------------------------- |
-| `draftChange`  | Изменение черновика                                     |
+| Output            | Назначение                                                                      |
+| ----------------- | ------------------------------------------------------------------------------- |
+| `draftChange`     | Изменение черновика                                                             |
 | `exportRequested` | Запрос экспорта: `'pdf-without-hints' \| 'pdf-with-hints' \| 'json' \| 'scorm'` |
 
 **Методы обновления черновика:**
@@ -88,23 +88,23 @@ Modal dialog для создания и редактирования курсо�
 
 ### Состояние
 
-| Сигнал                 | Тип                   | Назначение                                     |
-| ---------------------- | --------------------- | ---------------------------------------------- |
-| `editorLoading`        | `boolean`             | Загрузка курса для редактирования              |
-| `saving`               | `boolean`             | Сохранение                                     |
-| `error`                | `string \| null`      | Ошибка                                         |
-| `editingCourse`        | `CourseWithPrograms \| null` | Редактируемый курс (null в create mode)  |
-| `editingCourseAuthorId`| `string \| null`      | AuthorId курса                                 |
-| `isReadOnly`           | `boolean`             | Readonly режим (не автор)                      |
+| Сигнал                  | Тип                          | Назначение                              |
+| ----------------------- | ---------------------------- | --------------------------------------- |
+| `editorLoading`         | `boolean`                    | Загрузка курса для редактирования       |
+| `saving`                | `boolean`                    | Сохранение                              |
+| `error`                 | `string \| null`             | Ошибка                                  |
+| `editingCourse`         | `CourseWithPrograms \| null` | Редактируемый курс (null в create mode) |
+| `editingCourseAuthorId` | `string \| null`             | AuthorId курса                          |
+| `isReadOnly`            | `boolean`                    | Readonly режим (не автор)               |
 
 ### Методы
 
-| Метод                               | Описание                                             |
-| ----------------------------------- | ---------------------------------------------------- |
-| `startCreate()`                     | Переключение в create mode                           |
-| `startEdit(courseId)`               | Загрузка курса для редактирования                    |
-| `createCourse(draft)`               | Создание курса → `CoursesApiService.create()`        |
-| `updateCourse(courseId, draft)`     | Обновление курса → `CoursesApiService.update()`      |
+| Метод                           | Описание                                        |
+| ------------------------------- | ----------------------------------------------- |
+| `startCreate()`                 | Переключение в create mode                      |
+| `startEdit(courseId)`           | Загрузка курса для редактирования               |
+| `createCourse(draft)`           | Создание курса → `CoursesApiService.create()`   |
+| `updateCourse(courseId, draft)` | Обновление курса → `CoursesApiService.update()` |
 
 ### Form Draft
 
@@ -150,31 +150,31 @@ const resolvedCourseId = await courseSearch.resolveCourseIdForWrite(courseId);
 
 Сервис генерации PDF из курса.
 
-| Метод           | Описание                                      |
-| --------------- | --------------------------------------------- |
+| Метод                       | Описание                          |
+| --------------------------- | --------------------------------- |
 | `export(course, withHints)` | Генерация PDF с/без подсказок (✓) |
 
 Поддерживаемые типы экспорта:
 
-| Тип | Описание |
-| --- | -------- |
-| `pdf-without-hints` | PDF без правильных ответов |
-| `pdf-with-hints` | PDF с ответами, отмеченными ✓ |
-| `json` | CourseBundle JSON (placeholder) |
-| `scorm` | SCORM/xAPI пакет (placeholder) |
+| Тип                 | Описание                        |
+| ------------------- | ------------------------------- |
+| `pdf-without-hints` | PDF без правильных ответов      |
+| `pdf-with-hints`    | PDF с ответами, отмеченными ✓   |
+| `json`              | CourseBundle JSON (placeholder) |
+| `scorm`             | SCORM/xAPI пакет (placeholder)  |
 
 ## Зависимости
 
-| Слой              | Зависимости                         |
-| ----------------- | ----------------------------------- |
-| entities/course   | `CoursesApiService`, `Course`       |
-| entities/program  | `ProgramsApiService`                |
-| entities/lesson   | `LessonsApiService`                 |
-| entities/scenario | `ScenarioSearchService`             |
-| entities/auth     | `AuthStore`                         |
-| entities/user     | `isEditableContentAuthor`           |
-| shared/ui/dialogs | `CardEditorDiscardDialogComponent`  |
-| shared/utils      | `MarkdownFieldComponent`            |
+| Слой              | Зависимости                        |
+| ----------------- | ---------------------------------- |
+| entities/course   | `CoursesApiService`, `Course`      |
+| entities/program  | `ProgramsApiService`               |
+| entities/lesson   | `LessonsApiService`                |
+| entities/scenario | `ScenarioSearchService`            |
+| entities/auth     | `AuthStore`                        |
+| entities/user     | `isEditableContentAuthor`          |
+| shared/ui/dialogs | `CardEditorDiscardDialogComponent` |
+| shared/utils      | `MarkdownFieldComponent`           |
 
 ## Связанные пути в коде
 

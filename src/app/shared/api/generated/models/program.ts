@@ -21,6 +21,7 @@ export interface Program {
   /** Порядок в курсе */
   order?: number;
   lessonIds?: number[];
+  ownerId?: number;
   createdAt?: string;
   updatedAt?: string;
 }

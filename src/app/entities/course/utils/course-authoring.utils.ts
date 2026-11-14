@@ -86,3 +86,70 @@ export function sameCourseAuthoring(
     JSON.stringify(normalizeCourseAuthoring(right) ?? null)
   );
 }
+
+// ---------------------------------------------------------------------------
+// API flat-fields → CourseAuthoring adapter (generated Course model uses flat
+// authoring fields since the API contract change).
+// ---------------------------------------------------------------------------
+
+/**
+ * Shape of the generated API `Course` model with flat authoring fields.
+ *
+ * @remarks
+ * The generated model replaces the nested `authoring?: CourseAuthoring` with
+ * five flat string fields: `authoringStatus`, `authoringIdea`, `ideaUpdatedAt`,
+ * `materializedAt`, `lastError`.
+ */
+export type CourseWithFlatAuthoring = {
+  authoringStatus?: string;
+  authoringIdea?: string;
+  ideaUpdatedAt?: string;
+  materializedAt?: string;
+  lastError?: string;
+  /** Legacy nested `authoring` field — present in overlay/seed data. */
+  authoring?: CourseAuthoring | unknown;
+};
+
+/**
+ * Builds a `CourseAuthoring` object from flat API fields.
+ *
+ * @remarks
+ * The generated `Course` model uses flat authoring fields
+ * (`authoringStatus`, `authoringIdea`, …) instead of a nested `authoring`
+ * object. This function reads those flat fields and produces a
+ * `CourseAuthoring` that the rest of the application expects.
+ *
+ * Falls back to the legacy `authoring` field when flat fields are absent.
+ *
+ * @param course — A course object (generated API model or overlay entry).
+ * @returns Normalised `CourseAuthoring` or `undefined` when empty.
+ */
+export function buildCourseAuthoringFromApi(
+  course: CourseWithFlatAuthoring | undefined,
+): CourseAuthoring | undefined {
+  if (!course) {
+    return undefined;
+  }
+
+  // Prefer legacy nested `authoring` when present (overlay / seed data).
+  if (course.authoring && typeof course.authoring === 'object') {
+    return normalizeCourseAuthoring(course.authoring as CourseAuthoring);
+  }
+
+  const status = isCourseAuthoringStatus(course.authoringStatus ?? '')
+    ? (course.authoringStatus as CourseAuthoringStatus)
+    : 'draft';
+  const idea = course.authoringIdea ?? '';
+
+  if (!idea.trim() && status === 'draft' && !course.materializedAt && !course.lastError) {
+    return undefined;
+  }
+
+  return {
+    idea,
+    status,
+    ideaUpdatedAt: course.ideaUpdatedAt,
+    materializedAt: course.materializedAt,
+    lastError: course.lastError,
+  };
+}

@@ -4,7 +4,6 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import type { CourseAuthoring } from './courseAuthoring';
 import type { CourseRequiredTier } from './courseRequiredTier';
 
 /**
@@ -20,8 +19,16 @@ export interface Course {
   requiredTier?: CourseRequiredTier;
   /** Настройки практики (JSONB) */
   practiceSettings?: string;
-  /** Статус авторинга каталога */
-  authoring?: CourseAuthoring;
+  /** Статус авторинга каталога (draft/planned/generating/materialized/failed) */
+  authoringStatus?: string;
+  /** Markdown-идея каталога */
+  authoringIdea?: string;
+  /** Дата последнего обновления идеи */
+  ideaUpdatedAt?: string;
+  /** Дата материализации каталога */
+  materializedAt?: string;
+  /** Последняя ошибка авторинга */
+  lastError?: string;
   createdAt?: string;
   updatedAt?: string;
   /** Уникальный строковый идентификатор курса (content ID) */

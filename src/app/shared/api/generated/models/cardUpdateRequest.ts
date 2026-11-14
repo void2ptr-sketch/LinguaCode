@@ -5,6 +5,7 @@
  * OpenAPI spec version: v0
  */
 import type { CardUpdateRequestDifficulty } from './cardUpdateRequestDifficulty';
+import type { CardUpdateRequestKind } from './cardUpdateRequestKind';
 import type { CardUpdateRequestRequiredTier } from './cardUpdateRequestRequiredTier';
 
 /**
@@ -20,4 +21,5 @@ export interface CardUpdateRequest {
   tags?: string;
   difficulty?: CardUpdateRequestDifficulty;
   requiredTier: CardUpdateRequestRequiredTier;
+  kind?: CardUpdateRequestKind;
 }

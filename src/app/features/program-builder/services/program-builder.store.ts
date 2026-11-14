@@ -168,8 +168,7 @@ export class ProgramBuilderStore {
         try {
           const course = await this.courseSearch.getById(courseId);
           languagePairId = (course as Record<string, unknown>)['languagePairId'] as
-            | number
-            | undefined;
+            number | undefined;
         } catch {
           // languagePairId is optional — proceed without it
         }
