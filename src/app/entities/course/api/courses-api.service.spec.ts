@@ -5,6 +5,7 @@ import { buildApiUrl } from '../../../shared/api/api-url';
 import { CoursesApiService, CourseWritePayload } from './courses-api.service';
 import type { CourseIndexEntry, CourseWithPrograms } from '../model';
 import { LanguagePairsApiService } from '../../language-pair/api';
+import { AuthStore } from '../../auth/services/auth.store';
 
 describe('CoursesApiService', () => {
   let service: CoursesApiService;
@@ -85,6 +86,12 @@ describe('CoursesApiService', () => {
           provide: LanguagePairsApiService,
           useValue: {
             listAll: () => Promise.resolve([{ id: 1, knownCode: 'ru', learningCode: 'en' }]),
+          },
+        },
+        {
+          provide: AuthStore,
+          useValue: {
+            user: () => ({ id: '42', displayName: '', email: '', roles: [] }),
           },
         },
       ],
@@ -177,7 +184,7 @@ describe('CoursesApiService', () => {
       expect(body['courseDescription']).toBe(mockPayload.description);
       expect(body['published']).toBe(mockPayload.published);
       expect(body['programs']).toEqual(mockPayload.programs);
-      expect(body['authorId']).toBeDefined();
+      expect(body['authorId']).toBe(42);
       req.flush({ data: mockCourseWithPrograms });
 
       const result = await promise;
@@ -195,6 +202,7 @@ describe('CoursesApiService', () => {
       expect(body['title']).toBe(mockPayload.title);
       expect(body['courseDescription']).toBe(mockPayload.description);
       expect(body['published']).toBe(mockPayload.published);
+      expect(body['authorId']).toBe(42);
       req.flush({ data: mockCourseWithPrograms });
 
       const result = await promise;

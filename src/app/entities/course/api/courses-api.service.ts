@@ -16,7 +16,7 @@ import type {
   CourseExportBundle,
   CourseWritePayload,
 } from '../repository/course-catalog.port';
-import { UserStore } from '../../user/model/user.store';
+import { AuthStore } from '../../auth/services/auth.store';
 import type { ContentLanguage } from '../../card/model/card-index.types';
 import { buildCourseAuthoringFromApi } from '../utils/course-authoring.utils';
 import { LanguagePairsApiService } from '../../language-pair/api';
@@ -86,7 +86,7 @@ export type {
 @Injectable({ providedIn: 'root' })
 export class CoursesApiService implements CourseCatalogPort {
   private readonly http = inject(HttpClient);
-  private readonly userStore = inject(UserStore);
+  private readonly authStore = inject(AuthStore);
   private readonly languagePairsApi = inject(LanguagePairsApiService);
 
   /** Cache: languagePairId → { known, learning } resolved from `/language-pairs`. */
@@ -270,9 +270,13 @@ export class CoursesApiService implements CourseCatalogPort {
     const body: Record<string, unknown> = {
       title: payload.title,
       courseDescription: payload.description,
-      authorId: this.userStore.user().id,
       published: payload.published,
     };
+    // Send numeric authorId from authenticated user (backend derives it from JWT token)
+    const userId = this.authStore.user()?.id;
+    if (userId && /^\d+$/.test(userId)) {
+      body['authorId'] = Number(userId);
+    }
     // Programs are sent for mock handler compatibility (backend creates them separately)
     if (payload.programs && payload.programs.length > 0) {
       body['programs'] = payload.programs;
@@ -301,9 +305,13 @@ export class CoursesApiService implements CourseCatalogPort {
     const body: Record<string, unknown> = {
       title: payload.title,
       courseDescription: payload.description,
-      authorId: this.userStore.user().id,
       published: payload.published,
     };
+    // Send numeric authorId from authenticated user (backend derives it from JWT token)
+    const userId = this.authStore.user()?.id;
+    if (userId && /^\d+$/.test(userId)) {
+      body['authorId'] = Number(userId);
+    }
     // Programs and authoring are required for full course update
     if (payload.programs && payload.programs.length > 0) {
       body['programs'] = payload.programs;
