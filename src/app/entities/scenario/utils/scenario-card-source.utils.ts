@@ -185,13 +185,11 @@ export async function validateScenarioCardSource(
   cardExists: (cardId: string) => Promise<boolean>,
 ): Promise<ScenarioCardSourceValidationError | null> {
   if (source.mode === 'fixed' || source.mode === 'snapshot') {
-    if (source.cardIds.length === 0) {
-      return { field: 'cardSource', message: 'Выберите хотя бы одну карточку' };
-    }
-
-    for (const cardId of source.cardIds) {
-      if (!(await cardExists(cardId))) {
-        return { field: 'cardSource', message: `Карточка не найдена: ${cardId}` };
+    if (source.cardIds.length > 0) {
+      for (const cardId of source.cardIds) {
+        if (!(await cardExists(cardId))) {
+          return { field: 'cardSource', message: `Карточка не найдена: ${cardId}` };
+        }
       }
     }
 

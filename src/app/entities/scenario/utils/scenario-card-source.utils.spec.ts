@@ -423,16 +423,13 @@ describe('scenario-card-source.utils', () => {
   });
 
   describe('validateScenarioCardSource', async () => {
-    it('should return error for empty cardIds in fixed mode', async () => {
+    it('should allow empty cardIds in fixed mode (scenario created before cards)', async () => {
       const source: ScenarioCardSource = {
         mode: 'fixed',
         cardIds: [],
       };
       const result = await validateScenarioCardSource(source, vi.fn());
-      expect(result).toEqual({
-        field: 'cardSource',
-        message: 'Выберите хотя бы одну карточку',
-      });
+      expect(result).toBeNull();
     });
 
     it('should return error when card not found', async () => {
