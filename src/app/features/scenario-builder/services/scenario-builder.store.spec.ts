@@ -206,6 +206,43 @@ describe('ScenarioBuilderStore', () => {
     expect(store.error()).toBeNull();
   });
 
+  // ── createDraft ──
+
+  it('should create a draft with default language pair from userStore when no context', async () => {
+    const draft = await store.createDraft();
+
+    expect(draft.languagePair).toEqual({ known: 'ru', learning: 'en' });
+    expect(draft.scenarioOrder).toBe(1);
+    expect(draft.courseId).toBeUndefined();
+    expect(draft.programId).toBeUndefined();
+    expect(draft.lessonId).toBeUndefined();
+  });
+
+  it('should create a draft with context language pair when provided', async () => {
+    const draft = await store.createDraft({
+      languagePair: { known: 'en', learning: 'zh' },
+      courseId: 'course-123',
+      programId: 'program-456',
+      lessonId: 'lesson-789',
+    });
+
+    expect(draft.languagePair).toEqual({ known: 'en', learning: 'zh' });
+    expect(draft.courseId).toBe('course-123');
+    expect(draft.programId).toBe('program-456');
+    expect(draft.lessonId).toBe('lesson-789');
+    expect(draft.scenarioOrder).toBe(1);
+  });
+
+  it('should create a draft with partial context (only courseId)', async () => {
+    const draft = await store.createDraft({ courseId: 'course-999' });
+
+    expect(draft.courseId).toBe('course-999');
+    expect(draft.programId).toBeUndefined();
+    expect(draft.lessonId).toBeUndefined();
+    // languagePair should fall back to userStore
+    expect(draft.languagePair).toEqual({ known: 'ru', learning: 'en' });
+  });
+
   it('should enter edit mode and load scenario', async () => {
     mockScenarioSearchService.getById.mockResolvedValue({
       id: 's1',

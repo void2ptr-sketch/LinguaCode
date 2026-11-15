@@ -7,6 +7,7 @@ import type {
   ScenarioBuilderDialogData,
   ScenarioBuilderDialogResult,
 } from './scenario-builder-dialog.types';
+import type { LanguagePair } from '../../../../entities/language-pair/model/language-pair.types';
 
 /**
  * Service for opening the scenario builder dialog.
@@ -27,10 +28,18 @@ export class ScenarioBuilderDialogService {
   /**
    * Opens the scenario builder in create mode.
    *
+   * @param context - Optional context pre-filled from the content explorer tree.
    * @returns A promise resolving to the dialog result, or `undefined` if another dialog is already open.
    */
-  openCreate(lessonId?: string): Promise<ScenarioBuilderDialogResult | undefined> {
-    return this.open({ mode: 'create', lessonId });
+  openCreate(
+    context?: {
+      lessonId?: string;
+      courseId?: string;
+      programId?: string;
+      languagePair?: LanguagePair;
+    },
+  ): Promise<ScenarioBuilderDialogResult | undefined> {
+    return this.open({ mode: 'create', ...context });
   }
 
   /**

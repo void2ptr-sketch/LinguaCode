@@ -118,6 +118,81 @@ describe('ScenarioBuilderDialogComponent', () => {
     });
   });
 
+  describe('create mode with context', () => {
+    const contextData = {
+      mode: 'create' as const,
+      courseId: 'course-1',
+      programId: 'program-1',
+      lessonId: 'lesson-1',
+      languagePair: { known: 'en', learning: 'zh' },
+    };
+
+    beforeEach(async () => {
+      localStorage.clear();
+      seedTestContentCache();
+      mockDialogRef.close.mockClear();
+
+      TestBed.resetTestingModule();
+      await TestBed.configureTestingModule({
+        imports: [ScenarioBuilderDialogComponent, MockScenarioEditorFormComponent],
+        providers: [
+          ScenarioBuilderStore,
+          UserStore,
+          CardCatalogSearchStore,
+          provideHttpClient(),
+          { provide: MatDialogRef, useValue: mockDialogRef },
+          { provide: MatDialog, useValue: mockMatDialog },
+          { provide: MAT_DIALOG_DATA, useValue: contextData },
+        ],
+      }).compileComponents();
+
+      const ref = TestBed.createComponent(ScenarioBuilderDialogComponent);
+      component = ref.componentInstance;
+      await ref.whenStable();
+    });
+
+    it('should pre-fill draft with context values', () => {
+      expect(component.draft().courseId).toBe('course-1');
+      expect(component.draft().programId).toBe('program-1');
+      expect(component.draft().lessonId).toBe('lesson-1');
+      expect(component.draft().languagePair).toEqual({ known: 'en', learning: 'zh' });
+    });
+  });
+
+  describe('create mode without context', () => {
+    const emptyContextData = { mode: 'create' as const };
+
+    beforeEach(async () => {
+      localStorage.clear();
+      seedTestContentCache();
+      mockDialogRef.close.mockClear();
+
+      TestBed.resetTestingModule();
+      await TestBed.configureTestingModule({
+        imports: [ScenarioBuilderDialogComponent, MockScenarioEditorFormComponent],
+        providers: [
+          ScenarioBuilderStore,
+          UserStore,
+          CardCatalogSearchStore,
+          provideHttpClient(),
+          { provide: MatDialogRef, useValue: mockDialogRef },
+          { provide: MatDialog, useValue: mockMatDialog },
+          { provide: MAT_DIALOG_DATA, useValue: emptyContextData },
+        ],
+      }).compileComponents();
+
+      const ref = TestBed.createComponent(ScenarioBuilderDialogComponent);
+      component = ref.componentInstance;
+      await ref.whenStable();
+    });
+
+    it('should fall back to userStore language pair when no context', () => {
+      expect(component.draft().languagePair).toEqual({ known: 'ru', learning: 'en' });
+      expect(component.draft().courseId).toBeUndefined();
+      expect(component.draft().programId).toBeUndefined();
+    });
+  });
+
   describe('saveScenario', () => {
     it('should be defined', () => {
       expect(component.saveScenario).toBeDefined();

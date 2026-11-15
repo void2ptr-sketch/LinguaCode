@@ -30,6 +30,7 @@ import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import { ScenarioDraft, ScenarioEditorMode } from '../types';
+import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 import type { ScenarioFormDraft } from '../utils/scenario-form-draft.utils';
 import { emptyScenarioFormDraft } from '../utils/scenario-form-draft.utils';
 
@@ -223,14 +224,35 @@ export class ScenarioBuilderStore {
   }
 
   /**
-   * Creates a new scenario draft with default values.
+   * Creates a new scenario draft with default values and optional context.
+   *
+   * @param context - Optional context pre-filled from the content explorer tree.
    * @returns A new ScenarioFormDraft with order starting at 1.
    */
-  async createDraft(): Promise<ScenarioFormDraft> {
+  async createDraft(
+    context?: {
+      languagePair?: LanguagePair;
+      courseId?: string;
+      programId?: string;
+      lessonId?: string;
+    },
+  ): Promise<ScenarioFormDraft> {
     // ScenarioSearchCriteria doesn't support lessonId or sorting,
     // so auto-increment by lesson is not possible without backend changes.
     // Fallback: start at 1 (user can manually adjust).
-    const draft = emptyScenarioFormDraft(this.userStore.languagePair(), 1);
+    const draft = emptyScenarioFormDraft(
+      context?.languagePair ?? this.userStore.languagePair(),
+      1,
+    );
+    if (context?.courseId) {
+      draft.courseId = context.courseId;
+    }
+    if (context?.programId) {
+      draft.programId = context.programId;
+    }
+    if (context?.lessonId) {
+      draft.lessonId = context.lessonId;
+    }
     return draft;
   }
 

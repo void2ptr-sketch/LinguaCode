@@ -283,6 +283,53 @@ describe('ContentExplorerPageComponent — onAddScenarioRequested (scenario bind
       duration: 5000,
     });
   });
+
+  it('passes full context (courseId, programId, lessonId, languagePair) to openCreate', async () => {
+    selectEditableLessonNode();
+    // Set languagePair on the course node data
+    (courseNode.data as { languagePair?: { known: string; learning: string } }).languagePair = {
+      known: 'ru',
+      learning: 'en',
+    };
+    mockScenarioBuilderDialog.openCreate.mockResolvedValue({ saved: true, scenarioId: 's-new' });
+
+    await component['onAddScenarioRequested']();
+
+    expect(mockScenarioBuilderDialog.openCreate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        lessonId: 'l2',
+        courseId: 'course-1',
+        programId: 'p1',
+        languagePair: { known: 'ru', learning: 'en' },
+      }),
+    );
+  });
+
+  it('passes partial context when only lesson is selected (no course/program in path)', async () => {
+    const orphanLesson = new ExplorerNode({
+      kind: 'lesson',
+      id: 'l-orphan',
+      parentId: null,
+      title: 'Orphan Lesson',
+      editable: true,
+      data: { id: 'l-orphan', programId: 'p-orphan' },
+    });
+    orphanLesson.children.set([]);
+    mockStore.selectedNode.mockReturnValue(orphanLesson);
+    mockStore.pathOf.mockReturnValue([orphanLesson]);
+    mockScenarioBuilderDialog.openCreate.mockResolvedValue({ saved: true, scenarioId: 's-new' });
+
+    await component['onAddScenarioRequested']();
+
+    expect(mockScenarioBuilderDialog.openCreate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        lessonId: 'l-orphan',
+        courseId: undefined,
+        programId: undefined,
+        languagePair: undefined,
+      }),
+    );
+  });
 });
 
 /**
