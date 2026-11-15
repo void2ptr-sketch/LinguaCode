@@ -109,4 +109,38 @@ describe('ScenarioEditorFormComponent', () => {
       expect(component.languagePairInvalid()).toBe(true);
     });
   });
+
+  describe('updatePublished', () => {
+    it('should emit draftChange with updated published flag', () => {
+      const spy = vi.spyOn(component.draftChange, 'emit');
+      fixture.componentRef.setInput('draft', baseDraft);
+      component.updatePublished(true);
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          published: true,
+          title: 'Test Scenario',
+        }),
+      );
+    });
+
+    it('should emit draftChange with published set to false', () => {
+      const spy = vi.spyOn(component.draftChange, 'emit');
+      fixture.componentRef.setInput('draft', { ...baseDraft, published: true });
+      component.updatePublished(false);
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          published: false,
+        }),
+      );
+    });
+  });
+
+  describe('tier labels', () => {
+    it('should have Russian tier labels', () => {
+      expect(component.tierLabels['FREE']).toBe('Бесплатный');
+      expect(component.tierLabels['STARTER']).toBe('Стартовый');
+      expect(component.tierLabels['GROWTH']).toBe('Рост');
+      expect(component.tierLabels['PREMIUM']).toBe('Премиум');
+    });
+  });
 });

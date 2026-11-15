@@ -110,10 +110,16 @@
     }
   </section>
 
+  @if (!readOnly()) {
+    <mat-checkbox [ngModel]="draft().published" (ngModelChange)="updatePublished($event)">
+      Опубликовать
+    </mat-checkbox>
+  }
+
   <section class="scenario-editor-form__tier">
-    <h2>Тариф</h2>
+    <h2>Уровень доступа</h2>
     <mat-form-field appearance="outline">
-      <mat-label>Тариф сценария</mat-label>
+      <mat-label>Уровень доступа</mat-label>
       <mat-select
         [disabled]="readOnly()"
         [ngModel]="draft().requiredTier"

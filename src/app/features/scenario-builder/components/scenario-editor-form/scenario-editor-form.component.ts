@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -13,10 +14,10 @@ import type { ScenarioFormDraft } from '../../utils/scenario-form-draft.utils';
 
 /** Payment tier labels in Russian. */
 const TIER_LABELS: Record<string, string> = {
-  FREE: 'FREE',
-  STARTER: 'STARTER',
-  GROWTH: 'GROWTH',
-  PREMIUM: 'PREMIUM',
+  FREE: 'Бесплатный',
+  STARTER: 'Стартовый',
+  GROWTH: 'Рост',
+  PREMIUM: 'Премиум',
 };
 
 /**
@@ -26,7 +27,7 @@ const TIER_LABELS: Record<string, string> = {
 @Component({
   selector: 'app-scenario-editor-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule],
+  imports: [FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   templateUrl: './scenario-editor-form.component.html',
   styleUrl: './scenario-editor-form.component.scss',
 })
@@ -48,9 +49,9 @@ export class ScenarioEditorFormComponent {
   private readonly languageService = inject(LanguageService);
 
   /** Available tier options. */
-  protected readonly tierOptions = Object.keys(TIER_LABELS) as string[];
+  readonly tierOptions = Object.keys(TIER_LABELS) as string[];
   /** Tier display labels. */
-  protected readonly tierLabels = TIER_LABELS;
+  readonly tierLabels = TIER_LABELS;
 
   updateDraft(patch: Partial<ScenarioFormDraft>): void {
     this.draftChange.emit({ ...this.draft(), ...patch });
@@ -99,6 +100,10 @@ export class ScenarioEditorFormComponent {
       ...this.draft(),
       requiredTier: (tier as ScenarioFormDraft['requiredTier']) ?? undefined,
     });
+  }
+
+  updatePublished(published: boolean): void {
+    this.draftChange.emit({ ...this.draft(), published });
   }
 
   languagePairInvalid(): boolean {
