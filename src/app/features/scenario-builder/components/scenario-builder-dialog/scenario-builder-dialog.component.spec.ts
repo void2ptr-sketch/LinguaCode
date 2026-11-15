@@ -11,6 +11,7 @@ import { seedTestContentCache } from '../../../../entities/content-seed/content-
 import type { Scenario } from '../../../../entities/scenario/model';
 import { CourseSearchService } from '../../../../entities/course/search/course-search.service';
 import { ProgramsApiService } from '../../../../entities/program/api';
+import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 
 /** Mock for ScenarioEditorFormComponent to avoid deep dependency chain. */
@@ -58,6 +59,22 @@ describe('ScenarioBuilderDialogComponent', () => {
         { provide: MatDialogRef, useValue: mockDialogRef },
         { provide: MatDialog, useValue: mockMatDialog },
         { provide: MAT_DIALOG_DATA, useValue: createDialogData },
+        {
+          provide: CourseSearchService,
+          useValue: { search: vi.fn().mockResolvedValue({ items: [], totalItems: 0, page: 0, pageSize: 100, totalPages: 0 }) },
+        },
+        {
+          provide: ProgramsApiService,
+          useValue: { getByCourse: vi.fn().mockResolvedValue([]), getLessons: vi.fn().mockResolvedValue([]) },
+        },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
+        {
+          provide: LanguagePairsApiService,
+          useValue: { listAll: vi.fn().mockResolvedValue([]) },
+        },
       ],
     }).compileComponents();
 
@@ -122,22 +139,14 @@ describe('ScenarioBuilderDialogComponent', () => {
   });
 
   describe('create mode with context', () => {
-    const contextData = {
-      mode: 'create' as const,
-      courseId: 'course-1',
-      programId: 'program-1',
-      lessonId: 'lesson-1',
-      languagePair: { known: 'en', learning: 'zh' },
-    };
-
     const mockScenarioBuilderStore = {
       startCreate: vi.fn(),
       loadCourses: vi.fn().mockResolvedValue(undefined),
-      createDraft: vi.fn().mockImplementation(async (context?: { courseId?: string; programId?: string; lessonId?: string; languagePair?: { known: string; learning: string } }) => ({
+      createDraft: vi.fn().mockImplementation((context) => Promise.resolve({
         title: '',
         description: '',
         published: false,
-        languagePair: context?.languagePair ?? { known: 'ru', learning: 'en' },
+        languagePairId: context?.languagePairId,
         courseId: context?.courseId,
         programId: context?.programId,
         lessonId: context?.lessonId,
@@ -154,6 +163,7 @@ describe('ScenarioBuilderDialogComponent', () => {
       isReadOnly: vi.fn().mockReturnValue(false),
       editorLoading: vi.fn().mockReturnValue(false),
       error: vi.fn().mockReturnValue(null),
+      courses: vi.fn().mockReturnValue([]),
     };
 
     beforeEach(async () => {
@@ -184,22 +194,46 @@ describe('ScenarioBuilderDialogComponent', () => {
             provide: AppLoggerService,
             useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
           },
+          {
+            provide: LanguagePairsApiService,
+            useValue: { listAll: vi.fn().mockResolvedValue([]) },
+          },
           { provide: MatDialogRef, useValue: mockDialogRef },
           { provide: MatDialog, useValue: mockMatDialog },
-          { provide: MAT_DIALOG_DATA, useValue: contextData },
+          { provide: MAT_DIALOG_DATA, useValue: { mode: 'create' as const, courseId: 'course-1', programId: 'program-1', lessonId: 'lesson-1', languagePairId: 1 } },
         ],
-      }).compileComponents();
+      });
 
+      // Manually trigger ngOnInit by creating and detecting changes
+      store = TestBed.inject(ScenarioBuilderStore);
       const ref = TestBed.createComponent(ScenarioBuilderDialogComponent);
       component = ref.componentInstance;
-      await ref.whenStable();
+      ref.detectChanges();
+
+      // Wait for all async operations
+      await new Promise((r) => setTimeout(r, 50));
     });
 
-    it('should pre-fill draft with context values', () => {
+    it('should pre-fill draft with context values', async () => {
+      // Debug: verify component state
+      expect(component.data.mode).toBe('create');
+      expect((component.data as { mode: 'create'; courseId?: string }).courseId).toBe('course-1');
+      expect(store).toBe(mockScenarioBuilderStore);
+      expect(component.store).toBe(store);
+      // Verify startCreate was called (proves ngOnInit ran the create flow)
+      const startCreateSpy = vi.mocked(store.startCreate);
+      expect(startCreateSpy).toHaveBeenCalled();
+      // Verify createDraft was called with correct context
+      const createDraftSpy = vi.mocked(store.createDraft);
+      expect(createDraftSpy).toHaveBeenCalled();
+      const callArgs = createDraftSpy.mock.calls[0]?.[0];
+      expect(callArgs?.courseId).toBe('course-1');
+      expect(callArgs?.programId).toBe('program-1');
+      expect(callArgs?.lessonId).toBe('lesson-1');
+      // Verify draft was set
       expect(component.draft().courseId).toBe('course-1');
       expect(component.draft().programId).toBe('program-1');
       expect(component.draft().lessonId).toBe('lesson-1');
-      expect(component.draft().languagePair).toEqual({ known: 'en', learning: 'zh' });
     });
   });
 
@@ -213,7 +247,7 @@ describe('ScenarioBuilderDialogComponent', () => {
         title: '',
         description: '',
         published: false,
-        languagePair: { known: 'ru', learning: 'en' },
+        languagePairId: 1,
         requiredTier: 'FREE',
         scenarioOrder: 1,
         sourceMode: 'fixed',
@@ -269,7 +303,7 @@ describe('ScenarioBuilderDialogComponent', () => {
     });
 
     it('should fall back to userStore language pair when no context', () => {
-      expect(component.draft().languagePair).toEqual({ known: 'ru', learning: 'en' });
+      expect(component.draft().languagePairId).toBeUndefined();
       expect(component.draft().courseId).toBeUndefined();
       expect(component.draft().programId).toBeUndefined();
     });
@@ -310,7 +344,7 @@ describe('ScenarioBuilderDialogComponent', () => {
       description: '',
       published: false,
       cardSource: { mode: 'fixed' as const, fixedCardIds: ['c1'] },
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
     } as unknown as Scenario;
 
     const mockEditStore = {

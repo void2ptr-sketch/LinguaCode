@@ -211,7 +211,7 @@ describe('ScenarioBuilderStore', () => {
   it('should create a draft with default language pair from userStore when no context', async () => {
     const draft = await store.createDraft();
 
-    expect(draft.languagePair).toEqual({ known: 'ru', learning: 'en' });
+    expect(draft.languagePairId).toBe(undefined);
     expect(draft.scenarioOrder).toBe(1);
     expect(draft.courseId).toBeUndefined();
     expect(draft.programId).toBeUndefined();
@@ -220,13 +220,13 @@ describe('ScenarioBuilderStore', () => {
 
   it('should create a draft with context language pair when provided', async () => {
     const draft = await store.createDraft({
-      languagePair: { known: 'en', learning: 'zh' },
+      languagePairId: 1,
       courseId: 'course-123',
       programId: 'program-456',
       lessonId: 'lesson-789',
     });
 
-    expect(draft.languagePair).toEqual({ known: 'en', learning: 'zh' });
+    expect(draft.languagePairId).toBe(1);
     expect(draft.courseId).toBe('course-123');
     expect(draft.programId).toBe('program-456');
     expect(draft.lessonId).toBe('lesson-789');
@@ -239,8 +239,8 @@ describe('ScenarioBuilderStore', () => {
     expect(draft.courseId).toBe('course-999');
     expect(draft.programId).toBeUndefined();
     expect(draft.lessonId).toBeUndefined();
-    // languagePair should fall back to userStore
-    expect(draft.languagePair).toEqual({ known: 'ru', learning: 'en' });
+    // languagePairId should fall back to userStore
+    expect(draft.languagePairId).toBe(undefined);
   });
 
   it('should enter edit mode and load scenario', async () => {
@@ -251,7 +251,7 @@ describe('ScenarioBuilderStore', () => {
       description: 'Test',
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '2026-01-01T00:00:00.000Z',
     });
 
@@ -297,9 +297,8 @@ describe('ScenarioBuilderStore', () => {
       authorId: 'local-user',
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
-      published: false,
-      languagePair: { known: 'ru', learning: 'en' },
-      updatedAt: '',
+      languagePairId: 1,
+      updatedAt: '2026-01-01T00:00:00.000Z',
     });
 
     await store.startEdit('s1');
@@ -313,9 +312,8 @@ describe('ScenarioBuilderStore', () => {
       authorId: 'other-user',
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
-      published: false,
-      languagePair: { known: 'ru', learning: 'en' },
-      updatedAt: '',
+      languagePairId: 1,
+      updatedAt: '2026-01-01T00:00:00.000Z',
     });
 
     await store.startEdit('s1');
@@ -408,7 +406,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.createScenario({
       title: 'New Scenario',
       description: 'Desc',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
@@ -426,7 +424,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.createScenario({
       title: 'New Scenario',
       description: 'Desc',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
@@ -441,7 +439,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.createScenario({
       title: '   ',
       description: 'Desc',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
@@ -460,7 +458,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
     mockScenarioSearchService.update.mockResolvedValue(undefined);
@@ -478,7 +476,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Updated',
       description: 'New desc',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: true,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
@@ -498,7 +496,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
 
@@ -508,7 +506,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Updated',
       description: '',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: [] },
     });
@@ -525,7 +523,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
     mockScenarioSearchService.update.mockRejectedValue(new Error('Server error'));
@@ -536,7 +534,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Updated',
       description: '',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
@@ -772,7 +770,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
     mockCardSearchService.search.mockResolvedValue({
@@ -794,7 +792,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Criteria Scenario',
       description: '',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: {
         mode: 'criteria',
@@ -822,7 +820,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
     mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
@@ -845,7 +843,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Snapshot Scenario',
       description: '',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: {
         mode: 'snapshot',
@@ -868,7 +866,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
     mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
@@ -890,7 +888,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Mismatch',
       description: '',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });

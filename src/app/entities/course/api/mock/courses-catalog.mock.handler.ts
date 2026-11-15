@@ -19,7 +19,7 @@ import { normalizeCourseAuthoring } from '../../utils/course-authoring.utils';
 import { courseToIndexEntry } from '../../mapping/course-index.mapper';
 import { filterCourseIndex } from '../../search/course-search.utils';
 import { ContentSeedRepository } from '../../../content-seed/content-seed.repository';
-import { normalizeLanguagePair } from '../../../language-pair/utils/language-pair.utils';
+import { DEFAULT_LANGUAGE_PAIR } from '../../../language-pair/model/language-pair.types';
 import { isEditableContentAuthor, isSystemAuthor } from '../../../user/lib/system-author.constants';
 import {
   loadCourseCatalogFromStorage,
@@ -136,7 +136,8 @@ export class CoursesCatalogMockHandler {
   async create(payload: CourseWritePayload): Promise<CourseWithPrograms> {
     await this.ensureData();
 
-    const languagePair = normalizeLanguagePair(payload.languagePair);
+    const languagePairId = payload.languagePairId;
+    const languagePair = await this.resolveLanguagePair(languagePairId);
     const courseId = crypto.randomUUID();
     const programs = this.normalizePrograms(courseId, payload.programs);
 
@@ -149,7 +150,8 @@ export class CoursesCatalogMockHandler {
         .replace(/[^a-zа-яё0-9-]/g, ''),
       description: payload.description,
       authorId: this.userStore.user().id,
-      languagePair,
+      languagePairId,
+      languagePair: languagePair ?? DEFAULT_LANGUAGE_PAIR,
       programIds: programs.map((p) => p.id),
       published: payload.published,
       updatedAt: new Date().toISOString(),
@@ -186,7 +188,8 @@ export class CoursesCatalogMockHandler {
     }
 
     this.assertCanEdit(current);
-    const languagePair = normalizeLanguagePair(payload.languagePair ?? current.languagePair);
+    const languagePairId = payload.languagePairId ?? current.languagePairId;
+    const languagePair = await this.resolveLanguagePair(languagePairId) ?? current.languagePair;
 
     if (isSystemAuthor(current.authorId)) {
       const updated: Course = {
@@ -220,6 +223,7 @@ export class CoursesCatalogMockHandler {
       slug: payload.slug ?? current.slug,
       description: payload.description,
       published: payload.published,
+      languagePairId,
       languagePair,
       programIds: programs.map((p) => p.id),
       updatedAt: new Date().toISOString(),
@@ -343,6 +347,36 @@ export class CoursesCatalogMockHandler {
     }
 
     return results;
+  }
+
+  /**
+   * Resolves a numeric `languagePairId` to a `LanguagePair` code pair
+   * using the cached `/language-pairs` endpoint.
+   */
+   private async resolveLanguagePair(
+    languagePairId: number | undefined,
+  ): Promise<import('../../../language-pair/model/language-pair.types').LanguagePair | undefined> {
+    if (languagePairId == null) return undefined;
+
+    if (!this.pairIdCache) {
+      try {
+        const all = await this.languagePairsApi.listAll();
+        this.pairIdCache = new Map(
+          all.map((pair) => [
+            pair.id,
+            {
+              known: pair.knownCode as ContentLanguage,
+              learning: pair.learningCode as ContentLanguage,
+            },
+          ]),
+        );
+      } catch {
+        this.pairIdCache = new Map();
+      }
+    }
+
+    const result = this.pairIdCache.get(languagePairId);
+    return result ?? undefined;
   }
 
   /**

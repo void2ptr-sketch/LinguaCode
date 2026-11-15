@@ -102,6 +102,8 @@ export class LessonsCatalogMockHandler {
       updatedAt: new Date().toISOString(),
       published: payload.published ?? false,
       requiredTier: payload.requiredTier,
+      languagePairId: payload.languagePairId,
+      courseId: payload.courseId,
     };
 
     this.catalog!.lessons ??= [];
@@ -138,6 +140,8 @@ export class LessonsCatalogMockHandler {
       updatedAt: new Date().toISOString(),
       published: payload.published ?? existing.published,
       requiredTier: payload.requiredTier ?? existing.requiredTier,
+      languagePairId: payload.languagePairId ?? existing.languagePairId,
+      courseId: payload.courseId ?? existing.courseId,
     };
 
     lessons[idx] = updated;

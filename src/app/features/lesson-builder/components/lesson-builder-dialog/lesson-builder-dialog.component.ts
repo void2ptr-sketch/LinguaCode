@@ -17,6 +17,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { firstValueFrom } from 'rxjs';
 
 import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
+import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
+import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
+import { CourseSearchService } from '../../../../entities/course';
+import type { CourseIndexEntry } from '../../../../entities/course/model';
+import { ProgramsApiService } from '../../../../entities/program/api';
+import type { ProgramWithLessons } from '../../../../entities/program/model';
 import { LessonBuilderStore } from '../../services/lesson-builder.store';
 import {
   emptyLessonFormDraft,
@@ -55,6 +62,10 @@ export class LessonBuilderDialogComponent implements OnInit {
   private readonly dialog = inject(MatDialog);
   readonly data = inject<LessonBuilderDialogData>(MAT_DIALOG_DATA);
   readonly store = inject(LessonBuilderStore);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
+  private readonly courseSearch = inject(CourseSearchService);
+  private readonly programsApi = inject(ProgramsApiService);
+  private readonly logger = inject(AppLoggerService);
 
   /**
    * Current lesson form draft being edited or created.
@@ -90,12 +101,43 @@ export class LessonBuilderDialogComponent implements OnInit {
     return this.store.isReadOnly() ? 'Просмотр урока' : 'Редактирование урока';
   });
 
+  /** Available language pairs from the registry. */
+  readonly languagePairs = signal<readonly LanguagePairDto[]>([]);
+  /** Available courses for the course selector. */
+  readonly courses = signal<readonly CourseIndexEntry[]>([]);
+  /** Available programs for the program selector. */
+  readonly programs = signal<readonly ProgramWithLessons[]>([]);
+
   async ngOnInit(): Promise<void> {
+    // Загрузить языковые пары, курсы и программы до инициализации формы
+    await this.loadLanguagePairs();
+    await this.loadCourses();
+
     if (this.data.mode === 'create') {
       this.store.startCreate(this.data.programId);
-      const nextDraft = emptyLessonFormDraft(this.data.programId);
-      this.draft.set(nextDraft);
-      this.initialSnapshot.set(serializeLessonFormDraft(nextDraft));
+
+      // Загрузить программу и унаследовать languagePairId + courseId
+      if (this.data.programId) {
+        try {
+          const program = await this.programsApi.getById(this.data.programId);
+          this.programs.set([program]);
+
+          const nextDraft = emptyLessonFormDraft(this.data.programId);
+          nextDraft.languagePairId = program.languagePairId;
+          nextDraft.courseId = program.courseId;
+          this.draft.set(nextDraft);
+          this.initialSnapshot.set(serializeLessonFormDraft(nextDraft));
+        } catch {
+          this.logger.error('LessonBuilderDialog: failed to load program for inheritance', new Error());
+          const nextDraft = emptyLessonFormDraft(this.data.programId);
+          this.draft.set(nextDraft);
+          this.initialSnapshot.set(serializeLessonFormDraft(nextDraft));
+        }
+      } else {
+        const nextDraft = emptyLessonFormDraft();
+        this.draft.set(nextDraft);
+        this.initialSnapshot.set(serializeLessonFormDraft(nextDraft));
+      }
 
       // Prerequisite candidates are loaded separately so that the draft is
       // initialized synchronously (mirrors `ProgramBuilderDialogComponent`).
@@ -118,9 +160,40 @@ export class LessonBuilderDialogComponent implements OnInit {
       return;
     }
 
+    // Load programs for the lesson's course (to populate the program selector)
+    if (lesson.programId) {
+      try {
+        const program = await this.programsApi.getById(lesson.programId);
+        this.programs.set([program]);
+      } catch {
+        this.programs.set([]);
+      }
+    }
+
     const nextDraft = lessonToFormDraft(lesson);
     this.draft.set(nextDraft);
     this.initialSnapshot.set(serializeLessonFormDraft(nextDraft));
+  }
+
+  private async loadLanguagePairs(): Promise<void> {
+    try {
+      const pairs = await this.languagePairsApi.listAll();
+      this.languagePairs.set(pairs);
+    } catch {
+      this.languagePairs.set([]);
+    }
+  }
+
+  private async loadCourses(): Promise<void> {
+    try {
+      const page = await this.courseSearch.search({
+        scope: 'all',
+        page: { page: 0, pageSize: 100 },
+      });
+      this.courses.set(page.items);
+    } catch {
+      this.courses.set([]);
+    }
   }
 
   /**

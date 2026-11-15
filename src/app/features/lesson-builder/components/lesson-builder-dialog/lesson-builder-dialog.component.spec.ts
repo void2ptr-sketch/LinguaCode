@@ -10,6 +10,9 @@ import { LessonBuilderDialogComponent } from './lesson-builder-dialog.component'
 import { LessonBuilderStore } from '../../services/lesson-builder.store';
 import type { Lesson } from '../../../../entities/course/model/lesson.types';
 import type { LessonBuilderDialogData } from './lesson-builder-dialog.types';
+import { CourseSearchService } from '../../../../entities/course';
+import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
+import { ProgramsApiService } from '../../../../entities/program/api';
 
 function createComponent(
   data: LessonBuilderDialogData,
@@ -36,12 +39,24 @@ function createComponent(
       { provide: MatDialogRef, useValue: { close: closeSpy } },
       { provide: MAT_DIALOG_DATA, useValue: data },
       provideHttpClient(),
+      {
+        provide: CourseSearchService,
+        useValue: { search: vi.fn().mockResolvedValue({ items: [], totalItems: 0, page: 0, pageSize: 100, totalPages: 0 }) },
+      },
+      {
+        provide: LanguagePairsApiService,
+        useValue: { listAll: vi.fn().mockResolvedValue([]) },
+      },
+      {
+        provide: ProgramsApiService,
+        useValue: { getById: vi.fn().mockResolvedValue({ id: 'p1', courseId: 'c1', title: 'P', description: '', lessonIds: [], order: 0, updatedAt: '', languagePairId: 1 }) },
+      },
     ],
   });
 
   if (mockStore) {
+    const store = TestBed.inject(LessonBuilderStore);
     Object.entries(mockStore).forEach(([key, value]) => {
-      const store = TestBed.inject(LessonBuilderStore);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (store as any)[key] = value;
     });
@@ -85,13 +100,15 @@ describe('LessonBuilderDialogComponent', () => {
     expect(component.draft().title).toBe('');
   });
 
-  it('should initialize draft programId from dialog data', () => {
-    const { component } = createComponent({ mode: 'create', programId: 'p1' });
+  it('should initialize draft programId from dialog data', async () => {
+    const { component, fixture } = createComponent({ mode: 'create', programId: 'p1' });
+    await fixture.whenStable();
     expect(component.draft().programId).toBe('p1');
   });
 
-  it('should have dirty computed', () => {
-    const { component } = createComponent({ mode: 'create' });
+  it('should have dirty computed', async () => {
+    const { component, fixture } = createComponent({ mode: 'create' });
+    await fixture.whenStable();
     expect(component.dirty()).toBe(false);
   });
 
@@ -133,14 +150,14 @@ describe('LessonBuilderDialogComponent', () => {
   });
 
   it('should close without result when the lesson fails to load', async () => {
-    const { component, closeSpy } = createComponent(
+    const { component, closeSpy, fixture } = createComponent(
       { mode: 'edit', lessonId: 'l1' },
       {
         startEdit: async () => undefined,
         editingLesson: signal(null),
       },
     );
-    await Promise.resolve();
+    await fixture.whenStable();
     expect(closeSpy).toHaveBeenCalledWith(undefined);
     expect(component.title()).toBe('Редактирование урока');
   });
@@ -241,7 +258,8 @@ describe('LessonBuilderDialogComponent', () => {
   // ── cancel ──
 
   it('should close dialog with saved:false when not dirty', async () => {
-    const { component, closeSpy } = createComponent({ mode: 'create' });
+    const { component, closeSpy, fixture } = createComponent({ mode: 'create' });
+    await fixture.whenStable();
     await component.cancel();
     expect(closeSpy).toHaveBeenCalledWith({ saved: false });
   });
@@ -249,7 +267,7 @@ describe('LessonBuilderDialogComponent', () => {
   // ── published / requiredTier in edit mode ──
 
   it('should include published and requiredTier in draft when editing', async () => {
-    const { component } = createComponent(
+    const { component, fixture } = createComponent(
       { mode: 'edit', lessonId: 'l1' },
       {
         startEdit: async () => undefined,
@@ -258,7 +276,7 @@ describe('LessonBuilderDialogComponent', () => {
         isReadOnly: signal(false),
       },
     );
-    await Promise.resolve();
+    await fixture.whenStable();
     expect(component.draft().published).toBe(true);
     expect(component.draft().requiredTier).toBe('FREE');
   });

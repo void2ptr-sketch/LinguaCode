@@ -287,6 +287,8 @@ export class CourseBuilderStore {
    *
    * @remarks
    * Validates data, sanitizes fields, and sends to the server.
+   * Uses `languagePairId` from the draft if present; falls back to the
+   * user's active language pair.
    *
    * @param draft - The course draft.
    * @returns `true` if successful, `false` if there is a validation error.
@@ -300,7 +302,9 @@ export class CourseBuilderStore {
     try {
       await this.courseSearchService.create({
         ...payload,
-        languagePair: this.userStore.languagePair(),
+        // Prefer explicit languagePairId from draft; fall back to user's active pair
+        languagePairId: draft.languagePairId,
+        languagePair: draft.languagePairId ? undefined : this.userStore.languagePair(),
       });
       this.courseSearchService.clearGetByIdCache();
       this.cancelEdit();
@@ -318,6 +322,8 @@ export class CourseBuilderStore {
    *
    * @remarks
    * Checks access rights (only the author can edit).
+   * Uses `languagePairId` from the draft if present; falls back to the
+   * current course's language pair.
    *
    * @param courseId - The course ID.
    * @param draft - The course draft.
@@ -339,7 +345,11 @@ export class CourseBuilderStore {
     try {
       await this.courseSearchService.update(courseId, {
         ...payload,
-        languagePair: normalizeLanguagePair(current?.languagePair ?? this.userStore.languagePair()),
+        // Prefer explicit languagePairId from draft; fall back to current course's pair
+        languagePairId: draft.languagePairId,
+        languagePair: draft.languagePairId
+          ? undefined
+          : normalizeLanguagePair(current?.languagePair ?? this.userStore.languagePair()),
       });
       this.courseSearchService.clearGetByIdCache();
       this.cancelEdit();

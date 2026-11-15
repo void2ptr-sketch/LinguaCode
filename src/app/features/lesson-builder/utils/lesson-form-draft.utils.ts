@@ -17,6 +17,8 @@ export const emptyLessonFormDraft = (programId = ''): LessonFormDraft => ({
   order: 0,
   prerequisiteLessonIds: [],
   published: false,
+  languagePairId: undefined,
+  courseId: undefined,
 });
 
 /** Maps a persisted lesson to its editable draft representation. */
@@ -30,6 +32,8 @@ export function lessonToFormDraft(lesson: Lesson): LessonFormDraft {
     prerequisiteLessonIds: [...lesson.prerequisiteLessonIds],
     published: lesson.published,
     requiredTier: lesson.requiredTier,
+    languagePairId: lesson.languagePairId,
+    courseId: lesson.courseId,
   };
 }
 
@@ -51,6 +55,8 @@ export function serializeLessonFormDraft(draft: LessonFormDraft): string {
     prerequisiteLessonIds: [...(draft.prerequisiteLessonIds ?? [])].sort(),
     published: draft.published,
     requiredTier: draft.requiredTier,
+    languagePairId: draft.languagePairId,
+    courseId: draft.courseId,
   });
 }
 
@@ -99,6 +105,8 @@ export function formDraftToLessonCreatePayload(draft: LessonFormDraft): LessonCr
     prerequisiteLessonIds: [...(draft.prerequisiteLessonIds ?? [])],
     published: draft.published,
     requiredTier: draft.requiredTier ?? 'FREE',
+    languagePairId: draft.languagePairId,
+    courseId: draft.courseId,
   };
 }
 
@@ -117,5 +125,7 @@ export function formDraftToLessonUpdatePayload(draft: LessonFormDraft): LessonUp
     prerequisiteLessonIds: [...(draft.prerequisiteLessonIds ?? [])],
     published: draft.published,
     requiredTier: draft.requiredTier,
+    languagePairId: draft.languagePairId,
+    courseId: draft.courseId,
   };
 }

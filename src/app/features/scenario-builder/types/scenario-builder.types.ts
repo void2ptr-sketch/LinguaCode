@@ -1,5 +1,4 @@
 import type { CardSearchCriteria, ScenarioCardSource } from '../../../entities/card/model';
-import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 
 /**
  * Type alias for the card source mode field of a scenario.
@@ -21,7 +20,8 @@ export type ScenarioDraft = {
   description: string;
   cardSource: ScenarioCardSource;
   published: boolean;
-  languagePair?: LanguagePair;
+  /** Numeric language pair ID from `language_pairs.id`. */
+  languagePairId?: number;
   courseId?: string;
   programId?: string;
   lessonId?: string;

@@ -103,7 +103,9 @@ type LanguagePairDto = {
 | DELETE | `/scenarios/:id`             | Удаление сценария                  |
 | GET    | `/scenarios/by-card/:cardId` | Сценарии, использующие карточку    |
 
-Пейлоад записи: `ScenarioWritePayload` (`title`, `description`, `cardSource`, `published`, `languagePair?`, `courseId?`, `programId?`, `lessonId?`, `requiredTier?`).
+Пейлоад записи: `ScenarioWritePayload` (`title`, `description`, `cardSource`, `published`, `languagePairId?`, `courseId?`, `programId?`, `lessonId?`, `requiredTier?`).
+
+> **`languagePairId`** — опционально. Numeric ID из `language_pairs.id`. Фронтенд передаёт `languagePairId`; поле `languagePair` (code pair) устарело и не передаётся. Бэкенд разрешает `languagePairId` → `languagePair` через кэш `LanguagePairsApiService`.
 
 ### Поля `ScenarioWritePayload`
 
@@ -169,8 +171,8 @@ type LanguagePairDto = {
 | PUT    | `/lessons/:id`                    | Обновление урока                          |
 | DELETE | `/lessons/:id`                    | Удаление урока (каскад на cards/scenarios)|
 
-Пейлоад создания: `LessonCreatePayload` (`programId`, `title`, `description`, `order`, `prerequisiteLessonIds`).
-Пейлоад обновления: `LessonUpdatePayload` (`title`, `description`, `order`, `prerequisiteLessonIds`).
+Пейлоад создания: `LessonCreatePayload` (`programId`, `title`, `description`, `order`, `prerequisiteLessonIds`, `languagePairId?`, `courseId?`).
+Пейлоад обновления: `LessonUpdatePayload` (`title`, `description`, `order`, `prerequisiteLessonIds`, `languagePairId?`, `courseId?`).
 
 ### Поля `LessonCreatePayload`
 
@@ -181,6 +183,8 @@ type LanguagePairDto = {
 | `description`             | string   | Описание урока                                   |
 | `order`                   | number   | Порядок в программе (> 0)                        |
 | `prerequisiteLessonIds`   | string[] | JSON-массив ID пререквизитов (опционально)       |
+| `languagePairId`          | number   | ID языковой пары (извлекается из программы)      |
+| `courseId`                | string   | ID курса (извлекается из программы)              |
 
 ### Поля `LessonUpdatePayload`
 
@@ -190,10 +194,13 @@ type LanguagePairDto = {
 | `description`             | string   | Описание урока                                   |
 | `order`                   | number   | Порядок в программе (> 0)                        |
 | `prerequisiteLessonIds`   | string[] | JSON-массив ID пререквизитов (опционально)       |
+| `languagePairId`          | number   | ID языковой пары (опционально)                    |
+| `courseId`                | string   | ID курса (опционально)                            |
 
 > **`prerequisiteLessonIds`** — строка (JSON), а не массив. Фронтенд сериализует/десериализует через `stringifyPrerequisiteLessonIds` / `parsePrerequisiteLessonIds`.
 > **`programId`** — immutable, не передаётся в update-пейлоаде.
 > **`scenarioIds`** — не передаётся в payload (управляется через scenario-builder).
+> **`languagePairId`** и **`courseId`** — наследуются из родительской программы при создании; на update — опционально, по умолчанию сохраняется текущее значение.
 
 ## Курсы (`/courses`)
 
@@ -211,9 +218,11 @@ type LanguagePairDto = {
 | PUT    | `/courses/:id`                      | Обновление курса (403 на чужой)            |
 | DELETE | `/courses/:id`                      | Удаление курса                             |
 
-Пейлоад записи: `CourseWritePayload` (`title`, `description`, `published`, `languagePair?`, `programs[]`, `authoring?`, `practiceSettings?`, `requiredTier?`, `slug?`).
+Пейлоад записи: `CourseWritePayload` (`title`, `description`, `published`, `languagePairId?`, `languagePair?`, `programs[]`, `authoring?`, `practiceSettings?`, `requiredTier?`, `slug?`).
 На бэкенд отправляется: `courseDescription` (из `description`), `authorId` (из UserStore).
 `requiredTier` отправляется как есть; `slug` отправляется только если не пустая строка (бэкенд автогенерирует из `title`).
+
+> **`languagePairId`** — опционально. Numeric ID из `language_pairs.id`. Фронтенд передаёт `languagePairId` и (для обратной совместимости) `languagePair` (code pair). Бэкенд предпочитает `languagePairId`.
 
 ### Настройки практики (`practiceSettings`)
 

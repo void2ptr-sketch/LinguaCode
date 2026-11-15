@@ -1,4 +1,3 @@
-import type { LanguagePair } from '../../language-pair/model/language-pair.types';
 import type {
   Scenario,
   ScenarioIndexEntry,
@@ -21,8 +20,8 @@ export type ScenarioWritePayload = {
   cardSource: Scenario['cardSource'];
   /** Whether the scenario is published and visible to learners. */
   published: boolean;
-  /** Optional language pair for the scenario (e.g., { source: 'zh', target: 'en' }). */
-  languagePair?: LanguagePair;
+  /** Numeric language pair ID from `language_pairs.id`. */
+  languagePairId?: number;
   /** Optional course ID (Long on backend). */
   courseId?: number;
   /** Optional program ID (Long on backend). */

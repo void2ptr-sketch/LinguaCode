@@ -88,6 +88,9 @@ export type CourseWritePayload = {
   title: string;
   description: string;
   published: boolean;
+  /** Numeric language pair ID from `language_pairs.id`. Resolved to `{ known, learning }` by the API service. */
+  languagePairId?: number;
+  /** Legacy: language pair codes (kept for backward compatibility; prefer `languagePairId`). */
   languagePair?: LanguagePair;
   programs: readonly ProgramWritePayload[];
   /** Authoring status: draft | planned | generating | materialized | failed */

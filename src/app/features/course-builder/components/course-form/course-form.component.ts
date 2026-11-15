@@ -17,6 +17,7 @@ import {
   DEFAULT_COURSE_PRACTICE_SETTINGS,
 } from '../../../../entities/course/model';
 import type { CourseRequiredTier } from '../../../../entities/course/repository/course-catalog.port';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import { MarkdownFieldComponent } from '../../../../shared/utils/markdown-field';
 import type { CourseFormDraft } from '../../types';
 
@@ -67,6 +68,14 @@ export class CourseFormComponent {
    * When `true`, all input controls are disabled and no changes can be made.
    */
   readonly readOnly = input(false);
+
+  /**
+   * Available language pairs from the registry.
+   *
+   * @remarks
+   * Populated by the parent dialog component via `LanguagePairsApiService.listAll()`.
+   */
+  readonly languagePairs = input<readonly LanguagePairDto[]>([]);
 
   /**
    * Emits the updated course form draft when the user makes changes.
@@ -282,6 +291,18 @@ export class CourseFormComponent {
    */
   updateSlug(value: string): void {
     this.updateDraft({ ...this.draft(), slug: value });
+  }
+
+  /**
+   * Updates the language pair ID in the draft.
+   *
+   * @param languagePairId — The numeric language pair ID, or null to clear.
+   */
+  onLanguagePairChange(languagePairId: number | null): void {
+    this.updateDraft({
+      ...this.draft(),
+      languagePairId: languagePairId ?? undefined,
+    });
   }
 
   // ── Export ──

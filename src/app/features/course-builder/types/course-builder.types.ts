@@ -37,7 +37,7 @@ export type ProgramFormDraft = {
  *
  * @remarks
  * Contains the full course structure including programs (each with lessons),
- * authoring notes, and practice settings.
+ * authoring notes, practice settings, and language pair.
  */
 export type CourseFormDraft = {
   title: string;
@@ -48,6 +48,8 @@ export type CourseFormDraft = {
   programs: readonly ProgramFormDraft[];
   requiredTier?: CourseRequiredTier;
   slug?: string;
+  /** Numeric language pair ID from `language_pairs.id`. */
+  languagePairId?: number;
 };
 
 /**

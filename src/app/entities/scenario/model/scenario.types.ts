@@ -15,6 +15,9 @@ export type Scenario = {
   cardSource: ScenarioCardSource;
   published: boolean;
   updatedAt: string;
+  /** Numeric language pair ID (from `language_pairs.id`). Resolved to `languagePair` by the API service. */
+  languagePairId?: number;
+  /** Resolved from `languagePairId` via `LanguagePairsApiService` cache (read-only, derived). */
   languagePair?: LanguagePair;
   courseId?: string;
   programId?: string;

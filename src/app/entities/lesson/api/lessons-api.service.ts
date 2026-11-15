@@ -22,6 +22,10 @@ export type LessonCreatePayload = {
   prerequisiteLessonIds: readonly string[];
   published?: boolean;
   requiredTier: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+  /** Numeric language pair ID from `language_pairs.id`, inherited from parent course. */
+  languagePairId?: number;
+  /** Course ID this lesson belongs to (inherited from parent program → course). */
+  courseId?: string;
 };
 
 /**
@@ -37,6 +41,10 @@ export type LessonUpdatePayload = {
   prerequisiteLessonIds: readonly string[];
   published?: boolean;
   requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+  /** Numeric language pair ID from `language_pairs.id`. */
+  languagePairId?: number;
+  /** Course ID this lesson belongs to. */
+  courseId?: string;
 };
 
 /**
@@ -114,6 +122,13 @@ export class LessonsApiService {
         prerequisiteLessonIds: stringifyPrerequisiteLessonIds(payload.prerequisiteLessonIds),
         published: payload.published,
         requiredTier: payload.requiredTier,
+        // languagePairId и courseId отсутствуют в сгенерированном типе
+        // (LessonCreateRequest), но поддерживаются бэкендом.
+        ...(payload.languagePairId != null ? { languagePairId: payload.languagePairId } : {}),
+        ...(payload.courseId != null ? { courseId: payload.courseId } : {}),
+      } as import('../../../shared/api/generated/models/lessonCreateRequest').LessonCreateRequest & {
+        languagePairId?: number;
+        courseId?: string;
       }),
     );
     return mapLessonDto(response.data);
@@ -138,6 +153,13 @@ export class LessonsApiService {
         prerequisiteLessonIds: stringifyPrerequisiteLessonIds(payload.prerequisiteLessonIds),
         published: payload.published,
         requiredTier: payload.requiredTier,
+        // languagePairId и courseId отсутствуют в сгенерированном типе
+        // (LessonUpdateRequest), но поддерживаются бэкендом.
+        ...(payload.languagePairId != null ? { languagePairId: payload.languagePairId } : {}),
+        ...(payload.courseId != null ? { courseId: payload.courseId } : {}),
+      } as import('../../../shared/api/generated/models/lessonUpdateRequest').LessonUpdateRequest & {
+        languagePairId?: number;
+        courseId?: string;
       }),
     );
     return mapLessonDto(response.data);
@@ -213,5 +235,7 @@ function mapLessonDto(dto: Lesson | undefined): LessonEntity {
     updatedAt: dto?.updatedAt ?? '',
     published: dto?.published,
     requiredTier: dto?.requiredTier,
+    languagePairId: dto?.languagePairId as number | undefined,
+    courseId: dto?.courseId ? String(dto.courseId) : undefined,
   };
 }

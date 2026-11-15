@@ -1,12 +1,10 @@
-import type { LanguagePair } from '../../../../entities/language-pair/model/language-pair.types';
-
 /**
  * Data passed to the scenario builder dialog.
  *
  * @remarks
  * Discriminated union: `mode: 'create'` for new scenarios — optionally
  * pre-filled with context from the content explorer tree (course, program,
- * lesson, language pair); `mode: 'edit'` includes the scenario ID to edit.
+ * lesson, language pair ID); `mode: 'edit'` includes the scenario ID to edit.
  */
 export type ScenarioBuilderDialogData =
   | {
@@ -14,7 +12,7 @@ export type ScenarioBuilderDialogData =
       lessonId?: string;
       courseId?: string;
       programId?: string;
-      languagePair?: LanguagePair;
+      languagePairId?: number;
     }
   | { mode: 'edit'; scenarioId: string };
 

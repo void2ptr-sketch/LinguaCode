@@ -22,7 +22,6 @@ import { CourseSearchService } from '../../../entities/course/search/course-sear
 import { ScormExportService } from '../../../entities/course/api/scorm-export.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type { CourseWithPrograms } from '../../../entities/course/model';
-import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 
 import { ContentExplorerPageComponent } from './content-explorer-page.component';
 
@@ -285,10 +284,10 @@ describe('ContentExplorerPageComponent — onAddScenarioRequested (scenario bind
     });
   });
 
-  it('passes full context (courseId, programId, lessonId, languagePair) to openCreate', async () => {
+  it('passes full context (courseId, programId, lessonId, languagePairId) to openCreate', async () => {
     selectEditableLessonNode();
-    // Set languagePair on the course node data
-    courseNode.data = { languagePair: { known: 'ru', learning: 'en' } as LanguagePair };
+    // Set languagePairId on the course node data
+    courseNode.data = { languagePairId: 1 };
     mockScenarioBuilderDialog.openCreate.mockResolvedValue({ saved: true, scenarioId: 's-new' });
 
     await component['onAddScenarioRequested']();
@@ -298,7 +297,7 @@ describe('ContentExplorerPageComponent — onAddScenarioRequested (scenario bind
         lessonId: 'l2',
         courseId: 'course-1',
         programId: 'p1',
-        languagePair: { known: 'ru', learning: 'en' },
+        languagePairId: 1,
       }),
     );
   });
@@ -324,7 +323,7 @@ describe('ContentExplorerPageComponent — onAddScenarioRequested (scenario bind
         lessonId: 'l-orphan',
         courseId: undefined,
         programId: undefined,
-        languagePair: undefined,
+        languagePairId: undefined,
       }),
     );
   });

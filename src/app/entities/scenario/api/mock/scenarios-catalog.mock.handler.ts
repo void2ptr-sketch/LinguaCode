@@ -10,6 +10,9 @@ import type {
 import { paginateArray } from '../../../../shared/utils/pagination';
 import { UserStore } from '../../../user/model/user.store';
 import { AuthStore } from '../../../auth/services/auth.store';
+import { LanguagePairsApiService } from '../../../language-pair/api/language-pairs-api.service';
+import type { LanguagePair } from '../../../language-pair/model/language-pair.types';
+import type { ContentLanguage } from '../../../card/model';
 
 import { scenarioToIndexEntry } from '../../mapping/scenario-index.mapper';
 import { filterScenarioIndex } from '../../search/scenario-search.utils';
@@ -19,7 +22,6 @@ import {
 } from '../../utils/scenario-card-source.utils';
 import {
   cardIndexMatchesPair,
-  normalizeLanguagePair,
 } from '../../../language-pair/utils/language-pair.utils';
 import { isEditableContentAuthor, isSystemAuthor } from '../../../user/lib/system-author.constants';
 import { CardsCatalogMockHandler } from '../../../card/api/mock/cards-catalog.mock.handler';
@@ -34,6 +36,10 @@ export class ScenariosCatalogMockHandler {
   private readonly userStore = inject(UserStore);
   private readonly authStore = inject(AuthStore);
   private readonly contentSeed = inject(ContentSeedRepository);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
+
+  /** Cache of numeric pair ID → `{ known, learning }` codes. */
+  private pairIdCache: Map<number, LanguagePair> | null = null;
 
   private scenarios: Scenario[] | null = null;
 
@@ -77,7 +83,7 @@ export class ScenariosCatalogMockHandler {
 
   async create(payload: ScenarioWritePayload): Promise<Scenario> {
     await this.ensureData();
-    const languagePair = normalizeLanguagePair(payload.languagePair);
+    const languagePair = await this.resolveLanguagePair(payload.languagePairId);
     await this.assertValidCardSource(payload.cardSource, languagePair);
 
     const scenario: Scenario = {
@@ -88,6 +94,7 @@ export class ScenariosCatalogMockHandler {
       cardSource: payload.cardSource,
       published: payload.published,
       updatedAt: new Date().toISOString(),
+      languagePairId: payload.languagePairId,
       languagePair,
       courseId: payload.courseId ? String(payload.courseId) : undefined,
       programId: payload.programId ? String(payload.programId) : undefined,
@@ -109,7 +116,8 @@ export class ScenariosCatalogMockHandler {
     }
 
     this.assertCanEdit(current);
-    const languagePair = normalizeLanguagePair(payload.languagePair ?? current.languagePair);
+    const languagePairId = payload.languagePairId ?? current.languagePairId;
+    const languagePair = await this.resolveLanguagePair(languagePairId);
     await this.assertValidCardSource(payload.cardSource, languagePair);
 
     const updated: Scenario = isSystemAuthor(current.authorId)
@@ -127,6 +135,7 @@ export class ScenariosCatalogMockHandler {
           cardSource: payload.cardSource,
           published: payload.published,
           updatedAt: new Date().toISOString(),
+          languagePairId,
           languagePair,
         };
 
@@ -170,6 +179,33 @@ export class ScenariosCatalogMockHandler {
 
   resetCache(): void {
     this.scenarios = null;
+  }
+
+  /**
+   * Resolves a numeric `languagePairId` to a `LanguagePair` code pair
+   * using the cached `/language-pairs` endpoint.
+   */
+  private async resolveLanguagePair(
+    languagePairId: number | undefined,
+  ): Promise<LanguagePair | undefined> {
+    if (languagePairId == null) return undefined;
+
+    if (!this.pairIdCache) {
+      try {
+        const all = await this.languagePairsApi.listAll();
+        this.pairIdCache = new Map(
+          all.map((p) => [
+            p.id,
+            { known: p.knownCode as ContentLanguage, learning: p.learningCode as ContentLanguage },
+          ]),
+        );
+      } catch {
+        this.pairIdCache = new Map();
+      }
+    }
+
+    const result = this.pairIdCache.get(languagePairId);
+    return result ?? undefined;
   }
 
   private async ensureData(): Promise<void> {

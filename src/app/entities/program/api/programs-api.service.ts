@@ -272,6 +272,7 @@ export class ProgramsApiService implements ProgramCatalogPort {
       requiredTier: payload.requiredTier,
       order: payload.order,
       published: payload.published,
+      languagePairId: payload.languagePairId,
     };
     return firstValueFrom(
       this.http.put<ProgramResponse>(buildApiUrl(`/programs/${programId}`), body).pipe(

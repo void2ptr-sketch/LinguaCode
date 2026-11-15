@@ -79,8 +79,9 @@ describe('CourseBuilderDialogComponent', () => {
     expect(component.draft().title).toBe('');
   });
 
-  it('should have dirty computed', () => {
-    const { component } = createComponent({ mode: 'create', courseId: '' });
+  it('should have dirty computed', async () => {
+    const { component, fixture } = createComponent({ mode: 'create', courseId: '' });
+    await fixture.whenStable();
     expect(component.dirty()).toBe(false);
   });
 
@@ -114,8 +115,9 @@ describe('CourseBuilderDialogComponent', () => {
     expect(component.dirty()).toBe(true);
   });
 
-  it('should not be dirty when draft equals initial', () => {
-    const { component } = createComponent({ mode: 'create', courseId: '' });
+  it('should not be dirty when draft equals initial', async () => {
+    const { component, fixture } = createComponent({ mode: 'create', courseId: '' });
+    await fixture.whenStable();
     expect(component.dirty()).toBe(false);
   });
 

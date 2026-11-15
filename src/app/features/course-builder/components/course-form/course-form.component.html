@@ -52,7 +52,26 @@
       </div>
     </mat-tab>
 
-    <!-- ── Вкладка 2: Практика ── -->
+    <!-- ── Вкладка 2: Связи ── -->
+    <mat-tab label="Связи">
+      <div class="course-form__tab-panel">
+        <mat-form-field appearance="outline">
+          <mat-label>Языковая пара</mat-label>
+          <mat-select
+            [disabled]="readOnly()"
+            [ngModel]="draft().languagePairId"
+            (ngModelChange)="onLanguagePairChange($event)"
+          >
+            <mat-option value="">Без пары</mat-option>
+            @for (pair of languagePairs(); track pair.id) {
+              <mat-option [value]="pair.id">{{ pair.knownCode }} → {{ pair.learningCode }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-tab>
+
+    <!-- ── Вкладка 3: Практика ── -->
     <mat-tab label="Практика">
       <div class="course-form__tab-panel">
         <mat-form-field appearance="outline">
@@ -105,7 +124,7 @@
       </div>
     </mat-tab>
 
-    <!-- ── Вкладка 3: Идея каталога ── -->
+    <!-- ── Вкладка 4: Идея каталога ── -->
     <mat-tab label="Идея каталога">
       <div class="course-form__tab-panel">
         <p class="course-form__idea-hint">
@@ -125,7 +144,7 @@
       </div>
     </mat-tab>
 
-    <!-- ── Вкладка 4: Публикация ── -->
+    <!-- ── Вкладка 5: Публикация ── -->
     <mat-tab label="Публикация">
       <div class="course-form__tab-panel">
         <mat-checkbox
@@ -152,7 +171,7 @@
       </div>
     </mat-tab>
 
-    <!-- ── Вкладка 5: Экспорт ── -->
+    <!-- ── Вкладка 6: Экспорт ── -->
     <mat-tab label="Экспорт">
       <div class="course-form__tab-panel">
         <p class="course-form__export-hint">

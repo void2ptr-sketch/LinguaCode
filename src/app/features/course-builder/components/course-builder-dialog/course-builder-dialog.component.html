@@ -13,6 +13,7 @@
     <app-course-form
       [draft]="draft()"
       [readOnly]="!isEditable()"
+      [languagePairs]="languagePairs()"
       (draftChange)="updateDraft($event)"
       (exportRequested)="onExportRequested($event)"
     />

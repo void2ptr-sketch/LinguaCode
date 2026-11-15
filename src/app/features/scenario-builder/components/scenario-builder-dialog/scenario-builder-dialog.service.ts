@@ -7,7 +7,6 @@ import type {
   ScenarioBuilderDialogData,
   ScenarioBuilderDialogResult,
 } from './scenario-builder-dialog.types';
-import type { LanguagePair } from '../../../../entities/language-pair/model/language-pair.types';
 
 /**
  * Service for opening the scenario builder dialog.
@@ -36,7 +35,7 @@ export class ScenarioBuilderDialogService {
       lessonId?: string;
       courseId?: string;
       programId?: string;
-      languagePair?: LanguagePair;
+      languagePairId?: number;
     },
   ): Promise<ScenarioBuilderDialogResult | undefined> {
     return this.open({ mode: 'create', ...context });

@@ -12,7 +12,7 @@ describe('ScenarioEditorFormComponent', () => {
     title: 'Test Scenario',
     description: 'Test description',
     published: false,
-    languagePair: { known: 'ru', learning: 'en' },
+    languagePairId: 1,
     sourceMode: 'fixed',
     fixedCardIds: ['card-1', 'card-2'],
     criteria: {},
@@ -67,50 +67,6 @@ describe('ScenarioEditorFormComponent', () => {
           description: 'Test description',
         }),
       );
-    });
-  });
-
-  describe('onKnownLanguageChange', () => {
-    it('should update known language in languagePair', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      fixture.componentRef.setInput('draft', baseDraft);
-      component.onKnownLanguageChange('en');
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          languagePair: { known: 'en', learning: 'en' },
-        }),
-      );
-    });
-  });
-
-  describe('onLearningLanguageChange', () => {
-    it('should update learning language in languagePair', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      fixture.componentRef.setInput('draft', baseDraft);
-      component.onLearningLanguageChange('zh');
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          languagePair: { known: 'ru', learning: 'zh' },
-        }),
-      );
-    });
-  });
-
-  describe('languagePairInvalid', () => {
-    it('should return false when languages differ', () => {
-      fixture.componentRef.setInput('draft', {
-        ...baseDraft,
-        languagePair: { known: 'ru', learning: 'en' },
-      });
-      expect(component.languagePairInvalid()).toBe(false);
-    });
-
-    it('should return true when languages are equal', () => {
-      fixture.componentRef.setInput('draft', {
-        ...baseDraft,
-        languagePair: { known: 'ru', learning: 'ru' },
-      });
-      expect(component.languagePairInvalid()).toBe(true);
     });
   });
 

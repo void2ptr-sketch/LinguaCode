@@ -62,7 +62,7 @@ import type { Scenario, ScenarioIndexEntry } from '../../../entities/scenario/mo
 import { CardEditorStore } from '../../../features/card-editor/services/card-editor.store';
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import { LessonsApiService } from '../../../entities/lesson/api/lessons-api.service';
-import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
+
 
 const TREE_WIDTH_KEY = 'content_explorer_tree_width';
 const TREE_MIN_WIDTH = 280;
@@ -332,11 +332,12 @@ export class ContentExplorerPageComponent implements OnInit {
       !lessonNode.virtual &&
       lessonNode.editable;
 
+    const courseEntry = courseNode?.data as { knownLanguage?: string; learningLanguage?: string; languagePairId?: number } | undefined;
     const context = {
       lessonId: lessonNode?.kind === 'lesson' ? lessonNode.id : undefined,
       courseId: courseNode?.id,
       programId: programNode?.id,
-      languagePair: (courseNode?.data as { languagePair?: LanguagePair })?.languagePair,
+      languagePairId: courseEntry?.languagePairId,
     };
 
     this.acting.set(true);

@@ -25,7 +25,9 @@ export type Course = {
   description: string;
   /** ID of the course author. */
   authorId: string;
-  /** Language pair this course teaches (known → learning). */
+  /** Numeric language pair ID (from `language_pairs.id`). */
+  languagePairId?: number;
+  /** Language pair this course teaches (known → learning). Resolved from `languagePairId` by the API service. */
   languagePair: LanguagePair;
   /** IDs of programs contained in this course, in order. */
   programIds: readonly string[];

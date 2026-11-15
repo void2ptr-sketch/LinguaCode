@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import type { CourseIndexEntry } from '../../../../entities/course/model';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import type { ProgramRequiredTier } from '../../../../entities/program/model';
 import type { ProgramFormDraft } from '../../types';
 import { PROGRAM_TITLE_MAX_LENGTH } from '../../utils';
@@ -21,12 +23,13 @@ const TIER_LABELS: Record<ProgramRequiredTier, string> = {
 /**
  * Presentational form component for creating and editing programs.
  *
- * Provides UI controls for the program title, access tier, and description.
+ * Provides UI controls for the program title, access tier, description,
+ * language pair, and parent course.
  *
  * @remarks
  * Stateless by design: receives the draft via a required input and emits
  * updates through the `draftChange` output. The parent component (e.g.
- * `ProgramBuilderDialogComponent`) owns the draft signal.
+ * `ProgramBuilderDialogComponent`) owns the draft value.
  * @see ProgramFormDraft
  */
 @Component({
@@ -59,6 +62,22 @@ export class ProgramFormComponent {
    * When `true`, all input controls are disabled and no changes can be made.
    */
   readonly readOnly = input(false);
+
+  /**
+   * Available language pairs from the registry.
+   *
+   * @remarks
+   * Populated by the parent dialog component via `LanguagePairsApiService.listAll()`.
+   */
+  readonly languagePairs = input<readonly LanguagePairDto[]>([]);
+
+  /**
+   * Available courses for the program's parent course selector.
+   *
+   * @remarks
+   * Populated by the parent dialog component via `CourseSearchService.search()`.
+   */
+  readonly courses = input<readonly CourseIndexEntry[]>([]);
 
   /**
    * Emits the updated program form draft when the user makes changes.
@@ -103,5 +122,21 @@ export class ProgramFormComponent {
   /** Emits the draft with an updated order. */
   updateOrder(order: number): void {
     this.draftChange.emit({ ...this.draft(), order: Number(order) });
+  }
+
+  /** Emits the draft with an updated language pair ID. */
+  onLanguagePairChange(languagePairId: number | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      languagePairId: languagePairId ?? undefined,
+    });
+  }
+
+  /** Emits the draft with an updated course ID. */
+  onCourseIdChange(courseId: string | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      courseId: courseId ?? '',
+    });
   }
 }

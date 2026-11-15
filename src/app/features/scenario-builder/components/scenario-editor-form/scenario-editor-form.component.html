@@ -44,41 +44,19 @@
     <!-- ── Вкладка 2: Связи ── -->
     <mat-tab label="Связи">
       <div class="scenario-editor-form__tab-panel">
-        <div class="scenario-editor-form__languages">
-          <h2>Языковая пара</h2>
-
-          <div class="scenario-editor-form__language-row">
-            <mat-form-field appearance="outline">
-              <mat-label>Известный язык</mat-label>
-              <mat-select
-                [disabled]="readOnly()"
-                [ngModel]="draft().languagePair.known"
-                (ngModelChange)="onKnownLanguageChange($event)"
-              >
-                @for (language of languageService.getCodes(); track language) {
-                  <mat-option [value]="language">{{ languageService.getLabels()[language] }}</mat-option>
-                }
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Новый язык</mat-label>
-              <mat-select
-                [disabled]="readOnly()"
-                [ngModel]="draft().languagePair.learning"
-                (ngModelChange)="onLearningLanguageChange($event)"
-              >
-                @for (language of languageService.getCodes(); track language) {
-                  <mat-option [value]="language">{{ languageService.getLabels()[language] }}</mat-option>
-                }
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-
-        @if (languagePairInvalid()) {
-          <p class="scenario-editor-form__error">Языки должны отличаться.</p>
-        }
+        <mat-form-field appearance="outline">
+          <mat-label>Языковая пара</mat-label>
+          <mat-select
+            [disabled]="readOnly()"
+            [ngModel]="draft().languagePairId"
+            (ngModelChange)="onLanguagePairChange($event)"
+          >
+            <mat-option value="">Без пары</mat-option>
+            @for (pair of languagePairs(); track pair.id) {
+              <mat-option [value]="pair.id">{{ pair.knownCode }} → {{ pair.learningCode }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Привязка к курсу</mat-label>

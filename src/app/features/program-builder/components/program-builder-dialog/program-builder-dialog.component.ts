@@ -17,6 +17,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { firstValueFrom } from 'rxjs';
 
 import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
+import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
+import { CourseSearchService } from '../../../../entities/course';
+import type { CourseIndexEntry } from '../../../../entities/course/model';
 import { ProgramBuilderStore } from '../../services/program-builder.store';
 import {
   emptyProgramFormDraft,
@@ -55,6 +59,8 @@ export class ProgramBuilderDialogComponent implements OnInit {
   private readonly dialog = inject(MatDialog);
   readonly data = inject<ProgramBuilderDialogData>(MAT_DIALOG_DATA);
   readonly store = inject(ProgramBuilderStore);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
+  private readonly courseSearch = inject(CourseSearchService);
 
   /**
    * Current program form draft being edited or created.
@@ -90,7 +96,16 @@ export class ProgramBuilderDialogComponent implements OnInit {
     return this.store.isReadOnly() ? 'Просмотр программы' : 'Редактирование программы';
   });
 
+  /** Available language pairs from the registry. */
+  readonly languagePairs = signal<readonly LanguagePairDto[]>([]);
+  /** Available courses for the course selector. */
+  readonly courses = signal<readonly CourseIndexEntry[]>([]);
+
   async ngOnInit(): Promise<void> {
+    // Загрузить языковые пары и курсы до инициализации формы
+    await this.loadLanguagePairs();
+    await this.loadCourses();
+
     if (this.data.mode === 'create') {
       this.store.startCreate(this.data.courseId);
       const nextDraft = emptyProgramFormDraft(this.data.courseId);
@@ -109,6 +124,27 @@ export class ProgramBuilderDialogComponent implements OnInit {
     const nextDraft = programToFormDraft(program);
     this.draft.set(nextDraft);
     this.initialSnapshot.set(serializeProgramFormDraft(nextDraft));
+  }
+
+  private async loadLanguagePairs(): Promise<void> {
+    try {
+      const pairs = await this.languagePairsApi.listAll();
+      this.languagePairs.set(pairs);
+    } catch {
+      this.languagePairs.set([]);
+    }
+  }
+
+  private async loadCourses(): Promise<void> {
+    try {
+      const page = await this.courseSearch.search({
+        scope: 'all',
+        page: { page: 0, pageSize: 100 },
+      });
+      this.courses.set(page.items);
+    } catch {
+      this.courses.set([]);
+    }
   }
 
   /**

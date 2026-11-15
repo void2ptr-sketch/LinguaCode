@@ -10,6 +10,8 @@ import { ProgramBuilderDialogComponent } from './program-builder-dialog.componen
 import { ProgramBuilderStore } from '../../services/program-builder.store';
 import type { Program } from '../../../../entities/program/model/program.types';
 import type { ProgramBuilderDialogData } from './program-builder-dialog.types';
+import { CourseSearchService } from '../../../../entities/course';
+import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
 
 function createComponent(
   data: ProgramBuilderDialogData,
@@ -36,12 +38,20 @@ function createComponent(
       { provide: MatDialogRef, useValue: { close: closeSpy } },
       { provide: MAT_DIALOG_DATA, useValue: data },
       provideHttpClient(),
+      {
+        provide: CourseSearchService,
+        useValue: { search: vi.fn().mockResolvedValue({ items: [], totalItems: 0, page: 0, pageSize: 100, totalPages: 0 }) },
+      },
+      {
+        provide: LanguagePairsApiService,
+        useValue: { listAll: vi.fn().mockResolvedValue([]) },
+      },
     ],
   });
 
   if (mockStore) {
+    const store = TestBed.inject(ProgramBuilderStore);
     Object.entries(mockStore).forEach(([key, value]) => {
-      const store = TestBed.inject(ProgramBuilderStore);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (store as any)[key] = value;
     });
@@ -82,13 +92,15 @@ describe('ProgramBuilderDialogComponent', () => {
     expect(component.draft().title).toBe('');
   });
 
-  it('should initialize draft courseId from dialog data', () => {
-    const { component } = createComponent({ mode: 'create', courseId: 'c1' });
+  it('should initialize draft courseId from dialog data', async () => {
+    const { component, fixture } = createComponent({ mode: 'create', courseId: 'c1' });
+    await fixture.whenStable();
     expect(component.draft().courseId).toBe('c1');
   });
 
-  it('should have dirty computed', () => {
-    const { component } = createComponent({ mode: 'create' });
+  it('should have dirty computed', async () => {
+    const { component, fixture } = createComponent({ mode: 'create' });
+    await fixture.whenStable();
     expect(component.dirty()).toBe(false);
   });
 
@@ -130,14 +142,14 @@ describe('ProgramBuilderDialogComponent', () => {
   });
 
   it('should close without result when the program fails to load', async () => {
-    const { component, closeSpy } = createComponent(
+    const { component, closeSpy, fixture } = createComponent(
       { mode: 'edit', programId: 'p1' },
       {
         startEdit: async () => undefined,
         editingProgram: signal(null),
       },
     );
-    await Promise.resolve();
+    await fixture.whenStable();
     expect(closeSpy).toHaveBeenCalledWith(undefined);
     expect(component.title()).toBe('Редактирование программы');
   });
@@ -197,8 +209,10 @@ describe('ProgramBuilderDialogComponent', () => {
   // ── cancel ──
 
   it('should close dialog with saved:false when not dirty', async () => {
-    const { component, closeSpy } = createComponent({ mode: 'create' });
-    await component.cancel();
+    const { component, closeSpy, fixture } = createComponent({ mode: 'create' });
+    await fixture.whenStable();
+    component.cancel();
+    await fixture.whenStable();
     expect(closeSpy).toHaveBeenCalledWith({ saved: false });
   });
 });

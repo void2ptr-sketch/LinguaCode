@@ -23,6 +23,10 @@ export type LessonFormDraft = {
   published?: boolean;
   /** Access tier required to view the lesson. */
   requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+  /** Numeric language pair ID from `language_pairs.id`, inherited from parent course. */
+  languagePairId?: number;
+  /** Course ID this lesson belongs to (inherited from parent program → course). */
+  courseId?: string;
 };
 
 /**

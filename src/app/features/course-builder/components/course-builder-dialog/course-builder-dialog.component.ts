@@ -12,6 +12,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
+import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import { CourseBuilderStore } from '../../services/course-builder.store';
 import { CoursePdfExportService } from '../../services/course-pdf-export.service';
 import {
@@ -52,8 +54,12 @@ export class CourseBuilderDialogComponent implements OnInit {
   private readonly pdfExportService = inject(CoursePdfExportService);
   private readonly snackBar = inject(MatSnackBar);
   private readonly logger = inject(AppLoggerService);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
   readonly data = inject<CourseBuilderDialogData>(MAT_DIALOG_DATA);
   readonly store = inject(CourseBuilderStore);
+
+  /** Available language pairs from the registry. */
+  readonly languagePairs = signal<readonly LanguagePairDto[]>([]);
 
   /**
    * Current course form draft being edited or created.
@@ -100,6 +106,9 @@ export class CourseBuilderDialogComponent implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
+    // Загрузить языковые пары до инициализации формы
+    await this.loadLanguagePairs();
+
     if (this.data.mode === 'create') {
       this.store.startCreate();
       const nextDraft = emptyCourseFormDraft();
@@ -118,6 +127,15 @@ export class CourseBuilderDialogComponent implements OnInit {
     const nextDraft = courseToFormDraft(course);
     this.draft.set(nextDraft);
     this.initialSnapshot.set(serializeCourseFormDraft(nextDraft));
+  }
+
+  private async loadLanguagePairs(): Promise<void> {
+    try {
+      const pairs = await this.languagePairsApi.listAll();
+      this.languagePairs.set(pairs);
+    } catch {
+      this.languagePairs.set([]);
+    }
   }
 
   /**

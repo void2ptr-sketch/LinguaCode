@@ -351,9 +351,15 @@ export class CoursesApiService implements CourseCatalogPort {
       body['authorId'] = Number(userId);
     }
     // Backend expects the numeric language pair ID (BIGINT)
-    const languagePairId = await this.resolveLanguagePairId(payload.languagePair);
-    if (languagePairId !== undefined) {
-      body['languagePairId'] = languagePairId;
+    // Prefer explicit languagePairId from payload; fall back to resolving from languagePair codes
+    const explicitPairId = (payload as { languagePairId?: number }).languagePairId;
+    if (explicitPairId !== undefined) {
+      body['languagePairId'] = explicitPairId;
+    } else {
+      const resolvedId = await this.resolveLanguagePairId(payload.languagePair);
+      if (resolvedId !== undefined) {
+        body['languagePairId'] = resolvedId;
+      }
     }
     // Programs are sent for mock handler compatibility (backend creates them separately)
     if (payload.programs && payload.programs.length > 0) {
@@ -410,9 +416,15 @@ export class CoursesApiService implements CourseCatalogPort {
       published: payload.published,
     };
     // Backend expects the numeric language pair ID (BIGINT)
-    const languagePairId = await this.resolveLanguagePairId(payload.languagePair);
-    if (languagePairId !== undefined) {
-      body['languagePairId'] = languagePairId;
+    // Prefer explicit languagePairId from payload; fall back to resolving from languagePair codes
+    const explicitPairId = (payload as { languagePairId?: number }).languagePairId;
+    if (explicitPairId !== undefined) {
+      body['languagePairId'] = explicitPairId;
+    } else {
+      const resolvedId = await this.resolveLanguagePairId(payload.languagePair);
+      if (resolvedId !== undefined) {
+        body['languagePairId'] = resolvedId;
+      }
     }
     // NOTE: This endpoint updates only the `education_courses` table. Nested
     // programs/lessons are persisted through ProgramsApiService/LessonsApiService,

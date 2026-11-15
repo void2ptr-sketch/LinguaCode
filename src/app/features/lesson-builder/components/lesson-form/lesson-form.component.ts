@@ -6,7 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import type { CourseIndexEntry } from '../../../../entities/course/model';
 import type { Lesson } from '../../../../entities/course/model/lesson.types';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
+import type { ProgramWithLessons } from '../../../../entities/program/model';
 import type { LessonFormDraft } from '../../types';
 import { LESSON_TITLE_MAX_LENGTH } from '../../utils';
 
@@ -21,8 +24,8 @@ const TIER_LABELS: Record<string, string> = {
 /**
  * Presentational form component for creating and editing lessons.
  *
- * Provides UI controls for the lesson title, description, display order and
- * prerequisite lessons.
+ * Provides UI controls for the lesson title, description, display order,
+ * prerequisite lessons, and connections (language pair, course, program).
  *
  * @remarks
  * Stateless by design: receives the draft via a required input and emits
@@ -74,6 +77,30 @@ export class LessonFormComponent {
   readonly readOnly = input(false);
 
   /**
+   * Available language pairs from the registry.
+   *
+   * @remarks
+   * Populated by the parent dialog component via `LanguagePairsApiService.listAll()`.
+   */
+  readonly languagePairs = input<readonly LanguagePairDto[]>([]);
+
+  /**
+   * Available courses for the course selector.
+   *
+   * @remarks
+   * Populated by the parent dialog component via `CourseSearchService.search()`.
+   */
+  readonly courses = input<readonly CourseIndexEntry[]>([]);
+
+  /**
+   * Available programs for the program selector.
+   *
+   * @remarks
+   * Populated by the parent dialog component via `ProgramsApiService.getByCourse()`.
+   */
+  readonly programs = input<readonly ProgramWithLessons[]>([]);
+
+  /**
    * Emits the updated lesson form draft when the user makes changes.
    *
    * @remarks
@@ -121,6 +148,30 @@ export class LessonFormComponent {
     this.draftChange.emit({
       ...this.draft(),
       requiredTier: (tier as LessonFormDraft['requiredTier']) ?? undefined,
+    });
+  }
+
+  /** Emits the draft with an updated language pair ID. */
+  onLanguagePairChange(languagePairId: number | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      languagePairId: languagePairId ?? undefined,
+    });
+  }
+
+  /** Emits the draft with an updated course ID. */
+  onCourseIdChange(courseId: string | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      courseId: courseId ?? undefined,
+    });
+  }
+
+  /** Emits the draft with an updated program ID. */
+  onProgramIdChange(programId: string | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      programId: programId ?? '',
     });
   }
 }

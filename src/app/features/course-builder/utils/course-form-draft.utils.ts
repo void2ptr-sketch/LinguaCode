@@ -68,6 +68,7 @@ export const emptyCourseFormDraft = (): CourseFormDraft => ({
   programs: [emptyProgramFormDraft(0)],
   requiredTier: 'FREE',
   slug: '',
+  languagePairId: undefined,
 });
 
 export function courseToFormDraft(
@@ -101,6 +102,7 @@ export function courseToFormDraft(
       .sort((left, right) => left.order - right.order),
     requiredTier: (course as unknown as { requiredTier?: CourseRequiredTier }).requiredTier ?? 'FREE',
     slug: course.slug,
+    languagePairId: course.languagePairId,
   };
 }
 
@@ -164,6 +166,10 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
     requiredTier: draft.requiredTier,
     slug: draft.slug,
     programs,
+    // languagePairId is resolved to LanguagePair by the API service
+    // (CoursesApiService.resolveLanguagePairId). The form draft stores the
+    // numeric ID; the payload expects { known, learning } codes.
+    languagePairId: draft.languagePairId,
   };
 }
 

@@ -13,6 +13,8 @@
     <app-program-form
       [draft]="draft()"
       [readOnly]="store.isReadOnly()"
+      [languagePairs]="languagePairs()"
+      [courses]="courses()"
       (draftChange)="updateDraft($event)"
     />
   }

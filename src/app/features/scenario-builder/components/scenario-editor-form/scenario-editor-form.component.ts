@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -6,11 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import type { ContentLanguage } from '../../../../entities/card/model';
 import type { CourseIndexEntry } from '../../../../entities/course/model';
 import type { ProgramWithLessons } from '../../../../entities/program/model';
 import type { Lesson } from '../../../../entities/course/model/lesson.types';
-import { LanguageService } from '../../../../entities/language-pair/services/language.service';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import type { ScenarioFormDraft } from '../../utils/scenario-form-draft.utils';
 
 /** Payment tier labels in Russian. */
@@ -50,11 +49,11 @@ export class ScenarioEditorFormComponent {
   readonly programs = input<readonly ProgramWithLessons[]>([]);
   /** Lessons for the selected program (loaded from API). */
   readonly lessons = input<readonly Lesson[]>([]);
+  /** Available language pairs from the registry. */
+  readonly languagePairs = input<readonly LanguagePairDto[]>([]);
 
   /** Emits the updated scenario form draft when the user makes changes. */
   readonly draftChange = output<ScenarioFormDraft>();
-
-  private readonly languageService = inject(LanguageService);
 
   /** Available tier options. */
   readonly tierOptions = Object.keys(TIER_LABELS) as string[];
@@ -91,15 +90,10 @@ export class ScenarioEditorFormComponent {
     });
   }
 
-  onKnownLanguageChange(known: ContentLanguage): void {
-    this.updateDraft({
-      languagePair: { ...this.draft().languagePair, known },
-    });
-  }
-
-  onLearningLanguageChange(learning: ContentLanguage): void {
-    this.updateDraft({
-      languagePair: { ...this.draft().languagePair, learning },
+  onLanguagePairChange(languagePairId: number | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      languagePairId: languagePairId ?? undefined,
     });
   }
 
@@ -120,10 +114,5 @@ export class ScenarioEditorFormComponent {
 
   scenarioOrderInvalid(): boolean {
     return (this.draft().scenarioOrder ?? 0) <= 0;
-  }
-
-  languagePairInvalid(): boolean {
-    const pair = this.draft().languagePair;
-    return pair.known === pair.learning;
   }
 }

@@ -20,6 +20,8 @@ import { CardCatalogSearchStore } from '../../../../entities/card/lib/store/card
 import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { ProgramsApiService } from '../../../../entities/program/api';
+import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import {
   emptyScenarioFormDraft,
@@ -62,6 +64,7 @@ export class ScenarioBuilderDialogComponent implements OnInit {
   readonly store = inject(ScenarioBuilderStore);
   private readonly userStore = inject(UserStore);
   private readonly programsApi = inject(ProgramsApiService);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
 
   /** Current scenario form draft being edited or created. */
   readonly draft = signal<ScenarioFormDraft>(emptyScenarioFormDraft());
@@ -90,15 +93,20 @@ export class ScenarioBuilderDialogComponent implements OnInit {
   readonly programs = signal<readonly ProgramWithLessons[]>([]);
   /** Lessons loaded for the currently selected program. */
   readonly lessons = signal<readonly Lesson[]>([]);
+  /** Available language pairs from the registry. */
+  readonly languagePairs = signal<readonly LanguagePairDto[]>([]);
 
   async ngOnInit(): Promise<void> {
+    // Загрузить языковые пары до инициализации формы
+    await this.loadLanguagePairs();
+
     if (this.data.mode === 'create') {
       this.store.startCreate();
       // Загрузить список курсов до createDraft — без него dropdown пустой
       // и pre-filled courseId не совпадёт ни с одной опцией mat-select.
       await this.store.loadCourses();
       const context = {
-        languagePair: this.data.languagePair,
+        languagePairId: this.data.languagePairId,
         courseId: this.data.courseId,
         programId: this.data.programId,
         lessonId: this.data.lessonId,
@@ -139,6 +147,15 @@ export class ScenarioBuilderDialogComponent implements OnInit {
     // Load lessons if a program is selected
     if (nextDraft.programId) {
       await this.loadLessons(nextDraft.programId);
+    }
+  }
+
+  private async loadLanguagePairs(): Promise<void> {
+    try {
+      const pairs = await this.languagePairsApi.listAll();
+      this.languagePairs.set(pairs);
+    } catch {
+      this.languagePairs.set([]);
     }
   }
 
