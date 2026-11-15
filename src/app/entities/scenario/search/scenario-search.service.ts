@@ -105,6 +105,41 @@ export class ScenarioSearchService {
   }
 
   /**
+   * Adds a card to a scenario's card source.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @param order - Optional 1-based position inside the scenario.
+   * @returns The updated scenario.
+   */
+  addCard(scenarioId: string, cardId: string, order?: number): Promise<Scenario> {
+    return this.run(() => this.scenariosApi.addCard(scenarioId, cardId, order));
+  }
+
+  /**
+   * Removes a card from a scenario's card source.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @returns The updated scenario.
+   */
+  removeCard(scenarioId: string, cardId: string): Promise<Scenario> {
+    return this.run(() => this.scenariosApi.removeCard(scenarioId, cardId));
+  }
+
+  /**
+   * Moves a card to a new position inside a scenario.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @param order - The new 1-based position.
+   * @returns The updated scenario.
+   */
+  moveCard(scenarioId: string, cardId: string, order: number): Promise<Scenario> {
+    return this.run(() => this.scenariosApi.moveCard(scenarioId, cardId, order));
+  }
+
+  /**
    * Deletes a scenario by ID.
    *
    * @param scenarioId - The scenario ID.

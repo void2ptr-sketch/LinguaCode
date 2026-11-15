@@ -9,6 +9,7 @@
         @case ('Вопрос') {
           <app-card-form-question-tab
             [availableCourses]="availableCourses()"
+            [availablePrograms]="availablePrograms()"
             [availableLessons]="availableLessons()"
             [availableScenarios]="availableScenarios()"
             [draft]="draft()"
@@ -17,6 +18,7 @@
             (knownLanguageChange)="onKnownLanguageChange($event)"
             (learningLanguageChange)="onLearningLanguageChange($event)"
             (courseIdChange)="updateCourseId($event)"
+            (programIdChange)="updateProgramId($event)"
             (lessonIdChange)="updateLessonId($event)"
             (scenarioIdChange)="updateScenarioId($event)"
             (titleChange)="updateTitle($event)"

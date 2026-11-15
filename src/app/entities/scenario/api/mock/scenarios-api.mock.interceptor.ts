@@ -36,11 +36,46 @@ const extractScenarioId = (url: string): string | null => {
     return null;
   }
 
-  if (rest.startsWith('by-card/') || rest.startsWith('by-lesson/')) {
+  if (
+    rest.startsWith('by-card/') ||
+    rest.startsWith('by-lesson/') ||
+    rest.includes('/cards')
+  ) {
     return null;
   }
 
   return rest;
+};
+
+/** Parsed `/scenarios/{scenarioId}/cards[/{cardId}]` request. */
+type ScenarioCardsRequest = {
+  scenarioId: string;
+  cardId?: string;
+};
+
+/**
+ * Parses a scenario-card URL.
+ *
+ * @param url - The request URL.
+ * @returns The scenario and card IDs, or `null` when the URL is not a
+ *   scenario-card endpoint.
+ */
+const parseScenarioCardsRequest = (url: string): ScenarioCardsRequest | null => {
+  const prefix = `${buildApiUrl('/scenarios/')}`;
+  if (!url.includes(prefix)) {
+    return null;
+  }
+
+  const rest = url.slice(url.indexOf(prefix) + prefix.length).split(/[?#]/)[0];
+  const parts = rest.split('/');
+  if (parts.length < 2 || parts[1] !== 'cards') {
+    return null;
+  }
+
+  return {
+    scenarioId: parts[0],
+    cardId: parts[2],
+  };
 };
 
 /**
@@ -92,6 +127,35 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     return defer(() => handler.search(criteria)).pipe(
       map((data) => new HttpResponse({ status: 200, body: { data } })),
     );
+  }
+
+  const scenarioCardsRequest = parseScenarioCardsRequest(req.url);
+  if (scenarioCardsRequest) {
+    const { scenarioId: targetScenarioId, cardId } = scenarioCardsRequest;
+
+    if (req.method === 'POST' && !cardId) {
+      const body = req.body as { cardId?: number; order?: number };
+      return defer(() =>
+        handler.addCard(
+          targetScenarioId,
+          String(body?.cardId ?? ''),
+          body?.order,
+        ),
+      ).pipe(map((data) => new HttpResponse({ status: 200, body: { data } })));
+    }
+
+    if (req.method === 'DELETE' && cardId) {
+      return defer(() => handler.removeCard(targetScenarioId, cardId)).pipe(
+        map((data) => new HttpResponse({ status: 200, body: { data } })),
+      );
+    }
+
+    if (req.method === 'PATCH' && cardId) {
+      const body = req.body as { order?: number };
+      return defer(() => handler.moveCard(targetScenarioId, cardId, Number(body?.order ?? 1))).pipe(
+        map((data) => new HttpResponse({ status: 200, body: { data } })),
+      );
+    }
   }
 
   const usageCardId = extractCardIdFromScenarioUsage(req.url);

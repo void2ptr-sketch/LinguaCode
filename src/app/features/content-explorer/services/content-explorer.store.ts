@@ -393,6 +393,7 @@ export class ContentExplorerStore {
     try {
       const page = await this.cardSearchService.search({
         query,
+        scope: 'all',
         page: { page: 0, pageSize: 100 },
       });
       return page.items;

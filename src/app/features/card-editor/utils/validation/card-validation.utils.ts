@@ -880,34 +880,58 @@ export const normalizeCodeTraceCardDraft = (
  * @returns A validated Card, or `null` if validation fails.
  */
 export const normalizeCardDraft = (draft: CardDraft, cardId: string): Card | null => {
+  let card: Card | null = null;
+
   switch (draft.kind) {
     case 'select':
-      return normalizeSelectCardDraft(draft, cardId);
+      card = normalizeSelectCardDraft(draft, cardId);
+      break;
     case 'code-select':
-      return normalizeCodeSelectCardDraft(draft, cardId);
+      card = normalizeCodeSelectCardDraft(draft, cardId);
+      break;
     case 'memory':
-      return normalizeMemoryCardDraft(draft, cardId);
+      card = normalizeMemoryCardDraft(draft, cardId);
+      break;
     case 'symbol':
-      return normalizeSymbolCardDraft(draft, cardId);
+      card = normalizeSymbolCardDraft(draft, cardId);
+      break;
     case 'sound':
-      return normalizeSoundCardDraft(draft, cardId);
+      card = normalizeSoundCardDraft(draft, cardId);
+      break;
     case 'timed':
-      return normalizeTimedCardDraft(draft, cardId);
+      card = normalizeTimedCardDraft(draft, cardId);
+      break;
     case 'keyboard':
-      return normalizeKeyboardCardDraft(draft, cardId);
+      card = normalizeKeyboardCardDraft(draft, cardId);
+      break;
     case 'draw':
-      return normalizeDrawCardDraft(draft, cardId);
+      card = normalizeDrawCardDraft(draft, cardId);
+      break;
     case 'tone':
-      return normalizeToneCardDraft(draft, cardId);
+      card = normalizeToneCardDraft(draft, cardId);
+      break;
     case 'reading':
-      return normalizeReadingCardDraft(draft, cardId);
+      card = normalizeReadingCardDraft(draft, cardId);
+      break;
     case 'flip':
-      return normalizeFlipCardDraft(draft, cardId);
+      card = normalizeFlipCardDraft(draft, cardId);
+      break;
     case 'cloze':
-      return normalizeClozeCardDraft(draft, cardId);
+      card = normalizeClozeCardDraft(draft, cardId);
+      break;
     case 'code-trace':
-      return normalizeCodeTraceCardDraft(draft, cardId);
+      card = normalizeCodeTraceCardDraft(draft, cardId);
+      break;
   }
+
+  if (!card) {
+    return null;
+  }
+
+  return {
+    ...card,
+    programId: draft.programId || undefined,
+  };
 };
 
 /**

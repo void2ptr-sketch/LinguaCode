@@ -56,6 +56,7 @@ import { ScenarioBuilderStore } from '../../../features/scenario-builder/service
 import type { ScenarioListScope } from '../../../entities/scenario/model';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { CardEditorDialogService } from '../../../features/card-editor/components/card-editor-dialog/card-editor-dialog.service';
+import type { CardEditorCreateContext } from '../../../features/card-editor/components/card-editor-dialog/card-editor-dialog.types';
 import { ScormExportService } from '../../../entities/course/api/scorm-export.service';
 import { ScenarioSearchService } from '../../../entities/scenario/search/scenario-search.service';
 import type { Scenario, ScenarioIndexEntry } from '../../../entities/scenario/model';
@@ -242,13 +243,17 @@ export class ContentExplorerPageComponent implements OnInit {
           break;
         }
         case 'card': {
+          const parentScenario = node.parentId ? this.store.getByKey(node.parentId) : null;
           const result = await this.cardEditorDialog.openEdit(node.id);
           if (!result?.saved) {
             break;
           }
-          const parentScenario = node.parentId ? this.store.getByKey(node.parentId) : null;
           if (parentScenario && parentScenario.kind === 'scenario') {
             await this.store.refreshNode(parentScenario);
+          }
+          // The card may have been moved to another scenario.
+          if (result.scenarioId && result.scenarioId !== parentScenario?.id) {
+            await this.refreshScenarioNode(result.scenarioId);
           }
           break;
         }
@@ -760,8 +765,9 @@ export class ContentExplorerPageComponent implements OnInit {
   /**
    * Создание карточки из проводника контента.
    *
-   * Открывает диалог создания карточки. После успешного создания
-   * обновляет родительский сценарий в дереве.
+   * Передаёт в диалог контекст выбранной иерархии (курс → программа → урок →
+   * сценарий), чтобы новая карточка сразу попала в нужный сценарий. После
+   * сохранения обновляет сценарий в дереве.
    */
   protected async onCreateCardRequested(kind: string): Promise<void> {
     const node = this.store.selectedNode();
@@ -769,20 +775,55 @@ export class ContentExplorerPageComponent implements OnInit {
       return;
     }
 
+    const context = this.cardCreateContextForNode(node);
+
     this.acting.set(true);
     try {
       const result = await this.cardEditorDialog.openCreate(
         kind as import('../../../entities/card/model').CardKind,
+        context,
       );
       if (result?.saved) {
-        const parentScenario = node.parentId ? this.store.getByKey(node.parentId) : null;
-        if (parentScenario && parentScenario.kind === 'scenario') {
-          await this.store.refreshNode(parentScenario);
-        }
+        await this.refreshScenarioNode(result.scenarioId);
         this.snackBar.open('Карточка создана', 'Закрыть', { duration: 4000 });
       }
     } finally {
       this.acting.set(false);
+    }
+  }
+
+  /**
+   * Builds the card create context from the selected node path.
+   *
+   * @remarks
+   * For a card node the scenario is its parent; for a scenario node it is the
+   * node itself. Course/program/lesson IDs come from the same path.
+   */
+  private cardCreateContextForNode(node: ExplorerNode): CardEditorCreateContext {
+    const path = this.store.pathOf(node);
+    const scenarioNode =
+      node.kind === 'scenario' ? node : path.find((item) => item.kind === 'scenario');
+    const lessonNode = path.find((item) => item.kind === 'lesson');
+    const programNode = path.find((item) => item.kind === 'program');
+    const courseNode = path.find((item) => item.kind === 'course');
+
+    return {
+      scenarioId: scenarioNode?.id,
+      lessonId: lessonNode?.id,
+      programId: programNode?.id,
+      courseId: courseNode?.id,
+    };
+  }
+
+  /** Refreshes a loaded scenario node by ID, if it exists in the tree. */
+  private async refreshScenarioNode(scenarioId: string | undefined): Promise<void> {
+    if (!scenarioId) {
+      return;
+    }
+
+    const scenarioNode = this.store.getByKey(`scenario:${scenarioId}`);
+    if (scenarioNode) {
+      await this.store.refreshNode(scenarioNode);
     }
   }
 

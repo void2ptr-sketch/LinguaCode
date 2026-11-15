@@ -72,7 +72,43 @@ type LanguagePairDto = {
 > порядок из `cardSource.cardIds` / `Scenario.resolvedCardIds`. См.
 > [ARCHITECTURE.content-explorer.md](../ARCHITECTURE/ARCHITECTURE.content-explorer.md#сортировка-узлов-дерева).
 
-Критерии поиска (`CardSearchCriteria`): `query`, `knownLanguage`, `learningLanguage`, `tags`, `difficulty`, `kinds`, `page` (`page` / `pageSize`), `sort`. Параметры сериализуются через `buildCardSearchParams`.
+Критерии поиска (`CardSearchCriteria`): `query`, `knownLanguage`, `learningLanguage`,
+`languagePairId`, `programId`, `lessonId`, `scenarioId`, `courseId`, `tags`, `difficulty`,
+`kinds`, `published`, `scope`, `page` (`page` / `pageSize`), `sort`. Параметры
+сериализуются через `buildCardSearchParams`; `scope: 'all'` включает черновики.
+
+| Параметр | Тип | Описание |
+| --- | --- | --- |
+| `query` | string | Поиск по `title` |
+| `knownLanguage` / `learningLanguage` | string | ISO-коды языков |
+| `languagePairId` | number | ID языковой пары |
+| `courseId` / `programId` / `lessonId` / `scenarioId` | number | Фильтр по иерархии |
+| `difficulty` | `beginner\|intermediate\|advanced\|expert` | Сложность (в query — uppercase) |
+| `kinds` | string[] | Типы карточек |
+| `tags` | string[] | Теги |
+| `published` | boolean | Явный фильтр публикации |
+| `scope` | `mine\|all\|published` | Авторский режим |
+| `page` / `pageSize` | number | Пагинация |
+
+### Запись карточки (`CardCreateRequest` / `CardUpdateRequest`)
+
+Реализация: `CardBackendAdapter.toCreatePayload()` / `toUpdatePayload()`.
+
+| Поле | Create | Update | Описание |
+| --- | --- | --- | --- |
+| `title` | required | optional | 1–200 символов |
+| `kind` | required | optional | Uppercase enum типа карточки |
+| `dataJson` | optional | optional | JSON-строка контента |
+| `tags` | optional | optional | JSON-строка массива тегов |
+| `difficulty` | optional | optional | `BEGINNER/INTERMEDIATE/ADVANCED/EXPERT` |
+| `requiredTier` | required | optional | `FREE/STARTER/GROWTH/PREMIUM`; на update сохраняется текущий |
+| `languagePairId` | optional | optional | ID языковой пары |
+| `courseId` / `programId` / `lessonId` / `scenarioId` | optional | optional | Иерархия обучения |
+| `order` | optional | optional | Позиция в сценарии (≥ 1) |
+| `published` | optional | optional | Публикация |
+| `slug` | optional | optional | Пустой/blank не отправляется — бэкенд генерирует |
+
+> `id`, `authorId`, `createdAt`, `updatedAt` фронтенд не отправляет.
 
 ### Справочник тегов карточек (`/cards/tags`)
 
@@ -102,14 +138,24 @@ type LanguagePairDto = {
 
 Реализация: `ScenariosApiService` · порт `ScenarioCatalogPort` · mock `scenariosApiMockInterceptor`.
 
-| Метод  | Путь                         | Описание                           |
-| ------ | ---------------------------- | ---------------------------------- |
-| GET    | `/scenarios/search`          | Поиск + пагинация                  |
-| GET    | `/scenarios/:id`             | Сценарий по ID                     |
-| POST   | `/scenarios`                 | Создание сценария (201)            |
-| PUT    | `/scenarios/:id`             | Обновление сценария (403 на чужой) |
-| DELETE | `/scenarios/:id`             | Удаление сценария                  |
-| GET    | `/scenarios/by-card/:cardId` | Сценарии, использующие карточку    |
+| Метод  | Путь                            | Описание                              |
+| ------ | ------------------------------- | ------------------------------------- |
+| GET    | `/scenarios/search`             | Поиск + пагинация                     |
+| GET    | `/scenarios/:id`                | Сценарий по ID                        |
+| POST   | `/scenarios`                    | Создание сценария (201)               |
+| PUT    | `/scenarios/:id`                | Обновление сценария (403 на чужой)    |
+| DELETE | `/scenarios/:id`                | Удаление сценария                     |
+| GET    | `/scenarios/by-card/:cardId`    | Сценарии, использующие карточку       |
+| POST   | `/scenarios/:id/cards`          | Добавить карточку в `cardSource`      |
+| DELETE | `/scenarios/:id/cards/:cardId`  | Удалить карточку из `cardSource`      |
+| PATCH  | `/scenarios/:id/cards/:cardId`  | Переставить карточку (`{ order }`)    |
+
+Привязка карточек реализована через сгенерированный `ScenarioCardsService`
+(`scenariosAddCard` / `scenariosRemoveCard` / `scenariosMoveCard`) и обёрнута в
+`ScenariosApiService.addCard()` / `removeCard()` / `moveCard()`. Операции атомарные:
+бэкенд синхронизирует `scenario.cardSource.cardIds`, `card.scenarioId` и иерархию
+(`courseId` / `programId` / `lessonId`), а также нормализует `order` (1-based).
+Для сценариев с `cardSource.mode = 'criteria'` операции возвращают `409 Conflict`.
 
 Пейлоад записи: `ScenarioWritePayload` (`title`, `description`, `cardSource`, `published`, `languagePairId?`, `courseId?`, `programId?`, `lessonId?`, `requiredTier?`).
 

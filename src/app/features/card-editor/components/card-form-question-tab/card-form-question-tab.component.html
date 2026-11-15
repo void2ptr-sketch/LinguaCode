@@ -35,11 +35,25 @@
 </mat-form-field>
 
 <mat-form-field appearance="outline">
+  <mat-label>Программа</mat-label>
+  <mat-select
+    [ngModel]="draft().programId"
+    (ngModelChange)="updateProgramId($event)"
+    [disabled]="!draft().courseId"
+  >
+    <mat-option [value]="">Без программы</mat-option>
+    @for (program of availablePrograms(); track program.id) {
+      <mat-option [value]="program.id">{{ program.title }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
   <mat-label>Урок</mat-label>
   <mat-select
     [ngModel]="draft().lessonId"
     (ngModelChange)="updateLessonId($event)"
-    [disabled]="!draft().courseId"
+    [disabled]="!draft().programId"
   >
     <mat-option [value]="">Без урока</mat-option>
     @for (lesson of availableLessons(); track lesson.id) {

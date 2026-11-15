@@ -55,12 +55,33 @@ stateDiagram-v2
   Catalog --> TryDialog: «Протестировать»
 ```
 
+Из Проводника контента диалог открывается с контекстом сценария:
+`openCreate(kind, context)` / `openEdit(cardId)`. После сохранения страница
+обновляет старый и новый узел сценария через `refreshScenarioNode()`.
+
 ## Особенности (G12)
 
 - Режимы **Базовый / Расширенный** в dialog.
 - Kind-forms: choice, input, pairs, media, code-select.
 - Bilingual fields + `PhoneticLexeme` (G9/G10).
 - Index meta синхронизируется при save (`CardIndexEntry`).
+- Метаданные диалога: `requiredTier`, `published`, `slug` (read-only),
+  `languagePairId` (read-only), иерархия `courseId → programId → lessonId → scenarioId`,
+  `order`; `cardMeta` участвует в dirty-tracking.
+- `CardEditorStore` публикует `lastSavedCard` — страница использует его для обновления
+  дерева/выбора узла после online-save.
+
+## Интеграция с backend
+
+- `CardBackendAdapter` — единственная точка преобразования `Card` ↔ backend DTO:
+  читает `languagePairId`, `programId`, `published`, `order`, `slug`;
+  пишет `tags`, `difficulty`, `requiredTier`, иерархию, `order`, `published`.
+- `CardCreateRequest` не содержит `id`/`authorId`; пустой `slug` не отправляется.
+- `CardUpdateRequest.requiredTier` опционален — отправляется только при наличии значения.
+- Привязка к сценарию — `ScenarioCardsService` (`POST/DELETE/PATCH /scenarios/:id/cards`),
+  обёрнутый в `ScenariosApiService.addCard/removeCard/moveCard`.
+- Offline: `executeWithOfflineFallback` ставит `card.create/update/delete` в sync queue,
+  а метаданные сохраняются в overlay (`upsertCardIndexMetaOverride`).
 
 ## Зависимости
 

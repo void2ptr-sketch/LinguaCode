@@ -63,9 +63,9 @@ describe('cards API (mock interceptor)', () => {
       appearance: { theme: 'azure-blue', fontSize: 'md' },
     });
 
-    expect(created.id).toBe('select-created');
+    expect(created.id).toBeTruthy();
 
-    const stored = await api.getById('select-created');
+    const stored = await api.getById(created.id);
     expect(stored.title).toBe('Created');
   });
 

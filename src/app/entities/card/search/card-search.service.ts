@@ -60,6 +60,7 @@ export class CardSearchService {
 
     try {
       const page = await this.cardsApiService.search({
+        scope: 'all',
         page: { page: 0, pageSize: INDEX_CACHE_PAGE_SIZE },
       });
       this.indexCache.set(page.items);

@@ -2,6 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
+import { ScenarioCardsService } from '../../../shared/api/generated/scenario-cards';
+import type { ScenarioCardAddRequest } from '../../../shared/api/generated/models';
+
 import type {
   LegacyScenario,
   Scenario,
@@ -35,6 +38,7 @@ export type { ScenarioWritePayload } from '../repository/scenario-catalog.port';
 @Injectable({ providedIn: 'root' })
 export class ScenariosApiService implements ScenarioCatalogPort {
   private readonly http = inject(HttpClient);
+  private readonly scenarioCardsApi = inject(ScenarioCardsService);
   private readonly userStore = inject(UserStore);
   private readonly languagePairsApi = inject(LanguagePairsApiService);
   private readonly logger = inject(AppLoggerService);
@@ -430,6 +434,54 @@ export class ScenariosApiService implements ScenarioCatalogPort {
     return firstValueFrom(
       this.http.put<ApiResponse<Scenario>>(buildApiUrl(`/scenarios/${scenarioId}`), body),
     ).then((response) => response.data);
+  }
+
+  /**
+   * Adds a card to a scenario's `cardSource.cardIds`.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @param order - Optional 1-based position inside the scenario.
+   * @returns The updated scenario.
+   */
+  async addCard(scenarioId: string, cardId: string, order?: number): Promise<Scenario> {
+    const request: ScenarioCardAddRequest = {
+      cardId: Number(cardId),
+      ...(order !== undefined ? { order } : {}),
+    };
+    const response = await firstValueFrom(
+      this.scenarioCardsApi.scenariosAddCard(Number(scenarioId), request),
+    );
+    return this.mapScenario(response.data as unknown as Record<string, unknown>);
+  }
+
+  /**
+   * Removes a card from a scenario's `cardSource.cardIds`.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @returns The updated scenario.
+   */
+  async removeCard(scenarioId: string, cardId: string): Promise<Scenario> {
+    const response = await firstValueFrom(
+      this.scenarioCardsApi.scenariosRemoveCard(Number(scenarioId), Number(cardId)),
+    );
+    return this.mapScenario(response.data as unknown as Record<string, unknown>);
+  }
+
+  /**
+   * Moves a card to a new 1-based position inside a scenario.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @param order - The new 1-based position.
+   * @returns The updated scenario.
+   */
+  async moveCard(scenarioId: string, cardId: string, order: number): Promise<Scenario> {
+    const response = await firstValueFrom(
+      this.scenarioCardsApi.scenariosMoveCard(Number(scenarioId), Number(cardId), { order }),
+    );
+    return this.mapScenario(response.data as unknown as Record<string, unknown>);
   }
 
   /**

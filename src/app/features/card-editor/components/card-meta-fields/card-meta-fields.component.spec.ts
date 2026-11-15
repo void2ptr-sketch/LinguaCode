@@ -106,17 +106,30 @@ describe('CardMetaFieldsComponent', () => {
     expect(emitted.tags).toEqual(['single']);
   });
 
-  it('should updateUpdatedAt emit change', () => {
+  it('should updateRequiredTier emit change', () => {
     fixture.componentRef.setInput('meta', { difficulty: 'beginner' });
     fixture.detectChanges();
     const spy = vi.fn();
     component.metaChange.subscribe(spy);
 
-    component.updateUpdatedAt('2024-01-15T10:00:00Z');
+    component.updateRequiredTier('STARTER');
 
     expect(spy).toHaveBeenCalled();
     const emitted = spy.mock.lastCall?.[0] as CardIndexMetaOverride;
-    expect(emitted.updatedAt).toBe('2024-01-15T10:00:00Z');
+    expect(emitted.requiredTier).toBe('STARTER');
+  });
+
+  it('should updatePublished emit change', () => {
+    fixture.componentRef.setInput('meta', { difficulty: 'beginner' });
+    fixture.detectChanges();
+    const spy = vi.fn();
+    component.metaChange.subscribe(spy);
+
+    component.updatePublished(false);
+
+    expect(spy).toHaveBeenCalled();
+    const emitted = spy.mock.lastCall?.[0] as CardIndexMetaOverride;
+    expect(emitted.published).toBe(false);
   });
 
   it('should tagsString return empty when meta is undefined', () => {

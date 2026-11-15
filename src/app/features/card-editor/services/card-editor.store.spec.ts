@@ -136,6 +136,34 @@ describe('CardEditorStore', () => {
     expect(localStorage.getItem(USER_CONTENT_OVERLAY_KEY)).toContain('Новая');
   });
 
+  it('should expose the saved card via lastSavedCard after create', async () => {
+    const created = await store.createCard(
+      {
+        kind: 'select',
+        title: 'Сохранённая',
+        direction: 'known-to-learning',
+        promptKnown: 'Вопрос?',
+        optionsLearning: ['1', '2'],
+        optionsKnown: ['1', '2'],
+        optionsLexemes: emptyOptionLexemes(2),
+        correctIndex: 0,
+        appearance: { theme: 'azure-blue', fontSize: 'md' },
+        ...emptyLexemeCardDraft(),
+      },
+      { knownLanguage: 'ru', learningLanguage: 'en' },
+    );
+
+    expect(created).toBe(true);
+    expect(store.lastSavedCard()?.title).toBe('Сохранённая');
+  });
+
+  it('should clear lastSavedCard when entering create mode', () => {
+    store.lastSavedCard.set(selectCard as never);
+    store.startCreate('select');
+
+    expect(store.lastSavedCard()).toBeNull();
+  });
+
   it('should create memory card', async () => {
     const created = await store.createCard({
       kind: 'memory',

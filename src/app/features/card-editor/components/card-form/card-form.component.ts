@@ -119,7 +119,10 @@ export class CardFormComponent implements OnInit {
   /** Available courses for the current language pair, loaded asynchronously. */
   readonly availableCourses = signal<readonly CourseOption[]>([]);
 
-  /** Available lessons for the selected course, loaded asynchronously. */
+  /** Available programs for the selected course, loaded asynchronously. */
+  readonly availablePrograms = signal<readonly { id: string; title: string }[]>([]);
+
+  /** Available lessons for the selected program, loaded asynchronously. */
   readonly availableLessons = signal<readonly LessonOption[]>([]);
 
   /** Available scenarios for the selected lesson. */
@@ -183,14 +186,21 @@ export class CardFormComponent implements OnInit {
     const courses = await this.hierarchyService.loadCourses(known, learning, pairKey);
     this.availableCourses.set(courses);
 
-    // Если у карточки уже выбран курс — загружаем уроки и сценарии
+    // Если у карточки уже выбрана иерархия — загружаем программы, уроки и сценарии.
     const draft = this.draft();
     if (draft.courseId) {
-      const lessons = await this.hierarchyService.loadLessons(draft.courseId);
+      const programs = await this.hierarchyService.loadPrograms(draft.courseId);
+      this.availablePrograms.set(programs.map((program) => ({ id: program.id, title: program.title })));
+    }
+    if (draft.programId) {
+      const lessons = await this.hierarchyService.loadLessons(draft.programId);
       this.availableLessons.set(lessons);
     }
-    if (draft.courseId && draft.lessonId) {
-      const scenarios = this.hierarchyService.getScenariosForLesson(draft.courseId, draft.lessonId);
+    if (draft.programId && draft.lessonId) {
+      const scenarios = this.hierarchyService.getScenariosForLesson(
+        draft.programId,
+        draft.lessonId,
+      );
       this.availableScenarios.set(scenarios);
     }
   }
@@ -292,12 +302,39 @@ export class CardFormComponent implements OnInit {
    * Resets lessons and scenarios. Loads lessons asynchronously if a course is selected.
    */
   async updateCourseId(courseId: string): Promise<void> {
-    this.updateDraft({ ...this.draft(), courseId, lessonId: '', scenarioId: '' });
+    this.updateDraft({
+      ...this.draft(),
+      courseId,
+      programId: '',
+      lessonId: '',
+      scenarioId: '',
+    });
+    this.availablePrograms.set([]);
     this.availableLessons.set([]);
     this.availableScenarios.set([]);
 
     if (courseId) {
-      const lessons = await this.hierarchyService.loadLessons(courseId);
+      const programs = await this.hierarchyService.loadPrograms(courseId);
+      this.availablePrograms.set(
+        programs.map((program) => ({ id: program.id, title: program.title })),
+      );
+    }
+  }
+
+  /**
+   * Updates the selected program and loads associated lessons.
+   *
+   * @param programId - The selected program ID (empty string to deselect).
+   * @remarks
+   * Resets lessons and scenarios. Loads lessons asynchronously if a program is selected.
+   */
+  async updateProgramId(programId: string): Promise<void> {
+    this.updateDraft({ ...this.draft(), programId, lessonId: '', scenarioId: '' });
+    this.availableLessons.set([]);
+    this.availableScenarios.set([]);
+
+    if (programId) {
+      const lessons = await this.hierarchyService.loadLessons(programId);
       this.availableLessons.set(lessons);
     }
   }
@@ -314,9 +351,9 @@ export class CardFormComponent implements OnInit {
     this.availableScenarios.set([]);
 
     if (lessonId) {
-      const courseId = this.draft().courseId;
-      if (courseId) {
-        const scenarios = this.hierarchyService.getScenariosForLesson(courseId, lessonId);
+      const programId = this.draft().programId;
+      if (programId) {
+        const scenarios = this.hierarchyService.getScenariosForLesson(programId, lessonId);
         this.availableScenarios.set(scenarios);
       }
     }

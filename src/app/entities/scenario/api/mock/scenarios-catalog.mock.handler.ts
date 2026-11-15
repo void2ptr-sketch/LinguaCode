@@ -153,6 +153,101 @@ export class ScenariosCatalogMockHandler {
     return updated;
   }
 
+  /**
+   * Adds a card to the scenario's `cardSource.cardIds` list.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @param order - Optional 1-based position.
+   * @returns The updated scenario.
+   */
+  async addCard(scenarioId: string, cardId: string, order?: number): Promise<Scenario> {
+    await this.ensureData();
+    const current = this.scenarios!.find((item) => item.id === scenarioId);
+    if (!current) {
+      throw notFound('Сценарий не найден');
+    }
+    if (current.cardSource.mode === 'criteria') {
+      throw new Error('Нельзя добавить карточку в сценарий по критериям');
+    }
+
+    const cardIds = [...current.cardSource.cardIds];
+    if (!cardIds.includes(cardId)) {
+      const position = order !== undefined ? Math.max(0, order - 1) : cardIds.length;
+      cardIds.splice(position, 0, cardId);
+    }
+
+    return this.saveCardSource(scenarioId, current, cardIds);
+  }
+
+  /**
+   * Removes a card from the scenario's `cardSource.cardIds` list.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @returns The updated scenario.
+   */
+  async removeCard(scenarioId: string, cardId: string): Promise<Scenario> {
+    await this.ensureData();
+    const current = this.scenarios!.find((item) => item.id === scenarioId);
+    if (!current) {
+      throw notFound('Сценарий не найден');
+    }
+    if (current.cardSource.mode === 'criteria') {
+      throw new Error('Нельзя удалить карточку из сценария по критериям');
+    }
+
+    return this.saveCardSource(
+      scenarioId,
+      current,
+      current.cardSource.cardIds.filter((id) => id !== cardId),
+    );
+  }
+
+  /**
+   * Moves a card to a new 1-based position inside the scenario.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @param order - The new 1-based position.
+   * @returns The updated scenario.
+   */
+  async moveCard(scenarioId: string, cardId: string, order: number): Promise<Scenario> {
+    await this.ensureData();
+    const current = this.scenarios!.find((item) => item.id === scenarioId);
+    if (!current) {
+      throw notFound('Сценарий не найден');
+    }
+    if (current.cardSource.mode === 'criteria') {
+      throw new Error('Нельзя изменить порядок в сценарии по критериям');
+    }
+
+    const cardIds = current.cardSource.cardIds.filter((id) => id !== cardId);
+    const position = Math.min(Math.max(0, order - 1), cardIds.length);
+    cardIds.splice(position, 0, cardId);
+
+    return this.saveCardSource(scenarioId, current, cardIds);
+  }
+
+  private saveCardSource(
+    scenarioId: string,
+    current: Scenario,
+    cardIds: readonly string[],
+  ): Scenario {
+    const updated: Scenario = {
+      ...current,
+      cardSource:
+        current.cardSource.mode === 'snapshot'
+          ? { ...current.cardSource, cardIds }
+          : { mode: 'fixed', cardIds },
+      updatedAt: new Date().toISOString(),
+    };
+
+    this.scenarios = this.scenarios!.map((item) => (item.id === scenarioId ? updated : item));
+    this.persist();
+    return updated;
+  }
+
   async delete(scenarioId: string): Promise<void> {
     await this.ensureData();
 

@@ -96,6 +96,7 @@ describe('CardSearchService', () => {
     expect(service.error()).toBeNull();
     expect(service.indexEntries()).toEqual([mockIndexEntry]);
     expect(cardsApiService.search).toHaveBeenCalledWith({
+      scope: 'all',
       page: { page: 0, pageSize: 1000 },
     });
   });

@@ -95,8 +95,14 @@ export class CardEditorDialogComponent implements OnInit {
     learningLanguage: this.userStore.languagePair().learning,
   });
 
-  /** Card index meta override (tags, hierarchy references). */
+  /** Card index meta override (tags, difficulty, tier, publication, slug). */
   readonly cardMeta = signal<CardIndexMetaOverride | undefined>(undefined);
+
+  /** Whether the current save operation is in progress. */
+  readonly saving = signal(false);
+
+  /** Save error displayed inside the dialog. */
+  readonly saveError = signal<string | null>(null);
 
   /** Current editor UX mode ('basic' or 'advanced'). */
   readonly editorUxMode = signal<CardEditorUxMode>(loadEditorUxMode());
@@ -106,6 +112,9 @@ export class CardEditorDialogComponent implements OnInit {
 
   /** Internal snapshot of the initial meta for dirty tracking. */
   private readonly initialMetaSnapshot = signal('');
+
+  /** Internal snapshot of the initial card meta for dirty tracking. */
+  private readonly initialCardMetaSnapshot = signal('');
 
   /** Computed default appearance from user preferences. */
   readonly defaultAppearance = computed(() => {
@@ -121,7 +130,8 @@ export class CardEditorDialogComponent implements OnInit {
   readonly dirty = computed(
     () =>
       serializeDraft(this.draft()) !== this.initialSnapshot() ||
-      JSON.stringify(this.indexMeta()) !== this.initialMetaSnapshot(),
+      JSON.stringify(this.indexMeta()) !== this.initialMetaSnapshot() ||
+      JSON.stringify(this.cardMeta()) !== this.initialCardMetaSnapshot(),
   );
 
   /**
@@ -159,16 +169,34 @@ export class CardEditorDialogComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     if (this.data.mode === 'create') {
       this.store.startCreate(this.data.kind);
-      const nextDraft = this.store.emptyDraft(this.data.kind);
-      const nextMeta = {
+      const context = this.data.context;
+      const nextDraft: CardDraft = {
+        ...this.store.emptyDraft(this.data.kind),
+        courseId: context?.courseId ?? '',
+        programId: context?.programId ?? '',
+        lessonId: context?.lessonId ?? '',
+        scenarioId: context?.scenarioId ?? '',
+      };
+      const nextMeta: CardIndexMetaDraft = {
         knownLanguage: this.userStore.languagePair().known,
         learningLanguage: this.userStore.languagePair().learning,
+        languagePairId: context?.languagePairId,
       };
+      const nextCardMeta: CardIndexMetaOverride = {
+        knownLanguage: nextMeta.knownLanguage,
+        learningLanguage: nextMeta.learningLanguage,
+        languagePairId: nextMeta.languagePairId,
+        tags: [...indexTagsForDraft(nextDraft)],
+        requiredTier: 'FREE',
+        published: true,
+      };
+
       this.draft.set(nextDraft);
       this.indexMeta.set(nextMeta);
-      this.cardMeta.set(undefined);
+      this.cardMeta.set(nextCardMeta);
       this.initialSnapshot.set(serializeDraft(nextDraft));
       this.initialMetaSnapshot.set(JSON.stringify(nextMeta));
+      this.initialCardMetaSnapshot.set(JSON.stringify(nextCardMeta));
       return;
     }
 
@@ -182,16 +210,30 @@ export class CardEditorDialogComponent implements OnInit {
 
     const nextDraft = this.store.cardToDraft(editing);
     this.draft.set(nextDraft);
-    this.cardMeta.set(editing.meta);
 
     // Initialize indexMeta from card meta or defaults
-    const nextMeta = {
+    const nextMeta: CardIndexMetaDraft = {
       knownLanguage: editing.meta?.knownLanguage ?? this.userStore.languagePair().known,
       learningLanguage: editing.meta?.learningLanguage ?? this.userStore.languagePair().learning,
+      languagePairId: editing.languagePairId ?? editing.meta?.languagePairId,
+    };
+    const nextCardMeta: CardIndexMetaOverride = {
+      ...editing.meta,
+      knownLanguage: nextMeta.knownLanguage,
+      learningLanguage: nextMeta.learningLanguage,
+      languagePairId: nextMeta.languagePairId,
+      tags: editing.tags ?? editing.meta?.tags ?? [],
+      difficulty: editing.difficulty ?? editing.meta?.difficulty,
+      requiredTier: editing.requiredTier ?? editing.meta?.requiredTier ?? 'FREE',
+      published: editing.published ?? editing.meta?.published ?? true,
+      slug: editing.slug ?? editing.meta?.slug,
+      updatedAt: editing.updatedAt ?? editing.meta?.updatedAt,
     };
     this.indexMeta.set(nextMeta);
+    this.cardMeta.set(nextCardMeta);
     this.initialSnapshot.set(serializeDraft(nextDraft));
     this.initialMetaSnapshot.set(JSON.stringify(nextMeta));
+    this.initialCardMetaSnapshot.set(JSON.stringify(nextCardMeta));
   }
 
   /**
@@ -262,21 +304,40 @@ export class CardEditorDialogComponent implements OnInit {
    * Closes the dialog with `{ saved: true }` on success.
    */
   async saveCard(): Promise<void> {
-    const draftToSave = this.prepareDraftForSave(this.draft());
-    // Use cardMeta if available, otherwise construct meta from indexMeta and draft tags
-    const meta = this.cardMeta() || {
-      knownLanguage: this.indexMeta().knownLanguage,
-      learningLanguage: this.indexMeta().learningLanguage,
-      tags: [...indexTagsForDraft(draftToSave)],
-    };
+    if (this.saving()) {
+      return;
+    }
 
-    const saved =
-      this.data.mode === 'create'
-        ? await this.store.createCard(draftToSave, meta)
-        : await this.store.updateCard(this.data.cardId, draftToSave, meta);
+    this.saving.set(true);
+    this.saveError.set(null);
 
-    if (saved) {
-      this.dialogRef.close({ saved: true });
+    try {
+      const draftToSave = this.prepareDraftForSave(this.draft());
+      const meta: CardIndexMetaOverride = {
+        ...this.cardMeta(),
+        knownLanguage: this.indexMeta().knownLanguage,
+        learningLanguage: this.indexMeta().learningLanguage,
+        languagePairId: this.cardMeta()?.languagePairId ?? this.indexMeta().languagePairId,
+        tags: this.cardMeta()?.tags ?? [...indexTagsForDraft(draftToSave)],
+      };
+
+      const saved =
+        this.data.mode === 'create'
+          ? await this.store.createCard(draftToSave, meta)
+          : await this.store.updateCard(this.data.cardId, draftToSave, meta);
+
+      if (saved) {
+        const savedCard = this.store.lastSavedCard();
+        this.dialogRef.close({
+          saved: true,
+          cardId: savedCard?.id,
+          scenarioId: savedCard?.scenarioId,
+        });
+      }
+    } catch {
+      this.saveError.set('Не удалось сохранить карточку. Проверьте соединение и повторите попытку.');
+    } finally {
+      this.saving.set(false);
     }
   }
 

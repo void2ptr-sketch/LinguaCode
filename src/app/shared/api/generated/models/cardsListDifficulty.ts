@@ -12,4 +12,5 @@ export const CardsListDifficulty = {
   BEGINNER: 'BEGINNER',
   INTERMEDIATE: 'INTERMEDIATE',
   ADVANCED: 'ADVANCED',
+  EXPERT: 'EXPERT',
 } as const;

@@ -24,6 +24,7 @@ import type {
 
 import type {
   CardCreateRequest,
+  CardFacetsResponse,
   CardList,
   CardResponse,
   CardUpdateRequest,
@@ -78,7 +79,6 @@ type HttpClientObserveOptions = HttpClientOptions & {
 
 type AngularHttpParamValue = string | number | boolean | Array<string | number | boolean>;
 type AngularHttpParamValueWithNullable = AngularHttpParamValue | null;
-type AngularObjectParamStrategy = 'flatten' | 'comma' | 'deepObject';
 
 function filterParams(
   params: Record<string, unknown>,
@@ -100,34 +100,11 @@ function filterParams(
 ): Record<string, unknown>;
 function filterParams(
   params: Record<string, unknown>,
-  requiredNullableKeys: ReadonlySet<string> | undefined,
-  preserveRequiredNullables: boolean | undefined,
-  passthroughKeys: ReadonlySet<string> | undefined,
-  objectParamStrategies: Readonly<Record<string, AngularObjectParamStrategy>>,
-): Record<string, AngularHttpParamValue>;
-function filterParams(
-  params: Record<string, unknown>,
   requiredNullableKeys: ReadonlySet<string> = new Set(),
   preserveRequiredNullables = false,
   passthroughKeys: ReadonlySet<string> = new Set(),
-  objectParamStrategies: Readonly<Record<string, AngularObjectParamStrategy>> = {},
 ): Record<string, unknown> {
   const filteredParams: Record<string, unknown> = {};
-  const filterPrimitiveArray = (
-    value: unknown[],
-  ): Array<string | number | boolean> =>
-    value
-      .filter(
-        (item) =>
-          item != null &&
-          (typeof item === 'string' ||
-            typeof item === 'number' ||
-            typeof item === 'boolean' ||
-            (item instanceof Date && !Number.isNaN(item.getTime()))),
-      )
-      .map((item) => (item instanceof Date ? item.toISOString() : item)) as Array<
-      string | number | boolean
-    >;
   for (const [key, value] of Object.entries(params)) {
     if (passthroughKeys.has(key)) {
       if (value !== undefined) {
@@ -135,67 +112,19 @@ function filterParams(
       }
       continue;
     }
-    if (
-      value != null &&
-      typeof value === 'object' &&
-      !Array.isArray(value) &&
-      Object.prototype.hasOwnProperty.call(objectParamStrategies, key)
-    ) {
-      const objectStrategy = objectParamStrategies[key];
-      const entries = Object.entries(value as Record<string, unknown>);
-      if (objectStrategy === 'comma') {
-        const commaParts: string[] = [];
-        for (const [prop, propValue] of entries) {
-          if (Array.isArray(propValue)) {
-            const filteredItems = filterPrimitiveArray(propValue);
-            if (filteredItems.length) {
-              commaParts.push(prop, ...filteredItems.map(String));
-            }
-          } else if (
-            propValue != null &&
-            (typeof propValue === 'string' ||
-              typeof propValue === 'number' ||
-              typeof propValue === 'boolean')
-          ) {
-            commaParts.push(prop, String(propValue));
-          } else if (
-            propValue instanceof Date &&
-            !Number.isNaN(propValue.getTime())
-          ) {
-            commaParts.push(prop, propValue.toISOString());
-          }
-        }
-        if (commaParts.length) {
-          filteredParams[key] = commaParts.join(',');
-        }
-      } else {
-        for (const [prop, propValue] of entries) {
-          const targetKey =
-            objectStrategy === 'deepObject' ? key + '[' + prop + ']' : prop;
-          if (Array.isArray(propValue)) {
-            const filteredProp = filterPrimitiveArray(propValue);
-            if (filteredProp.length) {
-              filteredParams[targetKey] = filteredProp;
-            }
-          } else if (
-            propValue != null &&
-            (typeof propValue === 'string' ||
-              typeof propValue === 'number' ||
-              typeof propValue === 'boolean')
-          ) {
-            filteredParams[targetKey] = propValue;
-          } else if (
-            propValue instanceof Date &&
-            !Number.isNaN(propValue.getTime())
-          ) {
-            filteredParams[targetKey] = propValue.toISOString();
-          }
-        }
-      }
-      continue;
-    }
     if (Array.isArray(value)) {
-      const filtered = filterPrimitiveArray(value);
+      const filtered = value
+        .filter(
+          (item) =>
+            item != null &&
+            (typeof item === 'string' ||
+              typeof item === 'number' ||
+              typeof item === 'boolean' ||
+              (item instanceof Date && !Number.isNaN(item.getTime()))),
+        )
+        .map((item) =>
+          item instanceof Date ? item.toISOString() : item,
+        ) as Array<string | number | boolean>;
       if (filtered.length) {
         filteredParams[key] = filtered;
       }
@@ -263,7 +192,7 @@ export class CardsService {
     );
   }
 /**
- * Updates an existing card
+ * Updates an existing card. All fields are optional; requiredTier is optional and keeps the current value when omitted.
  * @summary Update card
  */
  cardsUpdate<TData = CardResponse>(id: number,
@@ -304,7 +233,7 @@ export class CardsService {
     );
   }
 /**
- * Deletes a card by ID
+ * Deletes a card by ID and removes its references from all scenarios
  * @summary Delete card
  */
  cardsDelete<TData = void>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
@@ -338,15 +267,15 @@ export class CardsService {
     );
   }
 /**
- * Returns a paginated list of cards with optional filters and tier-based access control
+ * Returns a paginated list of cards with hierarchy, language, kind, tag and publication filters. Supports scope=published|all|mine and flat page/pageSize pagination.
  * @summary List cards
  */
- cardsList<TData = CardList>(params: CardsListParams, options?: HttpClientBodyOptions): Observable<TData>;
- cardsList<TData = CardList>(params: CardsListParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- cardsList<TData = CardList>(params: CardsListParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+ cardsList<TData = CardList>(params?: CardsListParams, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsList<TData = CardList>(params?: CardsListParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsList<TData = CardList>(params?: CardsListParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   cardsList<TData = CardList>(
-    params: CardsListParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
+    params?: CardsListParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
 
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -374,7 +303,7 @@ export class CardsService {
     );
   }
 /**
- * Creates a new card
+ * Creates a new card. Hierarchy, slug, publication and scenario link are persisted; authorId is taken from the JWT.
  * @summary Create card
  */
  cardsCreate<TData = CardResponse>(cardCreateRequest: CardCreateRequest, options?: HttpClientBodyOptions): Observable<TData>;
@@ -411,15 +340,15 @@ export class CardsService {
     );
   }
 /**
- * Searches cards by title with optional language pair filter. When no query is provided, returns published cards filtered by language pair.
+ * Searches cards by title with hierarchy, language, kind, tag and publication filters. scope=all includes drafts; scope=mine restricts results to the current author.
  * @summary Search cards
  */
- cardsSearch<TData = CardList>(params: CardsSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
- cardsSearch<TData = CardList>(params: CardsSearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- cardsSearch<TData = CardList>(params: CardsSearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+ cardsSearch<TData = CardList>(params?: CardsSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
+ cardsSearch<TData = CardList>(params?: CardsSearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsSearch<TData = CardList>(params?: CardsSearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
   cardsSearch<TData = CardList>(
-    params: CardsSearchParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
-    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
+    params?: CardsSearchParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]));
 
     if (options?.observe === 'events') {
       return this.http.get<TData>(
@@ -446,6 +375,40 @@ export class CardsService {
         params: filteredParams,}
     );
   }
+/**
+ * Returns facet counts by difficulty, kind, tag and language pair
+ * @summary Card facets
+ */
+ cardsFacets<TData = CardFacetsResponse>( options?: HttpClientBodyOptions): Observable<TData>;
+ cardsFacets<TData = CardFacetsResponse>( options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ cardsFacets<TData = CardFacetsResponse>( options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  cardsFacets<TData = CardFacetsResponse>(
+     options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/cards/facets`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/cards/facets`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/cards/facets`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
 };
 
 export type CardsGetByIdClientResult = NonNullable<CardResponse>
@@ -454,3 +417,4 @@ export type CardsDeleteClientResult = NonNullable<void>
 export type CardsListClientResult = NonNullable<CardList>
 export type CardsCreateClientResult = NonNullable<CardResponse>
 export type CardsSearchClientResult = NonNullable<CardList>
+export type CardsFacetsClientResult = NonNullable<CardFacetsResponse>

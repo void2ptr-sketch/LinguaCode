@@ -223,11 +223,28 @@ Page-компонент — orchestrator: открывает диалоги би
 | Редактировать | program  | `ProgramBuilderDialogService.openEdit()`                               | `store.refreshNode()`                    |
 | Редактировать | lesson   | `LessonBuilderDialogService.openEdit()`                                | `store.refreshNode()`                    |
 | Редактировать | scenario | `ScenarioBuilderDialogService.openEdit()`                              | `store.refreshNode()`                    |
-| Редактировать | card     | `CardEditorDialogService.openEdit()`                                   | `store.refreshNode(parentScenario)`      |
+| Редактировать | card     | `CardEditorDialogService.openEdit()`                                   | `refreshScenarioNode(old)` + `refreshScenarioNode(new)` |
 | Создать       | program  | `ProgramBuilderDialogService.openCreate(courseId)`                     | `store.refreshNode(courseNode)`          |
 | Создать       | lesson   | `LessonBuilderDialogService.openCreate(programId)`                     | `store.refreshNode(programNode)`         |
 | Создать       | scenario | `ScenarioBuilderDialogService.openCreate()` + `bindScenarioToLesson()` | `store.refreshNode(lessonNode)` + select |
-| Создать       | card     | `CardEditorDialogService.openCreate(kind)`                             | `store.refreshNode(parentScenario)`      |
+| Создать       | card     | `CardEditorDialogService.openCreate(kind, context)`                    | `refreshScenarioNode(context.scenarioId)` |
+
+### Карточки в сценарии
+
+Создание и редактирование карточки учитывает контекст сценария:
+
+- `cardCreateContextForNode(node)` собирает `CardEditorCreateContext`
+  (`scenarioId`, `courseId`, `programId`, `lessonId`, `languagePairId`) из выбранного узла
+  и его предков.
+- `CardEditorDialogService.openCreate(kind, context)` открывает диалог в режиме создания;
+  `openEdit(cardId)` — в режиме редактирования.
+- Результат диалога: `{ saved, cardId, scenarioId }`. После сохранения страница вызывает
+  `refreshScenarioNode()` для старого и нового сценария, чтобы обновить списки карточек
+  без полной перезагрузки дерева.
+- Привязка карточки к сценарию выполняется атомарными endpoint'ами
+  `POST/DELETE/PATCH /scenarios/:id/cards` (см. [API-CONTRACT.md](../API/API-CONTRACT.md)).
+- Метаданные карточки (`requiredTier`, `published`, `slug`, `languagePairId`, иерархия)
+  редактируются в диалоге и передаются в `CardCreateRequest` / `CardUpdateRequest`.
 
 ### Привязка сценария к уроку
 

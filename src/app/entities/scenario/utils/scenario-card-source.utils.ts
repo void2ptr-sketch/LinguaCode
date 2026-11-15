@@ -18,6 +18,7 @@ const DIFFICULTY_ORDER = {
   beginner: 0,
   intermediate: 1,
   advanced: 2,
+  expert: 3,
 } as const;
 
 export function emptyCardSearchCriteria(): Omit<CardSearchCriteria, 'page'> {

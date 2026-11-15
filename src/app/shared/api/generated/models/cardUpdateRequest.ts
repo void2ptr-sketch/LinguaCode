@@ -17,10 +17,21 @@ export interface CardUpdateRequest {
      * @maxLength 200
      */
   title?: string;
+  kind?: CardUpdateRequestKind;
   dataJson?: string;
   tags?: string;
   difficulty?: CardUpdateRequestDifficulty;
-  requiredTier: CardUpdateRequestRequiredTier;
-  kind?: CardUpdateRequestKind;
+  requiredTier?: CardUpdateRequestRequiredTier;
+  languagePairId?: number;
+  courseId?: number;
+  programId?: number;
+  lessonId?: number;
+  scenarioId?: number;
   order?: number;
+  published?: boolean;
+  /**
+     * @minLength 0
+     * @maxLength 255
+     */
+  slug?: string;
 }

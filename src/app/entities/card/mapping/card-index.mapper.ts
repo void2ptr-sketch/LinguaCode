@@ -35,14 +35,19 @@ export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): Card
     title: card.title,
     knownLanguage,
     learningLanguage,
-    difficulty: effectiveMeta?.difficulty ?? 'beginner',
+    difficulty: effectiveMeta?.difficulty ?? card.difficulty ?? 'beginner',
     tags,
     ipaReadings,
-    updatedAt: effectiveMeta?.updatedAt ?? '2026-01-01T00:00:00.000Z',
+    updatedAt: effectiveMeta?.updatedAt ?? card.updatedAt ?? '2026-01-01T00:00:00.000Z',
+    slug: card.slug,
+    languagePairId: effectiveMeta?.languagePairId ?? card.languagePairId,
     courseId: card.courseId,
+    programId: card.programId,
     lessonId: card.lessonId,
     scenarioId: card.scenarioId,
     order: card.order,
+    published: effectiveMeta?.published ?? card.published,
+    requiredTier: effectiveMeta?.requiredTier ?? card.requiredTier,
   };
 }
 

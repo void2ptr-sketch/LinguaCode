@@ -319,4 +319,52 @@ describe('ScenariosApiService', () => {
       expect(result).toEqual([mockScenarioIndexEntry]);
     });
   });
+
+  describe('scenario cards', () => {
+    it('should add a card via POST /scenarios/:id/cards', async () => {
+      const promise = service.addCard('10', '123', 1);
+
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/10/cards'));
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body).toEqual({ cardId: 123, order: 1 });
+      req.flush({ data: mockScenario });
+
+      const result = await promise;
+      expect(result).toEqual(mockScenario);
+    });
+
+    it('should omit order when adding a card without a position', async () => {
+      const promise = service.addCard('10', '123');
+
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/10/cards'));
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body).toEqual({ cardId: 123 });
+      req.flush({ data: mockScenario });
+
+      await promise;
+    });
+
+    it('should remove a card via DELETE /scenarios/:id/cards/:cardId', async () => {
+      const promise = service.removeCard('10', '123');
+
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/10/cards/123'));
+      expect(req.request.method).toBe('DELETE');
+      req.flush({ data: mockScenario });
+
+      const result = await promise;
+      expect(result).toEqual(mockScenario);
+    });
+
+    it('should move a card via PATCH /scenarios/:id/cards/:cardId', async () => {
+      const promise = service.moveCard('10', '123', 2);
+
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/10/cards/123'));
+      expect(req.request.method).toBe('PATCH');
+      expect(req.request.body).toEqual({ order: 2 });
+      req.flush({ data: mockScenario });
+
+      const result = await promise;
+      expect(result).toEqual(mockScenario);
+    });
+  });
 });

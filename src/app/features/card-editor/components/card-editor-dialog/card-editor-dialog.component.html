@@ -10,6 +10,9 @@
     @if (store.error()) {
       <p class="card-editor-dialog__error">{{ store.error() }}</p>
     }
+    @if (saveError()) {
+      <p class="card-editor-dialog__error">{{ saveError() }}</p>
+    }
     <app-card-form
       [draft]="draft()"
       [previewId]="store.editingCardId() ?? 'preview-card'"
@@ -26,8 +29,13 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button type="button" (click)="cancel()">Отмена</button>
-  <button mat-flat-button type="button" [disabled]="store.editorLoading()" (click)="saveCard()">
-    Сохранить
+  <button mat-button type="button" [disabled]="saving()" (click)="cancel()">Отмена</button>
+  <button
+    mat-flat-button
+    type="button"
+    [disabled]="store.editorLoading() || saving()"
+    (click)="saveCard()"
+  >
+    {{ saving() ? 'Сохранение…' : 'Сохранить' }}
   </button>
 </mat-dialog-actions>

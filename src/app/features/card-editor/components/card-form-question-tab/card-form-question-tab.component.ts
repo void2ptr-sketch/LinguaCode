@@ -33,7 +33,10 @@ export class CardFormQuestionTabComponent {
   /** Available courses for the current language pair. */
   readonly availableCourses = input.required<readonly CourseOption[]>();
 
-  /** Available lessons for the selected course. */
+  /** Available programs for the selected course. */
+  readonly availablePrograms = input.required<readonly { id: string; title: string }[]>();
+
+  /** Available lessons for the selected program. */
   readonly availableLessons = input.required<readonly LessonOption[]>();
 
   /** Available scenarios for the selected lesson. */
@@ -56,6 +59,9 @@ export class CardFormQuestionTabComponent {
 
   /** Emits the updated course ID. */
   readonly courseIdChange = output<string>();
+
+  /** Emits the updated program ID. */
+  readonly programIdChange = output<string>();
 
   /** Emits the updated lesson ID. */
   readonly lessonIdChange = output<string>();
@@ -87,6 +93,10 @@ export class CardFormQuestionTabComponent {
 
   updateCourseId(courseId: string): void {
     this.courseIdChange.emit(courseId);
+  }
+
+  updateProgramId(programId: string): void {
+    this.programIdChange.emit(programId);
   }
 
   updateLessonId(lessonId: string): void {

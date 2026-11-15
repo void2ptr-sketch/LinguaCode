@@ -21,10 +21,13 @@ export interface Card {
   tags?: string;
   difficulty?: CardDifficulty;
   requiredTier?: CardRequiredTier;
+  languagePairId?: number;
   courseId?: number;
+  programId?: number;
   lessonId?: number;
   scenarioId?: number;
   order?: number;
+  published?: boolean;
   createdAt?: string;
   updatedAt?: string;
 }

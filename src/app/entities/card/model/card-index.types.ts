@@ -1,4 +1,6 @@
-import type { CardKind } from './card.types';
+import type { CardDifficulty, CardKind, CardPaymentTier } from './card.types';
+
+export type { CardDifficulty } from './card.types';
 
 /**
  * Content language used for cards and UI.
@@ -55,14 +57,6 @@ export type ContentLanguage =
   | 'js';
 
 /**
- * Difficulty level of a card.
- *
- * @remarks
- * Used for filtering and sorting in the card catalog and practice sessions.
- */
-export type CardDifficulty = 'beginner' | 'intermediate' | 'advanced';
-
-/**
  * Lightweight catalog entry — without card payload.
  *
  * @remarks
@@ -79,14 +73,24 @@ export type CardIndexEntry = {
   /** Normalized IPA transcriptions for catalog search. */
   ipaReadings: readonly string[];
   updatedAt: string;
+  /** Content-based slug identifier. */
+  slug?: string;
+  /** Numeric ID of the language pair (`language_pairs.id`). */
+  languagePairId?: string;
   /** ID of the Course this card belongs to. */
   courseId?: string;
+  /** ID of the Program this card belongs to. */
+  programId?: string;
   /** ID of the Lesson this card belongs to. */
   lessonId?: string;
   /** ID of the Scenario this card belongs to. */
   scenarioId?: string;
   /** Position of the card inside its scenario (`card_order`). */
   order?: number;
+  /** Whether the card is published and visible to learners. */
+  published?: boolean;
+  /** Minimum payment tier required to access this card. */
+  requiredTier?: CardPaymentTier;
 };
 
 /**
@@ -97,11 +101,19 @@ export type CardIndexEntry = {
  * on top of values derived from the card itself.
  */
 export type CardIndexMetaOverride = Partial<
-  Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage' | 'difficulty' | 'tags' | 'updatedAt'>
-> & {
-  /** Content-based slug identifier for the card. */
-  slug?: string;
-};
+  Pick<
+    CardIndexEntry,
+    | 'knownLanguage'
+    | 'learningLanguage'
+    | 'difficulty'
+    | 'tags'
+    | 'updatedAt'
+    | 'languagePairId'
+    | 'published'
+    | 'requiredTier'
+    | 'slug'
+  >
+>;
 
 /**
  * Card index metadata fixture with mapping by card ID.

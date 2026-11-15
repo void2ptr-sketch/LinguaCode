@@ -77,6 +77,15 @@ export class CardEditorStore {
   readonly creatingKind = signal<CardKind>('select');
 
   /**
+   * The card returned by the last successful create/update operation.
+   *
+   * @remarks
+   * The dialog reads this after `createCard()` / `updateCard()` to return the
+   * persisted card ID and scenario binding to the caller.
+   */
+  readonly lastSavedCard = signal<Card | null>(null);
+
+  /**
    * Enters create mode for a new card.
    *
    * @param kind - The kind of card to create.
@@ -86,6 +95,7 @@ export class CardEditorStore {
     this.editingCardId.set(null);
     this.editingCard.set(null);
     this.creatingKind.set(kind);
+    this.lastSavedCard.set(null);
     this.error.set(null);
   }
 
@@ -98,6 +108,7 @@ export class CardEditorStore {
   async startEdit(cardId: string): Promise<void> {
     this.editorMode.set('edit');
     this.editingCardId.set(cardId);
+    this.lastSavedCard.set(null);
     this.error.set(null);
     this.editorLoading.set(true);
 
@@ -132,11 +143,14 @@ export class CardEditorStore {
    * @returns `true` if created successfully, `false` on validation error.
    */
   async createCard(draft: CardDraft, indexMeta?: CardIndexMetaOverride): Promise<boolean> {
-    const card = normalizeCardDraft(draft, crypto.randomUUID());
-    if (!card) {
+    const normalized = normalizeCardDraft(draft, crypto.randomUUID());
+    if (!normalized) {
       this.error.set(cardValidationErrorMessage(draft.kind));
       return false;
     }
+
+    const card = applyMetaToCard(normalized, indexMeta);
+    let saved: Card | null = null;
 
     const offlineHandler = async () => {
       await this.syncQueue.enqueue('card.create', { card });
@@ -147,12 +161,12 @@ export class CardEditorStore {
       this.cancelEdit();
     };
 
-    const success = await executeWithOfflineFallback(
-      () => this.cardsApi.create(card),
-      offlineHandler,
-    );
+    const success = await executeWithOfflineFallback(async () => {
+      saved = await this.cardsApi.create(card);
+    }, offlineHandler);
 
-    if (success && !indexMeta) {
+    if (success) {
+      this.lastSavedCard.set(saved ?? card);
       this.refreshCatalog();
       this.cancelEdit();
     }
@@ -173,11 +187,14 @@ export class CardEditorStore {
     draft: CardDraft,
     indexMeta?: CardIndexMetaOverride,
   ): Promise<boolean> {
-    const card = normalizeCardDraft(draft, cardId);
-    if (!card) {
+    const normalized = normalizeCardDraft(draft, cardId);
+    if (!normalized) {
       this.error.set(cardValidationErrorMessage(draft.kind));
       return false;
     }
+
+    const card = applyMetaToCard(normalized, indexMeta);
+    let saved: Card | null = null;
 
     const offlineHandler = async () => {
       await this.syncQueue.enqueue('card.update', { cardId, card });
@@ -188,12 +205,12 @@ export class CardEditorStore {
       this.cancelEdit();
     };
 
-    const success = await executeWithOfflineFallback(
-      () => this.cardsApi.update(cardId, card),
-      offlineHandler,
-    );
+    const success = await executeWithOfflineFallback(async () => {
+      saved = await this.cardsApi.update(cardId, card);
+    }, offlineHandler);
 
-    if (success && !indexMeta) {
+    if (success) {
+      this.lastSavedCard.set(saved ?? card);
       this.refreshCatalog();
       this.cancelEdit();
     }
@@ -292,4 +309,28 @@ export class CardEditorStore {
   private refreshCatalog(): void {
     this.cardSearchService.refreshCatalog();
   }
+}
+
+/**
+ * Merges dialog metadata into the normalized card before it is sent to the API.
+ *
+ * @remarks
+ * `normalizeCardDraft` only validates kind-specific content and hierarchy IDs;
+ * tags, difficulty, requiredTier, publication status, slug and language pair
+ * live in the dialog metadata and must be copied onto the API payload.
+ */
+function applyMetaToCard(card: Card, meta?: CardIndexMetaOverride): Card {
+  if (!meta) {
+    return card;
+  }
+
+  return {
+    ...card,
+    ...(meta.tags !== undefined ? { tags: meta.tags } : {}),
+    ...(meta.difficulty !== undefined ? { difficulty: meta.difficulty } : {}),
+    ...(meta.requiredTier !== undefined ? { requiredTier: meta.requiredTier } : {}),
+    ...(meta.published !== undefined ? { published: meta.published } : {}),
+    ...(meta.slug !== undefined ? { slug: meta.slug } : {}),
+    ...(meta.languagePairId !== undefined ? { languagePairId: meta.languagePairId } : {}),
+  };
 }

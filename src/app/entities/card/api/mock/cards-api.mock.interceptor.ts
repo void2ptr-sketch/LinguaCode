@@ -120,9 +120,29 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     } catch {
       // ignore
     }
-    // Add difficulty
+    // Metadata and hierarchy fields accepted by the real backend.
     if (payload['difficulty']) {
       c['difficulty'] = String(payload['difficulty']).toLowerCase();
+    }
+    if (payload['requiredTier'] !== undefined) {
+      c['requiredTier'] = String(payload['requiredTier']);
+    }
+    if (payload['slug'] !== undefined) {
+      c['slug'] = String(payload['slug']);
+    }
+    if (payload['published'] !== undefined) {
+      c['published'] = Boolean(payload['published']);
+    }
+    for (const field of [
+      'languagePairId',
+      'courseId',
+      'programId',
+      'lessonId',
+      'scenarioId',
+    ] as const) {
+      if (payload[field] !== undefined && payload[field] !== null) {
+        c[field] = String(payload[field]);
+      }
     }
     // Position inside the scenario (`card_order`)
     if (payload['order'] !== undefined) {
@@ -148,6 +168,9 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
         if (payload['title'] !== undefined) {
           u['title'] = String(payload['title']);
         }
+        if (payload['kind'] !== undefined) {
+          u['kind'] = String(payload['kind']).toLowerCase();
+        }
         if (payload['dataJson'] !== undefined) {
           try {
             const content = JSON.parse(String(payload['dataJson']));
@@ -165,6 +188,26 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
         }
         if (payload['difficulty'] !== undefined) {
           u['difficulty'] = String(payload['difficulty']).toLowerCase();
+        }
+        if (payload['requiredTier'] !== undefined) {
+          u['requiredTier'] = String(payload['requiredTier']);
+        }
+        if (payload['slug'] !== undefined) {
+          u['slug'] = String(payload['slug']);
+        }
+        if (payload['published'] !== undefined) {
+          u['published'] = Boolean(payload['published']);
+        }
+        for (const field of [
+          'languagePairId',
+          'courseId',
+          'programId',
+          'lessonId',
+          'scenarioId',
+        ] as const) {
+          if (payload[field] !== undefined && payload[field] !== null) {
+            u[field] = String(payload[field]);
+          }
         }
         if (payload['order'] !== undefined) {
           u['order'] = Number(payload['order']);

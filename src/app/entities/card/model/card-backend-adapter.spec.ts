@@ -389,4 +389,78 @@ describe('CardBackendAdapter', () => {
       expect(field(card, 'id')).toBe('1');
     });
   });
+
+  describe('write payloads', () => {
+    const card: Card = {
+      id: 'card-1',
+      kind: 'select',
+      title: 'Test',
+      direction: 'known-to-learning',
+      promptKnown: 'Q?',
+      optionsLearning: ['A', 'B'],
+      correctIndex: 0,
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+      tags: ['hsk1'],
+      difficulty: 'expert',
+      requiredTier: 'STARTER',
+      published: false,
+      slug: 'test-card',
+      languagePairId: '1',
+      courseId: '10',
+      programId: '20',
+      lessonId: '30',
+      scenarioId: '40',
+      order: 2,
+    };
+
+    it('should build a create payload with metadata and hierarchy', () => {
+      const payload = CardBackendAdapter.toCreatePayload(card);
+
+      expect(payload.title).toBe('Test');
+      expect(payload.kind).toBe('SELECT');
+      expect(payload.difficulty).toBe('EXPERT');
+      expect(payload.requiredTier).toBe('STARTER');
+      expect(payload.slug).toBe('test-card');
+      expect(payload.languagePairId).toBe(1);
+      expect(payload.courseId).toBe(10);
+      expect(payload.programId).toBe(20);
+      expect(payload.lessonId).toBe(30);
+      expect(payload.scenarioId).toBe(40);
+      expect(payload.order).toBe(2);
+      expect(payload.published).toBe(false);
+      expect(JSON.parse(payload.tags)).toEqual(['hsk1']);
+      expect(payload).not.toHaveProperty('id');
+      expect(payload).not.toHaveProperty('authorId');
+    });
+
+    it('should omit a blank slug on create', () => {
+      const payload = CardBackendAdapter.toCreatePayload({ ...card, slug: '   ' });
+
+      expect(payload.slug).toBeUndefined();
+    });
+
+    it('should build an update payload with requiredTier and kind', () => {
+      const payload = CardBackendAdapter.toUpdatePayload('card-1', card);
+
+      expect(payload.kind).toBe('SELECT');
+      expect(payload.requiredTier).toBe('STARTER');
+      expect(payload.difficulty).toBe('EXPERT');
+      expect(payload.published).toBe(false);
+      expect(payload.languagePairId).toBe(1);
+      expect(payload.courseId).toBe(10);
+      expect(payload.programId).toBe(20);
+      expect(payload.lessonId).toBe(30);
+      expect(payload.scenarioId).toBe(40);
+      expect(payload.order).toBe(2);
+    });
+
+    it('should omit requiredTier on update when the card has none', () => {
+      const payload = CardBackendAdapter.toUpdatePayload('card-1', {
+        ...card,
+        requiredTier: undefined,
+      });
+
+      expect(payload.requiredTier).toBeUndefined();
+    });
+  });
 });

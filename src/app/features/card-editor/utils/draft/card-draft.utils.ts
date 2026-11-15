@@ -19,9 +19,15 @@ import {
  * @param card - The card to extract fields from (may be undefined for new cards).
  * @returns An object with courseId, lessonId, and scenarioId.
  */
-function hierarchyFields(card?: { courseId?: string; lessonId?: string; scenarioId?: string }) {
+function hierarchyFields(card?: {
+  courseId?: string;
+  programId?: string;
+  lessonId?: string;
+  scenarioId?: string;
+}) {
   return {
     courseId: card?.courseId ?? '',
+    programId: card?.programId ?? '',
     lessonId: card?.lessonId ?? '',
     scenarioId: card?.scenarioId ?? '',
   };

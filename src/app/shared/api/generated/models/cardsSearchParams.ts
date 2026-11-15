@@ -4,11 +4,24 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
-import type { Pageable } from './pageable';
+import type { CardsSearchDifficulty } from './cardsSearchDifficulty';
+import type { CardsSearchKindsItem } from './cardsSearchKindsItem';
 
 export type CardsSearchParams = {
   query?: string;
   knownLanguage?: string;
   learningLanguage?: string;
-  pageable: Pageable;
+  languagePairId?: number;
+  courseId?: number;
+  programId?: number;
+  lessonId?: number;
+  scenarioId?: number;
+  difficulty?: CardsSearchDifficulty;
+  kinds?: CardsSearchKindsItem[];
+  tags?: string[];
+  published?: boolean;
+  scope?: string;
+  page?: number;
+  pageSize?: number;
+  size?: number;
 };

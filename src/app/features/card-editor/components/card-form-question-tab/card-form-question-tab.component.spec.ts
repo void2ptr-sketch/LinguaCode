@@ -41,6 +41,7 @@ const createBaseDraft = (kind: CardDraft['kind']): CardDraft =>
     <app-card-form-question-tab
       [draft]="draft"
       [availableCourses]="courses"
+      [availablePrograms]="programs"
       [availableLessons]="lessons"
       [availableScenarios]="scenarios"
       [knownLanguage]="knownLang"
@@ -48,6 +49,7 @@ const createBaseDraft = (kind: CardDraft['kind']): CardDraft =>
       (knownLanguageChange)="onKnownLangChange($event)"
       (learningLanguageChange)="onLearnLangChange($event)"
       (courseIdChange)="onCourseIdChange($event)"
+      (programIdChange)="onProgramIdChange($event)"
       (lessonIdChange)="onLessonIdChange($event)"
       (scenarioIdChange)="onScenarioIdChange($event)"
       (titleChange)="onTitleChange($event)"
@@ -58,6 +60,7 @@ const createBaseDraft = (kind: CardDraft['kind']): CardDraft =>
 class HostComponent {
   draft: CardDraft = createBaseDraft('select');
   courses: CourseOption[] = [];
+  programs: { id: string; title: string }[] = [];
   lessons: LessonOption[] = [];
   scenarios: ScenarioOption[] = [];
   knownLang: 'ru' | 'en' = 'ru';
@@ -65,6 +68,7 @@ class HostComponent {
   onKnownLangChange: (_v: string) => void = vi.fn();
   onLearnLangChange: (_v: string) => void = vi.fn();
   onCourseIdChange: (_v: string) => void = vi.fn();
+  onProgramIdChange: (_v: string) => void = vi.fn();
   onLessonIdChange: (_v: string) => void = vi.fn();
   onScenarioIdChange: (_v: string) => void = vi.fn();
   onTitleChange: (_v: string) => void = vi.fn();
@@ -92,6 +96,10 @@ describe('CardFormQuestionTabComponent', () => {
 
   it('should have availableCourses input', () => {
     expect(component.availableCourses).toBeDefined();
+  });
+
+  it('should have availablePrograms input', () => {
+    expect(component.availablePrograms).toBeDefined();
   });
 
   it('should have availableLessons input', () => {

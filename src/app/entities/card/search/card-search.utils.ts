@@ -13,12 +13,15 @@ export type CardSearchFilterField =
   | 'query'
   | 'knownLanguage'
   | 'learningLanguage'
+  | 'languagePairId'
   | 'difficulty'
   | 'kinds'
   | 'tags'
   | 'courseId'
+  | 'programId'
   | 'lessonId'
-  | 'scenarioId';
+  | 'scenarioId'
+  | 'published';
 
 /** Extracts filters from search criteria, stripping pagination (`page`). */
 export function toSearchFilters(criteria: CardSearchCriteria): Omit<CardSearchCriteria, 'page'> {
@@ -65,6 +68,12 @@ export function matchesCardIndexEntry(
     entry.learningLanguage !== filters.learningLanguage
   )
     return false;
+  if (
+    ignore !== 'languagePairId' &&
+    filters.languagePairId &&
+    entry.languagePairId !== filters.languagePairId
+  )
+    return false;
   if (ignore !== 'difficulty' && filters.difficulty && entry.difficulty !== filters.difficulty)
     return false;
   if (ignore !== 'kinds' && filters.kinds?.length && !filters.kinds.includes(entry.kind))
@@ -75,9 +84,17 @@ export function matchesCardIndexEntry(
   }
   if (ignore !== 'courseId' && filters.courseId && entry.courseId !== filters.courseId)
     return false;
+  if (ignore !== 'programId' && filters.programId && entry.programId !== filters.programId)
+    return false;
   if (ignore !== 'lessonId' && filters.lessonId && entry.lessonId !== filters.lessonId)
     return false;
   if (ignore !== 'scenarioId' && filters.scenarioId && entry.scenarioId !== filters.scenarioId)
+    return false;
+  if (
+    ignore !== 'published' &&
+    filters.published !== undefined &&
+    (entry.published ?? true) !== filters.published
+  )
     return false;
 
   return true;
