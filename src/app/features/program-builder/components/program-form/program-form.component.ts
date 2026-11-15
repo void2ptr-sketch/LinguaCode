@@ -4,6 +4,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import type { ProgramRequiredTier } from '../../../../entities/program/model';
 import type { ProgramFormDraft } from '../../types';
@@ -31,7 +32,14 @@ const TIER_LABELS: Record<ProgramRequiredTier, string> = {
 @Component({
   selector: 'app-program-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule],
+  imports: [
+    FormsModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTabsModule,
+  ],
   templateUrl: './program-form.component.html',
   styleUrl: './program-form.component.scss',
 })

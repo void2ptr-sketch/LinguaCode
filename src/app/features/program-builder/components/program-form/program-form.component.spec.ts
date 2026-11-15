@@ -5,6 +5,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 import { describe, expect, it } from 'vitest';
 
 import type { ProgramFormDraft } from '../../types';
@@ -18,6 +19,7 @@ import { ProgramFormComponent } from './program-form.component';
     MatInputModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatTabsModule,
     FormsModule,
   ],
   template: `
@@ -70,6 +72,21 @@ describe('ProgramFormComponent', () => {
   it('should create', () => {
     const { host } = createComponent();
     expect(host).toBeDefined();
+  });
+
+  it('should render mat-tab-group', () => {
+    const { fixture } = createComponent();
+    const root = fixture.nativeElement;
+    const tabGroups = root.querySelectorAll('mat-tab-group');
+    expect(tabGroups.length).toBe(1);
+  });
+
+  it('should render two tabs with correct labels', () => {
+    const { fixture } = createComponent();
+    const root = fixture.nativeElement;
+    const text = root.textContent?.toLowerCase() || '';
+    expect(text).toContain('основное');
+    expect(text).toContain('публикация');
   });
 
   it('should emit updated title on updateTitle', () => {
