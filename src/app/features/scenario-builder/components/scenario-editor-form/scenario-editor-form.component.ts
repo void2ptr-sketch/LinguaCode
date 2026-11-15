@@ -4,6 +4,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import type { ContentLanguage } from '../../../../entities/card/model';
 import type { CourseIndexEntry } from '../../../../entities/course/model';
@@ -27,7 +28,14 @@ const TIER_LABELS: Record<string, string> = {
 @Component({
   selector: 'app-scenario-editor-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatSelectModule],
+  imports: [
+    FormsModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTabsModule,
+  ],
   templateUrl: './scenario-editor-form.component.html',
   styleUrl: './scenario-editor-form.component.scss',
 })

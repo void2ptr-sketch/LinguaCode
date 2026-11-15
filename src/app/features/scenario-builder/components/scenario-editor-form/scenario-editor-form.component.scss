@@ -3,6 +3,16 @@
   gap: 1rem;
 }
 
+.scenario-editor-form__tabs {
+  width: 100%;
+}
+
+.scenario-editor-form__tab-panel {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+}
+
 .scenario-editor-form__cards h2,
 .scenario-editor-form__order h2 {
   font-size: 1rem;

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { vi, describe, it, expect } from 'vitest';
 import { ScenarioEditorFormComponent } from './scenario-editor-form.component';
 import type { ScenarioFormDraft } from '../../utils/scenario-form-draft.utils';
@@ -23,12 +24,14 @@ describe('ScenarioEditorFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ScenarioEditorFormComponent],
+      imports: [ScenarioEditorFormComponent, NoopAnimationsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScenarioEditorFormComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('draft', baseDraft);
+    fixture.componentRef.setInput('courses', []);
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -141,6 +144,30 @@ describe('ScenarioEditorFormComponent', () => {
       expect(component.tierLabels['STARTER']).toBe('Стартовый');
       expect(component.tierLabels['GROWTH']).toBe('Рост');
       expect(component.tierLabels['PREMIUM']).toBe('Премиум');
+    });
+  });
+
+  describe('tab structure', () => {
+    it('should render mat-tab-group', () => {
+      const tabGroups = fixture.nativeElement.querySelectorAll('mat-tab-group');
+      expect(tabGroups.length).toBe(1);
+    });
+
+    it('should have tab labels', () => {
+      const root = fixture.nativeElement;
+      const text = root.textContent?.toLowerCase() || '';
+      expect(text).toContain('сценарий');
+      expect(text).toContain('связи');
+      expect(text).toContain('публикация');
+    });
+
+    it('should render title and description fields', () => {
+      const labels = fixture.nativeElement.querySelectorAll('mat-label');
+      const labelTexts = Array.from(labels).map(
+        (el: unknown) => (el as HTMLElement).textContent?.trim() ?? '',
+      );
+      expect(labelTexts).toContain('Название');
+      expect(labelTexts).toContain('Описание');
     });
   });
 });
