@@ -48,6 +48,18 @@
   margin: 0;
 }
 
+.scenario-editor-form__language-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .scenario-editor-form__language-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .scenario-editor-form__hint {
   color: color-mix(in srgb, var(--mat-sys-on-surface) 60%, transparent);
   margin: 0 0 1rem;
