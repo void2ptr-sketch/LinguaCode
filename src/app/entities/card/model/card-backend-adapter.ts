@@ -606,6 +606,8 @@ export const CardBackendAdapter = {
       courseId: dto.courseId ? String(dto.courseId) : undefined,
       lessonId: dto.lessonId ? String(dto.lessonId) : undefined,
       scenarioId: dto.scenarioId ? String(dto.scenarioId) : undefined,
+      // Backend may expose `order` (API field) or `card_order` (DB column).
+      order: dto.order ?? dto.card_order,
       createdAt: dto.createdAt,
       updatedAt: dto.updatedAt,
     } as unknown as Record<string, unknown>;
@@ -777,6 +779,7 @@ export const CardBackendAdapter = {
       tags: tagsJson,
       difficulty,
       requiredTier: 'FREE',
+      ...(card.order !== undefined ? { order: card.order } : {}),
     };
   },
 
@@ -809,6 +812,11 @@ export const CardBackendAdapter = {
     const difficulty = mapDifficultyToBackend(card.difficulty);
     if (difficulty !== null) {
       result.difficulty = difficulty;
+    }
+
+    // Position inside the scenario (`card_order`)
+    if (card.order !== undefined) {
+      result.order = card.order;
     }
 
     return result;

@@ -28,7 +28,15 @@ import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 
-import type { ExplorerNodeKind, ExplorerRevealTarget } from '../types/content-explorer.types';
+import {
+  compareEntityOrder,
+  compareExplorerOrder,
+  EXPLORER_ORDER_FALLBACK,
+  normalizeExplicitOrder,
+  normalizeExplorerOrder,
+  type ExplorerNodeKind,
+  type ExplorerRevealTarget,
+} from '../types/content-explorer.types';
 
 const ROOT_PAGE_SIZE = 100;
 /** Page size for entity catalog searches (courses / programs / scenarios). */
@@ -53,6 +61,20 @@ export class ExplorerNode {
   readonly key: string;
   /** Parent node registry key; `null` for root (course) nodes. */
   readonly parentId: string | null;
+
+  /**
+   * Sort position among siblings.
+   *
+   * @remarks
+   * Derived from `<entity>_order` (`program_order`, `lesson_order`,
+   * `scenario_order`, `card_order`, `course_order`) and normalized by the
+   * store. Siblings are always rendered in ascending order; nodes without an
+   * explicit order get {@link EXPLORER_ORDER_FALLBACK} and keep their source
+   * order (stable sort).
+   *
+   * Mutable: `refreshNode()` updates it after an order change.
+   */
+  order: number;
 
   /** Display title (kept in a signal so refreshes re-render). */
   readonly title = signal<string>('');
@@ -84,6 +106,7 @@ export class ExplorerNode {
     parentId: string | null;
     title: string;
     meta?: string;
+    order?: number;
     editable?: boolean;
     shared?: boolean;
     virtual?: boolean;
@@ -93,6 +116,7 @@ export class ExplorerNode {
     this.id = params.id;
     this.key = `${params.kind}:${params.id}`;
     this.parentId = params.parentId;
+    this.order = params.order ?? EXPLORER_ORDER_FALLBACK;
     this.title.set(params.title);
     this.meta.set(params.meta ?? '');
     this.editable = params.editable ?? true;
@@ -322,6 +346,7 @@ export class ContentExplorerStore {
         parentId: lessonNode.key,
         title: `Сценарий ${scenarioId}`,
         meta: 'Сценарий (не найден в каталоге)',
+        order: EXPLORER_ORDER_FALLBACK,
         editable: false,
       });
     }
@@ -331,6 +356,7 @@ export class ContentExplorerStore {
       parentId: lessonNode.key,
       title: scenario.title,
       meta: this.scenarioMeta(scenario),
+      order: normalizeExplicitOrder(scenario.order),
       editable: this.isOwnAuthor(scenario.authorId),
       data: scenario,
     });
@@ -407,7 +433,13 @@ export class ContentExplorerStore {
         continue;
       }
 
-      const cardNode = this.createCardNode(scenarioNode, entry.id, entry.title, entry.kind);
+      const cardNode = this.createCardNode(
+        scenarioNode,
+        entry.id,
+        entry.title,
+        entry.kind,
+        entry.order,
+      );
       cardNode.data = entry;
       this.searchCreatedNodeKeys.add(cardNode.key);
       this.addSearchExtraChild(scenarioNode.key, cardNode);
@@ -491,7 +523,7 @@ export class ContentExplorerStore {
         .filter((entry) => !known.has(entry.id))
         .map((entry) => this.createCourseNode(entry));
       if (discovered.length > 0) {
-        this.roots.set([...this.roots(), ...discovered]);
+        this.roots.set([...this.roots(), ...discovered].sort(compareExplorerOrder));
       }
 
       const roots = this.roots();
@@ -547,6 +579,7 @@ export class ContentExplorerStore {
           parentId: courseNode.key,
           title: entry.title,
           meta: `Трек · ${entry.lessonCount} урок(ов)`,
+          order: normalizeExplorerOrder(entry.order),
           editable: courseNode.editable,
           // `lessons` отсутствуют — `loadLessonChildren()` доберёт их через getById().
           data: {
@@ -782,6 +815,7 @@ export class ContentExplorerStore {
       parentId: this.orphanCardsRoot.key,
       title: entry.title,
       meta: `Карточка · ${entry.kind}`,
+      order: normalizeExplicitOrder(entry.order),
       shared: true,
       data: entry,
     });
@@ -847,7 +881,9 @@ export class ContentExplorerStore {
         page: { page: 0, pageSize: ROOT_PAGE_SIZE },
       });
 
-      const nodes = page.items.map((entry) => this.createCourseNode(entry));
+      const nodes = page.items
+        .map((entry) => this.createCourseNode(entry))
+        .sort(compareExplorerOrder);
       this.roots.set(nodes);
     } catch (error) {
       this.logger.error('ContentExplorer: failed to load course roots', error);
@@ -970,6 +1006,7 @@ export class ContentExplorerStore {
           const course = await this.courseSearchService.getById(node.id);
           node.title.set(course.title);
           node.data = course;
+          node.order = normalizeExplorerOrder(course.order);
           node.meta.set(this.courseMeta(course));
           break;
         }
@@ -977,6 +1014,7 @@ export class ContentExplorerStore {
           const program = await this.programsApi.getById(node.id);
           node.title.set(program.title);
           node.data = program;
+          node.order = normalizeExplorerOrder(program.order);
           node.meta.set(
             `Трек · ${program.lessons?.length ?? program.lessonIds?.length ?? 0} урок(ов)`,
           );
@@ -986,6 +1024,7 @@ export class ContentExplorerStore {
           const lesson = await this.lessonsApi.getById(node.id);
           node.title.set(lesson.title);
           node.data = lesson;
+          node.order = normalizeExplorerOrder(lesson.order);
           node.meta.set(this.lessonMeta(lesson));
           break;
         }
@@ -993,6 +1032,7 @@ export class ContentExplorerStore {
           const scenario = await this.scenarioSearchService.getById(node.id);
           node.title.set(scenario.title);
           node.data = scenario;
+          node.order = normalizeExplicitOrder(scenario.order);
           node.meta.set(this.scenarioMeta(scenario));
           break;
         }
@@ -1029,6 +1069,13 @@ export class ContentExplorerStore {
       return;
     }
 
+    // Scenario order changes come from `PUT /scenarios/:id`; the lesson node
+    // keeps its loaded children, so only the sibling order must be refreshed.
+    if (node.kind === 'scenario' && parent.kind === 'lesson') {
+      this.reorderChildren(parent);
+      return;
+    }
+
     if (node.kind === 'lesson' && parent.kind === 'program') {
       const program = parent.data as ProgramWithLessons | undefined;
       const lesson = node.data as Lesson | undefined;
@@ -1055,17 +1102,20 @@ export class ContentExplorerStore {
     }
   }
 
-  /** Re-sorts loaded siblings after an `order` change (without recreating nodes). */
+  /**
+   * Re-sorts loaded siblings after an `order` change (without recreating nodes).
+   *
+   * @remarks
+   * Uses the node-level `order` (already normalized from `<entity>_order`) and
+   * a stable sort, so siblings without an explicit order keep their position.
+   */
   private reorderChildren(parent: ExplorerNode): void {
     const children = parent.children();
     if (!children || children.length < 2) {
       return;
     }
 
-    const orderOf = (child: ExplorerNode): number =>
-      (child.data as { order?: number } | undefined)?.order ?? 0;
-
-    parent.children.set([...children].sort((left, right) => orderOf(left) - orderOf(right)));
+    parent.children.set([...children].sort(compareExplorerOrder));
   }
 
   /**
@@ -1172,7 +1222,7 @@ export class ContentExplorerStore {
     // `/programs/by-course/:id/with-lessons` вместо N запросов `GET /programs/:id`.
     const programsWithLessons = await this.attachLessons(courseNode.id, course.programs);
 
-    const programs = [...programsWithLessons].sort((left, right) => left.order - right.order);
+    const programs = [...programsWithLessons].sort(compareEntityOrder);
     return programs.map((program) =>
       this.createNode({
         kind: 'program',
@@ -1180,6 +1230,7 @@ export class ContentExplorerStore {
         parentId: courseNode.key,
         title: program.title,
         meta: `Трек · ${program.lessons?.length ?? program.lessonIds?.length ?? 0} урок(ов)`,
+        order: normalizeExplorerOrder(program.order),
         editable: courseNode.editable,
         data: program,
       }),
@@ -1226,19 +1277,18 @@ export class ContentExplorerStore {
   private async loadLessonChildren(programNode: ExplorerNode): Promise<readonly ExplorerNode[]> {
     const lessons = await this.resolveProgramLessons(programNode);
 
-    return [...lessons]
-      .sort((left, right) => left.order - right.order)
-      .map((lesson) =>
-        this.createNode({
-          kind: 'lesson',
-          id: lesson.id,
-          parentId: programNode.key,
-          title: lesson.title,
-          meta: this.lessonMeta(lesson),
-          editable: programNode.editable,
-          data: lesson,
-        }),
-      );
+    return [...lessons].sort(compareEntityOrder).map((lesson) =>
+      this.createNode({
+        kind: 'lesson',
+        id: lesson.id,
+        parentId: programNode.key,
+        title: lesson.title,
+        meta: this.lessonMeta(lesson),
+        order: normalizeExplorerOrder(lesson.order),
+        editable: programNode.editable,
+        data: lesson,
+      }),
+    );
   }
 
   /**
@@ -1310,9 +1360,13 @@ export class ContentExplorerStore {
    * but it is not updated by the backend when a scenario is created with a
    * `lessonId` (the GUI flow). The dedicated `GET /scenarios/by-lesson/:id`
    * endpoint reflects `scenario.lessonId` and is therefore the authoritative
-   * source for GUI-created scenarios. Both sources are merged: IDs from
-   * `lesson.scenarioIds` keep their order, extra scenarios are appended sorted
-   * by their `order` field.
+   * source for GUI-created scenarios.
+   *
+   * Both sources are merged and sorted by `scenario_order` (`Scenario.order`,
+   * normalized from the `scenario_order` DB alias). `lesson.scenarioIds` is
+   * used only as a stable tie-breaker for scenarios without an explicit order
+   * (`undefined` / `0`) — they keep their payload position after the ordered
+   * ones.
    */
   private async loadScenarioChildren(lessonNode: ExplorerNode): Promise<readonly ExplorerNode[]> {
     const lesson = (lessonNode.data ?? {}) as { scenarioIds?: readonly string[] };
@@ -1342,13 +1396,13 @@ export class ContentExplorerStore {
       byId.set(scenario.id, scenario);
     }
 
-    const extraScenarios = lessonScenarios
-      .filter((scenario) => !byId.has(scenario.id))
-      .sort((left, right) => (left.order ?? 0) - (right.order ?? 0));
+    const extraScenarios = lessonScenarios.filter((scenario) => !byId.has(scenario.id));
     for (const scenario of extraScenarios) {
       byId.set(scenario.id, scenario);
     }
 
+    // `scenarioIds` order is the stable tie-breaker for scenarios without an
+    // explicit `scenario_order`; extras keep the by-lesson endpoint order.
     const orderedIds = [
       ...new Set([...scenarioIds, ...extraScenarios.map((scenario) => scenario.id)]),
     ];
@@ -1360,9 +1414,9 @@ export class ContentExplorerStore {
       );
     }
 
-    return orderedIds.map((scenarioId) =>
-      this.createScenarioNode(lessonNode, scenarioId, byId.get(scenarioId)),
-    );
+    return orderedIds
+      .map((scenarioId) => this.createScenarioNode(lessonNode, scenarioId, byId.get(scenarioId)))
+      .sort(compareExplorerOrder);
   }
 
   private async loadCardChildren(scenarioNode: ExplorerNode): Promise<readonly ExplorerNode[]> {
@@ -1408,7 +1462,9 @@ export class ContentExplorerStore {
     for (const cardId of cardIds) {
       const entry = resolved.get(cardId) ?? null;
       if (entry) {
-        cards.push(this.createCardNode(scenarioNode, entry.id, entry.title, entry.kind));
+        cards.push(
+          this.createCardNode(scenarioNode, entry.id, entry.title, entry.kind, entry.order),
+        );
         continue;
       }
       if (fallbackUsed >= MAX_CARD_FALLBACK_LOOKUPS) {
@@ -1430,7 +1486,7 @@ export class ContentExplorerStore {
           typeof card.title === 'string' && card.title.length > 0
             ? card.title
             : `Карточка ${cardId}`;
-        cards.push(this.createCardNode(scenarioNode, card.id, cardTitle, card.kind));
+        cards.push(this.createCardNode(scenarioNode, card.id, cardTitle, card.kind, card.order));
       } catch {
         cards.push(
           this.createNode({
@@ -1444,7 +1500,9 @@ export class ContentExplorerStore {
       }
     }
 
-    return cards;
+    // Sorted by `card_order`; cards without an explicit order keep the
+    // `cardSource.cardIds` position (stable sort).
+    return cards.sort(compareExplorerOrder);
   }
 
   // -------------------------------------------------------------------------
@@ -1457,6 +1515,7 @@ export class ContentExplorerStore {
     parentId: string | null;
     title: string;
     meta?: string;
+    order?: number;
     editable?: boolean;
     shared?: boolean;
     virtual?: boolean;
@@ -1474,6 +1533,7 @@ export class ContentExplorerStore {
       parentId: null,
       title: entry.title,
       meta: this.courseMetaFromEntry(entry),
+      order: normalizeExplorerOrder(entry.order),
       editable: this.isOwnAuthor(entry.authorId),
       data: entry,
     });
@@ -1485,6 +1545,7 @@ export class ContentExplorerStore {
     cardId: string,
     cardTitle: string,
     cardKind: string,
+    order?: number,
   ): ExplorerNode {
     return this.createNode({
       kind: 'card',
@@ -1492,6 +1553,7 @@ export class ContentExplorerStore {
       parentId: scenarioNode.key,
       title: cardTitle,
       meta: `Карточка · ${cardKind}`,
+      order: normalizeExplicitOrder(order),
       shared: true,
     });
   }

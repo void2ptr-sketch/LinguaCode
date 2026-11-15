@@ -76,6 +76,10 @@ export type BackendCardDto = {
   lessonId?: number;
   /** ID of the Scenario this card belongs to (may be null). */
   scenarioId?: number;
+  /** Position of the card inside its scenario (API field `order`). */
+  order?: number;
+  /** DB column alias for `order` (`cards.card_order` / link table). */
+  card_order?: number;
   /** Creation timestamp (ISO 8601). */
   createdAt: string;
   /** Last update timestamp (ISO 8601). */
@@ -213,6 +217,8 @@ export type BackendCardCreatePayload = {
   difficulty: BackendCardDifficulty | null;
   /** Minimum payment tier required for access. */
   requiredTier: BackendPaymentTier;
+  /** Position of the card inside its scenario (`card_order`). */
+  order?: number;
 };
 
 /**
@@ -228,4 +234,6 @@ export type BackendCardUpdatePayload = {
   tags?: string;
   difficulty?: BackendCardDifficulty | null;
   requiredTier?: BackendPaymentTier;
+  /** Position of the card inside its scenario (`card_order`). */
+  order?: number;
 };

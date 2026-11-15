@@ -64,6 +64,14 @@ type LanguagePairDto = {
 
 > **Важно:** эндпоинт `GET /cards/:id` принимает **строковый ID** (numeric или slug). Бэкенд сначала пытается распарсить как число (`Long`), при ошибке ищет по slug (`findBySlug`). Это позволяет фронтенду использовать контентные идентификаторы типа `draw-radical-001`.
 
+> **Порядок карточки (`card_order`).** В API `Card.order` / `CardCreateRequest.order` /
+> `CardUpdateRequest.order` зарезервированы под позицию карточки внутри сценария.
+> Порядок принадлежит связи «сценарий → карточка» (карточка может использоваться
+> в нескольких сценариях), поэтому в БД его следует хранить в
+> `scenario_cards.card_order`, а не в `cards`. До появления поля фронтенд берёт
+> порядок из `cardSource.cardIds` / `Scenario.resolvedCardIds`. См.
+> [ARCHITECTURE.content-explorer.md](../ARCHITECTURE/ARCHITECTURE.content-explorer.md#сортировка-узлов-дерева).
+
 Критерии поиска (`CardSearchCriteria`): `query`, `knownLanguage`, `learningLanguage`, `tags`, `difficulty`, `kinds`, `page` (`page` / `pageSize`), `sort`. Параметры сериализуются через `buildCardSearchParams`.
 
 ### Справочник тегов карточек (`/cards/tags`)

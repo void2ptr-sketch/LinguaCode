@@ -124,6 +124,10 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     if (payload['difficulty']) {
       c['difficulty'] = String(payload['difficulty']).toLowerCase();
     }
+    // Position inside the scenario (`card_order`)
+    if (payload['order'] !== undefined) {
+      c['order'] = Number(payload['order']);
+    }
 
     return defer(() => handler.create(card)).pipe(
       map((data) => new HttpResponse({ status: 201, body: { data } })),
@@ -161,6 +165,9 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
         }
         if (payload['difficulty'] !== undefined) {
           u['difficulty'] = String(payload['difficulty']).toLowerCase();
+        }
+        if (payload['order'] !== undefined) {
+          u['order'] = Number(payload['order']);
         }
         return updated;
       }),

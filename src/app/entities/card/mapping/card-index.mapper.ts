@@ -42,6 +42,7 @@ export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): Card
     courseId: card.courseId,
     lessonId: card.lessonId,
     scenarioId: card.scenarioId,
+    order: card.order,
   };
 }
 

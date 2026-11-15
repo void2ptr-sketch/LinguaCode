@@ -31,6 +31,13 @@ export type Course = {
   languagePair: LanguagePair;
   /** IDs of programs contained in this course, in order. */
   programIds: readonly string[];
+  /**
+   * Optional position of the course in the root catalog (`course_order`).
+   *
+   * @remarks
+   * Reserved for backend integration; when absent the API order is preserved.
+   */
+  order?: number;
   /** Whether the course is published and visible in the catalog. */
   published: boolean;
   /** ISO 8601 timestamp of the last update. */

@@ -10,6 +10,67 @@
 export type ExplorerNodeKind = 'course' | 'program' | 'lesson' | 'scenario' | 'card';
 
 /**
+ * Sentinel order for siblings without an explicit `<entity>_order` value.
+ *
+ * @remarks
+ * Nodes without an order keep their source order (stable sort) and are placed
+ * after explicitly ordered siblings.
+ */
+export const EXPLORER_ORDER_FALLBACK = Number.MAX_SAFE_INTEGER;
+
+/**
+ * Normalizes an entity order value for tree sorting.
+ *
+ * @remarks
+ * Used by levels where `0` is a valid position (programs, lessons).
+ * Missing or non-finite values fall back to {@link EXPLORER_ORDER_FALLBACK}.
+ *
+ * @param order - Raw order from the entity (`program_order` / `lesson_order`).
+ * @returns A finite order value or the fallback sentinel.
+ */
+export function normalizeExplorerOrder(order: number | null | undefined): number {
+  return order != null && Number.isFinite(order) ? order : EXPLORER_ORDER_FALLBACK;
+}
+
+/**
+ * Normalizes an order value where `0` means «not set» (scenarios, cards).
+ *
+ * @remarks
+ * The API contract defines scenario order as `>= 1` (default `0`), and card
+ * order is optional. Such entities are placed after explicitly ordered
+ * siblings while preserving their source order (`lesson.scenarioIds` /
+ * `cardSource.cardIds`).
+ *
+ * @param order - Raw order from the entity (`scenario_order` / `card_order`).
+ * @returns A positive order value or the fallback sentinel.
+ */
+export function normalizeExplicitOrder(order: number | null | undefined): number {
+  return order != null && Number.isFinite(order) && order > 0 ? order : EXPLORER_ORDER_FALLBACK;
+}
+
+/**
+ * Stable comparator for tree siblings (ascending `order`).
+ *
+ * @param left - Left node.
+ * @param right - Right node.
+ * @returns Negative when `left` goes first, positive when `right` goes first.
+ */
+export function compareExplorerOrder(left: { order: number }, right: { order: number }): number {
+  return left.order - right.order;
+}
+
+/**
+ * Comparator for raw entities carrying an optional `order` field.
+ *
+ * @param left - Left entity.
+ * @param right - Right entity.
+ * @returns Negative when `left` goes first, positive when `right` goes first.
+ */
+export function compareEntityOrder<T extends { order?: number | null }>(left: T, right: T): number {
+  return normalizeExplorerOrder(left.order) - normalizeExplorerOrder(right.order);
+}
+
+/**
  * Deep-link reveal target for `/tools/content`.
  *
  * @remarks

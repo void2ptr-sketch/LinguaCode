@@ -257,9 +257,9 @@ describe('ContentExplorerStore', () => {
     const lessonNode = programNode.children()![0];
     await store.toggleNode(lessonNode);
 
-    // `lesson.scenarioIds` only contains scenario-1; the GUI scenario comes
-    // from the dedicated by-lesson endpoint and must be appended.
-    expect(lessonNode.children()!.map((node) => node.id)).toEqual(['scenario-1', 'scenario-gui']);
+    // The GUI scenario has an explicit `scenario_order` (2), so it is placed
+    // first; `scenario-1` has no order and keeps the `scenarioIds` tail.
+    expect(lessonNode.children()!.map((node) => node.id)).toEqual(['scenario-gui', 'scenario-1']);
   });
 
   it('renders a virtual criteria node for criteria card sources', async () => {
@@ -643,5 +643,91 @@ describe('ContentExplorerStore', () => {
     await store.toggleNode(programNode);
 
     expect(programNode.children()![0].title()).toBe('Приветствия (обновлён)');
+  });
+
+  it('sorts program siblings by program_order', async () => {
+    const orderedCourse = {
+      ...course,
+      programs: [
+        { ...program, id: 'program-3', title: 'Третий', order: 2 },
+        { ...program, id: 'program-1', title: 'Первый', order: 0 },
+        { ...program, id: 'program-2', title: 'Второй', order: 1 },
+      ],
+    } as CourseWithPrograms;
+    vi.mocked(TestBed.inject(CourseSearchService).getById).mockResolvedValue(orderedCourse);
+
+    await store.loadRoots();
+    const courseNode = store.roots()[0];
+    await store.toggleNode(courseNode);
+
+    expect(courseNode.children()!.map((node) => node.id)).toEqual([
+      'program-1',
+      'program-2',
+      'program-3',
+    ]);
+  });
+
+  it('sorts scenarios by scenario_order and keeps scenarioIds order for unordered ones', async () => {
+    const scenario1: Scenario = { ...scenario, id: 'scenario-1', title: 'Первый', order: 3 };
+    const scenario2: Scenario = { ...scenario, id: 'scenario-2', title: 'Второй', order: 1 };
+    const scenario3: Scenario = { ...scenario, id: 'scenario-3', title: 'Третий' };
+
+    store = setup({
+      scenarioById: (id) =>
+        id === 'scenario-1' ? scenario1 : id === 'scenario-2' ? scenario2 : scenario3,
+    });
+
+    const courseWithScenarios = {
+      ...course,
+      programs: [
+        {
+          ...program,
+          lessons: [
+            {
+              ...program.lessons![0],
+              scenarioIds: ['scenario-1', 'scenario-2', 'scenario-3'],
+            },
+          ],
+        },
+      ],
+    } as CourseWithPrograms;
+    vi.mocked(TestBed.inject(CourseSearchService).getById).mockResolvedValue(courseWithScenarios);
+
+    await store.loadRoots();
+    const courseNode = store.roots()[0];
+    await store.toggleNode(courseNode);
+    const programNode = courseNode.children()![0];
+    await store.toggleNode(programNode);
+    const lessonNode = programNode.children()![0];
+    await store.toggleNode(lessonNode);
+
+    expect(lessonNode.children()!.map((node) => node.id)).toEqual([
+      'scenario-2',
+      'scenario-1',
+      'scenario-3',
+    ]);
+  });
+
+  it('sorts cards by card_order and keeps cardIds order when order is absent', async () => {
+    const card2: CardIndexEntry = {
+      ...cardEntry,
+      id: 'card-2',
+      title: 'Hi',
+      order: 1,
+    } as CardIndexEntry;
+    const card1: CardIndexEntry = { ...cardEntry, id: 'card-1', order: 2 } as CardIndexEntry;
+    vi.mocked(TestBed.inject(CardSearchService).indexEntries).mockReturnValue([card1, card2]);
+
+    await store.loadRoots();
+    const courseNode = store.roots()[0];
+    await store.toggleNode(courseNode);
+    const programNode = courseNode.children()![0];
+    await store.toggleNode(programNode);
+    const lessonNode = programNode.children()![0];
+    await store.toggleNode(lessonNode);
+    const scenarioNode = lessonNode.children()![0];
+    await store.toggleNode(scenarioNode);
+
+    expect(scenarioNode.children()!.map((node) => node.id)).toEqual(['card-2', 'card-1']);
   });
 });

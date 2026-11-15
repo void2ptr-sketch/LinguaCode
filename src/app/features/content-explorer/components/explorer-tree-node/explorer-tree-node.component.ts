@@ -11,7 +11,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ContentExplorerStore, ExplorerNode } from '../../services/content-explorer.store';
-import { EXPLORER_KIND_ICONS, EXPLORER_KIND_LABELS } from '../../types/content-explorer.types';
+import {
+  compareExplorerOrder,
+  EXPLORER_KIND_ICONS,
+  EXPLORER_KIND_LABELS,
+} from '../../types/content-explorer.types';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -67,7 +71,9 @@ export class ExplorerTreeNodeComponent {
     const node = this.node();
     const base = node.children() ?? [];
     const extra = this.searchExtras();
-    const all = extra.length > 0 ? [...base, ...extra] : base;
+    // Search-only nodes are appended out of order; re-sort the merged list by
+    // the node `order` (`<entity>_order`) so search mode keeps the same order.
+    const all = [...base, ...extra].sort(compareExplorerOrder);
 
     if (!this.searchActive() || this.isSearchMatch() || this.searchSubtree()) {
       return all;

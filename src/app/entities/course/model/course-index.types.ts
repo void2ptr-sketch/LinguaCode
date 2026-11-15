@@ -19,6 +19,14 @@ export type CourseIndexEntry = {
   languagePairSummary: string;
   knownLanguage: ContentLanguage;
   learningLanguage: ContentLanguage;
+  /**
+   * Optional position of the course in the root catalog (`course_order`).
+   *
+   * @remarks
+   * The backend does not expose this field yet; when absent, root nodes keep
+   * the order returned by `/courses/search` (stable sort).
+   */
+  order?: number;
 };
 
 /**

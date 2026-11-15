@@ -85,6 +85,8 @@ export type CardIndexEntry = {
   lessonId?: string;
   /** ID of the Scenario this card belongs to. */
   scenarioId?: string;
+  /** Position of the card inside its scenario (`card_order`). */
+  order?: number;
 };
 
 /**

@@ -54,6 +54,14 @@ export type CardBase = {
   lessonId?: string;
   /** ID of the Scenario this card belongs to. */
   scenarioId?: string;
+  /**
+   * Position of the card inside its scenario (`card_order`).
+   *
+   * @remarks
+   * The order belongs to the scenario → card link (a card can be shared by
+   * several scenarios), not to the card entity itself.
+   */
+  order?: number;
 };
 
 import type { PhoneticLexeme, ToneMark } from '../../phonetic/model/phonetic-content.types';

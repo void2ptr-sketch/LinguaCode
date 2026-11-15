@@ -51,6 +51,22 @@ describe('CardBackendAdapter', () => {
       expect(field(card, 'direction')).toBe('known-to-learning');
     });
 
+    it('should map order from API `order` and DB `card_order`', () => {
+      const content = JSON.stringify({
+        promptKnown: '猫',
+        optionsLearning: ['cat'],
+        correctIndex: 0,
+      });
+
+      const byApi = CardBackendAdapter.toCard(createBackendDto({ dataJson: content, order: 3 }));
+      expect(field(byApi, 'order')).toBe(3);
+
+      const byDb = CardBackendAdapter.toCard(
+        createBackendDto({ dataJson: content, card_order: 4 }),
+      );
+      expect(field(byDb, 'order')).toBe(4);
+    });
+
     it('should convert CODE_SELECT card', () => {
       const dto = createBackendDto({
         kind: 'CODE_SELECT',

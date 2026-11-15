@@ -56,6 +56,48 @@ classDiagram
   ContentExplorerStore o-- ExplorerNode : tree
 ```
 
+## Сортировка узлов дерева
+
+Единый принцип: **дети любого узла рендерятся в порядке возрастания `<entity>_order`**.
+Поле `order` живёт на сущности (или на связи «сценарий → карточка»), а стор
+нормализует его в `ExplorerNode.order` и сортирует siblings стабильным
+компаратором.
+
+| Уровень    | Колонка в БД         | Поле в API DTO                        | Поле frontend                               | Нормализация                                                          |
+| ---------- | -------------------- | ------------------------------------- | ------------------------------------------- | --------------------------------------------------------------------- |
+| `course`   | `course_order` (нет) | нет                                   | `Course.order?` / `CourseIndexEntry.order?` | пока не отдаётся бэкендом — корни сохраняют порядок `/courses/search` |
+| `program`  | `program_order`      | `order`                               | `Program.order`                             | `normalizeExplorerOrder()`                                            |
+| `lesson`   | `lesson_order`       | `lessonOrder`                         | `Lesson.order`                              | `normalizeExplorerOrder()`                                            |
+| `scenario` | `scenario_order`     | `order` (+ fallback `scenario_order`) | `Scenario.order?`                           | `normalizeExplicitOrder()`                                            |
+| `card`     | `card_order` (связь) | `order` / `resolvedCardIds`           | `Card.order?` / `CardIndexEntry.order?`     | `normalizeExplicitOrder()`                                            |
+
+Правила:
+
+1. **Стабильная сортировка.** Компаратор — `compareExplorerOrder()` в
+   `features/content-explorer/types/content-explorer.types.ts`;
+   при равных `order` сохраняется исходный порядок (ES2019 stable sort).
+2. **`0` — это позиция или «не задано»?** Для `program`/`lesson` — валидная
+   позиция. Для `scenario`/`card` контракт задаёт `order >= 1`, поэтому `0` и
+   `undefined` трактуются как «не задано»: такие узлы идут **после**
+   упорядоченных, сохраняя исходный порядок.
+3. **Tie-break (вторичный ключ):**
+   - `scenario` — позиция в `lesson.scenarioIds`;
+   - `card` — позиция в `cardSource.cardIds` / `Scenario.resolvedCardIds`;
+   - `program`/`lesson` — порядок ответа API.
+4. **Поиск.** Узлы, добавленные только для поиска (`searchExtraChildren`),
+   сортируются тем же компаратором в `visibleChildren`, поэтому режим поиска
+   не меняет порядок веток.
+5. **Порядок карточек принадлежит связи «сценарий → карточка».** Карточка может
+   входить в несколько сценариев (бейдж «shared»), поэтому `card_order` нельзя
+   хранить на самой карточке как единственное значение. Источники порядка:
+   `scenario_cards.card_order` (целевая схема БД), `Scenario.resolvedCardIds`
+   или порядок `cardSource.cardIds`. Для `criteria`-сценариев порядок задаётся
+   `criteria.sort`, а не `card_order`.
+6. **Обновление после CRUD.** `refreshNode()` обновляет `node.order` из
+   перечитанной сущности и вызывает `reorderChildren()`; после reorder
+   необходимо сбрасывать кэши (`CourseSearchService.getByIdCache`, индекс
+   карточек), иначе порядок не обновится до F5.
+
 ## Обновление дерева после CRUD (`refreshNode`)
 
 `refreshNode(node)` — единственная точка синхронизации дерева после сохранения
@@ -111,15 +153,17 @@ Debounce — 300 мс, устаревшие ответы отбрасывают�
 
 ## Ленивая загрузка детей (по существующим ID-ссылкам)
 
-| Родитель   | Источник детей                                                                                                                       | Режим загрузки   |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------- |
-| `course`   | `CourseSearchService.getById` → `programs` (ProgramWithLessons)                                                                      | API              |
-| `program`  | `ProgramsApiService.getById` / `data.lessons`                                                                                        | API / кэш        |
-| `lesson`   | `lesson.scenarioIds` → `ScenarioSearchService.getByIdBatch`                                                                          | API              |
-| `scenario` | `cardSource.mode === 'criteria'` → виртуальный узел «Набор по критериям»; `fixed`/`snapshot` → индекс карточек (`CardSearchService`) | индекс / virtual |
-| `card`     | — (лист, бейдж «shared»)                                                                                                             | —                |
+| Родитель   | Источник детей                                                                                                                              | Режим загрузки   |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| `course`   | `CourseSearchService.getById` → `programs` (ProgramWithLessons), сортировка по `program_order`                                              | API              |
+| `program`  | `ProgramsApiService.getById` / `data.lessons`, сортировка по `lesson_order`                                                                 | API / кэш        |
+| `lesson`   | `lesson.scenarioIds` → `getByIdBatch` + `GET /scenarios/by-lesson/:id`, слияние и сортировка по `scenario_order`                            | API              |
+| `scenario` | `criteria` → виртуальный узел «Набор по критериям»; `fixed`/`snapshot` → индекс карточек, сортировка по `card_order` / `cardSource.cardIds` | индекс / virtual |
+| `card`     | — (лист, бейдж «shared»)                                                                                                                    | —                |
 
-Новые бэкенд-эндпоинты не требуются.
+Новые бэкенд-эндпоинты не требуются. Для `card_order` нужно поле на связи
+«сценарий → карточка» (см. раздел [«Сортировка узлов дерева»](#сортировка-узлов-дерева));
+до его появления порядок берётся из `cardSource.cardIds` / `Scenario.resolvedCardIds`.
 
 ## Связи с существующими билдерами
 
