@@ -13,4 +13,6 @@ export type Lesson = {
   prerequisiteLessonIds: readonly string[];
   order: number;
   updatedAt: string;
+  published?: boolean;
+  requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
 };

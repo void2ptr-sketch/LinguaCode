@@ -64,6 +64,8 @@ const mockLesson: Lesson = {
   prerequisiteLessonIds: [],
   order: 0,
   updatedAt: '',
+  published: true,
+  requiredTier: 'FREE',
 };
 
 describe('LessonBuilderDialogComponent', () => {
@@ -242,5 +244,34 @@ describe('LessonBuilderDialogComponent', () => {
     const { component, closeSpy } = createComponent({ mode: 'create' });
     await component.cancel();
     expect(closeSpy).toHaveBeenCalledWith({ saved: false });
+  });
+
+  // ── published / requiredTier in edit mode ──
+
+  it('should include published and requiredTier in draft when editing', async () => {
+    const { component } = createComponent(
+      { mode: 'edit', lessonId: 'l1' },
+      {
+        startEdit: async () => undefined,
+        editingLesson: signal(mockLesson),
+        editingLessonAuthorId: signal('local-user'),
+        isReadOnly: signal(false),
+      },
+    );
+    await Promise.resolve();
+    expect(component.draft().published).toBe(true);
+    expect(component.draft().requiredTier).toBe('FREE');
+  });
+
+  it('should detect dirty state after published change', () => {
+    const { component } = createComponent({ mode: 'create' });
+    component.updateDraft({ ...component.draft(), published: true });
+    expect(component.dirty()).toBe(true);
+  });
+
+  it('should detect dirty state after requiredTier change', () => {
+    const { component } = createComponent({ mode: 'create' });
+    component.updateDraft({ ...component.draft(), requiredTier: 'STARTER' });
+    expect(component.dirty()).toBe(true);
   });
 });

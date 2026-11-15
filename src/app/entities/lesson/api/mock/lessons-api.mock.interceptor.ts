@@ -120,6 +120,8 @@ export const lessonsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
       description: String(raw['lessonDescription'] ?? ''),
       order: Number(raw['lessonOrder'] ?? 0),
       prerequisiteLessonIds: parsePrerequisiteLessonIds(raw['prerequisiteLessonIds'] as string | undefined),
+      published: raw['published'] as boolean | undefined,
+      requiredTier: (raw['requiredTier'] as LessonCreatePayload['requiredTier']) ?? 'FREE',
     };
 
     return defer(() => handler.create(payload)).pipe(

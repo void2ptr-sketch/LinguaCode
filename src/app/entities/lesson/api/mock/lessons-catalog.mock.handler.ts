@@ -100,6 +100,8 @@ export class LessonsCatalogMockHandler {
       prerequisiteLessonIds: [...(payload.prerequisiteLessonIds ?? [])],
       order: payload.order,
       updatedAt: new Date().toISOString(),
+      published: payload.published ?? false,
+      requiredTier: payload.requiredTier,
     };
 
     this.catalog!.lessons ??= [];
@@ -134,6 +136,8 @@ export class LessonsCatalogMockHandler {
       prerequisiteLessonIds: [...(payload.prerequisiteLessonIds ?? [])],
       order: payload.order,
       updatedAt: new Date().toISOString(),
+      published: payload.published ?? existing.published,
+      requiredTier: payload.requiredTier ?? existing.requiredTier,
     };
 
     lessons[idx] = updated;

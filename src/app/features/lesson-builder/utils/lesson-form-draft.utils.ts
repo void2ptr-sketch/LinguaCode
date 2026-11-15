@@ -16,6 +16,7 @@ export const emptyLessonFormDraft = (programId = ''): LessonFormDraft => ({
   description: '',
   order: 0,
   prerequisiteLessonIds: [],
+  published: false,
 });
 
 /** Maps a persisted lesson to its editable draft representation. */
@@ -27,6 +28,8 @@ export function lessonToFormDraft(lesson: Lesson): LessonFormDraft {
     description: lesson.description,
     order: lesson.order,
     prerequisiteLessonIds: [...lesson.prerequisiteLessonIds],
+    published: lesson.published,
+    requiredTier: lesson.requiredTier,
   };
 }
 
@@ -46,6 +49,8 @@ export function serializeLessonFormDraft(draft: LessonFormDraft): string {
     description: draft.description,
     order: draft.order,
     prerequisiteLessonIds: [...(draft.prerequisiteLessonIds ?? [])].sort(),
+    published: draft.published,
+    requiredTier: draft.requiredTier,
   });
 }
 
@@ -92,6 +97,8 @@ export function formDraftToLessonCreatePayload(draft: LessonFormDraft): LessonCr
     description: draft.description,
     order: draft.order ?? 0,
     prerequisiteLessonIds: [...(draft.prerequisiteLessonIds ?? [])],
+    published: draft.published,
+    requiredTier: draft.requiredTier ?? 'FREE',
   };
 }
 
@@ -108,5 +115,7 @@ export function formDraftToLessonUpdatePayload(draft: LessonFormDraft): LessonUp
     description: draft.description,
     order: draft.order ?? 0,
     prerequisiteLessonIds: [...(draft.prerequisiteLessonIds ?? [])],
+    published: draft.published,
+    requiredTier: draft.requiredTier,
   };
 }

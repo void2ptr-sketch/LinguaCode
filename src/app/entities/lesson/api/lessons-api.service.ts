@@ -20,6 +20,8 @@ export type LessonCreatePayload = {
   description: string;
   order: number;
   prerequisiteLessonIds: readonly string[];
+  published?: boolean;
+  requiredTier: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
 };
 
 /**
@@ -33,6 +35,8 @@ export type LessonUpdatePayload = {
   description: string;
   order: number;
   prerequisiteLessonIds: readonly string[];
+  published?: boolean;
+  requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
 };
 
 /**
@@ -108,6 +112,8 @@ export class LessonsApiService {
         programId: toNumericId(payload.programId) as number,
         lessonOrder: payload.order,
         prerequisiteLessonIds: stringifyPrerequisiteLessonIds(payload.prerequisiteLessonIds),
+        published: payload.published,
+        requiredTier: payload.requiredTier,
       }),
     );
     return mapLessonDto(response.data);
@@ -130,6 +136,8 @@ export class LessonsApiService {
         lessonDescription: payload.description,
         lessonOrder: payload.order,
         prerequisiteLessonIds: stringifyPrerequisiteLessonIds(payload.prerequisiteLessonIds),
+        published: payload.published,
+        requiredTier: payload.requiredTier,
       }),
     );
     return mapLessonDto(response.data);
@@ -203,5 +211,7 @@ function mapLessonDto(dto: Lesson | undefined): LessonEntity {
     prerequisiteLessonIds: parsePrerequisiteLessonIds(dto?.prerequisiteLessonIds),
     order: dto?.lessonOrder ?? 0,
     updatedAt: dto?.updatedAt ?? '',
+    published: dto?.published,
+    requiredTier: dto?.requiredTier,
   };
 }

@@ -21,6 +21,8 @@ const mockLesson: Lesson = {
   prerequisiteLessonIds: ['lesson-2', 'lesson-3'],
   order: 3,
   updatedAt: '2026-01-01T00:00:00.000Z',
+  published: true,
+  requiredTier: 'FREE',
 };
 
 describe('lesson-form-draft.utils', () => {
@@ -32,11 +34,16 @@ describe('lesson-form-draft.utils', () => {
         description: '',
         order: 0,
         prerequisiteLessonIds: [],
+        published: false,
       });
     });
 
     it('should create an empty draft with programId', () => {
       expect(emptyLessonFormDraft('program-1').programId).toBe('program-1');
+    });
+
+    it('should default published to false', () => {
+      expect(emptyLessonFormDraft().published).toBe(false);
     });
   });
 
@@ -50,6 +57,8 @@ describe('lesson-form-draft.utils', () => {
         description: 'Test description',
         order: 3,
         prerequisiteLessonIds: ['lesson-2', 'lesson-3'],
+        published: true,
+        requiredTier: 'FREE',
       });
     });
 
@@ -61,6 +70,23 @@ describe('lesson-form-draft.utils', () => {
     it('should clone prerequisiteLessonIds', () => {
       const draft = lessonToFormDraft(mockLesson);
       expect(draft.prerequisiteLessonIds).not.toBe(mockLesson.prerequisiteLessonIds);
+    });
+
+    it('should map published and requiredTier', () => {
+      const draft = lessonToFormDraft(mockLesson);
+      expect(draft.published).toBe(true);
+      expect(draft.requiredTier).toBe('FREE');
+    });
+
+    it('should handle undefined published and requiredTier', () => {
+      const lessonWithoutFields: Lesson = {
+        ...mockLesson,
+        published: undefined,
+        requiredTier: undefined,
+      };
+      const draft = lessonToFormDraft(lessonWithoutFields);
+      expect(draft.published).toBe(undefined);
+      expect(draft.requiredTier).toBe(undefined);
     });
   });
 
@@ -87,6 +113,8 @@ describe('lesson-form-draft.utils', () => {
         description: '',
         order: 0,
         prerequisiteLessonIds: [],
+        published: false,
+        requiredTier: undefined,
       });
     });
 
@@ -94,6 +122,18 @@ describe('lesson-form-draft.utils', () => {
       const a = { ...emptyLessonFormDraft(), prerequisiteLessonIds: ['b', 'a'] };
       const b = { ...emptyLessonFormDraft(), prerequisiteLessonIds: ['a', 'b'] };
       expect(serializeLessonFormDraft(a)).toBe(serializeLessonFormDraft(b));
+    });
+
+    it('should include published in serialization', () => {
+      const a = emptyLessonFormDraft();
+      const b = { ...a, published: true };
+      expect(serializeLessonFormDraft(a)).not.toBe(serializeLessonFormDraft(b));
+    });
+
+    it('should include requiredTier in serialization', () => {
+      const a = emptyLessonFormDraft();
+      const b = { ...a, requiredTier: 'STARTER' as const };
+      expect(serializeLessonFormDraft(a)).not.toBe(serializeLessonFormDraft(b));
     });
   });
 
@@ -161,6 +201,8 @@ describe('lesson-form-draft.utils', () => {
         description: 'Desc',
         order: 2,
         prerequisiteLessonIds: ['lesson-1'],
+        published: undefined,
+        requiredTier: 'FREE',
       });
     });
 
@@ -172,6 +214,21 @@ describe('lesson-form-draft.utils', () => {
       });
       expect(payload.order).toBe(0);
       expect(payload.prerequisiteLessonIds).toEqual([]);
+    });
+
+    it('should include published and requiredTier when present', () => {
+      const draft = {
+        programId: 'program-1',
+        title: 'New Lesson',
+        description: 'Desc',
+        order: 1,
+        prerequisiteLessonIds: [],
+        published: true,
+        requiredTier: 'STARTER' as const,
+      };
+      const payload = formDraftToLessonCreatePayload(draft);
+      expect(payload.published).toBe(true);
+      expect(payload.requiredTier).toBe('STARTER');
     });
   });
 
@@ -191,8 +248,26 @@ describe('lesson-form-draft.utils', () => {
         description: 'New desc',
         order: 1,
         prerequisiteLessonIds: ['lesson-2'],
+        published: undefined,
+        requiredTier: undefined,
       });
       expect('programId' in payload).toBe(false);
+    });
+
+    it('should include published and requiredTier when present', () => {
+      const draft = {
+        id: 'lesson-1',
+        programId: 'program-1',
+        title: 'Updated',
+        description: 'New desc',
+        order: 1,
+        prerequisiteLessonIds: ['lesson-2'],
+        published: false,
+        requiredTier: 'GROWTH' as const,
+      };
+      const payload = formDraftToLessonUpdatePayload(draft);
+      expect(payload.published).toBe(false);
+      expect(payload.requiredTier).toBe('GROWTH');
     });
   });
 });

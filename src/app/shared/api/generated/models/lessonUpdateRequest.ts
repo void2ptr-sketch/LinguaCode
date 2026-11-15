@@ -4,6 +4,7 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
+import type { LessonUpdateRequestRequiredTier } from './lessonUpdateRequestRequiredTier';
 
 /**
  * Lesson update request
@@ -13,4 +14,6 @@ export interface LessonUpdateRequest {
   lessonDescription?: string;
   lessonOrder?: number;
   prerequisiteLessonIds?: string;
+  published?: boolean;
+  requiredTier?: LessonUpdateRequestRequiredTier;
 }

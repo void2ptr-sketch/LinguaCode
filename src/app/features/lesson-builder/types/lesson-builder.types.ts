@@ -19,6 +19,10 @@ export type LessonFormDraft = {
   order?: number;
   /** IDs of prerequisite lessons that must be completed first. */
   prerequisiteLessonIds?: readonly string[];
+  /** Whether the lesson is published and visible to users. */
+  published?: boolean;
+  /** Access tier required to view the lesson. */
+  requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
 };
 
 /**

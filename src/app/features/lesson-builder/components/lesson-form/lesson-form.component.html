@@ -1,54 +1,65 @@
-<div class="lesson-form">
-  <mat-form-field appearance="outline">
-    <mat-label>Название урока</mat-label>
-    <input
-      matInput
-      required
-      [disabled]="readOnly()"
-      [maxlength]="titleMaxLength"
-      [ngModel]="draft().title"
-      (ngModelChange)="updateTitle($event)"
-    />
-    <mat-hint>{{ draft().title.length }} / {{ titleMaxLength }}</mat-hint>
-  </mat-form-field>
+<section class="lesson-form">
+  <mat-tab-group class="lesson-form__tabs" dynamicHeight>
+    <!-- ── Вкладка 1: Основное ── -->
+    <mat-tab label="Основное">
+      <div class="lesson-form__tab-panel">
+        <mat-form-field appearance="outline">
+          <mat-label>Название урока</mat-label>
+          <input matInput required [disabled]="readOnly()" [maxlength]="titleMaxLength"
+                 [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
+          <mat-hint>{{ draft().title.length }} / {{ titleMaxLength }}</mat-hint>
+        </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Описание</mat-label>
-    <textarea
-      matInput
-      rows="4"
-      [disabled]="readOnly()"
-      [ngModel]="draft().description"
-      (ngModelChange)="updateDescription($event)"
-    ></textarea>
-    <mat-hint>Короткий текст для списка уроков</mat-hint>
-  </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Описание</mat-label>
+          <textarea matInput rows="4" [disabled]="readOnly()"
+                    [ngModel]="draft().description"
+                    (ngModelChange)="updateDescription($event)"></textarea>
+          <mat-hint>Короткий текст для списка уроков</mat-hint>
+        </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Порядок</mat-label>
-    <input
-      matInput
-      type="number"
-      [disabled]="readOnly()"
-      min="0"
-      [ngModel]="draft().order ?? 0"
-      (ngModelChange)="updateOrder($event)"
-    />
-    <mat-hint>Позиция урока внутри трека</mat-hint>
-  </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Порядок</mat-label>
+          <input matInput type="number" [disabled]="readOnly()" min="0"
+                 [ngModel]="draft().order ?? 0" (ngModelChange)="updateOrder($event)" />
+          <mat-hint>Позиция урока внутри трека</mat-hint>
+        </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Пререквизиты</mat-label>
-    <mat-select
-      multiple
-      [disabled]="readOnly()"
-      [ngModel]="draft().prerequisiteLessonIds ?? []"
-      (ngModelChange)="updatePrerequisiteLessonIds($event)"
-    >
-      @for (candidate of candidateLessons(); track candidate.id) {
-        <mat-option [value]="candidate.id">{{ candidate.title }}</mat-option>
-      }
-    </mat-select>
-    <mat-hint>Уроки, которые нужно завершить перед этим</mat-hint>
-  </mat-form-field>
-</div>
+        <mat-form-field appearance="outline">
+          <mat-label>Пререквизиты</mat-label>
+          <mat-select multiple [disabled]="readOnly()"
+                      [ngModel]="draft().prerequisiteLessonIds ?? []"
+                      (ngModelChange)="updatePrerequisiteLessonIds($event)">
+            @for (candidate of candidateLessons(); track candidate.id) {
+              <mat-option [value]="candidate.id">{{ candidate.title }}</mat-option>
+            }
+          </mat-select>
+          <mat-hint>Уроки, которые нужно завершить перед этим</mat-hint>
+        </mat-form-field>
+      </div>
+    </mat-tab>
+
+    <!-- ── Вкладка 2: Публикация ── -->
+    <mat-tab label="Публикация">
+      <div class="lesson-form__tab-panel">
+        @if (!readOnly()) {
+          <mat-checkbox [ngModel]="draft().published ?? false"
+                        (ngModelChange)="updatePublished($event)">
+            Опубликовать
+          </mat-checkbox>
+        }
+
+        <mat-form-field appearance="outline">
+          <mat-label>Уровень доступа</mat-label>
+          <mat-select [disabled]="readOnly()"
+                      [ngModel]="draft().requiredTier"
+                      (ngModelChange)="updateRequiredTier($event)">
+            @for (tier of tierOptions; track tier) {
+              <mat-option [value]="tier">{{ tierLabels[tier] }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</section>
