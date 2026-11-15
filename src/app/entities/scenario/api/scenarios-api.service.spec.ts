@@ -116,6 +116,66 @@ describe('ScenariosApiService', () => {
     });
   });
 
+  describe('getNextOrder', () => {
+    it('should scan all search pages and return max order + 1', async () => {
+      const promise = service.getNextOrder();
+
+      const first = httpMock.expectOne(
+        (r) =>
+          r.url === buildApiUrl('/scenarios/search') &&
+          r.params.get('page') === '0' &&
+          r.params.get('size') === '100',
+      );
+      expect(first.request.method).toBe('GET');
+      first.flush({ data: [{ id: 1, order: 5 }], total: 2 });
+      // Let the page loop issue the next request.
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      const second = httpMock.expectOne(
+        (r) =>
+          r.url === buildApiUrl('/scenarios/search') &&
+          r.params.get('page') === '1' &&
+          r.params.get('size') === '100',
+      );
+      second.flush({ data: [{ id: 2, order: 10 }], total: 2 });
+
+      await expect(promise).resolves.toBe(11);
+    });
+
+    it('should support the mock page envelope ({ data: { items, totalItems } })', async () => {
+      const promise = service.getNextOrder();
+
+      const req = httpMock.expectOne(
+        (r) => r.url === buildApiUrl('/scenarios/search') && r.params.get('page') === '0',
+      );
+      req.flush({ data: { items: [{ id: 's1', order: 7 }], totalItems: 1 } });
+
+      await expect(promise).resolves.toBe(8);
+    });
+
+    it('should fall back to scenario_order when order is missing', async () => {
+      const promise = service.getNextOrder();
+
+      const req = httpMock.expectOne(
+        (r) => r.url === buildApiUrl('/scenarios/search') && r.params.get('page') === '0',
+      );
+      req.flush({ data: [{ id: 1, scenario_order: 4 }], total: 1 });
+
+      await expect(promise).resolves.toBe(5);
+    });
+
+    it('should return 1 when there are no scenarios', async () => {
+      const promise = service.getNextOrder();
+
+      const req = httpMock.expectOne(
+        (r) => r.url === buildApiUrl('/scenarios/search') && r.params.get('page') === '0',
+      );
+      req.flush({ data: [], total: 0 });
+
+      await expect(promise).resolves.toBe(1);
+    });
+  });
+
   describe('create', () => {
     it('should create a new scenario', async () => {
       const promise = service.create(mockPayload);

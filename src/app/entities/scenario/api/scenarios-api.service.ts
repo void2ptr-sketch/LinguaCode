@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
@@ -113,6 +113,11 @@ export class ScenariosApiService implements ScenarioCatalogPort {
       raw['lessonId'] = String(raw['lessonId']);
     }
 
+    // Бэкенд возвращает scenario_order — мапим в order
+    if (raw['scenario_order'] != null && raw['order'] == null) {
+      raw['order'] = raw['scenario_order'];
+    }
+
     return normalizeScenario(raw as unknown as LegacyScenario);
   }
 
@@ -138,7 +143,16 @@ export class ScenariosApiService implements ScenarioCatalogPort {
     const params = buildScenarioSearchParams(criteria);
 
     return firstValueFrom(this.http.get<ApiResponse<ScenarioSearchPage>>(url, { params })).then(
-      (response) => response.data,
+      (response) => {
+        // Бэкенд возвращает scenario_order — мапим в order для index entries
+        const items = [...(response.data.items ?? [])].map((item: Record<string, unknown>) => {
+          if (item['scenario_order'] != null && item['order'] == null) {
+            return { ...item, order: item['scenario_order'] };
+          }
+          return item;
+        });
+        return { ...response.data, items: items as unknown as ScenarioSearchPage['items'] };
+      },
     );
   }
 
@@ -199,6 +213,85 @@ export class ScenariosApiService implements ScenarioCatalogPort {
     }
 
     return Promise.all(items.map((raw) => this.mapScenario(raw as Record<string, unknown>)));
+  }
+
+  /**
+   * Resolves the next scenario order (`max(scenario_order) + 1`).
+   *
+   * @remarks
+   * The backend has no dedicated "max order" endpoint, so the catalog is
+   * scanned page by page through `/scenarios/search`. Unlike `/scenarios`,
+   * the search endpoint returns every scenario (including drafts), which is
+   * required to compute the real maximum. Spring pagination parameters
+   * (`page` / `size`) are used because `pageSize` is ignored by the backend.
+   *
+   * @returns The next order value (at least `1`).
+   */
+  async getNextOrder(): Promise<number> {
+    const pageSize = 100;
+    let page = 0;
+    let total = Number.POSITIVE_INFINITY;
+    let fetched = 0;
+    let maxOrder = 0;
+
+    while (fetched < total) {
+      const response = await firstValueFrom(
+        this.http.get<Record<string, unknown>>(buildApiUrl('/scenarios/search'), {
+          params: new HttpParams()
+            .set('query', '')
+            .set('page', String(page))
+            // `size` — Spring pagination (real backend); `pageSize` — mock parser.
+            .set('size', String(pageSize))
+            .set('pageSize', String(pageSize)),
+        }),
+      );
+
+      const { items, total: pageTotal } = this.readListPayload(response);
+      for (const item of items) {
+        const value = Number(item['order'] ?? item['scenario_order'] ?? 0);
+        if (Number.isFinite(value)) {
+          maxOrder = Math.max(maxOrder, value);
+        }
+      }
+
+      fetched += items.length;
+      total = pageTotal;
+      if (items.length === 0) {
+        break;
+      }
+      page += 1;
+    }
+
+    return maxOrder + 1;
+  }
+
+  /**
+   * Reads a backend list payload in either supported shape:
+   * - real backend: `{ data: [...], total }`;
+   * - mock/legacy page: `{ data: { items: [...], totalItems } }`.
+   */
+  private readListPayload(response: Record<string, unknown>): {
+    items: Record<string, unknown>[];
+    total: number;
+  } {
+    const data = response['data'];
+
+    if (Array.isArray(data)) {
+      return {
+        items: data as Record<string, unknown>[],
+        total: Number(response['total'] ?? data.length),
+      };
+    }
+
+    if (data && typeof data === 'object') {
+      const page = data as Record<string, unknown>;
+      const items = Array.isArray(page['items'])
+        ? (page['items'] as Record<string, unknown>[])
+        : [];
+      return { items, total: Number(page['totalItems'] ?? items.length) };
+    }
+
+    return { items: [], total: 0 };
   }
 
   /**

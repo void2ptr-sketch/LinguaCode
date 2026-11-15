@@ -47,6 +47,10 @@ export function buildScenarioSearchParams(criteria: ScenarioSearchCriteria): Htt
     params = params.set('courseId', criteria.courseId);
   }
 
+  if (criteria.lessonId) {
+    params = params.set('lessonId', criteria.lessonId);
+  }
+
   return params;
 }
 
@@ -64,6 +68,7 @@ export function parseScenarioSearchCriteria(params: HttpParams): ScenarioSearchC
     knownLanguage: isContentLanguage(knownLanguage) ? knownLanguage : undefined,
     learningLanguage: isContentLanguage(learningLanguage) ? learningLanguage : undefined,
     courseId: params.get('courseId') ?? undefined,
+    lessonId: params.get('lessonId') ?? undefined,
     page: {
       page: Number(params.get('page') ?? 0),
       pageSize: Number(params.get('pageSize') ?? DEFAULT_PAGE_SIZE),

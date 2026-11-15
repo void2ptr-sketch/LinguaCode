@@ -15,6 +15,8 @@ export function scenarioToIndexEntry(scenario: Scenario): ScenarioIndexEntry {
       ? formatLanguagePair(scenario.languagePair)
       : undefined,
     courseId: scenario.courseId,
+    lessonId: scenario.lessonId,
+    order: scenario.order,
   };
 }
 

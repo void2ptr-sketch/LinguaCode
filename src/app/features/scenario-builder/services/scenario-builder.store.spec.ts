@@ -19,6 +19,7 @@ describe('ScenarioBuilderStore', () => {
 
   const mockScenarioSearchService = {
     search: vi.fn(),
+    getNextOrder: vi.fn(),
     getById: vi.fn(),
     create: vi.fn(),
     update: vi.fn(),
@@ -45,6 +46,7 @@ describe('ScenarioBuilderStore', () => {
   beforeEach(() => {
     localStorage.clear();
     vi.clearAllMocks();
+    mockScenarioSearchService.getNextOrder.mockResolvedValue(1);
 
     TestBed.configureTestingModule({
       providers: [
@@ -216,9 +218,29 @@ describe('ScenarioBuilderStore', () => {
     expect(draft.courseId).toBeUndefined();
     expect(draft.programId).toBeUndefined();
     expect(draft.lessonId).toBeUndefined();
+    expect(mockScenarioSearchService.getNextOrder).toHaveBeenCalled();
+  });
+
+  it('should use the backend next order for a new scenario', async () => {
+    mockScenarioSearchService.getNextOrder.mockResolvedValue(11);
+
+    const draft = await store.createDraft({ lessonId: 'lesson-113' });
+
+    expect(draft.scenarioOrder).toBe(11);
+    expect(draft.lessonId).toBe('lesson-113');
+  });
+
+  it('should fall back to order 1 when next-order request fails', async () => {
+    mockScenarioSearchService.getNextOrder.mockRejectedValue(new Error('API error'));
+
+    const draft = await store.createDraft();
+
+    expect(draft.scenarioOrder).toBe(1);
   });
 
   it('should create a draft with context language pair when provided', async () => {
+    mockScenarioSearchService.getNextOrder.mockResolvedValue(3);
+
     const draft = await store.createDraft({
       languagePairId: 1,
       courseId: 'course-123',
@@ -230,7 +252,7 @@ describe('ScenarioBuilderStore', () => {
     expect(draft.courseId).toBe('course-123');
     expect(draft.programId).toBe('program-456');
     expect(draft.lessonId).toBe('lesson-789');
-    expect(draft.scenarioOrder).toBe(1);
+    expect(draft.scenarioOrder).toBe(3);
   });
 
   it('should create a draft with partial context (only courseId)', async () => {

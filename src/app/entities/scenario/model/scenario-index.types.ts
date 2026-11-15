@@ -19,6 +19,8 @@ export type ScenarioIndexEntry = {
   updatedAt: string;
   languagePairSummary?: string;
   courseId?: string;
+  lessonId?: string;
+  order?: number;
   requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
 };
 
@@ -55,6 +57,8 @@ export type ScenarioSearchCriteria = {
   learningLanguage?: ContentLanguage;
   /** Filter by course ID (scenarios within a specific course). */
   courseId?: string;
+  /** Filter by lesson ID (scenarios within a specific lesson). */
+  lessonId?: string;
   /** Pagination parameters. */
   page: import('../../../shared/utils/pagination').PageRequest;
 };

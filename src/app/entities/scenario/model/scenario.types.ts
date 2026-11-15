@@ -46,4 +46,8 @@ export type LegacyScenario = {
   updatedAt?: string;
   languagePair?: LanguagePair;
   courseId?: string;
+  programId?: string;
+  lessonId?: string;
+  languagePairId?: number;
+  order?: number;
 };

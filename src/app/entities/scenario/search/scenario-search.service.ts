@@ -45,6 +45,15 @@ export class ScenarioSearchService {
   }
 
   /**
+   * Resolves the next scenario order (`max(scenario_order) + 1`).
+   *
+   * @returns The next order value (at least `1`).
+   */
+  getNextOrder(): Promise<number> {
+    return this.run(() => this.scenariosApi.getNextOrder());
+  }
+
+  /**
    * Retrieves a scenario by ID.
    *
    * @param scenarioId - The scenario ID.

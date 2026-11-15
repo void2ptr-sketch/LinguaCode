@@ -249,7 +249,13 @@ export class ScenarioBuilderStore {
    * Creates a new scenario draft with default values and optional context.
    *
    * @param context - Optional context pre-filled from the content explorer tree.
-   * @returns A new ScenarioFormDraft with order starting at 1.
+   * @returns A new ScenarioFormDraft with auto-incremented order.
+   *
+   * @remarks
+   * The order is resolved from the backend (`max(scenario_order) + 1`).
+   * The previous implementation filtered the `/scenarios` list by `lessonId`,
+   * but that endpoint ignores `lessonId` and only returns tier-accessible
+   * scenarios, so the computed maximum was always `0` (order `1`).
    */
   async createDraft(
     context?: {
@@ -259,10 +265,15 @@ export class ScenarioBuilderStore {
       lessonId?: string;
     },
   ): Promise<ScenarioFormDraft> {
-    // ScenarioSearchCriteria doesn't support lessonId or sorting,
-    // so auto-increment by lesson is not possible without backend changes.
-    // Fallback: start at 1 (user can manually adjust).
-    const draft = emptyScenarioFormDraft(1);
+    let order = 1;
+
+    try {
+      order = await this.scenarioSearchService.getNextOrder();
+    } catch (error) {
+      this.logger.error('ScenarioBuilder: failed to resolve next scenario order', error);
+    }
+
+    const draft = emptyScenarioFormDraft(order);
     if (context?.languagePairId) {
       draft.languagePairId = context.languagePairId;
     }

@@ -125,6 +125,28 @@ type LanguagePairDto = {
 > **`requiredTier`** — обязательное поле при создании (по умолчанию `FREE`). На update — опционально, по умолчанию сохраняется текущее значение.
 > **`courseId`**, **`programId`**, **`lessonId`** — опциональные ссылки на иерархию обучения. Бэкенд может игнорировать `courseId` в mapper'е (обрабатывается в service layer).
 
+### Параметры поиска сценариев (`GET /scenarios/search`)
+
+| Параметр       | Тип    | Обязательный | Описание                                       |
+| -------------- | ------ | ------------ | ---------------------------------------------- |
+| `query`        | string | Нет          | Текстовый поиск по названию                    |
+| `authorId`     | string | Нет          | Фильтр по автору                               |
+| `scope`        | string | Нет          | `mine` / `all` / `published`                   |
+| `cardSourceMode` | string | Нет        | `fixed` / `snapshot` / `criteria`              |
+| `knownLanguage`| string | Нет          | Язык-источник (ISO-код)                        |
+| `learningLanguage` | string | Нет      | Язык-цель (ISO-код)                            |
+| `courseId`     | string | Нет          | Фильтр по курсу                                |
+| `lessonId`     | string | Нет          | Фильтр по уроку (backend `search` его игнорирует) |
+| `page`         | number | Да           | Номер страницы (0-based)                       |
+| `size`         | number | Да           | Размер страницы (Spring-параметр)              |
+| `pageSize`     | number | Нет          | Дублируется для mock-интерсептора              |
+
+> **Автоинкремент `order`.** Отдельного endpoint'а `max(order)` нет. `ScenariosApiService.getNextOrder()`
+> постранично читает `/scenarios/search` (`page` / `size`), берёт максимум `order`
+> (`scenario_order` как fallback) и возвращает `max + 1`. Эндпоинт `/scenarios`
+> для этого не подходит: он игнорирует `lessonId` и применяет tier-фильтрацию,
+> поэтому возвращает только доступные сценарии (часто с `order = 0`).
+
 ## Программы (`/programs`)
 
 Реализация: `ProgramsApiService` · порт `ProgramCatalogPort` · mock `programsApiMockInterceptor`.

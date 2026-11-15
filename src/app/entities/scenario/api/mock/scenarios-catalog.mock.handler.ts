@@ -100,6 +100,7 @@ export class ScenariosCatalogMockHandler {
       programId: payload.programId ? String(payload.programId) : undefined,
       lessonId: payload.lessonId ? String(payload.lessonId) : undefined,
       requiredTier: payload.requiredTier ?? 'FREE',
+      order: payload.order,
     };
 
     this.scenarios = [...this.scenarios!, scenario];
