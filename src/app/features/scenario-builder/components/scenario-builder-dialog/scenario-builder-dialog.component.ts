@@ -19,6 +19,7 @@ import { firstValueFrom } from 'rxjs';
 import { CardCatalogSearchStore } from '../../../../entities/card/lib/store/card-catalog-search.store';
 import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
 import { UserStore } from '../../../../entities/user/model/user.store';
+import { ProgramsApiService } from '../../../../entities/program/api';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import {
   emptyScenarioFormDraft,
@@ -32,6 +33,8 @@ import type {
   ScenarioBuilderDialogData,
   ScenarioBuilderDialogResult,
 } from './scenario-builder-dialog.types';
+import type { ProgramWithLessons } from '../../../../entities/program/model';
+import type { Lesson } from '../../../../entities/course/model/lesson.types';
 
 /**
  * Scenario builder dialog component. Provides a modal interface for creating and editing scenarios,
@@ -58,6 +61,7 @@ export class ScenarioBuilderDialogComponent implements OnInit {
   readonly data = inject<ScenarioBuilderDialogData>(MAT_DIALOG_DATA);
   readonly store = inject(ScenarioBuilderStore);
   private readonly userStore = inject(UserStore);
+  private readonly programsApi = inject(ProgramsApiService);
 
   /** Current scenario form draft being edited or created. */
   readonly draft = signal<ScenarioFormDraft>(emptyScenarioFormDraft());
@@ -82,6 +86,11 @@ export class ScenarioBuilderDialogComponent implements OnInit {
     return 'Редактирование';
   });
 
+  /** Programs loaded for the currently selected course. */
+  readonly programs = signal<readonly ProgramWithLessons[]>([]);
+  /** Lessons loaded for the currently selected program. */
+  readonly lessons = signal<readonly Lesson[]>([]);
+
   async ngOnInit(): Promise<void> {
     if (this.data.mode === 'create') {
       this.store.startCreate();
@@ -102,6 +111,15 @@ export class ScenarioBuilderDialogComponent implements OnInit {
     const nextDraft = scenarioToFormDraft(scenario);
     this.draft.set(nextDraft);
     this.initialSnapshot.set(serializeScenarioFormDraft(nextDraft));
+
+    // Load programs if a course is selected
+    if (nextDraft.courseId) {
+      await this.loadPrograms(nextDraft.courseId);
+    }
+    // Load lessons if a program is selected
+    if (nextDraft.programId) {
+      await this.loadLessons(nextDraft.programId);
+    }
   }
 
   /**
@@ -111,6 +129,33 @@ export class ScenarioBuilderDialogComponent implements OnInit {
    */
   updateDraft(nextDraft: ScenarioFormDraft): void {
     this.draft.set(nextDraft);
+
+    // Load programs when course changes
+    if (nextDraft.courseId && nextDraft.courseId !== this.draft().courseId) {
+      this.loadPrograms(nextDraft.courseId);
+    }
+    // Load lessons when program changes
+    if (nextDraft.programId && nextDraft.programId !== this.draft().programId) {
+      this.loadLessons(nextDraft.programId);
+    }
+  }
+
+  private async loadPrograms(courseId: string): Promise<void> {
+    try {
+      const programs = await this.programsApi.getByCourse(courseId);
+      this.programs.set(programs);
+    } catch {
+      this.programs.set([]);
+    }
+  }
+
+  private async loadLessons(programId: string): Promise<void> {
+    try {
+      const lessons = await this.programsApi.getLessons(programId);
+      this.lessons.set(lessons);
+    } catch {
+      this.lessons.set([]);
+    }
   }
 
   /**

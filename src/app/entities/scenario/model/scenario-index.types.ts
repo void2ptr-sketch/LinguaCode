@@ -19,6 +19,7 @@ export type ScenarioIndexEntry = {
   updatedAt: string;
   languagePairSummary?: string;
   courseId?: string;
+  requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
 };
 
 /**

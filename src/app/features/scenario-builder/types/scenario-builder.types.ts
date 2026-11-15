@@ -22,6 +22,10 @@ export type ScenarioDraft = {
   cardSource: ScenarioCardSource;
   published: boolean;
   languagePair?: LanguagePair;
+  courseId?: string;
+  programId?: string;
+  lessonId?: string;
+  requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
 };
 
 /**

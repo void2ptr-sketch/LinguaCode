@@ -17,6 +17,9 @@ export type Scenario = {
   updatedAt: string;
   languagePair?: LanguagePair;
   courseId?: string;
+  programId?: string;
+  lessonId?: string;
+  requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
   /** Количество карточек в сценарии (от бэкенда, может быть undefined для legacy-данных). */
   cardCount?: number;
 };

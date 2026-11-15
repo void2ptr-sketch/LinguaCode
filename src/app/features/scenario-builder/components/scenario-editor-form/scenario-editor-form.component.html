@@ -24,10 +24,59 @@
     ></textarea>
   </mat-form-field>
 
-  <section class="scenario-editor-form__languages">
-    <h2>Курс</h2>
+  <section class="scenario-editor-form__hierarchy">
+    <h2>Привязка к курсу</h2>
     <p class="scenario-editor-form__hint">
-      Карточки сценария должны соответствовать выбранному курсу.
+      Сценарий можно привязать к курсу, программе и уроку. Карточки должны соответствовать языковой паре курса.
+    </p>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Курс</mat-label>
+      <mat-select
+        [disabled]="readOnly()"
+        [ngModel]="draft().courseId"
+        (ngModelChange)="onCourseIdChange($event)"
+      >
+        <mat-option value="">Без курса</mat-option>
+        @for (course of courses(); track course.id) {
+          <mat-option [value]="course.id">{{ course.title }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Программа</mat-label>
+      <mat-select
+        [disabled]="readOnly() || !draft().courseId"
+        [ngModel]="draft().programId"
+        (ngModelChange)="onProgramIdChange($event)"
+      >
+        <mat-option value="">Без программы</mat-option>
+        @for (program of programs(); track program.id) {
+          <mat-option [value]="program.id">{{ program.title }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Урок</mat-label>
+      <mat-select
+        [disabled]="readOnly() || !draft().programId"
+        [ngModel]="draft().lessonId"
+        (ngModelChange)="onLessonIdChange($event)"
+      >
+        <mat-option value="">Без урока</mat-option>
+        @for (lesson of lessons(); track lesson.id) {
+          <mat-option [value]="lesson.id">{{ lesson.title }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </section>
+
+  <section class="scenario-editor-form__languages">
+    <h2>Языковая пара</h2>
+    <p class="scenario-editor-form__hint">
+      Карточки сценария должны соответствовать выбранной языковой паре.
     </p>
 
     <mat-form-field appearance="outline">
@@ -59,5 +108,21 @@
     @if (languagePairInvalid()) {
       <p class="scenario-editor-form__error">Языки должны отличаться.</p>
     }
+  </section>
+
+  <section class="scenario-editor-form__tier">
+    <h2>Тариф</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Тариф сценария</mat-label>
+      <mat-select
+        [disabled]="readOnly()"
+        [ngModel]="draft().requiredTier"
+        (ngModelChange)="onRequiredTierChange($event)"
+      >
+        @for (tier of tierOptions; track tier) {
+          <mat-option [value]="tier">{{ tierLabels[tier] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
   </section>
 </section>

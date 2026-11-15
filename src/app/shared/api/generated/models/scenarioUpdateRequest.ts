@@ -18,6 +18,7 @@ export interface ScenarioUpdateRequest {
   title?: string;
   scenarioDescription?: string;
   cardSource?: string;
+  courseId?: number;
   programId?: number;
   lessonId?: number;
   languagePairId?: number;

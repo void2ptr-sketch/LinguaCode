@@ -13,6 +13,10 @@ export type ScenarioFormDraft = {
   description: string;
   published: boolean;
   languagePair: LanguagePair;
+  courseId?: string;
+  programId?: string;
+  lessonId?: string;
+  requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
   sourceMode: ScenarioCardSourceMode;
   fixedCardIds: readonly string[];
   criteria: ScenarioCriteriaDraft;
@@ -30,6 +34,7 @@ export function emptyScenarioFormDraft(
     description: '',
     published: false,
     languagePair,
+    requiredTier: 'FREE',
     sourceMode: 'fixed',
     fixedCardIds: [],
     criteria: emptyCardSearchCriteria(),
@@ -47,6 +52,10 @@ export function scenarioToFormDraft(scenario: Scenario): ScenarioFormDraft {
     description: scenario.description,
     published: scenario.published,
     languagePair: scenario.languagePair ?? DEFAULT_LANGUAGE_PAIR,
+    courseId: scenario.courseId,
+    programId: scenario.programId,
+    lessonId: scenario.lessonId,
+    requiredTier: scenario.requiredTier ?? 'FREE',
   };
 }
 
@@ -57,6 +66,10 @@ export function formDraftToScenarioDraft(form: ScenarioFormDraft): ScenarioDraft
     published: form.published,
     languagePair: form.languagePair,
     cardSource: buildCardSource(form),
+    courseId: form.courseId,
+    programId: form.programId,
+    lessonId: form.lessonId,
+    requiredTier: form.requiredTier,
   };
 }
 

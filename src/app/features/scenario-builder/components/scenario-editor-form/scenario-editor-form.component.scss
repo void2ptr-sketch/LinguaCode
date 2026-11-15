@@ -23,3 +23,28 @@
   color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
   margin: 0;
 }
+
+.scenario-editor-form__hierarchy,
+.scenario-editor-form__languages,
+.scenario-editor-form__tier {
+  display: grid;
+  gap: 1rem;
+}
+
+.scenario-editor-form__hierarchy h2,
+.scenario-editor-form__languages h2,
+.scenario-editor-form__tier h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.scenario-editor-form__hint {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 60%, transparent);
+  margin: 0 0 1rem;
+}
+
+.scenario-editor-form__error {
+  color: var(--mat-sys-error);
+  margin: 0;
+  font-size: 0.875rem;
+}

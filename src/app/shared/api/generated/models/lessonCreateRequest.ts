@@ -16,6 +16,7 @@ export interface LessonCreateRequest {
   title: string;
   lessonDescription?: string;
   programId: number;
+  /** @minimum 1 */
   lessonOrder: number;
   prerequisiteLessonIds?: string;
 }

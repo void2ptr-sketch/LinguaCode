@@ -89,6 +89,10 @@ export class ScenariosCatalogMockHandler {
       published: payload.published,
       updatedAt: new Date().toISOString(),
       languagePair,
+      courseId: payload.courseId ? String(payload.courseId) : undefined,
+      programId: payload.programId ? String(payload.programId) : undefined,
+      lessonId: payload.lessonId ? String(payload.lessonId) : undefined,
+      requiredTier: payload.requiredTier ?? 'FREE',
     };
 
     this.scenarios = [...this.scenarios!, scenario];

@@ -23,6 +23,14 @@ export type ScenarioWritePayload = {
   published: boolean;
   /** Optional language pair for the scenario (e.g., { source: 'zh', target: 'en' }). */
   languagePair?: LanguagePair;
+  /** Optional course ID (Long on backend). */
+  courseId?: number;
+  /** Optional program ID (Long on backend). */
+  programId?: number;
+  /** Optional lesson ID (Long on backend). */
+  lessonId?: number;
+  /** Payment tier for this scenario. */
+  requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
 };
 
 /**

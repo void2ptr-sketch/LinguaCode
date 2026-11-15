@@ -102,6 +102,17 @@ export class ScenariosApiService implements ScenarioCatalogPort {
       raw['authorId'] = String(raw['authorId']);
     }
 
+    // Конвертация числовых ID в строки (бэкенд возвращает Long)
+    if (typeof raw['courseId'] === 'number') {
+      raw['courseId'] = String(raw['courseId']);
+    }
+    if (typeof raw['programId'] === 'number') {
+      raw['programId'] = String(raw['programId']);
+    }
+    if (typeof raw['lessonId'] === 'number') {
+      raw['lessonId'] = String(raw['lessonId']);
+    }
+
     return normalizeScenario(raw as unknown as LegacyScenario);
   }
 

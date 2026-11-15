@@ -103,8 +103,24 @@ type LanguagePairDto = {
 | DELETE | `/scenarios/:id`             | Удаление сценария                  |
 | GET    | `/scenarios/by-card/:cardId` | Сценарии, использующие карточку    |
 
-Пейлоад записи: `ScenarioWritePayload` (`title`, `description`, `cardSource` (структурированный объект), `published`, `languagePair?`).
-На бэкенд отправляется: `scenarioDescription` (из `description`), `cardSource` (JSON-строка), `languagePairId`.
+Пейлоад записи: `ScenarioWritePayload` (`title`, `description`, `cardSource`, `published`, `languagePair?`, `courseId?`, `programId?`, `lessonId?`, `requiredTier?`).
+
+### Поля `ScenarioWritePayload`
+
+| Поле               | Create   | Update   | Описание                                  |
+| ------------------ | -------- | -------- | ----------------------------------------- |
+| `title`            | required | optional | Название (1–200 символов)                 |
+| `scenarioDescription` | optional | optional | Описание (из `description`)              |
+| `cardSource`       | required | optional | JSON-строка                               |
+| `published`        | optional | optional | Опубликовать                              |
+| `courseId`         | optional | optional | ID курса (Long)                           |
+| `programId`        | optional | optional | ID программы (Long)                       |
+| `lessonId`         | optional | optional | ID урока (Long)                           |
+| `languagePairId`   | optional | optional | ID языковой пары (Long)                   |
+| `requiredTier`     | required | optional | `FREE` / `STARTER` / `GROWTH` / `PREMIUM` |
+
+> **`requiredTier`** — обязательное поле при создании (по умолчанию `FREE`). На update — опционально, по умолчанию сохраняется текущее значение.
+> **`courseId`**, **`programId`**, **`lessonId`** — опциональные ссылки на иерархию обучения. Бэкенд может игнорировать `courseId` в mapper'е (обрабатывается в service layer).
 
 ## Программы (`/programs`)
 

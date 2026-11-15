@@ -76,6 +76,7 @@ describe('emptyScenarioFormDraft', () => {
       description: '',
       published: false,
       languagePair: DEFAULT_LANGUAGE_PAIR,
+      requiredTier: 'FREE',
       sourceMode: 'fixed',
       fixedCardIds: [],
       criteria: {},
@@ -171,6 +172,7 @@ describe('formDraftToScenarioDraft', () => {
       criteriaSort: 'updatedAt',
       criteriaSeed: '',
       snapshotFrozenAt: null,
+      requiredTier: 'FREE',
       ...overrides,
     };
   }
@@ -189,6 +191,7 @@ describe('formDraftToScenarioDraft', () => {
       published: true,
       languagePair: RU_TO_EN,
       cardSource: { mode: 'fixed', cardIds: ['id-1', 'id-2'] },
+      requiredTier: 'FREE',
     });
   });
 
@@ -285,6 +288,7 @@ describe('serializeScenarioFormDraft', () => {
       criteriaSort: 'updatedAt',
       criteriaSeed: '',
       snapshotFrozenAt: null,
+      requiredTier: 'FREE',
     };
 
     const serialized = serializeScenarioFormDraft(draft);
@@ -306,6 +310,7 @@ describe('serializeScenarioFormDraft', () => {
       criteriaSort: 'difficulty',
       criteriaSeed: 'rt-seed',
       snapshotFrozenAt: null,
+      requiredTier: 'GROWTH',
     };
 
     const serialized = serializeScenarioFormDraft(draft);

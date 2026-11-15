@@ -463,7 +463,17 @@ export class ScenarioBuilderStore {
       return null;
     }
 
-    return { title, description, cardSource, published: draft.published, languagePair };
+    return {
+      title,
+      description,
+      cardSource,
+      published: draft.published,
+      languagePair,
+      courseId: draft.courseId ? Number(draft.courseId) : undefined,
+      programId: draft.programId ? Number(draft.programId) : undefined,
+      lessonId: draft.lessonId ? Number(draft.lessonId) : undefined,
+      requiredTier: draft.requiredTier ?? 'FREE',
+    };
   }
 
   /**
