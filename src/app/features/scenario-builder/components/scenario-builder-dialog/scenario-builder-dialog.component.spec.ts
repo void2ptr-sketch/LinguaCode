@@ -122,6 +122,36 @@ describe('ScenarioBuilderDialogComponent', () => {
       component.updateDraft({ ...initialDraft, title: 'New Title' });
       expect(component.draft().title).toBe('New Title');
     });
+
+    it('should reload programs when the course changes', async () => {
+      const programsApi = TestBed.inject(ProgramsApiService);
+      const initialDraft = component.draft();
+
+      component.updateDraft({ ...initialDraft, courseId: 'course-2' });
+      await Promise.resolve();
+
+      expect(programsApi.getByCourse).toHaveBeenCalledWith('course-2');
+    });
+
+    it('should clear programs when the course is reset', () => {
+      const initialDraft = component.draft();
+
+      component.updateDraft({ ...initialDraft, courseId: 'course-2' });
+      component.updateDraft({ ...component.draft(), courseId: undefined });
+
+      expect(component.programs()).toEqual([]);
+      expect(component.lessons()).toEqual([]);
+    });
+
+    it('should reload lessons when the program changes', async () => {
+      const programsApi = TestBed.inject(ProgramsApiService);
+      const initialDraft = component.draft();
+
+      component.updateDraft({ ...initialDraft, programId: 'program-2' });
+      await Promise.resolve();
+
+      expect(programsApi.getLessons).toHaveBeenCalledWith('program-2');
+    });
   });
 
   describe('dirty computed', () => {
@@ -343,7 +373,7 @@ describe('ScenarioBuilderDialogComponent', () => {
       title: 'Existing scenario',
       description: '',
       published: false,
-      cardSource: { mode: 'fixed' as const, fixedCardIds: ['c1'] },
+      cardSource: { mode: 'fixed' as const, cardIds: ['c1'] },
       languagePairId: 1,
     } as unknown as Scenario;
 
@@ -351,6 +381,8 @@ describe('ScenarioBuilderDialogComponent', () => {
       editorLoading: () => false,
       error: () => null,
       isReadOnly: () => false,
+      loadCourses: vi.fn().mockResolvedValue(undefined),
+      courses: vi.fn().mockReturnValue([]),
       startEdit: vi.fn().mockResolvedValue(undefined),
       editingScenario: () => editScenario,
       updateScenario: vi.fn().mockResolvedValue(true),
@@ -361,6 +393,7 @@ describe('ScenarioBuilderDialogComponent', () => {
       localStorage.clear();
       seedTestContentCache();
       mockDialogRef.close.mockClear();
+      mockEditStore.loadCourses.mockClear();
       mockEditStore.startEdit.mockClear().mockResolvedValue(undefined);
       mockEditStore.updateScenario.mockClear().mockResolvedValue(true);
       mockEditStore.cancelEdit.mockClear();
@@ -378,12 +411,28 @@ describe('ScenarioBuilderDialogComponent', () => {
             provide: UserStore,
             useValue: { languagePair: () => ({ known: 'ru', learning: 'en' }) },
           },
+          {
+            provide: ProgramsApiService,
+            useValue: {
+              getByCourse: vi.fn().mockResolvedValue([]),
+              getLessons: vi.fn().mockResolvedValue([]),
+            },
+          },
+          {
+            provide: LanguagePairsApiService,
+            useValue: { listAll: vi.fn().mockResolvedValue([]) },
+          },
         ],
       }).compileComponents();
 
       const ref = TestBed.createComponent(ScenarioBuilderDialogComponent);
       component = ref.componentInstance;
+      ref.detectChanges();
       await ref.whenStable();
+    });
+
+    it('should load courses in edit mode so the course binding select is populated', () => {
+      expect(mockEditStore.loadCourses).toHaveBeenCalledTimes(1);
     });
 
     it('should close with { saved: true, scenarioId } of the edited scenario on successful save', async () => {

@@ -24,6 +24,7 @@ export interface Card {
   courseId?: number;
   lessonId?: number;
   scenarioId?: number;
+  order?: number;
   createdAt?: string;
   updatedAt?: string;
 }

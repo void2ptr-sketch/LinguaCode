@@ -97,14 +97,14 @@ export class ScenarioBuilderDialogComponent implements OnInit {
   readonly languagePairs = signal<readonly LanguagePairDto[]>([]);
 
   async ngOnInit(): Promise<void> {
-    // Загрузить языковые пары до инициализации формы
-    await this.loadLanguagePairs();
+    // Языковые пары и список курсов нужны в обоих режимах. Без курсов
+    // dropdown «Привязка к курсу» не находит опцию для pre-filled courseId
+    // и отображается пустым — в том числе при редактировании из Проводника,
+    // который вызывает только `loadList()` и не наполняет `store.courses()`.
+    await Promise.all([this.loadLanguagePairs(), this.store.loadCourses()]);
 
     if (this.data.mode === 'create') {
       this.store.startCreate();
-      // Загрузить список курсов до createDraft — без него dropdown пустой
-      // и pre-filled courseId не совпадёт ни с одной опцией mat-select.
-      await this.store.loadCourses();
       const context = {
         languagePairId: this.data.languagePairId,
         courseId: this.data.courseId,
@@ -165,15 +165,25 @@ export class ScenarioBuilderDialogComponent implements OnInit {
    * @param nextDraft - The updated scenario form draft.
    */
   updateDraft(nextDraft: ScenarioFormDraft): void {
+    const previous = this.draft();
     this.draft.set(nextDraft);
 
-    // Load programs when course changes
-    if (nextDraft.courseId && nextDraft.courseId !== this.draft().courseId) {
-      this.loadPrograms(nextDraft.courseId);
+    // Load programs when course changes. Compare against the previous draft:
+    // `this.draft()` already holds `nextDraft` at this point.
+    if (nextDraft.courseId !== previous.courseId) {
+      this.programs.set([]);
+      this.lessons.set([]);
+      if (nextDraft.courseId) {
+        void this.loadPrograms(nextDraft.courseId);
+      }
     }
-    // Load lessons when program changes
-    if (nextDraft.programId && nextDraft.programId !== this.draft().programId) {
-      this.loadLessons(nextDraft.programId);
+
+    // Load lessons when program changes (also drop stale lesson options).
+    if (nextDraft.programId !== previous.programId) {
+      this.lessons.set([]);
+      if (nextDraft.programId) {
+        void this.loadLessons(nextDraft.programId);
+      }
     }
   }
 

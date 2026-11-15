@@ -22,4 +22,5 @@ export interface CardCreateRequest {
   tags?: string;
   difficulty?: CardCreateRequestDifficulty;
   requiredTier: CardCreateRequestRequiredTier;
+  order?: number;
 }

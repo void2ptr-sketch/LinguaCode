@@ -22,4 +22,5 @@ export interface CardUpdateRequest {
   difficulty?: CardUpdateRequestDifficulty;
   requiredTier: CardUpdateRequestRequiredTier;
   kind?: CardUpdateRequestKind;
+  order?: number;
 }
