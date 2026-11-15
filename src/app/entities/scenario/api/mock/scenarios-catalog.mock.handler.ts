@@ -126,6 +126,7 @@ export class ScenariosCatalogMockHandler {
           title: payload.title,
           description: payload.description,
           published: payload.published,
+          order: payload.order,
           updatedAt: new Date().toISOString(),
         }
       : {
@@ -134,6 +135,7 @@ export class ScenariosCatalogMockHandler {
           description: payload.description,
           cardSource: payload.cardSource,
           published: payload.published,
+          order: payload.order,
           updatedAt: new Date().toISOString(),
           languagePairId,
           languagePair,

@@ -137,6 +137,12 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
           ? JSON.parse(raw['cardSource'] as string)
           : (raw['cardSource'] as ScenarioWritePayload['cardSource']),
       published: Boolean(raw['published'] ?? false),
+      order: raw['order'] != null ? Number(raw['order']) : undefined,
+      languagePairId: raw['languagePairId'] != null ? Number(raw['languagePairId']) : undefined,
+      courseId: raw['courseId'] != null ? Number(raw['courseId']) : undefined,
+      programId: raw['programId'] != null ? Number(raw['programId']) : undefined,
+      lessonId: raw['lessonId'] != null ? Number(raw['lessonId']) : undefined,
+      requiredTier: raw['requiredTier'] as ScenarioWritePayload['requiredTier'] ?? 'FREE',
     };
 
     return defer(() => handler.update(scenarioId, payload)).pipe(

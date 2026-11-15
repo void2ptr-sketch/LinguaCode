@@ -228,6 +228,7 @@ export class ScenariosApiService implements ScenarioCatalogPort {
       programId: payload.programId,
       lessonId: payload.lessonId,
       requiredTier: payload.requiredTier,
+      order: payload.order,
     };
     return firstValueFrom(
       this.http.post<ApiResponse<Scenario>>(buildApiUrl('/scenarios'), body),
@@ -262,6 +263,7 @@ export class ScenariosApiService implements ScenarioCatalogPort {
       programId: payload.programId,
       lessonId: payload.lessonId,
       requiredTier: payload.requiredTier,
+      order: payload.order,
     };
     return firstValueFrom(
       this.http.put<ApiResponse<Scenario>>(buildApiUrl(`/scenarios/${scenarioId}`), body),
