@@ -13,6 +13,8 @@ import { Injectable, inject, signal } from '@angular/core';
 
 import { CourseSearchService } from '../../../entities/course/search/course-search.service';
 import type { CourseIndexEntry, CourseWithPrograms } from '../../../entities/course/model';
+import type { Lesson } from '../../../entities/course/model/lesson.types';
+import { LessonsApiService } from '../../../entities/lesson/api/lessons-api.service';
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import type { ProgramWithLessons } from '../../../entities/program/model/program.types';
 import type { ProgramIndexEntry } from '../../../entities/program/model/program-search.types';
@@ -107,6 +109,7 @@ export type ExplorerRevealResult = { found: boolean; node: ExplorerNode | null }
 export class ContentExplorerStore {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly programsApi = inject(ProgramsApiService);
+  private readonly lessonsApi = inject(LessonsApiService);
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly cardSearchService = inject(CardSearchService);
   private readonly authStore = inject(AuthStore);
@@ -940,8 +943,20 @@ export class ContentExplorerStore {
   /**
    * Reloads a node after an edit: refreshes its title/meta and child list.
    * Keeps the node expanded if it was expanded.
+   *
+   * @remarks
+   * The course snapshot (`CourseSearchService.getById`) caches the whole
+   * subtree — programs, lessons and `lesson.scenarioIds`. It must be dropped
+   * here, otherwise a node added on the backend (program / lesson / scenario)
+   * stays invisible until a full page reload (F5).
+   *
+   * Lesson nodes used to be skipped (`default` branch): their `data` stayed
+   * stale, so `loadScenarioChildren()` re-rendered the old `scenarioIds` and a
+   * freshly bound scenario never appeared under the lesson.
    */
   async refreshNode(node: ExplorerNode): Promise<void> {
+    this.courseSearchService.clearGetByIdCache();
+
     node.children.set(null);
     node.childError.set(null);
 
@@ -963,6 +978,13 @@ export class ContentExplorerStore {
           );
           break;
         }
+        case 'lesson': {
+          const lesson = await this.lessonsApi.getById(node.id);
+          node.title.set(lesson.title);
+          node.data = lesson;
+          node.meta.set(this.lessonMeta(lesson));
+          break;
+        }
         case 'scenario': {
           const scenario = await this.scenarioSearchService.getById(node.id);
           node.title.set(scenario.title);
@@ -980,6 +1002,66 @@ export class ContentExplorerStore {
     if (node.expanded()) {
       await this.loadChildren(node);
     }
+
+    // After `loadChildren()` the node may have been enriched with data missing
+    // from the entity endpoint (e.g. `program.lessons` resolved separately), so
+    // the parent snapshot is patched last.
+    this.syncParentSnapshot(node);
+  }
+
+  /**
+   * Patches the parent node's cached entity with the refreshed child.
+   *
+   * @remarks
+   * Parent nodes keep their subtree snapshot in `data` (`course.programs` /
+   * `program.lessons`) and rebuild children from it on collapse/expand.
+   * Without this patch a refreshed lesson (or program) would be overwritten by
+   * the stale snapshot on the next re-expand — the classic «появляется только
+   * после F5» symptom.
+   */
+  private syncParentSnapshot(node: ExplorerNode): void {
+    const parent = node.parentId ? (this.nodeIndex.get(node.parentId) ?? null) : null;
+    if (!parent) {
+      return;
+    }
+
+    if (node.kind === 'lesson' && parent.kind === 'program') {
+      const program = parent.data as ProgramWithLessons | undefined;
+      const lesson = node.data as Lesson | undefined;
+      if (program && lesson && Array.isArray(program.lessons)) {
+        parent.data = {
+          ...program,
+          lessons: program.lessons.map((item) => (item.id === lesson.id ? lesson : item)),
+        };
+        this.reorderChildren(parent);
+      }
+      return;
+    }
+
+    if (node.kind === 'program' && parent.kind === 'course') {
+      const course = parent.data as CourseWithPrograms | undefined;
+      const program = node.data as ProgramWithLessons | undefined;
+      if (course && program && Array.isArray(course.programs)) {
+        parent.data = {
+          ...course,
+          programs: course.programs.map((item) => (item.id === program.id ? program : item)),
+        };
+        this.reorderChildren(parent);
+      }
+    }
+  }
+
+  /** Re-sorts loaded siblings after an `order` change (without recreating nodes). */
+  private reorderChildren(parent: ExplorerNode): void {
+    const children = parent.children();
+    if (!children || children.length < 2) {
+      return;
+    }
+
+    const orderOf = (child: ExplorerNode): number =>
+      (child.data as { order?: number } | undefined)?.order ?? 0;
+
+    parent.children.set([...children].sort((left, right) => orderOf(left) - orderOf(right)));
   }
 
   /**
@@ -1138,46 +1220,82 @@ export class ContentExplorerStore {
   }
 
   private async loadLessonChildren(programNode: ExplorerNode): Promise<readonly ExplorerNode[]> {
-    let program: ProgramWithLessons;
-    if (programNode.data && Array.isArray((programNode.data as ProgramWithLessons).lessons)) {
-      program = programNode.data as ProgramWithLessons;
-    } else {
-      // Уроки добираются батч-запросом по родительскому курсу (см. attachLessons),
-      // либо — как последний вариант — по самому треку.
-      const courseNode = programNode.parentId ? this.getByKey(programNode.parentId) : null;
-      const courseData = courseNode?.data as CourseWithPrograms | undefined;
-      let lessons: readonly import('../../../entities/course/model').Lesson[] | undefined;
-      if (courseNode && courseData && Array.isArray(courseData.programs)) {
-        const enriched = await this.attachLessons(
-          courseNode.id,
-          courseData.programs as readonly ProgramWithLessons[],
-        );
-        lessons = enriched.find((candidate) => candidate.id === programNode.id)?.lessons;
-        courseNode.data = { ...courseData, programs: enriched };
+    const lessons = await this.resolveProgramLessons(programNode);
+
+    return [...lessons]
+      .sort((left, right) => left.order - right.order)
+      .map((lesson) =>
+        this.createNode({
+          kind: 'lesson',
+          id: lesson.id,
+          parentId: programNode.key,
+          title: lesson.title,
+          meta: this.lessonMeta(lesson),
+          editable: programNode.editable,
+          data: lesson,
+        }),
+      );
+  }
+
+  /**
+   * Resolves the lessons of a program for the tree.
+   *
+   * @remarks
+   * `GET /programs/:id` may omit `lessons` or return an empty array even when
+   * the program actually has lessons (backend integration). The previous code
+   * trusted an empty array and wiped the whole lessons branch after
+   * `refreshNode(program)` — the branch only came back after F5. The dedicated
+   * `/lessons/by-program/:programId` endpoint is treated as the source of
+   * truth, with the course-level batch and `getById` as fallbacks.
+   */
+  private async resolveProgramLessons(programNode: ExplorerNode): Promise<readonly Lesson[]> {
+    const cached = programNode.data as ProgramWithLessons | undefined;
+    if (Array.isArray(cached?.lessons) && cached.lessons.length > 0) {
+      return cached.lessons;
+    }
+
+    // 1. Dedicated lessons endpoint (authoritative, ordered by `order`).
+    try {
+      const lessons = await this.lessonsApi.getByProgramId(programNode.id);
+      if (cached) {
+        programNode.data = { ...cached, lessons };
       }
-      if (lessons) {
-        program = { ...(programNode.data as ProgramWithLessons), lessons };
-      } else {
-        program = await this.programsApi.getById(programNode.id);
-        programNode.title.set(program.title);
-        programNode.meta.set(
-          `Трек · ${program.lessons?.length ?? program.lessonIds?.length ?? 0} урок(ов)`,
-        );
+      programNode.meta.set(`Трек · ${lessons.length} урок(ов)`);
+      return lessons;
+    } catch (error) {
+      this.logger.warn(`ContentExplorer: getByProgramId(${programNode.id}) failed`, error);
+    }
+
+    // 2. Course-level batch enrichment (`/programs/by-course/:id/with-lessons`).
+    const courseNode = programNode.parentId ? this.getByKey(programNode.parentId) : null;
+    const courseData = courseNode?.data as CourseWithPrograms | undefined;
+    if (courseNode && courseData && Array.isArray(courseData.programs)) {
+      try {
+        const enriched = await this.attachLessons(courseNode.id, courseData.programs);
+        courseNode.data = { ...courseData, programs: enriched };
+        const program = enriched.find((candidate) => candidate.id === programNode.id);
+        if (program) {
+          programNode.data = program;
+          return program.lessons ?? [];
+        }
+      } catch (error) {
+        this.logger.warn(`ContentExplorer: failed to enrich program ${programNode.id}`, error);
       }
     }
 
-    const lessons = [...(program.lessons ?? [])].sort((left, right) => left.order - right.order);
-    return lessons.map((lesson) =>
-      this.createNode({
-        kind: 'lesson',
-        id: lesson.id,
-        parentId: programNode.key,
-        title: lesson.title,
-        meta: `Урок · ${lesson.scenarioIds.length} сценарий(ев)`,
-        editable: programNode.editable,
-        data: lesson,
-      }),
-    );
+    // 3. Last resort: reload the program itself.
+    try {
+      const program = await this.programsApi.getById(programNode.id);
+      programNode.data = program;
+      programNode.title.set(program.title);
+      programNode.meta.set(
+        `Трек · ${program.lessons?.length ?? program.lessonIds?.length ?? 0} урок(ов)`,
+      );
+      return program.lessons ?? [];
+    } catch (error) {
+      this.logger.warn(`ContentExplorer: getById(${programNode.id}) failed`, error);
+      return [];
+    }
   }
 
   private async loadScenarioChildren(lessonNode: ExplorerNode): Promise<readonly ExplorerNode[]> {
@@ -1347,6 +1465,11 @@ export class ContentExplorerStore {
   private courseMetaFromEntry(entry: CourseIndexEntry): string {
     const status = entry.published ? 'опубликован' : 'черновик';
     return `Каталог · ${entry.languagePairSummary} · ${status}`;
+  }
+
+  /** Meta line for a lesson node (shared by initial load and refresh). */
+  private lessonMeta(lesson: Lesson): string {
+    return `Урок · ${lesson.scenarioIds.length} сценарий(ев)`;
   }
 
   private scenarioMeta(scenario: Scenario): string {

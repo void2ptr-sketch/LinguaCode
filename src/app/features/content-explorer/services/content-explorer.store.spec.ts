@@ -5,6 +5,7 @@ import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { CourseSearchService } from '../../../entities/course/search/course-search.service';
 import type { CourseIndexEntry, CourseWithPrograms } from '../../../entities/course/model';
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
+import { LessonsApiService } from '../../../entities/lesson/api/lessons-api.service';
 import type { ProgramWithLessons } from '../../../entities/program/model/program.types';
 import { ScenarioSearchService } from '../../../entities/scenario/search/scenario-search.service';
 import type { Scenario } from '../../../entities/scenario/model';
@@ -115,6 +116,11 @@ function setup(overrides?: {
     getByCourse: vi.fn().mockResolvedValue([program]),
   };
 
+  const lessonsApi = {
+    getById: vi.fn().mockResolvedValue(program.lessons![0]),
+    getByProgramId: vi.fn().mockResolvedValue(program.lessons!),
+  };
+
   const scenarioSearchService = {
     search: vi.fn().mockResolvedValue({ items: [], totalItems: 0 }),
     getByIdBatch: vi
@@ -149,6 +155,7 @@ function setup(overrides?: {
     providers: [
       { provide: CourseSearchService, useValue: courseSearchService },
       { provide: ProgramsApiService, useValue: programsApi },
+      { provide: LessonsApiService, useValue: lessonsApi },
       { provide: ScenarioSearchService, useValue: scenarioSearchService },
       { provide: CardSearchService, useValue: cardSearchService },
       {
@@ -537,8 +544,80 @@ describe('ContentExplorerStore', () => {
 
     await store.refreshNode(courseNode);
 
+    // Stale course snapshot must be dropped so a new program becomes visible.
+    expect(TestBed.inject(CourseSearchService).clearGetByIdCache).toHaveBeenCalled();
     expect(courseNode.title()).toBe('Английский A1 (обновлён)');
     expect(courseNode.expanded()).toBe(true);
     expect(courseNode.children()).toHaveLength(1);
+  });
+
+  it('refreshNode() keeps lessons when GET /programs/:id returns an empty lessons array', async () => {
+    await store.loadRoots();
+    const courseNode = store.roots()[0];
+    await store.toggleNode(courseNode);
+    const programNode = courseNode.children()![0];
+    await store.toggleNode(programNode);
+
+    expect(programNode.children()).toHaveLength(1);
+
+    // Backend integration: `/programs/:id` omits lessons for an existing
+    // program — the branch must not be wiped after refresh.
+    vi.mocked(TestBed.inject(ProgramsApiService).getById).mockResolvedValue({
+      ...program,
+      lessons: [],
+    });
+    const newLesson = { ...program.lessons![0], id: 'lesson-2', title: 'Новый урок', order: 1 };
+    vi.mocked(TestBed.inject(LessonsApiService).getByProgramId).mockResolvedValue([
+      ...program.lessons!,
+      newLesson,
+    ]);
+
+    await store.refreshNode(programNode);
+
+    expect(programNode.children()!.map((node) => node.id)).toEqual(['lesson-1', 'lesson-2']);
+    expect(TestBed.inject(LessonsApiService).getByProgramId).toHaveBeenCalledWith('program-1');
+  });
+
+  it('refreshNode() refetches a lesson so a newly bound scenario appears', async () => {
+    await store.loadRoots();
+    const courseNode = store.roots()[0];
+    await store.toggleNode(courseNode);
+    const programNode = courseNode.children()![0];
+    await store.toggleNode(programNode);
+    const lessonNode = programNode.children()![0];
+    await store.toggleNode(lessonNode);
+
+    expect(lessonNode.children()).toHaveLength(1);
+
+    const newScenario: Scenario = { ...scenario, id: 'scenario-2', title: 'Новый сценарий' };
+    const scenarioSearch = TestBed.inject(ScenarioSearchService);
+    vi.mocked(scenarioSearch.getByIdBatch).mockImplementation((ids: readonly string[]) =>
+      Promise.resolve(
+        ids
+          .map((id) =>
+            id === 'scenario-2' ? newScenario : id === 'scenario-1' ? scenario : undefined,
+          )
+          .filter((value): value is Scenario => Boolean(value)),
+      ),
+    );
+    vi.mocked(TestBed.inject(LessonsApiService).getById).mockResolvedValue({
+      ...program.lessons![0],
+      title: 'Приветствия (обновлён)',
+      scenarioIds: ['scenario-1', 'scenario-2'],
+    });
+
+    await store.refreshNode(lessonNode);
+
+    expect(lessonNode.title()).toBe('Приветствия (обновлён)');
+    expect(lessonNode.meta()).toContain('2 сценарий');
+    expect(lessonNode.children()!.map((node) => node.id)).toEqual(['scenario-1', 'scenario-2']);
+
+    // Collapsing/expanding the program rebuilds lesson nodes from the parent
+    // snapshot — it must carry the refreshed lesson, not the stale one.
+    programNode.expanded.set(false);
+    programNode.children.set(null);
+    await store.toggleNode(programNode);
+
+    expect(programNode.children()![0].title()).toBe('Приветствия (обновлён)');
   });
 });

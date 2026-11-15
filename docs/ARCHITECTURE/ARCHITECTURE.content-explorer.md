@@ -56,6 +56,24 @@ classDiagram
   ContentExplorerStore o-- ExplorerNode : tree
 ```
 
+## Обновление дерева после CRUD (`refreshNode`)
+
+`refreshNode(node)` — единственная точка синхронизации дерева после сохранения
+диалога. Чтобы новый/изменённый узел появлялся **сразу** (а не только после F5),
+метод:
+
+1. сбрасывает `CourseSearchService.getById`-кеш — он хранит снимок всего поддерева
+   (`programs → lessons → scenarioIds`) и иначе возвращает данные «до сохранения»;
+2. перезапрашивает сущность по kind: `course` → `getById`, `program` →
+   `ProgramsApiService.getById`, `lesson` → `LessonsApiService.getById`,
+   `scenario` → `ScenarioSearchService.getById`;
+3. для `program` резолвит уроки через `LessonsApiService.getByProgramId`
+   (`/lessons/by-program/:id`), если `GET /programs/:id` вернул пустой/отсутствующий
+   `lessons` — иначе вся ветка уроков «исчезала» до F5;
+4. синхронизирует снимок родителя (`course.programs` / `program.lessons`) через
+   `syncParentSnapshot()`, чтобы collapse/expand не «воскрешал» устаревшие данные;
+5. при раскрытом узле перезагружает детей (`loadChildren`).
+
 ## Поиск по контенту
 
 Поиск построен поверх того же дерева и использует существующие search-эндпоинты:

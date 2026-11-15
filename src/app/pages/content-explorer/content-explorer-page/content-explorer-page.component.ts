@@ -163,10 +163,7 @@ export class ContentExplorerPageComponent implements OnInit {
   private _onMouseMove = (event: MouseEvent) => {
     if (!this._isResizing) return;
     const delta = event.clientX - this._startX;
-    const newWidth = Math.min(
-      TREE_MAX_WIDTH,
-      Math.max(TREE_MIN_WIDTH, this._startWidth + delta),
-    );
+    const newWidth = Math.min(TREE_MAX_WIDTH, Math.max(TREE_MIN_WIDTH, this._startWidth + delta));
     this.treeWidth.set(newWidth);
   };
 
@@ -275,6 +272,8 @@ export class ContentExplorerPageComponent implements OnInit {
     try {
       const result = await this.programBuilderDialog.openCreate(node.id);
       if (result?.saved) {
+        // Expand the parent so the newly created program is visible immediately.
+        node.expanded.set(true);
         await this.store.refreshNode(node);
       }
     } finally {
@@ -297,6 +296,8 @@ export class ContentExplorerPageComponent implements OnInit {
     try {
       const result = await this.lessonBuilderDialog.openCreate(node.id);
       if (result?.saved) {
+        // Expand the parent so the newly created lesson is visible immediately.
+        node.expanded.set(true);
         await this.store.refreshNode(node);
       }
     } finally {
