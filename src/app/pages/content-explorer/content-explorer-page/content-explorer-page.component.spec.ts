@@ -22,6 +22,7 @@ import { CourseSearchService } from '../../../entities/course/search/course-sear
 import { ScormExportService } from '../../../entities/course/api/scorm-export.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type { CourseWithPrograms } from '../../../entities/course/model';
+import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 
 import { ContentExplorerPageComponent } from './content-explorer-page.component';
 
@@ -287,10 +288,7 @@ describe('ContentExplorerPageComponent — onAddScenarioRequested (scenario bind
   it('passes full context (courseId, programId, lessonId, languagePair) to openCreate', async () => {
     selectEditableLessonNode();
     // Set languagePair on the course node data
-    (courseNode.data as { languagePair?: { known: string; learning: string } }).languagePair = {
-      known: 'ru',
-      learning: 'en',
-    };
+    courseNode.data = { languagePair: { known: 'ru', learning: 'en' } as LanguagePair };
     mockScenarioBuilderDialog.openCreate.mockResolvedValue({ saved: true, scenarioId: 's-new' });
 
     await component['onAddScenarioRequested']();

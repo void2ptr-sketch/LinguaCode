@@ -94,6 +94,9 @@ export class ScenarioBuilderDialogComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     if (this.data.mode === 'create') {
       this.store.startCreate();
+      // Загрузить список курсов до createDraft — без него dropdown пустой
+      // и pre-filled courseId не совпадёт ни с одной опцией mat-select.
+      await this.store.loadCourses();
       const context = {
         languagePair: this.data.languagePair,
         courseId: this.data.courseId,

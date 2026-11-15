@@ -9,6 +9,9 @@ import { UserStore } from '../../../../entities/user/model/user.store';
 import { CardCatalogSearchStore } from '../../../../entities/card/lib/store/card-catalog-search.store';
 import { seedTestContentCache } from '../../../../entities/content-seed/content-seed.test-utils';
 import type { Scenario } from '../../../../entities/scenario/model';
+import { CourseSearchService } from '../../../../entities/course/search/course-search.service';
+import { ProgramsApiService } from '../../../../entities/program/api';
+import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 
 /** Mock for ScenarioEditorFormComponent to avoid deep dependency chain. */
 @Component({
@@ -127,6 +130,32 @@ describe('ScenarioBuilderDialogComponent', () => {
       languagePair: { known: 'en', learning: 'zh' },
     };
 
+    const mockScenarioBuilderStore = {
+      startCreate: vi.fn(),
+      loadCourses: vi.fn().mockResolvedValue(undefined),
+      createDraft: vi.fn().mockImplementation(async (context?: { courseId?: string; programId?: string; lessonId?: string; languagePair?: { known: string; learning: string } }) => ({
+        title: '',
+        description: '',
+        published: false,
+        languagePair: context?.languagePair ?? { known: 'ru', learning: 'en' },
+        courseId: context?.courseId,
+        programId: context?.programId,
+        lessonId: context?.lessonId,
+        requiredTier: 'FREE',
+        scenarioOrder: 1,
+        sourceMode: 'fixed',
+        fixedCardIds: [],
+        criteria: { knownLanguage: 'en', learningLanguage: 'zh' },
+        criteriaLimit: 10,
+        criteriaSort: 'updatedAt',
+        criteriaSeed: '',
+        snapshotFrozenAt: null,
+      })),
+      isReadOnly: vi.fn().mockReturnValue(false),
+      editorLoading: vi.fn().mockReturnValue(false),
+      error: vi.fn().mockReturnValue(null),
+    };
+
     beforeEach(async () => {
       localStorage.clear();
       seedTestContentCache();
@@ -136,10 +165,25 @@ describe('ScenarioBuilderDialogComponent', () => {
       await TestBed.configureTestingModule({
         imports: [ScenarioBuilderDialogComponent, MockScenarioEditorFormComponent],
         providers: [
-          ScenarioBuilderStore,
-          UserStore,
+          { provide: ScenarioBuilderStore, useValue: mockScenarioBuilderStore },
+          {
+            provide: UserStore,
+            useValue: { languagePair: () => ({ known: 'ru', learning: 'en' }) },
+          },
           CardCatalogSearchStore,
           provideHttpClient(),
+          {
+            provide: CourseSearchService,
+            useValue: { search: vi.fn().mockResolvedValue({ items: [], totalItems: 0, page: 0, pageSize: 100, totalPages: 0 }) },
+          },
+          {
+            provide: ProgramsApiService,
+            useValue: { getByCourse: vi.fn().mockResolvedValue([]), getLessons: vi.fn().mockResolvedValue([]) },
+          },
+          {
+            provide: AppLoggerService,
+            useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+          },
           { provide: MatDialogRef, useValue: mockDialogRef },
           { provide: MatDialog, useValue: mockMatDialog },
           { provide: MAT_DIALOG_DATA, useValue: contextData },
@@ -162,6 +206,29 @@ describe('ScenarioBuilderDialogComponent', () => {
   describe('create mode without context', () => {
     const emptyContextData = { mode: 'create' as const };
 
+    const mockScenarioBuilderStoreNoContext = {
+      startCreate: vi.fn(),
+      loadCourses: vi.fn().mockResolvedValue(undefined),
+      createDraft: vi.fn().mockResolvedValue({
+        title: '',
+        description: '',
+        published: false,
+        languagePair: { known: 'ru', learning: 'en' },
+        requiredTier: 'FREE',
+        scenarioOrder: 1,
+        sourceMode: 'fixed',
+        fixedCardIds: [],
+        criteria: { knownLanguage: 'ru', learningLanguage: 'en' },
+        criteriaLimit: 10,
+        criteriaSort: 'updatedAt',
+        criteriaSeed: '',
+        snapshotFrozenAt: null,
+      }),
+      isReadOnly: vi.fn().mockReturnValue(false),
+      editorLoading: vi.fn().mockReturnValue(false),
+      error: vi.fn().mockReturnValue(null),
+    };
+
     beforeEach(async () => {
       localStorage.clear();
       seedTestContentCache();
@@ -171,10 +238,25 @@ describe('ScenarioBuilderDialogComponent', () => {
       await TestBed.configureTestingModule({
         imports: [ScenarioBuilderDialogComponent, MockScenarioEditorFormComponent],
         providers: [
-          ScenarioBuilderStore,
-          UserStore,
+          { provide: ScenarioBuilderStore, useValue: mockScenarioBuilderStoreNoContext },
+          {
+            provide: UserStore,
+            useValue: { languagePair: () => ({ known: 'ru', learning: 'en' }) },
+          },
           CardCatalogSearchStore,
           provideHttpClient(),
+          {
+            provide: CourseSearchService,
+            useValue: { search: vi.fn().mockResolvedValue({ items: [], totalItems: 0, page: 0, pageSize: 100, totalPages: 0 }) },
+          },
+          {
+            provide: ProgramsApiService,
+            useValue: { getByCourse: vi.fn().mockResolvedValue([]), getLessons: vi.fn().mockResolvedValue([]) },
+          },
+          {
+            provide: AppLoggerService,
+            useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+          },
           { provide: MatDialogRef, useValue: mockDialogRef },
           { provide: MatDialog, useValue: mockMatDialog },
           { provide: MAT_DIALOG_DATA, useValue: emptyContextData },
