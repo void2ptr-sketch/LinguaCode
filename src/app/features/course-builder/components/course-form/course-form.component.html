@@ -38,28 +38,6 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-checkbox
-          [disabled]="readOnly()"
-          [ngModel]="draft().published"
-          (ngModelChange)="updatePublished($event)"
-        >
-          Опубликовать каталог
-        </mat-checkbox>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Уровень доступа</mat-label>
-          <mat-select
-            [disabled]="readOnly()"
-            [ngModel]="draft().requiredTier"
-            (ngModelChange)="updateRequiredTier($event)"
-          >
-            @for (tier of requiredTierOptions; track tier) {
-              <mat-option [value]="tier">{{ requiredTierLabels[tier] }}</mat-option>
-            }
-          </mat-select>
-          <mat-hint>Минимальный уровень подписки для доступа к курсу</mat-hint>
-        </mat-form-field>
-
         <mat-form-field appearance="outline">
           <mat-label>Slug (идентификатор)</mat-label>
           <input
@@ -147,7 +125,34 @@
       </div>
     </mat-tab>
 
-    <!-- ── Вкладка 4: Экспорт ── -->
+    <!-- ── Вкладка 4: Публикация ── -->
+    <mat-tab label="Публикация">
+      <div class="course-form__tab-panel">
+        <mat-checkbox
+          [disabled]="readOnly()"
+          [ngModel]="draft().published"
+          (ngModelChange)="updatePublished($event)"
+        >
+          Опубликовать каталог
+        </mat-checkbox>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Уровень доступа</mat-label>
+          <mat-select
+            [disabled]="readOnly()"
+            [ngModel]="draft().requiredTier"
+            (ngModelChange)="updateRequiredTier($event)"
+          >
+            @for (tier of requiredTierOptions; track tier) {
+              <mat-option [value]="tier">{{ requiredTierLabels[tier] }}</mat-option>
+            }
+          </mat-select>
+          <mat-hint>Минимальный уровень подписки для доступа к курсу</mat-hint>
+        </mat-form-field>
+      </div>
+    </mat-tab>
+
+    <!-- ── Вкладка 5: Экспорт ── -->
     <mat-tab label="Экспорт">
       <div class="course-form__tab-panel">
         <p class="course-form__export-hint">
