@@ -29,8 +29,8 @@ export class ScenarioBuilderDialogService {
    *
    * @returns A promise resolving to the dialog result, or `undefined` if another dialog is already open.
    */
-  openCreate(): Promise<ScenarioBuilderDialogResult | undefined> {
-    return this.open({ mode: 'create' });
+  openCreate(lessonId?: string): Promise<ScenarioBuilderDialogResult | undefined> {
+    return this.open({ mode: 'create', lessonId });
   }
 
   /**

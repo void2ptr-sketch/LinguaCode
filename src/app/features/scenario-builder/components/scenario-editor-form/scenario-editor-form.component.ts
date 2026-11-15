@@ -118,6 +118,10 @@ export class ScenarioEditorFormComponent {
     this.draftChange.emit({ ...this.draft(), scenarioOrder: Number(order) });
   }
 
+  scenarioOrderInvalid(): boolean {
+    return (this.draft().scenarioOrder ?? 0) <= 0;
+  }
+
   languagePairInvalid(): boolean {
     const pair = this.draft().languagePair;
     return pair.known === pair.learning;

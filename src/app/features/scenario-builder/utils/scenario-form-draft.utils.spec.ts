@@ -77,7 +77,7 @@ describe('emptyScenarioFormDraft', () => {
       published: false,
       languagePair: DEFAULT_LANGUAGE_PAIR,
       requiredTier: 'FREE',
-      scenarioOrder: 0,
+      scenarioOrder: 1,
       sourceMode: 'fixed',
       fixedCardIds: [],
       criteria: {},

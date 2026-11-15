@@ -31,6 +31,8 @@ export type ScenarioWritePayload = {
   lessonId?: number;
   /** Payment tier for this scenario. */
   requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+  /** Position of the scenario within the lesson. */
+  order?: number;
 };
 
 /**

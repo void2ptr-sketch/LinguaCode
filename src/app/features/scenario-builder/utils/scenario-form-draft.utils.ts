@@ -30,6 +30,7 @@ export type ScenarioFormDraft = {
 
 export function emptyScenarioFormDraft(
   languagePair: LanguagePair = DEFAULT_LANGUAGE_PAIR,
+  initialOrder = 1,
 ): ScenarioFormDraft {
   return {
     title: '',
@@ -37,7 +38,7 @@ export function emptyScenarioFormDraft(
     published: false,
     languagePair,
     requiredTier: 'FREE',
-    scenarioOrder: 0,
+    scenarioOrder: initialOrder,
     sourceMode: 'fixed',
     fixedCardIds: [],
     criteria: emptyCardSearchCriteria(),

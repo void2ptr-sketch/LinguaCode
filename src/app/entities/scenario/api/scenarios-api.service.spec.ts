@@ -126,6 +126,12 @@ describe('ScenariosApiService', () => {
         title: mockPayload.title,
         scenarioDescription: mockPayload.description,
         cardSource: JSON.stringify(mockPayload.cardSource),
+        published: mockPayload.published,
+        courseId: undefined,
+        programId: undefined,
+        lessonId: undefined,
+        languagePair: undefined,
+        requiredTier: undefined,
       });
       req.flush({ data: mockScenario });
 

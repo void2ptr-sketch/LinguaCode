@@ -94,7 +94,7 @@ export class ScenarioBuilderDialogComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     if (this.data.mode === 'create') {
       this.store.startCreate();
-      const nextDraft = emptyScenarioFormDraft(this.userStore.languagePair());
+      const nextDraft = await this.store.createDraft();
       this.draft.set(nextDraft);
       this.initialSnapshot.set(serializeScenarioFormDraft(nextDraft));
       return;

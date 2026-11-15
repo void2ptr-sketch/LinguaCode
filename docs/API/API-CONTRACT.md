@@ -118,6 +118,7 @@ type LanguagePairDto = {
 | `lessonId`         | optional | optional | ID урока (Long)                           |
 | `languagePairId`   | optional | optional | ID языковой пары (Long)                   |
 | `requiredTier`     | required | optional | `FREE` / `STARTER` / `GROWTH` / `PREMIUM` |
+| `order`            | optional | optional | Порядок в уроке (≥ 1)                     |
 
 > **`requiredTier`** — обязательное поле при создании (по умолчанию `FREE`). На update — опционально, по умолчанию сохраняется текущее значение.
 > **`courseId`**, **`programId`**, **`lessonId`** — опциональные ссылки на иерархию обучения. Бэкенд может игнорировать `courseId` в mapper'е (обрабатывается в service layer).

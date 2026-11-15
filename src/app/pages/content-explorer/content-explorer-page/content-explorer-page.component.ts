@@ -321,6 +321,8 @@ export class ContentExplorerPageComponent implements OnInit {
     }
 
     const lessonNode = this.store.selectedNode();
+    const lessonId =
+      lessonNode !== null && lessonNode.kind === 'lesson' ? lessonNode.id : undefined;
     const hasLessonContext =
       lessonNode !== null &&
       lessonNode.kind === 'lesson' &&
@@ -329,7 +331,7 @@ export class ContentExplorerPageComponent implements OnInit {
 
     this.acting.set(true);
     try {
-      const result = await this.scenarioBuilderDialog.openCreate();
+      const result = await this.scenarioBuilderDialog.openCreate(lessonId);
 
       if (!result?.saved || !result.scenarioId) {
         if (result) {

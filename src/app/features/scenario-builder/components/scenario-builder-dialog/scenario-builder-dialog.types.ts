@@ -5,7 +5,9 @@
  * Discriminated union: `mode: 'create'` for new scenarios;
  * `mode: 'edit'` includes the scenario ID to edit.
  */
-export type ScenarioBuilderDialogData = { mode: 'create' } | { mode: 'edit'; scenarioId: string };
+export type ScenarioBuilderDialogData =
+  | { mode: 'create'; lessonId?: string }
+  | { mode: 'edit'; scenarioId: string };
 
 /**
  * Result returned from the scenario builder dialog.

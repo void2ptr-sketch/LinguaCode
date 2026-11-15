@@ -30,10 +30,13 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Порядок</mat-label>
-          <input matInput type="number" [disabled]="readOnly()" min="0"
-                 [ngModel]="draft().scenarioOrder ?? 0"
+          <input matInput type="number" [disabled]="readOnly()" min="1"
+                 [ngModel]="draft().scenarioOrder ?? 1"
                  (ngModelChange)="updateScenarioOrder($event)" />
           <mat-hint>Позиция сценария внутри урока</mat-hint>
+          @if (scenarioOrderInvalid()) {
+            <mat-error>Порядок должен быть ≥ 1</mat-error>
+          }
         </mat-form-field>
       </div>
     </mat-tab>

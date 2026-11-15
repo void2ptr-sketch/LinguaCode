@@ -30,6 +30,8 @@ import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import { ScenarioDraft, ScenarioEditorMode } from '../types';
+import type { ScenarioFormDraft } from '../utils/scenario-form-draft.utils';
+import { emptyScenarioFormDraft } from '../utils/scenario-form-draft.utils';
 
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
 const sanitizeDescription = (value: string): string => sanitizePlainText(value, 512);
@@ -221,6 +223,18 @@ export class ScenarioBuilderStore {
   }
 
   /**
+   * Creates a new scenario draft with default values.
+   * @returns A new ScenarioFormDraft with order starting at 1.
+   */
+  async createDraft(): Promise<ScenarioFormDraft> {
+    // ScenarioSearchCriteria doesn't support lessonId or sorting,
+    // so auto-increment by lesson is not possible without backend changes.
+    // Fallback: start at 1 (user can manually adjust).
+    const draft = emptyScenarioFormDraft(this.userStore.languagePair(), 1);
+    return draft;
+  }
+
+  /**
    * Enters edit mode and loads the scenario by ID.
    *
    * @param scenarioId - The scenario ID to edit.
@@ -262,6 +276,11 @@ export class ScenarioBuilderStore {
    * @returns The created `Scenario`, or `null` on validation or API error.
    */
   async createScenario(draft: ScenarioDraft): Promise<Scenario | null> {
+    if (draft.order !== undefined && draft.order <= 0) {
+      this.error.set('Порядок сценария должен быть ≥ 1');
+      return null;
+    }
+
     const payload = await this.normalizeDraft(draft);
     if (!payload) {
       return null;
@@ -473,6 +492,7 @@ export class ScenarioBuilderStore {
       programId: draft.programId ? Number(draft.programId) : undefined,
       lessonId: draft.lessonId ? Number(draft.lessonId) : undefined,
       requiredTier: draft.requiredTier ?? 'FREE',
+      order: draft.order,
     };
   }
 

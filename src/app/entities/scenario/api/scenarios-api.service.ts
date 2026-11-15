@@ -222,6 +222,12 @@ export class ScenariosApiService implements ScenarioCatalogPort {
       title: payload.title,
       scenarioDescription: payload.description,
       cardSource: JSON.stringify(payload.cardSource),
+      published: payload.published,
+      languagePair: payload.languagePair,
+      courseId: payload.courseId,
+      programId: payload.programId,
+      lessonId: payload.lessonId,
+      requiredTier: payload.requiredTier,
     };
     return firstValueFrom(
       this.http.post<ApiResponse<Scenario>>(buildApiUrl('/scenarios'), body),
@@ -251,6 +257,11 @@ export class ScenariosApiService implements ScenarioCatalogPort {
       scenarioDescription: payload.description,
       cardSource: JSON.stringify(payload.cardSource),
       published: payload.published,
+      languagePair: payload.languagePair,
+      courseId: payload.courseId,
+      programId: payload.programId,
+      lessonId: payload.lessonId,
+      requiredTier: payload.requiredTier,
     };
     return firstValueFrom(
       this.http.put<ApiResponse<Scenario>>(buildApiUrl(`/scenarios/${scenarioId}`), body),
