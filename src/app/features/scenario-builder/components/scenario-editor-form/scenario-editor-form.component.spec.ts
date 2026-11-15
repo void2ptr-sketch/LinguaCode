@@ -156,7 +156,7 @@ describe('ScenarioEditorFormComponent', () => {
     it('should have tab labels', () => {
       const root = fixture.nativeElement;
       const text = root.textContent?.toLowerCase() || '';
-      expect(text).toContain('сценарий');
+      expect(text).toContain('основное');
       expect(text).toContain('связи');
       expect(text).toContain('публикация');
     });
