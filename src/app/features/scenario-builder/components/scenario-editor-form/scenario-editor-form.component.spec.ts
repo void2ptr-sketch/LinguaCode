@@ -19,6 +19,7 @@ describe('ScenarioEditorFormComponent', () => {
     criteriaLimit: 50,
     criteriaSort: 'updatedAt',
     criteriaSeed: '',
+    scenarioOrder: 0,
     snapshotFrozenAt: null,
   };
 
@@ -138,6 +139,20 @@ describe('ScenarioEditorFormComponent', () => {
     });
   });
 
+  describe('updateScenarioOrder', () => {
+    it('should emit draftChange with updated scenarioOrder', () => {
+      const spy = vi.spyOn(component.draftChange, 'emit');
+      fixture.componentRef.setInput('draft', baseDraft);
+      component.updateScenarioOrder('5');
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          scenarioOrder: 5,
+          title: 'Test Scenario',
+        }),
+      );
+    });
+  });
+
   describe('tier labels', () => {
     it('should have Russian tier labels', () => {
       expect(component.tierLabels['FREE']).toBe('Бесплатный');
@@ -168,6 +183,14 @@ describe('ScenarioEditorFormComponent', () => {
       );
       expect(labelTexts).toContain('Название');
       expect(labelTexts).toContain('Описание');
+    });
+
+    it('should render order field', () => {
+      const labels = fixture.nativeElement.querySelectorAll('mat-label');
+      const labelTexts = Array.from(labels).map(
+        (el: unknown) => (el as HTMLElement).textContent?.trim() ?? '',
+      );
+      expect(labelTexts).toContain('Порядок');
     });
   });
 });

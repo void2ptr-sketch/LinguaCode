@@ -17,6 +17,8 @@ export type ScenarioFormDraft = {
   programId?: string;
   lessonId?: string;
   requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+  /** Позиция сценария внутри урока (UI-слой). */
+  scenarioOrder?: number;
   sourceMode: ScenarioCardSourceMode;
   fixedCardIds: readonly string[];
   criteria: ScenarioCriteriaDraft;
@@ -35,6 +37,7 @@ export function emptyScenarioFormDraft(
     published: false,
     languagePair,
     requiredTier: 'FREE',
+    scenarioOrder: 0,
     sourceMode: 'fixed',
     fixedCardIds: [],
     criteria: emptyCardSearchCriteria(),
@@ -56,6 +59,7 @@ export function scenarioToFormDraft(scenario: Scenario): ScenarioFormDraft {
     programId: scenario.programId,
     lessonId: scenario.lessonId,
     requiredTier: scenario.requiredTier ?? 'FREE',
+    scenarioOrder: scenario.order ?? 0,
   };
 }
 
@@ -70,6 +74,7 @@ export function formDraftToScenarioDraft(form: ScenarioFormDraft): ScenarioDraft
     programId: form.programId,
     lessonId: form.lessonId,
     requiredTier: form.requiredTier,
+    order: form.scenarioOrder,
   };
 }
 

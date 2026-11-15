@@ -22,4 +22,6 @@ export interface ScenarioCreateRequest {
   lessonId?: number;
   languagePairId?: number;
   requiredTier: ScenarioCreateRequestRequiredTier;
+  /** Порядок в уроке (по умолчанию 0) */
+  order?: number;
 }

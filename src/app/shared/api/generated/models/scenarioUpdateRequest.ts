@@ -24,4 +24,6 @@ export interface ScenarioUpdateRequest {
   languagePairId?: number;
   published?: boolean;
   requiredTier: ScenarioUpdateRequestRequiredTier;
+  /** Порядок в уроке */
+  order?: number;
 }

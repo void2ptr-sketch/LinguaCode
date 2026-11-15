@@ -22,6 +22,8 @@ export type Scenario = {
   requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
   /** Количество карточек в сценарии (от бэкенда, может быть undefined для legacy-данных). */
   cardCount?: number;
+  /** Позиция сценария внутри урока (education_scenarios.scenario_order). */
+  order?: number;
 };
 
 /**

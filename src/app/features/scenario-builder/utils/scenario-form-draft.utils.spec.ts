@@ -77,6 +77,7 @@ describe('emptyScenarioFormDraft', () => {
       published: false,
       languagePair: DEFAULT_LANGUAGE_PAIR,
       requiredTier: 'FREE',
+      scenarioOrder: 0,
       sourceMode: 'fixed',
       fixedCardIds: [],
       criteria: {},
@@ -112,7 +113,14 @@ describe('scenarioToFormDraft', () => {
     expect(draft.languagePair).toBe(RU_TO_EN);
     expect(draft.sourceMode).toBe('fixed');
     expect(draft.fixedCardIds).toEqual(['a', 'b', 'c']);
+    expect(draft.scenarioOrder).toBe(0);
     expect(draft.snapshotFrozenAt).toBeNull();
+  });
+
+  it('maps scenario.order to form draft scenarioOrder', () => {
+    const scenario = buildScenario({ order: 5 });
+    const draft = scenarioToFormDraft(scenario);
+    expect(draft.scenarioOrder).toBe(5);
   });
 
   it('maps a snapshot-source scenario correctly', () => {
@@ -192,7 +200,14 @@ describe('formDraftToScenarioDraft', () => {
       languagePair: RU_TO_EN,
       cardSource: { mode: 'fixed', cardIds: ['id-1', 'id-2'] },
       requiredTier: 'FREE',
+      order: undefined,
     });
+  });
+
+  it('maps scenarioOrder to order in ScenarioDraft', () => {
+    const draft = baseDraft({ scenarioOrder: 7 });
+    const result = formDraftToScenarioDraft(draft);
+    expect(result.order).toBe(7);
   });
 
   it('builds a snapshot card source from a snapshot-mode draft', () => {
@@ -287,6 +302,7 @@ describe('serializeScenarioFormDraft', () => {
       criteriaLimit: 50,
       criteriaSort: 'updatedAt',
       criteriaSeed: '',
+      scenarioOrder: 0,
       snapshotFrozenAt: null,
       requiredTier: 'FREE',
     };
@@ -309,6 +325,7 @@ describe('serializeScenarioFormDraft', () => {
       criteriaLimit: 20,
       criteriaSort: 'difficulty',
       criteriaSeed: 'rt-seed',
+      scenarioOrder: 3,
       snapshotFrozenAt: null,
       requiredTier: 'GROWTH',
     };

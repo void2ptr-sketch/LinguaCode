@@ -16,6 +16,8 @@ export interface Scenario {
   cardSource?: string;
   programId?: number;
   lessonId?: number;
+  /** Порядок в уроке */
+  order?: number;
   published?: boolean;
   languagePairId?: number;
   authorId?: number;

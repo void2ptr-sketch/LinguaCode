@@ -26,6 +26,8 @@ export type ScenarioDraft = {
   programId?: string;
   lessonId?: string;
   requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+  /** Позиция сценария внутри урока. */
+  order?: number;
 };
 
 /**
