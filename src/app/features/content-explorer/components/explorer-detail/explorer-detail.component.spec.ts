@@ -217,4 +217,36 @@ describe('ExplorerDetailComponent — course management actions', () => {
     expect(scenarioDeleteSpy).toHaveBeenCalled();
     expect(courseDeleteSpy).not.toHaveBeenCalled();
   });
+
+  it('should show the «Добавить карточку» menu trigger for an own (editable) scenario', () => {
+    selectScenarioNode(true);
+    expect(findButton('Добавить карточку')).toBeDefined();
+  });
+
+  it('should hide the «Добавить карточку» button for a foreign (read-only) scenario', () => {
+    selectScenarioNode(false);
+    expect(findButton('Добавить карточку')).toBeUndefined();
+  });
+
+  it('should emit createCardRequested with the selected kind instead of editRequested', () => {
+    selectScenarioNode(true);
+    const createSpy = vi.fn();
+    const editSpy = vi.fn();
+    fixture.componentInstance.createCardRequested.subscribe(createSpy);
+    fixture.componentInstance.editRequested.subscribe(editSpy);
+
+    fixture.componentInstance['onCreateCardOfKind']('flip');
+
+    expect(createSpy).toHaveBeenCalledWith('flip');
+    expect(editSpy).not.toHaveBeenCalled();
+  });
+
+  it('should offer all card kinds in the scenario add-card menu', () => {
+    selectScenarioNode(true);
+    const codes = fixture.componentInstance.cardKinds().map((kind) => kind.code);
+
+    expect(codes).toContain('select');
+    expect(codes).toContain('flip');
+    expect(codes).toContain('code-trace');
+  });
 });

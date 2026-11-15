@@ -5,6 +5,7 @@
  * @remarks
  * See docs/ARCHITECTURE/ARCHITECTURE.content-explorer.md (этап 1 — MVP).
  */
+import type { CardKind } from '../../../entities/card/model';
 
 /** Kind of a node in the content explorer tree. */
 export type ExplorerNodeKind = 'course' | 'program' | 'lesson' | 'scenario' | 'card';
@@ -102,6 +103,39 @@ export const EXPLORER_KIND_ICONS: Readonly<Record<ExplorerNodeKind, string>> = {
   scenario: 'view_list',
   card: 'style',
 };
+
+/** Option of the scenario «Добавить карточку» menu. */
+export type ExplorerCardKindOption = {
+  code: CardKind;
+  label: string;
+};
+
+/**
+ * Card kinds offered when creating a card from a scenario node.
+ *
+ * @remarks
+ * The content explorer has to pick a concrete `CardKind` before opening the
+ * card editor dialog (`CardEditorDialogData` create mode requires `kind`, and
+ * the dialog has no kind selector). Labels mirror
+ * `docs/COMMON/CARD-FIELD-GUIDE.md`; the backend catalog
+ * (`CatalogService.cardKinds()`) can override this list via the
+ * `cardKinds` input of `ExplorerDetailComponent` once it is loaded.
+ */
+export const EXPLORER_CARD_KIND_OPTIONS: readonly ExplorerCardKindOption[] = [
+  { code: 'select', label: 'Выбор ответа' },
+  { code: 'code-select', label: 'Код: выбор ответа' },
+  { code: 'memory', label: 'Запоминание' },
+  { code: 'symbol', label: 'Символы' },
+  { code: 'sound', label: 'Звук' },
+  { code: 'timed', label: 'На время' },
+  { code: 'keyboard', label: 'Клавиатура' },
+  { code: 'draw', label: 'Рисование' },
+  { code: 'tone', label: 'Тон' },
+  { code: 'reading', label: 'Чтение' },
+  { code: 'flip', label: 'Переворот' },
+  { code: 'cloze', label: 'Пропуск в тексте' },
+  { code: 'code-trace', label: 'Код: что выведет?' },
+];
 
 /** Minimal structural contract for nodes filterable by title/children. */
 export type ExplorerFilterableNode = {

@@ -113,30 +113,31 @@ ContentExplorerPageComponent
 
 Правая панель: детали выбранного узла, breadcrumbs, кнопки действий. **Презентабельный компонент** — эмитит intent-события, оркестрация диалогов — в page-компоненте (FSD запрещает cross-feature импорты).
 
-| Input               | Тип                            | Назначение                         |
-| ------------------- | ------------------------------ | ---------------------------------- |
-| `acting`            | `boolean`                      | Busy-состояние (диалог в процессе) |
-| `cardUsages`        | `ScenarioIndexEntry[] \| null` | «Где используется» для карточек    |
-| `cardUsagesLoading` | `boolean`                      | Загрузка backlinks                 |
-| `cardKind`          | `string`                       | Kind карточки для create-action    |
+| Input               | Тип                            | Назначение                                 |
+| ------------------- | ------------------------------ | ------------------------------------------ |
+| `acting`            | `boolean`                      | Busy-состояние (диалог в процессе)         |
+| `cardUsages`        | `ScenarioIndexEntry[] \| null` | «Где используется» для карточек            |
+| `cardUsagesLoading` | `boolean`                      | Загрузка backlinks                         |
+| `cardKind`          | `string`                       | Kind карточки для create-action            |
+| `cardKinds`         | `ExplorerCardKindOption[]`     | Типы карточек для меню «Добавить карточку» |
 
-| Output                        | Назначение                   |
-| ----------------------------- | ---------------------------- |
-| `editRequested`               | Редактировать узел           |
-| `addProgramRequested`         | + Программа (контекст курса) |
-| `addLessonRequested`          | + Урок (контекст трека)      |
-| `addScenarioRequested`        | + Сценарий (контекст урока)  |
-| `showUsagesRequested`         | Где используется карточка    |
-| `exportPdfRequested`          | PDF без подсказок            |
-| `exportPdfWithHintsRequested` | PDF с подсказками            |
-| `exportJsonRequested`         | JSON (CourseBundle)          |
-| `exportScormRequested`        | SCORM/xAPI-пакет             |
-| `deleteRequested`             | Удалить курс                 |
-| `deleteScenarioRequested`     | Удалить сценарий             |
-| `deleteProgramRequested`      | Удалить программу            |
-| `deleteLessonRequested`       | Удалить урок                 |
-| `createCardRequested`         | Создать карточку             |
-| `deleteCardRequested`         | Удалить карточку             |
+| Output                        | Назначение                                                      |
+| ----------------------------- | --------------------------------------------------------------- |
+| `editRequested`               | Редактировать узел                                              |
+| `addProgramRequested`         | + Программа (контекст курса)                                    |
+| `addLessonRequested`          | + Урок (контекст трека)                                         |
+| `addScenarioRequested`        | + Сценарий (контекст урока)                                     |
+| `showUsagesRequested`         | Где используется карточка                                       |
+| `exportPdfRequested`          | PDF без подсказок                                               |
+| `exportPdfWithHintsRequested` | PDF с подсказками                                               |
+| `exportJsonRequested`         | JSON (CourseBundle)                                             |
+| `exportScormRequested`        | SCORM/xAPI-пакет                                                |
+| `deleteRequested`             | Удалить курс                                                    |
+| `deleteScenarioRequested`     | Удалить сценарий                                                |
+| `deleteProgramRequested`      | Удалить программу                                               |
+| `deleteLessonRequested`       | Удалить урок                                                    |
+| `createCardRequested`         | Создать карточку (kind из меню у сценария / из данных карточки) |
+| `deleteCardRequested`         | Удалить карточку                                                |
 
 **Computed свойства:**
 
@@ -217,17 +218,18 @@ Page-компонент — orchestrator: открывает диалоги би
 
 ### CRUD-операции
 
-| Действие      | Узел     | Сервис                                                                 | Обновление                               |
-| ------------- | -------- | ---------------------------------------------------------------------- | ---------------------------------------- |
-| Редактировать | course   | `CourseBuilderDialogService.openEdit()`                                | `store.refreshNode()`                    |
-| Редактировать | program  | `ProgramBuilderDialogService.openEdit()`                               | `store.refreshNode()`                    |
-| Редактировать | lesson   | `LessonBuilderDialogService.openEdit()`                                | `store.refreshNode()`                    |
-| Редактировать | scenario | `ScenarioBuilderDialogService.openEdit()`                              | `store.refreshNode()`                    |
-| Редактировать | card     | `CardEditorDialogService.openEdit()`                                   | `refreshScenarioNode(old)` + `refreshScenarioNode(new)` |
-| Создать       | program  | `ProgramBuilderDialogService.openCreate(courseId)`                     | `store.refreshNode(courseNode)`          |
-| Создать       | lesson   | `LessonBuilderDialogService.openCreate(programId)`                     | `store.refreshNode(programNode)`         |
-| Создать       | scenario | `ScenarioBuilderDialogService.openCreate()` + `bindScenarioToLesson()` | `store.refreshNode(lessonNode)` + select |
-| Создать       | card     | `CardEditorDialogService.openCreate(kind, context)`                    | `refreshScenarioNode(context.scenarioId)` |
+| Действие          | Узел     | Сервис                                                                     | Обновление                                                         |
+| ----------------- | -------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Редактировать     | course   | `CourseBuilderDialogService.openEdit()`                                    | `store.refreshNode()`                                              |
+| Редактировать     | program  | `ProgramBuilderDialogService.openEdit()`                                   | `store.refreshNode()`                                              |
+| Редактировать     | lesson   | `LessonBuilderDialogService.openEdit()`                                    | `store.refreshNode()`                                              |
+| Редактировать     | scenario | `ScenarioBuilderDialogService.openEdit()`                                  | `store.refreshNode()`                                              |
+| Редактировать     | card     | `CardEditorDialogService.openEdit()`                                       | `refreshScenarioNode(old)` + `refreshScenarioNode(new)`            |
+| Создать           | program  | `ProgramBuilderDialogService.openCreate(courseId)`                         | `store.refreshNode(courseNode)`                                    |
+| Создать           | lesson   | `LessonBuilderDialogService.openCreate(programId)`                         | `store.refreshNode(programNode)`                                   |
+| Создать           | scenario | `ScenarioBuilderDialogService.openCreate()` + `bindScenarioToLesson()`     | `store.refreshNode(lessonNode)` + select                           |
+| Создать           | card     | `CardEditorDialogService.openCreate(kind, context)`                        | `refreshScenarioNode(context.scenarioId)`                          |
+| Добавить карточку | scenario | `CardEditorDialogService.openCreate(kind, context)` (kind — из меню типов) | `scenarioNode.expanded = true` + `refreshScenarioNode(scenarioId)` |
 
 ### Карточки в сценарии
 
@@ -236,9 +238,17 @@ Page-компонент — orchestrator: открывает диалоги би
 - `cardCreateContextForNode(node)` собирает `CardEditorCreateContext`
   (`scenarioId`, `courseId`, `programId`, `lessonId`, `languagePairId`) из выбранного узла
   и его предков.
+- **«Добавить карточку» у сценария** открывает меню типов карточек
+  (`EXPLORER_CARD_KIND_OPTIONS`, labels по `docs/COMMON/CARD-FIELD-GUIDE.md`) и эмитит
+  `createCardRequested` с выбранным `kind`. Кнопка больше не открывает конструктор
+  сценариев — она создаёт карточку сразу в выбранном сценарии (контекст берётся из
+  самого узла сценария). Меню можно переопределить input'ом `cardKinds` (например,
+  лейблами из `CatalogService.cardKinds()`).
 - `CardEditorDialogService.openCreate(kind, context)` открывает диалог в режиме создания;
-  `openEdit(cardId)` — в режиме редактирования.
-- Результат диалога: `{ saved, cardId, scenarioId }`. После сохранения страница вызывает
+  `openEdit(cardId)` — в режиме редактирования. `CardKind` обязателен: селектора типа
+  внутри диалога нет.
+- Результат диалога: `{ saved, cardId, scenarioId }`. После сохранения страница раскрывает
+  сценарий (`expanded = true`, иначе `refreshNode()` не перезагружает детей) и вызывает
   `refreshScenarioNode()` для старого и нового сценария, чтобы обновить списки карточек
   без полной перезагрузки дерева.
 - Привязка карточки к сценарию выполняется атомарными endpoint'ами

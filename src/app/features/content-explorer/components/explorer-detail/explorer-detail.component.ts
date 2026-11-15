@@ -16,7 +16,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import type { ScenarioIndexEntry } from '../../../../entities/scenario/model';
 import { ContentExplorerStore } from '../../services/content-explorer.store';
-import { EXPLORER_KIND_ICONS, EXPLORER_KIND_LABELS } from '../../types/content-explorer.types';
+import {
+  EXPLORER_CARD_KIND_OPTIONS,
+  EXPLORER_KIND_ICONS,
+  EXPLORER_KIND_LABELS,
+  type ExplorerCardKindOption,
+} from '../../types/content-explorer.types';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,6 +42,14 @@ export class ExplorerDetailComponent {
   readonly cardUsagesLoading = input<boolean>(false);
   /** Card kind for the selected card node (for create-new-card action). */
   readonly cardKind = input<string>('');
+  /**
+   * Card kinds offered by the scenario «Добавить карточку» menu.
+   *
+   * @remarks
+   * Defaults to the static catalog list; the page may pass backend-driven
+   * labels (`CatalogService.cardKinds()`) instead.
+   */
+  readonly cardKinds = input<readonly ExplorerCardKindOption[]>(EXPLORER_CARD_KIND_OPTIONS);
 
   /** «Редактировать» intent for the selected node. */
   readonly editRequested = output<void>();
@@ -198,6 +211,18 @@ export class ExplorerDetailComponent {
 
   protected onCreateCard(): void {
     this.createCardRequested.emit(this.cardKind());
+  }
+
+  /**
+   * «Добавить карточку» из контекста сценария: выбран тип карточки в меню.
+   *
+   * @remarks
+   * Делегирует в тот же intent `createCardRequested`, что и «Создать карточку»
+   * у карточки: страница собирает контекст сценария через
+   * `cardCreateContextForNode()` и открывает `CardEditorDialogService.openCreate()`.
+   */
+  protected onCreateCardOfKind(kind: ExplorerCardKindOption['code']): void {
+    this.createCardRequested.emit(kind);
   }
 
   protected onDeleteCard(): void {

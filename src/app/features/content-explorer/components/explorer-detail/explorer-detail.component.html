@@ -144,12 +144,18 @@
           mat-stroked-button
           type="button"
           [disabled]="acting()"
-          matTooltip="Карточки добавляются внутри конструктора сценариев"
-          (click)="onEditNode()"
+          [matMenuTriggerFor]="addCardMenu"
         >
           <mat-icon>add</mat-icon>
           Добавить карточку
         </button>
+        <mat-menu #addCardMenu="matMenu">
+          @for (kind of cardKinds(); track kind.code) {
+            <button mat-menu-item type="button" (click)="onCreateCardOfKind(kind.code)">
+              <span>{{ kind.label }}</span>
+            </button>
+          }
+        </mat-menu>
       }
 
       @if (store.selectedNode()!.kind === 'scenario' && canEditOwnScenario()) {

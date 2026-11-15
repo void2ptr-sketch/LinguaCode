@@ -64,7 +64,6 @@ import { CardEditorStore } from '../../../features/card-editor/services/card-edi
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import { LessonsApiService } from '../../../entities/lesson/api/lessons-api.service';
 
-
 const TREE_WIDTH_KEY = 'content_explorer_tree_width';
 const TREE_MIN_WIDTH = 280;
 const TREE_MAX_WIDTH = 900;
@@ -337,7 +336,8 @@ export class ContentExplorerPageComponent implements OnInit {
       !lessonNode.virtual &&
       lessonNode.editable;
 
-    const courseEntry = courseNode?.data as { knownLanguage?: string; learningLanguage?: string; languagePairId?: number } | undefined;
+    const courseEntry = courseNode?.data as
+      { knownLanguage?: string; learningLanguage?: string; languagePairId?: number } | undefined;
     const context = {
       lessonId: lessonNode?.kind === 'lesson' ? lessonNode.id : undefined,
       courseId: courseNode?.id,
@@ -768,10 +768,15 @@ export class ContentExplorerPageComponent implements OnInit {
    * Передаёт в диалог контекст выбранной иерархии (курс → программа → урок →
    * сценарий), чтобы новая карточка сразу попала в нужный сценарий. После
    * сохранения обновляет сценарий в дереве.
+   *
+   * @remarks
+   * `kind` приходит либо из данных выбранной карточки («Создать карточку»),
+   * либо из меню типов у выбранного сценария («Добавить карточку»). Диалог
+   * редактора требует конкретный `CardKind`, поэтому пустой kind игнорируется.
    */
   protected async onCreateCardRequested(kind: string): Promise<void> {
     const node = this.store.selectedNode();
-    if (!node || this.acting()) {
+    if (!node || this.acting() || !kind) {
       return;
     }
 
@@ -784,11 +789,28 @@ export class ContentExplorerPageComponent implements OnInit {
         context,
       );
       if (result?.saved) {
+        this.expandScenarioForNode(node);
         await this.refreshScenarioNode(result.scenarioId);
         this.snackBar.open('Карточка создана', 'Закрыть', { duration: 4000 });
       }
     } finally {
       this.acting.set(false);
+    }
+  }
+
+  /**
+   * Раскрывает сценарий, в который была добавлена карточка.
+   *
+   * @remarks
+   * `ContentExplorerStore.refreshNode()` перезагружает детей только у
+   * раскрытого узла, поэтому без этого новая карточка не появится в дереве
+   * сразу после сохранения.
+   */
+  private expandScenarioForNode(node: ExplorerNode): void {
+    const scenarioNode =
+      node.kind === 'scenario' ? node : node.parentId ? this.store.getByKey(node.parentId) : null;
+    if (scenarioNode?.kind === 'scenario') {
+      scenarioNode.expanded.set(true);
     }
   }
 

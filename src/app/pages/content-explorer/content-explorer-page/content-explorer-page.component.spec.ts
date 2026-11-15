@@ -992,3 +992,174 @@ describe('ContentExplorerPageComponent — tree resize handle', () => {
     expect(component['treeWidth']()).toBe(360);
   });
 });
+
+/**
+ * Спецификация создания карточки из проводника контента:
+ * «Добавить карточку» у сценария и «Создать карточку» у карточки должны
+ * открывать редактор карточки с корректным контекстом иерархии, а не
+ * конструктор сценариев.
+ */
+describe('ContentExplorerPageComponent — onCreateCardRequested (card creation)', () => {
+  let component: ContentExplorerPageComponent;
+
+  const mockStore = {
+    selectedNode: vi.fn<() => ExplorerNode | null>(() => null),
+    pathOf: vi.fn<() => readonly ExplorerNode[]>(() => []),
+    refreshNode: vi.fn(async () => undefined),
+    selectNode: vi.fn(),
+    clearSelection: vi.fn(),
+    loadRoots: vi.fn(async () => undefined),
+    getByKey: vi.fn<() => ExplorerNode | null>(() => null),
+  };
+
+  const mockCardEditorDialog = {
+    openCreate: vi.fn(),
+    openEdit: vi.fn(),
+  };
+
+  const mockSnackBar = { open: vi.fn() };
+
+  const courseNode = new ExplorerNode({
+    kind: 'course',
+    id: 'c1',
+    parentId: null,
+    title: 'Course',
+    editable: true,
+  });
+  const programNode = new ExplorerNode({
+    kind: 'program',
+    id: 'p1',
+    parentId: 'course:c1',
+    title: 'Program',
+    editable: true,
+  });
+  const lessonNode = new ExplorerNode({
+    kind: 'lesson',
+    id: 'l1',
+    parentId: 'program:p1',
+    title: 'Lesson',
+    editable: true,
+  });
+
+  function scenarioNode(): ExplorerNode {
+    return new ExplorerNode({
+      kind: 'scenario',
+      id: 's1',
+      parentId: 'lesson:l1',
+      title: 'Scenario',
+      editable: true,
+      data: { id: 's1', title: 'Scenario', authorId: 'user-1' },
+    });
+  }
+
+  function cardNode(): ExplorerNode {
+    return new ExplorerNode({
+      kind: 'card',
+      id: 'card-1',
+      parentId: 'scenario:s1',
+      title: 'Card',
+      editable: true,
+      data: { id: 'card-1', kind: 'select' },
+    });
+  }
+
+  beforeEach(async () => {
+    vi.clearAllMocks();
+
+    await TestBed.configureTestingModule({
+      imports: [ContentExplorerPageComponent],
+      providers: [
+        { provide: ContentExplorerStore, useValue: mockStore },
+        {
+          provide: ScenarioBuilderDialogService,
+          useValue: { openCreate: vi.fn(), openEdit: vi.fn() },
+        },
+        { provide: CourseSearchService, useValue: { getById: vi.fn(), update: vi.fn() } },
+        { provide: ScenarioSearchService, useValue: {} },
+        { provide: MatSnackBar, useValue: mockSnackBar },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
+        { provide: MatDialog, useValue: { open: vi.fn() } },
+        { provide: ScenarioBuilderStore, useValue: {} },
+        { provide: CourseBuilderDialogService, useValue: {} },
+        { provide: CourseBuilderStore, useValue: {} },
+        { provide: CardEditorDialogService, useValue: mockCardEditorDialog },
+        { provide: ProgramBuilderDialogService, useValue: {} },
+        { provide: LessonBuilderDialogService, useValue: {} },
+        { provide: ScormExportService, useValue: {} },
+        {
+          provide: ActivatedRoute,
+          useValue: { snapshot: { queryParamMap: { get: () => null } } },
+        },
+      ],
+    }).compileComponents();
+
+    component = TestBed.createComponent(ContentExplorerPageComponent).componentInstance;
+  });
+
+  it('creates a card in the selected scenario with the chosen kind and hierarchy context', async () => {
+    const scenario = scenarioNode();
+    const path = [courseNode, programNode, lessonNode, scenario];
+    mockStore.selectedNode.mockReturnValue(scenario);
+    mockStore.pathOf.mockReturnValue(path);
+    mockStore.getByKey.mockReturnValue(scenario);
+    mockCardEditorDialog.openCreate.mockResolvedValue({ saved: true, scenarioId: 's1' });
+
+    await component['onCreateCardRequested']('flip');
+
+    expect(mockCardEditorDialog.openCreate).toHaveBeenCalledWith('flip', {
+      scenarioId: 's1',
+      lessonId: 'l1',
+      programId: 'p1',
+      courseId: 'c1',
+    });
+    // Сценарий раскрыт, чтобы новая карточка сразу появилась в дереве.
+    expect(scenario.expanded()).toBe(true);
+    expect(mockStore.refreshNode).toHaveBeenCalledWith(scenario);
+    expect(mockSnackBar.open).toHaveBeenCalledWith('Карточка создана', 'Закрыть', {
+      duration: 4000,
+    });
+  });
+
+  it('uses the parent scenario as context for a selected card node', async () => {
+    const scenario = scenarioNode();
+    const card = cardNode();
+    mockStore.selectedNode.mockReturnValue(card);
+    mockStore.pathOf.mockReturnValue([courseNode, programNode, lessonNode, scenario, card]);
+    mockStore.getByKey.mockReturnValue(scenario);
+    mockCardEditorDialog.openCreate.mockResolvedValue({ saved: true, scenarioId: 's1' });
+
+    await component['onCreateCardRequested']('select');
+
+    expect(mockCardEditorDialog.openCreate).toHaveBeenCalledWith('select', {
+      scenarioId: 's1',
+      lessonId: 'l1',
+      programId: 'p1',
+      courseId: 'c1',
+    });
+    expect(mockStore.refreshNode).toHaveBeenCalledWith(scenario);
+  });
+
+  it('does nothing when the card kind is empty', async () => {
+    mockStore.selectedNode.mockReturnValue(scenarioNode());
+
+    await component['onCreateCardRequested']('');
+
+    expect(mockCardEditorDialog.openCreate).not.toHaveBeenCalled();
+  });
+
+  it('does not refresh the tree when card creation is cancelled', async () => {
+    const scenario = scenarioNode();
+    mockStore.selectedNode.mockReturnValue(scenario);
+    mockStore.pathOf.mockReturnValue([courseNode, programNode, lessonNode, scenario]);
+    mockStore.getByKey.mockReturnValue(scenario);
+    mockCardEditorDialog.openCreate.mockResolvedValue({ saved: false });
+
+    await component['onCreateCardRequested']('cloze');
+
+    expect(mockStore.refreshNode).not.toHaveBeenCalled();
+    expect(mockSnackBar.open).not.toHaveBeenCalled();
+  });
+});
