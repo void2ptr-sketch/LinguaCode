@@ -167,19 +167,18 @@ export class ScenarioBuilderStore {
   }
 
   /**
-   * Loads available courses for the current language pair.
+   * Loads available courses (all language pairs).
    *
    * @remarks
-   * Fetches up to 100 courses matching the current language pair.
+   * Fetches up to 100 courses without language-pair filtering — the
+   * scenario builder lets users bind a scenario to any course regardless
+   * of the current language pair.
    * On error, sets an empty array (never throws).
    */
   async loadCourses(): Promise<void> {
     try {
-      const pair = this.userStore.languagePair();
       const page = await this.courseSearchService.search({
         scope: 'all',
-        knownLanguage: pair.known,
-        learningLanguage: pair.learning,
         page: { page: 0, pageSize: 100 },
       });
       this.courses.set(page.items);
