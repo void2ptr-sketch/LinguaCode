@@ -68,6 +68,14 @@ export type ScenarioCatalogPort = {
   getByIdBatch(scenarioIds: readonly string[]): Promise<readonly Scenario[]>;
 
   /**
+   * Retrieves all scenarios bound to a lesson.
+   *
+   * @param lessonId - The lesson ID.
+   * @returns Scenarios of the lesson ordered by `order`.
+   */
+  getByLessonId(lessonId: string): Promise<readonly Scenario[]>;
+
+  /**
    * Creates a new scenario.
    *
    * @param payload - The scenario write payload.

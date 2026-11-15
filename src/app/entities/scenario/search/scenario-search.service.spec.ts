@@ -116,6 +116,16 @@ describe('ScenarioSearchService', () => {
     });
   });
 
+  describe('getByLessonId', () => {
+    it('delegates to ScenariosApiService.getByLessonId', async () => {
+      const spy = vi.spyOn(apiService, 'getByLessonId').mockResolvedValue([]);
+
+      await service.getByLessonId('lesson-1');
+
+      expect(spy).toHaveBeenCalledWith('lesson-1');
+    });
+  });
+
   describe('create', () => {
     it('delegates to ScenariosApiService.create', async () => {
       const mockScenario = {

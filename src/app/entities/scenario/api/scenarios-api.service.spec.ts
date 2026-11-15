@@ -78,19 +78,64 @@ describe('ScenariosApiService', () => {
       expect(result).toEqual(mockSearchPage);
     });
 
-    it('should list scenarios without query via GET /scenarios', async () => {
+    it('should always use /scenarios/search so drafts are visible', async () => {
       const promise = service.search({
         knownLanguage: 'ru',
         learningLanguage: 'en',
         page: { page: 0, pageSize: 20 },
       });
 
-      const req = httpMock.expectOne((r) => r.url === buildApiUrl('/scenarios'));
+      const req = httpMock.expectOne((r) => r.url === buildApiUrl('/scenarios/search'));
       expect(req.request.method).toBe('GET');
+      expect(req.request.params.get('query')).toBe('');
       req.flush({ data: mockSearchPage });
 
       const result = await promise;
       expect(result).toEqual(mockSearchPage);
+    });
+
+    it('should map the real backend list envelope ({ data: Scenario[], total })', async () => {
+      const promise = service.search({
+        query: 'test',
+        page: { page: 0, pageSize: 20 },
+      });
+
+      const req = httpMock.expectOne((r) => r.url === buildApiUrl('/scenarios/search'));
+      req.flush({
+        data: [
+          {
+            id: 1,
+            title: 'Backend Scenario',
+            scenarioDescription: 'Description',
+            authorId: 7,
+            cardSource: JSON.stringify({ mode: 'fixed', cardIds: ['card-1'] }),
+            published: false,
+            updatedAt: '2024-01-01T00:00:00.000Z',
+            courseId: 3,
+            lessonId: 5,
+            order: 2,
+            requiredTier: 'FREE',
+          },
+        ],
+        total: 1,
+      });
+
+      const result = await promise;
+
+      expect(result.totalItems).toBe(1);
+      expect(result.items).toHaveLength(1);
+      expect(result.items[0]).toEqual(
+        expect.objectContaining({
+          id: '1',
+          title: 'Backend Scenario',
+          authorId: '7',
+          cardSourceMode: 'fixed',
+          published: false,
+          courseId: '3',
+          lessonId: '5',
+          order: 2,
+        }),
+      );
     });
   });
 
@@ -229,6 +274,36 @@ describe('ScenariosApiService', () => {
 
       const result = await promise;
       expect(result).toBeUndefined();
+    });
+  });
+
+  describe('getByLessonId', () => {
+    it('should load and map scenarios via GET /scenarios/by-lesson/:id', async () => {
+      const promise = service.getByLessonId('5');
+
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/by-lesson/5'));
+      expect(req.request.method).toBe('GET');
+      req.flush({
+        data: [
+          {
+            id: 10,
+            title: 'Lesson Scenario',
+            authorId: 7,
+            cardSource: JSON.stringify({ mode: 'fixed', cardIds: [] }),
+            published: true,
+            lessonId: 5,
+            order: 1,
+          },
+        ],
+        total: 1,
+      });
+
+      const result = await promise;
+
+      expect(result).toHaveLength(1);
+      expect(result[0].id).toBe('10');
+      expect(result[0].lessonId).toBe('5');
+      expect(result[0].cardSource).toEqual({ mode: 'fixed', cardIds: [] });
     });
   });
 

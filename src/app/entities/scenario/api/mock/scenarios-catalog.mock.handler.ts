@@ -20,9 +20,7 @@ import {
   scenarioUsesCardEntry,
   validateScenarioCardSource,
 } from '../../utils/scenario-card-source.utils';
-import {
-  cardIndexMatchesPair,
-} from '../../../language-pair/utils/language-pair.utils';
+import { cardIndexMatchesPair } from '../../../language-pair/utils/language-pair.utils';
 import { isEditableContentAuthor, isSystemAuthor } from '../../../user/lib/system-author.constants';
 import { CardsCatalogMockHandler } from '../../../card/api/mock/cards-catalog.mock.handler';
 import { ContentSeedRepository } from '../../../content-seed/content-seed.repository';
@@ -79,6 +77,14 @@ export class ScenariosCatalogMockHandler {
     }
 
     return results;
+  }
+
+  async getByLessonId(lessonId: string): Promise<readonly Scenario[]> {
+    await this.ensureData();
+
+    return this.scenarios!.filter((scenario) => scenario.lessonId === lessonId).sort(
+      (left, right) => (left.order ?? 0) - (right.order ?? 0),
+    );
   }
 
   async create(payload: ScenarioWritePayload): Promise<Scenario> {

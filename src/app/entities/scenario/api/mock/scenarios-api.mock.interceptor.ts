@@ -36,7 +36,7 @@ const extractScenarioId = (url: string): string | null => {
     return null;
   }
 
-  if (rest.startsWith('by-card/')) {
+  if (rest.startsWith('by-card/') || rest.startsWith('by-lesson/')) {
     return null;
   }
 
@@ -101,6 +101,16 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     );
   }
 
+  const lessonMarker = `${buildApiUrl('/scenarios/by-lesson/')}`;
+  if (req.method === 'GET' && req.url.includes(lessonMarker)) {
+    const lessonId =
+      req.url.slice(req.url.indexOf(lessonMarker) + lessonMarker.length).split(/[?#]/)[0] ?? '';
+
+    return defer(() => handler.getByLessonId(lessonId)).pipe(
+      map((data) => new HttpResponse({ status: 200, body: { data } })),
+    );
+  }
+
   const scenarioId = extractScenarioId(req.url);
   if (req.method === 'GET' && scenarioId) {
     return defer(() => handler.getById(scenarioId)).pipe(
@@ -142,7 +152,7 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
       courseId: raw['courseId'] != null ? Number(raw['courseId']) : undefined,
       programId: raw['programId'] != null ? Number(raw['programId']) : undefined,
       lessonId: raw['lessonId'] != null ? Number(raw['lessonId']) : undefined,
-      requiredTier: raw['requiredTier'] as ScenarioWritePayload['requiredTier'] ?? 'FREE',
+      requiredTier: (raw['requiredTier'] as ScenarioWritePayload['requiredTier']) ?? 'FREE',
     };
 
     return defer(() => handler.update(scenarioId, payload)).pipe(

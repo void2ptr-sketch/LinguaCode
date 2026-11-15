@@ -17,6 +17,7 @@ import type {
   ScenarioWritePayload,
 } from '../repository/scenario-catalog.port';
 import { normalizeScenario } from '../utils/scenario-card-source.utils';
+import { scenarioToIndexEntry } from '../mapping/scenario-index.mapper';
 import type { ContentLanguage } from '../../card/model/card-index.types';
 import { LanguagePairsApiService } from '../../language-pair/api';
 import { UserStore } from '../../user/model/user.store';
@@ -135,25 +136,68 @@ export class ScenariosApiService implements ScenarioCatalogPort {
    * });
    * ```
    */
-  search(criteria: ScenarioSearchCriteria): Promise<ScenarioSearchPage> {
-    // Backend requires 'query' for /search endpoint.
-    // When query is empty, use the list endpoint (/scenarios) instead.
-    const hasQuery = !!criteria.query?.trim();
-    const url = hasQuery ? buildApiUrl('/scenarios/search') : buildApiUrl('/scenarios');
-    const params = buildScenarioSearchParams(criteria);
+  async search(criteria: ScenarioSearchCriteria): Promise<ScenarioSearchPage> {
+    // Always use `/scenarios/search`: the plain `/scenarios` list applies
+    // tier-based access control and hides drafts, so scenarios created through
+    // the GUI (unpublished by default) would never appear in the catalog.
+    // The backend requires the `query` parameter to be present (may be empty).
+    const params = buildScenarioSearchParams(criteria)
+      .set('query', criteria.query ?? '')
+      // Spring pagination uses `size`; the mock parser reads `pageSize`.
+      .set('size', String(criteria.page.pageSize));
 
-    return firstValueFrom(this.http.get<ApiResponse<ScenarioSearchPage>>(url, { params })).then(
-      (response) => {
-        // Бэкенд возвращает scenario_order — мапим в order для index entries
-        const items = [...(response.data.items ?? [])].map((item: Record<string, unknown>) => {
-          if (item['scenario_order'] != null && item['order'] == null) {
-            return { ...item, order: item['scenario_order'] };
-          }
-          return item;
-        });
-        return { ...response.data, items: items as unknown as ScenarioSearchPage['items'] };
-      },
+    const response = await firstValueFrom(
+      this.http.get<Record<string, unknown>>(buildApiUrl('/scenarios/search'), { params }),
     );
+
+    const { items: rawItems, total } = this.readListPayload(response);
+    const items = await Promise.all(rawItems.map((raw) => this.toIndexEntry(raw)));
+
+    const pageSize = criteria.page.pageSize;
+    return {
+      items,
+      page: criteria.page.page,
+      pageSize,
+      totalItems: total,
+      totalPages: pageSize > 0 ? Math.ceil(total / pageSize) : 0,
+    };
+  }
+
+  /**
+   * Converts a raw backend item to a `ScenarioIndexEntry`.
+   *
+   * @remarks
+   * The real backend returns full `Scenario` DTOs (`cardSource` as a JSON
+   * string), while the mock handler returns ready index entries. Both shapes
+   * are supported so the catalog list works against either data source.
+   */
+  private async toIndexEntry(raw: Record<string, unknown>): Promise<ScenarioIndexEntry> {
+    if (typeof raw['cardSourceMode'] === 'string') {
+      return this.normalizeIndexEntry(raw);
+    }
+
+    const scenario = await this.mapScenario({ ...raw });
+    return scenarioToIndexEntry(scenario);
+  }
+
+  /** Normalises an already index-shaped item (mock backend). */
+  private normalizeIndexEntry(raw: Record<string, unknown>): ScenarioIndexEntry {
+    const order = raw['order'] ?? raw['scenario_order'];
+    return {
+      id: String(raw['id'] ?? ''),
+      title: String(raw['title'] ?? ''),
+      authorId: String(raw['authorId'] ?? ''),
+      cardSourceMode: raw['cardSourceMode'] as ScenarioIndexEntry['cardSourceMode'],
+      cardSourceSummary: String(raw['cardSourceSummary'] ?? ''),
+      published: Boolean(raw['published']),
+      updatedAt: String(raw['updatedAt'] ?? ''),
+      languagePairSummary:
+        typeof raw['languagePairSummary'] === 'string' ? raw['languagePairSummary'] : undefined,
+      courseId: raw['courseId'] != null ? String(raw['courseId']) : undefined,
+      lessonId: raw['lessonId'] != null ? String(raw['lessonId']) : undefined,
+      order: order != null ? Number(order) : undefined,
+      requiredTier: raw['requiredTier'] as ScenarioIndexEntry['requiredTier'],
+    };
   }
 
   /**
@@ -213,6 +257,31 @@ export class ScenariosApiService implements ScenarioCatalogPort {
     }
 
     return Promise.all(items.map((raw) => this.mapScenario(raw as Record<string, unknown>)));
+  }
+
+  /**
+   * Retrieves all scenarios bound to a lesson.
+   *
+   * @remarks
+   * Uses the dedicated `GET /scenarios/by-lesson/{lessonId}` endpoint. This is
+   * the authoritative source for GUI-created scenarios: they store `lessonId`
+   * on the scenario itself, and the backend does not necessarily mirror the
+   * binding into `lesson.scenarioIds`.
+   *
+   * @param lessonId - The lesson ID.
+   * @returns Scenarios of the lesson ordered by `order`.
+   */
+  async getByLessonId(lessonId: string): Promise<readonly Scenario[]> {
+    const response = await firstValueFrom(
+      this.http.get<Record<string, unknown>>(buildApiUrl(`/scenarios/by-lesson/${lessonId}`)),
+    );
+
+    const { items } = this.readListPayload(response);
+    const scenarios = await Promise.all(
+      items.map((raw) => this.mapScenario({ ...(raw as Record<string, unknown>) })),
+    );
+
+    return scenarios.sort((left, right) => (left.order ?? 0) - (right.order ?? 0));
   }
 
   /**
@@ -390,11 +459,12 @@ export class ScenariosApiService implements ScenarioCatalogPort {
    * const scenarios = await scenariosApi.findUsingCard('card-456');
    * ```
    */
-  findUsingCard(cardId: string): Promise<readonly ScenarioIndexEntry[]> {
-    return firstValueFrom(
-      this.http.get<ApiResponse<readonly ScenarioIndexEntry[]>>(
-        buildApiUrl(`/scenarios/by-card/${cardId}`),
-      ),
-    ).then((response) => response.data);
+  async findUsingCard(cardId: string): Promise<readonly ScenarioIndexEntry[]> {
+    const response = await firstValueFrom(
+      this.http.get<Record<string, unknown>>(buildApiUrl(`/scenarios/by-card/${cardId}`)),
+    );
+
+    const { items } = this.readListPayload(response);
+    return Promise.all(items.map((raw) => this.toIndexEntry(raw as Record<string, unknown>)));
   }
 }

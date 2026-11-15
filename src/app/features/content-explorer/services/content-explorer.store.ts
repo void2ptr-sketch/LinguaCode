@@ -312,6 +312,10 @@ export class ContentExplorerStore {
     scenario: Scenario | undefined,
   ): ExplorerNode {
     if (!scenario) {
+      console.warn('[ContentExplorer] createScenarioNode: scenario not found, editable=false', {
+        lessonNode: lessonNode.id,
+        scenarioId,
+      });
       return this.createNode({
         kind: 'scenario',
         id: scenarioId,
@@ -1298,17 +1302,65 @@ export class ContentExplorerStore {
     }
   }
 
+  /**
+   * Loads the scenarios of a lesson from both binding sources.
+   *
+   * @remarks
+   * `lesson.scenarioIds` is the ordered list maintained by the course payload,
+   * but it is not updated by the backend when a scenario is created with a
+   * `lessonId` (the GUI flow). The dedicated `GET /scenarios/by-lesson/:id`
+   * endpoint reflects `scenario.lessonId` and is therefore the authoritative
+   * source for GUI-created scenarios. Both sources are merged: IDs from
+   * `lesson.scenarioIds` keep their order, extra scenarios are appended sorted
+   * by their `order` field.
+   */
   private async loadScenarioChildren(lessonNode: ExplorerNode): Promise<readonly ExplorerNode[]> {
     const lesson = (lessonNode.data ?? {}) as { scenarioIds?: readonly string[] };
     const scenarioIds = lesson.scenarioIds ?? [];
-    if (scenarioIds.length === 0) {
-      return [];
+
+    const [boundScenarios, lessonScenarios] = await Promise.all([
+      scenarioIds.length > 0
+        ? this.scenarioSearchService.getByIdBatch(scenarioIds).catch((error: unknown) => {
+            this.logger.warn(
+              `ContentExplorer: failed to load bound scenarios: lesson=${lessonNode.id}`,
+              error,
+            );
+            return [] as readonly Scenario[];
+          })
+        : Promise.resolve<readonly Scenario[]>([]),
+      this.scenarioSearchService.getByLessonId(lessonNode.id).catch((error: unknown) => {
+        this.logger.warn(
+          `ContentExplorer: failed to load scenarios by lesson: lesson=${lessonNode.id}`,
+          error,
+        );
+        return [] as readonly Scenario[];
+      }),
+    ]);
+
+    const byId = new Map<string, Scenario>();
+    for (const scenario of boundScenarios) {
+      byId.set(scenario.id, scenario);
     }
 
-    const scenarios = await this.scenarioSearchService.getByIdBatch(scenarioIds);
-    const byId = new Map(scenarios.map((scenario) => [scenario.id, scenario]));
+    const extraScenarios = lessonScenarios
+      .filter((scenario) => !byId.has(scenario.id))
+      .sort((left, right) => (left.order ?? 0) - (right.order ?? 0));
+    for (const scenario of extraScenarios) {
+      byId.set(scenario.id, scenario);
+    }
 
-    return scenarioIds.map((scenarioId) =>
+    const orderedIds = [
+      ...new Set([...scenarioIds, ...extraScenarios.map((scenario) => scenario.id)]),
+    ];
+
+    const missing = orderedIds.filter((id) => !byId.has(id));
+    if (missing.length > 0) {
+      this.logger.warn(
+        `ContentExplorer: ${missing.length} scenario(s) not found in catalog: lesson=${lessonNode.id}, missing=${JSON.stringify(missing)}`,
+      );
+    }
+
+    return orderedIds.map((scenarioId) =>
       this.createScenarioNode(lessonNode, scenarioId, byId.get(scenarioId)),
     );
   }

@@ -128,6 +128,7 @@ function setup(overrides?: {
       .mockImplementation((ids: readonly string[]) =>
         Promise.resolve(ids.map(scenarioById).filter((s): s is Scenario => Boolean(s))),
       ),
+    getByLessonId: vi.fn().mockResolvedValue([]),
   };
 
   const cardSearchService = {
@@ -236,6 +237,29 @@ describe('ContentExplorerStore', () => {
     expect(cardNodes.map((node) => node.id)).toEqual(['card-1', 'card-2']);
     expect(cardNodes[0].shared).toBe(true);
     expect(cardNodes[0].title()).toBe('Hello');
+  });
+
+  it('includes GUI-created scenarios returned by GET /scenarios/by-lesson/:id', async () => {
+    const guiScenario: Scenario = {
+      ...scenario,
+      id: 'scenario-gui',
+      title: 'Сценарий из GUI',
+      lessonId: 'lesson-1',
+      order: 2,
+    };
+    vi.mocked(TestBed.inject(ScenarioSearchService).getByLessonId).mockResolvedValue([guiScenario]);
+
+    await store.loadRoots();
+    const courseNode = store.roots()[0];
+    await store.toggleNode(courseNode);
+    const programNode = courseNode.children()![0];
+    await store.toggleNode(programNode);
+    const lessonNode = programNode.children()![0];
+    await store.toggleNode(lessonNode);
+
+    // `lesson.scenarioIds` only contains scenario-1; the GUI scenario comes
+    // from the dedicated by-lesson endpoint and must be appended.
+    expect(lessonNode.children()!.map((node) => node.id)).toEqual(['scenario-1', 'scenario-gui']);
   });
 
   it('renders a virtual criteria node for criteria card sources', async () => {

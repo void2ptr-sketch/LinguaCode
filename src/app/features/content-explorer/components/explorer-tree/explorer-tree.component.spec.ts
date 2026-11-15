@@ -120,6 +120,7 @@ describe('ExplorerTreeComponent (DOM rendering)', () => {
           useValue: {
             search: vi.fn().mockResolvedValue({ items: [], totalItems: 0 }),
             getByIdBatch: vi.fn().mockResolvedValue([scenario]),
+            getByLessonId: vi.fn().mockResolvedValue([]),
             findUsingCard: vi.fn().mockResolvedValue([]),
           },
         },

@@ -74,6 +74,44 @@ describe('AuthStore', () => {
     expect(tokenStorage.read()).toEqual(tokens);
   });
 
+  it('extracts roles from the JWT (ROLE_ADMIN must not be lost)', async () => {
+    const payload = btoa(JSON.stringify({ userId: 42, roles: ['ROLE_ADMIN'] }))
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=+$/, '');
+    const adminToken = `eyJhbGciOiJIUzI1NiJ9.${payload}.fake`;
+    mockAuthApi.login.mockResolvedValue({
+      userId: '42',
+      accessToken: adminToken,
+      refreshToken: 'refresh-admin',
+    });
+
+    await store.login({ email: 'admin@example.com', password: 'secret' });
+
+    expect(store.user()?.roles).toEqual(['ROLE_ADMIN']);
+    expect(store.user()?.id).toBe('42');
+  });
+
+  it('extracts roles from Spring Security authorities claim on restore', async () => {
+    const payload = btoa(
+      JSON.stringify({
+        sub: 'u-spring',
+        exp: 9_999_999_999,
+        authorities: [{ authority: 'ROLE_ADMIN' }],
+      }),
+    )
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=+$/, '');
+    const token = `eyJhbGciOiJIUzI1NiJ9.${payload}.fake`;
+    tokenStorage.write({ accessToken: token, refreshToken: 'refresh-1' });
+
+    await store.restoreSession();
+
+    expect(store.user()?.roles).toEqual(['ROLE_ADMIN']);
+    expect(store.user()?.id).toBe('u-spring');
+  });
+
   it('should set error and stay anonymous on failed login', async () => {
     mockAuthApi.login.mockRejectedValue(new Error('bad credentials'));
 

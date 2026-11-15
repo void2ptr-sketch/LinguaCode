@@ -74,6 +74,16 @@ export class ScenarioSearchService {
   }
 
   /**
+   * Retrieves all scenarios bound to a lesson.
+   *
+   * @param lessonId - The lesson ID.
+   * @returns Scenarios of the lesson ordered by `order`.
+   */
+  getByLessonId(lessonId: string): Promise<readonly Scenario[]> {
+    return this.run(() => this.scenariosApi.getByLessonId(lessonId));
+  }
+
+  /**
    * Creates a new scenario.
    *
    * @param payload - The scenario write payload.

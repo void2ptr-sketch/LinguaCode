@@ -7,26 +7,7 @@ import { AuthTokenStorage } from './auth-token.storage';
 import { initialAuthState, isAccessTokenExpired } from '../model/auth-state';
 import type { AuthState, AuthTokens, LoginCredentials } from '../model/auth.types';
 import { UserStore } from '../../user/model/user.store';
-
-/** Extracts payload from a JWT token string. */
-const parseJwtPayload = (token: string): Record<string, unknown> | null => {
-  try {
-    const parts = token.split('.');
-    if (parts.length !== 3) {
-      return null;
-    }
-    const payload = parts[1];
-    const json = decodeURIComponent(
-      atob(payload)
-        .split('')
-        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-        .join(''),
-    );
-    return JSON.parse(json);
-  } catch {
-    return null;
-  }
-};
+import { decodeJwtPayload, extractJwtRoles, extractJwtUserId } from '../lib/jwt-payload';
 
 /**
  * Signal-стор аутентификации.
@@ -69,13 +50,18 @@ export class AuthStore {
       return;
     }
     if (!isAccessTokenExpired(tokens)) {
-      // Extract roles and userId from the stored access token
-      const payload = parseJwtPayload(tokens.accessToken);
-      const roles = ((payload as Record<string, unknown>)['roles'] as string[] | undefined) ?? [];
-      const userId = (payload as Record<string, unknown>)['userId'] as string | number | undefined;
+      // Extract roles and userId from the stored access token. Roles are used
+      // for content editability (ROLE_ADMIN/ROLE_AUTHOR) — losing them turns
+      // every entity in the Content Explorer into a read-only lock.
+      const payload = decodeJwtPayload(tokens.accessToken);
       this.#state.set({
         status: 'authenticated',
-        user: { id: String(userId ?? 'restored'), displayName: '', email: '', roles },
+        user: {
+          id: extractJwtUserId(payload) ?? 'restored',
+          displayName: '',
+          email: '',
+          roles: extractJwtRoles(payload),
+        },
         tokens,
         error: null,
       });
@@ -98,9 +84,8 @@ export class AuthStore {
       this.tokenStorage.write(tokens);
 
       // Extract roles from JWT access token
-      const payload = parseJwtPayload(session.accessToken);
-      const backendRoles =
-        ((payload as Record<string, unknown>)['roles'] as string[] | undefined) ?? [];
+      const payload = decodeJwtPayload(session.accessToken);
+      const backendRoles = extractJwtRoles(payload);
 
       // Extract displayName from backend response if provided
       const backendDisplayName = (session as unknown as Record<string, unknown>)['displayName'];
@@ -110,7 +95,7 @@ export class AuthStore {
       this.#state.set({
         status: 'authenticated',
         user: {
-          id: String(session.userId),
+          id: session.userId || extractJwtUserId(payload) || '',
           displayName: userDisplayName,
           email: '',
           roles: backendRoles,
@@ -166,8 +151,8 @@ export class AuthStore {
       .then((newTokens) => {
         this.tokenStorage.write(newTokens);
         // Extract roles from the refreshed token
-        const payload = parseJwtPayload(newTokens.accessToken);
-        const roles = ((payload as Record<string, unknown>)['roles'] as string[] | undefined) ?? [];
+        const payload = decodeJwtPayload(newTokens.accessToken);
+        const roles = extractJwtRoles(payload);
         this.#state.update((s) => ({
           ...s,
           status: 'authenticated',

@@ -1,3 +1,5 @@
+import { decodeJwtPayload } from './jwt-payload';
+
 /**
  * Извлекает `exp` (expiration time) из JWT-токена.
  *
@@ -11,25 +13,9 @@
  * @returns Unix-время истечения в мс, или `null`.
  */
 export function extractJwtExpMs(token: string): number | null {
-  const parts = token.split('.');
-  if (parts.length !== 3) {
-    return null;
+  const claims = decodeJwtPayload(token);
+  if (typeof claims?.['exp'] === 'number') {
+    return (claims['exp'] as number) * 1000; // seconds → milliseconds
   }
-
-  try {
-    const payload = parts[1];
-    // base64url → base64 (replace - with +, _ with /, pad with =)
-    let base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
-    while (base64.length % 4) {
-      base64 += '=';
-    }
-    const json = atob(base64);
-    const claims = JSON.parse(json) as { exp?: number };
-    if (typeof claims.exp === 'number') {
-      return claims.exp * 1000; // seconds → milliseconds
-    }
-    return null;
-  } catch {
-    return null;
-  }
+  return null;
 }
