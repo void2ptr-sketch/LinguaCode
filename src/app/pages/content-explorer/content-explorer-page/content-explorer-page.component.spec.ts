@@ -347,6 +347,7 @@ describe('ContentExplorerPageComponent — onDeleteScenarioRequested (scenario d
     clearSelection: vi.fn(),
     loadRoots: vi.fn(async () => undefined),
     getByKey: vi.fn<() => ExplorerNode | null>(() => null),
+    searchVisibleKeys: vi.fn<() => ReadonlySet<string> | null>(() => null),
   };
 
   const mockScenarioBuilderStore = {
@@ -1163,3 +1164,4 @@ describe('ContentExplorerPageComponent — onCreateCardRequested (card creation)
     expect(mockSnackBar.open).not.toHaveBeenCalled();
   });
 });
+

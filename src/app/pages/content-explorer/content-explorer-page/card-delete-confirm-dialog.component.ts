@@ -20,9 +20,16 @@ export type CardDeleteConfirmDialogData = {
   template: `
     <h2 mat-dialog-title>Удалить карточку?</h2>
     <mat-dialog-content>
-      Карточка «{{ data.cardTitle }}» будет удалена безвозвратно. Убедитесь, что карточка не
-      используется в других сценариях.
+      Карточка «{{ data.cardTitle }}» будет помечена как удалённая и скроется из каталога.
+      <p class="hint">Контент можно восстановить через API.</p>
     </mat-dialog-content>
+    <style>
+      .hint {
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        color: var(--mat-sys-on-surface-variant);
+      }
+    </style>
     <mat-dialog-actions align="end">
       <button mat-button type="button" [mat-dialog-close]="false">Отмена</button>
       <button mat-flat-button type="button" color="warn" [mat-dialog-close]="true">Удалить</button>

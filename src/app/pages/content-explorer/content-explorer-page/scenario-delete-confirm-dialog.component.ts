@@ -20,8 +20,16 @@ export type ScenarioDeleteConfirmDialogData = {
   template: `
     <h2 mat-dialog-title>Удалить сценарий?</h2>
     <mat-dialog-content>
-      Сценарий «{{ data.scenarioTitle }}» будет удалён безвозвратно.
+      Сценарий «{{ data.scenarioTitle }}» будет помечен как удалённый и скроется из каталога.
+      <p class="hint">Контент можно восстановить через API.</p>
     </mat-dialog-content>
+    <style>
+      .hint {
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        color: var(--mat-sys-on-surface-variant);
+      }
+    </style>
     <mat-dialog-actions align="end">
       <button mat-button type="button" [mat-dialog-close]="false">Отмена</button>
       <button mat-flat-button type="button" color="warn" [mat-dialog-close]="true">Удалить</button>

@@ -78,6 +78,7 @@ import { ScenarioDeleteConfirmDialogComponent } from './scenario-delete-confirm-
 import { ProgramDeleteConfirmDialogComponent } from './program-delete-confirm-dialog.component';
 import { LessonDeleteConfirmDialogComponent } from './lesson-delete-confirm-dialog.component';
 import { CardDeleteConfirmDialogComponent } from './card-delete-confirm-dialog.component';
+import { readUserContentOverlay, writeUserContentOverlay } from '../../../entities/user/overlay/user-content-overlay.storage';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -679,6 +680,10 @@ export class ContentExplorerPageComponent implements OnInit {
         await this.unbindScenarioFromLesson(lessonNode, node.id);
         await this.store.refreshNode(lessonNode);
       }
+      this.persistDeletedId('scenarios', node.id);
+      if (this.store.searchVisibleKeys()) {
+        this.store.clearSearch();
+      }
       this.store.clearSelection();
       this.snackBar.open('Сценарий удалён', 'Закрыть', { duration: 4000 });
     } finally {
@@ -713,6 +718,7 @@ export class ContentExplorerPageComponent implements OnInit {
     this.acting.set(true);
     try {
       await this.programsApi.delete(node.id);
+      this.persistDeletedId('programs', node.id);
       // Обновляем родительский курс (чтобы пересчитать количество уроков)
       const courseNode = this.store.parentCourseOf(node);
       if (courseNode) {
@@ -755,6 +761,7 @@ export class ContentExplorerPageComponent implements OnInit {
     this.acting.set(true);
     try {
       await this.lessonsApi.delete(node.id);
+      this.persistDeletedId('lessons', node.id);
       // Обновляем родительский трек (чтобы пересчитать количество сценариев)
       const programNode = node.parentId ? this.store.getByKey(node.parentId) : null;
       if (programNode && programNode.kind === 'program') {
@@ -900,6 +907,10 @@ export class ContentExplorerPageComponent implements OnInit {
       if (parentScenario && parentScenario.kind === 'scenario') {
         await this.store.refreshNode(parentScenario);
       }
+      this.persistDeletedId('cards', node.id);
+      if (this.store.searchVisibleKeys()) {
+        this.store.clearSearch();
+      }
       this.store.clearSelection();
       this.snackBar.open('Карточка удалена', 'Закрыть', { duration: 4000 });
     } catch (error) {
@@ -991,7 +1002,11 @@ export class ContentExplorerPageComponent implements OnInit {
         this.snackBar.open(error, 'Закрыть', { duration: 8000 });
         return;
       }
+      this.persistDeletedId('courses', node.id);
       this.store.clearSelection();
+      if (this.store.searchVisibleKeys()) {
+        this.store.clearSearch();
+      }
       await this.store.loadRoots();
       this.snackBar.open('Курс удалён', 'Закрыть', { duration: 4000 });
     } finally {
@@ -999,7 +1014,26 @@ export class ContentExplorerPageComponent implements OnInit {
     }
   }
 
-  /** «Где используется» — сценарии, ссылающиеся на выбранную карточку. */
+  /**
+   * Persists a deleted entity ID to the user-content overlay so it survives page reloads.
+   *
+   * @param kind - Entity kind: 'courses', 'programs', 'lessons', 'scenarios', 'cards'.
+   * @param id - The entity ID to mark as deleted.
+   */
+  private persistDeletedId(kind: string, id: string): void {
+    const overlay = readUserContentOverlay();
+    const key = kind as keyof NonNullable<typeof overlay.deletedSystemIds>;
+    const existing = overlay.deletedSystemIds?.[key] ?? [];
+    if (!existing.includes(id)) {
+      overlay.deletedSystemIds = {
+        ...overlay.deletedSystemIds,
+        [key]: [...existing, id],
+      };
+      writeUserContentOverlay(overlay);
+    }
+  }
+
+  /** «Где используется» — сценарии, ссылающие на выбранную карточку. */
   protected async onShowUsagesRequested(): Promise<void> {
     const node = this.store.selectedNode();
     if (!node || node.kind !== 'card' || this.cardUsagesLoading()) {
