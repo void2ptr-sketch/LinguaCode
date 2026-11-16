@@ -120,7 +120,7 @@ export class LessonBuilderDialogComponent implements OnInit {
       if (this.data.programId) {
         try {
           const program = await this.programsApi.getById(this.data.programId);
-          this.programs.set([program]);
+          await this.loadProgramsForCourse(program.courseId, program);
 
           const nextDraft = emptyLessonFormDraft(this.data.programId);
           nextDraft.languagePairId = program.languagePairId;
@@ -164,7 +164,7 @@ export class LessonBuilderDialogComponent implements OnInit {
     if (lesson.programId) {
       try {
         const program = await this.programsApi.getById(lesson.programId);
-        this.programs.set([program]);
+        await this.loadProgramsForCourse(program.courseId, program);
       } catch {
         this.programs.set([]);
       }
@@ -193,6 +193,37 @@ export class LessonBuilderDialogComponent implements OnInit {
       this.courses.set(page.items);
     } catch {
       this.courses.set([]);
+    }
+  }
+
+  /**
+   * Loads every program of the lesson's course.
+   *
+   * @remarks
+   * The «Программа» selector must offer all programs of the course, not only
+   * the one being edited. `ensureProgram` is kept in the list when the backend
+   * response omits it (e.g. an unsaved/legacy program).
+   *
+   * @param courseId - Course whose programs should be loaded.
+   * @param ensureProgram - Program that must always be present in the selector.
+   */
+  private async loadProgramsForCourse(
+    courseId: string | undefined,
+    ensureProgram?: ProgramWithLessons,
+  ): Promise<void> {
+    if (!courseId) {
+      this.programs.set(ensureProgram ? [ensureProgram] : []);
+      return;
+    }
+
+    try {
+      const programs = [...(await this.programsApi.getByCourse(courseId))];
+      if (ensureProgram && !programs.some((program) => program.id === ensureProgram.id)) {
+        programs.unshift(ensureProgram);
+      }
+      this.programs.set(programs);
+    } catch {
+      this.programs.set(ensureProgram ? [ensureProgram] : []);
     }
   }
 

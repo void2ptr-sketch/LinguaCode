@@ -90,6 +90,11 @@ stateDiagram-v2
 - Kind-forms: choice, input, pairs, media, code-select.
 - Bilingual fields + `PhoneticLexeme` (G9/G10).
 - Index meta синхронизируется при save (`CardIndexEntry`).
+- «Размещение» → комбо «Курс» загружается через
+  `CardCatalogHierarchyService.loadAllCourses()` (`scope: 'all'`) без фильтра по
+  активной языковой паре: карточку можно привязать к любому курсу, как в
+  конструкторах сценариев/программ/уроков. Пару ограничивает только содержимое
+  карточки, а не список курсов.
 - Метаданные диалога: `requiredTier`, `published`, `slug` (read-only),
   `languagePairId` (read-only), иерархия `courseId → programId → lessonId → scenarioId`,
   `order`; `cardMeta` участвует в dirty-tracking.

@@ -40,6 +40,14 @@ Modal dialog для создания и редактирования уроко�
 - `saveLesson()` — сохранение (create или update)
 - `cancel()` — отмена с confirm discard
 
+**Списки селекторов «Размещение»:**
+
+- «Курс» — все курсы (`CourseSearchService.search({ scope: 'all' })`) без фильтра
+  по активной языковой паре.
+- «Программа» — все программы выбранного курса
+  (`ProgramsApiService.getByCourse(courseId)`), а не только редактируемая.
+  Если бэкенд не вернул текущую программу, она добавляется в список принудительно.
+
 **Конфигурация MatDialog:**
 
 - `panelClass`: `lesson-builder-dialog`

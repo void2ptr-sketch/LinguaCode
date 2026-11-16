@@ -141,6 +141,45 @@ describe('CardCatalogHierarchyService', () => {
     });
   });
 
+  describe('loadAllCourses', () => {
+    it('should load all courses without language-pair filters', async () => {
+      const courses = await service.loadAllCourses();
+
+      expect(courses).toEqual([{ id: 'course-1', title: 'Test Course' }]);
+      expect(courseSearchServiceMock.search).toHaveBeenCalledWith({
+        scope: 'all',
+        page: { page: 0, pageSize: 100 },
+      });
+    });
+
+    it('should cache the pair-agnostic course list', async () => {
+      const courses1 = await service.loadAllCourses();
+      const courses2 = await service.loadAllCourses();
+
+      expect(courses1).toBe(courses2);
+      expect(courseSearchServiceMock.search).toHaveBeenCalledTimes(1);
+    });
+
+    it('should reload the pair-agnostic list after full cache invalidation', async () => {
+      await service.loadAllCourses();
+      service.invalidateCache();
+      await service.loadAllCourses();
+
+      expect(courseSearchServiceMock.search).toHaveBeenCalledTimes(2);
+    });
+
+    it('should keep the pair-agnostic list when invalidating a single pair', async () => {
+      await service.loadAllCourses();
+      await service.loadCourses('ru', 'en', 'ru-en');
+
+      service.invalidateCache('ru-en');
+      await service.loadAllCourses();
+
+      // Only the pair-scoped cache was invalidated.
+      expect(courseSearchServiceMock.search).toHaveBeenCalledTimes(2);
+    });
+  });
+
   describe('loadLessons', () => {
     it('should load lessons from course', async () => {
       const lessons = await service.loadLessons('course-1');

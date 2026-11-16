@@ -186,7 +186,8 @@ describe('CardFormComponent', () => {
   let fixture: ComponentFixture<CardFormComponent>;
 
   const mockHierarchyService = {
-    loadCourses: async () => [],
+    loadCourses: async (): Promise<{ id: string; title: string }[]> => [],
+    loadAllCourses: async (): Promise<{ id: string; title: string }[]> => [],
     loadPrograms: async () => [],
     loadLessons: async () => [],
     getScenariosForLesson: () => [],
@@ -264,6 +265,24 @@ describe('CardFormComponent', () => {
 
     it('should have metaChange output', () => {
       expect(component.metaChange).toBeDefined();
+    });
+  });
+
+  describe('ngOnInit', () => {
+    it('should load all courses regardless of the active language pair', async () => {
+      const loadAllCourses = vi
+        .spyOn(mockHierarchyService, 'loadAllCourses')
+        .mockResolvedValue([{ id: 'course-cpp-complete', title: 'C++ Complete Course' }]);
+      const loadCourses = vi.spyOn(mockHierarchyService, 'loadCourses');
+
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      await component.ngOnInit();
+
+      expect(loadAllCourses).toHaveBeenCalledTimes(1);
+      expect(loadCourses).not.toHaveBeenCalled();
+      expect(component.availableCourses()).toEqual([
+        { id: 'course-cpp-complete', title: 'C++ Complete Course' },
+      ]);
     });
   });
 

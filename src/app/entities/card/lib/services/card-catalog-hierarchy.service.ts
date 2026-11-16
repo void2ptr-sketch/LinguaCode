@@ -78,6 +78,14 @@ export class CardCatalogHierarchyService {
   readonly programsLoading = signal(false);
 
   private coursesCache = new Map<string, readonly CourseOption[]>();
+  /**
+   * Cache for the pair-agnostic course list used by the card editor.
+   *
+   * @remarks
+   * The placement tab must offer every course (any language pair), so this
+   * list is stored separately from the per-pair `coursesCache`.
+   */
+  private allCoursesCache: readonly CourseOption[] | null = null;
   private courseProgramsCache = new Map<
     string,
     readonly import('../../../program/model/program.types').Program[]
@@ -115,6 +123,37 @@ export class CardCatalogHierarchyService {
       const courses = (page?.items ?? []).map(toCourseOption);
       this.coursesCache.set(languagePairKey, courses);
       return courses;
+    } finally {
+      this.coursesLoading.set(false);
+    }
+  }
+
+  /**
+   * Loads every course regardless of language pair.
+   *
+   * @remarks
+   * The card editor's «Размещение» tab lets authors bind a card to any course,
+   * mirroring the scenario/program/lesson builders. Filtering by the active
+   * language pair here would hide all courses of other pairs and leave the
+   * «Курс» combo with a single (or no) option.
+   *
+   * @returns Array of all course options.
+   */
+  async loadAllCourses(): Promise<readonly CourseOption[]> {
+    if (this.allCoursesCache) {
+      return this.allCoursesCache;
+    }
+
+    this.coursesLoading.set(true);
+
+    try {
+      const page = await this.courseSearchService.search({
+        scope: 'all',
+        page: { page: 0, pageSize: 100 },
+      });
+
+      this.allCoursesCache = (page?.items ?? []).map(toCourseOption);
+      return this.allCoursesCache;
     } finally {
       this.coursesLoading.set(false);
     }
@@ -206,6 +245,7 @@ export class CardCatalogHierarchyService {
       this.coursesCache.delete(languagePairKey);
     } else {
       this.coursesCache.clear();
+      this.allCoursesCache = null;
       this.courseProgramsCache.clear();
       this.programLessonsCache.clear();
     }

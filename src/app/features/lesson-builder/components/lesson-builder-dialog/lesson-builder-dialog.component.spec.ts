@@ -14,9 +14,29 @@ import { CourseSearchService } from '../../../../entities/course';
 import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
 import { ProgramsApiService } from '../../../../entities/program/api';
 
+type ProgramsApiMock = {
+  getById: ReturnType<typeof vi.fn>;
+  getByCourse: ReturnType<typeof vi.fn>;
+};
+
+const defaultProgramsApi = (): ProgramsApiMock => ({
+  getById: vi.fn().mockResolvedValue({
+    id: 'p1',
+    courseId: 'c1',
+    title: 'P',
+    description: '',
+    lessonIds: [],
+    order: 0,
+    updatedAt: '',
+    languagePairId: 1,
+  }),
+  getByCourse: vi.fn().mockResolvedValue([]),
+});
+
 function createComponent(
   data: LessonBuilderDialogData,
   mockStore?: Partial<LessonBuilderStore>,
+  programsApiMock: ProgramsApiMock = defaultProgramsApi(),
 ): {
   fixture: ComponentFixture<LessonBuilderDialogComponent>;
   component: LessonBuilderDialogComponent;
@@ -49,7 +69,7 @@ function createComponent(
       },
       {
         provide: ProgramsApiService,
-        useValue: { getById: vi.fn().mockResolvedValue({ id: 'p1', courseId: 'c1', title: 'P', description: '', lessonIds: [], order: 0, updatedAt: '', languagePairId: 1 }) },
+        useValue: programsApiMock,
       },
     ],
   });
@@ -262,6 +282,100 @@ describe('LessonBuilderDialogComponent', () => {
     await fixture.whenStable();
     await component.cancel();
     expect(closeSpy).toHaveBeenCalledWith({ saved: false });
+  });
+
+  // ── program selector ──
+
+  it('should load every program of the lesson course in edit mode', async () => {
+    const programsApiMock: ProgramsApiMock = {
+      getById: vi.fn().mockResolvedValue({
+        id: 'p1',
+        courseId: 'c1',
+        title: 'Program 1',
+        description: '',
+        lessonIds: ['l1'],
+        order: 0,
+        updatedAt: '',
+      }),
+      getByCourse: vi.fn().mockResolvedValue([
+        {
+          id: 'p1',
+          courseId: 'c1',
+          title: 'Program 1',
+          description: '',
+          lessonIds: ['l1'],
+          order: 0,
+          updatedAt: '',
+          lessons: [],
+        },
+        {
+          id: 'p2',
+          courseId: 'c1',
+          title: 'Program 2',
+          description: '',
+          lessonIds: [],
+          order: 1,
+          updatedAt: '',
+          lessons: [],
+        },
+      ]),
+    };
+
+    const { component, fixture } = createComponent(
+      { mode: 'edit', lessonId: 'l1' },
+      {
+        startEdit: async () => undefined,
+        editingLesson: signal(mockLesson),
+        editingLessonAuthorId: signal('local-user'),
+        isReadOnly: signal(false),
+      },
+      programsApiMock,
+    );
+
+    await fixture.whenStable();
+
+    expect(programsApiMock.getByCourse).toHaveBeenCalledWith('c1');
+    expect(component.programs().map((program) => program.id)).toEqual(['p1', 'p2']);
+  });
+
+  it('should keep the edited program when the course response omits it', async () => {
+    const programsApiMock: ProgramsApiMock = {
+      getById: vi.fn().mockResolvedValue({
+        id: 'p1',
+        courseId: 'c1',
+        title: 'Program 1',
+        description: '',
+        lessonIds: ['l1'],
+        order: 0,
+        updatedAt: '',
+      }),
+      getByCourse: vi.fn().mockResolvedValue([
+        {
+          id: 'p2',
+          courseId: 'c1',
+          title: 'Program 2',
+          description: '',
+          lessonIds: [],
+          order: 1,
+          updatedAt: '',
+          lessons: [],
+        },
+      ]),
+    };
+
+    const { component, fixture } = createComponent(
+      { mode: 'edit', lessonId: 'l1' },
+      {
+        startEdit: async () => undefined,
+        editingLesson: signal(mockLesson),
+        isReadOnly: signal(false),
+      },
+      programsApiMock,
+    );
+
+    await fixture.whenStable();
+
+    expect(component.programs().map((program) => program.id)).toEqual(['p1', 'p2']);
   });
 
   // ── published / requiredTier in edit mode ──

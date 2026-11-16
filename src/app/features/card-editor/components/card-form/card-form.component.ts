@@ -270,10 +270,10 @@ export class CardFormComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    const known = this.knownLanguage();
-    const learning = this.learningLanguage();
-    const pairKey = `${known}_${learning}`;
-    const courses = await this.hierarchyService.loadCourses(known, learning, pairKey);
+    // «Размещение» предлагает все курсы независимо от активной языковой пары —
+    // как в конструкторах сценариев/программ/уроков. Фильтрация по паре оставляла
+    // в комбо «Курс» только курс текущей пары (например, C++ Complete Course).
+    const courses = await this.hierarchyService.loadAllCourses();
     this.availableCourses.set(courses);
 
     // Если у карточки уже выбрана иерархия — загружаем программы, уроки и сценарии.
