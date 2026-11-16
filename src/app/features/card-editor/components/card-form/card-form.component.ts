@@ -41,6 +41,7 @@ import {
 } from '../card-form-tabs/card-form-tabs.component';
 import { CardFormQuestionTabComponent } from '../card-form-question-tab/card-form-question-tab.component';
 import { CardFormAnswersTabComponent } from '../card-form-answers-tab/card-form-answers-tab.component';
+import { CardConnectionsTabComponent } from '../card-connections-tab/card-connections-tab.component';
 
 /**
  * Main form component for creating and editing cards.
@@ -78,6 +79,7 @@ import { CardFormAnswersTabComponent } from '../card-form-answers-tab/card-form-
     CardPreviewComponent,
     CardOptionsEditorComponent,
     CardMetaFieldsComponent,
+    CardConnectionsTabComponent,
   ],
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.scss',
@@ -412,6 +414,7 @@ export class CardFormComponent implements OnInit {
 
     tabs.push({ label: 'Метаинфо', visible: true });
     tabs.push({ label: 'Настройки', visible: true });
+    tabs.push({ label: 'Связи', visible: true });
 
     return tabs;
   }

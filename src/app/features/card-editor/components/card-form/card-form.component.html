@@ -63,6 +63,16 @@
           <p class="card-form__hint card-form__hint--tab">Тема, шрифт, лимит времени и режимы.</p>
           <app-card-form-settings-panel [draft]="draft()" (draftChange)="updateDraft($event)" />
         }
+        @case ('Связи') {
+          <app-card-connections-tab
+            [draft]="{ courseId: draft().courseId, programId: draft().programId, lessonId: draft().lessonId, scenarioId: draft().scenarioId }"
+            [meta]="meta()"
+            (courseIdChange)="updateCourseId($event)"
+            (programIdChange)="updateProgramId($event)"
+            (lessonIdChange)="updateLessonId($event)"
+            (scenarioIdChange)="updateScenarioId($event)"
+          />
+        }
       }
     </div>
   </div>

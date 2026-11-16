@@ -2,6 +2,7 @@
 
 // ===== Components =====
 export { CardAppearanceFieldsComponent } from './card-appearance-fields/card-appearance-fields.component';
+export { CardConnectionsTabComponent } from './card-connections-tab/card-connections-tab.component';
 export { CardCreateWizardComponent } from './card-create-wizard/card-create-wizard.component';
 export { CardEditorDialogComponent } from './card-editor-dialog/card-editor-dialog.component';
 export { CardFormComponent } from './card-form/card-form.component';
