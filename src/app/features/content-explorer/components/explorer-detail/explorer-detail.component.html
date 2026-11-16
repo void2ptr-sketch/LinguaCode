@@ -198,10 +198,22 @@
       }
 
       @if (isCard()) {
-        <button mat-stroked-button type="button" [disabled]="acting()" (click)="onCreateCard()">
+        <button
+          mat-stroked-button
+          type="button"
+          [disabled]="acting()"
+          [matMenuTriggerFor]="createCardMenu"
+        >
           <mat-icon>add</mat-icon>
           Создать карточку
         </button>
+        <mat-menu #createCardMenu="matMenu">
+          @for (kind of cardKinds(); track kind.code) {
+            <button mat-menu-item type="button" (click)="onCreateCardOfKind(kind.code)">
+              <span>{{ kind.label }}</span>
+            </button>
+          }
+        </mat-menu>
 
         <button
           mat-stroked-button

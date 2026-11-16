@@ -1556,6 +1556,7 @@ export class ContentExplorerStore {
       meta: `Карточка · ${cardKind}`,
       order: normalizeExplicitOrder(order),
       shared: true,
+      data: { kind: cardKind },
     });
   }
 

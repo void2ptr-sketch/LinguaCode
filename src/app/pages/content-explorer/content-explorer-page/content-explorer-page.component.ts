@@ -33,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 import type { MatButtonToggleChange } from '@angular/material/button-toggle';
 import type { PageEvent } from '@angular/material/paginator';
 
@@ -63,6 +64,9 @@ import type { Scenario, ScenarioIndexEntry } from '../../../entities/scenario/mo
 import { CardEditorStore } from '../../../features/card-editor/services/card-editor.store';
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import { LessonsApiService } from '../../../entities/lesson/api/lessons-api.service';
+import {
+  EXPLORER_CARD_KIND_OPTIONS,
+} from '../../../features/content-explorer/types/content-explorer.types';
 
 const TREE_WIDTH_KEY = 'content_explorer_tree_width';
 const TREE_MIN_WIDTH = 280;
@@ -84,6 +88,7 @@ import { CardDeleteConfirmDialogComponent } from './card-delete-confirm-dialog.c
     MatDialogModule,
     MatIconModule,
     MatListModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     UiPaginationComponent,
     ExplorerTreeComponent,
@@ -195,6 +200,9 @@ export class ContentExplorerPageComponent implements OnInit {
     }
     return '';
   });
+
+  /** Card kinds offered when creating a card (shared with the detail panel). */
+  protected readonly cardKinds = computed(() => EXPLORER_CARD_KIND_OPTIONS);
 
   async ngOnInit(): Promise<void> {
     await this.store.loadRoots();

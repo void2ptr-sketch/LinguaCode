@@ -237,6 +237,8 @@ describe('ContentExplorerStore', () => {
     expect(cardNodes.map((node) => node.id)).toEqual(['card-1', 'card-2']);
     expect(cardNodes[0].shared).toBe(true);
     expect(cardNodes[0].title()).toBe('Hello');
+    // card node data must include kind so the detail panel can read it
+    expect(cardNodes[0].data).toEqual(expect.objectContaining({ kind: 'select' }));
   });
 
   it('includes GUI-created scenarios returned by GET /scenarios/by-lesson/:id', async () => {
