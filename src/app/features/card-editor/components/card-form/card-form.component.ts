@@ -132,6 +132,16 @@ export class CardFormComponent implements OnInit {
    */
   readonly uxMode = input<CardEditorUxMode>('advanced');
 
+  /**
+   * Whether the live preview pane is rendered next to the form.
+   *
+   * @remarks
+   * Defaults to `true` so standalone usages keep the preview. The card editor
+   * dialog passes `false` and lets the user reveal the preview on demand, which
+   * gives the form the full dialog width.
+   */
+  readonly showPreview = input(true);
+
   /** Emits the updated card draft when the user makes changes. */
   readonly draftChange = output<CardDraft>();
 

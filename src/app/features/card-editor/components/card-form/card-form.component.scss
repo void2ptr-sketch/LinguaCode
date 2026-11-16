@@ -8,27 +8,39 @@
   @media (min-width: 56rem) {
     align-items: stretch;
     flex: 1 1 auto;
-    grid-template-areas: 'main preview';
+    grid-template-areas:
+      'tabs tabs'
+      'main preview';
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
   }
+}
+
+// Preview hidden: the form owns the full width, tabs stay on one row.
+.card-form--preview-hidden {
+  @media (min-width: 56rem) {
+    grid-template-areas:
+      'tabs'
+      'main';
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+app-card-form-tabs {
+  grid-area: tabs;
+  min-width: 0;
 }
 
 .card-form__main {
   display: grid;
   gap: 1rem;
-  grid-template-columns: minmax(0, 1fr);
   min-height: 0;
   min-width: 0;
 
   @media (min-width: 56rem) {
     grid-area: main;
-    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
   }
-}
-
-app-card-form-tabs {
-  min-width: 0;
 }
 
 .card-form__hint {
@@ -49,10 +61,9 @@ app-card-form-tabs {
 .card-form__tab-content {
   display: grid;
   gap: 1rem;
-  grid-template-columns: minmax(0, 1fr);
-  min-width: 0;
   padding-top: 1rem;
   width: 100%;
+  min-width: 0;
 
   > * {
     min-width: 0;

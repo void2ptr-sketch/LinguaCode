@@ -35,7 +35,8 @@ describe('CardEditorDialogService', () => {
       CardEditorDialogComponent,
       expect.objectContaining({
         panelClass: 'card-editor-dialog',
-        width: 'min(1200px, 96vw)',
+        width: 'min(1280px, 96vw)',
+        maxWidth: '96vw',
         maxHeight: 'none',
         autoFocus: 'first-titled-element',
         data: { mode: 'create', kind: 'select' },

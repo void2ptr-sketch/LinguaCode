@@ -1,8 +1,8 @@
-<div class="card-form">
-  <div class="card-form__main">
-    <!-- Tab Navigation -->
-    <app-card-form-tabs [tabs]="tabs()" (activeTabChange)="onTabChange($event)" />
+<div class="card-form" [class.card-form--preview-hidden]="!showPreview()">
+  <!-- Tab Navigation: spans the full dialog width -->
+  <app-card-form-tabs [tabs]="tabs()" (activeTabChange)="onTabChange($event)" />
 
+  <div class="card-form__main">
     <!-- Tab Content -->
     <div #tabContent class="card-form__tab-content">
       @switch (activeTabId()) {
@@ -53,5 +53,7 @@
     </div>
   </div>
 
-  <app-card-preview [card]="previewCard()" [fontSize]="previewFontSize()" />
+  @if (showPreview()) {
+    <app-card-preview [card]="previewCard()" [fontSize]="previewFontSize()" />
+  }
 </div>
