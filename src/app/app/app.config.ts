@@ -13,6 +13,7 @@ import { provideApiHttp } from './api/provide-api.http';
 import { SyncQueueBootstrap } from './sync/sync-queue.bootstrap';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 import { AuthStore } from '../entities/auth/services/auth.store';
+import { CatalogService } from '../entities/card/api/catalog.service';
 import { LanguageService } from '../entities/language-pair/lib';
 import { migrateUserContentOverlayIfNeeded } from '../entities/user/overlay/user-content-overlay.migration';
 import { repairUserContentOverlayIfNeeded } from '../entities/user/overlay/user-content-overlay.repair';
@@ -55,6 +56,10 @@ export const appConfig: ApplicationConfig = {
       // swallows errors while marking the cache as loaded — leaving it empty.
       if (!environment.authEnabled || injector.get(AuthStore).isAuthenticated()) {
         injector.get(LanguageService).load();
+        // Catalog metadata (card kinds, difficulty levels, content languages)
+        // powers editor and catalog selects. Load it in the background once the
+        // user is authenticated; repeated `ensureLoaded()` calls are no-ops.
+        void injector.get(CatalogService).ensureLoaded();
       }
     }),
   ],

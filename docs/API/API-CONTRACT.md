@@ -132,7 +132,19 @@ type LanguagePairDto = {
 | ----- | -------------- | --------------------- |
 | GET   | `/cards/kinds` | Список типов карточек |
 
-Ответ: `ApiListResponse<ReferenceOptionDto>`. Типы включают `difficulty` с запятой-разделёнными опциями сложности.
+Ответ: `ApiListResponse<ReferenceOptionDto>` — только типы карточек (`select`, `memory`, …).
+
+### Справочник сложностей карточек (`/cards/difficulties`)
+
+Реализация: `CatalogService` (через `CardDifficultiesService`).
+
+| Метод | Путь                  | Описание                                              |
+| ----- | --------------------- | ----------------------------------------------------- |
+| GET   | `/cards/difficulties` | Уровни сложности из таблицы `content_difficulty_levels` |
+
+Ответ: `ApiListResponse<ReferenceOptionDto>` — `{ "code": "beginner", "label": "Начальный уровень" }`.
+
+> **Принцип:** production-значения справочников (типы, сложности, языки, теги) приходят с бэкенда. Frontend-константы для справочников допустимы только в mock-слое (`entities/*/api/mock/`) и используются исключительно при включённых `useXxxApiMock`; production-код не подставляет локальные списки вместо ответа API.
 
 ## Сценарии (`/scenarios`)
 

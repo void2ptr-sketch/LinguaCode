@@ -59,6 +59,7 @@ describe('CardEditorDialogComponent', () => {
           provide: CatalogService,
           useValue: {
             loaded: vi.fn(() => true),
+            ensureLoaded: vi.fn(() => Promise.resolve()),
             cardKinds: vi.fn(() => [
               { code: 'select', label: 'Выбор' },
               { code: 'memory', label: 'Запоминание' },
@@ -138,6 +139,24 @@ describe('CardEditorDialogComponent', () => {
 
   it('should have defaultAppearance computed', () => {
     expect(component.defaultAppearance).toBeDefined();
+  });
+
+  // ── ngOnInit ──
+
+  describe('ngOnInit', () => {
+    it('should ensure catalog is loaded for the publishing tab', async () => {
+      const catalog = TestBed.inject(CatalogService);
+
+      await component.ngOnInit();
+
+      expect(catalog.ensureLoaded).toHaveBeenCalled();
+    });
+
+    it('should default the difficulty of a new card to beginner', async () => {
+      await component.ngOnInit();
+
+      expect(component.cardMeta()?.difficulty).toBe('beginner');
+    });
   });
 
   // ── setEditorUxMode ──

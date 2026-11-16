@@ -4618,6 +4618,38 @@
           }
         }
       }
+    },
+    "/api/v1/cards/difficulties": {
+      "get": {
+        "tags": [
+          "Card Difficulties"
+        ],
+        "summary": "List card difficulties",
+        "description": "Returns difficulty levels from content_difficulty_levels",
+        "operationId": "listAll_8",
+        "responses": {
+          "200": {
+            "description": "Card difficulties found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

@@ -1,12 +1,15 @@
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { firstValueFrom } from 'rxjs';
 
 import { CardsApiService } from '..';
 import { CardRepository } from '../../repository/card.repository';
 import { cardsApiMockInterceptor } from './cards-api.mock.interceptor';
+import { CARD_DIFFICULTY_MOCK_OPTIONS } from './card-difficulty.mock';
 
 describe('cards API (mock interceptor)', () => {
   let api: CardsApiService;
+  let http: HttpClient;
 
   beforeEach(() => {
     localStorage.clear();
@@ -20,11 +23,20 @@ describe('cards API (mock interceptor)', () => {
     });
 
     api = TestBed.inject(CardsApiService);
+    http = TestBed.inject(HttpClient);
   });
 
   afterEach(() => {
     localStorage.clear();
     TestBed.resetTestingModule();
+  });
+
+  it('returns difficulty reference options via GET /api/cards/difficulties', async () => {
+    const response = await firstValueFrom(
+      http.get<{ data: typeof CARD_DIFFICULTY_MOCK_OPTIONS }>('/api/v1/cards/difficulties'),
+    );
+
+    expect(response.data).toEqual(CARD_DIFFICULTY_MOCK_OPTIONS);
   });
 
   it('searches cards via GET /api/cards/search', async () => {

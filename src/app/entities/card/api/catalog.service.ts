@@ -1,13 +1,15 @@
 /**
- * Service that loads card catalog metadata (kinds, difficulties, content languages)
- * from the backend instead of relying on hardcoded constants.
+ * Service that loads card catalog metadata (kinds, difficulties, content
+ * languages) from the backend.
  *
  * Endpoints:
- * - GET /api/v1/cards/kinds       → card kinds + labels + difficulty options
- * - GET /api/v1/content-languages → content language definitions
+ * - GET /api/v1/cards/kinds        → card kinds + labels
+ * - GET /api/v1/cards/difficulties → difficulty levels from `content_difficulty_levels`
+ * - GET /api/v1/content-languages  → content language definitions
  */
 import { Injectable, computed, signal, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { CardDifficultiesService } from '../../../shared/api/generated/card-difficulties';
 import { CardKindsService } from '../../../shared/api/generated/card-kinds';
 import { ContentLanguagesService } from '../../../shared/api/generated/content-languages';
 import type {
@@ -23,19 +25,26 @@ export type CatalogOption = {
 @Injectable({ providedIn: 'root' })
 export class CatalogService {
   private readonly cardKindsApi = inject(CardKindsService);
+  private readonly cardDifficultiesApi = inject(CardDifficultiesService);
   private readonly contentLanguagesApi = inject(ContentLanguagesService);
 
   /** Raw card-kinds response from backend. */
   private readonly cardKindsRaw = signal<ReferenceOptionDto[]>([]);
 
+  /** Raw difficulty-levels response from backend. */
+  private readonly difficultiesRaw = signal<ReferenceOptionDto[]>([]);
+
   /** Raw content-languages response from backend. */
   private readonly contentLanguagesRaw = signal<ReferenceOptionDto[]>([]);
 
-  /** Whether card kinds are currently being loaded. */
+  /** Whether catalog data is currently being loaded. */
   readonly loading = signal(false);
 
   /** Whether all catalog data has been successfully loaded. */
   readonly loaded = signal(false);
+
+  /** In-flight catalog load, used to deduplicate concurrent callers. */
+  private loadPromise: Promise<void> | null = null;
 
   /** Parsed card kinds (non-difficulty options). */
   readonly cardKinds = computed<CatalogOption[]>(() => {
@@ -44,17 +53,19 @@ export class CatalogService {
       .map((opt) => ({ code: opt.code!, label: opt.label ?? opt.code! }));
   });
 
-  /** Difficulty options from backend. */
-  readonly difficulties = computed<CatalogOption[]>(() => {
-    return this.cardKindsRaw()
-      .filter((opt) => opt.code === 'difficulty' && opt.label)
-      .flatMap((opt) =>
-        (opt.label ?? '')
-          .split(',')
-          .map((d) => ({ code: d.trim().toLowerCase(), label: d.trim() }))
-          .filter((d) => d.code),
-      );
-  });
+  /**
+   * Difficulty options for select controls.
+   *
+   * @remarks
+   * Values come from the backend reference endpoint backed by the
+   * `content_difficulty_levels` table. Constants are used only by the mock
+   * interceptor when `useCardsApiMock` is enabled.
+   */
+  readonly difficulties = computed<CatalogOption[]>(() =>
+    this.difficultiesRaw()
+      .filter((opt) => opt.code && opt.label)
+      .map((opt) => ({ code: opt.code!, label: opt.label! })),
+  );
 
   /** Content language codes from backend. */
   readonly contentLanguageCodes = computed<string[]>(() =>
@@ -94,6 +105,29 @@ export class CatalogService {
   }
 
   /**
+   * Loads the catalog once, sharing the in-flight request between callers.
+   *
+   * @remarks
+   * Safe to call from component `ngOnInit`: repeated calls are no-ops once the
+   * catalog has been loaded, and concurrent calls share a single HTTP request.
+   *
+   * @returns Promise that resolves when loading completes.
+   */
+  async ensureLoaded(): Promise<void> {
+    if (this.loaded()) {
+      return;
+    }
+
+    if (!this.loadPromise) {
+      this.loadPromise = this.load().finally(() => {
+        this.loadPromise = null;
+      });
+    }
+
+    return this.loadPromise;
+  }
+
+  /**
    * Loads all catalog data from the backend.
    *
    * @returns Promise that resolves when loading completes.
@@ -101,20 +135,27 @@ export class CatalogService {
   async load(): Promise<void> {
     this.loading.set(true);
     try {
-      const [kindsRes, langsRes] = await Promise.all([
+      const [kindsResult, difficultiesResult, langsResult] = await Promise.allSettled([
         firstValueFrom(this.cardKindsApi.listAll7<ReferenceOptionDtoList>()),
+        firstValueFrom(this.cardDifficultiesApi.listAll8<ReferenceOptionDtoList>()),
         firstValueFrom(this.contentLanguagesApi.listAll6<ReferenceOptionDtoList>()),
       ]);
 
-      const kindsData = (kindsRes as ReferenceOptionDtoList)?.data ?? [];
-      const langsData = (langsRes as ReferenceOptionDtoList)?.data ?? [];
+      if (kindsResult.status === 'fulfilled') {
+        this.cardKindsRaw.set((kindsResult.value as ReferenceOptionDtoList)?.data ?? []);
+      }
+      if (difficultiesResult.status === 'fulfilled') {
+        this.difficultiesRaw.set([...(difficultiesResult.value?.data ?? [])]);
+      }
+      if (langsResult.status === 'fulfilled') {
+        this.contentLanguagesRaw.set((langsResult.value as ReferenceOptionDtoList)?.data ?? []);
+      }
 
-      this.cardKindsRaw.set(kindsData);
-      this.contentLanguagesRaw.set(langsData);
-      this.loaded.set(true);
-    } catch {
-      this.cardKindsRaw.set([]);
-      this.contentLanguagesRaw.set([]);
+      this.loaded.set(
+        kindsResult.status === 'fulfilled' &&
+          difficultiesResult.status === 'fulfilled' &&
+          langsResult.status === 'fulfilled',
+      );
     } finally {
       this.loading.set(false);
     }

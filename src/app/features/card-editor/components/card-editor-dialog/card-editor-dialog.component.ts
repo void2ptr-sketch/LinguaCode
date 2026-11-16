@@ -209,6 +209,10 @@ export class CardEditorDialogComponent implements OnInit {
    * Stores initial snapshots for dirty tracking.
    */
   async ngOnInit(): Promise<void> {
+    // Load catalog metadata (card kinds, difficulties) so the form selects
+    // are populated even when the dialog is opened directly from the explorer.
+    void this.catalogService.ensureLoaded();
+
     if (this.data.mode === 'create') {
       this.store.startCreate(this.data.kind);
       const context = this.data.context;
@@ -229,6 +233,7 @@ export class CardEditorDialogComponent implements OnInit {
         learningLanguage: nextMeta.learningLanguage,
         languagePairId: nextMeta.languagePairId,
         tags: [...indexTagsForDraft(nextDraft)],
+        difficulty: 'beginner',
         requiredTier: 'FREE',
         published: true,
       };
@@ -387,7 +392,9 @@ export class CardEditorDialogComponent implements OnInit {
         });
       }
     } catch {
-      this.saveError.set('Не удалось сохранить карточку. Проверьте соединение и повторите попытку.');
+      this.saveError.set(
+        'Не удалось сохранить карточку. Проверьте соединение и повторите попытку.',
+      );
     } finally {
       this.saving.set(false);
     }

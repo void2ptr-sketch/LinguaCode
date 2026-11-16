@@ -8,6 +8,7 @@
  * Active when `environment.useCardsApiMock` is `true`.
  *
  * Supported requests:
+ * - GET /cards/difficulties — difficulty reference options (mock constants)
  * - POST /cards/search — search cards with filters
  * - GET /cards/{id} — fetch a single card by ID
  * - POST /cards/batch/retrieve — fetch multiple cards by IDs
@@ -23,12 +24,13 @@
  */
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { defer, switchMap } from 'rxjs';
+import { defer, of, switchMap } from 'rxjs';
 import { map } from 'rxjs';
 
 import { parseCardSearchCriteria } from './cards-api.params.utils';
 import { buildApiUrl, isApiRequest } from '../../../../shared/api/api-url';
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
+import { CARD_DIFFICULTY_MOCK_OPTIONS } from './card-difficulty.mock';
 import type { Card } from '../../model';
 import type { BackendCardDto } from '../../model/card-backend-dto.types';
 import type { ApiListResponse } from '../../../../shared/api/api.types';
@@ -81,6 +83,19 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
 
   if (!isApiRequest(req.url)) {
     return next(req);
+  }
+
+  // GET /cards/difficulties — справочник уровней сложности (mock only)
+  if (req.method === 'GET' && req.url.endsWith(buildApiUrl('/cards/difficulties'))) {
+    return of(
+      new HttpResponse({
+        status: 200,
+        body: {
+          data: CARD_DIFFICULTY_MOCK_OPTIONS,
+          total: CARD_DIFFICULTY_MOCK_OPTIONS.length,
+        },
+      }),
+    );
   }
 
   // POST /cards/batch/retrieve — пакетное получение карточек
