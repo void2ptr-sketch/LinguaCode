@@ -1,9 +1,19 @@
 <mat-tab-group
   class="card-form__tabs"
   dynamicHeight
+  [mat-stretch-tabs]="false"
   (selectedTabChange)="onTabChange($event.index)"
 >
-  @for (tab of tabs(); track tab.label) {
-    <mat-tab [label]="tab.label" />
+  @for (tab of visibleTabs(); track tab.id) {
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span class="card-form__tab-label" [attr.aria-label]="tab.badgeAriaLabel ?? null">
+          <span class="card-form__tab-text">{{ tab.label }}</span>
+          @if (tab.badge) {
+            <span class="card-form__tab-badge" aria-hidden="true">{{ tab.badge }}</span>
+          }
+        </span>
+      </ng-template>
+    </mat-tab>
   }
 </mat-tab-group>

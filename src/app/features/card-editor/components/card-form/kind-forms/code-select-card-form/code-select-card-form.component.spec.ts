@@ -71,34 +71,6 @@ describe('CodeSelectCardFormComponent', () => {
     });
   });
 
-  describe('updateCaption', () => {
-    it('should emit updated draft with new caption', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      component.updateCaption('New caption');
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ caption: 'New caption' }));
-    });
-  });
-
-  describe('updatePromptCode', () => {
-    it('should emit updated draft with new prompt code', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      component.updatePromptCode('new code');
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({ prompt: { code: 'new code', language: 'javascript' } }),
-      );
-    });
-  });
-
-  describe('updatePromptLanguage', () => {
-    it('should emit updated draft with new prompt language', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      component.updatePromptLanguage('typescript');
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({ prompt: { code: 'print("hello");', language: 'typescript' } }),
-      );
-    });
-  });
-
   describe('updateOptionCode', () => {
     it('should emit updated draft with new code at specified index', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');

@@ -9,6 +9,7 @@ import {
   normalizeSoundCardDraft,
   normalizeTimedCardDraft,
   cardValidationErrorMessage,
+  cardDraftTabIssues,
 } from './card-validation.utils';
 import type { CardKind } from '../../../../entities/card/model';
 import { emptyLexemeCardDraft, emptyMemoryPairDraft, emptyOptionLexemes } from '../../types';
@@ -1100,5 +1101,85 @@ describe('card-validation.utils', () => {
     );
 
     expect(card).toBeNull();
+  });
+
+  describe('cardDraftTabIssues', () => {
+    const selectDraft = (overrides: Record<string, unknown> = {}) => ({
+      kind: 'select' as const,
+      title: 'Тест',
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Вопрос?',
+      optionsLearning: ['A', 'B'],
+      optionsKnown: ['Ответ A', 'Ответ B'],
+      optionsLexemes: emptyOptionLexemes(2),
+      correctIndex: 0,
+      appearance,
+      ...lexemeDraft,
+      ...overrides,
+    });
+
+    it('should report no issues for a valid select draft', () => {
+      expect(cardDraftTabIssues(selectDraft())).toEqual({ content: 0, answers: 0 });
+    });
+
+    it('should count missing title and prompt on the content tab', () => {
+      const issues = cardDraftTabIssues(selectDraft({ title: '', promptKnown: '' }));
+      expect(issues).toEqual({ content: 2, answers: 0 });
+    });
+
+    it('should count missing options on the answers tab', () => {
+      const issues = cardDraftTabIssues(selectDraft({ optionsLearning: [] }));
+      expect(issues).toEqual({ content: 0, answers: 1 });
+    });
+
+    it('should count an out-of-range correct index on the answers tab', () => {
+      const issues = cardDraftTabIssues(selectDraft({ correctIndex: 5 }));
+      expect(issues).toEqual({ content: 0, answers: 1 });
+    });
+
+    it('should count an invalid time limit on the answers tab for timed cards', () => {
+      const issues = cardDraftTabIssues(selectDraft({ kind: 'timed', timeLimitSec: 1 }));
+      expect(issues).toEqual({ content: 0, answers: 1 });
+    });
+
+    it('should count missing accepted answers on the answers tab for keyboard cards', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'keyboard',
+        title: 'Keyboard',
+        direction: 'known-to-learning',
+        promptKnown: 'Type',
+        acceptedAnswersKnown: [],
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 0, answers: 1 });
+    });
+
+    it('should count a missing flip side on the content tab', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'flip',
+        title: 'Flip',
+        front: 'Front',
+        back: '',
+        audioUrl: '',
+        appearance,
+      });
+      expect(issues).toEqual({ content: 1, answers: 0 });
+    });
+
+    it('should count a missing correct answer on the answers tab for cloze cards', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'cloze',
+        title: 'Cloze',
+        promptKnown: 'I ___ coffee.',
+        options: [],
+        acceptedAnswers: [],
+        correctAnswer: '',
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 0, answers: 1 });
+    });
   });
 });

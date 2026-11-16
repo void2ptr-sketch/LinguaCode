@@ -15,8 +15,11 @@ import type { CodeBlockDraft, CodeSelectCardDraft } from '../../../../types';
 import { CodeHighlightComponent } from '../../../../../../entities/card/ui/code-highlight';
 
 /**
- * Form component for code-select cards. Manages code prompt, code options, and correct answer selection.
- * @remarks Supports syntax highlighting preview and up to 8 code options.
+ * Answer editor for code-select cards.
+ *
+ * @remarks
+ * Manages code answer options and the correct answer selection. The caption
+ * and prompt code block live in the content tab.
  */
 @Component({
   selector: 'app-code-select-card-form',
@@ -53,39 +56,6 @@ export class CodeSelectCardFormComponent {
    */
   updateDraft(next: CodeSelectCardDraft): void {
     this.draftChange.emit(next);
-  }
-
-  /**
-   * Updates the caption text.
-   *
-   * @param value - The new caption text.
-   */
-  updateCaption(value: string): void {
-    this.updateDraft({ ...this.draft(), caption: value });
-  }
-
-  /**
-   * Updates the prompt code block.
-   *
-   * @param value - The new code string.
-   */
-  updatePromptCode(value: string): void {
-    this.updateDraft({
-      ...this.draft(),
-      prompt: { ...this.draft().prompt, code: value },
-    });
-  }
-
-  /**
-   * Updates the prompt code language.
-   *
-   * @param language - The new syntax highlighting language.
-   */
-  updatePromptLanguage(language: CodeHighlightLanguage): void {
-    this.updateDraft({
-      ...this.draft(),
-      prompt: { ...this.draft().prompt, language },
-    });
   }
 
   /**

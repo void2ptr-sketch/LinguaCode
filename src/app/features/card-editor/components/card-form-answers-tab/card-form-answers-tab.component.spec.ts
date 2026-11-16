@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CardFormAnswersTabComponent } from './card-form-answers-tab.component';
 import type {
   SelectCardDraft,
@@ -7,6 +7,9 @@ import type {
   KeyboardCardDraft,
   MemoryCardDraft,
   SoundCardDraft,
+  TimedCardDraft,
+  DrawCardDraft,
+  ClozeCardDraft,
 } from '../../types';
 import { emptyLexemeCardDraft, emptyOptionLexemes } from '../../types';
 
@@ -47,6 +50,32 @@ describe('CardFormAnswersTabComponent', () => {
     promptKnown: 'Type this',
     acceptedAnswersKnown: ['answer', 'Answer'],
     direction: 'known-to-learning',
+    appearance: { theme: 'azure-blue', fontSize: 'md' },
+    ...emptyLexemeCardDraft(),
+  };
+
+  const timedDraft: TimedCardDraft = {
+    kind: 'timed',
+    title: 'Test Timed',
+    promptKnown: 'Quick!',
+    optionsLearning: ['A', 'B'],
+    optionsLexemes: emptyOptionLexemes(2),
+    correctIndex: 0,
+    timeLimitSec: 30,
+    direction: 'known-to-learning',
+    appearance: { theme: 'azure-blue', fontSize: 'md' },
+    ...emptyLexemeCardDraft(),
+  };
+
+  const drawDraft: DrawCardDraft = {
+    kind: 'draw',
+    title: 'Test Draw',
+    promptKnown: 'Draw this',
+    referenceHintKnown: 'hint',
+    targetCharacter: '永',
+    practiceMode: 'freehand',
+    radicalHint: '',
+    strokeGuides: [],
     appearance: { theme: 'azure-blue', fontSize: 'md' },
     ...emptyLexemeCardDraft(),
   };
@@ -97,6 +126,18 @@ describe('CardFormAnswersTabComponent', () => {
     appearance: { theme: 'azure-blue', fontSize: 'md' },
     ...emptyLexemeCardDraft(),
   };
+
+  const clozeDraft = {
+    kind: 'cloze',
+    title: 'Test Cloze',
+    promptKnown: 'Fill in',
+    options: ['A', 'B'],
+    acceptedAnswers: ['A'],
+    correctAnswer: 'A',
+    correctIndex: 0,
+    appearance: { theme: 'azure-blue', fontSize: 'md' },
+    ...emptyLexemeCardDraft(),
+  } as unknown as ClozeCardDraft;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -170,6 +211,12 @@ describe('CardFormAnswersTabComponent', () => {
       expect(component.choiceDraft()).toBe(selectDraft);
     });
 
+    it('should return draft for timed', () => {
+      fixture.componentRef.setInput('draft', timedDraft);
+      fixture.detectChanges();
+      expect(component.choiceDraft()).toBe(timedDraft);
+    });
+
     it('should return null for code-select', () => {
       fixture.componentRef.setInput('draft', codeSelectDraft);
       fixture.detectChanges();
@@ -178,6 +225,12 @@ describe('CardFormAnswersTabComponent', () => {
 
     it('should return null for keyboard', () => {
       fixture.componentRef.setInput('draft', keyboardDraft);
+      fixture.detectChanges();
+      expect(component.choiceDraft()).toBeNull();
+    });
+
+    it('should return null for cloze to avoid unsafe casts', () => {
+      fixture.componentRef.setInput('draft', clozeDraft);
       fixture.detectChanges();
       expect(component.choiceDraft()).toBeNull();
     });
@@ -202,6 +255,12 @@ describe('CardFormAnswersTabComponent', () => {
       fixture.componentRef.setInput('draft', keyboardDraft);
       fixture.detectChanges();
       expect(component.inputDraft()).toBe(keyboardDraft);
+    });
+
+    it('should return draft for draw', () => {
+      fixture.componentRef.setInput('draft', drawDraft);
+      fixture.detectChanges();
+      expect(component.inputDraft()).toBe(drawDraft);
     });
 
     it('should return null for select', () => {
@@ -236,6 +295,62 @@ describe('CardFormAnswersTabComponent', () => {
       fixture.componentRef.setInput('draft', selectDraft);
       fixture.detectChanges();
       expect(component.mediaDraft()).toBeNull();
+    });
+  });
+
+  describe('inline behavior', () => {
+    it('should update timeLimitSec for timed cards', () => {
+      fixture.componentRef.setInput('draft', timedDraft);
+      fixture.detectChanges();
+      const spy = vi.spyOn(component.draftChange, 'emit');
+      component.updateTimeLimitSec(60);
+      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ timeLimitSec: 60 }));
+    });
+
+    it('should not update timeLimitSec for non-timed cards', () => {
+      fixture.componentRef.setInput('draft', keyboardDraft);
+      fixture.detectChanges();
+      const spy = vi.spyOn(component.draftChange, 'emit');
+      component.updateTimeLimitSec(60);
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('should update answerMode for keyboard cards', () => {
+      fixture.componentRef.setInput('draft', keyboardDraft);
+      fixture.detectChanges();
+      const spy = vi.spyOn(component.draftChange, 'emit');
+      component.updateKeyboardAnswerMode('text');
+      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ answerMode: 'text' }));
+    });
+
+    it('should update practiceMode for draw cards', () => {
+      fixture.componentRef.setInput('draft', drawDraft);
+      fixture.detectChanges();
+      const spy = vi.spyOn(component.draftChange, 'emit');
+      component.updateDrawPracticeMode('stroke-order');
+      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ practiceMode: 'stroke-order' }));
+    });
+
+    it('should update radicalHint for draw cards', () => {
+      fixture.componentRef.setInput('draft', drawDraft);
+      fixture.detectChanges();
+      const spy = vi.spyOn(component.draftChange, 'emit');
+      component.updateDrawRadicalHint('女 + 子');
+      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ radicalHint: '女 + 子' }));
+    });
+  });
+
+  describe('unsupported answer kinds', () => {
+    it('should flag cloze as unsupported', () => {
+      fixture.componentRef.setInput('draft', clozeDraft);
+      fixture.detectChanges();
+      expect(component.isUnsupportedAnswerKind()).toBe(true);
+    });
+
+    it('should not flag select as unsupported', () => {
+      fixture.componentRef.setInput('draft', selectDraft);
+      fixture.detectChanges();
+      expect(component.isUnsupportedAnswerKind()).toBe(false);
     });
   });
 });

@@ -1,12 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import type { CardOptionsEditorState } from '../../../../utils/options/card-options-editor.utils';
 import type { ChoiceCardDraft } from '../../../../types';
 export type { ChoiceCardDraft } from '../../../../types';
-import { toneVariantPreview } from '../../../../utils/tone/tone-variant.utils';
 import { CardOptionsEditorComponent } from '../../../card-options-editor/card-options-editor.component';
 import {
   resolveChoiceOptionsConfig,
@@ -23,20 +20,15 @@ import {
 @Component({
   selector: 'app-choice-card-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    CardOptionsEditorComponent,
-  ],
+  imports: [FormsModule, MatRadioModule, CardOptionsEditorComponent],
   templateUrl: './choice-card-form.component.html',
   styleUrl: './choice-card-form.component.scss',
 })
 export class ChoiceCardFormComponent {
   /** Required choice card draft (select, reading, timed, symbol, or tone). */
   readonly draft = input.required<ChoiceCardDraft>();
-  /** Whether to hide the prompt field. */
+
+  /** Whether to hide the prompt field. Kept for create-wizard compatibility. */
   readonly hidePrompt = input(false);
 
   /** Emits the updated choice card draft when the user makes changes. */
@@ -58,37 +50,12 @@ export class ChoiceCardFormComponent {
   }
 
   /**
-   * Updates the known-language prompt.
-   *
-   * @param value - The new prompt text.
-   */
-  updatePromptKnown(value: string): void {
-    this.updateDraft({ ...this.draft(), promptKnown: value });
-  }
-
-  /**
    * Updates the index of the correct option.
    *
    * @param index - The zero-based index of the correct option.
    */
   updateCorrectIndex(index: number): void {
     this.updateDraft({ ...this.draft(), correctIndex: index });
-  }
-
-  /**
-   * Updates the syllable base for tone cards.
-   *
-   * @param value - The new syllable base string.
-   * @remarks
-   * No-op for non-tone cards.
-   */
-  updateSyllableBase(value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'tone') {
-      return;
-    }
-
-    this.updateDraft({ ...draft, syllableBase: value });
   }
 
   /**
@@ -118,20 +85,4 @@ export class ChoiceCardFormComponent {
    * @remarks Delegates to `resolveChoiceOptionsConfig` utility.
    */
   readonly optionsConfig = computed(() => resolveChoiceOptionsConfig(this.draft()));
-
-  /**
-   * Returns the tone preview string.
-   *
-   * @returns Preview string showing tone variants, or empty string for non-tone cards.
-   * @remarks
-   * Uses `toneVariantPreview()` utility to render all tone marks for the current syllable.
-   */
-  tonePreview(): string {
-    const draft = this.draft();
-    if (draft.kind !== 'tone') {
-      return '';
-    }
-
-    return toneVariantPreview(draft.syllableBase, draft.toneOptions);
-  }
 }

@@ -47,10 +47,6 @@ describe('InputCardFormComponent', () => {
       expect(component.draft).toBeDefined();
     });
 
-    it('should have hidePrompt input with default false', () => {
-      expect(component.hidePrompt).toBeDefined();
-    });
-
     it('should have knownLanguage input with default', () => {
       expect(component.knownLanguage).toBeDefined();
     });
@@ -98,22 +94,6 @@ describe('InputCardFormComponent', () => {
     });
   });
 
-  describe('updatePromptKnown', () => {
-    it('should emit updated draft with new promptKnown for keyboard', () => {
-      fixture.componentRef.setInput('draft', keyboardDraft);
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      component.updatePromptKnown('New question?');
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ promptKnown: 'New question?' }));
-    });
-
-    it('should emit updated draft with new promptKnown for draw', () => {
-      fixture.componentRef.setInput('draft', drawDraft);
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      component.updatePromptKnown('New question?');
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ promptKnown: 'New question?' }));
-    });
-  });
-
   describe('updateAcceptedAnswers', () => {
     it('should emit updated draft with new accepted answer for keyboard draft', () => {
       fixture.componentRef.setInput('draft', keyboardDraft);
@@ -122,15 +102,6 @@ describe('InputCardFormComponent', () => {
       expect(spy).toHaveBeenCalledWith(
         expect.objectContaining({ acceptedAnswersKnown: ['new1', 'answer2'] }),
       );
-    });
-  });
-
-  describe('updateReferenceHintKnown', () => {
-    it('should emit updated draft with new reference hint for draw draft', () => {
-      fixture.componentRef.setInput('draft', drawDraft);
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      component.updateReferenceHintKnown('New hint');
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ referenceHintKnown: 'New hint' }));
     });
   });
 

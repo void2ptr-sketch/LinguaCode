@@ -1,0 +1,28 @@
+<p class="card-form__hint card-form__hint--tab">
+  Публикация — сложность, теги, уровень доступа и статус.
+</p>
+
+<app-card-meta-fields [meta]="meta()" (metaChange)="metaChange.emit($event)" />
+
+@if (meta(); as m) {
+  <mat-expansion-panel class="card-form-publishing-tab__technical">
+    <mat-expansion-panel-header>
+      <mat-panel-title>Техническая информация</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Slug</mat-label>
+      <input matInput [ngModel]="m.slug ?? ''" readonly />
+      <mat-hint>Генерируется бэкендом; доступен только для просмотра</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>ID языковой пары</mat-label>
+      <input matInput [ngModel]="m.languagePairId ?? ''" readonly />
+    </mat-form-field>
+
+    @if (m.updatedAt) {
+      <p class="card-form-publishing-tab__timestamp">Обновлено: {{ m.updatedAt }}</p>
+    }
+  </mat-expansion-panel>
+}

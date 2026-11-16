@@ -99,4 +99,25 @@ describe('MediaCardFormComponent', () => {
       expect(callArg.audioLabelLearning).toBe('Bonjour');
     });
   });
+
+  describe('updateAudioLabelLexeme', () => {
+    it('should emit updated draft with new audio label lexeme', () => {
+      const spy = vi.spyOn(component.draftChange, 'emit');
+      component.updateAudioLabelLexeme({
+        primary: 'Hello-en',
+        script: 'latn',
+        pinyin: '',
+        zhuyin: '',
+        palladius: '',
+        ipa: '',
+        audioUrl: '',
+        acceptedReadings: '',
+      });
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          audioLabelLexeme: expect.objectContaining({ primary: 'Hello-en' }),
+        }),
+      );
+    });
+  });
 });

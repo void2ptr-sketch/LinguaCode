@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   input,
   OnInit,
@@ -15,7 +16,11 @@ import type { CardAppearance } from '../../../../entities/card/model';
 import { LanguageService } from '../../../../entities/language-pair/services/language.service';
 import type { CardDraft, ChoiceCardDraft } from '../../types';
 import { cardFormKindGroup } from '../../utils/form/card-form.registry';
-import { normalizeCardDraft } from '../../utils/validation/card-validation.utils';
+import {
+  cardDraftTabIssues,
+  normalizeCardDraft,
+} from '../../utils/validation/card-validation.utils';
+import type { CardEditorUxMode } from '../../utils/ux/card-editor-ux.utils';
 import { fallbackPreviewCard } from '../../utils/preview';
 import {
   resolveChoiceOptionsConfig,
@@ -24,11 +29,7 @@ import {
   applyChoiceOptionsState,
 } from '../../utils/options';
 import type { CardOptionsEditorState } from '../../utils/options/card-options-editor.utils';
-import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/card-form-phonetics-panel.component';
-import { CardFormSettingsPanelComponent } from '../card-form-settings-panel/card-form-settings-panel.component';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
-import { CardOptionsEditorComponent } from '../card-options-editor/card-options-editor.component';
-import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 import {
   CardCatalogHierarchyService,
   type CourseOption,
@@ -38,21 +39,37 @@ import {
 import {
   CardFormTabsComponent,
   type TabDefinition,
+  type TabId,
 } from '../card-form-tabs/card-form-tabs.component';
-import { CardFormQuestionTabComponent } from '../card-form-question-tab/card-form-question-tab.component';
+import { CardFormContentTabComponent } from '../card-form-content-tab/card-form-content-tab.component';
 import { CardFormAnswersTabComponent } from '../card-form-answers-tab/card-form-answers-tab.component';
-import { CardConnectionsTabComponent } from '../card-connections-tab/card-connections-tab.component';
+import { CardFormAppearanceTabComponent } from '../card-form-appearance-tab/card-form-appearance-tab.component';
+import { CardFormPlacementTabComponent } from '../card-form-placement-tab/card-form-placement-tab.component';
+import { CardFormPublishingTabComponent } from '../card-form-publishing-tab/card-form-publishing-tab.component';
+
+/** Chooses the Russian plural form for «ошибка» based on the issue count. */
+const errorWord = (count: number): string => {
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+  if (mod10 === 1 && mod100 !== 11) {
+    return 'ошибка';
+  }
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) {
+    return 'ошибки';
+  }
+  return 'ошибок';
+};
 
 /**
  * Main form component for creating and editing cards.
  *
  * @remarks
  * Provides a tabbed interface for editing all aspects of a card draft:
- * question, answers, content, phonetics, metadata, and settings.
+ * content, answers, appearance, placement, and publishing.
  * Loads course/lesson/scenario hierarchy for card association.
  * Delegates kind-specific editing to nested form components.
  * Delegates tab navigation to `CardFormTabsComponent`.
- * Delegates question tab to `CardFormQuestionTabComponent`.
+ * Delegates tab content to the matching tab component based on stable tab id.
  *
  * @example
  * ```html
@@ -71,14 +88,12 @@ import { CardConnectionsTabComponent } from '../card-connections-tab/card-connec
   imports: [
     CommonModule,
     CardFormTabsComponent,
-    CardFormQuestionTabComponent,
+    CardFormContentTabComponent,
     CardFormAnswersTabComponent,
-    CardFormPhoneticsPanelComponent,
-    CardFormSettingsPanelComponent,
+    CardFormAppearanceTabComponent,
+    CardFormPlacementTabComponent,
+    CardFormPublishingTabComponent,
     CardPreviewComponent,
-    CardOptionsEditorComponent,
-    CardMetaFieldsComponent,
-    CardConnectionsTabComponent,
   ],
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.scss',
@@ -104,6 +119,16 @@ export class CardFormComponent implements OnInit {
 
   /** Optional card index meta override for tags and hierarchy references. */
   readonly meta = input<CardIndexMetaOverride | undefined>(undefined);
+
+  /**
+   * Editor UX mode controlling tab visibility.
+   *
+   * @remarks
+   * Defaults to `'advanced'` so all five tabs are visible. Basic mode keeps
+   * content, answers, and placement: catalog-created cards still need the
+   * placement tab to be assigned to a course/lesson.
+   */
+  readonly uxMode = input<CardEditorUxMode>('advanced');
 
   /** Emits the updated card draft when the user makes changes. */
   readonly draftChange = output<CardDraft>();
@@ -159,29 +184,73 @@ export class CardFormComponent implements OnInit {
   readonly languages = () => this.languageService.getCodes();
   readonly languageLabels = () => this.languageService.getLabels();
 
-  /** Currently selected tab index (0-based). */
-  private readonly activeTabIndex = signal<number>(0);
+  /** Currently selected tab id (stable, never an array index). */
+  readonly activeTabId = signal<TabId>('content');
 
   /**
-   * Computed display text for the language pair.
+   * Tabs available for the current card kind and UX mode.
    *
    * @remarks
-   * Shows "Known language (label) → Learning language (label)" based on
-   * the current known/learning language inputs.
+   * Visibility is declared per tab id instead of relying on positional indexes.
+   * The answers tab is hidden for flip cards because they have no objective answer.
+   * Basic mode hides appearance and publishing; placement stays visible because
+   * catalog-created cards still need to be assigned to a course/lesson.
+   * Badge counts come from `cardDraftTabIssues`, which reuses the save validators.
    */
-  readonly languagePairDisplay = computed(() => {
-    const known = this.languageLabels()[this.knownLanguage()] ?? this.knownLanguage();
-    const learning = this.languageLabels()[this.learningLanguage()] ?? this.learningLanguage();
-    return `${known} → ${learning}`;
+  readonly tabs = computed<TabDefinition[]>(() => {
+    const kind = this.draft().kind;
+    const advanced = this.uxMode() === 'advanced';
+    const issues = cardDraftTabIssues(this.draft());
+    return [
+      this.createTab('content', 'Содержание', true, issues.content),
+      this.createTab('answers', 'Ответы', kind !== 'flip', issues.answers),
+      this.createTab('appearance', 'Оформление', advanced, 0),
+      this.createTab('placement', 'Размещение', true, 0),
+      this.createTab('publishing', 'Публикация', advanced, 0),
+    ];
   });
 
   /**
-   * Records the index of the selected tab.
+   * Builds a tab definition with an optional validation badge.
    *
-   * @param index - The zero-based index of the tab the user selected.
+   * @param id - Stable tab identifier.
+   * @param label - Display label.
+   * @param visible - Whether the tab is visible.
+   * @param issues - Number of blocking validation issues for the tab.
+   * @returns The tab definition, including a badge and accessible label when needed.
    */
-  onTabChange(index: number): void {
-    this.activeTabIndex.set(index);
+  private createTab(id: TabId, label: string, visible: boolean, issues: number): TabDefinition {
+    if (!visible || issues <= 0) {
+      return { id, label, visible };
+    }
+
+    return {
+      id,
+      label,
+      visible,
+      badge: String(issues),
+      badgeAriaLabel: `${label}, ${issues} ${errorWord(issues)}`,
+    };
+  }
+
+  constructor() {
+    // Keep the active tab reachable when the draft kind changes and hides it.
+    effect(() => {
+      const active = this.activeTabId();
+      const isVisible = this.tabs().some((tab) => tab.id === active && tab.visible);
+      if (!isVisible) {
+        this.activeTabId.set('content');
+      }
+    });
+  }
+
+  /**
+   * Records the stable id of the selected tab.
+   *
+   * @param tabId - The stable identifier of the tab the user selected.
+   */
+  onTabChange(tabId: TabId): void {
+    this.activeTabId.set(tabId);
   }
 
   async ngOnInit(): Promise<void> {
@@ -214,15 +283,22 @@ export class CardFormComponent implements OnInit {
    * Computed choice card draft (select, reading, timed, symbol, tone).
    *
    * @remarks
-   * Returns `null` for code-select cards and non-choice kinds.
-   * Used by the Content tab to render the options editor.
+   * Returns `null` for code-select cards and for non-choice kinds such as
+   * `flip`, `cloze`, and `code-trace`. This prevents unsafe casts in the
+   * answers tab.
    */
   readonly choiceDraft = computed((): ChoiceCardDraft | null => {
     const draft = this.draft();
-    if (draft.kind === 'code-select') {
-      return null;
+    switch (draft.kind) {
+      case 'select':
+      case 'reading':
+      case 'timed':
+      case 'symbol':
+      case 'tone':
+        return draft;
+      default:
+        return null;
     }
-    return cardFormKindGroup(draft.kind) === 'choice' ? (draft as ChoiceCardDraft) : null;
   });
 
   /**
@@ -390,35 +466,5 @@ export class CardFormComponent implements OnInit {
       return;
     }
     this.updateDraft(applyChoiceOptionsState(draft, state));
-  }
-
-  /**
-   * All available tabs in the card form.
-   * @remarks
-   * Dynamically includes/excludes tabs based on card kind:
-   * - 'Content' tab is shown only for choice-type cards
-   * - 'Phonetics' tab is hidden for code-select cards
-   */
-  get allAvailableTabs(): TabDefinition[] {
-    const tabs: TabDefinition[] = [
-      { label: 'Вопрос', visible: true },
-      { label: 'Ответы', visible: true },
-    ];
-
-    // Контент показывается только для choice-карточек
-    if (this.choiceDraft() !== null) {
-      tabs.push({ label: 'Контент', visible: true });
-    }
-
-    // Фонетика не показывается для code-select
-    if (this.draft().kind !== 'code-select') {
-      tabs.push({ label: 'Фонетика', visible: true });
-    }
-
-    tabs.push({ label: 'Метаинфо', visible: true });
-    tabs.push({ label: 'Настройки', visible: true });
-    tabs.push({ label: 'Связи', visible: true });
-
-    return tabs;
   }
 }

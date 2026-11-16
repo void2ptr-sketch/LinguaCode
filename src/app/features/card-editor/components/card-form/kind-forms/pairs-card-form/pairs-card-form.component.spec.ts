@@ -68,11 +68,23 @@ describe('PairsCardFormComponent', () => {
     });
   });
 
-  describe('updatePromptKnown', () => {
-    it('should emit updated draft with new promptKnown', () => {
+  describe('updatePairLexeme', () => {
+    it('should update the learning lexeme for a pair', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
-      component.updatePromptKnown('New Prompt');
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ promptKnown: 'New Prompt' }));
+      component.updatePairLexeme(0, {
+        primary: 'Здравствуй',
+        script: 'cyrl',
+        pinyin: '',
+        zhuyin: '',
+        palladius: '',
+        ipa: '',
+        audioUrl: '',
+        acceptedReadings: '',
+      });
+      expect(spy).toHaveBeenCalled();
+      const emitted = spy.mock.calls[0][0] as MemoryCardDraft;
+      expect(emitted.pairs[0].learning).toBe('Здравствуй');
+      expect(emitted.pairs[0].learningLexeme.primary).toBe('Здравствуй');
     });
   });
 

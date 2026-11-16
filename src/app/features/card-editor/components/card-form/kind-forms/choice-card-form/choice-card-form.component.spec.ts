@@ -39,10 +39,6 @@ describe('ChoiceCardFormComponent', () => {
     it('should have required draft input', () => {
       expect(component.draft).toBeDefined();
     });
-
-    it('should have hidePrompt input with default false', () => {
-      expect(component.hidePrompt).toBeDefined();
-    });
   });
 
   describe('outputs', () => {
@@ -60,11 +56,11 @@ describe('ChoiceCardFormComponent', () => {
     });
   });
 
-  describe('updatePromptKnown', () => {
-    it('should emit updated draft with new promptKnown', () => {
+  describe('updateCorrectIndex', () => {
+    it('should emit updated draft with new correctIndex', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
-      component.updatePromptKnown('New question?');
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ promptKnown: 'New question?' }));
+      component.updateCorrectIndex(1);
+      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ correctIndex: 1 }));
     });
   });
 

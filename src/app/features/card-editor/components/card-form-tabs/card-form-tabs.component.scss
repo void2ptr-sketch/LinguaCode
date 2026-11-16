@@ -1,16 +1,72 @@
 .card-form__tabs {
   width: 100%;
+  min-width: 0;
 
+  ::ng-deep .mat-mdc-tab-header,
   ::ng-deep .mat-tab-header {
     border-bottom: none;
   }
 
+  ::ng-deep .mat-mdc-tab-header-pagination,
   ::ng-deep .mat-tab-header-pagination {
     display: none;
   }
 
+  // Keep the tab strip on a single line and allow horizontal scrolling on narrow screens.
+  ::ng-deep .mat-mdc-tab-label-container,
   ::ng-deep .mat-tab-header-inner {
     overflow-x: auto;
     scrollbar-width: thin;
+  }
+
+  ::ng-deep .mat-mdc-tab-labels,
+  ::ng-deep .mat-tab-labels {
+    min-width: max-content;
+  }
+
+  ::ng-deep .mat-mdc-tab {
+    min-width: auto;
+    padding: 0 0.75rem;
+  }
+
+  ::ng-deep .mat-mdc-tab-label-content {
+    white-space: nowrap;
+  }
+}
+
+.card-form__tab-label {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.375rem;
+  max-width: 100%;
+}
+
+.card-form__tab-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-form__tab-badge {
+  align-items: center;
+  background: var(--mat-sys-error);
+  border-radius: 999px;
+  color: var(--mat-sys-on-error);
+  display: inline-flex;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1;
+  min-width: 1.125rem;
+  padding: 0.125rem 0.3125rem;
+}
+
+@media (max-width: 37.5rem) {
+  .card-form__tabs ::ng-deep .mat-mdc-tab {
+    padding: 0 0.5rem;
+  }
+
+  .card-form__tab-text {
+    max-width: 8rem;
   }
 }

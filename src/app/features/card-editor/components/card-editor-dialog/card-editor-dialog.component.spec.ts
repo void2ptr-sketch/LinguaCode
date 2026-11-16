@@ -11,6 +11,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { CatalogService } from '../../../../entities/card/api/catalog.service';
 import type { CardEditorDialogData } from './card-editor-dialog.types';
 import type { CardDraft } from '../../types';
+import { EDITOR_UX_MODE_STORAGE_KEY } from '../../utils/ux/card-editor-ux.utils';
 
 describe('CardEditorDialogComponent', () => {
   let component: CardEditorDialogComponent;
@@ -38,6 +39,7 @@ describe('CardEditorDialogComponent', () => {
 
   beforeEach(async () => {
     localStorage.clear();
+    sessionStorage.clear();
     seedTestContentCache();
 
     mockDialogRef = createMockDialogRef();
@@ -75,6 +77,7 @@ describe('CardEditorDialogComponent', () => {
 
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     afterClosedSubject?.complete();
   });
 
@@ -148,6 +151,28 @@ describe('CardEditorDialogComponent', () => {
     it('should support basic mode', () => {
       component.setEditorUxMode('basic');
       expect(component.editorUxMode()).toBe('basic');
+    });
+
+    it('should persist the selected mode', () => {
+      component.setEditorUxMode('advanced');
+      expect(sessionStorage.getItem(EDITOR_UX_MODE_STORAGE_KEY)).toBe('advanced');
+
+      component.setEditorUxMode('basic');
+      expect(sessionStorage.getItem(EDITOR_UX_MODE_STORAGE_KEY)).toBe('basic');
+    });
+  });
+
+  describe('onAdvancedModeToggle', () => {
+    it('should switch to advanced mode when checked', () => {
+      component.onAdvancedModeToggle(true);
+      expect(component.editorUxMode()).toBe('advanced');
+      expect(sessionStorage.getItem(EDITOR_UX_MODE_STORAGE_KEY)).toBe('advanced');
+    });
+
+    it('should switch to basic mode when unchecked', () => {
+      component.onAdvancedModeToggle(false);
+      expect(component.editorUxMode()).toBe('basic');
+      expect(sessionStorage.getItem(EDITOR_UX_MODE_STORAGE_KEY)).toBe('basic');
     });
   });
 
@@ -268,6 +293,42 @@ describe('CardEditorDialogComponent', () => {
   describe('languageLabels', () => {
     it('should be defined', () => {
       expect(component.languageLabels).toBeDefined();
+    });
+  });
+
+  // ── Header summary ──
+
+  describe('languagePairSummary', () => {
+    it('should show known → learning', () => {
+      component.updateIndexMeta({ knownLanguage: 'ru', learningLanguage: 'en' });
+      expect(component.languagePairSummary()).toContain('→');
+    });
+  });
+
+  describe('tierLabel', () => {
+    it('should return an empty label without card meta', () => {
+      expect(component.tierLabel()).toBe('');
+    });
+
+    it('should map the required tier to a label', () => {
+      component.cardMeta.set({ requiredTier: 'PREMIUM' });
+      expect(component.tierLabel()).toBe('Премиум');
+    });
+  });
+
+  describe('publicationLabel', () => {
+    it('should return an empty label when publication is unknown', () => {
+      expect(component.publicationLabel()).toBe('');
+    });
+
+    it('should return "Опубликована" for published cards', () => {
+      component.cardMeta.set({ published: true });
+      expect(component.publicationLabel()).toBe('Опубликована');
+    });
+
+    it('should return "Черновик" for unpublished cards', () => {
+      component.cardMeta.set({ published: false });
+      expect(component.publicationLabel()).toBe('Черновик');
     });
   });
 });

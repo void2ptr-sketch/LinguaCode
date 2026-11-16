@@ -17,20 +17,34 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { firstValueFrom } from 'rxjs';
 
+import type { CardPaymentTier } from '../../../../entities/card/model';
 import { LanguageService } from '../../../../entities/language-pair/services/language.service';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { CardEditorStore } from '../../services/card-editor.store';
 import { CatalogService } from '../../../../entities/card/api/catalog.service';
 import type { CardDraft, CardIndexMetaDraft, CardIndexMetaOverride } from '../../types';
-import { loadEditorUxMode, type CardEditorUxMode } from '../../utils/ux/card-editor-ux.utils';
+import {
+  loadEditorUxMode,
+  saveEditorUxMode,
+  type CardEditorUxMode,
+} from '../../utils/ux/card-editor-ux.utils';
 import { CardFormComponent } from '../card-form/card-form.component';
 import { applyLexemeFirstToDraft } from '../../utils/draft/card-draft-lexeme-first.utils';
 import { indexTagsForDraft } from '../../utils/index-meta/card-kind-index-meta.utils';
 import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
 import type { CardEditorDialogData, CardEditorDialogResult } from './card-editor-dialog.types';
+
+/** Payment tier labels in Russian. */
+const TIER_LABELS: Record<CardPaymentTier, string> = {
+  FREE: 'Бесплатный',
+  STARTER: 'Стартовый',
+  GROWTH: 'Рост',
+  PREMIUM: 'Премиум',
+};
 
 function serializeDraft(draft: CardDraft): string {
   return JSON.stringify(draft);
@@ -42,7 +56,8 @@ function serializeDraft(draft: CardDraft): string {
  * @remarks
  * Wraps `CardFormComponent` with save/cancel actions and dirty-tracking.
  * Supports two modes: 'create' (new card) and 'edit' (existing card).
- * Shows a creation wizard in basic UX mode for card creation.
+ * A slide toggle switches between basic and advanced editor UX modes and
+ * persists the choice for subsequent dialog openings.
  *
  * @see CardFormComponent
  * @see CardEditorStore
@@ -58,6 +73,7 @@ function serializeDraft(draft: CardDraft): string {
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatSlideToggleModule,
     CardFormComponent,
   ],
   providers: [CardEditorStore],
@@ -122,6 +138,29 @@ export class CardEditorDialogComponent implements OnInit {
     return { theme: prefs.theme, fontSize: prefs.fontSize };
   });
 
+  /** Compact language-pair summary shown under the dialog title. */
+  readonly languagePairSummary = computed(() => {
+    const labels = this.languageLabels();
+    const known = labels[this.indexMeta().knownLanguage] ?? this.indexMeta().knownLanguage;
+    const learning = labels[this.indexMeta().learningLanguage] ?? this.indexMeta().learningLanguage;
+    return `${known} → ${learning}`;
+  });
+
+  /** Human-readable access tier label for the header summary. */
+  readonly tierLabel = computed(() => {
+    const tier = this.cardMeta()?.requiredTier;
+    return tier ? TIER_LABELS[tier] : '';
+  });
+
+  /** Publication status label for the header summary. */
+  readonly publicationLabel = computed(() => {
+    const published = this.cardMeta()?.published;
+    if (published === undefined) {
+      return '';
+    }
+    return published ? 'Опубликована' : 'Черновик';
+  });
+
   /**
    * Whether the draft has unsaved changes compared to the initial snapshot.
    * @remarks
@@ -136,8 +175,11 @@ export class CardEditorDialogComponent implements OnInit {
 
   /**
    * Whether to show the creation wizard.
+   *
    * @remarks
-   * True when in 'create' mode with basic UX enabled.
+   * True when in 'create' mode with basic UX enabled. The current dialog template
+   * renders `CardFormComponent` directly, so this computed remains an extension
+   * point for a future wizard wiring task.
    */
   readonly showWizard = computed(
     () => this.data.mode === 'create' && this.editorUxMode() === 'basic',
@@ -237,12 +279,22 @@ export class CardEditorDialogComponent implements OnInit {
   }
 
   /**
-   * Updates the editor UX mode.
+   * Updates the editor UX mode and persists the choice.
    *
    * @param mode - The new UX mode ('basic' or 'advanced').
    */
   setEditorUxMode(mode: CardEditorUxMode): void {
     this.editorUxMode.set(mode);
+    saveEditorUxMode(mode);
+  }
+
+  /**
+   * Handles the «Расширенный режим» toggle.
+   *
+   * @param advanced - Whether the toggle is checked.
+   */
+  onAdvancedModeToggle(advanced: boolean): void {
+    this.setEditorUxMode(advanced ? 'advanced' : 'basic');
   }
 
   /** Placeholder for future full-editor expansion. Currently a no-op. */

@@ -6,38 +6,9 @@
     [learningLanguage]="learningLanguage()"
     (fieldsChange)="updatePromptLexeme($event)"
   />
-}
 
-@if (promptLexemeDraft(); as d) {
   <mat-form-field appearance="outline">
     <mat-label>URL аудио</mat-label>
     <input matInput [ngModel]="d.audioUrl" (ngModelChange)="updateAudioUrl($event)" />
   </mat-form-field>
-}
-
-@if (soundDraft(); as d) {
-  <app-lexeme-fields
-    label="Лексема звука"
-    [compact]="true"
-    [fields]="d.audioLabelLexeme"
-    [knownLanguage]="knownLanguage()"
-    [learningLanguage]="learningLanguage()"
-    (fieldsChange)="updateAudioLabelLexeme($event)"
-  />
-}
-
-@if (memoryDraft(); as d) {
-  <section class="card-form-phonetics-panel__pairs">
-    <h3>Лексемы пар (новый)</h3>
-    @for (pair of d.pairs; track $index) {
-      <app-lexeme-fields
-        [compact]="true"
-        [label]="'Лексема пары ' + ($index + 1)"
-        [fields]="pair.learningLexeme"
-        [knownLanguage]="knownLanguage()"
-        [learningLanguage]="learningLanguage()"
-        (fieldsChange)="updatePairLexeme($index, $event)"
-      />
-    }
-  </section>
 }

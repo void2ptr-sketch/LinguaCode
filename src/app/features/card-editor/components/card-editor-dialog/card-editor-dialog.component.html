@@ -1,5 +1,15 @@
 <h2 mat-dialog-title>{{ title() }}</h2>
 
+<p class="card-editor-dialog__summary">
+  <span class="card-editor-dialog__language-pair">{{ languagePairSummary() }}</span>
+  @if (tierLabel()) {
+    <span>· {{ tierLabel() }}</span>
+  }
+  @if (publicationLabel()) {
+    <span>· {{ publicationLabel() }}</span>
+  }
+</p>
+
 <mat-dialog-content class="card-editor-dialog__content">
   @if (store.editorLoading()) {
     <div class="card-editor-dialog__state">
@@ -13,6 +23,15 @@
     @if (saveError()) {
       <p class="card-editor-dialog__error">{{ saveError() }}</p>
     }
+    <div class="card-editor-dialog__toolbar">
+      <mat-slide-toggle
+        class="card-editor-dialog__mode"
+        [checked]="editorUxMode() === 'advanced'"
+        (change)="onAdvancedModeToggle($event.checked)"
+      >
+        Расширенный режим
+      </mat-slide-toggle>
+    </div>
     <app-card-form
       [draft]="draft()"
       [previewId]="store.editingCardId() ?? 'preview-card'"
@@ -20,6 +39,7 @@
       [learningLanguage]="indexMeta().learningLanguage"
       [meta]="cardMeta()"
       [defaultAppearance]="defaultAppearance()"
+      [uxMode]="editorUxMode()"
       (draftChange)="updateDraft($event)"
       (knownLanguageChange)="onKnownLanguageChange($event)"
       (learningLanguageChange)="onLearningLanguageChange($event)"

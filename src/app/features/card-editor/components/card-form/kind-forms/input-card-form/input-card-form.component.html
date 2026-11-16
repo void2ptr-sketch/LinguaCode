@@ -1,45 +1,16 @@
 @if (drawDraft(); as d) {
   <mat-form-field appearance="outline">
-    <mat-label>Иероглиф</mat-label>
+    <mat-label>Иероглиф-призрак</mat-label>
     <input
       matInput
       [ngModel]="d.promptLexeme.primary || d.targetCharacter"
       (ngModelChange)="updateDrawPrimary($event)"
     />
-  </mat-form-field>
-  @if (!hidePrompt()) {
-    <mat-form-field appearance="outline">
-      <mat-label>Известный</mat-label>
-      <textarea
-        matInput
-        rows="2"
-        [ngModel]="d.promptKnown"
-        (ngModelChange)="updatePromptKnown($event)"
-      ></textarea>
-    </mat-form-field>
-  }
-  <mat-form-field appearance="outline">
-    <mat-label>Ориентир для рисования</mat-label>
-    <input
-      matInput
-      [ngModel]="d.referenceHintKnown"
-      (ngModelChange)="updateReferenceHintKnown($event)"
-    />
+    <mat-hint>Отображается полупрозрачно на canvas</mat-hint>
   </mat-form-field>
 }
 
 @if (keyboardDraft(); as d) {
-  @if (!hidePrompt()) {
-    <mat-form-field appearance="outline">
-      <mat-label>Известный</mat-label>
-      <textarea
-        matInput
-        rows="2"
-        [ngModel]="d.promptKnown"
-        (ngModelChange)="updatePromptKnown($event)"
-      ></textarea>
-    </mat-form-field>
-  }
   <section>
     <h3>Допустимые ответы (известный)</h3>
     @for (item of d.acceptedAnswersKnown; track $index) {

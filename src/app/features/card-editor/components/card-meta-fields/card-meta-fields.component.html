@@ -1,6 +1,6 @@
 @if (meta(); as m) {
   <section class="card-meta-fields">
-    <h3>Метаданные</h3>
+    <h3>Публикация</h3>
 
     <mat-form-field appearance="outline">
       <mat-label>Сложность</mat-label>
@@ -31,20 +31,5 @@
     <mat-checkbox [ngModel]="m.published ?? true" (ngModelChange)="updatePublished($event)">
       Опубликована
     </mat-checkbox>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Slug</mat-label>
-      <input matInput [ngModel]="m.slug ?? ''" readonly />
-      <mat-hint>Генерируется бэкендом; доступен только для просмотра</mat-hint>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>ID языковой пары</mat-label>
-      <input matInput [ngModel]="m.languagePairId ?? ''" readonly />
-    </mat-form-field>
-
-    @if (m.updatedAt) {
-      <p class="card-meta-fields__timestamp">Обновлено: {{ m.updatedAt }}</p>
-    }
   </section>
 }

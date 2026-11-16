@@ -1,0 +1,119 @@
+<p class="card-form__hint card-form__hint--tab">
+  Содержание — заголовок, вопрос и подсказки карточки.
+</p>
+
+<mat-form-field appearance="outline">
+  <mat-label>Заголовок</mat-label>
+  <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
+</mat-form-field>
+
+@if (promptKnown() !== null) {
+  <mat-form-field appearance="outline">
+    <mat-label>{{ promptLabel() }}</mat-label>
+    <textarea
+      matInput
+      rows="4"
+      [ngModel]="promptKnown()"
+      (ngModelChange)="updatePromptKnown($event)"
+    ></textarea>
+  </mat-form-field>
+}
+
+@if (codeSelectDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Контекст (необязательно)</mat-label>
+    <textarea
+      matInput
+      rows="2"
+      [ngModel]="d.caption"
+      (ngModelChange)="updateCaption($event)"
+      placeholder="Формулировка вопроса на естественном языке"
+    ></textarea>
+  </mat-form-field>
+}
+
+@if (codeTraceDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Вопрос</mat-label>
+    <textarea
+      matInput
+      rows="2"
+      [ngModel]="d.question"
+      (ngModelChange)="updateQuestion($event)"
+      placeholder="Что выведет этот код?"
+    ></textarea>
+  </mat-form-field>
+}
+
+@if (codePrompt(); as block) {
+  <section class="card-form-content-tab__code">
+    <h3 class="card-form-content-tab__heading">Код вопроса</h3>
+    <mat-form-field appearance="outline">
+      <mat-label>Язык</mat-label>
+      <mat-select [ngModel]="block.language" (ngModelChange)="updateCodeLanguage($event)">
+        @for (language of codeLanguages; track language) {
+          <mat-option [value]="language">{{ codeLanguageLabels[language] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Код</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        [ngModel]="block.code"
+        (ngModelChange)="updateCode($event)"
+        spellcheck="false"
+      ></textarea>
+    </mat-form-field>
+  </section>
+}
+
+@if (toneDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Слог без тона (пиньинь)</mat-label>
+    <input
+      matInput
+      [ngModel]="d.syllableBase"
+      (ngModelChange)="updateSyllableBase($event)"
+      placeholder="ma"
+    />
+    <mat-hint>Автоварианты: {{ tonePreview() || 'ma → mā · má · mǎ · mà' }}</mat-hint>
+  </mat-form-field>
+}
+
+@if (drawDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Ориентир для рисования</mat-label>
+    <input
+      matInput
+      [ngModel]="d.referenceHintKnown"
+      (ngModelChange)="updateReferenceHintKnown($event)"
+    />
+  </mat-form-field>
+}
+
+@if (flipDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Лицевая сторона</mat-label>
+    <textarea matInput rows="3" [ngModel]="d.front" (ngModelChange)="updateFlipFront($event)"></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Обратная сторона</mat-label>
+    <textarea matInput rows="3" [ngModel]="d.back" (ngModelChange)="updateFlipBack($event)"></textarea>
+  </mat-form-field>
+}
+
+@if (hasPromptLexeme()) {
+  <mat-expansion-panel class="card-form-content-tab__advanced">
+    <mat-expansion-panel-header>
+      <mat-panel-title>Дополнительно: лексемы и аудио</mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-card-form-phonetics-panel
+      [draft]="draft()"
+      [knownLanguage]="knownLanguage()"
+      [learningLanguage]="learningLanguage()"
+      (draftChange)="updateDraft($event)"
+    />
+  </mat-expansion-panel>
+}

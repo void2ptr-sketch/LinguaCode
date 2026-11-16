@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
-import { CardConnectionsTabComponent } from './card-connections-tab.component';
-import type { ConnectionsDraft } from './card-connections-tab.component';
+import { CardFormPlacementTabComponent } from './card-form-placement-tab.component';
+import type { PlacementDraft } from './card-form-placement-tab.component';
 
-describe('CardConnectionsTabComponent', () => {
-  let component: CardConnectionsTabComponent;
-  let fixture: ComponentFixture<CardConnectionsTabComponent>;
+describe('CardFormPlacementTabComponent', () => {
+  let component: CardFormPlacementTabComponent;
+  let fixture: ComponentFixture<CardFormPlacementTabComponent>;
 
   beforeEach(() => {
     // Override the component template to avoid MatSelect infrastructure issues
-    TestBed.overrideComponent(CardConnectionsTabComponent, {
+    TestBed.overrideComponent(CardFormPlacementTabComponent, {
       set: {
         template: `
           <div class="card-form__tab-panel">
-            <p class="card-form__hint card-form__hint--tab">Связи.</p>
-            <div class="language-pair-display">{{ languagePairDisplay() }}</div>
+            <p class="card-form__hint card-form__hint--tab">Размещение.</p>
             <div class="course-id">{{ draft().courseId }}</div>
             <div class="program-id">{{ draft().programId }}</div>
             <div class="lesson-id">{{ draft().lessonId }}</div>
@@ -25,13 +24,13 @@ describe('CardConnectionsTabComponent', () => {
     });
 
     TestBed.configureTestingModule({
-      imports: [CardConnectionsTabComponent],
+      imports: [CardFormPlacementTabComponent],
     });
 
-    fixture = TestBed.createComponent(CardConnectionsTabComponent);
+    fixture = TestBed.createComponent(CardFormPlacementTabComponent);
     component = fixture.componentInstance;
 
-    const draft: ConnectionsDraft = {
+    const draft: PlacementDraft = {
       courseId: '',
       programId: '',
       lessonId: '',
@@ -39,7 +38,6 @@ describe('CardConnectionsTabComponent', () => {
     };
 
     fixture.componentRef.setInput('draft', draft);
-    fixture.componentRef.setInput('meta', { languagePairId: '1' });
     fixture.componentRef.setInput('availableCourses', [
       { id: 'course-1', title: 'Radicals Course' },
     ]);
@@ -52,7 +50,6 @@ describe('CardConnectionsTabComponent', () => {
     fixture.componentRef.setInput('availableScenarios', [
       { id: 'scenario-1', title: 'Greeting' },
     ]);
-    fixture.componentRef.setInput('languagePairDisplay', 'Русский → English');
 
     fixture.detectChanges();
   });
@@ -61,10 +58,6 @@ describe('CardConnectionsTabComponent', () => {
 
   it('should have draft input', () => {
     expect(component.draft).toBeDefined();
-  });
-
-  it('should have meta input', () => {
-    expect(component.meta).toBeDefined();
   });
 
   it('should have availableCourses input', () => {
@@ -83,8 +76,10 @@ describe('CardConnectionsTabComponent', () => {
     expect(component.availableScenarios).toBeDefined();
   });
 
-  it('should have languagePairDisplay input', () => {
-    expect(component.languagePairDisplay).toBeDefined();
+  it('should not expose a language pair field', () => {
+    expect('languagePairDisplay' in component).toBe(false);
+    expect('meta' in component).toBe(false);
+    expect('languagePairIdChange' in component).toBe(false);
   });
 
   // ── Outputs ──
@@ -125,15 +120,6 @@ describe('CardConnectionsTabComponent', () => {
     expect(emitted).toBe('s1');
   });
 
-  it('should have languagePairIdChange output', () => {
-    let emitted = '';
-    component.languagePairIdChange.subscribe((v) => {
-      emitted = v;
-    });
-    component.languagePairIdChange.emit('pair-1');
-    expect(emitted).toBe('pair-1');
-  });
-
   // ── Methods ──
 
   it('should emit courseId on updateCourseId', () => {
@@ -172,15 +158,6 @@ describe('CardConnectionsTabComponent', () => {
     expect(emitted).toBe('scenario-1');
   });
 
-  it('should emit languagePairId on updateLanguagePairId', () => {
-    let emitted = '';
-    component.languagePairIdChange.subscribe((v) => {
-      emitted = v;
-    });
-    component.updateLanguagePairId('pair-1');
-    expect(emitted).toBe('pair-1');
-  });
-
   // ── HTML rendering ──
 
   it('should render hint paragraph', () => {
@@ -189,7 +166,7 @@ describe('CardConnectionsTabComponent', () => {
     expect(hints.length).toBeGreaterThan(0);
   });
 
-  it('should render connection tab panel', () => {
+  it('should render placement tab panel', () => {
     const debugElement = fixture.nativeElement;
     const panel = debugElement.querySelector('.card-form__tab-panel');
     expect(panel).toBeTruthy();

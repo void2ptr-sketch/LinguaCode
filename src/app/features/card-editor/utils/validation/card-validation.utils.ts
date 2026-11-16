@@ -873,6 +873,152 @@ export const normalizeCodeTraceCardDraft = (
 };
 
 /**
+ * Tab-scoped validation issue counts for the card editor.
+ *
+ * @remarks
+ * Only blocking issues that prevent saving are counted. The counts are derived
+ * from the same sanitizers and normalization helpers used by `normalizeCardDraft`,
+ * so tab badges never diverge from the actual save validation.
+ */
+export type CardDraftTabIssues = {
+  /** Number of blocking issues on the content tab (title and prompt-side fields). */
+  content: number;
+  /** Number of blocking issues on the answers tab (options, correct answer, answer data). */
+  answers: number;
+};
+
+const countIssues = (...issues: readonly boolean[]): number =>
+  issues.reduce((total, hasIssue) => (hasIssue ? total + 1 : total), 0);
+
+const isInvalidCorrectIndex = (
+  correctIndex: number,
+  options: readonly unknown[] | null,
+): boolean => options !== null && normalizeCorrectIndex(correctIndex, options.length) === null;
+
+/**
+ * Counts blocking validation issues per editor tab.
+ *
+ * @remarks
+ * Content issues cover the title and prompt-side fields. Answers issues cover
+ * options, correct answers, accepted answers, and other required answer data.
+ * Appearance, placement, and publishing tabs have no blocking validation rules
+ * and therefore never receive a badge.
+ *
+ * @param draft - The card draft to inspect.
+ * @returns Issue counts keyed by editor tab.
+ */
+export const cardDraftTabIssues = (draft: CardDraft): CardDraftTabIssues => {
+  let content = sanitizeTitle(draft.title) ? 0 : 1;
+  let answers = 0;
+
+  switch (draft.kind) {
+    case 'select':
+    case 'reading':
+    case 'timed': {
+      const options = normalizeOptions(draft.optionsLearning);
+      content += countIssues(!sanitizePrompt(draft.promptKnown));
+      answers += countIssues(
+        options === null,
+        isInvalidCorrectIndex(draft.correctIndex, options),
+        draft.kind === 'timed' &&
+          (Math.round(draft.timeLimitSec) < MIN_TIME_SEC ||
+            Math.round(draft.timeLimitSec) > MAX_TIME_SEC),
+      );
+      break;
+    }
+    case 'code-select': {
+      const options = normalizeCodeBlocks(draft.options);
+      content += countIssues(!sanitizeCode(draft.prompt.code));
+      answers += countIssues(
+        options === null,
+        isInvalidCorrectIndex(draft.correctIndex, options),
+      );
+      break;
+    }
+    case 'memory': {
+      const pairs = draft.pairs.filter(
+        (pair) => sanitizeShort(pair.known).length > 0 && sanitizeShort(pair.learning).length > 0,
+      ).length;
+      content += countIssues(!sanitizePrompt(draft.promptKnown));
+      answers += countIssues(pairs < MIN_PAIRS || pairs > MAX_PAIRS);
+      break;
+    }
+    case 'symbol': {
+      const symbols = normalizeOptions(draft.symbols);
+      content += countIssues(!sanitizePrompt(draft.promptKnown));
+      answers += countIssues(
+        symbols === null,
+        isInvalidCorrectIndex(draft.correctIndex, symbols),
+      );
+      break;
+    }
+    case 'sound': {
+      const options = normalizeOptions(draft.optionsKnown);
+      content += countIssues(!sanitizePrompt(draft.promptKnown));
+      answers += countIssues(
+        !sanitizeShort(draft.audioLabelLearning),
+        options === null,
+        isInvalidCorrectIndex(draft.correctIndex, options),
+      );
+      break;
+    }
+    case 'keyboard': {
+      const acceptedAnswers = draft.acceptedAnswersKnown
+        .map(sanitizeShort)
+        .filter((answer) => answer.length > 0).length;
+      content += countIssues(!sanitizePrompt(draft.promptKnown));
+      answers += countIssues(
+        acceptedAnswers < MIN_ANSWERS || acceptedAnswers > MAX_ANSWERS,
+      );
+      break;
+    }
+    case 'draw': {
+      content += countIssues(
+        !sanitizePrompt(draft.promptKnown),
+        !sanitizeHint(draft.referenceHintKnown),
+      );
+      break;
+    }
+    case 'tone': {
+      const syllableBase = stripPinyinTones(
+        sanitizeShort(draft.syllableBase || draft.promptLexeme.pinyin),
+      );
+      const toneOptions = normalizeToneOptions(draft.toneOptions);
+      content += countIssues(!sanitizePrompt(draft.promptKnown), !syllableBase);
+      answers += countIssues(
+        toneOptions === null,
+        isInvalidCorrectIndex(draft.correctIndex, toneOptions),
+      );
+      break;
+    }
+    case 'flip': {
+      content += countIssues(!sanitizePrompt(draft.front), !sanitizePrompt(draft.back));
+      break;
+    }
+    case 'cloze': {
+      const options = normalizeOptions(draft.options);
+      content += countIssues(!sanitizePrompt(draft.promptKnown));
+      answers += countIssues(
+        !sanitizePrompt(draft.correctAnswer),
+        options !== null && normalizeCorrectIndex(draft.correctIndex, options.length) === null,
+      );
+      break;
+    }
+    case 'code-trace': {
+      const outputOptions = normalizeOptions(draft.outputOptions);
+      content += countIssues(!sanitizeMarkdownText(draft.code.code));
+      answers += countIssues(
+        outputOptions === null,
+        isInvalidCorrectIndex(draft.correctIndex, outputOptions),
+      );
+      break;
+    }
+  }
+
+  return { content, answers };
+};
+
+/**
  * Normalizes a card draft into a validated Card.
  *
  * @param draft - The card draft to normalize.

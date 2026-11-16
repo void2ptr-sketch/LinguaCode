@@ -12,9 +12,12 @@ import type { DrawCardDraft, KeyboardCardDraft } from '../../../../types';
 export type InputCardDraft = KeyboardCardDraft | DrawCardDraft;
 
 /**
- * Form component for input-type cards (keyboard and draw). Manages answer inputs,
- * reference hints, and Hanzi target character for draw cards.
- * @remarks Syncs lexeme primary from text for draw cards.
+ * Answer editor for input-type cards (keyboard and draw).
+ *
+ * @remarks
+ * Manages keyboard accepted answers and the draw target character. Prompt and
+ * reference hint fields live in the content tab; draw behavior lives in the
+ * answers tab.
  */
 @Component({
   selector: 'app-input-card-form',
@@ -26,7 +29,7 @@ export type InputCardDraft = KeyboardCardDraft | DrawCardDraft;
 export class InputCardFormComponent {
   /** Required input card draft (keyboard or draw). */
   readonly draft = input.required<InputCardDraft>();
-  /** Whether to hide the prompt field. */
+  /** Whether to hide the prompt field. Kept for create-wizard compatibility. */
   readonly hidePrompt = input(false);
   /** Known (source) language for lexeme sync. */
   readonly knownLanguage = input<ContentLanguage>('ru');
@@ -36,21 +39,13 @@ export class InputCardFormComponent {
   /** Emits the updated input card draft when the user makes changes. */
   readonly draftChange = output<InputCardDraft>();
 
-  /**
-   * Computed keyboard card draft, or null if the current kind is not 'keyboard'.
-   * @remarks
-   * Used to conditionally render keyboard-specific fields.
-   */
+  /** Computed keyboard card draft, or null if the current kind is not 'keyboard'. */
   readonly keyboardDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'keyboard' ? draft : null;
   });
 
-  /**
-   * Computed draw card draft, or null if the current kind is not 'draw'.
-   * @remarks
-   * Used to conditionally render draw-specific fields.
-   */
+  /** Computed draw card draft, or null if the current kind is not 'draw'. */
   readonly drawDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'draw' ? draft : null;
@@ -66,32 +61,7 @@ export class InputCardFormComponent {
   }
 
   /**
-   * Updates the known-language prompt.
-   *
-   * @param value - The new prompt text.
-   */
-  updatePromptKnown(value: string): void {
-    this.updateDraft({ ...this.draft(), promptKnown: value });
-  }
-
-  /**
-   * Updates the reference hint for draw cards.
-   *
-   * @param value - The new reference hint text.
-   * @remarks
-   * No-op for non-draw cards.
-   */
-  updateReferenceHintKnown(value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'draw') {
-      return;
-    }
-
-    this.updateDraft({ ...draft, referenceHintKnown: value });
-  }
-
-  /**
-   * Updates the primary Hanzi character for draw cards.
+   * Updates the target Hanzi character for draw cards.
    *
    * @param value - The new character string.
    * @remarks

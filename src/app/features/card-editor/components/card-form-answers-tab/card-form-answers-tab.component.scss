@@ -1,5 +1,22 @@
+:host {
+  display: grid;
+  gap: 0.75rem;
+}
+
 .card-form-answers-tab__hint {
   margin: 0 0 16px;
   color: var(--text-secondary);
   font-size: 0.875rem;
+}
+
+.card-form-answers-tab__unsupported {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.card-form-answers-tab__meta {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  font-size: 0.8125rem;
+  margin: 0;
 }

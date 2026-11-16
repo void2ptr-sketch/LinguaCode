@@ -4,19 +4,31 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import type { LexemeDraftFields } from '../../../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 import type { ContentLanguage } from '../../../../../../entities/card/model';
 import type { MemoryCardDraft } from '../../../../types';
 import { emptyMemoryPairDraft } from '../../../../types';
 import { syncLexemePrimaryFromText } from '../../../../utils/ux/card-editor-ux.utils';
+import { LexemeFieldsComponent } from '../../../lexeme-fields/lexeme-fields.component';
 
 /**
- * Form component for memory/pairs cards. Manages known-learning word pairs with lexeme sync.
- * @remarks Supports up to 12 pairs; auto-syncs lexemes in basic mode.
+ * Answer editor for memory/pairs cards.
+ *
+ * @remarks
+ * Manages known-learning word pairs and their learning lexemes. The prompt
+ * field lives in the content tab.
  */
 @Component({
   selector: 'app-pairs-card-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule],
+  imports: [
+    FormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    LexemeFieldsComponent,
+  ],
   templateUrl: './pairs-card-form.component.html',
   styleUrl: './pairs-card-form.component.scss',
 })
@@ -40,15 +52,6 @@ export class PairsCardFormComponent {
    */
   updateDraft(next: MemoryCardDraft): void {
     this.draftChange.emit(next);
-  }
-
-  /**
-   * Updates the known-language prompt.
-   *
-   * @param value - The new prompt text.
-   */
-  updatePromptKnown(value: string): void {
-    this.updateDraft({ ...this.draft(), promptKnown: value });
   }
 
   /**
@@ -81,6 +84,26 @@ export class PairsCardFormComponent {
       }
 
       return { ...pair, [side]: value };
+    });
+
+    this.updateDraft({ ...draft, pairs });
+  }
+
+  /**
+   * Updates the learning lexeme for a pair.
+   *
+   * @param index - The zero-based index of the pair.
+   * @param fields - The new lexeme draft fields.
+   */
+  updatePairLexeme(index: number, fields: LexemeDraftFields): void {
+    const draft = this.draft();
+    const pairs = draft.pairs.map((pair, pairIndex) => {
+      if (pairIndex !== index) {
+        return pair;
+      }
+
+      const learning = fields.primary.trim() ? fields.primary : pair.learning;
+      return { ...pair, learning, learningLexeme: fields };
     });
 
     this.updateDraft({ ...draft, pairs });
