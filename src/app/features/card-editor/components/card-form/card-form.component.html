@@ -5,8 +5,8 @@
 
     <!-- Tab Content -->
     <div class="card-form__tab-content">
-      @switch (activeTabLabel()) {
-        @case ('Вопрос') {
+      @switch (activeTabIndex()) {
+        @case (0) {
           <app-card-form-question-tab
             [availableCourses]="availableCourses()"
             [availablePrograms]="availablePrograms()"
@@ -25,7 +25,7 @@
             (choicePromptKnownChange)="updateChoicePromptKnown($event)"
           />
         }
-        @case ('Ответы') {
+        @case (1) {
           <app-card-form-answers-tab
             [draft]="draft()"
             [knownLanguage]="knownLanguage()"
@@ -33,7 +33,7 @@
             (draftChange)="updateDraft($event)"
           />
         }
-        @case ('Контент') {
+        @case (2) {
           <p class="card-form__hint card-form__hint--tab">Варианты ответов и правильный ответ.</p>
           <app-card-options-editor
             [config]="choiceOptionsConfig()"
@@ -46,7 +46,7 @@
             (stateChange)="onChoiceOptionsStateChange($event)"
           />
         }
-        @case ('Фонетика') {
+        @case (3) {
           <p class="card-form__hint card-form__hint--tab">Лексемы, IPA, пиньинь, URL аудио.</p>
           <app-card-form-phonetics-panel
             [draft]="draft()"
@@ -55,15 +55,15 @@
             (draftChange)="updateDraft($event)"
           />
         }
-        @case ('Метаинфо') {
+        @case (4) {
           <p class="card-form__hint card-form__hint--tab">Дополнительная информация о карточке.</p>
           <app-card-meta-fields [meta]="meta()" (metaChange)="metaChange.emit($event)" />
         }
-        @case ('Настройки') {
+        @case (5) {
           <p class="card-form__hint card-form__hint--tab">Тема, шрифт, лимит времени и режимы.</p>
           <app-card-form-settings-panel [draft]="draft()" (draftChange)="updateDraft($event)" />
         }
-        @case ('Связи') {
+        @case (6) {
           <app-card-connections-tab
             [draft]="{ courseId: draft().courseId, programId: draft().programId, lessonId: draft().lessonId, scenarioId: draft().scenarioId }"
             [meta]="meta()"

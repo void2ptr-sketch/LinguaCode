@@ -9,7 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTabsModule } from '@angular/material/tabs';
+
 import type { ContentLanguage, CardIndexMetaOverride } from '../../../../entities/card/model';
 import type { CardAppearance } from '../../../../entities/card/model';
 import { LanguageService } from '../../../../entities/language-pair/services/language.service';
@@ -70,7 +70,6 @@ import { CardConnectionsTabComponent } from '../card-connections-tab/card-connec
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
-    MatTabsModule,
     CardFormTabsComponent,
     CardFormQuestionTabComponent,
     CardFormAnswersTabComponent,
@@ -160,25 +159,16 @@ export class CardFormComponent implements OnInit {
   readonly languages = () => this.languageService.getCodes();
   readonly languageLabels = () => this.languageService.getLabels();
 
-  /** Currently selected tab label (explicitly chosen by user). */
-  private readonly selectedTabLabel = signal<string | undefined>(undefined);
+  /** Currently selected tab index (0-based). */
+  private readonly activeTabIndex = signal<number>(0);
 
   /**
-   * Label of the currently active tab.
-   * @remarks
-   * Uses explicitly selected tab, or falls back to the first visible tab.
-   */
-  readonly activeTabLabel = computed(() => {
-    return this.selectedTabLabel() ?? this.allAvailableTabs[0]?.label ?? '';
-  });
-
-  /**
-   * Records the explicitly selected tab label.
+   * Records the index of the selected tab.
    *
-   * @param tabLabel - The label of the tab the user selected.
+   * @param index - The zero-based index of the tab the user selected.
    */
-  onTabChange(tabLabel: string): void {
-    this.selectedTabLabel.set(tabLabel);
+  onTabChange(index: number): void {
+    this.activeTabIndex.set(index);
   }
 
   async ngOnInit(): Promise<void> {

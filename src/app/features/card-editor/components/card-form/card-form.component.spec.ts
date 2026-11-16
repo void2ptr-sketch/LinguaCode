@@ -282,24 +282,24 @@ describe('CardFormComponent', () => {
     });
   });
 
-  describe('activeTabLabel', () => {
-    it('should return first tab as default', () => {
+  describe('activeTabIndex', () => {
+    it('should start at index 0', () => {
       fixture.componentRef.setInput('draft', selectDraft);
-      expect(component.activeTabLabel()).toBe('Вопрос');
+      expect(component['activeTabIndex']()).toBe(0);
     });
 
-    it('should return selected tab label', () => {
+    it('should update on tab change', () => {
       fixture.componentRef.setInput('draft', selectDraft);
-      component.onTabChange('Ответы');
-      expect(component.activeTabLabel()).toBe('Ответы');
+      component.onTabChange(3);
+      expect(component['activeTabIndex']()).toBe(3);
     });
   });
 
   describe('onTabChange', () => {
-    it('should update selectedTabLabel', () => {
+    it('should update activeTabIndex', () => {
       fixture.componentRef.setInput('draft', selectDraft);
-      component.onTabChange('Контент');
-      expect(component.activeTabLabel()).toBe('Контент');
+      component.onTabChange(2);
+      expect(component['activeTabIndex']()).toBe(2);
     });
   });
 
