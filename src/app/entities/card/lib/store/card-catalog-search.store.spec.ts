@@ -37,6 +37,10 @@ describe('CardCatalogSearchStore', () => {
 
   const hierarchyMock = {
     loadLessons: vi.fn().mockName('CardCatalogHierarchyService.loadLessons').mockResolvedValue([]),
+    loadProgramOptions: vi
+      .fn()
+      .mockName('CardCatalogHierarchyService.loadProgramOptions')
+      .mockResolvedValue([]),
     invalidateCache: vi.fn().mockName('CardCatalogHierarchyService.invalidateCache'),
     loadCourses: vi.fn().mockName('CardCatalogHierarchyService.loadCourses').mockResolvedValue([]),
     loadAllCourses: vi
@@ -68,6 +72,7 @@ describe('CardCatalogSearchStore', () => {
     courseSearchMock.search.mockClear();
     programsApiMock.getById.mockClear();
     hierarchyMock.loadLessons.mockClear();
+    hierarchyMock.loadProgramOptions.mockClear();
     hierarchyMock.invalidateCache.mockClear();
     hierarchyMock.loadCourses.mockClear();
     hierarchyMock.loadAllCourses.mockClear();
@@ -136,24 +141,26 @@ describe('CardCatalogSearchStore', () => {
     expect(vi.mocked(searchMock).mock.calls.length).toBe(callsBefore);
   });
 
-  it('should include course/lesson/scenario in criteria when set', async () => {
+  it('should include course/program/lesson/scenario in criteria when set', async () => {
     await store.initWithActivePair('ru', 'en');
     searchMock.mockClear();
 
     await store.setCourse('course-1');
+    await store.setProgram('program-1');
     await store.setLesson('lesson-1');
     store.setScenario('scenario-1');
 
     expect(searchMock).toHaveBeenCalledWith(
       expect.objectContaining({
         courseId: 'course-1',
+        programId: 'program-1',
         lessonId: 'lesson-1',
         scenarioId: 'scenario-1',
       }),
     );
   });
 
-  it('should cascade reset lesson and scenario when course changes', async () => {
+  it('should cascade reset program, lesson and scenario when course changes', async () => {
     await store.initWithActivePair('ru', 'en');
     await store.setCourse('course-1');
     await store.setLesson('lesson-1');
@@ -161,6 +168,7 @@ describe('CardCatalogSearchStore', () => {
 
     await store.setCourse('course-2');
 
+    expect(store.selectedProgramId()).toBeNull();
     expect(store.selectedLessonId()).toBeNull();
     expect(store.selectedScenarioId()).toBeNull();
   });
@@ -168,11 +176,64 @@ describe('CardCatalogSearchStore', () => {
   it('should cascade reset scenario when lesson changes', async () => {
     await store.initWithActivePair('ru', 'en');
     await store.setCourse('course-1');
+    await store.setProgram('program-1');
     await store.setLesson('lesson-1');
     store.setScenario('scenario-1');
 
     await store.setLesson('lesson-2');
 
+    expect(store.selectedScenarioId()).toBeNull();
+  });
+
+  it('should cascade reset lesson and scenario when program changes', async () => {
+    await store.initWithActivePair('ru', 'en');
+    await store.setCourse('course-1');
+    await store.setProgram('program-1');
+    await store.setLesson('lesson-1');
+    store.setScenario('scenario-1');
+
+    await store.setProgram('program-2');
+
+    expect(store.selectedLessonId()).toBeNull();
+    expect(store.selectedScenarioId()).toBeNull();
+  });
+
+  it('should load lessons when program is selected', async () => {
+    await store.initWithActivePair('ru', 'en');
+    await store.setCourse('course-1');
+    hierarchyMock.loadLessons.mockResolvedValue([
+      { id: 'lesson-1', title: 'Lesson 1' },
+    ]);
+
+    await store.setProgram('program-1');
+
+    expect(hierarchyMock.loadLessons).toHaveBeenCalledWith('program-1');
+    expect(store.availableLessons()).toEqual([{ id: 'lesson-1', title: 'Lesson 1' }]);
+  });
+
+  it('should load programs when course is selected', async () => {
+    await store.initWithActivePair('ru', 'en');
+    hierarchyMock.loadProgramOptions.mockResolvedValue([
+      { id: 'program-1', title: 'Program 1' },
+    ]);
+
+    await store.setCourse('course-1');
+
+    expect(hierarchyMock.loadProgramOptions).toHaveBeenCalledWith('course-1');
+    expect(store.availablePrograms()).toEqual([{ id: 'program-1', title: 'Program 1' }]);
+  });
+
+  it('should cascade reset program, lesson and scenario when course changes', async () => {
+    await store.initWithActivePair('ru', 'en');
+    await store.setCourse('course-1');
+    await store.setProgram('program-1');
+    await store.setLesson('lesson-1');
+    store.setScenario('scenario-1');
+
+    await store.setCourse('course-2');
+
+    expect(store.selectedProgramId()).toBeNull();
+    expect(store.selectedLessonId()).toBeNull();
     expect(store.selectedScenarioId()).toBeNull();
   });
 
@@ -182,20 +243,23 @@ describe('CardCatalogSearchStore', () => {
     expect(hierarchyMock.loadCourses).toHaveBeenCalledWith('ru', 'en', 'ru_en');
   });
 
-  it('should reset course/lesson/scenario cascade when language pair changes', async () => {
+  it('should reset course/program/lesson/scenario cascade when language pair changes', async () => {
     const userStore = TestBed.inject(UserStore);
     const pairId = userStore.languagePairs()[0].id;
 
     await store.initWithActivePair('ru', 'en');
     await store.setCourse('course-1');
+    await store.setProgram('program-1');
     await store.setLesson('lesson-1');
     store.setScenario('scenario-1');
 
     await store.applyLanguagePair(pairId);
 
     expect(store.selectedCourseId()).toBeNull();
+    expect(store.selectedProgramId()).toBeNull();
     expect(store.selectedLessonId()).toBeNull();
     expect(store.selectedScenarioId()).toBeNull();
+    expect(store.availablePrograms()).toEqual([]);
     expect(store.availableLessons()).toEqual([]);
     expect(store.availableScenarios()).toEqual([]);
   });

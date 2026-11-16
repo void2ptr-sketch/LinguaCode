@@ -161,6 +161,15 @@ export class CardCatalogFiltersComponent {
   }
 
   /**
+   * Handles program filter changes.
+   *
+   * @param programId - The selected program ID, or `null` to clear.
+   */
+  onProgramChange(programId: string | null): void {
+    void this.store.setProgram(programId);
+  }
+
+  /**
    * Handles lesson filter changes.
    *
    * @param lessonId - The selected lesson ID, or `null` to clear.

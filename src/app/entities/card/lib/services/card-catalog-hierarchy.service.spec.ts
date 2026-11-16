@@ -109,6 +109,10 @@ describe('CardCatalogHierarchyService', () => {
     it('should start with lessonsLoading false', () => {
       expect(service.lessonsLoading()).toBe(false);
     });
+
+    it('should start with programOptionsLoading false', () => {
+      expect(service.programOptionsLoading()).toBe(false);
+    });
   });
 
   describe('loadCourses', () => {
@@ -199,17 +203,17 @@ describe('CardCatalogHierarchyService', () => {
   });
 
   describe('loadLessons', () => {
-    it('should load lessons from course', async () => {
-      const lessons = await service.loadLessons('course-1');
+    it('should load lessons from program', async () => {
+      const lessons = await service.loadLessons('program-1');
 
       expect(lessons).toHaveLength(2);
       expect(lessons[0]).toEqual({ id: 'lesson-1', title: 'Lesson 1' });
       expect(lessons[1]).toEqual({ id: 'lesson-2', title: 'Lesson 2' });
     });
 
-    it('should cache lessons by course ID', async () => {
-      await service.loadLessons('course-1');
-      await service.loadLessons('course-1');
+    it('should cache lessons by program ID', async () => {
+      await service.loadLessons('program-1');
+      await service.loadLessons('program-1');
 
       expect(programsApiMock.getById).toHaveBeenCalledTimes(1);
     });
@@ -217,40 +221,65 @@ describe('CardCatalogHierarchyService', () => {
 
   describe('getScenariosForLesson', () => {
     it('should return scenario options for a lesson', async () => {
-      await service.loadLessons('course-1');
+      await service.loadLessons('program-1');
 
-      const scenarios = service.getScenariosForLesson('course-1', 'lesson-1');
+      const scenarios = service.getScenariosForLesson('program-1', 'lesson-1');
 
       expect(scenarios).toHaveLength(1);
       expect(scenarios[0]).toEqual({ id: 'scenario-1', title: 'scenario-1' });
     });
 
-    it('should return empty array for unknown course', () => {
-      const scenarios = service.getScenariosForLesson('unknown-course', 'lesson-1');
+    it('should return empty array for unknown program', () => {
+      const scenarios = service.getScenariosForLesson('unknown-program', 'lesson-1');
       expect(scenarios).toEqual([]);
     });
 
     it('should return empty array for unknown lesson', async () => {
-      await service.loadLessons('course-1');
+      await service.loadLessons('program-1');
 
-      const scenarios = service.getScenariosForLesson('course-1', 'unknown-lesson');
+      const scenarios = service.getScenariosForLesson('program-1', 'unknown-lesson');
       expect(scenarios).toEqual([]);
     });
 
     it('should return multiple scenarios for a lesson', async () => {
-      await service.loadLessons('course-1');
+      await service.loadLessons('program-1');
 
-      const scenarios = service.getScenariosForLesson('course-1', 'lesson-2');
+      const scenarios = service.getScenariosForLesson('program-1', 'lesson-2');
       expect(scenarios).toHaveLength(2);
       expect(scenarios[0].id).toBe('scenario-2');
       expect(scenarios[1].id).toBe('scenario-3');
     });
   });
 
+  describe('loadProgramOptions', () => {
+    it('should load program options for a course', async () => {
+      const options = await service.loadProgramOptions('course-1');
+
+      expect(options).toHaveLength(1);
+      expect(options[0]).toEqual({ id: 'program-1', title: 'Lesson 1' });
+    });
+
+    it('should cache program options by course ID', async () => {
+      await service.loadProgramOptions('course-1');
+      await service.loadProgramOptions('course-1');
+
+      // loadPrograms calls courseSearchService.getById
+      expect(courseSearchServiceMock.getById).toHaveBeenCalledTimes(1);
+    });
+
+    it('should reuse programs cache from loadPrograms', async () => {
+      await service.loadPrograms('course-1');
+      const options = await service.loadProgramOptions('course-1');
+
+      expect(options).toHaveLength(1);
+      expect(courseSearchServiceMock.getById).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe('invalidateCache', () => {
     it('should clear all caches when called without arguments', async () => {
       await service.loadCourses('ru', 'en', 'ru-en');
-      await service.loadLessons('course-1');
+      await service.loadLessons('program-1');
 
       service.invalidateCache();
 

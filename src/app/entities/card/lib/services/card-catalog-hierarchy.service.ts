@@ -28,6 +28,17 @@ export type LessonOption = {
 };
 
 /**
+ * A program option for dropdown/select UI components.
+ *
+ * @remarks
+ * Contains only `id` and `title` — used in hierarchy selectors.
+ */
+export type ProgramOption = {
+  id: string;
+  title: string;
+};
+
+/**
  * A scenario option for dropdown/select UI components.
  *
  * @remarks
@@ -77,6 +88,15 @@ export class CardCatalogHierarchyService {
    */
   readonly programsLoading = signal(false);
 
+  /**
+   * Whether program options are currently being loaded from the server.
+   *
+   * @remarks
+   * Set to `true` at the start of `loadProgramOptions` and reset to `false`
+   * when the operation completes (success or error).
+   */
+  readonly programOptionsLoading = signal(false);
+
   private coursesCache = new Map<string, readonly CourseOption[]>();
   /**
    * Cache for the pair-agnostic course list used by the card editor.
@@ -90,6 +110,7 @@ export class CardCatalogHierarchyService {
     string,
     readonly import('../../../program/model/program.types').Program[]
   >();
+  private courseProgramsOptionsCache = new Map<string, readonly ProgramOption[]>();
   private programLessonsCache = new Map<string, readonly Lesson[]>();
 
   /**
@@ -195,6 +216,28 @@ export class CardCatalogHierarchyService {
   }
 
   /**
+   * Loads lightweight program options for a given course.
+   *
+   * @param courseId - The course ID.
+   * @returns Array of program options (id + title only).
+   * @remarks
+   * Uses the internal `loadPrograms` cache to avoid redundant API calls —
+   * if programs are already loaded they are mapped to lightweight options;
+   * otherwise `loadPrograms` is invoked first.
+   */
+  async loadProgramOptions(courseId: string): Promise<readonly ProgramOption[]> {
+    const cached = this.courseProgramsOptionsCache.get(courseId);
+    if (cached) {
+      return cached;
+    }
+
+    const programs = await this.loadPrograms(courseId);
+    const options = programs.map((p) => ({ id: p.id, title: p.title }));
+    this.courseProgramsOptionsCache.set(courseId, options);
+    return options;
+  }
+
+  /**
    * Loads lesson options for a given program.
    *
    * @param programId - The program ID.
@@ -251,6 +294,7 @@ export class CardCatalogHierarchyService {
       this.coursesCache.clear();
       this.allCoursesCache = null;
       this.courseProgramsCache.clear();
+      this.courseProgramsOptionsCache.clear();
       this.programLessonsCache.clear();
     }
   }

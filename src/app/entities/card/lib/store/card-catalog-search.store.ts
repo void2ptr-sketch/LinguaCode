@@ -15,6 +15,7 @@ import {
   CardCatalogHierarchyService,
   type CourseOption,
   type LessonOption,
+  type ProgramOption,
   type ScenarioOption,
 } from '../services/card-catalog-hierarchy.service';
 import { UserStore } from '../../../user/model/user.store';
@@ -49,6 +50,8 @@ export class CardCatalogSearchStore {
   readonly selectedTags = signal<readonly string[]>([]);
   /** Selected course ID for hierarchy filter. */
   readonly selectedCourseId = signal<string | null>(null);
+  /** Selected program ID for hierarchy filter. */
+  readonly selectedProgramId = signal<string | null>(null);
   /** Selected lesson ID for hierarchy filter. */
   readonly selectedLessonId = signal<string | null>(null);
   /** Selected scenario ID for hierarchy filter. */
@@ -87,6 +90,8 @@ export class CardCatalogSearchStore {
   readonly availableCourses = signal<readonly CourseOption[]>([]);
   /** Available lessons for the selected course. */
   readonly availableLessons = signal<readonly LessonOption[]>([]);
+  /** Available programs for the selected course. */
+  readonly availablePrograms = signal<readonly ProgramOption[]>([]);
   /** Available scenarios for the selected lesson. */
   readonly availableScenarios = signal<readonly ScenarioOption[]>([]);
 
@@ -94,6 +99,8 @@ export class CardCatalogSearchStore {
   readonly coursesLoading = computed(() => this.hierarchyService.coursesLoading());
   /** Lessons loading state delegated from hierarchy service. */
   readonly lessonsLoading = computed(() => this.hierarchyService.lessonsLoading());
+  /** Program options loading state delegated from hierarchy service. */
+  readonly programsLoading = computed(() => this.hierarchyService.programOptionsLoading());
 
   /** User language pairs from profile. */
   readonly userLanguagePairs = computed(() => this.userStore.languagePairs());
@@ -228,19 +235,41 @@ export class CardCatalogSearchStore {
   }
 
   /**
-   * Sets the course filter and loads associated lessons.
+   * Sets the course filter and loads associated programs.
    *
    * @param courseId - The course ID, or `null` to clear.
    */
   async setCourse(courseId: string | null): Promise<void> {
     this.selectedCourseId.set(courseId);
+    this.selectedProgramId.set(null);
+    this.selectedLessonId.set(null);
+    this.selectedScenarioId.set(null);
+    this.availablePrograms.set([]);
+    this.availableLessons.set([]);
+    this.availableScenarios.set([]);
+
+    if (courseId) {
+      const programs = await this.hierarchyService.loadProgramOptions(courseId);
+      this.availablePrograms.set(programs);
+    }
+
+    this.resetPageAndSearch();
+  }
+
+  /**
+   * Sets the program filter and loads associated lessons.
+   *
+   * @param programId - The program ID, or `null` to clear.
+   */
+  async setProgram(programId: string | null): Promise<void> {
+    this.selectedProgramId.set(programId);
     this.selectedLessonId.set(null);
     this.selectedScenarioId.set(null);
     this.availableLessons.set([]);
     this.availableScenarios.set([]);
 
-    if (courseId) {
-      const lessons = await this.hierarchyService.loadLessons(courseId);
+    if (programId) {
+      const lessons = await this.hierarchyService.loadLessons(programId);
       this.availableLessons.set(lessons);
     }
 
@@ -258,9 +287,9 @@ export class CardCatalogSearchStore {
     this.availableScenarios.set([]);
 
     if (lessonId) {
-      const courseId = this.selectedCourseId();
-      if (courseId) {
-        const scenarios = this.hierarchyService.getScenariosForLesson(courseId, lessonId);
+      const programId = this.selectedProgramId();
+      if (programId) {
+        const scenarios = this.hierarchyService.getScenariosForLesson(programId, lessonId);
         this.availableScenarios.set(scenarios);
       }
     }
@@ -295,8 +324,10 @@ export class CardCatalogSearchStore {
     this.selectedKinds.set([]);
     this.selectedTags.set([]);
     this.selectedCourseId.set(null);
+    this.selectedProgramId.set(null);
     this.selectedLessonId.set(null);
     this.selectedScenarioId.set(null);
+    this.availablePrograms.set([]);
     this.availableLessons.set([]);
     this.availableScenarios.set([]);
     this.resetPageAndSearch();
@@ -354,16 +385,18 @@ export class CardCatalogSearchStore {
   }
 
   /**
-   * Clears the course → lesson → scenario cascade.
+   * Clears the course → program → lesson → scenario cascade.
    *
    * @remarks
    * Called whenever the language pair changes: the previously selected
-   * course/lesson/scenario may not belong to the new pair.
+   * course/program/lesson/scenario may not belong to the new pair.
    */
   private resetHierarchySelection(): void {
     this.selectedCourseId.set(null);
+    this.selectedProgramId.set(null);
     this.selectedLessonId.set(null);
     this.selectedScenarioId.set(null);
+    this.availablePrograms.set([]);
     this.availableLessons.set([]);
     this.availableScenarios.set([]);
   }
@@ -429,6 +462,7 @@ export class CardCatalogSearchStore {
       kinds: this.selectedKinds().length > 0 ? this.selectedKinds() : undefined,
       tags: this.selectedTags().length > 0 ? this.selectedTags() : undefined,
       courseId: this.selectedCourseId() ?? undefined,
+      programId: this.selectedProgramId() ?? undefined,
       lessonId: this.selectedLessonId() ?? undefined,
       scenarioId: this.selectedScenarioId() ?? undefined,
       page: {
