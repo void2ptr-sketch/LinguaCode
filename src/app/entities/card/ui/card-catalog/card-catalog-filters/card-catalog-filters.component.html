@@ -44,7 +44,7 @@
       <mat-select
         [ngModel]="store.selectedLessonId()"
         (ngModelChange)="onLessonChange($event)"
-        [disabled]="!store.selectedCourseId()"
+        [disabled]="!store.selectedProgramId()"
       >
         <mat-option [value]="null">Вне урока</mat-option>
         @for (lesson of store.availableLessons(); track lesson.id) {

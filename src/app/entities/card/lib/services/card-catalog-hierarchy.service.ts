@@ -3,7 +3,9 @@ import { Injectable, inject, signal } from '@angular/core';
 import type { CourseIndexEntry } from '../../../course/model';
 import type { Lesson } from '../../../course/model/lesson.types';
 import { CourseSearchService } from '../../../course/search/course-search.service';
+import { LessonsApiService } from '../../../lesson/api/lessons-api.service';
 import { ProgramsApiService } from '../../../program/api/programs-api.service';
+import { ScenarioSearchService } from '../../../scenario/search/scenario-search.service';
 import type { ContentLanguage } from '../../model';
 /**
  * A course option for dropdown/select UI components.
@@ -60,6 +62,8 @@ export type ScenarioOption = {
 export class CardCatalogHierarchyService {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly programsApi = inject(ProgramsApiService);
+  private readonly lessonsApi = inject(LessonsApiService);
+  private readonly scenarioSearchService = inject(ScenarioSearchService);
 
   /**
    * Whether courses are currently being loaded from the server.
@@ -97,6 +101,15 @@ export class CardCatalogHierarchyService {
    */
   readonly programOptionsLoading = signal(false);
 
+  /**
+   * Whether scenarios are currently being loaded from the server.
+   *
+   * @remarks
+   * Set to `true` at the start of `loadScenarios` and reset to `false` when
+   * the operation completes (success or error).
+   */
+  readonly scenariosLoading = signal(false);
+
   private coursesCache = new Map<string, readonly CourseOption[]>();
   /**
    * Cache for the pair-agnostic course list used by the card editor.
@@ -111,7 +124,8 @@ export class CardCatalogHierarchyService {
     readonly import('../../../program/model/program.types').Program[]
   >();
   private courseProgramsOptionsCache = new Map<string, readonly ProgramOption[]>();
-  private programLessonsCache = new Map<string, readonly Lesson[]>();
+  private programLessonsCache = new Map<string, readonly LessonOption[]>();
+  private lessonScenariosCache = new Map<string, readonly ScenarioOption[]>();
 
   /**
    * Loads courses for a given language pair.
@@ -201,13 +215,10 @@ export class CardCatalogHierarchyService {
     this.programsLoading.set(true);
 
     try {
-      const course = await this.courseSearchService.getById(courseId);
-      const programs =
-        (
-          course as unknown as {
-            programs: import('../../../program/model/program.types').Program[];
-          }
-        ).programs ?? [];
+      // Mirrors the «Размещение» cascade: programs come from the dedicated
+      // `GET /programs/by-course/{courseId}` endpoint instead of relying on
+      // programs embedded in the course search payload.
+      const programs = await this.programsApi.getByCourse(courseId);
       this.courseProgramsCache.set(courseId, programs);
       return programs;
     } finally {
@@ -242,43 +253,59 @@ export class CardCatalogHierarchyService {
    *
    * @param programId - The program ID.
    * @returns Array of lesson options.
+   * @remarks
+   * Uses `GET /lessons/by-program/{programId}` — the same endpoint as the
+   * «Размещение» cascade. Reading lessons from `GET /programs/{id}` is not
+   * reliable because that response does not always embed the lesson list,
+   * which left the «Урок» combo empty.
    */
   async loadLessons(programId: string): Promise<readonly LessonOption[]> {
     const cached = this.programLessonsCache.get(programId);
     if (cached) {
-      return cached.map(toLessonOption);
+      return cached;
     }
 
     this.lessonsLoading.set(true);
 
     try {
-      const program = await this.programsApi.getById(programId);
-      this.programLessonsCache.set(programId, program.lessons);
-      return program.lessons.map(toLessonOption);
+      const lessons = await this.lessonsApi.getByProgramId(programId);
+      const options = lessons.map(toLessonOption);
+      this.programLessonsCache.set(programId, options);
+      return options;
     } finally {
       this.lessonsLoading.set(false);
     }
   }
 
   /**
-   * Returns scenario options for a given lesson within a program.
+   * Loads scenario options for a given lesson.
    *
-   * @param programId - The program ID.
    * @param lessonId - The lesson ID.
-   * @returns Array of scenario options (IDs as titles until full data is loaded).
+   * @returns Array of scenario options with real titles.
+   * @remarks
+   * Mirrors the «Размещение» cascade: scenarios are fetched from
+   * `GET /scenarios/by-lesson/{lessonId}` rather than read from the lesson's
+   * embedded `scenarioIds`, so the combo shows titles instead of raw IDs.
    */
-  getScenariosForLesson(programId: string, lessonId: string): readonly ScenarioOption[] {
-    const cached = this.programLessonsCache.get(programId);
-    if (!cached) {
-      return [];
+  async loadScenarios(lessonId: string): Promise<readonly ScenarioOption[]> {
+    const cached = this.lessonScenariosCache.get(lessonId);
+    if (cached) {
+      return cached;
     }
 
-    const lesson = cached.find((l) => l.id === lessonId);
-    if (!lesson) {
-      return [];
-    }
+    this.scenariosLoading.set(true);
 
-    return lesson.scenarioIds.map((id) => ({ id, title: id }));
+    try {
+      const scenarios = await this.scenarioSearchService.getByLessonId(lessonId);
+      const options = scenarios.map((scenario) => ({
+        id: scenario.id,
+        title: scenario.title,
+      }));
+      this.lessonScenariosCache.set(lessonId, options);
+      return options;
+    } finally {
+      this.scenariosLoading.set(false);
+    }
   }
 
   /**
@@ -296,6 +323,7 @@ export class CardCatalogHierarchyService {
       this.courseProgramsCache.clear();
       this.courseProgramsOptionsCache.clear();
       this.programLessonsCache.clear();
+      this.lessonScenariosCache.clear();
     }
   }
 }

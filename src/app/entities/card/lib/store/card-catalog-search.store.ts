@@ -101,6 +101,8 @@ export class CardCatalogSearchStore {
   readonly lessonsLoading = computed(() => this.hierarchyService.lessonsLoading());
   /** Program options loading state delegated from hierarchy service. */
   readonly programsLoading = computed(() => this.hierarchyService.programOptionsLoading());
+  /** Scenario options loading state delegated from hierarchy service. */
+  readonly scenariosLoading = computed(() => this.hierarchyService.scenariosLoading());
 
   /** User language pairs from profile. */
   readonly userLanguagePairs = computed(() => this.userStore.languagePairs());
@@ -249,8 +251,12 @@ export class CardCatalogSearchStore {
     this.availableScenarios.set([]);
 
     if (courseId) {
-      const programs = await this.hierarchyService.loadProgramOptions(courseId);
-      this.availablePrograms.set(programs);
+      try {
+        const programs = await this.hierarchyService.loadProgramOptions(courseId);
+        this.availablePrograms.set(programs);
+      } catch {
+        this.availablePrograms.set([]);
+      }
     }
 
     this.resetPageAndSearch();
@@ -269,8 +275,12 @@ export class CardCatalogSearchStore {
     this.availableScenarios.set([]);
 
     if (programId) {
-      const lessons = await this.hierarchyService.loadLessons(programId);
-      this.availableLessons.set(lessons);
+      try {
+        const lessons = await this.hierarchyService.loadLessons(programId);
+        this.availableLessons.set(lessons);
+      } catch {
+        this.availableLessons.set([]);
+      }
     }
 
     this.resetPageAndSearch();
@@ -287,10 +297,11 @@ export class CardCatalogSearchStore {
     this.availableScenarios.set([]);
 
     if (lessonId) {
-      const programId = this.selectedProgramId();
-      if (programId) {
-        const scenarios = this.hierarchyService.getScenariosForLesson(programId, lessonId);
+      try {
+        const scenarios = await this.hierarchyService.loadScenarios(lessonId);
         this.availableScenarios.set(scenarios);
+      } catch {
+        this.availableScenarios.set([]);
       }
     }
 

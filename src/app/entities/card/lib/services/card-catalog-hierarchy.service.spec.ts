@@ -3,12 +3,17 @@ import { vi } from 'vitest';
 
 import { CardCatalogHierarchyService } from './card-catalog-hierarchy.service';
 import { CourseSearchService } from '../../../course/search/course-search.service';
+import { LessonsApiService } from '../../../lesson/api/lessons-api.service';
 import { ProgramsApiService } from '../../../program/api/programs-api.service';
+import { ScenarioSearchService } from '../../../scenario/search/scenario-search.service';
+import type { Scenario } from '../../../scenario/model';
 
 describe('CardCatalogHierarchyService', () => {
   let service: CardCatalogHierarchyService;
   let courseSearchServiceMock: Partial<CourseSearchService>;
   let programsApiMock: Partial<ProgramsApiService>;
+  let lessonsApiMock: Partial<LessonsApiService>;
+  let scenarioSearchServiceMock: Partial<ScenarioSearchService>;
 
   const mockCourseIndexEntry = {
     id: 'course-1',
@@ -20,49 +25,72 @@ describe('CardCatalogHierarchyService', () => {
     languagePairSummary: 'Русский → English',
   };
 
-  const mockCourseWithLessons = {
-    id: 'course-1',
-    title: 'Test Course',
-    authorId: 'author-1',
-    programCount: 2,
-    published: true,
+  const mockLessons = [
+    {
+      id: 'lesson-1',
+      title: 'Lesson 1',
+      description: '',
+      programId: 'program-1',
+      scenarioIds: ['scenario-1'],
+      prerequisiteLessonIds: [],
+      order: 0,
+      updatedAt: '2024-01-01T00:00:00.000Z',
+    },
+    {
+      id: 'lesson-2',
+      title: 'Lesson 2',
+      description: '',
+      programId: 'program-1',
+      scenarioIds: ['scenario-2', 'scenario-3'],
+      prerequisiteLessonIds: ['lesson-1'],
+      order: 1,
+      updatedAt: '2024-01-01T00:00:00.000Z',
+    },
+  ];
+
+  const mockProgram = {
+    id: 'program-1',
+    courseId: 'course-1',
+    title: 'Program 1',
+    description: '',
+    lessonIds: ['lesson-1', 'lesson-2'],
+    order: 0,
     updatedAt: '2024-01-01T00:00:00.000Z',
-    languagePairSummary: 'Русский → English',
-    programIds: ['program-1'],
-    programs: [
-      {
-        id: 'program-1',
-        courseId: 'course-1',
-        title: 'Lesson 1',
-        description: '',
-        lessonIds: ['lesson-1', 'lesson-2'],
-        order: 0,
-        updatedAt: '2024-01-01T00:00:00.000Z',
-        lessons: [
-          {
-            id: 'lesson-1',
-            title: 'Lesson 1',
-            description: '',
-            programId: 'program-1',
-            scenarioIds: ['scenario-1'],
-            prerequisiteLessonIds: [],
-            order: 0,
-            updatedAt: '2024-01-01T00:00:00.000Z',
-          },
-          {
-            id: 'lesson-2',
-            title: 'Lesson 2',
-            description: '',
-            programId: 'program-1',
-            scenarioIds: ['scenario-2', 'scenario-3'],
-            prerequisiteLessonIds: ['lesson-1'],
-            order: 1,
-            updatedAt: '2024-01-01T00:00:00.000Z',
-          },
-        ],
-      },
-    ],
+    lessons: mockLessons,
   };
+
+  const mockScenarios = [
+    {
+      id: 'scenario-1',
+      title: 'Greeting',
+      description: '',
+      authorId: 'author-1',
+      cardSource: { mode: 'fixed', cardIds: [] as readonly string[] },
+      published: true,
+      updatedAt: '2024-01-01T00:00:00.000Z',
+      lessonId: 'lesson-1',
+    },
+    {
+      id: 'scenario-2',
+      title: 'Numbers',
+      description: '',
+      authorId: 'author-1',
+      cardSource: { mode: 'fixed', cardIds: [] as readonly string[] },
+      published: true,
+      updatedAt: '2024-01-01T00:00:00.000Z',
+      lessonId: 'lesson-2',
+    },
+    {
+      id: 'scenario-3',
+      title: 'Colors',
+      description: '',
+      authorId: 'author-1',
+      cardSource: { mode: 'fixed', cardIds: [] as readonly string[] },
+      published: true,
+      updatedAt: '2024-01-01T00:00:00.000Z',
+      lessonId: 'lesson-2',
+    },
+  ];
 
   const mockPaginatedCourses = {
     items: [mockCourseIndexEntry],
@@ -74,11 +102,26 @@ describe('CardCatalogHierarchyService', () => {
 
     courseSearchServiceMock = {
       search: vi.fn().mockResolvedValue(mockPaginatedCourses),
-      getById: vi.fn().mockResolvedValue(mockCourseWithLessons),
+      getById: vi.fn().mockResolvedValue({
+        ...mockCourseIndexEntry,
+        programIds: ['program-1'],
+        programs: [mockProgram],
+      }),
     };
 
     programsApiMock = {
-      getById: vi.fn().mockResolvedValue(mockCourseWithLessons.programs[0]),
+      getByCourse: vi.fn().mockResolvedValue([mockProgram]),
+      getById: vi.fn().mockResolvedValue(mockProgram),
+    };
+
+    lessonsApiMock = {
+      getByProgramId: vi.fn().mockResolvedValue(mockLessons),
+    };
+
+    scenarioSearchServiceMock = {
+      getByLessonId: vi.fn(async (lessonId: string): Promise<readonly Scenario[]> =>
+        mockScenarios.filter((scenario) => scenario.lessonId === lessonId) as readonly Scenario[],
+      ),
     };
 
     TestBed.configureTestingModule({
@@ -86,6 +129,8 @@ describe('CardCatalogHierarchyService', () => {
         CardCatalogHierarchyService,
         { provide: CourseSearchService, useValue: courseSearchServiceMock },
         { provide: ProgramsApiService, useValue: programsApiMock },
+        { provide: LessonsApiService, useValue: lessonsApiMock },
+        { provide: ScenarioSearchService, useValue: scenarioSearchServiceMock },
       ],
     });
 
@@ -112,6 +157,10 @@ describe('CardCatalogHierarchyService', () => {
 
     it('should start with programOptionsLoading false', () => {
       expect(service.programOptionsLoading()).toBe(false);
+    });
+
+    it('should start with scenariosLoading false', () => {
+      expect(service.scenariosLoading()).toBe(false);
     });
   });
 
@@ -203,51 +252,53 @@ describe('CardCatalogHierarchyService', () => {
   });
 
   describe('loadLessons', () => {
-    it('should load lessons from program', async () => {
+    it('should load lessons from the dedicated program lessons endpoint', async () => {
       const lessons = await service.loadLessons('program-1');
 
       expect(lessons).toHaveLength(2);
       expect(lessons[0]).toEqual({ id: 'lesson-1', title: 'Lesson 1' });
       expect(lessons[1]).toEqual({ id: 'lesson-2', title: 'Lesson 2' });
+      expect(lessonsApiMock.getByProgramId).toHaveBeenCalledWith('program-1');
+      // Lessons must not be read from the program response.
+      expect(programsApiMock.getById).not.toHaveBeenCalled();
     });
 
     it('should cache lessons by program ID', async () => {
       await service.loadLessons('program-1');
       await service.loadLessons('program-1');
 
-      expect(programsApiMock.getById).toHaveBeenCalledTimes(1);
+      expect(lessonsApiMock.getByProgramId).toHaveBeenCalledTimes(1);
     });
   });
 
-  describe('getScenariosForLesson', () => {
-    it('should return scenario options for a lesson', async () => {
-      await service.loadLessons('program-1');
+  describe('loadScenarios', () => {
+    it('should load scenarios with real titles for a lesson', async () => {
+      const scenarios = await service.loadScenarios('lesson-1');
 
-      const scenarios = service.getScenariosForLesson('program-1', 'lesson-1');
-
-      expect(scenarios).toHaveLength(1);
-      expect(scenarios[0]).toEqual({ id: 'scenario-1', title: 'scenario-1' });
-    });
-
-    it('should return empty array for unknown program', () => {
-      const scenarios = service.getScenariosForLesson('unknown-program', 'lesson-1');
-      expect(scenarios).toEqual([]);
-    });
-
-    it('should return empty array for unknown lesson', async () => {
-      await service.loadLessons('program-1');
-
-      const scenarios = service.getScenariosForLesson('program-1', 'unknown-lesson');
-      expect(scenarios).toEqual([]);
+      expect(scenarios).toEqual([{ id: 'scenario-1', title: 'Greeting' }]);
+      expect(scenarioSearchServiceMock.getByLessonId).toHaveBeenCalledWith('lesson-1');
     });
 
     it('should return multiple scenarios for a lesson', async () => {
-      await service.loadLessons('program-1');
+      const scenarios = await service.loadScenarios('lesson-2');
 
-      const scenarios = service.getScenariosForLesson('program-1', 'lesson-2');
-      expect(scenarios).toHaveLength(2);
-      expect(scenarios[0].id).toBe('scenario-2');
-      expect(scenarios[1].id).toBe('scenario-3');
+      expect(scenarios).toEqual([
+        { id: 'scenario-2', title: 'Numbers' },
+        { id: 'scenario-3', title: 'Colors' },
+      ]);
+    });
+
+    it('should cache scenarios by lesson ID', async () => {
+      await service.loadScenarios('lesson-1');
+      await service.loadScenarios('lesson-1');
+
+      expect(scenarioSearchServiceMock.getByLessonId).toHaveBeenCalledTimes(1);
+    });
+
+    it('should return an empty array when the lesson has no scenarios', async () => {
+      const scenarios = await service.loadScenarios('unknown-lesson');
+
+      expect(scenarios).toEqual([]);
     });
   });
 
@@ -256,15 +307,15 @@ describe('CardCatalogHierarchyService', () => {
       const options = await service.loadProgramOptions('course-1');
 
       expect(options).toHaveLength(1);
-      expect(options[0]).toEqual({ id: 'program-1', title: 'Lesson 1' });
+      expect(options[0]).toEqual({ id: 'program-1', title: 'Program 1' });
+      expect(programsApiMock.getByCourse).toHaveBeenCalledWith('course-1');
     });
 
     it('should cache program options by course ID', async () => {
       await service.loadProgramOptions('course-1');
       await service.loadProgramOptions('course-1');
 
-      // loadPrograms calls courseSearchService.getById
-      expect(courseSearchServiceMock.getById).toHaveBeenCalledTimes(1);
+      expect(programsApiMock.getByCourse).toHaveBeenCalledTimes(1);
     });
 
     it('should reuse programs cache from loadPrograms', async () => {
@@ -272,7 +323,7 @@ describe('CardCatalogHierarchyService', () => {
       const options = await service.loadProgramOptions('course-1');
 
       expect(options).toHaveLength(1);
-      expect(courseSearchServiceMock.getById).toHaveBeenCalledTimes(1);
+      expect(programsApiMock.getByCourse).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -301,6 +352,19 @@ describe('CardCatalogHierarchyService', () => {
       // Loading en-zh should use cache
       await service.loadCourses('en', 'zh', 'en-zh');
       expect(courseSearchServiceMock.search).toHaveBeenCalledTimes(3);
+    });
+
+    it('should clear the lesson and scenario caches on full invalidation', async () => {
+      await service.loadLessons('program-1');
+      await service.loadScenarios('lesson-1');
+
+      service.invalidateCache();
+
+      await service.loadLessons('program-1');
+      await service.loadScenarios('lesson-1');
+
+      expect(lessonsApiMock.getByProgramId).toHaveBeenCalledTimes(2);
+      expect(scenarioSearchServiceMock.getByLessonId).toHaveBeenCalledTimes(2);
     });
   });
 });
