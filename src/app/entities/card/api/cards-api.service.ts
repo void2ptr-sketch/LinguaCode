@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, computed, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import type { Card, CardSearchCriteria, CardSearchPage } from '../model';
+import type { Card, CardDifficulty, CardKind, CardSearchCriteria, CardSearchPage } from '../model';
 import type { ApiResponse, ApiListResponse } from '../../../shared/api/api.types';
 import type { BackendCardDto } from '../model/card-backend-dto.types';
 import type { CardBatchRetrieveResponse } from '../../../shared/api/generated/models/cardBatchRetrieveResponse';
@@ -11,6 +11,8 @@ import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCardSearchParams } from './mock/cards-api.params.utils';
 import type { CardCatalogPort } from '../repository/card-catalog.port';
 import { buildCardIndex } from '../mapping/card-index.mapper';
+import { buildCardSearchFacets } from '../search/card-search.utils';
+import { CatalogService } from './catalog.service';
 
 /**
  * API service for card catalog operations.
@@ -22,6 +24,13 @@ import { buildCardIndex } from '../mapping/card-index.mapper';
 @Injectable({ providedIn: 'root' })
 export class CardsApiService implements CardCatalogPort {
   private readonly http = inject(HttpClient);
+  private readonly catalogService = inject(CatalogService);
+
+  private readonly catalogOptions = computed(() => ({
+    languageCodes: this.catalogService.contentLanguageCodes(),
+    difficulties: this.catalogService.difficulties().map((d) => d.code as CardDifficulty),
+    kinds: this.catalogService.cardKinds().map((k) => k.code as CardKind),
+  }));
 
   /**
    * Searches the card catalog with the given criteria.
@@ -46,21 +55,9 @@ export class CardsApiService implements CardCatalogPort {
       const dtos = response.data;
       const totalItems = response.total ?? dtos.length;
 
-      // Debug: log response
-      console.log('[CardsApiService] search response:', {
-        totalItems,
-        dtosCount: dtos.length,
-        firstDto: dtos[0] ? JSON.stringify(dtos[0], null, 2) : null,
-      });
-
       const cards = CardBackendAdapter.toCards(dtos);
       const entries = buildCardIndex(cards, {});
-
-      // Debug: log entries
-      console.log('[CardsApiService] built index entries:', {
-        entriesCount: entries.length,
-        firstEntry: entries[0] ? JSON.stringify(entries[0], null, 2) : null,
-      });
+      const facets = buildCardSearchFacets(entries, criteria, this.catalogOptions());
 
       const pageSize = criteria.page.pageSize;
       const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 0;
@@ -71,13 +68,7 @@ export class CardsApiService implements CardCatalogPort {
         pageSize,
         totalItems,
         totalPages,
-        facets: {
-          knownLanguages: [],
-          learningLanguages: [],
-          difficulties: [],
-          kinds: [],
-          tags: [],
-        },
+        facets,
       };
     });
   }

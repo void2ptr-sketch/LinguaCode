@@ -7,9 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import type { CardDifficulty, CardKind, CardSearchFacets } from '../../../model';
+import type { CardDifficulty, CardKind, CardSearchFacets, ContentLanguage } from '../../../model';
 import { CatalogService } from '../../../api/catalog.service';
 import { TagsService } from '../../../api/tags.service';
+import { LanguageService } from '../../../../language-pair/services/language.service';
 import { groupCatalogTagFacets } from '../../../lib/utils/catalog-tag-groups.util';
 import { CardCatalogSearchStore } from '../../../lib/store/card-catalog-search.store';
 
@@ -37,6 +38,15 @@ export class CardCatalogFiltersComponent {
   readonly store = inject(CardCatalogSearchStore);
   private readonly catalogService = inject(CatalogService);
   private readonly tagsService = inject(TagsService);
+  private readonly languageService = inject(LanguageService);
+
+  /** Available language codes from backend. */
+  readonly languageCodes = computed<string[]>(() => this.languageService.getCodes());
+
+  /** { code → label } map for languages. */
+  readonly languageLabels = computed<Record<string, string>>(() =>
+    this.languageService.getLabels(),
+  );
 
   /**
    * Available difficulty levels from backend catalog.
@@ -195,5 +205,23 @@ export class CardCatalogFiltersComponent {
    */
   clearFilters(): void {
     this.store.clearFilters();
+  }
+
+  /**
+   * Handles known language filter change.
+   *
+   * @param code - The selected language code, or `null` to clear.
+   */
+  onKnownLanguageChange(code: string | null): void {
+    this.store.setKnownLanguage(code as ContentLanguage | null);
+  }
+
+  /**
+   * Handles learning language filter change.
+   *
+   * @param code - The selected language code, or `null` to clear.
+   */
+  onLearningLanguageChange(code: string | null): void {
+    this.store.setLearningLanguage(code as ContentLanguage | null);
   }
 }

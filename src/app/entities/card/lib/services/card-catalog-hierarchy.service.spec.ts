@@ -118,8 +118,6 @@ describe('CardCatalogHierarchyService', () => {
       expect(courses).toHaveLength(1);
       expect(courses[0]).toEqual({ id: 'course-1', title: 'Test Course' });
       expect(courseSearchServiceMock.search).toHaveBeenCalledWith({
-        knownLanguage: 'ru',
-        learningLanguage: 'en',
         scope: 'published',
         page: { page: 0, pageSize: 100 },
       });

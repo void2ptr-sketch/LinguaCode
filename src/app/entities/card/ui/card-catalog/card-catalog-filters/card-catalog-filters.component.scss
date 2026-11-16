@@ -43,6 +43,11 @@
   /* inherits from hierarchy flex layout */
 }
 
+.card-catalog-filters__language {
+  flex: 1 1 10rem;
+  min-width: 8rem;
+}
+
 .card-catalog-filters__group {
   display: grid;
   gap: 0.5rem;
