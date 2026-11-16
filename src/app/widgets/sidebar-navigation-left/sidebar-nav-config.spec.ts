@@ -5,8 +5,8 @@ const flatItems = (groups: readonly NavGroup[]): readonly NavItem[] =>
   groups.flatMap((group) => group.items);
 
 describe('SIDEBAR_NAV_CONFIG', () => {
-  it('defines learning, tools and account groups', () => {
-    expect(SIDEBAR_NAV_CONFIG.map((group) => group.id)).toEqual(['learning', 'tools', 'account']);
+  it('defines learning, tools, admin and account groups', () => {
+    expect(SIDEBAR_NAV_CONFIG.map((group) => group.id)).toEqual(['learning', 'tools', 'admin', 'account']);
   });
 
   it('learning items have no role restriction (accessible to all roles)', () => {
@@ -30,6 +30,14 @@ describe('SIDEBAR_NAV_CONFIG', () => {
     expect(tools?.items.length).toBeGreaterThan(0);
     for (const item of tools?.items ?? []) {
       expect(item.roles).toEqual(['ROLE_AUTHOR', 'ROLE_ADMIN']);
+    }
+  });
+
+  it('admin items are restricted to ROLE_ADMIN', () => {
+    const admin = SIDEBAR_NAV_CONFIG.find((g) => g.id === 'admin');
+    expect(admin?.items.length).toBeGreaterThan(0);
+    for (const item of admin?.items ?? []) {
+      expect(item.roles).toEqual(['ROLE_ADMIN']);
     }
   });
 

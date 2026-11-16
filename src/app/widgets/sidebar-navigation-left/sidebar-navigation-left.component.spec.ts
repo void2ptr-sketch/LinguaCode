@@ -48,7 +48,7 @@ describe('SidebarNavigationLeftComponent', () => {
     fixture.detectChanges();
     const groups = component.groups();
     expect(groups).toBeDefined();
-    expect(groups).toHaveLength(3);
+    expect(groups).toHaveLength(4);
   });
 
   it('should expose groups with correct structure', () => {
@@ -56,7 +56,8 @@ describe('SidebarNavigationLeftComponent', () => {
     const groups = component.groups();
     expect(groups[0]?.id).toBe('learning');
     expect(groups[1]?.id).toBe('tools');
-    expect(groups[2]?.id).toBe('account');
+    expect(groups[2]?.id).toBe('admin');
+    expect(groups[3]?.id).toBe('account');
   });
 
   it('should render learning group items', () => {
@@ -85,6 +86,15 @@ describe('SidebarNavigationLeftComponent', () => {
     });
   });
 
+  it('should render admin group items', () => {
+    fixture.detectChanges();
+    const adminGroup = component.groups().find((g: NavGroup) => g.id === 'admin');
+    expect(adminGroup).toBeDefined();
+    expect(adminGroup!.items).toHaveLength(1);
+    expect(adminGroup!.items[0].label).toBe('Админ');
+    expect(adminGroup!.items[0].path).toBe('/admin');
+  });
+
   it('should render account group items', () => {
     fixture.detectChanges();
     const accountGroup = component.groups().find((g: NavGroup) => g.id === 'account');
@@ -99,13 +109,13 @@ describe('SidebarNavigationLeftComponent', () => {
   it('should render dividers between groups', () => {
     fixture.detectChanges();
     const dividers = fixture.nativeElement.querySelectorAll('mat-divider.navigation__divider');
-    expect(dividers.length).toBe(2);
+    expect(dividers.length).toBe(3);
   });
 
   it('should render mat-icons for each item plus toggle button', () => {
     fixture.detectChanges();
     const icons = fixture.nativeElement.querySelectorAll('mat-icon');
-    expect(icons.length).toBe(9); // 8 nav icons + 1 toggle icon
+    expect(icons.length).toBe(10); // 9 nav icons + 1 toggle icon
   });
 
   it('should have collapsed input defaulting to false', () => {

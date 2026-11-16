@@ -47,6 +47,10 @@ export const SIDEBAR_NAV_CONFIG: readonly NavGroup[] = [
     ],
   },
   {
+    id: 'admin',
+    items: [{ label: 'Админ', path: '/admin', icon: 'admin_panel_settings', roles: ['ROLE_ADMIN'] }],
+  },
+  {
     id: 'account',
     items: [{ label: 'Профиль', path: '/user', icon: 'person_outline' }],
   },
