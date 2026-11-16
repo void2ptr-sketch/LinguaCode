@@ -128,7 +128,7 @@ describe('ScenarioEditorFormComponent', () => {
       const root = fixture.nativeElement;
       const text = root.textContent?.toLowerCase() || '';
       expect(text).toContain('основное');
-      expect(text).toContain('связи');
+      expect(text).toContain('размещение');
       expect(text).toContain('публикация');
     });
 
