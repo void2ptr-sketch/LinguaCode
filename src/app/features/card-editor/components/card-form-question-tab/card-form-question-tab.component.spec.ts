@@ -3,11 +3,6 @@ import { TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi } from 'vitest';
 import { CardFormQuestionTabComponent } from './card-form-question-tab.component';
 import type { CardDraft } from '../../types';
-import type {
-  CourseOption,
-  LessonOption,
-  ScenarioOption,
-} from '../../../../entities/card/lib/services/card-catalog-hierarchy.service';
 
 const createBaseDraft = (kind: CardDraft['kind']): CardDraft =>
   ({
@@ -40,18 +35,6 @@ const createBaseDraft = (kind: CardDraft['kind']): CardDraft =>
   template: `
     <app-card-form-question-tab
       [draft]="draft"
-      [availableCourses]="courses"
-      [availablePrograms]="programs"
-      [availableLessons]="lessons"
-      [availableScenarios]="scenarios"
-      [knownLanguage]="knownLang"
-      [learningLanguage]="learnLang"
-      (knownLanguageChange)="onKnownLangChange($event)"
-      (learningLanguageChange)="onLearnLangChange($event)"
-      (courseIdChange)="onCourseIdChange($event)"
-      (programIdChange)="onProgramIdChange($event)"
-      (lessonIdChange)="onLessonIdChange($event)"
-      (scenarioIdChange)="onScenarioIdChange($event)"
       (titleChange)="onTitleChange($event)"
       (choicePromptKnownChange)="onChoicePromptKnownChange($event)"
     />
@@ -59,18 +42,6 @@ const createBaseDraft = (kind: CardDraft['kind']): CardDraft =>
 })
 class HostComponent {
   draft: CardDraft = createBaseDraft('select');
-  courses: CourseOption[] = [];
-  programs: { id: string; title: string }[] = [];
-  lessons: LessonOption[] = [];
-  scenarios: ScenarioOption[] = [];
-  knownLang: 'ru' | 'en' = 'ru';
-  learnLang: 'en' | 'zh' = 'en';
-  onKnownLangChange: (_v: string) => void = vi.fn();
-  onLearnLangChange: (_v: string) => void = vi.fn();
-  onCourseIdChange: (_v: string) => void = vi.fn();
-  onProgramIdChange: (_v: string) => void = vi.fn();
-  onLessonIdChange: (_v: string) => void = vi.fn();
-  onScenarioIdChange: (_v: string) => void = vi.fn();
   onTitleChange: (_v: string) => void = vi.fn();
   onChoicePromptKnownChange: (_v: string) => void = vi.fn();
 }
@@ -94,80 +65,11 @@ describe('CardFormQuestionTabComponent', () => {
 
   // ── Inputs ──
 
-  it('should have availableCourses input', () => {
-    expect(component.availableCourses).toBeDefined();
-  });
-
-  it('should have availablePrograms input', () => {
-    expect(component.availablePrograms).toBeDefined();
-  });
-
-  it('should have availableLessons input', () => {
-    expect(component.availableLessons).toBeDefined();
-  });
-
-  it('should have availableScenarios input', () => {
-    expect(component.availableScenarios).toBeDefined();
-  });
-
   it('should have draft input', () => {
     expect(component.draft).toBeDefined();
   });
 
-  it('should have knownLanguage input with default', () => {
-    expect(component.knownLanguage()).toBe('ru');
-  });
-
-  it('should have learningLanguage input with default', () => {
-    expect(component.learningLanguage()).toBe('en');
-  });
-
   // ── Outputs ──
-
-  it('should have knownLanguageChange output', () => {
-    let emitted: string | undefined;
-    component.knownLanguageChange.subscribe((v) => {
-      emitted = v;
-    });
-    component.knownLanguageChange.emit('en' as never);
-    expect(emitted).toBe('en');
-  });
-
-  it('should have learningLanguageChange output', () => {
-    let emitted: string | undefined;
-    component.learningLanguageChange.subscribe((v) => {
-      emitted = v;
-    });
-    component.learningLanguageChange.emit('zh' as never);
-    expect(emitted).toBe('zh');
-  });
-
-  it('should have courseIdChange output', () => {
-    let emitted = '';
-    component.courseIdChange.subscribe((v) => {
-      emitted = v;
-    });
-    component.courseIdChange.emit('c1');
-    expect(emitted).toBe('c1');
-  });
-
-  it('should have lessonIdChange output', () => {
-    let emitted = '';
-    component.lessonIdChange.subscribe((v) => {
-      emitted = v;
-    });
-    component.lessonIdChange.emit('l1');
-    expect(emitted).toBe('l1');
-  });
-
-  it('should have scenarioIdChange output', () => {
-    let emitted = '';
-    component.scenarioIdChange.subscribe((v) => {
-      emitted = v;
-    });
-    component.scenarioIdChange.emit('s1');
-    expect(emitted).toBe('s1');
-  });
 
   it('should have titleChange output', () => {
     let emitted = '';
@@ -185,17 +87,6 @@ describe('CardFormQuestionTabComponent', () => {
     });
     component.choicePromptKnownChange.emit('New Prompt');
     expect(emitted).toBe('New Prompt');
-  });
-
-  // ── Static data ──
-
-  it('should expose languages array', () => {
-    expect(component.languages).toBeDefined();
-    expect(component.languages().length).toBeGreaterThanOrEqual(0);
-  });
-
-  it('should expose languageLabels', () => {
-    expect(component.languageLabels).toBeDefined();
   });
 
   // ── choiceDraft computed ──
@@ -253,33 +144,6 @@ describe('CardFormQuestionTabComponent', () => {
   });
 
   // ── Update methods ──
-
-  it('should emit courseId on updateCourseId', () => {
-    let emitted = '';
-    component.courseIdChange.subscribe((v) => {
-      emitted = v;
-    });
-    component.updateCourseId('course-1');
-    expect(emitted).toBe('course-1');
-  });
-
-  it('should emit lessonId on updateLessonId', () => {
-    let emitted = '';
-    component.lessonIdChange.subscribe((v) => {
-      emitted = v;
-    });
-    component.updateLessonId('lesson-1');
-    expect(emitted).toBe('lesson-1');
-  });
-
-  it('should emit scenarioId on updateScenarioId', () => {
-    let emitted = '';
-    component.scenarioIdChange.subscribe((v) => {
-      emitted = v;
-    });
-    component.updateScenarioId('scenario-1');
-    expect(emitted).toBe('scenario-1');
-  });
 
   it('should emit title on updateTitle', () => {
     let emitted = '';

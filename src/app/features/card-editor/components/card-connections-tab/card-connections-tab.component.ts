@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, OnInit, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -6,10 +6,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import type { CardIndexMetaOverride } from '../../../../entities/card/model';
 import { LanguageService } from '../../../../entities/language-pair/services/language.service';
-import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
 import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import {
-  CardCatalogHierarchyService,
   type CourseOption,
   type LessonOption,
   type ScenarioOption,
@@ -33,9 +31,9 @@ export type ConnectionsDraft = {
  * Connections tab component for the card form.
  *
  * @remarks
- * Displays and edits all connection fields: language_pair_id (read-only),
- * course, program, lesson, and scenario with cascading loading.
- * Loads hierarchy independently via CardCatalogHierarchyService.
+ * Displays and edits all connection fields: language pair (derived from course),
+ * course, program, lesson, and scenario.
+ * Receives hierarchy data from the parent form component.
  */
 @Component({
   selector: 'app-card-connections-tab',
@@ -50,9 +48,7 @@ export type ConnectionsDraft = {
   templateUrl: './card-connections-tab.component.html',
   styleUrl: './card-connections-tab.component.scss',
 })
-export class CardConnectionsTabComponent implements OnInit {
-  private readonly hierarchyService = inject(CardCatalogHierarchyService);
-  private readonly languagePairsApi = inject(LanguagePairsApiService);
+export class CardConnectionsTabComponent {
   private readonly languageService = inject(LanguageService);
 
   /** Required draft containing only connection fields. */
@@ -60,6 +56,21 @@ export class CardConnectionsTabComponent implements OnInit {
 
   /** Optional card index meta override for language_pair_id. */
   readonly meta = input<CardIndexMetaOverride | undefined>(undefined);
+
+  /** Available courses for the current language pair. */
+  readonly availableCourses = input.required<readonly CourseOption[]>();
+
+  /** Available programs for the selected course. */
+  readonly availablePrograms = input.required<readonly { id: string; title: string }[]>();
+
+  /** Available lessons for the selected program. */
+  readonly availableLessons = input.required<readonly LessonOption[]>();
+
+  /** Available scenarios for the selected lesson. */
+  readonly availableScenarios = input.required<readonly ScenarioOption[]>();
+
+  /** Available language pairs from the registry. */
+  readonly languagePairs = input<readonly LanguagePairDto[]>([]);
 
   /** Emits the updated course ID. */
   readonly courseIdChange = output<string>();
@@ -76,120 +87,43 @@ export class CardConnectionsTabComponent implements OnInit {
   /** Emits the updated language pair ID. */
   readonly languagePairIdChange = output<string>();
 
-  /** Loading indicator for the hierarchy. */
-  readonly loading = signal(false);
-
-  /** Available courses for the current language pair, loaded asynchronously. */
-  readonly availableCourses = signal<readonly CourseOption[]>([]);
-
-  /** Available programs for the selected course, loaded asynchronously. */
-  readonly availablePrograms = signal<readonly { id: string; title: string }[]>([]);
-
-  /** Available lessons for the selected program, loaded asynchronously. */
-  readonly availableLessons = signal<readonly LessonOption[]>([]);
-
-  /** Available scenarios for the selected lesson. */
-  readonly availableScenarios = signal<readonly ScenarioOption[]>([]);
-
-  /** Available language pairs from the registry. */
-  readonly languagePairs = signal<readonly LanguagePairDto[]>([]);
-
   /** Labels for content languages. */
   readonly languageLabels = () => this.languageService.getLabels();
 
-  async ngOnInit(): Promise<void> {
-    this.loading.set(true);
-    try {
-      await Promise.all([this.loadLanguagePairs(), this.loadHierarchy()]);
-    } finally {
-      this.loading.set(false);
-    }
-  }
-
-  private async loadLanguagePairs(): Promise<void> {
-    try {
-      const pairs = await this.languagePairsApi.listAll();
-      this.languagePairs.set(pairs);
-    } catch {
-      this.languagePairs.set([]);
-    }
-  }
-
-  private async loadHierarchy(): Promise<void> {
-    // Загружаем курсы через CardCatalogHierarchyService.
-    // Используем дефолтные значения языков, так как язык определяется на уровне CardFormComponent.
-    const courses = await this.hierarchyService.loadCourses('ru', 'en', 'ru_en');
-    this.availableCourses.set(courses);
-
-    // Если у карточки уже выбрана иерархия — загружаем программы, уроки и сценарии.
-    const draft = this.draft();
-    if (draft.courseId) {
-      const programs = await this.hierarchyService.loadPrograms(draft.courseId);
-      this.availablePrograms.set(
-        programs.map((program) => ({ id: program.id, title: program.title })),
-      );
-    }
-    if (draft.programId) {
-      const lessons = await this.hierarchyService.loadLessons(draft.programId);
-      this.availableLessons.set(lessons);
-    }
-    if (draft.programId && draft.lessonId) {
-      const scenarios = this.hierarchyService.getScenariosForLesson(draft.programId, draft.lessonId);
-      this.availableScenarios.set(scenarios);
-    }
-  }
+  /**
+   * Computed display text for the language pair of the selected course.
+   *
+   * @remarks
+   * Resolves the language pair from the selected course or falls back to
+   * the language pair specified in the meta override.
+   */
+  readonly languagePairDisplay = input.required<string>();
 
   /**
-   * Updates the selected course and resets dependent fields.
+   * Updates the selected course and notifies the parent.
    *
    * @param courseId - The selected course ID (empty string to deselect).
    */
-  async updateCourseId(courseId: string): Promise<void> {
+  updateCourseId(courseId: string): void {
     this.courseIdChange.emit(courseId);
-    this.availablePrograms.set([]);
-    this.availableLessons.set([]);
-    this.availableScenarios.set([]);
-
-    if (courseId) {
-      const programs = await this.hierarchyService.loadPrograms(courseId);
-      this.availablePrograms.set(
-        programs.map((program) => ({ id: program.id, title: program.title })),
-      );
-    }
   }
 
   /**
-   * Updates the selected program and resets dependent fields.
+   * Updates the selected program and notifies the parent.
    *
    * @param programId - The selected program ID (empty string to deselect).
    */
-  async updateProgramId(programId: string): Promise<void> {
+  updateProgramId(programId: string): void {
     this.programIdChange.emit(programId);
-    this.availableLessons.set([]);
-    this.availableScenarios.set([]);
-
-    if (programId) {
-      const lessons = await this.hierarchyService.loadLessons(programId);
-      this.availableLessons.set(lessons);
-    }
   }
 
   /**
-   * Updates the selected lesson and resets scenarios.
+   * Updates the selected lesson and notifies the parent.
    *
    * @param lessonId - The selected lesson ID (empty string to deselect).
    */
-  async updateLessonId(lessonId: string): Promise<void> {
+  updateLessonId(lessonId: string): void {
     this.lessonIdChange.emit(lessonId);
-    this.availableScenarios.set([]);
-
-    if (lessonId) {
-      const programId = this.draft().programId;
-      if (programId) {
-        const scenarios = this.hierarchyService.getScenariosForLesson(programId, lessonId);
-        this.availableScenarios.set(scenarios);
-      }
-    }
   }
 
   /**

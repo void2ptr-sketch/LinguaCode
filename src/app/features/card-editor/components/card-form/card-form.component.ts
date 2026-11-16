@@ -163,6 +163,19 @@ export class CardFormComponent implements OnInit {
   private readonly activeTabIndex = signal<number>(0);
 
   /**
+   * Computed display text for the language pair.
+   *
+   * @remarks
+   * Shows "Known language (label) → Learning language (label)" based on
+   * the current known/learning language inputs.
+   */
+  readonly languagePairDisplay = computed(() => {
+    const known = this.languageLabels()[this.knownLanguage()] ?? this.knownLanguage();
+    const learning = this.languageLabels()[this.learningLanguage()] ?? this.learningLanguage();
+    return `${known} → ${learning}`;
+  });
+
+  /**
    * Records the index of the selected tab.
    *
    * @param index - The zero-based index of the tab the user selected.
