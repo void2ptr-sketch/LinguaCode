@@ -26,7 +26,7 @@ import { scormExportMockInterceptor } from '../../entities/course/api/mock/scorm
  * @returns An `EnvironmentProviders` configuration for Angular's HTTP client.
  */
 export const provideApiHttp = () => {
-  // ── Mock lock: prevent accidental mock usage during backend integration ──
+  // ── Mock interceptors — registered when corresponding flags are enabled ──
   const mockFlags: Record<string, boolean> = {
     useCardsApiMock: environment.useCardsApiMock,
     useScenariosApiMock: environment.useScenariosApiMock,
@@ -38,13 +38,6 @@ export const provideApiHttp = () => {
     useAuthApiMock: environment.useAuthApiMock,
   };
 
-  const enabledMocks = Object.entries(mockFlags).filter(([, v]) => v);
-  if (enabledMocks.length > 0) {
-    const msg = `Mock API interceptors are ENABLED — backend integration in progress:\n  ${enabledMocks.map(([k]) => `  - ${k}`).join('\n  ')}`;
-    console.error('[LinguaCode] ' + msg);
-    throw new Error(msg);
-  }
-
   const interceptors = [
     offlineInterceptor,
     authRefreshInterceptor,
@@ -53,6 +46,22 @@ export const provideApiHttp = () => {
     timeoutInterceptor,
     errorInterceptor,
   ];
+
+  // Register mock interceptors when their corresponding flags are enabled
+  if (environment.useCardsApiMock) interceptors.unshift(cardsApiMockInterceptor);
+  if (environment.useScenariosApiMock) interceptors.unshift(scenariosApiMockInterceptor);
+  if (environment.useCoursesApiMock) interceptors.unshift(coursesApiMockInterceptor);
+  if (environment.useProgramsApiMock) interceptors.unshift(programsApiMockInterceptor);
+  if (environment.useLessonsApiMock) interceptors.unshift(lessonsApiMockInterceptor);
+  if (environment.useScormMock) interceptors.unshift(scormExportMockInterceptor);
+
+  const enabledMocks = Object.entries(mockFlags).filter(([, v]) => v);
+  if (enabledMocks.length > 0) {
+    console.warn(
+      '[LinguaCode] Mock API interceptors enabled:',
+      enabledMocks.map(([k]) => k).join(', '),
+    );
+  }
 
   return provideHttpClient(withInterceptors(interceptors));
 };

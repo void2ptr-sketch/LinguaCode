@@ -7,13 +7,15 @@ import {
   OnInit,
 } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 import { CardKind } from '../../../entities/card/model';
 import { formatIndexLanguagePair } from '../../../entities/language-pair/utils/language-pair.utils';
 import { LanguageService } from '../../../entities/language-pair';
@@ -52,13 +54,15 @@ let lastKnownActiveLanguagePairId: string | null | undefined = null;
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DatePipe,
-    RouterLink,
+    FormsModule,
     MatCardModule,
     MatButtonModule,
     MatChipsModule,
+    MatFormFieldModule,
     MatIconModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     UiPaginationComponent,
     CardCatalogFiltersComponent,
   ],
@@ -93,7 +97,7 @@ export class CardEditorPageComponent implements OnInit {
   );
 
   /** Labels for content languages. */
-  readonly languageLabels = this.languageService.getLabels();
+  readonly languageLabels = computed(() => this.languageService.getLabels());
 
   /** Labels for difficulty levels from backend catalog. */
   readonly difficultyLabels = computed<Record<string, string>>(() =>
@@ -130,7 +134,7 @@ export class CardEditorPageComponent implements OnInit {
    * @returns Formatted language pair string (e.g., "zh → en").
    */
   formatEntryLanguages(entry: Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage'>): string {
-    return formatIndexLanguagePair(entry, this.languageLabels);
+    return formatIndexLanguagePair(entry, this.languageLabels());
   }
 
   /**
@@ -142,6 +146,15 @@ export class CardEditorPageComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const pair = this.userStore.languagePair();
     await this.catalogStore.initWithActivePair(pair.known, pair.learning);
+  }
+
+  /**
+   * Handles language pair selection changes in the filters header.
+   *
+   * @param pairId - The selected language pair ID, or `null` to clear.
+   */
+  async onLanguagePairChange(pairId: unknown): Promise<void> {
+    await this.catalogStore.applyLanguagePair(pairId as string | null);
   }
 
   /**

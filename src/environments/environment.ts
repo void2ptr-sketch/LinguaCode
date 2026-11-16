@@ -2,13 +2,10 @@
  * Окружение для разработки.
  *
  * Интеграция с реальным бэкендом (apiUrl).
- * Mock-интерсепторы ЗАБЛОКИРОВАНЫ — runtime-гард в provideApiHttp()
- * выбросит ошибку при попытке включить любой mock-флаг.
+ * Mock-интерсепторы включены по умолчанию для работы без бэкенда.
+ * Для использования реального бэкенда — установите все `use*ApiMock: false`.
  *
- * Для локальной разработки без бэкенда:
- * 1. Скопируйте этот файл в environment.local.ts
- * 2. Установите нужные флаги в true
- * 3. Импортируйте environment.local.ts вместо environment.ts в app.config.ts
+ * @see environment.production.ts — продакшен-окружение (mock отключены)
  */
 import type { Environment } from './environment.types';
 
@@ -26,7 +23,7 @@ export const environment: Environment = {
   apiVersion: 'v1',
   fixturesUrl: '/data',
   appName: 'LinguaCode',
-  useCardsApiMock: false,
+  useCardsApiMock: true,
   useScenariosApiMock: false,
   useCoursesApiMock: false,
   useProgramsApiMock: false,
@@ -34,5 +31,5 @@ export const environment: Environment = {
   useScormMock: false,
   useLanguagePairsApiMock: false,
   useAuthApiMock: false,
-  authEnabled: true,
+  authEnabled: false,
 };

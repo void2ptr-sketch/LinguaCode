@@ -14,34 +14,6 @@
     <mat-icon matPrefix>search</mat-icon>
   </mat-form-field>
 
-  <mat-form-field class="card-catalog-filters__language" appearance="outline">
-    <mat-label>Известный язык</mat-label>
-    <mat-select
-      [ngModel]="store.knownLanguage()"
-      (ngModelChange)="onKnownLanguageChange($event)"
-      [disabled]="store.pairLocked()"
-    >
-      <mat-option [value]="null">Все</mat-option>
-      @for (code of languageCodes(); track code) {
-        <mat-option [value]="code">{{ languageLabels()[code] }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field class="card-catalog-filters__language" appearance="outline">
-    <mat-label>Изучаемый язык</mat-label>
-    <mat-select
-      [ngModel]="store.learningLanguage()"
-      (ngModelChange)="onLearningLanguageChange($event)"
-      [disabled]="store.pairLocked()"
-    >
-      <mat-option [value]="null">Все</mat-option>
-      @for (code of languageCodes(); track code) {
-        <mat-option [value]="code">{{ languageLabels()[code] }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-
   <div class="card-catalog-filters__hierarchy">
     <mat-form-field class="card-catalog-filters__course" appearance="outline">
       <mat-label>Курс</mat-label>

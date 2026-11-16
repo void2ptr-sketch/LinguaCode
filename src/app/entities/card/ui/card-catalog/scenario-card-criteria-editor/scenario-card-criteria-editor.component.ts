@@ -154,13 +154,12 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
       }
 
       const activeId = this.userStore.activeLanguagePairId();
-      const pair = this.userStore.languagePair();
 
       if (
         lastKnownCriteriaEditorActiveLanguagePairId !== null &&
         lastKnownCriteriaEditorActiveLanguagePairId !== activeId
       ) {
-        this.store.applyLanguagePair(pair.known, pair.learning);
+        this.store.applyLanguagePair(activeId ?? null);
       }
 
       lastKnownCriteriaEditorActiveLanguagePairId = activeId;

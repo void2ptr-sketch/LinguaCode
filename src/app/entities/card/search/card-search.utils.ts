@@ -71,6 +71,7 @@ export function matchesCardIndexEntry(
   if (
     ignore !== 'languagePairId' &&
     filters.languagePairId &&
+    entry.languagePairId &&
     entry.languagePairId !== filters.languagePairId
   )
     return false;

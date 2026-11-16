@@ -7,12 +7,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import type { CardDifficulty, CardKind, CardSearchFacets, ContentLanguage } from '../../../model';
+import type { CardDifficulty, CardKind, CardSearchFacets } from '../../../model';
 import { CatalogService } from '../../../api/catalog.service';
 import { TagsService } from '../../../api/tags.service';
 import { LanguageService } from '../../../../language-pair/services/language.service';
 import { groupCatalogTagFacets } from '../../../lib/utils/catalog-tag-groups.util';
 import { CardCatalogSearchStore } from '../../../lib/store/card-catalog-search.store';
+import { UserStore } from '../../../../user/model/user.store';
 
 /**
  * Card catalog filters component. Provides search, difficulty, kind, and tag filtering
@@ -39,14 +40,7 @@ export class CardCatalogFiltersComponent {
   private readonly catalogService = inject(CatalogService);
   private readonly tagsService = inject(TagsService);
   private readonly languageService = inject(LanguageService);
-
-  /** Available language codes from backend. */
-  readonly languageCodes = computed<string[]>(() => this.languageService.getCodes());
-
-  /** { code → label } map for languages. */
-  readonly languageLabels = computed<Record<string, string>>(() =>
-    this.languageService.getLabels(),
-  );
+  private readonly userStore = inject(UserStore);
 
   /**
    * Available difficulty levels from backend catalog.
@@ -113,6 +107,31 @@ export class CardCatalogFiltersComponent {
 
     return groupCatalogTagFacets(facets.tags);
   });
+
+  /** Selected language pair ID from store. */
+  readonly selectedLanguagePairId = computed(() => this.store.selectedLanguagePairId());
+
+  /** User language pairs for the ComboBox. */
+  readonly userLanguagePairs = computed(() => this.userStore.languagePairs());
+
+  /**
+   * Formats a human-readable label for a language pair entry
+   * (e.g. "Русский → English").
+   */
+  getPairLabel(entry: { pair: { known: string; learning: string } }): string {
+    const known = this.languageService.findByCode(entry.pair.known);
+    const learning = this.languageService.findByCode(entry.pair.learning);
+    return `${known?.displayName ?? entry.pair.known} → ${learning?.displayName ?? entry.pair.learning}`;
+  }
+
+  /**
+   * Handles language pair selection changes.
+   *
+   * @param pairId - The selected language pair ID, or `null` to clear.
+   */
+  onLanguagePairChange(pairId: string | null): void {
+    this.store.applyLanguagePair(pairId);
+  }
 
   /**
    * Handles search query input changes.
@@ -205,23 +224,5 @@ export class CardCatalogFiltersComponent {
    */
   clearFilters(): void {
     this.store.clearFilters();
-  }
-
-  /**
-   * Handles known language filter change.
-   *
-   * @param code - The selected language code, or `null` to clear.
-   */
-  onKnownLanguageChange(code: string | null): void {
-    this.store.setKnownLanguage(code as ContentLanguage | null);
-  }
-
-  /**
-   * Handles learning language filter change.
-   *
-   * @param code - The selected language code, or `null` to clear.
-   */
-  onLearningLanguageChange(code: string | null): void {
-    this.store.setLearningLanguage(code as ContentLanguage | null);
   }
 }

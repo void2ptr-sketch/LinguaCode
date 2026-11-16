@@ -17,6 +17,7 @@ import {
   type LessonOption,
   type ScenarioOption,
 } from '../services/card-catalog-hierarchy.service';
+import { UserStore } from '../../../user/model/user.store';
 
 /**
  * Store for the card catalog search feature.
@@ -32,6 +33,7 @@ export class CardCatalogSearchStore {
   private readonly hierarchyService = inject<CardCatalogHierarchyService>(
     CardCatalogHierarchyService,
   );
+  private readonly userStore = inject(UserStore);
 
   /** Search query text. */
   readonly query = signal('');
@@ -57,6 +59,9 @@ export class CardCatalogSearchStore {
   readonly pageSize = signal(DEFAULT_PAGE_SIZE);
   /** Whether the language pair is locked (e.g. from URL params). */
   readonly pairLocked = signal(false);
+
+  /** ID of the selected language pair from user profile (null = free choice). */
+  readonly selectedLanguagePairId = signal<string | null>(null);
 
   /** Available page size options. */
   readonly pageSizeOptions = PAGE_SIZE_OPTIONS;
@@ -90,6 +95,9 @@ export class CardCatalogSearchStore {
   /** Lessons loading state delegated from hierarchy service. */
   readonly lessonsLoading = computed(() => this.hierarchyService.lessonsLoading());
 
+  /** User language pairs from profile. */
+  readonly userLanguagePairs = computed(() => this.userStore.languagePairs());
+
   /** Human-readable label for the locked language pair (e.g. "Русский → English"). */
   readonly lockedPairLabel = computed(() => {
     const known = this.knownLanguage();
@@ -116,13 +124,32 @@ export class CardCatalogSearchStore {
    * @param learning - The learning content language.
    */
   async initWithActivePair(known: ContentLanguage, learning: ContentLanguage): Promise<void> {
-    this.pairLocked.set(true);
-    this.knownLanguage.set(known);
-    this.learningLanguage.set(learning);
-    const pairKey = this.languagePairKey(known, learning);
-    this.hierarchyService.invalidateCache(pairKey);
-    await this.loadCourses(pairKey);
-    await this.executeSearch();
+    const entry = this.userLanguagePairs().find(
+      (e) => e.pair.known === known && e.pair.learning === learning,
+    );
+
+    if (entry) {
+      // Found in profile — set signals directly (avoid applyLanguagePair
+      // which triggers executeSearch before courses are loaded).
+      this.pairLocked.set(true);
+      this.knownLanguage.set(known);
+      this.learningLanguage.set(learning);
+      this.selectedLanguagePairId.set(entry.id);
+
+      const pairKey = this.languagePairKey(known, learning);
+      this.hierarchyService.invalidateCache(pairKey);
+      await this.loadCourses(pairKey);
+      await this.executeSearch();
+    } else {
+      // Fallback: set known/learning manually when pair is not in profile
+      this.pairLocked.set(true);
+      this.knownLanguage.set(known);
+      this.learningLanguage.set(learning);
+      const pairKey = this.languagePairKey(known, learning);
+      this.hierarchyService.invalidateCache(pairKey);
+      await this.loadCourses(pairKey);
+      await this.executeSearch();
+    }
   }
 
   /**
@@ -293,15 +320,34 @@ export class CardCatalogSearchStore {
   }
 
   /**
-   * Applies a locked language pair and reloads courses.
+   * Applies a language pair from the user profile by ID.
    *
-   * @param known - The known content language.
-   * @param learning - The learning content language.
+   * Sets known/learning, pairLocked, resets hierarchy cache and reloads.
+   *
+   * @param pairId - The ID of the language pair entry, or `null` to clear.
    */
-  applyLanguagePair(known: ContentLanguage, learning: ContentLanguage): void {
+  applyLanguagePair(pairId: string | null): void {
+    if (!pairId) {
+      this.pairLocked.set(false);
+      this.knownLanguage.set(null);
+      this.learningLanguage.set(null);
+      this.selectedLanguagePairId.set(null);
+      this.resetPageAndSearch();
+      return;
+    }
+
+    const entry = this.userLanguagePairs().find((e) => e.id === pairId);
+    if (!entry) {
+      return;
+    }
+
+    const { known, learning } = entry.pair;
+
     this.pairLocked.set(true);
     this.knownLanguage.set(known);
     this.learningLanguage.set(learning);
+    this.selectedLanguagePairId.set(pairId);
+
     const pairKey = this.languagePairKey(known, learning);
     this.hierarchyService.invalidateCache(pairKey);
     void this.loadCourses(pairKey);
@@ -343,6 +389,7 @@ export class CardCatalogSearchStore {
       query: this.query().trim() || undefined,
       knownLanguage: this.knownLanguage() ?? undefined,
       learningLanguage: this.learningLanguage() ?? undefined,
+      languagePairId: this.selectedLanguagePairId() ?? undefined,
       difficulty: this.difficulty() ?? undefined,
       kinds: this.selectedKinds().length > 0 ? this.selectedKinds() : undefined,
       tags: this.selectedTags().length > 0 ? this.selectedTags() : undefined,
