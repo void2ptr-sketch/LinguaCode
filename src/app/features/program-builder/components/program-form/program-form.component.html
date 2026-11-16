@@ -1,6 +1,5 @@
 <div class="program-form">
   <mat-tab-group class="program-form__tabs" dynamicHeight>
-
     <!-- ── Вкладка 1: Основное ── -->
     <mat-tab label="Основное">
       <div class="program-form__tab-panel">
@@ -51,33 +50,12 @@
     <!-- ── Вкладка 2: Размещение ── -->
     <mat-tab label="Размещение">
       <div class="program-form__tab-panel">
-        <mat-form-field appearance="outline">
-          <mat-label>Языковая пара</mat-label>
-          <mat-select
-            [disabled]="readOnly()"
-            [ngModel]="draft().languagePairId"
-            (ngModelChange)="onLanguagePairChange($event)"
-          >
-            <mat-option value="">Без пары</mat-option>
-            @for (pair of languagePairs(); track pair.id) {
-              <mat-option [value]="pair.id">{{ pair.knownCode }} → {{ pair.learningCode }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Курс</mat-label>
-          <mat-select
-            [disabled]="readOnly()"
-            [ngModel]="draft().courseId"
-            (ngModelChange)="onCourseIdChange($event)"
-          >
-            <mat-option value="">Без курса</mat-option>
-            @for (course of courses(); track course.id) {
-              <mat-option [value]="course.id">{{ course.title }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
+        <app-content-hierarchy-selector
+          [levels]="hierarchyLevels"
+          [value]="hierarchyValue()"
+          [readOnly]="readOnly()"
+          (valueChange)="onHierarchyChange($event)"
+        />
       </div>
     </mat-tab>
 
@@ -108,6 +86,5 @@
         </mat-form-field>
       </div>
     </mat-tab>
-
   </mat-tab-group>
 </div>

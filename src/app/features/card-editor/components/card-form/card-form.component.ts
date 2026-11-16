@@ -6,7 +6,6 @@ import {
   ElementRef,
   inject,
   input,
-  OnInit,
   output,
   signal,
   viewChild,
@@ -32,12 +31,8 @@ import {
 } from '../../utils/options';
 import type { CardOptionsEditorState } from '../../utils/options/card-options-editor.utils';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
-import {
-  CardCatalogHierarchyService,
-  type CourseOption,
-  type LessonOption,
-  type ScenarioOption,
-} from '../../../../entities/card/lib/services/card-catalog-hierarchy.service';
+import type { HierarchyValue } from '../../../../entities/content-hierarchy';
+import { LanguagePairIdResolver } from '../../../../entities/language-pair/services/language-pair-id-resolver.service';
 import {
   CardFormTabsComponent,
   type TabDefinition,
@@ -100,9 +95,9 @@ const errorWord = (count: number): string => {
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.scss',
 })
-export class CardFormComponent implements OnInit {
-  private readonly hierarchyService = inject(CardCatalogHierarchyService);
+export class CardFormComponent {
   private readonly languageService = inject(LanguageService);
+  private readonly languagePairIdResolver = inject(LanguagePairIdResolver);
 
   /** Required card draft being edited or created. */
   readonly draft = input.required<CardDraft>();
@@ -121,6 +116,9 @@ export class CardFormComponent implements OnInit {
 
   /** Optional card index meta override for tags and hierarchy references. */
   readonly meta = input<CardIndexMetaOverride | undefined>(undefined);
+
+  /** Optional numeric language-pair ID supplied by the dialog context. */
+  readonly languagePairId = input<string | undefined>(undefined);
 
   /**
    * Editor UX mode controlling tab visibility.
@@ -154,17 +152,17 @@ export class CardFormComponent implements OnInit {
   /** Emits the updated card index meta override. */
   readonly metaChange = output<CardIndexMetaOverride | undefined>();
 
-  /** Available courses for the current language pair, loaded asynchronously. */
-  readonly availableCourses = signal<readonly CourseOption[]>([]);
+  /** Numeric language-pair ID resolved from the card content languages. */
+  readonly resolvedLanguagePairId = signal<number | undefined>(undefined);
 
-  /** Available programs for the selected course, loaded asynchronously. */
-  readonly availablePrograms = signal<readonly { id: string; title: string }[]>([]);
-
-  /** Available lessons for the selected program, loaded asynchronously. */
-  readonly availableLessons = signal<readonly LessonOption[]>([]);
-
-  /** Available scenarios for the selected lesson. */
-  readonly availableScenarios = signal<readonly ScenarioOption[]>([]);
+  /** Placement value passed to the shared hierarchy selector. */
+  readonly placementValue = computed<HierarchyValue>(() => ({
+    languagePairId: this.resolvedLanguagePairId(),
+    courseId: this.draft().courseId,
+    programId: this.draft().programId,
+    lessonId: this.draft().lessonId,
+    scenarioId: this.draft().scenarioId,
+  }));
 
   /** Computed kind group ('choice', 'input', 'code-select') for the current draft. */
   readonly kindGroup = computed(() => cardFormKindGroup(this.draft().kind));
@@ -257,6 +255,17 @@ export class CardFormComponent implements OnInit {
         this.activeTabId.set('content');
       }
     });
+
+    // The card pair is derived from its content languages (or from the
+    // explicit index-meta override). Courses on the placement tab are filtered
+    // by this pair.
+    effect(() => {
+      void this.resolveLanguagePairId(
+        this.knownLanguage(),
+        this.learningLanguage(),
+        this.languagePairId() ?? this.meta()?.languagePairId,
+      );
+    });
   }
 
   /**
@@ -269,29 +278,29 @@ export class CardFormComponent implements OnInit {
     this.tabContent()?.nativeElement.scrollTo({ top: 0 });
   }
 
-  async ngOnInit(): Promise<void> {
-    // «Размещение» предлагает все курсы независимо от активной языковой пары —
-    // как в конструкторах сценариев/программ/уроков. Фильтрация по паре оставляла
-    // в комбо «Курс» только курс текущей пары (например, C++ Complete Course).
-    const courses = await this.hierarchyService.loadAllCourses();
-    this.availableCourses.set(courses);
+  /**
+   * Resolves the numeric language-pair ID used to filter courses.
+   *
+   * @param known - Known content language.
+   * @param learning - Learning content language.
+   * @param explicitId - Optional `languagePairId` from the card index meta.
+   */
+  private async resolveLanguagePairId(
+    known: ContentLanguage,
+    learning: ContentLanguage,
+    explicitId: string | undefined,
+  ): Promise<void> {
+    const parsed = explicitId ? Number(explicitId) : Number.NaN;
+    if (Number.isFinite(parsed)) {
+      this.resolvedLanguagePairId.set(parsed);
+      return;
+    }
 
-    // Если у карточки уже выбрана иерархия — загружаем программы, уроки и сценарии.
-    const draft = this.draft();
-    if (draft.courseId) {
-      const programs = await this.hierarchyService.loadPrograms(draft.courseId);
-      this.availablePrograms.set(programs.map((program) => ({ id: program.id, title: program.title })));
-    }
-    if (draft.programId) {
-      const lessons = await this.hierarchyService.loadLessons(draft.programId);
-      this.availableLessons.set(lessons);
-    }
-    if (draft.programId && draft.lessonId) {
-      const scenarios = this.hierarchyService.getScenariosForLesson(
-        draft.programId,
-        draft.lessonId,
-      );
-      this.availableScenarios.set(scenarios);
+    try {
+      const ids = await this.languagePairIdResolver.resolveIds([{ known, learning }]);
+      this.resolvedLanguagePairId.set(ids[0]);
+    } catch {
+      this.resolvedLanguagePairId.set(undefined);
     }
   }
 
@@ -392,77 +401,18 @@ export class CardFormComponent implements OnInit {
   }
 
   /**
-   * Updates the selected course and loads associated lessons.
+   * Applies the hierarchy selector value to the card draft.
    *
-   * @param courseId - The selected course ID (empty string to deselect).
-   * @remarks
-   * Resets lessons and scenarios. Loads lessons asynchronously if a course is selected.
+   * @param value - New hierarchy value.
    */
-  async updateCourseId(courseId: string): Promise<void> {
+  onPlacementChange(value: HierarchyValue): void {
     this.updateDraft({
       ...this.draft(),
-      courseId,
-      programId: '',
-      lessonId: '',
-      scenarioId: '',
+      courseId: value.courseId ?? '',
+      programId: value.programId ?? '',
+      lessonId: value.lessonId ?? '',
+      scenarioId: value.scenarioId ?? '',
     });
-    this.availablePrograms.set([]);
-    this.availableLessons.set([]);
-    this.availableScenarios.set([]);
-
-    if (courseId) {
-      const programs = await this.hierarchyService.loadPrograms(courseId);
-      this.availablePrograms.set(
-        programs.map((program) => ({ id: program.id, title: program.title })),
-      );
-    }
-  }
-
-  /**
-   * Updates the selected program and loads associated lessons.
-   *
-   * @param programId - The selected program ID (empty string to deselect).
-   * @remarks
-   * Resets lessons and scenarios. Loads lessons asynchronously if a program is selected.
-   */
-  async updateProgramId(programId: string): Promise<void> {
-    this.updateDraft({ ...this.draft(), programId, lessonId: '', scenarioId: '' });
-    this.availableLessons.set([]);
-    this.availableScenarios.set([]);
-
-    if (programId) {
-      const lessons = await this.hierarchyService.loadLessons(programId);
-      this.availableLessons.set(lessons);
-    }
-  }
-
-  /**
-   * Updates the selected lesson and loads associated scenarios.
-   *
-   * @param lessonId - The selected lesson ID (empty string to deselect).
-   * @remarks
-   * Resets scenarios. Loads scenarios asynchronously if a lesson is selected.
-   */
-  async updateLessonId(lessonId: string): Promise<void> {
-    this.updateDraft({ ...this.draft(), lessonId, scenarioId: '' });
-    this.availableScenarios.set([]);
-
-    if (lessonId) {
-      const programId = this.draft().programId;
-      if (programId) {
-        const scenarios = this.hierarchyService.getScenariosForLesson(programId, lessonId);
-        this.availableScenarios.set(scenarios);
-      }
-    }
-  }
-
-  /**
-   * Updates the selected scenario in the draft.
-   *
-   * @param scenarioId - The selected scenario ID.
-   */
-  updateScenarioId(scenarioId: string): void {
-    this.updateDraft({ ...this.draft(), scenarioId });
   }
 
   /**

@@ -1,0 +1,81 @@
+@if (hasLevel('languagePair')) {
+  <mat-form-field appearance="outline">
+    <mat-label>Языковая пара</mat-label>
+    <mat-select
+      [value]="currentValue().languagePairId ?? null"
+      [disabled]="isDisabled('languagePair')"
+      (selectionChange)="onLanguagePairChange($event.value)"
+    >
+      @if (!readOnlyLevels().includes('languagePair')) {
+        <mat-option [value]="null">Без пары</mat-option>
+      }
+      @for (pair of languagePairs(); track pair.id) {
+        <mat-option [value]="pair.id">{{ pair.title }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}
+
+@if (hasLevel('course')) {
+  <mat-form-field appearance="outline">
+    <mat-label>Привязка к курсу</mat-label>
+    <mat-select
+      [value]="currentValue().courseId ?? null"
+      [disabled]="isDisabled('course')"
+      (selectionChange)="onCourseChange($event.value)"
+    >
+      <mat-option [value]="null">Без курса</mat-option>
+      @for (course of courses(); track course.id) {
+        <mat-option [value]="course.id">{{ course.title }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}
+
+@if (hasLevel('program')) {
+  <mat-form-field appearance="outline">
+    <mat-label>Программа</mat-label>
+    <mat-select
+      [value]="currentValue().programId ?? null"
+      [disabled]="isDisabled('program')"
+      (selectionChange)="onProgramChange($event.value)"
+    >
+      <mat-option [value]="null">Без программы</mat-option>
+      @for (program of programs(); track program.id) {
+        <mat-option [value]="program.id">{{ program.title }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}
+
+@if (hasLevel('lesson')) {
+  <mat-form-field appearance="outline">
+    <mat-label>Урок</mat-label>
+    <mat-select
+      [value]="currentValue().lessonId ?? null"
+      [disabled]="isDisabled('lesson')"
+      (selectionChange)="onLessonChange($event.value)"
+    >
+      <mat-option [value]="null">Без урока</mat-option>
+      @for (lesson of lessons(); track lesson.id) {
+        <mat-option [value]="lesson.id">{{ lesson.title }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}
+
+@if (hasLevel('scenario')) {
+  <mat-form-field appearance="outline">
+    <mat-label>Сценарий</mat-label>
+    <mat-select
+      [value]="currentValue().scenarioId ?? null"
+      [disabled]="isDisabled('scenario')"
+      (selectionChange)="onScenarioChange($event.value)"
+    >
+      <mat-option [value]="null">Без сценария</mat-option>
+      @for (scenario of scenarios(); track scenario.id) {
+        <mat-option [value]="scenario.id">{{ scenario.title }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}

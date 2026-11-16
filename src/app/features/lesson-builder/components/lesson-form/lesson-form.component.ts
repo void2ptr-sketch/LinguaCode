@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -6,6 +6,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import {
+  ContentHierarchySelectorComponent,
+  type HierarchyLevel,
+  type HierarchyValue,
+} from '../../../../entities/content-hierarchy';
 import type { CourseIndexEntry } from '../../../../entities/course/model';
 import type { Lesson } from '../../../../entities/course/model/lesson.types';
 import type { LanguagePairDto } from '../../../../entities/language-pair/api';
@@ -46,6 +51,7 @@ const TIER_LABELS: Record<string, string> = {
     MatInputModule,
     MatSelectModule,
     MatTabsModule,
+    ContentHierarchySelectorComponent,
   ],
   templateUrl: './lesson-form.component.html',
   styleUrl: './lesson-form.component.scss',
@@ -109,6 +115,16 @@ export class LessonFormComponent {
    */
   readonly draftChange = output<LessonFormDraft>();
 
+  /** Levels rendered on the lesson «Размещение» tab. */
+  readonly hierarchyLevels: readonly HierarchyLevel[] = ['languagePair', 'course', 'program'];
+
+  /** Current hierarchy value derived from the draft. */
+  readonly hierarchyValue = computed<HierarchyValue>(() => ({
+    languagePairId: this.draft().languagePairId,
+    courseId: this.draft().courseId,
+    programId: this.draft().programId,
+  }));
+
   /** Maximum allowed title length (backend contract). */
   readonly titleMaxLength = LESSON_TITLE_MAX_LENGTH;
 
@@ -156,6 +172,20 @@ export class LessonFormComponent {
     this.draftChange.emit({
       ...this.draft(),
       languagePairId: languagePairId ?? undefined,
+    });
+  }
+
+  /**
+   * Applies the shared hierarchy selector value to the lesson draft.
+   *
+   * @param value - New hierarchy value.
+   */
+  onHierarchyChange(value: HierarchyValue): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      languagePairId: value.languagePairId,
+      courseId: value.courseId ?? '',
+      programId: value.programId ?? '',
     });
   }
 

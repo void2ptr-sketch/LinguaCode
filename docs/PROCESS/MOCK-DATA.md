@@ -18,17 +18,29 @@ export const environment: Environment = {
 };
 ```
 
-| Флаг                        | Что мокает                                                                          | Интерсептор                   |
-| --------------------------- | ----------------------------------------------------------------------------------- | ----------------------------- |
+| Флаг                        | Что мокает                                                                           | Интерсептор                   |
+| --------------------------- | ------------------------------------------------------------------------------------ | ----------------------------- |
 | `useCardsApiMock: true`     | `/api/cards/search`, `/api/cards/:id`, `/api/cards/batch`, `/api/cards/difficulties` | `cardsApiMockInterceptor`     |
-| `useScenariosApiMock: true` | `/api/scenarios/search`, `/api/scenarios/:id`, CRUD                                 | `scenariosApiMockInterceptor` |
-| `useCoursesApiMock: true`   | `/api/courses/search`, `/api/courses/:id`, CRUD                                     | `coursesApiMockInterceptor`   |
+| `useScenariosApiMock: true` | `/api/scenarios/search`, `/api/scenarios/:id`, CRUD                                  | `scenariosApiMockInterceptor` |
+| `useCoursesApiMock: true`   | `/api/courses/search`, `/api/courses/:id`, CRUD                                      | `coursesApiMockInterceptor`   |
 
 Все три интерсептора подключаются через `provideApiHttp()` в `app/app/app.config.ts` и перехватывают только запросы к `environment.apiUrl` (`/api`). Запросы к `environment.fixturesUrl` (`/data`) идут напрямую через `HttpClient`.
 
 ### Справочники: backend vs mock
 
 В production значения справочников (`/cards/kinds`, `/cards/difficulties`, `/content-languages`, `/cards/tags`) загружаются с бэкенда. Frontend-константы для справочников допустимы только в mock-слое (`entities/*/api/mock/`) и используются исключительно при включённых `useXxxApiMock`. Production-код не подставляет локальные списки вместо ответа API — это гарантирует, что UI отражает реальные данные таблиц бэкенда (например, `content_difficulty_levels`).
+
+Это же правило распространяется на каскад иерархии контента:
+
+| Поле             | Таблица               | Источник в production                     |
+| ---------------- | --------------------- | ----------------------------------------- |
+| Языковая пара    | `language_pairs`      | `GET /language-pairs`                     |
+| Привязка к курсу | `education_courses`   | `GET /courses/search` с `languagePairIds` |
+| Программа        | `education_programs`  | `GET /programs/by-course/{courseId}`      |
+| Урок             | `education_lessons`   | `GET /lessons/by-program/{programId}`     |
+| Сценарий         | `education_scenarios` | `GET /scenarios/by-lesson/{lessonId}`     |
+
+Диалоги авторинга обязаны использовать `ContentHierarchyService` / `ContentHierarchySelectorComponent`; статические массивы курсов, программ, уроков и сценариев в production-коде запрещены. `DEFAULT_LANGUAGE_PAIR` и подобные `DEFAULT_*` — только fallback нормализации, не источник опций. Подробности: [ARCHITECTURE.content-hierarchy.md](../ARCHITECTURE/ARCHITECTURE.content-hierarchy.md).
 
 ## Структура данных
 
@@ -376,16 +388,16 @@ public/data/courses/my-courses.json
 
 ## Архитектурные компоненты
 
-| Компонент                     | Расположение                                         | Роль                                |
-| ----------------------------- | ---------------------------------------------------- | ----------------------------------- |
-| `ContentSeedRepository`       | `entities/content-seed/content-seed.repository.ts`   | Загрузка fixture-файлов из `/data/` |
-| `content-seed.cache.ts`       | `entities/content-seed/content-seed.cache.ts`        | Глобальный кеш seed-данных          |
-| `CardsCatalogMockHandler`     | `entities/card/api/mock-catalog.mock.handler.ts`     | Обработка запросов карточек         |
-| `CARD_DIFFICULTY_MOCK_OPTIONS` | `entities/card/api/mock/card-difficulty.mock.ts`    | Mock-справочник уровней сложности   |
-| `ScenariosCatalogMockHandler` | `entities/scenario/api/mock-catalog.mock.handler.ts` | Обработка запросов сценариев        |
-| `CoursesCatalogMockHandler`   | `entities/course/api/mock-catalog.mock.handler.ts`   | Обработка запросов курсов           |
-| `cardsApiMockInterceptor`     | `entities/card/api/mock-api.mock.interceptor.ts`     | HTTP-интерсептор карточек           |
-| `scenariosApiMockInterceptor` | `entities/scenario/api/mock-api.mock.interceptor.ts` | HTTP-интерсептор сценариев          |
-| `coursesApiMockInterceptor`   | `entities/course/api/mock-api.mock.interceptor.ts`   | HTTP-интерсептор курсов             |
-| `user-content-overlay.*`      | `entities/user/overlay/user-content-overlay.*`       | Слияние seed + overlay              |
-| `provide-api.http.ts`         | `app/api/provide-api.http.ts`                        | Регистрация интерсепторов           |
+| Компонент                      | Расположение                                         | Роль                                |
+| ------------------------------ | ---------------------------------------------------- | ----------------------------------- |
+| `ContentSeedRepository`        | `entities/content-seed/content-seed.repository.ts`   | Загрузка fixture-файлов из `/data/` |
+| `content-seed.cache.ts`        | `entities/content-seed/content-seed.cache.ts`        | Глобальный кеш seed-данных          |
+| `CardsCatalogMockHandler`      | `entities/card/api/mock-catalog.mock.handler.ts`     | Обработка запросов карточек         |
+| `CARD_DIFFICULTY_MOCK_OPTIONS` | `entities/card/api/mock/card-difficulty.mock.ts`     | Mock-справочник уровней сложности   |
+| `ScenariosCatalogMockHandler`  | `entities/scenario/api/mock-catalog.mock.handler.ts` | Обработка запросов сценариев        |
+| `CoursesCatalogMockHandler`    | `entities/course/api/mock-catalog.mock.handler.ts`   | Обработка запросов курсов           |
+| `cardsApiMockInterceptor`      | `entities/card/api/mock-api.mock.interceptor.ts`     | HTTP-интерсептор карточек           |
+| `scenariosApiMockInterceptor`  | `entities/scenario/api/mock-api.mock.interceptor.ts` | HTTP-интерсептор сценариев          |
+| `coursesApiMockInterceptor`    | `entities/course/api/mock-api.mock.interceptor.ts`   | HTTP-интерсептор курсов             |
+| `user-content-overlay.*`       | `entities/user/overlay/user-content-overlay.*`       | Слияние seed + overlay              |
+| `provide-api.http.ts`          | `app/api/provide-api.http.ts`                        | Регистрация интерсепторов           |

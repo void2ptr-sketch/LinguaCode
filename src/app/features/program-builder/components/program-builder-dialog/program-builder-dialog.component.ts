@@ -17,6 +17,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { firstValueFrom } from 'rxjs';
 
 import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
+import { ContentHierarchyService } from '../../../../entities/content-hierarchy';
 import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
 import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import { CourseSearchService } from '../../../../entities/course';
@@ -50,6 +51,7 @@ import type { ProgramFormDraft } from '../../types';
   selector: 'app-program-builder-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButtonModule, MatDialogModule, MatProgressSpinnerModule, ProgramFormComponent],
+  providers: [ContentHierarchyService],
   templateUrl: './program-builder-dialog.component.html',
   styleUrl: './program-builder-dialog.component.scss',
 })

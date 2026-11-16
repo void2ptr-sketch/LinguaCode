@@ -18,6 +18,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { CardCatalogSearchStore } from '../../../../entities/card/lib/store/card-catalog-search.store';
 import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
+import { ContentHierarchyService } from '../../../../entities/content-hierarchy';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { ProgramsApiService } from '../../../../entities/program/api';
 import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
@@ -52,7 +53,7 @@ import type { Lesson } from '../../../../entities/course/model/lesson.types';
     MatProgressSpinnerModule,
     ScenarioEditorFormComponent,
   ],
-  providers: [CardCatalogSearchStore],
+  providers: [CardCatalogSearchStore, ContentHierarchyService],
   templateUrl: './scenario-builder-dialog.component.html',
   styleUrl: './scenario-builder-dialog.component.scss',
 })

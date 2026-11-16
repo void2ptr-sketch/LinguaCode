@@ -23,11 +23,7 @@ import { ProgramFormComponent } from './program-form.component';
     FormsModule,
   ],
   template: `
-    <app-program-form
-      [draft]="draft"
-      (draftChange)="onDraftChange($event)"
-      [readOnly]="readOnly"
-    />
+    <app-program-form [draft]="draft" (draftChange)="onDraftChange($event)" [readOnly]="readOnly" />
   `,
 })
 class TestHostComponent {
@@ -141,7 +137,9 @@ describe('ProgramFormComponent', () => {
 
   it('should not disable inputs when readOnly is false', () => {
     const { fixture } = createComponent(false);
-    const inputs = fixture.nativeElement.querySelectorAll('input[disabled], textarea[disabled], select[disabled]');
+    const inputs = fixture.nativeElement.querySelectorAll(
+      'input[disabled], textarea[disabled], select[disabled]',
+    );
     expect(inputs.length).toBe(0);
   });
 });

@@ -1,38 +1,33 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+
 import {
-  type CourseOption,
-  type LessonOption,
-  type ScenarioOption,
-} from '../../../../entities/card/lib/services/card-catalog-hierarchy.service';
+  ContentHierarchySelectorComponent,
+  type HierarchyLevel,
+  type HierarchyValue,
+} from '../../../../entities/content-hierarchy';
 
 /**
- * Minimal placement fields for the draft.
+ * Placement draft shape used by the card form.
  *
  * @remarks
- * Contains only the hierarchy reference fields — avoids circular dependency
- * with the full CardDraft type.
+ * Kept as an alias so the placement tab can stay decoupled from the full
+ * `CardDraft` type.
  */
-export type PlacementDraft = {
-  courseId: string | undefined;
-  programId: string | undefined;
-  lessonId: string | undefined;
-  scenarioId: string | undefined;
-};
+export type PlacementDraft = HierarchyValue;
 
 /**
  * Placement tab component for the card form.
  *
  * @remarks
- * Displays and edits the course → program → lesson → scenario hierarchy.
- * The read-only language pair summary lives in the dialog header instead.
+ * Hosts the shared `ContentHierarchySelectorComponent`, which loads every
+ * option list from the backend tables (language pairs, courses, programs,
+ * lessons, scenarios). The language pair is read-only on cards because it is
+ * derived from the card content languages.
  */
 @Component({
   selector: 'app-card-form-placement-tab',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, MatFormFieldModule, MatSelectModule],
+  imports: [ContentHierarchySelectorComponent],
   templateUrl: './card-form-placement-tab.component.html',
   styleUrl: './card-form-placement-tab.component.scss',
 })
@@ -40,63 +35,24 @@ export class CardFormPlacementTabComponent {
   /** Required draft containing only placement fields. */
   readonly draft = input.required<PlacementDraft>();
 
-  /** Available courses for the current language pair. */
-  readonly availableCourses = input.required<readonly CourseOption[]>();
+  /** Numeric language-pair ID used to filter courses. */
+  readonly languagePairId = input<number | undefined>(undefined);
 
-  /** Available programs for the selected course. */
-  readonly availablePrograms = input.required<readonly { id: string; title: string }[]>();
+  /** Disables every hierarchy control. */
+  readonly readOnly = input(false);
 
-  /** Available lessons for the selected program. */
-  readonly availableLessons = input.required<readonly LessonOption[]>();
+  /** Emits the updated hierarchy value. */
+  readonly placementChange = output<HierarchyValue>();
 
-  /** Available scenarios for the selected lesson. */
-  readonly availableScenarios = input.required<readonly ScenarioOption[]>();
+  /** Levels rendered on the card placement tab. */
+  readonly levels: readonly HierarchyLevel[] = [
+    'languagePair',
+    'course',
+    'program',
+    'lesson',
+    'scenario',
+  ];
 
-  /** Emits the updated course ID. */
-  readonly courseIdChange = output<string>();
-
-  /** Emits the updated program ID. */
-  readonly programIdChange = output<string>();
-
-  /** Emits the updated lesson ID. */
-  readonly lessonIdChange = output<string>();
-
-  /** Emits the updated scenario ID. */
-  readonly scenarioIdChange = output<string>();
-
-  /**
-   * Updates the selected course and notifies the parent.
-   *
-   * @param courseId - The selected course ID (empty string to deselect).
-   */
-  updateCourseId(courseId: string): void {
-    this.courseIdChange.emit(courseId);
-  }
-
-  /**
-   * Updates the selected program and notifies the parent.
-   *
-   * @param programId - The selected program ID (empty string to deselect).
-   */
-  updateProgramId(programId: string): void {
-    this.programIdChange.emit(programId);
-  }
-
-  /**
-   * Updates the selected lesson and notifies the parent.
-   *
-   * @param lessonId - The selected lesson ID (empty string to deselect).
-   */
-  updateLessonId(lessonId: string): void {
-    this.lessonIdChange.emit(lessonId);
-  }
-
-  /**
-   * Updates the selected scenario.
-   *
-   * @param scenarioId - The selected scenario ID.
-   */
-  updateScenarioId(scenarioId: string): void {
-    this.scenarioIdChange.emit(scenarioId);
-  }
+  /** The card pair is derived from content languages and is not editable here. */
+  readonly readOnlyLevels: readonly HierarchyLevel[] = ['languagePair'];
 }

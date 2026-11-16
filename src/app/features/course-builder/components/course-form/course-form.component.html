@@ -128,19 +128,12 @@
     <!-- ── Вкладка 4: Размещение ── -->
     <mat-tab label="Размещение">
       <div class="course-form__tab-panel">
-        <mat-form-field appearance="outline">
-          <mat-label>Языковая пара</mat-label>
-          <mat-select
-            [disabled]="readOnly()"
-            [ngModel]="draft().languagePairId"
-            (ngModelChange)="onLanguagePairChange($event)"
-          >
-            <mat-option value="">Без пары</mat-option>
-            @for (pair of languagePairs(); track pair.id) {
-              <mat-option [value]="pair.id">{{ pair.knownCode }} → {{ pair.learningCode }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
+        <app-content-hierarchy-selector
+          [levels]="hierarchyLevels"
+          [value]="hierarchyValue()"
+          [readOnly]="readOnly()"
+          (valueChange)="onHierarchyChange($event)"
+        />
       </div>
     </mat-tab>
 

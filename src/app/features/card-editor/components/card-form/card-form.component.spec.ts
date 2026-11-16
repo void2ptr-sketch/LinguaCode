@@ -3,8 +3,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CardFormComponent } from './card-form.component';
-import { CardCatalogHierarchyService } from '../../../../entities/card/lib/services/card-catalog-hierarchy.service';
 import { CatalogService } from '../../../../entities/card/api/catalog.service';
+import { LanguagePairIdResolver } from '../../../../entities/language-pair/services/language-pair-id-resolver.service';
 import type { CardDraft } from '../../types';
 
 const appearance = { theme: 'azure-blue', fontSize: 'md' as const };
@@ -185,12 +185,8 @@ describe('CardFormComponent', () => {
   let component: CardFormComponent;
   let fixture: ComponentFixture<CardFormComponent>;
 
-  const mockHierarchyService = {
-    loadCourses: async (): Promise<{ id: string; title: string }[]> => [],
-    loadAllCourses: async (): Promise<{ id: string; title: string }[]> => [],
-    loadPrograms: async () => [],
-    loadLessons: async () => [],
-    getScenariosForLesson: () => [],
+  const mockLanguagePairIdResolver = {
+    resolveIds: vi.fn(async () => [1]),
   };
 
   beforeEach(async () => {
@@ -199,7 +195,7 @@ describe('CardFormComponent', () => {
       providers: [
         provideHttpClient(),
         provideNoopAnimations(),
-        { provide: CardCatalogHierarchyService, useValue: mockHierarchyService },
+        { provide: LanguagePairIdResolver, useValue: mockLanguagePairIdResolver },
         {
           provide: CatalogService,
           useValue: {
@@ -268,37 +264,63 @@ describe('CardFormComponent', () => {
     });
   });
 
-  describe('ngOnInit', () => {
-    it('should load all courses regardless of the active language pair', async () => {
-      const loadAllCourses = vi
-        .spyOn(mockHierarchyService, 'loadAllCourses')
-        .mockResolvedValue([{ id: 'course-cpp-complete', title: 'C++ Complete Course' }]);
-      const loadCourses = vi.spyOn(mockHierarchyService, 'loadCourses');
-
+  describe('placement', () => {
+    it('should derive the language-pair ID from the content languages', async () => {
       fixture.componentRef.setInput('draft', createDraft('select'));
-      await component.ngOnInit();
+      fixture.componentRef.setInput('knownLanguage', 'ru');
+      fixture.componentRef.setInput('learningLanguage', 'en');
+      fixture.detectChanges();
+      await fixture.whenStable();
 
-      expect(loadAllCourses).toHaveBeenCalledTimes(1);
-      expect(loadCourses).not.toHaveBeenCalled();
-      expect(component.availableCourses()).toEqual([
-        { id: 'course-cpp-complete', title: 'C++ Complete Course' },
+      expect(mockLanguagePairIdResolver.resolveIds).toHaveBeenCalledWith([
+        { known: 'ru', learning: 'en' },
       ]);
+      expect(component.resolvedLanguagePairId()).toBe(1);
+    });
+
+    it('should build placement value from the draft', () => {
+      fixture.componentRef.setInput('draft', {
+        ...createDraft('select'),
+        courseId: 'course-1',
+        programId: 'program-1',
+        lessonId: 'lesson-1',
+        scenarioId: 'scenario-1',
+      });
+      fixture.detectChanges();
+
+      expect(component.placementValue()).toEqual({
+        languagePairId: undefined,
+        courseId: 'course-1',
+        programId: 'program-1',
+        lessonId: 'lesson-1',
+        scenarioId: 'scenario-1',
+      });
+    });
+
+    it('should apply placement changes to the draft', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      const spy = vi.spyOn(component.draftChange, 'emit');
+
+      component.onPlacementChange({
+        languagePairId: 1,
+        courseId: 'course-2',
+        programId: 'program-2',
+        lessonId: 'lesson-2',
+        scenarioId: 'scenario-2',
+      });
+
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          courseId: 'course-2',
+          programId: 'program-2',
+          lessonId: 'lesson-2',
+          scenarioId: 'scenario-2',
+        }),
+      );
     });
   });
 
   describe('signals', () => {
-    it('should have availableCourses signal', () => {
-      expect(component.availableCourses()).toEqual([]);
-    });
-
-    it('should have availableLessons signal', () => {
-      expect(component.availableLessons()).toEqual([]);
-    });
-
-    it('should have availableScenarios signal', () => {
-      expect(component.availableScenarios()).toEqual([]);
-    });
-
     it('should have kindGroup computed', () => {
       expect(component.kindGroup).toBeDefined();
     });
@@ -627,11 +649,12 @@ describe('CardFormComponent', () => {
       expect(fixture.nativeElement.querySelector('app-card-form-appearance-tab')).toBeTruthy();
     });
 
-    it('should render the placement tab', () => {
+    it('should render the placement tab with the shared hierarchy selector', () => {
       fixture.componentRef.setInput('draft', createDraft('select'));
       component.onTabChange('placement');
       fixture.detectChanges();
       expect(fixture.nativeElement.querySelector('app-card-form-placement-tab')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('app-content-hierarchy-selector')).toBeTruthy();
     });
 
     it('should render the publishing tab', () => {

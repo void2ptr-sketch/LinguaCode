@@ -828,13 +828,18 @@ export class ContentExplorerPageComponent implements OnInit {
     const lessonNode = path.find((item) => item.kind === 'lesson');
     const programNode = path.find((item) => item.kind === 'program');
     const courseNode = path.find((item) => item.kind === 'course');
+    const courseData = courseNode?.data as { languagePairId?: number } | undefined;
 
-    return {
+    const context: CardEditorCreateContext = {
       scenarioId: scenarioNode?.id,
       lessonId: lessonNode?.id,
       programId: programNode?.id,
       courseId: courseNode?.id,
     };
+    if (courseData?.languagePairId !== undefined) {
+      context.languagePairId = String(courseData.languagePairId);
+    }
+    return context;
   }
 
   /** Refreshes a loaded scenario node by ID, if it exists in the tree. */

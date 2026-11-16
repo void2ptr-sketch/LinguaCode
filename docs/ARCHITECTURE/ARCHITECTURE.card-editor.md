@@ -90,11 +90,13 @@ stateDiagram-v2
 - Kind-forms: choice, input, pairs, media, code-select.
 - Bilingual fields + `PhoneticLexeme` (G9/G10).
 - Index meta синхронизируется при save (`CardIndexEntry`).
-- «Размещение» → комбо «Курс» загружается через
-  `CardCatalogHierarchyService.loadAllCourses()` (`scope: 'all'`) без фильтра по
-  активной языковой паре: карточку можно привязать к любому курсу, как в
-  конструкторах сценариев/программ/уроков. Пару ограничивает только содержимое
-  карточки, а не список курсов.
+- «Размещение» → общий `ContentHierarchySelectorComponent`
+  (`entities/content-hierarchy`): пара (read-only) → курс → программа → урок →
+  сценарий. Курсы фильтруются по `languagePairIds`, программы/уроки/сценарии
+  берутся из `/programs/by-course`, `/lessons/by-program`,
+  `/scenarios/by-lesson`. Старый `CardCatalogHierarchyService` для вкладки
+  «Размещение» больше не используется. Подробности:
+  [ARCHITECTURE.content-hierarchy.md](./ARCHITECTURE.content-hierarchy.md).
 - Метаданные диалога: `requiredTier`, `published`, `slug` (read-only),
   `languagePairId` (read-only), иерархия `courseId → programId → lessonId → scenarioId`,
   `order`; `cardMeta` участвует в dirty-tracking.

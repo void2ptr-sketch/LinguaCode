@@ -12,6 +12,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
+import { ContentHierarchyService } from '../../../../entities/content-hierarchy';
 import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
 import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import { CourseBuilderStore } from '../../services/course-builder.store';
@@ -45,6 +46,7 @@ import type { CourseFormDraft } from '../../types';
   selector: 'app-course-builder-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButtonModule, MatDialogModule, MatProgressSpinnerModule, CourseFormComponent],
+  providers: [ContentHierarchyService],
   templateUrl: './course-builder-dialog.component.html',
   styleUrl: './course-builder-dialog.component.scss',
 })

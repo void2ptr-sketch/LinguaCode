@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -6,6 +6,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import {
+  ContentHierarchySelectorComponent,
+  type HierarchyLevel,
+  type HierarchyValue,
+} from '../../../../entities/content-hierarchy';
 import type { CourseIndexEntry } from '../../../../entities/course/model';
 import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import type { ProgramRequiredTier } from '../../../../entities/program/model';
@@ -42,6 +47,7 @@ const TIER_LABELS: Record<ProgramRequiredTier, string> = {
     MatInputModule,
     MatSelectModule,
     MatTabsModule,
+    ContentHierarchySelectorComponent,
   ],
   templateUrl: './program-form.component.html',
   styleUrl: './program-form.component.scss',
@@ -87,6 +93,15 @@ export class ProgramFormComponent {
    * with the new draft value.
    */
   readonly draftChange = output<ProgramFormDraft>();
+
+  /** Levels rendered on the program «Размещение» tab. */
+  readonly hierarchyLevels: readonly HierarchyLevel[] = ['languagePair', 'course'];
+
+  /** Current hierarchy value derived from the draft. */
+  readonly hierarchyValue = computed<HierarchyValue>(() => ({
+    languagePairId: this.draft().languagePairId,
+    courseId: this.draft().courseId,
+  }));
 
   /** Maximum allowed title length (backend contract). */
   readonly titleMaxLength = PROGRAM_TITLE_MAX_LENGTH;
@@ -137,6 +152,19 @@ export class ProgramFormComponent {
     this.draftChange.emit({
       ...this.draft(),
       courseId: courseId ?? '',
+    });
+  }
+
+  /**
+   * Applies the shared hierarchy selector value to the program draft.
+   *
+   * @param value - New hierarchy value.
+   */
+  onHierarchyChange(value: HierarchyValue): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      languagePairId: value.languagePairId,
+      courseId: value.courseId ?? '',
     });
   }
 }

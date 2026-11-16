@@ -17,6 +17,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { firstValueFrom } from 'rxjs';
 
 import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
+import { ContentHierarchyService } from '../../../../entities/content-hierarchy';
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
 import type { LanguagePairDto } from '../../../../entities/language-pair/api';
@@ -53,6 +54,7 @@ import type { LessonFormDraft } from '../../types';
   selector: 'app-lesson-builder-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButtonModule, MatDialogModule, MatProgressSpinnerModule, LessonFormComponent],
+  providers: [ContentHierarchyService],
   templateUrl: './lesson-builder-dialog.component.html',
   styleUrl: './lesson-builder-dialog.component.scss',
 })

@@ -21,6 +21,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { firstValueFrom } from 'rxjs';
 
 import type { CardPaymentTier } from '../../../../entities/card/model';
+import { ContentHierarchyService } from '../../../../entities/content-hierarchy';
 import { LanguageService } from '../../../../entities/language-pair/services/language.service';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
 import { UserStore } from '../../../../entities/user/model/user.store';
@@ -76,7 +77,7 @@ function serializeDraft(draft: CardDraft): string {
     MatSlideToggleModule,
     CardFormComponent,
   ],
-  providers: [CardEditorStore],
+  providers: [CardEditorStore, ContentHierarchyService],
   templateUrl: './card-editor-dialog.component.html',
   styleUrl: './card-editor-dialog.component.scss',
 })

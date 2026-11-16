@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -10,6 +10,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import {
+  ContentHierarchySelectorComponent,
+  type HierarchyLevel,
+  type HierarchyValue,
+} from '../../../../entities/content-hierarchy';
 import { courseAuthoringWithIdea } from '../../../../entities/course/utils/course-authoring.utils';
 import type { CourseAuthoringStatus, CoursePracticeMode } from '../../../../entities/course/model';
 import {
@@ -49,6 +54,7 @@ export type CourseExportType = 'pdf-without-hints' | 'pdf-with-hints' | 'json' |
     MatTabsModule,
     MatTooltipModule,
     MarkdownFieldComponent,
+    ContentHierarchySelectorComponent,
   ],
   templateUrl: './course-form.component.html',
   styleUrl: './course-form.component.scss',
@@ -85,6 +91,14 @@ export class CourseFormComponent {
    * output and updates its own signal with the new draft value.
    */
   readonly draftChange = output<CourseFormDraft>();
+
+  /** Levels rendered on the course «Размещение» tab. */
+  readonly hierarchyLevels: readonly HierarchyLevel[] = ['languagePair'];
+
+  /** Current hierarchy value derived from the draft. */
+  readonly hierarchyValue = computed<HierarchyValue>(() => ({
+    languagePairId: this.draft().languagePairId,
+  }));
   /**
    * Emits when the user requests a course export.
    *
@@ -302,6 +316,18 @@ export class CourseFormComponent {
     this.updateDraft({
       ...this.draft(),
       languagePairId: languagePairId ?? undefined,
+    });
+  }
+
+  /**
+   * Applies the shared hierarchy selector value to the course draft.
+   *
+   * @param value - New hierarchy value.
+   */
+  onHierarchyChange(value: HierarchyValue): void {
+    this.updateDraft({
+      ...this.draft(),
+      languagePairId: value.languagePairId,
     });
   }
 

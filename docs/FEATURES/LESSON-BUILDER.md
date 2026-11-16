@@ -42,11 +42,16 @@ Modal dialog для создания и редактирования уроко�
 
 **Списки селекторов «Размещение»:**
 
-- «Курс» — все курсы (`CourseSearchService.search({ scope: 'all' })`) без фильтра
-  по активной языковой паре.
-- «Программа» — все программы выбранного курса
-  (`ProgramsApiService.getByCourse(courseId)`), а не только редактируемая.
-  Если бэкенд не вернул текущую программу, она добавляется в список принудительно.
+Вкладка использует общий `ContentHierarchySelectorComponent`
+(`entities/content-hierarchy`):
+
+- «Языковая пара» — `GET /language-pairs`;
+- «Курс» — `GET /courses/search` с `languagePairIds` выбранной пары;
+- «Программа» — `GET /programs/by-course/{courseId}`.
+
+Смена пары перезагружает курсы и сбрасывает программу; смена курса перезагружает
+программы. Статические списки опций в production-коде запрещены. Подробности:
+[ARCHITECTURE.content-hierarchy.md](../ARCHITECTURE/ARCHITECTURE.content-hierarchy.md).
 
 **Конфигурация MatDialog:**
 

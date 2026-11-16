@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -6,6 +6,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import {
+  ContentHierarchySelectorComponent,
+  type HierarchyLevel,
+  type HierarchyValue,
+} from '../../../../entities/content-hierarchy';
 import type { CourseIndexEntry } from '../../../../entities/course/model';
 import type { ProgramWithLessons } from '../../../../entities/program/model';
 import type { Lesson } from '../../../../entities/course/model/lesson.types';
@@ -34,6 +39,7 @@ const TIER_LABELS: Record<string, string> = {
     MatInputModule,
     MatSelectModule,
     MatTabsModule,
+    ContentHierarchySelectorComponent,
   ],
   templateUrl: './scenario-editor-form.component.html',
   styleUrl: './scenario-editor-form.component.scss',
@@ -54,6 +60,22 @@ export class ScenarioEditorFormComponent {
 
   /** Emits the updated scenario form draft when the user makes changes. */
   readonly draftChange = output<ScenarioFormDraft>();
+
+  /** Levels rendered on the scenario «Размещение» tab. */
+  readonly hierarchyLevels: readonly HierarchyLevel[] = [
+    'languagePair',
+    'course',
+    'program',
+    'lesson',
+  ];
+
+  /** Current hierarchy value derived from the draft. */
+  readonly hierarchyValue = computed<HierarchyValue>(() => ({
+    languagePairId: this.draft().languagePairId,
+    courseId: this.draft().courseId,
+    programId: this.draft().programId,
+    lessonId: this.draft().lessonId,
+  }));
 
   /** Available tier options. */
   readonly tierOptions = Object.keys(TIER_LABELS) as string[];
@@ -94,6 +116,20 @@ export class ScenarioEditorFormComponent {
     this.draftChange.emit({
       ...this.draft(),
       languagePairId: languagePairId ?? undefined,
+    });
+  }
+
+  /**
+   * Applies the shared hierarchy selector value to the scenario draft.
+   *
+   * @param value - New hierarchy value.
+   */
+  onHierarchyChange(value: HierarchyValue): void {
+    this.updateDraft({
+      languagePairId: value.languagePairId,
+      courseId: value.courseId,
+      programId: value.programId,
+      lessonId: value.lessonId,
     });
   }
 
