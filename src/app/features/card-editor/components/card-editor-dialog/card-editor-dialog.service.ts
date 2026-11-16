@@ -56,10 +56,8 @@ export class CardEditorDialogService {
     this.activeRef = this.dialog.open(CardEditorDialogComponent, {
       data,
       panelClass: 'card-editor-dialog',
-      width: '960px',
-      maxWidth: '96vw',
-      maxHeight: '75vh',
-      disableClose: true,
+      width: 'min(960px, 96vw)',
+      maxHeight: 'none',
       autoFocus: 'first-titled-element',
     });
 
