@@ -98,7 +98,11 @@ export class CardCatalogHierarchyService {
    * @param known - The known content language.
    * @param learning - The learning content language.
    * @param languagePairKey - Cache key for the language pair.
-   * @returns Array of course options.
+   * @returns Array of course options belonging to the language pair.
+   * @remarks
+   * The «Курс» combo must depend on the selected «Языковая пара», so the
+   * search is scoped to `knownLanguage`/`learningLanguage`. Without this the
+   * combo offered every course of every pair, regardless of the pair filter.
    */
   async loadCourses(
     known: ContentLanguage,
@@ -113,11 +117,10 @@ export class CardCatalogHierarchyService {
     this.coursesLoading.set(true);
 
     try {
-      // Load all published courses regardless of language pair — the catalog
-      // filter component already exposes known/learning language selectors so
-      // users can narrow down the list themselves.
       const page = await this.courseSearchService.search({
         scope: 'published',
+        knownLanguage: known,
+        learningLanguage: learning,
         page: { page: 0, pageSize: 100 },
       });
 

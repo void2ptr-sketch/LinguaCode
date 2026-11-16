@@ -5,6 +5,7 @@ import { TestBed } from '@angular/core/testing';
 import { CardSearchService } from '../..';
 import { CourseSearchService } from '../../../course/search/course-search.service';
 import { ProgramsApiService } from '../../../program/api/programs-api.service';
+import { UserStore } from '../../../user/model/user.store';
 import { CardCatalogHierarchyService } from '../services/card-catalog-hierarchy.service';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
 
@@ -38,6 +39,10 @@ describe('CardCatalogSearchStore', () => {
     loadLessons: vi.fn().mockName('CardCatalogHierarchyService.loadLessons').mockResolvedValue([]),
     invalidateCache: vi.fn().mockName('CardCatalogHierarchyService.invalidateCache'),
     loadCourses: vi.fn().mockName('CardCatalogHierarchyService.loadCourses').mockResolvedValue([]),
+    loadAllCourses: vi
+      .fn()
+      .mockName('CardCatalogHierarchyService.loadAllCourses')
+      .mockResolvedValue([]),
     getScenariosForLesson: vi
       .fn()
       .mockName('CardCatalogHierarchyService.getScenariosForLesson')
@@ -65,6 +70,7 @@ describe('CardCatalogSearchStore', () => {
     hierarchyMock.loadLessons.mockClear();
     hierarchyMock.invalidateCache.mockClear();
     hierarchyMock.loadCourses.mockClear();
+    hierarchyMock.loadAllCourses.mockClear();
     hierarchyMock.getScenariosForLesson.mockClear();
     hierarchyMock.getLessons.mockClear();
 
@@ -168,5 +174,52 @@ describe('CardCatalogSearchStore', () => {
     await store.setLesson('lesson-2');
 
     expect(store.selectedScenarioId()).toBeNull();
+  });
+
+  it('should load pair-scoped courses on init', async () => {
+    await store.initWithActivePair('ru', 'en');
+
+    expect(hierarchyMock.loadCourses).toHaveBeenCalledWith('ru', 'en', 'ru_en');
+  });
+
+  it('should reset course/lesson/scenario cascade when language pair changes', async () => {
+    const userStore = TestBed.inject(UserStore);
+    const pairId = userStore.languagePairs()[0].id;
+
+    await store.initWithActivePair('ru', 'en');
+    await store.setCourse('course-1');
+    await store.setLesson('lesson-1');
+    store.setScenario('scenario-1');
+
+    await store.applyLanguagePair(pairId);
+
+    expect(store.selectedCourseId()).toBeNull();
+    expect(store.selectedLessonId()).toBeNull();
+    expect(store.selectedScenarioId()).toBeNull();
+    expect(store.availableLessons()).toEqual([]);
+    expect(store.availableScenarios()).toEqual([]);
+  });
+
+  it('should reload pair-scoped courses when language pair changes', async () => {
+    const userStore = TestBed.inject(UserStore);
+    const pairId = userStore.languagePairs()[0].id;
+
+    await store.initWithActivePair('ru', 'en');
+    hierarchyMock.loadCourses.mockClear();
+
+    await store.applyLanguagePair(pairId);
+
+    expect(hierarchyMock.loadCourses).toHaveBeenCalledWith('ru', 'en', 'ru_en');
+  });
+
+  it('should load all courses when the language pair filter is cleared', async () => {
+    hierarchyMock.loadAllCourses.mockResolvedValue([{ id: 'course-all', title: 'All' }]);
+
+    await store.applyLanguagePair(null);
+
+    expect(hierarchyMock.loadAllCourses).toHaveBeenCalled();
+    expect(store.availableCourses()).toEqual([{ id: 'course-all', title: 'All' }]);
+    expect(store.selectedLanguagePairId()).toBeNull();
+    expect(store.pairLocked()).toBe(false);
   });
 });

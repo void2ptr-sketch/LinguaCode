@@ -431,6 +431,69 @@ describe('CardSelectFlowService', () => {
     });
   });
 
+  describe('reset protection', () => {
+    it('should not wipe flow state when pair changes during reset protection', async () => {
+      const userStore = TestBed.inject(UserStore);
+      const appRef = TestBed.inject(ApplicationRef);
+
+      service.beginResetProtection();
+      service.selectedScenarioId.set('s1');
+      userStore.addLanguagePair({ known: 'de', learning: 'ja' });
+      await appRef.whenStable();
+
+      expect(service.selectedScenarioId()).toBe('s1');
+
+      service.endResetProtection();
+
+      // After protection ends, pair changes should reset the flow.
+      userStore.addLanguagePair({ known: 'ru', learning: 'en' });
+      await appRef.whenStable();
+
+      expect(service.selectedScenarioId()).toBe('');
+    });
+  });
+
+  describe('activateLanguagePair', () => {
+    it('should activate the course language pair', async () => {
+      const userStore = TestBed.inject(UserStore);
+      const appRef = TestBed.inject(ApplicationRef);
+
+      service.selectedScenarioId.set('s1');
+      await service.activateLanguagePair('c1');
+      await appRef.whenStable();
+
+      // The mock returns a course with { known: 'ru', learning: 'en' }
+      // which should be added and activated
+      expect(userStore.activeLanguagePairId()).toBeDefined();
+      // Flow state should be preserved (not wiped by resetOnActivePairChange)
+      expect(service.selectedScenarioId()).toBe('s1');
+    });
+
+    it('should not throw when course fetch fails', async () => {
+      const courseSearchService = TestBed.inject(CourseSearchService);
+      vi.spyOn(courseSearchService, 'getById').mockRejectedValue(new Error('not found'));
+
+      await expect(service.activateLanguagePair('nonexistent')).resolves.toBeUndefined();
+    });
+
+    it('should not throw when course has no language pair', async () => {
+      const courseSearchService = TestBed.inject(CourseSearchService);
+      vi.spyOn(courseSearchService, 'getById').mockResolvedValue({
+        id: 'c1',
+        title: 'Test',
+        programs: [],
+        programIds: [],
+        description: '',
+        authorId: 'u1',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        // No languagePair
+      } as unknown as CourseWithPrograms);
+
+      await expect(service.activateLanguagePair('c1')).resolves.toBeUndefined();
+    });
+  });
+
   describe('applyLessonFromCourse', () => {
     it('should apply lesson from currentCourse without HTTP call', async () => {
       const course = {

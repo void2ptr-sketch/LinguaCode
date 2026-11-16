@@ -169,6 +169,11 @@ export class CoursePickerComponent implements OnInit {
 
   ngOnInit(): void {
     this.scope.set(this.defaultScope());
+    // Инициализируем guard: если переменная ещё `null`, ставим текущую пару,
+    // чтобы первый последующий сброс пары сработал на отличие от этой.
+    if (lastKnownCoursePickerActiveLanguagePairId === null) {
+      lastKnownCoursePickerActiveLanguagePairId = this.userStore.activeLanguagePairId();
+    }
     void this.load();
   }
 

@@ -112,13 +112,33 @@ describe('CardCatalogHierarchyService', () => {
   });
 
   describe('loadCourses', () => {
-    it('should load courses from search service', async () => {
+    it('should load courses filtered by the language pair', async () => {
       const courses = await service.loadCourses('ru', 'en', 'ru-en');
 
       expect(courses).toHaveLength(1);
       expect(courses[0]).toEqual({ id: 'course-1', title: 'Test Course' });
       expect(courseSearchServiceMock.search).toHaveBeenCalledWith({
         scope: 'published',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
+        page: { page: 0, pageSize: 100 },
+      });
+    });
+
+    it('should pass each pair own languages to the search', async () => {
+      await service.loadCourses('ru', 'en', 'ru-en');
+      await service.loadCourses('en', 'zh', 'en-zh');
+
+      expect(courseSearchServiceMock.search).toHaveBeenNthCalledWith(1, {
+        scope: 'published',
+        knownLanguage: 'ru',
+        learningLanguage: 'en',
+        page: { page: 0, pageSize: 100 },
+      });
+      expect(courseSearchServiceMock.search).toHaveBeenNthCalledWith(2, {
+        scope: 'published',
+        knownLanguage: 'en',
+        learningLanguage: 'zh',
         page: { page: 0, pageSize: 100 },
       });
     });

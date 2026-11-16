@@ -277,7 +277,7 @@ export class CardSelectPageComponent implements OnInit {
     // (/journey?courseId=…&scenarioId=…) открывается именно сценарий, и его
     // пара может отличаться от пары курса, если курс не вернул languagePair.
     if (courseId) {
-      await this.activateLanguagePairForCourse(courseId);
+      await this.flow.activateLanguagePair(courseId);
     }
     if (scenarioId) {
       await this.activateLanguagePairForScenario(scenarioId);
@@ -317,23 +317,8 @@ export class CardSelectPageComponent implements OnInit {
   }
 
   /**
-   * Активирует языковую пару курса, чтобы сценарии курса открывались
-   * независимо от активной пары пользователя.
-   */
-  private async activateLanguagePairForCourse(courseId: string): Promise<void> {
-    try {
-      const course = await this.courseSearchService.getById(courseId);
-      if (course?.languagePair) {
-        this.userStore.addLanguagePair(course.languagePair);
-      }
-    } catch {
-      // Не критично: флоу покажет собственную ошибку при загрузке курса.
-    }
-  }
-
-  /**
-   * Активирует языковую пару сценария при прямом переходе по ссылке.
-   */
+    * Активирует языковую пару сценария при прямом переходе по ссылке.
+    */
   private async activateLanguagePairForScenario(scenarioId: string): Promise<void> {
     try {
       const scenario = await this.scenarioSearchService.getById(scenarioId);
@@ -366,6 +351,10 @@ export class CardSelectPageComponent implements OnInit {
 
   async onCourseChange(courseId: string): Promise<void> {
     if (courseId) {
+      // Активируем языковую пару курса ПЕРЕД загрузкой:
+      // это гарантирует, что course-picker перезагрузится с правильным фильтром,
+      // а карточки загрузятся для правильной пары.
+      await this.flow.activateLanguagePair(courseId);
       await this.flow.loadCourse(courseId);
     } else {
       this.flow.resetCourseState();

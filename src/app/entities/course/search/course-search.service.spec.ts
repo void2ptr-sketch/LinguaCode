@@ -79,6 +79,82 @@ describe('CourseSearchService', () => {
       expect(service.error()).toBe('Не удалось выполнить операцию с курсами');
       expect(service.loading()).toBe(false);
     });
+
+    it('filters results by knownLanguage and learningLanguage when both are set', async () => {
+      vi.spyOn(apiService, 'search').mockResolvedValue({
+        items: [
+          {
+            id: 'c1',
+            title: 'EN→ZH',
+            slug: 'en-zh',
+            authorId: 'u1',
+            programCount: 5,
+            published: true,
+            updatedAt: '',
+            languagePairSummary: 'English → 中文',
+            knownLanguage: 'en',
+            learningLanguage: 'zh',
+          },
+          {
+            id: 'c2',
+            title: 'RU→EN',
+            slug: 'ru-en',
+            authorId: 'u1',
+            programCount: 3,
+            published: true,
+            updatedAt: '',
+            languagePairSummary: 'Русский → English',
+            knownLanguage: 'ru',
+            learningLanguage: 'en',
+          },
+        ],
+        totalItems: 2,
+        page: 0,
+        pageSize: 10,
+        totalPages: 1,
+      } as PageResponse<CourseIndexEntry>);
+
+      const result = await service.search({
+        knownLanguage: 'en',
+        learningLanguage: 'zh',
+        page: { page: 0, pageSize: 10 },
+      });
+
+      expect(result.items).toHaveLength(1);
+      expect(result.items[0].id).toBe('c1');
+      expect(result.totalItems).toBe(1);
+    });
+
+    it('returns unfiltered results when knownLanguage or learningLanguage is missing', async () => {
+      vi.spyOn(apiService, 'search').mockResolvedValue({
+        items: [
+          {
+            id: 'c1',
+            title: 'EN→ZH',
+            slug: 'en-zh',
+            authorId: 'u1',
+            programCount: 5,
+            published: true,
+            updatedAt: '',
+            languagePairSummary: 'English → 中文',
+            knownLanguage: 'en',
+            learningLanguage: 'zh',
+          },
+        ],
+        totalItems: 1,
+        page: 0,
+        pageSize: 10,
+        totalPages: 1,
+      } as PageResponse<CourseIndexEntry>);
+
+      const result = await service.search({
+        knownLanguage: 'en',
+        page: { page: 0, pageSize: 10 },
+      });
+
+      expect(result.items).toHaveLength(1);
+      expect(result.totalItems).toBe(1);
+    });
   });
 
   describe('getById', () => {

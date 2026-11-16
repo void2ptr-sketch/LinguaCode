@@ -128,28 +128,22 @@ export class CardCatalogSearchStore {
       (e) => e.pair.known === known && e.pair.learning === learning,
     );
 
-    if (entry) {
-      // Found in profile — set signals directly (avoid applyLanguagePair
-      // which triggers executeSearch before courses are loaded).
-      this.pairLocked.set(true);
-      this.knownLanguage.set(known);
-      this.learningLanguage.set(learning);
-      this.selectedLanguagePairId.set(entry.id);
+    // A different pair may already be selected (active pair switched from the
+    // header). Drop the course/lesson/scenario cascade so the «Курс» combo is
+    // rebuilt for the new pair instead of keeping a stale selection.
+    this.resetHierarchySelection();
 
-      const pairKey = this.languagePairKey(known, learning);
-      this.hierarchyService.invalidateCache(pairKey);
-      await this.loadCourses(pairKey);
-      await this.executeSearch();
-    } else {
-      // Fallback: set known/learning manually when pair is not in profile
-      this.pairLocked.set(true);
-      this.knownLanguage.set(known);
-      this.learningLanguage.set(learning);
-      const pairKey = this.languagePairKey(known, learning);
-      this.hierarchyService.invalidateCache(pairKey);
-      await this.loadCourses(pairKey);
-      await this.executeSearch();
-    }
+    // Set signals directly (avoid applyLanguagePair which triggers
+    // executeSearch before courses are loaded).
+    this.pairLocked.set(true);
+    this.knownLanguage.set(known);
+    this.learningLanguage.set(learning);
+    this.selectedLanguagePairId.set(entry?.id ?? null);
+
+    const pairKey = this.languagePairKey(known, learning);
+    this.hierarchyService.invalidateCache(pairKey);
+    await this.loadCourses(pairKey);
+    await this.executeSearch();
   }
 
   /**
@@ -322,17 +316,21 @@ export class CardCatalogSearchStore {
   /**
    * Applies a language pair from the user profile by ID.
    *
-   * Sets known/learning, pairLocked, resets hierarchy cache and reloads.
+   * Sets known/learning, pairLocked, resets hierarchy cache and reloads the
+   * pair-scoped course list. The selected course/lesson/scenario cascade is
+   * cleared because those options belong to the previous pair.
    *
    * @param pairId - The ID of the language pair entry, or `null` to clear.
    */
-  applyLanguagePair(pairId: string | null): void {
+  async applyLanguagePair(pairId: string | null): Promise<void> {
     if (!pairId) {
       this.pairLocked.set(false);
       this.knownLanguage.set(null);
       this.learningLanguage.set(null);
       this.selectedLanguagePairId.set(null);
+      this.resetHierarchySelection();
       this.resetPageAndSearch();
+      await this.loadAllCourses();
       return;
     }
 
@@ -347,11 +345,27 @@ export class CardCatalogSearchStore {
     this.knownLanguage.set(known);
     this.learningLanguage.set(learning);
     this.selectedLanguagePairId.set(pairId);
+    this.resetHierarchySelection();
 
     const pairKey = this.languagePairKey(known, learning);
     this.hierarchyService.invalidateCache(pairKey);
-    void this.loadCourses(pairKey);
     this.resetPageAndSearch();
+    await this.loadCourses(pairKey);
+  }
+
+  /**
+   * Clears the course → lesson → scenario cascade.
+   *
+   * @remarks
+   * Called whenever the language pair changes: the previously selected
+   * course/lesson/scenario may not belong to the new pair.
+   */
+  private resetHierarchySelection(): void {
+    this.selectedCourseId.set(null);
+    this.selectedLessonId.set(null);
+    this.selectedScenarioId.set(null);
+    this.availableLessons.set([]);
+    this.availableScenarios.set([]);
   }
 
   private async loadCourses(languagePairKey: string): Promise<void> {
@@ -359,11 +373,32 @@ export class CardCatalogSearchStore {
     const learning = this.learningLanguage();
 
     if (!known || !learning) {
+      this.availableCourses.set([]);
       return;
     }
 
-    const courses = await this.hierarchyService.loadCourses(known, learning, languagePairKey);
-    this.availableCourses.set(courses);
+    try {
+      this.availableCourses.set(
+        await this.hierarchyService.loadCourses(known, learning, languagePairKey),
+      );
+    } catch {
+      this.availableCourses.set([]);
+    }
+  }
+
+  /**
+   * Loads every course when no language pair filter is active.
+   *
+   * @remarks
+   * The «Все пары» option clears `knownLanguage`/`learningLanguage`, so the
+   * course combo falls back to the pair-agnostic list.
+   */
+  private async loadAllCourses(): Promise<void> {
+    try {
+      this.availableCourses.set(await this.hierarchyService.loadAllCourses());
+    } catch {
+      this.availableCourses.set([]);
+    }
   }
 
   private resetPageAndSearch(): void {

@@ -228,15 +228,15 @@ describe('CardCatalogFiltersComponent', () => {
   });
 
   describe('onLanguagePairChange', () => {
-    it('should call store.applyLanguagePair with the selected pairId', () => {
-      const spy = vi.spyOn(store, 'applyLanguagePair');
-      component.onLanguagePairChange('pair-1');
+    it('should call store.applyLanguagePair with the selected pairId', async () => {
+      const spy = vi.spyOn(store, 'applyLanguagePair').mockResolvedValue(undefined);
+      await component.onLanguagePairChange('pair-1');
       expect(spy).toHaveBeenCalledWith('pair-1');
     });
 
-    it('should call store.applyLanguagePair with null to clear', () => {
-      const spy = vi.spyOn(store, 'applyLanguagePair');
-      component.onLanguagePairChange(null);
+    it('should call store.applyLanguagePair with null to clear', async () => {
+      const spy = vi.spyOn(store, 'applyLanguagePair').mockResolvedValue(undefined);
+      await component.onLanguagePairChange(null);
       expect(spy).toHaveBeenCalledWith(null);
     });
   });

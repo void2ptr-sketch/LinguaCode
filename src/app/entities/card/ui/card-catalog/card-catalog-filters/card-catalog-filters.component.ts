@@ -129,8 +129,8 @@ export class CardCatalogFiltersComponent {
    *
    * @param pairId - The selected language pair ID, or `null` to clear.
    */
-  onLanguagePairChange(pairId: string | null): void {
-    this.store.applyLanguagePair(pairId);
+  async onLanguagePairChange(pairId: string | null): Promise<void> {
+    await this.store.applyLanguagePair(pairId);
   }
 
   /**

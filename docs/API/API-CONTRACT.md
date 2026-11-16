@@ -298,6 +298,21 @@ type LanguagePairDto = {
 | ------ | ----------------------------------- | ------------------------------------------ |
 | GET    | `/courses/search`                   | Поиск + пагинация                          |
 | GET    | `/courses/:id`                      | Курс с уроками (`CourseWithLessons`)       |
+
+### Параметры поиска (`GET /courses/search`)
+
+| Параметр           | Тип    | Описание                                        |
+| ------------------ | ------ | ----------------------------------------------- |
+| `page`             | number | Номер страницы (0-based)                        |
+| `pageSize`         | number | Размер страницы                                 |
+| `query`            | string | Свободный текстовый запрос                       |
+| `authorId`         | string | Фильтр по ID автора                              |
+| `scope`            | string | Область: `mine` / `all` / `published`            |
+| `knownLanguage`    | string | Фильтр по известному языку (ContentLanguage код) |
+| `learningLanguage` | string | Фильтр по изучаемому языку (ContentLanguage код) |
+| `languagePairIds`  | number | Массив ID языковых пар (множественный)            |
+
+> **`knownLanguage`** / **`learningLanguage`** — коды языков из `ContentLanguage` (например, `ru`, `en`, `zh`). Фронтенд передаёт эти параметры через `activeLanguagePairCriteria()` для фильтрации курсов по языковой паре пользователя. Бэкенд должен поддерживать фильтрацию по этим параметрам.
 | GET    | `/courses/:id/journey`              | Курс с программами и уроками для карты     |
 | GET    | `/courses/:id/bundle`               | Экспорт-пакет (`CourseExportBundle`)       |
 | GET    | `/courses/by-scenario/:scenarioId`  | Курсы, использующие сценарий               |
