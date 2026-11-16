@@ -23,7 +23,9 @@ export const environment: Environment = {
   apiVersion: 'v1',
   fixturesUrl: '/data',
   appName: 'LinguaCode',
-  useCardsApiMock: true,
+  // Cards must come from the real backend (DB) so that the catalog search
+  // filters (course/program/lesson/scenario) work against real hierarchy IDs.
+  useCardsApiMock: false,
   useScenariosApiMock: false,
   useCoursesApiMock: false,
   useProgramsApiMock: false,

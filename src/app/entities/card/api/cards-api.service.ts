@@ -2,7 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import type { Card, CardDifficulty, CardKind, CardSearchCriteria, CardSearchPage } from '../model';
+import type {
+  Card,
+  CardDifficulty,
+  CardIndexMetaOverride,
+  CardKind,
+  CardSearchCriteria,
+  CardSearchPage,
+} from '../model';
 import type { ApiResponse, ApiListResponse } from '../../../shared/api/api.types';
 import type { BackendCardDto } from '../model/card-backend-dto.types';
 import type { CardBatchRetrieveResponse } from '../../../shared/api/generated/models/cardBatchRetrieveResponse';
@@ -56,7 +63,7 @@ export class CardsApiService implements CardCatalogPort {
       const totalItems = response.total ?? dtos.length;
 
       const cards = CardBackendAdapter.toCards(dtos);
-      const entries = buildCardIndex(cards, {});
+      const entries = buildCardIndex(cards, this.buildLanguageMeta(cards, criteria));
       const facets = buildCardSearchFacets(entries, criteria, this.catalogOptions());
 
       const pageSize = criteria.page.pageSize;
@@ -71,6 +78,32 @@ export class CardsApiService implements CardCatalogPort {
         facets,
       };
     });
+  }
+
+  /**
+   * Restores language codes for backend cards.
+   *
+   * @remarks
+   * The backend `Card` DTO exposes only `languagePairId`, while
+   * `CardIndexEntry` needs `knownLanguage`/`learningLanguage` for display and
+   * facet calculation. When the search is scoped to a language pair, every
+   * returned card belongs to that pair, so the requested languages are used as
+   * index metadata overrides.
+   */
+  private buildLanguageMeta(
+    cards: readonly Card[],
+    criteria: CardSearchCriteria,
+  ): Record<string, CardIndexMetaOverride> {
+    if (!criteria.knownLanguage || !criteria.learningLanguage) {
+      return {};
+    }
+
+    const meta: CardIndexMetaOverride = {
+      knownLanguage: criteria.knownLanguage,
+      learningLanguage: criteria.learningLanguage,
+    };
+
+    return Object.fromEntries(cards.map((card) => [card.id, meta]));
   }
 
   /**

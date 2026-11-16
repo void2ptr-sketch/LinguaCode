@@ -466,9 +466,16 @@ export class CardCatalogSearchStore {
   currentCriteria(): CardSearchCriteria {
     return {
       query: this.query().trim() || undefined,
+      // The card catalog is an authoring tool: it must include drafts as well
+      // as published cards. Without `scope=all` the backend returns only
+      // published cards for backward compatibility.
+      scope: 'all',
       knownLanguage: this.knownLanguage() ?? undefined,
       learningLanguage: this.learningLanguage() ?? undefined,
-      languagePairId: this.selectedLanguagePairId() ?? undefined,
+      // `selectedLanguagePairId` is a local user-profile entry ID (UUID), not
+      // the numeric `language_pairs.id` expected by the backend. Sending it as
+      // `languagePairId` makes `/cards/search` fail with 400. The backend can
+      // filter by `knownLanguage`/`learningLanguage` alone.
       difficulty: this.difficulty() ?? undefined,
       kinds: this.selectedKinds().length > 0 ? this.selectedKinds() : undefined,
       tags: this.selectedTags().length > 0 ? this.selectedTags() : undefined,
