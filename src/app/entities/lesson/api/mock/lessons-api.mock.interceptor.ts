@@ -30,7 +30,12 @@ const extractLessonId = (url: string): string | null => {
   }
 
   const rest = url.slice(url.indexOf(prefix) + prefix.length).split(/[?#]/)[0];
-  if (!rest || rest === 'search' || rest.startsWith('by-program/') || rest.startsWith('by-course/')) {
+  if (
+    !rest ||
+    rest === 'search' ||
+    rest.startsWith('by-program/') ||
+    rest.startsWith('by-course/')
+  ) {
     return null;
   }
 
@@ -119,7 +124,9 @@ export const lessonsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
       title: String(raw['title'] ?? ''),
       description: String(raw['lessonDescription'] ?? ''),
       order: Number(raw['lessonOrder'] ?? 0),
-      prerequisiteLessonIds: parsePrerequisiteLessonIds(raw['prerequisiteLessonIds'] as string | undefined),
+      prerequisiteLessonIds: parsePrerequisiteLessonIds(
+        raw['prerequisiteLessonIds'] as string | undefined,
+      ),
       published: raw['published'] as boolean | undefined,
       requiredTier: (raw['requiredTier'] as LessonCreatePayload['requiredTier']) ?? 'FREE',
     };
@@ -136,7 +143,9 @@ export const lessonsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
       title: String(raw['title'] ?? ''),
       description: String(raw['lessonDescription'] ?? ''),
       order: Number(raw['lessonOrder'] ?? 0),
-      prerequisiteLessonIds: parsePrerequisiteLessonIds(raw['prerequisiteLessonIds'] as string | undefined),
+      prerequisiteLessonIds: parsePrerequisiteLessonIds(
+        raw['prerequisiteLessonIds'] as string | undefined,
+      ),
     };
 
     return defer(() => handler.update(lessonId, payload)).pipe(

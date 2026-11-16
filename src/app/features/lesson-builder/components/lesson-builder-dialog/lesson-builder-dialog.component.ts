@@ -130,7 +130,10 @@ export class LessonBuilderDialogComponent implements OnInit {
           this.draft.set(nextDraft);
           this.initialSnapshot.set(serializeLessonFormDraft(nextDraft));
         } catch {
-          this.logger.error('LessonBuilderDialog: failed to load program for inheritance', new Error());
+          this.logger.error(
+            'LessonBuilderDialog: failed to load program for inheritance',
+            new Error(),
+          );
           const nextDraft = emptyLessonFormDraft(this.data.programId);
           this.draft.set(nextDraft);
           this.initialSnapshot.set(serializeLessonFormDraft(nextDraft));
@@ -146,9 +149,7 @@ export class LessonBuilderDialogComponent implements OnInit {
       if (this.data.programId) {
         void this.store.loadCandidateLessons(this.data.programId).then(() => {
           const lessons = this.store.candidateLessons();
-          const nextOrder = lessons.length > 0
-            ? Math.max(...lessons.map((l) => l.order)) + 1
-            : 1;
+          const nextOrder = lessons.length > 0 ? Math.max(...lessons.map((l) => l.order)) + 1 : 1;
           this.draft.update((d) => ({ ...d, order: nextOrder }));
         });
       }

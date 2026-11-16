@@ -77,36 +77,36 @@ type LanguagePairDto = {
 `kinds`, `published`, `scope`, `page` (`page` / `pageSize`), `sort`. Параметры
 сериализуются через `buildCardSearchParams`; `scope: 'all'` включает черновики.
 
-| Параметр | Тип | Описание |
-| --- | --- | --- |
-| `query` | string | Поиск по `title` |
-| `knownLanguage` / `learningLanguage` | string | ISO-коды языков |
-| `languagePairId` | number | ID языковой пары |
-| `courseId` / `programId` / `lessonId` / `scenarioId` | number | Фильтр по иерархии |
-| `difficulty` | `beginner\|intermediate\|advanced\|expert` | Сложность (в query — uppercase) |
-| `kinds` | string[] | Типы карточек |
-| `tags` | string[] | Теги |
-| `published` | boolean | Явный фильтр публикации |
-| `scope` | `mine\|all\|published` | Авторский режим |
-| `page` / `pageSize` | number | Пагинация |
+| Параметр                                             | Тип                                        | Описание                        |
+| ---------------------------------------------------- | ------------------------------------------ | ------------------------------- |
+| `query`                                              | string                                     | Поиск по `title`                |
+| `knownLanguage` / `learningLanguage`                 | string                                     | ISO-коды языков                 |
+| `languagePairId`                                     | number                                     | ID языковой пары                |
+| `courseId` / `programId` / `lessonId` / `scenarioId` | number                                     | Фильтр по иерархии              |
+| `difficulty`                                         | `beginner\|intermediate\|advanced\|expert` | Сложность (в query — uppercase) |
+| `kinds`                                              | string[]                                   | Типы карточек                   |
+| `tags`                                               | string[]                                   | Теги                            |
+| `published`                                          | boolean                                    | Явный фильтр публикации         |
+| `scope`                                              | `mine\|all\|published`                     | Авторский режим                 |
+| `page` / `pageSize`                                  | number                                     | Пагинация                       |
 
 ### Запись карточки (`CardCreateRequest` / `CardUpdateRequest`)
 
 Реализация: `CardBackendAdapter.toCreatePayload()` / `toUpdatePayload()`.
 
-| Поле | Create | Update | Описание |
-| --- | --- | --- | --- |
-| `title` | required | optional | 1–200 символов |
-| `kind` | required | optional | Uppercase enum типа карточки |
-| `dataJson` | optional | optional | JSON-строка контента |
-| `tags` | optional | optional | JSON-строка массива тегов |
-| `difficulty` | optional | optional | `BEGINNER/INTERMEDIATE/ADVANCED/EXPERT` |
-| `requiredTier` | required | optional | `FREE/STARTER/GROWTH/PREMIUM`; на update сохраняется текущий |
-| `languagePairId` | optional | optional | ID языковой пары |
-| `courseId` / `programId` / `lessonId` / `scenarioId` | optional | optional | Иерархия обучения |
-| `order` | optional | optional | Позиция в сценарии (≥ 1) |
-| `published` | optional | optional | Публикация |
-| `slug` | optional | optional | Пустой/blank не отправляется — бэкенд генерирует |
+| Поле                                                 | Create   | Update   | Описание                                                     |
+| ---------------------------------------------------- | -------- | -------- | ------------------------------------------------------------ |
+| `title`                                              | required | optional | 1–200 символов                                               |
+| `kind`                                               | required | optional | Uppercase enum типа карточки                                 |
+| `dataJson`                                           | optional | optional | JSON-строка контента                                         |
+| `tags`                                               | optional | optional | JSON-строка массива тегов                                    |
+| `difficulty`                                         | optional | optional | `BEGINNER/INTERMEDIATE/ADVANCED/EXPERT`                      |
+| `requiredTier`                                       | required | optional | `FREE/STARTER/GROWTH/PREMIUM`; на update сохраняется текущий |
+| `languagePairId`                                     | optional | optional | ID языковой пары                                             |
+| `courseId` / `programId` / `lessonId` / `scenarioId` | optional | optional | Иерархия обучения                                            |
+| `order`                                              | optional | optional | Позиция в сценарии (≥ 1)                                     |
+| `published`                                          | optional | optional | Публикация                                                   |
+| `slug`                                               | optional | optional | Пустой/blank не отправляется — бэкенд генерирует             |
 
 > `id`, `authorId`, `createdAt`, `updatedAt` фронтенд не отправляет.
 
@@ -138,8 +138,8 @@ type LanguagePairDto = {
 
 Реализация: `CatalogService` (через `CardDifficultiesService`).
 
-| Метод | Путь                  | Описание                                              |
-| ----- | --------------------- | ----------------------------------------------------- |
+| Метод | Путь                  | Описание                                                |
+| ----- | --------------------- | ------------------------------------------------------- |
 | GET   | `/cards/difficulties` | Уровни сложности из таблицы `content_difficulty_levels` |
 
 Ответ: `ApiListResponse<ReferenceOptionDto>` — `{ "code": "beginner", "label": "Начальный уровень" }`.
@@ -150,17 +150,17 @@ type LanguagePairDto = {
 
 Реализация: `ScenariosApiService` · порт `ScenarioCatalogPort` · mock `scenariosApiMockInterceptor`.
 
-| Метод  | Путь                            | Описание                              |
-| ------ | ------------------------------- | ------------------------------------- |
-| GET    | `/scenarios/search`             | Поиск + пагинация                     |
-| GET    | `/scenarios/:id`                | Сценарий по ID                        |
-| POST   | `/scenarios`                    | Создание сценария (201)               |
-| PUT    | `/scenarios/:id`                | Обновление сценария (403 на чужой)    |
-| DELETE | `/scenarios/:id`                | Удаление сценария                     |
-| GET    | `/scenarios/by-card/:cardId`    | Сценарии, использующие карточку       |
-| POST   | `/scenarios/:id/cards`          | Добавить карточку в `cardSource`      |
-| DELETE | `/scenarios/:id/cards/:cardId`  | Удалить карточку из `cardSource`      |
-| PATCH  | `/scenarios/:id/cards/:cardId`  | Переставить карточку (`{ order }`)    |
+| Метод  | Путь                           | Описание                           |
+| ------ | ------------------------------ | ---------------------------------- |
+| GET    | `/scenarios/search`            | Поиск + пагинация                  |
+| GET    | `/scenarios/:id`               | Сценарий по ID                     |
+| POST   | `/scenarios`                   | Создание сценария (201)            |
+| PUT    | `/scenarios/:id`               | Обновление сценария (403 на чужой) |
+| DELETE | `/scenarios/:id`               | Удаление сценария                  |
+| GET    | `/scenarios/by-card/:cardId`   | Сценарии, использующие карточку    |
+| POST   | `/scenarios/:id/cards`         | Добавить карточку в `cardSource`   |
+| DELETE | `/scenarios/:id/cards/:cardId` | Удалить карточку из `cardSource`   |
+| PATCH  | `/scenarios/:id/cards/:cardId` | Переставить карточку (`{ order }`) |
 
 Привязка карточек реализована через сгенерированный `ScenarioCardsService`
 (`scenariosAddCard` / `scenariosRemoveCard` / `scenariosMoveCard`) и обёрнута в
@@ -175,37 +175,37 @@ type LanguagePairDto = {
 
 ### Поля `ScenarioWritePayload`
 
-| Поле               | Create   | Update   | Описание                                  |
-| ------------------ | -------- | -------- | ----------------------------------------- |
-| `title`            | required | optional | Название (1–200 символов)                 |
-| `scenarioDescription` | optional | optional | Описание (из `description`)              |
-| `cardSource`       | required | optional | JSON-строка                               |
-| `published`        | optional | optional | Опубликовать                              |
-| `courseId`         | optional | optional | ID курса (Long)                           |
-| `programId`        | optional | optional | ID программы (Long)                       |
-| `lessonId`         | optional | optional | ID урока (Long)                           |
-| `languagePairId`   | optional | optional | ID языковой пары (Long)                   |
-| `requiredTier`     | required | optional | `FREE` / `STARTER` / `GROWTH` / `PREMIUM` |
-| `order`            | optional | optional | Порядок в уроке (≥ 1)                     |
+| Поле                  | Create   | Update   | Описание                                  |
+| --------------------- | -------- | -------- | ----------------------------------------- |
+| `title`               | required | optional | Название (1–200 символов)                 |
+| `scenarioDescription` | optional | optional | Описание (из `description`)               |
+| `cardSource`          | required | optional | JSON-строка                               |
+| `published`           | optional | optional | Опубликовать                              |
+| `courseId`            | optional | optional | ID курса (Long)                           |
+| `programId`           | optional | optional | ID программы (Long)                       |
+| `lessonId`            | optional | optional | ID урока (Long)                           |
+| `languagePairId`      | optional | optional | ID языковой пары (Long)                   |
+| `requiredTier`        | required | optional | `FREE` / `STARTER` / `GROWTH` / `PREMIUM` |
+| `order`               | optional | optional | Порядок в уроке (≥ 1)                     |
 
 > **`requiredTier`** — обязательное поле при создании (по умолчанию `FREE`). На update — опционально, по умолчанию сохраняется текущее значение.
 > **`courseId`**, **`programId`**, **`lessonId`** — опциональные ссылки на иерархию обучения. Бэкенд может игнорировать `courseId` в mapper'е (обрабатывается в service layer).
 
 ### Параметры поиска сценариев (`GET /scenarios/search`)
 
-| Параметр       | Тип    | Обязательный | Описание                                       |
-| -------------- | ------ | ------------ | ---------------------------------------------- |
-| `query`        | string | Нет          | Текстовый поиск по названию                    |
-| `authorId`     | string | Нет          | Фильтр по автору                               |
-| `scope`        | string | Нет          | `mine` / `all` / `published`                   |
-| `cardSourceMode` | string | Нет        | `fixed` / `snapshot` / `criteria`              |
-| `knownLanguage`| string | Нет          | Язык-источник (ISO-код)                        |
-| `learningLanguage` | string | Нет      | Язык-цель (ISO-код)                            |
-| `courseId`     | string | Нет          | Фильтр по курсу                                |
-| `lessonId`     | string | Нет          | Фильтр по уроку (backend `search` его игнорирует) |
-| `page`         | number | Да           | Номер страницы (0-based)                       |
-| `size`         | number | Да           | Размер страницы (Spring-параметр)              |
-| `pageSize`     | number | Нет          | Дублируется для mock-интерсептора              |
+| Параметр           | Тип    | Обязательный | Описание                                          |
+| ------------------ | ------ | ------------ | ------------------------------------------------- |
+| `query`            | string | Нет          | Текстовый поиск по названию                       |
+| `authorId`         | string | Нет          | Фильтр по автору                                  |
+| `scope`            | string | Нет          | `mine` / `all` / `published`                      |
+| `cardSourceMode`   | string | Нет          | `fixed` / `snapshot` / `criteria`                 |
+| `knownLanguage`    | string | Нет          | Язык-источник (ISO-код)                           |
+| `learningLanguage` | string | Нет          | Язык-цель (ISO-код)                               |
+| `courseId`         | string | Нет          | Фильтр по курсу                                   |
+| `lessonId`         | string | Нет          | Фильтр по уроку (backend `search` его игнорирует) |
+| `page`             | number | Да           | Номер страницы (0-based)                          |
+| `size`             | number | Да           | Размер страницы (Spring-параметр)                 |
+| `pageSize`         | number | Нет          | Дублируется для mock-интерсептора                 |
 
 > **Автоинкремент `order`.** Отдельного endpoint'а `max(order)` нет. `ScenariosApiService.getNextOrder()`
 > постранично читает `/scenarios/search` (`page` / `size`), берёт максимум `order`
@@ -250,40 +250,40 @@ type LanguagePairDto = {
 
 Реализация: `LessonsApiService` · порт `LessonsCatalogPort` · mock `lessonsApiMockInterceptor`.
 
-| Метод  | Путь                              | Описание                                  |
-| ------ | --------------------------------- | ----------------------------------------- |
-| GET    | `/lessons/:id`                    | Урок по ID                                |
-| GET    | `/lessons/by-program/:programId`  | Уроки программы (сортировка по `order`)   |
-| GET    | `/lessons/by-course/:courseId`    | Уроки курса (сортировка по `order`)       |
-| POST   | `/lessons`                        | Создание урока (201)                      |
-| PUT    | `/lessons/:id`                    | Обновление урока                          |
-| DELETE | `/lessons/:id`                    | Удаление урока (каскад на cards/scenarios)|
+| Метод  | Путь                             | Описание                                   |
+| ------ | -------------------------------- | ------------------------------------------ |
+| GET    | `/lessons/:id`                   | Урок по ID                                 |
+| GET    | `/lessons/by-program/:programId` | Уроки программы (сортировка по `order`)    |
+| GET    | `/lessons/by-course/:courseId`   | Уроки курса (сортировка по `order`)        |
+| POST   | `/lessons`                       | Создание урока (201)                       |
+| PUT    | `/lessons/:id`                   | Обновление урока                           |
+| DELETE | `/lessons/:id`                   | Удаление урока (каскад на cards/scenarios) |
 
 Пейлоад создания: `LessonCreatePayload` (`programId`, `title`, `description`, `order`, `prerequisiteLessonIds`, `languagePairId?`, `courseId?`).
 Пейлоад обновления: `LessonUpdatePayload` (`title`, `description`, `order`, `prerequisiteLessonIds`, `languagePairId?`, `courseId?`).
 
 ### Поля `LessonCreatePayload`
 
-| Поле                      | Тип      | Описание                                         |
-| ------------------------- | -------- | ------------------------------------------------ |
-| `programId`               | string   | ID программы (обязательное)                      |
-| `title`                   | string   | Название (1–200 символов)                        |
-| `description`             | string   | Описание урока                                   |
-| `order`                   | number   | Порядок в программе (> 0)                        |
-| `prerequisiteLessonIds`   | string[] | JSON-массив ID пререквизитов (опционально)       |
-| `languagePairId`          | number   | ID языковой пары (извлекается из программы)      |
-| `courseId`                | string   | ID курса (извлекается из программы)              |
+| Поле                    | Тип      | Описание                                    |
+| ----------------------- | -------- | ------------------------------------------- |
+| `programId`             | string   | ID программы (обязательное)                 |
+| `title`                 | string   | Название (1–200 символов)                   |
+| `description`           | string   | Описание урока                              |
+| `order`                 | number   | Порядок в программе (> 0)                   |
+| `prerequisiteLessonIds` | string[] | JSON-массив ID пререквизитов (опционально)  |
+| `languagePairId`        | number   | ID языковой пары (извлекается из программы) |
+| `courseId`              | string   | ID курса (извлекается из программы)         |
 
 ### Поля `LessonUpdatePayload`
 
-| Поле                      | Тип      | Описание                                         |
-| ------------------------- | -------- | ------------------------------------------------ |
-| `title`                   | string   | Название (1–200 символов)                        |
-| `description`             | string   | Описание урока                                   |
-| `order`                   | number   | Порядок в программе (> 0)                        |
-| `prerequisiteLessonIds`   | string[] | JSON-массив ID пререквизитов (опционально)       |
-| `languagePairId`          | number   | ID языковой пары (опционально)                    |
-| `courseId`                | string   | ID курса (опционально)                            |
+| Поле                    | Тип      | Описание                                   |
+| ----------------------- | -------- | ------------------------------------------ |
+| `title`                 | string   | Название (1–200 символов)                  |
+| `description`           | string   | Описание урока                             |
+| `order`                 | number   | Порядок в программе (> 0)                  |
+| `prerequisiteLessonIds` | string[] | JSON-массив ID пререквизитов (опционально) |
+| `languagePairId`        | number   | ID языковой пары (опционально)             |
+| `courseId`              | string   | ID курса (опционально)                     |
 
 > **`prerequisiteLessonIds`** — строка (JSON), а не массив. Фронтенд сериализует/десериализует через `stringifyPrerequisiteLessonIds` / `parsePrerequisiteLessonIds`.
 > **`programId`** — immutable, не передаётся в update-пейлоаде.

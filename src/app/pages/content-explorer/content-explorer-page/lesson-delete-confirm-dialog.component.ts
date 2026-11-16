@@ -20,7 +20,8 @@ export type LessonDeleteConfirmDialogData = {
   template: `
     <h2 mat-dialog-title>Удалить урок?</h2>
     <mat-dialog-content>
-      Урок «{{ data.lessonTitle }}» и все связанные с ним данные (сценарии, карточки) будут помечены как удалённые и скроются из каталога.
+      Урок «{{ data.lessonTitle }}» и все связанные с ним данные (сценарии, карточки) будут помечены
+      как удалённые и скроются из каталога.
       <p class="hint">Контент можно восстановить через API.</p>
     </mat-dialog-content>
     <style>

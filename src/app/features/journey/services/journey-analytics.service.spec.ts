@@ -88,7 +88,7 @@ describe('JourneyAnalyticsService', () => {
     // Clear analytics data and localStorage
     service.clear();
     localStorage.clear();
-    
+
     // Force garbage collection of the service instance by resetting TestBed
     TestBed.resetTestingModule();
   });

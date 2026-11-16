@@ -3,7 +3,10 @@ import { Injectable, inject } from '@angular/core';
 
 import type { Lesson } from '../../../course/model/lesson.types';
 import { ContentSeedRepository } from '../../../content-seed/content-seed.repository';
-import { loadCourseCatalogFromStorage, saveCourseCatalogToStorage } from '../../../course/storage/courses-storage';
+import {
+  loadCourseCatalogFromStorage,
+  saveCourseCatalogToStorage,
+} from '../../../course/storage/courses-storage';
 
 import type { CourseCatalogState } from '../../../course/storage/courses-storage';
 import type { LessonCreatePayload, LessonUpdatePayload } from '../lessons-api.service';

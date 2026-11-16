@@ -516,9 +516,9 @@ export class CourseBuilderStore {
    * @returns An object for sending to the server, or `null` if validation fails.
    * @private
    */
-   private normalizeDraft(draft: CourseFormDraft) {
-     const title = sanitizeTitle(draft.title ?? '');
-     const description = sanitizeDescription(draft.description ?? '');
+  private normalizeDraft(draft: CourseFormDraft) {
+    const title = sanitizeTitle(draft.title ?? '');
+    const description = sanitizeDescription(draft.description ?? '');
 
     const programs = draft.programs
       .map((program, pIndex) => ({

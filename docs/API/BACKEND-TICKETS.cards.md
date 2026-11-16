@@ -12,14 +12,14 @@
 Контракт `education_cards` **реализован на бэкенде** и проверен по сгенерированному OpenAPI
 (`src/app/shared/api/generated/`). Фронтенд-интеграция выполнена.
 
-| Блок | Готовность | Комментарий |
-| --- | --- | --- |
-| Чтение карточки (`GET /cards/{id}`) | Готово | `languagePairId`, `programId`, `published`, `order` присутствуют; `difficulty=EXPERT` поддержан |
-| Создание (`POST /cards`) | Готово | Принимает иерархию, языковую пару, `published`, `slug`, `order`; `id`/`authorId` не передаются |
-| Обновление (`PUT /cards/{id}`) | Готово | `requiredTier` опционален; метаданные и иерархия передаются |
-| Привязка к сценарию | Готово | `ScenarioCardsService`: `POST/DELETE/PATCH /scenarios/{id}/cards` |
-| Поиск/фильтры (`GET /cards/search`) | Готово | Принимает `languagePairId`, `programId`, `lessonId`, `scenarioId`, `difficulty`, `kinds`, `tags`, `published`, `scope`, `page`, `pageSize` |
-| Метаданные | Готово | `tags`, `difficulty`, `requiredTier`, `published`, `slug` читаются и сохраняются |
+| Блок                                | Готовность | Комментарий                                                                                                                                |
+| ----------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Чтение карточки (`GET /cards/{id}`) | Готово     | `languagePairId`, `programId`, `published`, `order` присутствуют; `difficulty=EXPERT` поддержан                                            |
+| Создание (`POST /cards`)            | Готово     | Принимает иерархию, языковую пару, `published`, `slug`, `order`; `id`/`authorId` не передаются                                             |
+| Обновление (`PUT /cards/{id}`)      | Готово     | `requiredTier` опционален; метаданные и иерархия передаются                                                                                |
+| Привязка к сценарию                 | Готово     | `ScenarioCardsService`: `POST/DELETE/PATCH /scenarios/{id}/cards`                                                                          |
+| Поиск/фильтры (`GET /cards/search`) | Готово     | Принимает `languagePairId`, `programId`, `lessonId`, `scenarioId`, `difficulty`, `kinds`, `tags`, `published`, `scope`, `page`, `pageSize` |
+| Метаданные                          | Готово     | `tags`, `difficulty`, `requiredTier`, `published`, `slug` читаются и сохраняются                                                           |
 
 ---
 
@@ -27,27 +27,27 @@
 
 Обозначения: ✅ — поддерживается, ⚠️ — частично/есть нюанс, ❌ — отсутствует.
 
-| Поле БД | Чтение в `Card` | Create | Update | Что нужно на бэке |
-| --- | --- | --- | --- | --- |
-| `id` | ✅ | — (SERIAL) | path `{id}` | Игнорировать `id` из тела; генерировать на сервере |
-| `kind` | ✅ | ✅ | ✅ | Оставить enum, синхронизировать с фронтендом |
-| `title` | ✅ | ✅ required | ✅ optional | Валидация 1..200 |
-| `language_pair_id` | ❌ | ❌ | ❌ | Добавить `languagePairId` в `Card`, `CardCreateRequest`, `CardUpdateRequest`; FK-валидация |
-| `course_id` | ✅ | ❌ | ❌ | Добавить `courseId` в create/update; валидировать существование курса |
-| `program_id` | ❌ | ❌ | ❌ | Добавить `programId` в `Card`, create/update; FK уже есть |
-| `lesson_id` | ✅ | ❌ | ❌ | Добавить `lessonId` в create/update; FK уже есть |
-| `scenario_id` | ✅ | ❌ | ❌ | Добавить `scenarioId` в create/update; синхронизировать с `scenario.cardSource` |
-| `data_json` | ✅ (`dataJson`) | ✅ optional | ✅ optional | Оставить JSONB-строкой в API |
-| `tags` | ✅ (`tags` string) | ✅ optional | ✅ optional | Оставить JSONB-строкой; нормализовать массив |
-| `difficulty` | ⚠️ | ⚠️ | ⚠️ | Добавить `EXPERT` в enum (в БД уже разрешён) |
-| `author_id` | ✅ | ❌ | ❌ | Брать из JWT; не принимать из тела; проверять ownership на update/delete |
-| `published` | ❌ | ❌ | ❌ | Добавить `published` в `Card`, create/update; default `true` |
-| `required_tier` | ✅ | ✅ required | ⚠️ required | Сделать optional на update (сохранять текущее значение); default `FREE` на create |
-| `search_vector` | — | — | — | Только сервер: триггер/обновление при изменении title/tags/data_json |
-| `created_at` | ✅ | — | — | Только сервер |
-| `updated_at` | ✅ | — | — | Только сервер; не принимать из тела |
-| `slug` | ✅ | ❌ | ❌ | Добавить `slug` в create/update; пустой/blank → автогенерация; обеспечить уникальность |
-| `card_order` | ❌ | ❌ | ❌ | Добавить `order` в `Card`, create/update; см. раздел 5 про связь со сценарием |
+| Поле БД            | Чтение в `Card`    | Create      | Update      | Что нужно на бэке                                                                          |
+| ------------------ | ------------------ | ----------- | ----------- | ------------------------------------------------------------------------------------------ |
+| `id`               | ✅                 | — (SERIAL)  | path `{id}` | Игнорировать `id` из тела; генерировать на сервере                                         |
+| `kind`             | ✅                 | ✅          | ✅          | Оставить enum, синхронизировать с фронтендом                                               |
+| `title`            | ✅                 | ✅ required | ✅ optional | Валидация 1..200                                                                           |
+| `language_pair_id` | ❌                 | ❌          | ❌          | Добавить `languagePairId` в `Card`, `CardCreateRequest`, `CardUpdateRequest`; FK-валидация |
+| `course_id`        | ✅                 | ❌          | ❌          | Добавить `courseId` в create/update; валидировать существование курса                      |
+| `program_id`       | ❌                 | ❌          | ❌          | Добавить `programId` в `Card`, create/update; FK уже есть                                  |
+| `lesson_id`        | ✅                 | ❌          | ❌          | Добавить `lessonId` в create/update; FK уже есть                                           |
+| `scenario_id`      | ✅                 | ❌          | ❌          | Добавить `scenarioId` в create/update; синхронизировать с `scenario.cardSource`            |
+| `data_json`        | ✅ (`dataJson`)    | ✅ optional | ✅ optional | Оставить JSONB-строкой в API                                                               |
+| `tags`             | ✅ (`tags` string) | ✅ optional | ✅ optional | Оставить JSONB-строкой; нормализовать массив                                               |
+| `difficulty`       | ⚠️                 | ⚠️          | ⚠️          | Добавить `EXPERT` в enum (в БД уже разрешён)                                               |
+| `author_id`        | ✅                 | ❌          | ❌          | Брать из JWT; не принимать из тела; проверять ownership на update/delete                   |
+| `published`        | ❌                 | ❌          | ❌          | Добавить `published` в `Card`, create/update; default `true`                               |
+| `required_tier`    | ✅                 | ✅ required | ⚠️ required | Сделать optional на update (сохранять текущее значение); default `FREE` на create          |
+| `search_vector`    | —                  | —           | —           | Только сервер: триггер/обновление при изменении title/tags/data_json                       |
+| `created_at`       | ✅                 | —           | —           | Только сервер                                                                              |
+| `updated_at`       | ✅                 | —           | —           | Только сервер; не принимать из тела                                                        |
+| `slug`             | ✅                 | ❌          | ❌          | Добавить `slug` в create/update; пустой/blank → автогенерация; обеспечить уникальность     |
+| `card_order`       | ❌                 | ❌          | ❌          | Добавить `order` в `Card`, create/update; см. раздел 5 про связь со сценарием              |
 
 ---
 
@@ -155,23 +155,23 @@
 
 `GET /api/v1/cards/search` — добавить параметры:
 
-| Параметр | Тип | Назначение |
-| --- | --- | --- |
-| `query` | string | Поиск по title (уже есть) |
-| `knownLanguage` | string | Язык известного (уже есть) |
-| `learningLanguage` | string | Язык изучаемого (уже есть) |
-| `languagePairId` | int64 | Фильтр по паре |
-| `courseId` | int64 | Фильтр по курсу |
-| `programId` | int64 | Фильтр по программе |
-| `lessonId` | int64 | Фильтр по уроку |
-| `scenarioId` | int64 | Фильтр по сценарию |
-| `difficulty` | enum | `BEGINNER/INTERMEDIATE/ADVANCED/EXPERT` |
-| `kinds` | string[] | Несколько типов |
-| `tags` | string[] | Несколько тегов |
-| `published` | boolean | Явный фильтр |
-| `scope` | `mine/all/published` | Авторский режим; `all` включает черновики |
-| `page` | int | Плоская пагинация (фронтенд уже отправляет) |
-| `pageSize` | int | Плоская пагинация (фронтенд уже отправляет) |
+| Параметр           | Тип                  | Назначение                                  |
+| ------------------ | -------------------- | ------------------------------------------- |
+| `query`            | string               | Поиск по title (уже есть)                   |
+| `knownLanguage`    | string               | Язык известного (уже есть)                  |
+| `learningLanguage` | string               | Язык изучаемого (уже есть)                  |
+| `languagePairId`   | int64                | Фильтр по паре                              |
+| `courseId`         | int64                | Фильтр по курсу                             |
+| `programId`        | int64                | Фильтр по программе                         |
+| `lessonId`         | int64                | Фильтр по уроку                             |
+| `scenarioId`       | int64                | Фильтр по сценарию                          |
+| `difficulty`       | enum                 | `BEGINNER/INTERMEDIATE/ADVANCED/EXPERT`     |
+| `kinds`            | string[]             | Несколько типов                             |
+| `tags`             | string[]             | Несколько тегов                             |
+| `published`        | boolean              | Явный фильтр                                |
+| `scope`            | `mine/all/published` | Авторский режим; `all` включает черновики   |
+| `page`             | int                  | Плоская пагинация (фронтенд уже отправляет) |
+| `pageSize`         | int                  | Плоская пагинация (фронтенд уже отправляет) |
 
 Требования:
 
@@ -184,11 +184,11 @@
 
 Рекомендуемые явные endpoint'ы (вместо ручного `PUT /scenarios/{id}`):
 
-| Метод | Путь | Тело | Назначение |
-| --- | --- | --- | --- |
-| `POST` | `/api/v1/scenarios/{scenarioId}/cards` | `{ "cardId": 123, "order": 3 }` | Добавить карточку в `cardSource.cardIds` |
-| `DELETE` | `/api/v1/scenarios/{scenarioId}/cards/{cardId}` | — | Удалить карточку из `cardSource.cardIds` |
-| `PATCH` | `/api/v1/scenarios/{scenarioId}/cards/{cardId}` | `{ "order": 1 }` | Изменить позицию |
+| Метод    | Путь                                            | Тело                            | Назначение                               |
+| -------- | ----------------------------------------------- | ------------------------------- | ---------------------------------------- |
+| `POST`   | `/api/v1/scenarios/{scenarioId}/cards`          | `{ "cardId": 123, "order": 3 }` | Добавить карточку в `cardSource.cardIds` |
+| `DELETE` | `/api/v1/scenarios/{scenarioId}/cards/{cardId}` | —                               | Удалить карточку из `cardSource.cardIds` |
+| `PATCH`  | `/api/v1/scenarios/{scenarioId}/cards/{cardId}` | `{ "order": 1 }`                | Изменить позицию                         |
 
 Требования:
 
@@ -200,14 +200,14 @@
 
 ### 3.6. Каскады и целостность
 
-| Событие | Требуемое поведение |
-| --- | --- |
-| Удаление карточки | Убрать `id` из всех `scenario.cardSource.cardIds`; не оставлять dangling ID |
-| Удаление сценария | `education_cards.scenario_id = NULL` (или `ON DELETE SET NULL`) |
-| Удаление урока | `education_cards.lesson_id = NULL` |
-| Удаление программы | `education_cards.program_id = NULL` |
-| Удаление курса | `education_cards.course_id = NULL` |
-| Удаление языковой пары | Запретить, если есть карточки (или `SET NULL`, если поле nullable) |
+| Событие                | Требуемое поведение                                                         |
+| ---------------------- | --------------------------------------------------------------------------- |
+| Удаление карточки      | Убрать `id` из всех `scenario.cardSource.cardIds`; не оставлять dangling ID |
+| Удаление сценария      | `education_cards.scenario_id = NULL` (или `ON DELETE SET NULL`)             |
+| Удаление урока         | `education_cards.lesson_id = NULL`                                          |
+| Удаление программы     | `education_cards.program_id = NULL`                                         |
+| Удаление курса         | `education_cards.course_id = NULL`                                          |
+| Удаление языковой пары | Запретить, если есть карточки (или `SET NULL`, если поле nullable)          |
 
 Сейчас FK на `scenario/lesson/program/language_pair` есть, но без `ON DELETE`; удаление родителя может падать. Нужно явно определить политику.
 
@@ -215,21 +215,21 @@
 
 ## 4. Валидация, права, серверные поля
 
-| Правило | Требование |
-| --- | --- |
-| `title` | 1..200 символов; trim; не пустой |
-| `kind` | enum из 13 значений; не менять при update без необходимости |
-| `difficulty` | `BEGINNER/INTERMEDIATE/ADVANCED/EXPERT` |
-| `requiredTier` | `FREE/STARTER/GROWTH/PREMIUM`; default `FREE` |
-| `slug` | nullable; blank → null/автогенерация; unique partial index; max 255 |
-| `tags` | JSON-массив строк; не более N (зафиксировать, например 50) |
-| `data_json` | валидный JSON-объект; размер ограничить (например 1 MB) |
-| `author_id` | Только из JWT; update/delete — автор или `ROLE_ADMIN` |
-| `published` | Менять может автор/админ; создать черновик может автор |
-| `created_at/updated_at` | Только сервер; `updated_at` обновлять триггером |
-| `search_vector` | Обновлять триггером по `title`, `tags`, `data_json` |
-| `language_pair_id` | Должен существовать в `language_pairs` |
-| `course/program/lesson/scenario` | Должны существовать; желательно проверить согласованность иерархии |
+| Правило                          | Требование                                                          |
+| -------------------------------- | ------------------------------------------------------------------- |
+| `title`                          | 1..200 символов; trim; не пустой                                    |
+| `kind`                           | enum из 13 значений; не менять при update без необходимости         |
+| `difficulty`                     | `BEGINNER/INTERMEDIATE/ADVANCED/EXPERT`                             |
+| `requiredTier`                   | `FREE/STARTER/GROWTH/PREMIUM`; default `FREE`                       |
+| `slug`                           | nullable; blank → null/автогенерация; unique partial index; max 255 |
+| `tags`                           | JSON-массив строк; не более N (зафиксировать, например 50)          |
+| `data_json`                      | валидный JSON-объект; размер ограничить (например 1 MB)             |
+| `author_id`                      | Только из JWT; update/delete — автор или `ROLE_ADMIN`               |
+| `published`                      | Менять может автор/админ; создать черновик может автор              |
+| `created_at/updated_at`          | Только сервер; `updated_at` обновлять триггером                     |
+| `search_vector`                  | Обновлять триггером по `title`, `tags`, `data_json`                 |
+| `language_pair_id`               | Должен существовать в `language_pairs`                              |
+| `course/program/lesson/scenario` | Должны существовать; желательно проверить согласованность иерархии  |
 
 ---
 

@@ -100,7 +100,8 @@ export function courseToFormDraft(
         order: program.order,
       }))
       .sort((left, right) => left.order - right.order),
-    requiredTier: (course as unknown as { requiredTier?: CourseRequiredTier }).requiredTier ?? 'FREE',
+    requiredTier:
+      (course as unknown as { requiredTier?: CourseRequiredTier }).requiredTier ?? 'FREE',
     slug: course.slug,
     languagePairId: course.languagePairId,
   };

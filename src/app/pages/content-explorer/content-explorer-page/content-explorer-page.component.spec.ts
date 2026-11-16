@@ -1164,4 +1164,3 @@ describe('ContentExplorerPageComponent — onCreateCardRequested (card creation)
     expect(mockSnackBar.open).not.toHaveBeenCalled();
   });
 });
-

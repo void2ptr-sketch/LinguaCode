@@ -64,9 +64,7 @@ import type { Scenario, ScenarioIndexEntry } from '../../../entities/scenario/mo
 import { CardEditorStore } from '../../../features/card-editor/services/card-editor.store';
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import { LessonsApiService } from '../../../entities/lesson/api/lessons-api.service';
-import {
-  EXPLORER_CARD_KIND_OPTIONS,
-} from '../../../features/content-explorer/types/content-explorer.types';
+import { EXPLORER_CARD_KIND_OPTIONS } from '../../../features/content-explorer/types/content-explorer.types';
 
 const TREE_WIDTH_KEY = 'content_explorer_tree_width';
 const TREE_MIN_WIDTH = 280;
@@ -78,7 +76,10 @@ import { ScenarioDeleteConfirmDialogComponent } from './scenario-delete-confirm-
 import { ProgramDeleteConfirmDialogComponent } from './program-delete-confirm-dialog.component';
 import { LessonDeleteConfirmDialogComponent } from './lesson-delete-confirm-dialog.component';
 import { CardDeleteConfirmDialogComponent } from './card-delete-confirm-dialog.component';
-import { readUserContentOverlay, writeUserContentOverlay } from '../../../entities/user/overlay/user-content-overlay.storage';
+import {
+  readUserContentOverlay,
+  writeUserContentOverlay,
+} from '../../../entities/user/overlay/user-content-overlay.storage';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

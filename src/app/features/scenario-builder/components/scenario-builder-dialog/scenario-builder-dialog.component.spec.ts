@@ -61,11 +61,22 @@ describe('ScenarioBuilderDialogComponent', () => {
         { provide: MAT_DIALOG_DATA, useValue: createDialogData },
         {
           provide: CourseSearchService,
-          useValue: { search: vi.fn().mockResolvedValue({ items: [], totalItems: 0, page: 0, pageSize: 100, totalPages: 0 }) },
+          useValue: {
+            search: vi.fn().mockResolvedValue({
+              items: [],
+              totalItems: 0,
+              page: 0,
+              pageSize: 100,
+              totalPages: 0,
+            }),
+          },
         },
         {
           provide: ProgramsApiService,
-          useValue: { getByCourse: vi.fn().mockResolvedValue([]), getLessons: vi.fn().mockResolvedValue([]) },
+          useValue: {
+            getByCourse: vi.fn().mockResolvedValue([]),
+            getLessons: vi.fn().mockResolvedValue([]),
+          },
         },
         {
           provide: AppLoggerService,
@@ -172,24 +183,26 @@ describe('ScenarioBuilderDialogComponent', () => {
     const mockScenarioBuilderStore = {
       startCreate: vi.fn(),
       loadCourses: vi.fn().mockResolvedValue(undefined),
-      createDraft: vi.fn().mockImplementation((context) => Promise.resolve({
-        title: '',
-        description: '',
-        published: false,
-        languagePairId: context?.languagePairId,
-        courseId: context?.courseId,
-        programId: context?.programId,
-        lessonId: context?.lessonId,
-        requiredTier: 'FREE',
-        scenarioOrder: 1,
-        sourceMode: 'fixed',
-        fixedCardIds: [],
-        criteria: { knownLanguage: 'en', learningLanguage: 'zh' },
-        criteriaLimit: 10,
-        criteriaSort: 'updatedAt',
-        criteriaSeed: '',
-        snapshotFrozenAt: null,
-      })),
+      createDraft: vi.fn().mockImplementation((context) =>
+        Promise.resolve({
+          title: '',
+          description: '',
+          published: false,
+          languagePairId: context?.languagePairId,
+          courseId: context?.courseId,
+          programId: context?.programId,
+          lessonId: context?.lessonId,
+          requiredTier: 'FREE',
+          scenarioOrder: 1,
+          sourceMode: 'fixed',
+          fixedCardIds: [],
+          criteria: { knownLanguage: 'en', learningLanguage: 'zh' },
+          criteriaLimit: 10,
+          criteriaSort: 'updatedAt',
+          criteriaSeed: '',
+          snapshotFrozenAt: null,
+        }),
+      ),
       isReadOnly: vi.fn().mockReturnValue(false),
       editorLoading: vi.fn().mockReturnValue(false),
       error: vi.fn().mockReturnValue(null),
@@ -214,11 +227,22 @@ describe('ScenarioBuilderDialogComponent', () => {
           provideHttpClient(),
           {
             provide: CourseSearchService,
-            useValue: { search: vi.fn().mockResolvedValue({ items: [], totalItems: 0, page: 0, pageSize: 100, totalPages: 0 }) },
+            useValue: {
+              search: vi.fn().mockResolvedValue({
+                items: [],
+                totalItems: 0,
+                page: 0,
+                pageSize: 100,
+                totalPages: 0,
+              }),
+            },
           },
           {
             provide: ProgramsApiService,
-            useValue: { getByCourse: vi.fn().mockResolvedValue([]), getLessons: vi.fn().mockResolvedValue([]) },
+            useValue: {
+              getByCourse: vi.fn().mockResolvedValue([]),
+              getLessons: vi.fn().mockResolvedValue([]),
+            },
           },
           {
             provide: AppLoggerService,
@@ -230,7 +254,16 @@ describe('ScenarioBuilderDialogComponent', () => {
           },
           { provide: MatDialogRef, useValue: mockDialogRef },
           { provide: MatDialog, useValue: mockMatDialog },
-          { provide: MAT_DIALOG_DATA, useValue: { mode: 'create' as const, courseId: 'course-1', programId: 'program-1', lessonId: 'lesson-1', languagePairId: 1 } },
+          {
+            provide: MAT_DIALOG_DATA,
+            useValue: {
+              mode: 'create' as const,
+              courseId: 'course-1',
+              programId: 'program-1',
+              lessonId: 'lesson-1',
+              languagePairId: 1,
+            },
+          },
         ],
       });
 
@@ -311,11 +344,22 @@ describe('ScenarioBuilderDialogComponent', () => {
           provideHttpClient(),
           {
             provide: CourseSearchService,
-            useValue: { search: vi.fn().mockResolvedValue({ items: [], totalItems: 0, page: 0, pageSize: 100, totalPages: 0 }) },
+            useValue: {
+              search: vi.fn().mockResolvedValue({
+                items: [],
+                totalItems: 0,
+                page: 0,
+                pageSize: 100,
+                totalPages: 0,
+              }),
+            },
           },
           {
             provide: ProgramsApiService,
-            useValue: { getByCourse: vi.fn().mockResolvedValue([]), getLessons: vi.fn().mockResolvedValue([]) },
+            useValue: {
+              getByCourse: vi.fn().mockResolvedValue([]),
+              getLessons: vi.fn().mockResolvedValue([]),
+            },
           },
           {
             provide: AppLoggerService,

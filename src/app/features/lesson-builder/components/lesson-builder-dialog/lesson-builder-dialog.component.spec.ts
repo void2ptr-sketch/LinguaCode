@@ -61,7 +61,11 @@ function createComponent(
       provideHttpClient(),
       {
         provide: CourseSearchService,
-        useValue: { search: vi.fn().mockResolvedValue({ items: [], totalItems: 0, page: 0, pageSize: 100, totalPages: 0 }) },
+        useValue: {
+          search: vi
+            .fn()
+            .mockResolvedValue({ items: [], totalItems: 0, page: 0, pageSize: 100, totalPages: 0 }),
+        },
       },
       {
         provide: LanguagePairsApiService,

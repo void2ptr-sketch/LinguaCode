@@ -890,10 +890,8 @@ export type CardDraftTabIssues = {
 const countIssues = (...issues: readonly boolean[]): number =>
   issues.reduce((total, hasIssue) => (hasIssue ? total + 1 : total), 0);
 
-const isInvalidCorrectIndex = (
-  correctIndex: number,
-  options: readonly unknown[] | null,
-): boolean => options !== null && normalizeCorrectIndex(correctIndex, options.length) === null;
+const isInvalidCorrectIndex = (correctIndex: number, options: readonly unknown[] | null): boolean =>
+  options !== null && normalizeCorrectIndex(correctIndex, options.length) === null;
 
 /**
  * Counts blocking validation issues per editor tab.
@@ -929,10 +927,7 @@ export const cardDraftTabIssues = (draft: CardDraft): CardDraftTabIssues => {
     case 'code-select': {
       const options = normalizeCodeBlocks(draft.options);
       content += countIssues(!sanitizeCode(draft.prompt.code));
-      answers += countIssues(
-        options === null,
-        isInvalidCorrectIndex(draft.correctIndex, options),
-      );
+      answers += countIssues(options === null, isInvalidCorrectIndex(draft.correctIndex, options));
       break;
     }
     case 'memory': {
@@ -946,10 +941,7 @@ export const cardDraftTabIssues = (draft: CardDraft): CardDraftTabIssues => {
     case 'symbol': {
       const symbols = normalizeOptions(draft.symbols);
       content += countIssues(!sanitizePrompt(draft.promptKnown));
-      answers += countIssues(
-        symbols === null,
-        isInvalidCorrectIndex(draft.correctIndex, symbols),
-      );
+      answers += countIssues(symbols === null, isInvalidCorrectIndex(draft.correctIndex, symbols));
       break;
     }
     case 'sound': {
@@ -967,9 +959,7 @@ export const cardDraftTabIssues = (draft: CardDraft): CardDraftTabIssues => {
         .map(sanitizeShort)
         .filter((answer) => answer.length > 0).length;
       content += countIssues(!sanitizePrompt(draft.promptKnown));
-      answers += countIssues(
-        acceptedAnswers < MIN_ANSWERS || acceptedAnswers > MAX_ANSWERS,
-      );
+      answers += countIssues(acceptedAnswers < MIN_ANSWERS || acceptedAnswers > MAX_ANSWERS);
       break;
     }
     case 'draw': {

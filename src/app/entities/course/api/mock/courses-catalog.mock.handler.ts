@@ -42,7 +42,8 @@ import type { CourseAuthoring } from '../../model';
  * bridges the gap.
  */
 function buildAuthoringFromFlat(payload: CourseWritePayload): CourseAuthoring | undefined {
-  const status = payload.authoringStatus as 'draft' | 'planned' | 'generating' | 'materialized' | 'failed' | undefined;
+  const status = payload.authoringStatus as
+    'draft' | 'planned' | 'generating' | 'materialized' | 'failed' | undefined;
   if (!status) return undefined;
 
   return {
@@ -189,7 +190,7 @@ export class CoursesCatalogMockHandler {
 
     this.assertCanEdit(current);
     const languagePairId = payload.languagePairId ?? current.languagePairId;
-    const languagePair = await this.resolveLanguagePair(languagePairId) ?? current.languagePair;
+    const languagePair = (await this.resolveLanguagePair(languagePairId)) ?? current.languagePair;
 
     if (isSystemAuthor(current.authorId)) {
       const updated: Course = {
@@ -199,9 +200,7 @@ export class CoursesCatalogMockHandler {
         description: payload.description,
         published: payload.published,
         updatedAt: new Date().toISOString(),
-        authoring: normalizeCourseAuthoring(
-          buildAuthoringFromFlat(payload) ?? current.authoring,
-        ),
+        authoring: normalizeCourseAuthoring(buildAuthoringFromFlat(payload) ?? current.authoring),
         practiceSettings: payload.practiceSettings ?? current.practiceSettings,
       };
       const programs = await this.programsWithLessonsForCourse(updated);
@@ -227,9 +226,7 @@ export class CoursesCatalogMockHandler {
       languagePair,
       programIds: programs.map((p) => p.id),
       updatedAt: new Date().toISOString(),
-      authoring: normalizeCourseAuthoring(
-        buildAuthoringFromFlat(payload) ?? current.authoring,
-      ),
+      authoring: normalizeCourseAuthoring(buildAuthoringFromFlat(payload) ?? current.authoring),
       practiceSettings: payload.practiceSettings ?? current.practiceSettings,
     };
 
@@ -353,7 +350,7 @@ export class CoursesCatalogMockHandler {
    * Resolves a numeric `languagePairId` to a `LanguagePair` code pair
    * using the cached `/language-pairs` endpoint.
    */
-   private async resolveLanguagePair(
+  private async resolveLanguagePair(
     languagePairId: number | undefined,
   ): Promise<import('../../../language-pair/model/language-pair.types').LanguagePair | undefined> {
     if (languagePairId == null) return undefined;

@@ -146,21 +146,24 @@ export class LessonsApiService {
    */
   async update(lessonId: string, payload: LessonUpdatePayload): Promise<LessonEntity> {
     const response = await firstValueFrom(
-      this.lessonsService.lessonsUpdate(toNumericId(lessonId) as number, {
-        title: payload.title,
-        lessonDescription: payload.description,
-        lessonOrder: payload.order,
-        prerequisiteLessonIds: stringifyPrerequisiteLessonIds(payload.prerequisiteLessonIds),
-        published: payload.published,
-        requiredTier: payload.requiredTier,
-        // languagePairId и courseId отсутствуют в сгенерированном типе
-        // (LessonUpdateRequest), но поддерживаются бэкендом.
-        ...(payload.languagePairId != null ? { languagePairId: payload.languagePairId } : {}),
-        ...(payload.courseId != null ? { courseId: payload.courseId } : {}),
-      } as import('../../../shared/api/generated/models/lessonUpdateRequest').LessonUpdateRequest & {
-        languagePairId?: number;
-        courseId?: string;
-      }),
+      this.lessonsService.lessonsUpdate(
+        toNumericId(lessonId) as number,
+        {
+          title: payload.title,
+          lessonDescription: payload.description,
+          lessonOrder: payload.order,
+          prerequisiteLessonIds: stringifyPrerequisiteLessonIds(payload.prerequisiteLessonIds),
+          published: payload.published,
+          requiredTier: payload.requiredTier,
+          // languagePairId и courseId отсутствуют в сгенерированном типе
+          // (LessonUpdateRequest), но поддерживаются бэкендом.
+          ...(payload.languagePairId != null ? { languagePairId: payload.languagePairId } : {}),
+          ...(payload.courseId != null ? { courseId: payload.courseId } : {}),
+        } as import('../../../shared/api/generated/models/lessonUpdateRequest').LessonUpdateRequest & {
+          languagePairId?: number;
+          courseId?: string;
+        },
+      ),
     );
     return mapLessonDto(response.data);
   }

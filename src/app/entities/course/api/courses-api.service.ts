@@ -322,8 +322,7 @@ export class CoursesApiService implements CourseCatalogPort {
                 ? (l['scenarioIds'] as number[]).map((s) => String(s))
                 : [],
               prerequisiteLessonIds: Array.isArray(l['prerequisiteLessonIds'])
-                ? (l['prerequisiteLessonIds'] as number[])
-                    .map((s) => String(s))
+                ? (l['prerequisiteLessonIds'] as number[]).map((s) => String(s))
                 : [],
             })),
           };

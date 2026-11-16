@@ -159,7 +159,9 @@ describe('lesson-form-draft.utils', () => {
     });
 
     it('should accept a valid draft', () => {
-      expect(validateLessonFormDraft({ ...emptyLessonFormDraft(), title: 'Valid', order: 1 })).toBeNull();
+      expect(
+        validateLessonFormDraft({ ...emptyLessonFormDraft(), title: 'Valid', order: 1 }),
+      ).toBeNull();
     });
 
     it('should reject a title longer than the max length', () => {
@@ -180,8 +182,12 @@ describe('lesson-form-draft.utils', () => {
     });
 
     it('should accept order greater than zero', () => {
-      expect(validateLessonFormDraft({ ...emptyLessonFormDraft(), title: 'Valid', order: 1 })).toBeNull();
-      expect(validateLessonFormDraft({ ...emptyLessonFormDraft(), title: 'Valid', order: 5 })).toBeNull();
+      expect(
+        validateLessonFormDraft({ ...emptyLessonFormDraft(), title: 'Valid', order: 1 }),
+      ).toBeNull();
+      expect(
+        validateLessonFormDraft({ ...emptyLessonFormDraft(), title: 'Valid', order: 5 }),
+      ).toBeNull();
     });
   });
 

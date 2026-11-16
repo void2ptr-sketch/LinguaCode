@@ -11,7 +11,6 @@ import {
 
 type ScenarioWithCardSource = Scenario & { cardSource: ScenarioCardSource };
 
-
 /* ------------------------------------------------------------------ */
 /*  Fixtures                                                           */
 /* ------------------------------------------------------------------ */

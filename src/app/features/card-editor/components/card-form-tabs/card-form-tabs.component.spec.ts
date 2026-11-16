@@ -7,12 +7,7 @@ import { CardFormTabsComponent, TabDefinition, TabId } from './card-form-tabs.co
   selector: 'app-host',
   standalone: true,
   imports: [CardFormTabsComponent],
-  template: `
-    <app-card-form-tabs
-      [tabs]="tabs"
-      (activeTabChange)="onActiveTabChange($event)"
-    />
-  `,
+  template: ` <app-card-form-tabs [tabs]="tabs" (activeTabChange)="onActiveTabChange($event)" /> `,
 })
 class HostComponent {
   tabs: TabDefinition[] = [];
@@ -85,9 +80,7 @@ describe('CardFormTabsComponent', () => {
 
   it('should render a validation badge with an accessible label', () => {
     host.tabs = createTabs().map((tab) =>
-      tab.id === 'answers'
-        ? { ...tab, badge: '2', badgeAriaLabel: 'Ответы, 2 ошибки' }
-        : tab,
+      tab.id === 'answers' ? { ...tab, badge: '2', badgeAriaLabel: 'Ответы, 2 ошибки' } : tab,
     );
     hostFixture.detectChanges();
 

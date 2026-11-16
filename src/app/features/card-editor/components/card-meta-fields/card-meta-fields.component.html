@@ -18,10 +18,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Уровень доступа</mat-label>
-      <mat-select
-        [ngModel]="m.requiredTier ?? 'FREE'"
-        (ngModelChange)="updateRequiredTier($event)"
-      >
+      <mat-select [ngModel]="m.requiredTier ?? 'FREE'" (ngModelChange)="updateRequiredTier($event)">
         @for (tier of tierOptions; track tier) {
           <mat-option [value]="tier">{{ tierLabels[tier] }}</mat-option>
         }

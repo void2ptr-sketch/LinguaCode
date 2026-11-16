@@ -20,7 +20,8 @@ export type CourseDeleteConfirmDialogData = {
   template: `
     <h2 mat-dialog-title>Удалить курс?</h2>
     <mat-dialog-content>
-      Курс «{{ data.courseTitle }}» и все связанные с ним данные будут помечены как удалённые и скроются из каталога.
+      Курс «{{ data.courseTitle }}» и все связанные с ним данные будут помечены как удалённые и
+      скроются из каталога.
       <p class="hint">Контент можно восстановить через API.</p>
     </mat-dialog-content>
     <style>

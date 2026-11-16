@@ -62,11 +62,17 @@ export class ScenarioBuilderStore {
     try {
       const pairs = await this.languagePairsApi.listAll();
       for (const p of pairs) {
-        this.pairCache[p.id] = { known: p.knownCode as LanguagePair['known'], learning: p.learningCode as LanguagePair['learning'] };
+        this.pairCache[p.id] = {
+          known: p.knownCode as LanguagePair['known'],
+          learning: p.learningCode as LanguagePair['learning'],
+        };
       }
     } catch {
       // /language-pairs may require auth (403) — fallback
-      this.pairCache[1] = { known: 'ru' as LanguagePair['known'], learning: 'en' as LanguagePair['learning'] };
+      this.pairCache[1] = {
+        known: 'ru' as LanguagePair['known'],
+        learning: 'en' as LanguagePair['learning'],
+      };
     }
     this.pairCacheLoaded = true;
   }
@@ -257,14 +263,12 @@ export class ScenarioBuilderStore {
    * but that endpoint ignores `lessonId` and only returns tier-accessible
    * scenarios, so the computed maximum was always `0` (order `1`).
    */
-  async createDraft(
-    context?: {
-      languagePairId?: number;
-      courseId?: string;
-      programId?: string;
-      lessonId?: string;
-    },
-  ): Promise<ScenarioFormDraft> {
+  async createDraft(context?: {
+    languagePairId?: number;
+    courseId?: string;
+    programId?: string;
+    lessonId?: string;
+  }): Promise<ScenarioFormDraft> {
     let order = 1;
 
     try {
@@ -652,7 +656,8 @@ export class ScenarioBuilderStore {
    */
   private async validateCardIdsMatchPair(
     cardIds: readonly string[],
-    languagePair: import('../../../entities/language-pair/model/language-pair.types').LanguagePair | undefined,
+    languagePair:
+      import('../../../entities/language-pair/model/language-pair.types').LanguagePair | undefined,
   ): Promise<string | null> {
     if (!languagePair) {
       return null;

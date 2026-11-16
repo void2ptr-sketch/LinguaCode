@@ -122,10 +122,7 @@
       <app-explorer-tree />
     </aside>
 
-    <div
-      class="content-explorer-page__resize-handle"
-      (mousedown)="onMouseDownResize($event)"
-    >
+    <div class="content-explorer-page__resize-handle" (mousedown)="onMouseDownResize($event)">
       <div
         class="content-explorer-page__resize-handle__dots"
         [class.content-explorer-page__resize-handle__dots--active]="isResizing()"

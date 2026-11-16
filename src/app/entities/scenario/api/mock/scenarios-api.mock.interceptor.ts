@@ -36,11 +36,7 @@ const extractScenarioId = (url: string): string | null => {
     return null;
   }
 
-  if (
-    rest.startsWith('by-card/') ||
-    rest.startsWith('by-lesson/') ||
-    rest.includes('/cards')
-  ) {
+  if (rest.startsWith('by-card/') || rest.startsWith('by-lesson/') || rest.includes('/cards')) {
     return null;
   }
 
@@ -136,11 +132,7 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     if (req.method === 'POST' && !cardId) {
       const body = req.body as { cardId?: number; order?: number };
       return defer(() =>
-        handler.addCard(
-          targetScenarioId,
-          String(body?.cardId ?? ''),
-          body?.order,
-        ),
+        handler.addCard(targetScenarioId, String(body?.cardId ?? ''), body?.order),
       ).pipe(map((data) => new HttpResponse({ status: 200, body: { data } })));
     }
 

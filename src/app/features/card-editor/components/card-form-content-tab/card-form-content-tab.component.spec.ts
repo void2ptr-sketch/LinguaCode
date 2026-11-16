@@ -32,12 +32,7 @@ const createBaseDraft = (kind: CardDraft['kind']): CardDraft =>
   selector: 'app-host',
   standalone: true,
   imports: [CardFormContentTabComponent],
-  template: `
-    <app-card-form-content-tab
-      [draft]="draft"
-      (draftChange)="onDraftChange($event)"
-    />
-  `,
+  template: ` <app-card-form-content-tab [draft]="draft" (draftChange)="onDraftChange($event)" /> `,
 })
 class HostComponent {
   draft: CardDraft = createBaseDraft('select');

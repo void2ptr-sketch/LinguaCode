@@ -27,9 +27,7 @@ export type ScenarioFormDraft = {
   snapshotFrozenAt: string | null;
 };
 
-export function emptyScenarioFormDraft(
-  initialOrder = 1,
-): ScenarioFormDraft {
+export function emptyScenarioFormDraft(initialOrder = 1): ScenarioFormDraft {
   return {
     title: '',
     description: '',

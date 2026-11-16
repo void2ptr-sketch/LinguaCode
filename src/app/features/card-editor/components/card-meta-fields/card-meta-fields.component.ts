@@ -26,13 +26,7 @@ const TIER_LABELS: Record<CardPaymentTier, string> = {
 @Component({
   selector: 'app-card-meta-fields',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    FormsModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-  ],
+  imports: [FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   templateUrl: './card-meta-fields.component.html',
   styleUrl: './card-meta-fields.component.scss',
 })

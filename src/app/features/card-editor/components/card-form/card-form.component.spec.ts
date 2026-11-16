@@ -505,13 +505,12 @@ describe('CardFormComponent', () => {
       'should show the same visible labels for %s',
       (kind) => {
         fixture.componentRef.setInput('draft', createDraft(kind));
-        expect(component.tabs().filter((tab) => tab.visible).map((tab) => tab.label)).toEqual([
-          'Содержание',
-          'Ответы',
-          'Оформление',
-          'Размещение',
-          'Публикация',
-        ]);
+        expect(
+          component
+            .tabs()
+            .filter((tab) => tab.visible)
+            .map((tab) => tab.label),
+        ).toEqual(['Содержание', 'Ответы', 'Оформление', 'Размещение', 'Публикация']);
       },
     );
 
@@ -523,11 +522,12 @@ describe('CardFormComponent', () => {
     it('should show only content, answers, and placement in basic mode', () => {
       fixture.componentRef.setInput('draft', createDraft('select'));
       fixture.componentRef.setInput('uxMode', 'basic');
-      expect(component.tabs().filter((tab) => tab.visible).map((tab) => tab.id)).toEqual([
-        'content',
-        'answers',
-        'placement',
-      ]);
+      expect(
+        component
+          .tabs()
+          .filter((tab) => tab.visible)
+          .map((tab) => tab.id),
+      ).toEqual(['content', 'answers', 'placement']);
     });
 
     it('should keep placement visible in basic mode without hierarchy context', () => {
@@ -539,30 +539,30 @@ describe('CardFormComponent', () => {
     it('should show all five tabs in advanced mode', () => {
       fixture.componentRef.setInput('draft', createDraft('select'));
       fixture.componentRef.setInput('uxMode', 'advanced');
-      expect(component.tabs().filter((tab) => tab.visible).map((tab) => tab.id)).toEqual([
-        'content',
-        'answers',
-        'appearance',
-        'placement',
-        'publishing',
-      ]);
+      expect(
+        component
+          .tabs()
+          .filter((tab) => tab.visible)
+          .map((tab) => tab.id),
+      ).toEqual(['content', 'answers', 'appearance', 'placement', 'publishing']);
     });
 
     it('should badge the content tab when title and prompt are missing', () => {
-      fixture.componentRef.setInput(
-        'draft',
-        { ...createDraft('select'), title: '', promptKnown: '' } as CardDraft,
-      );
+      fixture.componentRef.setInput('draft', {
+        ...createDraft('select'),
+        title: '',
+        promptKnown: '',
+      } as CardDraft);
       const content = component.tabs().find((tab) => tab.id === 'content');
       expect(content?.badge).toBe('2');
       expect(content?.badgeAriaLabel).toBe('Содержание, 2 ошибки');
     });
 
     it('should badge the answers tab when answer data is missing', () => {
-      fixture.componentRef.setInput(
-        'draft',
-        { ...createDraft('select'), optionsLearning: [] } as CardDraft,
-      );
+      fixture.componentRef.setInput('draft', {
+        ...createDraft('select'),
+        optionsLearning: [],
+      } as CardDraft);
       const answers = component.tabs().find((tab) => tab.id === 'answers');
       expect(answers?.badge).toBe('1');
       expect(answers?.badgeAriaLabel).toBe('Ответы, 1 ошибка');
