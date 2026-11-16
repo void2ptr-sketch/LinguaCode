@@ -4,6 +4,9 @@ import { describe, expect, it, vi } from 'vitest';
 import { CardConnectionsTabComponent } from './card-connections-tab.component';
 import { CardCatalogHierarchyService } from '../../../../entities/card/lib/services/card-catalog-hierarchy.service';
 import type { CourseOption, LessonOption, ScenarioOption } from '../../../../entities/card/lib/services/card-catalog-hierarchy.service';
+import { LanguageService } from '../../../../entities/language-pair/services/language.service';
+import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 
 // Mock hierarchy service
 class MockCardCatalogHierarchyService {
@@ -48,6 +51,29 @@ class MockCardCatalogHierarchyService {
   }
 }
 
+// Mock language service
+class MockLanguageService {
+  languages = vi.fn(() => []);
+  loading = { set: () => undefined, asReadonly: () => undefined };
+  loaded = { set: () => undefined, asReadonly: () => undefined };
+  getCodes = vi.fn(() => ['ru', 'en', 'zh']);
+  getLabels = vi.fn(() => ({ ru: 'Русский', en: 'English', zh: '中文' }));
+  findByCode = vi.fn((code: string) => ({ code, displayName: code }));
+  isValid = vi.fn(() => true);
+  load = vi.fn(() => Promise.resolve());
+}
+
+// Mock language pairs API service
+class MockLanguagePairsApiService {
+  listAll = vi.fn(() => Promise.resolve<LanguagePairDto[]>([
+    { id: 1, knownCode: 'ru', learningCode: 'en' },
+    { id: 2, knownCode: 'en', learningCode: 'zh' },
+  ]));
+  create = vi.fn(() => Promise.resolve({ id: 3, knownCode: 'zh', learningCode: 'ru' }));
+  update = vi.fn(() => Promise.resolve({ id: 1, knownCode: 'ru', learningCode: 'en' }));
+  delete = vi.fn(() => Promise.resolve());
+}
+
 @Component({
   selector: 'app-host',
   standalone: true,
@@ -60,6 +86,7 @@ class MockCardCatalogHierarchyService {
       (programIdChange)="onProgramIdChange($event)"
       (lessonIdChange)="onLessonIdChange($event)"
       (scenarioIdChange)="onScenarioIdChange($event)"
+      (languagePairIdChange)="onLanguagePairIdChange($event)"
     />
   `,
 })
@@ -70,11 +97,12 @@ class HostComponent {
     lessonId: '',
     scenarioId: '',
   };
-  meta = { languagePairId: 'ru_en_123' };
+  meta = { languagePairId: '1' };
   onCourseIdChange: (_v: string) => void = vi.fn();
   onProgramIdChange: (_v: string) => void = vi.fn();
   onLessonIdChange: (_v: string) => void = vi.fn();
   onScenarioIdChange: (_v: string) => void = vi.fn();
+  onLanguagePairIdChange: (_v: string) => void = vi.fn();
 }
 
 describe('CardConnectionsTabComponent', () => {
@@ -88,6 +116,14 @@ describe('CardConnectionsTabComponent', () => {
         {
           provide: CardCatalogHierarchyService,
           useClass: MockCardCatalogHierarchyService,
+        },
+        {
+          provide: LanguageService,
+          useClass: MockLanguageService,
+        },
+        {
+          provide: LanguagePairsApiService,
+          useClass: MockLanguagePairsApiService,
         },
       ],
     });
@@ -147,6 +183,15 @@ describe('CardConnectionsTabComponent', () => {
     expect(emitted).toBe('s1');
   });
 
+  it('should have languagePairIdChange output', () => {
+    let emitted = '';
+    component.languagePairIdChange.subscribe((v) => {
+      emitted = v;
+    });
+    component.languagePairIdChange.emit('pair-1');
+    expect(emitted).toBe('pair-1');
+  });
+
   // ── Signals ──
 
   it('should have loading signal', () => {
@@ -167,6 +212,15 @@ describe('CardConnectionsTabComponent', () => {
 
   it('should have availableScenarios signal', () => {
     expect(component.availableScenarios).toBeDefined();
+  });
+
+  it('should have languagePairs signal', () => {
+    expect(component.languagePairs).toBeDefined();
+  });
+
+  it('should have languageLabels method', () => {
+    expect(component.languageLabels).toBeDefined();
+    expect(typeof component.languageLabels).toBe('function');
   });
 
   // ── Update methods ──
@@ -205,6 +259,15 @@ describe('CardConnectionsTabComponent', () => {
     });
     component.updateScenarioId('scenario-1');
     expect(emitted).toBe('scenario-1');
+  });
+
+  it('should emit languagePairId on updateLanguagePairId', () => {
+    let emitted = '';
+    component.languagePairIdChange.subscribe((v) => {
+      emitted = v;
+    });
+    component.updateLanguagePairId('pair-1');
+    expect(emitted).toBe('pair-1');
   });
 
   // ── HTML rendering ──

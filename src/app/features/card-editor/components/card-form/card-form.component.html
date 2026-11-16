@@ -71,6 +71,7 @@
             (programIdChange)="updateProgramId($event)"
             (lessonIdChange)="updateLessonId($event)"
             (scenarioIdChange)="updateScenarioId($event)"
+            (languagePairIdChange)="metaChange.emit({ ...meta(), languagePairId: $event })"
           />
         }
       }

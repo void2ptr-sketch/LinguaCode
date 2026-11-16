@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import type { CardIndexMetaOverride } from '../../../../entities/card/model';
+import { LanguageService } from '../../../../entities/language-pair/services/language.service';
+import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import {
   CardCatalogHierarchyService,
   type CourseOption,
@@ -41,7 +43,6 @@ export type ConnectionsDraft = {
   imports: [
     FormsModule,
     MatFormFieldModule,
-    MatInputModule,
     MatSelectModule,
     MatDividerModule,
     MatTooltipModule,
@@ -51,6 +52,8 @@ export type ConnectionsDraft = {
 })
 export class CardConnectionsTabComponent implements OnInit {
   private readonly hierarchyService = inject(CardCatalogHierarchyService);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
+  private readonly languageService = inject(LanguageService);
 
   /** Required draft containing only connection fields. */
   readonly draft = input.required<ConnectionsDraft>();
@@ -70,6 +73,9 @@ export class CardConnectionsTabComponent implements OnInit {
   /** Emits the updated scenario ID. */
   readonly scenarioIdChange = output<string>();
 
+  /** Emits the updated language pair ID. */
+  readonly languagePairIdChange = output<string>();
+
   /** Loading indicator for the hierarchy. */
   readonly loading = signal(false);
 
@@ -85,32 +91,51 @@ export class CardConnectionsTabComponent implements OnInit {
   /** Available scenarios for the selected lesson. */
   readonly availableScenarios = signal<readonly ScenarioOption[]>([]);
 
+  /** Available language pairs from the registry. */
+  readonly languagePairs = signal<readonly LanguagePairDto[]>([]);
+
+  /** Labels for content languages. */
+  readonly languageLabels = () => this.languageService.getLabels();
+
   async ngOnInit(): Promise<void> {
     this.loading.set(true);
     try {
-      // Загружаем курсы через CardCatalogHierarchyService.
-      // Используем дефолтные значения языков, так как язык определяется на уровне CardFormComponent.
-      const courses = await this.hierarchyService.loadCourses('ru', 'en', 'ru_en');
-      this.availableCourses.set(courses);
-
-      // Если у карточки уже выбрана иерархия — загружаем программы, уроки и сценарии.
-      const draft = this.draft();
-      if (draft.courseId) {
-        const programs = await this.hierarchyService.loadPrograms(draft.courseId);
-        this.availablePrograms.set(
-          programs.map((program) => ({ id: program.id, title: program.title })),
-        );
-      }
-      if (draft.programId) {
-        const lessons = await this.hierarchyService.loadLessons(draft.programId);
-        this.availableLessons.set(lessons);
-      }
-      if (draft.programId && draft.lessonId) {
-        const scenarios = this.hierarchyService.getScenariosForLesson(draft.programId, draft.lessonId);
-        this.availableScenarios.set(scenarios);
-      }
+      await Promise.all([this.loadLanguagePairs(), this.loadHierarchy()]);
     } finally {
       this.loading.set(false);
+    }
+  }
+
+  private async loadLanguagePairs(): Promise<void> {
+    try {
+      const pairs = await this.languagePairsApi.listAll();
+      this.languagePairs.set(pairs);
+    } catch {
+      this.languagePairs.set([]);
+    }
+  }
+
+  private async loadHierarchy(): Promise<void> {
+    // Загружаем курсы через CardCatalogHierarchyService.
+    // Используем дефолтные значения языков, так как язык определяется на уровне CardFormComponent.
+    const courses = await this.hierarchyService.loadCourses('ru', 'en', 'ru_en');
+    this.availableCourses.set(courses);
+
+    // Если у карточки уже выбрана иерархия — загружаем программы, уроки и сценарии.
+    const draft = this.draft();
+    if (draft.courseId) {
+      const programs = await this.hierarchyService.loadPrograms(draft.courseId);
+      this.availablePrograms.set(
+        programs.map((program) => ({ id: program.id, title: program.title })),
+      );
+    }
+    if (draft.programId) {
+      const lessons = await this.hierarchyService.loadLessons(draft.programId);
+      this.availableLessons.set(lessons);
+    }
+    if (draft.programId && draft.lessonId) {
+      const scenarios = this.hierarchyService.getScenariosForLesson(draft.programId, draft.lessonId);
+      this.availableScenarios.set(scenarios);
     }
   }
 
@@ -174,5 +199,14 @@ export class CardConnectionsTabComponent implements OnInit {
    */
   updateScenarioId(scenarioId: string): void {
     this.scenarioIdChange.emit(scenarioId);
+  }
+
+  /**
+   * Updates the selected language pair.
+   *
+   * @param languagePairId - The selected language pair ID (empty string to deselect).
+   */
+  updateLanguagePairId(languagePairId: string): void {
+    this.languagePairIdChange.emit(languagePairId);
   }
 }

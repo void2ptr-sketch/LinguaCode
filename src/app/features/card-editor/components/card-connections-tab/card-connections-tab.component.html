@@ -5,13 +5,15 @@
     <p class="card-form__hint card-form__hint--tab">Загрузка связей…</p>
   } @else {
     <mat-form-field appearance="outline">
-      <mat-label>ID языковой пары</mat-label>
-      <input
-        matInput
-        [ngModel]="meta()?.languagePairId ?? ''"
-        readonly
-        matTooltip="Определяется языковыми предпочтениями пользователя"
-      />
+      <mat-label>Языковая пара</mat-label>
+      <mat-select [ngModel]="meta()?.languagePairId" (ngModelChange)="updateLanguagePairId($event)">
+        <mat-option [value]="">Без языковой пары</mat-option>
+        @for (pair of languagePairs(); track pair.id) {
+          <mat-option [value]="pair.id.toString()">
+            {{ languageLabels()[pair.knownCode] }} → {{ languageLabels()[pair.learningCode] }}
+          </mat-option>
+        }
+      </mat-select>
     </mat-form-field>
 
     <mat-divider></mat-divider>
