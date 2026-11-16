@@ -4,7 +4,7 @@
     <app-card-form-tabs [tabs]="tabs()" (activeTabChange)="onTabChange($event)" />
 
     <!-- Tab Content -->
-    <div class="card-form__tab-content">
+    <div #tabContent class="card-form__tab-content">
       @switch (activeTabId()) {
         @case ('content') {
           <app-card-form-content-tab

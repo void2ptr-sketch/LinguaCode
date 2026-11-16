@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,6 +32,7 @@ import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/ca
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    TextFieldModule,
     CardFormPhoneticsPanelComponent,
   ],
   templateUrl: './card-form-content-tab.component.html',

@@ -3,11 +3,13 @@ import {
   Component,
   computed,
   effect,
+  ElementRef,
   inject,
   input,
   OnInit,
   output,
   signal,
+  viewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -187,6 +189,9 @@ export class CardFormComponent implements OnInit {
   /** Currently selected tab id (stable, never an array index). */
   readonly activeTabId = signal<TabId>('content');
 
+  /** Scrollable tab body, reset to the top whenever the active tab changes. */
+  private readonly tabContent = viewChild<ElementRef<HTMLElement>>('tabContent');
+
   /**
    * Tabs available for the current card kind and UX mode.
    *
@@ -251,6 +256,7 @@ export class CardFormComponent implements OnInit {
    */
   onTabChange(tabId: TabId): void {
     this.activeTabId.set(tabId);
+    this.tabContent()?.nativeElement.scrollTo({ top: 0 });
   }
 
   async ngOnInit(): Promise<void> {

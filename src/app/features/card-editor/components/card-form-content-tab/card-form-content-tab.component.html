@@ -12,6 +12,9 @@
     <mat-label>{{ promptLabel() }}</mat-label>
     <textarea
       matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="3"
+      cdkAutosizeMaxRows="12"
       rows="4"
       [ngModel]="promptKnown()"
       (ngModelChange)="updatePromptKnown($event)"
@@ -24,6 +27,9 @@
     <mat-label>Контекст (необязательно)</mat-label>
     <textarea
       matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="3"
+      cdkAutosizeMaxRows="12"
       rows="2"
       [ngModel]="d.caption"
       (ngModelChange)="updateCaption($event)"
@@ -37,6 +43,9 @@
     <mat-label>Вопрос</mat-label>
     <textarea
       matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="3"
+      cdkAutosizeMaxRows="12"
       rows="2"
       [ngModel]="d.question"
       (ngModelChange)="updateQuestion($event)"
@@ -60,6 +69,9 @@
       <mat-label>Код</mat-label>
       <textarea
         matInput
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="3"
+        cdkAutosizeMaxRows="12"
         rows="8"
         [ngModel]="block.code"
         (ngModelChange)="updateCode($event)"
@@ -96,11 +108,27 @@
 @if (flipDraft(); as d) {
   <mat-form-field appearance="outline">
     <mat-label>Лицевая сторона</mat-label>
-    <textarea matInput rows="3" [ngModel]="d.front" (ngModelChange)="updateFlipFront($event)"></textarea>
+    <textarea
+      matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="3"
+      cdkAutosizeMaxRows="12"
+      rows="3"
+      [ngModel]="d.front"
+      (ngModelChange)="updateFlipFront($event)"
+    ></textarea>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Обратная сторона</mat-label>
-    <textarea matInput rows="3" [ngModel]="d.back" (ngModelChange)="updateFlipBack($event)"></textarea>
+    <textarea
+      matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="3"
+      cdkAutosizeMaxRows="12"
+      rows="3"
+      [ngModel]="d.back"
+      (ngModelChange)="updateFlipBack($event)"
+    ></textarea>
   </mat-form-field>
 }
 

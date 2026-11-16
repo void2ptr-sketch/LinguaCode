@@ -1,4 +1,13 @@
-<h2 mat-dialog-title>{{ title() }}</h2>
+<div class="card-editor-dialog__header">
+  <h2 mat-dialog-title>{{ title() }}</h2>
+  <mat-slide-toggle
+    class="card-editor-dialog__mode-toggle"
+    [checked]="editorUxMode() === 'advanced'"
+    (change)="onAdvancedModeToggle($event.checked)"
+  >
+    Расширенный режим
+  </mat-slide-toggle>
+</div>
 
 <p class="card-editor-dialog__summary">
   <span class="card-editor-dialog__language-pair">{{ languagePairSummary() }}</span>
@@ -23,15 +32,6 @@
     @if (saveError()) {
       <p class="card-editor-dialog__error">{{ saveError() }}</p>
     }
-    <div class="card-editor-dialog__toolbar">
-      <mat-slide-toggle
-        class="card-editor-dialog__mode"
-        [checked]="editorUxMode() === 'advanced'"
-        (change)="onAdvancedModeToggle($event.checked)"
-      >
-        Расширенный режим
-      </mat-slide-toggle>
-    </div>
     <app-card-form
       [draft]="draft()"
       [previewId]="store.editingCardId() ?? 'preview-card'"

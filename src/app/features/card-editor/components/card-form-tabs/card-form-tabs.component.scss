@@ -7,18 +7,6 @@
     border-bottom: none;
   }
 
-  ::ng-deep .mat-mdc-tab-header-pagination,
-  ::ng-deep .mat-tab-header-pagination {
-    display: none;
-  }
-
-  // Keep the tab strip on a single line and allow horizontal scrolling on narrow screens.
-  ::ng-deep .mat-mdc-tab-label-container,
-  ::ng-deep .mat-tab-header-inner {
-    overflow-x: auto;
-    scrollbar-width: thin;
-  }
-
   ::ng-deep .mat-mdc-tab-labels,
   ::ng-deep .mat-tab-labels {
     min-width: max-content;
