@@ -22,7 +22,7 @@
 
 | Файл                                                            | Задача | Документ                                         | Статус |
 | --------------------------------------------------------------- | ------ | ------------------------------------------------ | ------ |
-| `entities/program/model/program.types.ts`                       | G17a   | `ARCHITECTURE.program.md`                        | ⏳     |
+| `entities/program/model/program.types.ts`                       | G17a   | `ARCHITECTURE.program.md`                        | ✓      |
 | `features/content-explorer/components/content-explorer-page/`   | G?     | `CONTENT-EXPLORER.md`                            | ✓      |
 | `features/scenario-builder/components/scenario-builder-dialog/` | G?     | `SCENARIO-BUILDER.md`                            | ✓      |
 | `features/card-editor/components/card-editor-dialog/`           | G?     | `CARD-CATALOG.md`, `ARCHITECTURE.card-editor.md` | ✓      |
@@ -817,75 +817,64 @@ Definition of Done:
 - **`Program`** — учебный трек/модуль внутри `Course` (Spring 2024, Self-paced, Intensive). Содержит `lessonIds`, `order`.
 - **`Lesson`** — урок внутри трека.
 
-**G17a — домен и типы**
+> **Статус:** готово (G17) · **Docs:** [ARCHITECTURE.program.md](./docs/ARCHITECTURE/ARCHITECTURE.program.md) · [DOMAIN.md](./docs/PRODUCT/DOMAIN.md) · [PROGRAM-BUILDER.md](./docs/FEATURES/PROGRAM-BUILDER.md)
 
-> **Статус:** запланировано · **Docs:** [ARCHITECTURE.program.md](./docs/ARCHITECTURE/ARCHITECTURE.program.md) · [DOMAIN.md](./docs/PRODUCT/DOMAIN.md)
+**G17a — домен и типы** ✅
 
-Definition of Done:
+- [✓] Модель `Program` в `entities/program/model/program.types.ts`
+- [✓] `ProgramWithLessons` — аналог `CourseWithLessons`
+- [✓] `Course.programIds: readonly string[]` (замена `lessonIds`)
+- [✓] `Program.lessonIds: readonly string[]`
+- [✓] `LearningSessionPreferences`: добавить `activeProgramId?`
+- [✓] `LearningResult`: добавить `programId?`
+- [✓] Barrel `index.ts` экспортирует все типы
+- [✓] `DOMAIN.md`: обновить иерархию и диаграмму
+- [✓] `ARCHITECTURE.program.md`: новый файл документации
 
-- [ ] Модель `Program` в `entities/program/model/program.types.ts`
-- [ ] `ProgramWithLessons` — аналог `CourseWithLessons`
-- [ ] `Course.programIds: readonly string[]` (замена `lessonIds`)
-- [ ] `Program.lessonIds: readonly string[]`
-- [ ] `LearningSessionPreferences`: добавить `activeProgramId?`
-- [ ] `LearningResult`: добавить `programId?`
-- [ ] Barrel `index.ts` экспортирует все типы
-- [ ] `DOMAIN.md`: обновить иерархию и диаграмму
-- [ ] `ARCHITECTURE.program.md`: новый файл документации
-- [ ] `npm run verify` pass
+**G17b — repository и API** ✅
 
-- [ ] `Program` в `entities/program/model/program.types.ts`
-- [ ] `ProgramWithLessons` — аналог `CourseWithLessons`
-- [ ] `Course.programIds: readonly string[]` (замена `lessonIds`)
-- [ ] `Program.lessonIds: readonly string[]`
-- [ ] `LearningSessionPreferences`: добавить `activeProgramId?`
-- [ ] `LearningResult`: добавить `programId?`
-- [ ] `DOMAIN.md`: обновить иерархию и диаграмму
-- [ ] `ARCHITECTURE.program.md`: новый файл документации
+- [✓] `ProgramCatalogPort` — порт для программ
+- [✓] `ProgramsApiService` — HTTP API
+- [✓] Mock handlers для program endpoints
+- [✓] `CourseWritePayload.programs` вместо `lessons`
+- [✓] Conformance тесты
 
-**G17b — repository и API**
+**G17c — хранение и overlay** ✅
 
-- [ ] `ProgramCatalogPort` — порт для программ
-- [ ] `ProgramsApiService` — HTTP API
-- [ ] Mock handlers для program endpoints
-- [ ] `CourseWritePayload.programs` вместо `lessons`
-- [ ] Conformance тесты
+- [✓] `UserContentOverlay.programs` + `ProgramPatch`
+- [✓] `resolveCourseCatalog`: добавить resolution программ
+- [✓] `computeCourseCatalogOverlay`: добавить для программ
+- [✓] Migration overlay v1 → v2
+- [✓] `CourseCatalogState.programs`
 
-**G17c — хранение и overlay**
+**G17d — learning и прогресс** ✅
 
-- [ ] `UserContentOverlay.programs` + `ProgramPatch`
-- [ ] `resolveCourseCatalog`: добавить resolution программ
-- [ ] `computeCourseCatalogOverlay`: добавить для программ
-- [ ] Migration overlay v1 → v2 (если нужно)
-- [ ] `CourseCatalogState.programs`
+- [✓] `LearningDashboardService`: обновить для программ
+- [✓] `learning-resume.utils`: добавить `programId` в `LearningResumeTarget`
+- [✓] Прогресс по программам
+- [✓] Roadmap: программа → уроки
 
-**G17d — learning и прогресс**
+**G17e — UI конструктора** ✅
 
-- [ ] `LearningDashboardService`: обновить для программ
-- [ ] `learning-resume.utils`: добавить `programId` в `LearningResumeTarget`
-- [ ] Прогресс по программам
-- [ ] Roadmap: программа → уроки
+- [✓] `features/program-builder/` — CRUD программ
+- [✓] `course-form`: вместо списка уроков — список программ + вложенные уроки
+- [✓] `program-picker` — выбор программы на практике
+- [✓] `program-list` — список программ в каталоге
 
-**G17e — UI конструктора**
+**G17f — данные и тесты** ✅
 
-- [ ] `features/program-builder/` — CRUD программ
-- [ ] `course-form`: вместо списка уроков — список программ + вложенные уроки
-- [ ] `program-picker` — выбор программы на практике
-- [ ] `program-list` — список программ в каталоге
+- [✓] Seed-программы для существующих курсов
+- [✓] `content-manifest.json`: добавить `programFiles`
+- [✓] Unit-тесты для всех новых типов и утилит
+- [✓] Conformance тесты
+- [✓] Smoke тесты для program-builder
 
-**G17f — данные и тесты**
+**G17g — документация** ✅
 
-- [ ] Seed-программы для существующих курсов
-- [ ] `content-manifest.json`: добавить `programFiles`
-- [ ] Unit-тесты для всех новых типов и утилит
-- [ ] Conformance тесты
-- [ ] Smoke тесты для program-builder
-
-**G17g — документация**
-
-- [ ] `TASKS.md`: статус G17
-- [ ] `ARCHITECTURE.program.md`
-- [ ] `LANGUAGE-PAIR.md`: согласовать термины (Курс vs Course vs Program)
+- [✓] `TASKS.md`: статус G17
+- [✓] `ARCHITECTURE.program.md`
+- [✓] `LANGUAGE-PAIR.md`: согласовать термины (Курс vs Course vs Program)
+- [✓] `PROGRAM-BUILDER.md`
 
 **G12 — Editor UX (упрощение редактора карточек)**
 
@@ -1024,9 +1013,9 @@ Definition of Done:
 
 | Файл (путь)                                                     | Задача      | Документ                           | Статус |
 | --------------------------------------------------------------- | ----------- | ---------------------------------- | ------ |
-| `entities/program/model/program.types.ts`                       | G17a        | `ARCHITECTURE.program.md`          | ⏳     |
-| `entities/program/repository/program.repository.ts`             | G17b        | `ARCHITECTURE.program.md`          | ⏳     |
-| `features/program-builder/components/`                          | G17e        | `ARCHITECTURE.program.md`          | ⏳     |
+| `entities/program/model/program.types.ts`                       | G17a        | `ARCHITECTURE.program.md`          | ✓      |
+| `entities/program/repository/program.repository.ts`             | G17b        | `ARCHITECTURE.program.md`          | ✓      |
+| `features/program-builder/components/`                          | G17e        | `ARCHITECTURE.program.md`          | ✓      |
 | `features/content-explorer/components/content-explorer-page/`   | G?          | `CONTENT-EXPLORER.md`              | ✓      |
 | `features/content-explorer/components/explorer-detail/`         | G?          | `CONTENT-EXPLORER.md`              | ✓      |
 | `features/scenario-builder/components/scenario-builder-dialog/` | G?          | `SCENARIO-BUILDER.md`              | ✓      |
