@@ -389,7 +389,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] **G5.1d** — `CardSelectStore.setSessionDirection` + сброс ответа; demo JSON обновлён
 - [x] **G5.1e** — unit-тесты `card-direction.utils.spec.ts`
 - [x] **G5.1g** — toggle direction скрыт на `draw` и `tone` (не влияет на задание)
-- [ ] **G5.1f** — (опц.) редактор карточек: поля `optionsKnown` / `acceptedAnswersLearning` в формах
+- [x] **G5.1f** — (опц.) редактор карточек: поля `optionsKnown` / `acceptedAnswersLearning` в формах
 
 **G7 — несколько пар, одна активная**
 
@@ -478,7 +478,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] Схема `classic` — палитра Nathan Dummit (2008): красный · оранжевый · зелёный · синий · чёрный
 - [x] Рендер: `app-tone-colored-text` — иероглифы и пиньинь на карточках, draw-вкладки, tone-card
 - [x] Палладица скрыта для пар без `known === 'ru'`
-- [ ] UI: отдельные чекбоксы романизации для **ответов** (`answerRomanization`) — см. **G9g**
+- [x] UI: отдельные чекбоксы романизации для **ответов** (`answerRomanization`) — см. **G9g**
 
 **G9g — раздельные настройки «задание» / «ответы» (профиль → карточки)**
 
@@ -491,27 +491,27 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 Направление сессии (`known-to-learning` ↔ `learning-to-known`) меняет **какой текст** показывается, но не роль: заголовок = задание, кнопки/плитки = ответы.
 
-**G9g-a — `LexemeDisplay`**
+**G9g-a — `LexemeDisplay`** ✅
 
-- [ ] Input `surface: 'prompt' | 'answer'` (default `'prompt'`)
-- [ ] `surface === 'prompt'` → `displayRomanizations` + `showIpa`
-- [ ] `surface === 'answer'` → `answerRomanization`; IPA по `answerModes`
-- [ ] Сохранить overrides `romanizations` / `showIpa` для preview редактора
+- [x] Input `surface: 'prompt' | 'answer'` (default `'prompt'`)
+- [x] `surface === 'prompt'` → `displayRomanizations` + `showIpa`
+- [x] `surface === 'answer'` → `answerRomanization`; IPA по `answerModes`
+- [x] Сохранить overrides `romanizations` / `showIpa` для preview редактора
 
-**G9g-b — UI профиля (`/user`, вкладка «Настройка курса»)**
+**G9g-b — UI профиля (`/user`, вкладка «Настройка курса»)** ✅
 
-- [ ] Секция **«Задание»**: чекбоксы романизации + IPA (текущие поля, переименовать подписи)
-- [ ] Секция **«Ответы»**: отдельные чекбоксы `answerRomanization`; для en/zh — `answerModes` (орфография / IPA)
-- [ ] `saveProfile()` / drafts: сохранять обе стороны (`answerRomanization`, `answerModes`)
-- [ ] Подсказки: пример ru→zh (задание: 汉字+拼音; ответы: палладица)
+- [x] Секция **«Задание»**: чекбоксы романизации + IPA (текущие поля, переименовать подписи)
+- [x] Секция **«Ответы»**: отдельные чекбоксы `answerRomanization`; для en/zh — `answerModes` (орфография / IPA)
+- [x] `saveProfile()` / drafts: сохранять обе стороны (`answerRomanization`, `answerModes`)
+- [x] Подсказки: пример ru→zh (задание: 汉字+拼音; ответы: палладица)
 - [x] Матрица чекбоксов «задание / ответы» — см. **G9g-e**
 
-**G9g-c — карточки (передать `surface`)**
+**G9g-c — карточки (передать `surface`)** ✅
 
-- [ ] `select`, `timed`, `reading`, `symbol`, `sound`: prompt в header → `'prompt'`; варианты и feedback → `'answer'`
-- [ ] `memory`: плитки → `'answer'` (обе стороны)
-- [ ] `keyboard`: prompt → `'prompt'` (поле ввода — проверка через `answerMode` карточки, не профиль)
-- [ ] `tone`, `draw`: prompt → `'prompt'`
+- [x] `select`, `timed`, `reading`, `symbol`, `sound`: prompt в header → `'prompt'`; варианты и feedback → `'answer'`
+- [x] `memory`: плитки → `'answer'` (обе стороны)
+- [x] `keyboard`: prompt → `'prompt'` (поле ввода — проверка через `answerMode` карточки, не профиль)
+- [x] `tone`, `draw`: prompt → `'prompt'`
 
 **G9g-e — матрица «задание / ответы» (профиль)**
 
@@ -573,11 +573,11 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] `app-phonetic-ipa` — рендер транскрипции, ударение `ˈ`/`ˌ`
 - [x] `PhoneticDisplayMode` в типах; рендер через `LexemeDisplay`
 
-**G10c — настройки пользователя**
+**G10c — настройки пользователя** ✅
 
 - [x] `PhoneticPreferences`: `showIpa`, `ipaVariantLabel`, `answerModes`
 - [x] UI `/user` (вкладка «Настройка курса»): IPA для **задания** (`showIpa`, label)
-- [ ] UI + рендер: `answerModes` на стороне **ответов** — см. **G9g**
+- [x] UI + рендер: `answerModes` на стороне **ответов** — см. **G9g**
 
 **G10d — payload и редактор**
 
