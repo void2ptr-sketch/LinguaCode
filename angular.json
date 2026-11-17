@@ -116,6 +116,7 @@
                 "**/index.ts",
                 "**/mock/**",
                 "**/*.mock.*",
+                "**/generated/**",
                 "**/environment*.ts",
                 "src/main.ts",
                 "src/test-setup.ts"
