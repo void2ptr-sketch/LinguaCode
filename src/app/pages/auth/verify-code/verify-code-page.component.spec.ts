@@ -186,11 +186,9 @@ describe('VerifyCodePageComponent', () => {
     component.code.set('123456');
     await component.onSubmit();
 
-    expect(snackBarSpy.open).toHaveBeenCalledWith(
-      'Неверный код. Попробуйте снова.',
-      'Закрыть',
-      { duration: 4000 },
-    );
+    expect(snackBarSpy.open).toHaveBeenCalledWith('Неверный код. Попробуйте снова.', 'Закрыть', {
+      duration: 4000,
+    });
   });
 
   it('should clear code on API failure', async () => {

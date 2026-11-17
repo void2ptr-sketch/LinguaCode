@@ -26,9 +26,39 @@ describe('LanguagePairRegistryComponent', () => {
   let languageService: LanguageService;
 
   const mockLanguages: LanguageDto[] = [
-    { id: 1, code: 'en', displayName: 'English', nativeName: 'English', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: 'Noto Sans', activeFlag: true },
-    { id: 2, code: 'ru', displayName: 'Russian', nativeName: 'Русский', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: 'Noto Sans', activeFlag: true },
-    { id: 3, code: 'zh', displayName: 'Chinese', nativeName: '中文', writingDir: 'ltr', supportsTones: true, supportsPinyin: true, fontFamily: 'Noto Sans', activeFlag: true },
+    {
+      id: 1,
+      code: 'en',
+      displayName: 'English',
+      nativeName: 'English',
+      writingDir: 'ltr',
+      supportsTones: false,
+      supportsPinyin: false,
+      fontFamily: 'Noto Sans',
+      activeFlag: true,
+    },
+    {
+      id: 2,
+      code: 'ru',
+      displayName: 'Russian',
+      nativeName: 'Русский',
+      writingDir: 'ltr',
+      supportsTones: false,
+      supportsPinyin: false,
+      fontFamily: 'Noto Sans',
+      activeFlag: true,
+    },
+    {
+      id: 3,
+      code: 'zh',
+      displayName: 'Chinese',
+      nativeName: '中文',
+      writingDir: 'ltr',
+      supportsTones: true,
+      supportsPinyin: true,
+      fontFamily: 'Noto Sans',
+      activeFlag: true,
+    },
   ];
 
   const mockPairs: LanguagePairDto[] = [

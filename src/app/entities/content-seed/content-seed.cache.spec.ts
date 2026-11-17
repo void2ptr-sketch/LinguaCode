@@ -167,7 +167,11 @@ describe('content-seed.cache', () => {
     it('should handle undefined programs with nullish coalescing', () => {
       const courses = [makeCourse()];
       const lessons = [makeLesson()];
-      const catalog = { courses, lessons } as unknown as { courses: never[]; programs: never[]; lessons: never[] };
+      const catalog = { courses, lessons } as unknown as {
+        courses: never[];
+        programs: never[];
+        lessons: never[];
+      };
       setCourseSeedCache(catalog);
       const cached = getCourseSeedCache();
       expect(cached.programs).toEqual([]);

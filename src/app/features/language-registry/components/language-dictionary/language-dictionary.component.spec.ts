@@ -24,8 +24,28 @@ describe('LanguageDictionaryComponent', () => {
   let languageService: LanguageService;
 
   const mockLanguages: LanguageDto[] = [
-    { id: 1, code: 'en', displayName: 'English', nativeName: 'English', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: 'Noto Sans', activeFlag: true },
-    { id: 2, code: 'ru', displayName: 'Russian', nativeName: 'Русский', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: 'Noto Sans', activeFlag: false },
+    {
+      id: 1,
+      code: 'en',
+      displayName: 'English',
+      nativeName: 'English',
+      writingDir: 'ltr',
+      supportsTones: false,
+      supportsPinyin: false,
+      fontFamily: 'Noto Sans',
+      activeFlag: true,
+    },
+    {
+      id: 2,
+      code: 'ru',
+      displayName: 'Russian',
+      nativeName: 'Русский',
+      writingDir: 'ltr',
+      supportsTones: false,
+      supportsPinyin: false,
+      fontFamily: 'Noto Sans',
+      activeFlag: false,
+    },
   ];
 
   const createdLanguage: LanguageDto = {
@@ -136,11 +156,9 @@ describe('LanguageDictionaryComponent', () => {
     await new Promise((r) => setTimeout(r, 100));
 
     expect(languageApiSpy.update).toHaveBeenCalledWith(1, { activeFlag: false });
-    expect(snackBarSpy.open).toHaveBeenCalledWith(
-      'Язык «English» деактивирован',
-      'Закрыть',
-      { duration: 3000 },
-    );
+    expect(snackBarSpy.open).toHaveBeenCalledWith('Язык «English» деактивирован', 'Закрыть', {
+      duration: 3000,
+    });
   });
 
   it('should rollback on toggle failure', async () => {
@@ -185,23 +203,27 @@ describe('LanguageDictionaryComponent', () => {
     await new Promise((r) => setTimeout(r, 100));
 
     expect(languageApiSpy.update).toHaveBeenCalledWith(2, { activeFlag: true });
-    expect(snackBarSpy.open).toHaveBeenCalledWith(
-      'Язык «Russian» активирован',
-      'Закрыть',
-      { duration: 3000 },
-    );
+    expect(snackBarSpy.open).toHaveBeenCalledWith('Язык «Russian» активирован', 'Закрыть', {
+      duration: 3000,
+    });
   });
 
   it('should create language when all prompts are filled', async () => {
-    vi.stubGlobal('prompt', vi.fn((msg: string) => {
-      if (msg.includes('Код языка')) return 'de';
-      if (msg.includes('Название (например')) return 'German';
-      if (msg.includes('Название на языке')) return 'Deutsch';
-      if (msg.includes('Направление письма')) return 'ltr';
-      if (msg.includes('Семейство шрифтов')) return 'Noto Sans';
-      return 'Noto Sans';
-    }));
-    vi.stubGlobal('confirm', vi.fn(() => true));
+    vi.stubGlobal(
+      'prompt',
+      vi.fn((msg: string) => {
+        if (msg.includes('Код языка')) return 'de';
+        if (msg.includes('Название (например')) return 'German';
+        if (msg.includes('Название на языке')) return 'Deutsch';
+        if (msg.includes('Направление письма')) return 'ltr';
+        if (msg.includes('Семейство шрифтов')) return 'Noto Sans';
+        return 'Noto Sans';
+      }),
+    );
+    vi.stubGlobal(
+      'confirm',
+      vi.fn(() => true),
+    );
 
     component.createLanguage();
 
@@ -224,32 +246,44 @@ describe('LanguageDictionaryComponent', () => {
   });
 
   it('should not create language when code prompt is cancelled', async () => {
-    vi.stubGlobal('prompt', vi.fn(() => null));
+    vi.stubGlobal(
+      'prompt',
+      vi.fn(() => null),
+    );
     component.createLanguage();
     expect(languageApiSpy.create).not.toHaveBeenCalled();
     vi.unstubAllGlobals();
   });
 
   it('should not create language when displayName prompt is cancelled', async () => {
-    vi.stubGlobal('prompt', vi.fn((msg: string) => {
-      if (msg.includes('Код языка')) return 'de';
-      return null;
-    }));
+    vi.stubGlobal(
+      'prompt',
+      vi.fn((msg: string) => {
+        if (msg.includes('Код языка')) return 'de';
+        return null;
+      }),
+    );
     component.createLanguage();
     expect(languageApiSpy.create).not.toHaveBeenCalled();
     vi.unstubAllGlobals();
   });
 
   it('should use default writingDir when prompt is cancelled', async () => {
-    vi.stubGlobal('prompt', vi.fn((msg: string) => {
-      if (msg.includes('Код языка')) return 'de';
-      if (msg.includes('Название (например')) return 'German';
-      if (msg.includes('Название на языке')) return 'Deutsch';
-      if (msg.includes('Направление письма')) return null;
-      if (msg.includes('Семейство шрифтов')) return 'Noto Sans';
-      return 'Noto Sans';
-    }));
-    vi.stubGlobal('confirm', vi.fn(() => true));
+    vi.stubGlobal(
+      'prompt',
+      vi.fn((msg: string) => {
+        if (msg.includes('Код языка')) return 'de';
+        if (msg.includes('Название (например')) return 'German';
+        if (msg.includes('Название на языке')) return 'Deutsch';
+        if (msg.includes('Направление письма')) return null;
+        if (msg.includes('Семейство шрифтов')) return 'Noto Sans';
+        return 'Noto Sans';
+      }),
+    );
+    vi.stubGlobal(
+      'confirm',
+      vi.fn(() => true),
+    );
 
     component.createLanguage();
     vi.unstubAllGlobals();
@@ -262,8 +296,14 @@ describe('LanguageDictionaryComponent', () => {
   });
 
   it('should show error on create failure', async () => {
-    vi.stubGlobal('prompt', vi.fn(() => 'de'));
-    vi.stubGlobal('confirm', vi.fn(() => true));
+    vi.stubGlobal(
+      'prompt',
+      vi.fn(() => 'de'),
+    );
+    vi.stubGlobal(
+      'confirm',
+      vi.fn(() => true),
+    );
     languageApiSpy.create.mockRejectedValue(new Error('Server error'));
 
     component.createLanguage();
@@ -279,15 +319,21 @@ describe('LanguageDictionaryComponent', () => {
   });
 
   it('should set creating to false after success', async () => {
-    vi.stubGlobal('prompt', vi.fn((msg: string) => {
-      if (msg.includes('Код языка')) return 'de';
-      if (msg.includes('Название (например')) return 'German';
-      if (msg.includes('Название на языке')) return 'Deutsch';
-      if (msg.includes('Направление письма')) return 'ltr';
-      if (msg.includes('Семейство шрифтов')) return 'Noto Sans';
-      return 'Noto Sans';
-    }));
-    vi.stubGlobal('confirm', vi.fn(() => true));
+    vi.stubGlobal(
+      'prompt',
+      vi.fn((msg: string) => {
+        if (msg.includes('Код языка')) return 'de';
+        if (msg.includes('Название (например')) return 'German';
+        if (msg.includes('Название на языке')) return 'Deutsch';
+        if (msg.includes('Направление письма')) return 'ltr';
+        if (msg.includes('Семейство шрифтов')) return 'Noto Sans';
+        return 'Noto Sans';
+      }),
+    );
+    vi.stubGlobal(
+      'confirm',
+      vi.fn(() => true),
+    );
 
     component.createLanguage();
     vi.unstubAllGlobals();
@@ -298,15 +344,21 @@ describe('LanguageDictionaryComponent', () => {
   });
 
   it('should set creating to false after failure', async () => {
-    vi.stubGlobal('prompt', vi.fn((msg: string) => {
-      if (msg.includes('Код языка')) return 'de';
-      if (msg.includes('Название (например')) return 'German';
-      if (msg.includes('Название на языке')) return 'Deutsch';
-      if (msg.includes('Направление письма')) return 'ltr';
-      if (msg.includes('Семейство шрифтов')) return 'Noto Sans';
-      return 'Noto Sans';
-    }));
-    vi.stubGlobal('confirm', vi.fn(() => true));
+    vi.stubGlobal(
+      'prompt',
+      vi.fn((msg: string) => {
+        if (msg.includes('Код языка')) return 'de';
+        if (msg.includes('Название (например')) return 'German';
+        if (msg.includes('Название на языке')) return 'Deutsch';
+        if (msg.includes('Направление письма')) return 'ltr';
+        if (msg.includes('Семейство шрифтов')) return 'Noto Sans';
+        return 'Noto Sans';
+      }),
+    );
+    vi.stubGlobal(
+      'confirm',
+      vi.fn(() => true),
+    );
     languageApiSpy.create.mockRejectedValue(new Error('Server error'));
 
     component.createLanguage();

@@ -74,10 +74,10 @@ describe('CatalogService', () => {
   });
 
   it('should filter difficulties without label', async () => {
-    const service = createTestingModule([], [
-      { code: 'beginner', label: 'Начальный уровень' },
-      { code: 'orphan' },
-    ]);
+    const service = createTestingModule(
+      [],
+      [{ code: 'beginner', label: 'Начальный уровень' }, { code: 'orphan' }],
+    );
 
     await service.load();
 
@@ -95,11 +95,7 @@ describe('CatalogService', () => {
   });
 
   it('should return content language codes', async () => {
-    const service = createTestingModule(
-      [],
-      [],
-      [{ code: 'zh' }, { code: 'en' }, { code: null }],
-    );
+    const service = createTestingModule([], [], [{ code: 'zh' }, { code: 'en' }, { code: null }]);
 
     await service.load();
 
