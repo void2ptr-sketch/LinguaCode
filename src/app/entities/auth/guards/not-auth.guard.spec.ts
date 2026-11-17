@@ -19,11 +19,13 @@ describe('notAuthGuard', () => {
 
   const run = (): boolean =>
     TestBed.runInInjectionContext(() =>
-      (notAuthGuard as (route: Route, segments: UrlSegment[], snapshot: PartialMatchRouteSnapshot) => boolean)(
-        {} as Route,
-        [] as UrlSegment[],
-        {} as PartialMatchRouteSnapshot,
-      ),
+      (
+        notAuthGuard as (
+          route: Route,
+          segments: UrlSegment[],
+          snapshot: PartialMatchRouteSnapshot,
+        ) => boolean
+      )({} as Route, [] as UrlSegment[], {} as PartialMatchRouteSnapshot),
     );
 
   it('should return true when user is not authenticated', () => {

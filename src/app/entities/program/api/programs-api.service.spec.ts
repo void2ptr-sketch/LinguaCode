@@ -33,7 +33,16 @@ describe('ProgramsApiService', () => {
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/search')));
     expect(req.request.params.get('query')).toBe('test');
     req.flush({
-      data: [{ id: 1, title: 'Program 1', courseId: 10, lessonIds: [1, 2], order: 0, updatedAt: '2026-01-01T00:00:00Z' }],
+      data: [
+        {
+          id: 1,
+          title: 'Program 1',
+          courseId: 10,
+          lessonIds: [1, 2],
+          order: 0,
+          updatedAt: '2026-01-01T00:00:00Z',
+        },
+      ],
       total: 1,
     });
 
@@ -74,9 +83,25 @@ describe('ProgramsApiService', () => {
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1')));
     req.flush({
       data: {
-        id: 1, title: 'Program 1', programDescription: 'Desc', courseId: 10,
-        lessonIds: [1], order: 0, requiredTier: 'FREE', published: true, updatedAt: '2026-01-01T00:00:00Z',
-        lessons: [{ id: 1, title: 'Lesson 1', programId: 1, scenarioIds: [1], lessonOrder: 0, updatedAt: '2026-01-01T00:00:00Z' }],
+        id: 1,
+        title: 'Program 1',
+        programDescription: 'Desc',
+        courseId: 10,
+        lessonIds: [1],
+        order: 0,
+        requiredTier: 'FREE',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00Z',
+        lessons: [
+          {
+            id: 1,
+            title: 'Lesson 1',
+            programId: 1,
+            scenarioIds: [1],
+            lessonOrder: 0,
+            updatedAt: '2026-01-01T00:00:00Z',
+          },
+        ],
       },
     });
 
@@ -91,7 +116,15 @@ describe('ProgramsApiService', () => {
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/2')));
     req.flush({
-      data: { id: 2, title: 'Empty', courseId: 10, lessonIds: [], order: 0, updatedAt: '', lessons: [] },
+      data: {
+        id: 2,
+        title: 'Empty',
+        courseId: 10,
+        lessonIds: [],
+        order: 0,
+        updatedAt: '',
+        lessons: [],
+      },
     });
 
     const result = await promise;
@@ -105,7 +138,9 @@ describe('ProgramsApiService', () => {
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/by-course/10')));
     req.flush({
-      data: [{ id: 1, title: 'P1', courseId: 10, lessonIds: [1], order: 0, updatedAt: '', lessons: [] }],
+      data: [
+        { id: 1, title: 'P1', courseId: 10, lessonIds: [1], order: 0, updatedAt: '', lessons: [] },
+      ],
     });
 
     const result = await promise;
@@ -130,7 +165,17 @@ describe('ProgramsApiService', () => {
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/by-course/10/with-lessons')));
     req.flush({
-      data: [{ id: 1, title: 'P1', courseId: 10, lessonIds: [1], order: 0, updatedAt: '', lessons: [{ id: 1, title: 'L1', programId: 1, lessonOrder: 0, updatedAt: '' }] }],
+      data: [
+        {
+          id: 1,
+          title: 'P1',
+          courseId: 10,
+          lessonIds: [1],
+          order: 0,
+          updatedAt: '',
+          lessons: [{ id: 1, title: 'L1', programId: 1, lessonOrder: 0, updatedAt: '' }],
+        },
+      ],
     });
 
     const result = await promise;
@@ -169,15 +214,27 @@ describe('ProgramsApiService', () => {
 
   it('should create a program', async () => {
     const payload: ProgramWritePayload = {
-      title: 'New Program', description: 'Desc', courseId: '10',
-      lessonIds: [], order: 0, requiredTier: 'FREE',
+      title: 'New Program',
+      description: 'Desc',
+      courseId: '10',
+      lessonIds: [],
+      order: 0,
+      requiredTier: 'FREE',
     };
     const promise = service.create(payload);
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs')));
     expect(req.request.method).toBe('POST');
     req.flush({
-      data: { id: 5, title: 'New Program', programDescription: 'Desc', courseId: 10, lessonIds: [], order: 0, updatedAt: '' },
+      data: {
+        id: 5,
+        title: 'New Program',
+        programDescription: 'Desc',
+        courseId: 10,
+        lessonIds: [],
+        order: 0,
+        updatedAt: '',
+      },
     });
 
     const result = await promise;
@@ -186,14 +243,20 @@ describe('ProgramsApiService', () => {
 
   it('should convert numeric course ID to number', async () => {
     const payload: ProgramWritePayload = {
-      title: 'Test', description: '', courseId: '42',
-      lessonIds: [], order: 0, requiredTier: 'FREE',
+      title: 'Test',
+      description: '',
+      courseId: '42',
+      lessonIds: [],
+      order: 0,
+      requiredTier: 'FREE',
     };
     const promise = service.create(payload);
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs')));
     expect(req.request.body.courseId).toBe(42);
-    req.flush({ data: { id: 1, title: 'Test', courseId: 42, lessonIds: [], order: 0, updatedAt: '' } });
+    req.flush({
+      data: { id: 1, title: 'Test', courseId: 42, lessonIds: [], order: 0, updatedAt: '' },
+    });
     await promise;
   });
 
@@ -201,15 +264,29 @@ describe('ProgramsApiService', () => {
 
   it('should update a program', async () => {
     const payload: ProgramWritePayload = {
-      title: 'Updated', description: 'New', courseId: '10',
-      lessonIds: [], requiredTier: 'FREE', published: true, order: 1,
+      title: 'Updated',
+      description: 'New',
+      courseId: '10',
+      lessonIds: [],
+      requiredTier: 'FREE',
+      published: true,
+      order: 1,
     };
     const promise = service.update('1', payload);
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1')));
     expect(req.request.method).toBe('PUT');
     req.flush({
-      data: { id: 1, title: 'Updated', programDescription: 'New', courseId: 10, lessonIds: [], order: 1, published: true, updatedAt: '' },
+      data: {
+        id: 1,
+        title: 'Updated',
+        programDescription: 'New',
+        courseId: 10,
+        lessonIds: [],
+        order: 1,
+        published: true,
+        updatedAt: '',
+      },
     });
 
     const result = await promise;
@@ -235,7 +312,9 @@ describe('ProgramsApiService', () => {
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/search')));
     req.flush({
-      data: [{ id: 1, title: 'Minimal', courseId: 10, lessonIds: null, order: null, updatedAt: '' }],
+      data: [
+        { id: 1, title: 'Minimal', courseId: 10, lessonIds: null, order: null, updatedAt: '' },
+      ],
       total: 1,
     });
 
@@ -249,7 +328,17 @@ describe('ProgramsApiService', () => {
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1/lessons')));
     req.flush({
-      data: [{ id: 1, title: 'L', programId: 1, scenarioIds: [1], prerequisiteLessonIds: '3,4,5', lessonOrder: 0, updatedAt: '' }],
+      data: [
+        {
+          id: 1,
+          title: 'L',
+          programId: 1,
+          scenarioIds: [1],
+          prerequisiteLessonIds: '3,4,5',
+          lessonOrder: 0,
+          updatedAt: '',
+        },
+      ],
     });
 
     const result = await promise;
@@ -319,7 +408,16 @@ describe('ProgramsApiService', () => {
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1/lessons')));
     req.flush({
-      data: [{ id: 1, title: 'L', programId: 1, prerequisiteLessonIds: undefined, lessonOrder: 0, updatedAt: '' }],
+      data: [
+        {
+          id: 1,
+          title: 'L',
+          programId: 1,
+          prerequisiteLessonIds: undefined,
+          lessonOrder: 0,
+          updatedAt: '',
+        },
+      ],
     });
 
     const result = await promise;
@@ -331,7 +429,16 @@ describe('ProgramsApiService', () => {
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1/lessons')));
     req.flush({
-      data: [{ id: 1, title: 'L', programId: 1, prerequisiteLessonIds: [10, 20], lessonOrder: 0, updatedAt: '' }],
+      data: [
+        {
+          id: 1,
+          title: 'L',
+          programId: 1,
+          prerequisiteLessonIds: [10, 20],
+          lessonOrder: 0,
+          updatedAt: '',
+        },
+      ],
     });
 
     const result = await promise;
@@ -343,7 +450,16 @@ describe('ProgramsApiService', () => {
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1/lessons')));
     req.flush({
-      data: [{ id: 1, title: 'L', programId: 1, prerequisiteLessonIds: '', lessonOrder: 0, updatedAt: '' }],
+      data: [
+        {
+          id: 1,
+          title: 'L',
+          programId: 1,
+          prerequisiteLessonIds: '',
+          lessonOrder: 0,
+          updatedAt: '',
+        },
+      ],
     });
 
     const result = await promise;
@@ -430,24 +546,28 @@ describe('ProgramsApiService', () => {
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/by-course/1/with-lessons')));
     req.flush({
-      data: [{
-        id: null,
-        courseId: null,
-        title: null,
-        lessonIds: null,
-        order: null,
-        updatedAt: null,
-        lessons: [{
+      data: [
+        {
           id: null,
-          programId: null,
+          courseId: null,
           title: null,
-          lessonDescription: null,
-          scenarioIds: null,
-          prerequisiteLessonIds: null,
-          lessonOrder: null,
+          lessonIds: null,
+          order: null,
           updatedAt: null,
-        }],
-      }],
+          lessons: [
+            {
+              id: null,
+              programId: null,
+              title: null,
+              lessonDescription: null,
+              scenarioIds: null,
+              prerequisiteLessonIds: null,
+              lessonOrder: null,
+              updatedAt: null,
+            },
+          ],
+        },
+      ],
     });
 
     const result = await promise;
@@ -485,16 +605,18 @@ describe('ProgramsApiService', () => {
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1/lessons')));
     req.flush({
-      data: [{
-        id: null,
-        programId: null,
-        title: null,
-        lessonDescription: null,
-        scenarioIds: null,
-        prerequisiteLessonIds: null,
-        lessonOrder: null,
-        updatedAt: null,
-      }],
+      data: [
+        {
+          id: null,
+          programId: null,
+          title: null,
+          lessonDescription: null,
+          scenarioIds: null,
+          prerequisiteLessonIds: null,
+          lessonOrder: null,
+          updatedAt: null,
+        },
+      ],
     });
 
     const result = await promise;
@@ -534,14 +656,16 @@ describe('ProgramsApiService', () => {
 
     const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/search')));
     req.flush({
-      data: [{
-        id: null,
-        courseId: null,
-        title: null,
-        lessonIds: null,
-        order: null,
-        updatedAt: null,
-      }],
+      data: [
+        {
+          id: null,
+          courseId: null,
+          title: null,
+          lessonIds: null,
+          order: null,
+          updatedAt: null,
+        },
+      ],
       total: 1,
     });
 

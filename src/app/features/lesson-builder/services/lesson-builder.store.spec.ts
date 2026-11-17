@@ -24,7 +24,12 @@ function makeValidDraft(overrides: Partial<LessonFormDraft> = {}): LessonFormDra
 
 describe('LessonBuilderStore', () => {
   let store: LessonBuilderStore;
-  let lessonsApi: { getById: ReturnType<typeof vi.fn>; getByProgramId: ReturnType<typeof vi.fn>; create: ReturnType<typeof vi.fn>; update: ReturnType<typeof vi.fn> };
+  let lessonsApi: {
+    getById: ReturnType<typeof vi.fn>;
+    getByProgramId: ReturnType<typeof vi.fn>;
+    create: ReturnType<typeof vi.fn>;
+    update: ReturnType<typeof vi.fn>;
+  };
   let programsApi: { getById: ReturnType<typeof vi.fn> };
   let courseSearch: { getById: ReturnType<typeof vi.fn> };
   let authStore: { user: ReturnType<typeof vi.fn> };
@@ -32,13 +37,34 @@ describe('LessonBuilderStore', () => {
 
   beforeEach(() => {
     lessonsApi = {
-      getById: vi.fn(() => Promise.resolve({ id: '1', programId: 'p1', title: 'Lesson', description: '', scenarioIds: [], prerequisiteLessonIds: [], order: 0, updatedAt: '' } as Lesson)),
+      getById: vi.fn(() =>
+        Promise.resolve({
+          id: '1',
+          programId: 'p1',
+          title: 'Lesson',
+          description: '',
+          scenarioIds: [],
+          prerequisiteLessonIds: [],
+          order: 0,
+          updatedAt: '',
+        } as Lesson),
+      ),
       getByProgramId: vi.fn(() => Promise.resolve([])),
       create: vi.fn(() => Promise.resolve({} as Lesson)),
       update: vi.fn(() => Promise.resolve({} as Lesson)),
     };
     programsApi = {
-      getById: vi.fn(() => Promise.resolve({ id: 'p1', courseId: 'c1', title: 'Program', description: '', lessonIds: [], order: 0, updatedAt: '' })),
+      getById: vi.fn(() =>
+        Promise.resolve({
+          id: 'p1',
+          courseId: 'c1',
+          title: 'Program',
+          description: '',
+          lessonIds: [],
+          order: 0,
+          updatedAt: '',
+        }),
+      ),
     };
     courseSearch = {
       getById: vi.fn(() => Promise.resolve({ id: 'c1', authorId: 'user-1' })),
@@ -198,7 +224,16 @@ describe('LessonBuilderStore', () => {
 
   it('should load candidate lessons', async () => {
     lessonsApi.getByProgramId.mockResolvedValue([
-      { id: 'l1', programId: 'p1', title: 'L1', description: '', scenarioIds: [], prerequisiteLessonIds: [], order: 0, updatedAt: '' },
+      {
+        id: 'l1',
+        programId: 'p1',
+        title: 'L1',
+        description: '',
+        scenarioIds: [],
+        prerequisiteLessonIds: [],
+        order: 0,
+        updatedAt: '',
+      },
     ]);
     await store.loadCandidateLessons('p1');
     expect(store.candidateLessons()).toHaveLength(1);
@@ -206,8 +241,26 @@ describe('LessonBuilderStore', () => {
 
   it('should exclude a lesson by id', async () => {
     lessonsApi.getByProgramId.mockResolvedValue([
-      { id: 'l1', programId: 'p1', title: 'L1', description: '', scenarioIds: [], prerequisiteLessonIds: [], order: 0, updatedAt: '' },
-      { id: 'l2', programId: 'p1', title: 'L2', description: '', scenarioIds: [], prerequisiteLessonIds: [], order: 1, updatedAt: '' },
+      {
+        id: 'l1',
+        programId: 'p1',
+        title: 'L1',
+        description: '',
+        scenarioIds: [],
+        prerequisiteLessonIds: [],
+        order: 0,
+        updatedAt: '',
+      },
+      {
+        id: 'l2',
+        programId: 'p1',
+        title: 'L2',
+        description: '',
+        scenarioIds: [],
+        prerequisiteLessonIds: [],
+        order: 1,
+        updatedAt: '',
+      },
     ]);
     await store.loadCandidateLessons('p1', 'l1');
     expect(store.candidateLessons()).toHaveLength(1);

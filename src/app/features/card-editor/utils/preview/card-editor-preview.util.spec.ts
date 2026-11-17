@@ -442,7 +442,9 @@ describe('fallbackPreviewCard', () => {
       appearance,
     };
     const result = fallbackPreviewCard(draft, 'p');
-    expect((result as unknown as { acceptedAnswers?: string[] }).acceptedAnswers).toEqual(['answer']);
+    expect((result as unknown as { acceptedAnswers?: string[] }).acceptedAnswers).toEqual([
+      'answer',
+    ]);
   });
 
   it('should use fallback code and pass through language for code-trace', () => {
@@ -458,8 +460,12 @@ describe('fallbackPreviewCard', () => {
     };
     const result = fallbackPreviewCard(draft, 'p');
     expect((result as unknown as { caption?: string }).caption).toBeUndefined();
-    expect((result as unknown as { code: { code: string; language: string } }).code.code).toBe('std::cout << "Hello";');
-    expect((result as unknown as { code: { code: string; language: string } }).code.language).toBe('cpp');
+    expect((result as unknown as { code: { code: string; language: string } }).code.code).toBe(
+      'std::cout << "Hello";',
+    );
+    expect((result as unknown as { code: { code: string; language: string } }).code.language).toBe(
+      'cpp',
+    );
   });
 
   it('should use provided outputOptions when non-empty for code-trace', () => {
@@ -474,7 +480,11 @@ describe('fallbackPreviewCard', () => {
       appearance,
     };
     const result = fallbackPreviewCard(draft, 'p');
-    expect((result as unknown as { outputOptions: string[] }).outputOptions).toEqual(['1', '2', '3']);
+    expect((result as unknown as { outputOptions: string[] }).outputOptions).toEqual([
+      '1',
+      '2',
+      '3',
+    ]);
   });
 
   it('should use fallback timeLimitSec when 0 for timed', () => {

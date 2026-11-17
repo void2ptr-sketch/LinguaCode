@@ -101,7 +101,6 @@ describe('ProgramsCatalogMockHandler', () => {
     if (searchResult.items.length === 0) {
       return;
     }
-    const programId = searchResult.items[0].id;
     const result = await handler.getByCourse(searchResult.items[0].courseId);
     expect(result.length).toBeGreaterThanOrEqual(1);
   });

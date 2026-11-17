@@ -50,7 +50,10 @@ class TestHostComponent {
   }
 
   /** Update an @Input and force OnPush to re-check */
-  setInput(name: keyof Pick<this, 'pairId' | 'known' | 'learning' | 'isActive'>, value: unknown): void {
+  setInput(
+    name: keyof Pick<this, 'pairId' | 'known' | 'learning' | 'isActive'>,
+    value: unknown,
+  ): void {
     (this as Record<string, unknown>)[name] = value;
     this.cdr.markForCheck();
   }

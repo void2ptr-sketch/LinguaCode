@@ -1,7 +1,11 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { buildApiUrl } from '../../../shared/api/api-url';
-import { LessonsApiService, type LessonCreatePayload, type LessonUpdatePayload } from './lessons-api.service';
+import {
+  LessonsApiService,
+  type LessonCreatePayload,
+  type LessonUpdatePayload,
+} from './lessons-api.service';
 import type { Lesson } from '../../../shared/api/generated/models';
 import { describe, expect, it } from 'vitest';
 
@@ -72,10 +76,7 @@ describe('LessonsApiService', () => {
 
     const req = httpMock.expectOne((r) => r.url === buildApiUrl('/lessons/by-program/10'));
     req.flush({
-      data: [
-        makeLessonDto({ id: 1, lessonOrder: 0 }),
-        makeLessonDto({ id: 2, lessonOrder: 1 }),
-      ],
+      data: [makeLessonDto({ id: 1, lessonOrder: 0 }), makeLessonDto({ id: 2, lessonOrder: 1 })],
     });
 
     const result = await promise;

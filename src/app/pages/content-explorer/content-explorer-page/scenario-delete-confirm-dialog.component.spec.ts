@@ -10,9 +10,7 @@ describe('ScenarioDeleteConfirmDialogComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ScenarioDeleteConfirmDialogComponent, MatDialogModule, MatButtonModule],
-      providers: [
-        { provide: MAT_DIALOG_DATA, useValue: { scenarioTitle: 'Test Scenario' } },
-      ],
+      providers: [{ provide: MAT_DIALOG_DATA, useValue: { scenarioTitle: 'Test Scenario' } }],
     });
     fixture = TestBed.createComponent(ScenarioDeleteConfirmDialogComponent);
   });
@@ -65,9 +63,7 @@ describe('ScenarioDeleteConfirmDialogComponent — empty title', () => {
   it('should handle empty scenario title', () => {
     TestBed.configureTestingModule({
       imports: [ScenarioDeleteConfirmDialogComponent, MatDialogModule, MatButtonModule],
-      providers: [
-        { provide: MAT_DIALOG_DATA, useValue: { scenarioTitle: '' } },
-      ],
+      providers: [{ provide: MAT_DIALOG_DATA, useValue: { scenarioTitle: '' } }],
     });
     const emptyFixture = TestBed.createComponent(ScenarioDeleteConfirmDialogComponent);
     emptyFixture.detectChanges();

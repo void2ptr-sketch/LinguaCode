@@ -53,10 +53,50 @@ describe('AvailablePairsService', () => {
 
   it('should filter pairs by active and selected languages', () => {
     const languages: LanguageDto[] = [
-      { id: 1, code: 'en', displayName: 'English', nativeName: 'English', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
-      { id: 2, code: 'ru', displayName: 'Russian', nativeName: 'Русский', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
-      { id: 3, code: 'zh', displayName: 'Chinese', nativeName: '中文', writingDir: 'ltr', supportsTones: true, supportsPinyin: true, fontFamily: '', activeFlag: true },
-      { id: 4, code: 'de', displayName: 'German', nativeName: 'Deutsch', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: false },
+      {
+        id: 1,
+        code: 'en',
+        displayName: 'English',
+        nativeName: 'English',
+        writingDir: 'ltr',
+        supportsTones: false,
+        supportsPinyin: false,
+        fontFamily: '',
+        activeFlag: true,
+      },
+      {
+        id: 2,
+        code: 'ru',
+        displayName: 'Russian',
+        nativeName: 'Русский',
+        writingDir: 'ltr',
+        supportsTones: false,
+        supportsPinyin: false,
+        fontFamily: '',
+        activeFlag: true,
+      },
+      {
+        id: 3,
+        code: 'zh',
+        displayName: 'Chinese',
+        nativeName: '中文',
+        writingDir: 'ltr',
+        supportsTones: true,
+        supportsPinyin: true,
+        fontFamily: '',
+        activeFlag: true,
+      },
+      {
+        id: 4,
+        code: 'de',
+        displayName: 'German',
+        nativeName: 'Deutsch',
+        writingDir: 'ltr',
+        supportsTones: false,
+        supportsPinyin: false,
+        fontFamily: '',
+        activeFlag: false,
+      },
     ];
     languageService.languages.mockReturnValue(languages);
     settingsStore.selectedCodes.mockReturnValue(['en', 'ru', 'zh']);
@@ -74,42 +114,96 @@ describe('AvailablePairsService', () => {
 
   it('should exclude pairs with inactive known language', () => {
     const languages: LanguageDto[] = [
-      { id: 1, code: 'en', displayName: 'English', nativeName: 'English', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
-      { id: 2, code: 'de', displayName: 'German', nativeName: 'Deutsch', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: false },
+      {
+        id: 1,
+        code: 'en',
+        displayName: 'English',
+        nativeName: 'English',
+        writingDir: 'ltr',
+        supportsTones: false,
+        supportsPinyin: false,
+        fontFamily: '',
+        activeFlag: true,
+      },
+      {
+        id: 2,
+        code: 'de',
+        displayName: 'German',
+        nativeName: 'Deutsch',
+        writingDir: 'ltr',
+        supportsTones: false,
+        supportsPinyin: false,
+        fontFamily: '',
+        activeFlag: false,
+      },
     ];
     languageService.languages.mockReturnValue(languages);
     settingsStore.selectedCodes.mockReturnValue(['en', 'de']);
-    service.pairs.set([
-      { id: 1, knownCode: 'en', learningCode: 'de' },
-    ]);
+    service.pairs.set([{ id: 1, knownCode: 'en', learningCode: 'de' }]);
 
     expect(service.visiblePairs()).toEqual([]);
   });
 
   it('should exclude pairs with inactive learning language', () => {
     const languages: LanguageDto[] = [
-      { id: 1, code: 'en', displayName: 'English', nativeName: 'English', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
-      { id: 2, code: 'de', displayName: 'German', nativeName: 'Deutsch', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: false },
+      {
+        id: 1,
+        code: 'en',
+        displayName: 'English',
+        nativeName: 'English',
+        writingDir: 'ltr',
+        supportsTones: false,
+        supportsPinyin: false,
+        fontFamily: '',
+        activeFlag: true,
+      },
+      {
+        id: 2,
+        code: 'de',
+        displayName: 'German',
+        nativeName: 'Deutsch',
+        writingDir: 'ltr',
+        supportsTones: false,
+        supportsPinyin: false,
+        fontFamily: '',
+        activeFlag: false,
+      },
     ];
     languageService.languages.mockReturnValue(languages);
     settingsStore.selectedCodes.mockReturnValue(['en', 'de']);
-    service.pairs.set([
-      { id: 1, knownCode: 'de', learningCode: 'en' },
-    ]);
+    service.pairs.set([{ id: 1, knownCode: 'de', learningCode: 'en' }]);
 
     expect(service.visiblePairs()).toEqual([]);
   });
 
   it('should exclude pairs with language not in selected codes', () => {
     const languages: LanguageDto[] = [
-      { id: 1, code: 'en', displayName: 'English', nativeName: 'English', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
-      { id: 2, code: 'fr', displayName: 'French', nativeName: 'Français', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
+      {
+        id: 1,
+        code: 'en',
+        displayName: 'English',
+        nativeName: 'English',
+        writingDir: 'ltr',
+        supportsTones: false,
+        supportsPinyin: false,
+        fontFamily: '',
+        activeFlag: true,
+      },
+      {
+        id: 2,
+        code: 'fr',
+        displayName: 'French',
+        nativeName: 'Français',
+        writingDir: 'ltr',
+        supportsTones: false,
+        supportsPinyin: false,
+        fontFamily: '',
+        activeFlag: true,
+      },
     ];
     languageService.languages.mockReturnValue(languages);
     settingsStore.selectedCodes.mockReturnValue(['en']); // only en selected
-    service.pairs.set([
-      { id: 1, knownCode: 'en', learningCode: 'fr' },
-    ]);
+    service.pairs.set([{ id: 1, knownCode: 'en', learningCode: 'fr' }]);
 
     expect(service.visiblePairs()).toEqual([]);
   });

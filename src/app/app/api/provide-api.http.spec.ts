@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { vi } from 'vitest';
-import { provideApiHttp } from './provide-api.http';
+import { vi, describe, it, expect, afterEach } from 'vitest';
+import { provideApiHttp, provideApiHttpTesting } from './provide-api.http';
 
 describe('provideApiHttp', () => {
   afterEach(() => {
-    // Restore original environment
     vi.restoreAllMocks();
     TestBed.resetTestingModule();
   });
@@ -49,8 +48,6 @@ describe('provideApiHttp', () => {
   });
 
   it('should include mock interceptors when environment flags are true', () => {
-    // Mock flags are configurable via environment — verify provideApiHttp
-    // conditionally includes them based on environment values
     const config = provideApiHttp();
     expect(config).toBeDefined();
   });
@@ -64,5 +61,39 @@ describe('provideApiHttp', () => {
 
     const http = TestBed.inject(HttpClient);
     expect(http).toBeDefined();
+  });
+
+  it('should provide HttpClient for testing', () => {
+    const config = provideApiHttpTesting();
+
+    TestBed.configureTestingModule({
+      providers: [config, provideHttpClientTesting()],
+    });
+
+    const http = TestBed.inject(HttpClient);
+    expect(http).toBeInstanceOf(HttpClient);
+  });
+
+  it('should include all mock interceptors in testing config', () => {
+    const config = provideApiHttpTesting();
+
+    TestBed.configureTestingModule({
+      providers: [config, provideHttpClientTesting()],
+    });
+
+    const http = TestBed.inject(HttpClient);
+    const httpMock = TestBed.inject(HttpTestingController);
+
+    let caught: unknown;
+    http.get('/api/test').subscribe({
+      error: (error) => {
+        caught = error;
+      },
+    });
+
+    const request = httpMock.expectOne('/api/test');
+    request.flush({ message: 'test' }, { status: 404, statusText: 'Not Found' });
+
+    expect(caught).toBeInstanceOf(Error);
   });
 });

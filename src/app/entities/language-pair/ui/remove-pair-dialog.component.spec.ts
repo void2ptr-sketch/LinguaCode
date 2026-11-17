@@ -9,9 +9,39 @@ import type { DirectionCardEvent } from './direction-card.component';
 import type { LanguageDto } from '../api/language-dto.types';
 
 const mockLanguages: LanguageDto[] = [
-  { id: 1, code: 'en', displayName: 'English', nativeName: 'English', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
-  { id: 2, code: 'ru', displayName: 'Russian', nativeName: 'Русский', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
-  { id: 3, code: 'zh', displayName: 'Chinese', nativeName: '中文', writingDir: 'ltr', supportsTones: true, supportsPinyin: true, fontFamily: '', activeFlag: true },
+  {
+    id: 1,
+    code: 'en',
+    displayName: 'English',
+    nativeName: 'English',
+    writingDir: 'ltr',
+    supportsTones: false,
+    supportsPinyin: false,
+    fontFamily: '',
+    activeFlag: true,
+  },
+  {
+    id: 2,
+    code: 'ru',
+    displayName: 'Russian',
+    nativeName: 'Русский',
+    writingDir: 'ltr',
+    supportsTones: false,
+    supportsPinyin: false,
+    fontFamily: '',
+    activeFlag: true,
+  },
+  {
+    id: 3,
+    code: 'zh',
+    displayName: 'Chinese',
+    nativeName: '中文',
+    writingDir: 'ltr',
+    supportsTones: true,
+    supportsPinyin: true,
+    fontFamily: '',
+    activeFlag: true,
+  },
 ];
 
 describe('RemovePairDialogComponent', () => {

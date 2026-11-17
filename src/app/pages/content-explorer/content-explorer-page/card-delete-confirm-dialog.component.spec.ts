@@ -10,9 +10,7 @@ describe('CardDeleteConfirmDialogComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [CardDeleteConfirmDialogComponent, MatDialogModule, MatButtonModule],
-      providers: [
-        { provide: MAT_DIALOG_DATA, useValue: { cardTitle: 'Test Card' } },
-      ],
+      providers: [{ provide: MAT_DIALOG_DATA, useValue: { cardTitle: 'Test Card' } }],
     });
     fixture = TestBed.createComponent(CardDeleteConfirmDialogComponent);
   });
@@ -65,9 +63,7 @@ describe('CardDeleteConfirmDialogComponent — empty title', () => {
   it('should handle empty card title', () => {
     TestBed.configureTestingModule({
       imports: [CardDeleteConfirmDialogComponent, MatDialogModule, MatButtonModule],
-      providers: [
-        { provide: MAT_DIALOG_DATA, useValue: { cardTitle: '' } },
-      ],
+      providers: [{ provide: MAT_DIALOG_DATA, useValue: { cardTitle: '' } }],
     });
     const emptyFixture = TestBed.createComponent(CardDeleteConfirmDialogComponent);
     emptyFixture.detectChanges();
@@ -80,9 +76,7 @@ describe('CardDeleteConfirmDialogComponent — null title', () => {
   it('should handle null card title gracefully', () => {
     TestBed.configureTestingModule({
       imports: [CardDeleteConfirmDialogComponent, MatDialogModule, MatButtonModule],
-      providers: [
-        { provide: MAT_DIALOG_DATA, useValue: { cardTitle: null as unknown as string } },
-      ],
+      providers: [{ provide: MAT_DIALOG_DATA, useValue: { cardTitle: null as unknown as string } }],
     });
     const nullFixture = TestBed.createComponent(CardDeleteConfirmDialogComponent);
     nullFixture.detectChanges();

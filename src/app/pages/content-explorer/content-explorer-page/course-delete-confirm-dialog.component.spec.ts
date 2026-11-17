@@ -10,9 +10,7 @@ describe('CourseDeleteConfirmDialogComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [CourseDeleteConfirmDialogComponent, MatDialogModule, MatButtonModule],
-      providers: [
-        { provide: MAT_DIALOG_DATA, useValue: { courseTitle: 'Test Course' } },
-      ],
+      providers: [{ provide: MAT_DIALOG_DATA, useValue: { courseTitle: 'Test Course' } }],
     });
     fixture = TestBed.createComponent(CourseDeleteConfirmDialogComponent);
   });
@@ -65,9 +63,7 @@ describe('CourseDeleteConfirmDialogComponent — empty title', () => {
   it('should handle empty course title', () => {
     TestBed.configureTestingModule({
       imports: [CourseDeleteConfirmDialogComponent, MatDialogModule, MatButtonModule],
-      providers: [
-        { provide: MAT_DIALOG_DATA, useValue: { courseTitle: '' } },
-      ],
+      providers: [{ provide: MAT_DIALOG_DATA, useValue: { courseTitle: '' } }],
     });
     const emptyFixture = TestBed.createComponent(CourseDeleteConfirmDialogComponent);
     emptyFixture.detectChanges();

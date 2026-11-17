@@ -146,7 +146,9 @@ describe('LearningApiService', () => {
   it('should get card accuracy with accuracy value', async () => {
     const promise = service.getCardAccuracy('user-42', 'card-100');
 
-    const req = httpMock.expectOne((r) => r.url === buildApiUrl('/learning/accuracy/user-42/card-100'));
+    const req = httpMock.expectOne(
+      (r) => r.url === buildApiUrl('/learning/accuracy/user-42/card-100'),
+    );
     req.flush({
       data: {
         cardId: 'card-100',
@@ -166,7 +168,9 @@ describe('LearningApiService', () => {
   it('should get card accuracy with null accuracy', async () => {
     const promise = service.getCardAccuracy('user-42', 'card-999');
 
-    const req = httpMock.expectOne((r) => r.url === buildApiUrl('/learning/accuracy/user-42/card-999'));
+    const req = httpMock.expectOne(
+      (r) => r.url === buildApiUrl('/learning/accuracy/user-42/card-999'),
+    );
     req.flush({
       data: {
         cardId: 'card-999',
