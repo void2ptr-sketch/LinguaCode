@@ -1,4 +1,5 @@
 import type { OptionCard } from '../model';
+import type { PhoneticLexeme } from '../../phonetic/model/phonetic-content.types';
 import {
   cardDefaultDirection,
   cardSupportsSessionDirection,
@@ -300,7 +301,7 @@ describe('card-direction.utils', () => {
       promptKnown: 'Введите перевод',
       acceptedAnswersKnown: ['Привет'],
       acceptedAnswersLearning: [],
-      promptLexeme: { primary: 'Hello', script: 'latn', glossKnown: '' } as any,
+      promptLexeme: { primary: 'Hello', script: 'latn', glossKnown: '' } as PhoneticLexeme,
     };
     // promptLexeme.primary.trim() is the fallback
     expect(resolveKeyboardPrompt(card, 'learning-to-known')).toBe('Hello');
@@ -352,7 +353,7 @@ describe('card-direction.utils', () => {
   });
 
   it('should return false for undefined card', () => {
-    expect(cardSupportsSessionDirection(undefined as any)).toBe(false);
+    expect(cardSupportsSessionDirection(null)).toBe(false);
   });
 
   describe('resolveParallelKnownOptions', () => {

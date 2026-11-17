@@ -86,6 +86,7 @@ describe('CardCreateWizardComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
 
   beforeEach(() => {
+    TestBed.resetTestingModule();
     TestBed.configureTestingModule({
       imports: [
         TestHostComponent,
@@ -101,6 +102,10 @@ describe('CardCreateWizardComponent', () => {
         PairsCardFormComponent,
       ],
     });
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 
   beforeEach(() => {
