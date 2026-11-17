@@ -25,7 +25,9 @@ export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): Card
       : DEFAULT_LANGUAGE_PAIR.learning;
 
   const ipaReadings = collectCardIpaReadings(card);
-  const baseTags = effectiveMeta?.tags ?? [card.kind];
+  // Prefer explicit metadata (embedded/overlay) and then the card's own tags.
+  // Falling back to `[card.kind]` keeps legacy cards without tags usable.
+  const baseTags = effectiveMeta?.tags ?? card.tags ?? [card.kind];
   const tags =
     ipaReadings.length > 0 && !baseTags.includes('ipa') ? [...baseTags, 'ipa'] : baseTags;
 
