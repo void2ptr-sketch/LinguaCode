@@ -62,37 +62,37 @@ export class CardSelectFlowService {
   }
 
   /**
-    * Marks the flow as initialized.
-    *
-    * @remarks
-    * Called by the page component in `ngOnInit` after all query params
-    * (courseId, lessonId, scenarioId) have been processed. Prevents
-    * `resetOnActivePairChange` from wiping the state during the initial
-    * page load when `activateLanguagePairFor*` methods fire.
-    */
+   * Marks the flow as initialized.
+   *
+   * @remarks
+   * Called by the page component in `ngOnInit` after all query params
+   * (courseId, lessonId, scenarioId) have been processed. Prevents
+   * `resetOnActivePairChange` from wiping the state during the initial
+   * page load when `activateLanguagePairFor*` methods fire.
+   */
   markInitialized(): void {
     this._isInitializing = false;
   }
 
   /**
-    * Temporarily prevents `resetOnActivePairChange` from firing.
-    *
-    * @remarks
-    * Call before changing `activeLanguagePairId` when the flow state
-    * must survive the change (e.g. activating a course's pair during
-    * manual selection via picker). Always pair with `endResetProtection`.
-    */
+   * Temporarily prevents `resetOnActivePairChange` from firing.
+   *
+   * @remarks
+   * Call before changing `activeLanguagePairId` when the flow state
+   * must survive the change (e.g. activating a course's pair during
+   * manual selection via picker). Always pair with `endResetProtection`.
+   */
   beginResetProtection(): void {
     this._isInitializing = true;
   }
 
   /**
-    * Re-enables `resetOnActivePairChange` after a protected block.
-    *
-    * @remarks
-    * Restores the normal reset behavior. The flow will reset on the next
-    * language pair change, as usual.
-    */
+   * Re-enables `resetOnActivePairChange` after a protected block.
+   *
+   * @remarks
+   * Restores the normal reset behavior. The flow will reset on the next
+   * language pair change, as usual.
+   */
   endResetProtection(): void {
     this._isInitializing = false;
   }
@@ -344,16 +344,16 @@ export class CardSelectFlowService {
   // ─── Methods ──────────────────────────────────────────────────────────
 
   /**
-    * Activates the language pair of a course so its content is relevant.
-    *
-    * @param courseId - The course ID whose language pair should be activated.
-    * @remarks
-    * Adds the course's language pair to `UserStore` and sets it as active.
-    * Uses reset protection to prevent `resetOnActivePairChange` from wiping
-    * the flow state while the pair is being activated.
-    * Non-fatal: if the course has no pair or the fetch fails, the caller
-    * continues loading the course anyway.
-    */
+   * Activates the language pair of a course so its content is relevant.
+   *
+   * @param courseId - The course ID whose language pair should be activated.
+   * @remarks
+   * Adds the course's language pair to `UserStore` and sets it as active.
+   * Uses reset protection to prevent `resetOnActivePairChange` from wiping
+   * the flow state while the pair is being activated.
+   * Non-fatal: if the course has no pair or the fetch fails, the caller
+   * continues loading the course anyway.
+   */
   async activateLanguagePair(courseId: string): Promise<void> {
     this.beginResetProtection();
     try {
@@ -369,7 +369,7 @@ export class CardSelectFlowService {
   }
 
   /**
-    * Loads a course by ID and updates flow state.
+   * Loads a course by ID and updates flow state.
    *
    * @param courseId - The course ID to load.
    */

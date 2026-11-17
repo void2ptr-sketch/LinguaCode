@@ -201,9 +201,7 @@ describe('CardCatalogSearchStore', () => {
   it('should load lessons when program is selected', async () => {
     await store.initWithActivePair('ru', 'en');
     await store.setCourse('course-1');
-    hierarchyMock.loadLessons.mockResolvedValue([
-      { id: 'lesson-1', title: 'Lesson 1' },
-    ]);
+    hierarchyMock.loadLessons.mockResolvedValue([{ id: 'lesson-1', title: 'Lesson 1' }]);
 
     await store.setProgram('program-1');
 
@@ -213,9 +211,7 @@ describe('CardCatalogSearchStore', () => {
 
   it('should load programs when course is selected', async () => {
     await store.initWithActivePair('ru', 'en');
-    hierarchyMock.loadProgramOptions.mockResolvedValue([
-      { id: 'program-1', title: 'Program 1' },
-    ]);
+    hierarchyMock.loadProgramOptions.mockResolvedValue([{ id: 'program-1', title: 'Program 1' }]);
 
     await store.setCourse('course-1');
 

@@ -119,8 +119,9 @@ describe('CardCatalogHierarchyService', () => {
     };
 
     scenarioSearchServiceMock = {
-      getByLessonId: vi.fn(async (lessonId: string): Promise<readonly Scenario[]> =>
-        mockScenarios.filter((scenario) => scenario.lessonId === lessonId) as readonly Scenario[],
+      getByLessonId: vi.fn(
+        async (lessonId: string): Promise<readonly Scenario[]> =>
+          mockScenarios.filter((scenario) => scenario.lessonId === lessonId) as readonly Scenario[],
       ),
     };
 

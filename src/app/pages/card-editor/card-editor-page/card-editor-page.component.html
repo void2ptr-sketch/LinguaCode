@@ -84,7 +84,8 @@
                 <mat-option [value]="null">Все пары</mat-option>
                 @for (entry of catalogStore.userLanguagePairs(); track entry.id) {
                   <mat-option [value]="entry.id">
-                    {{ languageLabels()[entry.pair.known] }} → {{ languageLabels()[entry.pair.learning] }}
+                    {{ languageLabels()[entry.pair.known] }} →
+                    {{ languageLabels()[entry.pair.learning] }}
                   </mat-option>
                 }
               </mat-select>

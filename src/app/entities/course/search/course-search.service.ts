@@ -69,25 +69,24 @@ export class CourseSearchService {
   }
 
   /**
-    * Searches courses by criteria.
-    *
-    * @param criteria - The search criteria.
-    * @returns A page of course index entries.
-    * @remarks
-    * After the API call, results are additionally filtered client-side by
-    * `knownLanguage`/`learningLanguage` when both are present. This is a
-    * safety net: the backend may not filter by these parameters, so the
-    * frontend must guarantee that only courses matching the active language
-    * pair are shown.
-    */
+   * Searches courses by criteria.
+   *
+   * @param criteria - The search criteria.
+   * @returns A page of course index entries.
+   * @remarks
+   * After the API call, results are additionally filtered client-side by
+   * `knownLanguage`/`learningLanguage` when both are present. This is a
+   * safety net: the backend may not filter by these parameters, so the
+   * frontend must guarantee that only courses matching the active language
+   * pair are shown.
+   */
   search(criteria: CourseSearchCriteria): Promise<CourseSearchPage> {
     return this.run(() => this.coursesApi.search(criteria)).then((page) => {
       const known = criteria.knownLanguage;
       const learning = criteria.learningLanguage;
       if (known && learning) {
         const filtered = page.items.filter(
-          (entry) =>
-            entry.knownLanguage === known && entry.learningLanguage === learning,
+          (entry) => entry.knownLanguage === known && entry.learningLanguage === learning,
         );
         return {
           ...page,

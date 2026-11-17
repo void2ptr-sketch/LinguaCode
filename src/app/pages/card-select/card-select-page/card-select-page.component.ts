@@ -317,8 +317,8 @@ export class CardSelectPageComponent implements OnInit {
   }
 
   /**
-    * Активирует языковую пару сценария при прямом переходе по ссылке.
-    */
+   * Активирует языковую пару сценария при прямом переходе по ссылке.
+   */
   private async activateLanguagePairForScenario(scenarioId: string): Promise<void> {
     try {
       const scenario = await this.scenarioSearchService.getById(scenarioId);
