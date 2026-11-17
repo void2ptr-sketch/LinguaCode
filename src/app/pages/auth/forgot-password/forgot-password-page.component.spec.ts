@@ -19,7 +19,6 @@ describe('ForgotPasswordPageComponent', () => {
   beforeEach(async () => {
     forgotPasswordSpy = vi.fn();
     openSpy = vi.fn();
-    navigateSpy = vi.fn(() => Promise.resolve(true));
 
     TestBed.configureTestingModule({
       imports: [
