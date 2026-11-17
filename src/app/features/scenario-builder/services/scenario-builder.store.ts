@@ -8,15 +8,14 @@ import {
   resolveScenarioCardIds,
   validateScenarioCardSource,
 } from '../../../entities/scenario/utils/scenario-card-source.utils';
-import {
-  cardIndexMatchesPair,
-  normalizeLanguagePair,
-} from '../../../entities/language-pair/lib/language-pair.utils';
-import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
+import { cardIndexMatchesPair } from '../../../entities/language-pair/utils/language-pair.utils';
+import { activeLanguagePairCriteria } from '../../../entities/language-pair/utils/language-pair-scope.utils';
 import { CardSearchService } from '../../../entities/card';
 import { CourseSearchService } from '../../../entities/course';
 import { ScenarioSearchService } from '../../../entities/scenario';
 import { CardsCatalogMockHandler } from '../../../entities/card/api/mock';
+import { LanguagePairsApiService } from '../../../entities/language-pair/api';
+import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 import type { CourseIndexEntry } from '../../../entities/course/model';
 import type {
   Scenario,
@@ -26,9 +25,12 @@ import type {
 import type { ScenarioCardSource } from '../../../entities/card/model';
 import { sanitizePlainText } from '../../../shared/security';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import { ScenarioDraft, ScenarioEditorMode } from '../types';
+import type { ScenarioFormDraft } from '../utils/scenario-form-draft.utils';
+import { emptyScenarioFormDraft } from '../utils/scenario-form-draft.utils';
 
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
 const sanitizeDescription = (value: string): string => sanitizePlainText(value, 512);
@@ -46,8 +48,40 @@ export class ScenarioBuilderStore {
   private readonly cardSearchService = inject(CardSearchService);
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly cardsCatalogHandler = inject(CardsCatalogMockHandler);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
   private readonly userStore = inject(UserStore);
+  private readonly authStore = inject(AuthStore);
   private readonly logger = inject(AppLoggerService);
+
+  /** Cache: languagePairId → { known, learning } resolved from `/language-pairs`. */
+  private pairCache: Record<number, LanguagePair> = {};
+  private pairCacheLoaded = false;
+
+  private async ensurePairCache(): Promise<void> {
+    if (this.pairCacheLoaded) return;
+    try {
+      const pairs = await this.languagePairsApi.listAll();
+      for (const p of pairs) {
+        this.pairCache[p.id] = {
+          known: p.knownCode as LanguagePair['known'],
+          learning: p.learningCode as LanguagePair['learning'],
+        };
+      }
+    } catch {
+      // /language-pairs may require auth (403) — fallback
+      this.pairCache[1] = {
+        known: 'ru' as LanguagePair['known'],
+        learning: 'en' as LanguagePair['learning'],
+      };
+    }
+    this.pairCacheLoaded = true;
+  }
+
+  private async resolveLanguagePair(pairId: number | undefined): Promise<LanguagePair | undefined> {
+    if (!pairId) return undefined;
+    await this.ensurePairCache();
+    return this.pairCache[pairId];
+  }
 
   /** Current page of scenario index entries. */
   readonly indexItems = signal<readonly ScenarioIndexEntry[]>([]);
@@ -86,7 +120,12 @@ export class ScenarioBuilderStore {
       return false;
     }
 
-    return !isEditableContentAuthor(scenario.authorId, this.userStore.user().id);
+    const user = this.authStore.user();
+    if (!user) {
+      return true;
+    }
+
+    return !isEditableContentAuthor(scenario.authorId, user.id, user.roles);
   });
 
   /**
@@ -134,19 +173,18 @@ export class ScenarioBuilderStore {
   }
 
   /**
-   * Loads available courses for the current language pair.
+   * Loads available courses (all language pairs).
    *
    * @remarks
-   * Fetches up to 100 courses matching the current language pair.
+   * Fetches up to 100 courses without language-pair filtering — the
+   * scenario builder lets users bind a scenario to any course regardless
+   * of the current language pair.
    * On error, sets an empty array (never throws).
    */
   async loadCourses(): Promise<void> {
     try {
-      const pair = this.userStore.languagePair();
       const page = await this.courseSearchService.search({
         scope: 'all',
-        knownLanguage: pair.known,
-        learningLanguage: pair.learning,
         page: { page: 0, pageSize: 100 },
       });
       this.courses.set(page.items);
@@ -214,6 +252,48 @@ export class ScenarioBuilderStore {
   }
 
   /**
+   * Creates a new scenario draft with default values and optional context.
+   *
+   * @param context - Optional context pre-filled from the content explorer tree.
+   * @returns A new ScenarioFormDraft with auto-incremented order.
+   *
+   * @remarks
+   * The order is resolved from the backend (`max(scenario_order) + 1`).
+   * The previous implementation filtered the `/scenarios` list by `lessonId`,
+   * but that endpoint ignores `lessonId` and only returns tier-accessible
+   * scenarios, so the computed maximum was always `0` (order `1`).
+   */
+  async createDraft(context?: {
+    languagePairId?: number;
+    courseId?: string;
+    programId?: string;
+    lessonId?: string;
+  }): Promise<ScenarioFormDraft> {
+    let order = 1;
+
+    try {
+      order = await this.scenarioSearchService.getNextOrder();
+    } catch (error) {
+      this.logger.error('ScenarioBuilder: failed to resolve next scenario order', error);
+    }
+
+    const draft = emptyScenarioFormDraft(order);
+    if (context?.languagePairId) {
+      draft.languagePairId = context.languagePairId;
+    }
+    if (context?.courseId) {
+      draft.courseId = context.courseId;
+    }
+    if (context?.programId) {
+      draft.programId = context.programId;
+    }
+    if (context?.lessonId) {
+      draft.lessonId = context.lessonId;
+    }
+    return draft;
+  }
+
+  /**
    * Enters edit mode and loads the scenario by ID.
    *
    * @param scenarioId - The scenario ID to edit.
@@ -252,23 +332,28 @@ export class ScenarioBuilderStore {
    * Creates a new scenario from a draft.
    *
    * @param draft - The scenario draft.
-   * @returns `true` if created successfully, `false` on validation or API error.
+   * @returns The created `Scenario`, or `null` on validation or API error.
    */
-  async createScenario(draft: ScenarioDraft): Promise<boolean> {
+  async createScenario(draft: ScenarioDraft): Promise<Scenario | null> {
+    if (draft.order !== undefined && draft.order <= 0) {
+      this.error.set('Порядок сценария должен быть ≥ 1');
+      return null;
+    }
+
     const payload = await this.normalizeDraft(draft);
     if (!payload) {
-      return false;
+      return null;
     }
 
     try {
-      await this.scenarioSearchService.create(payload);
+      const scenario = await this.scenarioSearchService.create(payload);
       this.cancelEdit();
       await this.loadList();
-      return true;
+      return scenario;
     } catch (error) {
       this.logger.error('ScenarioBuilder: failed to create scenario', error);
       this.error.set('Не удалось создать сценарий');
-      return false;
+      return null;
     }
   }
 
@@ -309,15 +394,39 @@ export class ScenarioBuilderStore {
    * Checks access rights (only the author can delete). If the deleted scenario is currently
    * being edited, cancels the editing state.
    *
+   * Ownership is validated for ANY scenario ID: the caller may pass an `entry`
+   * resolved outside the current list page (e.g. a scenario node in the
+   * Content Explorer tree); otherwise the entry is looked up in the loaded
+   * list; when the scenario is not present there either, it is fetched by ID.
+   * If ownership cannot be proven, deletion is rejected (fail-safe).
+   *
    * @param scenarioId - The scenario ID to delete.
+   * @param entry - Optional index entry of the scenario (from the caller's
+   *   own data source), used for the ownership check when the scenario is not
+   *   in the current list page.
    */
-  async deleteScenario(scenarioId: string): Promise<void> {
-    const item = this.indexItems().find((scenario) => scenario.id === scenarioId);
-    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
+  async deleteScenario(scenarioId: string, entry?: ScenarioIndexEntry): Promise<void> {
+    const user = this.authStore.user();
+    const item = entry ?? this.indexItems().find((scenario) => scenario.id === scenarioId);
+
+    let authorId = item?.authorId;
+    if (!authorId && user) {
+      // Сценарий вне текущей страницы списка (и без entry от вызывающего):
+      // загружаем его по ID, чтобы проверить владение.
+      try {
+        const scenario = await this.scenarioSearchService.getById(scenarioId);
+        authorId = scenario.authorId;
+      } catch (error) {
+        this.logger.error('ScenarioBuilder: failed to load scenario for ownership check', error);
+      }
+    }
+
+    if (!user || !authorId || !isEditableContentAuthor(authorId, user.id, user.roles)) {
       this.error.set('Нельзя удалять чужой сценарий');
       return;
     }
 
+    this.error.set(null);
     try {
       await this.scenarioSearchService.delete(scenarioId);
       if (this.editingScenarioId() === scenarioId) {
@@ -406,7 +515,7 @@ export class ScenarioBuilderStore {
    * Normalizes and validates a scenario draft.
    *
    * @remarks
-   * Sanitizes title, description, and language pair. Normalizes the card source
+   * Sanitizes title, description. Normalizes the card source
    * based on its mode (fixed, snapshot, or criteria). Returns null if validation fails.
    *
    * @param draft - The user-provided scenario draft.
@@ -420,8 +529,7 @@ export class ScenarioBuilderStore {
   > {
     const title = sanitizeTitle(draft.title);
     const description = sanitizeDescription(draft.description);
-    const languagePair = normalizeLanguagePair(draft.languagePair);
-    const cardSource = await this.normalizeCardSource(draft.cardSource, languagePair);
+    const cardSource = await this.normalizeCardSource(draft.cardSource, draft.languagePairId);
 
     if (!title) {
       this.error.set('Укажите название сценария');
@@ -432,7 +540,18 @@ export class ScenarioBuilderStore {
       return null;
     }
 
-    return { title, description, cardSource, published: draft.published, languagePair };
+    return {
+      title,
+      description,
+      cardSource,
+      published: draft.published,
+      languagePairId: draft.languagePairId,
+      courseId: draft.courseId ? Number(draft.courseId) : undefined,
+      programId: draft.programId ? Number(draft.programId) : undefined,
+      lessonId: draft.lessonId ? Number(draft.lessonId) : undefined,
+      requiredTier: draft.requiredTier ?? 'FREE',
+      order: draft.order,
+    };
   }
 
   /**
@@ -444,13 +563,13 @@ export class ScenarioBuilderStore {
    * - `criteria`: trims query and returns the criteria as-is.
    *
    * @param source - The card source to normalize.
-   * @param languagePair - The current language pair for validation.
+   * @param languagePairId - The numeric language pair ID for validation.
    * @returns A normalized ScenarioCardSource, or null if validation fails.
    * @private
    */
   private async normalizeCardSource(
     source: ScenarioCardSource,
-    languagePair: import('../../../entities/language-pair/model/language-pair.types').LanguagePair,
+    languagePairId: number | undefined,
   ): Promise<ScenarioCardSource | null> {
     const cardExists = async (cardId: string): Promise<boolean> => {
       try {
@@ -460,6 +579,8 @@ export class ScenarioBuilderStore {
         return false;
       }
     };
+
+    const languagePair = await this.resolveLanguagePair(languagePairId);
 
     if (source.mode === 'fixed') {
       const cardIds = [
@@ -526,16 +647,22 @@ export class ScenarioBuilderStore {
    * @remarks
    * Checks each card ID against the cards catalog mock handler.
    * Returns an error message if any card doesn't match, or null if all match.
+   * When `languagePair` is undefined, validation is skipped (no pair selected).
    *
    * @param cardIds - The card IDs to validate.
-   * @param languagePair - The expected language pair.
+   * @param languagePair - The expected language pair (or undefined to skip validation).
    * @returns An error message if validation fails, or null.
    * @private
    */
   private async validateCardIdsMatchPair(
     cardIds: readonly string[],
-    languagePair: import('../../../entities/language-pair/model/language-pair.types').LanguagePair,
+    languagePair:
+      import('../../../entities/language-pair/model/language-pair.types').LanguagePair | undefined,
   ): Promise<string | null> {
+    if (!languagePair) {
+      return null;
+    }
+
     for (const cardId of cardIds) {
       const entry = await this.cardsCatalogHandler.getIndexEntry(cardId);
       if (entry && !cardIndexMatchesPair(entry, languagePair)) {

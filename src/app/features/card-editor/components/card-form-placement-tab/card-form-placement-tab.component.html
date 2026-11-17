@@ -1,0 +1,14 @@
+<div class="card-form__tab-panel">
+  <p class="card-form__hint card-form__hint--tab">
+    Размещение — привязка карточки к курсу, программе, уроку и сценарию.
+  </p>
+
+  <app-content-hierarchy-selector
+    [levels]="levels"
+    [value]="draft()"
+    [languagePairId]="languagePairId()"
+    [readOnly]="readOnly()"
+    [readOnlyLevels]="readOnlyLevels"
+    (valueChange)="placementChange.emit($event)"
+  />
+</div>

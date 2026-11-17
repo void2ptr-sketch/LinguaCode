@@ -16,7 +16,7 @@ import { scenariosApiMockInterceptor } from '../../../entities/scenario/api/mock
 
 import { CardEditorPageComponent } from './card-editor-page.component';
 import { CardEditorStore } from '../../../features/card-editor/services/card-editor.store';
-import { CardCatalogSearchStore } from '../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
+import { CardCatalogSearchStore } from '../../../entities/card/lib/store/card-catalog-search.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { CardEditorDialogService } from '../../../features/card-editor/components/card-editor-dialog/card-editor-dialog.service';
 import { CardTryDialogService } from '../../../features/card-editor/components/card-try-dialog/card-try-dialog.service';

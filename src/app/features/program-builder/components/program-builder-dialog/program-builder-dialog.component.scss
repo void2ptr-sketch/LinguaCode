@@ -1,0 +1,9 @@
+.program-builder-dialog__state {
+  display: grid;
+  justify-items: center;
+  padding: 2rem;
+}
+
+.program-builder-dialog__error {
+  color: var(--mat-sys-error);
+}

@@ -1,20 +1,45 @@
 .card-form {
   display: grid;
   gap: 1.5rem;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
 
   @media (min-width: 56rem) {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 'main preview';
-    align-items: start;
+    align-items: stretch;
+    flex: 1 1 auto;
+    grid-template-areas:
+      'tabs tabs'
+      'main preview';
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
   }
+}
+
+// Preview hidden: the form owns the full width, tabs stay on one row.
+.card-form--preview-hidden {
+  @media (min-width: 56rem) {
+    grid-template-areas:
+      'tabs'
+      'main';
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+app-card-form-tabs {
+  grid-area: tabs;
+  min-width: 0;
 }
 
 .card-form__main {
   display: grid;
   gap: 1rem;
+  min-height: 0;
+  min-width: 0;
 
   @media (min-width: 56rem) {
     grid-area: main;
+    grid-template-rows: minmax(0, 1fr);
   }
 }
 
@@ -33,86 +58,33 @@
   font-weight: 600;
 }
 
-.card-form__tabs-wrapper {
-  position: relative;
-  display: block;
-}
-
-.card-form__tabs-header {
-  position: relative;
-  padding: 0 2.75rem;
-
-  // Адаптация для заголовков закладок
-  :host ::ng-deep {
-    .mat-tab-labels {
-      display: flex;
-      align-items: center;
-    }
-  }
-}
-
-.card-form__nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 500;
-  padding: 0;
-  line-height: 1;
-  transition: all 0.2s ease;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: var(--mat-sys-on-surface);
-
-  &:hover:not(:disabled) {
-    background-color: rgba(0, 0, 0, 0.08);
-  }
-
-  &:active:not(:disabled) {
-    background-color: rgba(0, 0, 0, 0.12);
-  }
-
-  &:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-
-  &:not(:disabled) {
-    cursor: pointer;
-  }
-}
-
-.card-form__nav-btn--left {
-  left: 0;
-}
-
-.card-form__nav-btn--right {
-  right: 0;
-}
-
-.card-form__tabs {
-  width: 100%;
-}
-
 .card-form__tab-content {
   display: grid;
   gap: 1rem;
   padding-top: 1rem;
   width: 100%;
+  min-width: 0;
+
+  > * {
+    min-width: 0;
+  }
+
+  @media (min-width: 56rem) {
+    align-content: start;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 0.25rem;
+    scrollbar-gutter: stable;
+  }
 }
 
 app-card-preview {
   @media (min-width: 56rem) {
     grid-area: preview;
+    min-height: 0;
+    min-width: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 }

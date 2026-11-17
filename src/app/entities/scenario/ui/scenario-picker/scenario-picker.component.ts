@@ -7,6 +7,7 @@ import {
   OnInit,
   output,
   signal,
+  DestroyRef,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -17,7 +18,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import type { PageEvent } from '@angular/material/paginator';
 
 import { ScenarioSearchService } from '../..';
-import { activeLanguagePairCriteria } from '../../../language-pair/lib/language-pair-scope.utils';
+import { activeLanguagePairCriteria } from '../../../language-pair/utils/language-pair-scope.utils';
+import { scenarioToIndexEntry } from '../../mapping/scenario-index.mapper';
 import type { ScenarioIndexEntry, ScenarioListScope } from '../../model';
 import { UserStore } from '../../../user/model/user.store';
 import { UiPaginationComponent } from '../../../../shared/utils/pagination';
@@ -50,6 +52,14 @@ let lastKnownScenarioPickerActiveLanguagePairId: string | null | undefined = nul
 export class ScenarioPickerComponent implements OnInit {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly userStore = inject(UserStore);
+  private readonly destroyRef = inject(DestroyRef);
+
+  /** Tracks component destruction to guard async emits (NG0953). */
+  private readonly destroyed = signal(false);
+
+  constructor() {
+    this.destroyRef.onDestroy(() => this.destroyed.set(true));
+  }
 
   /**
    * ID of the currently selected scenario.
@@ -177,23 +187,35 @@ export class ScenarioPickerComponent implements OnInit {
     this.loading.set(true);
 
     try {
-      const pair = this.userStore.languagePair();
       const allowed = this.allowedScenarioIds();
-      const page = await this.scenarioSearchService.search({
-        query: this.query().trim() || undefined,
-        scope: this.scope(),
-        ...activeLanguagePairCriteria(pair),
-        page: {
-          page: allowed && allowed.length > 0 ? 0 : this.pageIndex(),
-          pageSize: allowed && allowed.length > 0 ? 500 : this.pageSize(),
-        },
-      });
+      const isScopedByIds = allowed !== null && allowed.length > 0;
 
-      const rawItems = page.items ?? [];
-      const filtered =
-        allowed && allowed.length > 0
-          ? rawItems.filter((item: ScenarioIndexEntry) => allowed.includes(item.id))
-          : rawItems;
+      // When the result set is explicitly limited by `allowedScenarioIds`
+      // (lesson/course scope), the scenarios are fetched by their exact IDs:
+      // the backend list endpoint applies pair filters and caps the page size,
+      // so a broad search can miss the lesson's scenarios entirely.
+      // In the unscoped mode the regular search is used with the active
+      // language-pair criteria applied.
+      let filtered: readonly ScenarioIndexEntry[];
+      if (isScopedByIds) {
+        const scenarios = await this.scenarioSearchService.getByIdBatch(allowed);
+        const query = this.query().trim().toLowerCase();
+        filtered = scenarios
+          .map(scenarioToIndexEntry)
+          .filter((entry) => !query || entry.title.toLowerCase().includes(query));
+      } else {
+        const pair = this.userStore.languagePair();
+        const page = await this.scenarioSearchService.search({
+          query: this.query().trim() || undefined,
+          scope: this.scope(),
+          ...activeLanguagePairCriteria(pair),
+          page: {
+            page: this.pageIndex(),
+            pageSize: this.pageSize(),
+          },
+        });
+        filtered = page.items ?? [];
+      }
 
       this.items.set(filtered);
       this.totalItems.set(filtered.length);
@@ -205,12 +227,12 @@ export class ScenarioPickerComponent implements OnInit {
       } else if (hasCurrent) {
         const entry = filtered.find((item: ScenarioIndexEntry) => item.id === current);
         if (entry) {
-          this.scenarioLabelChange.emit(this.formatLabel(entry));
+          this.safeEmit(this.scenarioLabelChange, this.formatLabel(entry));
         }
-      } else if (filtered.length === 0) {
-        this.selectedScenarioIdChange.emit('');
-        this.scenarioLabelChange.emit('');
       }
+      // Note: an empty filtered list must NOT clear the current selection —
+      // clearing is owned by the parent flow (lesson/difficulty change
+      // handlers) and by explicit user actions in the picker.
     } finally {
       this.loading.set(false);
     }
@@ -222,8 +244,8 @@ export class ScenarioPickerComponent implements OnInit {
    * @param entry - The scenario index entry to pick.
    */
   pick(entry: ScenarioIndexEntry): void {
-    this.selectedScenarioIdChange.emit(entry.id);
-    this.scenarioLabelChange.emit(this.formatLabel(entry));
+    this.safeEmit(this.selectedScenarioIdChange, entry.id);
+    this.safeEmit(this.scenarioLabelChange, this.formatLabel(entry));
   }
 
   /**
@@ -260,6 +282,16 @@ export class ScenarioPickerComponent implements OnInit {
     this.pageIndex.set(event.pageIndex);
     this.pageSize.set(event.pageSize);
     void this.load();
+  }
+
+  /**
+   * Safely emits an output — no-op if the component is destroyed.
+   * Prevents NG0953 "Unexpected emit for destroyed OutputRef".
+   */
+  private safeEmit<T>(emitter: { emit(value: T): void }, value: T): void {
+    if (!this.destroyed()) {
+      emitter.emit(value);
+    }
   }
 
   /**

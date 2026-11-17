@@ -1,11 +1,12 @@
 import type { User } from '../model';
+import type { UserPreferences } from '../../../shared/api/generated/models';
 
 /**
  * Payload for updating a user profile.
  */
 export type UpdateUserPayload = {
   displayName?: string;
-  preferences?: Record<string, unknown>;
+  preferences?: Partial<UserPreferences>;
 };
 
 /**

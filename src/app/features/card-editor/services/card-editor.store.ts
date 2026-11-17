@@ -6,7 +6,7 @@ import type { CardIndexMetaOverride } from '../../../entities/card/model';
 import { upsertCardIndexMetaOverride } from '../../../entities/card/storage/card-index-meta.storage';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
-import { isNetworkError, isOfflineError } from '../../../shared/api/api-error.utils';
+import { executeWithOfflineFallback } from '../../../shared/api/offline-operation.util';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { SyncQueueService } from '../../../shared/sync';
 import { CardDraft, CardEditorMode } from '../types';
@@ -24,7 +24,7 @@ import {
  * no learning results) before deletion. Persists changes via `CardRepository` and refreshes the
  * catalog cache.
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CardEditorStore {
   private readonly cardsApi = inject(CardsApiService);
   private readonly cardSearchService = inject(CardSearchService);
@@ -77,6 +77,15 @@ export class CardEditorStore {
   readonly creatingKind = signal<CardKind>('select');
 
   /**
+   * The card returned by the last successful create/update operation.
+   *
+   * @remarks
+   * The dialog reads this after `createCard()` / `updateCard()` to return the
+   * persisted card ID and scenario binding to the caller.
+   */
+  readonly lastSavedCard = signal<Card | null>(null);
+
+  /**
    * Enters create mode for a new card.
    *
    * @param kind - The kind of card to create.
@@ -86,6 +95,7 @@ export class CardEditorStore {
     this.editingCardId.set(null);
     this.editingCard.set(null);
     this.creatingKind.set(kind);
+    this.lastSavedCard.set(null);
     this.error.set(null);
   }
 
@@ -98,6 +108,7 @@ export class CardEditorStore {
   async startEdit(cardId: string): Promise<void> {
     this.editorMode.set('edit');
     this.editingCardId.set(cardId);
+    this.lastSavedCard.set(null);
     this.error.set(null);
     this.editorLoading.set(true);
 
@@ -132,33 +143,35 @@ export class CardEditorStore {
    * @returns `true` if created successfully, `false` on validation error.
    */
   async createCard(draft: CardDraft, indexMeta?: CardIndexMetaOverride): Promise<boolean> {
-    const card = normalizeCardDraft(draft, crypto.randomUUID());
-    if (!card) {
+    const normalized = normalizeCardDraft(draft, crypto.randomUUID());
+    if (!normalized) {
       this.error.set(cardValidationErrorMessage(draft.kind));
       return false;
     }
 
-    try {
-      await this.cardsApi.create(card);
-    } catch (error) {
-      if (isOfflineError(error) || isNetworkError(error)) {
-        // Офлайн: сохраняем операцию в очередь и применяем локально.
-        await this.syncQueue.enqueue('card.create', { card });
-        if (indexMeta) {
-          upsertCardIndexMetaOverride(card.id, indexMeta);
-        }
-        this.refreshCatalog();
-        this.cancelEdit();
-        return true;
+    const card = applyMetaToCard(normalized, indexMeta);
+    let saved: Card | null = null;
+
+    const offlineHandler = async () => {
+      await this.syncQueue.enqueue('card.create', { card });
+      if (indexMeta) {
+        upsertCardIndexMetaOverride(card.id, indexMeta);
       }
-      throw error;
+      this.refreshCatalog();
+      this.cancelEdit();
+    };
+
+    const success = await executeWithOfflineFallback(async () => {
+      saved = await this.cardsApi.create(card);
+    }, offlineHandler);
+
+    if (success) {
+      this.lastSavedCard.set(saved ?? card);
+      this.refreshCatalog();
+      this.cancelEdit();
     }
-    if (indexMeta) {
-      upsertCardIndexMetaOverride(card.id, indexMeta);
-    }
-    this.refreshCatalog();
-    this.cancelEdit();
-    return true;
+
+    return success;
   }
 
   /**
@@ -174,33 +187,35 @@ export class CardEditorStore {
     draft: CardDraft,
     indexMeta?: CardIndexMetaOverride,
   ): Promise<boolean> {
-    const card = normalizeCardDraft(draft, cardId);
-    if (!card) {
+    const normalized = normalizeCardDraft(draft, cardId);
+    if (!normalized) {
       this.error.set(cardValidationErrorMessage(draft.kind));
       return false;
     }
 
-    try {
-      await this.cardsApi.update(cardId, card);
-    } catch (error) {
-      if (isOfflineError(error) || isNetworkError(error)) {
-        // Офлайн: сохраняем операцию в очередь и применяем локально.
-        await this.syncQueue.enqueue('card.update', { cardId, card });
-        if (indexMeta) {
-          upsertCardIndexMetaOverride(cardId, indexMeta);
-        }
-        this.refreshCatalog();
-        this.cancelEdit();
-        return true;
+    const card = applyMetaToCard(normalized, indexMeta);
+    let saved: Card | null = null;
+
+    const offlineHandler = async () => {
+      await this.syncQueue.enqueue('card.update', { cardId, card });
+      if (indexMeta) {
+        upsertCardIndexMetaOverride(cardId, indexMeta);
       }
-      throw error;
+      this.refreshCatalog();
+      this.cancelEdit();
+    };
+
+    const success = await executeWithOfflineFallback(async () => {
+      saved = await this.cardsApi.update(cardId, card);
+    }, offlineHandler);
+
+    if (success) {
+      this.lastSavedCard.set(saved ?? card);
+      this.refreshCatalog();
+      this.cancelEdit();
     }
-    if (indexMeta) {
-      upsertCardIndexMetaOverride(cardId, indexMeta);
-    }
-    this.refreshCatalog();
-    this.cancelEdit();
-    return true;
+
+    return success;
   }
 
   /**
@@ -231,31 +246,30 @@ export class CardEditorStore {
       return false;
     }
 
-    try {
-      await this.cardsApi.delete(cardId);
-    } catch (error) {
-      if (isOfflineError(error) || isNetworkError(error)) {
-        // Офлайн: сохраняем операцию в очередь и применяем локально.
-        await this.syncQueue.enqueue('card.delete', { cardId });
-        this.refreshCatalog();
-        this.error.set(null);
+    const offlineHandler = async () => {
+      await this.syncQueue.enqueue('card.delete', { cardId });
+      this.refreshCatalog();
+      this.error.set(null);
 
-        if (this.editingCardId() === cardId) {
-          this.cancelEdit();
-        }
-
-        return true;
+      if (this.editingCardId() === cardId) {
+        this.cancelEdit();
       }
-      throw error;
-    }
-    this.refreshCatalog();
-    this.error.set(null);
+    };
 
-    if (this.editingCardId() === cardId) {
-      this.cancelEdit();
+    const success = await executeWithOfflineFallback(
+      () => this.cardsApi.delete(cardId),
+      offlineHandler,
+    );
+
+    if (success) {
+      this.error.set(null);
+
+      if (this.editingCardId() === cardId) {
+        this.cancelEdit();
+      }
     }
 
-    return true;
+    return success;
   }
 
   /**
@@ -295,4 +309,28 @@ export class CardEditorStore {
   private refreshCatalog(): void {
     this.cardSearchService.refreshCatalog();
   }
+}
+
+/**
+ * Merges dialog metadata into the normalized card before it is sent to the API.
+ *
+ * @remarks
+ * `normalizeCardDraft` only validates kind-specific content and hierarchy IDs;
+ * tags, difficulty, requiredTier, publication status, slug and language pair
+ * live in the dialog metadata and must be copied onto the API payload.
+ */
+function applyMetaToCard(card: Card, meta?: CardIndexMetaOverride): Card {
+  if (!meta) {
+    return card;
+  }
+
+  return {
+    ...card,
+    ...(meta.tags !== undefined ? { tags: meta.tags } : {}),
+    ...(meta.difficulty !== undefined ? { difficulty: meta.difficulty } : {}),
+    ...(meta.requiredTier !== undefined ? { requiredTier: meta.requiredTier } : {}),
+    ...(meta.published !== undefined ? { published: meta.published } : {}),
+    ...(meta.slug !== undefined ? { slug: meta.slug } : {}),
+    ...(meta.languagePairId !== undefined ? { languagePairId: meta.languagePairId } : {}),
+  };
 }

@@ -1,11 +1,14 @@
 import type { Program, ProgramWithLessons } from '../model';
 import type { ProgramSearchCriteria, ProgramSearchPage } from '../model/program-search.types';
+import type { ProgramRequiredTier } from '../model/program.types';
 
 /**
  * Payload for creating or updating a program via the programs API.
  *
  * @remarks
  * Used in `ProgramsApiService` to send program data to the backend.
+ * Fields `authorId` and `ownerId` are NOT part of this payload — the backend
+ * sets them from the authentication token.
  */
 export type ProgramWritePayload = {
   /** Program ID (optional for creation). */
@@ -20,6 +23,12 @@ export type ProgramWritePayload = {
   lessonIds: readonly string[];
   /** Display order within the parent Course. */
   order: number;
+  /** Required access tier (`FREE`, `STARTER`, `GROWTH`, `PREMIUM`). */
+  requiredTier: ProgramRequiredTier;
+  /** Language pair ID — inherited from the parent course when available. */
+  languagePairId?: number;
+  /** Whether the program is published (update-only, optional on create). */
+  published?: boolean;
 };
 
 /**
@@ -48,12 +57,12 @@ export type ProgramCatalogPort = {
   getById(programId: string): Promise<ProgramWithLessons>;
 
   /**
-   * Retrieves all programs for a given course.
+   * Retrieves all programs for a given course with lessons resolved.
    *
    * @param courseId - The course ID.
-   * @returns Array of programs in the course.
+   * @returns Array of programs with lessons in the course.
    */
-  getByCourse(courseId: string): Promise<readonly Program[]>;
+  getByCourse(courseId: string): Promise<readonly ProgramWithLessons[]>;
 
   /**
    * Creates a new program within a course.

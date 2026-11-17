@@ -148,6 +148,7 @@ module.exports = tseslint.config(
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/consistent-type-definitions': 'off',
+      '@typescript-eslint/consistent-indexed-object-style': 'off',
       '@typescript-eslint/array-type': 'off',
       'no-restricted-imports': 'off',
     },

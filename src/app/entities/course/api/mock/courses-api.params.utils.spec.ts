@@ -39,6 +39,28 @@ describe('courses-api.params.utils', () => {
       expect(params.get('learningLanguage')).toBe('en');
     });
 
+    it('should append languagePairIds as repeated params', () => {
+      const criteria = {
+        languagePairIds: [7, 11],
+        page: { page: 0, pageSize: 10 },
+      };
+
+      const params = buildCourseSearchParams(criteria);
+
+      expect(params.getAll('languagePairIds')).toEqual(['7', '11']);
+    });
+
+    it('should omit languagePairIds when empty', () => {
+      const criteria = {
+        languagePairIds: [],
+        page: { page: 0, pageSize: 10 },
+      };
+
+      const params = buildCourseSearchParams(criteria);
+
+      expect(params.has('languagePairIds')).toBe(false);
+    });
+
     it('should omit optional fields when they are falsy', () => {
       const criteria = {
         page: { page: 0, pageSize: 10 },
@@ -131,6 +153,28 @@ describe('courses-api.params.utils', () => {
       expect(parsed.learningLanguage).toBe('en');
       expect(parsed.page.page).toBe(5);
       expect(parsed.page.pageSize).toBe(25);
+    });
+
+    it('should round-trip repeated languagePairIds through build and parse', () => {
+      const criteria: Parameters<typeof buildCourseSearchParams>[0] = {
+        languagePairIds: [7, 11],
+        page: { page: 0, pageSize: 10 },
+      };
+
+      const params = buildCourseSearchParams(criteria);
+      const parsed = parseCourseSearchCriteria(params);
+
+      expect(parsed.languagePairIds).toEqual([7, 11]);
+    });
+
+    it('should drop invalid languagePairIds on parse', () => {
+      const params = new HttpParams()
+        .append('languagePairIds', '7')
+        .append('languagePairIds', 'abc');
+
+      const criteria = parseCourseSearchCriteria(params);
+
+      expect(criteria.languagePairIds).toEqual([7]);
     });
   });
 });

@@ -1,15 +1,25 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, computed, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import type { Card, CardSearchCriteria, CardSearchPage } from '../model';
+import type {
+  Card,
+  CardDifficulty,
+  CardIndexMetaOverride,
+  CardKind,
+  CardSearchCriteria,
+  CardSearchPage,
+} from '../model';
 import type { ApiResponse, ApiListResponse } from '../../../shared/api/api.types';
 import type { BackendCardDto } from '../model/card-backend-dto.types';
+import type { CardBatchRetrieveResponse } from '../../../shared/api/generated/models/cardBatchRetrieveResponse';
 import { CardBackendAdapter } from '../model/card-backend-adapter';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCardSearchParams } from './mock/cards-api.params.utils';
 import type { CardCatalogPort } from '../repository/card-catalog.port';
 import { buildCardIndex } from '../mapping/card-index.mapper';
+import { buildCardSearchFacets } from '../search/card-search.utils';
+import { CatalogService } from './catalog.service';
 
 /**
  * API service for card catalog operations.
@@ -21,6 +31,13 @@ import { buildCardIndex } from '../mapping/card-index.mapper';
 @Injectable({ providedIn: 'root' })
 export class CardsApiService implements CardCatalogPort {
   private readonly http = inject(HttpClient);
+  private readonly catalogService = inject(CatalogService);
+
+  private readonly catalogOptions = computed(() => ({
+    languageCodes: this.catalogService.contentLanguageCodes(),
+    difficulties: this.catalogService.difficulties().map((d) => d.code as CardDifficulty),
+    kinds: this.catalogService.cardKinds().map((k) => k.code as CardKind),
+  }));
 
   /**
    * Searches the card catalog with the given criteria.
@@ -44,8 +61,11 @@ export class CardsApiService implements CardCatalogPort {
     ).then((response) => {
       const dtos = response.data;
       const totalItems = response.total ?? dtos.length;
+
       const cards = CardBackendAdapter.toCards(dtos);
-      const entries = buildCardIndex(cards, {});
+      const entries = buildCardIndex(cards, this.buildLanguageMeta(cards, criteria));
+      const facets = buildCardSearchFacets(entries, criteria, this.catalogOptions());
+
       const pageSize = criteria.page.pageSize;
       const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 0;
 
@@ -55,15 +75,35 @@ export class CardsApiService implements CardCatalogPort {
         pageSize,
         totalItems,
         totalPages,
-        facets: {
-          knownLanguages: [],
-          learningLanguages: [],
-          difficulties: [],
-          kinds: [],
-          tags: [],
-        },
+        facets,
       };
     });
+  }
+
+  /**
+   * Restores language codes for backend cards.
+   *
+   * @remarks
+   * The backend `Card` DTO exposes only `languagePairId`, while
+   * `CardIndexEntry` needs `knownLanguage`/`learningLanguage` for display and
+   * facet calculation. When the search is scoped to a language pair, every
+   * returned card belongs to that pair, so the requested languages are used as
+   * index metadata overrides.
+   */
+  private buildLanguageMeta(
+    cards: readonly Card[],
+    criteria: CardSearchCriteria,
+  ): Record<string, CardIndexMetaOverride> {
+    if (!criteria.knownLanguage || !criteria.learningLanguage) {
+      return {};
+    }
+
+    const meta: CardIndexMetaOverride = {
+      knownLanguage: criteria.knownLanguage,
+      learningLanguage: criteria.learningLanguage,
+    };
+
+    return Object.fromEntries(cards.map((card) => [card.id, meta]));
   }
 
   /**
@@ -99,11 +139,19 @@ export class CardsApiService implements CardCatalogPort {
       return Promise.resolve([]);
     }
 
-    return firstValueFrom(
-      this.http.post<ApiResponse<BackendCardDto[]>>(buildApiUrl('/cards/batch/retrieve'), {
+    return firstValueFrom<CardBatchRetrieveResponse | { data?: CardBatchRetrieveResponse }>(
+      this.http.post(buildApiUrl('/cards/batch/retrieve'), {
         ids: cardIds,
       }),
-    ).then((response) => CardBackendAdapter.toCards(response.data));
+    ).then((response) => {
+      // The backend returns `{found, notFound}` at the top level, but some
+      // interceptors wrap responses into an `ApiResponse` envelope
+      // (`{data: {found, notFound}}`) — support both shapes.
+      const withData = response as { data?: CardBatchRetrieveResponse };
+      const batch = (withData.data ?? response) as CardBatchRetrieveResponse;
+      const found = batch.found ?? [];
+      return CardBackendAdapter.toCards(found as BackendCardDto[]);
+    });
   }
 
   /**

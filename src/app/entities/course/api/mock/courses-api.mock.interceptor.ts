@@ -160,7 +160,11 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
       description: String(raw['courseDescription'] ?? ''),
       published: Boolean(raw['published'] ?? false),
       programs: (raw['programs'] as CourseWritePayload['programs']) ?? [],
-      authoring: raw['authoring'] as CourseWritePayload['authoring'],
+      authoringStatus: raw['authoringStatus'] as CourseWritePayload['authoringStatus'],
+      authoringIdea: raw['authoringIdea'] as CourseWritePayload['authoringIdea'],
+      ideaUpdatedAt: raw['ideaUpdatedAt'] as CourseWritePayload['ideaUpdatedAt'],
+      materializedAt: raw['materializedAt'] as CourseWritePayload['materializedAt'],
+      lastError: raw['lastError'] as CourseWritePayload['lastError'],
     };
 
     return defer(() => handler.create(payload)).pipe(
@@ -176,7 +180,11 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
       description: String(raw['courseDescription'] ?? ''),
       published: Boolean(raw['published'] ?? false),
       programs: (raw['programs'] as CourseWritePayload['programs']) ?? [],
-      authoring: raw['authoring'] as CourseWritePayload['authoring'],
+      authoringStatus: raw['authoringStatus'] as CourseWritePayload['authoringStatus'],
+      authoringIdea: raw['authoringIdea'] as CourseWritePayload['authoringIdea'],
+      ideaUpdatedAt: raw['ideaUpdatedAt'] as CourseWritePayload['ideaUpdatedAt'],
+      materializedAt: raw['materializedAt'] as CourseWritePayload['materializedAt'],
+      lastError: raw['lastError'] as CourseWritePayload['lastError'],
     };
 
     return defer(() => handler.update(courseId, payload)).pipe(

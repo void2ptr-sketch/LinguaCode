@@ -1,14 +1,4 @@
 <mat-form-field appearance="outline">
-  <mat-label>Известный</mat-label>
-  <textarea
-    matInput
-    rows="2"
-    [ngModel]="draft().promptKnown"
-    (ngModelChange)="updatePromptKnown($event)"
-  ></textarea>
-</mat-form-field>
-
-<mat-form-field appearance="outline">
   <mat-label>Метка звука (новый)</mat-label>
   <input
     matInput
@@ -16,6 +6,15 @@
     (ngModelChange)="updateAudioLabelLearning($event)"
   />
 </mat-form-field>
+
+<app-lexeme-fields
+  label="Лексема звука"
+  [compact]="true"
+  [fields]="draft().audioLabelLexeme"
+  [knownLanguage]="knownLanguage()"
+  [learningLanguage]="learningLanguage()"
+  (fieldsChange)="updateAudioLabelLexeme($event)"
+/>
 
 <app-card-options-editor
   [config]="{

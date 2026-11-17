@@ -1,14 +1,18 @@
 import type { DrawCard } from '../../../card/model';
 import {
+  buildDrawPhoneticsLexeme,
   buildDrawTabLexeme,
   containsHanScript,
   drawCharacterTabLabel,
   drawCharacterTabPinyinLabel,
   extractKnownLanguageFromTitle,
+  mergeDrawCardQuestionFields,
   parseRadicalHintParts,
+  resolveDrawAudioUrl,
   resolveDrawCharacterTargets,
   resolveDrawLearningSpeechText,
   resolveDrawMeaning,
+  resolveDrawPromptLexeme,
   resolveDrawQuestion,
   resolveInitialDrawCanvasMode,
   splitPinyinSyllables,
@@ -162,5 +166,206 @@ describe('draw-card.utils', () => {
     expect(lexeme.script).toBe('latn');
     expect(lexeme.pinyin).toBe('nǐ');
     expect(lexeme.ipa).toBe('ni˨˩˦');
+  });
+
+  // ── Additional uncovered branches ──
+
+  it('should return empty array when pinyin split count is zero', () => {
+    expect(splitPinyinSyllables('nǐ hǎo', 0)).toEqual([]);
+    expect(splitPinyinSyllables('nǐ hǎo', -1)).toEqual([]);
+  });
+
+  it('should return undefined array when pinyin is empty', () => {
+    expect(splitPinyinSyllables('', 3)).toEqual([undefined, undefined, undefined]);
+    expect(splitPinyinSyllables(undefined, 2)).toEqual([undefined, undefined]);
+    expect(splitPinyinSyllables('   ', 2)).toEqual([undefined, undefined]);
+  });
+
+  it('should fallback to last syllable when parts count differs', () => {
+    expect(splitPinyinSyllables('nǐ', 3)).toEqual(['nǐ', 'nǐ', 'nǐ']);
+    expect(splitPinyinSyllables('nǐ hǎo', 3)).toEqual(['nǐ', 'hǎo', 'hǎo']);
+  });
+
+  it('should parse empty radical hint as empty array', () => {
+    expect(parseRadicalHintParts('   ')).toEqual([]);
+  });
+
+  it('should parse single segment without plus', () => {
+    expect(parseRadicalHintParts('女')).toEqual([{ character: '女', componentIndex: 0 }]);
+  });
+
+  it('should extract known language from title without han script', () => {
+    expect(extractKnownLanguageFromTitle('hello world')).toBe('hello world');
+    expect(extractKnownLanguageFromTitle(undefined)).toBe('');
+    expect(extractKnownLanguageFromTitle('')).toBe('');
+  });
+
+  it('should extract known language from title with han script before dash', () => {
+    // The function looks at the part AFTER the dash; 'привет' has no han script
+    expect(extractKnownLanguageFromTitle('你好 — привет')).toBe('привет');
+  });
+
+  it('should resolve draw audio url from target', () => {
+    const card: DrawCard = {
+      ...baseDrawCard,
+      promptLexeme: {
+        ...baseDrawCard.promptLexeme!,
+        audioUrl: 'card-audio.mp3',
+      },
+    };
+
+    expect(resolveDrawAudioUrl(card, { character: '你', audioUrl: 'target-audio.mp3' })).toBe(
+      'target-audio.mp3',
+    );
+    expect(resolveDrawAudioUrl(card)).toBe('card-audio.mp3');
+  });
+
+  it('should resolve draw audio url as null when no audio available', () => {
+    const card: DrawCard = {
+      ...baseDrawCard,
+      promptLexeme: {
+        ...baseDrawCard.promptLexeme!,
+        audioUrl: '',
+      },
+    };
+
+    expect(resolveDrawAudioUrl(card)).toBeNull();
+  });
+
+  it('should resolve learning speech text from promptLexeme when no target', () => {
+    expect(
+      resolveDrawLearningSpeechText({
+        ...baseDrawCard,
+        targetCharacter: '',
+      }),
+    ).toBe('你好');
+  });
+
+  it('should resolve character targets with empty primary', () => {
+    const targets = resolveDrawCharacterTargets({
+      ...baseDrawCard,
+      targetCharacter: '',
+      promptLexeme: {
+        ...baseDrawCard.promptLexeme!,
+        primary: '',
+      },
+    });
+
+    expect(targets).toHaveLength(1);
+    expect(targets[0].character).toBe('');
+  });
+
+  it('should use character targets when provided', () => {
+    const targets = resolveDrawCharacterTargets({
+      ...baseDrawCard,
+      characterTargets: [
+        { character: '你', pinyin: 'nǐ' },
+        { character: '好', pinyin: 'hǎo' },
+      ],
+    });
+
+    expect(targets).toHaveLength(2);
+    expect(targets[0].character).toBe('你');
+    expect(targets[1].character).toBe('好');
+  });
+
+  it('should return index as tab label when no phonetics available', () => {
+    expect(drawCharacterTabPinyinLabel({ character: '你' }, 5)).toBe('6');
+  });
+
+  it('should return zhuyin as tab label when no pinyin', () => {
+    expect(drawCharacterTabLabel({ character: '你', zhuyin: 'ㄋㄧˇ' })).toBe('ㄋㄧˇ');
+  });
+
+  it('should return palladius as tab label when no pinyin or zhuyin', () => {
+    expect(drawCharacterTabLabel({ character: '你', palladius: 'ни' })).toBe('ни');
+  });
+
+  it('should build draw phonetics lexeme with ipa option', () => {
+    const lexeme = buildDrawPhoneticsLexeme(
+      { primary: '你好', script: 'hani' as const, pinyin: 'nǐ hǎo', ipa: 'ni˨˩˦' },
+      { ipa: [{ transcription: 'ni˨˩˦' }] },
+    );
+
+    expect(lexeme.pinyin).toBe('nǐ hǎo');
+    expect(lexeme.ipa).toEqual([{ transcription: 'ni˨˩˦' }]);
+  });
+
+  it('should resolve draw prompt lexeme as null when no phonetics', () => {
+    const card: DrawCard = {
+      ...baseDrawCard,
+      promptLexeme: {
+        primary: '你好',
+        script: 'hani' as const,
+        pinyin: '',
+        zhuyin: '',
+        palladius: '',
+        ipa: undefined,
+      },
+    };
+
+    expect(resolveDrawPromptLexeme(card)).toBeNull();
+  });
+
+  it('should merge draw card question fields when stored is empty', () => {
+    const stored: DrawCard = {
+      ...baseDrawCard,
+      meaningKnown: '',
+      referenceHintKnown: '',
+      title: '',
+      promptLexeme: {
+        primary: '',
+        script: 'hani' as const,
+        pinyin: '',
+      },
+    };
+
+    const seed: DrawCard = {
+      ...baseDrawCard,
+      title: 'Seed title',
+      meaningKnown: 'seed meaning',
+      referenceHintKnown: 'seed hint',
+      promptLexeme: {
+        primary: 'seed',
+        script: 'hani' as const,
+        pinyin: 'seed',
+      },
+    };
+
+    const merged = mergeDrawCardQuestionFields(stored, seed);
+    expect(merged.title).toBe('Seed title');
+    expect(merged.meaningKnown).toBe('seed meaning');
+  });
+
+  it('should not merge draw card question fields when stored already has question', () => {
+    const stored: DrawCard = {
+      ...baseDrawCard,
+      meaningKnown: 'existing meaning',
+    };
+
+    const seed: DrawCard = {
+      ...baseDrawCard,
+      title: 'Seed title',
+      meaningKnown: 'seed meaning',
+    };
+
+    const merged = mergeDrawCardQuestionFields(stored, seed);
+    expect(merged.meaningKnown).toBe('existing meaning');
+  });
+
+  it('should build tab lexeme without ipa for non-first character', () => {
+    const lexeme = buildDrawTabLexeme(
+      { character: '好', pinyin: 'hǎo' },
+      {
+        ...baseDrawCard,
+        promptLexeme: {
+          ...baseDrawCard.promptLexeme!,
+          ipa: 'ni˨˩˦',
+        },
+      },
+      1,
+    );
+
+    expect(lexeme.ipa).toBeUndefined();
   });
 });

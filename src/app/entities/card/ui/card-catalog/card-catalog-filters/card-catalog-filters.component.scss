@@ -37,10 +37,16 @@
 }
 
 .card-catalog-filters__course,
+.card-catalog-filters__program,
 .card-catalog-filters__lesson,
 .card-catalog-filters__scenario,
 .card-catalog-filters__difficulty {
   /* inherits from hierarchy flex layout */
+}
+
+.card-catalog-filters__language {
+  flex: 1 1 10rem;
+  min-width: 8rem;
 }
 
 .card-catalog-filters__group {

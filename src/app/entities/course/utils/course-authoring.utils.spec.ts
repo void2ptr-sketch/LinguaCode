@@ -6,6 +6,7 @@ import {
   normalizeCourseAuthoring,
   courseAuthoringWithIdea,
   sameCourseAuthoring,
+  buildCourseAuthoringFromApi,
 } from './course-authoring.utils';
 
 describe('course-authoring.utils', () => {
@@ -218,6 +219,114 @@ describe('course-authoring.utils', () => {
           { idea: 'Test', status: 'draft' as const },
         ),
       ).toBe(false);
+    });
+  });
+
+  // ── buildCourseAuthoringFromApi ──
+
+  describe('buildCourseAuthoringFromApi', () => {
+    it('should return undefined for undefined input', () => {
+      expect(buildCourseAuthoringFromApi(undefined)).toBeUndefined();
+    });
+
+    it('should prefer legacy nested authoring over flat fields', () => {
+      const result = buildCourseAuthoringFromApi({
+        authoring: { idea: 'Legacy', status: 'draft' },
+        authoringIdea: 'Flat',
+        authoringStatus: 'draft',
+      });
+      expect(result!.idea).toBe('Legacy');
+      expect(result!.status).toBe('draft');
+    });
+
+    it('should build from flat fields when no legacy authoring', () => {
+      const result = buildCourseAuthoringFromApi({
+        authoringIdea: 'My course idea',
+        authoringStatus: 'planned',
+      });
+      expect(result).toBeDefined();
+      expect(result!.idea).toBe('My course idea');
+      expect(result!.status).toBe('planned');
+    });
+
+    it('should default status to draft when flat status is empty', () => {
+      const result = buildCourseAuthoringFromApi({
+        authoringIdea: 'Test',
+        authoringStatus: '',
+      });
+      expect(result!.status).toBe('draft');
+    });
+
+    it('should return undefined for empty flat fields', () => {
+      const result = buildCourseAuthoringFromApi({
+        authoringIdea: '',
+        authoringStatus: 'draft',
+      });
+      expect(result).toBeUndefined();
+    });
+
+    it('should keep authoring when flat fields have materializedAt', () => {
+      const ts = '2024-06-01T00:00:00.000Z';
+      const result = buildCourseAuthoringFromApi({
+        authoringIdea: '',
+        authoringStatus: 'draft',
+        materializedAt: ts,
+      });
+      expect(result).toBeDefined();
+      expect(result!.materializedAt).toBe(ts);
+    });
+
+    it('should keep authoring when flat fields have lastError', () => {
+      const result = buildCourseAuthoringFromApi({
+        authoringIdea: '',
+        authoringStatus: 'draft',
+        lastError: 'Generation failed',
+      });
+      expect(result).toBeDefined();
+      expect(result!.lastError).toBe('Generation failed');
+    });
+
+    it('should preserve ideaUpdatedAt from flat fields', () => {
+      const ts = '2024-03-15T10:30:00.000Z';
+      const result = buildCourseAuthoringFromApi({
+        authoringIdea: 'Test idea',
+        authoringStatus: 'draft',
+        ideaUpdatedAt: ts,
+      });
+      expect(result!.ideaUpdatedAt).toBe(ts);
+    });
+
+    it('should handle valid status values from flat fields', () => {
+      const statuses: ('draft' | 'planned' | 'generating' | 'materialized' | 'failed')[] = [
+        'draft',
+        'planned',
+        'generating',
+        'materialized',
+        'failed',
+      ];
+      for (const status of statuses) {
+        const result = buildCourseAuthoringFromApi({
+          authoringIdea: 'Test',
+          authoringStatus: status,
+        });
+        expect(result!.status).toBe(status);
+      }
+    });
+
+    it('should normalize invalid status to draft', () => {
+      const result = buildCourseAuthoringFromApi({
+        authoringIdea: 'Test',
+        authoringStatus: 'unknown-status',
+      });
+      expect(result!.status).toBe('draft');
+    });
+
+    it('should trim idea before deciding emptiness', () => {
+      const result = buildCourseAuthoringFromApi({
+        authoringIdea: '   ',
+        authoringStatus: 'draft',
+      });
+      expect(result).toBeUndefined();
     });
   });
 });

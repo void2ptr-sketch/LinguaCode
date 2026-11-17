@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { ScenarioCardCriteriaEditorComponent } from './scenario-card-criteria-editor.component';
-import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
+import { CardCatalogSearchStore } from '../../../lib/store/card-catalog-search.store';
 import { CardSearchService } from '../../../search/card-search.service';
 import { UserStore } from '../../../../user/model/user.store';
 import { DEFAULT_CRITERIA_LIMIT } from '../../../../scenario/utils/scenario-card-source.utils';

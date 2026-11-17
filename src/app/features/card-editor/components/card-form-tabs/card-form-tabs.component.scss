@@ -1,69 +1,60 @@
-.card-form__tabs-wrapper {
-  position: relative;
-  display: block;
-}
-
-.card-form__tabs-header {
-  position: relative;
-  padding: 0 2.75rem;
-
-  :host ::ng-deep {
-    .mat-tab-labels {
-      display: flex;
-      align-items: center;
-    }
-  }
-}
-
-.card-form__nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 500;
-  padding: 0;
-  line-height: 1;
-  transition: all 0.2s ease;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: var(--mat-sys-on-surface);
-
-  &:hover:not(:disabled) {
-    background-color: rgba(0, 0, 0, 0.08);
-  }
-
-  &:active:not(:disabled) {
-    background-color: rgba(0, 0, 0, 0.12);
-  }
-
-  &:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-
-  &:not(:disabled) {
-    cursor: pointer;
-  }
-}
-
-.card-form__nav-btn--left {
-  left: 0;
-}
-
-.card-form__nav-btn--right {
-  right: 0;
-}
-
 .card-form__tabs {
   width: 100%;
+  min-width: 0;
+
+  ::ng-deep .mat-mdc-tab-header,
+  ::ng-deep .mat-tab-header {
+    border-bottom: none;
+  }
+
+  ::ng-deep .mat-mdc-tab-labels,
+  ::ng-deep .mat-tab-labels {
+    min-width: max-content;
+  }
+
+  ::ng-deep .mat-mdc-tab {
+    min-width: auto;
+    padding: 0 0.75rem;
+  }
+
+  ::ng-deep .mat-mdc-tab-label-content {
+    white-space: nowrap;
+  }
+}
+
+.card-form__tab-label {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.375rem;
+  max-width: 100%;
+}
+
+.card-form__tab-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-form__tab-badge {
+  align-items: center;
+  background: var(--mat-sys-error);
+  border-radius: 999px;
+  color: var(--mat-sys-on-error);
+  display: inline-flex;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1;
+  min-width: 1.125rem;
+  padding: 0.125rem 0.3125rem;
+}
+
+@media (max-width: 37.5rem) {
+  .card-form__tabs ::ng-deep .mat-mdc-tab {
+    padding: 0 0.5rem;
+  }
+
+  .card-form__tab-text {
+    max-width: 8rem;
+  }
 }

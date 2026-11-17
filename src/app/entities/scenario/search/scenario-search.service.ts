@@ -45,6 +45,15 @@ export class ScenarioSearchService {
   }
 
   /**
+   * Resolves the next scenario order (`max(scenario_order) + 1`).
+   *
+   * @returns The next order value (at least `1`).
+   */
+  getNextOrder(): Promise<number> {
+    return this.run(() => this.scenariosApi.getNextOrder());
+  }
+
+  /**
    * Retrieves a scenario by ID.
    *
    * @param scenarioId - The scenario ID.
@@ -52,6 +61,26 @@ export class ScenarioSearchService {
    */
   getById(scenarioId: string): Promise<Scenario> {
     return this.run(() => this.scenariosApi.getById(scenarioId));
+  }
+
+  /**
+   * Batch-retrieves scenarios by IDs.
+   *
+   * @param scenarioIds - Array of scenario IDs.
+   * @returns Array of scenarios.
+   */
+  getByIdBatch(scenarioIds: readonly string[]): Promise<readonly Scenario[]> {
+    return this.run(() => this.scenariosApi.getByIdBatch(scenarioIds));
+  }
+
+  /**
+   * Retrieves all scenarios bound to a lesson.
+   *
+   * @param lessonId - The lesson ID.
+   * @returns Scenarios of the lesson ordered by `order`.
+   */
+  getByLessonId(lessonId: string): Promise<readonly Scenario[]> {
+    return this.run(() => this.scenariosApi.getByLessonId(lessonId));
   }
 
   /**
@@ -73,6 +102,41 @@ export class ScenarioSearchService {
    */
   update(scenarioId: string, payload: ScenarioWritePayload): Promise<Scenario> {
     return this.run(() => this.scenariosApi.update(scenarioId, payload));
+  }
+
+  /**
+   * Adds a card to a scenario's card source.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @param order - Optional 1-based position inside the scenario.
+   * @returns The updated scenario.
+   */
+  addCard(scenarioId: string, cardId: string, order?: number): Promise<Scenario> {
+    return this.run(() => this.scenariosApi.addCard(scenarioId, cardId, order));
+  }
+
+  /**
+   * Removes a card from a scenario's card source.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @returns The updated scenario.
+   */
+  removeCard(scenarioId: string, cardId: string): Promise<Scenario> {
+    return this.run(() => this.scenariosApi.removeCard(scenarioId, cardId));
+  }
+
+  /**
+   * Moves a card to a new position inside a scenario.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @param order - The new 1-based position.
+   * @returns The updated scenario.
+   */
+  moveCard(scenarioId: string, cardId: string, order: number): Promise<Scenario> {
+    return this.run(() => this.scenariosApi.moveCard(scenarioId, cardId, order));
   }
 
   /**

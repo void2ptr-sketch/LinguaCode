@@ -1,11 +1,23 @@
 import { ChangeDetectionStrategy, Component, computed, input, inject, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import type { CardIndexMetaOverride } from '../../../../entities/card/model';
-import type { CardDifficulty } from '../../../../entities/card/model';
+import type {
+  CardDifficulty,
+  CardIndexMetaOverride,
+  CardPaymentTier,
+} from '../../../../entities/card/model';
 import { CatalogService } from '../../../../entities/card/api/catalog.service';
+
+/** Payment tier labels in Russian. */
+const TIER_LABELS: Record<CardPaymentTier, string> = {
+  FREE: 'Бесплатный',
+  STARTER: 'Стартовый',
+  GROWTH: 'Рост',
+  PREMIUM: 'Премиум',
+};
 
 /**
  * Form fields component for card metadata (difficulty, tags, last updated date).
@@ -14,7 +26,7 @@ import { CatalogService } from '../../../../entities/card/api/catalog.service';
 @Component({
   selector: 'app-card-meta-fields',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule],
+  imports: [FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   templateUrl: './card-meta-fields.component.html',
   styleUrl: './card-meta-fields.component.scss',
 })
@@ -25,6 +37,11 @@ export class CardMetaFieldsComponent {
   readonly meta = input<CardIndexMetaOverride | undefined>();
   /** Emits the updated card index meta override. */
   readonly metaChange = output<CardIndexMetaOverride>();
+
+  /** Available payment tiers. */
+  readonly tierOptions = Object.keys(TIER_LABELS) as CardPaymentTier[];
+  /** Payment tier labels. */
+  readonly tierLabels = TIER_LABELS;
 
   /** Available difficulty levels from backend catalog. */
   readonly difficultyOptions = computed<CardDifficulty[]>(() =>
@@ -63,12 +80,21 @@ export class CardMetaFieldsComponent {
   }
 
   /**
-   * Updates the last-updated timestamp.
+   * Updates the minimum payment tier.
    *
-   * @param updatedAt - ISO date string.
+   * @param requiredTier - The new payment tier.
    */
-  updateUpdatedAt(updatedAt: string): void {
-    this.updateMeta({ ...this.meta(), updatedAt });
+  updateRequiredTier(requiredTier: CardPaymentTier): void {
+    this.updateMeta({ ...this.meta(), requiredTier });
+  }
+
+  /**
+   * Updates the publication status.
+   *
+   * @param published - Whether the card is published.
+   */
+  updatePublished(published: boolean): void {
+    this.updateMeta({ ...this.meta(), published });
   }
 
   private updateMeta(next: CardIndexMetaOverride): void {

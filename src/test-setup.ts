@@ -62,3 +62,28 @@ globalThis.fetch = async (input: RequestInfo | URL, init?: RequestInit): Promise
     return new Response('Not Found', { status: 404 });
   }
 };
+
+/**
+ * jsdom does not implement `Element.prototype.scrollTo`, but production code uses it
+ * to reset the card-form tab body scroll position. Provide a minimal implementation so
+ * component tests exercise the real call site instead of throwing.
+ */
+if (typeof Element !== 'undefined' && typeof Element.prototype.scrollTo !== 'function') {
+  Element.prototype.scrollTo = function (
+    this: Element,
+    options?: ScrollToOptions | number,
+    y?: number,
+  ): void {
+    if (typeof options === 'number') {
+      this.scrollLeft = options;
+      this.scrollTop = y ?? 0;
+      return;
+    }
+    if (options?.top !== undefined) {
+      this.scrollTop = options.top;
+    }
+    if (options?.left !== undefined) {
+      this.scrollLeft = options.left;
+    }
+  };
+}

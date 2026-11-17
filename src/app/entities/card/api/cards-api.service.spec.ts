@@ -1,27 +1,63 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
+import { setCardSeedCache, resetContentSeedCache } from '../../content-seed/content-seed.cache';
+import { normalizeLegacyCards } from '../mapping/card-legacy.mapper';
+import type { Card } from '../model';
+
 import { CardsApiService } from '..';
+import { CardsCatalogMockHandler } from './mock/cards-catalog.mock.handler';
 import { cardsApiMockInterceptor } from './mock/cards-api.mock.interceptor';
+
+const testCards: readonly Card[] = normalizeLegacyCards([
+  {
+    id: 'select-1',
+    kind: 'select',
+    title: 'Приветствие',
+    appearance: { theme: 'azure-blue', fontSize: 'md' },
+    direction: 'known-to-learning',
+    promptKnown: 'Как сказать «Привет» по-английски?',
+    optionsLearning: ['Hello', 'Goodbye', 'Thanks', 'Please'],
+    optionsKnown: ['Привет', 'Пока', 'Спасибо', 'Пожалуйста'],
+    correctIndex: 0,
+  } as Card,
+  {
+    id: 'memory-1',
+    kind: 'memory',
+    title: 'Пары слов',
+    appearance: { theme: 'azure-blue', fontSize: 'md' },
+    promptKnown: 'Найдите пары перевода',
+    pairs: [
+      { known: 'Привет', learning: 'Hello' },
+      { known: 'Пока', learning: 'Bye' },
+    ],
+  } as Card,
+]);
 
 describe('CardsApiService', () => {
   let service: CardsApiService;
+  let handler: CardsCatalogMockHandler;
 
   beforeEach(() => {
     localStorage.clear();
+    resetContentSeedCache();
+    setCardSeedCache(testCards);
 
     TestBed.configureTestingModule({
       providers: [
         CardsApiService,
+        CardsCatalogMockHandler,
         provideHttpClient(withFetch(), withInterceptors([cardsApiMockInterceptor])),
       ],
     });
 
     service = TestBed.inject(CardsApiService);
+    handler = TestBed.inject(CardsCatalogMockHandler);
   });
 
   afterEach(() => {
     localStorage.clear();
+    handler.resetCache();
   });
 
   describe('search', () => {
@@ -87,6 +123,44 @@ describe('CardsApiService', () => {
     it('returns empty array when batch contains only unknown IDs', async () => {
       const cards = await service.getByIds(['nonexistent-xyz']);
       expect(cards).toEqual([]);
+    });
+  });
+
+  describe('search edge cases', () => {
+    it('returns zero totalPages when pageSize is zero', async () => {
+      const page = await service.search({
+        page: { page: 0, pageSize: 0 },
+      });
+
+      expect(page.totalPages).toBe(0);
+    });
+
+    it('uses response.total when provided', async () => {
+      // This test verifies the response.total branch is exercised
+      const page = await service.search({
+        learningLanguage: 'en',
+        page: { page: 0, pageSize: 10 },
+      });
+
+      expect(page.totalItems).toBeGreaterThan(0);
+    });
+
+    it('searches with known and learning language for buildLanguageMeta coverage', async () => {
+      const page = await service.search({
+        knownLanguage: 'en',
+        learningLanguage: 'zh',
+        page: { page: 0, pageSize: 10 },
+      });
+
+      expect(page.items).toBeDefined();
+    });
+
+    it('searches without language criteria for buildLanguageMeta empty branch', async () => {
+      const page = await service.search({
+        page: { page: 0, pageSize: 10 },
+      });
+
+      expect(page.items).toBeDefined();
     });
   });
 });

@@ -22,6 +22,11 @@ export {
   sameCourseAuthoring,
 } from './course-authoring.utils';
 export {
+  appendScenarioToLessonPayload,
+  courseWithProgramsToWritePayload,
+  removeScenarioFromLessonPayload,
+} from './course-write-payload.utils';
+export {
   normalizeStoredCourse,
   normalizeStoredLesson,
   mergeStoredCourse,

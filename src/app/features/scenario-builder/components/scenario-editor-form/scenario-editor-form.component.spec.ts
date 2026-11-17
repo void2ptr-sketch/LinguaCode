@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { vi, describe, it, expect } from 'vitest';
 import { ScenarioEditorFormComponent } from './scenario-editor-form.component';
-import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import type { ScenarioFormDraft } from '../../utils/scenario-form-draft.utils';
 
 describe('ScenarioEditorFormComponent', () => {
@@ -12,30 +12,27 @@ describe('ScenarioEditorFormComponent', () => {
     title: 'Test Scenario',
     description: 'Test description',
     published: false,
-    languagePair: { known: 'ru', learning: 'en' },
+    languagePairId: 1,
     sourceMode: 'fixed',
     fixedCardIds: ['card-1', 'card-2'],
     criteria: {},
     criteriaLimit: 50,
     criteriaSort: 'updatedAt',
     criteriaSeed: '',
+    scenarioOrder: 0,
     snapshotFrozenAt: null,
-  };
-
-  const mockStore = {
-    buildSnapshotFromCriteria: async () => null,
-    cardTitle: async () => 'Card Title',
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ScenarioEditorFormComponent],
-      providers: [{ provide: ScenarioBuilderStore, useValue: mockStore }],
+      imports: [ScenarioEditorFormComponent, NoopAnimationsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScenarioEditorFormComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('draft', baseDraft);
+    fixture.componentRef.setInput('courses', []);
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -59,24 +56,6 @@ describe('ScenarioEditorFormComponent', () => {
     });
   });
 
-  describe('signals', () => {
-    it('should have cardTitles signal', () => {
-      expect(component.cardTitles).toBeDefined();
-      expect(component.cardTitles()).toEqual({});
-    });
-  });
-
-  describe('constants', () => {
-    it('should have languages', () => {
-      expect(component.languages).toBeDefined();
-      expect(Array.isArray(component.languages())).toBe(true);
-    });
-
-    it('should have languageLabels', () => {
-      expect(component.languageLabels).toBeDefined();
-    });
-  });
-
   describe('updateDraft', () => {
     it('should emit draftChange with merged patch', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
@@ -91,142 +70,83 @@ describe('ScenarioEditorFormComponent', () => {
     });
   });
 
-  describe('onFixedCardIdsChange', () => {
-    it('should update fixedCardIds in draft', async () => {
+  describe('updatePublished', () => {
+    it('should emit draftChange with updated published flag', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       fixture.componentRef.setInput('draft', baseDraft);
-      await component.onFixedCardIdsChange(['card-3']);
+      component.updatePublished(true);
       expect(spy).toHaveBeenCalledWith(
         expect.objectContaining({
-          fixedCardIds: ['card-3'],
+          published: true,
+          title: 'Test Scenario',
+        }),
+      );
+    });
+
+    it('should emit draftChange with published set to false', () => {
+      const spy = vi.spyOn(component.draftChange, 'emit');
+      fixture.componentRef.setInput('draft', { ...baseDraft, published: true });
+      component.updatePublished(false);
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          published: false,
         }),
       );
     });
   });
 
-  describe('onSourceModeChange', () => {
-    it('should update sourceMode in draft', () => {
+  describe('updateScenarioOrder', () => {
+    it('should emit draftChange with updated scenarioOrder', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       fixture.componentRef.setInput('draft', baseDraft);
-      component.onSourceModeChange('criteria');
+      component.updateScenarioOrder('5');
       expect(spy).toHaveBeenCalledWith(
         expect.objectContaining({
-          sourceMode: 'criteria',
+          scenarioOrder: 5,
+          title: 'Test Scenario',
         }),
       );
     });
   });
 
-  describe('moveCard', () => {
-    it('should swap card positions forward', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      fixture.componentRef.setInput('draft', baseDraft);
-      component.moveCard('card-1', 1);
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          fixedCardIds: ['card-2', 'card-1'],
-        }),
+  describe('tier labels', () => {
+    it('should have Russian tier labels', () => {
+      expect(component.tierLabels['FREE']).toBe('Бесплатный');
+      expect(component.tierLabels['STARTER']).toBe('Стартовый');
+      expect(component.tierLabels['GROWTH']).toBe('Рост');
+      expect(component.tierLabels['PREMIUM']).toBe('Премиум');
+    });
+  });
+
+  describe('tab structure', () => {
+    it('should render mat-tab-group', () => {
+      const tabGroups = fixture.nativeElement.querySelectorAll('mat-tab-group');
+      expect(tabGroups.length).toBe(1);
+    });
+
+    it('should have tab labels', () => {
+      const root = fixture.nativeElement;
+      const text = root.textContent?.toLowerCase() || '';
+      expect(text).toContain('основное');
+      expect(text).toContain('размещение');
+      expect(text).toContain('публикация');
+    });
+
+    it('should render title and description fields', () => {
+      const labels = fixture.nativeElement.querySelectorAll('mat-label');
+      const labelTexts = Array.from(labels).map(
+        (el: unknown) => (el as HTMLElement).textContent?.trim() ?? '',
       );
+      expect(labelTexts).toContain('Название');
+      expect(labelTexts).toContain('Описание');
     });
 
-    it('should swap card positions backward', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      fixture.componentRef.setInput('draft', baseDraft);
-      component.moveCard('card-2', -1);
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          fixedCardIds: ['card-2', 'card-1'],
-        }),
+    it('should render order field', () => {
+      const labels = fixture.nativeElement.querySelectorAll('mat-label');
+      const labelTexts = Array.from(labels).map(
+        (el: unknown) => (el as HTMLElement).textContent?.trim() ?? '',
       );
-    });
-
-    it('should not move when index is not found', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      fixture.componentRef.setInput('draft', baseDraft);
-      component.moveCard('missing-card', 1);
-      expect(spy).not.toHaveBeenCalled();
-    });
-
-    it('should not move when target index is out of bounds', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      fixture.componentRef.setInput('draft', baseDraft);
-      component.moveCard('card-2', 1);
-      expect(spy).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('createSnapshotFromCriteria', () => {
-    it('should be defined', () => {
-      expect(component.createSnapshotFromCriteria).toBeDefined();
-    });
-  });
-
-  describe('cardTitle', () => {
-    it('should return title from cardTitles signal', () => {
-      component.cardTitles.set({ 'card-1': 'My Card Title' });
-      expect(component.cardTitle('card-1')).toBe('My Card Title');
-    });
-
-    it('should fall back to cardId when not found', () => {
-      component.cardTitles.set({});
-      expect(component.cardTitle('card-1')).toBe('card-1');
-    });
-  });
-
-  describe('onCriteriaSortChange', () => {
-    it('should update criteriaSort in draft', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      fixture.componentRef.setInput('draft', baseDraft);
-      component.onCriteriaSortChange('random');
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          criteriaSort: 'random',
-        }),
-      );
-    });
-  });
-
-  describe('onKnownLanguageChange', () => {
-    it('should update known language in languagePair', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      fixture.componentRef.setInput('draft', baseDraft);
-      component.onKnownLanguageChange('en');
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          languagePair: { known: 'en', learning: 'en' },
-        }),
-      );
-    });
-  });
-
-  describe('onLearningLanguageChange', () => {
-    it('should update learning language in languagePair', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      fixture.componentRef.setInput('draft', baseDraft);
-      component.onLearningLanguageChange('zh');
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          languagePair: { known: 'ru', learning: 'zh' },
-        }),
-      );
-    });
-  });
-
-  describe('languagePairInvalid', () => {
-    it('should return false when languages differ', () => {
-      fixture.componentRef.setInput('draft', {
-        ...baseDraft,
-        languagePair: { known: 'ru', learning: 'en' },
-      });
-      expect(component.languagePairInvalid()).toBe(false);
-    });
-
-    it('should return true when languages are equal', () => {
-      fixture.componentRef.setInput('draft', {
-        ...baseDraft,
-        languagePair: { known: 'ru', learning: 'ru' },
-      });
-      expect(component.languagePairInvalid()).toBe(true);
+      expect(labelTexts).toContain('Порядок');
     });
   });
 });

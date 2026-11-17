@@ -387,7 +387,6 @@
     "/cpp/cards/stl.regex.scenario.cards.json",
     "/cpp/cards/stl.strings.stl.scenario.cards.json",
     "/demo/cards/demo-cards.json",
-    "/perl/cards/perl-db-cards.json",
     "/perl/cards/perl-interview-cards.json"
   ],
   "courseFiles": [

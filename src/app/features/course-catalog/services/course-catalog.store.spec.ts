@@ -60,6 +60,7 @@ describe('CourseCatalogStore', () => {
         {
           id: 'c1',
           title: 'Course 1',
+          slug: 'c1',
           authorId: 'user1',
           programCount: 5,
           published: true,
@@ -210,6 +211,48 @@ describe('CourseCatalogStore', () => {
       expect(store.pageSize()).toBe(15);
       expect(store.loading()).toBe(true);
       expect(store.error()).toBeNull();
+    });
+  });
+
+  describe('active course persistence', () => {
+    it('should not throw restoreActiveCourseIds when no pairId', () => {
+      expect(() => store.restoreActiveCourseIds()).not.toThrow();
+    });
+  });
+
+  describe('tab index persistence', () => {
+    beforeEach(() => {
+      localStorage.clear();
+    });
+
+    it('should persist selectedTabIndex to localStorage on setSelectedTabIndex', () => {
+      store.setSelectedTabIndex(1);
+      expect(store.selectedTabIndex()).toBe(1);
+      expect(localStorage.getItem('lingua-code.course-catalog.tab-index')).toBe('1');
+    });
+
+    it('should persist tab index 0 to localStorage', () => {
+      store.setSelectedTabIndex(0);
+      expect(localStorage.getItem('lingua-code.course-catalog.tab-index')).toBe('0');
+    });
+
+    it('should overwrite previously saved tab index', () => {
+      store.setSelectedTabIndex(1);
+      store.setSelectedTabIndex(2);
+      expect(localStorage.getItem('lingua-code.course-catalog.tab-index')).toBe('2');
+    });
+
+    it('should handle invalid localStorage value gracefully on read', () => {
+      localStorage.setItem('lingua-code.course-catalog.tab-index', 'invalid');
+      // The store is already constructed with default 0, so setSelectedTabIndex(5) should work
+      store.setSelectedTabIndex(5);
+      expect(store.selectedTabIndex()).toBe(5);
+    });
+
+    it('should handle negative localStorage value gracefully on read', () => {
+      localStorage.setItem('lingua-code.course-catalog.tab-index', '-1');
+      store.setSelectedTabIndex(3);
+      expect(store.selectedTabIndex()).toBe(3);
     });
   });
 });

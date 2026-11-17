@@ -49,15 +49,16 @@ Thumbs.db
 # yandex
 plans/
 docs-etalon/
+.codeassistantmodes
+.codeassistant/
 
+# gigs
 .gigacode/
 .gigacode_vsc/
 .gigaide/
 
-.codeassistant/
 
 # Continue rules (.continue/) — коммитим правила проекта в репозиторий
-.continue/agents/
 .continue/mcpServers/
 .continue/prompts/
 .continue/config.json

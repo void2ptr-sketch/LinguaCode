@@ -4,7 +4,7 @@ import { CodeSelectCardFormComponent } from './code-select-card-form.component';
 import {
   CODE_HIGHLIGHT_LANGUAGES,
   CODE_HIGHLIGHT_LANGUAGE_LABELS,
-} from '../../../../../../entities/card/lib/code-highlight/code-highlight.utils';
+} from '../../../../../../entities/card/lib/utils/code-highlight.utils';
 import type { CodeSelectCardDraft, CodeBlockDraft } from '../../../../types';
 import { emptyLexemeCardDraft } from '../../../../types';
 
@@ -68,34 +68,6 @@ describe('CodeSelectCardFormComponent', () => {
       const newDraft = { ...baseDraft, title: 'Updated' };
       component.updateDraft(newDraft);
       expect(spy).toHaveBeenCalledWith(newDraft);
-    });
-  });
-
-  describe('updateCaption', () => {
-    it('should emit updated draft with new caption', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      component.updateCaption('New caption');
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ caption: 'New caption' }));
-    });
-  });
-
-  describe('updatePromptCode', () => {
-    it('should emit updated draft with new prompt code', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      component.updatePromptCode('new code');
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({ prompt: { code: 'new code', language: 'javascript' } }),
-      );
-    });
-  });
-
-  describe('updatePromptLanguage', () => {
-    it('should emit updated draft with new prompt language', () => {
-      const spy = vi.spyOn(component.draftChange, 'emit');
-      component.updatePromptLanguage('typescript');
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({ prompt: { code: 'print("hello");', language: 'typescript' } }),
-      );
     });
   });
 

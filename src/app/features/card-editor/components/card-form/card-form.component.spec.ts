@@ -1,36 +1,209 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CardFormComponent } from './card-form.component';
-import { CardFormTabsComponent } from '../card-form-tabs/card-form-tabs.component';
-import { CardFormQuestionTabComponent } from '../card-form-question-tab/card-form-question-tab.component';
-import { CardCatalogHierarchyService } from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
+import { CatalogService } from '../../../../entities/card/api/catalog.service';
+import { LanguagePairIdResolver } from '../../../../entities/language-pair/services/language-pair-id-resolver.service';
 import type { CardDraft } from '../../types';
+
+const appearance = { theme: 'azure-blue', fontSize: 'md' as const };
+
+const promptLexeme = {
+  primary: '你好',
+  script: 'hani' as const,
+  pinyin: '',
+  zhuyin: '',
+  palladius: '',
+  ipa: '',
+  audioUrl: '',
+  acceptedReadings: '',
+};
+
+const baseDraft = {
+  title: 'Test Card',
+  appearance,
+  courseId: '',
+  programId: '',
+  lessonId: '',
+  scenarioId: '',
+};
+
+const createDraft = (kind: CardDraft['kind']): CardDraft => {
+  switch (kind) {
+    case 'code-select':
+      return {
+        ...baseDraft,
+        kind,
+        caption: '',
+        prompt: { code: 'console.log()', language: 'javascript' },
+        options: [
+          { code: 'a', language: 'javascript' },
+          { code: 'b', language: 'javascript' },
+        ],
+        correctIndex: 0,
+      } as CardDraft;
+    case 'keyboard':
+      return {
+        ...baseDraft,
+        kind,
+        direction: 'known-to-learning',
+        promptKnown: 'Type this',
+        acceptedAnswersKnown: ['answer'],
+        answerMode: 'auto',
+        promptLexeme,
+        audioUrl: '',
+      } as CardDraft;
+    case 'draw':
+      return {
+        ...baseDraft,
+        kind,
+        promptKnown: 'Draw this',
+        referenceHintKnown: 'hint',
+        targetCharacter: '永',
+        practiceMode: 'freehand',
+        radicalHint: '',
+        strokeGuides: [],
+        promptLexeme,
+        audioUrl: '',
+      } as CardDraft;
+    case 'memory':
+      return {
+        ...baseDraft,
+        kind,
+        promptKnown: 'Match these',
+        pairs: [
+          {
+            known: 'A',
+            learning: 'B',
+            learningLexeme: { ...promptLexeme, primary: 'B', script: 'latn' },
+          },
+        ],
+        promptLexeme,
+        audioUrl: '',
+      } as CardDraft;
+    case 'sound':
+      return {
+        ...baseDraft,
+        kind,
+        direction: 'known-to-learning',
+        promptKnown: 'Listen',
+        audioLabelLearning: 'Audio',
+        audioLabelLexeme: { ...promptLexeme, primary: 'Audio', script: 'latn' },
+        optionsKnown: ['A', 'B'],
+        optionsLexemes: [
+          { ...promptLexeme, primary: 'A' },
+          { ...promptLexeme, primary: 'B' },
+        ],
+        correctIndex: 0,
+        promptLexeme,
+        audioUrl: '',
+      } as CardDraft;
+    case 'symbol':
+      return {
+        ...baseDraft,
+        kind,
+        direction: 'known-to-learning',
+        promptKnown: 'Question?',
+        symbols: ['👋', '🔥'],
+        symbolLexemes: [
+          { ...promptLexeme, primary: '👋' },
+          { ...promptLexeme, primary: '🔥' },
+        ],
+        optionsKnown: ['Ответ A', 'Ответ B'],
+        correctIndex: 0,
+        promptLexeme,
+        audioUrl: '',
+      } as CardDraft;
+    case 'select':
+    case 'reading':
+    case 'timed':
+      return {
+        ...baseDraft,
+        kind,
+        direction: 'known-to-learning',
+        promptKnown: 'Question?',
+        optionsLearning: ['Option A', 'Option B'],
+        optionsKnown: ['Ответ A', 'Ответ B'],
+        optionsLexemes: [
+          { ...promptLexeme, primary: 'A' },
+          { ...promptLexeme, primary: 'B' },
+        ],
+        correctIndex: 0,
+        ...(kind === 'timed' ? { timeLimitSec: 30 } : {}),
+        promptLexeme,
+        audioUrl: '',
+      } as CardDraft;
+    case 'tone':
+      return {
+        ...baseDraft,
+        kind,
+        direction: 'known-to-learning',
+        promptKnown: 'Tone?',
+        syllableBase: 'ma',
+        toneOptions: [1, 2, 3, 4],
+        correctIndex: 0,
+        promptLexeme,
+        audioUrl: '',
+      } as CardDraft;
+    case 'cloze':
+      return {
+        ...baseDraft,
+        kind,
+        promptKnown: 'Fill in',
+        options: ['A', 'B'],
+        acceptedAnswers: ['A'],
+        correctAnswer: 'A',
+        correctIndex: 0,
+        promptLexeme,
+        audioUrl: '',
+      } as CardDraft;
+    case 'code-trace':
+      return {
+        ...baseDraft,
+        kind,
+        caption: '',
+        question: 'What?',
+        code: { code: 'print(1)', language: 'python' },
+        outputOptions: ['1', '2'],
+        correctIndex: 0,
+      } as CardDraft;
+    case 'flip':
+      return {
+        ...baseDraft,
+        kind,
+        front: 'Front',
+        back: 'Back',
+        audioUrl: '',
+      } as CardDraft;
+    default:
+      return { ...baseDraft, kind: 'select' } as CardDraft;
+  }
+};
 
 describe('CardFormComponent', () => {
   let component: CardFormComponent;
   let fixture: ComponentFixture<CardFormComponent>;
 
-  const mockHierarchyService = {
-    loadCourses: async () => [],
-    loadLessons: async () => [],
-    getScenariosForLesson: () => [],
+  const mockLanguagePairIdResolver = {
+    resolveIds: vi.fn(async () => [1]),
   };
-
-  const selectDraft = {
-    kind: 'select',
-    title: 'Test Card',
-    direction: 'known-to-learning',
-    promptKnown: 'Question?',
-    optionsLearning: ['Option A', 'Option B'],
-    optionsKnown: ['Ответ A', 'Ответ B'],
-    correctIndex: 0,
-    appearance: { theme: 'azure-blue', fontSize: 'md' },
-  } as unknown as CardDraft;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardFormComponent, CardFormTabsComponent, CardFormQuestionTabComponent],
-      providers: [{ provide: CardCatalogHierarchyService, useValue: mockHierarchyService }],
+      imports: [CardFormComponent],
+      providers: [
+        provideHttpClient(),
+        provideNoopAnimations(),
+        { provide: LanguagePairIdResolver, useValue: mockLanguagePairIdResolver },
+        {
+          provide: CatalogService,
+          useValue: {
+            difficulties: vi.fn(() => [{ code: 'beginner', label: 'Начальный' }]),
+            cardKinds: vi.fn(() => []),
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardFormComponent);
@@ -65,6 +238,12 @@ describe('CardFormComponent', () => {
     it('should have meta input with default', () => {
       expect(component.meta).toBeDefined();
     });
+
+    it('should have uxMode input defaulting to advanced', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      expect(component.uxMode).toBeDefined();
+      expect(component.uxMode()).toBe('advanced');
+    });
   });
 
   describe('outputs', () => {
@@ -85,22 +264,63 @@ describe('CardFormComponent', () => {
     });
   });
 
+  describe('placement', () => {
+    it('should derive the language-pair ID from the content languages', async () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      fixture.componentRef.setInput('knownLanguage', 'ru');
+      fixture.componentRef.setInput('learningLanguage', 'en');
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(mockLanguagePairIdResolver.resolveIds).toHaveBeenCalledWith([
+        { known: 'ru', learning: 'en' },
+      ]);
+      expect(component.resolvedLanguagePairId()).toBe(1);
+    });
+
+    it('should build placement value from the draft', () => {
+      fixture.componentRef.setInput('draft', {
+        ...createDraft('select'),
+        courseId: 'course-1',
+        programId: 'program-1',
+        lessonId: 'lesson-1',
+        scenarioId: 'scenario-1',
+      });
+      fixture.detectChanges();
+
+      expect(component.placementValue()).toEqual({
+        languagePairId: undefined,
+        courseId: 'course-1',
+        programId: 'program-1',
+        lessonId: 'lesson-1',
+        scenarioId: 'scenario-1',
+      });
+    });
+
+    it('should apply placement changes to the draft', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      const spy = vi.spyOn(component.draftChange, 'emit');
+
+      component.onPlacementChange({
+        languagePairId: 1,
+        courseId: 'course-2',
+        programId: 'program-2',
+        lessonId: 'lesson-2',
+        scenarioId: 'scenario-2',
+      });
+
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          courseId: 'course-2',
+          programId: 'program-2',
+          lessonId: 'lesson-2',
+          scenarioId: 'scenario-2',
+        }),
+      );
+    });
+  });
+
   describe('signals', () => {
-    it('should have availableCourses signal', () => {
-      expect(component.availableCourses).toBeDefined();
-      expect(component.availableCourses()).toEqual([]);
-    });
-
-    it('should have availableLessons signal', () => {
-      expect(component.availableLessons).toBeDefined();
-      expect(component.availableLessons()).toEqual([]);
-    });
-
-    it('should have availableScenarios signal', () => {
-      expect(component.availableScenarios).toBeDefined();
-      expect(component.availableScenarios()).toEqual([]);
-    });
-
     it('should have kindGroup computed', () => {
       expect(component.kindGroup).toBeDefined();
     });
@@ -124,9 +344,9 @@ describe('CardFormComponent', () => {
 
   describe('updateDraft', () => {
     it('should emit draftChange', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
+      fixture.componentRef.setInput('draft', createDraft('select'));
       const spy = vi.spyOn(component.draftChange, 'emit');
-      const newDraft = { ...selectDraft, title: 'Updated' };
+      const newDraft = createDraft('select');
       component.updateDraft(newDraft);
       expect(spy).toHaveBeenCalledWith(newDraft);
     });
@@ -134,7 +354,7 @@ describe('CardFormComponent', () => {
 
   describe('updateTitle', () => {
     it('should emit updated draft with new title', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
+      fixture.componentRef.setInput('draft', createDraft('select'));
       const spy = vi.spyOn(component.draftChange, 'emit');
       component.updateTitle('New Title');
       expect(spy).toHaveBeenCalledWith(expect.objectContaining({ title: 'New Title' }));
@@ -143,14 +363,14 @@ describe('CardFormComponent', () => {
 
   describe('updateChoicePromptKnown', () => {
     it('should emit updated draft with new promptKnown for select kind', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
+      fixture.componentRef.setInput('draft', createDraft('select'));
       const spy = vi.spyOn(component.draftChange, 'emit');
       component.updateChoicePromptKnown('New Prompt');
       expect(spy).toHaveBeenCalledWith(expect.objectContaining({ promptKnown: 'New Prompt' }));
     });
 
     it('should not update promptKnown for code-select kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'code-select' } as CardDraft);
+      fixture.componentRef.setInput('draft', createDraft('code-select'));
       const spy = vi.spyOn(component.draftChange, 'emit');
       component.updateChoicePromptKnown('New Prompt');
       expect(spy).not.toHaveBeenCalled();
@@ -180,9 +400,27 @@ describe('CardFormComponent', () => {
     });
   });
 
+  describe('choiceDraft', () => {
+    it.each(['select', 'reading', 'timed', 'symbol', 'tone'] as const)(
+      'should return draft for %s',
+      (kind) => {
+        fixture.componentRef.setInput('draft', createDraft(kind));
+        expect(component.choiceDraft()).not.toBeNull();
+      },
+    );
+
+    it.each(['code-select', 'cloze', 'code-trace', 'flip'] as const)(
+      'should return null for %s',
+      (kind) => {
+        fixture.componentRef.setInput('draft', createDraft(kind));
+        expect(component.choiceDraft()).toBeNull();
+      },
+    );
+  });
+
   describe('choiceOptionsConfig', () => {
     it('should return config for reading kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'reading' } as CardDraft);
+      fixture.componentRef.setInput('draft', createDraft('reading'));
       const config = component.choiceOptionsConfig();
       expect(config.title).toBe('Варианты чтения');
       expect(config.optionLabelPrefix).toBe('Чтение');
@@ -190,55 +428,48 @@ describe('CardFormComponent', () => {
     });
 
     it('should return config for symbol kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'symbol' } as CardDraft);
-      const config = component.choiceOptionsConfig();
-      expect(config.title).toBe('Символы');
+      fixture.componentRef.setInput('draft', createDraft('symbol'));
+      expect(component.choiceOptionsConfig().title).toBe('Символы');
     });
 
     it('should return config for select kind', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
+      fixture.componentRef.setInput('draft', createDraft('select'));
       const config = component.choiceOptionsConfig();
       expect(config.title).toBe('Варианты (новый)');
       expect(config.optionLabelPrefix).toBe('Ответ');
     });
 
     it('should return config for timed kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'timed' } as CardDraft);
-      const config = component.choiceOptionsConfig();
-      expect(config.title).toBe('Варианты (новый)');
+      fixture.componentRef.setInput('draft', createDraft('timed'));
+      expect(component.choiceOptionsConfig().title).toBe('Варианты (новый)');
     });
   });
 
   describe('choiceOptionTexts', () => {
     it('should return empty array for code-select kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'code-select' } as CardDraft);
+      fixture.componentRef.setInput('draft', createDraft('code-select'));
       expect(component.choiceOptionTexts()).toEqual([]);
     });
 
     it('should return symbols for symbol kind', () => {
       fixture.componentRef.setInput('draft', {
-        kind: 'symbol',
+        ...createDraft('symbol'),
         symbols: ['👋', '🔥'],
-      } as unknown as CardDraft);
+      } as CardDraft);
       expect(component.choiceOptionTexts()).toEqual(['👋', '🔥']);
     });
   });
 
   describe('choiceOptionLexemes', () => {
     it('should return empty array for code-select kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'code-select' } as CardDraft);
+      fixture.componentRef.setInput('draft', createDraft('code-select'));
       expect(component.choiceOptionLexemes()).toEqual([]);
     });
   });
 
   describe('onChoiceOptionsStateChange', () => {
     it('should emit updated draft with options state for reading kind', () => {
-      const readingDraft = {
-        kind: 'reading',
-        optionsLearning: ['A'],
-        correctIndex: 0,
-      } as unknown as CardDraft;
-      fixture.componentRef.setInput('draft', readingDraft);
+      fixture.componentRef.setInput('draft', createDraft('reading'));
       const spy = vi.spyOn(component.draftChange, 'emit');
       component.onChoiceOptionsStateChange({
         options: ['B', 'C'],
@@ -251,55 +482,192 @@ describe('CardFormComponent', () => {
     });
   });
 
-  describe('allAvailableTabs', () => {
-    it('should return tabs array with required tabs', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      const tabs = component.allAvailableTabs;
-      expect(Array.isArray(tabs)).toBe(true);
-      expect(tabs.length).toBeGreaterThan(0);
-      expect(tabs.map((t) => t.label)).toContain('Вопрос');
-      expect(tabs.map((t) => t.label)).toContain('Ответы');
-      expect(tabs.map((t) => t.label)).toContain('Метаинфо');
-      expect(tabs.map((t) => t.label)).toContain('Настройки');
+  describe('tabs', () => {
+    it('should expose the five semantic tabs in order', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      expect(component.tabs().map((tab) => tab.label)).toEqual([
+        'Содержание',
+        'Ответы',
+        'Оформление',
+        'Размещение',
+        'Публикация',
+      ]);
+      expect(component.tabs().map((tab) => tab.id)).toEqual([
+        'content',
+        'answers',
+        'appearance',
+        'placement',
+        'publishing',
+      ]);
     });
 
-    it('should include Content tab for choice cards', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      const tabs = component.allAvailableTabs;
-      expect(tabs.map((t) => t.label)).toContain('Контент');
+    it.each(['code-select', 'keyboard', 'draw', 'memory', 'sound'] as const)(
+      'should show the same visible labels for %s',
+      (kind) => {
+        fixture.componentRef.setInput('draft', createDraft(kind));
+        expect(
+          component
+            .tabs()
+            .filter((tab) => tab.visible)
+            .map((tab) => tab.label),
+        ).toEqual(['Содержание', 'Ответы', 'Оформление', 'Размещение', 'Публикация']);
+      },
+    );
+
+    it('should hide the answers tab for flip cards', () => {
+      fixture.componentRef.setInput('draft', createDraft('flip'));
+      expect(component.tabs().find((tab) => tab.id === 'answers')?.visible).toBe(false);
     });
 
-    it('should exclude Phonetics tab for code-select cards', () => {
-      fixture.componentRef.setInput('draft', { kind: 'code-select' } as CardDraft);
-      const tabs = component.allAvailableTabs;
-      expect(tabs.map((t) => t.label)).not.toContain('Фонетика');
+    it('should show only content, answers, and placement in basic mode', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      fixture.componentRef.setInput('uxMode', 'basic');
+      expect(
+        component
+          .tabs()
+          .filter((tab) => tab.visible)
+          .map((tab) => tab.id),
+      ).toEqual(['content', 'answers', 'placement']);
     });
 
-    it('should include Phonetics tab for non-code-select cards', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      const tabs = component.allAvailableTabs;
-      expect(tabs.map((t) => t.label)).toContain('Фонетика');
+    it('should keep placement visible in basic mode without hierarchy context', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      fixture.componentRef.setInput('uxMode', 'basic');
+      expect(component.tabs().find((tab) => tab.id === 'placement')?.visible).toBe(true);
+    });
+
+    it('should show all five tabs in advanced mode', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      fixture.componentRef.setInput('uxMode', 'advanced');
+      expect(
+        component
+          .tabs()
+          .filter((tab) => tab.visible)
+          .map((tab) => tab.id),
+      ).toEqual(['content', 'answers', 'appearance', 'placement', 'publishing']);
+    });
+
+    it('should badge the content tab when title and prompt are missing', () => {
+      fixture.componentRef.setInput('draft', {
+        ...createDraft('select'),
+        title: '',
+        promptKnown: '',
+      } as CardDraft);
+      const content = component.tabs().find((tab) => tab.id === 'content');
+      expect(content?.badge).toBe('2');
+      expect(content?.badgeAriaLabel).toBe('Содержание, 2 ошибки');
+    });
+
+    it('should badge the answers tab when answer data is missing', () => {
+      fixture.componentRef.setInput('draft', {
+        ...createDraft('select'),
+        optionsLearning: [],
+      } as CardDraft);
+      const answers = component.tabs().find((tab) => tab.id === 'answers');
+      expect(answers?.badge).toBe('1');
+      expect(answers?.badgeAriaLabel).toBe('Ответы, 1 ошибка');
+    });
+
+    it('should not badge tabs without blocking validation rules', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      fixture.componentRef.setInput('uxMode', 'advanced');
+      expect(component.tabs().find((tab) => tab.id === 'appearance')?.badge).toBeUndefined();
+      expect(component.tabs().find((tab) => tab.id === 'placement')?.badge).toBeUndefined();
+      expect(component.tabs().find((tab) => tab.id === 'publishing')?.badge).toBeUndefined();
     });
   });
 
-  describe('activeTabLabel', () => {
-    it('should return first tab as default', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      expect(component.activeTabLabel()).toBe('Вопрос');
+  describe('activeTabId', () => {
+    it('should start at content', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      expect(component.activeTabId()).toBe('content');
     });
 
-    it('should return selected tab label', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      component.onTabChange('Ответы');
-      expect(component.activeTabLabel()).toBe('Ответы');
+    it('should update on tab change', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      component.onTabChange('appearance');
+      expect(component.activeTabId()).toBe('appearance');
+    });
+
+    it('should reset to content when the active tab becomes hidden', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      component.onTabChange('answers');
+      fixture.componentRef.setInput('draft', createDraft('flip'));
+      fixture.detectChanges();
+      expect(component.activeTabId()).toBe('content');
+    });
+
+    it('should reset to content when the UX mode hides the active tab', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      fixture.componentRef.setInput('uxMode', 'advanced');
+      component.onTabChange('publishing');
+      fixture.componentRef.setInput('uxMode', 'basic');
+      fixture.detectChanges();
+      expect(component.activeTabId()).toBe('content');
     });
   });
 
-  describe('onTabChange', () => {
-    it('should update selectedTabLabel', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      component.onTabChange('Контент');
-      expect(component.activeTabLabel()).toBe('Контент');
+  describe('rendered tab content', () => {
+    it.each(['code-select', 'keyboard', 'draw', 'memory', 'sound'] as const)(
+      'should render the content tab for %s',
+      (kind) => {
+        fixture.componentRef.setInput('draft', createDraft(kind));
+        component.onTabChange('content');
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('app-card-form-content-tab')).toBeTruthy();
+      },
+    );
+
+    it.each(['code-select', 'keyboard', 'draw', 'memory', 'sound'] as const)(
+      'should render the answers tab for %s',
+      (kind) => {
+        fixture.componentRef.setInput('draft', createDraft(kind));
+        component.onTabChange('answers');
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('app-card-form-answers-tab')).toBeTruthy();
+      },
+    );
+
+    it.each(['select', 'reading', 'timed', 'symbol'] as const)(
+      'should render the options editor exactly once in the answers tab for %s',
+      (kind) => {
+        fixture.componentRef.setInput('draft', createDraft(kind));
+        component.onTabChange('answers');
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelectorAll('app-card-options-editor').length).toBe(1);
+
+        component.onTabChange('content');
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelectorAll('app-card-options-editor').length).toBe(0);
+      },
+    );
+
+    it('should render the appearance tab', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      component.onTabChange('appearance');
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('app-card-form-appearance-tab')).toBeTruthy();
+    });
+
+    it('should render the placement tab with the shared hierarchy selector', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      component.onTabChange('placement');
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('app-card-form-placement-tab')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('app-content-hierarchy-selector')).toBeTruthy();
+    });
+
+    it('should render the publishing tab', () => {
+      fixture.componentRef.setInput('draft', createDraft('select'));
+      fixture.componentRef.setInput('meta', {
+        difficulty: 'beginner',
+        tags: [],
+        requiredTier: 'FREE',
+        published: true,
+      });
+      component.onTabChange('publishing');
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('app-card-form-publishing-tab')).toBeTruthy();
     });
   });
 
@@ -313,12 +681,11 @@ describe('CardFormComponent', () => {
 
   describe('languages and languageLabels', () => {
     it('should have languages', () => {
-      expect(component.languages).toBeDefined();
       expect(Array.isArray(component.languages())).toBe(true);
     });
 
     it('should have languageLabels', () => {
-      expect(component.languageLabels).toBeDefined();
+      expect(component.languageLabels()).toBeDefined();
     });
   });
 });

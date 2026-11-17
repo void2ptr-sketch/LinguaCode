@@ -1,0 +1,113 @@
+<div class="explorer-tree">
+  <div class="explorer-tree__toolbar">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic" class="explorer-tree__filter">
+      <mat-label>Поиск по контенту</mat-label>
+      <input
+        matInput
+        type="text"
+        [ngModel]="filterQuery()"
+        (ngModelChange)="setFilter($event)"
+        placeholder="Каталог, трек, урок…"
+        aria-label="Поиск по контенту"
+      />
+      @if (filterQuery().length > 0) {
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          aria-label="Очистить"
+          (click)="setFilter('')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    @if (showLanguageFilter()) {
+      <button
+        mat-icon-button
+        type="button"
+        class="explorer-tree__language-filter"
+        aria-label="Фильтр по языковым парам"
+        [matMenuTriggerFor]="languageMenu"
+        matTooltip="Фильтр по языковым парам"
+      >
+        <mat-icon>language</mat-icon>
+      </button>
+
+      <mat-menu #languageMenu="matMenu" class="explorer-tree__language-menu" yPosition="below">
+        <div class="explorer-tree__language-menu-content">
+          @for (pairKey of availablePairKeys(); track pairKey) {
+            <button
+              mat-button
+              type="button"
+              class="explorer-tree__language-chip"
+              [class.explorer-tree__language-chip--active]="isPairSelected(pairKey)"
+              [class.explorer-tree__language-chip--active-default]="pairKey === activePairKey()"
+              (click)="togglePair(pairKey)"
+            >
+              @if (isPairSelected(pairKey)) {
+                <mat-icon class="explorer-tree__language-chip--icon">check</mat-icon>
+              }
+              @if (pairKey === activePairKey()) {
+                <mat-icon class="explorer-tree__language-chip--dot" color="primary"
+                  >radio_button_checked</mat-icon
+                >
+              }
+              <span class="explorer-tree__language-chip--text">{{ pairKey }}</span>
+            </button>
+          }
+        </div>
+      </mat-menu>
+    }
+
+    <button
+      mat-icon-button
+      type="button"
+      class="explorer-tree__refresh"
+      aria-label="Обновить дерево"
+      matTooltip="Обновить дерево"
+      (click)="onRefresh()"
+    >
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </div>
+
+  @if (store.loading()) {
+    <div class="explorer-tree__state">
+      <mat-spinner diameter="28" />
+      <span>Загрузка каталога…</span>
+    </div>
+  } @else if (store.error()) {
+    <div class="explorer-tree__state explorer-tree__state--error">
+      <mat-icon>warning</mat-icon>
+      <span>{{ store.error() }}</span>
+    </div>
+  } @else if (isSmartSearchActive() && searchBusy()) {
+    <div class="explorer-tree__state">
+      <mat-spinner diameter="28" />
+      <span>Поиск по контенту…</span>
+    </div>
+  } @else if (isSmartSearchActive() && store.smartSearchError()) {
+    <div class="explorer-tree__state explorer-tree__state--error">
+      <mat-icon>warning</mat-icon>
+      <span>{{ store.smartSearchError() }}</span>
+    </div>
+  } @else if (isSmartSearchActive() && visibleRoots().length === 0) {
+    <div class="explorer-tree__state">
+      <mat-icon>search_off</mat-icon>
+      <span>Ничего не найдено</span>
+    </div>
+  } @else if (visibleRoots().length === 0) {
+    <div class="explorer-tree__state">
+      <mat-icon>folder_off</mat-icon>
+      <span>Каталоги не найдены</span>
+    </div>
+  } @else {
+    <div class="explorer-tree__nodes" role="tree" aria-label="Иерархия контента">
+      @for (root of visibleRoots(); track root.id) {
+        <app-explorer-tree-node [node]="root" [depth]="0" />
+      }
+    </div>
+  }
+</div>

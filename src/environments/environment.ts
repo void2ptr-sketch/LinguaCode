@@ -1,18 +1,11 @@
 /**
  * Окружение для разработки.
  *
- * Включает mock-интерсепторы для работы без бэкенда.
- * Данные загружаются из файлов в папке public/data/.
+ * Интеграция с реальным бэкендом (apiUrl).
+ * Mock-интерсепторы включены по умолчанию для работы без бэкенда.
+ * Для использования реального бэкенда — установите все `use*ApiMock: false`.
  *
- * Mock-интерсепторы:
- * - useCardsApiMock: true — использует ContentSeedRepository для карточек
- * - useScenariosApiMock: true — использует ContentSeedRepository для сценариев
- * - useCoursesApiMock: true — использует ContentSeedRepository для курсов
- * - useProgramsApiMock: true — использует ContentSeedRepository для программ
- * - useScormMock: true — использует mock-данные для SCORM-экспорта курсов
- *
- * Для отключения mock-интерсепторов установите значения в false.
- * В этом случае запросы будут идти к реальному бэкенду (apiUrl).
+ * @see environment.production.ts — продакшен-окружение (mock отключены)
  */
 import type { Environment } from './environment.types';
 
@@ -30,10 +23,13 @@ export const environment: Environment = {
   apiVersion: 'v1',
   fixturesUrl: '/data',
   appName: 'LinguaCode',
+  // Cards must come from the real backend (DB) so that the catalog search
+  // filters (course/program/lesson/scenario) work against real hierarchy IDs.
   useCardsApiMock: false,
   useScenariosApiMock: false,
   useCoursesApiMock: false,
   useProgramsApiMock: false,
+  useLessonsApiMock: false,
   useScormMock: false,
   useLanguagePairsApiMock: false,
   useAuthApiMock: false,

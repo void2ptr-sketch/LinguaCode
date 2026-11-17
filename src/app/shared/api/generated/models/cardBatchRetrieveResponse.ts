@@ -11,5 +11,6 @@ import type { Card } from './card';
  */
 export interface CardBatchRetrieveResponse {
   found?: Card[];
-  notFound?: number[];
+  /** Array of card IDs that were not found */
+  notFound?: string[];
 }

@@ -2,7 +2,7 @@ import { HttpParams } from '@angular/common/http';
 
 import type { ScenarioCardSourceMode } from '../../../card/model';
 import type { ScenarioListScope, ScenarioSearchCriteria } from '../../model';
-import { isContentLanguage } from '../../../language-pair/lib/language-pair.utils';
+import { isContentLanguage } from '../../../language-pair/utils/language-pair.utils';
 import { DEFAULT_PAGE_SIZE } from '../../../../shared/utils/pagination';
 
 /**
@@ -47,6 +47,10 @@ export function buildScenarioSearchParams(criteria: ScenarioSearchCriteria): Htt
     params = params.set('courseId', criteria.courseId);
   }
 
+  if (criteria.lessonId) {
+    params = params.set('lessonId', criteria.lessonId);
+  }
+
   return params;
 }
 
@@ -64,6 +68,7 @@ export function parseScenarioSearchCriteria(params: HttpParams): ScenarioSearchC
     knownLanguage: isContentLanguage(knownLanguage) ? knownLanguage : undefined,
     learningLanguage: isContentLanguage(learningLanguage) ? learningLanguage : undefined,
     courseId: params.get('courseId') ?? undefined,
+    lessonId: params.get('lessonId') ?? undefined,
     page: {
       page: Number(params.get('page') ?? 0),
       pageSize: Number(params.get('pageSize') ?? DEFAULT_PAGE_SIZE),

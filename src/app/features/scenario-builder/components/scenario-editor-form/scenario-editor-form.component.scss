@@ -3,6 +3,16 @@
   gap: 1rem;
 }
 
+.scenario-editor-form__tabs {
+  width: 100%;
+}
+
+.scenario-editor-form__tab-panel {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+}
+
 .scenario-editor-form__cards h2,
 .scenario-editor-form__order h2 {
   font-size: 1rem;
@@ -22,4 +32,41 @@
 .scenario-editor-form__readonly {
   color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
   margin: 0;
+}
+
+.scenario-editor-form__hierarchy,
+.scenario-editor-form__languages,
+.scenario-editor-form__tier {
+  display: grid;
+  gap: 1rem;
+}
+
+.scenario-editor-form__hierarchy h2,
+.scenario-editor-form__languages h2,
+.scenario-editor-form__tier h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.scenario-editor-form__language-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .scenario-editor-form__language-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scenario-editor-form__hint {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 60%, transparent);
+  margin: 0 0 1rem;
+}
+
+.scenario-editor-form__error {
+  color: var(--mat-sys-error);
+  margin: 0;
+  font-size: 0.875rem;
 }

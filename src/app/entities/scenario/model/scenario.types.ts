@@ -15,8 +15,18 @@ export type Scenario = {
   cardSource: ScenarioCardSource;
   published: boolean;
   updatedAt: string;
+  /** Numeric language pair ID (from `language_pairs.id`). Resolved to `languagePair` by the API service. */
+  languagePairId?: number;
+  /** Resolved from `languagePairId` via `LanguagePairsApiService` cache (read-only, derived). */
   languagePair?: LanguagePair;
   courseId?: string;
+  programId?: string;
+  lessonId?: string;
+  requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+  /** Количество карточек в сценарии (от бэкенда, может быть undefined для legacy-данных). */
+  cardCount?: number;
+  /** Позиция сценария внутри урока (education_scenarios.scenario_order). */
+  order?: number;
 };
 
 /**
@@ -36,4 +46,8 @@ export type LegacyScenario = {
   updatedAt?: string;
   languagePair?: LanguagePair;
   courseId?: string;
+  programId?: string;
+  lessonId?: string;
+  languagePairId?: number;
+  order?: number;
 };

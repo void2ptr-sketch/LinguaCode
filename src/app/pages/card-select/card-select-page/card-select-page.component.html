@@ -14,8 +14,10 @@
   <app-practice-stepper [steps]="practiceSteps()" (stepSelect)="goToTab($event)" />
 
   <mat-tab-group
+    #tabGroup
     class="card-select-page__tabs"
     [selectedIndex]="activeTabIndex()"
+    (selectChange)="onTabSelect($any($event).index)"
     (selectedIndexChange)="goToTab($event)"
     dynamicHeight
   >

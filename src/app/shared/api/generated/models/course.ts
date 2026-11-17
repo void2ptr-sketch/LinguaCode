@@ -17,6 +17,20 @@ export interface Course {
   languagePairId?: number;
   published?: boolean;
   requiredTier?: CourseRequiredTier;
+  /** Настройки практики (JSONB) */
+  practiceSettings?: string;
+  /** Статус авторинга каталога (draft/planned/generating/materialized/failed) */
+  authoringStatus?: string;
+  /** Markdown-идея каталога */
+  authoringIdea?: string;
+  /** Дата последнего обновления идеи */
+  ideaUpdatedAt?: string;
+  /** Дата материализации каталога */
+  materializedAt?: string;
+  /** Последняя ошибка авторинга */
+  lastError?: string;
   createdAt?: string;
   updatedAt?: string;
+  /** Уникальный строковый идентификатор курса (content ID) */
+  slug?: string;
 }

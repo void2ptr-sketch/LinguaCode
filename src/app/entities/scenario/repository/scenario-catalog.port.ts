@@ -1,4 +1,3 @@
-import type { LanguagePair } from '../../language-pair/model/language-pair.types';
 import type {
   Scenario,
   ScenarioIndexEntry,
@@ -21,8 +20,18 @@ export type ScenarioWritePayload = {
   cardSource: Scenario['cardSource'];
   /** Whether the scenario is published and visible to learners. */
   published: boolean;
-  /** Optional language pair for the scenario (e.g., { source: 'zh', target: 'en' }). */
-  languagePair?: LanguagePair;
+  /** Numeric language pair ID from `language_pairs.id`. */
+  languagePairId?: number;
+  /** Optional course ID (Long on backend). */
+  courseId?: number;
+  /** Optional program ID (Long on backend). */
+  programId?: number;
+  /** Optional lesson ID (Long on backend). */
+  lessonId?: number;
+  /** Payment tier for this scenario. */
+  requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+  /** Position of the scenario within the lesson. */
+  order?: number;
 };
 
 /**
@@ -49,6 +58,22 @@ export type ScenarioCatalogPort = {
    * @returns The scenario.
    */
   getById(scenarioId: string): Promise<Scenario>;
+
+  /**
+   * Batch-retrieves scenarios by IDs.
+   *
+   * @param scenarioIds - Array of scenario IDs.
+   * @returns Array of scenarios.
+   */
+  getByIdBatch(scenarioIds: readonly string[]): Promise<readonly Scenario[]>;
+
+  /**
+   * Retrieves all scenarios bound to a lesson.
+   *
+   * @param lessonId - The lesson ID.
+   * @returns Scenarios of the lesson ordered by `order`.
+   */
+  getByLessonId(lessonId: string): Promise<readonly Scenario[]>;
 
   /**
    * Creates a new scenario.

@@ -1,6 +1,6 @@
 @if (meta(); as m) {
   <section class="card-meta-fields">
-    <h3>Метаданные</h3>
+    <h3>Публикация</h3>
 
     <mat-form-field appearance="outline">
       <mat-label>Сложность</mat-label>
@@ -17,13 +17,16 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Дата обновления</mat-label>
-      <input
-        matInput
-        type="datetime-local"
-        [ngModel]="m.updatedAt"
-        (ngModelChange)="updateUpdatedAt($event)"
-      />
+      <mat-label>Уровень доступа</mat-label>
+      <mat-select [ngModel]="m.requiredTier ?? 'FREE'" (ngModelChange)="updateRequiredTier($event)">
+        @for (tier of tierOptions; track tier) {
+          <mat-option [value]="tier">{{ tierLabels[tier] }}</mat-option>
+        }
+      </mat-select>
     </mat-form-field>
+
+    <mat-checkbox [ngModel]="m.published ?? true" (ngModelChange)="updatePublished($event)">
+      Опубликована
+    </mat-checkbox>
   </section>
 }

@@ -12,5 +12,6 @@ import type { LessonJourney } from './lessonJourney';
 export interface ProgramJourney {
   id?: number;
   title?: string;
+  order?: number;
   lessons?: LessonJourney[];
 }

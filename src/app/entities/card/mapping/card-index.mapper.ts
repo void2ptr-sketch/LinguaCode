@@ -2,7 +2,7 @@ import type { Card } from '../model';
 import type { CardIndexEntry, CardIndexMetaOverride } from '../model';
 import { DEFAULT_LANGUAGE_PAIR } from '../../language-pair/model/language-pair.types';
 import { collectCardIpaReadings } from '../utils/card-ipa-index.utils';
-import { isContentLanguage } from '../../language-pair/lib/language-pair.utils';
+import { isContentLanguage } from '../../language-pair/utils/language-pair.utils';
 /**
  * Преобразует карточку в запись индекса (`CardIndexEntry`) с учётом метаданных.
  * Приоритет метаданных: `card.meta` → `meta` (из overlay) → значения по умолчанию.
@@ -25,7 +25,9 @@ export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): Card
       : DEFAULT_LANGUAGE_PAIR.learning;
 
   const ipaReadings = collectCardIpaReadings(card);
-  const baseTags = effectiveMeta?.tags ?? [card.kind];
+  // Prefer explicit metadata (embedded/overlay) and then the card's own tags.
+  // Falling back to `[card.kind]` keeps legacy cards without tags usable.
+  const baseTags = effectiveMeta?.tags ?? card.tags ?? [card.kind];
   const tags =
     ipaReadings.length > 0 && !baseTags.includes('ipa') ? [...baseTags, 'ipa'] : baseTags;
 
@@ -35,13 +37,19 @@ export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): Card
     title: card.title,
     knownLanguage,
     learningLanguage,
-    difficulty: effectiveMeta?.difficulty ?? 'beginner',
+    difficulty: effectiveMeta?.difficulty ?? card.difficulty ?? 'beginner',
     tags,
     ipaReadings,
-    updatedAt: effectiveMeta?.updatedAt ?? '2026-01-01T00:00:00.000Z',
+    updatedAt: effectiveMeta?.updatedAt ?? card.updatedAt ?? '2026-01-01T00:00:00.000Z',
+    slug: card.slug,
+    languagePairId: effectiveMeta?.languagePairId ?? card.languagePairId,
     courseId: card.courseId,
+    programId: card.programId,
     lessonId: card.lessonId,
     scenarioId: card.scenarioId,
+    order: card.order,
+    published: effectiveMeta?.published ?? card.published,
+    requiredTier: effectiveMeta?.requiredTier ?? card.requiredTier,
   };
 }
 

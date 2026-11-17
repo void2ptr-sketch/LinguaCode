@@ -1,0 +1,207 @@
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+
+import {
+  ContentHierarchySelectorComponent,
+  type HierarchyLevel,
+  type HierarchyValue,
+} from '../../../../entities/content-hierarchy';
+import type { CourseIndexEntry } from '../../../../entities/course/model';
+import type { Lesson } from '../../../../entities/course/model/lesson.types';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
+import type { ProgramWithLessons } from '../../../../entities/program/model';
+import type { LessonFormDraft } from '../../types';
+import { LESSON_TITLE_MAX_LENGTH } from '../../utils';
+
+/** Tier labels for the access level selector (RU). */
+const TIER_LABELS: Record<string, string> = {
+  FREE: 'Бесплатный',
+  STARTER: 'Стартовый',
+  GROWTH: 'Рост',
+  PREMIUM: 'Премиум',
+};
+
+/**
+ * Presentational form component for creating and editing lessons.
+ *
+ * Provides UI controls for the lesson title, description, display order,
+ * prerequisite lessons, and connections (language pair, course, program).
+ *
+ * @remarks
+ * Stateless by design: receives the draft via a required input and emits
+ * updates through the `draftChange` output. The parent component (e.g.
+ * `LessonBuilderDialogComponent`) owns the draft signal.
+ *
+ * Scenario composition (`scenarioIds`) is intentionally not editable here —
+ * scenarios are managed in the scenario/course builders.
+ * @see LessonFormDraft
+ */
+@Component({
+  selector: 'app-lesson-form',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    FormsModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTabsModule,
+    ContentHierarchySelectorComponent,
+  ],
+  templateUrl: './lesson-form.component.html',
+  styleUrl: './lesson-form.component.scss',
+})
+export class LessonFormComponent {
+  /**
+   * Required lesson form draft being edited or created.
+   *
+   * @remarks
+   * Immutable from the component's perspective — use `draftChange` to emit updates.
+   */
+  readonly draft = input.required<LessonFormDraft>();
+
+  /**
+   * Candidate lessons for the prerequisite selector.
+   *
+   * @remarks
+   * Loaded by the parent (store) — all lessons of the parent program except
+   * the edited lesson itself.
+   */
+  readonly candidateLessons = input<readonly Lesson[]>([]);
+
+  /**
+   * Whether the form is in read-only mode.
+   *
+   * @remarks
+   * When `true`, all input controls are disabled and no changes can be made.
+   */
+  readonly readOnly = input(false);
+
+  /**
+   * Available language pairs from the registry.
+   *
+   * @remarks
+   * Populated by the parent dialog component via `LanguagePairsApiService.listAll()`.
+   */
+  readonly languagePairs = input<readonly LanguagePairDto[]>([]);
+
+  /**
+   * Available courses for the course selector.
+   *
+   * @remarks
+   * Populated by the parent dialog component via `CourseSearchService.search()`.
+   */
+  readonly courses = input<readonly CourseIndexEntry[]>([]);
+
+  /**
+   * Available programs for the program selector.
+   *
+   * @remarks
+   * Populated by the parent dialog component via `ProgramsApiService.getByCourse()`.
+   */
+  readonly programs = input<readonly ProgramWithLessons[]>([]);
+
+  /**
+   * Emits the updated lesson form draft when the user makes changes.
+   *
+   * @remarks
+   * The parent component listens to this output and updates its own signal
+   * with the new draft value.
+   */
+  readonly draftChange = output<LessonFormDraft>();
+
+  /** Levels rendered on the lesson «Размещение» tab. */
+  readonly hierarchyLevels: readonly HierarchyLevel[] = ['languagePair', 'course', 'program'];
+
+  /** Current hierarchy value derived from the draft. */
+  readonly hierarchyValue = computed<HierarchyValue>(() => ({
+    languagePairId: this.draft().languagePairId,
+    courseId: this.draft().courseId,
+    programId: this.draft().programId,
+  }));
+
+  /** Maximum allowed title length (backend contract). */
+  readonly titleMaxLength = LESSON_TITLE_MAX_LENGTH;
+
+  /** Available tier options (keys of TIER_LABELS). */
+  readonly tierOptions = Object.keys(TIER_LABELS) as string[];
+
+  /** Tier labels for display. */
+  readonly tierLabels = TIER_LABELS;
+
+  /** Emits the draft with an updated title. */
+  updateTitle(title: string): void {
+    this.draftChange.emit({ ...this.draft(), title });
+  }
+
+  /** Emits the draft with an updated description. */
+  updateDescription(description: string): void {
+    this.draftChange.emit({ ...this.draft(), description });
+  }
+
+  /** Emits the draft with an updated display order. */
+  updateOrder(order: string): void {
+    this.draftChange.emit({ ...this.draft(), order: Number(order) });
+  }
+
+  /** Emits the draft with updated prerequisite lesson IDs. */
+  updatePrerequisiteLessonIds(prerequisiteLessonIds: readonly string[]): void {
+    this.draftChange.emit({ ...this.draft(), prerequisiteLessonIds });
+  }
+
+  /** Emits the draft with an updated published flag. */
+  updatePublished(published: boolean): void {
+    this.draftChange.emit({ ...this.draft(), published });
+  }
+
+  /** Emits the draft with an updated required tier. */
+  updateRequiredTier(tier: string | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      requiredTier: (tier as LessonFormDraft['requiredTier']) ?? undefined,
+    });
+  }
+
+  /** Emits the draft with an updated language pair ID. */
+  onLanguagePairChange(languagePairId: number | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      languagePairId: languagePairId ?? undefined,
+    });
+  }
+
+  /**
+   * Applies the shared hierarchy selector value to the lesson draft.
+   *
+   * @param value - New hierarchy value.
+   */
+  onHierarchyChange(value: HierarchyValue): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      languagePairId: value.languagePairId,
+      courseId: value.courseId ?? '',
+      programId: value.programId ?? '',
+    });
+  }
+
+  /** Emits the draft with an updated course ID. */
+  onCourseIdChange(courseId: string | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      courseId: courseId ?? undefined,
+    });
+  }
+
+  /** Emits the draft with an updated program ID. */
+  onProgramIdChange(programId: string | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      programId: programId ?? '',
+    });
+  }
+}

@@ -1,4 +1,5 @@
 <p class="card-form-answers-tab__hint">Варианты ответа и правильный вариант.</p>
+
 @if (codeSelectDraft(); as codeDraft) {
   <app-code-select-card-form [draft]="codeDraft" (draftChange)="draftChange.emit($event)" />
 }
@@ -28,4 +29,69 @@
     [learningLanguage]="learningLanguage()"
     (draftChange)="draftChange.emit($event)"
   />
+}
+@if (isUnsupportedAnswerKind()) {
+  <p class="card-form-answers-tab__unsupported">
+    Редактор ответов для этого типа карточки пока недоступен.
+  </p>
+}
+
+@if (timedDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Лимит времени (сек)</mat-label>
+    <input
+      matInput
+      type="number"
+      min="5"
+      max="600"
+      [ngModel]="d.timeLimitSec"
+      (ngModelChange)="updateTimeLimitSec(+$event)"
+    />
+  </mat-form-field>
+}
+
+@if (keyboardDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Режим ответа</mat-label>
+    <mat-select
+      [ngModel]="d.answerMode ?? 'auto'"
+      (ngModelChange)="updateKeyboardAnswerMode($event)"
+    >
+      @for (option of keyboardAnswerModeOptions; track option.value) {
+        <mat-option [value]="option.value">{{ option.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}
+
+@if (drawDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Режим практики</mat-label>
+    <mat-select
+      [ngModel]="d.practiceMode ?? 'freehand'"
+      (ngModelChange)="updateDrawPracticeMode($event)"
+    >
+      @for (option of drawPracticeModeOptions; track option.value) {
+        <mat-option [value]="option.value">{{ option.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  @if ((d.practiceMode ?? 'freehand') === 'radicals') {
+    <mat-form-field appearance="outline">
+      <mat-label>Подсказка: радикалы</mat-label>
+      <input
+        matInput
+        [ngModel]="d.radicalHint"
+        (ngModelChange)="updateDrawRadicalHint($event)"
+        placeholder="女 + 子"
+      />
+    </mat-form-field>
+  }
+  @if (d.strokeGuides.length > 0) {
+    <p class="card-form-answers-tab__meta">Черт: {{ d.strokeGuides.length }}</p>
+  }
+  <button mat-button type="button" (click)="autofillDrawHints()">
+    <mat-icon>auto_fix_high</mat-icon>
+    Подставить черты / радикалы
+  </button>
 }

@@ -36,11 +36,12 @@ type LearningResult = {
   cardId: string;
   scenarioId: string;
   correct: boolean;
-  answeredAt: string;
+  answeredAt: string; // ISO 8601
   languagePair: LanguagePair;
   direction?: CardDirection;
-  lessonId?: string;
-  courseId?: string;
+  programId?: string; // G17 — опционально для агрегации прогресса по треку
+  lessonId?: string; // G11 — опционально для агрегации прогресса по уроку
+  courseId?: string; // G11 — опционально для агрегации прогресса по каталогу
 };
 ```
 
@@ -52,20 +53,43 @@ flowchart LR
   LearningResultsStore --> LocalStorage
   HomeLearningTab --> LearningResultsStore
   LearningProgress --> LearningResultsStore
+  LearningResultsStore --> results
+  LearningResultsStore --> userResults
+  LearningResultsStore --> pairResults
+  LearningResultsStore --> accuracyPercent
+  LearningResultsStore --> scenarioProgress
   LearningResultsStore --> courseProgress
-  LearningResultsStore --> scenarioSetProgress
   LearningResultsStore --> isLessonCompleted
+  LearningResultsStore --> isCourseCompleted
 ```
 
 ## API store (ключевые методы)
 
-| Метод                 | Назначение                            |
-| --------------------- | ------------------------------------- |
-| `addResult`           | Запись ответа                         |
-| `resultsForScenario`  | История по сценарию                   |
-| `scenarioSetProgress` | completed/total по списку scenarioIds |
-| `courseProgress`      | % по программе                        |
-| `isLessonCompleted`   | все сценарии урока пройдены           |
+| Метод                 | Назначение                                |
+| --------------------- | ----------------------------------------- |
+| `addResult`           | Запись ответа                             |
+| `resultsForScenario`  | История по сценарию                       |
+| `scenarioSetProgress` | completed/total по списку scenarioIds     |
+| `lessonProgress`      | прогресс урока (lessonId + stats)         |
+| `courseProgress`      | % по программе                            |
+| `isLessonCompleted`   | все сценарии урока пройдены               |
+| `isCourseCompleted`   | все сценарии курса пройдены               |
+| `completedCourseIds`  | IDs завершённых курсов                    |
+| `hasResultsForCard`   | есть ли результаты по карточке            |
+| `clear`               | очистка результатов текущего пользователя |
+
+## Computed-сигналы
+
+| Сигнал             | Тип данных                            |
+| ------------------ | ------------------------------------- |
+| `results`          | `readonly LearningResult[]`           |
+| `userResults`      | результаты текущего пользователя      |
+| `pairResults`      | результаты для активной языковой пары |
+| `totalCount`       | общее количество ответов              |
+| `correctCount`     | количество правильных ответов         |
+| `accuracyPercent`  | процент точности (0–100)              |
+| `recentResults`    | последние 10 результатов (сортировка) |
+| `scenarioProgress` | агрегация по scenarioId               |
 
 ## Связанные документы
 

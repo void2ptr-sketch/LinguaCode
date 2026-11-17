@@ -6,13 +6,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { effectiveCardDirection, resolveKeyboardPrompt } from '../../../utils/card-direction.utils';
-import { resolveKeyboardAnswerMode } from '../../../lib/keyboard-answer-mode/keyboard-answer-mode.utils';
+import { resolveKeyboardAnswerMode } from '../../../lib/utils/keyboard-answer-mode.utils';
 import { KeyboardCard } from '../../../model';
 import type { CardDirection } from '../../../../language-pair/model/language-pair.types';
 import { LexemeDisplayComponent } from '../../../../chinese/ui/lexeme-display/lexeme-display.component';
 import { PinyinKeyboardComponent } from '../../../../chinese/ui/pinyin-keyboard/pinyin-keyboard.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { getCorrectAnswerLabel } from '../../../lib/card-answer/card-answer.util';
+import { getCorrectAnswerLabel } from '../../../lib/utils/card-answer.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 /**

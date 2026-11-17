@@ -10,7 +10,7 @@ import { ContentSeedRepository } from '../entities/content-seed/content-seed.rep
 import { LanguagePairsApiService } from '../entities/language-pair/api';
 import { AuthStore } from '../entities/auth/services/auth.store';
 
-describe('Course builder smoke', () => {
+describe('Course builder redirect smoke', () => {
   beforeEach(async () => {
     localStorage.clear();
     seedTestContentCache();
@@ -32,7 +32,12 @@ describe('Course builder smoke', () => {
           provide: AuthStore,
           useValue: {
             isAuthenticated: () => true,
-            user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: [] }),
+            user: () => ({
+              id: 'mock',
+              displayName: 'Test User',
+              email: '',
+              roles: ['ROLE_AUTHOR'],
+            }),
             logout: () => Promise.resolve(),
           },
         },
@@ -48,7 +53,7 @@ describe('Course builder smoke', () => {
     localStorage.clear();
   });
 
-  it('should render the course builder page with course list', async () => {
+  it('should redirect /tools/courses to the content explorer page', async () => {
     const fixture = TestBed.createComponent(AppComponent);
     const router = TestBed.inject(Router);
 
@@ -57,8 +62,11 @@ describe('Course builder smoke', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
+    // Страница «Конструктор курсов» удалена — /tools/courses теперь редирект
+    // на Проводник контента, где собраны все функции управления курсами.
     const text = fixture.nativeElement.textContent as string;
-    expect(text).toContain('Конструктор курсов');
+    expect(text).toContain('Проводник контента');
+    expect(text).toContain('Создать курс');
 
     fixture.destroy();
   });

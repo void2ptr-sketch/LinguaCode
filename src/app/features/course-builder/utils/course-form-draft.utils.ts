@@ -4,11 +4,35 @@ import type {
   ProgramWritePayload,
 } from '../../../entities/course/api/courses-api.service';
 import type { Course } from '../../../entities/course/model';
+import type { CourseRequiredTier } from '../../../entities/course/repository/course-catalog.port';
 import {
   emptyCourseAuthoring,
   normalizeCourseAuthoring,
 } from '../../../entities/course/utils/course-authoring.utils';
+import { DEFAULT_COURSE_PRACTICE_SETTINGS } from '../../../entities/course/model';
 import type { CourseFormDraft, ProgramFormDraft, LessonFormDraft } from '../types';
+
+/**
+ * Flattens a `CourseAuthoring` object into top-level fields matching the
+ * backend `CourseCreateRequest` / `CourseUpdateRequest` contract.
+ *
+ * @param authoring — The nested authoring object (may be undefined).
+ * @returns A partial record with flat authoring fields.
+ */
+function flattenAuthoring(
+  authoring: ReturnType<typeof normalizeCourseAuthoring>,
+): Partial<CourseWritePayload> {
+  if (!authoring) {
+    return {};
+  }
+  return {
+    authoringStatus: authoring.status,
+    authoringIdea: authoring.idea,
+    ideaUpdatedAt: authoring.ideaUpdatedAt,
+    materializedAt: authoring.materializedAt,
+    lastError: authoring.lastError,
+  };
+}
 
 export function lessonDraftKey(lesson: Pick<LessonFormDraft, 'id' | 'clientId'>): string {
   return lesson.id ?? lesson.clientId;
@@ -40,7 +64,11 @@ export const emptyCourseFormDraft = (): CourseFormDraft => ({
   description: '',
   published: true,
   authoring: emptyCourseAuthoring(),
+  practiceSettings: DEFAULT_COURSE_PRACTICE_SETTINGS,
   programs: [emptyProgramFormDraft(0)],
+  requiredTier: 'FREE',
+  slug: '',
+  languagePairId: undefined,
 });
 
 export function courseToFormDraft(
@@ -51,13 +79,14 @@ export function courseToFormDraft(
     description: course.description,
     published: course.published,
     authoring: course.authoring ?? emptyCourseAuthoring(),
+    practiceSettings: course.practiceSettings ?? DEFAULT_COURSE_PRACTICE_SETTINGS,
     programs: course.programs
       .map((program) => ({
         clientId: program.id,
         id: program.id,
         title: program.title,
         description: program.description,
-        lessons: program.lessons
+        lessons: (program.lessons ?? [])
           .map((lesson) => ({
             clientId: lesson.id,
             id: lesson.id,
@@ -71,6 +100,10 @@ export function courseToFormDraft(
         order: program.order,
       }))
       .sort((left, right) => left.order - right.order),
+    requiredTier:
+      (course as unknown as { requiredTier?: CourseRequiredTier }).requiredTier ?? 'FREE',
+    slug: course.slug,
+    languagePairId: course.languagePairId,
   };
 }
 
@@ -120,12 +153,24 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
     };
   });
 
+  const normalized = normalizeCourseAuthoring(draft.authoring);
   return {
     title: draft.title,
     description: draft.description,
     published: draft.published,
-    authoring: normalizeCourseAuthoring(draft.authoring),
+    ...flattenAuthoring(normalized),
+    // Always forward status/idea (even when empty) so the form can clear
+    // previously saved values. Timestamps/error are only forwarded when set.
+    authoringStatus: draft.authoring.status,
+    authoringIdea: draft.authoring.idea,
+    practiceSettings: draft.practiceSettings,
+    requiredTier: draft.requiredTier,
+    slug: draft.slug,
     programs,
+    // languagePairId is resolved to LanguagePair by the API service
+    // (CoursesApiService.resolveLanguagePairId). The form draft stores the
+    // numeric ID; the payload expects { known, learning } codes.
+    languagePairId: draft.languagePairId,
   };
 }
 

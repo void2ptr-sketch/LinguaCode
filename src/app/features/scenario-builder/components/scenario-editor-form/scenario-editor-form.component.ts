@@ -1,51 +1,45 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  inject,
-  input,
-  output,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
 
-import type { ContentLanguage, ScenarioCardSort } from '../../../../entities/card/model';
-import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
-import { ScenarioCardCriteriaEditorComponent } from '../../../../entities/card/ui/card-catalog/scenario-card-criteria-editor/scenario-card-criteria-editor.component';
-import { ScenarioCardPickerComponent } from '../../../../entities/card/ui/card-catalog/scenario-card-picker/scenario-card-picker.component';
-import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
-import type { ScenarioCardSourceMode } from '../../types';
+import {
+  ContentHierarchySelectorComponent,
+  type HierarchyLevel,
+  type HierarchyValue,
+} from '../../../../entities/content-hierarchy';
+import type { CourseIndexEntry } from '../../../../entities/course/model';
+import type { ProgramWithLessons } from '../../../../entities/program/model';
+import type { Lesson } from '../../../../entities/course/model/lesson.types';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import type { ScenarioFormDraft } from '../../utils/scenario-form-draft.utils';
 
+/** Payment tier labels in Russian. */
+const TIER_LABELS: Record<string, string> = {
+  FREE: 'Бесплатный',
+  STARTER: 'Стартовый',
+  GROWTH: 'Рост',
+  PREMIUM: 'Премиум',
+};
+
 /**
- * Scenario editor form component. Provides a full form for editing scenarios including
- * title, description, card source mode (fixed/criteria/snapshot), and card ordering.
- * @remarks Supports two sub-modes for card selection: `ScenarioCardPickerComponent` (fixed)
- * and `ScenarioCardCriteriaEditorComponent` (criteria-based).
+ * Scenario editor form component. Provides a form for editing scenarios including
+ * title, description, language pair, course hierarchy, and payment tier.
  */
 @Component({
   selector: 'app-scenario-editor-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
-    MatButtonModule,
-    MatButtonToggleModule,
+    MatCheckboxModule,
     MatFormFieldModule,
-    MatIconModule,
     MatInputModule,
-    MatListModule,
     MatSelectModule,
-    MatSlideToggleModule,
-    ScenarioCardPickerComponent,
-    ScenarioCardCriteriaEditorComponent,
+    MatTabsModule,
+    ContentHierarchySelectorComponent,
   ],
   templateUrl: './scenario-editor-form.component.html',
   styleUrl: './scenario-editor-form.component.scss',
@@ -55,112 +49,106 @@ export class ScenarioEditorFormComponent {
   readonly draft = input.required<ScenarioFormDraft>();
   /** Whether the form is in read-only mode. */
   readonly readOnly = input(false);
+  /** Available courses for the current language pair. */
+  readonly courses = input.required<readonly CourseIndexEntry[]>();
+  /** Programs for the selected course (loaded from API). */
+  readonly programs = input<readonly ProgramWithLessons[]>([]);
+  /** Lessons for the selected program (loaded from API). */
+  readonly lessons = input<readonly Lesson[]>([]);
+  /** Available language pairs from the registry. */
+  readonly languagePairs = input<readonly LanguagePairDto[]>([]);
 
   /** Emits the updated scenario form draft when the user makes changes. */
   readonly draftChange = output<ScenarioFormDraft>();
 
-  private readonly store = inject(ScenarioBuilderStore);
-  private readonly languageService = inject(LanguageService);
+  /** Levels rendered on the scenario «Размещение» tab. */
+  readonly hierarchyLevels: readonly HierarchyLevel[] = [
+    'languagePair',
+    'course',
+    'program',
+    'lesson',
+  ];
 
-  /** Available content languages. */
-  readonly languages = () => this.languageService.getCodes();
-  /** Labels for content languages. */
-  readonly languageLabels = () => this.languageService.getLabels();
-  /**
-   * Card titles indexed by card ID, loaded asynchronously.
-   *
-   * @remarks
-   * Populated by `refreshCardTitles` when `fixedCardIds` changes.
-   */
-  readonly cardTitles = signal<Record<string, string>>({});
+  /** Current hierarchy value derived from the draft. */
+  readonly hierarchyValue = computed<HierarchyValue>(() => ({
+    languagePairId: this.draft().languagePairId,
+    courseId: this.draft().courseId,
+    programId: this.draft().programId,
+    lessonId: this.draft().lessonId,
+  }));
 
-  constructor() {
-    effect(() => {
-      const form = this.draft();
-      const cardIds =
-        form.sourceMode === 'fixed' || form.sourceMode === 'snapshot' ? form.fixedCardIds : [];
-
-      void this.refreshCardTitles(cardIds);
-    });
-  }
+  /** Available tier options. */
+  readonly tierOptions = Object.keys(TIER_LABELS) as string[];
+  /** Tier display labels. */
+  readonly tierLabels = TIER_LABELS;
 
   updateDraft(patch: Partial<ScenarioFormDraft>): void {
     this.draftChange.emit({ ...this.draft(), ...patch });
   }
 
-  async onFixedCardIdsChange(cardIds: readonly string[]): Promise<void> {
-    this.updateDraft({ fixedCardIds: cardIds });
-  }
-
-  onSourceModeChange(mode: ScenarioCardSourceMode): void {
-    this.updateDraft({ sourceMode: mode });
-  }
-
-  moveCard(cardId: string, direction: -1 | 1): void {
-    const current = [...this.draft().fixedCardIds];
-    const index = current.indexOf(cardId);
-    const targetIndex = index + direction;
-
-    if (index < 0 || targetIndex < 0 || targetIndex >= current.length) {
-      return;
-    }
-
-    [current[index], current[targetIndex]] = [current[targetIndex], current[index]];
-    this.updateDraft({ fixedCardIds: current });
-  }
-
-  async createSnapshotFromCriteria(): Promise<void> {
-    const form = this.draft();
-    const source = await this.store.buildSnapshotFromCriteria(
-      form.criteria,
-      form.criteriaLimit,
-      form.criteriaSort,
-      form.criteriaSeed || undefined,
-    );
-
-    if (!source || source.mode !== 'snapshot') {
-      return;
-    }
-
-    this.updateDraft({
-      sourceMode: 'snapshot',
-      fixedCardIds: [...source.cardIds],
-      snapshotFrozenAt: source.frozenAt,
+  onCourseIdChange(courseId: string | null): void {
+    // Reset program and lesson when course changes
+    this.draftChange.emit({
+      ...this.draft(),
+      courseId: courseId ?? undefined,
+      programId: undefined,
+      lessonId: undefined,
     });
   }
 
-  cardTitle(cardId: string): string {
-    return this.cardTitles()[cardId] ?? cardId;
-  }
-
-  onCriteriaSortChange(sort: ScenarioCardSort): void {
-    this.updateDraft({ criteriaSort: sort });
-  }
-
-  onKnownLanguageChange(known: ContentLanguage): void {
-    this.updateDraft({
-      languagePair: { ...this.draft().languagePair, known },
+  onProgramIdChange(programId: string | null): void {
+    // Reset lesson when program changes
+    this.draftChange.emit({
+      ...this.draft(),
+      programId: programId ?? undefined,
+      lessonId: undefined,
     });
   }
 
-  onLearningLanguageChange(learning: ContentLanguage): void {
-    this.updateDraft({
-      languagePair: { ...this.draft().languagePair, learning },
+  onLessonIdChange(lessonId: string | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      lessonId: lessonId ?? undefined,
     });
   }
 
-  languagePairInvalid(): boolean {
-    const pair = this.draft().languagePair;
-    return pair.known === pair.learning;
+  onLanguagePairChange(languagePairId: number | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      languagePairId: languagePairId ?? undefined,
+    });
   }
 
-  private async refreshCardTitles(cardIds: readonly string[]): Promise<void> {
-    const titles: Record<string, string> = {};
+  /**
+   * Applies the shared hierarchy selector value to the scenario draft.
+   *
+   * @param value - New hierarchy value.
+   */
+  onHierarchyChange(value: HierarchyValue): void {
+    this.updateDraft({
+      languagePairId: value.languagePairId,
+      courseId: value.courseId,
+      programId: value.programId,
+      lessonId: value.lessonId,
+    });
+  }
 
-    for (const cardId of cardIds) {
-      titles[cardId] = await this.store.cardTitle(cardId);
-    }
+  onRequiredTierChange(tier: string | null): void {
+    this.draftChange.emit({
+      ...this.draft(),
+      requiredTier: (tier as ScenarioFormDraft['requiredTier']) ?? undefined,
+    });
+  }
 
-    this.cardTitles.set(titles);
+  updatePublished(published: boolean): void {
+    this.draftChange.emit({ ...this.draft(), published });
+  }
+
+  updateScenarioOrder(order: string): void {
+    this.draftChange.emit({ ...this.draft(), scenarioOrder: Number(order) });
+  }
+
+  scenarioOrderInvalid(): boolean {
+    return (this.draft().scenarioOrder ?? 0) <= 0;
   }
 }

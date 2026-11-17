@@ -1,13 +1,42 @@
 import { HttpParams } from '@angular/common/http';
 
-import type { CardSearchCriteria, CardKind, ContentLanguage, CardDifficulty } from '../../model';
+import type {
+  CardSearchCriteria,
+  CardSearchScope,
+  CardKind,
+  ContentLanguage,
+  CardDifficulty,
+} from '../../model';
 import { DEFAULT_PAGE_SIZE } from '../../../../shared/utils/pagination';
+
+/** Maps a frontend card kind to the uppercase backend enum value. */
+const CARD_KIND_TO_BACKEND: Record<CardKind, string> = {
+  select: 'SELECT',
+  'code-select': 'CODE_SELECT',
+  memory: 'MEMORY',
+  symbol: 'SYMBOL',
+  sound: 'SOUND',
+  timed: 'TIMED',
+  keyboard: 'KEYBOARD',
+  draw: 'DRAW',
+  tone: 'TONE',
+  reading: 'READING',
+  flip: 'FLIP',
+  cloze: 'CLOZE',
+  'code-trace': 'CODE_TRACE',
+};
+
+/** Maps an uppercase backend card kind to the frontend lowercase value. */
+const CARD_KIND_FROM_BACKEND: Record<string, CardKind> = Object.fromEntries(
+  Object.entries(CARD_KIND_TO_BACKEND).map(([frontend, backend]) => [backend, frontend]),
+) as Record<string, CardKind>;
 
 /**
  * Builds `HttpParams` from a `CardSearchCriteria` object.
  *
  * Serialises all non-empty criteria fields (query, languages, difficulty,
- * course/lesson/scenario IDs, kinds, tags, pagination) into query parameters.
+ * hierarchy IDs, kinds, tags, publication scope, pagination) into query
+ * parameters. Enum values are converted to the uppercase backend format.
  *
  * @param criteria - The search criteria to serialise.
  * @returns An `HttpParams` instance ready for HTTP requests.
@@ -29,12 +58,20 @@ export function buildCardSearchParams(criteria: CardSearchCriteria): HttpParams 
     params = params.set('learningLanguage', criteria.learningLanguage);
   }
 
+  if (criteria.languagePairId) {
+    params = params.set('languagePairId', criteria.languagePairId);
+  }
+
   if (criteria.difficulty) {
-    params = params.set('difficulty', criteria.difficulty);
+    params = params.set('difficulty', criteria.difficulty.toUpperCase());
   }
 
   if (criteria.courseId) {
     params = params.set('courseId', criteria.courseId);
+  }
+
+  if (criteria.programId) {
+    params = params.set('programId', criteria.programId);
   }
 
   if (criteria.lessonId) {
@@ -45,8 +82,16 @@ export function buildCardSearchParams(criteria: CardSearchCriteria): HttpParams 
     params = params.set('scenarioId', criteria.scenarioId);
   }
 
+  if (criteria.published !== undefined) {
+    params = params.set('published', String(criteria.published));
+  }
+
+  if (criteria.scope) {
+    params = params.set('scope', criteria.scope);
+  }
+
   for (const kind of criteria.kinds ?? []) {
-    params = params.append('kinds', kind);
+    params = params.append('kinds', CARD_KIND_TO_BACKEND[kind]);
   }
 
   for (const tag of criteria.tags ?? []) {
@@ -66,17 +111,26 @@ export function buildCardSearchParams(criteria: CardSearchCriteria): HttpParams 
  * @returns A `CardSearchCriteria` object populated from the parameters.
  */
 export function parseCardSearchCriteria(params: HttpParams): CardSearchCriteria {
-  const kinds = (params.getAll('kinds') ?? []) as CardKind[];
+  const kinds = (params.getAll('kinds') ?? [])
+    .map((kind) => CARD_KIND_FROM_BACKEND[kind.toUpperCase()])
+    .filter((kind): kind is CardKind => kind !== undefined);
   const tags = params.getAll('tags') ?? [];
+  const difficulty = params.get('difficulty')?.toLowerCase() as CardDifficulty | undefined;
+  const publishedRaw = params.get('published');
+  const scope = (params.get('scope') as CardSearchScope | null) ?? undefined;
 
   return {
     query: params.get('query') ?? undefined,
     knownLanguage: (params.get('knownLanguage') as ContentLanguage | null) ?? undefined,
     learningLanguage: (params.get('learningLanguage') as ContentLanguage | null) ?? undefined,
-    difficulty: (params.get('difficulty') as CardDifficulty | null) ?? undefined,
+    languagePairId: params.get('languagePairId') ?? undefined,
+    difficulty,
     courseId: params.get('courseId') ?? undefined,
+    programId: params.get('programId') ?? undefined,
     lessonId: params.get('lessonId') ?? undefined,
     scenarioId: params.get('scenarioId') ?? undefined,
+    published: publishedRaw === null ? undefined : publishedRaw === 'true',
+    scope,
     kinds: kinds.length > 0 ? kinds : undefined,
     tags: tags.length > 0 ? tags : undefined,
     page: {

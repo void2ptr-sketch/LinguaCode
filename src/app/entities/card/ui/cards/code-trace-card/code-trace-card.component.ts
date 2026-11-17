@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { resolveOptionCard } from '../../../utils/card-direction.utils';
 import { CodeTraceCard } from '../../../model';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../../../lib/cards/option-card.util';
+import { buildOptionClass } from '../../../lib/utils/option-card.util';
 import { CodeHighlightComponent } from '../../code-highlight/code-highlight.component';
 
 /**
@@ -49,7 +49,7 @@ export class CodeTraceCardComponent {
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
   /** Nonce for deterministic option shuffling. */
-  readonly shuffleNonce = input<number>(0);
+  readonly shuffleNonce = input<number | undefined>(undefined);
 
   /** Emits when the user selects an output option. */
   readonly optionSelected = output<number>();

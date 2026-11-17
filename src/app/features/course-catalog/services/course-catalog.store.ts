@@ -1,12 +1,25 @@
-import { Injectable, computed, signal, type Signal } from '@angular/core';
+import { Injectable, computed, inject, signal, type Signal } from '@angular/core';
 import type { CourseIndexEntry } from '../../../entities/course/model';
 import type { PageEvent } from '@angular/material/paginator';
+import { UserStore } from '../../../entities/user/model/user.store';
+import {
+  readActiveCourseIds,
+  writeActiveCourseIds,
+  readSelectedTabIndex,
+  writeSelectedTabIndex,
+} from './course-catalog-active-course-persistence';
 import { CourseCatalogState, initialState } from '../types/course-catalog-store';
 
 /** Store каталога курсов: поиск, пагинация, прогресс, вкладки. */
 @Injectable({ providedIn: 'root' })
 export class CourseCatalogStore {
+  private readonly userStore = inject(UserStore);
+
   #state = signal<CourseCatalogState>({ ...initialState });
+
+  constructor() {
+    this.#restoreSelectedTabIndex();
+  }
 
   // --- Селекторы (read-only) ---
 
@@ -105,6 +118,7 @@ export class CourseCatalogStore {
       selectedTabIndex: index,
       filterDismissedUntilTabChange: false,
     }));
+    writeSelectedTabIndex(index);
   }
 
   toggleActiveCourseId(id: string): void {
@@ -117,10 +131,12 @@ export class CourseCatalogStore {
       }
       return { ...s, activeCourseIds: next as ReadonlySet<string> };
     });
+    this.#persistActiveCourseIds();
   }
 
   clearActiveCourseIds(): void {
     this.#state.update((s) => ({ ...s, activeCourseIds: new Set() as ReadonlySet<string> }));
+    this.#persistActiveCourseIds();
   }
 
   setFilterDismissed(dismissed: boolean): void {
@@ -138,5 +154,41 @@ export class CourseCatalogStore {
       pageIndex: event.pageIndex,
       pageSize: event.pageSize,
     }));
+  }
+
+  /**
+   * Сохраняет activeCourseIds в localStorage для текущей языковой пары.
+   * Ничего не делает, если пара не определена.
+   */
+  #persistActiveCourseIds(): void {
+    const pairId = this.userStore.activeLanguagePairId();
+    if (!pairId) return;
+    const ids = [...this.#state().activeCourseIds];
+    writeActiveCourseIds(pairId, ids);
+  }
+
+  /**
+   * Восстанавливает activeCourseIds из localStorage для текущей языковой пары.
+   * Ничего не делает, если пара не определена или данных нет.
+   */
+  restoreActiveCourseIds(): void {
+    const pairId = this.userStore.activeLanguagePairId();
+    if (!pairId) return;
+    const saved = readActiveCourseIds(pairId);
+    if (saved.length === 0) return;
+    this.#state.update((s) => ({
+      ...s,
+      activeCourseIds: new Set(saved) as ReadonlySet<string>,
+    }));
+  }
+
+  /**
+   * Восстанавливает индекс вкладки из localStorage.
+   * Ничего не делает, если сохранённое значение совпадает с дефолтным (0).
+   */
+  #restoreSelectedTabIndex(): void {
+    const saved = readSelectedTabIndex();
+    if (saved === 0) return;
+    this.#state.update((s) => ({ ...s, selectedTabIndex: saved }));
   }
 }

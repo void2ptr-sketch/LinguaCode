@@ -15,10 +15,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ProgramsApiService } from '../../../../entities/program/api';
-import type { Program } from '../../../../entities/program/model';
+import type { ProgramWithLessons } from '../../../../entities/program/model';
+import { CourseSearchService } from '../../../../entities/course';
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 import { ErrorToastService } from '../../../../shared/ui/error-toast/error-toast.service';
 import { CourseCatalogStore } from '../../services';
+import { environment } from '../../../../../environments/environment';
 
 /**
  * Course programs list component. Displays programs for selected courses.
@@ -46,9 +48,17 @@ export class CourseCatalogProgramsComponent {
   readonly startProgram = output<string>();
 
   private readonly programsApi = inject(ProgramsApiService);
+  private readonly courseSearch = inject(CourseSearchService);
   private readonly logger = inject(AppLoggerService);
   private readonly errorToast = inject(ErrorToastService);
   private readonly catalogStore = inject(CourseCatalogStore);
+
+  /**
+   * Whether courses are served by the local mock backend (seed data with
+   * string slug IDs). In mock mode slug IDs are valid for the programs API;
+   * against the real backend only numeric IDs (BIGINT PK) are accepted.
+   */
+  private readonly coursesMockEnabled = environment.useCoursesApiMock;
 
   /** Map of course ID → title from the catalog (keys normalized to string). */
   private readonly courseTitleMap = computed(() => {
@@ -61,7 +71,7 @@ export class CourseCatalogProgramsComponent {
   });
 
   /** Loaded programs for the selected courses. */
-  private readonly programs = signal<readonly Program[]>([]);
+  private readonly programs = signal<readonly ProgramWithLessons[]>([]);
   /** Whether programs are currently loading. */
   readonly loading = signal(false);
   /** Error message if loading failed. */
@@ -75,8 +85,26 @@ export class CourseCatalogProgramsComponent {
 
   // ---- Lifecycle ----
 
+  /**
+   * Resolves a course ID for the programs API.
+   *
+   * @remarks
+   * Mirrors `CourseSearchService.resolveCourseIdForWrite`: when the mock
+   * backend serves courses (seed data with string slug IDs), the ID passes
+   * through unchanged — the mock programs API understands slugs. Otherwise
+   * slug IDs are resolved to the numeric form required by the real backend;
+   * numeric IDs always pass through.
+   */
+  private async resolveCourseId(courseId: string): Promise<string> {
+    if (this.coursesMockEnabled || /^\d+$/.test(courseId)) {
+      return courseId;
+    }
+    const resolved = await this.courseSearch.resolveCourseId(courseId);
+    return resolved ?? courseId;
+  }
+
   /** Loads programs when courseIds changes. */
-  private loadPrograms(): void {
+  private async loadPrograms(): Promise<void> {
     const ids = this.courseIds();
     if (ids.size === 0) {
       this.programs.set([]);
@@ -87,33 +115,50 @@ export class CourseCatalogProgramsComponent {
     this.loading.set(true);
     this.error.set(null);
 
-    Promise.all(
-      Array.from(ids).map((id) =>
-        this.programsApi.getByCourse(id).catch((err) => {
-          this.logger.error('Failed to load programs for course', { courseId: id, error: err });
-          return [] as readonly Program[];
-        }),
-      ),
-    )
-      .then((results) => this.programs.set(results.flat()))
-      .finally(() => this.loading.set(false));
+    try {
+      const results: ProgramWithLessons[] = [];
+      for (const id of ids) {
+        const resolvedId = await this.resolveCourseId(id);
+        // Real backend requires numeric IDs (BIGINT PK). Non-numeric slugs
+        // are only valid when the mock backend serves the data.
+        if (!resolvedId || (!this.coursesMockEnabled && !/^\d+$/.test(resolvedId))) {
+          this.logger.warn(
+            `[ProgramList] Skipping course with non-numeric resolved ID: "${id}" → "${resolvedId}"`,
+          );
+          continue;
+        }
+        try {
+          const programs = await this.programsApi.getByCourse(resolvedId);
+          results.push(...programs);
+        } catch (err) {
+          this.logger.error('Failed to load programs for course', {
+            originalId: id,
+            resolvedId,
+            error: err,
+          });
+        }
+      }
+      this.programs.set(results);
+    } finally {
+      this.loading.set(false);
+    }
   }
 
   // Watch courseIds changes
   private readonly loadOnCourseIdsChange = effect(() => {
     this.courseIds();
-    this.loadPrograms();
+    void this.loadPrograms();
   });
 
   // ---- Methods ----
 
   /**
    * Returns the number of lessons for a program.
-   * Uses program.lessonIds as the source (seed catalog may not have lessons).
+   * Uses program.lessons as the source (resolved by the API).
    */
   getLessonCount(programId: string): number {
     const program = this.programs().find((p) => p.id === programId);
-    return program?.lessonIds?.length ?? 0;
+    return program?.lessons?.length ?? 0;
   }
 
   /**

@@ -1,50 +1,43 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-  output,
-  signal,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { activeLanguagePairCriteria } from '../../../../entities/language-pair/lib/language-pair-scope.utils';
-import { courseAuthoringWithIdea } from '../../../../entities/course/utils/course-authoring.utils';
-import { ScenarioSearchService } from '../../../../entities/scenario';
-import type { CourseAuthoringStatus } from '../../../../entities/course/model';
-import { COURSE_AUTHORING_STATUSES } from '../../../../entities/course/model';
-import type { ScenarioIndexEntry } from '../../../../entities/scenario/model';
-import { UserStore } from '../../../../entities/user/model/user.store';
-import { MarkdownFieldComponent } from '../../../../shared/utils/markdown-field';
-import type { CourseFormDraft, LessonFormDraft, ProgramFormDraft } from '../../types';
 import {
-  emptyLessonFormDraft,
-  emptyProgramFormDraft,
-  lessonDraftKey,
-  programDraftKey,
-} from '../../utils/course-form-draft.utils';
+  ContentHierarchySelectorComponent,
+  type HierarchyLevel,
+  type HierarchyValue,
+} from '../../../../entities/content-hierarchy';
+import { courseAuthoringWithIdea } from '../../../../entities/course/utils/course-authoring.utils';
+import type { CourseAuthoringStatus, CoursePracticeMode } from '../../../../entities/course/model';
+import {
+  COURSE_AUTHORING_STATUSES,
+  DEFAULT_COURSE_PRACTICE_SETTINGS,
+} from '../../../../entities/course/model';
+import type { CourseRequiredTier } from '../../../../entities/course/repository/course-catalog.port';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
+import { MarkdownFieldComponent } from '../../../../shared/utils/markdown-field';
+import type { CourseFormDraft } from '../../types';
+
+/** Types of course export operations. */
+export type CourseExportType = 'pdf-without-hints' | 'pdf-with-hints' | 'json' | 'scorm';
 
 /**
  * Full form component for creating and editing courses.
  *
- * Provides UI controls for course title, description, lessons (with scenarios and prerequisites),
+ * Provides UI controls for course title, description, practice settings,
  * and authoring metadata (status, idea).
  *
  * @remarks
- * Loads available scenarios from `ScenarioSearchService` on initialization.
  * Emits draft updates through the `draftChange` output for parent component synchronization.
  * @see CourseFormDraft
- * @see LessonFormDraft
  */
 @Component({
   selector: 'app-course-form',
@@ -52,7 +45,6 @@ import {
   imports: [
     FormsModule,
     MatButtonModule,
-    MatCardModule,
     MatCheckboxModule,
     MatDividerModule,
     MatFormFieldModule,
@@ -60,15 +52,14 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTabsModule,
+    MatTooltipModule,
     MarkdownFieldComponent,
+    ContentHierarchySelectorComponent,
   ],
   templateUrl: './course-form.component.html',
   styleUrl: './course-form.component.scss',
 })
-export class CourseFormComponent implements OnInit {
-  private readonly scenarioSearchService = inject(ScenarioSearchService);
-  private readonly userStore = inject(UserStore);
-
+export class CourseFormComponent {
   /**
    * Required course form draft being edited or created.
    *
@@ -85,6 +76,14 @@ export class CourseFormComponent implements OnInit {
   readonly readOnly = input(false);
 
   /**
+   * Available language pairs from the registry.
+   *
+   * @remarks
+   * Populated by the parent dialog component via `LanguagePairsApiService.listAll()`.
+   */
+  readonly languagePairs = input<readonly LanguagePairDto[]>([]);
+
+  /**
    * Emits the updated course form draft when the user makes changes.
    *
    * @remarks
@@ -92,38 +91,23 @@ export class CourseFormComponent implements OnInit {
    * output and updates its own signal with the new draft value.
    */
   readonly draftChange = output<CourseFormDraft>();
-  /**
-   * Emits when the user requests PDF export.
-   *
-   * @remarks
-   * The payload indicates whether hints (correct answers) should be included.
-   */
-  readonly exportPdf = output<boolean>();
 
-  /**
-   * Utility function for generating unique program draft keys.
-   *
-   * @remarks
-   * Used in templates for `ngModel` bindings.
-   */
-  readonly programDraftKey = programDraftKey;
+  /** Levels rendered on the course «Размещение» tab. */
+  readonly hierarchyLevels: readonly HierarchyLevel[] = ['languagePair'];
 
+  /** Current hierarchy value derived from the draft. */
+  readonly hierarchyValue = computed<HierarchyValue>(() => ({
+    languagePairId: this.draft().languagePairId,
+  }));
   /**
-   * Utility function for generating unique lesson draft keys.
+   * Emits when the user requests a course export.
    *
    * @remarks
-   * Used in templates for prerequisite selection.
+   * The payload indicates the export type: pdf-without-hints, pdf-with-hints,
+   * json (CourseBundle), or scorm (SCORM/xAPI package).
    */
-  readonly lessonDraftKey = lessonDraftKey;
+  readonly exportRequested = output<CourseExportType>();
 
-  /**
-   * Available scenarios for assignment to lessons.
-   *
-   * @remarks
-   * Populated from `ScenarioSearchService` during initialization.
-   * Filtered by the current language pair and published scope.
-   */
-  readonly scenarioOptions = signal<readonly ScenarioIndexEntry[]>([]);
   /** Available authoring status options (e.g., 'draft', 'planned', 'generating'). */
   readonly authoringStatusOptions = COURSE_AUTHORING_STATUSES;
 
@@ -141,15 +125,37 @@ export class CourseFormComponent implements OnInit {
     failed: 'Ошибка',
   };
 
-  async ngOnInit(): Promise<void> {
-    const pair = this.userStore.languagePair();
-    const page = await this.scenarioSearchService.search({
-      scope: 'published',
-      ...activeLanguagePairCriteria(pair),
-      page: { page: 0, pageSize: 100 },
-    });
-    this.scenarioOptions.set(page.items);
-  }
+  /**
+   * Human-readable labels for course practice mode values.
+   *
+   * @remarks
+   * Maps each `CoursePracticeMode` value to its display name in Russian.
+   */
+  readonly practiceModeLabels: Record<CoursePracticeMode, string> = {
+    guided: 'Линейный (последовательный)',
+    open: 'Свободный (выбор сценариев)',
+  };
+
+  /** Available required tier options for course access control. */
+  readonly requiredTierOptions: readonly CourseRequiredTier[] = [
+    'FREE',
+    'STARTER',
+    'GROWTH',
+    'PREMIUM',
+  ] as const;
+
+  /**
+   * Human-readable labels for course required tier values.
+   *
+   * @remarks
+   * Maps each `CourseRequiredTier` value to its display name in Russian.
+   */
+  readonly requiredTierLabels: Record<CourseRequiredTier, string> = {
+    FREE: 'Бесплатный',
+    STARTER: 'Starter',
+    GROWTH: 'Growth',
+    PREMIUM: 'Premium',
+  };
 
   /**
    * Emits the updated draft to the parent component.
@@ -211,300 +217,129 @@ export class CourseFormComponent implements OnInit {
     });
   }
 
-  /**
-   * Updates the title of a specific program.
-   *
-   * @param index — The zero-based index of the program.
-   * @param value — The new program title.
-   */
-  updateProgramTitle(index: number, value: string): void {
-    const program = this.draft().programs[index];
-    if (!program) {
-      return;
-    }
-
-    this.updateProgram(index, { ...program, title: value });
-  }
+  // ── Practice Settings ──
 
   /**
-   * Updates the description of a specific program.
+   * Updates the practice mode in the draft.
    *
-   * @param index — The zero-based index of the program.
-   * @param value — The new program description.
+   * @param value — The new `CoursePracticeMode` value.
    */
-  updateProgramDescription(index: number, value: string): void {
-    const program = this.draft().programs[index];
-    if (!program) {
-      return;
-    }
-
-    this.updateProgram(index, { ...program, description: value });
-  }
-
-  /**
-   * Replaces a program at a specific index with the provided program draft.
-   *
-   * @param index — The zero-based index of the program to replace.
-   * @param program — The new program draft.
-   */
-  updateProgram(index: number, program: ProgramFormDraft): void {
-    const programs = this.draft().programs.map((item, itemIndex) =>
-      itemIndex === index ? program : item,
-    );
-    this.updateDraft({ ...this.draft(), programs });
-  }
-
-  /**
-   * Appends a new empty program to the draft.
-   *
-   * @remarks
-   * Assigns the next available order number.
-   */
-  addProgram(): void {
-    const programs = [
-      ...this.draft().programs,
-      emptyProgramFormDraft(this.draft().programs.length),
-    ];
-    this.updateDraft({ ...this.draft(), programs });
-  }
-
-  /**
-   * Removes a program at the specified index.
-   *
-   * @remarks
-   * Prevents removal if there is only one program.
-   *
-   * @param index — The zero-based index of the program to remove.
-   */
-  removeProgram(index: number): void {
-    if (this.draft().programs.length <= 1) {
-      return;
-    }
-
-    const programs = this.draft().programs.filter((_, itemIndex) => itemIndex !== index);
-    this.updateDraft({ ...this.draft(), programs });
-  }
-
-  /**
-   * Updates the title of a specific lesson within a program.
-   *
-   * @param programIndex — The zero-based index of the program.
-   * @param lessonIndex — The zero-based index of the lesson.
-   * @param value — The new lesson title.
-   */
-  updateLessonTitle(programIndex: number, lessonIndex: number, value: string): void {
-    const program = this.draft().programs[programIndex];
-    if (!program) {
-      return;
-    }
-
-    const lesson = program.lessons[lessonIndex];
-    if (!lesson) {
-      return;
-    }
-
-    this.updateLesson(programIndex, {
-      ...program,
-      lessons: program.lessons.map((l, i) => (i === lessonIndex ? { ...l, title: value } : l)),
+  updatePracticeMode(value: CoursePracticeMode): void {
+    const draft = this.draft();
+    this.updateDraft({
+      ...draft,
+      practiceSettings: {
+        ...DEFAULT_COURSE_PRACTICE_SETTINGS,
+        ...draft.practiceSettings,
+        mode: value,
+      },
     });
   }
 
   /**
-   * Updates the description of a specific lesson within a program.
+   * Updates the `requireLessonForScenarios` setting.
    *
-   * @param programIndex — The zero-based index of the program.
-   * @param lessonIndex — The zero-based index of the lesson.
-   * @param value — The new lesson description.
+   * @param value — Whether scenarios require a lesson selection.
    */
-  updateLessonDescription(programIndex: number, lessonIndex: number, value: string): void {
-    const program = this.draft().programs[programIndex];
-    if (!program) {
-      return;
-    }
-
-    const lesson = program.lessons[lessonIndex];
-    if (!lesson) {
-      return;
-    }
-
-    this.updateLesson(programIndex, {
-      ...program,
-      lessons: program.lessons.map((l, i) =>
-        i === lessonIndex ? { ...l, description: value } : l,
-      ),
+  updateRequireLessonForScenarios(value: boolean): void {
+    const draft = this.draft();
+    this.updateDraft({
+      ...draft,
+      practiceSettings: {
+        ...DEFAULT_COURSE_PRACTICE_SETTINGS,
+        ...draft.practiceSettings,
+        requireLessonForScenarios: value,
+      },
     });
   }
 
   /**
-   * Updates the assigned scenario IDs for a specific lesson.
+   * Updates the `enforceLessonPrerequisites` setting.
    *
-   * @param programIndex — The zero-based index of the program.
-   * @param lessonIndex — The zero-based index of the lesson.
-   * @param scenarioIds — The new array of scenario IDs.
+   * @param value — Whether lesson prerequisites are enforced during practice.
    */
-  updateLessonScenarioIds(
-    programIndex: number,
-    lessonIndex: number,
-    scenarioIds: readonly string[],
-  ): void {
-    const program = this.draft().programs[programIndex];
-    if (!program) {
-      return;
-    }
-
-    const lesson = program.lessons[lessonIndex];
-    if (!lesson) {
-      return;
-    }
-
-    this.updateLesson(programIndex, {
-      ...program,
-      lessons: program.lessons.map((l, i) => (i === lessonIndex ? { ...l, scenarioIds } : l)),
+  updateEnforceLessonPrerequisites(value: boolean): void {
+    const draft = this.draft();
+    this.updateDraft({
+      ...draft,
+      practiceSettings: {
+        ...DEFAULT_COURSE_PRACTICE_SETTINGS,
+        ...draft.practiceSettings,
+        enforceLessonPrerequisites: value,
+      },
     });
   }
 
   /**
-   * Updates the prerequisite lesson IDs for a specific lesson.
+   * Updates the `allowDifficultyFilter` setting.
    *
-   * @param programIndex — The zero-based index of the program.
-   * @param lessonIndex — The zero-based index of the lesson.
-   * @param prerequisiteLessonIds — The new array of prerequisite lesson keys.
+   * @param value — Whether difficulty filtering is allowed on the Scenarios tab.
    */
-  updateLessonPrerequisites(
-    programIndex: number,
-    lessonIndex: number,
-    prerequisiteLessonIds: readonly string[],
-  ): void {
-    const program = this.draft().programs[programIndex];
-    if (!program) {
-      return;
-    }
+  updateAllowDifficultyFilter(value: boolean): void {
+    const draft = this.draft();
+    this.updateDraft({
+      ...draft,
+      practiceSettings: {
+        ...DEFAULT_COURSE_PRACTICE_SETTINGS,
+        ...draft.practiceSettings,
+        allowDifficultyFilter: value,
+      },
+    });
+  }
 
-    const lesson = program.lessons[lessonIndex];
-    if (!lesson) {
-      return;
-    }
+  // ── Required Tier & Slug ──
 
-    this.updateLesson(programIndex, {
-      ...program,
-      lessons: program.lessons.map((l, i) =>
-        i === lessonIndex ? { ...l, prerequisiteLessonIds } : l,
-      ),
+  /**
+   * Updates the required tier in the draft.
+   *
+   * @param value — The new `CourseRequiredTier` value.
+   */
+  updateRequiredTier(value: CourseRequiredTier): void {
+    this.updateDraft({ ...this.draft(), requiredTier: value });
+  }
+
+  /**
+   * Updates the slug in the draft.
+   *
+   * @param value — The new slug string.
+   */
+  updateSlug(value: string): void {
+    this.updateDraft({ ...this.draft(), slug: value });
+  }
+
+  /**
+   * Updates the language pair ID in the draft.
+   *
+   * @param languagePairId — The numeric language pair ID, or null to clear.
+   */
+  onLanguagePairChange(languagePairId: number | null): void {
+    this.updateDraft({
+      ...this.draft(),
+      languagePairId: languagePairId ?? undefined,
     });
   }
 
   /**
-   * Returns a display label for a lesson.
+   * Applies the shared hierarchy selector value to the course draft.
    *
-   * @param lesson — The lesson form draft.
-   * @param index — The zero-based index of the lesson.
-   * @returns The lesson title if non-empty, otherwise "Урок N" (where N is 1-based index).
+   * @param value - New hierarchy value.
    */
-  lessonLabel(lesson: LessonFormDraft, index: number): string {
-    return lesson.title.trim() || `Урок ${index + 1}`;
+  onHierarchyChange(value: HierarchyValue): void {
+    this.updateDraft({
+      ...this.draft(),
+      languagePairId: value.languagePairId,
+    });
   }
 
-  /**
-   * Returns the list of prerequisite options for a specific lesson.
-   *
-   * @remarks
-   * Excludes the lesson itself from the options to prevent self-references.
-   *
-   * @param programIndex — The zero-based index of the program.
-   * @param lessonIndex — The zero-based index of the target lesson.
-   * @returns Array of `{ key, label, index }` objects for other lessons.
-   */
-  prerequisiteOptions(
-    programIndex: number,
-    lessonIndex: number,
-  ): readonly { key: string; label: string }[] {
-    const program = this.draft().programs[programIndex];
-    if (!program) {
-      return [];
-    }
-
-    return program.lessons
-      .map((lesson, lIndex) => ({
-        key: lessonDraftKey(lesson),
-        label: this.lessonLabel(lesson, lIndex),
-        index: lIndex,
-      }))
-      .filter((option) => option.index !== lessonIndex);
-  }
+  // ── Export ──
 
   /**
-   * Returns the currently selected prerequisite lesson IDs for a specific lesson.
+   * Handles PDF export requests from the Export tab.
    *
-   * @param programIndex — The zero-based index of the program.
-   * @param lessonIndex — The zero-based index of the lesson.
-   * @returns Array of prerequisite lesson keys, or empty array if lesson not found.
+   * @param withHints — Whether to include correct answers (hints) in the PDF.
    */
-  prerequisiteSelection(programIndex: number, lessonIndex: number): readonly string[] {
-    const program = this.draft().programs[programIndex];
-    if (!program) {
-      return [];
-    }
-
-    const lesson = program.lessons[lessonIndex];
-    if (!lesson) {
-      return [];
-    }
-
-    return lesson.prerequisiteLessonIds;
-  }
-
-  /**
-   * Updates a lesson within a program.
-   *
-   * @param programIndex — The zero-based index of the program.
-   * @param program — The updated program draft.
-   */
-  updateLesson(programIndex: number, program: ProgramFormDraft): void {
-    const programs = this.draft().programs.map((item, itemIndex) =>
-      itemIndex === programIndex ? program : item,
-    );
-    this.updateDraft({ ...this.draft(), programs });
-  }
-
-  /**
-   * Appends a new empty lesson to a specific program.
-   *
-   * @param programIndex — The zero-based index of the program.
-   */
-  addLesson(programIndex: number): void {
-    const program = this.draft().programs[programIndex];
-    if (!program) {
-      return;
-    }
-
-    const lessons = [...program.lessons, emptyLessonFormDraft(program.lessons.length)];
-    this.updateLesson(programIndex, { ...program, lessons });
-  }
-
-  /**
-   * Removes a lesson at the specified index within a program.
-   *
-   * @remarks
-   * Prevents removal if there is only one lesson. Cleans up prerequisite references
-   * to the removed lesson from other lessons.
-   *
-   * @param programIndex — The zero-based index of the program.
-   * @param lessonIndex — The zero-based index of the lesson to remove.
-   */
-  removeLesson(programIndex: number, lessonIndex: number): void {
-    const program = this.draft().programs[programIndex];
-    if (!program || program.lessons.length <= 1) {
-      return;
-    }
-
-    const removedKey = lessonDraftKey(program.lessons[lessonIndex]);
-    const lessons = program.lessons
-      .filter((_, itemIndex) => itemIndex !== lessonIndex)
-      .map((lesson, order) => ({
-        ...lesson,
-        order,
-        prerequisiteLessonIds: lesson.prerequisiteLessonIds.filter((key) => key !== removedKey),
-      }));
-    this.updateLesson(programIndex, { ...program, lessons });
+  onExportPdf(withHints: boolean): void {
+    const type: CourseExportType = withHints ? 'pdf-with-hints' : 'pdf-without-hints';
+    this.exportRequested.emit(type);
   }
 }

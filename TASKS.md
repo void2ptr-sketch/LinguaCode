@@ -1,6 +1,35 @@
 # `LinguaCode` — приложение для исследования и изучения языков
 
-Чеклист MVP и бэклога. Оглавление: [docs/INDEX.md](./docs/INDEX.md) · бизнес: [docs/BUSINESS.md](./docs/BUSINESS.md) · домен: [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md) · архитектура: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
+Чеклист MVP и бэклога. Оглавление: [docs/INDEX.md](./docs/INDEX.md) · бизнес: [docs/BUSINESS.md](./docs/BUSINESS.md) · домен: [docs/PRODUCT/DOMAIN.md](./docs/PRODUCT/DOMAIN.md) · архитектура: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
+
+## Статусы задач
+
+| Маркер | Значение                          | Когда использовать                                |
+| ------ | --------------------------------- | ------------------------------------------------- |
+| `[ ]`  | Ожидает — не начато               | Новая задача, не в работе                         |
+| `[→]`  | В работе — агент реализует        | Ветка создана, изменения в процессе               |
+| `[x]`  | Готово — код написан, нужен ревью | Реализация завершена, не верифицировано           |
+| `[✓]`  | Готово + верифицировано           | `npm run verify` прошёл, docs синхронизированы    |
+| `[⊘]`  | Отменено / заменено               | Заменено другой задачей или отменено              |
+| `[!]`  | Заблокировано                     | Ждёт решения, бэкенда, дизайна или внешнего ввода |
+
+- `[→]` — только при активной реализации; `[x]` — сразу после кода, `[✓]` — только после `npm run verify`.
+- **Definition of Done** (см. [`.continue/rules/01.meta.04.tasks-workflow.rule.md`](.continue/rules/01.meta.04.tasks-workflow.rule.md)): файл существует + build + tests + `npm run verify` + docs synced.
+
+## Матрица: файл ↔ задача ↔ документ
+
+> Автоматически поддерживаемая таблица связи кода, задач и документации. Обновляется при реализации подзадачи.
+
+| Файл                                                            | Задача | Документ                                         | Статус |
+| --------------------------------------------------------------- | ------ | ------------------------------------------------ | ------ |
+| `entities/program/model/program.types.ts`                       | G17a   | `ARCHITECTURE.program.md`                        | ⏳     |
+| `features/content-explorer/components/content-explorer-page/`   | G?     | `CONTENT-EXPLORER.md`                            | ✓      |
+| `features/scenario-builder/components/scenario-builder-dialog/` | G?     | `SCENARIO-BUILDER.md`                            | ✓      |
+| `features/card-editor/components/card-editor-dialog/`           | G?     | `CARD-CATALOG.md`, `ARCHITECTURE.card-editor.md` | ✓      |
+| `features/card-select/components/card-focus-shell/`             | Ca3    | `ARCHITECTURE.card-select.md`                    | ✓      |
+| `entities/chinese/lib/`                                         | H15    | `CJK-CONTENT.md`                                 | ✓      |
+| `shared/pagination/`                                            | —      | `CARD-CATALOG.md`                                | ✓      |
+| `entities/auth/services/auth.store.ts`                          | G7     | `LANGUAGE-PAIR.md`                               | ✓      |
 
 ## 1. Инициализация проекта
 
@@ -13,7 +42,7 @@
 
 ## 2. Базовая архитектура
 
-- [x] Домен описан — см. [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md)
+- [x] Домен описан — см. [docs/PRODUCT/DOMAIN.md](./docs/PRODUCT/DOMAIN.md)
 - [x] Настроить маршрутизацию (`app/app/app.routes.ts`, lazy `loadComponent`)
 - [x] Добавить layout (шапка, подвал, навигация, контент, menu-\*)
   - шапка — `/src/app/widgets/header`
@@ -575,9 +604,18 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G11 — уроки и курсы (Lesson, Course)**
 
-План: [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md#иерархия-контента). Над `Scenario` — тематические **уроки** и учебные **курсы**. `LanguagePair` остаётся scope контента (G7/G8); `Course` — программа из уроков в рамках пары.
+План: [docs/PRODUCT/DOMAIN.md](./docs/PRODUCT/DOMAIN.md#иерархия-контента). Над `Scenario` — тематические **уроки** и учебные **курсы**. `LanguagePair` остаётся scope контента (G7/G8); `Course` — программа из уроков в рамках пары.
 
-**G11a — домен и типы**
+**G11a — домен и типы** ✅
+
+Definition of Done:
+
+- [✓] `Lesson`, `Course` в `core/models/` (`lesson.types.ts`, `course.types.ts`)
+- [✓] `Course.languagePair: LanguagePair` — фильтр и валидация при создании
+- [✓] `Lesson.scenarioIds` — порядок сценариев
+- [✓] `LearningResult.lessonId?`, `courseId?` — для прогресса
+- [✓] `DOMAIN.md` синхронизирован с кодом
+- [✓] `npm run verify` pass
 
 - [x] `Lesson`, `Course` в `core/models/` (`lesson.types.ts`, `course.types.ts` или общий файл)
 - [x] `Course.languagePair: LanguagePair` — фильтр и валидация при создании
@@ -622,7 +660,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G13 — Learning Home (dashboard обучения)**
 
-Контекст: `/home` — точка входа «куда учиться дальше»; `/cards/select` — сессия (курс / уроки / сценарии / карточки). См. [DOMAIN.md](./docs/SYSTEM/DOMAIN.md#learning-home-g13) · [LANGUAGE-PAIR.md](./docs/FEATURES/LANGUAGE-PAIR.md#learning-home-g13).
+Контекст: `/home` — точка входа «куда учиться дальше»; `/cards/select` — сессия (курс / уроки / сценарии / карточки). См. [DOMAIN.md](./docs/PRODUCT/DOMAIN.md#learning-home-g13) · [LANGUAGE-PAIR.md](./docs/FEATURES/LANGUAGE-PAIR.md#learning-home-g13).
 
 - [x] **G13a** — `LearningSessionPreferences` в `UserLanguagePairSettings` + persistence
 - [x] **G13b** — `learning-resume.utils` + `LearningDashboardService` (следующий шаг, roadmap)
@@ -643,6 +681,19 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] SCSS: grid / chips; не дублировать длинную строку из вкладки «Обучение»
 
 **G14b — вкладка «Обучение»: фокус на карточке (P0)**
+
+> **Статус:** частично готово · **Docs:** `ARCHITECTURE.card-select.md`
+
+Definition of Done:
+
+- [✓] Компонент `app-practice-session-bar` существует
+- [✓] Chips (программа, урок, сценарий) + «Карточка N/M»
+- [✓] `mat-progress-bar` по текущему сценарию (`CardSelectStore`)
+- [✓] Layout: toolbar → context → card (hero) → progress; `max-width` ~42rem
+- [✓] Карточка: elevation, min-height, padding
+- [ ] Completion: CTA «К урокам» через `learning-resume` (есть «Следующий сценарий урока»)
+- [ ] Smoke-тест на вкладку «Обучение»
+- [ ] `npm run verify` pass
 
 - [x] Chips (программа, урок, сценарий) + «Карточка N/M»
 - [x] `mat-progress-bar` по текущему сценарию (`CardSelectStore`)
@@ -768,6 +819,21 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G17a — домен и типы**
 
+> **Статус:** запланировано · **Docs:** [ARCHITECTURE.program.md](./docs/ARCHITECTURE/ARCHITECTURE.program.md) · [DOMAIN.md](./docs/PRODUCT/DOMAIN.md)
+
+Definition of Done:
+
+- [ ] Модель `Program` в `entities/program/model/program.types.ts`
+- [ ] `ProgramWithLessons` — аналог `CourseWithLessons`
+- [ ] `Course.programIds: readonly string[]` (замена `lessonIds`)
+- [ ] `Program.lessonIds: readonly string[]`
+- [ ] `LearningSessionPreferences`: добавить `activeProgramId?`
+- [ ] `LearningResult`: добавить `programId?`
+- [ ] Barrel `index.ts` экспортирует все типы
+- [ ] `DOMAIN.md`: обновить иерархию и диаграмму
+- [ ] `ARCHITECTURE.program.md`: новый файл документации
+- [ ] `npm run verify` pass
+
 - [ ] `Program` в `entities/program/model/program.types.ts`
 - [ ] `ProgramWithLessons` — аналог `CourseWithLessons`
 - [ ] `Course.programIds: readonly string[]` (замена `lessonIds`)
@@ -862,6 +928,16 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G12d — метрики и приёмка**
 
+> **Статус:** не начато · **Docs:** `EDITOR-UX.md`
+
+Definition of Done:
+
+- [ ] **Метрика:** базовый select ru→en — ≤ 8 полей, создание < 2 мин
+- [ ] **Метрика:** `card-form` shell + kind-forms — < 200 строк на файл
+- [ ] Smoke: create / edit / preview / try для каждого kind в обоих режимах
+- [ ] Регрессия: demo-карточки в `select-cards.json` открываются и сохраняются
+- [ ] `npm run verify` pass
+
 - [ ] Базовый select ru→en: **≤ 8 полей**, создание **< 2 мин**
 - [ ] `card-form` shell + kind-forms: **< 200 строк** на файл (после G12b)
 - [ ] Smoke: create / edit / preview / try для каждого kind в обоих режимах
@@ -900,7 +976,7 @@ session.summary(): { character, totalMistakes, strokeCount }
   - Сводная информация об особенностях
   - UML-диаграммы (Mermaid) в каждом файле
 - [x] Файл `/docs/BUSINESS.md` содержит бизнес-идеи и use case проекта
-- [x] Файл `/docs/SYSTEM/DOMAIN.md` содержит модели проекта (таблица сущностей + схемы типов)
+- [x] Файл `/docs/PRODUCT/DOMAIN.md` содержит модели проекта (таблица сущностей + схемы типов)
 - [x] Документацию вести на русском языке
 - [x] Формат документации UTF-8 (см. [INDEX.md § Формат](./docs/INDEX.md))
 
@@ -938,3 +1014,57 @@ session.summary(): { character, totalMistakes, strokeCount }
   - [ ] EMAIL [ '.psbank.ru', '... ']
   - [ ] списка значений
   - [ ] диапазон значений
+
+---
+
+## Матрица: файл ↔ задача ↔ документ
+
+> Связь кода, задач и документации. Обновляется при реализации подзадачи.
+> Статус: `✓` = verified, `→` = в работе, `⏳` = запланировано, `—` = не применимо.
+
+| Файл (путь)                                                     | Задача      | Документ                           | Статус |
+| --------------------------------------------------------------- | ----------- | ---------------------------------- | ------ |
+| `entities/program/model/program.types.ts`                       | G17a        | `ARCHITECTURE.program.md`          | ⏳     |
+| `entities/program/repository/program.repository.ts`             | G17b        | `ARCHITECTURE.program.md`          | ⏳     |
+| `features/program-builder/components/`                          | G17e        | `ARCHITECTURE.program.md`          | ⏳     |
+| `features/content-explorer/components/content-explorer-page/`   | G?          | `CONTENT-EXPLORER.md`              | ✓      |
+| `features/content-explorer/components/explorer-detail/`         | G?          | `CONTENT-EXPLORER.md`              | ✓      |
+| `features/scenario-builder/components/scenario-builder-dialog/` | G?          | `SCENARIO-BUILDER.md`              | ✓      |
+| `features/scenario-builder/services/scenario-builder.store.ts`  | G?          | `SCENARIO-BUILDER.md`              | ✓      |
+| `features/card-editor/components/card-editor-dialog/`           | G?          | `ARCHITECTURE.card-editor.md`      | ✓      |
+| `features/card-editor/components/card-form/`                    | G12b        | `EDITOR-UX.md`                     | ✓      |
+| `features/card-select/components/card-focus-shell/`             | Ca3         | `ARCHITECTURE.card-select.md`      | ✓      |
+| `features/card-select/components/card-select-page/`             | G14         | `ARCHITECTURE.card-select.md`      | ✓      |
+| `entities/chinese/lib/quiz/hanzi-quiz-session.ts`               | H15         | `CJK-CONTENT.md`                   | ✓      |
+| `entities/chinese/lib/tone-marks/`                              | G9f         | `CJK-CONTENT.md`                   | ✓      |
+| `entities/chinese/ui/pinyin-keyboard/`                          | G9f         | `CJK-CONTENT.md`                   | ✓      |
+| `shared/pagination/`                                            | —           | `CARD-CATALOG.md`                  | ✓      |
+| `entities/auth/services/auth.store.ts`                          | G7          | `LANGUAGE-PAIR.md`                 | ✓      |
+| `entities/user/`                                                | G1, G5      | `ARCHITECTURE.user.md`             | ✓      |
+| `features/learning-results/`                                    | G5          | `ARCHITECTURE.learning-results.md` | ✓      |
+| `features/home/`                                                | G13         | `ARCHITECTURE.home.md`             | ✓      |
+| `features/course-builder/`                                      | G11         | `ARCHITECTURE.course.md`           | ✓      |
+| `features/course-catalog/`                                      | G11f        | `COURSE-CATALOG.md`                | ✓      |
+| `features/journey/`                                             | —           | `ARCHITECTURE.journey.md`          | ✓      |
+| `shared/ui/error-toast/`                                        | G7          | —                                  | ✓      |
+| `shared/storage/`                                               | G15         | `ARCHITECTURE.md`                  | ✓      |
+| `shared/sync/`                                                  | G15         | `ARCHITECTURE.md`                  | ✓      |
+| `entities/content-seed/`                                        | G15         | `ARCHITECTURE.md`                  | ✓      |
+| `entities/course/`                                              | G11, G16    | `ARCHITECTURE.course.md`           | ✓      |
+| `entities/phonetic/`                                            | G10         | `PHONETIC-CONTENT.md`              | ✓      |
+| `shared/utils/markdown-field/`                                  | —           | —                                  | ✓      |
+| `shared/utils/pagination/`                                      | —           | `CARD-CATALOG.md`                  | ✓      |
+| `shared/utils/cards/`                                           | —           | —                                  | ✓      |
+| `app/app.routes.ts`                                             | G14f        | `ARCHITECTURE.md`                  | ✓      |
+| `app/app.config.ts`                                             | G15         | `ARCHITECTURE.md`                  | ✓      |
+| `widgets/sidebar-navigation-left/`                              | G8          | —                                  | ✓      |
+| `widgets/main-header/`                                          | —           | —                                  | ✓      |
+| `widgets/main-layout/`                                          | —           | —                                  | ✓      |
+| `pages/home/`                                                   | G13         | `ARCHITECTURE.home.md`             | ✓      |
+| `pages/card-select/`                                            | G14         | `ARCHITECTURE.card-select.md`      | ✓      |
+| `pages/content-explorer/`                                       | G?          | `CONTENT-EXPLORER.md`              | ✓      |
+| `pages/user/`                                                   | G1, G5, G9g | `ARCHITECTURE.user.md`             | ✓      |
+| `pages/journey/`                                                | —           | `ARCHITECTURE.journey.md`          | ✓      |
+| `pages/course-catalog/`                                         | G11f        | `COURSE-CATALOG.md`                | ✓      |
+| `pages/scenario-builder/`                                       | G?          | `SCENARIO-BUILDER.md`              | ✓      |
+| `pages/card-editor/`                                            | G?          | `ARCHITECTURE.card-editor.md`      | ✓      |

@@ -23,6 +23,23 @@ export type CardKind =
   | 'code-trace';
 
 /**
+ * Difficulty level of a card.
+ *
+ * @remarks
+ * Mirrors the backend `CardDifficulty` enum and the `education_cards.difficulty`
+ * check constraint (`BEGINNER`, `INTERMEDIATE`, `ADVANCED`, `EXPERT`).
+ */
+export type CardDifficulty = 'beginner' | 'intermediate' | 'advanced' | 'expert';
+
+/**
+ * Minimum payment tier required to access a card.
+ *
+ * @remarks
+ * Mirrors the backend `PaymentTier` enum used by `required_tier`.
+ */
+export type CardPaymentTier = 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+
+/**
  * User-configurable appearance settings for cards.
  *
  * @remarks
@@ -48,12 +65,40 @@ export type CardBase = {
   appearance: CardAppearance;
   /** Card metadata. When absent, data from user-content-overlay is used. */
   meta?: CardIndexMetaOverride;
+  /** Content-based slug identifier. */
+  slug?: string;
+  /** ID of the card author. */
+  authorId?: string;
+  /** Minimum payment tier required to access this card. */
+  requiredTier?: CardPaymentTier;
+  /** Whether the card is published and visible to learners. */
+  published?: boolean;
+  /** Difficulty level of the card. */
+  difficulty?: CardDifficulty;
+  /** Catalog tags. */
+  tags?: readonly string[];
+  /** Numeric ID of the language pair (`language_pairs.id`). */
+  languagePairId?: string;
   /** ID of the Course this card belongs to. */
   courseId?: string;
+  /** ID of the Program this card belongs to. */
+  programId?: string;
   /** ID of the Lesson this card belongs to. */
   lessonId?: string;
   /** ID of the Scenario this card belongs to. */
   scenarioId?: string;
+  /**
+   * Position of the card inside its scenario (`card_order`).
+   *
+   * @remarks
+   * The order belongs to the scenario → card link (a card can be shared by
+   * several scenarios), not to the card entity itself.
+   */
+  order?: number;
+  /** Creation timestamp (ISO 8601). */
+  createdAt?: string;
+  /** Last update timestamp (ISO 8601). */
+  updatedAt?: string;
 };
 
 import type { PhoneticLexeme, ToneMark } from '../../phonetic/model/phonetic-content.types';

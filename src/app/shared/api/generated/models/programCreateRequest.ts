@@ -19,4 +19,6 @@ export interface ProgramCreateRequest {
   courseId: number;
   languagePairId?: number;
   requiredTier: ProgramCreateRequestRequiredTier;
+  /** Порядок в курсе (по умолчанию 0) */
+  order?: number;
 }

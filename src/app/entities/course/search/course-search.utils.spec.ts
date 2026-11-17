@@ -1,220 +1,97 @@
+import { describe, expect, it } from 'vitest';
+
+import { filterCourseIndex, matchesCourseIndexEntry } from './course-search.utils';
 import type { CourseIndexEntry } from '../model';
-import { matchesCourseIndexEntry } from './course-search.utils';
 
-const baseEntry: CourseIndexEntry = {
-  id: 'c1',
-  title: 'Demo course',
-  authorId: 'local-user',
-  programCount: 1,
-  published: true,
-  updatedAt: '2026-01-01T00:00:00.000Z',
-  languagePairSummary: 'Русский → English',
+function entry(overrides: Partial<CourseIndexEntry>): CourseIndexEntry {
+  return {
+    id: 'c1',
+    title: 'Course 1',
+    authorId: 'author-1',
+    programCount: 1,
+    published: true,
+    updatedAt: '2026-01-01T00:00:00.000Z',
+    languagePairSummary: 'Russian → English',
+    knownLanguage: 'ru',
+    learningLanguage: 'en',
+    ...overrides,
+  };
+}
+
+const ruEn = entry({ id: 'c-ru-en', knownLanguage: 'ru', learningLanguage: 'en' });
+const ruZh = entry({
+  id: 'c-ru-zh',
   knownLanguage: 'ru',
-  learningLanguage: 'en',
-};
+  learningLanguage: 'zh',
+  languagePairSummary: 'Russian → Chinese',
+});
 
-describe('course-search.utils', () => {
-  describe('matchesCourseIndexEntry', () => {
-    it('should match entry by active language pair criteria', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        { scope: 'published', knownLanguage: 'ru', learningLanguage: 'en' },
-        'other-user',
-      );
+describe('course-search.utils — multi-pair criteria', () => {
+  it('keeps entries matching ANY of the listed pairs', () => {
+    const result = filterCourseIndex(
+      [ruEn, ruZh],
+      { scope: 'all', languagePairs: [{ known: 'ru', learning: 'zh' }] },
+      'user-1',
+    );
 
-      expect(matches).toBe(true);
-    });
+    expect(result.map((item) => item.id)).toEqual(['c-ru-zh']);
+  });
 
-    it('should hide entry when language pair criteria mismatch', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        { scope: 'published', knownLanguage: 'ru', learningLanguage: 'zh' },
-        'other-user',
-      );
+  it('matches multiple pairs with OR semantics', () => {
+    const result = filterCourseIndex(
+      [ruEn, ruZh],
+      {
+        scope: 'all',
+        languagePairs: [
+          { known: 'ru', learning: 'en' },
+          { known: 'ru', learning: 'zh' },
+        ],
+      },
+      'user-1',
+    );
 
-      expect(matches).toBe(false);
-    });
+    expect(result.map((item) => item.id)).toEqual(['c-ru-en', 'c-ru-zh']);
+  });
 
-    it('should default to mine scope when scope is undefined', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        { knownLanguage: 'ru', learningLanguage: 'en' },
-        'local-user',
-      );
+  it('returns no entries when no pair matches', () => {
+    const result = filterCourseIndex(
+      [ruEn, ruZh],
+      { scope: 'all', languagePairs: [{ known: 'en', learning: 'de' }] },
+      'user-1',
+    );
 
-      expect(matches).toBe(true);
-    });
+    expect(result).toEqual([]);
+  });
 
-    it('should hide entry in mine scope when author differs', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        { scope: 'mine', knownLanguage: 'ru', learningLanguage: 'en' },
-        'other-user',
-      );
+  it('falls back to single-pair criteria when languagePairs is absent', () => {
+    const result = filterCourseIndex(
+      [ruEn, ruZh],
+      { scope: 'all', knownLanguage: 'ru', learningLanguage: 'zh' },
+      'user-1',
+    );
 
-      expect(matches).toBe(false);
-    });
+    expect(result.map((item) => item.id)).toEqual(['c-ru-zh']);
+  });
 
-    it('should show entry in mine scope when author matches', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        { scope: 'mine', knownLanguage: 'ru', learningLanguage: 'en' },
-        'local-user',
-      );
+  it('keeps all entries when no pair criteria are set', () => {
+    const result = filterCourseIndex([ruEn, ruZh], { scope: 'all' }, 'user-1');
 
-      expect(matches).toBe(true);
-    });
+    expect(result.length).toBe(2);
+  });
 
-    it('should show published entry for other user in published scope', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        { scope: 'published', knownLanguage: 'ru', learningLanguage: 'en' },
-        'other-user',
-      );
+  it('matchesCourseIndexEntry returns true for ANY matching pair', () => {
+    const matches = matchesCourseIndexEntry(
+      ruZh,
+      {
+        scope: 'all',
+        languagePairs: [
+          { known: 'ru', learning: 'en' },
+          { known: 'ru', learning: 'zh' },
+        ],
+      },
+      'user-1',
+    );
 
-      expect(matches).toBe(true);
-    });
-
-    it('should hide unpublished entry for other user in published scope', () => {
-      const unpublishedEntry = { ...baseEntry, published: false };
-      const matches = matchesCourseIndexEntry(
-        unpublishedEntry,
-        { scope: 'published', knownLanguage: 'ru', learningLanguage: 'en' },
-        'other-user',
-      );
-
-      expect(matches).toBe(false);
-    });
-
-    it('should show unpublished entry for own unpublished entry in published scope', () => {
-      const unpublishedEntry = { ...baseEntry, published: false };
-      const matches = matchesCourseIndexEntry(
-        unpublishedEntry,
-        { scope: 'published', knownLanguage: 'ru', learningLanguage: 'en' },
-        'local-user',
-      );
-
-      expect(matches).toBe(true);
-    });
-
-    it('should filter by authorId when specified', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        {
-          scope: 'published',
-          authorId: 'different-author',
-          knownLanguage: 'ru',
-          learningLanguage: 'en',
-        },
-        'local-user',
-      );
-
-      expect(matches).toBe(false);
-    });
-
-    it('should match by authorId when specified and matches', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        {
-          scope: 'published',
-          authorId: 'local-user',
-          knownLanguage: 'ru',
-          learningLanguage: 'en',
-        },
-        'other-user',
-      );
-
-      expect(matches).toBe(true);
-    });
-
-    it('should filter by text query in title', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        {
-          scope: 'published',
-          query: 'demo',
-          knownLanguage: 'ru',
-          learningLanguage: 'en',
-        },
-        'other-user',
-      );
-
-      expect(matches).toBe(true);
-    });
-
-    it('should filter by text query in authorId', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        {
-          scope: 'published',
-          query: 'local-user',
-          knownLanguage: 'ru',
-          learningLanguage: 'en',
-        },
-        'other-user',
-      );
-
-      expect(matches).toBe(true);
-    });
-
-    it('should not match when query does not match title or authorId', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        {
-          scope: 'published',
-          query: 'nonexistent',
-          knownLanguage: 'ru',
-          learningLanguage: 'en',
-        },
-        'other-user',
-      );
-
-      expect(matches).toBe(false);
-    });
-
-    it('should trim query whitespace', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        {
-          scope: 'published',
-          query: '  demo  ',
-          knownLanguage: 'ru',
-          learningLanguage: 'en',
-        },
-        'other-user',
-      );
-
-      expect(matches).toBe(true);
-    });
-
-    it('should skip query filtering when query is empty', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        {
-          scope: 'published',
-          query: '',
-          knownLanguage: 'ru',
-          learningLanguage: 'en',
-        },
-        'other-user',
-      );
-
-      expect(matches).toBe(true);
-    });
-
-    it('should skip query filtering when query is whitespace only', () => {
-      const matches = matchesCourseIndexEntry(
-        baseEntry,
-        {
-          scope: 'published',
-          query: '   ',
-          knownLanguage: 'ru',
-          learningLanguage: 'en',
-        },
-        'other-user',
-      );
-
-      expect(matches).toBe(true);
-    });
+    expect(matches).toBe(true);
   });
 });

@@ -14,6 +14,7 @@ import {
 import { ScenarioSearchService } from '../../../entities/scenario';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { UserPreferencesSyncService } from '../../../entities/user/services/user-preferences-sync.service';
 
 /** Tab indices for the learning flow: course → lessons → scenarios → learning. */
 export const LEARNING_TAB = {
@@ -37,6 +38,64 @@ export class CardSelectFlowService {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly logger = inject(AppLoggerService);
   private readonly userStore = inject(UserStore);
+  private readonly prefsSync = inject(UserPreferencesSyncService);
+
+  constructor() {
+    this.resumeLastCourse();
+  }
+
+  /**
+   * Marks the flow as (re)initializing.
+   *
+   * @remarks
+   * Called by the page component at the start of `ngOnInit`, BEFORE any
+   * query params (courseId, lessonId, scenarioId) are processed. The service
+   * is `providedIn: 'root'`, so it outlives the page component: without
+   * re-arming the flag on every page visit, `resetOnActivePairChange` would
+   * fire on the second and later deep-link navigations (e.g. from /journey
+   * with a scenario whose language pair differs from the active one) and
+   * wipe the state mid-initialization — cards would load but the learning
+   * tab would show "Выберите сценарий".
+   */
+  beginInitialization(): void {
+    this._isInitializing = true;
+  }
+
+  /**
+   * Marks the flow as initialized.
+   *
+   * @remarks
+   * Called by the page component in `ngOnInit` after all query params
+   * (courseId, lessonId, scenarioId) have been processed. Prevents
+   * `resetOnActivePairChange` from wiping the state during the initial
+   * page load when `activateLanguagePairFor*` methods fire.
+   */
+  markInitialized(): void {
+    this._isInitializing = false;
+  }
+
+  /**
+   * Temporarily prevents `resetOnActivePairChange` from firing.
+   *
+   * @remarks
+   * Call before changing `activeLanguagePairId` when the flow state
+   * must survive the change (e.g. activating a course's pair during
+   * manual selection via picker). Always pair with `endResetProtection`.
+   */
+  beginResetProtection(): void {
+    this._isInitializing = true;
+  }
+
+  /**
+   * Re-enables `resetOnActivePairChange` after a protected block.
+   *
+   * @remarks
+   * Restores the normal reset behavior. The flow will reset on the next
+   * language pair change, as usual.
+   */
+  endResetProtection(): void {
+    this._isInitializing = false;
+  }
 
   // ─── Persistence effect ────────────────────────────────────────────────
 
@@ -53,20 +112,22 @@ export class CardSelectFlowService {
    * signal-read → effect-trigger cycle. This is an intentional workaround —
    * the persistence is eventually consistent, not synchronous.
    *
+   * **activeCourseId is NOT persisted here** — it is managed exclusively by
+   * `LearningDashboardService` (which updates it on every dashboard reload).
+   * Persisting it here would create a race condition: CardSelectFlowService
+   * writes asynchronously via queueMicrotask, while LearningDashboardService
+   * writes synchronously. The async write would overwrite the correct value.
+   *
    * Limitations: no error handling for localStorage writes; the microtask
    * may run after the service is destroyed (harmless — UserStore handles it).
-   * If strict synchronous persistence is needed, move `updateLearningSession`
-   * calls into each mutator method instead of using an effect.
    */
   private readonly persistSessionEffect = effect(() => {
-    const courseId = this.selectedCourseId();
     const lessonId = this.selectedLessonId();
     const scenarioId = this.selectedScenarioId();
 
     untracked(() => {
       queueMicrotask(() => {
         this.userStore.updateLearningSession({
-          ...(courseId ? { activeCourseId: courseId } : {}),
           ...(lessonId ? { lastLessonId: lessonId } : {}),
           ...(scenarioId ? { lastScenarioId: scenarioId } : {}),
         });
@@ -91,24 +152,46 @@ export class CardSelectFlowService {
    * the next time the user opens the card-select page, they start fresh
    * with the correct language pair.
    *
-   * Behavior change vs. previous implementation: previously the reset was
-   * a page-level method called only from the page component. Now it fires
-   * globally, which means the reset happens even if the page is not mounted.
-   * The effect itself is harmless when the page is not open (signals just
-   * read and compare — no side effects in the untracked branch).
+   * **Guard:** uses `untracked(() => this._isInitializing)` to read the
+   * initialization flag. When `markInitialized()` sets `_isInitializing = false`
+   * the effect does NOT re-run (because the flag is read inside `untracked`),
+   * so it won't accidentally call `resetAll()` on the very tick the page is
+   * ready.
    */
+  private _isInitializing = true;
+
   private readonly resetOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();
     if (
-      this._lastKnownActiveLanguagePairId !== null &&
-      this._lastKnownActiveLanguagePairId !== activeId
+      untracked(() => this._isInitializing) ||
+      this._lastKnownActiveLanguagePairId === null ||
+      this._lastKnownActiveLanguagePairId === activeId
     ) {
-      untracked(() => this.resetAll());
+      this._lastKnownActiveLanguagePairId = activeId;
+      return;
     }
-    this._lastKnownActiveLanguagePairId = activeId;
+    untracked(() => this.resetAll());
   });
 
   private _lastKnownActiveLanguagePairId: string | null | undefined = null;
+
+  // ─── Auto-resume ─────────────────────────────────────────────────────────
+
+  /**
+   * Restores the last-selected course from backend preferences.
+   *
+   * @remarks
+   * Called once after preferences are loaded. If a `selectedCourseId` exists
+   * in the backend, the course is loaded automatically so the user resumes
+   * exactly where they left off.
+   */
+  private async resumeLastCourse(): Promise<void> {
+    const courseId = this.prefsSync.selectedCourseId();
+    if (!courseId) {
+      return;
+    }
+    await this.loadCourse(courseId);
+  }
 
   // ─── Flow state signals ────────────────────────────────────────────────
 
@@ -202,6 +285,10 @@ export class CardSelectFlowService {
           ? extractAllScenarioIdsFromCourse(course)
           : null;
 
+    this.logger.debug(
+      `[CardSelectFlow] allowedScenarioIdsForPicker: lessonIds=${lessonIds.length}, isOpenPractice=${this.isOpenPractice()}, course=${course?.id ?? 'null'}, base=${base?.length ?? 0}`,
+    );
+
     if (!base || base.length === 0) {
       return null;
     }
@@ -257,11 +344,42 @@ export class CardSelectFlowService {
   // ─── Methods ──────────────────────────────────────────────────────────
 
   /**
+   * Activates the language pair of a course so its content is relevant.
+   *
+   * @param courseId - The course ID whose language pair should be activated.
+   * @remarks
+   * Adds the course's language pair to `UserStore` and sets it as active.
+   * Uses reset protection to prevent `resetOnActivePairChange` from wiping
+   * the flow state while the pair is being activated.
+   * Non-fatal: if the course has no pair or the fetch fails, the caller
+   * continues loading the course anyway.
+   */
+  async activateLanguagePair(courseId: string): Promise<void> {
+    this.beginResetProtection();
+    try {
+      const course = await this.courseSearchService.getById(courseId);
+      if (course?.languagePair) {
+        this.userStore.addLanguagePair(course.languagePair);
+      }
+    } catch {
+      // Non-fatal: flow continues loading the course anyway
+    } finally {
+      this.endResetProtection();
+    }
+  }
+
+  /**
    * Loads a course by ID and updates flow state.
    *
    * @param courseId - The course ID to load.
    */
   async loadCourse(courseId: string): Promise<void> {
+    // During initialization (deep link from /journey), preserve selectedScenarioId
+    // so the effect doesn't wipe it when loadCourse resets state.
+    const wasInitializing = untracked(() => this._isInitializing);
+    const preservedScenarioId = wasInitializing ? this.selectedScenarioId() : '';
+    const preservedLessonId = wasInitializing ? this.selectedLessonId() : '';
+
     this.selectedCourseId.set(courseId);
     this.selectedLessonId.set('');
     this.currentCourse.set(null);
@@ -280,6 +398,8 @@ export class CardSelectFlowService {
       const course = await this.courseSearchService.getById(courseId);
       this.currentCourse.set(course);
       this.courseTitle.set(course.title);
+      // Persist the selected course to backend preferences
+      this.prefsSync.saveSelectedCourse(courseId);
       // Extract lessons from all programs
       const allLessons: { lessonId: string; scenarioIds: readonly string[] }[] = [];
       for (const program of course.programs) {
@@ -291,6 +411,15 @@ export class CardSelectFlowService {
         }
       }
       this.courseLessons.set(allLessons);
+
+      // Restore preserved IDs if we were initializing (deep link scenario)
+      if (wasInitializing && preservedScenarioId) {
+        this.selectedScenarioId.set(preservedScenarioId);
+      }
+      if (wasInitializing && preservedLessonId) {
+        this.selectedLessonId.set(preservedLessonId);
+      }
+
       await this.loadScenarioDifficultyMap(course);
     } catch (error) {
       this.logger.warn('CardSelect: failed to load course', error);

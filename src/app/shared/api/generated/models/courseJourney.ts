@@ -4,6 +4,7 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
+import type { CourseAuthoring } from './courseAuthoring';
 import type { ProgramJourney } from './programJourney';
 
 /**
@@ -13,5 +14,9 @@ export interface CourseJourney {
   id?: number;
   title?: string;
   description?: string;
+  /** ID автора курса */
+  authorId?: number;
+  /** Статус авторинга каталога */
+  authoring?: CourseAuthoring;
   programs?: ProgramJourney[];
 }

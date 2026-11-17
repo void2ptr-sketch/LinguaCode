@@ -12,6 +12,78 @@ describe('UserPersistence', () => {
     localStorage.clear();
   });
 
+  it('should return null when no data stored', () => {
+    const user = persistence.load();
+    expect(user).toBeNull();
+  });
+
+  it('should return null when stored data is invalid JSON', () => {
+    localStorage.setItem(USER_STORAGE_KEY, 'not-json');
+    const user = persistence.load();
+    expect(user).toBeNull();
+  });
+
+  it('should return null when stored data is not an object', () => {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify('string'));
+    const user = persistence.load();
+    expect(user).toBeNull();
+  });
+
+  it('should return null when stored data is null', () => {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(null));
+    const user = persistence.load();
+    expect(user).toBeNull();
+  });
+
+  it('should return user with defaults when minimal data is stored', () => {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify({}));
+    const user = persistence.load();
+    expect(user?.id).toBe('local-user');
+    expect(user?.displayName).toBe('Ученик');
+  });
+
+  it('should use stored id when it is a string', () => {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify({ id: 'custom-user' }));
+    const user = persistence.load();
+    expect(user?.id).toBe('custom-user');
+  });
+
+  it('should fall back to default id when id is not a string', () => {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify({ id: 123 }));
+    const user = persistence.load();
+    expect(user?.id).toBe('local-user');
+  });
+
+  it('should use stored displayName when it is a string', () => {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify({ displayName: 'John' }));
+    const user = persistence.load();
+    expect(user?.displayName).toBe('John');
+  });
+
+  it('should fall back to default displayName when not a string', () => {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify({ displayName: 42 }));
+    const user = persistence.load();
+    expect(user?.displayName).toBe('Ученик');
+  });
+
+  it('should save and load user', () => {
+    const user = {
+      id: 'test-user',
+      displayName: 'Test User',
+      preferences: {
+        theme: 'azure-blue' as const,
+        fontSize: 'md' as const,
+        languagePairs: [],
+        activeLanguagePairId: null,
+      },
+    } as never;
+    persistence.save(user);
+
+    const loaded = persistence.load();
+    expect(loaded?.id).toBe('test-user');
+    expect(loaded?.displayName).toBe('Test User');
+  });
+
   it('should migrate legacy languagePair preference', () => {
     localStorage.setItem(
       USER_STORAGE_KEY,

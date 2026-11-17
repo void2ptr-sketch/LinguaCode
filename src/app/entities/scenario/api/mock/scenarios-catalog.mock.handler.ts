@@ -9,6 +9,10 @@ import type {
 } from '../../model';
 import { paginateArray } from '../../../../shared/utils/pagination';
 import { UserStore } from '../../../user/model/user.store';
+import { AuthStore } from '../../../auth/services/auth.store';
+import { LanguagePairsApiService } from '../../../language-pair/api/language-pairs-api.service';
+import type { LanguagePair } from '../../../language-pair/model/language-pair.types';
+import type { ContentLanguage } from '../../../card/model';
 
 import { scenarioToIndexEntry } from '../../mapping/scenario-index.mapper';
 import { filterScenarioIndex } from '../../search/scenario-search.utils';
@@ -16,10 +20,7 @@ import {
   scenarioUsesCardEntry,
   validateScenarioCardSource,
 } from '../../utils/scenario-card-source.utils';
-import {
-  cardIndexMatchesPair,
-  normalizeLanguagePair,
-} from '../../../language-pair/lib/language-pair.utils';
+import { cardIndexMatchesPair } from '../../../language-pair/utils/language-pair.utils';
 import { isEditableContentAuthor, isSystemAuthor } from '../../../user/lib/system-author.constants';
 import { CardsCatalogMockHandler } from '../../../card/api/mock/cards-catalog.mock.handler';
 import { ContentSeedRepository } from '../../../content-seed/content-seed.repository';
@@ -31,7 +32,12 @@ import type { ScenarioWritePayload } from '../../repository/scenario-catalog.por
 export class ScenariosCatalogMockHandler {
   private readonly cardsHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
+  private readonly authStore = inject(AuthStore);
   private readonly contentSeed = inject(ContentSeedRepository);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
+
+  /** Cache of numeric pair ID → `{ known, learning }` codes. */
+  private pairIdCache: Map<number, LanguagePair> | null = null;
 
   private scenarios: Scenario[] | null = null;
 
@@ -58,9 +64,32 @@ export class ScenariosCatalogMockHandler {
     return scenario;
   }
 
+  async getByIdBatch(scenarioIds: readonly string[]): Promise<readonly Scenario[]> {
+    await this.ensureData();
+
+    const ids = new Set(scenarioIds);
+    const results: Scenario[] = [];
+
+    for (const scenario of this.scenarios!) {
+      if (ids.has(scenario.id)) {
+        results.push(scenario);
+      }
+    }
+
+    return results;
+  }
+
+  async getByLessonId(lessonId: string): Promise<readonly Scenario[]> {
+    await this.ensureData();
+
+    return this.scenarios!.filter((scenario) => scenario.lessonId === lessonId).sort(
+      (left, right) => (left.order ?? 0) - (right.order ?? 0),
+    );
+  }
+
   async create(payload: ScenarioWritePayload): Promise<Scenario> {
     await this.ensureData();
-    const languagePair = normalizeLanguagePair(payload.languagePair);
+    const languagePair = await this.resolveLanguagePair(payload.languagePairId);
     await this.assertValidCardSource(payload.cardSource, languagePair);
 
     const scenario: Scenario = {
@@ -71,7 +100,13 @@ export class ScenariosCatalogMockHandler {
       cardSource: payload.cardSource,
       published: payload.published,
       updatedAt: new Date().toISOString(),
+      languagePairId: payload.languagePairId,
       languagePair,
+      courseId: payload.courseId ? String(payload.courseId) : undefined,
+      programId: payload.programId ? String(payload.programId) : undefined,
+      lessonId: payload.lessonId ? String(payload.lessonId) : undefined,
+      requiredTier: payload.requiredTier ?? 'FREE',
+      order: payload.order,
     };
 
     this.scenarios = [...this.scenarios!, scenario];
@@ -88,7 +123,8 @@ export class ScenariosCatalogMockHandler {
     }
 
     this.assertCanEdit(current);
-    const languagePair = normalizeLanguagePair(payload.languagePair ?? current.languagePair);
+    const languagePairId = payload.languagePairId ?? current.languagePairId;
+    const languagePair = await this.resolveLanguagePair(languagePairId);
     await this.assertValidCardSource(payload.cardSource, languagePair);
 
     const updated: Scenario = isSystemAuthor(current.authorId)
@@ -97,6 +133,7 @@ export class ScenariosCatalogMockHandler {
           title: payload.title,
           description: payload.description,
           published: payload.published,
+          order: payload.order,
           updatedAt: new Date().toISOString(),
         }
       : {
@@ -105,9 +142,106 @@ export class ScenariosCatalogMockHandler {
           description: payload.description,
           cardSource: payload.cardSource,
           published: payload.published,
+          order: payload.order,
           updatedAt: new Date().toISOString(),
+          languagePairId,
           languagePair,
         };
+
+    this.scenarios = this.scenarios!.map((item) => (item.id === scenarioId ? updated : item));
+    this.persist();
+    return updated;
+  }
+
+  /**
+   * Adds a card to the scenario's `cardSource.cardIds` list.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @param order - Optional 1-based position.
+   * @returns The updated scenario.
+   */
+  async addCard(scenarioId: string, cardId: string, order?: number): Promise<Scenario> {
+    await this.ensureData();
+    const current = this.scenarios!.find((item) => item.id === scenarioId);
+    if (!current) {
+      throw notFound('Сценарий не найден');
+    }
+    if (current.cardSource.mode === 'criteria') {
+      throw new Error('Нельзя добавить карточку в сценарий по критериям');
+    }
+
+    const cardIds = [...current.cardSource.cardIds];
+    if (!cardIds.includes(cardId)) {
+      const position = order !== undefined ? Math.max(0, order - 1) : cardIds.length;
+      cardIds.splice(position, 0, cardId);
+    }
+
+    return this.saveCardSource(scenarioId, current, cardIds);
+  }
+
+  /**
+   * Removes a card from the scenario's `cardSource.cardIds` list.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @returns The updated scenario.
+   */
+  async removeCard(scenarioId: string, cardId: string): Promise<Scenario> {
+    await this.ensureData();
+    const current = this.scenarios!.find((item) => item.id === scenarioId);
+    if (!current) {
+      throw notFound('Сценарий не найден');
+    }
+    if (current.cardSource.mode === 'criteria') {
+      throw new Error('Нельзя удалить карточку из сценария по критериям');
+    }
+
+    return this.saveCardSource(
+      scenarioId,
+      current,
+      current.cardSource.cardIds.filter((id) => id !== cardId),
+    );
+  }
+
+  /**
+   * Moves a card to a new 1-based position inside the scenario.
+   *
+   * @param scenarioId - The scenario ID.
+   * @param cardId - The card ID.
+   * @param order - The new 1-based position.
+   * @returns The updated scenario.
+   */
+  async moveCard(scenarioId: string, cardId: string, order: number): Promise<Scenario> {
+    await this.ensureData();
+    const current = this.scenarios!.find((item) => item.id === scenarioId);
+    if (!current) {
+      throw notFound('Сценарий не найден');
+    }
+    if (current.cardSource.mode === 'criteria') {
+      throw new Error('Нельзя изменить порядок в сценарии по критериям');
+    }
+
+    const cardIds = current.cardSource.cardIds.filter((id) => id !== cardId);
+    const position = Math.min(Math.max(0, order - 1), cardIds.length);
+    cardIds.splice(position, 0, cardId);
+
+    return this.saveCardSource(scenarioId, current, cardIds);
+  }
+
+  private saveCardSource(
+    scenarioId: string,
+    current: Scenario,
+    cardIds: readonly string[],
+  ): Scenario {
+    const updated: Scenario = {
+      ...current,
+      cardSource:
+        current.cardSource.mode === 'snapshot'
+          ? { ...current.cardSource, cardIds }
+          : { mode: 'fixed', cardIds },
+      updatedAt: new Date().toISOString(),
+    };
 
     this.scenarios = this.scenarios!.map((item) => (item.id === scenarioId ? updated : item));
     this.persist();
@@ -151,6 +285,33 @@ export class ScenariosCatalogMockHandler {
     this.scenarios = null;
   }
 
+  /**
+   * Resolves a numeric `languagePairId` to a `LanguagePair` code pair
+   * using the cached `/language-pairs` endpoint.
+   */
+  private async resolveLanguagePair(
+    languagePairId: number | undefined,
+  ): Promise<LanguagePair | undefined> {
+    if (languagePairId == null) return undefined;
+
+    if (!this.pairIdCache) {
+      try {
+        const all = await this.languagePairsApi.listAll();
+        this.pairIdCache = new Map(
+          all.map((p) => [
+            p.id,
+            { known: p.knownCode as ContentLanguage, learning: p.learningCode as ContentLanguage },
+          ]),
+        );
+      } catch {
+        this.pairIdCache = new Map();
+      }
+    }
+
+    const result = this.pairIdCache.get(languagePairId);
+    return result ?? undefined;
+  }
+
   private async ensureData(): Promise<void> {
     await this.contentSeed.preload();
     this.scenarios = [...loadScenariosFromStorage()];
@@ -161,8 +322,8 @@ export class ScenariosCatalogMockHandler {
   }
 
   private assertCanEdit(scenario: Scenario): void {
-    const userId = this.userStore.user().id;
-    if (!isEditableContentAuthor(scenario.authorId, userId)) {
+    const user = this.authStore.user();
+    if (!user || !isEditableContentAuthor(scenario.authorId, user.id, user.roles)) {
       throw forbidden('Нельзя изменять чужой сценарий');
     }
   }

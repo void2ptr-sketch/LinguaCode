@@ -82,6 +82,7 @@ src/
 │   │   ├── learning/         # Обучение, dashboard
 │   │   ├── lesson/           # Уроки
 │   │   ├── phonetic/         # Фонетика (IPA)
+│   │   ├── program/          # Учебные треки (Program)
 │   │   ├── scenario/         # Сценарии обучения
 │   │   └── user/             # Пользователь, overlay-миграции
 │   ├── features/             # Изолированные фичи
@@ -91,8 +92,8 @@ src/
 │   │   ├── course-catalog/   # Каталог курсов
 │   │   ├── home/             # Домашняя страница
 │   │   ├── journey/          # Путь обучения
-│   │   ├── learning-results/# Результаты обучения
-│   │   └── scenario-builder/# Конструктор сценариев
+│   │   ├── learning-results/   # Результаты обучения
+│   │   └── scenario-builder/   # Конструктор сценариев
 │   ├── pages/                # Страницы (layout shell, routing)
 │   │   ├── card-editor/      # CardEditorPageComponent
 │   │   ├── card-select/      # CardSelectPageComponent
@@ -101,7 +102,9 @@ src/
 │   │   ├── help/             # HelpPageComponent
 │   │   ├── home/             # HomePageComponent
 │   │   ├── journey/          # JourneyPageComponent
-│   │   ├── scenario-builder/# ScenarioBuilderPageComponent
+│   │   ├── scenario-builder/   # ScenarioBuilderPageComponent
+│   │   ├── help-usage-scenarios/ # HelpUsageScenariosPageComponent
+│   │   ├── language-settings/  # LanguageSettingsPageComponent
 │   │   └── user/             # UserPageComponent
 │   ├── shared/               # Общие сервисы и утилиты
 │   │   ├── api/              # API-утилиты, network status
@@ -392,4 +395,4 @@ export { formatLabel } from './format.util';
 
 ## 12. Migration Notes
 
-> Полные правила миграции с NgModule на standalone — см. `02.architecture.08.migration-standalone.rule.md` и [Angular Standalone Migration Guide](https://angular.dev/reference/migrations/standalone).
+> Полные правила миграции с NgModule на standalone — см. `02.architecture.08.migration-standalone.rule.md` и [Angular Standalone                                                                        

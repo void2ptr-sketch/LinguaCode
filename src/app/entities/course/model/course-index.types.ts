@@ -11,6 +11,7 @@ import type { ContentLanguage } from '../../card/model/card-index.types';
 export type CourseIndexEntry = {
   id: string;
   title: string;
+  slug?: string;
   authorId: string;
   programCount: number;
   published: boolean;
@@ -18,6 +19,14 @@ export type CourseIndexEntry = {
   languagePairSummary: string;
   knownLanguage: ContentLanguage;
   learningLanguage: ContentLanguage;
+  /**
+   * Optional position of the course in the root catalog (`course_order`).
+   *
+   * @remarks
+   * The backend does not expose this field yet; when absent, root nodes keep
+   * the order returned by `/courses/search` (stable sort).
+   */
+  order?: number;
 };
 
 /**
@@ -51,6 +60,13 @@ export type CourseSearchCriteria = {
   learningLanguage?: ContentLanguage;
   /** Filter by language pair IDs (multiple pairs). Takes precedence over knownLanguage/learningLanguage. */
   languagePairIds?: number[];
+  /**
+   * Filter by multiple language pairs (codes). Matches entries whose pair
+   * equals ANY of the listed pairs. Takes precedence over knownLanguage/
+   * learningLanguage; used for client-side/mock filtering — not serialised
+   * to backend query params (the backend uses `languagePairIds` instead).
+   */
+  languagePairs?: readonly { known: ContentLanguage; learning: ContentLanguage }[];
   /** Pagination parameters. */
   page: import('../../../shared/utils/pagination').PageRequest;
 };

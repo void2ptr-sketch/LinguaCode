@@ -5,6 +5,9 @@
  * OpenAPI spec version: v0
  */
 
+/**
+ * Минимальный уровень подписки для доступа (опционально)
+ */
 export type ProgramUpdateRequestRequiredTier = typeof ProgramUpdateRequestRequiredTier[keyof typeof ProgramUpdateRequestRequiredTier];
 
 

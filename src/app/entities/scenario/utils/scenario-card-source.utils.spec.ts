@@ -285,10 +285,10 @@ describe('scenario-card-source.utils', () => {
       expect(scenarioMatchesLanguagePair(scenario, pair)).toBe(false);
     });
 
-    it('should return false when scenario has no languagePair', () => {
+    it('should return true when scenario has no languagePair — matches any pair', () => {
       const scenario: Pick<Scenario, 'languagePair'> = { languagePair: undefined };
       const pair: LanguagePair = { known: 'en', learning: 'zh' };
-      expect(scenarioMatchesLanguagePair(scenario, pair)).toBe(false);
+      expect(scenarioMatchesLanguagePair(scenario, pair)).toBe(true);
     });
   });
 
@@ -423,16 +423,13 @@ describe('scenario-card-source.utils', () => {
   });
 
   describe('validateScenarioCardSource', async () => {
-    it('should return error for empty cardIds in fixed mode', async () => {
+    it('should allow empty cardIds in fixed mode (scenario created before cards)', async () => {
       const source: ScenarioCardSource = {
         mode: 'fixed',
         cardIds: [],
       };
       const result = await validateScenarioCardSource(source, vi.fn());
-      expect(result).toEqual({
-        field: 'cardSource',
-        message: 'Выберите хотя бы одну карточку',
-      });
+      expect(result).toBeNull();
     });
 
     it('should return error when card not found', async () => {

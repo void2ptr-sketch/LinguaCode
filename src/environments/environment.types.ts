@@ -9,6 +9,8 @@ export type Environment = {
   useScenariosApiMock: boolean;
   useCoursesApiMock: boolean;
   useProgramsApiMock: boolean;
+  /** Включает mock для lessons API. */
+  useLessonsApiMock: boolean;
   /** Включает mock для SCORM-экспорта курсов. */
   useScormMock: boolean;
   /** Включает mock для language-pairs API. */

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard, notAuthGuard } from '../entities/auth';
+import { authGuard, authorGuard, adminGuard, notAuthGuard } from '../entities/auth';
 
 /**
  * Корневые маршруты приложения.
@@ -70,42 +70,6 @@ export const routes: Routes = [
         ],
       },
 
-      // ── Home Learning Tab (lazy-loaded sub-routes) ───────────────────────────
-      {
-        path: 'home-learning-tab',
-        loadComponent: () =>
-          import('../features/home/components/home-learning-tab/home-learning-tab.component').then(
-            (m) => m.HomeLearningTabComponent,
-          ),
-        children: [
-          // ── Continue Tab (lazy-loaded) ───────────────────────────────────────
-          {
-            path: 'continue',
-            loadComponent: () =>
-              import('../features/home/components/learning-continue-card/learning-continue-card.component').then(
-                (m) => m.LearningContinueCardComponent,
-              ),
-          },
-          // ── Progress Tab (lazy-loaded) ────────────────────────────────────────
-          {
-            path: 'progress',
-            loadComponent: () =>
-              import('../features/home/components/learning-program-progress/learning-program-progress.component').then(
-                (m) => m.LearningProgramProgressComponent,
-              ),
-          },
-          // ── Roadmap Tab (lazy-loaded) ────────────────────────────────────────
-          {
-            path: 'roadmap',
-            loadComponent: () =>
-              import('../features/home/components/learning-lesson-roadmap/learning-lesson-roadmap.component').then(
-                (m) => m.LearningLessonRoadmapComponent,
-              ),
-          },
-          { path: '**', redirectTo: 'continue', pathMatch: 'full' },
-        ],
-      },
-
       // ── Journey Map ───────────────────────────────────────
       {
         path: 'journey',
@@ -158,23 +122,25 @@ export const routes: Routes = [
         ],
       },
 
-      // ── Course Builder ────────────────────────────────────
+      // ── Content Explorer (единый проводник контента) ────────
+      // Дерево Course → Program → Lesson → Scenario → Card;
+      // редактирование — через существующие билдеры.
       {
-        path: 'tools/courses',
+        path: 'tools/content',
         loadComponent: () =>
-          import('../pages/course-builder/course-builder-page/course-builder-page.component').then(
-            (m) => m.CourseBuilderPageComponent,
+          import('../pages/content-explorer/content-explorer-page/content-explorer-page.component').then(
+            (m) => m.ContentExplorerPageComponent,
           ),
+        canMatch: [authorGuard],
       },
 
-      // ── Scenario Builder ───────────────────────────────────
-      {
-        path: 'tools/scenario-builder',
-        loadComponent: () =>
-          import('../pages/scenario-builder/scenario-builder-page/scenario-builder-page.component').then(
-            (m) => m.ScenarioBuilderPageComponent,
-          ),
-      },
+      // ── Course Builder (removed — merged into Content Explorer) ──
+      // Редактирование/экспорт/удаление курсов живут в Проводнике контента.
+      { path: 'tools/courses', redirectTo: 'tools/content', pathMatch: 'full' },
+
+      // ── Scenario Builder (removed — merged into Content Explorer) ──
+      // CRUD сценариев (привязка к уроку, удаление, каталог) живут в Проводнике контента.
+      { path: 'tools/scenario-builder', redirectTo: 'tools/content', pathMatch: 'full' },
 
       // ── Card Editor ────────────────────────────────────────
       {
@@ -183,34 +149,59 @@ export const routes: Routes = [
           import('../pages/card-editor/card-editor-page/card-editor-page.component').then(
             (m) => m.CardEditorPageComponent,
           ),
+        canMatch: [authorGuard],
       },
       { path: 'tools/card-editor', redirectTo: '/tools/cards', pathMatch: 'full' },
       { path: 'tools/card-catalog', redirectTo: '/tools/cards', pathMatch: 'full' },
+
+      // ── Language Pairs Registry (author zone) ──────────────
+      // Единственное место CRUD глобального реестра `/language-pairs`.
+      // Профиль `/user` потребляет реестр read-only.
+      {
+        path: 'tools/language-pairs',
+        loadComponent: () =>
+          import('../features/language-registry/components/language-pair-registry/language-pair-registry.component').then(
+            (m) => m.LanguagePairRegistryComponent,
+          ),
+        canMatch: [authorGuard],
+      },
 
       // ── Core Pages ────────────────────────────────────────
       {
         path: 'help',
         loadComponent: () =>
-          import('../pages/help/help-page.component').then((m) => m.HelpPageComponent),
+          import('../pages/help/help-page/help-page.component').then((m) => m.HelpPageComponent),
       },
       {
         path: 'help/scenarios',
         loadComponent: () =>
-          import('../pages/help-usage-scenarios/help-usage-scenarios-page.component').then(
+          import('../pages/help-usage-scenarios/help-usage-scenarios-page/help-usage-scenarios-page.component').then(
             (m) => m.HelpUsageScenariosPageComponent,
           ),
       },
       {
         path: 'user',
         loadComponent: () =>
-          import('../pages/user/user-page.component').then((m) => m.UserPageComponent),
+          import('../pages/user/user-page/user-page.component').then((m) => m.UserPageComponent),
       },
       {
         path: 'settings/languages',
+        redirectTo: 'user',
+      },
+
+      // ── Legacy redirects ──────────────────────────────────
+      { path: 'language-pairs', redirectTo: 'tools/language-pairs', pathMatch: 'full' },
+
+      // ── Admin ─────────────────────────────────────────────
+      // Панель администратора: справочник языков (`/languages`) —
+      // единственное место его CRUD (learner-профиль читает read-only).
+      {
+        path: 'admin',
         loadComponent: () =>
-          import('../pages/language-settings/language-settings.component').then(
-            (m) => m.LanguageSettingsComponent,
+          import('../pages/admin/admin-page/admin-page.component').then(
+            (m) => m.AdminPageComponent,
           ),
+        canMatch: [adminGuard],
       },
 
       { path: '**', redirectTo: 'home' },

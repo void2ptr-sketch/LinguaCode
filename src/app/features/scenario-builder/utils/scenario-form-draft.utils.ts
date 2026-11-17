@@ -2,17 +2,22 @@ import {
   DEFAULT_CRITERIA_LIMIT,
   emptyCardSearchCriteria,
 } from '../../../entities/scenario/utils/scenario-card-source.utils';
-import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 import type { Scenario } from '../../../entities/scenario/model';
 import type { ScenarioCardSource, ScenarioCardSort } from '../../../entities/card/model';
-import { DEFAULT_LANGUAGE_PAIR } from '../../../entities/language-pair/model/language-pair.types';
 import type { ScenarioCardSourceMode, ScenarioCriteriaDraft, ScenarioDraft } from '../types';
 
 export type ScenarioFormDraft = {
   title: string;
   description: string;
   published: boolean;
-  languagePair: LanguagePair;
+  /** Numeric language pair ID from `language_pairs.id`. */
+  languagePairId?: number;
+  courseId?: string;
+  programId?: string;
+  lessonId?: string;
+  requiredTier?: 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+  /** Позиция сценария внутри урока (UI-слой). */
+  scenarioOrder?: number;
   sourceMode: ScenarioCardSourceMode;
   fixedCardIds: readonly string[];
   criteria: ScenarioCriteriaDraft;
@@ -22,14 +27,13 @@ export type ScenarioFormDraft = {
   snapshotFrozenAt: string | null;
 };
 
-export function emptyScenarioFormDraft(
-  languagePair: LanguagePair = DEFAULT_LANGUAGE_PAIR,
-): ScenarioFormDraft {
+export function emptyScenarioFormDraft(initialOrder = 1): ScenarioFormDraft {
   return {
     title: '',
     description: '',
     published: false,
-    languagePair,
+    requiredTier: 'FREE',
+    scenarioOrder: initialOrder,
     sourceMode: 'fixed',
     fixedCardIds: [],
     criteria: emptyCardSearchCriteria(),
@@ -46,7 +50,12 @@ export function scenarioToFormDraft(scenario: Scenario): ScenarioFormDraft {
     title: scenario.title,
     description: scenario.description,
     published: scenario.published,
-    languagePair: scenario.languagePair ?? DEFAULT_LANGUAGE_PAIR,
+    languagePairId: scenario.languagePairId,
+    courseId: scenario.courseId,
+    programId: scenario.programId,
+    lessonId: scenario.lessonId,
+    requiredTier: scenario.requiredTier ?? 'FREE',
+    scenarioOrder: scenario.order ?? 0,
   };
 }
 
@@ -55,18 +64,27 @@ export function formDraftToScenarioDraft(form: ScenarioFormDraft): ScenarioDraft
     title: form.title,
     description: form.description,
     published: form.published,
-    languagePair: form.languagePair,
+    languagePairId: form.languagePairId,
     cardSource: buildCardSource(form),
+    courseId: form.courseId,
+    programId: form.programId,
+    lessonId: form.lessonId,
+    requiredTier: form.requiredTier,
+    order: form.scenarioOrder,
   };
 }
 
 export function serializeScenarioFormDraft(form: ScenarioFormDraft): string {
-  return JSON.stringify(form);
+  return JSON.stringify({
+    ...form,
+    criteria: { ...form.criteria },
+    fixedCardIds: [...form.fixedCardIds],
+  });
 }
 
 function cardSourceToFormFields(
   source: ScenarioCardSource,
-): Omit<ScenarioFormDraft, 'title' | 'description' | 'published' | 'languagePair'> {
+): Omit<ScenarioFormDraft, 'title' | 'description' | 'published' | 'languagePairId'> {
   if (source.mode === 'fixed') {
     return {
       sourceMode: 'fixed',

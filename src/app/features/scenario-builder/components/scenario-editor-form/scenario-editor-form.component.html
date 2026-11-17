@@ -3,144 +3,86 @@
     <p class="scenario-editor-form__readonly">Чужой сценарий — только просмотр.</p>
   }
 
-  <mat-form-field appearance="outline">
-    <mat-label>Название</mat-label>
-    <input
-      matInput
-      [disabled]="readOnly()"
-      [ngModel]="draft().title"
-      (ngModelChange)="updateDraft({ title: $event })"
-    />
-  </mat-form-field>
+  <mat-tab-group class="scenario-editor-form__tabs" dynamicHeight>
+    <!-- ── Вкладка 1: Основное ── -->
+    <mat-tab label="Основное">
+      <div class="scenario-editor-form__tab-panel">
+        <mat-form-field appearance="outline">
+          <mat-label>Название</mat-label>
+          <input
+            matInput
+            [disabled]="readOnly()"
+            [ngModel]="draft().title"
+            (ngModelChange)="updateDraft({ title: $event })"
+          />
+        </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Описание</mat-label>
-    <textarea
-      matInput
-      rows="3"
-      [disabled]="readOnly()"
-      [ngModel]="draft().description"
-      (ngModelChange)="updateDraft({ description: $event })"
-    ></textarea>
-  </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Описание</mat-label>
+          <textarea
+            matInput
+            rows="3"
+            [disabled]="readOnly()"
+            [ngModel]="draft().description"
+            (ngModelChange)="updateDraft({ description: $event })"
+          ></textarea>
+        </mat-form-field>
 
-  <section class="scenario-editor-form__languages">
-    <h2>Курс</h2>
-    <p class="scenario-editor-form__hint">
-      Карточки сценария должны соответствовать выбранному курсу.
-    </p>
+        <mat-form-field appearance="outline">
+          <mat-label>Порядок</mat-label>
+          <input
+            matInput
+            type="number"
+            [disabled]="readOnly()"
+            min="1"
+            [ngModel]="draft().scenarioOrder ?? 1"
+            (ngModelChange)="updateScenarioOrder($event)"
+          />
+          <mat-hint>Позиция сценария внутри урока</mat-hint>
+          @if (scenarioOrderInvalid()) {
+            <mat-error>Порядок должен быть ≥ 1</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </mat-tab>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Известный язык</mat-label>
-      <mat-select
-        [disabled]="readOnly()"
-        [ngModel]="draft().languagePair.known"
-        (ngModelChange)="onKnownLanguageChange($event)"
-      >
-        @for (language of languageService.getCodes(); track language) {
-          <mat-option [value]="language">{{ languageService.getLabels()[language] }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Новый язык</mat-label>
-      <mat-select
-        [disabled]="readOnly()"
-        [ngModel]="draft().languagePair.learning"
-        (ngModelChange)="onLearningLanguageChange($event)"
-      >
-        @for (language of languageService.getCodes(); track language) {
-          <mat-option [value]="language">{{ languageService.getLabels()[language] }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-
-    @if (languagePairInvalid()) {
-      <p class="scenario-editor-form__error">Языки должны отличаться.</p>
-    }
-  </section>
-
-  <mat-slide-toggle
-    [disabled]="readOnly()"
-    [ngModel]="draft().published"
-    (ngModelChange)="updateDraft({ published: $event })"
-  >
-    Опубликовать сценарий
-  </mat-slide-toggle>
-
-  <section class="scenario-editor-form__cards">
-    <h2>Источник карточек</h2>
-    <mat-button-toggle-group
-      class="scenario-editor-form__source-mode"
-      [disabled]="readOnly()"
-      [ngModel]="draft().sourceMode"
-      (ngModelChange)="onSourceModeChange($event)"
-    >
-      <mat-button-toggle value="fixed">Фиксированный список</mat-button-toggle>
-      <mat-button-toggle value="criteria">По критериям</mat-button-toggle>
-      <mat-button-toggle value="snapshot">Snapshot</mat-button-toggle>
-    </mat-button-toggle-group>
-
-    @if (draft().sourceMode === 'fixed' || draft().sourceMode === 'snapshot') {
-      @if (draft().sourceMode === 'fixed') {
-        <app-scenario-card-picker
-          [selectedIds]="draft().fixedCardIds"
-          (selectedIdsChange)="onFixedCardIdsChange($event)"
+    <!-- ── Вкладка 2: Размещение ── -->
+    <mat-tab label="Размещение">
+      <div class="scenario-editor-form__tab-panel">
+        <app-content-hierarchy-selector
+          [levels]="hierarchyLevels"
+          [value]="hierarchyValue()"
+          [readOnly]="readOnly()"
+          (valueChange)="onHierarchyChange($event)"
         />
-      }
+      </div>
+    </mat-tab>
 
-      @if (draft().fixedCardIds.length > 0) {
-        <section class="scenario-editor-form__order">
-          <h2>Порядок карточек</h2>
-          <mat-list>
-            @for (cardId of draft().fixedCardIds; track cardId) {
-              <mat-list-item>
-                <span matListItemTitle>{{ cardTitle(cardId) }}</span>
-                @if (!readOnly() && draft().sourceMode === 'fixed') {
-                  <div matListItemMeta class="scenario-editor-form__order-actions">
-                    <button
-                      mat-icon-button
-                      type="button"
-                      aria-label="Выше"
-                      (click)="moveCard(cardId, -1)"
-                    >
-                      <mat-icon>arrow_upward</mat-icon>
-                    </button>
-                    <button
-                      mat-icon-button
-                      type="button"
-                      aria-label="Ниже"
-                      (click)="moveCard(cardId, 1)"
-                    >
-                      <mat-icon>arrow_downward</mat-icon>
-                    </button>
-                  </div>
-                }
-              </mat-list-item>
+    <!-- ── Вкладка 3: Публикация ── -->
+    <mat-tab label="Публикация">
+      <div class="scenario-editor-form__tab-panel">
+        @if (!readOnly()) {
+          <mat-checkbox [ngModel]="draft().published" (ngModelChange)="updatePublished($event)">
+            Опубликовать
+          </mat-checkbox>
+        }
+
+        <mat-form-field appearance="outline">
+          <mat-label>Уровень доступа</mat-label>
+          <mat-select
+            [disabled]="readOnly()"
+            [ngModel]="draft().requiredTier"
+            (ngModelChange)="onRequiredTierChange($event)"
+          >
+            @for (tier of tierOptions; track tier) {
+              <mat-option [value]="tier">{{ tierLabels[tier] }}</mat-option>
             }
-          </mat-list>
-        </section>
-      }
-    }
+          </mat-select>
+        </mat-form-field>
 
-    @if (draft().sourceMode === 'criteria' || draft().sourceMode === 'snapshot') {
-      <app-scenario-card-criteria-editor
-        [criteria]="draft().criteria"
-        [limit]="draft().criteriaLimit"
-        [sort]="draft().criteriaSort"
-        [seed]="draft().criteriaSeed"
-        (criteriaChange)="updateDraft({ criteria: $event })"
-        (limitChange)="updateDraft({ criteriaLimit: $event })"
-        (sortChange)="onCriteriaSortChange($event)"
-        (seedChange)="updateDraft({ criteriaSeed: $event })"
-      />
-
-      @if (!readOnly() && draft().sourceMode === 'criteria') {
-        <button mat-stroked-button type="button" (click)="createSnapshotFromCriteria()">
-          Зафиксировать snapshot
-        </button>
-      }
-    }
-  </section>
+        <!-- Placeholder for future card source mode UI -->
+        <!-- <ng-content select="[card-source-mode]" /> -->
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </section>

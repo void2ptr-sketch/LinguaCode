@@ -57,6 +57,27 @@ type CardDirection = 'known-to-learning' | 'learning-to-known';
 
 Подпись пары: `formatLanguagePair()` → «Русский → English».
 
+## Управление парами: разделение по зонам маршрутов
+
+CRUD выполняется **только в зоне соответствующей роли**; другие зоны потребляют справочники read-only:
+
+| Зона / маршрут                                                                                                                                      | Роль                                         | Сущность            | Операции                                                                                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Профиль `/user`** — вкладки «Мои языки», «Мои пары»                                                                                               | `ROLE_USER` +                                | `users.preferences` | активация / удаление **личных** пар; поиск по каталогу реестра (`pairSearch` → `filteredGroupedPairs`); реестр и словарь языков — read-only |
+| **`/tools/language-pairs`** ([PairRegistryComponent](../../src/app/features/language-registry/components/pair-registry/pair-registry.component.ts)) | `ROLE_AUTHOR` / `ROLE_ADMIN` (`authorGuard`) | `language_pairs`    | **Единственное место CRUD реестра пар**: create / delete, mirror-группы                                                                     |
+| **`/admin`** ([LanguageRegistryComponent](../../src/app/features/language-registry/components/language-registry/language-registry.component.ts))    | `ROLE_ADMIN` (`adminGuard`)                  | `languages`         | **Единственное место CRUD справочника языков**: create / update (`activeFlag`) / delete                                                     |
+
+Правила:
+
+| Правило             | Поведение                                                                                                  |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- |
+| CRUD реестра пар    | Только `/tools/language-pairs` (`LanguagePairsApiService.create/update/delete`)                            |
+| CRUD словаря языков | Только `/admin` (`LanguageApiService.create/update/delete`)                                                |
+| Профиль `/user`     | Пишет только в `users/preferences` (`patchUserPreferences`); «добавить пару» = выбрать из каталога реестра |
+| Пары нет в каталоге | Hint «запросите добавление у автора курса» — пользователь не расширяет реестр                              |
+| «Настройки курса»   | Только per-pair настройки; селектор пары — read-only                                                       |
+| Legacy-редиректы    | `/language-pairs` → `/tools/language-pairs`; `/settings/languages` → `/user`                               |
+
 ## Learning Home (G13)
 
 > **Статус:** готово (G13 + G14). Dashboard на `/home` · студия сессии на `/cards/select`.
@@ -88,7 +109,7 @@ Deep link с dashboard:
 
 ```typescript
 type UserLanguagePairEntry = {
-  id: string; // стабильный UUID
+  id: string; // произвольная строка (не UUID)
   pair: LanguagePair;
   createdAt: string; // ISO
 };
@@ -132,22 +153,24 @@ setActiveLanguagePair(id: string): void;
 
 ### UI (план)
 
-| Экран                      | G7                                                |
-| -------------------------- | ------------------------------------------------- |
-| `/user`                    | Список пар, add/remove, «сделать активной»        |
-| `/cards/select` или header | Quick switcher активной пары                      |
-| Главная / прогресс         | MVP: только активная пара; опционально — все пары |
+| Экран                      | G7                                                                              |
+| -------------------------- | ------------------------------------------------------------------------------- |
+| `/user`                    | Список пар, add/remove, «сделать активной»                                      |
+| `/language-settings`       | Единое место CRUD пар — вкладка «Language Pairs» (см. «Управление парами» выше) |
+| `/cards/select` или header | Quick switcher активной пары                                                    |
+| Главная / прогресс         | MVP: только активная пара; опционально — все пары                               |
 
 ### Сессия
 
 При смене активной пары — сброс `CardSelectStore` (текущая карточка, direction toggle). Опционально: confirm «Сменить пару? Сессия будет прервана».
 
-### Миграция persist
+### Миграция persist (план)
 
 ```typescript
 // user.persistence.ts — normalize legacy
 if ('languagePair' in prefs && !('languagePairs' in prefs)) {
-  const id = crypto.randomUUID();
+  // TODO: реализовать миграцию с простым ID, не UUID
+  const id = 'legacy-' + Date.now();
   return {
     ...prefs,
     languagePairs: [{ id, pair: normalizeLanguagePair(prefs.languagePair), createdAt: now }],
@@ -191,14 +214,14 @@ G7 даёт **выбор активной пары**; G8 — **enforcement**: п
 
 ### Пробелы (G8) — закрыто в MVP strict
 
-| Область                          | Было                     | Стало (G8)                                                       |
-| -------------------------------- | ------------------------ | ---------------------------------------------------------------- |
-| `/tools/cards` каталог           | Фильтры вручную          | `initWithActivePair` + locked подпись **«Курс: …»** + hint (G8a) |
-| `clearFilters()`                 | Сбрасывал known/learning | Сохраняет locked pair                                            |
-| `/tools/scenario-builder` список | Все сценарии             | API filter по активной паре                                      |
-| `ScenarioCardPicker`             | Без auto-scope           | `initWithActivePair` + reload                                    |
-| `ScenarioSearchCriteria`         | Нет полей пары           | `knownLanguage` / `learningLanguage`                             |
-| Смена пары на `/tools/*`         | Нет reload               | effect → reload списков                                          |
+| Область                        | Было                     | Стало (G8)                                                       |
+| ------------------------------ | ------------------------ | ---------------------------------------------------------------- |
+| `/tools/cards` каталог         | Фильтры вручную          | `initWithActivePair` + locked подпись **«Курс: …»** + hint (G8a) |
+| `clearFilters()`               | Сбрасывал known/learning | Сохраняет locked pair                                            |
+| Каталог сценариев в Проводнике | Все сценарии             | API filter по активной паре                                      |
+| `ScenarioCardPicker`           | Без auto-scope           | `initWithActivePair` + reload                                    |
+| `ScenarioSearchCriteria`       | Нет полей пары           | `knownLanguage` / `learningLanguage`                             |
+| Смена пары на `/tools/*`       | Нет reload               | effect → reload списков                                          |
 
 ### Режимы
 

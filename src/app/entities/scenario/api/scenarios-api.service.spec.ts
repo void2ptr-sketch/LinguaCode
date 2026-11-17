@@ -78,19 +78,64 @@ describe('ScenariosApiService', () => {
       expect(result).toEqual(mockSearchPage);
     });
 
-    it('should list scenarios without query via GET /scenarios', async () => {
+    it('should always use /scenarios/search so drafts are visible', async () => {
       const promise = service.search({
         knownLanguage: 'ru',
         learningLanguage: 'en',
         page: { page: 0, pageSize: 20 },
       });
 
-      const req = httpMock.expectOne((r) => r.url === buildApiUrl('/scenarios'));
+      const req = httpMock.expectOne((r) => r.url === buildApiUrl('/scenarios/search'));
       expect(req.request.method).toBe('GET');
+      expect(req.request.params.get('query')).toBe('');
       req.flush({ data: mockSearchPage });
 
       const result = await promise;
       expect(result).toEqual(mockSearchPage);
+    });
+
+    it('should map the real backend list envelope ({ data: Scenario[], total })', async () => {
+      const promise = service.search({
+        query: 'test',
+        page: { page: 0, pageSize: 20 },
+      });
+
+      const req = httpMock.expectOne((r) => r.url === buildApiUrl('/scenarios/search'));
+      req.flush({
+        data: [
+          {
+            id: 1,
+            title: 'Backend Scenario',
+            scenarioDescription: 'Description',
+            authorId: 7,
+            cardSource: JSON.stringify({ mode: 'fixed', cardIds: ['card-1'] }),
+            published: false,
+            updatedAt: '2024-01-01T00:00:00.000Z',
+            courseId: 3,
+            lessonId: 5,
+            order: 2,
+            requiredTier: 'FREE',
+          },
+        ],
+        total: 1,
+      });
+
+      const result = await promise;
+
+      expect(result.totalItems).toBe(1);
+      expect(result.items).toHaveLength(1);
+      expect(result.items[0]).toEqual(
+        expect.objectContaining({
+          id: '1',
+          title: 'Backend Scenario',
+          authorId: '7',
+          cardSourceMode: 'fixed',
+          published: false,
+          courseId: '3',
+          lessonId: '5',
+          order: 2,
+        }),
+      );
     });
   });
 
@@ -116,6 +161,66 @@ describe('ScenariosApiService', () => {
     });
   });
 
+  describe('getNextOrder', () => {
+    it('should scan all search pages and return max order + 1', async () => {
+      const promise = service.getNextOrder();
+
+      const first = httpMock.expectOne(
+        (r) =>
+          r.url === buildApiUrl('/scenarios/search') &&
+          r.params.get('page') === '0' &&
+          r.params.get('size') === '100',
+      );
+      expect(first.request.method).toBe('GET');
+      first.flush({ data: [{ id: 1, order: 5 }], total: 2 });
+      // Let the page loop issue the next request.
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      const second = httpMock.expectOne(
+        (r) =>
+          r.url === buildApiUrl('/scenarios/search') &&
+          r.params.get('page') === '1' &&
+          r.params.get('size') === '100',
+      );
+      second.flush({ data: [{ id: 2, order: 10 }], total: 2 });
+
+      await expect(promise).resolves.toBe(11);
+    });
+
+    it('should support the mock page envelope ({ data: { items, totalItems } })', async () => {
+      const promise = service.getNextOrder();
+
+      const req = httpMock.expectOne(
+        (r) => r.url === buildApiUrl('/scenarios/search') && r.params.get('page') === '0',
+      );
+      req.flush({ data: { items: [{ id: 's1', order: 7 }], totalItems: 1 } });
+
+      await expect(promise).resolves.toBe(8);
+    });
+
+    it('should fall back to scenario_order when order is missing', async () => {
+      const promise = service.getNextOrder();
+
+      const req = httpMock.expectOne(
+        (r) => r.url === buildApiUrl('/scenarios/search') && r.params.get('page') === '0',
+      );
+      req.flush({ data: [{ id: 1, scenario_order: 4 }], total: 1 });
+
+      await expect(promise).resolves.toBe(5);
+    });
+
+    it('should return 1 when there are no scenarios', async () => {
+      const promise = service.getNextOrder();
+
+      const req = httpMock.expectOne(
+        (r) => r.url === buildApiUrl('/scenarios/search') && r.params.get('page') === '0',
+      );
+      req.flush({ data: [], total: 0 });
+
+      await expect(promise).resolves.toBe(1);
+    });
+  });
+
   describe('create', () => {
     it('should create a new scenario', async () => {
       const promise = service.create(mockPayload);
@@ -126,6 +231,12 @@ describe('ScenariosApiService', () => {
         title: mockPayload.title,
         scenarioDescription: mockPayload.description,
         cardSource: JSON.stringify(mockPayload.cardSource),
+        published: mockPayload.published,
+        courseId: undefined,
+        programId: undefined,
+        lessonId: undefined,
+        languagePair: undefined,
+        requiredTier: undefined,
       });
       req.flush({ data: mockScenario });
 
@@ -166,6 +277,36 @@ describe('ScenariosApiService', () => {
     });
   });
 
+  describe('getByLessonId', () => {
+    it('should load and map scenarios via GET /scenarios/by-lesson/:id', async () => {
+      const promise = service.getByLessonId('5');
+
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/by-lesson/5'));
+      expect(req.request.method).toBe('GET');
+      req.flush({
+        data: [
+          {
+            id: 10,
+            title: 'Lesson Scenario',
+            authorId: 7,
+            cardSource: JSON.stringify({ mode: 'fixed', cardIds: [] }),
+            published: true,
+            lessonId: 5,
+            order: 1,
+          },
+        ],
+        total: 1,
+      });
+
+      const result = await promise;
+
+      expect(result).toHaveLength(1);
+      expect(result[0].id).toBe('10');
+      expect(result[0].lessonId).toBe('5');
+      expect(result[0].cardSource).toEqual({ mode: 'fixed', cardIds: [] });
+    });
+  });
+
   describe('findUsingCard', () => {
     it('should find scenarios using a specific card', async () => {
       const promise = service.findUsingCard('card-1');
@@ -176,6 +317,54 @@ describe('ScenariosApiService', () => {
 
       const result = await promise;
       expect(result).toEqual([mockScenarioIndexEntry]);
+    });
+  });
+
+  describe('scenario cards', () => {
+    it('should add a card via POST /scenarios/:id/cards', async () => {
+      const promise = service.addCard('10', '123', 1);
+
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/10/cards'));
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body).toEqual({ cardId: 123, order: 1 });
+      req.flush({ data: mockScenario });
+
+      const result = await promise;
+      expect(result).toEqual(mockScenario);
+    });
+
+    it('should omit order when adding a card without a position', async () => {
+      const promise = service.addCard('10', '123');
+
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/10/cards'));
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body).toEqual({ cardId: 123 });
+      req.flush({ data: mockScenario });
+
+      await promise;
+    });
+
+    it('should remove a card via DELETE /scenarios/:id/cards/:cardId', async () => {
+      const promise = service.removeCard('10', '123');
+
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/10/cards/123'));
+      expect(req.request.method).toBe('DELETE');
+      req.flush({ data: mockScenario });
+
+      const result = await promise;
+      expect(result).toEqual(mockScenario);
+    });
+
+    it('should move a card via PATCH /scenarios/:id/cards/:cardId', async () => {
+      const promise = service.moveCard('10', '123', 2);
+
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/10/cards/123'));
+      expect(req.request.method).toBe('PATCH');
+      expect(req.request.body).toEqual({ order: 2 });
+      req.flush({ data: mockScenario });
+
+      const result = await promise;
+      expect(result).toEqual(mockScenario);
     });
   });
 });

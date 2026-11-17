@@ -2,8 +2,8 @@ import type { LanguagePair } from '../../language-pair/model/language-pair.types
 import type { Card, CardIndexMetaOverride } from '../../card/model';
 import type { Scenario } from '../../scenario/model';
 import type {
-  CourseAuthoring,
   CourseIndexEntry,
+  CoursePracticeSettings,
   CourseSearchCriteria,
   CourseSearchPage,
   CourseWithPrograms,
@@ -46,6 +46,14 @@ export type ProgramWritePayload = {
 };
 
 /**
+ * Minimum subscription tier required to access a course.
+ *
+ * @remarks
+ * Matches the backend `CourseRequiredTier` enum: FREE / STARTER / GROWTH / PREMIUM.
+ */
+export type CourseRequiredTier = 'FREE' | 'STARTER' | 'GROWTH' | 'PREMIUM';
+
+/**
  * Payload for creating or updating a lesson via the courses API.
  *
  * @remarks
@@ -65,15 +73,51 @@ export type LessonWritePayload = {
  * Payload for creating or updating a course via the courses API.
  *
  * @remarks
- * Includes programs (each containing lessons), authoring notes, and language pair information.
+ * Includes programs (each containing lessons), authoring notes (flat fields
+ * matching the backend CourseCreateRequest / CourseUpdateRequest), and language
+ * pair information.
+ *
+ * Authoring fields are flat to match the backend contract:
+ * - `authoringStatus` — draft | planned | generating | materialized | failed
+ * - `authoringIdea` — Markdown description of the course idea
+ * - `ideaUpdatedAt` — ISO 8601 timestamp
+ * - `materializedAt` — ISO 8601 timestamp
+ * - `lastError` — error message when status is 'failed'
  */
 export type CourseWritePayload = {
   title: string;
   description: string;
   published: boolean;
+  /** Numeric language pair ID from `language_pairs.id`. Resolved to `{ known, learning }` by the API service. */
+  languagePairId?: number;
+  /** Legacy: language pair codes (kept for backward compatibility; prefer `languagePairId`). */
   languagePair?: LanguagePair;
   programs: readonly ProgramWritePayload[];
-  authoring?: CourseAuthoring;
+  /** Authoring status: draft | planned | generating | materialized | failed */
+  authoringStatus?: string;
+  /** Markdown description of the course idea */
+  authoringIdea?: string;
+  /** ISO 8601 timestamp of the last idea modification */
+  ideaUpdatedAt?: string;
+  /** ISO 8601 timestamp of the last materialization */
+  materializedAt?: string;
+  /** Last generation error message (present when status === 'failed') */
+  lastError?: string;
+  practiceSettings?: CoursePracticeSettings;
+  /**
+   * Minimum subscription tier required to access the course.
+   *
+   * @remarks
+   * Defaults to `FREE` on the backend if omitted.
+   */
+  requiredTier?: CourseRequiredTier;
+  /**
+   * URL-friendly identifier for the course.
+   *
+   * @remarks
+   * Auto-generated from `title` by the backend when omitted or empty.
+   */
+  slug?: string;
 };
 
 /**

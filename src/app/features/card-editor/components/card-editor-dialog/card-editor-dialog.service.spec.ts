@@ -27,7 +27,7 @@ describe('CardEditorDialogService', () => {
     service = TestBed.inject(CardEditorDialogService);
   });
 
-  it('should open create dialog with disableClose config', async () => {
+  it('should open create dialog with adaptive size config', async () => {
     const result = await service.openCreate('select');
 
     expect(result).toEqual({ saved: true });
@@ -35,7 +35,10 @@ describe('CardEditorDialogService', () => {
       CardEditorDialogComponent,
       expect.objectContaining({
         panelClass: 'card-editor-dialog',
-        disableClose: true,
+        width: 'min(1280px, 96vw)',
+        maxWidth: '96vw',
+        maxHeight: 'none',
+        autoFocus: 'first-titled-element',
         data: { mode: 'create', kind: 'select' },
       }),
     );

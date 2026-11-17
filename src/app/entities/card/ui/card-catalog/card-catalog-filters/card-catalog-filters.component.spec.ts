@@ -2,10 +2,12 @@ import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CardCatalogFiltersComponent } from './card-catalog-filters.component';
-import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
+import { CardCatalogSearchStore } from '../../../lib/store/card-catalog-search.store';
 import { CardSearchService } from '../../../search/card-search.service';
 import { CatalogService } from '../../../api/catalog.service';
 import { TagsService } from '../../../api/tags.service';
+import { UserStore } from '../../../../user/model/user.store';
+import type { ContentLanguage } from '../../../model';
 
 describe('CardCatalogFiltersComponent', () => {
   let component: CardCatalogFiltersComponent;
@@ -51,6 +53,23 @@ describe('CardCatalogFiltersComponent', () => {
               vocabulary: 'Лексика',
             }),
             getLabel: (tag: string) => tag,
+          },
+        },
+        {
+          provide: UserStore,
+          useValue: {
+            languagePairs: signal([
+              {
+                id: 'pair-1',
+                pair: { known: 'ru' as ContentLanguage, learning: 'en' as ContentLanguage },
+                createdAt: '2024-01-01T00:00:00Z',
+              },
+              {
+                id: 'pair-2',
+                pair: { known: 'en' as ContentLanguage, learning: 'ru' as ContentLanguage },
+                createdAt: '2024-01-02T00:00:00Z',
+              },
+            ]),
           },
         },
       ],
@@ -205,6 +224,35 @@ describe('CardCatalogFiltersComponent', () => {
       const spy = vi.spyOn(store, 'clearFilters');
       component.clearFilters();
       expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('onLanguagePairChange', () => {
+    it('should call store.applyLanguagePair with the selected pairId', async () => {
+      const spy = vi.spyOn(store, 'applyLanguagePair').mockResolvedValue(undefined);
+      await component.onLanguagePairChange('pair-1');
+      expect(spy).toHaveBeenCalledWith('pair-1');
+    });
+
+    it('should call store.applyLanguagePair with null to clear', async () => {
+      const spy = vi.spyOn(store, 'applyLanguagePair').mockResolvedValue(undefined);
+      await component.onLanguagePairChange(null);
+      expect(spy).toHaveBeenCalledWith(null);
+    });
+  });
+
+  describe('selectedLanguagePairId', () => {
+    it('should reflect store.selectedLanguagePairId', () => {
+      store.selectedLanguagePairId.set('pair-1');
+      expect(component.selectedLanguagePairId()).toBe('pair-1');
+    });
+  });
+
+  describe('userLanguagePairs', () => {
+    it('should return pairs from userStore', () => {
+      const pairs = component.userLanguagePairs();
+      expect(pairs).toHaveLength(2);
+      expect(pairs[0].id).toBe('pair-1');
     });
   });
 });

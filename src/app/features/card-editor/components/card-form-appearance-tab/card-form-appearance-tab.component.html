@@ -1,0 +1,6 @@
+<p class="card-form__hint card-form__hint--tab">Тема и размер шрифта карточки.</p>
+
+<app-card-appearance-fields
+  [appearance]="draft().appearance"
+  (appearanceChange)="updateAppearance($event)"
+/>

@@ -25,6 +25,7 @@ describe('courses-storage', () => {
         {
           id: 'custom-course',
           title: 'Custom course',
+          slug: 'custom-course',
           description: 'User course',
           authorId: 'local-user',
           languagePair: { known: 'ru' as const, learning: 'zh' as const },
@@ -63,6 +64,7 @@ describe('courses-storage', () => {
         {
           id: 'course-zh-radicals-214',
           title: 'Пользовательское название',
+          slug: 'course-zh-radicals-214',
           description: '',
           authorId: 'local-user',
           languagePair:
@@ -88,6 +90,7 @@ describe('courses-storage', () => {
         {
           id: 'course-zh-radicals-214',
           title: '214 китайских радикалов',
+          slug: 'course-zh-radicals-214',
           description: '',
           authorId: 'local-user',
           languagePair: { known: 'ru', learning: 'en' },

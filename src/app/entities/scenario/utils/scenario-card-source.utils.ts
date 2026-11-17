@@ -7,7 +7,7 @@ import type {
 import type { LanguagePair } from '../../language-pair/model/language-pair.types';
 import type { Scenario } from '../model';
 import type { LegacyScenario } from '../model';
-import { normalizeLanguagePair } from '../../language-pair/lib/language-pair.utils';
+import { normalizeLanguagePair } from '../../language-pair/utils/language-pair.utils';
 
 import { matchesCardIndexEntry } from '../../card/search/card-search.utils';
 import type { CardSearchService } from '../../card/search/card-search.service';
@@ -18,6 +18,7 @@ const DIFFICULTY_ORDER = {
   beginner: 0,
   intermediate: 1,
   advanced: 2,
+  expert: 3,
 } as const;
 
 export function emptyCardSearchCriteria(): Omit<CardSearchCriteria, 'page'> {
@@ -73,6 +74,10 @@ export function normalizeScenario(raw: LegacyScenario): Scenario {
     updatedAt: raw.updatedAt ?? new Date().toISOString(),
     languagePair: raw.languagePair ? normalizeLanguagePair(raw.languagePair) : undefined,
     courseId: raw.courseId,
+    programId: raw.programId,
+    lessonId: raw.lessonId,
+    languagePairId: raw.languagePairId,
+    order: raw.order,
   };
 
   if (raw.cardSource) {
@@ -95,8 +100,9 @@ export function scenarioMatchesLanguagePair(
   scenario: Pick<Scenario, 'languagePair'>,
   pair: LanguagePair,
 ): boolean {
+  // Сценарии без явной языковой пары подходят для любой пары
   if (!scenario.languagePair) {
-    return false;
+    return true;
   }
 
   return (
@@ -184,13 +190,11 @@ export async function validateScenarioCardSource(
   cardExists: (cardId: string) => Promise<boolean>,
 ): Promise<ScenarioCardSourceValidationError | null> {
   if (source.mode === 'fixed' || source.mode === 'snapshot') {
-    if (source.cardIds.length === 0) {
-      return { field: 'cardSource', message: 'Выберите хотя бы одну карточку' };
-    }
-
-    for (const cardId of source.cardIds) {
-      if (!(await cardExists(cardId))) {
-        return { field: 'cardSource', message: `Карточка не найдена: ${cardId}` };
+    if (source.cardIds.length > 0) {
+      for (const cardId of source.cardIds) {
+        if (!(await cardExists(cardId))) {
+          return { field: 'cardSource', message: `Карточка не найдена: ${cardId}` };
+        }
       }
     }
 

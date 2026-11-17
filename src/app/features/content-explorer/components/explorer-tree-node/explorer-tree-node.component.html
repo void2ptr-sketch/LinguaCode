@@ -1,0 +1,74 @@
+<div
+  class="tree-node"
+  role="treeitem"
+  tabindex="0"
+  [attr.aria-expanded]="hasChildren() ? showChildren() : null"
+  [attr.aria-selected]="store.selectedId() === node().id"
+  [class.tree-node--selected]="store.selectedId() === node().id"
+  [style.padding-left.rem]="depth() + 0.5"
+  (click)="onSelect($event)"
+  (keydown.enter)="onSelect($event)"
+  (keydown.space)="onSelect($event)"
+>
+  <button
+    mat-icon-button
+    type="button"
+    class="tree-node__toggle"
+    [class.tree-node__toggle--hidden]="!hasChildren() || filteredSearchMode()"
+    [attr.aria-label]="showChildren() ? 'Свернуть' : 'Развернуть'"
+    [matTooltip]="showChildren() ? 'Свернуть' : 'Развернуть'"
+    (click)="onToggle($event)"
+  >
+    <mat-icon>{{ showChildren() ? 'expand_more' : 'chevron_right' }}</mat-icon>
+  </button>
+
+  <span
+    class="tree-node__icon"
+    [class.tree-node__icon--virtual]="node().virtual"
+    [matTooltip]="kindLabel()"
+  >
+    <mat-icon>{{ kindIcon() }}</mat-icon>
+  </span>
+
+  <span class="tree-node__body">
+    <span class="tree-node__title" [title]="node().title()">
+      {{ node().title() }}
+    </span>
+    <span class="tree-node__meta" [title]="node().meta()">{{ node().meta() }}</span>
+  </span>
+
+  @if (node().loadingChildren()) {
+    <mat-icon class="tree-node__spinner">sync</mat-icon>
+  }
+  @if (node().shared) {
+    <mat-icon
+      class="tree-node__badge"
+      matTooltip="Переиспользуемый элемент (может входить в несколько сценариев)"
+    >
+      share
+    </mat-icon>
+  }
+  @if (!node().editable) {
+    <mat-icon class="tree-node__badge tree-node__badge--lock" matTooltip="Только просмотр">
+      lock
+    </mat-icon>
+  }
+</div>
+
+@if (node().childError()) {
+  <div class="tree-node__error" [style.padding-left.rem]="depth() + 1.5">
+    {{ node().childError() }}
+  </div>
+}
+
+@if (showChildren()) {
+  <div class="tree-node__children" role="treegroup">
+    @for (child of visibleChildren(); track child.key) {
+      <app-explorer-tree-node
+        [node]="child"
+        [depth]="depth() + 1"
+        [searchSubtree]="searchSubtree() || isSearchMatch()"
+      />
+    }
+  </div>
+}

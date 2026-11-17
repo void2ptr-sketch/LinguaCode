@@ -1,8 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 import type { Scenario } from '../../../entities/scenario/model';
 import type { ScenarioCardSource } from '../../../entities/card/model';
-import { DEFAULT_LANGUAGE_PAIR } from '../../../entities/language-pair/model/language-pair.types';
 import {
   emptyScenarioFormDraft,
   scenarioToFormDraft,
@@ -12,9 +10,6 @@ import {
 } from './scenario-form-draft.utils';
 
 type ScenarioWithCardSource = Scenario & { cardSource: ScenarioCardSource };
-
-const RU_TO_EN: LanguagePair = { known: 'ru', learning: 'en' };
-const EN_TO_RU: LanguagePair = { known: 'en', learning: 'ru' };
 
 /* ------------------------------------------------------------------ */
 /*  Fixtures                                                           */
@@ -57,7 +52,7 @@ function buildScenario(overrides: Partial<ScenarioWithCardSource> = {}): Scenari
     authorId: 'author-1',
     published: true,
     updatedAt: '2025-06-01T12:00:00.000Z',
-    languagePair: RU_TO_EN,
+    languagePairId: 1,
     cardSource: buildFixedSource(),
     ...overrides,
   };
@@ -68,14 +63,16 @@ function buildScenario(overrides: Partial<ScenarioWithCardSource> = {}): Scenari
 /* ------------------------------------------------------------------ */
 
 describe('emptyScenarioFormDraft', () => {
-  it('returns a draft with default languagePair when called without arguments', () => {
+  it('returns a draft with default languagePairId when called without arguments', () => {
     const draft = emptyScenarioFormDraft();
 
     expect(draft).toEqual({
       title: '',
       description: '',
       published: false,
-      languagePair: DEFAULT_LANGUAGE_PAIR,
+      languagePairId: undefined,
+      requiredTier: 'FREE',
+      scenarioOrder: 1,
       sourceMode: 'fixed',
       fixedCardIds: [],
       criteria: {},
@@ -86,10 +83,10 @@ describe('emptyScenarioFormDraft', () => {
     });
   });
 
-  it('accepts a custom languagePair', () => {
-    const draft = emptyScenarioFormDraft(EN_TO_RU);
+  it('accepts a custom initial order', () => {
+    const draft = emptyScenarioFormDraft(5);
 
-    expect(draft.languagePair).toBe(EN_TO_RU);
+    expect(draft.scenarioOrder).toBe(5);
   });
 });
 
@@ -108,10 +105,17 @@ describe('scenarioToFormDraft', () => {
     expect(draft.title).toBe('Test Scenario');
     expect(draft.description).toBe('A test scenario');
     expect(draft.published).toBe(true);
-    expect(draft.languagePair).toBe(RU_TO_EN);
+    expect(draft.languagePairId).toBe(1);
     expect(draft.sourceMode).toBe('fixed');
     expect(draft.fixedCardIds).toEqual(['a', 'b', 'c']);
+    expect(draft.scenarioOrder).toBe(0);
     expect(draft.snapshotFrozenAt).toBeNull();
+  });
+
+  it('maps scenario.order to form draft scenarioOrder', () => {
+    const scenario = buildScenario({ order: 5 });
+    const draft = scenarioToFormDraft(scenario);
+    expect(draft.scenarioOrder).toBe(5);
   });
 
   it('maps a snapshot-source scenario correctly', () => {
@@ -144,12 +148,12 @@ describe('scenarioToFormDraft', () => {
     expect(draft.snapshotFrozenAt).toBeNull();
   });
 
-  it('falls back to DEFAULT_LANGUAGE_PAIR when scenario.languagePair is undefined', () => {
-    const scenario = buildScenario({ languagePair: undefined });
+  it('falls back to languagePairId when scenario.languagePairId is undefined', () => {
+    const scenario = buildScenario({ languagePairId: undefined });
 
     const draft = scenarioToFormDraft(scenario);
 
-    expect(draft.languagePair).toBe(DEFAULT_LANGUAGE_PAIR);
+    expect(draft.languagePairId).toBe(undefined);
   });
 });
 
@@ -163,7 +167,7 @@ describe('formDraftToScenarioDraft', () => {
       title: 'Draft Title',
       description: 'Draft Description',
       published: true,
-      languagePair: RU_TO_EN,
+      languagePairId: 1,
       sourceMode: 'fixed',
       fixedCardIds: [],
       criteria: {},
@@ -171,6 +175,7 @@ describe('formDraftToScenarioDraft', () => {
       criteriaSort: 'updatedAt',
       criteriaSeed: '',
       snapshotFrozenAt: null,
+      requiredTier: 'FREE',
       ...overrides,
     };
   }
@@ -187,9 +192,17 @@ describe('formDraftToScenarioDraft', () => {
       title: 'Draft Title',
       description: 'Draft Description',
       published: true,
-      languagePair: RU_TO_EN,
+      languagePairId: 1,
       cardSource: { mode: 'fixed', cardIds: ['id-1', 'id-2'] },
+      requiredTier: 'FREE',
+      order: undefined,
     });
+  });
+
+  it('maps scenarioOrder to order in ScenarioDraft', () => {
+    const draft = baseDraft({ scenarioOrder: 7 });
+    const result = formDraftToScenarioDraft(draft);
+    expect(result.order).toBe(7);
   });
 
   it('builds a snapshot card source from a snapshot-mode draft', () => {
@@ -277,14 +290,16 @@ describe('serializeScenarioFormDraft', () => {
       title: 'Serialize Me',
       description: 'desc',
       published: false,
-      languagePair: EN_TO_RU,
+      languagePairId: 2,
       sourceMode: 'fixed',
       fixedCardIds: ['s1'],
       criteria: {},
       criteriaLimit: 50,
       criteriaSort: 'updatedAt',
       criteriaSeed: '',
+      scenarioOrder: 0,
       snapshotFrozenAt: null,
+      requiredTier: 'FREE',
     };
 
     const serialized = serializeScenarioFormDraft(draft);
@@ -298,14 +313,16 @@ describe('serializeScenarioFormDraft', () => {
       title: 'Round Trip',
       description: 'deep desc',
       published: true,
-      languagePair: RU_TO_EN,
+      languagePairId: 1,
       sourceMode: 'criteria',
       fixedCardIds: [],
       criteria: { query: 'round', difficulty: 'beginner' },
       criteriaLimit: 20,
       criteriaSort: 'difficulty',
       criteriaSeed: 'rt-seed',
+      scenarioOrder: 3,
       snapshotFrozenAt: null,
+      requiredTier: 'GROWTH',
     };
 
     const serialized = serializeScenarioFormDraft(draft);

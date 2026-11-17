@@ -14,10 +14,20 @@ export interface Scenario {
   title?: string;
   scenarioDescription?: string;
   cardSource?: string;
+  programId?: number;
+  lessonId?: number;
+  /** Порядок в уроке */
+  order?: number;
   published?: boolean;
   languagePairId?: number;
   authorId?: number;
   requiredTier?: ScenarioRequiredTier;
+  courseId?: number;
+  ownerId?: number;
   createdAt?: string;
   updatedAt?: string;
+  /** Количество карточек в сценарии */
+  cardCount?: number;
+  /** Числовые ID карточек, восстановленные из cardSource.cardIds в порядке следования */
+  resolvedCardIds?: number[];
 }

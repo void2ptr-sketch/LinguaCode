@@ -1,5 +1,5 @@
 import type { Scenario, ScenarioIndexEntry } from '../model';
-import { formatLanguagePair } from '../../language-pair/lib/language-pair.utils';
+import { formatLanguagePair } from '../../language-pair/utils/language-pair.utils';
 import { scenarioCardsLabel } from '../utils/scenario-card-source.utils';
 
 export function scenarioToIndexEntry(scenario: Scenario): ScenarioIndexEntry {
@@ -15,6 +15,8 @@ export function scenarioToIndexEntry(scenario: Scenario): ScenarioIndexEntry {
       ? formatLanguagePair(scenario.languagePair)
       : undefined,
     courseId: scenario.courseId,
+    lessonId: scenario.lessonId,
+    order: scenario.order,
   };
 }
 

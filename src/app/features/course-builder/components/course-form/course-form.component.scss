@@ -132,3 +132,70 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
+
+.course-form__practice-settings {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.course-form__section-title {
+  color: var(--mat-sys-on-surface);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.course-form__checkbox-hint {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.course-form__practice-settings mat-radio-group {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.course-form__practice-settings mat-checkbox {
+  margin-top: 0.25rem;
+}
+
+/* ── Export tab ── */
+
+.course-form__export-hint {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.course-form__export-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.course-form__export-actions button {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  justify-content: flex-start;
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+  text-align: start;
+  width: 100%;
+}
+
+.course-form__export-actions button mat-icon {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.course-form__export-actions button span {
+  line-height: 1.5;
+  white-space: normal;
+}

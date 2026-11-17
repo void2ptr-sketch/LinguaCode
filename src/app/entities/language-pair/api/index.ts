@@ -10,7 +10,11 @@ export type { LanguageCreatePayload, LanguageUpdatePayload } from './language-ap
 
 // ===== Services (legacy) =====
 export { LanguageApiService } from './language-api.service';
-export { LanguagePairsApiService } from './language-pairs-api.service';
+export {
+  LanguagePairsApiService,
+  type LanguagePairCreatePayload,
+  type LanguagePairUpdatePayload,
+} from './language-pairs-api.service';
 
 // ===== Mock =====
 export { languagePairsApiMockInterceptor } from './mock/language-pairs-api.mock.interceptor';

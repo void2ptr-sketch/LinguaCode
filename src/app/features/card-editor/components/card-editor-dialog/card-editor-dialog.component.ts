@@ -17,20 +17,35 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { firstValueFrom } from 'rxjs';
 
-import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
+import type { CardPaymentTier } from '../../../../entities/card/model';
+import { ContentHierarchyService } from '../../../../entities/content-hierarchy';
+import { LanguageService } from '../../../../entities/language-pair/services/language.service';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { CardEditorStore } from '../../services/card-editor.store';
 import { CatalogService } from '../../../../entities/card/api/catalog.service';
 import type { CardDraft, CardIndexMetaDraft, CardIndexMetaOverride } from '../../types';
-import { loadEditorUxMode, type CardEditorUxMode } from '../../utils/ux/card-editor-ux.utils';
+import {
+  loadEditorUxMode,
+  saveEditorUxMode,
+  type CardEditorUxMode,
+} from '../../utils/ux/card-editor-ux.utils';
 import { CardFormComponent } from '../card-form/card-form.component';
 import { applyLexemeFirstToDraft } from '../../utils/draft/card-draft-lexeme-first.utils';
 import { indexTagsForDraft } from '../../utils/index-meta/card-kind-index-meta.utils';
 import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
 import type { CardEditorDialogData, CardEditorDialogResult } from './card-editor-dialog.types';
+
+/** Payment tier labels in Russian. */
+const TIER_LABELS: Record<CardPaymentTier, string> = {
+  FREE: 'Бесплатный',
+  STARTER: 'Стартовый',
+  GROWTH: 'Рост',
+  PREMIUM: 'Премиум',
+};
 
 function serializeDraft(draft: CardDraft): string {
   return JSON.stringify(draft);
@@ -42,7 +57,8 @@ function serializeDraft(draft: CardDraft): string {
  * @remarks
  * Wraps `CardFormComponent` with save/cancel actions and dirty-tracking.
  * Supports two modes: 'create' (new card) and 'edit' (existing card).
- * Shows a creation wizard in basic UX mode for card creation.
+ * A slide toggle switches between basic and advanced editor UX modes and
+ * persists the choice for subsequent dialog openings.
  *
  * @see CardFormComponent
  * @see CardEditorStore
@@ -58,9 +74,10 @@ function serializeDraft(draft: CardDraft): string {
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatSlideToggleModule,
     CardFormComponent,
   ],
-  providers: [CardEditorStore],
+  providers: [CardEditorStore, ContentHierarchyService],
   templateUrl: './card-editor-dialog.component.html',
   styleUrl: './card-editor-dialog.component.scss',
 })
@@ -95,8 +112,14 @@ export class CardEditorDialogComponent implements OnInit {
     learningLanguage: this.userStore.languagePair().learning,
   });
 
-  /** Card index meta override (tags, hierarchy references). */
+  /** Card index meta override (tags, difficulty, tier, publication, slug). */
   readonly cardMeta = signal<CardIndexMetaOverride | undefined>(undefined);
+
+  /** Whether the current save operation is in progress. */
+  readonly saving = signal(false);
+
+  /** Save error displayed inside the dialog. */
+  readonly saveError = signal<string | null>(null);
 
   /** Current editor UX mode ('basic' or 'advanced'). */
   readonly editorUxMode = signal<CardEditorUxMode>(loadEditorUxMode());
@@ -107,10 +130,36 @@ export class CardEditorDialogComponent implements OnInit {
   /** Internal snapshot of the initial meta for dirty tracking. */
   private readonly initialMetaSnapshot = signal('');
 
+  /** Internal snapshot of the initial card meta for dirty tracking. */
+  private readonly initialCardMetaSnapshot = signal('');
+
   /** Computed default appearance from user preferences. */
   readonly defaultAppearance = computed(() => {
     const prefs = this.userStore.preferences();
     return { theme: prefs.theme, fontSize: prefs.fontSize };
+  });
+
+  /** Compact language-pair summary shown under the dialog title. */
+  readonly languagePairSummary = computed(() => {
+    const labels = this.languageLabels();
+    const known = labels[this.indexMeta().knownLanguage] ?? this.indexMeta().knownLanguage;
+    const learning = labels[this.indexMeta().learningLanguage] ?? this.indexMeta().learningLanguage;
+    return `${known} → ${learning}`;
+  });
+
+  /** Human-readable access tier label for the header summary. */
+  readonly tierLabel = computed(() => {
+    const tier = this.cardMeta()?.requiredTier;
+    return tier ? TIER_LABELS[tier] : '';
+  });
+
+  /** Publication status label for the header summary. */
+  readonly publicationLabel = computed(() => {
+    const published = this.cardMeta()?.published;
+    if (published === undefined) {
+      return '';
+    }
+    return published ? 'Опубликована' : 'Черновик';
   });
 
   /**
@@ -121,13 +170,17 @@ export class CardEditorDialogComponent implements OnInit {
   readonly dirty = computed(
     () =>
       serializeDraft(this.draft()) !== this.initialSnapshot() ||
-      JSON.stringify(this.indexMeta()) !== this.initialMetaSnapshot(),
+      JSON.stringify(this.indexMeta()) !== this.initialMetaSnapshot() ||
+      JSON.stringify(this.cardMeta()) !== this.initialCardMetaSnapshot(),
   );
 
   /**
    * Whether to show the creation wizard.
+   *
    * @remarks
-   * True when in 'create' mode with basic UX enabled.
+   * True when in 'create' mode with basic UX enabled. The current dialog template
+   * renders `CardFormComponent` directly, so this computed remains an extension
+   * point for a future wizard wiring task.
    */
   readonly showWizard = computed(
     () => this.data.mode === 'create' && this.editorUxMode() === 'basic',
@@ -157,18 +210,41 @@ export class CardEditorDialogComponent implements OnInit {
    * Stores initial snapshots for dirty tracking.
    */
   async ngOnInit(): Promise<void> {
+    // Load catalog metadata (card kinds, difficulties) so the form selects
+    // are populated even when the dialog is opened directly from the explorer.
+    void this.catalogService.ensureLoaded();
+
     if (this.data.mode === 'create') {
       this.store.startCreate(this.data.kind);
-      const nextDraft = this.store.emptyDraft(this.data.kind);
-      const nextMeta = {
+      const context = this.data.context;
+      const nextDraft: CardDraft = {
+        ...this.store.emptyDraft(this.data.kind),
+        courseId: context?.courseId ?? '',
+        programId: context?.programId ?? '',
+        lessonId: context?.lessonId ?? '',
+        scenarioId: context?.scenarioId ?? '',
+      };
+      const nextMeta: CardIndexMetaDraft = {
         knownLanguage: this.userStore.languagePair().known,
         learningLanguage: this.userStore.languagePair().learning,
+        languagePairId: context?.languagePairId,
       };
+      const nextCardMeta: CardIndexMetaOverride = {
+        knownLanguage: nextMeta.knownLanguage,
+        learningLanguage: nextMeta.learningLanguage,
+        languagePairId: nextMeta.languagePairId,
+        tags: [...indexTagsForDraft(nextDraft)],
+        difficulty: 'beginner',
+        requiredTier: 'FREE',
+        published: true,
+      };
+
       this.draft.set(nextDraft);
       this.indexMeta.set(nextMeta);
-      this.cardMeta.set(undefined);
+      this.cardMeta.set(nextCardMeta);
       this.initialSnapshot.set(serializeDraft(nextDraft));
       this.initialMetaSnapshot.set(JSON.stringify(nextMeta));
+      this.initialCardMetaSnapshot.set(JSON.stringify(nextCardMeta));
       return;
     }
 
@@ -182,25 +258,49 @@ export class CardEditorDialogComponent implements OnInit {
 
     const nextDraft = this.store.cardToDraft(editing);
     this.draft.set(nextDraft);
-    this.cardMeta.set(editing.meta);
 
     // Initialize indexMeta from card meta or defaults
-    const nextMeta = {
+    const nextMeta: CardIndexMetaDraft = {
       knownLanguage: editing.meta?.knownLanguage ?? this.userStore.languagePair().known,
       learningLanguage: editing.meta?.learningLanguage ?? this.userStore.languagePair().learning,
+      languagePairId: editing.languagePairId ?? editing.meta?.languagePairId,
+    };
+    const nextCardMeta: CardIndexMetaOverride = {
+      ...editing.meta,
+      knownLanguage: nextMeta.knownLanguage,
+      learningLanguage: nextMeta.learningLanguage,
+      languagePairId: nextMeta.languagePairId,
+      tags: editing.tags ?? editing.meta?.tags ?? [],
+      difficulty: editing.difficulty ?? editing.meta?.difficulty,
+      requiredTier: editing.requiredTier ?? editing.meta?.requiredTier ?? 'FREE',
+      published: editing.published ?? editing.meta?.published ?? true,
+      slug: editing.slug ?? editing.meta?.slug,
+      updatedAt: editing.updatedAt ?? editing.meta?.updatedAt,
     };
     this.indexMeta.set(nextMeta);
+    this.cardMeta.set(nextCardMeta);
     this.initialSnapshot.set(serializeDraft(nextDraft));
     this.initialMetaSnapshot.set(JSON.stringify(nextMeta));
+    this.initialCardMetaSnapshot.set(JSON.stringify(nextCardMeta));
   }
 
   /**
-   * Updates the editor UX mode.
+   * Updates the editor UX mode and persists the choice.
    *
    * @param mode - The new UX mode ('basic' or 'advanced').
    */
   setEditorUxMode(mode: CardEditorUxMode): void {
     this.editorUxMode.set(mode);
+    saveEditorUxMode(mode);
+  }
+
+  /**
+   * Handles the «Расширенный режим» toggle.
+   *
+   * @param advanced - Whether the toggle is checked.
+   */
+  onAdvancedModeToggle(advanced: boolean): void {
+    this.setEditorUxMode(advanced ? 'advanced' : 'basic');
   }
 
   /** Placeholder for future full-editor expansion. Currently a no-op. */
@@ -262,21 +362,42 @@ export class CardEditorDialogComponent implements OnInit {
    * Closes the dialog with `{ saved: true }` on success.
    */
   async saveCard(): Promise<void> {
-    const draftToSave = this.prepareDraftForSave(this.draft());
-    // Use cardMeta if available, otherwise construct meta from indexMeta and draft tags
-    const meta = this.cardMeta() || {
-      knownLanguage: this.indexMeta().knownLanguage,
-      learningLanguage: this.indexMeta().learningLanguage,
-      tags: [...indexTagsForDraft(draftToSave)],
-    };
+    if (this.saving()) {
+      return;
+    }
 
-    const saved =
-      this.data.mode === 'create'
-        ? await this.store.createCard(draftToSave, meta)
-        : await this.store.updateCard(this.data.cardId, draftToSave, meta);
+    this.saving.set(true);
+    this.saveError.set(null);
 
-    if (saved) {
-      this.dialogRef.close({ saved: true });
+    try {
+      const draftToSave = this.prepareDraftForSave(this.draft());
+      const meta: CardIndexMetaOverride = {
+        ...this.cardMeta(),
+        knownLanguage: this.indexMeta().knownLanguage,
+        learningLanguage: this.indexMeta().learningLanguage,
+        languagePairId: this.cardMeta()?.languagePairId ?? this.indexMeta().languagePairId,
+        tags: this.cardMeta()?.tags ?? [...indexTagsForDraft(draftToSave)],
+      };
+
+      const saved =
+        this.data.mode === 'create'
+          ? await this.store.createCard(draftToSave, meta)
+          : await this.store.updateCard(this.data.cardId, draftToSave, meta);
+
+      if (saved) {
+        const savedCard = this.store.lastSavedCard();
+        this.dialogRef.close({
+          saved: true,
+          cardId: savedCard?.id,
+          scenarioId: savedCard?.scenarioId,
+        });
+      }
+    } catch {
+      this.saveError.set(
+        'Не удалось сохранить карточку. Проверьте соединение и повторите попытку.',
+      );
+    } finally {
+      this.saving.set(false);
     }
   }
 

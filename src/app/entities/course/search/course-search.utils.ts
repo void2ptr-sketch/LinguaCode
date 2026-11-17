@@ -1,5 +1,5 @@
 import type { CourseIndexEntry, CourseSearchCriteria } from '../model';
-import { courseIndexMatchesLanguageCriteria } from '../../language-pair/lib/language-pair-scope.utils';
+import { courseIndexMatchesLanguageCriteria } from '../../language-pair/utils/language-pair-scope.utils';
 
 /**
  * Filters course index entries according to the given search criteria and the current user's ID.
@@ -53,6 +53,17 @@ export function matchesCourseIndexEntry(
     if (!haystack.includes(query)) {
       return false;
     }
+  }
+
+  if (criteria.languagePairs && criteria.languagePairs.length > 0) {
+    // Multi-pair filter: the entry passes if its pair matches ANY of the listed pairs.
+    const matchesAnyPair = criteria.languagePairs.some(
+      (pair) => pair.known === entry.knownLanguage && pair.learning === entry.learningLanguage,
+    );
+    if (!matchesAnyPair) {
+      return false;
+    }
+    return true;
   }
 
   if (

@@ -1,31 +1,20 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { describe, expect, it, vi } from 'vitest';
-import { CardFormTabsComponent, TabDefinition } from './card-form-tabs.component';
+import { describe, expect, it } from 'vitest';
+import { CardFormTabsComponent, TabDefinition, TabId } from './card-form-tabs.component';
 
 @Component({
   selector: 'app-host',
   standalone: true,
   imports: [CardFormTabsComponent],
-  template: `
-    <app-card-form-tabs
-      [tabs]="tabs"
-      (activeTabChange)="onActiveTabChange($event)"
-      (tabKeydown)="onTabKeydown($event)"
-    />
-  `,
+  template: ` <app-card-form-tabs [tabs]="tabs" (activeTabChange)="onActiveTabChange($event)" /> `,
 })
 class HostComponent {
   tabs: TabDefinition[] = [];
-  activeTab = '';
-  keyboardEvents: KeyboardEvent[] = [];
+  activeTabId: TabId | null = null;
 
-  onActiveTabChange(label: string): void {
-    this.activeTab = label;
-  }
-
-  onTabKeydown(event: KeyboardEvent): void {
-    this.keyboardEvents.push(event);
+  onActiveTabChange(tabId: TabId): void {
+    this.activeTabId = tabId;
   }
 }
 
@@ -34,11 +23,13 @@ describe('CardFormTabsComponent', () => {
   let host: HostComponent;
   let tabComponent: CardFormTabsComponent;
 
-  const createTabs = (count: number): TabDefinition[] =>
-    Array.from({ length: count }, (_, i) => ({
-      label: `Tab ${i + 1}`,
-      visible: true,
-    }));
+  const createTabs = (): TabDefinition[] => [
+    { id: 'content', label: 'Содержание', visible: true },
+    { id: 'answers', label: 'Ответы', visible: true },
+    { id: 'appearance', label: 'Оформление', visible: true },
+    { id: 'placement', label: 'Размещение', visible: true },
+    { id: 'publishing', label: 'Публикация', visible: true },
+  ];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -47,157 +38,91 @@ describe('CardFormTabsComponent', () => {
 
     hostFixture = TestBed.createComponent(HostComponent);
     host = hostFixture.componentInstance;
-    host.tabs = createTabs(5);
+    host.tabs = createTabs();
     hostFixture.detectChanges();
 
     tabComponent = hostFixture.debugElement.children[0].componentInstance;
   });
 
-  // ── visibleTabs ──
+  // ── Structure ──
 
-  it('should show VISIBLE_TABS_COUNT tabs when enough tabs exist', () => {
-    expect(tabComponent.visibleTabs().length).toBe(3);
-    expect(tabComponent.visibleTabs()[0].label).toBe('Tab 1');
-    expect(tabComponent.visibleTabs()[2].label).toBe('Tab 3');
+  it('should export TabDefinition type with stable id', () => {
+    const tab: TabDefinition = { id: 'content', label: 'Test', visible: true };
+    expect(tab.id).toBe('content');
+    expect(tab.label).toBe('Test');
+    expect(tab.visible).toBe(true);
   });
 
-  it('should show all tabs when fewer than VISIBLE_TABS_COUNT', () => {
-    host.tabs = createTabs(2);
-    hostFixture.detectChanges();
-    expect(tabComponent.visibleTabs().length).toBe(2);
+  it('should render mat-tab-group', () => {
+    const groups = hostFixture.nativeElement.querySelectorAll('mat-tab-group');
+    expect(groups.length).toBe(1);
   });
 
-  it('should show empty array when no tabs', () => {
-    host.tabs = [];
-    hostFixture.detectChanges();
-    expect(tabComponent.visibleTabs()).toEqual([]);
+  it('should render all visible tab labels in the DOM', () => {
+    const text = hostFixture.nativeElement.textContent?.toLowerCase() || '';
+    expect(text).toContain('содержание');
+    expect(text).toContain('ответы');
+    expect(text).toContain('оформление');
+    expect(text).toContain('размещение');
+    expect(text).toContain('публикация');
   });
 
-  // ── MAX_TAB_OFFSET ──
-
-  it('should compute max offset correctly', () => {
-    expect(tabComponent.MAX_TAB_OFFSET).toBe(2);
-  });
-
-  it('should return 0 when fewer tabs than visible', () => {
-    host.tabs = createTabs(2);
-    hostFixture.detectChanges();
-    expect(tabComponent.MAX_TAB_OFFSET).toBe(0);
-  });
-
-  it('should return 0 when exactly VISIBLE_TABS_COUNT tabs', () => {
-    host.tabs = createTabs(3);
-    hostFixture.detectChanges();
-    expect(tabComponent.MAX_TAB_OFFSET).toBe(0);
-  });
-
-  // ── activeTabLabel ──
-
-  it('should return first visible tab label by default', () => {
-    expect(tabComponent.activeTabLabel()).toBe('Tab 1');
-  });
-
-  it('should return empty string when no tabs', () => {
-    host.tabs = [];
-    hostFixture.detectChanges();
-    expect(tabComponent.activeTabLabel()).toBe('');
-  });
-
-  // ── canPrevTabs / canNextTabs ──
-
-  it('should not allow prev at offset 0', () => {
-    expect(tabComponent.canPrevTabs()).toBe(false);
-  });
-
-  it('should allow next when offset < max', () => {
-    expect(tabComponent.canNextTabs()).toBe(true);
-  });
-
-  it('should not allow next when at max offset', () => {
-    // Simulate scrolling to max
-    (tabComponent as unknown as { _offset: number })._offset = 2;
-    expect(tabComponent.canNextTabs()).toBe(false);
-  });
-
-  // ── prevTabs / nextTabs ──
-
-  it('should scroll right', () => {
-    (tabComponent as unknown as { _offset: number })._offset = 0;
-    tabComponent.nextTabs();
-    expect((tabComponent as unknown as { _offset: number })._offset).toBe(1);
-  });
-
-  it('should scroll left', () => {
-    (tabComponent as unknown as { _offset: number })._offset = 1;
-    tabComponent.prevTabs();
-    expect((tabComponent as unknown as { _offset: number })._offset).toBe(0);
-  });
-
-  it('should not scroll past boundaries', () => {
-    (tabComponent as unknown as { _offset: number })._offset = 2;
-    tabComponent.nextTabs();
-    expect((tabComponent as unknown as { _offset: number })._offset).toBe(2);
-  });
-
-  it('should not scroll left at 0', () => {
-    (tabComponent as unknown as { _offset: number })._offset = 0;
-    tabComponent.prevTabs();
-    expect((tabComponent as unknown as { _offset: number })._offset).toBe(0);
-  });
-
-  // ── onTabChange ──
-
-  it('should set selected tab label and emit', () => {
-    let emitted = '';
-    tabComponent.activeTabChange.subscribe((label) => {
-      emitted = label;
-    });
-    tabComponent.onTabChange('Tab 3');
-    expect(emitted).toBe('Tab 3');
-  });
-
-  // ── handleKeydown ──
-
-  it('should call prevTabs on Ctrl+ArrowLeft', () => {
-    (tabComponent as unknown as { _offset: number })._offset = 1;
-    const event = Object.assign(
-      new KeyboardEvent('keydown', {
-        ctrlKey: true,
-        key: 'ArrowLeft',
-      }),
-      { preventDefault: vi.fn() },
+  it('should hide invisible tabs', () => {
+    host.tabs = createTabs().map((tab) =>
+      tab.id === 'answers' ? { ...tab, visible: false } : tab,
     );
-    tabComponent.handleKeydown(event);
-    expect((tabComponent as unknown as { _offset: number })._offset).toBe(0);
+    hostFixture.detectChanges();
+
+    const text = hostFixture.nativeElement.textContent?.toLowerCase() || '';
+    expect(text).not.toContain('ответы');
+    expect(tabComponent.visibleTabs().length).toBe(4);
   });
 
-  it('should call nextTabs on Ctrl+ArrowRight', () => {
-    (tabComponent as unknown as { _offset: number })._offset = 0;
-    const event = Object.assign(
-      new KeyboardEvent('keydown', {
-        ctrlKey: true,
-        key: 'ArrowRight',
-      }),
-      { preventDefault: vi.fn() },
+  it('should render a validation badge with an accessible label', () => {
+    host.tabs = createTabs().map((tab) =>
+      tab.id === 'answers' ? { ...tab, badge: '2', badgeAriaLabel: 'Ответы, 2 ошибки' } : tab,
     );
-    tabComponent.handleKeydown(event);
-    expect((tabComponent as unknown as { _offset: number })._offset).toBe(1);
+    hostFixture.detectChanges();
+
+    const badge = hostFixture.nativeElement.querySelector('.card-form__tab-badge');
+    expect(badge?.textContent?.trim()).toBe('2');
+
+    const label = hostFixture.nativeElement.querySelector(
+      '.card-form__tab-label[aria-label="Ответы, 2 ошибки"]',
+    );
+    expect(label).toBeTruthy();
   });
 
-  it('should emit tabKeydown event', () => {
-    let emitted: KeyboardEvent | undefined;
-    tabComponent.tabKeydown.subscribe((event) => {
-      emitted = event;
-    });
-    const event = new KeyboardEvent('keydown', { key: 'a' });
-    tabComponent.handleKeydown(event);
-    expect(emitted).toBe(event);
+  it('should not render a badge for tabs without a badge value', () => {
+    const badges = hostFixture.nativeElement.querySelectorAll('.card-form__tab-badge');
+    expect(badges.length).toBe(0);
   });
 
-  it('should not change offset on non-ctrl keydown', () => {
-    (tabComponent as unknown as { _offset: number })._offset = 0;
-    const event = new KeyboardEvent('keydown', { key: 'a' });
-    tabComponent.handleKeydown(event);
-    expect((tabComponent as unknown as { _offset: number })._offset).toBe(0);
+  // ── activeTabChange ──
+
+  it('should emit stable id for the first tab', () => {
+    tabComponent.onTabChange(0);
+    expect(host.activeTabId).toBe('content');
+  });
+
+  it('should emit stable id mapped through the tab list', () => {
+    tabComponent.onTabChange(2);
+    expect(host.activeTabId).toBe('appearance');
+  });
+
+  it('should map index through visible tabs when a tab is hidden', () => {
+    host.tabs = createTabs().map((tab) =>
+      tab.id === 'answers' ? { ...tab, visible: false } : tab,
+    );
+    hostFixture.detectChanges();
+
+    tabComponent.onTabChange(1);
+    expect(host.activeTabId).toBe('appearance');
+  });
+
+  it('should not emit for an out-of-range index', () => {
+    host.activeTabId = null;
+    tabComponent.onTabChange(99);
+    expect(host.activeTabId).toBeNull();
   });
 });

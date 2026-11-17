@@ -8,14 +8,18 @@ import { CardSearchService } from '../../../entities/card';
 import { CourseSearchService } from '../../../entities/course';
 import { ScenarioSearchService } from '../../../entities/scenario';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { ScenarioBuilderStore } from './scenario-builder.store';
+
+const TEST_USER_ID = 'local-user';
 
 describe('ScenarioBuilderStore', () => {
   let store: ScenarioBuilderStore;
 
   const mockScenarioSearchService = {
     search: vi.fn(),
+    getNextOrder: vi.fn(),
     getById: vi.fn(),
     create: vi.fn(),
     update: vi.fn(),
@@ -42,6 +46,7 @@ describe('ScenarioBuilderStore', () => {
   beforeEach(() => {
     localStorage.clear();
     vi.clearAllMocks();
+    mockScenarioSearchService.getNextOrder.mockResolvedValue(1);
 
     TestBed.configureTestingModule({
       providers: [
@@ -55,6 +60,12 @@ describe('ScenarioBuilderStore', () => {
           useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
         },
         UserStore,
+        {
+          provide: AuthStore,
+          useValue: {
+            user: vi.fn(() => ({ id: TEST_USER_ID, displayName: '', email: '', roles: [] })),
+          },
+        },
       ],
     });
 
@@ -153,6 +164,7 @@ describe('ScenarioBuilderStore', () => {
       {
         id: 'existing',
         title: 'X',
+        slug: 'existing',
         authorId: 'u',
         programCount: 0,
         published: false,
@@ -196,6 +208,63 @@ describe('ScenarioBuilderStore', () => {
     expect(store.error()).toBeNull();
   });
 
+  // ── createDraft ──
+
+  it('should create a draft with default language pair from userStore when no context', async () => {
+    const draft = await store.createDraft();
+
+    expect(draft.languagePairId).toBe(undefined);
+    expect(draft.scenarioOrder).toBe(1);
+    expect(draft.courseId).toBeUndefined();
+    expect(draft.programId).toBeUndefined();
+    expect(draft.lessonId).toBeUndefined();
+    expect(mockScenarioSearchService.getNextOrder).toHaveBeenCalled();
+  });
+
+  it('should use the backend next order for a new scenario', async () => {
+    mockScenarioSearchService.getNextOrder.mockResolvedValue(11);
+
+    const draft = await store.createDraft({ lessonId: 'lesson-113' });
+
+    expect(draft.scenarioOrder).toBe(11);
+    expect(draft.lessonId).toBe('lesson-113');
+  });
+
+  it('should fall back to order 1 when next-order request fails', async () => {
+    mockScenarioSearchService.getNextOrder.mockRejectedValue(new Error('API error'));
+
+    const draft = await store.createDraft();
+
+    expect(draft.scenarioOrder).toBe(1);
+  });
+
+  it('should create a draft with context language pair when provided', async () => {
+    mockScenarioSearchService.getNextOrder.mockResolvedValue(3);
+
+    const draft = await store.createDraft({
+      languagePairId: 1,
+      courseId: 'course-123',
+      programId: 'program-456',
+      lessonId: 'lesson-789',
+    });
+
+    expect(draft.languagePairId).toBe(1);
+    expect(draft.courseId).toBe('course-123');
+    expect(draft.programId).toBe('program-456');
+    expect(draft.lessonId).toBe('lesson-789');
+    expect(draft.scenarioOrder).toBe(3);
+  });
+
+  it('should create a draft with partial context (only courseId)', async () => {
+    const draft = await store.createDraft({ courseId: 'course-999' });
+
+    expect(draft.courseId).toBe('course-999');
+    expect(draft.programId).toBeUndefined();
+    expect(draft.lessonId).toBeUndefined();
+    // languagePairId should fall back to userStore
+    expect(draft.languagePairId).toBe(undefined);
+  });
+
   it('should enter edit mode and load scenario', async () => {
     mockScenarioSearchService.getById.mockResolvedValue({
       id: 's1',
@@ -204,7 +273,7 @@ describe('ScenarioBuilderStore', () => {
       description: 'Test',
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '2026-01-01T00:00:00.000Z',
     });
 
@@ -250,9 +319,8 @@ describe('ScenarioBuilderStore', () => {
       authorId: 'local-user',
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
-      published: false,
-      languagePair: { known: 'ru', learning: 'en' },
-      updatedAt: '',
+      languagePairId: 1,
+      updatedAt: '2026-01-01T00:00:00.000Z',
     });
 
     await store.startEdit('s1');
@@ -266,9 +334,8 @@ describe('ScenarioBuilderStore', () => {
       authorId: 'other-user',
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
-      published: false,
-      languagePair: { known: 'ru', learning: 'en' },
-      updatedAt: '',
+      languagePairId: 1,
+      updatedAt: '2026-01-01T00:00:00.000Z',
     });
 
     await store.startEdit('s1');
@@ -336,8 +403,19 @@ describe('ScenarioBuilderStore', () => {
 
   // ── createScenario ──
 
-  it('should create a scenario successfully and reload list', async () => {
-    mockScenarioSearchService.create.mockResolvedValue(undefined);
+  it('should create a scenario and return it, then reload list', async () => {
+    const createdScenario: Scenario = {
+      id: 's-new',
+      title: 'New Scenario',
+      authorId: TEST_USER_ID,
+      description: 'Desc',
+      cardSource: { mode: 'fixed', cardIds: ['c1'] },
+      cardSourceMode: 'fixed',
+      cardSourceSummary: '1 карточек',
+      published: false,
+      updatedAt: '2026-01-01T00:00:00.000Z',
+    } as Scenario;
+    mockScenarioSearchService.create.mockResolvedValue(createdScenario);
     mockScenarioSearchService.search.mockResolvedValue({
       items: [],
       page: 0,
@@ -350,44 +428,45 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.createScenario({
       title: 'New Scenario',
       description: 'Desc',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
 
-    expect(result).toBe(true);
+    expect(result).not.toBeNull();
+    expect(result?.id).toBe('s-new');
     expect(mockScenarioSearchService.create).toHaveBeenCalled();
     expect(store.editorMode()).toBe('list');
   });
 
-  it('should return false and set error when creation fails', async () => {
+  it('should return null and set error when creation fails', async () => {
     mockScenarioSearchService.create.mockRejectedValue(new Error('Conflict'));
     mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
 
     const result = await store.createScenario({
       title: 'New Scenario',
       description: 'Desc',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
 
-    expect(result).toBe(false);
+    expect(result).toBeNull();
     expect(store.error()).toBe('Не удалось создать сценарий');
   });
 
-  it('should return false when draft has empty title', async () => {
+  it('should return null when draft has empty title', async () => {
     mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
 
     const result = await store.createScenario({
       title: '   ',
       description: 'Desc',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
 
-    expect(result).toBe(false);
+    expect(result).toBeNull();
     expect(store.error()).toBe('Укажите название сценария');
   });
 
@@ -401,7 +480,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
     mockScenarioSearchService.update.mockResolvedValue(undefined);
@@ -419,7 +498,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Updated',
       description: 'New desc',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: true,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
@@ -439,7 +518,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
 
@@ -449,7 +528,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Updated',
       description: '',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: [] },
     });
@@ -466,7 +545,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
     mockScenarioSearchService.update.mockRejectedValue(new Error('Server error'));
@@ -477,7 +556,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Updated',
       description: '',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });
@@ -582,6 +661,105 @@ describe('ScenarioBuilderStore', () => {
     expect(store.error()).toBe('Не удалось удалить сценарий');
   });
 
+  it('should fetch the scenario by ID when it is not in the current list (ownership bypass guard)', async () => {
+    mockScenarioSearchService.getById.mockResolvedValue({
+      id: 's-outside',
+      title: 'Foreign',
+      authorId: 'other-user',
+      cardSource: { mode: 'fixed', cardIds: [] },
+      published: false,
+      updatedAt: '',
+    });
+
+    store.indexItems.set([]);
+
+    await store.deleteScenario('s-outside');
+
+    expect(mockScenarioSearchService.getById).toHaveBeenCalledWith('s-outside');
+    expect(mockScenarioSearchService.delete).not.toHaveBeenCalled();
+    expect(store.error()).toBe('Нельзя удалять чужой сценарий');
+  });
+
+  it('should allow deleting a scenario outside the list when the fetched author is the current user', async () => {
+    mockScenarioSearchService.getById.mockResolvedValue({
+      id: 's-outside',
+      title: 'Mine outside list',
+      authorId: TEST_USER_ID,
+      cardSource: { mode: 'fixed', cardIds: [] },
+      published: false,
+      updatedAt: '',
+    });
+    mockScenarioSearchService.delete.mockResolvedValue(undefined);
+    mockScenarioSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    store.indexItems.set([]);
+
+    await store.deleteScenario('s-outside');
+
+    expect(mockScenarioSearchService.delete).toHaveBeenCalledWith('s-outside');
+    expect(store.error()).toBeNull();
+  });
+
+  it('should reject deletion when the fetched scenario cannot be resolved (fail-safe)', async () => {
+    mockScenarioSearchService.getById.mockRejectedValue(new Error('Not found'));
+
+    store.indexItems.set([]);
+
+    await store.deleteScenario('s-missing');
+
+    expect(mockScenarioSearchService.delete).not.toHaveBeenCalled();
+    expect(store.error()).toBe('Нельзя удалять чужой сценарий');
+  });
+
+  it('should validate ownership by the provided entry instead of the list page', async () => {
+    mockScenarioSearchService.delete.mockResolvedValue(undefined);
+    mockScenarioSearchService.search.mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+    });
+
+    store.indexItems.set([]);
+
+    await store.deleteScenario('s-node', {
+      id: 's-node',
+      title: 'From tree node',
+      authorId: TEST_USER_ID,
+      cardSourceMode: 'fixed',
+      cardSourceSummary: '0 карточек',
+      published: false,
+      updatedAt: '',
+    });
+
+    expect(mockScenarioSearchService.getById).not.toHaveBeenCalled();
+    expect(mockScenarioSearchService.delete).toHaveBeenCalledWith('s-node');
+  });
+
+  it('should reject deletion when the provided entry belongs to another user', async () => {
+    store.indexItems.set([]);
+
+    await store.deleteScenario('s-node', {
+      id: 's-node',
+      title: 'Foreign from tree node',
+      authorId: 'other-user',
+      cardSourceMode: 'fixed',
+      cardSourceSummary: '0 карточек',
+      published: false,
+      updatedAt: '',
+    });
+
+    expect(mockScenarioSearchService.delete).not.toHaveBeenCalled();
+    expect(store.error()).toBe('Нельзя удалять чужой сценарий');
+  });
+
   // ── buildSnapshotFromCriteria ──
 
   it('should return null when criteria has no filters', async () => {
@@ -614,7 +792,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
     mockCardSearchService.search.mockResolvedValue({
@@ -636,7 +814,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Criteria Scenario',
       description: '',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: {
         mode: 'criteria',
@@ -664,7 +842,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
     mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
@@ -687,7 +865,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Snapshot Scenario',
       description: '',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: {
         mode: 'snapshot',
@@ -710,7 +888,7 @@ describe('ScenarioBuilderStore', () => {
       description: '',
       cardSource: { mode: 'fixed', cardIds: [] },
       published: false,
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       updatedAt: '',
     });
     mockCardSearchService.getCardById.mockResolvedValue({ id: 'c1', title: 'Card 1' });
@@ -732,7 +910,7 @@ describe('ScenarioBuilderStore', () => {
     const result = await store.updateScenario('s1', {
       title: 'Mismatch',
       description: '',
-      languagePair: { known: 'ru', learning: 'en' },
+      languagePairId: 1,
       published: false,
       cardSource: { mode: 'fixed', cardIds: ['c1'] },
     });

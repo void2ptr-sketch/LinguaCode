@@ -1,69 +1,71 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
-  <section class="quiz-card__question" aria-label="Вопрос">
-    <app-quiz-card-question-header
-      [title]="card().title"
-      [prompt]="resolved().prompt"
-      [plainText]="true"
-    />
+  @if (resolved(); as resolved) {
+    <section class="quiz-card__question" aria-label="Вопрос">
+      <app-quiz-card-question-header
+        [title]="card().title"
+        [prompt]="resolved.prompt"
+        [plainText]="true"
+      />
 
-    <div class="quiz-card__sound">
-      <p class="quiz-card__section-label">Прослушайте</p>
-      <div class="sound-card__stimulus">
-        <button
-          mat-stroked-button
-          type="button"
-          class="sound-card__play"
-          [attr.aria-label]="hasAudioFile() ? 'Воспроизвести запись' : 'Прослушать синтез речи'"
-          (click)="playAudio()"
-        >
-          <mat-icon>volume_up</mat-icon>
-          Прослушать
-        </button>
-        <div class="sound-card__lexeme">
-          <app-lexeme-display
-            surface="prompt"
-            [lexeme]="stimulusLexeme()"
-            [fallbackText]="card().audioLabelLearning"
-          />
+      <div class="quiz-card__sound">
+        <p class="quiz-card__section-label">Прослушайте</p>
+        <div class="sound-card__stimulus">
+          <button
+            mat-stroked-button
+            type="button"
+            class="sound-card__play"
+            [attr.aria-label]="hasAudioFile() ? 'Воспроизвести запись' : 'Прослушать синтез речи'"
+            (click)="playAudio()"
+          >
+            <mat-icon>volume_up</mat-icon>
+            Прослушать
+          </button>
+          <div class="sound-card__lexeme">
+            <app-lexeme-display
+              surface="prompt"
+              [lexeme]="stimulusLexeme()"
+              [fallbackText]="card().audioLabelLearning"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="quiz-card__answer" aria-label="Ответ">
-    <p class="quiz-card__section-label">Выберите перевод</p>
-    <mat-card-content class="quiz-card__options">
-      @for (option of resolved().options; track $index; let index = $index) {
-        <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
-          <app-lexeme-display
-            surface="answer"
-            [lexeme]="optionLexeme(index)"
-            [fallbackText]="option"
-            [inline]="true"
-          />
-        </button>
-      }
-    </mat-card-content>
-  </section>
+    <section class="quiz-card__answer" aria-label="Ответ">
+      <p class="quiz-card__section-label">Выберите перевод</p>
+      <mat-card-content class="quiz-card__options">
+        @for (option of resolved.options; track $index; let index = $index) {
+          <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
+            <app-lexeme-display
+              surface="answer"
+              [lexeme]="optionLexeme(index)"
+              [fallbackText]="option"
+              [inline]="true"
+            />
+          </button>
+        }
+      </mat-card-content>
+    </section>
 
-  @if (feedback() === 'correct') {
-    <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
-      <mat-icon>check_circle</mat-icon>
-      Верно!
-    </mat-card-content>
-  }
+    @if (feedback() === 'correct') {
+      <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
+        <mat-icon>check_circle</mat-icon>
+        Верно!
+      </mat-card-content>
+    }
 
-  @if (feedback() === 'incorrect') {
-    <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
-      <mat-icon>cancel</mat-icon>
-      Неверно. Правильный ответ:
-      <app-lexeme-display
-        surface="answer"
-        [lexeme]="optionLexeme(resolved().correctIndex)"
-        [fallbackText]="resolved().options[resolved().correctIndex]"
-        [inline]="true"
-      />
-    </mat-card-content>
+    @if (feedback() === 'incorrect') {
+      <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
+        <mat-icon>cancel</mat-icon>
+        Неверно. Правильный ответ:
+        <app-lexeme-display
+          surface="answer"
+          [lexeme]="optionLexeme(resolved.correctIndex)"
+          [fallbackText]="resolved.options[resolved.correctIndex]"
+          [inline]="true"
+        />
+      </mat-card-content>
+    }
   }
 
   <mat-card-actions align="end">

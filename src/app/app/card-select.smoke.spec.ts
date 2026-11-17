@@ -10,6 +10,7 @@ import { resetContentSeedCache } from '../entities/content-seed/content-seed.cac
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 import { LanguagePairsApiService } from '../entities/language-pair/api';
 import { AuthStore } from '../entities/auth/services/auth.store';
+import { UserPreferencesSyncService } from '../entities/user/services/user-preferences-sync.service';
 
 describe('Card select smoke', () => {
   beforeEach(async () => {
@@ -35,6 +36,14 @@ describe('Card select smoke', () => {
             isAuthenticated: () => true,
             user: () => ({ id: 'mock', displayName: 'Test User', email: '', roles: [] }),
             logout: () => Promise.resolve(),
+          },
+        },
+        {
+          provide: UserPreferencesSyncService,
+          useValue: {
+            selectedCourseId: () => null,
+            loadPreferences: () => Promise.resolve(),
+            saveSelectedCourse: () => Promise.resolve(),
           },
         },
       ],
@@ -90,19 +99,16 @@ describe('Card select smoke', () => {
         '/cards/demo-cards.json',
         '/cards/radicals-course-cards.json',
         '/cards/perl-interview-cards.json',
-        '/cards/perl-db-cards.json',
       ],
       scenarioFiles: [
         '/scenarios/demo-scenarios.json',
         '/scenarios/radicals-scenarios.json',
         '/scenarios/perl-interview-scenarios.json',
-        '/scenarios/perl-db-scenarios.json',
       ],
       courseFiles: [
         '/courses/demo-courses.json',
         '/courses/radicals-214-course.json',
         '/courses/perl-interview-course.json',
-        '/courses/perl-db-course.json',
       ],
     });
     await fixture.whenStable();
@@ -130,9 +136,6 @@ describe('Card select smoke', () => {
       .flush({ scenarios: [] });
     httpMock
       .expectOne(`${environment.fixturesUrl}/scenarios/perl-interview-scenarios.json`)
-      .flush({ scenarios: [] });
-    httpMock
-      .expectOne(`${environment.fixturesUrl}/scenarios/perl-db-scenarios.json`)
       .flush({ scenarios: [] });
 
     // Course files
@@ -177,9 +180,6 @@ describe('Card select smoke', () => {
       .flush({ courses: [], lessons: [] });
     httpMock
       .expectOne(`${environment.fixturesUrl}/courses/perl-interview-course.json`)
-      .flush({ courses: [], lessons: [] });
-    httpMock
-      .expectOne(`${environment.fixturesUrl}/courses/perl-db-course.json`)
       .flush({ courses: [], lessons: [] });
 
     // Card files
@@ -238,8 +238,6 @@ describe('Card select smoke', () => {
     httpMock
       .expectOne(`${environment.fixturesUrl}/cards/perl-interview-cards.json`)
       .flush({ cards: [] });
-    httpMock.expectOne(`${environment.fixturesUrl}/cards/perl-db-cards.json`).flush({ cards: [] });
-
     // After all seed files are loaded, the ContentSeedRepository cache is populated.
     // The mock interceptors can now serve API requests from the cache.
     // We need multiple detectChanges + whenStable cycles for the async ngOnInit chain

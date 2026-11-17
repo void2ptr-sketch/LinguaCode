@@ -19,11 +19,12 @@
       <table class="course-catalog-page__table">
         <thead>
           <tr>
-            <th class="course-catalog-page__th">Курс</th>
-            <th class="course-catalog-page__th">Языки</th>
-            <th class="course-catalog-page__th">Прогресс</th>
-            <th class="course-catalog-page__th">Статус</th>
-            <th class="course-catalog-page__th">Экспорт</th>
+            <th class="course-catalog-page__th course-catalog-page__th--course">Курс</th>
+            <th class="course-catalog-page__th course-catalog-page__th--languages">Языки</th>
+            <th class="course-catalog-page__th course-catalog-page__th--programs">Программы</th>
+            <th class="course-catalog-page__th course-catalog-page__th--progress">Прогресс</th>
+            <th class="course-catalog-page__th course-catalog-page__th--status">Статус</th>
+            <th class="course-catalog-page__th course-catalog-page__th--export">Экспорт</th>
           </tr>
         </thead>
         <tbody>
@@ -32,20 +33,27 @@
               class="course-catalog-page__row"
               [class.course-catalog-page__row--completed]="isCourseCompleted(course.id)"
             >
-              <td class="course-catalog-page__td">
+              <td class="course-catalog-page__td course-catalog-page__td--course">
                 <span class="course-catalog-page__title">{{ course.title }}</span>
               </td>
-              <td class="course-catalog-page__td">
+              <td class="course-catalog-page__td course-catalog-page__td--languages">
                 {{ course.languagePairSummary }}
               </td>
-              <td class="course-catalog-page__td course-catalog-page__td--number">
+              <td
+                class="course-catalog-page__td course-catalog-page__td--programs course-catalog-page__td--number"
+              >
+                {{ course.programCount }}
+              </td>
+              <td
+                class="course-catalog-page__td course-catalog-page__td--progress course-catalog-page__td--number"
+              >
                 @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
                   {{ progressPercent(course.id) }}%
                 } @else {
                   —
                 }
               </td>
-              <td class="course-catalog-page__td">
+              <td class="course-catalog-page__td course-catalog-page__td--status">
                 <mat-checkbox
                   class="course-catalog-page__activate"
                   [checked]="activeCourseIds().has(course.id)"
@@ -61,7 +69,9 @@
                   </mat-chip>
                 }
               </td>
-              <td class="course-catalog-page__td course-catalog-page__td--actions">
+              <td
+                class="course-catalog-page__td course-catalog-page__td--export course-catalog-page__td--actions"
+              >
                 <button
                   mat-stroked-button
                   type="button"

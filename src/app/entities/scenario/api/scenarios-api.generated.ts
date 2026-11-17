@@ -59,6 +59,20 @@ export class ScenariosApiService implements ScenarioCatalogPort {
     ).then((response) => response.data as unknown as Scenario);
   }
 
+  getByIdBatch(scenarioIds: readonly string[]): Promise<readonly Scenario[]> {
+    return firstValueFrom(
+      this.http.post<{ data: Scenario[] }>(buildApiUrl('/scenarios/batch/retrieve'), {
+        ids: scenarioIds,
+      }),
+    ).then((response) => response.data);
+  }
+
+  getByLessonId(lessonId: string): Promise<readonly Scenario[]> {
+    return firstValueFrom(
+      this.http.get<ScenarioList>(buildApiUrl(`/scenarios/by-lesson/${lessonId}`)),
+    ).then((response) => (response.data ?? []) as unknown as readonly Scenario[]);
+  }
+
   create(payload: ScenarioWritePayload): Promise<Scenario> {
     const body = {
       title: payload.title,

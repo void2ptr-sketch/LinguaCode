@@ -15,11 +15,19 @@ export interface Card {
   id?: number;
   title?: string;
   kind?: CardKind;
+  slug?: string;
   authorId?: number;
   dataJson?: string;
   tags?: string;
   difficulty?: CardDifficulty;
   requiredTier?: CardRequiredTier;
+  languagePairId?: number;
+  courseId?: number;
+  programId?: number;
+  lessonId?: number;
+  scenarioId?: number;
+  order?: number;
+  published?: boolean;
   createdAt?: string;
   updatedAt?: string;
 }

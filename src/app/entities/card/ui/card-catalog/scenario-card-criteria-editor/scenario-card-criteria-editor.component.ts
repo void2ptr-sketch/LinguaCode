@@ -22,7 +22,7 @@ import type { CardSearchCriteria, ScenarioCardSort } from '../../../model';
 import { UserStore } from '../../../../user/model/user.store';
 
 import { CardCatalogFiltersComponent } from '../card-catalog-filters/card-catalog-filters.component';
-import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
+import { CardCatalogSearchStore } from '../../../lib/store/card-catalog-search.store';
 
 const SORT_OPTIONS: readonly { value: ScenarioCardSort; label: string }[] = [
   { value: 'updatedAt', label: 'По дате обновления' },
@@ -154,13 +154,12 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
       }
 
       const activeId = this.userStore.activeLanguagePairId();
-      const pair = this.userStore.languagePair();
 
       if (
         lastKnownCriteriaEditorActiveLanguagePairId !== null &&
         lastKnownCriteriaEditorActiveLanguagePairId !== activeId
       ) {
-        this.store.applyLanguagePair(pair.known, pair.learning);
+        this.store.applyLanguagePair(activeId ?? null);
       }
 
       lastKnownCriteriaEditorActiveLanguagePairId = activeId;

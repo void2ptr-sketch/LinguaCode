@@ -38,4 +38,21 @@ describe('card-index.mapper', () => {
     expect(entry.tags).toEqual(['keyboard', 'phonetics', 'ipa']);
     expect(entry.ipaReadings).toEqual(['həˈləʊ']);
   });
+
+  it('should keep the card order from the scenario → card link', () => {
+    const entry = cardToIndexEntry({
+      id: 'select-ordered-1',
+      kind: 'select',
+      title: 'Hello',
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+      direction: 'known-to-learning',
+      promptKnown: 'Hello',
+      optionsLearning: ['Hello'],
+      correctIndex: 0,
+      scenarioId: 'scenario-1',
+      order: 2,
+    });
+
+    expect(entry.order).toBe(2);
+  });
 });

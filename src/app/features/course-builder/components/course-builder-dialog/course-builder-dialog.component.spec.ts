@@ -79,8 +79,9 @@ describe('CourseBuilderDialogComponent', () => {
     expect(component.draft().title).toBe('');
   });
 
-  it('should have dirty computed', () => {
-    const { component } = createComponent({ mode: 'create', courseId: '' });
+  it('should have dirty computed', async () => {
+    const { component, fixture } = createComponent({ mode: 'create', courseId: '' });
+    await fixture.whenStable();
     expect(component.dirty()).toBe(false);
   });
 
@@ -98,7 +99,7 @@ describe('CourseBuilderDialogComponent', () => {
   it('should have save and export methods', () => {
     const { component } = createComponent({ mode: 'create', courseId: '' });
     expect(component.saveCourse).toBeDefined();
-    expect(component.exportPdf).toBeDefined();
+    expect(component.onExportRequested).toBeDefined();
   });
 
   it('should be instantiated', () => {
@@ -114,8 +115,9 @@ describe('CourseBuilderDialogComponent', () => {
     expect(component.dirty()).toBe(true);
   });
 
-  it('should not be dirty when draft equals initial', () => {
-    const { component } = createComponent({ mode: 'create', courseId: '' });
+  it('should not be dirty when draft equals initial', async () => {
+    const { component, fixture } = createComponent({ mode: 'create', courseId: '' });
+    await fixture.whenStable();
     expect(component.dirty()).toBe(false);
   });
 
@@ -204,7 +206,7 @@ describe('CourseBuilderDialogComponent', () => {
     expect(closeSpy).not.toHaveBeenCalled();
   });
 
-  // ── exportPdf ──
+  // ── onExportRequested ──
 
   it('should show snackbar when course is not loaded', async () => {
     const { component, snackBarOpen } = createComponent(
@@ -213,7 +215,7 @@ describe('CourseBuilderDialogComponent', () => {
         editingCourse: signal(null),
       },
     );
-    await component.exportPdf(false);
+    await component.onExportRequested('pdf-without-hints');
     expect(snackBarOpen).toHaveBeenCalledWith('Курс не загружен', 'Закрыть', { duration: 3000 });
   });
 
@@ -241,7 +243,7 @@ describe('CourseBuilderDialogComponent', () => {
     const pdfExportService = TestBed.inject(CoursePdfExportService);
     vi.spyOn(pdfExportService, 'export').mockResolvedValue(new Blob());
 
-    await component.exportPdf(true);
+    await component.onExportRequested('pdf-with-hints');
 
     expect(snackBarOpen).toHaveBeenCalledWith('PDF успешно выгружен', 'Закрыть', {
       duration: 3000,
@@ -272,7 +274,7 @@ describe('CourseBuilderDialogComponent', () => {
     const pdfExportService = TestBed.inject(CoursePdfExportService);
     vi.spyOn(pdfExportService, 'export').mockRejectedValue(new Error('Export failed'));
 
-    await component.exportPdf(false);
+    await component.onExportRequested('pdf-without-hints');
 
     expect(snackBarOpen).toHaveBeenCalledWith('Ошибка при выгрузке PDF', 'Закрыть', {
       duration: 5000,
@@ -336,6 +338,60 @@ describe('CourseBuilderDialogComponent', () => {
       },
     );
 
+    expect(component.title()).toBe('Просмотр курса');
+  });
+
+  // ── forceEdit (content explorer flow) ──
+
+  it('should force edit title when forceEdit is set despite read-only store', async () => {
+    const mockCourse: CourseWithPrograms = {
+      id: 'c1',
+      title: 'Test Course',
+      authorId: 'other-user',
+      description: '',
+      programs: [],
+      programIds: [],
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    };
+
+    const { component } = createComponent(
+      { mode: 'edit', courseId: 'c1', forceEdit: true },
+      {
+        isReadOnly: signal(true),
+        editingCourse: signal(mockCourse),
+        startEdit: async () => undefined,
+      },
+    );
+
+    expect(component.isEditable()).toBe(true);
+    expect(component.title()).toBe('Редактирование курса');
+  });
+
+  it('should keep read-only title when forceEdit is not set', async () => {
+    const mockCourse: CourseWithPrograms = {
+      id: 'c1',
+      title: 'Test Course',
+      authorId: 'other-user',
+      description: '',
+      programs: [],
+      programIds: [],
+      published: false,
+      languagePair: { known: 'ru', learning: 'en' },
+      updatedAt: '',
+    };
+
+    const { component } = createComponent(
+      { mode: 'edit', courseId: 'c1' },
+      {
+        isReadOnly: signal(true),
+        editingCourse: signal(mockCourse),
+        startEdit: async () => undefined,
+      },
+    );
+
+    expect(component.isEditable()).toBe(false);
     expect(component.title()).toBe('Просмотр курса');
   });
 });

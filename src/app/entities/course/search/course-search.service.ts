@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
+import { environment } from '../../../../environments/environment';
+
 import type {
   CourseIndexEntry,
   CourseSearchCriteria,
@@ -14,7 +16,6 @@ import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import type { ApiListResponse } from '../../../shared/api/api.types';
 import { ProgramsApiService } from '../../program/api';
-import type { ProgramWithLessons } from '../../program/model/program.types';
 
 /**
  * Service for course search and management operations.
@@ -28,6 +29,13 @@ export class CourseSearchService {
   private readonly programsApi = inject(ProgramsApiService);
   private readonly logger = inject(AppLoggerService);
   private readonly http = inject(HttpClient);
+
+  /**
+   * Whether course requests are served by the local mock backend
+   * (seed data with string IDs) instead of the real backend. Exposed as a
+   * field so tests can override it.
+   */
+  private readonly coursesMockEnabled = environment.useCoursesApiMock;
 
   /** Whether a course operation is in progress. */
   readonly loading = signal(false);
@@ -47,14 +55,47 @@ export class CourseSearchService {
 
   private idResolutionPromise: Promise<void> | null = null;
 
+  /** Cache for getById results to prevent redundant API calls. */
+  private readonly getByIdCache = new Map<string, Promise<CourseWithPrograms>>();
+
+  /**
+   * Clears the getById cache.
+   *
+   * @remarks
+   * Call after create/update/delete operations so subsequent reads fetch fresh data.
+   */
+  clearGetByIdCache(): void {
+    this.getByIdCache.clear();
+  }
+
   /**
    * Searches courses by criteria.
    *
    * @param criteria - The search criteria.
    * @returns A page of course index entries.
+   * @remarks
+   * After the API call, results are additionally filtered client-side by
+   * `knownLanguage`/`learningLanguage` when both are present. This is a
+   * safety net: the backend may not filter by these parameters, so the
+   * frontend must guarantee that only courses matching the active language
+   * pair are shown.
    */
   search(criteria: CourseSearchCriteria): Promise<CourseSearchPage> {
-    return this.run(() => this.coursesApi.search(criteria));
+    return this.run(() => this.coursesApi.search(criteria)).then((page) => {
+      const known = criteria.knownLanguage;
+      const learning = criteria.learningLanguage;
+      if (known && learning) {
+        const filtered = page.items.filter(
+          (entry) => entry.knownLanguage === known && entry.learningLanguage === learning,
+        );
+        return {
+          ...page,
+          items: filtered,
+          totalItems: filtered.length,
+        };
+      }
+      return page;
+    });
   }
 
   /**
@@ -75,6 +116,7 @@ export class CourseSearchService {
         const map = new Map<string, string>();
         let page = 0;
         const pageSize = 100;
+        let fetched = 0;
         let hasMore = true;
 
         while (hasMore) {
@@ -87,15 +129,19 @@ export class CourseSearchService {
           );
 
           const items = (response.data as unknown as CourseIndexEntry[]) ?? [];
+          fetched += items.length;
           for (const item of items) {
-            // item.id is the numeric ID; title is the string seed ID
-            map.set(item.title, String(item.id));
+            // item.id is the numeric ID (as string); slug is the seed string ID.
+            const slug = item.slug ?? item.id;
+            map.set(slug, String(item.id));
             // Also store numeric ID as-is for direct lookup
             map.set(item.id, String(item.id));
           }
 
           page++;
-          hasMore = page < (response.total ?? 0);
+          // `total` is the number of items (not pages): stop when everything is fetched.
+          hasMore =
+            response.total !== undefined ? fetched < response.total : items.length === pageSize;
         }
 
         this.idResolutionCache = map;
@@ -114,12 +160,26 @@ export class CourseSearchService {
    * numeric IDs. This method resolves string IDs by looking up the cached
    * mapping (loaded from the backend). Numeric IDs pass through unchanged.
    *
+   * **Mock mode:** when the courses API is served by the local mock backend
+   * (`useCoursesApiMock`), the search index itself contains string seed IDs
+   * (slug → slug mapping), so non-numeric IDs pass through as-is — the mock
+   * backend accepts them directly (mirrors {@link resolveCourseIdForWrite}).
+   *
+   * **Post-validation (real backend):** the resolved value is checked against
+   * `^\d+$`. If the cache maps a slug to a non-numeric ID, the method returns
+   * `null` instead of propagating the slug.
+   *
    * @param courseId - The course ID to resolve.
-   * @returns The resolved numeric course ID, or `null` if not found.
+   * @returns The resolved numeric course ID, or `null` if not found or non-numeric.
    */
   async resolveCourseId(courseId: string): Promise<string | null> {
     // Numeric ID — pass through
     if (/^\d+$/.test(courseId)) {
+      return courseId;
+    }
+
+    // Mock backend serves seed data with string IDs — pass through as-is
+    if (this.coursesMockEnabled) {
       return courseId;
     }
 
@@ -133,15 +193,15 @@ export class CourseSearchService {
     // Try direct match first (numeric ID passed as string)
     const direct = this.idResolutionCache.get(courseId);
     if (direct) {
-      return direct;
-    }
-
-    // Try matching by title (seed string ID → numeric ID)
-    // The cache stores title → numeric ID, so we need to iterate
-    for (const [key, value] of this.idResolutionCache) {
-      if (key === courseId) {
-        return value;
+      // Post-validation: ensure the resolved value is numeric
+      if (/^\d+$/.test(direct)) {
+        return direct;
       }
+      // Cache maps slug → slug (mock mode with seed data); reject non-numeric
+      this.logger.warn(
+        `[CourseSearch] resolveCourseId: cache maps "${courseId}" → "${direct}" (non-numeric), returning null`,
+      );
+      return null;
     }
 
     return null;
@@ -151,8 +211,10 @@ export class CourseSearchService {
    * Retrieves a course with its programs by ID.
    *
    * @remarks
-   * Tries the `/courses/{id}/journey` endpoint first. If it returns no programs,
-   * falls back to fetching programs and lessons via the programs API.
+   * Tries the `/courses/{id}/journey` endpoint first. An empty program list is
+   * a valid state — e.g. a freshly created course — so the journey response is
+   * returned as-is. The programs-API fallback is used only when `/journey`
+   * itself fails.
    *
    * @param courseId - The course ID.
    * @returns The course with programs.
@@ -164,46 +226,137 @@ export class CourseSearchService {
       throw new Error(`Course not found: ${courseId}`);
     }
 
-    // Try /journey endpoint first
-    try {
-      const course = await this.run(() => this.coursesApi.getJourney(resolvedId));
+    // Return cached result if already resolved
+    const cached = this.getByIdCache.get(resolvedId);
+    if (cached) {
+      return cached;
+    }
 
-      // If journey returns programs with lessons, use them
-      if (course.programs && course.programs.length > 0) {
-        this.logger.info(`[CourseSearch] getJourney returned ${course.programs.length} programs`);
-        return course;
+    // Try /journey endpoint first. A course without programs is a normal state,
+    // so an empty list is returned directly instead of triggering a redundant
+    // programs-API fallback.
+    try {
+      const journeyCourse = await this.run(() => this.coursesApi.getJourney(resolvedId));
+      const programCount = journeyCourse.programs?.length ?? 0;
+
+      if (programCount > 0) {
+        this.logger.info(`[CourseSearch] getJourney returned ${programCount} programs`);
+      } else {
+        this.logger.debug(`[CourseSearch] course ${resolvedId} has no programs`);
       }
+
+      // `/courses/{id}/journey` is a minimal DTO: it does not include
+      // `languagePairId`/`languagePair`. Consumers (program creation, journey
+      // and card-select pair activation) rely on `course.languagePair`, so
+      // merge it from the full course record when the journey response omits it.
+      await this.attachCourseLanguagePair(journeyCourse, resolvedId);
+
+      this.getByIdCache.set(resolvedId, Promise.resolve(journeyCourse));
+      return journeyCourse;
     } catch (error) {
       this.logger.warn('[CourseSearch] getJourney failed, falling back to programs API', error);
     }
 
-    // Fallback: fetch course + programs + lessons separately
+    // Fallback: fetch course + programs + lessons separately. Reached only when
+    // `/journey` failed — not when it legitimately returned no programs.
     this.logger.info(
       `[CourseSearch] Fetching programs via ProgramsApiService for course ${resolvedId}`,
     );
-    const programs = await this.programsApi.getByCourse(resolvedId);
 
-    // Resolve each program with its lessons
-    const programsWithLessons: ProgramWithLessons[] = [];
-    for (const program of programs) {
-      const programWithLessons = await this.programsApi.getById(program.id);
-      programsWithLessons.push(programWithLessons);
+    // Fetch course base to preserve metadata (title, authorId, description,
+    // authoring, practiceSettings, languagePair). `CoursesApiService.getById`
+    // normalises the raw backend DTO (courseDescription → description, flat
+    // authoring → nested, JSON-string practiceSettings → object, languagePair).
+    let courseBase: Record<string, unknown>;
+    try {
+      courseBase = (await this.coursesApi.getById(resolvedId)) as unknown as Record<
+        string,
+        unknown
+      >;
+    } catch {
+      // If course fetch fails, create a minimal base
+      courseBase = {
+        id: String(resolvedId),
+        title: '',
+        slug: '',
+        description: '',
+        authorId: '',
+        languagePair: { known: 'en' as const, learning: 'ru' as const },
+        languagePairId: undefined as number | undefined,
+        published: true,
+        updatedAt: new Date().toISOString(),
+      };
     }
 
-    // Build CourseWithPrograms — the course shape from /journey may differ from plain /courses/:id
-    // We need at least the course base fields
-    const courseBase = {
-      id: String(resolvedId),
-      title: '',
-      description: '',
-      authorId: '',
-      languagePair: { known: 'en' as const, learning: 'ru' as const },
-      programIds: programs.map((p) => p.id),
-      published: true,
-      updatedAt: new Date().toISOString(),
-    };
+    // Fetch programs and resolve lessons in parallel
+    const programs = await this.programsApi.getByCourse(resolvedId);
 
-    return { ...courseBase, programs: programsWithLessons };
+    let result: CourseWithPrograms;
+
+    if (programs.length === 0) {
+      this.logger.debug(`[CourseSearch] fallback found no programs for course ${resolvedId}`);
+      // Return course with empty programs — caller can handle gracefully
+      result = {
+        ...courseBase,
+        programIds: [],
+        programs: [],
+      } as unknown as CourseWithPrograms;
+    } else {
+      const programsWithLessons = await Promise.all(
+        programs.map((program) => this.programsApi.getById(program.id)),
+      );
+
+      result = {
+        ...courseBase,
+        programIds: programs.map((p) => p.id),
+        programs: programsWithLessons,
+      } as unknown as CourseWithPrograms;
+    }
+
+    // Cache the final (normalised) result — not the intermediate journey
+    // response, which may have contained zero programs.
+    this.getByIdCache.set(resolvedId, Promise.resolve(result));
+    return result;
+  }
+
+  /**
+   * Ensures a course payload exposes `languagePair` (and `languagePairId`).
+   *
+   * @remarks
+   * The `/courses/{id}/journey` response is a minimal DTO that carries no
+   * language pair fields. When the payload lacks `languagePair`, the full
+   * course record (`GET /courses/{id}`) is fetched once and its pair metadata
+   * is merged in. Failures are non-fatal — callers handle a missing pair
+   * gracefully (the pair is optional on the backend).
+   *
+   * @param course - The course payload to enrich (mutated in place).
+   * @param resolvedId - The resolved numeric course ID.
+   */
+  private async attachCourseLanguagePair(
+    course: CourseWithPrograms,
+    resolvedId: string,
+  ): Promise<void> {
+    if (course.languagePair) {
+      return;
+    }
+
+    try {
+      const courseRecord = await this.coursesApi.getById(resolvedId);
+      const target = course as unknown as Record<string, unknown>;
+      const source = courseRecord as unknown as Record<string, unknown>;
+
+      if (source['languagePair']) {
+        target['languagePair'] = source['languagePair'];
+      }
+      if (typeof source['languagePairId'] === 'number') {
+        target['languagePairId'] = source['languagePairId'];
+      }
+    } catch (error) {
+      this.logger.warn(
+        `[CourseSearch] failed to resolve language pair for course ${resolvedId}`,
+        error,
+      );
+    }
   }
 
   /**
@@ -254,21 +407,52 @@ export class CourseSearchService {
   /**
    * Updates an existing course.
    *
-   * @param courseId - The course ID.
+   * @param courseId - The course ID (numeric or resolvable slug).
    * @param payload - The course write payload.
    * @returns The updated course with programs.
    */
-  update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
-    return this.run(() => this.coursesApi.update(courseId, payload));
+  async update(courseId: string, payload: CourseWritePayload): Promise<CourseWithPrograms> {
+    const resolvedId = await this.resolveCourseIdForWrite(courseId);
+    return this.run(() => this.coursesApi.update(resolvedId, payload));
   }
 
   /**
    * Deletes a course by ID.
    *
-   * @param courseId - The course ID.
+   * @param courseId - The course ID (numeric or resolvable slug).
    */
-  delete(courseId: string): Promise<void> {
-    return this.run(() => this.coursesApi.delete(courseId));
+  async delete(courseId: string): Promise<void> {
+    const resolvedId = await this.resolveCourseIdForWrite(courseId);
+    return this.run(() => this.coursesApi.delete(resolvedId));
+  }
+
+  /**
+   * Resolves a course ID to the numeric form required by backend write
+   * endpoints (`PUT`/`DELETE /courses/{id}`, bundle export, etc.).
+   *
+   * @remarks
+   * Backend binds `{id}` path variables to `Long` backed by a `BIGINT` PK —
+   * a string slug like `course-zh-radicals-214` fails binding with 400.
+   * Numeric IDs pass through unchanged. When the courses API is served by the
+   * local mock backend (seed data with string IDs), slugs pass through as-is.
+   * Otherwise the slug is resolved via the `/courses/search` ID mapping; if it
+   * cannot be resolved, a clear client-side error is thrown instead of sending
+   * a doomed request.
+   *
+   * @param courseId - The course ID (numeric or slug).
+   * @returns The numeric course ID for the real backend, or the original ID in mock mode.
+   * @throws Error when a non-numeric slug cannot be resolved against the backend.
+   */
+  async resolveCourseIdForWrite(courseId: string): Promise<string> {
+    if (this.coursesMockEnabled || /^\d+$/.test(courseId)) {
+      return courseId;
+    }
+
+    const resolved = await this.resolveCourseId(courseId);
+    if (!resolved) {
+      throw new Error(`Course not found: ${courseId}`);
+    }
+    return resolved;
   }
 
   /**

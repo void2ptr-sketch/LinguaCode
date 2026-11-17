@@ -16,12 +16,19 @@ import type {
   CodeTraceCard,
 } from './card.types';
 import type {
+  DrawCharacterTarget,
+  DrawPracticeMode,
+  DrawStrokeGuide,
+} from '../../phonetic/model/draw-practice.types';
+import type { PhoneticLexeme } from '../../phonetic/model/phonetic-content.types';
+import type {
   BackendCardDto,
   BackendCardKind,
   BackendCardDifficulty,
   ParsedCardContent,
   BackendCardCreatePayload,
   BackendCardUpdatePayload,
+  BackendPaymentTier,
 } from './card-backend-dto.types';
 
 /**
@@ -55,12 +62,13 @@ function mapCardKind(backendKind: BackendCardKind): Card['kind'] {
 /**
  * Maps uppercase backend difficulty to lowercase frontend difficulty.
  */
-function mapDifficulty(backendDiff: BackendCardDifficulty | null): string | undefined {
+function mapDifficulty(backendDiff: BackendCardDifficulty | null): CardDifficulty | undefined {
   if (!backendDiff) return undefined;
-  const map: Record<BackendCardDifficulty, string> = {
+  const map: Record<BackendCardDifficulty, CardDifficulty> = {
     BEGINNER: 'beginner',
     INTERMEDIATE: 'intermediate',
     ADVANCED: 'advanced',
+    EXPERT: 'expert',
   };
   return map[backendDiff];
 }
@@ -192,13 +200,46 @@ function parseCardContent(dto: BackendCardDto): ParsedCardContent {
           direction: get('direction') ? String(get('direction')) : undefined,
         };
 
-      case 'DRAW':
+      case 'DRAW': {
+        const practiceModes: readonly string[] = [
+          'freehand',
+          'memory',
+          'tracing',
+          'hints',
+          'stroke-order',
+          'radicals',
+        ];
+        const practiceModeRaw = get('practiceMode');
+        const lexeme = get('promptLexeme') as
+          { primary?: unknown; script?: unknown; pinyin?: unknown } | undefined;
+        const characterTargetsRaw = get('characterTargets');
+
         return {
           kind: 'DRAW',
           promptKnown: getString('promptKnown'),
           referenceHintKnown: getString('referenceHintKnown'),
           meaningKnown: get('meaningKnown') ? String(get('meaningKnown')) : undefined,
+          practiceMode:
+            typeof practiceModeRaw === 'string' && practiceModes.includes(practiceModeRaw)
+              ? (practiceModeRaw as DrawPracticeMode)
+              : undefined,
+          targetCharacter: get('targetCharacter') ? String(get('targetCharacter')) : undefined,
+          promptLexeme: lexeme
+            ? ({
+                primary: String(lexeme.primary ?? ''),
+                script: String(lexeme.script ?? 'hani'),
+                pinyin: lexeme.pinyin ? String(lexeme.pinyin) : undefined,
+              } as PhoneticLexeme)
+            : undefined,
+          strokeGuides: Array.isArray(get('strokeGuides'))
+            ? (get('strokeGuides') as DrawStrokeGuide[])
+            : undefined,
+          radicalHint: get('radicalHint') ? String(get('radicalHint')) : undefined,
+          characterTargets: Array.isArray(characterTargetsRaw)
+            ? (characterTargetsRaw as DrawCharacterTarget[])
+            : undefined,
         };
+      }
 
       case 'TONE':
         return {
@@ -286,11 +327,18 @@ function parseTags(tagsJson: string): string[] {
 /**
  * Builds the common `CardBase` fields from a backend DTO.
  */
-function buildCardBase(dto: BackendCardDto): CardBase {
+function buildCardBase(dto: BackendCardDto): CardBase & {
+  slug: string;
+  authorId: string;
+  requiredTier: BackendPaymentTier;
+} {
   return {
     id: String(dto.id),
     kind: mapCardKind(dto.kind),
     title: dto.title,
+    slug: dto.slug ?? '',
+    authorId: String(dto.authorId),
+    requiredTier: dto.requiredTier ?? 'FREE',
     appearance: {
       theme: 'default',
       fontSize: 'md',
@@ -335,6 +383,22 @@ function mapKindToBackend(kind: Card['kind']): BackendCardKind {
 }
 
 /**
+ * Converts a string ID from the frontend card model to a numeric backend ID.
+ *
+ * @remarks
+ * Empty strings and non-numeric values are treated as "not provided"; the
+ * backend keeps the current value on update and leaves the column null on create.
+ */
+function toNullableNumber(value: string | undefined): number | undefined {
+  if (value === undefined || value.trim() === '') {
+    return undefined;
+  }
+
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : undefined;
+}
+
+/**
  * Maps lowercase frontend difficulty to uppercase backend BackendCardDifficulty.
  */
 function mapDifficultyToBackend(diff: string | undefined): BackendCardDifficulty | null {
@@ -343,6 +407,7 @@ function mapDifficultyToBackend(diff: string | undefined): BackendCardDifficulty
     beginner: 'BEGINNER',
     intermediate: 'INTERMEDIATE',
     advanced: 'ADVANCED',
+    expert: 'EXPERT',
   };
   return map[diff] ?? null;
 }
@@ -437,6 +502,12 @@ function extractCardContent(card: Card): Record<string, unknown> {
         promptKnown: c.promptKnown ?? '',
         referenceHintKnown: c.referenceHintKnown ?? '',
         meaningKnown: c.meaningKnown,
+        practiceMode: c.practiceMode,
+        targetCharacter: c.targetCharacter,
+        promptLexeme: c.promptLexeme,
+        strokeGuides: c.strokeGuides,
+        radicalHint: c.radicalHint,
+        characterTargets: c.characterTargets,
       };
     }
 
@@ -550,6 +621,14 @@ export const CardBackendAdapter = {
       ...base,
       difficulty,
       tags,
+      languagePairId: dto.languagePairId ? String(dto.languagePairId) : undefined,
+      courseId: dto.courseId ? String(dto.courseId) : undefined,
+      programId: dto.programId ? String(dto.programId) : undefined,
+      lessonId: dto.lessonId ? String(dto.lessonId) : undefined,
+      scenarioId: dto.scenarioId ? String(dto.scenarioId) : undefined,
+      // Backend may expose `order` (API field) or `card_order` (DB column).
+      order: dto.order ?? dto.card_order,
+      published: dto.published,
       createdAt: dto.createdAt,
       updatedAt: dto.updatedAt,
     } as unknown as Record<string, unknown>;
@@ -624,6 +703,12 @@ export const CardBackendAdapter = {
           promptKnown: parsed.promptKnown,
           referenceHintKnown: parsed.referenceHintKnown,
           meaningKnown: parsed.meaningKnown,
+          practiceMode: parsed.practiceMode,
+          targetCharacter: parsed.targetCharacter,
+          promptLexeme: parsed.promptLexeme,
+          strokeGuides: parsed.strokeGuides,
+          radicalHint: parsed.radicalHint,
+          characterTargets: parsed.characterTargets,
         } as unknown as Card;
 
       case 'TONE':
@@ -704,14 +789,33 @@ export const CardBackendAdapter = {
     const tagsJson = JSON.stringify(card.tags ?? []);
     const kind = mapKindToBackend(card.kind);
     const difficulty = mapDifficultyToBackend(card.difficulty);
+    const slug = card.slug?.trim() || card.meta?.slug?.trim();
 
     return {
-      id: card.id,
       title: card.title,
       kind,
       dataJson: contentJson,
       tags: tagsJson,
       difficulty,
+      requiredTier: card.requiredTier ?? 'FREE',
+      ...(slug ? { slug } : {}),
+      ...(toNullableNumber(card.languagePairId) !== undefined
+        ? { languagePairId: toNullableNumber(card.languagePairId) }
+        : {}),
+      ...(toNullableNumber(card.courseId) !== undefined
+        ? { courseId: toNullableNumber(card.courseId) }
+        : {}),
+      ...(toNullableNumber(card.programId) !== undefined
+        ? { programId: toNullableNumber(card.programId) }
+        : {}),
+      ...(toNullableNumber(card.lessonId) !== undefined
+        ? { lessonId: toNullableNumber(card.lessonId) }
+        : {}),
+      ...(toNullableNumber(card.scenarioId) !== undefined
+        ? { scenarioId: toNullableNumber(card.scenarioId) }
+        : {}),
+      ...(card.order !== undefined ? { order: card.order } : {}),
+      ...(card.published !== undefined ? { published: card.published } : {}),
     };
   },
 
@@ -725,20 +829,48 @@ export const CardBackendAdapter = {
   toUpdatePayload(cardId: string, card: CardWithMeta): BackendCardUpdatePayload {
     const result: BackendCardUpdatePayload = {};
 
-    // Always include title
+    // Always include the fields edited by the dialog.
     result.title = card.title;
-
-    // Content: encode kind-specific fields as JSON string
-    const contentJson = JSON.stringify(extractCardContent(card));
-    result.dataJson = contentJson;
-
-    // Tags: array → JSON string
+    result.kind = mapKindToBackend(card.kind);
+    result.dataJson = JSON.stringify(extractCardContent(card));
     result.tags = JSON.stringify(card.tags ?? []);
 
-    // Difficulty: lowercase → UPPERCASE
-    const difficulty = mapDifficultyToBackend(card.difficulty);
-    if (difficulty !== null) {
-      result.difficulty = difficulty;
+    // Slug: only send a non-blank value; the backend keeps/generates it otherwise.
+    const slug = card.slug?.trim() || card.meta?.slug?.trim();
+    if (slug) {
+      result.slug = slug;
+    }
+
+    // Difficulty: lowercase → UPPERCASE.
+    if (card.difficulty !== undefined) {
+      result.difficulty = mapDifficultyToBackend(card.difficulty);
+    }
+
+    // requiredTier is optional on update; omit it to preserve the current value.
+    if (card.requiredTier !== undefined) {
+      result.requiredTier = card.requiredTier;
+    }
+
+    // Hierarchy references — send explicit numbers when present.
+    const languagePairId = toNullableNumber(card.languagePairId);
+    if (languagePairId !== undefined) result.languagePairId = languagePairId;
+    const courseId = toNullableNumber(card.courseId);
+    if (courseId !== undefined) result.courseId = courseId;
+    const programId = toNullableNumber(card.programId);
+    if (programId !== undefined) result.programId = programId;
+    const lessonId = toNullableNumber(card.lessonId);
+    if (lessonId !== undefined) result.lessonId = lessonId;
+    const scenarioId = toNullableNumber(card.scenarioId);
+    if (scenarioId !== undefined) result.scenarioId = scenarioId;
+
+    // Position inside the scenario (`card_order`).
+    if (card.order !== undefined) {
+      result.order = card.order;
+    }
+
+    // Publication status.
+    if (card.published !== undefined) {
+      result.published = card.published;
     }
 
     return result;

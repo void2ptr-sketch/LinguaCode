@@ -78,6 +78,24 @@ describe('ScenarioSearchService', () => {
     });
   });
 
+  describe('getNextOrder', () => {
+    it('delegates to ScenariosApiService.getNextOrder', async () => {
+      const spy = vi.spyOn(apiService, 'getNextOrder').mockResolvedValue(11);
+
+      await expect(service.getNextOrder()).resolves.toBe(11);
+
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('sets error message when next-order request fails', async () => {
+      vi.spyOn(apiService, 'getNextOrder').mockRejectedValue(new Error('API error'));
+
+      await expect(service.getNextOrder()).rejects.toThrow();
+
+      expect(service.error()).toBe('Не удалось выполнить операцию со сценариями');
+    });
+  });
+
   describe('getById', () => {
     it('delegates to ScenariosApiService.getById', async () => {
       const mockScenario = {
@@ -95,6 +113,16 @@ describe('ScenarioSearchService', () => {
       await service.getById('scenario-1');
 
       expect(spy).toHaveBeenCalledWith('scenario-1');
+    });
+  });
+
+  describe('getByLessonId', () => {
+    it('delegates to ScenariosApiService.getByLessonId', async () => {
+      const spy = vi.spyOn(apiService, 'getByLessonId').mockResolvedValue([]);
+
+      await service.getByLessonId('lesson-1');
+
+      expect(spy).toHaveBeenCalledWith('lesson-1');
     });
   });
 

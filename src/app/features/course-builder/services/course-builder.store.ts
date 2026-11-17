@@ -15,8 +15,8 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
-import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
-import { normalizeLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
+import { LanguagePairIdResolver } from '../../../entities/language-pair/services/language-pair-id-resolver.service';
+import { normalizeLanguagePair } from '../../../entities/language-pair/utils/language-pair.utils';
 import { CourseSearchService, CoursesApiService } from '../../../entities/course';
 import { ProgramsApiService } from '../../../entities/program/api/programs-api.service';
 import type {
@@ -24,10 +24,10 @@ import type {
   CourseWithPrograms,
   CourseListScope,
 } from '../../../entities/course/model';
-import type { ProgramWithLessons } from '../../../entities/program/model';
 import { sanitizeMarkdownText, sanitizePlainText } from '../../../shared/security';
 import { COURSE_IDEA_MAX_LENGTH } from '../../../entities/course/utils/course-authoring.utils';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
@@ -62,12 +62,16 @@ export class CourseBuilderStore {
   /** Service for HTTP requests to the courses API */
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly programsApi = inject(ProgramsApiService);
-  /** User store (current language pair, user ID) */
+  /** User store (current language pair, preferences) */
   private readonly userStore = inject(UserStore);
+  /** Auth store (authenticated user ID, tokens) */
+  private readonly authStore = inject(AuthStore);
   /** API service for course data access */
   private readonly coursesApi = inject(CoursesApiService);
   /** Service for exporting courses to PDF */
   private readonly pdfExport = inject(CoursePdfExportService);
+  /** Resolves user language pairs to numeric backend IDs for search filters */
+  private readonly pairIdResolver = inject(LanguagePairIdResolver);
   /** Central logging service */
   private readonly logger = inject(AppLoggerService);
 
@@ -85,8 +89,12 @@ export class CourseBuilderStore {
   readonly pageSize = signal(DEFAULT_PAGE_SIZE);
   /** Search query text */
   readonly listQuery = signal('');
-  /** Scope filter ('mine' | 'published' | 'all') */
-  readonly listScope = signal<CourseListScope>('mine');
+  /**
+   * Scope filter ('mine' | 'published' | 'all').
+   * Defaults to 'all' so courses from other authors (seed/backend content)
+   * are visible out of the box; they remain read-only.
+   */
+  readonly listScope = signal<CourseListScope>('all');
 
   // -------------------------------------------------------------------------
   // Signals: editor state
@@ -111,7 +119,8 @@ export class CourseBuilderStore {
    * Computed signal: `true` if the current user cannot edit the course.
    *
    * @remarks
-   * A course is editable only if the user is the author or a system author.
+   * A course is editable only if the user is the author, a system author,
+   * or has ROLE_ADMIN / ROLE_AUTHOR permissions.
    */
   readonly isReadOnly = computed(() => {
     const course = this.editingCourse();
@@ -119,7 +128,12 @@ export class CourseBuilderStore {
       return false;
     }
 
-    return !isEditableContentAuthor(course.authorId, this.userStore.user().id);
+    const user = this.authStore.user();
+    if (!user) {
+      return true;
+    }
+
+    return !isEditableContentAuthor(course.authorId, user.id, user.roles);
   });
 
   // -------------------------------------------------------------------------
@@ -130,18 +144,24 @@ export class CourseBuilderStore {
    * Loads the course list considering current filters and pagination.
    *
    * @remarks
-   * Requests data from the API via CourseSearchService.
+   * Requests data from the API via CourseSearchService. Courses are filtered
+   * by ALL of the user's selected language pairs (`languagePairIds`, OR
+   * semantics on the backend) instead of only the active pair. If none of the
+   * user's pairs can be resolved to backend IDs, the pair filter is omitted
+   * so the list does not silently come back empty.
    */
   async loadList(): Promise<void> {
     this.loading.set(true);
     this.error.set(null);
 
     try {
-      const pair = this.userStore.languagePair();
+      const pairs = this.userStore.languagePairs().map((entry) => entry.pair);
+      const languagePairIds = await this.pairIdResolver.resolveIds(pairs);
+
       const page = await this.courseSearchService.search({
         query: this.listQuery().trim() || undefined,
         scope: this.listScope(),
-        ...activeLanguagePairCriteria(pair),
+        ...(languagePairIds.length > 0 ? { languagePairIds } : {}),
         page: { page: this.pageIndex(), pageSize: this.pageSize() },
       });
 
@@ -225,12 +245,9 @@ export class CourseBuilderStore {
     try {
       const course = await this.courseSearchService.getById(courseId);
 
-      // Resolve programs with their lessons
-      const programsWithLessons: ProgramWithLessons[] = [];
-      for (const program of course.programs) {
-        const programWithLessons = await this.programsApi.getById(program.id);
-        programsWithLessons.push(programWithLessons);
-      }
+      const programsWithLessons = await Promise.all(
+        course.programs.map((program) => this.programsApi.getById(program.id)),
+      );
 
       const resolvedCourse: CourseWithPrograms = {
         ...course,
@@ -270,6 +287,8 @@ export class CourseBuilderStore {
    *
    * @remarks
    * Validates data, sanitizes fields, and sends to the server.
+   * Uses `languagePairId` from the draft if present; falls back to the
+   * user's active language pair.
    *
    * @param draft - The course draft.
    * @returns `true` if successful, `false` if there is a validation error.
@@ -283,8 +302,11 @@ export class CourseBuilderStore {
     try {
       await this.courseSearchService.create({
         ...payload,
-        languagePair: this.userStore.languagePair(),
+        // Prefer explicit languagePairId from draft; fall back to user's active pair
+        languagePairId: draft.languagePairId,
+        languagePair: draft.languagePairId ? undefined : this.userStore.languagePair(),
       });
+      this.courseSearchService.clearGetByIdCache();
       this.cancelEdit();
       await this.loadList();
       return true;
@@ -300,6 +322,8 @@ export class CourseBuilderStore {
    *
    * @remarks
    * Checks access rights (only the author can edit).
+   * Uses `languagePairId` from the draft if present; falls back to the
+   * current course's language pair.
    *
    * @param courseId - The course ID.
    * @param draft - The course draft.
@@ -321,8 +345,13 @@ export class CourseBuilderStore {
     try {
       await this.courseSearchService.update(courseId, {
         ...payload,
-        languagePair: normalizeLanguagePair(current?.languagePair ?? this.userStore.languagePair()),
+        // Prefer explicit languagePairId from draft; fall back to current course's pair
+        languagePairId: draft.languagePairId,
+        languagePair: draft.languagePairId
+          ? undefined
+          : normalizeLanguagePair(current?.languagePair ?? this.userStore.languagePair()),
       });
+      this.courseSearchService.clearGetByIdCache();
       this.cancelEdit();
       await this.loadList();
       return true;
@@ -344,13 +373,15 @@ export class CourseBuilderStore {
    */
   async deleteCourse(courseId: string): Promise<void> {
     const item = this.indexItems().find((course) => course.id === courseId);
-    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
+    const user = this.authStore.user();
+    if (item && (!user || !isEditableContentAuthor(item.authorId, user.id, user.roles))) {
       this.error.set('Нельзя удалять чужой курс');
       return;
     }
 
     try {
       await this.courseSearchService.delete(courseId);
+      this.courseSearchService.clearGetByIdCache();
       if (this.editingCourseId() === courseId) {
         this.cancelEdit();
       }
@@ -379,16 +410,19 @@ export class CourseBuilderStore {
     this.exportError.set(null);
 
     const item = this.indexItems().find((course) => course.id === courseId);
-    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
+    const user = this.authStore.user();
+    if (item && (!user || !isEditableContentAuthor(item.authorId, user.id, user.roles))) {
       this.exportError.set('Нельзя экспортировать чужой курс');
       return null;
     }
 
     try {
-      const bundle = await this.coursesApi.getBundle(courseId);
+      // Backend expects the numeric course ID (BIGINT PK) — resolve slug IDs first.
+      const resolvedCourseId = await this.courseSearchService.resolveCourseIdForWrite(courseId);
+      const bundle = await this.coursesApi.getBundle(resolvedCourseId);
 
       const result = collectCourseBundle(
-        courseId,
+        resolvedCourseId,
         bundle.catalog,
         bundle.scenarios,
         bundle.cards,
@@ -431,7 +465,8 @@ export class CourseBuilderStore {
     this.exportError.set(null);
 
     const item = this.indexItems().find((course) => course.id === courseId);
-    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
+    const user = this.authStore.user();
+    if (item && (!user || !isEditableContentAuthor(item.authorId, user.id, user.roles))) {
       this.exportError.set('Нельзя экспортировать чужой курс');
       return false;
     }
@@ -482,8 +517,8 @@ export class CourseBuilderStore {
    * @private
    */
   private normalizeDraft(draft: CourseFormDraft) {
-    const title = sanitizeTitle(draft.title);
-    const description = sanitizeDescription(draft.description);
+    const title = sanitizeTitle(draft.title ?? '');
+    const description = sanitizeDescription(draft.description ?? '');
 
     const programs = draft.programs
       .map((program, pIndex) => ({
@@ -511,27 +546,6 @@ export class CourseBuilderStore {
       return null;
     }
 
-    if (programs.length === 0) {
-      this.error.set('Добавьте хотя бы одну программу');
-      return null;
-    }
-
-    for (const program of programs) {
-      if (program.lessons.length === 0) {
-        this.error.set(`Программа «${program.title}»: добавьте хотя бы один урок`);
-        return null;
-      }
-
-      for (const lesson of program.lessons) {
-        if (lesson.scenarioIds.length === 0) {
-          this.error.set(
-            `Урок «${lesson.title}» в программе «${program.title}»: добавьте хотя бы один сценарий`,
-          );
-          return null;
-        }
-      }
-    }
-
     return formDraftToCourseWritePayload({
       title,
       description,
@@ -540,7 +554,9 @@ export class CourseBuilderStore {
         ...draft.authoring,
         idea: sanitizeCourseIdea(draft.authoring.idea),
       },
+      practiceSettings: draft.practiceSettings,
       programs,
+      slug: draft.slug,
     });
   }
 }

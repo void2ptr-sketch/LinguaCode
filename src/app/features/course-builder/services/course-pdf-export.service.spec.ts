@@ -83,6 +83,7 @@ describe('CoursePdfExportService', () => {
   const mockCourse: CourseWithPrograms = {
     id: 'course-1',
     title: 'Тестовый курс',
+    slug: 'test-course',
     description: 'Описание курса',
     authorId: 'user-1',
     languagePair: { known: 'en', learning: 'zh' },

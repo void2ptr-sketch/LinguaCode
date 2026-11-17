@@ -75,18 +75,29 @@
         <mat-card-header class="card-editor-page__filters-header">
           <div class="card-editor-page__filters-header-row">
             <mat-card-title>Фильтры</mat-card-title>
+            <mat-form-field appearance="outline" class="card-editor-page__language-pair-select">
+              <mat-label>Языковая пара</mat-label>
+              <mat-select
+                [ngModel]="catalogStore.selectedLanguagePairId()"
+                (ngModelChange)="onLanguagePairChange($event)"
+              >
+                <mat-option [value]="null">Все пары</mat-option>
+                @for (entry of catalogStore.userLanguagePairs(); track entry.id) {
+                  <mat-option [value]="entry.id">
+                    {{ languageLabels()[entry.pair.known] }} →
+                    {{ languageLabels()[entry.pair.learning] }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
             @if (catalogStore.pairLocked()) {
               <p class="card-editor-page__filters-intro">
                 <span class="card-editor-page__filters-phrase">
-                  Курс: {{ catalogStore.lockedPairLabel() }}
+                  Пара: {{ catalogStore.lockedPairLabel() }}
                 </span>
                 <span class="card-editor-page__filters-sep" aria-hidden="true"></span>
                 <span class="card-editor-page__filters-phrase">
-                  Показаны карточки активного курса.
-                </span>
-                <span class="card-editor-page__filters-sep" aria-hidden="true"></span>
-                <span class="card-editor-page__filters-phrase">
-                  Сменить курс — в <a routerLink="/courses/tabs/courses">Каталоге курсов</a>.
+                  Показаны карточки выбранной языковой пары.
                 </span>
               </p>
             }

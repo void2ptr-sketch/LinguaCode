@@ -57,10 +57,22 @@ describe('CourseBuilderDialogService', () => {
         width: '48rem',
         maxWidth: '95vw',
         maxHeight: '90vh',
-        data: { mode: 'edit', courseId: 'course-123' },
+        data: { mode: 'edit', courseId: 'course-123', forceEdit: undefined },
         panelClass: 'course-builder-dialog',
       });
       expect(result).toBeUndefined();
+    });
+
+    it('should open dialog in edit mode with forceEdit option', async () => {
+      await service.openEdit('course-123', { forceEdit: true });
+
+      expect(dialogOpenMock).toHaveBeenCalledWith(CourseBuilderDialogComponent, {
+        width: '48rem',
+        maxWidth: '95vw',
+        maxHeight: '90vh',
+        data: { mode: 'edit', courseId: 'course-123', forceEdit: true },
+        panelClass: 'course-builder-dialog',
+      });
     });
   });
 });

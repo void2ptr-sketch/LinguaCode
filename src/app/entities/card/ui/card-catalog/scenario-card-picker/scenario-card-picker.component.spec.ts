@@ -2,12 +2,12 @@ import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { ScenarioCardPickerComponent } from './scenario-card-picker.component';
-import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
+import { CardCatalogSearchStore } from '../../../lib/store/card-catalog-search.store';
 import { UserStore } from '../../../../user/model/user.store';
-import { LanguageService } from '../../../../language-pair/lib/language.service';
+import { LanguageService } from '../../../../language-pair/services/language.service';
 import { CatalogService } from '../../../api/catalog.service';
 import { TagsService } from '../../../api/tags.service';
-import { formatIndexLanguagePair } from '../../../../language-pair/lib/language-pair.utils';
+import { formatIndexLanguagePair } from '../../../../language-pair/utils/language-pair.utils';
 
 describe('ScenarioCardPickerComponent', () => {
   let component: ScenarioCardPickerComponent;

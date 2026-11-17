@@ -154,6 +154,28 @@ describe('content-seed.cache', () => {
       expect(cached.courses).toHaveLength(1);
       expect(cached.lessons).toHaveLength(1);
     });
+
+    it('should handle null programs with nullish coalescing', () => {
+      const courses = [makeCourse()];
+      const lessons = [makeLesson()];
+      const catalog = { courses, programs: null as unknown as never[], lessons };
+      setCourseSeedCache(catalog);
+      const cached = getCourseSeedCache();
+      expect(cached.programs).toEqual([]);
+    });
+
+    it('should handle undefined programs with nullish coalescing', () => {
+      const courses = [makeCourse()];
+      const lessons = [makeLesson()];
+      const catalog = { courses, lessons } as unknown as {
+        courses: never[];
+        programs: never[];
+        lessons: never[];
+      };
+      setCourseSeedCache(catalog);
+      const cached = getCourseSeedCache();
+      expect(cached.programs).toEqual([]);
+    });
   });
 
   describe('setCardSeedCache', () => {

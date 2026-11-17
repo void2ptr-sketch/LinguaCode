@@ -1,56 +1,47 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input, output, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-
-type NavItem = {
-  label: string;
-  path: string;
-  icon: string;
-};
-
-type NavGroup = {
-  id: string;
-  items: readonly NavItem[];
-};
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { RoleService } from '../../entities/auth/services/role.service';
+import { SIDEBAR_NAV_CONFIG, type NavGroup } from './sidebar-nav-config';
+import type { UserRole } from '../../entities/auth/services/role.service';
 
 /**
  * Sidebar navigation component. Renders the left-side navigation menu with grouped links
  * for learning, tools, and account sections.
- * @remarks The navigation groups are defined inline as readonly class properties.
+ * @remarks Navigation groups are defined in `sidebar-nav-config.ts` and filtered by role.
  */
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-sidebar-navigation-left',
-  imports: [RouterLink, RouterLinkActive, MatDividerModule, MatListModule, MatIconModule],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    MatDividerModule,
+    MatListModule,
+    MatIconModule,
+    MatTooltipModule,
+  ],
   templateUrl: './sidebar-navigation-left.component.html',
   styleUrl: './sidebar-navigation-left.component.scss',
 })
 export class SidebarNavigationLeftComponent {
-  /** Navigation groups defining the sidebar menu structure. */
-  readonly groups: readonly NavGroup[] = [
-    {
-      id: 'learning',
-      items: [
-        { label: 'Карта', path: '/journey', icon: 'map' },
-        { label: 'Практика', path: '/cards/select', icon: 'style' },
-        { label: 'Обучение', path: '/home', icon: 'school' },
-        { label: 'Языковые настройки', path: '/settings/languages', icon: 'language' },
-        { label: 'Каталог курсов', path: '/courses', icon: 'menu_book' },
-      ],
-    },
-    {
-      id: 'tools',
-      items: [
-        { label: 'Конструктор курсов', path: '/tools/courses', icon: 'menu_book' },
-        { label: 'Конструктор сценариев', path: '/tools/scenario-builder', icon: 'view_list' },
-        { label: 'Карточки', path: '/tools/cards', icon: 'style' },
-      ],
-    },
-    {
-      id: 'account',
-      items: [{ label: 'Профиль', path: '/user', icon: 'person_outline' }],
-    },
-  ];
+  private readonly roleService = inject(RoleService);
+
+  /** Whether the sidebar is in collapsed mode (only icons visible). */
+  readonly collapsed = input<boolean>(false);
+
+  /** Emits when the user toggles the sidebar collapse state. */
+  readonly toggleChange = output<void>();
+
+  readonly groups = computed<readonly NavGroup[]>(() =>
+    SIDEBAR_NAV_CONFIG.map((group) => ({
+      ...group,
+      items: group.items.filter(
+        (item) => !item.roles || item.roles.some((r) => this.roleService.hasRole(r as UserRole)),
+      ),
+    })).filter((group) => group.items.length > 0),
+  );
 }

@@ -21,6 +21,7 @@ function makeCourse(
   return {
     id,
     title,
+    slug: title.toLowerCase().replace(/\s+/g, '-'),
     authorId: 'author-1',
     programCount,
     published: true,
@@ -218,6 +219,15 @@ describe('CourseCatalogCourseListComponent', () => {
       const rows = fixture.nativeElement.querySelectorAll('.course-catalog-page__row');
       expect(rows[0].textContent).toContain('Русский');
       expect(rows[1].textContent).toContain('English');
+    });
+
+    it('should render program count', () => {
+      mockStoreState.items = defaultItems;
+      fixture.detectChanges();
+
+      const rows = fixture.nativeElement.querySelectorAll('.course-catalog-page__row');
+      expect(rows[0].textContent).toContain('10');
+      expect(rows[1].textContent).toContain('20');
     });
 
     it('should show completed badge for completed courses', () => {

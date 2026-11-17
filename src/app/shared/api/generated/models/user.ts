@@ -4,6 +4,7 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
+import type { UserPaymentTier } from './userPaymentTier';
 
 /**
  * User entity
@@ -14,7 +15,7 @@ export interface User {
   email?: string;
   preferences?: string;
   roles?: string[];
-  paymentTier?: string;
+  paymentTier?: UserPaymentTier;
   subscriptionExpiresAt?: string;
   createdAt?: string;
   updatedAt?: string;

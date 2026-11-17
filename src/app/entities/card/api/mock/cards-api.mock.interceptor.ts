@@ -8,6 +8,7 @@
  * Active when `environment.useCardsApiMock` is `true`.
  *
  * Supported requests:
+ * - GET /cards/difficulties — difficulty reference options (mock constants)
  * - POST /cards/search — search cards with filters
  * - GET /cards/{id} — fetch a single card by ID
  * - POST /cards/batch/retrieve — fetch multiple cards by IDs
@@ -23,12 +24,13 @@
  */
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { defer, switchMap } from 'rxjs';
+import { defer, of, switchMap } from 'rxjs';
 import { map } from 'rxjs';
 
 import { parseCardSearchCriteria } from './cards-api.params.utils';
 import { buildApiUrl, isApiRequest } from '../../../../shared/api/api-url';
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
+import { CARD_DIFFICULTY_MOCK_OPTIONS } from './card-difficulty.mock';
 import type { Card } from '../../model';
 import type { BackendCardDto } from '../../model/card-backend-dto.types';
 import type { ApiListResponse } from '../../../../shared/api/api.types';
@@ -83,13 +85,29 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
+  // GET /cards/difficulties — справочник уровней сложности (mock only)
+  if (req.method === 'GET' && req.url.endsWith(buildApiUrl('/cards/difficulties'))) {
+    return of(
+      new HttpResponse({
+        status: 200,
+        body: {
+          data: CARD_DIFFICULTY_MOCK_OPTIONS,
+          total: CARD_DIFFICULTY_MOCK_OPTIONS.length,
+        },
+      }),
+    );
+  }
+
   // POST /cards/batch/retrieve — пакетное получение карточек
   if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/cards/batch/retrieve'))) {
     const body = req.body as { ids?: readonly string[] };
     const ids = body?.ids ?? [];
 
     return defer(() => handler.getByIds(ids)).pipe(
-      map((data) => new HttpResponse({ status: 200, body: { data } })),
+      map(
+        (data) =>
+          new HttpResponse({ status: 200, body: { found: data, notFound: [] as string[] } }),
+      ),
     );
   }
 
@@ -117,9 +135,33 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     } catch {
       // ignore
     }
-    // Add difficulty
+    // Metadata and hierarchy fields accepted by the real backend.
     if (payload['difficulty']) {
       c['difficulty'] = String(payload['difficulty']).toLowerCase();
+    }
+    if (payload['requiredTier'] !== undefined) {
+      c['requiredTier'] = String(payload['requiredTier']);
+    }
+    if (payload['slug'] !== undefined) {
+      c['slug'] = String(payload['slug']);
+    }
+    if (payload['published'] !== undefined) {
+      c['published'] = Boolean(payload['published']);
+    }
+    for (const field of [
+      'languagePairId',
+      'courseId',
+      'programId',
+      'lessonId',
+      'scenarioId',
+    ] as const) {
+      if (payload[field] !== undefined && payload[field] !== null) {
+        c[field] = String(payload[field]);
+      }
+    }
+    // Position inside the scenario (`card_order`)
+    if (payload['order'] !== undefined) {
+      c['order'] = Number(payload['order']);
     }
 
     return defer(() => handler.create(card)).pipe(
@@ -141,6 +183,9 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
         if (payload['title'] !== undefined) {
           u['title'] = String(payload['title']);
         }
+        if (payload['kind'] !== undefined) {
+          u['kind'] = String(payload['kind']).toLowerCase();
+        }
         if (payload['dataJson'] !== undefined) {
           try {
             const content = JSON.parse(String(payload['dataJson']));
@@ -158,6 +203,29 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
         }
         if (payload['difficulty'] !== undefined) {
           u['difficulty'] = String(payload['difficulty']).toLowerCase();
+        }
+        if (payload['requiredTier'] !== undefined) {
+          u['requiredTier'] = String(payload['requiredTier']);
+        }
+        if (payload['slug'] !== undefined) {
+          u['slug'] = String(payload['slug']);
+        }
+        if (payload['published'] !== undefined) {
+          u['published'] = Boolean(payload['published']);
+        }
+        for (const field of [
+          'languagePairId',
+          'courseId',
+          'programId',
+          'lessonId',
+          'scenarioId',
+        ] as const) {
+          if (payload[field] !== undefined && payload[field] !== null) {
+            u[field] = String(payload[field]);
+          }
+        }
+        if (payload['order'] !== undefined) {
+          u['order'] = Number(payload['order']);
         }
         return updated;
       }),

@@ -11,9 +11,9 @@ export { SoundCardComponent } from './sound-card';
 export { SymbolCardComponent } from './symbol-card';
 export { TimedCardComponent } from './timed-card';
 export { ToneCardComponent } from './tone-card';
-export { buildOptionClass } from '../../lib/cards/option-card.util';
+export { buildOptionClass } from '../../lib/utils/option-card.util';
 export {
   quizQuestionPromptText,
   resolveQuizQuestionHeaderDisplay,
   type QuizQuestionHeaderMode,
-} from '../../lib/cards/quiz-card-question.util';
+} from '../../lib/utils/quiz-card-question.util';

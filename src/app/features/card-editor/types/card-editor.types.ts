@@ -1,5 +1,8 @@
-import type { ContentLanguage } from '../../../entities/card/model';
-import type { CardDifficulty } from '../../../entities/card/model';
+import type {
+  CardDifficulty,
+  CardPaymentTier,
+  ContentLanguage,
+} from '../../../entities/card/model';
 /**
  * Mode of the card editor UI.
  *
@@ -19,6 +22,8 @@ export type CardEditorMode = 'list' | 'create' | 'edit';
 export type CardIndexMetaDraft = {
   knownLanguage: ContentLanguage;
   learningLanguage: ContentLanguage;
+  /** Numeric ID of the language pair (`language_pairs.id`). */
+  languagePairId?: string;
 };
 
 /**
@@ -31,7 +36,11 @@ export type CardIndexMetaDraft = {
 export type CardIndexMetaOverride = Partial<{
   knownLanguage: ContentLanguage;
   learningLanguage: ContentLanguage;
+  languagePairId: string;
   difficulty: CardDifficulty;
   tags: readonly string[];
   updatedAt: string;
+  requiredTier: CardPaymentTier;
+  published: boolean;
+  slug: string;
 }>;

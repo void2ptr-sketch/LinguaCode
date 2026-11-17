@@ -4,6 +4,7 @@
  * OpenAPI definition
  * OpenAPI spec version: v0
  */
+import type { LessonRequiredTier } from './lessonRequiredTier';
 
 /**
  * Educational lesson entity
@@ -15,6 +16,12 @@ export interface Lesson {
   programId?: number;
   lessonOrder?: number;
   prerequisiteLessonIds?: string;
+  /** IDs сценариев, привязанных к уроку */
+  scenarioIds?: number[];
+  courseId?: number;
+  languagePairId?: number;
+  published?: boolean;
+  requiredTier?: LessonRequiredTier;
   createdAt?: string;
   updatedAt?: string;
 }

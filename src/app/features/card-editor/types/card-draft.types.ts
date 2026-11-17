@@ -337,7 +337,7 @@ export type CodeTraceCardDraft = {
  * @remarks
  * Used as the input type for card creation and editing operations.
  */
-export type CardDraft =
+export type CardDraft = (
   | SelectCardDraft
   | CodeSelectCardDraft
   | MemoryCardDraft
@@ -350,7 +350,11 @@ export type CardDraft =
   | ReadingCardDraft
   | FlipCardDraft
   | ClozeCardDraft
-  | CodeTraceCardDraft;
+  | CodeTraceCardDraft
+) & {
+  /** ID of the Program this card belongs to. */
+  programId?: string;
+};
 
 /**
  * Union of choice-type card drafts (multiple-choice with options).

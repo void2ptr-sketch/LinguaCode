@@ -233,15 +233,18 @@ export class ContentSeedRepository {
     // Collect cards from nested course fixtures and from card fixture files
     const nestedCards = courseFixtures.flatMap((f) => f.cards ?? []);
     const cards = normalizeLegacyCards([...nestedCards, ...cardFixtures.flatMap((f) => f.cards)]);
+    // Collect scenarios from nested course fixtures
+    const nestedScenarios = courseFixtures.flatMap((f) => f.scenarios ?? []);
+    const allScenarios = [...scenarios, ...nestedScenarios];
 
-    setScenarioSeedCache(scenarios);
+    setScenarioSeedCache(allScenarios);
     setCourseSeedCache(courses);
     setCardSeedCache(cards);
 
     // Персист снапшота в IndexedDB (best-effort — ошибка не блокирует старт)
     await saveContentSeedSnapshot(this.idb, {
       version: manifest.version,
-      scenarios,
+      scenarios: allScenarios,
       courses: courses.courses,
       programs: courses.programs,
       lessons: courses.lessons,
@@ -299,6 +302,7 @@ export class ContentSeedRepository {
     programs: import('../program/model/program.types').Program[];
     lessons: import('../course/model/lesson.types').Lesson[];
     cards?: Card[];
+    scenarios?: Scenario[];
   }> {
     return firstValueFrom(this.http.get<unknown>(buildFixtureUrl(path))).then((raw) => {
       if (isNestedFormat(raw)) {
@@ -309,6 +313,7 @@ export class ContentSeedRepository {
           programs: result.catalog.programs,
           lessons: result.catalog.lessons,
           cards: result.cards,
+          scenarios: result.scenarios,
         };
       }
       return normalizeStoredCourseCatalog(raw as Partial<CoursesSeedFixture>);

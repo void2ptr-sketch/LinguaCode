@@ -2,20 +2,26 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
+  ElementRef,
   inject,
   input,
-  OnInit,
   output,
   signal,
+  viewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTabsModule } from '@angular/material/tabs';
+
 import type { ContentLanguage, CardIndexMetaOverride } from '../../../../entities/card/model';
 import type { CardAppearance } from '../../../../entities/card/model';
-import { LanguageService } from '../../../../entities/language-pair/lib/language.service';
+import { LanguageService } from '../../../../entities/language-pair/services/language.service';
 import type { CardDraft, ChoiceCardDraft } from '../../types';
 import { cardFormKindGroup } from '../../utils/form/card-form.registry';
-import { normalizeCardDraft } from '../../utils/validation/card-validation.utils';
+import {
+  cardDraftTabIssues,
+  normalizeCardDraft,
+} from '../../utils/validation/card-validation.utils';
+import type { CardEditorUxMode } from '../../utils/ux/card-editor-ux.utils';
 import { fallbackPreviewCard } from '../../utils/preview';
 import {
   resolveChoiceOptionsConfig,
@@ -24,34 +30,43 @@ import {
   applyChoiceOptionsState,
 } from '../../utils/options';
 import type { CardOptionsEditorState } from '../../utils/options/card-options-editor.utils';
-import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/card-form-phonetics-panel.component';
-import { CardFormSettingsPanelComponent } from '../card-form-settings-panel/card-form-settings-panel.component';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
-import { CardOptionsEditorComponent } from '../card-options-editor/card-options-editor.component';
-import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
-import {
-  CardCatalogHierarchyService,
-  type CourseOption,
-  type LessonOption,
-  type ScenarioOption,
-} from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
+import type { HierarchyValue } from '../../../../entities/content-hierarchy';
+import { LanguagePairIdResolver } from '../../../../entities/language-pair/services/language-pair-id-resolver.service';
 import {
   CardFormTabsComponent,
   type TabDefinition,
+  type TabId,
 } from '../card-form-tabs/card-form-tabs.component';
-import { CardFormQuestionTabComponent } from '../card-form-question-tab/card-form-question-tab.component';
+import { CardFormContentTabComponent } from '../card-form-content-tab/card-form-content-tab.component';
 import { CardFormAnswersTabComponent } from '../card-form-answers-tab/card-form-answers-tab.component';
+import { CardFormAppearanceTabComponent } from '../card-form-appearance-tab/card-form-appearance-tab.component';
+import { CardFormPlacementTabComponent } from '../card-form-placement-tab/card-form-placement-tab.component';
+import { CardFormPublishingTabComponent } from '../card-form-publishing-tab/card-form-publishing-tab.component';
+
+/** Chooses the Russian plural form for «ошибка» based on the issue count. */
+const errorWord = (count: number): string => {
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+  if (mod10 === 1 && mod100 !== 11) {
+    return 'ошибка';
+  }
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) {
+    return 'ошибки';
+  }
+  return 'ошибок';
+};
 
 /**
  * Main form component for creating and editing cards.
  *
  * @remarks
  * Provides a tabbed interface for editing all aspects of a card draft:
- * question, answers, content, phonetics, metadata, and settings.
+ * content, answers, appearance, placement, and publishing.
  * Loads course/lesson/scenario hierarchy for card association.
  * Delegates kind-specific editing to nested form components.
  * Delegates tab navigation to `CardFormTabsComponent`.
- * Delegates question tab to `CardFormQuestionTabComponent`.
+ * Delegates tab content to the matching tab component based on stable tab id.
  *
  * @example
  * ```html
@@ -69,22 +84,20 @@ import { CardFormAnswersTabComponent } from '../card-form-answers-tab/card-form-
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
-    MatTabsModule,
     CardFormTabsComponent,
-    CardFormQuestionTabComponent,
+    CardFormContentTabComponent,
     CardFormAnswersTabComponent,
-    CardFormPhoneticsPanelComponent,
-    CardFormSettingsPanelComponent,
+    CardFormAppearanceTabComponent,
+    CardFormPlacementTabComponent,
+    CardFormPublishingTabComponent,
     CardPreviewComponent,
-    CardOptionsEditorComponent,
-    CardMetaFieldsComponent,
   ],
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.scss',
 })
-export class CardFormComponent implements OnInit {
-  private readonly hierarchyService = inject(CardCatalogHierarchyService);
+export class CardFormComponent {
   private readonly languageService = inject(LanguageService);
+  private readonly languagePairIdResolver = inject(LanguagePairIdResolver);
 
   /** Required card draft being edited or created. */
   readonly draft = input.required<CardDraft>();
@@ -104,6 +117,29 @@ export class CardFormComponent implements OnInit {
   /** Optional card index meta override for tags and hierarchy references. */
   readonly meta = input<CardIndexMetaOverride | undefined>(undefined);
 
+  /** Optional numeric language-pair ID supplied by the dialog context. */
+  readonly languagePairId = input<string | undefined>(undefined);
+
+  /**
+   * Editor UX mode controlling tab visibility.
+   *
+   * @remarks
+   * Defaults to `'advanced'` so all five tabs are visible. Basic mode keeps
+   * content, answers, and placement: catalog-created cards still need the
+   * placement tab to be assigned to a course/lesson.
+   */
+  readonly uxMode = input<CardEditorUxMode>('advanced');
+
+  /**
+   * Whether the live preview pane is rendered next to the form.
+   *
+   * @remarks
+   * Defaults to `true` so standalone usages keep the preview. The card editor
+   * dialog passes `false` and lets the user reveal the preview on demand, which
+   * gives the form the full dialog width.
+   */
+  readonly showPreview = input(true);
+
   /** Emits the updated card draft when the user makes changes. */
   readonly draftChange = output<CardDraft>();
 
@@ -116,14 +152,17 @@ export class CardFormComponent implements OnInit {
   /** Emits the updated card index meta override. */
   readonly metaChange = output<CardIndexMetaOverride | undefined>();
 
-  /** Available courses for the current language pair, loaded asynchronously. */
-  readonly availableCourses = signal<readonly CourseOption[]>([]);
+  /** Numeric language-pair ID resolved from the card content languages. */
+  readonly resolvedLanguagePairId = signal<number | undefined>(undefined);
 
-  /** Available lessons for the selected course, loaded asynchronously. */
-  readonly availableLessons = signal<readonly LessonOption[]>([]);
-
-  /** Available scenarios for the selected lesson. */
-  readonly availableScenarios = signal<readonly ScenarioOption[]>([]);
+  /** Placement value passed to the shared hierarchy selector. */
+  readonly placementValue = computed<HierarchyValue>(() => ({
+    languagePairId: this.resolvedLanguagePairId(),
+    courseId: this.draft().courseId,
+    programId: this.draft().programId,
+    lessonId: this.draft().lessonId,
+    scenarioId: this.draft().scenarioId,
+  }));
 
   /** Computed kind group ('choice', 'input', 'code-select') for the current draft. */
   readonly kindGroup = computed(() => cardFormKindGroup(this.draft().kind));
@@ -155,43 +194,113 @@ export class CardFormComponent implements OnInit {
   readonly languages = () => this.languageService.getCodes();
   readonly languageLabels = () => this.languageService.getLabels();
 
-  /** Currently selected tab label (explicitly chosen by user). */
-  private readonly selectedTabLabel = signal<string | undefined>(undefined);
+  /** Currently selected tab id (stable, never an array index). */
+  readonly activeTabId = signal<TabId>('content');
+
+  /** Scrollable tab body, reset to the top whenever the active tab changes. */
+  private readonly tabContent = viewChild<ElementRef<HTMLElement>>('tabContent');
 
   /**
-   * Label of the currently active tab.
+   * Tabs available for the current card kind and UX mode.
+   *
    * @remarks
-   * Uses explicitly selected tab, or falls back to the first visible tab.
+   * Visibility is declared per tab id instead of relying on positional indexes.
+   * The answers tab is hidden for flip cards because they have no objective answer.
+   * Basic mode hides appearance and publishing; placement stays visible because
+   * catalog-created cards still need to be assigned to a course/lesson.
+   * Badge counts come from `cardDraftTabIssues`, which reuses the save validators.
    */
-  readonly activeTabLabel = computed(() => {
-    return this.selectedTabLabel() ?? this.allAvailableTabs[0]?.label ?? '';
+  readonly tabs = computed<TabDefinition[]>(() => {
+    const kind = this.draft().kind;
+    const advanced = this.uxMode() === 'advanced';
+    const issues = cardDraftTabIssues(this.draft());
+    return [
+      this.createTab('content', 'Содержание', true, issues.content),
+      this.createTab('answers', 'Ответы', kind !== 'flip', issues.answers),
+      this.createTab('appearance', 'Оформление', advanced, 0),
+      this.createTab('placement', 'Размещение', true, 0),
+      this.createTab('publishing', 'Публикация', advanced, 0),
+    ];
   });
 
   /**
-   * Records the explicitly selected tab label.
+   * Builds a tab definition with an optional validation badge.
    *
-   * @param tabLabel - The label of the tab the user selected.
+   * @param id - Stable tab identifier.
+   * @param label - Display label.
+   * @param visible - Whether the tab is visible.
+   * @param issues - Number of blocking validation issues for the tab.
+   * @returns The tab definition, including a badge and accessible label when needed.
    */
-  onTabChange(tabLabel: string): void {
-    this.selectedTabLabel.set(tabLabel);
+  private createTab(id: TabId, label: string, visible: boolean, issues: number): TabDefinition {
+    if (!visible || issues <= 0) {
+      return { id, label, visible };
+    }
+
+    return {
+      id,
+      label,
+      visible,
+      badge: String(issues),
+      badgeAriaLabel: `${label}, ${issues} ${errorWord(issues)}`,
+    };
   }
 
-  async ngOnInit(): Promise<void> {
-    const known = this.knownLanguage();
-    const learning = this.learningLanguage();
-    const pairKey = `${known}_${learning}`;
-    const courses = await this.hierarchyService.loadCourses(known, learning, pairKey);
-    this.availableCourses.set(courses);
+  constructor() {
+    // Keep the active tab reachable when the draft kind changes and hides it.
+    effect(() => {
+      const active = this.activeTabId();
+      const isVisible = this.tabs().some((tab) => tab.id === active && tab.visible);
+      if (!isVisible) {
+        this.activeTabId.set('content');
+      }
+    });
 
-    // Если у карточки уже выбран курс — загружаем уроки и сценарии
-    const draft = this.draft();
-    if (draft.courseId) {
-      const lessons = await this.hierarchyService.loadLessons(draft.courseId);
-      this.availableLessons.set(lessons);
+    // The card pair is derived from its content languages (or from the
+    // explicit index-meta override). Courses on the placement tab are filtered
+    // by this pair.
+    effect(() => {
+      void this.resolveLanguagePairId(
+        this.knownLanguage(),
+        this.learningLanguage(),
+        this.languagePairId() ?? this.meta()?.languagePairId,
+      );
+    });
+  }
+
+  /**
+   * Records the stable id of the selected tab.
+   *
+   * @param tabId - The stable identifier of the tab the user selected.
+   */
+  onTabChange(tabId: TabId): void {
+    this.activeTabId.set(tabId);
+    this.tabContent()?.nativeElement.scrollTo({ top: 0 });
+  }
+
+  /**
+   * Resolves the numeric language-pair ID used to filter courses.
+   *
+   * @param known - Known content language.
+   * @param learning - Learning content language.
+   * @param explicitId - Optional `languagePairId` from the card index meta.
+   */
+  private async resolveLanguagePairId(
+    known: ContentLanguage,
+    learning: ContentLanguage,
+    explicitId: string | undefined,
+  ): Promise<void> {
+    const parsed = explicitId ? Number(explicitId) : Number.NaN;
+    if (Number.isFinite(parsed)) {
+      this.resolvedLanguagePairId.set(parsed);
+      return;
     }
-    if (draft.courseId && draft.lessonId) {
-      const scenarios = this.hierarchyService.getScenariosForLesson(draft.courseId, draft.lessonId);
-      this.availableScenarios.set(scenarios);
+
+    try {
+      const ids = await this.languagePairIdResolver.resolveIds([{ known, learning }]);
+      this.resolvedLanguagePairId.set(ids[0]);
+    } catch {
+      this.resolvedLanguagePairId.set(undefined);
     }
   }
 
@@ -199,15 +308,22 @@ export class CardFormComponent implements OnInit {
    * Computed choice card draft (select, reading, timed, symbol, tone).
    *
    * @remarks
-   * Returns `null` for code-select cards and non-choice kinds.
-   * Used by the Content tab to render the options editor.
+   * Returns `null` for code-select cards and for non-choice kinds such as
+   * `flip`, `cloze`, and `code-trace`. This prevents unsafe casts in the
+   * answers tab.
    */
   readonly choiceDraft = computed((): ChoiceCardDraft | null => {
     const draft = this.draft();
-    if (draft.kind === 'code-select') {
-      return null;
+    switch (draft.kind) {
+      case 'select':
+      case 'reading':
+      case 'timed':
+      case 'symbol':
+      case 'tone':
+        return draft;
+      default:
+        return null;
     }
-    return cardFormKindGroup(draft.kind) === 'choice' ? (draft as ChoiceCardDraft) : null;
   });
 
   /**
@@ -285,50 +401,18 @@ export class CardFormComponent implements OnInit {
   }
 
   /**
-   * Updates the selected course and loads associated lessons.
+   * Applies the hierarchy selector value to the card draft.
    *
-   * @param courseId - The selected course ID (empty string to deselect).
-   * @remarks
-   * Resets lessons and scenarios. Loads lessons asynchronously if a course is selected.
+   * @param value - New hierarchy value.
    */
-  async updateCourseId(courseId: string): Promise<void> {
-    this.updateDraft({ ...this.draft(), courseId, lessonId: '', scenarioId: '' });
-    this.availableLessons.set([]);
-    this.availableScenarios.set([]);
-
-    if (courseId) {
-      const lessons = await this.hierarchyService.loadLessons(courseId);
-      this.availableLessons.set(lessons);
-    }
-  }
-
-  /**
-   * Updates the selected lesson and loads associated scenarios.
-   *
-   * @param lessonId - The selected lesson ID (empty string to deselect).
-   * @remarks
-   * Resets scenarios. Loads scenarios asynchronously if a lesson is selected.
-   */
-  async updateLessonId(lessonId: string): Promise<void> {
-    this.updateDraft({ ...this.draft(), lessonId, scenarioId: '' });
-    this.availableScenarios.set([]);
-
-    if (lessonId) {
-      const courseId = this.draft().courseId;
-      if (courseId) {
-        const scenarios = this.hierarchyService.getScenariosForLesson(courseId, lessonId);
-        this.availableScenarios.set(scenarios);
-      }
-    }
-  }
-
-  /**
-   * Updates the selected scenario in the draft.
-   *
-   * @param scenarioId - The selected scenario ID.
-   */
-  updateScenarioId(scenarioId: string): void {
-    this.updateDraft({ ...this.draft(), scenarioId });
+  onPlacementChange(value: HierarchyValue): void {
+    this.updateDraft({
+      ...this.draft(),
+      courseId: value.courseId ?? '',
+      programId: value.programId ?? '',
+      lessonId: value.lessonId ?? '',
+      scenarioId: value.scenarioId ?? '',
+    });
   }
 
   /**
@@ -348,34 +432,5 @@ export class CardFormComponent implements OnInit {
       return;
     }
     this.updateDraft(applyChoiceOptionsState(draft, state));
-  }
-
-  /**
-   * All available tabs in the card form.
-   * @remarks
-   * Dynamically includes/excludes tabs based on card kind:
-   * - 'Content' tab is shown only for choice-type cards
-   * - 'Phonetics' tab is hidden for code-select cards
-   */
-  get allAvailableTabs(): TabDefinition[] {
-    const tabs: TabDefinition[] = [
-      { label: 'Вопрос', visible: true },
-      { label: 'Ответы', visible: true },
-    ];
-
-    // Контент показывается только для choice-карточек
-    if (this.choiceDraft() !== null) {
-      tabs.push({ label: 'Контент', visible: true });
-    }
-
-    // Фонетика не показывается для code-select
-    if (this.draft().kind !== 'code-select') {
-      tabs.push({ label: 'Фонетика', visible: true });
-    }
-
-    tabs.push({ label: 'Метаинфо', visible: true });
-    tabs.push({ label: 'Настройки', visible: true });
-
-    return tabs;
   }
 }

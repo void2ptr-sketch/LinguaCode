@@ -224,3 +224,8 @@
   font-size: 0.75rem;
   color: color-mix(in srgb, var(--mat-sys-on-surface) 55%, transparent);
 }
+
+.card-editor-page__language-pair-select {
+  flex: 1 1 14rem;
+  max-width: 22rem;
+}

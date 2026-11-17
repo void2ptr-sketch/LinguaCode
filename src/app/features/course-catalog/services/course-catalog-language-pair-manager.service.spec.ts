@@ -114,40 +114,6 @@ describe('CourseCatalogLanguagePairManagerService', () => {
     expect(mockDrafts.setSettingsPairIdDraft).toHaveBeenCalledWith('pair-1');
   });
 
-  it('should call user store removeLanguagePair on removePair', () => {
-    service.removePair('pair-1');
-
-    expect(mockUserStore.removeLanguagePair).toHaveBeenCalledWith('pair-1');
-  });
-
-  it('should call user store addLanguagePair on addPair when languages differ', () => {
-    (
-      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('ru');
-    (
-      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('zh');
-
-    const result = service.addPair();
-
-    expect(result).toBe(true);
-    expect(mockUserStore.addLanguagePair).toHaveBeenCalled();
-  });
-
-  it('should not add pair when languages are the same', () => {
-    (
-      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-    (
-      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-
-    const result = service.addPair();
-
-    expect(result).toBe(false);
-    expect(mockUserStore.addLanguagePair).not.toHaveBeenCalled();
-  });
-
   it('should sync pair settings drafts', () => {
     service.syncPairSettingsDrafts();
 
@@ -181,65 +147,6 @@ describe('CourseCatalogLanguagePairManagerService', () => {
     });
     // Effect is created but doesn't call callback on first trigger
     expect(loadCallback).not.toHaveBeenCalled();
-  });
-
-  it('should return false from addPair when known equals learning', () => {
-    (
-      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-    (
-      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('en');
-
-    expect(service.addPair()).toBe(false);
-    expect(mockUserStore.addLanguagePair).not.toHaveBeenCalled();
-  });
-
-  it('should add pair and set active when known differs from learning', () => {
-    (
-      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('ru');
-    (
-      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
-    ).set('zh');
-
-    const result = service.addPair();
-
-    expect(result).toBe(true);
-    expect(mockUserStore.addLanguagePair).toHaveBeenCalled();
-    expect(mockDrafts.setSettingsPairIdDraft).toHaveBeenCalled();
-  });
-
-  it('should remove pair and reassign settings to active pair when settings pair is removed', () => {
-    const secondPair = makePair('pair-2', 'en', 'zh');
-    (
-      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
-    ).set([makePair('pair-1', 'ru', 'en'), secondPair]);
-    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
-      'pair-1',
-    );
-
-    service.removePair('pair-1');
-
-    expect(mockUserStore.removeLanguagePair).toHaveBeenCalledWith('pair-1');
-    // When settings pair is removed, settings reassign to activeLanguagePairId
-    expect(mockDrafts.setSettingsPairIdDraft).toHaveBeenCalledWith('pair-1');
-  });
-
-  it('should remove pair and reassign settings when settings pair differs from active', () => {
-    const secondPair = makePair('pair-2', 'en', 'zh');
-    (
-      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
-    ).set([makePair('pair-1', 'ru', 'en'), secondPair]);
-    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
-      'pair-2',
-    );
-
-    service.removePair('pair-2');
-
-    expect(mockUserStore.removeLanguagePair).toHaveBeenCalledWith('pair-2');
-    // After removing pair-2, settings reassign to activeLanguagePairId (pair-1)
-    expect(mockDrafts.setSettingsPairIdDraft).toHaveBeenCalledWith('pair-1');
   });
 
   it('should return settings entry from first pair when draft id does not match', () => {

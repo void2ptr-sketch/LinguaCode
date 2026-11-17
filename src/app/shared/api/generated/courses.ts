@@ -28,6 +28,7 @@ import type {
   CourseJourneyResponse,
   CourseList,
   CourseResponse,
+  CourseSearchList,
   CourseUpdateRequest,
   CoursesListParams,
   CoursesSearchParams,
@@ -482,13 +483,13 @@ export class CoursesService {
     );
   }
 /**
- * Searches courses by title or description with optional author, language pair filters
+ * Searches courses by title or description with optional author, language pair filters and program counts
  * @summary Search courses
  */
- coursesSearch<TData = CourseList>(params: CoursesSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
- coursesSearch<TData = CourseList>(params: CoursesSearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
- coursesSearch<TData = CourseList>(params: CoursesSearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
-  coursesSearch<TData = CourseList>(
+ coursesSearch<TData = CourseSearchList>(params: CoursesSearchParams, options?: HttpClientBodyOptions): Observable<TData>;
+ coursesSearch<TData = CourseSearchList>(params: CoursesSearchParams, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ coursesSearch<TData = CourseSearchList>(params: CoursesSearchParams, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  coursesSearch<TData = CourseSearchList>(
     params: CoursesSearchParams, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
     const filteredParams = filterParams({...params, ...options?.params}, new Set<string>([]), false, new Set<string>([]), {"pageable":"flatten"} as const);
 
@@ -560,5 +561,5 @@ export type CoursesListClientResult = NonNullable<CourseList>
 export type CoursesCreateClientResult = NonNullable<CourseResponse>
 export type CoursesGetJourneyClientResult = NonNullable<CourseJourneyResponse>
 export type CoursesGetBundleClientResult = NonNullable<CourseExportBundleResponse>
-export type CoursesSearchClientResult = NonNullable<CourseList>
+export type CoursesSearchClientResult = NonNullable<CourseSearchList>
 export type CoursesFindByScenarioClientResult = NonNullable<ListCourseResponse>

@@ -6,6 +6,8 @@ import {
   inject,
   OnInit,
   untracked,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -213,6 +215,19 @@ export class CardSelectPageComponent implements OnInit {
 
   readonly fontSize = this.flow.fontSize;
 
+  // ─── Tab focus management ──────────────────────────────────────────────
+
+  @ViewChild('tabGroup') private readonly tabGroup!: ElementRef<HTMLElement>;
+
+  /** Moves focus to the newly selected tab header to prevent aria-hidden warning. */
+  private focusTabHeader(tabIndex: number): void {
+    const group = this.tabGroup?.nativeElement;
+    if (!group) return;
+    const tabHeaders = group.querySelectorAll('mat-tab-header button');
+    const button = tabHeaders[tabIndex] as HTMLButtonElement | undefined;
+    button?.focus();
+  }
+
   // ─── Effects ──────────────────────────────────────────────────────────
 
   /** Auto-checks draw card answers when the store receives them. */
@@ -244,6 +259,11 @@ export class CardSelectPageComponent implements OnInit {
   // ─── Lifecycle ────────────────────────────────────────────────────────
 
   async ngOnInit(): Promise<void> {
+    // Защищаем инициализацию от resetOnActivePairChange: сервис корневой и
+    // живёт дольше страницы, поэтому флаг нужно включать заново при каждом
+    // визите (иначе повторный deep-link с /journey затирается сменой пары).
+    this.flow.beginInitialization();
+
     const query = this.route.snapshot.queryParamMap;
     const courseId = query.get('courseId');
     const lessonId = query.get('lessonId');
@@ -253,9 +273,13 @@ export class CardSelectPageComponent implements OnInit {
     // Активируем языковую пару курса/сценария ДО установки состояния флоу:
     // глобальный сброс флоу при смене пары должен отработать на пустом состоянии,
     // иначе он затрёт выбранные курс/урок/сценарий, и карточки не откроются.
+    // Пара сценария активируется последней: при переходе с карты обучения
+    // (/journey?courseId=…&scenarioId=…) открывается именно сценарий, и его
+    // пара может отличаться от пары курса, если курс не вернул languagePair.
     if (courseId) {
-      await this.activateLanguagePairForCourse(courseId);
-    } else if (scenarioId) {
+      await this.flow.activateLanguagePair(courseId);
+    }
+    if (scenarioId) {
       await this.activateLanguagePairForScenario(scenarioId);
     }
 
@@ -285,21 +309,11 @@ export class CardSelectPageComponent implements OnInit {
     } else if (tab === 'course') {
       this.flow.setActiveTab(LEARNING_TAB.course);
     }
-  }
 
-  /**
-   * Активирует языковую пару курса, чтобы сценарии курса открывались
-   * независимо от активной пары пользователя.
-   */
-  private async activateLanguagePairForCourse(courseId: string): Promise<void> {
-    try {
-      const course = await this.courseSearchService.getById(courseId);
-      if (course?.languagePair) {
-        this.userStore.addLanguagePair(course.languagePair);
-      }
-    } catch {
-      // Не критично: флоу покажет собственную ошибку при загрузке курса.
-    }
+    // Разрешаем глобальный сброс при смене языковой пары только после того,
+    // как все query-параметры обработаны — иначе эффект resetOnActivePairChange
+    // увидит transient-empty selectedScenarioId и вызовет resetAll().
+    this.flow.markInitialized();
   }
 
   /**
@@ -322,6 +336,11 @@ export class CardSelectPageComponent implements OnInit {
     this.flow.goToTab(tabIndex);
   }
 
+  /** Moves focus to the tab header on tab change to prevent aria-hidden warning. */
+  onTabSelect(tabIndex: number): void {
+    this.focusTabHeader(tabIndex);
+  }
+
   advanceFromCurrentTab(): void {
     this.flow.advanceFromCurrentTab();
   }
@@ -332,6 +351,10 @@ export class CardSelectPageComponent implements OnInit {
 
   async onCourseChange(courseId: string): Promise<void> {
     if (courseId) {
+      // Активируем языковую пару курса ПЕРЕД загрузкой:
+      // это гарантирует, что course-picker перезагрузится с правильным фильтром,
+      // а карточки загрузятся для правильной пары.
+      await this.flow.activateLanguagePair(courseId);
       await this.flow.loadCourse(courseId);
     } else {
       this.flow.resetCourseState();

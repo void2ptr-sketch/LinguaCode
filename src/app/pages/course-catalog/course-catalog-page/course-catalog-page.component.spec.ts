@@ -50,6 +50,7 @@ function makeCourse(id: string, title: string, programCount: number): CourseInde
   return {
     id,
     title,
+    slug: id,
     authorId: 'author-1',
     programCount,
     published: true,
@@ -86,6 +87,7 @@ describe('CourseCatalogPageComponent', () => {
   const mockCourse: CourseWithPrograms = {
     id: 'c-1',
     title: 'Course 1',
+    slug: 'c-1',
     description: 'Test course',
     authorId: 'author-1',
     languagePair: { known: 'ru', learning: 'en' },
@@ -191,8 +193,6 @@ describe('CourseCatalogPageComponent', () => {
     mockPairManager = {
       trackActivePairChange: vi.fn(() => undefined),
       setActive: vi.fn(),
-      removePair: vi.fn(),
-      addPair: vi.fn().mockReturnValue(true),
       savePairSettings: vi.fn(),
       syncPairSettingsDrafts: vi.fn(),
       settingsEntry: vi.fn(() => mockPairs[0] ?? null),
@@ -282,6 +282,7 @@ describe('CourseCatalogPageComponent', () => {
       clearActiveCourseIds: () => mockActiveCourseIdsSignal.set(new Set() as ReadonlySet<string>),
       setFilterDismissed: (dismissed: boolean) => mockFilterDismissedSignal.set(dismissed),
       onPageChange: vi.fn(),
+      restoreActiveCourseIds: vi.fn(),
     };
 
     mockDrafts = {

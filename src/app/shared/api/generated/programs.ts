@@ -28,6 +28,7 @@ import type {
   ProgramList,
   ProgramResponse,
   ProgramUpdateRequest,
+  ProgramWithLessonsList,
   ProgramsListParams,
   ProgramsSearchParams
 } from './models';
@@ -230,7 +231,7 @@ function filterParams(
 export class ProgramsService {
   private readonly http = inject(HttpClient);
 /**
- * Returns program details by ID
+ * Returns program details by ID (no access check — frontend handles permissions)
  * @summary Get program by ID
  */
  programsGetById<TData = ProgramResponse>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
@@ -412,7 +413,7 @@ export class ProgramsService {
     );
   }
 /**
- * Returns all lessons for a program, ordered by order field
+ * Returns all lessons for a program, ordered by order field, with scenario IDs
  * @summary Get lessons by program
  */
  programsGetLessons<TData = LessonList>(id: number, options?: HttpClientBodyOptions): Observable<TData>;
@@ -515,6 +516,40 @@ export class ProgramsService {
       }
     );
   }
+/**
+ * Returns all programs for a course with resolved lessons (404 if course not found)
+ * @summary Get programs with lessons by course
+ */
+ programsGetByCourseWithLessons<TData = ProgramWithLessonsList>(courseId: number, options?: HttpClientBodyOptions): Observable<TData>;
+ programsGetByCourseWithLessons<TData = ProgramWithLessonsList>(courseId: number, options?: HttpClientEventOptions): Observable<HttpEvent<TData>>;
+ programsGetByCourseWithLessons<TData = ProgramWithLessonsList>(courseId: number, options?: HttpClientResponseOptions): Observable<AngularHttpResponse<TData>>;
+  programsGetByCourseWithLessons<TData = ProgramWithLessonsList>(
+    courseId: number, options?: HttpClientObserveOptions): Observable<TData | HttpEvent<TData> | AngularHttpResponse<TData>> {
+    if (options?.observe === 'events') {
+      return this.http.get<TData>(
+      `/api/v1/programs/by-course/${courseId}/with-lessons`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'events',
+      }
+    );
+    }
+
+    if (options?.observe === 'response') {
+      return this.http.get<TData>(
+      `/api/v1/programs/by-course/${courseId}/with-lessons`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'response',
+      }
+    );
+    }
+
+    return this.http.get<TData>(
+      `/api/v1/programs/by-course/${courseId}/with-lessons`,{
+        ...(options as Omit<NonNullable<typeof options>, 'observe'>),
+        observe: 'body',
+      }
+    );
+  }
 };
 
 export type ProgramsGetByIdClientResult = NonNullable<ProgramResponse>
@@ -525,3 +560,4 @@ export type ProgramsCreateClientResult = NonNullable<ProgramResponse>
 export type ProgramsGetLessonsClientResult = NonNullable<LessonList>
 export type ProgramsSearchClientResult = NonNullable<ProgramList>
 export type ProgramsGetByCourseClientResult = NonNullable<ProgramList>
+export type ProgramsGetByCourseWithLessonsClientResult = NonNullable<ProgramWithLessonsList>

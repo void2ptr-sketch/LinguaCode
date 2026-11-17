@@ -21,5 +21,17 @@ export interface CardCreateRequest {
   dataJson?: string;
   tags?: string;
   difficulty?: CardCreateRequestDifficulty;
-  requiredTier: CardCreateRequestRequiredTier;
+  requiredTier?: CardCreateRequestRequiredTier;
+  languagePairId?: number;
+  courseId?: number;
+  programId?: number;
+  lessonId?: number;
+  scenarioId?: number;
+  order?: number;
+  published?: boolean;
+  /**
+     * @minLength 0
+     * @maxLength 255
+     */
+  slug?: string;
 }

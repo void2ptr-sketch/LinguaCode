@@ -18,6 +18,10 @@ export interface Program {
   languagePairId?: number;
   published?: boolean;
   requiredTier?: ProgramRequiredTier;
+  /** Порядок в курсе */
+  order?: number;
+  lessonIds?: number[];
+  ownerId?: number;
   createdAt?: string;
   updatedAt?: string;
 }

@@ -5,11 +5,23 @@
  * OpenAPI spec version: v0
  */
 import type { CardsListDifficulty } from './cardsListDifficulty';
-import type { CardsListKind } from './cardsListKind';
-import type { Pageable } from './pageable';
+import type { CardsListKindsItem } from './cardsListKindsItem';
 
 export type CardsListParams = {
-  kind?: CardsListKind;
+  query?: string;
+  knownLanguage?: string;
+  learningLanguage?: string;
+  languagePairId?: number;
+  courseId?: number;
+  programId?: number;
+  lessonId?: number;
+  scenarioId?: number;
   difficulty?: CardsListDifficulty;
-  pageable: Pageable;
+  kinds?: CardsListKindsItem[];
+  tags?: string[];
+  published?: boolean;
+  scope?: string;
+  page?: number;
+  pageSize?: number;
+  size?: number;
 };

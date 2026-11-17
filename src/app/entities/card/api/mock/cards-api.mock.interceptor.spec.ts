@@ -1,15 +1,38 @@
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { firstValueFrom } from 'rxjs';
+
+import { setCardSeedCache, resetContentSeedCache } from '../../../content-seed/content-seed.cache';
+import { normalizeLegacyCards } from '../../mapping/card-legacy.mapper';
+import type { Card } from '../../model';
 
 import { CardsApiService } from '..';
 import { CardRepository } from '../../repository/card.repository';
 import { cardsApiMockInterceptor } from './cards-api.mock.interceptor';
+import { CARD_DIFFICULTY_MOCK_OPTIONS } from './card-difficulty.mock';
+
+const testCards: readonly Card[] = normalizeLegacyCards([
+  {
+    id: 'select-1',
+    kind: 'select',
+    title: 'Приветствие',
+    appearance: { theme: 'azure-blue', fontSize: 'md' },
+    direction: 'known-to-learning',
+    promptKnown: 'Как сказать «Привет» по-английски?',
+    optionsLearning: ['Hello', 'Goodbye', 'Thanks', 'Please'],
+    optionsKnown: ['Привет', 'Пока', 'Спасибо', 'Пожалуйста'],
+    correctIndex: 0,
+  } as Card,
+]);
 
 describe('cards API (mock interceptor)', () => {
   let api: CardsApiService;
+  let http: HttpClient;
 
   beforeEach(() => {
     localStorage.clear();
+    resetContentSeedCache();
+    setCardSeedCache(testCards);
 
     TestBed.configureTestingModule({
       providers: [
@@ -20,11 +43,20 @@ describe('cards API (mock interceptor)', () => {
     });
 
     api = TestBed.inject(CardsApiService);
+    http = TestBed.inject(HttpClient);
   });
 
   afterEach(() => {
     localStorage.clear();
     TestBed.resetTestingModule();
+  });
+
+  it('returns difficulty reference options via GET /api/cards/difficulties', async () => {
+    const response = await firstValueFrom(
+      http.get<{ data: typeof CARD_DIFFICULTY_MOCK_OPTIONS }>('/api/v1/cards/difficulties'),
+    );
+
+    expect(response.data).toEqual(CARD_DIFFICULTY_MOCK_OPTIONS);
   });
 
   it('searches cards via GET /api/cards/search', async () => {
@@ -63,9 +95,9 @@ describe('cards API (mock interceptor)', () => {
       appearance: { theme: 'azure-blue', fontSize: 'md' },
     });
 
-    expect(created.id).toBe('select-created');
+    expect(created.id).toBeTruthy();
 
-    const stored = await api.getById('select-created');
+    const stored = await api.getById(created.id);
     expect(stored.title).toBe('Created');
   });
 

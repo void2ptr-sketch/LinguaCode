@@ -4,7 +4,7 @@ import type { LanguagePair } from '../../language-pair/model/language-pair.types
 import type { ScenarioCardSource } from '../../card/model';
 import type { CourseAuthoring } from '../../course/model';
 import { normalizeCourseAuthoring } from '../../course/utils/course-authoring.utils';
-import { normalizeLanguagePair } from '../../language-pair/lib/language-pair.utils';
+import { normalizeLanguagePair } from '../../language-pair/utils/language-pair.utils';
 import type { UserContentOverlay } from './user-content-overlay.types';
 import { readUserContentOverlay, writeUserContentOverlay } from './user-content-overlay.storage';
 /** Заголовок курса «Собеседование на языке Perl» для идентификации в оверлее. */

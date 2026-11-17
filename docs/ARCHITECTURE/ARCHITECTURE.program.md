@@ -30,6 +30,9 @@ classDiagram
     +description: string
     +lessonIds: string[]
     +order: number
+    +requiredTier: ProgramRequiredTier
+    +languagePairId?: number
+    +published?: boolean
   }
   class Lesson {
     +id: string
@@ -77,14 +80,33 @@ features/program-builder/
 
 ## Отличие от Course
 
-| Свойство       | `Course`            | `Program`                   |
-| -------------- | ------------------- | --------------------------- |
-| Роль           | Каталог / категория | Учебный трек / модуль       |
-| `LanguagePair` | Да (scope контента) | Нет (наследуется от Course) |
-| `published`    | Да                  | Нет                         |
-| `authoring`    | Да (G16)            | Нет                         |
-| Содержит       | `programIds`        | `lessonIds`                 |
-| UI-название    | «Каталог программ»  | «Трек» / «Модуль»           |
+| Свойство       | `Course`            | `Program`                                                             |
+| -------------- | ------------------- | --------------------------------------------------------------------- |
+| Роль           | Каталог / категория | Учебный трек / модуль                                                 |
+| `LanguagePair` | Да (scope контента) | Нет (наследуется от Course, передаётся `languagePairId` при создании) |
+| `published`    | Да                  | Да (опционально, только обновление)                                   |
+| `authoring`    | Да (G16)            | Нет                                                                   |
+| `requiredTier` | Нет                 | Да (`FREE` / `STARTER` / `GROWTH` / `PREMIUM`)                        |
+| Содержит       | `programIds`        | `lessonIds`                                                           |
+| UI-название    | «Каталог программ»  | «Трек» / «Модуль»                                                     |
+
+## Поля `Program`
+
+| Поле                 | Create   | Update   | Описание                                                |
+| -------------------- | -------- | -------- | ------------------------------------------------------- |
+| `title`              | required | optional | Название (1–200 символов)                               |
+| `programDescription` | optional | optional | Описание для каталога                                   |
+| `courseId`           | required | —        | ID родительского курса (BIGINT)                         |
+| `requiredTier`       | required | required | Уровень доступа: `FREE`, `STARTER`, `GROWTH`, `PREMIUM` |
+| `order`              | optional | optional | Порядок в курсе (по умолчанию 0)                        |
+| `languagePairId`     | optional | optional | Пара языков (извлекается из курса)                      |
+| `published`          | —        | optional | Опубликовать (только update)                            |
+| `authorId`           | —        | —        | Автоматически из токена (бэкенд)                        |
+| `lessonIds`          | —        | —        | Пустой массив при create (lesson-builder)               |
+| `createdAt`          | —        | —        | Авто (бэкенд)                                           |
+| `updatedAt`          | —        | —        | Авто (бэкенд)                                           |
+
+> **`languagePairId`** — фронтенд извлекает из `Course` при создании программы через `CourseSearchService.getById()`. Бэкенд не требует это поле (`@NotNull` отсутствует), но передача улучшает связность данных.
 
 ## Связанные документы
 

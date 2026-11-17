@@ -57,6 +57,11 @@ describe('tone-stripping', () => {
       expect(stripPinyinTones('ni1 hao2')).toBe('ni1 hao2');
     });
 
+    it('should skip combining marks not in PINYIN_TONE_MAP', () => {
+      // Combining diacritical marks that are not in the tone map should be skipped
+      expect(stripPinyinTones('a\u0305')).toBe('a');
+    });
+
     it('should handle spaces', () => {
       expect(stripPinyinTones('nǐ hǎo')).toBe('ni hao');
     });

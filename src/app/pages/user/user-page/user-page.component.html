@@ -1,0 +1,38 @@
+<mat-card class="page-card">
+  <mat-card-header>
+    <mat-card-title>Профиль пользователя: {{ displayName() }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="page-card__content">
+    <mat-tab-group
+      class="page-card__tabs"
+      dynamicHeight
+      [selectedIndex]="selectedTabIndex()"
+      (selectedIndexChange)="selectedTabIndex.set($event)"
+    >
+      <mat-tab label="Пользователь">
+        <app-user-profile-tab />
+      </mat-tab>
+
+      <mat-tab label="Мои языки">
+        <app-user-languages-tab />
+      </mat-tab>
+
+      <mat-tab label="Мои пары">
+        <app-user-pairs-tab />
+      </mat-tab>
+
+      <mat-tab label="Настройки курса">
+        <app-user-course-settings-tab />
+      </mat-tab>
+
+      <mat-tab label="Внешний вид">
+        <app-user-appearance-tab />
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-flat-button type="button" (click)="drafts.saveProfile()">Сохранить</button>
+  </mat-card-actions>
+</mat-card>

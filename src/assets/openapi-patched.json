@@ -116,6 +116,14 @@
       "description": "Работа с курсами в SCORM/xAPI формате"
     },
     {
+      "name": "Scenario Batch",
+      "description": "Пакетные операции с сценариями"
+    },
+    {
+      "name": "Lessons",
+      "description": "Операции с уроками"
+    },
+    {
       "name": "Auth",
       "description": "Операции аутентификации"
     }
@@ -501,7 +509,7 @@
       "get": {
         "tags": ["Programs"],
         "summary": "Get program by ID",
-        "description": "Returns program details by ID",
+        "description": "Returns program details by ID (no access check — frontend handles permissions)",
         "operationId": "programs.getById",
         "parameters": [
           {
@@ -618,6 +626,131 @@
           },
           "404": {
             "description": "Program not found"
+          }
+        }
+      }
+    },
+    "/api/v1/lessons/{id}": {
+      "get": {
+        "tags": ["Lessons"],
+        "summary": "Get lesson by ID",
+        "description": "Returns lesson details by ID",
+        "operationId": "lessons.getById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lesson found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Lesson not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Lessons"],
+        "summary": "Update lesson",
+        "description": "Updates an existing lesson",
+        "operationId": "lessons.update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LessonUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Lesson updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Lesson not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Lessons"],
+        "summary": "Delete lesson",
+        "description": "Deletes a lesson by ID (cascades to cards and scenarios)",
+        "operationId": "lessons.delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Lesson deleted"
+          },
+          "404": {
+            "description": "Lesson not found"
           }
         }
       }
@@ -751,7 +884,7 @@
       "get": {
         "tags": ["Cards"],
         "summary": "Get card by ID",
-        "description": "Returns card details by ID",
+        "description": "Returns card details by ID. Supports both numeric IDs and content identifiers (slugs).",
         "operationId": "cards.getById",
         "parameters": [
           {
@@ -759,8 +892,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         ],
@@ -1084,6 +1216,56 @@
         }
       }
     },
+    "/api/v1/scenarios/batch/retrieve": {
+      "post": {
+        "tags": ["Scenario Batch"],
+        "summary": "Batch retrieve scenarios",
+        "description": "Retrieves multiple scenarios by their IDs in a single request",
+        "operationId": "scenarios.batchRetrieve",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScenarioBatchRetrieveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Scenarios found (may include notFound IDs)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScenarioBatchRetrieveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScenarioBatchRetrieveResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScenarioBatchRetrieveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/programs": {
       "get": {
         "tags": ["Programs"],
@@ -1164,6 +1346,56 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProgramResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/lessons": {
+      "post": {
+        "tags": ["Lessons"],
+        "summary": "Create lesson",
+        "description": "Creates a new lesson",
+        "operationId": "lessons.create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LessonCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Lesson created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonResponse"
                 }
               }
             }
@@ -2658,6 +2890,37 @@
         }
       }
     },
+    "/api/v1/scenarios/by-lesson/{lessonId}": {
+      "get": {
+        "tags": ["Scenarios"],
+        "summary": "Get scenarios by lesson",
+        "description": "Returns all scenarios for a lesson",
+        "operationId": "scenarios.getByLessonId",
+        "parameters": [
+          {
+            "name": "lessonId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scenarios found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScenarioList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/scenarios/by-card/{cardId}": {
       "get": {
         "tags": ["Scenarios"],
@@ -2693,7 +2956,7 @@
       "get": {
         "tags": ["Programs"],
         "summary": "Get lessons by program",
-        "description": "Returns all lessons for a program, ordered by order field",
+        "description": "Returns all lessons for a program, ordered by order field, with scenario IDs",
         "operationId": "programs.getLessons",
         "parameters": [
           {
@@ -2802,6 +3065,109 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProgramList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/programs/by-course/{courseId}/with-lessons": {
+      "get": {
+        "tags": ["Programs"],
+        "summary": "Get programs with lessons by course",
+        "description": "Returns all programs for a course with resolved lessons (404 if course not found)",
+        "operationId": "programs.getByCourseWithLessons",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Programs with lessons found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgramWithLessonsList"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Course not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgramWithLessonsList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/lessons/by-program/{programId}": {
+      "get": {
+        "tags": ["Lessons"],
+        "summary": "Get lessons by program",
+        "description": "Returns all lessons for a program, ordered by order field",
+        "operationId": "lessons.getByProgram",
+        "parameters": [
+          {
+            "name": "programId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lessons found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/lessons/by-course/{courseId}": {
+      "get": {
+        "tags": ["Lessons"],
+        "summary": "Get lessons by course",
+        "description": "Returns all lessons for a course, ordered by program and lesson order",
+        "operationId": "lessons.getByCourse",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lessons found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonList"
                 }
               }
             }
@@ -3603,7 +3969,7 @@
       "get": {
         "tags": ["Courses"],
         "summary": "Search courses",
-        "description": "Searches courses by title or description with optional author, language pair filters",
+        "description": "Searches courses by title or description with optional author, language pair filters and program counts",
         "operationId": "courses.search",
         "parameters": [
           {
@@ -3661,6 +4027,14 @@
             }
           },
           {
+            "name": "slug",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "pageable",
             "in": "query",
             "required": true,
@@ -3675,7 +4049,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CourseList"
+                  "$ref": "#/components/schemas/CourseSearchList"
                 }
               }
             }
@@ -3956,7 +4330,7 @@
       "get": {
         "tags": ["Cards"],
         "summary": "Search cards",
-        "description": "Searches cards by title and filters",
+        "description": "Searches cards by title with optional language pair filter. When no query is provided, returns published cards filtered by language pair.",
         "operationId": "cards.search",
         "parameters": [
           {
@@ -3964,7 +4338,8 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": ""
             }
           },
           {
@@ -4015,6 +4390,36 @@
         "responses": {
           "200": {
             "description": "Card kinds found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferenceOptionDtoList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cards/difficulties": {
+      "get": {
+        "tags": ["Card Difficulties"],
+        "summary": "List card difficulties",
+        "description": "Returns difficulty levels from content_difficulty_levels",
+        "operationId": "listAll_8",
+        "responses": {
+          "200": {
+            "description": "Card difficulties found",
             "content": {
               "application/json": {
                 "schema": {
@@ -4109,7 +4514,8 @@
             }
           },
           "paymentTier": {
-            "type": "string"
+            "type": "string",
+            "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
           },
           "subscriptionExpiresAt": {
             "type": "string",
@@ -4225,6 +4631,27 @@
             "format": "int32",
             "maximum": 500,
             "minimum": 1
+          },
+          "theme": {
+            "type": "string"
+          },
+          "colorScheme": {
+            "type": "string"
+          },
+          "cardFocusFullscreen": {
+            "type": "boolean"
+          },
+          "learningProficiencyLevel": {
+            "type": "string"
+          },
+          "activeLanguagePairId": {
+            "type": "string"
+          },
+          "activeByMirrorGroup": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/LanguagePair"
+            }
           }
         }
       },
@@ -4372,17 +4799,42 @@
       },
       "LanguagePair": {
         "type": "object",
-        "description": "Language pair (known → learning)",
         "properties": {
-          "id": {
+          "known": {
+            "type": "string"
+          },
+          "learning": {
+            "type": "string"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/LanguagePairSettings"
+          }
+        }
+      },
+      "LanguagePairCjkLearningSettings": {
+        "type": "object",
+        "properties": {
+          "displayRomanizations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "answerRomanization": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "showTones": {
+            "type": "boolean"
+          },
+          "toneColorScheme": {
+            "type": "string"
+          },
+          "tracingStrokeDurationSec": {
             "type": "integer",
-            "format": "int64"
-          },
-          "knownCode": {
-            "type": "string"
-          },
-          "learningCode": {
-            "type": "string"
+            "format": "int32"
           }
         }
       },
@@ -4406,6 +4858,9 @@
       "LanguagePairEntry": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "known": {
             "type": "string"
           },
@@ -4426,6 +4881,9 @@
           },
           "cjkLearning": {
             "$ref": "#/components/schemas/CjkLearningSettings"
+          },
+          "learning": {
+            "$ref": "#/components/schemas/LearningSessionSettings"
           }
         }
       },
@@ -4447,6 +4905,21 @@
           }
         }
       },
+      "LanguagePairPhoneticSettings": {
+        "type": "object",
+        "properties": {
+          "showIpa": {
+            "type": "boolean"
+          },
+          "answerModes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["ORTHOGRAPHY", "IPA", "AUDIO"]
+            }
+          }
+        }
+      },
       "LanguagePairResponse": {
         "type": "object",
         "description": "Single resource API response wrapper",
@@ -4454,6 +4927,20 @@
           "data": {
             "$ref": "#/components/schemas/LanguagePair",
             "description": "Response data"
+          }
+        }
+      },
+      "LanguagePairSettings": {
+        "type": "object",
+        "properties": {
+          "phonetic": {
+            "$ref": "#/components/schemas/LanguagePairPhoneticSettings"
+          },
+          "cjkLearning": {
+            "$ref": "#/components/schemas/LanguagePairCjkLearningSettings"
+          },
+          "learning": {
+            "$ref": "#/components/schemas/LearningSessionPreferences"
           }
         }
       },
@@ -4550,6 +5037,32 @@
             "type": "string",
             "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
           },
+          "practiceSettings": {
+            "type": "string",
+            "description": "Настройки практики (JSONB)"
+          },
+          "authoringStatus": {
+            "type": "string",
+            "description": "Статус авторинга каталога (draft/planned/generating/materialized/failed)"
+          },
+          "authoringIdea": {
+            "type": "string",
+            "description": "Markdown-идея каталога"
+          },
+          "ideaUpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата последнего обновления идеи"
+          },
+          "materializedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата материализации каталога"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Последняя ошибка авторинга"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -4557,6 +5070,38 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "slug": {
+            "type": "string",
+            "description": "Уникальный строковый идентификатор курса (content ID)"
+          }
+        }
+      },
+      "CourseAuthoring": {
+        "type": "object",
+        "description": "Course authoring metadata",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Статус авторинга (draft/planned/generating/materialized/failed)"
+          },
+          "idea": {
+            "type": "string",
+            "description": "Markdown-идея каталога"
+          },
+          "ideaUpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата последнего обновления идеи"
+          },
+          "materializedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата материализации каталога"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Последняя ошибка авторинга"
           }
         }
       },
@@ -4579,6 +5124,48 @@
           "languagePairId": {
             "type": "integer",
             "format": "int64"
+          },
+          "practiceSettings": {
+            "type": "string",
+            "description": "Настройки практики (JSONB)"
+          },
+          "authoringStatus": {
+            "type": "string",
+            "description": "Статус авторинга (draft/planned/generating/materialized/failed)"
+          },
+          "authoringIdea": {
+            "type": "string",
+            "description": "Markdown-идея каталога"
+          },
+          "ideaUpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата обновления идеи"
+          },
+          "materializedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата материализации"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Последняя ошибка"
+          },
+          "requiredTier": {
+            "type": "string",
+            "default": "FREE",
+            "description": "Минимальный уровень подписки для доступа (FREE/STARTER/GROWTH/PREMIUM, по умолчанию FREE)",
+            "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
+          },
+          "slug": {
+            "type": "string",
+            "description": "Уникальный строковый идентификатор (автогенерируется из title если не указан)"
+          },
+          "programs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramNestedDto"
+            }
           }
         },
         "required": ["authorId", "title"]
@@ -4643,6 +5230,15 @@
           "description": {
             "type": "string"
           },
+          "authorId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID автора курса"
+          },
+          "authoring": {
+            "$ref": "#/components/schemas/CourseAuthoring",
+            "description": "Статус авторинга каталога"
+          },
           "programs": {
             "type": "array",
             "items": {
@@ -4689,6 +5285,72 @@
           }
         }
       },
+      "CourseSearch": {
+        "type": "object",
+        "description": "Course with program count",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "courseDescription": {
+            "type": "string"
+          },
+          "authorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "slug": {
+            "type": "string",
+            "description": "Уникальный строковый идентификатор курса"
+          },
+          "programCount": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Количество программ в курсе"
+          }
+        }
+      },
+      "CourseSearchList": {
+        "type": "object",
+        "description": "Paginated list API response wrapper",
+        "properties": {
+          "data": {
+            "type": "array",
+            "description": "List of items",
+            "items": {
+              "$ref": "#/components/schemas/CourseSearch"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Total item count"
+          }
+        }
+      },
       "CourseUpdateRequest": {
         "type": "object",
         "description": "Course update request",
@@ -4707,6 +5369,47 @@
           },
           "published": {
             "type": "boolean"
+          },
+          "practiceSettings": {
+            "type": "string",
+            "description": "Настройки практики (JSONB)"
+          },
+          "authoringStatus": {
+            "type": "string",
+            "description": "Статус авторинга (draft/planned/generating/materialized/failed)"
+          },
+          "authoringIdea": {
+            "type": "string",
+            "description": "Markdown-идея каталога"
+          },
+          "ideaUpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата обновления идеи"
+          },
+          "materializedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата материализации"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Последняя ошибка"
+          },
+          "requiredTier": {
+            "type": "string",
+            "description": "Минимальный уровень подписки для доступа (FREE/STARTER/GROWTH/PREMIUM)",
+            "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
+          },
+          "slug": {
+            "type": "string",
+            "description": "Уникальный строковый идентификатор (опционально)"
+          },
+          "programs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramNestedDto"
+            }
           }
         }
       },
@@ -4743,6 +5446,22 @@
             "type": "string",
             "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
           },
+          "order": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Порядок в курсе"
+          },
+          "lessonIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "ownerId": {
+            "type": "integer",
+            "format": "int64"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -4776,6 +5495,11 @@
           "requiredTier": {
             "type": "string",
             "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Порядок в курсе (по умолчанию 0)"
           }
         },
         "required": ["courseId", "requiredTier", "title"]
@@ -4836,6 +5560,10 @@
           "title": {
             "type": "string"
           },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
           "lessons": {
             "type": "array",
             "items": {
@@ -4861,6 +5589,30 @@
             "description": "Total item count"
           }
         }
+      },
+      "ProgramNestedDto": {
+        "type": "object",
+        "description": "Nested program for course update",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "programDescription": {
+            "type": "string"
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonNestedDto"
+            }
+          },
+          "deleteExisting": {
+            "type": "boolean"
+          }
+        },
+        "required": ["title"]
       },
       "ProgramResponse": {
         "type": "object",
@@ -4893,10 +5645,95 @@
           },
           "requiredTier": {
             "type": "string",
+            "description": "Минимальный уровень подписки для доступа (опционально)",
             "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Порядок в курсе"
           }
-        },
-        "required": ["requiredTier"]
+        }
+      },
+      "ProgramWithLessons": {
+        "type": "object",
+        "description": "Program with resolved lessons",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": "string"
+          },
+          "programDescription": {
+            "type": "string"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "authorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Порядок в курсе"
+          },
+          "lessonIds": {
+            "type": "array",
+            "description": "ID уроков программы",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Lesson"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ProgramWithLessonsList": {
+        "type": "object",
+        "description": "Paginated list API response wrapper",
+        "properties": {
+          "data": {
+            "type": "array",
+            "description": "List of items",
+            "items": {
+              "$ref": "#/components/schemas/ProgramWithLessons"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Total item count"
+          }
+        }
       },
       "Lesson": {
         "type": "object",
@@ -4922,6 +5759,29 @@
           },
           "prerequisiteLessonIds": {
             "type": "string"
+          },
+          "scenarioIds": {
+            "type": "array",
+            "description": "IDs сценариев, привязанных к уроку",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "languagePairId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
           },
           "createdAt": {
             "type": "string",
@@ -4953,6 +5813,40 @@
             "$ref": "#/components/schemas/LessonProgress"
           }
         }
+      },
+      "LessonCreateRequest": {
+        "type": "object",
+        "description": "Lesson creation request",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "lessonDescription": {
+            "type": "string"
+          },
+          "programId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lessonOrder": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1
+          },
+          "prerequisiteLessonIds": {
+            "type": "string"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
+          }
+        },
+        "required": ["lessonOrder", "programId", "requiredTier", "title"]
       },
       "LessonExport": {
         "type": "object",
@@ -5034,6 +5928,28 @@
           }
         }
       },
+      "LessonNestedDto": {
+        "type": "object",
+        "description": "Nested lesson for course update",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "lessonDescription": {
+            "type": "string"
+          },
+          "lessonOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prerequisiteLessonIds": {
+            "type": "string"
+          }
+        },
+        "required": ["lessonOrder", "title"]
+      },
       "LessonProgress": {
         "type": "object",
         "description": "Progress summary for a lesson",
@@ -5045,6 +5961,42 @@
           "total": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "LessonResponse": {
+        "type": "object",
+        "description": "Single resource API response wrapper",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Lesson",
+            "description": "Response data"
+          }
+        }
+      },
+      "LessonUpdateRequest": {
+        "type": "object",
+        "description": "Lesson update request",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "lessonDescription": {
+            "type": "string"
+          },
+          "lessonOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prerequisiteLessonIds": {
+            "type": "string"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "requiredTier": {
+            "type": "string",
+            "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
           }
         }
       },
@@ -5065,6 +6017,14 @@
           "cardSource": {
             "type": "string"
           },
+          "programId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int64"
+          },
           "published": {
             "type": "boolean"
           },
@@ -5080,6 +6040,14 @@
             "type": "string",
             "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
           },
+          "courseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ownerId": {
+            "type": "integer",
+            "format": "int64"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -5087,6 +6055,52 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "cardCount": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Количество карточек в сценарии"
+          },
+          "resolvedCardIds": {
+            "type": "array",
+            "description": "Числовые ID карточек, восстановленные из cardSource.cardIds в порядке следования",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "ScenarioBatchRetrieveRequest": {
+        "type": "object",
+        "description": "Batch scenario retrieval request",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "description": "Array of scenario IDs to retrieve",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        },
+        "required": ["ids"]
+      },
+      "ScenarioBatchRetrieveResponse": {
+        "type": "object",
+        "description": "Batch scenario retrieval response",
+        "properties": {
+          "found": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Scenario"
+            }
+          },
+          "notFound": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -5104,6 +6118,18 @@
           },
           "cardSource": {
             "type": "string"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "programId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int64"
           },
           "languagePairId": {
             "type": "integer",
@@ -5201,6 +6227,18 @@
           "cardSource": {
             "type": "string"
           },
+          "courseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "programId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int64"
+          },
           "languagePairId": {
             "type": "integer",
             "format": "int64"
@@ -5244,6 +6282,9 @@
               "CODE_TRACE"
             ]
           },
+          "slug": {
+            "type": "string"
+          },
           "authorId": {
             "type": "integer",
             "format": "int64"
@@ -5262,6 +6303,18 @@
             "type": "string",
             "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
           },
+          "courseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "scenarioId": {
+            "type": "integer",
+            "format": "int64"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -5278,9 +6331,9 @@
         "properties": {
           "ids": {
             "type": "array",
+            "description": "Array of card IDs to retrieve",
             "items": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             },
             "minItems": 1
           }
@@ -5299,9 +6352,9 @@
           },
           "notFound": {
             "type": "array",
+            "description": "Array of card IDs that were not found",
             "items": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         }
@@ -5461,6 +6514,24 @@
           "requiredTier": {
             "type": "string",
             "enum": ["FREE", "STARTER", "GROWTH", "PREMIUM"]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "SELECT",
+              "CODE_SELECT",
+              "MEMORY",
+              "SYMBOL",
+              "SOUND",
+              "TIMED",
+              "KEYBOARD",
+              "DRAW",
+              "TONE",
+              "READING",
+              "FLIP",
+              "CLOZE",
+              "CODE_TRACE"
+            ]
           }
         },
         "required": ["requiredTier"]
@@ -5773,6 +6844,37 @@
           "data": {
             "$ref": "#/components/schemas/LearningResume",
             "description": "Response data"
+          }
+        }
+      },
+      "LearningSessionPreferences": {
+        "type": "object",
+        "properties": {
+          "cardsPerSession": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reviewMode": {
+            "type": "string"
+          },
+          "autoPlayStimulus": {
+            "type": "boolean"
+          }
+        }
+      },
+      "LearningSessionSettings": {
+        "type": "object",
+        "description": "Learning session settings",
+        "properties": {
+          "cardsPerSession": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reviewMode": {
+            "type": "string"
+          },
+          "autoPlayStimulus": {
+            "type": "boolean"
           }
         }
       },

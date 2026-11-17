@@ -8,15 +8,18 @@ import type {
   CourseSearchPage,
   CourseWithPrograms,
 } from '../../model';
+import type { ContentLanguage } from '../../../card/model/card-index.types';
+import { LanguagePairsApiService } from '../../../language-pair/api/language-pairs-api.service';
 import type { ProgramWithLessons } from '../../../program/model/program.types';
 import { paginateArray } from '../../../../shared/utils/pagination';
 import { UserStore } from '../../../user/model/user.store';
+import { AuthStore } from '../../../auth/services/auth.store';
 
 import { normalizeCourseAuthoring } from '../../utils/course-authoring.utils';
 import { courseToIndexEntry } from '../../mapping/course-index.mapper';
 import { filterCourseIndex } from '../../search/course-search.utils';
 import { ContentSeedRepository } from '../../../content-seed/content-seed.repository';
-import { normalizeLanguagePair } from '../../../language-pair/lib/language-pair.utils';
+import { DEFAULT_LANGUAGE_PAIR } from '../../../language-pair/model/language-pair.types';
 import { isEditableContentAuthor, isSystemAuthor } from '../../../user/lib/system-author.constants';
 import {
   loadCourseCatalogFromStorage,
@@ -28,6 +31,29 @@ import { loadCardIndexMetaOverrides } from '../../../card/storage/card-index-met
 import { loadScenariosFromStorage } from '../../../scenario/storage/scenarios-storage';
 
 import type { CourseExportBundle, CourseWritePayload } from '../../repository/course-catalog.port';
+import type { CourseAuthoring } from '../../model';
+
+/**
+ * Reconstructs a nested `CourseAuthoring` from flat payload fields.
+ *
+ * @remarks
+ * The backend contract uses flat fields (`authoringStatus`, `authoringIdea`, …)
+ * but the mock handler stores the nested `CourseAuthoring` shape. This helper
+ * bridges the gap.
+ */
+function buildAuthoringFromFlat(payload: CourseWritePayload): CourseAuthoring | undefined {
+  const status = payload.authoringStatus as
+    'draft' | 'planned' | 'generating' | 'materialized' | 'failed' | undefined;
+  if (!status) return undefined;
+
+  return {
+    idea: payload.authoringIdea ?? '',
+    status,
+    ideaUpdatedAt: payload.ideaUpdatedAt,
+    materializedAt: payload.materializedAt,
+    lastError: payload.lastError,
+  };
+}
 
 /**
  * Mock handler for course catalog operations.
@@ -39,10 +65,16 @@ import type { CourseExportBundle, CourseWritePayload } from '../../repository/co
 @Injectable({ providedIn: 'root' })
 export class CoursesCatalogMockHandler {
   private readonly userStore = inject(UserStore);
+  private readonly authStore = inject(AuthStore);
   private readonly contentSeed = inject(ContentSeedRepository);
   private readonly cardRepository = inject(CardRepository);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
 
   private catalog: CourseCatalogState | null = null;
+
+  /** Cache of numeric pair ID → `{ known, learning }` codes. */
+  private pairIdCache: Map<number, { known: ContentLanguage; learning: ContentLanguage }> | null =
+    null;
 
   /**
    * Searches the course index by the given criteria and returns a paginated result.
@@ -53,9 +85,14 @@ export class CoursesCatalogMockHandler {
   async search(criteria: CourseSearchCriteria): Promise<CourseSearchPage> {
     await this.ensureData();
 
+    // The backend contract filters by numeric `languagePairIds`. Seed courses
+    // have no numeric pair IDs, so translate them into `{ known, learning }`
+    // code pairs and apply an ANY-match filter client-side.
+    const languagePairs = await this.resolvePairCodes(criteria.languagePairIds);
+
     const filtered = filterCourseIndex(
       this.catalog!.courses.map((course) => courseToIndexEntry(course, course.programIds.length)),
-      criteria,
+      { ...criteria, languagePairs: languagePairs ?? undefined },
       this.userStore.user().id,
     );
 
@@ -100,20 +137,27 @@ export class CoursesCatalogMockHandler {
   async create(payload: CourseWritePayload): Promise<CourseWithPrograms> {
     await this.ensureData();
 
-    const languagePair = normalizeLanguagePair(payload.languagePair);
+    const languagePairId = payload.languagePairId;
+    const languagePair = await this.resolveLanguagePair(languagePairId);
     const courseId = crypto.randomUUID();
     const programs = this.normalizePrograms(courseId, payload.programs);
 
     const course: Course = {
       id: courseId,
       title: payload.title,
+      slug: payload.title
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-zа-яё0-9-]/g, ''),
       description: payload.description,
       authorId: this.userStore.user().id,
-      languagePair,
+      languagePairId,
+      languagePair: languagePair ?? DEFAULT_LANGUAGE_PAIR,
       programIds: programs.map((p) => p.id),
       published: payload.published,
       updatedAt: new Date().toISOString(),
-      authoring: normalizeCourseAuthoring(payload.authoring),
+      authoring: normalizeCourseAuthoring(buildAuthoringFromFlat(payload)),
+      practiceSettings: payload.practiceSettings,
     };
 
     this.catalog = {
@@ -145,16 +189,19 @@ export class CoursesCatalogMockHandler {
     }
 
     this.assertCanEdit(current);
-    const languagePair = normalizeLanguagePair(payload.languagePair ?? current.languagePair);
+    const languagePairId = payload.languagePairId ?? current.languagePairId;
+    const languagePair = (await this.resolveLanguagePair(languagePairId)) ?? current.languagePair;
 
     if (isSystemAuthor(current.authorId)) {
       const updated: Course = {
         ...current,
         title: payload.title,
+        slug: payload.slug ?? current.slug,
         description: payload.description,
         published: payload.published,
         updatedAt: new Date().toISOString(),
-        authoring: normalizeCourseAuthoring(payload.authoring ?? current.authoring),
+        authoring: normalizeCourseAuthoring(buildAuthoringFromFlat(payload) ?? current.authoring),
+        practiceSettings: payload.practiceSettings ?? current.practiceSettings,
       };
       const programs = await this.programsWithLessonsForCourse(updated);
 
@@ -172,12 +219,15 @@ export class CoursesCatalogMockHandler {
     const updated: Course = {
       ...current,
       title: payload.title,
+      slug: payload.slug ?? current.slug,
       description: payload.description,
       published: payload.published,
+      languagePairId,
       languagePair,
       programIds: programs.map((p) => p.id),
       updatedAt: new Date().toISOString(),
-      authoring: normalizeCourseAuthoring(payload.authoring ?? current.authoring),
+      authoring: normalizeCourseAuthoring(buildAuthoringFromFlat(payload) ?? current.authoring),
+      practiceSettings: payload.practiceSettings ?? current.practiceSettings,
     };
 
     this.catalog = {
@@ -296,6 +346,78 @@ export class CoursesCatalogMockHandler {
     return results;
   }
 
+  /**
+   * Resolves a numeric `languagePairId` to a `LanguagePair` code pair
+   * using the cached `/language-pairs` endpoint.
+   */
+  private async resolveLanguagePair(
+    languagePairId: number | undefined,
+  ): Promise<import('../../../language-pair/model/language-pair.types').LanguagePair | undefined> {
+    if (languagePairId == null) return undefined;
+
+    if (!this.pairIdCache) {
+      try {
+        const all = await this.languagePairsApi.listAll();
+        this.pairIdCache = new Map(
+          all.map((pair) => [
+            pair.id,
+            {
+              known: pair.knownCode as ContentLanguage,
+              learning: pair.learningCode as ContentLanguage,
+            },
+          ]),
+        );
+      } catch {
+        this.pairIdCache = new Map();
+      }
+    }
+
+    const result = this.pairIdCache.get(languagePairId);
+    return result ?? undefined;
+  }
+
+  /**
+   * Translates numeric `languagePairIds` into `{ known, learning }` code pairs
+   * using the `/language-pairs` endpoint (mocked in dev). Returns `null` when
+   * the filter is absent or nothing can be resolved — callers then skip the
+   * pair filter entirely.
+   */
+  private async resolvePairCodes(
+    languagePairIds: readonly number[] | undefined,
+  ): Promise<readonly { known: ContentLanguage; learning: ContentLanguage }[] | null> {
+    if (!languagePairIds || languagePairIds.length === 0) {
+      return null;
+    }
+
+    if (!this.pairIdCache) {
+      try {
+        const all = await this.languagePairsApi.listAll();
+        this.pairIdCache = new Map(
+          all.map((pair) => [
+            pair.id,
+            {
+              known: pair.knownCode as ContentLanguage,
+              learning: pair.learningCode as ContentLanguage,
+            },
+          ]),
+        );
+      } catch {
+        // Pair list unavailable — skip the pair filter rather than return an empty page.
+        this.pairIdCache = new Map();
+      }
+    }
+
+    const pairs: { known: ContentLanguage; learning: ContentLanguage }[] = [];
+    for (const id of languagePairIds) {
+      const codes = this.pairIdCache.get(id);
+      if (codes) {
+        pairs.push(codes);
+      }
+    }
+
+    return pairs.length > 0 ? pairs : null;
+  }
+
   private normalizePrograms(
     courseId: string,
     drafts: CourseWritePayload['programs'],
@@ -334,7 +456,8 @@ export class CoursesCatalogMockHandler {
   }
 
   private assertCanEdit(course: Course): void {
-    if (!isEditableContentAuthor(course.authorId, this.userStore.user().id)) {
+    const user = this.authStore.user();
+    if (!user || !isEditableContentAuthor(course.authorId, user.id, user.roles)) {
       throw forbidden('Нельзя изменять чужой курс');
     }
   }

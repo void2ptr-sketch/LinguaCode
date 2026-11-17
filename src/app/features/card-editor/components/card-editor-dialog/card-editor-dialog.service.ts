@@ -5,7 +5,11 @@ import { firstValueFrom } from 'rxjs';
 import type { CardKind } from '../../../../entities/card/model';
 
 import { CardEditorDialogComponent } from './card-editor-dialog.component';
-import type { CardEditorDialogData, CardEditorDialogResult } from './card-editor-dialog.types';
+import type {
+  CardEditorCreateContext,
+  CardEditorDialogData,
+  CardEditorDialogResult,
+} from './card-editor-dialog.types';
 
 /**
  * Service for opening the card editor dialog.
@@ -24,10 +28,14 @@ export class CardEditorDialogService {
    * Opens the card editor in create mode for a new card.
    *
    * @param kind - The kind of card to create.
+   * @param context - Optional scenario/course/program/lesson context.
    * @returns A promise resolving to the dialog result, or `undefined` if another dialog is already open.
    */
-  openCreate(kind: CardKind): Promise<CardEditorDialogResult | undefined> {
-    return this.open({ mode: 'create', kind });
+  openCreate(
+    kind: CardKind,
+    context?: CardEditorCreateContext,
+  ): Promise<CardEditorDialogResult | undefined> {
+    return this.open({ mode: 'create', kind, context });
   }
 
   /**
@@ -48,10 +56,9 @@ export class CardEditorDialogService {
     this.activeRef = this.dialog.open(CardEditorDialogComponent, {
       data,
       panelClass: 'card-editor-dialog',
-      width: '960px',
+      width: 'min(1280px, 96vw)',
       maxWidth: '96vw',
-      maxHeight: '75vh',
-      disableClose: true,
+      maxHeight: 'none',
       autoFocus: 'first-titled-element',
     });
 

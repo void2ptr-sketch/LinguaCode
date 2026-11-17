@@ -25,12 +25,26 @@
       </mat-select>
     </mat-form-field>
 
+    <mat-form-field class="card-catalog-filters__program" appearance="outline">
+      <mat-label>Программа</mat-label>
+      <mat-select
+        [ngModel]="store.selectedProgramId()"
+        (ngModelChange)="onProgramChange($event)"
+        [disabled]="!store.selectedCourseId()"
+      >
+        <mat-option [value]="null">Вне программы</mat-option>
+        @for (program of store.availablePrograms(); track program.id) {
+          <mat-option [value]="program.id">{{ program.title }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
     <mat-form-field class="card-catalog-filters__lesson" appearance="outline">
       <mat-label>Урок</mat-label>
       <mat-select
         [ngModel]="store.selectedLessonId()"
         (ngModelChange)="onLessonChange($event)"
-        [disabled]="!store.selectedCourseId()"
+        [disabled]="!store.selectedProgramId()"
       >
         <mat-option [value]="null">Вне урока</mat-option>
         @for (lesson of store.availableLessons(); track lesson.id) {

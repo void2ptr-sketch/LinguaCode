@@ -1,5 +1,5 @@
 import type { ScenarioIndexEntry, ScenarioSearchCriteria } from '../model';
-import { scenarioIndexMatchesLanguageCriteria } from '../../language-pair/lib/language-pair-scope.utils';
+import { scenarioIndexMatchesLanguageCriteria } from '../../language-pair/utils/language-pair-scope.utils';
 
 export function filterScenarioIndex(
   entries: readonly ScenarioIndexEntry[],
@@ -37,6 +37,10 @@ export function matchesScenarioIndexEntry(
   }
 
   if (criteria.courseId && entry.courseId !== criteria.courseId) {
+    return false;
+  }
+
+  if (criteria.lessonId && entry.lessonId !== criteria.lessonId) {
     return false;
   }
 

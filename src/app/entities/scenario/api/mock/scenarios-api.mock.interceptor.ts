@@ -7,6 +7,7 @@ import { parseScenarioSearchCriteria } from './scenarios-api.params.utils';
 import { buildApiUrl, isApiRequest } from '../../../../shared/api/api-url';
 import { ScenariosCatalogMockHandler } from './scenarios-catalog.mock.handler';
 
+import type { Scenario } from '../../model';
 import type { ScenarioWritePayload } from '../scenarios-api.service';
 
 /**
@@ -35,11 +36,42 @@ const extractScenarioId = (url: string): string | null => {
     return null;
   }
 
-  if (rest.startsWith('by-card/')) {
+  if (rest.startsWith('by-card/') || rest.startsWith('by-lesson/') || rest.includes('/cards')) {
     return null;
   }
 
   return rest;
+};
+
+/** Parsed `/scenarios/{scenarioId}/cards[/{cardId}]` request. */
+type ScenarioCardsRequest = {
+  scenarioId: string;
+  cardId?: string;
+};
+
+/**
+ * Parses a scenario-card URL.
+ *
+ * @param url - The request URL.
+ * @returns The scenario and card IDs, or `null` when the URL is not a
+ *   scenario-card endpoint.
+ */
+const parseScenarioCardsRequest = (url: string): ScenarioCardsRequest | null => {
+  const prefix = `${buildApiUrl('/scenarios/')}`;
+  if (!url.includes(prefix)) {
+    return null;
+  }
+
+  const rest = url.slice(url.indexOf(prefix) + prefix.length).split(/[?#]/)[0];
+  const parts = rest.split('/');
+  if (parts.length < 2 || parts[1] !== 'cards') {
+    return null;
+  }
+
+  return {
+    scenarioId: parts[0],
+    cardId: parts[2],
+  };
 };
 
 /**
@@ -93,9 +125,44 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     );
   }
 
+  const scenarioCardsRequest = parseScenarioCardsRequest(req.url);
+  if (scenarioCardsRequest) {
+    const { scenarioId: targetScenarioId, cardId } = scenarioCardsRequest;
+
+    if (req.method === 'POST' && !cardId) {
+      const body = req.body as { cardId?: number; order?: number };
+      return defer(() =>
+        handler.addCard(targetScenarioId, String(body?.cardId ?? ''), body?.order),
+      ).pipe(map((data) => new HttpResponse({ status: 200, body: { data } })));
+    }
+
+    if (req.method === 'DELETE' && cardId) {
+      return defer(() => handler.removeCard(targetScenarioId, cardId)).pipe(
+        map((data) => new HttpResponse({ status: 200, body: { data } })),
+      );
+    }
+
+    if (req.method === 'PATCH' && cardId) {
+      const body = req.body as { order?: number };
+      return defer(() => handler.moveCard(targetScenarioId, cardId, Number(body?.order ?? 1))).pipe(
+        map((data) => new HttpResponse({ status: 200, body: { data } })),
+      );
+    }
+  }
+
   const usageCardId = extractCardIdFromScenarioUsage(req.url);
   if (req.method === 'GET' && usageCardId) {
     return defer(() => handler.findUsingCard(usageCardId)).pipe(
+      map((data) => new HttpResponse({ status: 200, body: { data } })),
+    );
+  }
+
+  const lessonMarker = `${buildApiUrl('/scenarios/by-lesson/')}`;
+  if (req.method === 'GET' && req.url.includes(lessonMarker)) {
+    const lessonId =
+      req.url.slice(req.url.indexOf(lessonMarker) + lessonMarker.length).split(/[?#]/)[0] ?? '';
+
+    return defer(() => handler.getByLessonId(lessonId)).pipe(
       map((data) => new HttpResponse({ status: 200, body: { data } })),
     );
   }
@@ -136,6 +203,12 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
           ? JSON.parse(raw['cardSource'] as string)
           : (raw['cardSource'] as ScenarioWritePayload['cardSource']),
       published: Boolean(raw['published'] ?? false),
+      order: raw['order'] != null ? Number(raw['order']) : undefined,
+      languagePairId: raw['languagePairId'] != null ? Number(raw['languagePairId']) : undefined,
+      courseId: raw['courseId'] != null ? Number(raw['courseId']) : undefined,
+      programId: raw['programId'] != null ? Number(raw['programId']) : undefined,
+      lessonId: raw['lessonId'] != null ? Number(raw['lessonId']) : undefined,
+      requiredTier: (raw['requiredTier'] as ScenarioWritePayload['requiredTier']) ?? 'FREE',
     };
 
     return defer(() => handler.update(scenarioId, payload)).pipe(
@@ -147,6 +220,23 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     return defer(() => handler.delete(scenarioId)).pipe(
       map(() => new HttpResponse({ status: 200, body: { data: null } })),
     );
+  }
+
+  // POST /scenarios/batch/retrieve — batch get by IDs
+  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/scenarios/batch/retrieve'))) {
+    const body = req.body as { ids: string[] };
+    const ids = Array.from(body.ids ?? []);
+
+    return defer(() =>
+      Promise.all(
+        ids.map((id) =>
+          handler
+            .getById(id)
+            .then((s) => s as Scenario)
+            .catch(() => null),
+        ),
+      ),
+    ).pipe(map((data) => new HttpResponse({ status: 200, body: { data: data.filter(Boolean) } })));
   }
 
   return next(req);

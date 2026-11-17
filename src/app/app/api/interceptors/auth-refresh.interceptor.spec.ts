@@ -14,14 +14,12 @@ describe('authRefreshInterceptor', () => {
   let httpMock: HttpTestingController;
 
   const mockAuthStore = {
-    refreshSession: vi.fn(),
-    accessToken: vi.fn(),
+    refreshSession: vi.fn().mockResolvedValue(false),
+    accessToken: vi.fn().mockReturnValue(null),
   };
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockAuthStore.refreshSession.mockResolvedValue(false);
-    mockAuthStore.accessToken.mockReturnValue(null);
 
     TestBed.configureTestingModule({
       providers: [

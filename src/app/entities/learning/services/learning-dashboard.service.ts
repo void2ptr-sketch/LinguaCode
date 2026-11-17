@@ -229,14 +229,12 @@ export class LearningDashboardService {
         );
       }
 
-      const shouldPersistActiveCourse = !saved.activeCourseId || saved.activeCourseId !== courseId;
-      if (shouldPersistActiveCourse) {
-        queueMicrotask(() => {
-          this.userStore.updateActiveLanguagePairSettings({
-            learning: { activeCourseId: courseId },
-          });
-        });
-      }
+      // Всегда обновляем activeCourseId при успешной загрузке курса —
+      // это гарантирует, что localStorage хранит актуальный ID даже если
+      // пользователь перешёл к курсу явно (через URL или карточку).
+      this.userStore.updateActiveLanguagePairSettings({
+        learning: { activeCourseId: courseId },
+      });
 
       const activeProgramForResume = this.program();
       if (!activeProgramForResume) {

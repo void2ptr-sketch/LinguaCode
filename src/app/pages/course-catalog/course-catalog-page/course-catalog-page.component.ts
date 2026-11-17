@@ -112,6 +112,8 @@ export class CourseCatalogPageComponent implements OnInit {
   private readonly reloadOnActivePairChange = this.pairManager.trackActivePairChange(async () => {
     this.catalogStore.clearActiveCourseIds();
     await this.load();
+    // Восстановить активные курсы для новой языковой пары
+    this.catalogStore.restoreActiveCourseIds();
   });
 
   /**
@@ -124,6 +126,8 @@ export class CourseCatalogPageComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.load();
+    // Восстановить активные курсы из localStorage
+    this.catalogStore.restoreActiveCourseIds();
   }
 
   // ---- Course catalog methods ----

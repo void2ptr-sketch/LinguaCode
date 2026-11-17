@@ -1,5 +1,5 @@
 import type { Course, CourseIndexEntry } from '../model';
-import { formatLanguagePair } from '../../language-pair/lib/language-pair.utils';
+import { formatLanguagePair } from '../../language-pair/utils/language-pair.utils';
 
 /**
  * Maps a `Course` object to a `CourseIndexEntry` for catalog display and search.
@@ -10,6 +10,7 @@ export function courseToIndexEntry(course: Course, programCount: number): Course
   return {
     id: course.id,
     title: course.title,
+    slug: course.slug,
     authorId: course.authorId,
     programCount,
     published: course.published,

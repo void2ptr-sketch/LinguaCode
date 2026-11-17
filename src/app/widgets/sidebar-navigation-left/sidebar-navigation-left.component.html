@@ -1,13 +1,37 @@
-<mat-nav-list class="navigation" aria-label="Навигация">
-  @for (group of groups; track group.id; let last = $last) {
-    @for (item of group.items; track item.path) {
-      <a mat-list-item [routerLink]="item.path" routerLinkActive="navigation__link--active">
-        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-        <span matListItemTitle>{{ item.label }}</span>
-      </a>
+<div class="navigation-container">
+  <mat-nav-list
+    class="navigation"
+    [class.navigation--collapsed]="collapsed()"
+    aria-label="Навигация"
+  >
+    @for (group of groups(); track group.id; let last = $last) {
+      @for (item of group.items; track item.path) {
+        <a
+          mat-list-item
+          [routerLink]="item.path"
+          routerLinkActive="navigation__link--active"
+          [class.navigation__link--collapsed]="collapsed()"
+          [matTooltip]="collapsed() ? item.label : ''"
+          [matTooltipPosition]="'right'"
+        >
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span matListItemTitle>{{ item.label }}</span>
+        </a>
+      }
+      @if (!last) {
+        <mat-divider class="navigation__divider" />
+      }
     }
-    @if (!last) {
-      <mat-divider class="navigation__divider" />
-    }
-  }
-</mat-nav-list>
+  </mat-nav-list>
+
+  <button
+    class="toggle-btn"
+    type="button"
+    mat-icon-button
+    (click)="toggleChange.emit()"
+    [matTooltip]="collapsed() ? 'Expand' : 'Collapse'"
+    matTooltipPosition="right"
+  >
+    <mat-icon>{{ collapsed() ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+  </button>
+</div>

@@ -15,17 +15,15 @@ features/home/
 │   ├── learning-continue-card/    # CTA для продолжения обучения
 │   ├── learning-lesson-roadmap/   # дорожная карта уроков
 │   └── learning-program-progress/ # прогресс по программе
-├── services/
-│   └── learning-dashboard.service.ts  # сервис дашборда
-├── types/
-│   ├── home-tab.types.ts          # типы вкладок
-│   └── learning-dashboard.types.ts # типы дашборда
+├── types/                         # типы фичи (home-tab, learning-dashboard)
 ├── utils/                         # утилиты (пустой barrel)
 ├── models/                        # модели (пустой barrel)
 └── index.ts                       # barrel-экспорт
 ```
 
 > **Примечание:** `home-page` — это страница (page), а не компонент фичи. Она расположена в `pages/home/home-page/` и является точкой входа маршрута `/home`. Компоненты фичи (`features/home/components/`) импортируются страницей.
+>
+> `LearningDashboardService` перемещён в `entities/learning/services/` для соблюдения FSD-направлений импортов (entities могут импортировать shared, но features — нет). Экспортируется через `features/home/index.ts`.
 
 ## Компоненты dashboard
 

@@ -12,6 +12,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
+import { ContentHierarchyService } from '../../../../entities/content-hierarchy';
+import { LanguagePairsApiService } from '../../../../entities/language-pair/api';
+import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import { CourseBuilderStore } from '../../services/course-builder.store';
 import { CoursePdfExportService } from '../../services/course-pdf-export.service';
 import {
@@ -20,6 +23,7 @@ import {
   serializeCourseFormDraft,
 } from '../../utils/course-form-draft.utils';
 import { CourseFormComponent } from '../course-form/course-form.component';
+import type { CourseExportType } from '../course-form/course-form.component';
 import type {
   CourseBuilderDialogData,
   CourseBuilderDialogResult,
@@ -42,6 +46,7 @@ import type { CourseFormDraft } from '../../types';
   selector: 'app-course-builder-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButtonModule, MatDialogModule, MatProgressSpinnerModule, CourseFormComponent],
+  providers: [ContentHierarchyService],
   templateUrl: './course-builder-dialog.component.html',
   styleUrl: './course-builder-dialog.component.scss',
 })
@@ -51,8 +56,12 @@ export class CourseBuilderDialogComponent implements OnInit {
   private readonly pdfExportService = inject(CoursePdfExportService);
   private readonly snackBar = inject(MatSnackBar);
   private readonly logger = inject(AppLoggerService);
+  private readonly languagePairsApi = inject(LanguagePairsApiService);
   readonly data = inject<CourseBuilderDialogData>(MAT_DIALOG_DATA);
   readonly store = inject(CourseBuilderStore);
+
+  /** Available language pairs from the registry. */
+  readonly languagePairs = signal<readonly LanguagePairDto[]>([]);
 
   /**
    * Current course form draft being edited or created.
@@ -74,6 +83,16 @@ export class CourseBuilderDialogComponent implements OnInit {
   );
 
   /**
+   * Whether the dialog is editable.
+   *
+   * @remarks
+   * Editable when the store allows editing, or when the dialog was opened
+   * with `forceEdit` (content explorer flow). Backend permissions are still
+   * enforced on save.
+   */
+  readonly isEditable = computed(() => !this.store.isReadOnly() || this.data.forceEdit === true);
+
+  /**
    * Dynamic dialog title based on the current mode.
    *
    * @remarks
@@ -85,10 +104,13 @@ export class CourseBuilderDialogComponent implements OnInit {
       return 'Новый курс';
     }
 
-    return this.store.isReadOnly() ? 'Просмотр курса' : 'Редактирование курса';
+    return this.isEditable() ? 'Редактирование курса' : 'Просмотр курса';
   });
 
   async ngOnInit(): Promise<void> {
+    // Загрузить языковые пары до инициализации формы
+    await this.loadLanguagePairs();
+
     if (this.data.mode === 'create') {
       this.store.startCreate();
       const nextDraft = emptyCourseFormDraft();
@@ -107,6 +129,15 @@ export class CourseBuilderDialogComponent implements OnInit {
     const nextDraft = courseToFormDraft(course);
     this.draft.set(nextDraft);
     this.initialSnapshot.set(serializeCourseFormDraft(nextDraft));
+  }
+
+  private async loadLanguagePairs(): Promise<void> {
+    try {
+      const pairs = await this.languagePairsApi.listAll();
+      this.languagePairs.set(pairs);
+    } catch {
+      this.languagePairs.set([]);
+    }
   }
 
   /**
@@ -140,28 +171,41 @@ export class CourseBuilderDialogComponent implements OnInit {
   }
 
   /**
-   * Exports the current course to a PDF file.
+   * Handles export requests from the course form's Export tab.
    *
-   * @param withHints — If `true`, includes correct answers marked with ✓.
+   * @param type — The export type: pdf-without-hints, pdf-with-hints, json, or scorm.
    * @remarks
-   * Downloads the generated PDF as a file. Shows a snackbar notification
-   * on success or error. Requires a course to be loaded in the store.
+   * Currently only PDF export is implemented; JSON and SCORM are placeholder actions.
    */
-  async exportPdf(withHints: boolean): Promise<void> {
+  async onExportRequested(type: CourseExportType): Promise<void> {
     const course = this.store.editingCourse();
     if (!course) {
       this.snackBar.open('Курс не загружен', 'Закрыть', { duration: 3000 });
       return;
     }
 
-    try {
-      const blob = await this.pdfExportService.export(course, withHints);
-      this.downloadBlob(blob, `${course.id}${withHints ? '.hints' : ''}.pdf`);
-      this.snackBar.open('PDF успешно выгружен', 'Закрыть', { duration: 3000 });
-    } catch (err) {
-      this.logger.error('PDF export failed', err);
-      this.snackBar.open('Ошибка при выгрузке PDF', 'Закрыть', { duration: 5000 });
+    // ── PDF export ──
+    if (type === 'pdf-without-hints' || type === 'pdf-with-hints') {
+      const withHints = type === 'pdf-with-hints';
+      try {
+        const blob = await this.pdfExportService.export(course, withHints);
+        this.downloadBlob(blob, `${course.id}${withHints ? '.hints' : ''}.pdf`);
+        this.snackBar.open('PDF успешно выгружен', 'Закрыть', { duration: 3000 });
+      } catch (err) {
+        this.logger.error('PDF export failed', err);
+        this.snackBar.open('Ошибка при выгрузке PDF', 'Закрыть', { duration: 5000 });
+      }
+      return;
     }
+
+    // ── JSON / SCORM — placeholders ──
+    const labels: Record<CourseExportType, string> = {
+      'pdf-without-hints': 'PDF без подсказок',
+      'pdf-with-hints': 'PDF с ответами',
+      json: 'JSON (CourseBundle)',
+      scorm: 'SCORM / xAPI',
+    };
+    this.snackBar.open(`${labels[type]} — в разработке`, 'Закрыть', { duration: 3000 });
   }
 
   /**

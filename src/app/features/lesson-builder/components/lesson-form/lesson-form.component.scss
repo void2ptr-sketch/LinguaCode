@@ -1,0 +1,13 @@
+.lesson-form {
+  &__tabs {
+    margin-top: 0.5rem;
+  }
+
+  &__tab-panel {
+    padding: 1rem 0;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}

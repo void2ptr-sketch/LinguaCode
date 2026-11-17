@@ -7,5 +7,6 @@ export * as CourseBuilder from './course-builder';
 export * as CourseCatalog from './course-catalog';
 export * as Home from './home';
 export * as Journey from './journey';
+export * as LanguageRegistry from './language-registry';
 export * as LearningResults from './learning-results';
 export * as ScenarioBuilder from './scenario-builder';

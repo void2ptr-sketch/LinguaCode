@@ -1,4 +1,5 @@
-import type { CourseAuthoring } from '../../../entities/course/model';
+import type { CourseAuthoring, CoursePracticeSettings } from '../../../entities/course/model';
+import type { CourseRequiredTier } from '../../../entities/course/repository/course-catalog.port';
 
 /**
  * Draft representation of a lesson for the program editor form.
@@ -35,14 +36,20 @@ export type ProgramFormDraft = {
  * Draft representation of a course for the course editor form.
  *
  * @remarks
- * Contains the full course structure including programs (each with lessons) and authoring notes.
+ * Contains the full course structure including programs (each with lessons),
+ * authoring notes, practice settings, and language pair.
  */
 export type CourseFormDraft = {
   title: string;
   description: string;
   published: boolean;
   authoring: CourseAuthoring;
+  practiceSettings?: CoursePracticeSettings;
   programs: readonly ProgramFormDraft[];
+  requiredTier?: CourseRequiredTier;
+  slug?: string;
+  /** Numeric language pair ID from `language_pairs.id`. */
+  languagePairId?: number;
 };
 
 /**

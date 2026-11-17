@@ -87,7 +87,7 @@ features/card-select/
 | Dashboard (`home`)        | [ARCHITECTURE.home.md](./ARCHITECTURE/ARCHITECTURE.home.md)                         |
 | Путь обучения (`journey`) | [ARCHITECTURE.journey.md](./ARCHITECTURE/ARCHITECTURE.journey.md)                   |
 | Редактор карточек         | [ARCHITECTURE.card-editor.md](./ARCHITECTURE/ARCHITECTURE.card-editor.md)           |
-| Конструктор сценариев     | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) |
+| Сценарии                  | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) |
 | Программы (course)        | [ARCHITECTURE.course.md](./ARCHITECTURE/ARCHITECTURE.course.md)                     |
 | Результаты обучения       | [ARCHITECTURE.learning-results.md](./ARCHITECTURE/ARCHITECTURE.learning-results.md) |
 | Профиль пользователя      | [ARCHITECTURE.user.md](./ARCHITECTURE/ARCHITECTURE.user.md)                         |
@@ -113,7 +113,7 @@ Shell-приложение. Контент фич — через `<router-outlet
 | --------------------- | --------------------------------- | -------------------------------------------------------------------------------- |
 | MainHeader            | `widgets/main-header`             | Шапка, контейнер для menu-\*                                                     |
 | MenuCards             | `widgets/menu-cards`              | Навигация к карточкам и режимам обучения                                         |
-| MenuTools             | `widgets/menu-tools`              | Инструменты (конструктор сценариев и др.)                                        |
+| MenuTools             | `widgets/menu-tools`              | Инструменты (Проводник контента, конструктор курсов и др.)                       |
 | MenuHelp              | `widgets/menu-help`               | Справка                                                                          |
 | MenuUser              | `widgets/menu-user`               | Профиль пользователя                                                             |
 | SidebarNavigationLeft | `widgets/sidebar-navigation-left` | Боковое меню: главная, обучение, каталог карточек, конструктор, справка, профиль |
@@ -122,11 +122,11 @@ Shell-приложение. Контент фич — через `<router-outlet
 
 Компоненты `menu-*` встроены в **header**; боковое **navigation** дублирует ключевые маршруты обучения и инструментов (шапка при этом сохраняется).
 
-| Пункт (sidebar)       | Маршрут                   | Дублирует в header                     |
-| --------------------- | ------------------------- | -------------------------------------- |
-| Обучение              | `/cards/select`           | `menu-cards` → «Карточки»              |
-| Карточки              | `/tools/cards`            | `menu-tools` → «Карточки»              |
-| Конструктор сценариев | `/tools/scenario-builder` | `menu-tools` → «Конструктор сценариев» |
+| Пункт (sidebar)    | Маршрут          | Дублирует в header                  |
+| ------------------ | ---------------- | ----------------------------------- |
+| Обучение           | `/cards/select`  | `menu-cards` → «Карточки»           |
+| Карточки           | `/tools/cards`   | `menu-tools` → «Карточки»           |
+| Проводник контента | `/tools/content` | `menu-tools` → «Проводник контента» |
 
 ### Grid (SCSS)
 
@@ -210,13 +210,9 @@ export const routes: Routes = [
             (m) => m.CourseCatalogProgramsComponent,
           ),
       },
-      {
-        path: 'tools/scenario-builder',
-        loadComponent: () =>
-          import('./pages/scenario-builder/scenario-builder-page/scenario-builder-page.component').then(
-            (m) => m.ScenarioBuilderPageComponent,
-          ),
-      },
+      // Страница /tools/scenario-builder удалена (миграция в Проводник контента):
+      // legacy-маршрут редиректит на /tools/content (обе зоны под authorGuard).
+      { path: 'tools/scenario-builder', redirectTo: 'tools/content', pathMatch: 'full' },
       {
         path: 'tools/courses',
         loadComponent: () =>
@@ -259,7 +255,7 @@ export const routes: Routes = [
 - Фичи подключаются **lazy** (`loadComponent`).
 - Корневой маршрут `''` редиректит на `/journey` (Journey Map); fallback `**` → `/home` (dashboard).
 - `menu-cards` в header ведёт на прохождение карточек (`/cards/select`); в sidebar — пункт **«Обучение»**.
-- `menu-tools` в header ведёт на инструменты; в sidebar — **«Карточки»** (`/tools/cards`) и **«Конструктор сценариев»**.
+- `menu-tools` в header ведёт на инструменты; в sidebar — **«Проводник контента»** (`/tools/content`) и **«Карточки»** (`/tools/cards`).
 - Все маршруты — внутри `MainLayoutComponent` (shell).
 
 ## Модель данных
@@ -269,21 +265,22 @@ export const routes: Routes = [
 Кратко:
 
 - `User`, `Card`, `Scenario`, `Program`, `Course`, `LearningResult`, `CardAppearance`
-- `Card` — discriminated union по полю `kind` (10 типов: `select`, `code-select`, `memory`, `symbol`, `sound`, `timed`, `keyboard`, `draw`, `tone`, `reading`)
-- Все 10 `CardKind` реализованы
+- `Card` — discriminated union по полю `kind` (13 типов: `select`, `code-select`, `memory`, `symbol`, `sound`, `timed`, `keyboard`, `draw`, `tone`, `reading`, `flip`, `cloze`, `code-trace`)
+- Все 13 `CardKind` реализованы
 - **Иерархия контента:** `Card → Scenario → Lesson → Program → Course` (G17)
-- **Конструктор сценариев** — инструмент для создания и редактирования `Scenario` (`features/scenario-builder/`); масштабирование — [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)
+- **Сценарии** — создание и редактирование `Scenario` (`features/scenario-builder/` — общий диалог и store); управление — в Проводнике контента (`/tools/content`); см. [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)
 - **Конструктор программ** — CRUD `Program` внутри `Course` (`features/program-builder/`)
+- **13 типов карточек** (`CardKind`): `select`, `code-select`, `memory`, `symbol`, `sound`, `timed`, `keyboard`, `draw`, `tone`, `reading`, `flip`, `cloze`, `code-trace` — все реализованы.
 
 ### Рендер карточек
 
 Общий `CardHostComponent` выбирает компонент по `card.kind`:
 
 ```
-Card (kind) → CardHostComponent → SelectCardComponent | CodeSelectCardComponent | MemoryCardComponent | SymbolCardComponent | SoundCardComponent | TimedCardComponent | KeyboardCardComponent | DrawCardComponent | ToneCardComponent | ReadingCardComponent
+Card (kind) → CardHostComponent → SelectCardComponent | CodeSelectCardComponent | MemoryCardComponent | SymbolCardComponent | SoundCardComponent | TimedCardComponent | KeyboardCardComponent | DrawCardComponent | ToneCardComponent | ReadingCardComponent | FlipCardComponent | ClozeCardComponent | CodeTraceCardComponent
 ```
 
-Все 10 типов карточек реализованы и рендерятся через `CardHostComponent`.
+Все 13 типов карточек реализованы и рендерятся через `CardHostComponent`.
 
 ## Управление состоянием
 
@@ -293,16 +290,40 @@ Card (kind) → CardHostComponent → SelectCardComponent | CodeSelectCardCompon
 @Injectable({ providedIn: 'root' })
 export class CardSelectStore {
   readonly cards = signal<readonly Card[]>([]);
+  readonly allCardIds = signal<readonly string[]>([]);
   readonly scenarioId = signal<string>('demo-scenario');
   readonly sessionDirection = signal<CardDirection>('known-to-learning');
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
   readonly currentIndex = signal(0);
+  readonly currentPage = signal(0);
+  readonly loadedPages = signal<Set<number>>(new Set());
+  readonly pageSize = 25;
   readonly selectedIndex = signal<number | null>(null);
   readonly answerText = signal('');
   readonly memoryComplete = signal(false);
+  readonly flipKnown = signal<boolean | null>(null);
+  readonly drawSubmitted = signal(false);
+  readonly drawAnswer = signal<DrawAnswerPayload | null>(null);
+  readonly feedback = signal<CardFeedback>(null);
+  readonly completed = signal(false);
+  readonly shuffleNonce = signal(0);
+  readonly memoryBoardNonce = signal(0);
 
-  // методы load(), selectAnswer(), reset() — mutating через update/set
+  // computed
+  readonly currentCard = computed(() => this.cards()[this.currentIndex()] ?? null);
+  readonly progressLabel = computed(() => `${this.currentIndex() + 1} / ${this.allCardIds().length}`);
+  readonly canCheckAnswer = computed(() => /* ... */);
+  readonly canGoNext = computed(() => this.feedback() !== null && !this.completed());
+
+  // actions
+  setScenario(scenarioId, allCardIds): Promise<void> { ... }
+  loadPage(pageIndex): Promise<void> { ... }
+  preloadNext(): void { ... }
+  checkAnswer(): boolean | null { ... }
+  nextCard(): Promise<void> { ... }
+  setSessionDirection(direction): void { ... }
+  reset(): void { ... }
 }
 ```
 
@@ -357,14 +378,14 @@ export class CardApiService {
 
 ### `scenario-builder`
 
-Конструктор сценариев — список на странице, CRUD в `MatDialog` (`cardSource`: fixed / criteria / snapshot).
+Сценарии: CRUD в `MatDialog` (`cardSource`: fixed / criteria / snapshot). Отдельная страница `/tools/scenario-builder` удалена (мигрирована в Проводник контента); управление сценариями — в дереве Проводника и «Каталоге сценариев» (см. [ARCHITECTURE.content-explorer.md](./ARCHITECTURE/ARCHITECTURE.content-explorer.md)).
 
 |                 |                                                                                   |
 | --------------- | --------------------------------------------------------------------------------- |
-| Маршрут         | `/tools/scenario-builder`                                                         |
-| Точка входа     | `menu-tools` в header, **«Конструктор сценариев»** в sidebar                      |
-| Путь            | `features/scenario-builder/`                                                      |
-| Список          | `ScenarioBuilderStore` + `ScenarioSearchService`                                  |
+| Маршрут         | `/tools/scenario-builder` → редирект `/tools/content` (`app.routes.ts`)           |
+| Точка входа     | Проводник контента: `menu-tools` / sidebar → «Проводник контента»                 |
+| Путь            | `features/scenario-builder/` (диалог + store; pages-слой удалён)                  |
+| Каталог         | `ScenarioBuilderStore` + `ScenarioSearchService` (scope, пагинация)               |
 | Редактор        | `ScenarioBuilderDialogComponent` + `ScenarioEditorFormComponent`                  |
 | Пара языков     | [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) — `User.preferences.languagePair` |
 | Масштабирование | [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)                             |

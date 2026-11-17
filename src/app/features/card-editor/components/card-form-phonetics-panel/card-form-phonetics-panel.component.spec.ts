@@ -37,71 +37,15 @@ describe('CardFormPhoneticsPanelComponent', () => {
       ...overrides,
     }) as unknown as CardDraft;
 
-  const createToneDraft = (overrides: Partial<CardDraft> = {}): CardDraft =>
+  const createCodeTraceDraft = (overrides: Partial<CardDraft> = {}): CardDraft =>
     ({
-      kind: 'tone',
+      kind: 'code-trace',
       appearance: { theme: 'azure-blue', fontSize: 'md' },
-      ...overrides,
-    }) as unknown as CardDraft;
-
-  const createSoundDraft = (overrides: Partial<CardDraft> = {}): CardDraft =>
-    ({
-      kind: 'sound',
-      appearance: { theme: 'azure-blue', fontSize: 'md' },
-      promptLexeme: {
-        primary: '',
-        pinyin: '',
-        palladius: '',
-        ipa: '',
-        zhuyin: '',
-        script: 'latn',
-        audioUrl: '',
-        acceptedReadings: '',
-      },
-      audioUrl: 'http://example.com',
-      audioLabelLexeme: {
-        primary: 'hello',
-        pinyin: '',
-        palladius: '',
-        ipa: '',
-        zhuyin: '',
-        script: 'latn',
-        audioUrl: '',
-        acceptedReadings: '',
-      },
-      ...overrides,
-    }) as unknown as CardDraft;
-
-  const createMemoryDraft = (overrides: Partial<CardDraft> = {}): CardDraft =>
-    ({
-      kind: 'memory',
-      appearance: { theme: 'azure-blue', fontSize: 'md' },
-      promptLexeme: {
-        primary: 'hello',
-        pinyin: '',
-        palladius: '',
-        ipa: '',
-        zhuyin: '',
-        script: 'latn',
-        audioUrl: '',
-        acceptedReadings: '',
-      },
-      pairs: [
-        {
-          known: 'hello',
-          learning: 'привет',
-          learningLexeme: {
-            primary: 'привет',
-            pinyin: '',
-            palladius: '',
-            ipa: '',
-            zhuyin: '',
-            script: 'latn',
-            audioUrl: '',
-            acceptedReadings: '',
-          },
-        },
-      ],
+      caption: '',
+      question: '',
+      code: { code: '', language: 'plain' },
+      outputOptions: [],
+      correctIndex: 0,
       ...overrides,
     }) as unknown as CardDraft;
 
@@ -138,14 +82,14 @@ describe('CardFormPhoneticsPanelComponent', () => {
       expect(component.showPromptLexeme()).toBe(true);
     });
 
-    it('should be false for tone cards', () => {
-      fixture.componentRef.setInput('draft', createToneDraft());
+    it('should be false for code-select cards', () => {
+      fixture.componentRef.setInput('draft', createCodeSelectDraft());
       fixture.detectChanges();
       expect(component.showPromptLexeme()).toBe(false);
     });
 
-    it('should be false for code-select cards', () => {
-      fixture.componentRef.setInput('draft', createCodeSelectDraft());
+    it('should be false for code-trace cards without prompt lexemes', () => {
+      fixture.componentRef.setInput('draft', createCodeTraceDraft());
       fixture.detectChanges();
       expect(component.showPromptLexeme()).toBe(false);
     });
@@ -162,34 +106,6 @@ describe('CardFormPhoneticsPanelComponent', () => {
       fixture.componentRef.setInput('draft', createCodeSelectDraft());
       fixture.detectChanges();
       expect(component.promptLexemeDraft()).toBeNull();
-    });
-  });
-
-  describe('soundDraft computed', () => {
-    it('should return draft when kind is sound', () => {
-      fixture.componentRef.setInput('draft', createSoundDraft());
-      fixture.detectChanges();
-      expect(component.soundDraft()).toBeDefined();
-    });
-
-    it('should return null when kind is not sound', () => {
-      fixture.componentRef.setInput('draft', createSelectDraft());
-      fixture.detectChanges();
-      expect(component.soundDraft()).toBeNull();
-    });
-  });
-
-  describe('memoryDraft computed', () => {
-    it('should return draft when kind is memory', () => {
-      fixture.componentRef.setInput('draft', createMemoryDraft());
-      fixture.detectChanges();
-      expect(component.memoryDraft()).toBeDefined();
-    });
-
-    it('should return null when kind is not memory', () => {
-      fixture.componentRef.setInput('draft', createSelectDraft());
-      fixture.detectChanges();
-      expect(component.memoryDraft()).toBeNull();
     });
   });
 
@@ -274,100 +190,6 @@ describe('CardFormPhoneticsPanelComponent', () => {
       component.draftChange.subscribe(spy);
 
       component.updateAudioUrl('http://new-audio.com');
-
-      expect(spy).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('updateAudioLabelLexeme', () => {
-    it('should update audioLabelLexeme for sound cards', () => {
-      fixture.componentRef.setInput('draft', createSoundDraft());
-      fixture.detectChanges();
-      const spy = vi.fn();
-      component.draftChange.subscribe(spy);
-
-      const fields: LexemeDraftFields = {
-        primary: 'hello-en',
-        pinyin: '',
-        palladius: '',
-        ipa: '',
-        zhuyin: '',
-        script: 'latn',
-        audioUrl: '',
-        acceptedReadings: '',
-      };
-      component.updateAudioLabelLexeme(fields);
-
-      expect(spy).toHaveBeenCalled();
-      const emitted = spy.mock.lastCall?.[0] as unknown as Record<string, unknown>;
-      const audioLabelLexeme = emitted['audioLabelLexeme'] as Record<string, unknown>;
-      expect(audioLabelLexeme['primary']).toBe('hello-en');
-    });
-
-    it('should not update for non-sound cards', () => {
-      fixture.componentRef.setInput('draft', createSelectDraft());
-      fixture.detectChanges();
-      const spy = vi.fn();
-      component.draftChange.subscribe(spy);
-
-      const fields: LexemeDraftFields = {
-        primary: 'hello',
-        pinyin: '',
-        palladius: '',
-        ipa: '',
-        zhuyin: '',
-        script: 'latn',
-        audioUrl: '',
-        acceptedReadings: '',
-      };
-      component.updateAudioLabelLexeme(fields);
-
-      expect(spy).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('updatePairLexeme', () => {
-    it('should update learning lexeme for memory cards', () => {
-      fixture.componentRef.setInput('draft', createMemoryDraft());
-      fixture.detectChanges();
-      const spy = vi.fn();
-      component.draftChange.subscribe(spy);
-
-      const fields: LexemeDraftFields = {
-        primary: 'привет-new',
-        pinyin: '',
-        palladius: '',
-        ipa: '',
-        zhuyin: '',
-        script: 'latn',
-        audioUrl: '',
-        acceptedReadings: '',
-      };
-      component.updatePairLexeme(0, fields);
-
-      expect(spy).toHaveBeenCalled();
-      const emitted = spy.mock.lastCall?.[0] as unknown as Record<string, unknown>;
-      const pairs = emitted['pairs'] as unknown[];
-      expect((pairs[0] as Record<string, unknown>)['learning']).toBe('привет-new');
-    });
-
-    it('should not update for non-memory cards', () => {
-      fixture.componentRef.setInput('draft', createSelectDraft());
-      fixture.detectChanges();
-      const spy = vi.fn();
-      component.draftChange.subscribe(spy);
-
-      const fields: LexemeDraftFields = {
-        primary: 'hello',
-        pinyin: '',
-        palladius: '',
-        ipa: '',
-        zhuyin: '',
-        script: 'latn',
-        audioUrl: '',
-        acceptedReadings: '',
-      };
-      component.updatePairLexeme(0, fields);
 
       expect(spy).not.toHaveBeenCalled();
     });

@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import type { User } from '../model';
-import type { UserPreferences } from '../model/user.types';
+import type { User, UserPreferences } from '../model';
+import type { UserPreferences as GeneratedUserPreferences } from '../../../shared/api/generated/models';
 import type { ApiResponse } from '../../../shared/api/api.types';
 import type { UpdateUserPayload, UserPort } from '../repository/user.port';
 import { buildApiUrl } from '../../../shared/api/api-url';
@@ -18,30 +18,6 @@ type BackendUserDto = {
   preferences: string | Record<string, unknown>;
   createdAt: string;
   updatedAt: string;
-};
-
-/**
- * Payload for updating user preferences via PATCH.
- */
-type UserPreferencesPatch = {
-  /** @deprecated use learningPairs instead */
-  learningPairKnown?: string;
-  /** @deprecated use learningPairs instead */
-  learningPairLearning?: string;
-  /** Active language pair ID (from UserLanguagePairEntry.id) */
-  activeLanguagePairId?: string;
-  /** All configured language pairs with their settings */
-  learningPairs?: {
-    known: string;
-    learning: string;
-    settings?: Record<string, unknown>;
-  }[];
-  interfaceLanguage?: string;
-  cardFontSize?: string;
-  darkMode?: boolean;
-  showPinyin?: boolean;
-  showTranscription?: boolean;
-  cardsPerDay?: number;
 };
 
 /**
@@ -93,10 +69,10 @@ export class UserApiService implements UserPort {
   /**
    * Partially updates user preferences (PATCH /api/v1/users/me/preferences).
    *
-   * @param patch - Fields to update (e.g. learningPairKnown/learningPairLearning).
+   * @param patch - Fields to update.
    * @returns Promise resolving to void (errors are silently ignored).
    */
-  patchUserPreferences(patch: UserPreferencesPatch): Promise<void> {
+  patchUserPreferences(patch: Partial<GeneratedUserPreferences>): Promise<void> {
     return firstValueFrom(
       this.http.patch<ApiResponse<unknown>>(buildApiUrl(`/users/me/preferences`), patch),
     )

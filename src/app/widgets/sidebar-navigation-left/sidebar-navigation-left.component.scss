@@ -1,5 +1,36 @@
+.navigation-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
 .navigation {
   padding-block: 0.5rem;
+  flex: 1;
+  overflow: auto;
+  transition: opacity 0.2s ease;
+
+  &.navigation--collapsed {
+    .navigation__link {
+      justify-content: center;
+      padding-inline: 0;
+      width: 100%;
+
+      [matListItemIcon] {
+        margin-inline: 0;
+      }
+
+      &[matListItemTitle] {
+        display: none;
+      }
+    }
+
+    .navigation__divider {
+      margin-inline: 0.5rem;
+      margin-block: 0.25rem;
+    }
+  }
 }
 
 .navigation__divider {
@@ -9,4 +40,14 @@
 
 .navigation__link--active {
   background: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
+}
+
+.toggle-btn {
+  margin: 0 0.5rem 0.5rem;
+  justify-content: center;
+  transition: transform 0.25s ease;
+
+  mat-icon {
+    transition: transform 0.3s ease;
+  }
 }

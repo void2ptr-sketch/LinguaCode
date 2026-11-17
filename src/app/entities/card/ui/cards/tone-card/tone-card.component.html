@@ -1,49 +1,51 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
-  <section class="quiz-card__question" aria-label="Вопрос">
-    <app-quiz-card-question-header
-      [title]="card().title"
-      [prompt]="card().promptKnown"
-      [promptLexeme]="card().promptLexeme"
-    />
+  @if (resolved(); as resolved) {
+    <section class="quiz-card__question" aria-label="Вопрос">
+      <app-quiz-card-question-header
+        [title]="card().title"
+        [prompt]="card().promptKnown"
+        [promptLexeme]="card().promptLexeme"
+      />
 
-    <mat-card-content class="quiz-card__syllable">
-      <span class="tone-card__base">{{ card().syllableBase }}</span>
-    </mat-card-content>
-  </section>
+      <mat-card-content class="quiz-card__syllable">
+        <span class="tone-card__base">{{ card().syllableBase }}</span>
+      </mat-card-content>
+    </section>
 
-  <section class="quiz-card__answer" aria-label="Ответ">
-    <p class="quiz-card__section-label">Выберите тон</p>
-    <mat-card-content class="quiz-card__options quiz-card__options--tones">
-      @for (tone of resolved().options; track tone; let index = $index) {
-        <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
-          <span class="tone-card__pinyin">
-            <app-tone-colored-text
-              [text]="tonedSyllable(tone)"
-              mode="pinyin"
-              [fixedTone]="tone"
-              [inline]="true"
-            />
-          </span>
-          <span class="tone-card__label">{{ toneLabel(tone) }}</span>
-        </button>
-      }
-    </mat-card-content>
-  </section>
+    <section class="quiz-card__answer" aria-label="Ответ">
+      <p class="quiz-card__section-label">Выберите тон</p>
+      <mat-card-content class="quiz-card__options quiz-card__options--tones">
+        @for (tone of resolved.options; track $index; let index = $index) {
+          <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
+            <span class="tone-card__pinyin">
+              <app-tone-colored-text
+                [text]="tonedSyllable(tone)"
+                mode="pinyin"
+                [fixedTone]="tone"
+                [inline]="true"
+              />
+            </span>
+            <span class="tone-card__label">{{ toneLabel(tone) }}</span>
+          </button>
+        }
+      </mat-card-content>
+    </section>
 
-  @if (feedback() === 'correct') {
-    <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
-      <mat-icon>check_circle</mat-icon>
-      Верно!
-    </mat-card-content>
-  }
+    @if (feedback() === 'correct') {
+      <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
+        <mat-icon>check_circle</mat-icon>
+        Верно!
+      </mat-card-content>
+    }
 
-  @if (feedback() === 'incorrect') {
-    <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
-      <mat-icon>cancel</mat-icon>
-      Неверно. Правильный тон:
-      <strong>{{ toneLabel(resolved().options[resolved().correctIndex]) }}</strong>
-      ({{ tonedSyllable(resolved().options[resolved().correctIndex]) }})
-    </mat-card-content>
+    @if (feedback() === 'incorrect') {
+      <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
+        <mat-icon>cancel</mat-icon>
+        Неверно. Правильный тон:
+        <strong>{{ toneLabel(resolved.options[resolved.correctIndex]) }}</strong>
+        ({{ tonedSyllable(resolved.options[resolved.correctIndex]) }})
+      </mat-card-content>
+    }
   }
 
   <mat-card-actions align="end">

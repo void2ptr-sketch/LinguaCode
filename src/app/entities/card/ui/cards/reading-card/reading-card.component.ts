@@ -7,7 +7,7 @@ import { ReadingCard } from '../../../model';
 import type { CardDirection } from '../../../../language-pair/model/language-pair.types';
 import { LexemeDisplayComponent } from '../../../../chinese/ui/lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../../../lib/cards/option-card.util';
+import { buildOptionClass } from '../../../lib/utils/option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 /**
@@ -63,7 +63,7 @@ export class ReadingCardComponent {
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
   /** Nonce for deterministic option shuffling. */
-  readonly shuffleNonce = input<number>(0);
+  readonly shuffleNonce = input<number | undefined>(undefined);
 
   /**
    * Emits when the user selects an option.

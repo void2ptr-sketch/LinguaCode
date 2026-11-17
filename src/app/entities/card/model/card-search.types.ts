@@ -4,6 +4,14 @@ import type { CardDifficulty, CardIndexEntry, ContentLanguage } from './card-ind
 import type { CardKind } from './card.types';
 
 /**
+ * Authoring scope for card search.
+ *
+ * @remarks
+ * `all` includes unpublished drafts, which is required by the Content Explorer.
+ */
+export type CardSearchScope = 'mine' | 'all' | 'published';
+
+/**
  * Search criteria for filtering cards in the catalog.
  *
  * @remarks
@@ -16,7 +24,9 @@ export type CardSearchCriteria = {
   knownLanguage?: ContentLanguage;
   /** Filter by learning (target) language. */
   learningLanguage?: ContentLanguage;
-  /** Filter by difficulty level (beginner / intermediate / advanced). */
+  /** Filter by numeric language pair ID (`language_pairs.id`). */
+  languagePairId?: string;
+  /** Filter by difficulty level. */
   difficulty?: CardDifficulty;
   /** Filter by card kinds (e.g. select, memory, keyboard). */
   kinds?: readonly CardKind[];
@@ -24,10 +34,16 @@ export type CardSearchCriteria = {
   tags?: readonly string[];
   /** Filter by course ID. */
   courseId?: string;
+  /** Filter by program ID. */
+  programId?: string;
   /** Filter by lesson ID. */
   lessonId?: string;
   /** Filter by scenario ID. */
   scenarioId?: string;
+  /** Filter by publication status. */
+  published?: boolean;
+  /** Authoring scope; `all` includes unpublished cards. */
+  scope?: CardSearchScope;
   /** Pagination parameters. */
   page: PageRequest;
 };

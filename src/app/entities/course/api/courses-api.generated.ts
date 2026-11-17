@@ -50,6 +50,7 @@ export type { CourseIndexEntry, CourseWithPrograms } from '../model';
 type BackendCourseDto = {
   id: number;
   title: string;
+  slug: string;
   courseDescription: string;
   authorId: number;
   languagePairId: number | null;
@@ -67,6 +68,7 @@ function toIndexEntry(
   return {
     id: String(dto.id),
     title: dto.title,
+    slug: dto.slug ?? '',
     authorId: String(dto.authorId),
     programCount: 0,
     published: dto.published,

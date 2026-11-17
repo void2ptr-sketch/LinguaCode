@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ClozeCard } from '../../../model';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../../../lib/cards/option-card.util';
+import { buildOptionClass } from '../../../lib/utils/option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 import { hashSeed, shuffleArray } from '../../../utils/card-shuffle.util';
 
@@ -69,7 +69,7 @@ export class ClozeCardComponent {
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
   /** Nonce for deterministic option shuffling. */
-  readonly shuffleNonce = input<number>(0);
+  readonly shuffleNonce = input<number | undefined>(undefined);
 
   /** Emits when the user selects an option (select mode). */
   readonly optionSelected = output<number>();

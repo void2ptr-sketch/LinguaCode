@@ -27,10 +27,16 @@ export class ScenarioBuilderDialogService {
   /**
    * Opens the scenario builder in create mode.
    *
+   * @param context - Optional context pre-filled from the content explorer tree.
    * @returns A promise resolving to the dialog result, or `undefined` if another dialog is already open.
    */
-  openCreate(): Promise<ScenarioBuilderDialogResult | undefined> {
-    return this.open({ mode: 'create' });
+  openCreate(context?: {
+    lessonId?: string;
+    courseId?: string;
+    programId?: string;
+    languagePairId?: number;
+  }): Promise<ScenarioBuilderDialogResult | undefined> {
+    return this.open({ mode: 'create', ...context });
   }
 
   /**

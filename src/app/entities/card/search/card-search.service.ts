@@ -60,6 +60,7 @@ export class CardSearchService {
 
     try {
       const page = await this.cardsApiService.search({
+        scope: 'all',
         page: { page: 0, pageSize: INDEX_CACHE_PAGE_SIZE },
       });
       this.indexCache.set(page.items);
@@ -72,7 +73,7 @@ export class CardSearchService {
   }
 
   /**
-   * Searches cards by criteria and merges results into the index cache.
+   * Searches cards by criteria and returns only the matching results.
    *
    * @param criteria - The search criteria.
    * @returns A page of card search results.
@@ -83,7 +84,8 @@ export class CardSearchService {
 
     try {
       const page = await this.cardsApiService.search(criteria);
-      this.mergeIndexCache(page.items);
+      // Return only the search results — do not merge with index cache
+      // The index cache is used for tree navigation, search results are standalone
       return page;
     } catch (error) {
       this.logger.error('CardSearch: search failed', error);

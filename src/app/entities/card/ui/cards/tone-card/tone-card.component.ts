@@ -9,7 +9,7 @@ import type { CardDirection } from '../../../../language-pair/model/language-pai
 import type { ToneMark } from '../../../../phonetic/model';
 import { ToneColoredTextComponent } from '../../../../chinese/ui/tone-colored-text/tone-colored-text.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../../../lib/cards/option-card.util';
+import { buildOptionClass } from '../../../lib/utils/option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 import { hashSeed, shuffleArray } from '../../../utils/card-shuffle.util';
 
@@ -67,7 +67,7 @@ export class ToneCardComponent {
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
   /** Nonce for deterministic option shuffling. */
-  readonly shuffleNonce = input<number>(0);
+  readonly shuffleNonce = input<number | undefined>(undefined);
 
   /**
    * Emits when the user selects a tone option.

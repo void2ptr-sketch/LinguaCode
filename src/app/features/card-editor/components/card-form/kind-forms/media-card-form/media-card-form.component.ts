@@ -2,59 +2,47 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import type { LexemeDraftFields } from '../../../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 import { syncLexemePrimaryFromText } from '../../../../utils/ux/card-editor-ux.utils';
 import type { ContentLanguage } from '../../../../../../entities/card/model';
 import type { CardOptionsEditorState } from '../../../../utils/options/card-options-editor.utils';
 import type { SoundCardDraft } from '../../../../types';
 import { CardOptionsEditorComponent } from '../../../card-options-editor/card-options-editor.component';
+import { LexemeFieldsComponent } from '../../../lexeme-fields/lexeme-fields.component';
 
 /**
- * Form component for sound/media cards. Manages audio labels, known options, and lexeme sync.
- * @remarks In basic mode, automatically syncs `audioLabelLexeme` from the audio label text.
+ * Answer editor for sound/media cards.
+ *
+ * @remarks
+ * Manages the audio label, its learning lexeme, known options, and option
+ * lexemes. The prompt field lives in the content tab.
  */
 @Component({
   selector: 'app-media-card-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, CardOptionsEditorComponent],
+  imports: [
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    CardOptionsEditorComponent,
+    LexemeFieldsComponent,
+  ],
   templateUrl: './media-card-form.component.html',
 })
 export class MediaCardFormComponent {
-  /**
-   * Required sound card draft.
-   * @remarks
-   * Bound with two-way binding (`[(draft)]`) in parent templates.
-   */
+  /** Required sound card draft. */
   readonly draft = input.required<SoundCardDraft>();
 
-  /**
-   * Known (source) language for lexeme sync.
-   * @defaultValue 'ru'
-   * @remarks
-   * Used to auto-populate `audioLabelLexeme` in basic mode.
-   */
+  /** Known (source) language for lexeme sync. */
   readonly knownLanguage = input<ContentLanguage>('ru');
 
-  /**
-   * Learning (target) language for lexeme sync.
-   * @defaultValue 'en'
-   * @remarks
-   * Used to auto-populate `audioLabelLexeme` in basic mode.
-   */
+  /** Learning (target) language for lexeme sync. */
   readonly learningLanguage = input<ContentLanguage>('en');
 
-  /**
-   * Whether the editor is in advanced mode (disables auto-lexeme sync).
-   * @defaultValue false
-   * @remarks
-   * When false (basic mode), `audioLabelLexeme` is auto-synced from `audioLabelLearning`.
-   */
+  /** Whether the editor is in advanced mode (disables auto-lexeme sync). */
   readonly isAdvanced = input(false);
 
-  /**
-   * Emits the updated sound card draft when the user makes changes.
-   * @remarks
-   * Used with two-way binding: `(draftChange)="onDraftChange($event)"`.
-   */
+  /** Emits the updated sound card draft when the user makes changes. */
   readonly draftChange = output<SoundCardDraft>();
 
   /**
@@ -64,15 +52,6 @@ export class MediaCardFormComponent {
    */
   updateDraft(next: SoundCardDraft): void {
     this.draftChange.emit(next);
-  }
-
-  /**
-   * Updates the known-language prompt.
-   *
-   * @param value - The new prompt text.
-   */
-  updatePromptKnown(value: string): void {
-    this.updateDraft({ ...this.draft(), promptKnown: value });
   }
 
   /**
@@ -97,6 +76,15 @@ export class MediaCardFormComponent {
     }
 
     this.updateDraft(nextDraft);
+  }
+
+  /**
+   * Updates the audio label lexeme.
+   *
+   * @param fields - The new lexeme draft fields.
+   */
+  updateAudioLabelLexeme(fields: LexemeDraftFields): void {
+    this.updateDraft({ ...this.draft(), audioLabelLexeme: fields });
   }
 
   /**

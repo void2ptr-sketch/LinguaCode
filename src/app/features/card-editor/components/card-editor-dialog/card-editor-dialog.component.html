@@ -1,4 +1,23 @@
-<h2 mat-dialog-title>{{ title() }}</h2>
+<div class="card-editor-dialog__header">
+  <h2 mat-dialog-title>{{ title() }}</h2>
+  <mat-slide-toggle
+    class="card-editor-dialog__mode-toggle"
+    [checked]="editorUxMode() === 'advanced'"
+    (change)="onAdvancedModeToggle($event.checked)"
+  >
+    Расширенный режим
+  </mat-slide-toggle>
+</div>
+
+<p class="card-editor-dialog__summary">
+  <span class="card-editor-dialog__language-pair">{{ languagePairSummary() }}</span>
+  @if (tierLabel()) {
+    <span>· {{ tierLabel() }}</span>
+  }
+  @if (publicationLabel()) {
+    <span>· {{ publicationLabel() }}</span>
+  }
+</p>
 
 <mat-dialog-content class="card-editor-dialog__content">
   @if (store.editorLoading()) {
@@ -10,13 +29,22 @@
     @if (store.error()) {
       <p class="card-editor-dialog__error">{{ store.error() }}</p>
     }
+    @if (saveError()) {
+      <p class="card-editor-dialog__error">{{ saveError() }}</p>
+    }
+    <!--
+      Вкладка «Размещение» рендерится внутри CardFormComponent:
+      CardFormComponent → CardFormPlacementTabComponent → ContentHierarchySelectorComponent.
+    -->
     <app-card-form
       [draft]="draft()"
       [previewId]="store.editingCardId() ?? 'preview-card'"
       [knownLanguage]="indexMeta().knownLanguage"
       [learningLanguage]="indexMeta().learningLanguage"
+      [languagePairId]="indexMeta().languagePairId"
       [meta]="cardMeta()"
       [defaultAppearance]="defaultAppearance()"
+      [uxMode]="editorUxMode()"
       (draftChange)="updateDraft($event)"
       (knownLanguageChange)="onKnownLanguageChange($event)"
       (learningLanguageChange)="onLearningLanguageChange($event)"
@@ -26,8 +54,13 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button type="button" (click)="cancel()">Отмена</button>
-  <button mat-flat-button type="button" [disabled]="store.editorLoading()" (click)="saveCard()">
-    Сохранить
+  <button mat-button type="button" [disabled]="saving()" (click)="cancel()">Отмена</button>
+  <button
+    mat-flat-button
+    type="button"
+    [disabled]="store.editorLoading() || saving()"
+    (click)="saveCard()"
+  >
+    {{ saving() ? 'Сохранение…' : 'Сохранить' }}
   </button>
 </mat-dialog-actions>

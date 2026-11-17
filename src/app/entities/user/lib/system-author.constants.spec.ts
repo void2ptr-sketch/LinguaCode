@@ -41,4 +41,20 @@ describe('system-author.constants', () => {
   it('should return false when authorId differs from userId and is not system', () => {
     expect(isEditableContentAuthor('userA', 'userB')).toBe(false);
   });
+
+  it('should return true when user has ROLE_ADMIN', () => {
+    expect(isEditableContentAuthor('userA', 'userB', ['ROLE_ADMIN'])).toBe(true);
+  });
+
+  it('should return true when user has ROLE_AUTHOR', () => {
+    expect(isEditableContentAuthor('userA', 'userB', ['ROLE_AUTHOR'])).toBe(true);
+  });
+
+  it('should return false when user has only ROLE_USER', () => {
+    expect(isEditableContentAuthor('userA', 'userB', ['ROLE_USER'])).toBe(false);
+  });
+
+  it('should return true when user is the author regardless of roles', () => {
+    expect(isEditableContentAuthor('user123', 'user123', ['ROLE_USER'])).toBe(true);
+  });
 });

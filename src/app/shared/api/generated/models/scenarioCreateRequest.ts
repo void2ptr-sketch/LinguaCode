@@ -17,6 +17,11 @@ export interface ScenarioCreateRequest {
   title: string;
   scenarioDescription?: string;
   cardSource?: string;
+  courseId?: number;
+  programId?: number;
+  lessonId?: number;
   languagePairId?: number;
   requiredTier: ScenarioCreateRequestRequiredTier;
+  /** Порядок в уроке (по умолчанию 0) */
+  order?: number;
 }

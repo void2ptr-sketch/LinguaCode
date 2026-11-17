@@ -39,11 +39,6 @@ describe('CourseCatalogSettingsComponent', () => {
             }),
             languagePairs: signal(mockPairs),
             activeLanguagePairId: signal('pair-1'),
-            addLanguagePair: vi.fn(),
-            removeLanguagePair: vi.fn(),
-            setActiveLanguagePair: vi.fn(),
-            updateDisplayName: vi.fn(),
-            updatePreferences: vi.fn(),
             updateLanguagePairSettings: vi.fn(),
           },
         },
@@ -59,9 +54,6 @@ describe('CourseCatalogSettingsComponent', () => {
             settingsToneColorEnabledDraft: signal(false),
             settingsToneColorSchemeDraft: signal('default' as ToneColorSchemeId),
             settingsTracingStrokeDurationDraft: signal(0.5),
-            courseTabKnownLanguageDraft: signal('ru'),
-            courseTabLearningLanguageDraft: signal('en'),
-            courseTabLanguagePairInvalid: signal(false),
             setSettingsPairIdDraft: vi.fn(),
             setSettingsDisplayRomanizationsDraft: vi.fn(),
             setSettingsAnswerRomanizationsDraft: vi.fn(),
@@ -71,14 +63,13 @@ describe('CourseCatalogSettingsComponent', () => {
             setSettingsToneColorEnabledDraft: vi.fn(),
             setSettingsToneColorSchemeDraft: vi.fn(),
             setSettingsTracingStrokeDurationDraft: vi.fn(),
-            setCourseTabKnownLanguageDraft: vi.fn(),
-            setCourseTabLearningLanguageDraft: vi.fn(),
           },
         },
         {
           provide: CourseCatalogLanguagePairManagerService,
           useValue: {
             syncPairSettingsDrafts: vi.fn(),
+            saveActivePairSettings: vi.fn().mockReturnValue('pair-1'),
           },
         },
       ],
@@ -154,10 +145,6 @@ describe('CourseCatalogSettingsComponent', () => {
   });
 
   it('should handle validation errors gracefully', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should persist settings correctly', () => {
     expect(component).toBeTruthy();
   });
 

@@ -92,13 +92,13 @@ export class ProgramsCatalogMockHandler {
   }
 
   /**
-   * Retrieves all programs for a given course.
+   * Retrieves all programs for a given course with lessons resolved.
    *
    * @param courseId - The course ID.
-   * @returns Array of programs in the course, sorted by order.
+   * @returns Array of programs with lessons in the course, sorted by order.
    * @throws `HttpErrorResponse` with status 404 if no course is found.
    */
-  async getByCourse(courseId: string): Promise<readonly Program[]> {
+  async getByCourse(courseId: string): Promise<readonly ProgramWithLessons[]> {
     await this.ensureData();
 
     // Verify course exists
@@ -110,7 +110,12 @@ export class ProgramsCatalogMockHandler {
       .filter((p) => p.courseId === courseId)
       .sort((left, right) => left.order - right.order);
 
-    return programs;
+    return programs.map((program) => {
+      const lessons = (this.catalog!.lessons ?? [])
+        .filter((lesson) => lesson.programId === program.id)
+        .sort((left, right) => left.order - right.order);
+      return { ...program, lessons };
+    });
   }
 
   /**
@@ -130,6 +135,9 @@ export class ProgramsCatalogMockHandler {
       description: payload.description,
       lessonIds: payload.lessonIds,
       order: payload.order,
+      requiredTier: payload.requiredTier,
+      languagePairId: payload.languagePairId,
+      published: payload.published,
       updatedAt: new Date().toISOString(),
     };
 
@@ -165,6 +173,9 @@ export class ProgramsCatalogMockHandler {
       description: payload.description,
       lessonIds: payload.lessonIds,
       order: payload.order,
+      requiredTier: payload.requiredTier,
+      languagePairId: payload.languagePairId,
+      published: payload.published,
       updatedAt: new Date().toISOString(),
     };
 
