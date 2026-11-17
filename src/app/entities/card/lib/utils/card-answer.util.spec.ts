@@ -448,4 +448,379 @@ describe('card-answer.utils', () => {
     expect(checkCardAnswer(card, baseState)).toBeNull();
     expect(getCorrectAnswerLabel(card)).toBe('Hello');
   });
+
+  // ── Additional uncovered branches ──
+
+  it('should match reading card when selected lexeme has matching pinyin', () => {
+    const card = {
+      id: 'reading-lexeme',
+      kind: 'reading' as const,
+      title: 'Reading lexeme',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Read this',
+      promptLexeme: {
+        primary: '银行',
+        script: 'hani' as const,
+        pinyin: 'yínháng',
+        palladius: 'инь хан',
+      },
+      optionsLearning: ['yínháng', 'yínxíng'],
+      optionsLexemes: [
+        {
+          primary: 'yínháng',
+          script: 'hani' as const,
+          pinyin: 'yínháng',
+          palladius: 'инь хан',
+        },
+        {
+          primary: 'yínxíng',
+          script: 'latn' as const,
+          pinyin: 'yínxíng',
+        },
+      ],
+      correctIndex: 0,
+    };
+
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(true);
+  });
+
+  it('should match reading card using palladius from lexeme', () => {
+    const card = {
+      id: 'reading-palladius',
+      kind: 'reading' as const,
+      title: 'Reading palladius',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Read',
+      optionsLearning: ['инь хан', 'yínxíng'],
+      optionsLexemes: [
+        {
+          primary: '银行',
+          script: 'hani' as const,
+          pinyin: 'yínháng',
+          palladius: 'инь хан',
+        },
+        {
+          primary: 'yínxíng',
+          script: 'latn' as const,
+          pinyin: 'yínxíng',
+        },
+      ],
+      correctIndex: 0,
+    };
+
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(true);
+  });
+
+  it('should match keyboard answer via zhuyin romanization', () => {
+    const card = {
+      id: 'kb-zhuyin',
+      kind: 'keyboard' as const,
+      title: 'Zhuyin KB',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Type zhuyin',
+      acceptedAnswersKnown: ['ㄋㄧˇ'],
+      promptLexeme: {
+        primary: '你',
+        script: 'hani' as const,
+        zhuyin: 'ㄋㄧˇ',
+      },
+    };
+
+    expect(
+      checkCardAnswer(card, {
+        ...baseState,
+        answerText: 'ㄋㄧˇ',
+      }),
+    ).toBe(true);
+  });
+
+  it('should match keyboard answer via lexeme primary when han script', () => {
+    const card = {
+      id: 'kb-han-lexeme',
+      kind: 'keyboard' as const,
+      title: 'Han lexeme',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Type the character',
+      acceptedAnswersKnown: ['你好'],
+      promptLexeme: {
+        primary: '你好',
+        script: 'hani' as const,
+      },
+    };
+
+    expect(
+      checkCardAnswer(card, {
+        ...baseState,
+        answerText: '你好',
+      }),
+    ).toBe(true);
+  });
+
+  it('should match keyboard answer via lexeme pinyin romanization', () => {
+    const card = {
+      id: 'kb-pinyin-lexeme',
+      kind: 'keyboard' as const,
+      title: 'Pinyin lexeme',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Type pinyin',
+      acceptedAnswersKnown: ['nǐ hǎo'],
+      promptLexeme: {
+        primary: '你好',
+        script: 'hani' as const,
+        pinyin: 'nǐ hǎo',
+      },
+    };
+
+    expect(
+      checkCardAnswer(card, {
+        ...baseState,
+        answerText: 'ni hao',
+      }),
+    ).toBe(true);
+  });
+
+  it('should not check answer when answer text is empty', () => {
+    const card = {
+      id: 'kb-empty-answer',
+      kind: 'keyboard' as const,
+      title: 'Empty',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Type something',
+      acceptedAnswersKnown: ['hello'],
+    };
+
+    // Empty/whitespace answer → canCheckCardAnswer returns false → checkCardAnswer returns null
+    expect(checkCardAnswer(card, { ...baseState, answerText: '' })).toBeNull();
+    expect(checkCardAnswer(card, { ...baseState, answerText: '   ' })).toBeNull();
+  });
+
+  it('should check cloze card with options by index', () => {
+    const card = {
+      id: 'cloze-opts',
+      kind: 'cloze' as const,
+      title: 'Cloze opts',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      promptKnown: 'I ___ coffee.',
+      options: ['drinks', 'drink'],
+      correctIndex: 1,
+      correctAnswer: 'drink',
+    };
+
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 1 })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(false);
+  });
+
+  it('should check cloze card with accepted answers via keyboard match', () => {
+    const card = {
+      id: 'cloze-accepted',
+      kind: 'cloze' as const,
+      title: 'Cloze accepted',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      promptKnown: 'Five + five = ___',
+      correctAnswer: 'ten',
+      acceptedAnswers: ['10', 'ten'],
+    };
+
+    expect(checkCardAnswer(card, { ...baseState, answerText: 'ten' })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, answerText: '10' })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, answerText: 'eleven' })).toBe(false);
+  });
+
+  it('should return correct label for code-select card', () => {
+    const card = {
+      id: 'code-label',
+      kind: 'code-select' as const,
+      title: 'Code label',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      prompt: { language: 'perl' as const, code: 'print 1;' },
+      options: [{ language: 'perl' as const, code: '1' }],
+      correctIndex: 0,
+    };
+
+    expect(getCorrectAnswerLabel(card)).toBe('1');
+  });
+
+  it('should return correct label for reading card with promptLexeme pinyin', () => {
+    const card = {
+      id: 'reading-label-pinyin',
+      kind: 'reading' as const,
+      title: 'Reading label',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Read',
+      promptLexeme: {
+        primary: '银行',
+        script: 'hani' as const,
+        pinyin: 'yínháng',
+        palladius: 'инь хан',
+      },
+      optionsLearning: ['yínháng', 'yínxíng'],
+      optionsLexemes: [
+        { primary: 'yínháng', script: 'hani' as const, pinyin: 'yínháng' },
+        { primary: 'yínxíng', script: 'latn' as const, pinyin: 'yínxíng' },
+      ],
+      correctIndex: 0,
+    };
+
+    expect(getCorrectAnswerLabel(card)).toBe('yínháng');
+  });
+
+  it('should return correct label for flip card with empty back', () => {
+    const card = {
+      id: 'flip-empty-back',
+      kind: 'flip' as const,
+      title: 'Flip empty',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      front: 'Привет',
+      back: '',
+    };
+
+    expect(getCorrectAnswerLabel(card)).toBe('Привет');
+  });
+
+  it('should return correct label for cloze card with options', () => {
+    const card = {
+      id: 'cloze-label-opts',
+      kind: 'cloze' as const,
+      title: 'Cloze label',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      promptKnown: 'I ___ coffee.',
+      options: ['drinks', 'drink'],
+      correctIndex: 1,
+      correctAnswer: 'drink',
+    };
+
+    expect(getCorrectAnswerLabel(card)).toBe('drink');
+  });
+
+  it('should return correct label for cloze card with acceptedAnswers fallback', () => {
+    const card = {
+      id: 'cloze-label-accepted',
+      kind: 'cloze' as const,
+      title: 'Cloze label accepted',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      promptKnown: 'Five + five = ___',
+      correctAnswer: 'ten',
+      acceptedAnswers: ['10'],
+    };
+
+    expect(getCorrectAnswerLabel(card)).toBe('ten');
+  });
+
+  it('should return correct label for tone card with tone option', () => {
+    const card = {
+      id: 'tone-label',
+      kind: 'tone' as const,
+      title: 'Tone label',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Tone',
+      syllableBase: 'ma',
+      toneOptions: [1, 2, 3, 4] as const,
+      correctIndex: 2,
+    };
+
+    expect(getCorrectAnswerLabel(card)).toBe('3');
+  });
+
+  it('should resolve symbol lexeme for symbol card', () => {
+    const card = {
+      id: 'symbol-lexeme',
+      kind: 'symbol' as const,
+      title: 'Symbol',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Match symbol',
+      symbols: ['α', 'β'],
+      symbolLexemes: [
+        { primary: 'alpha', script: 'latn' as const },
+        { primary: 'beta', script: 'latn' as const },
+      ],
+      correctIndex: 0,
+    };
+
+    expect(getCorrectAnswerLabel(card)).toBe('alpha');
+  });
+
+  it('should not allow checking tone card without selection', () => {
+    const card = {
+      id: 'tone-no-select',
+      kind: 'tone' as const,
+      title: 'Tone',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Tone',
+      syllableBase: 'ma',
+      toneOptions: [1, 2, 3, 4] as const,
+      correctIndex: 0,
+    };
+
+    expect(canCheckCardAnswer(card, baseState)).toBe(false);
+  });
+
+  it('should not allow checking symbol card without selection', () => {
+    const card = {
+      id: 'symbol-no-select',
+      kind: 'symbol' as const,
+      title: 'Symbol',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Match',
+      symbols: ['α', 'β'],
+      correctIndex: 0,
+    };
+
+    expect(canCheckCardAnswer(card, baseState)).toBe(false);
+  });
+
+  it('should not allow checking sound card without selection', () => {
+    const card = {
+      id: 'sound-no-select',
+      kind: 'sound' as const,
+      title: 'Sound',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Listen',
+      audioLabelLearning: 'play',
+      optionsKnown: ['A', 'B'],
+      correctIndex: 0,
+    };
+
+    expect(canCheckCardAnswer(card, baseState)).toBe(false);
+  });
+
+  it('should not allow checking flip card without flipKnown', () => {
+    const card = {
+      id: 'flip-no-flip',
+      kind: 'flip' as const,
+      title: 'Flip',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      front: 'Front',
+      back: 'Back',
+    };
+
+    expect(canCheckCardAnswer(card, baseState)).toBe(false);
+  });
+
+  it('should return null when getCorrectAnswerLabel has no lexeme data', () => {
+    const card = {
+      id: 'no-lexeme',
+      kind: 'select' as const,
+      title: 'No lexeme',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Q?',
+      optionsLearning: ['A'],
+      correctIndex: 0,
+    };
+
+    // With optionsLearning and correctIndex=0, returns the option text
+    expect(getCorrectAnswerLabel(card)).toBe('A');
+  });
 });

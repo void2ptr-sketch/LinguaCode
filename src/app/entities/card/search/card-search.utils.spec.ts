@@ -234,4 +234,230 @@ describe('card-search.utils', () => {
 
     expect(filtered.map((entry) => entry.id)).toEqual(['4']);
   });
+
+  // ── Additional uncovered branches ──
+
+  it('should return true when query is empty', () => {
+    const filtered = filterCardIndex(entries, {
+      query: '',
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.length).toBe(entries.length);
+  });
+
+  it('should filter by knownLanguage', () => {
+    const filtered = filterCardIndex(entries, {
+      knownLanguage: 'ru',
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.map((entry) => entry.id)).toEqual(['1', '2', '3', '4']);
+  });
+
+  it('should filter by languagePairId', () => {
+    const entryWithPair: CardIndexEntry = {
+      id: '5',
+      kind: 'select',
+      title: 'Pair card',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
+      difficulty: 'beginner',
+      tags: [],
+      ipaReadings: [],
+      languagePairId: 'ru-en',
+      updatedAt: '2026-01-05T00:00:00.000Z',
+    };
+
+    const filtered = filterCardIndex([entryWithPair], {
+      languagePairId: 'ru-en',
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.length).toBe(1);
+  });
+
+  it('should filter by difficulty', () => {
+    const filtered = filterCardIndex(entries, {
+      difficulty: 'advanced',
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.length).toBe(0);
+  });
+
+  it('should filter by published flag when set to false', () => {
+    const unpublishedEntry: CardIndexEntry = {
+      id: 'unpub-1',
+      kind: 'select',
+      title: 'Unpublished',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
+      difficulty: 'beginner',
+      tags: [],
+      ipaReadings: [],
+      published: false,
+      updatedAt: '2026-01-06T00:00:00.000Z',
+    };
+
+    const filtered = filterCardIndex([unpublishedEntry], {
+      published: false,
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.length).toBe(1);
+  });
+
+  it('should filter by published flag when set to true', () => {
+    const publishedEntry: CardIndexEntry = {
+      id: 'pub-1',
+      kind: 'select',
+      title: 'Published',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
+      difficulty: 'beginner',
+      tags: [],
+      ipaReadings: [],
+      published: true,
+      updatedAt: '2026-01-06T00:00:00.000Z',
+    };
+
+    const filtered = filterCardIndex([publishedEntry], {
+      published: true,
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.length).toBe(1);
+  });
+
+  it('should default published to true when not set', () => {
+    const entryNoPublished: CardIndexEntry = {
+      id: 'no-pub',
+      kind: 'select',
+      title: 'No published field',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
+      difficulty: 'beginner',
+      tags: [],
+      ipaReadings: [],
+      updatedAt: '2026-01-06T00:00:00.000Z',
+    };
+
+    const filtered = filterCardIndex([entryNoPublished], {
+      published: true,
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.length).toBe(1);
+  });
+
+  it('should filter by courseId', () => {
+    const entryWithCourse: CardIndexEntry = {
+      id: 'course-1',
+      kind: 'select',
+      title: 'Course card',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
+      difficulty: 'beginner',
+      tags: [],
+      ipaReadings: [],
+      courseId: 'radicals-214',
+      updatedAt: '2026-01-07T00:00:00.000Z',
+    };
+
+    const filtered = filterCardIndex([entryWithCourse], {
+      courseId: 'radicals-214',
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.length).toBe(1);
+  });
+
+  it('should filter by programId', () => {
+    const entryWithProgram: CardIndexEntry = {
+      id: 'prog-1',
+      kind: 'select',
+      title: 'Program card',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
+      difficulty: 'beginner',
+      tags: [],
+      ipaReadings: [],
+      programId: 'prog-1',
+      updatedAt: '2026-01-07T00:00:00.000Z',
+    };
+
+    const filtered = filterCardIndex([entryWithProgram], {
+      programId: 'prog-1',
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.length).toBe(1);
+  });
+
+  it('should filter by lessonId', () => {
+    const entryWithLesson: CardIndexEntry = {
+      id: 'lesson-1',
+      kind: 'select',
+      title: 'Lesson card',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
+      difficulty: 'beginner',
+      tags: [],
+      ipaReadings: [],
+      lessonId: 'lesson-1',
+      updatedAt: '2026-01-07T00:00:00.000Z',
+    };
+
+    const filtered = filterCardIndex([entryWithLesson], {
+      lessonId: 'lesson-1',
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.length).toBe(1);
+  });
+
+  it('should filter by scenarioId', () => {
+    const entryWithScenario: CardIndexEntry = {
+      id: 'scenario-1',
+      kind: 'select',
+      title: 'Scenario card',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
+      difficulty: 'beginner',
+      tags: [],
+      ipaReadings: [],
+      scenarioId: 'scenario-1',
+      updatedAt: '2026-01-07T00:00:00.000Z',
+    };
+
+    const filtered = filterCardIndex([entryWithScenario], {
+      scenarioId: 'scenario-1',
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.length).toBe(1);
+  });
+
+  it('should build facets with empty options when no language codes provided', () => {
+    const facets = buildCardSearchFacets(entries, { page: { page: 0, pageSize: 10 } });
+
+    expect(facets.knownLanguages).toEqual([]);
+    expect(facets.learningLanguages).toEqual([]);
+  });
+
+  it('should filter out facets with zero count', () => {
+    const facets = buildCardSearchFacets(
+      entries,
+      { page: { page: 0, pageSize: 10 } },
+      {
+        difficulties: ['beginner', 'intermediate', 'advanced'] as readonly CardDifficulty[],
+        kinds: ['select', 'memory'] as readonly CardKind[],
+      },
+    );
+
+    expect(facets.difficulties.map((d) => d.value)).toContain('beginner');
+    expect(facets.difficulties.map((d) => d.value)).toContain('intermediate');
+    expect(facets.difficulties.map((d) => d.value)).not.toContain('advanced');
+  });
 });

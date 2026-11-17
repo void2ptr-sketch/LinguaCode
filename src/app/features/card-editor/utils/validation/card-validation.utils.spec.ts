@@ -524,6 +524,24 @@ describe('card-validation.utils', () => {
     expect(card?.answerMode).toBeUndefined();
   });
 
+  it('should preserve audioUrl in keyboard card when provided', () => {
+    const card = normalizeKeyboardCardDraft(
+      {
+        kind: 'keyboard',
+        title: 'Test',
+        direction: 'known-to-learning',
+        promptKnown: 'Answer',
+        acceptedAnswersKnown: ['hello', 'world'],
+        appearance,
+        ...lexemeDraft,
+        audioUrl: 'https://example.com/audio.mp3',
+      },
+      'keyboard-1',
+    );
+
+    expect(card?.audioUrl).toBe('https://example.com/audio.mp3');
+  });
+
   // ── normalizeCardDraft dispatcher ──
 
   it('should route to correct normalizer based on kind', () => {
@@ -580,6 +598,9 @@ describe('card-validation.utils', () => {
       'code-select',
       'reading',
       'tone',
+      'flip',
+      'cloze',
+      'code-trace',
     ];
 
     kinds.forEach((kind) => {
@@ -754,6 +775,104 @@ describe('card-validation.utils', () => {
     );
 
     expect(card?.practiceMode).toBe('hints');
+  });
+
+  it('should preserve audioUrl in memory card when provided', () => {
+    const pair = { ...emptyMemoryPairDraft(), known: 'A', learning: 'B' };
+    const card = normalizeMemoryCardDraft(
+      {
+        kind: 'memory',
+        title: 'Пары',
+        promptKnown: 'Найдите пары',
+        pairs: [pair],
+        appearance,
+        ...lexemeDraft,
+        audioUrl: 'https://example.com/audio.mp3',
+      },
+      'memory-1',
+    );
+
+    expect(card?.audioUrl).toBe('https://example.com/audio.mp3');
+  });
+
+  it('should normalize draw card with stroke-order practice mode', () => {
+    const card = normalizeDrawCardDraft(
+      {
+        kind: 'draw',
+        title: 'Stroke order',
+        promptKnown: 'Draw stroke order',
+        targetCharacter: '一',
+        referenceHintKnown: 'Reference',
+        radicalHint: '',
+        strokeGuides: [],
+        practiceMode: 'stroke-order',
+        appearance,
+        ...lexemeDraft,
+      },
+      'draw-stroke',
+    );
+
+    expect(card?.practiceMode).toBe('stroke-order');
+  });
+
+  it('should normalize draw card with radicals practice mode', () => {
+    const card = normalizeDrawCardDraft(
+      {
+        kind: 'draw',
+        title: 'Radicals',
+        promptKnown: 'Draw radicals',
+        targetCharacter: '好',
+        referenceHintKnown: 'Reference',
+        radicalHint: '',
+        strokeGuides: [],
+        practiceMode: 'radicals',
+        appearance,
+        ...lexemeDraft,
+      },
+      'draw-radicals',
+    );
+
+    expect(card?.practiceMode).toBe('radicals');
+  });
+
+  it('should normalize draw card with tracing practice mode', () => {
+    const card = normalizeDrawCardDraft(
+      {
+        kind: 'draw',
+        title: 'Tracing',
+        promptKnown: 'Draw tracing',
+        targetCharacter: '大',
+        referenceHintKnown: 'Reference',
+        radicalHint: '',
+        strokeGuides: [],
+        practiceMode: 'tracing',
+        appearance,
+        ...lexemeDraft,
+      },
+      'draw-tracing',
+    );
+
+    expect(card?.practiceMode).toBe('tracing');
+  });
+
+  it('should normalize draw card with memory practice mode', () => {
+    const card = normalizeDrawCardDraft(
+      {
+        kind: 'draw',
+        title: 'Memory mode',
+        promptKnown: 'Draw memory',
+        targetCharacter: '人',
+        referenceHintKnown: 'Reference',
+        radicalHint: '',
+        strokeGuides: [],
+        practiceMode: 'memory',
+        appearance,
+        ...lexemeDraft,
+      },
+      'draw-memory',
+    );
+
+    expect(card?.practiceMode).toBe('memory');
   });
 
   // ── Sound Card ──
@@ -959,6 +1078,80 @@ describe('card-validation.utils', () => {
     );
 
     expect(card?.kind).toBe('reading');
+  });
+
+  it('should route flip kind to flip normalizer', () => {
+    const card = normalizeCardDraft(
+      {
+        kind: 'flip',
+        title: 'Flip',
+        front: 'Привет',
+        back: 'Hello',
+        audioUrl: '',
+        appearance,
+      },
+      'flip-dispatch',
+    );
+
+    expect(card?.kind).toBe('flip');
+  });
+
+  it('should route cloze kind to cloze normalizer', () => {
+    const card = normalizeCardDraft(
+      {
+        kind: 'cloze',
+        title: 'Cloze',
+        promptKnown: 'I ___ coffee.',
+        options: [],
+        acceptedAnswers: ['10'],
+        correctAnswer: 'ten',
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+      },
+      'cloze-dispatch',
+    );
+
+    expect(card?.kind).toBe('cloze');
+  });
+
+  it('should route code-trace kind to code-trace normalizer', () => {
+    const card = normalizeCardDraft(
+      {
+        kind: 'code-trace',
+        title: 'Trace',
+        caption: '',
+        question: 'Что выведет?',
+        code: { code: 'int main() {}', language: 'cpp' },
+        outputOptions: ['0', '1'],
+        correctIndex: 0,
+        appearance,
+      },
+      'code-trace-dispatch',
+    );
+
+    expect(card?.kind).toBe('code-trace');
+  });
+
+  it('should include programId when provided via dispatcher', () => {
+    const card = normalizeCardDraft(
+      {
+        kind: 'select',
+        title: 'Test',
+        direction: 'known-to-learning',
+        promptKnown: 'Q?',
+        optionsLearning: ['A', 'B'],
+        optionsKnown: ['A', 'B'],
+        optionsLexemes: emptyOptionLexemes(2),
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+        programId: 'prog-1',
+      },
+      'card-prog',
+    );
+
+    expect(card?.programId).toBe('prog-1');
   });
 
   // ── new kinds: flip, cloze, code-trace ──
@@ -1178,6 +1371,245 @@ describe('card-validation.utils', () => {
         correctIndex: 0,
         appearance,
         ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 0, answers: 1 });
+    });
+
+    it('should count issues for draw card with missing reference hint', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'draw',
+        title: 'Draw',
+        promptKnown: 'Draw',
+        referenceHintKnown: '',
+        targetCharacter: '水',
+        radicalHint: '',
+        strokeGuides: [],
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 1, answers: 0 });
+    });
+
+    it('should count issues for tone card with missing tone options', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'tone',
+        title: 'Tone',
+        direction: 'known-to-learning',
+        promptKnown: 'Tone',
+        syllableBase: 'ma',
+        toneOptions: [] as const,
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 0, answers: 1 });
+    });
+
+    it('should count issues for code-trace with empty code', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'code-trace',
+        title: 'Trace',
+        caption: '',
+        question: '',
+        code: { code: '', language: 'cpp' },
+        outputOptions: ['0', '1'],
+        correctIndex: 0,
+        appearance,
+      });
+      expect(issues).toEqual({ content: 1, answers: 0 });
+    });
+
+    it('should count issues for code-trace with missing output options', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'code-trace',
+        title: 'Trace',
+        caption: '',
+        question: '',
+        code: { code: 'int main() {}', language: 'cpp' },
+        outputOptions: [],
+        correctIndex: 0,
+        appearance,
+      });
+      expect(issues).toEqual({ content: 0, answers: 1 });
+    });
+
+    it('should count issues for memory card with missing prompt', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'memory',
+        title: 'Memory',
+        promptKnown: '',
+        pairs: [{ ...emptyMemoryPairDraft(), known: 'A', learning: 'B' }],
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 1, answers: 0 });
+    });
+
+    it('should count issues for sound card with missing audio label', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'sound',
+        title: 'Sound',
+        direction: 'known-to-learning',
+        promptKnown: 'Listen',
+        audioLabelLearning: '',
+        audioLabelLexeme: emptyLexemeDraftFields('latn'),
+        optionsKnown: ['A', 'B'],
+        optionsLexemes: emptyOptionLexemes(2),
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 0, answers: 1 });
+    });
+
+    it('should count issues for tone card with missing tone options', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'tone',
+        title: 'Tone',
+        direction: 'known-to-learning',
+        promptKnown: 'Tone',
+        syllableBase: 'ma',
+        toneOptions: [] as const,
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 0, answers: 1 });
+    });
+
+    it('should count issues for symbol card with missing prompt', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'symbol',
+        title: 'Symbol',
+        direction: 'known-to-learning',
+        promptKnown: '',
+        symbols: ['α', 'β'],
+        symbolLexemes: emptyOptionLexemes(2),
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 1, answers: 0 });
+    });
+
+    it('should count issues for code-select with empty prompt code', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'code-select',
+        title: 'Code',
+        caption: '',
+        prompt: { language: 'perl', code: '' },
+        options: [
+          { language: 'perl', code: '1' },
+          { language: 'perl', code: '0' },
+        ],
+        correctIndex: 0,
+        appearance,
+      });
+      expect(issues).toEqual({ content: 1, answers: 0 });
+    });
+
+    it('should report no issues for valid draw card draft', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'draw',
+        title: 'Draw',
+        promptKnown: 'Draw it',
+        referenceHintKnown: 'Reference',
+        targetCharacter: '水',
+        radicalHint: '',
+        strokeGuides: [],
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 0, answers: 0 });
+    });
+
+    it('should report no issues for valid memory card draft', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'memory',
+        title: 'Memory',
+        promptKnown: 'Pairs',
+        pairs: [{ ...emptyMemoryPairDraft(), known: 'A', learning: 'B' }],
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 0, answers: 0 });
+    });
+
+    it('should report no issues for valid sound card draft', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'sound',
+        title: 'Sound',
+        direction: 'known-to-learning',
+        promptKnown: 'Listen',
+        audioLabelLearning: 'play',
+        audioLabelLexeme: emptyLexemeDraftFields('latn'),
+        optionsKnown: ['A', 'B'],
+        optionsLexemes: emptyOptionLexemes(2),
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 0, answers: 0 });
+    });
+
+    it('should report no issues for valid tone card draft', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'tone',
+        title: 'Tone',
+        direction: 'known-to-learning',
+        promptKnown: 'Tone',
+        syllableBase: 'ma',
+        toneOptions: [1, 2, 3, 4] as const,
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 0, answers: 0 });
+    });
+
+    it('should report no issues for valid symbol card draft', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'symbol',
+        title: 'Symbol',
+        direction: 'known-to-learning',
+        promptKnown: 'Match',
+        symbols: ['α', 'β'],
+        symbolLexemes: emptyOptionLexemes(2),
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+      });
+      expect(issues).toEqual({ content: 0, answers: 0 });
+    });
+
+    it('should report no issues for valid code-select card draft', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'code-select',
+        title: 'Code',
+        caption: '',
+        prompt: { language: 'perl', code: 'print 1;' },
+        options: [
+          { language: 'perl', code: '1' },
+          { language: 'perl', code: '0' },
+        ],
+        correctIndex: 0,
+        appearance,
+      });
+      expect(issues).toEqual({ content: 0, answers: 0 });
+    });
+
+    it('should count issues for code-select with invalid correct index', () => {
+      const issues = cardDraftTabIssues({
+        kind: 'code-select',
+        title: 'Code',
+        caption: '',
+        prompt: { language: 'perl', code: 'print 1;' },
+        options: [
+          { language: 'perl', code: '1' },
+          { language: 'perl', code: '0' },
+        ],
+        correctIndex: 5,
+        appearance,
       });
       expect(issues).toEqual({ content: 0, answers: 1 });
     });
