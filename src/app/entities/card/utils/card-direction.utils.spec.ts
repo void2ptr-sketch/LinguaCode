@@ -260,5 +260,132 @@ describe('card-direction.utils', () => {
       expect(resolved.options).toEqual(['Only']);
       expect(resolved.correctIndex).toBe(0);
     });
+
+    it('should not shuffle when options is empty', () => {
+      const emptyCard: OptionCard = {
+        ...selectCard,
+        optionsLearning: [],
+        optionsKnown: [],
+        correctIndex: 0,
+      };
+      const resolved = resolveOptionCard(emptyCard, 'known-to-learning', 42);
+      expect(resolved.options).toEqual([]);
+    });
+  });
+
+  // ── Branch coverage: fallback chains ──
+
+  it('should use acceptedAnswersKnown as fallback in keyboard prompt for known-to-learning', () => {
+    const card = {
+      id: 'kb-1',
+      kind: 'keyboard' as const,
+      title: 'K',
+      appearance: { theme: 'azure-blue', fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Введите перевод',
+      acceptedAnswersKnown: ['Привет'],
+      acceptedAnswersLearning: [],
+    };
+    // acceptedAnswersKnown[0].trim() is the first fallback
+    expect(resolveKeyboardPrompt(card, 'known-to-learning')).toBe('Привет');
+  });
+
+  it('should use promptLexeme.primary as fallback in keyboard prompt for learning-to-known', () => {
+    const card = {
+      id: 'kb-1',
+      kind: 'keyboard' as const,
+      title: 'K',
+      appearance: { theme: 'azure-blue', fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Введите перевод',
+      acceptedAnswersKnown: ['Привет'],
+      acceptedAnswersLearning: [],
+      promptLexeme: { primary: 'Hello', script: 'latn', glossKnown: '' } as any,
+    };
+    // promptLexeme.primary.trim() is the fallback
+    expect(resolveKeyboardPrompt(card, 'learning-to-known')).toBe('Hello');
+  });
+
+  it('should use acceptedAnswersLearning when non-empty for keyboard', () => {
+    const card = {
+      id: 'kb-1',
+      kind: 'keyboard' as const,
+      title: 'K',
+      appearance: { theme: 'azure-blue', fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Введите «Hello»',
+      acceptedAnswersKnown: ['Привет'],
+      acceptedAnswersLearning: ['Hello', 'hi'],
+    };
+    expect(resolveKeyboardAcceptedAnswers(card, 'known-to-learning')).toEqual(['Hello', 'hi']);
+  });
+
+  it('should fallback to acceptedAnswersKnown when no learning answers for keyboard', () => {
+    const card = {
+      id: 'kb-1',
+      kind: 'keyboard' as const,
+      title: 'K',
+      appearance: { theme: 'azure-blue', fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Введите перевод',
+      acceptedAnswersKnown: ['Привет'],
+      acceptedAnswersLearning: [],
+    };
+    expect(resolveKeyboardAcceptedAnswers(card, 'known-to-learning')).toEqual(['Привет']);
+  });
+
+  it('should return card.kind !== code-select for select cards', () => {
+    expect(cardSupportsSessionDirection(selectCard)).toBe(true);
+  });
+
+  it('should return false for code-select cards', () => {
+    const codeSelectCard: OptionCard = {
+      id: 'cs-1',
+      kind: 'code-select',
+      title: 'Code',
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+      prompt: { code: 'x = 1', language: 'typescript' },
+      options: [{ code: '1', language: 'typescript' }],
+      correctIndex: 0,
+    };
+    expect(cardSupportsSessionDirection(codeSelectCard)).toBe(false);
+  });
+
+  it('should return false for undefined card', () => {
+    expect(cardSupportsSessionDirection(undefined as any)).toBe(false);
+  });
+
+  describe('resolveParallelKnownOptions', () => {
+    it('should use glossKnown from lexemes when optionsKnown is undefined', () => {
+      const card: OptionCard = {
+        ...selectCard,
+        optionsKnown: undefined,
+        optionsLexemes: [
+          { primary: 'Hello', script: 'latn', glossKnown: 'Привет' },
+          { primary: 'Goodbye', script: 'latn', glossKnown: 'Пока' },
+          { primary: 'Thanks', script: 'latn', glossKnown: 'Спасибо' },
+        ],
+      };
+      const resolved = resolveOptionCard(card, 'learning-to-known');
+      // Uses glossKnown from lexemes
+      expect(resolved.options).toEqual(['Привет', 'Пока', 'Спасибо']);
+    });
+  });
+
+  describe('mergeKnownOptionsByIndex', () => {
+    it('should fall back to quoted lemma then learningOptions when glossOptions are incomplete', () => {
+      const card: OptionCard = {
+        ...selectCard,
+        optionsKnown: undefined,
+        optionsLexemes: [
+          { primary: 'Hello', script: 'latn', glossKnown: 'Привет' },
+          { primary: 'Goodbye', script: 'latn', glossKnown: '' }, // empty gloss
+          { primary: 'Thanks', script: 'latn', glossKnown: 'Спасибо' },
+        ],
+      };
+      const resolved = resolveOptionCard(card, 'learning-to-known');
+      // Empty gloss triggers quoted lemma fallback ('Привет' from prompt), then learningOptions for distractors
+      expect(resolved.options).toEqual(['Привет', 'Goodbye', 'Спасибо']);
+    });
   });
 });
