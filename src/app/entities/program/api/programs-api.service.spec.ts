@@ -255,4 +255,124 @@ describe('ProgramsApiService', () => {
     const result = await promise;
     expect(result[0].prerequisiteLessonIds).toEqual(['3', '4', '5']);
   });
+
+  // ── map edge cases ──
+
+  it('should handle program with null fields in search results', async () => {
+    const promise = service.search({ page: { page: 0, pageSize: 10 } });
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/search')));
+    req.flush({
+      data: [{ id: 1, title: null, courseId: null, lessonIds: null, order: null, updatedAt: null }],
+      total: 1,
+    });
+
+    const result = await promise;
+    expect(result.items[0].id).toBe('1');
+    expect(result.items[0].title).toBe('');
+    expect(result.items[0].courseId).toBe('');
+    expect(result.items[0].lessonCount).toBe(0);
+    expect(result.items[0].order).toBe(0);
+  });
+
+  it('should handle program with missing fields in search results', async () => {
+    const promise = service.search({ page: { page: 0, pageSize: 10 } });
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/search')));
+    req.flush({
+      data: [{ id: 1 }],
+      total: 1,
+    });
+
+    const result = await promise;
+    expect(result.items[0].id).toBe('1');
+    expect(result.items[0].title).toBe('');
+    expect(result.items[0].order).toBe(0);
+  });
+
+  it('should handle program without lessons in getByCourseWithLessons', async () => {
+    const promise = service.getByCourseWithLessons('1');
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/by-course/1/with-lessons')));
+    req.flush({
+      data: [{ id: 1, title: 'P', courseId: 10, lessonIds: [1], order: 0, updatedAt: '' }],
+    });
+
+    const result = await promise;
+    expect(result[0].lessons).toEqual([]);
+  });
+
+  it('should handle lesson with null scenarioIds', async () => {
+    const promise = service.getLessons('1');
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1/lessons')));
+    req.flush({
+      data: [{ id: 1, title: 'L', programId: 1, scenarioIds: null, lessonOrder: 0, updatedAt: '' }],
+    });
+
+    const result = await promise;
+    expect(result[0].scenarioIds).toEqual([]);
+  });
+
+  it('should handle lesson with undefined prerequisiteLessonIds', async () => {
+    const promise = service.getLessons('1');
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1/lessons')));
+    req.flush({
+      data: [{ id: 1, title: 'L', programId: 1, prerequisiteLessonIds: undefined, lessonOrder: 0, updatedAt: '' }],
+    });
+
+    const result = await promise;
+    expect(result[0].prerequisiteLessonIds).toEqual([]);
+  });
+
+  it('should handle lesson with numeric prerequisiteLessonIds array', async () => {
+    const promise = service.getLessons('1');
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1/lessons')));
+    req.flush({
+      data: [{ id: 1, title: 'L', programId: 1, prerequisiteLessonIds: [10, 20], lessonOrder: 0, updatedAt: '' }],
+    });
+
+    const result = await promise;
+    expect(result[0].prerequisiteLessonIds).toEqual(['10', '20']);
+  });
+
+  it('should handle lesson with empty string prerequisiteLessonIds', async () => {
+    const promise = service.getLessons('1');
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1/lessons')));
+    req.flush({
+      data: [{ id: 1, title: 'L', programId: 1, prerequisiteLessonIds: '', lessonOrder: 0, updatedAt: '' }],
+    });
+
+    const result = await promise;
+    expect(result[0].prerequisiteLessonIds).toEqual([]);
+  });
+
+  it('should handle program with missing requiredTier and published', async () => {
+    const promise = service.getById('1');
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1')));
+    req.flush({
+      data: { id: 1, title: 'P', courseId: 10, lessonIds: [], order: 0, updatedAt: '' },
+    });
+
+    const result = await promise;
+    expect(result.requiredTier).toBeUndefined();
+    expect(result.published).toBeUndefined();
+  });
+
+  it('should handle search result with missing lessonIds in index entry', async () => {
+    const promise = service.search({ page: { page: 0, pageSize: 10 } });
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/search')));
+    req.flush({
+      data: [{ id: 1, title: 'P', lessonIds: undefined }],
+      total: 1,
+    });
+
+    const result = await promise;
+    expect(result.items[0].lessonCount).toBe(0);
+  });
 });
