@@ -1,9 +1,38 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
+import { setCardSeedCache, resetContentSeedCache } from '../../content-seed/content-seed.cache';
+import { normalizeLegacyCards } from '../mapping/card-legacy.mapper';
+import type { Card } from '../model';
+
 import { CardsApiService } from '..';
 import { CardsCatalogMockHandler } from './mock/cards-catalog.mock.handler';
 import { cardsApiMockInterceptor } from './mock/cards-api.mock.interceptor';
+
+const testCards: readonly Card[] = normalizeLegacyCards([
+  {
+    id: 'select-1',
+    kind: 'select',
+    title: 'Приветствие',
+    appearance: { theme: 'azure-blue', fontSize: 'md' },
+    direction: 'known-to-learning',
+    promptKnown: 'Как сказать «Привет» по-английски?',
+    optionsLearning: ['Hello', 'Goodbye', 'Thanks', 'Please'],
+    optionsKnown: ['Привет', 'Пока', 'Спасибо', 'Пожалуйста'],
+    correctIndex: 0,
+  } as Card,
+  {
+    id: 'memory-1',
+    kind: 'memory',
+    title: 'Пары слов',
+    appearance: { theme: 'azure-blue', fontSize: 'md' },
+    promptKnown: 'Найдите пары перевода',
+    pairs: [
+      { known: 'Привет', learning: 'Hello' },
+      { known: 'Пока', learning: 'Bye' },
+    ],
+  } as Card,
+]);
 
 describe('CardsApiService', () => {
   let service: CardsApiService;
@@ -11,6 +40,8 @@ describe('CardsApiService', () => {
 
   beforeEach(() => {
     localStorage.clear();
+    resetContentSeedCache();
+    setCardSeedCache(testCards);
 
     TestBed.configureTestingModule({
       providers: [

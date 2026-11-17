@@ -2,10 +2,28 @@ import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@ang
 import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 
+import { setCardSeedCache, resetContentSeedCache } from '../../../content-seed/content-seed.cache';
+import { normalizeLegacyCards } from '../../mapping/card-legacy.mapper';
+import type { Card } from '../../model';
+
 import { CardsApiService } from '..';
 import { CardRepository } from '../../repository/card.repository';
 import { cardsApiMockInterceptor } from './cards-api.mock.interceptor';
 import { CARD_DIFFICULTY_MOCK_OPTIONS } from './card-difficulty.mock';
+
+const testCards: readonly Card[] = normalizeLegacyCards([
+  {
+    id: 'select-1',
+    kind: 'select',
+    title: 'Приветствие',
+    appearance: { theme: 'azure-blue', fontSize: 'md' },
+    direction: 'known-to-learning',
+    promptKnown: 'Как сказать «Привет» по-английски?',
+    optionsLearning: ['Hello', 'Goodbye', 'Thanks', 'Please'],
+    optionsKnown: ['Привет', 'Пока', 'Спасибо', 'Пожалуйста'],
+    correctIndex: 0,
+  } as Card,
+]);
 
 describe('cards API (mock interceptor)', () => {
   let api: CardsApiService;
@@ -13,6 +31,8 @@ describe('cards API (mock interceptor)', () => {
 
   beforeEach(() => {
     localStorage.clear();
+    resetContentSeedCache();
+    setCardSeedCache(testCards);
 
     TestBed.configureTestingModule({
       providers: [
