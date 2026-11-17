@@ -27,7 +27,7 @@ import { sanitizePlainText } from '../../../shared/security';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
-import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
+import { AppSettingsService } from '../../../shared/api/app-settings.service';
 import { ScenarioDraft, ScenarioEditorMode } from '../types';
 import type { ScenarioFormDraft } from '../utils/scenario-form-draft.utils';
 import { emptyScenarioFormDraft } from '../utils/scenario-form-draft.utils';
@@ -52,6 +52,7 @@ export class ScenarioBuilderStore {
   private readonly userStore = inject(UserStore);
   private readonly authStore = inject(AuthStore);
   private readonly logger = inject(AppLoggerService);
+  private readonly appSettings = inject(AppSettingsService);
 
   /** Cache: languagePairId → { known, learning } resolved from `/language-pairs`. */
   private pairCache: Record<number, LanguagePair> = {};
@@ -90,7 +91,7 @@ export class ScenarioBuilderStore {
   /** Current zero-based page index. */
   readonly pageIndex = signal(0);
   /** Number of items per page. */
-  readonly pageSize = signal(DEFAULT_PAGE_SIZE);
+  readonly pageSize = signal(this.appSettings.defaultPageSize());
   /** Search query text. */
   readonly listQuery = signal('');
   /** Current list scope (e.g. 'mine', 'all', 'course'). */

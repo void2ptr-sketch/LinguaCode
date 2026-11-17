@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,7 +16,7 @@ import type { Lesson } from '../../../../entities/course/model/lesson.types';
 import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import type { ProgramWithLessons } from '../../../../entities/program/model';
 import type { LessonFormDraft } from '../../types';
-import { LESSON_TITLE_MAX_LENGTH } from '../../utils';
+import { AppSettingsService } from '../../../../shared/api/app-settings.service';
 
 /** Tier labels for the access level selector (RU). */
 const TIER_LABELS: Record<string, string> = {
@@ -57,6 +57,8 @@ const TIER_LABELS: Record<string, string> = {
   styleUrl: './lesson-form.component.scss',
 })
 export class LessonFormComponent {
+  private readonly appSettings = inject(AppSettingsService);
+
   /**
    * Required lesson form draft being edited or created.
    *
@@ -126,7 +128,7 @@ export class LessonFormComponent {
   }));
 
   /** Maximum allowed title length (backend contract). */
-  readonly titleMaxLength = LESSON_TITLE_MAX_LENGTH;
+  readonly titleMaxLength = this.appSettings.maxTitleLength();
 
   /** Available tier options (keys of TIER_LABELS). */
   readonly tierOptions = Object.keys(TIER_LABELS) as string[];

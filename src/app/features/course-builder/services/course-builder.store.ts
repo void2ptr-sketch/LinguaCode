@@ -25,11 +25,10 @@ import type {
   CourseListScope,
 } from '../../../entities/course/model';
 import { sanitizeMarkdownText, sanitizePlainText } from '../../../shared/security';
-import { COURSE_IDEA_MAX_LENGTH } from '../../../entities/course/utils/course-authoring.utils';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
-import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
+import { AppSettingsService } from '../../../shared/api/app-settings.service';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
 import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils';
 import { collectCourseBundle } from '../../../entities/course/utils/course-bundle.utils';
@@ -39,9 +38,9 @@ import { CoursePdfExportService } from './course-pdf-export.service';
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
 /** Sanitizer for course description: max 512 characters, HTML cleaned */
 const sanitizeDescription = (value: string): string => sanitizePlainText(value, 512);
-/** Sanitizer for course authoring idea: max COURSE_IDEA_MAX_LENGTH characters, Markdown cleaned */
-const sanitizeCourseIdea = (value: string): string =>
-  sanitizeMarkdownText(value, COURSE_IDEA_MAX_LENGTH);
+/** Sanitizer for course authoring idea: uses maxDescriptionLength from API, falls back to 16000 */
+const sanitizeCourseIdea = (value: string, maxLen: number): string =>
+  sanitizeMarkdownText(value, maxLen);
 
 /**
  * Store for the course builder feature.
@@ -74,6 +73,7 @@ export class CourseBuilderStore {
   private readonly pairIdResolver = inject(LanguagePairIdResolver);
   /** Central logging service */
   private readonly logger = inject(AppLoggerService);
+  private readonly appSettings = inject(AppSettingsService);
 
   // -------------------------------------------------------------------------
   // Signals: course list state
@@ -86,7 +86,7 @@ export class CourseBuilderStore {
   /** Current page (0-based) */
   readonly pageIndex = signal(0);
   /** Page size (number of items) */
-  readonly pageSize = signal(DEFAULT_PAGE_SIZE);
+  readonly pageSize = signal(this.appSettings.defaultPageSize());
   /** Search query text */
   readonly listQuery = signal('');
   /**
@@ -552,7 +552,7 @@ export class CourseBuilderStore {
       published: draft.published,
       authoring: {
         ...draft.authoring,
-        idea: sanitizeCourseIdea(draft.authoring.idea),
+        idea: sanitizeCourseIdea(draft.authoring.idea, this.appSettings.maxDescriptionLength()),
       },
       practiceSettings: draft.practiceSettings,
       programs,
