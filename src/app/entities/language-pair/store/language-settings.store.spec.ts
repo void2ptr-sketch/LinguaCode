@@ -6,17 +6,49 @@ import type { LanguageDto } from '../api/language-dto.types';
 
 describe('LanguageSettingsStore', () => {
   let store: LanguageSettingsStore;
-  let languageService: LanguageService;
   let getCodesSpy: ReturnType<typeof vi.fn>;
   let languagesSpy: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
     getCodesSpy = vi.fn(() => ['en', 'zh', 'ru']);
-    languagesSpy = vi.fn(() => [
-      { id: 1, code: 'en', displayName: 'English', nativeName: 'English', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
-      { id: 2, code: 'zh', displayName: 'Chinese', nativeName: '中文', writingDir: 'ltr', supportsTones: true, supportsPinyin: true, fontFamily: '', activeFlag: true },
-      { id: 3, code: 'ru', displayName: 'Russian', nativeName: 'Русский', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
-    ] as LanguageDto[]);
+    languagesSpy = vi.fn(
+      () =>
+        [
+          {
+            id: 1,
+            code: 'en',
+            displayName: 'English',
+            nativeName: 'English',
+            writingDir: 'ltr',
+            supportsTones: false,
+            supportsPinyin: false,
+            fontFamily: '',
+            activeFlag: true,
+          },
+          {
+            id: 2,
+            code: 'zh',
+            displayName: 'Chinese',
+            nativeName: '中文',
+            writingDir: 'ltr',
+            supportsTones: true,
+            supportsPinyin: true,
+            fontFamily: '',
+            activeFlag: true,
+          },
+          {
+            id: 3,
+            code: 'ru',
+            displayName: 'Russian',
+            nativeName: 'Русский',
+            writingDir: 'ltr',
+            supportsTones: false,
+            supportsPinyin: false,
+            fontFamily: '',
+            activeFlag: true,
+          },
+        ] as LanguageDto[],
+    );
 
     TestBed.configureTestingModule({
       providers: [
@@ -32,7 +64,6 @@ describe('LanguageSettingsStore', () => {
     });
 
     store = TestBed.inject(LanguageSettingsStore);
-    languageService = TestBed.inject(LanguageService) as unknown as LanguageService;
   });
 
   afterEach(() => {
@@ -52,11 +83,14 @@ describe('LanguageSettingsStore', () => {
   });
 
   it('should filter selected codes to only valid ones', () => {
-    sessionStorage.setItem('lingua-code.language-settings', JSON.stringify({
-      selectedCodes: ['en', 'invalid-code'],
-      activePairId: null,
-      configuredPairs: [],
-    }));
+    sessionStorage.setItem(
+      'lingua-code.language-settings',
+      JSON.stringify({
+        selectedCodes: ['en', 'invalid-code'],
+        activePairId: null,
+        configuredPairs: [],
+      }),
+    );
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
@@ -82,11 +116,14 @@ describe('LanguageSettingsStore', () => {
   });
 
   it('should not add a language that is already selected', () => {
-    sessionStorage.setItem('lingua-code.language-settings', JSON.stringify({
-      selectedCodes: ['en'],
-      activePairId: null,
-      configuredPairs: [],
-    }));
+    sessionStorage.setItem(
+      'lingua-code.language-settings',
+      JSON.stringify({
+        selectedCodes: ['en'],
+        activePairId: null,
+        configuredPairs: [],
+      }),
+    );
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
@@ -115,11 +152,14 @@ describe('LanguageSettingsStore', () => {
   });
 
   it('should remove a language', () => {
-    sessionStorage.setItem('lingua-code.language-settings', JSON.stringify({
-      selectedCodes: ['en', 'zh'],
-      activePairId: null,
-      configuredPairs: [],
-    }));
+    sessionStorage.setItem(
+      'lingua-code.language-settings',
+      JSON.stringify({
+        selectedCodes: ['en', 'zh'],
+        activePairId: null,
+        configuredPairs: [],
+      }),
+    );
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
@@ -169,11 +209,14 @@ describe('LanguageSettingsStore', () => {
   });
 
   it('should keep existing activePairId when one exists', () => {
-    sessionStorage.setItem('lingua-code.language-settings', JSON.stringify({
-      selectedCodes: [],
-      activePairId: 'existing-pair',
-      configuredPairs: [{ id: 'existing-pair', known: 'en', learning: 'zh' }],
-    }));
+    sessionStorage.setItem(
+      'lingua-code.language-settings',
+      JSON.stringify({
+        selectedCodes: [],
+        activePairId: 'existing-pair',
+        configuredPairs: [{ id: 'existing-pair', known: 'en', learning: 'zh' }],
+      }),
+    );
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
@@ -233,9 +276,39 @@ describe('LanguageSettingsStore', () => {
   it('should get available languages from languageService', () => {
     const langs = store.getAvailableLanguages();
     expect(langs).toEqual([
-      { id: 1, code: 'en', displayName: 'English', nativeName: 'English', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
-      { id: 2, code: 'zh', displayName: 'Chinese', nativeName: '中文', writingDir: 'ltr', supportsTones: true, supportsPinyin: true, fontFamily: '', activeFlag: true },
-      { id: 3, code: 'ru', displayName: 'Russian', nativeName: 'Русский', writingDir: 'ltr', supportsTones: false, supportsPinyin: false, fontFamily: '', activeFlag: true },
+      {
+        id: 1,
+        code: 'en',
+        displayName: 'English',
+        nativeName: 'English',
+        writingDir: 'ltr',
+        supportsTones: false,
+        supportsPinyin: false,
+        fontFamily: '',
+        activeFlag: true,
+      },
+      {
+        id: 2,
+        code: 'zh',
+        displayName: 'Chinese',
+        nativeName: '中文',
+        writingDir: 'ltr',
+        supportsTones: true,
+        supportsPinyin: true,
+        fontFamily: '',
+        activeFlag: true,
+      },
+      {
+        id: 3,
+        code: 'ru',
+        displayName: 'Russian',
+        nativeName: 'Русский',
+        writingDir: 'ltr',
+        supportsTones: false,
+        supportsPinyin: false,
+        fontFamily: '',
+        activeFlag: true,
+      },
     ]);
   });
 

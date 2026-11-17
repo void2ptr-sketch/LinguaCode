@@ -19,11 +19,13 @@ describe('authGuard', () => {
 
   const run = (): boolean =>
     TestBed.runInInjectionContext(() =>
-      (authGuard as (route: Route, segments: UrlSegment[], snapshot: PartialMatchRouteSnapshot) => boolean)(
-        {} as Route,
-        [] as UrlSegment[],
-        {} as PartialMatchRouteSnapshot,
-      ),
+      (
+        authGuard as (
+          route: Route,
+          segments: UrlSegment[],
+          snapshot: PartialMatchRouteSnapshot,
+        ) => boolean
+      )({} as Route, [] as UrlSegment[], {} as PartialMatchRouteSnapshot),
     );
 
   it('allows authenticated user', () => {
