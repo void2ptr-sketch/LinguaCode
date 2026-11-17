@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { retryInterceptor } from './retry.interceptor';
 import { isRetryableError } from '../../../shared/api/api-error.utils';
-import { timer } from 'rxjs';
+import { isApiRequest } from '../../../shared/api/api-url';
 
 describe('retryInterceptor', () => {
   it('should be defined', () => {
@@ -13,7 +13,13 @@ describe('retryInterceptor', () => {
     expect(isRetryableError).toBeDefined();
   });
 
-  it('should use exponential backoff delay', () => {
-    expect(timer).toBeDefined();
+  it('should recognize API requests', () => {
+    expect(isApiRequest('/api/v1/cards')).toBe(true);
+    expect(isApiRequest('/api/v1/scenarios')).toBe(true);
+  });
+
+  it('should not recognize non-API URLs', () => {
+    expect(isApiRequest('/assets/data.json')).toBe(false);
+    expect(isApiRequest('https://example.com/api')).toBe(false);
   });
 });
