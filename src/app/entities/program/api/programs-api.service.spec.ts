@@ -375,4 +375,182 @@ describe('ProgramsApiService', () => {
     const result = await promise;
     expect(result.items[0].lessonCount).toBe(0);
   });
+
+  // ── mapProgram null branches ──
+
+  it('should use empty defaults when mapProgram receives all null fields', async () => {
+    const promise = service.getById('1');
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1')));
+    req.flush({
+      data: {
+        id: null,
+        courseId: null,
+        title: null,
+        programDescription: null,
+        description: null,
+        lessonIds: null,
+        order: null,
+        updatedAt: null,
+      },
+    });
+
+    const result = await promise;
+    expect(result.id).toBe('');
+    expect(result.courseId).toBe('');
+    expect(result.title).toBe('');
+    expect(result.description).toBe('');
+    expect(result.lessonIds).toEqual([]);
+    expect(result.order).toBe(0);
+    expect(result.updatedAt).toBe('');
+  });
+
+  it('should use empty defaults when mapProgram receives undefined fields', async () => {
+    const promise = service.getById('1');
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1')));
+    req.flush({
+      data: {},
+    });
+
+    const result = await promise;
+    expect(result.id).toBe('');
+    expect(result.courseId).toBe('');
+    expect(result.title).toBe('');
+    expect(result.description).toBe('');
+    expect(result.lessonIds).toEqual([]);
+    expect(result.order).toBe(0);
+    expect(result.updatedAt).toBe('');
+  });
+
+  // ── mapProgramWithLessons null branches ──
+
+  it('should handle null fields in getByCourseWithLessons program data', async () => {
+    const promise = service.getByCourseWithLessons('1');
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/by-course/1/with-lessons')));
+    req.flush({
+      data: [{
+        id: null,
+        courseId: null,
+        title: null,
+        lessonIds: null,
+        order: null,
+        updatedAt: null,
+        lessons: [{
+          id: null,
+          programId: null,
+          title: null,
+          lessonDescription: null,
+          scenarioIds: null,
+          prerequisiteLessonIds: null,
+          lessonOrder: null,
+          updatedAt: null,
+        }],
+      }],
+    });
+
+    const result = await promise;
+    expect(result[0].id).toBe('');
+    expect(result[0].title).toBe('');
+    expect(result[0].lessons[0].id).toBe('');
+    expect(result[0].lessons[0].programId).toBe('');
+    expect(result[0].lessons[0].title).toBe('');
+    expect(result[0].lessons[0].description).toBe('');
+    expect(result[0].lessons[0].scenarioIds).toEqual([]);
+    expect(result[0].lessons[0].prerequisiteLessonIds).toEqual([]);
+    expect(result[0].lessons[0].order).toBe(0);
+    expect(result[0].lessons[0].updatedAt).toBe('');
+  });
+
+  // ── buildProgramSearchParams without page ──
+  // Note: page is required by ProgramSearchCriteria type, so the
+  // `if (criteria.page)` branch is always truthy at runtime.
+  // We still verify page params are passed through correctly.
+
+  it('should pass page params through when provided', async () => {
+    const promise = service.search({ query: 'test', page: { page: 2, pageSize: 25 } });
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/search')));
+    expect(req.request.params.get('page')).toBe('2');
+    expect(req.request.params.get('pageSize')).toBe('25');
+    req.flush({ data: [], total: 0 });
+    await promise;
+  });
+
+  // ── mapLesson null branches ──
+
+  it('should use empty defaults when mapLesson receives all null fields', async () => {
+    const promise = service.getLessons('1');
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1/lessons')));
+    req.flush({
+      data: [{
+        id: null,
+        programId: null,
+        title: null,
+        lessonDescription: null,
+        scenarioIds: null,
+        prerequisiteLessonIds: null,
+        lessonOrder: null,
+        updatedAt: null,
+      }],
+    });
+
+    const result = await promise;
+    expect(result[0].id).toBe('');
+    expect(result[0].programId).toBe('');
+    expect(result[0].title).toBe('');
+    expect(result[0].description).toBe('');
+    expect(result[0].scenarioIds).toEqual([]);
+    expect(result[0].prerequisiteLessonIds).toEqual([]);
+    expect(result[0].order).toBe(0);
+    expect(result[0].updatedAt).toBe('');
+  });
+
+  it('should use empty defaults when mapLesson receives undefined fields', async () => {
+    const promise = service.getLessons('1');
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/1/lessons')));
+    req.flush({
+      data: [{}],
+    });
+
+    const result = await promise;
+    expect(result[0].id).toBe('');
+    expect(result[0].programId).toBe('');
+    expect(result[0].title).toBe('');
+    expect(result[0].description).toBe('');
+    expect(result[0].scenarioIds).toEqual([]);
+    expect(result[0].prerequisiteLessonIds).toEqual([]);
+    expect(result[0].order).toBe(0);
+    expect(result[0].updatedAt).toBe('');
+  });
+
+  // ── mapProgramIndexEntry null branches ──
+
+  it('should use empty defaults when mapProgramIndexEntry receives null fields', async () => {
+    const promise = service.search({ page: { page: 0, pageSize: 10 } });
+
+    const req = httpMock.expectOne(matchUrl(buildApiUrl('/programs/search')));
+    req.flush({
+      data: [{
+        id: null,
+        courseId: null,
+        title: null,
+        lessonIds: null,
+        order: null,
+        updatedAt: null,
+      }],
+      total: 1,
+    });
+
+    const result = await promise;
+    expect(result.items[0].id).toBe('');
+    expect(result.items[0].courseId).toBe('');
+    expect(result.items[0].title).toBe('');
+    expect(result.items[0].order).toBe(0);
+    expect(result.items[0].updatedAt).toBe('');
+    expect(result.items[0].lessonCount).toBe(0);
+  });
 });
