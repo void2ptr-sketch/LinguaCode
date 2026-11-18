@@ -48,13 +48,7 @@
                 "title": "Приветствия (китайский)",
                 "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "select-zh-1",
-                    "memory-zh-1",
-                    "symbol-zh-1",
-                    "sound-zh-1"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -279,12 +273,7 @@
                 "title": "Закрепление (китайский)",
                 "description": "3 карточки: на время, выбор и пары.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "timed-zh-1",
-                    "select-zh-1",
-                    "memory-zh-1"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,

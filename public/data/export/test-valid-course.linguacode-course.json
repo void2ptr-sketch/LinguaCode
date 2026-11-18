@@ -45,8 +45,7 @@
                 "title": "S",
                 "description": "",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": []
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "updatedAt": "2026-11-18T05:23:22.997Z"

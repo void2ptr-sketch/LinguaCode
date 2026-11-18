@@ -51,12 +51,7 @@
                 "title": "Что такое scalar context и list context?",
                 "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s01-q01-c1",
-                    "card-perl-s01-q01-c2",
-                    "card-perl-s01-q01-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -198,13 +193,7 @@
                 "title": "Что вернёт `@array` в scalar context?",
                 "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s01-q02-c1",
-                    "card-perl-s01-q02-c2",
-                    "card-perl-s01-q02-c3",
-                    "card-perl-s01-q02-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -385,12 +374,7 @@
                 "title": "Чем отличаются sigils `$`, `@`, `%`?",
                 "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s01-q03-c1",
-                    "card-perl-s01-q03-c2",
-                    "card-perl-s01-q03-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -532,13 +516,7 @@
                 "title": "Когда используется `undef`?",
                 "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s01-q04-c1",
-                    "card-perl-s01-q04-c2",
-                    "card-perl-s01-q04-c3",
-                    "card-perl-s01-q04-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -731,13 +709,7 @@
                 "title": "Зачем подключать `use strict`?",
                 "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s02-q01-c1",
-                    "card-perl-s02-q01-c2",
-                    "card-perl-s02-q01-c3",
-                    "card-perl-s02-q01-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -918,12 +890,7 @@
                 "title": "Что даёт `use warnings`?",
                 "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s02-q02-c1",
-                    "card-perl-s02-q02-c2",
-                    "card-perl-s02-q02-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -1065,13 +1032,7 @@
                 "title": "Разница между `my`, `our` и глобальными переменными?",
                 "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s02-q03-c1",
-                    "card-perl-s02-q03-c2",
-                    "card-perl-s02-q03-c3",
-                    "card-perl-s02-q03-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -1252,12 +1213,7 @@
                 "title": "Что такое `use feature 'say'`?",
                 "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s02-q04-c1",
-                    "card-perl-s02-q04-c2",
-                    "card-perl-s02-q04-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -1411,12 +1367,7 @@
                 "title": "Как работают захваты `$1`, `$2` в regex?",
                 "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s03-q01-c1",
-                    "card-perl-s03-q01-c2",
-                    "card-perl-s03-q01-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -1558,13 +1509,7 @@
                 "title": "Что делают модификаторы `/g`, `/i`, `/x`?",
                 "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s03-q02-c1",
-                    "card-perl-s03-q02-c2",
-                    "card-perl-s03-q02-c3",
-                    "card-perl-s03-q02-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -1745,12 +1690,7 @@
                 "title": "Разница между `=~` и `!~`?",
                 "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s03-q03-c1",
-                    "card-perl-s03-q03-c2",
-                    "card-perl-s03-q03-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -1892,13 +1832,7 @@
                 "title": "Зачем использовать `qr//`?",
                 "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s03-q04-c1",
-                    "card-perl-s03-q04-c2",
-                    "card-perl-s03-q04-c3",
-                    "card-perl-s03-q04-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -2091,13 +2025,7 @@
                 "title": "Как устроен `@_` в подпрограмме?",
                 "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s04-q01-c1",
-                    "card-perl-s04-q01-c2",
-                    "card-perl-s04-q01-c3",
-                    "card-perl-s04-q01-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -2278,12 +2206,7 @@
                 "title": "Когда применять `map` и `grep`?",
                 "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s04-q02-c1",
-                    "card-perl-s04-q02-c2",
-                    "card-perl-s04-q02-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -2425,13 +2348,7 @@
                 "title": "Что делает оператор `<=>` (spaceship)?",
                 "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s04-q03-c1",
-                    "card-perl-s04-q03-c2",
-                    "card-perl-s04-q03-c3",
-                    "card-perl-s04-q03-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -2612,12 +2529,7 @@
                 "title": "Разница между `sort` и `sort { ... }`?",
                 "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s04-q04-c1",
-                    "card-perl-s04-q04-c2",
-                    "card-perl-s04-q04-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -2771,12 +2683,7 @@
                 "title": "Как подключить модуль через `use` и `require`?",
                 "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s05-q01-c1",
-                    "card-perl-s05-q01-c2",
-                    "card-perl-s05-q01-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -2918,13 +2825,7 @@
                 "title": "Базовый синтаксис bless для ООП в Perl?",
                 "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s05-q02-c1",
-                    "card-perl-s05-q02-c2",
-                    "card-perl-s05-q02-c3",
-                    "card-perl-s05-q02-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -3105,12 +3006,7 @@
                 "title": "Как безопасно открыть файл и обработать ошибки?",
                 "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s05-q03-c1",
-                    "card-perl-s05-q03-c2",
-                    "card-perl-s05-q03-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -3252,13 +3148,7 @@
                 "title": "Типовые red flags в Perl-коде на собеседовании?",
                 "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s05-q04-c1",
-                    "card-perl-s05-q04-c2",
-                    "card-perl-s05-q04-c3",
-                    "card-perl-s05-q04-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -3451,13 +3341,7 @@
                 "title": "Что такое DBI и DBD в Perl?",
                 "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s06-q01-c1",
-                    "card-perl-s06-q01-c2",
-                    "card-perl-s06-q01-c3",
-                    "card-perl-s06-q01-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -3638,12 +3522,7 @@
                 "title": "Как безопасно передать параметры в SQL через DBI?",
                 "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s06-q02-c1",
-                    "card-perl-s06-q02-c2",
-                    "card-perl-s06-q02-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -3785,13 +3664,7 @@
                 "title": "Чем `$sth->execute` отличается от `$dbh->do`?",
                 "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s06-q03-c1",
-                    "card-perl-s06-q03-c2",
-                    "card-perl-s06-q03-c3",
-                    "card-perl-s06-q03-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -3972,12 +3845,7 @@
                 "title": "Как отключить AutoCommit для транзакции в DBI?",
                 "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s06-q04-c1",
-                    "card-perl-s06-q04-c2",
-                    "card-perl-s06-q04-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -4119,13 +3987,7 @@
                 "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)?",
                 "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s06-q05-c1",
-                    "card-perl-s06-q05-c2",
-                    "card-perl-s06-q05-c3",
-                    "card-perl-s06-q05-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -4318,12 +4180,7 @@
                 "title": "Для чего использовался модуль CGI в Perl?",
                 "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s07-q01-c1",
-                    "card-perl-s07-q01-c2",
-                    "card-perl-s07-q01-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -4465,13 +4322,7 @@
                 "title": "Как получить параметры GET/POST через CGI?",
                 "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s07-q02-c1",
-                    "card-perl-s07-q02-c2",
-                    "card-perl-s07-q02-c3",
-                    "card-perl-s07-q02-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -4652,12 +4503,7 @@
                 "title": "Зачем в CGI-скрипте вызывают `binmode STDOUT`?",
                 "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s07-q03-c1",
-                    "card-perl-s07-q03-c2",
-                    "card-perl-s07-q03-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -4799,13 +4645,7 @@
                 "title": "Как отправить заголовок Content-Type перед телом ответа?",
                 "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s07-q04-c1",
-                    "card-perl-s07-q04-c2",
-                    "card-perl-s07-q04-c3",
-                    "card-perl-s07-q04-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -4986,12 +4826,7 @@
                 "title": "Почему CGI-серверный Perl часто заменяют PSGI/Plack?",
                 "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s07-q05-c1",
-                    "card-perl-s07-q05-c2",
-                    "card-perl-s07-q05-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -5145,13 +4980,7 @@
                 "title": "Какой DSN используют для подключения к Oracle через DBI?",
                 "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s08-q01-c1",
-                    "card-perl-s08-q01-c2",
-                    "card-perl-s08-q01-c3",
-                    "card-perl-s08-q01-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -5336,12 +5165,7 @@
                 "title": "Какие placeholders поддерживает DBD::Oracle?",
                 "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s08-q02-c1",
-                    "card-perl-s08-q02-c2",
-                    "card-perl-s08-q02-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -5486,13 +5310,7 @@
                 "title": "Как указать SID или service name в DBI DSN?",
                 "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s08-q03-c1",
-                    "card-perl-s08-q03-c2",
-                    "card-perl-s08-q03-c3",
-                    "card-perl-s08-q03-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -5677,12 +5495,7 @@
                 "title": "Как вызвать хранимую процедуру PL/SQL через DBI?",
                 "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s08-q04-c1",
-                    "card-perl-s08-q04-c2",
-                    "card-perl-s08-q04-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
@@ -5827,13 +5640,7 @@
                 "title": "Как читать CLOB/BLOB через DBD::Oracle?",
                 "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
                 "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "card-perl-s08-q05-c1",
-                    "card-perl-s08-q05-c2",
-                    "card-perl-s08-q05-c3",
-                    "card-perl-s08-q05-code"
-                  ]
+                  "mode": "fixed"
                 },
                 "order": 0,
                 "published": true,
