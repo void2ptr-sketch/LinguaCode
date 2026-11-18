@@ -54,17 +54,17 @@ describe('course-authoring.utils', () => {
     });
 
     it('should normalize empty authoring to undefined', () => {
-      const result = normalizeCourseAuthoring({ idea: '', status: 'draft' });
+      const result = normalizeCourseAuthoring({ idea: '', status: 'draft', lastError: null });
       expect(result).toBeUndefined();
     });
 
     it('should normalize authoring with trimmed empty idea to undefined', () => {
-      const result = normalizeCourseAuthoring({ idea: '   ', status: 'draft' });
+      const result = normalizeCourseAuthoring({ idea: '   ', status: 'draft', lastError: null });
       expect(result).toBeUndefined();
     });
 
     it('should keep authoring with non-empty idea', () => {
-      const result = normalizeCourseAuthoring({ idea: 'My idea', status: 'draft' });
+      const result = normalizeCourseAuthoring({ idea: 'My idea', status: 'draft', lastError: null });
       expect(result).toBeDefined();
       expect(result!.idea).toBe('My idea');
       expect(result!.status).toBe('draft');
@@ -74,6 +74,7 @@ describe('course-authoring.utils', () => {
       const result = normalizeCourseAuthoring({
         idea: 'Test',
         status: 'invalid' as never,
+        lastError: null,
       });
       expect(result!.status).toBe('draft');
     });
@@ -84,6 +85,7 @@ describe('course-authoring.utils', () => {
         idea: 'Test',
         status: 'draft',
         ideaUpdatedAt: ts,
+        lastError: null,
       });
       expect(result!.ideaUpdatedAt).toBe(ts);
     });
@@ -94,6 +96,7 @@ describe('course-authoring.utils', () => {
         idea: 'Test',
         status: 'draft',
         materializedAt: ts,
+        lastError: null,
       });
       expect(result!.materializedAt).toBe(ts);
     });
@@ -113,6 +116,7 @@ describe('course-authoring.utils', () => {
         idea: '',
         status: 'draft',
         materializedAt: ts,
+        lastError: null,
       });
       expect(result).toBeDefined();
     });
@@ -131,45 +135,45 @@ describe('course-authoring.utils', () => {
 
   describe('courseAuthoringWithIdea', () => {
     it('should return same authoring when idea is unchanged', () => {
-      const authoring = { idea: 'Test', status: 'draft' as const };
+      const authoring = { idea: 'Test', status: 'draft' as const, lastError: null };
       const result = courseAuthoringWithIdea(authoring, 'Test');
       expect(result.idea).toBe('Test');
       expect(result.status).toBe('draft');
     });
 
     it('should update idea when different', () => {
-      const authoring = { idea: 'Old', status: 'draft' as const };
+      const authoring = { idea: 'Old', status: 'draft' as const, lastError: null };
       const result = courseAuthoringWithIdea(authoring, 'New');
       expect(result.idea).toBe('New');
       expect(result.ideaUpdatedAt).toBeDefined();
     });
 
     it('should reset status from materialized to draft when idea changes', () => {
-      const authoring = { idea: 'Old', status: 'materialized' as const };
+      const authoring = { idea: 'Old', status: 'materialized' as const, lastError: null };
       const result = courseAuthoringWithIdea(authoring, 'New');
       expect(result.status).toBe('draft');
     });
 
     it('should preserve status when idea unchanged', () => {
-      const authoring = { idea: 'Same', status: 'materialized' as const };
+      const authoring = { idea: 'Same', status: 'materialized' as const, lastError: null };
       const result = courseAuthoringWithIdea(authoring, 'Same');
       expect(result.status).toBe('materialized');
     });
 
     it('should preserve status when idea changes from non-materialized', () => {
-      const authoring = { idea: 'Old', status: 'generating' as const };
+      const authoring = { idea: 'Old', status: 'generating' as const, lastError: null };
       const result = courseAuthoringWithIdea(authoring, 'New');
       expect(result.status).toBe('generating');
     });
 
     it('should trim whitespace when comparing ideas', () => {
-      const authoring = { idea: '  Test  ', status: 'draft' as const };
+      const authoring = { idea: '  Test  ', status: 'draft' as const, lastError: null };
       const result = courseAuthoringWithIdea(authoring, 'Test');
       expect(result.idea).toBe('Test');
     });
 
     it('should update idea when whitespace differs', () => {
-      const authoring = { idea: 'Test', status: 'draft' as const };
+      const authoring = { idea: 'Test', status: 'draft' as const, lastError: null };
       const result = courseAuthoringWithIdea(authoring, '  Test  ');
       expect(result.idea).toBe('  Test  ');
     });
@@ -179,21 +183,21 @@ describe('course-authoring.utils', () => {
 
   describe('sameCourseAuthoring', () => {
     it('should return true for equal authorings', () => {
-      const a = { idea: 'Test', status: 'draft' as const };
+      const a = { idea: 'Test', status: 'draft' as const, lastError: null };
       expect(sameCourseAuthoring(a, a)).toBe(true);
     });
 
     it('should return true for structurally equal authorings', () => {
-      const a = { idea: 'Test', status: 'draft' as const };
-      const b = { idea: 'Test', status: 'draft' as const };
+      const a = { idea: 'Test', status: 'draft' as const, lastError: null };
+      const b = { idea: 'Test', status: 'draft' as const, lastError: null };
       expect(sameCourseAuthoring(a, b)).toBe(true);
     });
 
     it('should return false for different ideas', () => {
       expect(
         sameCourseAuthoring(
-          { idea: 'A', status: 'draft' as const },
-          { idea: 'B', status: 'draft' as const },
+          { idea: 'A', status: 'draft' as const, lastError: null },
+          { idea: 'B', status: 'draft' as const, lastError: null },
         ),
       ).toBe(false);
     });
@@ -203,11 +207,11 @@ describe('course-authoring.utils', () => {
     });
 
     it('should return true for undefined and empty', () => {
-      expect(sameCourseAuthoring(undefined, { idea: '', status: 'draft' })).toBe(true);
+      expect(sameCourseAuthoring(undefined, { idea: '', status: 'draft', lastError: null })).toBe(true);
     });
 
     it('should return false for undefined and non-empty', () => {
-      expect(sameCourseAuthoring(undefined, { idea: 'Test', status: 'draft' as const })).toBe(
+      expect(sameCourseAuthoring(undefined, { idea: 'Test', status: 'draft' as const, lastError: null })).toBe(
         false,
       );
     });
@@ -215,8 +219,8 @@ describe('course-authoring.utils', () => {
     it('should return false when only whitespace differs in idea', () => {
       expect(
         sameCourseAuthoring(
-          { idea: '  Test  ', status: 'draft' as const },
-          { idea: 'Test', status: 'draft' as const },
+          { idea: '  Test  ', status: 'draft' as const, lastError: null },
+          { idea: 'Test', status: 'draft' as const, lastError: null },
         ),
       ).toBe(false);
     });
@@ -231,7 +235,7 @@ describe('course-authoring.utils', () => {
 
     it('should prefer legacy nested authoring over flat fields', () => {
       const result = buildCourseAuthoringFromApi({
-        authoring: { idea: 'Legacy', status: 'draft' },
+        authoring: { idea: 'Legacy', status: 'draft', lastError: null },
         authoringIdea: 'Flat',
         authoringStatus: 'draft',
       });

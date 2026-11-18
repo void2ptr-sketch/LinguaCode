@@ -19,10 +19,7 @@
       "ideaUpdatedAt": "2026-11-18T05:23:22.640Z",
       "materializedAt": "2026-11-18T05:23:22.640Z",
       "lastError": null
-    },
-    "programIds": [
-      "course-demo-card-kinds-program"
-    ]
+    }
   },
   "programs": [
     {
@@ -30,12 +27,6 @@
         "id": "course-demo-card-kinds-program",
         "title": "Все типы карточек — Демо",
         "description": "Демо-программа ru→en: обзор всех 13 типов карточек, по сценарию на каждый тип.",
-        "courseId": "course-demo-card-kinds",
-        "lessonIds": [
-          "demo-lesson-card-kinds-1",
-          "demo-lesson-card-kinds-2",
-          "demo-lesson-card-kinds-3"
-        ],
         "order": 0,
         "prerequisiteProgramIds": [],
         "updatedAt": "2026-11-18T05:23:22.640Z"
@@ -47,18 +38,9 @@
             "id": "demo-lesson-card-kinds-1",
             "title": "Часть 1: выбор, код, память, символы, звук",
             "description": "5 сценариев: select, code-select, memory, symbol, sound.",
-            "programId": "course-demo-card-kinds-program",
-            "scenarioIds": [
-              "scenario-demo-select",
-              "scenario-demo-code-select",
-              "scenario-demo-memory",
-              "scenario-demo-symbol",
-              "scenario-demo-sound"
-            ],
             "prerequisiteLessonIds": [],
             "order": 0,
-            "updatedAt": "2026-11-18T05:23:22.640Z",
-            "courseId": "course-demo-card-kinds"
+            "updatedAt": "2026-11-18T05:23:22.640Z"
           },
           "order": 0,
           "scenarios": [
@@ -67,9 +49,6 @@
                 "id": "scenario-demo-select",
                 "title": "Выбор ответа",
                 "description": "Выбор правильного перевода из вариантов (kind: select).",
-                "lessonId": "demo-lesson-card-kinds-1",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -105,10 +84,7 @@
                       "Спасибо",
                       "Пожалуйста"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-1",
-                    "scenarioId": "scenario-demo-select"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -127,9 +103,6 @@
                 "id": "scenario-demo-code-select",
                 "title": "Код: выбор ответа",
                 "description": "Выбор корректного фрагмента кода (kind: code-select).",
-                "lessonId": "demo-lesson-card-kinds-1",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -170,10 +143,7 @@
                     "prompt": {
                       "language": "cpp",
                       "code": "int value = 42;\n// допишите объявление ref"
-                    },
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-1",
-                    "scenarioId": "scenario-demo-code-select"
+                    }
                   },
                   "order": 0,
                   "meta": {
@@ -192,9 +162,6 @@
                 "id": "scenario-demo-memory",
                 "title": "Запоминание",
                 "description": "Сопоставление пар перевода (kind: memory).",
-                "lessonId": "demo-lesson-card-kinds-1",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -226,10 +193,7 @@
                         "known": "Пока",
                         "learning": "Bye"
                       }
-                    ],
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-1",
-                    "scenarioId": "scenario-demo-memory"
+                    ]
                   },
                   "order": 0,
                   "meta": {
@@ -248,9 +212,6 @@
                 "id": "scenario-demo-symbol",
                 "title": "Символы",
                 "description": "Выбор символа по значению (kind: symbol).",
-                "lessonId": "demo-lesson-card-kinds-1",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -286,10 +247,7 @@
                       "🌙",
                       "🔥",
                       "❄️"
-                    ],
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-1",
-                    "scenarioId": "scenario-demo-symbol"
+                    ]
                   },
                   "order": 0,
                   "meta": {
@@ -308,9 +266,6 @@
                 "id": "scenario-demo-sound",
                 "title": "Звук",
                 "description": "Распознавание слова на слух (kind: sound).",
-                "lessonId": "demo-lesson-card-kinds-1",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -341,10 +296,7 @@
                       "Пожалуйста"
                     ],
                     "correctIndex": 0,
-                    "audioLabelLearning": "Hello",
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-1",
-                    "scenarioId": "scenario-demo-sound"
+                    "audioLabelLearning": "Hello"
                   },
                   "order": 0,
                   "meta": {
@@ -365,18 +317,9 @@
             "id": "demo-lesson-card-kinds-2",
             "title": "Часть 2: время, клавиатура, рисование, тон, чтение",
             "description": "5 сценариев: timed, keyboard, draw, tone, reading.",
-            "programId": "course-demo-card-kinds-program",
-            "scenarioIds": [
-              "scenario-demo-timed",
-              "scenario-demo-keyboard",
-              "scenario-demo-draw",
-              "scenario-demo-tone",
-              "scenario-demo-reading"
-            ],
             "prerequisiteLessonIds": [],
             "order": 1,
-            "updatedAt": "2026-11-18T05:23:22.640Z",
-            "courseId": "course-demo-card-kinds"
+            "updatedAt": "2026-11-18T05:23:22.640Z"
           },
           "order": 1,
           "scenarios": [
@@ -385,9 +328,6 @@
                 "id": "scenario-demo-timed",
                 "title": "На время",
                 "description": "Ответ с ограничением по времени (kind: timed).",
-                "lessonId": "demo-lesson-card-kinds-2",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -422,10 +362,7 @@
                       "Goodbye"
                     ],
                     "correctIndex": 0,
-                    "timeLimitSec": 30,
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-2",
-                    "scenarioId": "scenario-demo-timed"
+                    "timeLimitSec": 30
                   },
                   "order": 0,
                   "meta": {
@@ -444,9 +381,6 @@
                 "id": "scenario-demo-keyboard",
                 "title": "Клавиатура",
                 "description": "Ввод ответа с клавиатуры (kind: keyboard).",
-                "lessonId": "demo-lesson-card-kinds-2",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -477,10 +411,7 @@
                     "acceptedAnswersLearning": [
                       "Hello",
                       "hello"
-                    ],
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-2",
-                    "scenarioId": "scenario-demo-keyboard"
+                    ]
                   },
                   "order": 0,
                   "meta": {
@@ -499,9 +430,6 @@
                 "id": "scenario-demo-draw",
                 "title": "Рисование",
                 "description": "Рисование символа на канвасе (kind: draw).",
-                "lessonId": "demo-lesson-card-kinds-2",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -525,10 +453,7 @@
                     },
                     "promptKnown": "Нарисуйте символ, связанный со словом Hello",
                     "referenceHintKnown": "Приветствие",
-                    "practiceMode": "freehand",
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-2",
-                    "scenarioId": "scenario-demo-draw"
+                    "practiceMode": "freehand"
                   },
                   "order": 0,
                   "meta": {
@@ -547,9 +472,6 @@
                 "id": "scenario-demo-tone",
                 "title": "Тон",
                 "description": "Определение тона слога (kind: tone, пример из китайского модуля).",
-                "lessonId": "demo-lesson-card-kinds-2",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -580,10 +502,7 @@
                       2,
                       3,
                       4
-                    ],
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-2",
-                    "scenarioId": "scenario-demo-tone"
+                    ]
                   },
                   "order": 0,
                   "meta": {
@@ -602,9 +521,6 @@
                 "id": "scenario-demo-reading",
                 "title": "Чтение (полифония)",
                 "description": "Чтение с выбором интерпретации (kind: reading, пример из китайского модуля).",
-                "lessonId": "demo-lesson-card-kinds-2",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -636,10 +552,7 @@
                       "инь хан — банк",
                       "неверное чтение «行» как xíng"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-2",
-                    "scenarioId": "scenario-demo-reading"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -660,16 +573,9 @@
             "id": "demo-lesson-card-kinds-3",
             "title": "Часть 3: переворот, пропуск, код-trace",
             "description": "3 сценария: flip, cloze, code-trace.",
-            "programId": "course-demo-card-kinds-program",
-            "scenarioIds": [
-              "scenario-demo-flip",
-              "scenario-demo-cloze",
-              "scenario-demo-code-trace"
-            ],
             "prerequisiteLessonIds": [],
             "order": 2,
-            "updatedAt": "2026-11-18T05:23:22.640Z",
-            "courseId": "course-demo-card-kinds"
+            "updatedAt": "2026-11-18T05:23:22.640Z"
           },
           "order": 2,
           "scenarios": [
@@ -678,9 +584,6 @@
                 "id": "scenario-demo-flip",
                 "title": "Переворот",
                 "description": "Классическая карточка-переворот (kind: flip).",
-                "lessonId": "demo-lesson-card-kinds-3",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -703,10 +606,7 @@
                       "fontSize": "md"
                     },
                     "front": "Здравствуйте!",
-                    "back": "Hello!",
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-3",
-                    "scenarioId": "scenario-demo-flip"
+                    "back": "Hello!"
                   },
                   "order": 0,
                   "meta": {
@@ -725,9 +625,6 @@
                 "id": "scenario-demo-cloze",
                 "title": "Пропуск в тексте",
                 "description": "Заполнение пропуска в предложении (kind: cloze).",
-                "lessonId": "demo-lesson-card-kinds-3",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -757,10 +654,7 @@
                       "drinking",
                       "to drink"
                     ],
-                    "correctAnswer": "drink",
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-3",
-                    "scenarioId": "scenario-demo-cloze"
+                    "correctAnswer": "drink"
                   },
                   "order": 0,
                   "meta": {
@@ -779,9 +673,6 @@
                 "id": "scenario-demo-code-trace",
                 "title": "Код: что выведет?",
                 "description": "Предсказание вывода кода (kind: code-trace).",
-                "lessonId": "demo-lesson-card-kinds-3",
-                "courseId": "course-demo-card-kinds",
-                "programId": "course-demo-card-kinds-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -815,10 +706,7 @@
                       "3",
                       "0"
                     ],
-                    "question": "Что выведет программа?",
-                    "courseId": "course-demo-card-kinds",
-                    "lessonId": "demo-lesson-card-kinds-3",
-                    "scenarioId": "scenario-demo-code-trace"
+                    "question": "Что выведет программа?"
                   },
                   "order": 0,
                   "meta": {

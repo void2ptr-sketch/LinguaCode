@@ -19,10 +19,7 @@
       "ideaUpdatedAt": "2026-11-18T05:23:22.821Z",
       "materializedAt": "2026-11-18T05:23:22.821Z",
       "lastError": null
-    },
-    "programIds": [
-      "course-zh-conversation-program"
-    ]
+    }
   },
   "programs": [
     {
@@ -30,11 +27,6 @@
         "id": "course-zh-conversation-program",
         "title": "Китайский: разговорная практика",
         "description": "Короткий курс для закрепления приветствий и смешанных упражнений.",
-        "courseId": "course-zh-conversation",
-        "lessonIds": [
-          "lesson-zh-quick-start",
-          "lesson-zh-review"
-        ],
         "order": 0,
         "prerequisiteProgramIds": [],
         "updatedAt": "2026-11-18T05:23:22.821Z"
@@ -46,14 +38,9 @@
             "id": "lesson-zh-quick-start",
             "title": "Быстрый старт",
             "description": "Первые фразы и базовые упражнения.",
-            "programId": "course-zh-conversation-program",
-            "scenarioIds": [
-              "scenario-zh-greetings"
-            ],
             "prerequisiteLessonIds": [],
             "order": 0,
-            "updatedAt": "2026-11-18T05:23:22.821Z",
-            "courseId": "course-zh-conversation"
+            "updatedAt": "2026-11-18T05:23:22.821Z"
           },
           "order": 0,
           "scenarios": [
@@ -62,9 +49,6 @@
                 "id": "scenario-zh-greetings",
                 "title": "Приветствия (китайский)",
                 "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование.",
-                "lessonId": "lesson-zh-quick-start",
-                "courseId": "course-zh-conversation",
-                "programId": "course-zh-conversation-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -103,10 +87,7 @@
                       "До свидания",
                       "Пожалуйста"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-zh-conversation",
-                    "lessonId": "lesson-zh-quick-start",
-                    "scenarioId": "scenario-zh-greetings"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -165,10 +146,7 @@
                           "ipa": "tsai˥˩ tɕiɛn˥˩"
                         }
                       }
-                    ],
-                    "courseId": "course-zh-conversation",
-                    "lessonId": "lesson-zh-quick-start",
-                    "scenarioId": "scenario-zh-greetings"
+                    ]
                   },
                   "order": 1,
                   "meta": {
@@ -241,10 +219,7 @@
                         "ipa": "tɕʰiŋ˨˩˦",
                         "glossKnown": "Пожалуйста"
                       }
-                    ],
-                    "courseId": "course-zh-conversation",
-                    "lessonId": "lesson-zh-quick-start",
-                    "scenarioId": "scenario-zh-greetings"
+                    ]
                   },
                   "order": 2,
                   "meta": {
@@ -274,10 +249,7 @@
                       "Пожалуйста"
                     ],
                     "correctIndex": 0,
-                    "audioLabelLearning": "你好",
-                    "courseId": "course-zh-conversation",
-                    "lessonId": "lesson-zh-quick-start",
-                    "scenarioId": "scenario-zh-greetings"
+                    "audioLabelLearning": "你好"
                   },
                   "order": 3,
                   "meta": {
@@ -298,16 +270,11 @@
             "id": "lesson-zh-review",
             "title": "Закрепление",
             "description": "Смешанная практика после быстрого старта.",
-            "programId": "course-zh-conversation-program",
-            "scenarioIds": [
-              "scenario-zh-review"
-            ],
             "prerequisiteLessonIds": [
               "lesson-zh-quick-start"
             ],
             "order": 1,
-            "updatedAt": "2026-11-18T05:23:22.821Z",
-            "courseId": "course-zh-conversation"
+            "updatedAt": "2026-11-18T05:23:22.821Z"
           },
           "order": 1,
           "scenarios": [
@@ -316,9 +283,6 @@
                 "id": "scenario-zh-review",
                 "title": "Закрепление (китайский)",
                 "description": "3 карточки: на время, выбор и пары.",
-                "lessonId": "lesson-zh-review",
-                "courseId": "course-zh-conversation",
-                "programId": "course-zh-conversation-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -355,10 +319,7 @@
                       "До свидания"
                     ],
                     "correctIndex": 0,
-                    "timeLimitSec": 30,
-                    "courseId": "course-zh-conversation",
-                    "lessonId": "lesson-zh-review",
-                    "scenarioId": "scenario-zh-review"
+                    "timeLimitSec": 30
                   },
                   "order": 0,
                   "meta": {
@@ -393,10 +354,7 @@
                       "До свидания",
                       "Пожалуйста"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-zh-conversation",
-                    "lessonId": "lesson-zh-review",
-                    "scenarioId": "scenario-zh-review"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -455,10 +413,7 @@
                           "ipa": "tsai˥˩ tɕiɛn˥˩"
                         }
                       }
-                    ],
-                    "courseId": "course-zh-conversation",
-                    "lessonId": "lesson-zh-review",
-                    "scenarioId": "scenario-zh-review"
+                    ]
                   },
                   "order": 2,
                   "meta": {

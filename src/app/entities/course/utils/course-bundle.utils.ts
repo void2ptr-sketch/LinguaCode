@@ -142,7 +142,10 @@ export function collectCourseBundle(
     const lexeme = (card as Record<string, unknown>)['promptLexeme'] as
       | { tones?: readonly ToneMark[] }
       | undefined;
-    return lexeme?.tones ?? null;
+    // Если promptLexeme отсутствует — возвращаем null (не undefined)
+    if (!lexeme) return null;
+    // Если tones есть — возвращаем; если undefined — null
+    return lexeme.tones ?? null;
   }
 
   const bundleMeta: Record<string, CardIndexMetaOverride> = {};
@@ -159,10 +162,11 @@ export function collectCourseBundle(
       continue;
     }
     // pinyin / tones — обязательные поля формата v2
+    // Приоритет: card.meta > cardIndexMeta > extract из card > null
     const meta: CardIndexMetaOverride = {
       ...baseMeta,
-      pinyin: baseMeta.pinyin ?? extractPinyin(card),
-      tones: baseMeta.tones ?? extractTones(card),
+      pinyin: baseMeta.pinyin ?? extractPinyin(card) ?? null,
+      tones: baseMeta.tones ?? extractTones(card) ?? null,
     };
     bundleMeta[cid] = meta;
   }
@@ -188,20 +192,50 @@ export function collectCourseBundle(
           const card = cardMap.get(cid);
           const meta = card ? bundleMeta[cid] : undefined;
           if (card && meta) {
-            bundledCards.push({ card, order: card.order ?? bundledCards.length, meta });
+            // Remove cross-entity references from card
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { courseId: _cc, lessonId: _cl, scenarioId: _cs, programId: _cp, ...cardClean } = card;
+            bundledCards.push({
+              card: {
+                ...cardClean,
+                authorId: card.authorId,
+                slug: card.slug,
+                published: card.published ?? true,
+                requiredTier: card.requiredTier,
+                order: card.order ?? bundledCards.length,
+              },
+              order: card.order ?? bundledCards.length,
+              meta,
+            });
           }
         }
       }
 
+      // Remove cross-entity references from scenario
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { lessonId: _sl, courseId: _sc, programId: _sp, ...scenarioClean } = scenario;
       bundledScenarios.push({
-        scenario,
+        scenario: {
+          ...scenarioClean,
+          authorId: scenario.authorId,
+          published: scenario.published ?? true,
+          requiredTier: scenario.requiredTier,
+        },
         order: scenario.order ?? bundledScenarios.length,
         cards: bundledCards,
       });
     }
 
+    // Remove cross-entity references from lesson
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { programId: _lp, courseId: _lc, ...lessonClean } = lesson;
     bundledLessons.push({
-      lesson,
+      lesson: {
+        ...lessonClean,
+        authorId: lesson.authorId,
+        published: lesson.published ?? true,
+        requiredTier: lesson.requiredTier,
+      },
       order: lesson.order ?? bundledLessons.length,
       scenarios: bundledScenarios,
     });
@@ -217,8 +251,15 @@ export function collectCourseBundle(
       }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { courseId: _programCourseId, ...programWithoutRef } = program;
     bundledPrograms.push({
-      program,
+      program: {
+        ...programWithoutRef,
+        prerequisiteProgramIds: program.prerequisiteProgramIds ?? [],
+        published: program.published ?? true,
+        requiredTier: program.requiredTier,
+      },
       order: program.order ?? bundledPrograms.length,
       lessons: programLessons,
     });
@@ -229,7 +270,22 @@ export function collectCourseBundle(
       formatVersion: 2,
       exportedAt: new Date().toISOString(),
       sourceAuthorId: course.authorId,
-      course,
+      course: {
+        ...course,
+        // Гарантируем presence обязательных полей v2
+        authorId: course.authorId ?? course.authorId,
+        slug: course.slug,
+        order: course.order,
+        practiceSettings: course.practiceSettings ?? { mode: 'guided' },
+        authoring: {
+          ...course.authoring,
+          // Гарантируем presence authoring полей
+          idea: course.authoring?.idea ?? '',
+          status: course.authoring?.status ?? 'draft',
+          materializedAt: course.authoring?.materializedAt,
+          lastError: course.authoring?.lastError ?? null,
+        },
+      },
       programs: bundledPrograms,
     },
     errors: [],

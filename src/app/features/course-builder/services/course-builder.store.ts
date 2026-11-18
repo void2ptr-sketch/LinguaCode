@@ -24,6 +24,10 @@ import type {
   CourseWithPrograms,
   CourseListScope,
 } from '../../../entities/course/model';
+import type { Lesson } from '../../../entities/course/model/lesson.types';
+import type { Program } from '../../../entities/program/model/program.types';
+import type { Scenario } from '../../../entities/scenario/model/scenario.types';
+import type { Card } from '../../../entities/card/model/card.types';
 import { sanitizeMarkdownText, sanitizePlainText } from '../../../shared/security';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { AuthStore } from '../../../entities/auth/services/auth.store';
@@ -550,10 +554,10 @@ export class CourseBuilderStore {
       const current = readUserContentOverlay();
       patchUserContentOverlay({
         courses: { ...current.courses, ...extracted.courses },
-        programs: { ...current.programs, ...extracted.programs },
-        lessons: { ...current.lessons, ...extracted.lessons },
-        scenarios: { ...current.scenarios, ...extracted.scenarios },
-        cards: { ...current.cards, ...extracted.cards },
+        programs: { ...current.programs, ...extracted.programs } as Record<string, Program>,
+        lessons: { ...current.lessons, ...extracted.lessons } as Record<string, Lesson>,
+        scenarios: { ...current.scenarios, ...extracted.scenarios } as Record<string, Scenario>,
+        cards: { ...current.cards, ...extracted.cards } as Record<string, Card>,
         cardIndexMeta: { ...current.cardIndexMeta, ...extracted.cardIndexMeta },
       });
       // Сбросить кэш ContentSeedRepository чтобы изменения отразились

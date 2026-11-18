@@ -18,7 +18,7 @@ function createCourse(): CourseWithPrograms {
     programIds: ['p1', 'p2'],
     published: true,
     updatedAt: '2026-01-01T00:00:00.000Z',
-    authoring: { idea: 'Идея курса', status: 'draft' },
+    authoring: { idea: 'Идея курса', status: 'draft', lastError: null },
     practiceSettings: { mode: 'guided' },
     programs: [
       {

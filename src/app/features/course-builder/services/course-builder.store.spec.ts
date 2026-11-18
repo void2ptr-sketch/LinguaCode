@@ -258,7 +258,7 @@ describe('CourseBuilderStore', () => {
       title: '',
       description: '',
       published: false,
-      authoring: { idea: '', status: 'draft' },
+      authoring: { idea: '', status: 'draft', lastError: null },
       programs: [
         {
           clientId: 'lc-1',
@@ -286,21 +286,22 @@ describe('CourseBuilderStore', () => {
   it('should not update course when read-only', async () => {
     store.editingCourse.set({
       id: 'c1',
-      title: 'Other Course',
-      authorId: 'other-user',
+      title: 'Old Title',
+      authorId: 'other-author',
       description: '',
       programs: [],
       programIds: [],
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
+      authoring: { idea: '', status: 'draft', lastError: null },
     } as CourseWithPrograms);
 
     const result = await store.updateCourse('c1', {
       title: 'Updated',
       description: '',
       published: false,
-      authoring: { idea: '', status: 'draft' },
+      authoring: { idea: '', status: 'draft', lastError: null },
       programs: [
         {
           clientId: 'lc-1',
@@ -474,7 +475,7 @@ describe('CourseBuilderStore', () => {
       title: 'New Course',
       description: 'A new course',
       published: false,
-      authoring: { idea: 'My idea', status: 'draft' },
+      authoring: { idea: 'My idea', status: 'draft', lastError: null },
       programs: [
         {
           clientId: 'lc-1',
@@ -523,6 +524,7 @@ describe('CourseBuilderStore', () => {
       published: false,
       languagePair: { known: 'ru', learning: 'en' },
       updatedAt: '',
+      authoring: { idea: '', status: 'draft', lastError: null },
     });
 
     mockCourseSearchService.search.mockResolvedValue({
@@ -537,7 +539,7 @@ describe('CourseBuilderStore', () => {
       title: 'Updated',
       description: '',
       published: false,
-      authoring: { idea: '', status: 'draft' },
+      authoring: { idea: '', status: 'draft', lastError: null },
       programs: [
         {
           clientId: 'lc-1',
@@ -587,7 +589,7 @@ describe('CourseBuilderStore', () => {
       title: 'Clean IDs Course',
       description: '',
       published: false,
-      authoring: { idea: '', status: 'draft' },
+      authoring: { idea: '', status: 'draft', lastError: null },
       programs: [
         {
           clientId: 'lc-1',
@@ -650,7 +652,7 @@ describe('CourseBuilderStore', () => {
       title: 'Failing Course',
       description: '',
       published: false,
-      authoring: { idea: '', status: 'draft' },
+      authoring: { idea: '', status: 'draft', lastError: null },
       programs: [
         {
           clientId: 'lc-1',
@@ -694,7 +696,7 @@ describe('CourseBuilderStore', () => {
       title: 'Updated',
       description: '',
       published: false,
-      authoring: { idea: '', status: 'draft' },
+      authoring: { idea: '', status: 'draft', lastError: null },
       programs: [
         {
           clientId: 'lc-1',

@@ -378,7 +378,7 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.materializedAt) {
       body['materializedAt'] = payload.materializedAt;
     }
-    if (payload.lastError !== undefined) {
+    if (payload.lastError !== undefined && payload.lastError !== null) {
       body['lastError'] = payload.lastError;
     }
     // practiceSettings is a JSONB column — the backend DTO expects a JSON string.
@@ -443,7 +443,7 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.materializedAt) {
       body['materializedAt'] = payload.materializedAt;
     }
-    if (payload.lastError !== undefined) {
+    if (payload.lastError !== undefined && payload.lastError !== null) {
       body['lastError'] = payload.lastError;
     }
     // practiceSettings is a JSONB column — the backend DTO expects a JSON string.

@@ -30,7 +30,7 @@ function flattenAuthoring(
     authoringIdea: authoring.idea,
     ideaUpdatedAt: authoring.ideaUpdatedAt,
     materializedAt: authoring.materializedAt,
-    lastError: authoring.lastError,
+    lastError: authoring.lastError ?? null,
   };
 }
 
@@ -154,11 +154,12 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
   });
 
   const normalized = normalizeCourseAuthoring(draft.authoring);
+  const flatAuthoring = flattenAuthoring(normalized);
   return {
     title: draft.title,
     description: draft.description,
     published: draft.published,
-    ...flattenAuthoring(normalized),
+    ...flatAuthoring,
     // Always forward status/idea (even when empty) so the form can clear
     // previously saved values. Timestamps/error are only forwarded when set.
     authoringStatus: draft.authoring.status,
@@ -167,6 +168,7 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
     requiredTier: draft.requiredTier,
     slug: draft.slug,
     programs,
+    lastError: 'lastError' in flatAuthoring ? flatAuthoring['lastError'] ?? null : null,
     // languagePairId is resolved to LanguagePair by the API service
     // (CoursesApiService.resolveLanguagePairId). The form draft stores the
     // numeric ID; the payload expects { known, learning } codes.

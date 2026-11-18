@@ -55,6 +55,7 @@ export function courseWithProgramsToWritePayload(course: CourseWithPrograms): Co
     published: course.published,
     languagePair: course.languagePair,
     programs,
+    lastError: null,
     ...(course.practiceSettings ? { practiceSettings: course.practiceSettings } : {}),
   };
 
@@ -64,7 +65,7 @@ export function courseWithProgramsToWritePayload(course: CourseWithPrograms): Co
     result.authoringIdea = course.authoring.idea;
     result.ideaUpdatedAt = course.authoring.ideaUpdatedAt;
     result.materializedAt = course.authoring.materializedAt;
-    result.lastError = course.authoring.lastError;
+    result.lastError = course.authoring.lastError ?? null;
   }
 
   return result;

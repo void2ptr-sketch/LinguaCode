@@ -98,6 +98,7 @@ describe('CoursePdfExportService', () => {
 - Как работать с карточками?
 - Как проходить тесты?`,
       status: 'draft',
+      lastError: null,
     },
     programs: [
       {
@@ -357,7 +358,7 @@ describe('CoursePdfExportService', () => {
     it('should handle empty idea', async () => {
       const emptyCourse: CourseWithPrograms = {
         ...mockCourse,
-        authoring: { idea: '', status: 'draft' },
+        authoring: { idea: '', status: 'draft', lastError: null }
       };
       await service.export(emptyCourse, false);
       expect(coursesApiMock.getBundle).toHaveBeenCalled();
@@ -366,7 +367,7 @@ describe('CoursePdfExportService', () => {
     it('should handle idea without stages', async () => {
       const noStagesCourse: CourseWithPrograms = {
         ...mockCourse,
-        authoring: { idea: 'Some text without stages', status: 'draft' },
+        authoring: { idea: 'Some text without stages', status: 'draft', lastError: null }
       };
       await service.export(noStagesCourse, false);
       expect(coursesApiMock.getBundle).toHaveBeenCalled();
@@ -381,6 +382,7 @@ describe('CoursePdfExportService', () => {
 - Это не вопрос
 - Ещё один вопрос?`,
           status: 'draft',
+          lastError: null,
         },
       };
       await service.export(courseWithNonQuestion, false);

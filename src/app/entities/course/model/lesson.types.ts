@@ -20,4 +20,6 @@ export type Lesson = {
   languagePairId?: number;
   /** Course ID this lesson belongs to (inherited from parent program → course). */
   courseId?: string;
+  /** ID of the lesson author. */
+  authorId?: string;
 };

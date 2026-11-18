@@ -22,10 +22,7 @@
       "idea": "# Идея программы: Собеседование на языке Perl\n\n<!-- Формат материализации:\n     ## Этап N: название  → 1 урок\n     - вопрос             → 1 сценарий (тема)\n     Карточки генерируются автоматически (2–3 на сценарий).\n     npm run export:content-seed -->\n\n## Цели\n\nПодготовка к техническому собеседованию по Perl: базовый синтаксис, контексты, модули, регулярные выражения, работа с данными.\n\n## Аудитория\n\nРазработчики с опытом в других языках, которым нужно быстро освежить Perl перед интервью.\n\n## Формат\n\n- Короткие сценарии с карточками «вопрос → ответ»\n- Акцент на типовых вопросах интервью, а не на полном учебнике\n\n## Темы (для тегов каталога)\n\n- Введение\n- Основы\n- Современный Perl\n- Инструменты\n- Архитектура и работа с легаси\n- Практика\n- ООП\n\n## Этап 1: Контексты и sigils\n\n- Что такое scalar context и list context?\n- Что вернёт `@array` в scalar context?\n- Чем отличаются sigils `$`, `@`, `%`?\n- Когда используется `undef`?\n\n## Этап 2: Строгость и объявления\n\n- Зачем подключать `use strict`?\n- Что даёт `use warnings`?\n- Разница между `my`, `our` и глобальными переменными?\n- Что такое `use feature 'say'`?\n\n## Этап 3: Регулярные выражения\n\n- Как работают захваты `$1`, `$2` в regex?\n- Что делают модификаторы `/g`, `/i`, `/x`?\n- Разница между `=~` и `!~`?\n- Зачем использовать `qr//`?\n\n## Этап 4: Подпрограммы и встроенные функции\n\n- Как устроен `@_` в подпрограмме?\n- Когда применять `map` и `grep`?\n- Что делает оператор `<=>` (spaceship)?\n- Разница между `sort` и `sort { ... }`?\n\n## Этап 5: Модули, ООП и практика на интервью\n\n- Как подключить модуль через `use` и `require`?\n- Базовый синтаксис bless для ООП в Perl?\n- Как безопасно открыть файл и обработать ошибки?\n- Типовые red flags в Perl-коде на собеседовании?\n\n## Этап 6: Базы данных\n\n- Что такое DBI и DBD в Perl?\n- Как безопасно передать параметры в SQL через DBI?\n- Чем `$sth->execute` отличается от `$dbh->do`?\n- Как отключить AutoCommit для транзакции в DBI?\n- Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)?\n\n## Этап 7: CGI\n\n- Для чего использовался модуль CGI в Perl?\n- Как получить параметры GET/POST через CGI?\n- Зачем в CGI-скрипте вызывают `binmode STDOUT`?\n- Как отправить заголовок Content-Type перед телом ответа?\n- Почему CGI-серверный Perl часто заменяют PSGI/Plack?\n\n## Этап 8: Oracle (DBD::Oracle)\n\n- Какой DSN используют для подключения к Oracle через DBI?\n- Какие placeholders поддерживает DBD::Oracle?\n- Как указать SID или service name в DBI DSN?\n- Как вызвать хранимую процедуру PL/SQL через DBI?\n- Как читать CLOB/BLOB через DBD::Oracle?",
       "status": "planned",
       "ideaUpdatedAt": "2026-06-14T18:00:00.000Z"
-    },
-    "programIds": [
-      "course-ru-perl-interview-program"
-    ]
+    }
   },
   "programs": [
     {
@@ -33,17 +30,6 @@
         "id": "course-ru-perl-interview-program",
         "title": "Собеседование на языке Perl",
         "description": "Подготовка к техническому собеседованию по Perl: программа сгенерирована из «Идеи программы».",
-        "courseId": "course-ru-perl-interview",
-        "lessonIds": [
-          "lesson-perl-interview-01",
-          "lesson-perl-interview-02",
-          "lesson-perl-interview-03",
-          "lesson-perl-interview-04",
-          "lesson-perl-interview-05",
-          "lesson-perl-interview-06",
-          "lesson-perl-interview-07",
-          "lesson-perl-interview-08"
-        ],
         "order": 0,
         "prerequisiteProgramIds": [],
         "updatedAt": "2026-11-18T05:23:22.906Z"
@@ -55,17 +41,9 @@
             "id": "lesson-perl-interview-01",
             "title": "Контексты и sigils",
             "description": "4 тем (сценариев) для этапа «Контексты и sigils».",
-            "programId": "course-ru-perl-interview-program",
-            "scenarioIds": [
-              "scenario-perl-s01-q01",
-              "scenario-perl-s01-q02",
-              "scenario-perl-s01-q03",
-              "scenario-perl-s01-q04"
-            ],
             "prerequisiteLessonIds": [],
             "order": 0,
-            "updatedAt": "2026-11-18T05:23:22.906Z",
-            "courseId": "course-ru-perl-interview"
+            "updatedAt": "2026-11-18T05:23:22.906Z"
           },
           "order": 0,
           "scenarios": [
@@ -74,9 +52,6 @@
                 "id": "scenario-perl-s01-q01",
                 "title": "Что такое scalar context и list context?",
                 "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-01",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -114,10 +89,7 @@
                       "Число vs строка",
                       "Только через strict"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q01"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -156,10 +128,7 @@
                       "Индекс последнего элемента",
                       "Явный scalar context"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q01"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -207,10 +176,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my @letters = qw(a b c);\nmy $n = @letters;  # $n = ?"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q01"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -233,9 +199,6 @@
                 "id": "scenario-perl-s01-q02",
                 "title": "Что вернёт `@array` в scalar context?",
                 "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-01",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -274,10 +237,7 @@
                       "Хеш",
                       "undef"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q02"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -316,10 +276,7 @@
                       "нет length для @",
                       "индекс последнего, не count"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q02"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -358,10 +315,7 @@
                       "0",
                       "-1 для пустого"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q02"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -409,10 +363,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my @items = qw(x y z);\nprint scalar @items;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q02"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -435,9 +386,6 @@
                 "id": "scenario-perl-s01-q03",
                 "title": "Чем отличаются sigils `$`, `@`, `%`?",
                 "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-01",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -475,10 +423,7 @@
                       "перепутаны",
                       "перепутаны"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q03"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -517,10 +462,7 @@
                       "Хеш",
                       "Ссылка на хеш"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q03"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -568,10 +510,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "@data = qw(one two three);"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q03"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -594,9 +533,6 @@
                 "id": "scenario-perl-s01-q04",
                 "title": "Когда используется `undef`?",
                 "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-01",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -635,10 +571,7 @@
                       "NULL в regex",
                       "Удаление из @INC"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q04"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -677,10 +610,7 @@
                       "2 не-undef",
                       "undef"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q04"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -719,10 +649,7 @@
                       "length",
                       "нет такой функции"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q04"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -770,10 +697,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my @arr = (undef, 1);\nprint scalar @arr;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q04"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -798,19 +722,11 @@
             "id": "lesson-perl-interview-02",
             "title": "Строгость и объявления",
             "description": "4 тем (сценариев) для этапа «Строгость и объявления».",
-            "programId": "course-ru-perl-interview-program",
-            "scenarioIds": [
-              "scenario-perl-s02-q01",
-              "scenario-perl-s02-q02",
-              "scenario-perl-s02-q03",
-              "scenario-perl-s02-q04"
-            ],
             "prerequisiteLessonIds": [
               "lesson-perl-interview-01"
             ],
             "order": 1,
-            "updatedAt": "2026-11-18T05:23:22.906Z",
-            "courseId": "course-ru-perl-interview"
+            "updatedAt": "2026-11-18T05:23:22.906Z"
           },
           "order": 1,
           "scenarios": [
@@ -819,9 +735,6 @@
                 "id": "scenario-perl-s02-q01",
                 "title": "Зачем подключать `use strict`?",
                 "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-02",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -860,10 +773,7 @@
                       "Только ОО",
                       "Отключение warnings"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q01"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -902,10 +812,7 @@
                       "strict refs",
                       "не часть strict"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q01"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -944,10 +851,7 @@
                       "Autofix",
                       "Только warning"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q01"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -995,10 +899,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "#!/usr/bin/env perl\n# pragma missing\n$name = \"Perl\";"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q01"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -1021,9 +922,6 @@
                 "id": "scenario-perl-s02-q02",
                 "title": "Что даёт `use warnings`?",
                 "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-02",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -1061,10 +959,7 @@
                       "Всегда die",
                       "Отключает strict"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q02"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -1103,10 +998,7 @@
                       "-P",
                       "только fatal"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q02"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -1154,10 +1046,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use warnings;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q02"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -1180,9 +1069,6 @@
                 "id": "scenario-perl-s02-q03",
                 "title": "Разница между `my`, `our` и глобальными переменными?",
                 "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-02",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -1221,10 +1107,7 @@
                       "не объявлена — ошибка strict",
                       "local — динамическая, не my"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q03"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -1263,10 +1146,7 @@
                       "Нет разницы",
                       "Только BEGIN"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q03"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -1305,10 +1185,7 @@
                       "Все subs",
                       "main::"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q03"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -1356,10 +1233,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "{\n  # нужен $count = 42\n  ???\n}"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q03"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -1382,9 +1256,6 @@
                 "id": "scenario-perl-s02-q04",
                 "title": "Что такое `use feature 'say'`?",
                 "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-02",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -1422,10 +1293,7 @@
                       "strict say",
                       "@EXPORT"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q04"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -1464,10 +1332,7 @@
                       "неверный синтаксис",
                       "не Perl"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q04"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -1515,10 +1380,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use feature qw(say);"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q04"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -1543,19 +1405,11 @@
             "id": "lesson-perl-interview-03",
             "title": "Регулярные выражения",
             "description": "4 тем (сценариев) для этапа «Регулярные выражения».",
-            "programId": "course-ru-perl-interview-program",
-            "scenarioIds": [
-              "scenario-perl-s03-q01",
-              "scenario-perl-s03-q02",
-              "scenario-perl-s03-q03",
-              "scenario-perl-s03-q04"
-            ],
             "prerequisiteLessonIds": [
               "lesson-perl-interview-02"
             ],
             "order": 2,
-            "updatedAt": "2026-11-18T05:23:22.906Z",
-            "courseId": "course-ru-perl-interview"
+            "updatedAt": "2026-11-18T05:23:22.906Z"
           },
           "order": 2,
           "scenarios": [
@@ -1564,9 +1418,6 @@
                 "id": "scenario-perl-s03-q01",
                 "title": "Как работают захваты `$1`, `$2` в regex?",
                 "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-03",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -1604,10 +1455,7 @@
                       "Индексы @_",
                       "Только split"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q01"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -1646,10 +1494,7 @@
                       "bc",
                       "undef"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q01"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -1697,10 +1542,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my $s = \"Perl\";\n$s =~ /(e)(r)/;\n# $2 = ?"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q01"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -1723,9 +1565,6 @@
                 "id": "scenario-perl-s03-q02",
                 "title": "Что делают модификаторы `/g`, `/i`, `/x`?",
                 "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-03",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -1764,10 +1603,7 @@
                       "Компиляция",
                       "Extended whitespace"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q02"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -1806,10 +1642,7 @@
                       "extended",
                       "/m — multiline, не регистр"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q02"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -1848,10 +1681,7 @@
                       "Exclusive",
                       "XML"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q02"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -1899,10 +1729,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my $word = \"Perl\";\n$word =~ /???/;  # true"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q02"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -1925,9 +1752,6 @@
                 "id": "scenario-perl-s03-q03",
                 "title": "Разница между `=~` и `!~`?",
                 "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-03",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -1965,10 +1789,7 @@
                       "!= не для regex",
                       "неверный синтаксис"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q03"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -2007,10 +1828,7 @@
                       "List context",
                       "Синонимы"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q03"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -2058,10 +1876,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my $line = \"hello\";\n# условие «нет цифр»"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q03"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -2084,9 +1899,6 @@
                 "id": "scenario-perl-s03-q04",
                 "title": "Зачем использовать `qr//`?",
                 "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-03",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -2125,10 +1937,7 @@
                       "No backtrack",
                       "JSON"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q04"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -2167,10 +1976,7 @@
                       "нет функции regex()",
                       "m// — match, не сохранение"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q04"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -2209,10 +2015,7 @@
                       "SCALAR",
                       "CODE"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q04"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -2260,10 +2063,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my $digits = ???;\n\"abc123\" =~ $digits;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q04"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -2288,19 +2088,11 @@
             "id": "lesson-perl-interview-04",
             "title": "Подпрограммы и встроенные функции",
             "description": "4 тем (сценариев) для этапа «Подпрограммы и встроенные функции».",
-            "programId": "course-ru-perl-interview-program",
-            "scenarioIds": [
-              "scenario-perl-s04-q01",
-              "scenario-perl-s04-q02",
-              "scenario-perl-s04-q03",
-              "scenario-perl-s04-q04"
-            ],
             "prerequisiteLessonIds": [
               "lesson-perl-interview-03"
             ],
             "order": 3,
-            "updatedAt": "2026-11-18T05:23:22.906Z",
-            "courseId": "course-ru-perl-interview"
+            "updatedAt": "2026-11-18T05:23:22.906Z"
           },
           "order": 3,
           "scenarios": [
@@ -2309,9 +2101,6 @@
                 "id": "scenario-perl-s04-q01",
                 "title": "Как устроен `@_` в подпрограмме?",
                 "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-04",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -2350,10 +2139,7 @@
                       "caller stack",
                       "Named only"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q01"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -2392,10 +2178,7 @@
                       "@ARGV — CLI args",
                       "caller — stack info"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q01"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -2434,10 +2217,7 @@
                       "hash key",
                       "Syntax error"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q01"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -2485,10 +2265,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "sub greet { return join \", \", @_; }\nprint greet(\"Ann\", \"Bob\");"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q01"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -2511,9 +2288,6 @@
                 "id": "scenario-perl-s04-q02",
                 "title": "Когда применять `map` и `grep`?",
                 "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-04",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -2551,10 +2325,7 @@
                       "Same",
                       "Scalar only"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q02"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -2593,10 +2364,7 @@
                       "исходный",
                       "undef"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q02"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -2644,10 +2412,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "grep { $_ > 2 } (1, 2, 3, 4)"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q02"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -2670,9 +2435,6 @@
                 "id": "scenario-perl-s04-q03",
                 "title": "Что делает оператор `<=>` (spaceship)?",
                 "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-04",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -2711,10 +2473,7 @@
                       "cmp — другой оператор",
                       "не ключевое слово"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q03"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -2753,10 +2512,7 @@
                       "1",
                       "undef"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q03"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -2795,10 +2551,7 @@
                       "Hash refs default",
                       "Stable sort flag"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q03"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -2846,10 +2599,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "print \"b\" <=> \"a\";"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q03"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -2872,9 +2622,6 @@
                 "id": "scenario-perl-s04-q04",
                 "title": "Разница между `sort` и `sort { ... }`?",
                 "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-04",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -2912,10 +2659,7 @@
                       "Block forbidden",
                       "By length"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q04"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -2954,10 +2698,7 @@
                       "строковое cmp",
                       "нет sort numeric"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q04"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -3005,10 +2746,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my @nums = (10, 2, 1);\nmy @sorted = ???;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q04"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -3033,19 +2771,11 @@
             "id": "lesson-perl-interview-05",
             "title": "Модули, ООП и практика на интервью",
             "description": "4 тем (сценариев) для этапа «Модули, ООП и практика на интервью».",
-            "programId": "course-ru-perl-interview-program",
-            "scenarioIds": [
-              "scenario-perl-s05-q01",
-              "scenario-perl-s05-q02",
-              "scenario-perl-s05-q03",
-              "scenario-perl-s05-q04"
-            ],
             "prerequisiteLessonIds": [
               "lesson-perl-interview-04"
             ],
             "order": 4,
-            "updatedAt": "2026-11-18T05:23:22.906Z",
-            "courseId": "course-ru-perl-interview"
+            "updatedAt": "2026-11-18T05:23:22.906Z"
           },
           "order": 4,
           "scenarios": [
@@ -3054,9 +2784,6 @@
                 "id": "scenario-perl-s05-q01",
                 "title": "Как подключить модуль через `use` и `require`?",
                 "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-05",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -3094,10 +2821,7 @@
                       "CPAN vs core",
                       "No import"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q01"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -3136,10 +2860,7 @@
                       "нет import when",
                       "нет load module()"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q01"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -3187,10 +2908,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "if ($need_json) {\n  ???\n}"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q01"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -3213,9 +2931,6 @@
                 "id": "scenario-perl-s05-q02",
                 "title": "Базовый синтаксис bless для ООП в Perl?",
                 "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-05",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -3254,10 +2969,7 @@
                       "@ISA only",
                       "DESTROY only"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q02"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -3296,10 +3008,7 @@
                       "нет object()",
                       "нет метода class()"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q02"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -3338,10 +3047,7 @@
                       "Произвольная функция",
                       "Синтаксис других языков"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q02"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -3389,10 +3095,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my $self = { name => \"ann\" };\nmy $obj = ???;\n$obj->{name} eq \"ann\";  # true"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q02"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -3415,9 +3118,6 @@
                 "id": "scenario-perl-s05-q03",
                 "title": "Как безопасно открыть файл и обработать ошибки?",
                 "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-05",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -3455,10 +3155,7 @@
                       "sysopen no check",
                       "silent eval"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q03"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -3497,10 +3194,7 @@
                       "нет проверки ошибки",
                       "print вместо die"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q03"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -3548,10 +3242,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my $path = \"data.txt\";\n???"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q03"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -3574,9 +3265,6 @@
                 "id": "scenario-perl-s05-q04",
                 "title": "Типовые red flags в Perl-коде на собеседовании?",
                 "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-05",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -3615,10 +3303,7 @@
                       "Comments bad",
                       "my bad"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q04"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -3657,10 +3342,7 @@
                       "отключают защиту",
                       "фреймворки, не базовый минимум"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q04"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -3699,10 +3381,7 @@
                       "Проверка $!",
                       "Чтение через handle OK"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q04"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -3750,10 +3429,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use strict;\nuse warnings;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q04"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -3778,20 +3454,11 @@
             "id": "lesson-perl-interview-06",
             "title": "Базы данных",
             "description": "5 тем (сценариев) для этапа «Базы данных».",
-            "programId": "course-ru-perl-interview-program",
-            "scenarioIds": [
-              "scenario-perl-s06-q01",
-              "scenario-perl-s06-q02",
-              "scenario-perl-s06-q03",
-              "scenario-perl-s06-q04",
-              "scenario-perl-s06-q05"
-            ],
             "prerequisiteLessonIds": [
               "lesson-perl-interview-05"
             ],
             "order": 5,
-            "updatedAt": "2026-11-18T05:23:22.906Z",
-            "courseId": "course-ru-perl-interview"
+            "updatedAt": "2026-11-18T05:23:22.906Z"
           },
           "order": 5,
           "scenarios": [
@@ -3800,9 +3467,6 @@
                 "id": "scenario-perl-s06-q01",
                 "title": "Что такое DBI и DBD в Perl?",
                 "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-06",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -3841,10 +3505,7 @@
                       "Синонимы",
                       "strict/warnings — неверно"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q01"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -3883,10 +3544,7 @@
                       "Нет модуля SQL",
                       "Нет метода open"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q01"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -3925,10 +3583,7 @@
                       "Pg::Strict — выдумка",
                       "use postgres — неверно"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q01"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -3976,10 +3631,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use DBI;\nmy $dbh = ???;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q01"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -4002,9 +3654,6 @@
                 "id": "scenario-perl-s06-q02",
                 "title": "Как безопасно передать параметры в SQL через DBI?",
                 "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-06",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -4042,10 +3691,7 @@
                       "sprintf без prepare",
                       "конкатенация — опасно"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q02"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -4084,10 +3730,7 @@
                       ":name — named в некоторых DBD",
                       "%s — sprintf, не DBI"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q02"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -4135,10 +3778,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my $id = $input;\n# выбрать пользователя по id"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q02"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -4161,9 +3801,6 @@
                 "id": "scenario-perl-s06-q03",
                 "title": "Чем `$sth->execute` отличается от `$dbh->do`?",
                 "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-06",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -4202,10 +3839,7 @@
                       "SELECT — prepare/fetch",
                       "prepare нужен для SELECT"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q03"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -4244,10 +3878,7 @@
                       "rows — для do",
                       "Не только первый столбец"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q03"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -4286,10 +3917,7 @@
                       "execute повторно",
                       "AutoCommit — атрибут dbh"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q03"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -4337,10 +3965,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my $sth = $dbh->prepare(\"SELECT name FROM users WHERE id = ?\");\n$sth->execute(42);"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q03"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -4363,9 +3988,6 @@
                 "id": "scenario-perl-s06-q04",
                 "title": "Как отключить AutoCommit для транзакции в DBI?",
                 "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-06",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -4403,10 +4025,7 @@
                       "можно менять",
                       "нет pragma"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q04"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -4445,10 +4064,7 @@
                       "re-execute — нет",
                       "disconnect — другое"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q04"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -4496,10 +4112,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "$dbh->{AutoCommit} = 0;\n# ... updates ..."
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q04"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -4522,9 +4135,6 @@
                 "id": "scenario-perl-s06-q05",
                 "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)?",
                 "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-06",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -4563,10 +4173,7 @@
                       "Ignore — нет",
                       "syslog — не встроено"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q05"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -4605,10 +4212,7 @@
                       "$! — OS errors",
                       "не DBI API"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q05"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -4647,10 +4251,7 @@
                       "strict не связан",
                       "разница есть"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q05"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -4698,10 +4299,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use DBI;\nmy $dbh = ???;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q05"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -4726,20 +4324,11 @@
             "id": "lesson-perl-interview-07",
             "title": "CGI",
             "description": "5 тем (сценариев) для этапа «CGI».",
-            "programId": "course-ru-perl-interview-program",
-            "scenarioIds": [
-              "scenario-perl-s07-q01",
-              "scenario-perl-s07-q02",
-              "scenario-perl-s07-q03",
-              "scenario-perl-s07-q04",
-              "scenario-perl-s07-q05"
-            ],
             "prerequisiteLessonIds": [
               "lesson-perl-interview-06"
             ],
             "order": 6,
-            "updatedAt": "2026-11-18T05:23:22.906Z",
-            "courseId": "course-ru-perl-interview"
+            "updatedAt": "2026-11-18T05:23:22.906Z"
           },
           "order": 6,
           "scenarios": [
@@ -4748,9 +4337,6 @@
                 "id": "scenario-perl-s07-q01",
                 "title": "Для чего использовался модуль CGI в Perl?",
                 "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-07",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -4788,10 +4374,7 @@
                       "не email",
                       "не DBI"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q01"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -4830,10 +4413,7 @@
                       "нет create()",
                       "не apache-specific"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q01"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -4881,10 +4461,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use CGI;\nmy $q = ???;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q01"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -4907,9 +4484,6 @@
                 "id": "scenario-perl-s07-q02",
                 "title": "Как получить параметры GET/POST через CGI?",
                 "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-07",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -4948,10 +4522,7 @@
                       "нет getparam",
                       "нет такого hash"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q02"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -4990,10 +4561,7 @@
                       "params — все пары",
                       "нет CGI::all"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q02"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -5032,10 +4600,7 @@
                       "@ARGV — CLI",
                       "cookies отдельно"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q02"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -5083,10 +4648,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use CGI;\nmy $q = CGI->new;\nmy $term = ???;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q02"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -5109,9 +4671,6 @@
                 "id": "scenario-perl-s07-q03",
                 "title": "Зачем в CGI-скрипте вызывают `binmode STDOUT`?",
                 "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-07",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -5149,10 +4708,7 @@
                       "не strict",
                       "заголовки нужны"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q03"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -5191,10 +4747,7 @@
                       "не рекомендуется",
                       "HTTP сломается"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q03"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -5242,10 +4795,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use CGI;\nmy $q = CGI->new;\n# перед print html"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q03"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -5268,9 +4818,6 @@
                 "id": "scenario-perl-s07-q04",
                 "title": "Как отправить заголовок Content-Type перед телом ответа?",
                 "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-07",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -5309,10 +4856,7 @@
                       "не автоматически",
                       "нет say JSON"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q04"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -5351,10 +4895,7 @@
                       "Location — другой метод",
                       "не exit"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q04"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -5393,10 +4934,7 @@
                       "нужен print",
                       "нет exit redirect"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q04"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -5444,10 +4982,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use CGI;\nmy $q = CGI->new;\n???\nprint \"<h1>Hi</h1>\";"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q04"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -5470,9 +5005,6 @@
                 "id": "scenario-perl-s07-q05",
                 "title": "Почему CGI-серверный Perl часто заменяют PSGI/Plack?",
                 "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-07",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -5510,10 +5042,7 @@
                       "CGI медленнее",
                       "Plack — Perl"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q05"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -5552,10 +5081,7 @@
                       "ширше CGI",
                       "не CPAN"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q05"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -5603,10 +5129,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use strict;\nuse warnings;\n# deploy web app"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q05"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -5631,20 +5154,11 @@
             "id": "lesson-perl-interview-08",
             "title": "Oracle (DBD::Oracle)",
             "description": "5 тем (сценариев) для этапа «Oracle (DBD::Oracle)».",
-            "programId": "course-ru-perl-interview-program",
-            "scenarioIds": [
-              "scenario-perl-s08-q01",
-              "scenario-perl-s08-q02",
-              "scenario-perl-s08-q03",
-              "scenario-perl-s08-q04",
-              "scenario-perl-s08-q05"
-            ],
             "prerequisiteLessonIds": [
               "lesson-perl-interview-07"
             ],
             "order": 7,
-            "updatedAt": "2026-11-18T05:23:22.906Z",
-            "courseId": "course-ru-perl-interview"
+            "updatedAt": "2026-11-18T05:23:22.906Z"
           },
           "order": 7,
           "scenarios": [
@@ -5653,9 +5167,6 @@
                 "id": "scenario-perl-s08-q01",
                 "title": "Какой DSN используют для подключения к Oracle через DBI?",
                 "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-08",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -5694,10 +5205,7 @@
                       "mysql — другая СУБД",
                       "connect — метод DBI, не DBD"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q01"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -5737,10 +5245,7 @@
                       "Oracle::Strict — выдумка",
                       "use oracle — неверно"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q01"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -5780,10 +5285,7 @@
                       "open — нет",
                       "shell-синтаксис — нет"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q01"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -5832,10 +5334,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use DBI;\nmy $dbh = ???;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q01"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -5859,9 +5358,6 @@
                 "id": "scenario-perl-s08-q02",
                 "title": "Какие placeholders поддерживает DBD::Oracle?",
                 "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-08",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -5899,10 +5395,7 @@
                       "sprintf — не DBI",
                       "конкатенация — опасно"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q02"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -5942,10 +5435,7 @@
                       "sprintf без bind",
                       "Oracle bind поддерживает"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q02"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -5994,10 +5484,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my $id = $input;\n# users by id"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q02"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -6021,9 +5508,6 @@
                 "id": "scenario-perl-s08-q03",
                 "title": "Как указать SID или service name в DBI DSN?",
                 "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-08",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -6062,10 +5546,7 @@
                       "не URL scheme",
                       "sid не в user"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q03"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -6105,10 +5586,7 @@
                       "разные параметры DSN",
                       "TNS — опция, не единственный способ"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q03"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -6148,10 +5626,7 @@
                       "не замена connect",
                       "Perl DBD тоже использует OCI"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q03"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -6200,10 +5675,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "use DBI;\nmy $dsn = ???;"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q03"
+                    }
                   },
                   "order": 3,
                   "meta": {
@@ -6227,9 +5699,6 @@
                 "id": "scenario-perl-s08-q04",
                 "title": "Как вызвать хранимую процедуру PL/SQL через DBI?",
                 "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3.",
-                "lessonId": "lesson-perl-interview-08",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -6267,10 +5736,7 @@
                       "не только SQL*Plus",
                       "можно через DBI"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q04"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -6310,10 +5776,7 @@
                       "DBMS_OUTPUT — другой механизм",
                       "DBI поддерживает"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q04"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -6362,10 +5825,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my $out;\n# call get_count(OUT cnt)"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q04"
+                    }
                   },
                   "order": 2,
                   "meta": {
@@ -6389,9 +5849,6 @@
                 "id": "scenario-perl-s08-q05",
                 "title": "Как читать CLOB/BLOB через DBD::Oracle?",
                 "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
-                "lessonId": "lesson-perl-interview-08",
-                "courseId": "course-ru-perl-interview",
-                "programId": "course-ru-perl-interview-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -6430,10 +5887,7 @@
                       "lob_read — доп. API, fetch тоже",
                       "AutoCommit не обязателен для read"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q05"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -6473,10 +5927,7 @@
                       "streaming — отдельные настройки",
                       "не timeout"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q05"
+                    "correctIndex": 0
                   },
                   "order": 1,
                   "meta": {
@@ -6516,10 +5967,7 @@
                       "binmode dbh — нет",
                       "не auto base64"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q05"
+                    "correctIndex": 0
                   },
                   "order": 2,
                   "meta": {
@@ -6568,10 +6016,7 @@
                     "prompt": {
                       "language": "perl",
                       "code": "my $sth = $dbh->prepare(\"SELECT doc FROM docs WHERE id = ?\");\n$sth->execute(1);"
-                    },
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q05"
+                    }
                   },
                   "order": 3,
                   "meta": {

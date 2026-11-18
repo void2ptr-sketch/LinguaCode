@@ -17,10 +17,7 @@
       "idea": "# Курс «214 базовых иероглифических ключей»\n\n## Цели курса\n\n* Освоить все 214 классических ключей (по словарю Канси) для уверенного чтения и понимания структуры китайских иероглифов.\n* Научиться правильно писать ключи: соблюдать порядок черт, пропорции, базовые правила каллиграфии.\n* Развить навык структурного анализа: по ключу определять смысловую группу и прогнозировать значение иероглифа.\n* Выстроить систему запоминания под самостоятельное обучение: ассоциации, группировка, интервальные повторения.\n* Интегрировать работу с ключами в практику LinguaCode: эффективно использовать карточки, статистику и режимы тренировки платформы.\n\n---\n\n## Аудитория\n\n* Начинающие без знания китайского, которые хотят системно подойти к иероглифике.\n* Самостоятельные учащиеся, ценящие чёткие этапы и измеримые результаты.\n* Пользователи, заинтересованные в языковых проектах и технологиях обучения (с учётом вашего интереса к программам типа LinguaCode).\n* Студенты и взрослые, которым важно уложиться в реалистичный график и не терять мотивацию при обучении без преподавателя.\n\nУровень: A0–A1 (предварительных знаний не требуется).\n\n---\n\n## Формат\n\n### Самостоятельное изучение\n\n* **Платформа:** LinguaCode (карточки, статистика, режимы тренировки).\n* **Темп:** 1 урок в 3–4 дня либо 2 урока в неделю — с учётом закрепления материала.\n* **Ежедневная нагрузка:** 15–30 минут (основная сессия) + 5–10 минут на повторение пройденного.\n* **Структура одного урока:**\n  * 5 минут — теория: значение ключа, этимология, примеры иероглифов с этим ключом.\n  * 10 минут — практика письма: прописи (в тетради или цифровом блокноте), отработка порядка черт.\n  * 15 минут — работа в LinguaCode: карточки (узнавание, написание, сопоставление).\n  * 5 минут — мини‑задание на применение: найти 2–3 иероглифа с этим ключом в словаре/приложении и выписать их.\n\n### Инструменты и материалы\n\n* Карточки в LinguaCode, разбитые по урокам (20 или 14 карточек на урок).\n* Шаблоны для конспектов и прописей (PDF).\n* Чек‑листы прогресса и трекер повторений (еженедельный).\n* Список рекомендуемых словарей и приложений для поиска иероглифов по ключу.\n\n---\n\n## Этапы изучения (10 уроков)\n\n### Урок 1. Ключи Канси №1–20\n\n* Теория: самые частые и простые ключи, базовые черты, правила порядка написания.\n* Практика: прописи первых 20 ключей, разбор типичных ошибок.\n* LinguaCode: 20 карточек — ключи №1–20.\n* Мини‑задание: для каждого ключа найти 1 пример иероглифа, где он выступает как смысловой компонент, и записать его значение.\n\n### Урок 2. Ключи Канси №21–40\n\n* Теория: ключи с повторяющимися элементами, варианты написания, визуальные отличия похожих ключей.\n* Практика: отработка ритма письма, диктант по первым 40 ключам.\n* LinguaCode: 20 карточек — ключи №21–40.\n* Мини‑задание: составить 5 пар «ключ — иероглиф» и кратко объяснить связь значений.\n\n### Урок 3. Ключи Канси №41–60\n\n* Теория: семантические группы (человек, части тела, действия), первые смысловые закономерности.\n* Практика: письмо с акцентом на пропорции и симметрию.\n* LinguaCode: 20 карточек — ключи №41–60.\n* Мини‑задание: выбрать 3 ключа и придумать для них простые мнемонические ассоциации.\n\n### Урок 4. Ключи Канси №61–80\n\n* Теория: природные элементы (вода, огонь, дерево, земля), частотность в лексике.\n* Практика: комбинированные упражнения: ключ → иероглиф → значение.\n* LinguaCode: 20 карточек — ключи №61–80.\n* Мини‑задание: найти в тексте (вывеска, этикетка) 3 иероглифа и выделить в них изученные ключи.\n\n### Урок 5. Ключи Канси №81–100\n\n* Теория: абстрактные понятия и действия, ключи-символы.\n* Практика: диктанты на скорость с сохранением разборчивости.\n* LinguaCode: 20 карточек — ключи №81–100.\n* Мини‑задание: создать мини‑таблицу: ключ — значение — 2 примера иероглифов — краткая ассоциация.\n\n### Урок 6. Ключи Канси №101–120\n\n* Теория: редкие и менее очевидные ключи, варианты форм, исторические изменения.\n* Практика: разбор сложных ключей",
       "status": "planned",
       "ideaUpdatedAt": "2026-06-14T18:00:00.000Z"
-    },
-    "programIds": [
-      "course-zh-radicals-214-program"
-    ]
+    }
   },
   "programs": [
     {
@@ -28,12 +25,6 @@
         "id": "course-zh-radicals-214-program",
         "title": "214 китайских радикалов",
         "description": "Полный курс по 214 классическим ключам (康熙部首): 21 сценарий по 10 карточек (последний — 14), 3 урока по 7 сценариев, прописывание формы и порядка черт каждого радикала.",
-        "courseId": "course-zh-radicals-214",
-        "lessonIds": [
-          "lesson-radicals-01",
-          "lesson-radicals-02",
-          "lesson-radicals-03"
-        ],
         "order": 0,
         "prerequisiteProgramIds": [],
         "updatedAt": "2026-11-18T05:23:14.660Z"
@@ -45,20 +36,9 @@
             "id": "lesson-radicals-01",
             "title": "Урок 1: сценарии 1–7",
             "description": "7 сценариев: scenario-radicals-01 — scenario-radicals-07.",
-            "programId": "course-zh-radicals-214-program",
-            "scenarioIds": [
-              "scenario-radicals-01",
-              "scenario-radicals-02",
-              "scenario-radicals-03",
-              "scenario-radicals-04",
-              "scenario-radicals-05",
-              "scenario-radicals-06",
-              "scenario-radicals-07"
-            ],
             "prerequisiteLessonIds": [],
             "order": 0,
-            "updatedAt": "2026-11-18T05:23:14.660Z",
-            "courseId": "course-zh-radicals-214"
+            "updatedAt": "2026-11-18T05:23:14.660Z"
           },
           "order": 0,
           "scenarios": [
@@ -67,9 +47,6 @@
                 "id": "scenario-radicals-01",
                 "title": "Радикалы 1–10",
                 "description": "Радикалы Канси №1–10.",
-                "lessonId": "lesson-radicals-01",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -104,10 +81,7 @@
                     "referenceHintKnown": "один (yī)",
                     "meaningKnown": "один",
                     "practiceMode": "tracing",
-                    "targetCharacter": "一",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-01"
+                    "targetCharacter": "一"
                   },
                   "order": 0,
                   "meta": {
@@ -135,10 +109,7 @@
                     "referenceHintKnown": "вертикальная черта (gǔn)",
                     "meaningKnown": "вертикальная черта",
                     "practiceMode": "tracing",
-                    "targetCharacter": "丨",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-01"
+                    "targetCharacter": "丨"
                   },
                   "order": 1,
                   "meta": {
@@ -166,10 +137,7 @@
                     "referenceHintKnown": "точка (zhǔ)",
                     "meaningKnown": "точка",
                     "practiceMode": "tracing",
-                    "targetCharacter": "丶",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-01"
+                    "targetCharacter": "丶"
                   },
                   "order": 2,
                   "meta": {
@@ -197,10 +165,7 @@
                     "referenceHintKnown": "косая черта (piě), наоброт",
                     "meaningKnown": "косая черта",
                     "practiceMode": "tracing",
-                    "targetCharacter": "丿",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-01"
+                    "targetCharacter": "丿"
                   },
                   "order": 3,
                   "meta": {
@@ -228,10 +193,7 @@
                     "referenceHintKnown": "второй (yǐ), побег",
                     "meaningKnown": "второй",
                     "practiceMode": "tracing",
-                    "targetCharacter": "乙",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-01"
+                    "targetCharacter": "乙"
                   },
                   "order": 4,
                   "meta": {
@@ -259,10 +221,7 @@
                     "referenceHintKnown": "крючок (jué)",
                     "meaningKnown": "крючок",
                     "practiceMode": "tracing",
-                    "targetCharacter": "亅",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-01"
+                    "targetCharacter": "亅"
                   },
                   "order": 5,
                   "meta": {
@@ -290,10 +249,7 @@
                     "referenceHintKnown": "два (èr)",
                     "meaningKnown": "два",
                     "practiceMode": "tracing",
-                    "targetCharacter": "二",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-01"
+                    "targetCharacter": "二"
                   },
                   "order": 6,
                   "meta": {
@@ -321,10 +277,7 @@
                     "referenceHintKnown": "крышка (tóu)",
                     "meaningKnown": "крышка",
                     "practiceMode": "tracing",
-                    "targetCharacter": "亠",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-01"
+                    "targetCharacter": "亠"
                   },
                   "order": 7,
                   "meta": {
@@ -351,10 +304,7 @@
                     "referenceHintKnown": "человек (rén)",
                     "meaningKnown": "человек",
                     "practiceMode": "tracing",
-                    "targetCharacter": "人",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-01"
+                    "targetCharacter": "人"
                   },
                   "order": 8,
                   "meta": {
@@ -381,10 +331,7 @@
                     "referenceHintKnown": "ноги (ér), шагающий человек",
                     "meaningKnown": "ноги",
                     "practiceMode": "tracing",
-                    "targetCharacter": "儿",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-01"
+                    "targetCharacter": "儿"
                   },
                   "order": 9,
                   "meta": {
@@ -405,9 +352,6 @@
                 "id": "scenario-radicals-02",
                 "title": "Радикалы 11–20",
                 "description": "Радикалы Канси №11–20.",
-                "lessonId": "lesson-radicals-01",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -442,10 +386,7 @@
                     "referenceHintKnown": "вход (rù)",
                     "meaningKnown": "вход",
                     "practiceMode": "tracing",
-                    "targetCharacter": "入",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-02"
+                    "targetCharacter": "入"
                   },
                   "order": 0,
                   "meta": {
@@ -472,10 +413,7 @@
                     "referenceHintKnown": "восемь (bā)",
                     "meaningKnown": "восемь",
                     "practiceMode": "tracing",
-                    "targetCharacter": "八",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-02"
+                    "targetCharacter": "八"
                   },
                   "order": 1,
                   "meta": {
@@ -503,10 +441,7 @@
                     "referenceHintKnown": "широкий (jiōng), пустынные земли",
                     "meaningKnown": "широкий",
                     "practiceMode": "tracing",
-                    "targetCharacter": "冂",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-02"
+                    "targetCharacter": "冂"
                   },
                   "order": 2,
                   "meta": {
@@ -534,10 +469,7 @@
                     "referenceHintKnown": "покрывало (mì)",
                     "meaningKnown": "покрывало",
                     "practiceMode": "tracing",
-                    "targetCharacter": "冖",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-02"
+                    "targetCharacter": "冖"
                   },
                   "order": 3,
                   "meta": {
@@ -564,10 +496,7 @@
                     "referenceHintKnown": "лёд (bīng)",
                     "meaningKnown": "лёд",
                     "practiceMode": "tracing",
-                    "targetCharacter": "冫",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-02"
+                    "targetCharacter": "冫"
                   },
                   "order": 4,
                   "meta": {
@@ -594,10 +523,7 @@
                     "referenceHintKnown": "стол (jī)",
                     "meaningKnown": "стол",
                     "practiceMode": "tracing",
-                    "targetCharacter": "几",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-02"
+                    "targetCharacter": "几"
                   },
                   "order": 5,
                   "meta": {
@@ -624,10 +550,7 @@
                     "referenceHintKnown": "ёмкость (kǎn), открытый рот",
                     "meaningKnown": "ёмкость",
                     "practiceMode": "tracing",
-                    "targetCharacter": "凵",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-02"
+                    "targetCharacter": "凵"
                   },
                   "order": 6,
                   "meta": {
@@ -654,10 +577,7 @@
                     "referenceHintKnown": "нож (dāo)",
                     "meaningKnown": "nож",
                     "practiceMode": "tracing",
-                    "targetCharacter": "刀",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-02"
+                    "targetCharacter": "刀"
                   },
                   "order": 7,
                   "meta": {
@@ -684,10 +604,7 @@
                     "referenceHintKnown": "сила (lì)",
                     "meaningKnown": "сила",
                     "practiceMode": "tracing",
-                    "targetCharacter": "力",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-02"
+                    "targetCharacter": "力"
                   },
                   "order": 8,
                   "meta": {
@@ -714,10 +631,7 @@
                     "referenceHintKnown": "обёртка (bāo)",
                     "meaningKnown": "обёртка",
                     "practiceMode": "tracing",
-                    "targetCharacter": "勹",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-02"
+                    "targetCharacter": "勹"
                   },
                   "order": 9,
                   "meta": {
@@ -738,9 +652,6 @@
                 "id": "scenario-radicals-03",
                 "title": "Радикалы 21–30",
                 "description": "Радикалы Канси №21–30.",
-                "lessonId": "lesson-radicals-01",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -775,10 +686,7 @@
                     "referenceHintKnown": "ложка (bǐ)",
                     "meaningKnown": "ложка",
                     "practiceMode": "tracing",
-                    "targetCharacter": "匕",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-03"
+                    "targetCharacter": "匕"
                   },
                   "order": 0,
                   "meta": {
@@ -805,10 +713,7 @@
                     "referenceHintKnown": "ящик (fāng)",
                     "meaningKnown": "ящик",
                     "practiceMode": "tracing",
-                    "targetCharacter": "匚",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-03"
+                    "targetCharacter": "匚"
                   },
                   "order": 1,
                   "meta": {
@@ -835,10 +740,7 @@
                     "referenceHintKnown": "укрытие (xǐ)",
                     "meaningKnown": "укрытие",
                     "practiceMode": "tracing",
-                    "targetCharacter": "匸",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-03"
+                    "targetCharacter": "匸"
                   },
                   "order": 2,
                   "meta": {
@@ -865,10 +767,7 @@
                     "referenceHintKnown": "десять (shí)",
                     "meaningKnown": "десять",
                     "practiceMode": "tracing",
-                    "targetCharacter": "十",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-03"
+                    "targetCharacter": "十"
                   },
                   "order": 3,
                   "meta": {
@@ -895,10 +794,7 @@
                     "referenceHintKnown": "гадание (bǔ)",
                     "meaningKnown": "гадание",
                     "practiceMode": "tracing",
-                    "targetCharacter": "卜",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-03"
+                    "targetCharacter": "卜"
                   },
                   "order": 4,
                   "meta": {
@@ -925,10 +821,7 @@
                     "referenceHintKnown": "печать (jié), колено",
                     "meaningKnown": "печать",
                     "practiceMode": "tracing",
-                    "targetCharacter": "卩",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-03"
+                    "targetCharacter": "卩"
                   },
                   "order": 5,
                   "meta": {
@@ -955,10 +848,7 @@
                     "referenceHintKnown": "скала (hǎn)",
                     "meaningKnown": "скала",
                     "practiceMode": "tracing",
-                    "targetCharacter": "厂",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-03"
+                    "targetCharacter": "厂"
                   },
                   "order": 6,
                   "meta": {
@@ -985,10 +875,7 @@
                     "referenceHintKnown": "личный (sī)",
                     "meaningKnown": "личный",
                     "practiceMode": "tracing",
-                    "targetCharacter": "厶",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-03"
+                    "targetCharacter": "厶"
                   },
                   "order": 7,
                   "meta": {
@@ -1015,10 +902,7 @@
                     "referenceHintKnown": "снова (yòu)",
                     "meaningKnown": "снова",
                     "practiceMode": "tracing",
-                    "targetCharacter": "又",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-03"
+                    "targetCharacter": "又"
                   },
                   "order": 8,
                   "meta": {
@@ -1045,10 +929,7 @@
                     "referenceHintKnown": "рот (kǒu)",
                     "meaningKnown": "рот",
                     "practiceMode": "tracing",
-                    "targetCharacter": "口",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-03"
+                    "targetCharacter": "口"
                   },
                   "order": 9,
                   "meta": {
@@ -1069,9 +950,6 @@
                 "id": "scenario-radicals-04",
                 "title": "Радикалы 31–40",
                 "description": "Радикалы Канси №31–40.",
-                "lessonId": "lesson-radicals-01",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -1106,10 +984,7 @@
                     "referenceHintKnown": "ограждение (wéi)",
                     "meaningKnown": "ограждение",
                     "practiceMode": "tracing",
-                    "targetCharacter": "囗",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-04"
+                    "targetCharacter": "囗"
                   },
                   "order": 0,
                   "meta": {
@@ -1136,10 +1011,7 @@
                     "referenceHintKnown": "земля (tǔ)",
                     "meaningKnown": "земля",
                     "practiceMode": "tracing",
-                    "targetCharacter": "土",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-04"
+                    "targetCharacter": "土"
                   },
                   "order": 1,
                   "meta": {
@@ -1166,10 +1038,7 @@
                     "referenceHintKnown": "учёный (shì), воин",
                     "meaningKnown": "учёный",
                     "practiceMode": "tracing",
-                    "targetCharacter": "士",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-04"
+                    "targetCharacter": "士"
                   },
                   "order": 2,
                   "meta": {
@@ -1196,10 +1065,7 @@
                     "referenceHintKnown": "идти (zhǐ), начинать",
                     "meaningKnown": "идти",
                     "practiceMode": "tracing",
-                    "targetCharacter": "夂",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-04"
+                    "targetCharacter": "夂"
                   },
                   "order": 3,
                   "meta": {
@@ -1226,10 +1092,7 @@
                     "referenceHintKnown": "медленный шаг (suī), волочить ноги",
                     "meaningKnown": "медленный шаг",
                     "practiceMode": "tracing",
-                    "targetCharacter": "夊",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-04"
+                    "targetCharacter": "夊"
                   },
                   "order": 4,
                   "meta": {
@@ -1256,10 +1119,7 @@
                     "referenceHintKnown": "вечер (xī)",
                     "meaningKnown": "вечер",
                     "practiceMode": "tracing",
-                    "targetCharacter": "夕",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-04"
+                    "targetCharacter": "夕"
                   },
                   "order": 5,
                   "meta": {
@@ -1286,10 +1146,7 @@
                     "referenceHintKnown": "большой (dà)",
                     "meaningKnown": "большой",
                     "practiceMode": "tracing",
-                    "targetCharacter": "大",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-04"
+                    "targetCharacter": "大"
                   },
                   "order": 6,
                   "meta": {
@@ -1316,10 +1173,7 @@
                     "referenceHintKnown": "женщина (nǚ)",
                     "meaningKnown": "женщина",
                     "practiceMode": "tracing",
-                    "targetCharacter": "女",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-04"
+                    "targetCharacter": "女"
                   },
                   "order": 7,
                   "meta": {
@@ -1346,10 +1200,7 @@
                     "referenceHintKnown": "ребёнок (zǐ)",
                     "meaningKnown": "ребёнок",
                     "practiceMode": "tracing",
-                    "targetCharacter": "子",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-04"
+                    "targetCharacter": "子"
                   },
                   "order": 8,
                   "meta": {
@@ -1376,10 +1227,7 @@
                     "referenceHintKnown": "крыша (mián)",
                     "meaningKnown": "крыша",
                     "practiceMode": "tracing",
-                    "targetCharacter": "宀",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-04"
+                    "targetCharacter": "宀"
                   },
                   "order": 9,
                   "meta": {
@@ -1400,9 +1248,6 @@
                 "id": "scenario-radicals-05",
                 "title": "Радикалы 41–50",
                 "description": "Радикалы Канси №41–50.",
-                "lessonId": "lesson-radicals-01",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -1437,10 +1282,7 @@
                     "referenceHintKnown": "цунь (дюйм) (cùn)",
                     "meaningKnown": "цунь (дюйм)",
                     "practiceMode": "tracing",
-                    "targetCharacter": "寸",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-05"
+                    "targetCharacter": "寸"
                   },
                   "order": 0,
                   "meta": {
@@ -1467,10 +1309,7 @@
                     "referenceHintKnown": "малый (xiǎo)",
                     "meaningKnown": "малый",
                     "practiceMode": "tracing",
-                    "targetCharacter": "小",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-05"
+                    "targetCharacter": "小"
                   },
                   "order": 1,
                   "meta": {
@@ -1497,10 +1336,7 @@
                     "referenceHintKnown": "хромой (wāng)",
                     "meaningKnown": "хромой",
                     "practiceMode": "tracing",
-                    "targetCharacter": "尢",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-05"
+                    "targetCharacter": "尢"
                   },
                   "order": 2,
                   "meta": {
@@ -1527,10 +1363,7 @@
                     "referenceHintKnown": "труп (shī)",
                     "meaningKnown": "труп",
                     "practiceMode": "tracing",
-                    "targetCharacter": "尸",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-05"
+                    "targetCharacter": "尸"
                   },
                   "order": 3,
                   "meta": {
@@ -1557,10 +1390,7 @@
                     "referenceHintKnown": "росток (chè)",
                     "meaningKnown": "росток",
                     "practiceMode": "tracing",
-                    "targetCharacter": "屮",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-05"
+                    "targetCharacter": "屮"
                   },
                   "order": 4,
                   "meta": {
@@ -1587,10 +1417,7 @@
                     "referenceHintKnown": "гора (shān)",
                     "meaningKnown": "гора",
                     "practiceMode": "tracing",
-                    "targetCharacter": "山",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-05"
+                    "targetCharacter": "山"
                   },
                   "order": 5,
                   "meta": {
@@ -1617,10 +1444,7 @@
                     "referenceHintKnown": "река (chuān)",
                     "meaningKnown": "река",
                     "practiceMode": "tracing",
-                    "targetCharacter": "巛",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-05"
+                    "targetCharacter": "巛"
                   },
                   "order": 6,
                   "meta": {
@@ -1647,10 +1471,7 @@
                     "referenceHintKnown": "работа (gōng)",
                     "meaningKnown": "работа",
                     "practiceMode": "tracing",
-                    "targetCharacter": "工",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-05"
+                    "targetCharacter": "工"
                   },
                   "order": 7,
                   "meta": {
@@ -1677,10 +1498,7 @@
                     "referenceHintKnown": "сам (jǐ)",
                     "meaningKnown": "сам",
                     "practiceMode": "tracing",
-                    "targetCharacter": "己",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-05"
+                    "targetCharacter": "己"
                   },
                   "order": 8,
                   "meta": {
@@ -1707,10 +1525,7 @@
                     "referenceHintKnown": "тюрбан (jīn), платок",
                     "meaningKnown": "тюрбан",
                     "practiceMode": "tracing",
-                    "targetCharacter": "巾",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-05"
+                    "targetCharacter": "巾"
                   },
                   "order": 9,
                   "meta": {
@@ -1731,9 +1546,6 @@
                 "id": "scenario-radicals-06",
                 "title": "Радикалы 51–60",
                 "description": "Радикалы Канси №51–60.",
-                "lessonId": "lesson-radicals-01",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -1768,10 +1580,7 @@
                     "referenceHintKnown": "сухой (gān), щит",
                     "meaningKnown": "сухой",
                     "practiceMode": "tracing",
-                    "targetCharacter": "干",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-06"
+                    "targetCharacter": "干"
                   },
                   "order": 0,
                   "meta": {
@@ -1798,10 +1607,7 @@
                     "referenceHintKnown": "короткая нить (yāo)",
                     "meaningKnown": "короткая нить",
                     "practiceMode": "tracing",
-                    "targetCharacter": "幺",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-06"
+                    "targetCharacter": "幺"
                   },
                   "order": 1,
                   "meta": {
@@ -1828,10 +1634,7 @@
                     "referenceHintKnown": "навес (yǎn)",
                     "meaningKnown": "навес",
                     "practiceMode": "tracing",
-                    "targetCharacter": "广",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-06"
+                    "targetCharacter": "广"
                   },
                   "order": 2,
                   "meta": {
@@ -1858,10 +1661,7 @@
                     "referenceHintKnown": "длинный шаг (yǐn)",
                     "meaningKnown": "длинный шаг",
                     "practiceMode": "tracing",
-                    "targetCharacter": "廴",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-06"
+                    "targetCharacter": "廴"
                   },
                   "order": 3,
                   "meta": {
@@ -1888,10 +1688,7 @@
                     "referenceHintKnown": "дуга (gǒng)",
                     "meaningKnown": "дуга",
                     "practiceMode": "tracing",
-                    "targetCharacter": "廾",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-06"
+                    "targetCharacter": "廾"
                   },
                   "order": 4,
                   "meta": {
@@ -1918,10 +1715,7 @@
                     "referenceHintKnown": "стрелять (yì)",
                     "meaningKnown": "стрелять",
                     "practiceMode": "tracing",
-                    "targetCharacter": "弋",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-06"
+                    "targetCharacter": "弋"
                   },
                   "order": 5,
                   "meta": {
@@ -1948,10 +1742,7 @@
                     "referenceHintKnown": "лук (gōng)",
                     "meaningKnown": "лук",
                     "practiceMode": "tracing",
-                    "targetCharacter": "弓",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-06"
+                    "targetCharacter": "弓"
                   },
                   "order": 6,
                   "meta": {
@@ -1978,10 +1769,7 @@
                     "referenceHintKnown": "морда (jì)",
                     "meaningKnown": "морда",
                     "practiceMode": "tracing",
-                    "targetCharacter": "彐",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-06"
+                    "targetCharacter": "彐"
                   },
                   "order": 7,
                   "meta": {
@@ -2008,10 +1796,7 @@
                     "referenceHintKnown": "щетина (shān)",
                     "meaningKnown": "щетина",
                     "practiceMode": "tracing",
-                    "targetCharacter": "彡",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-06"
+                    "targetCharacter": "彡"
                   },
                   "order": 8,
                   "meta": {
@@ -2038,10 +1823,7 @@
                     "referenceHintKnown": "шаг (chì)",
                     "meaningKnown": "шаг",
                     "practiceMode": "tracing",
-                    "targetCharacter": "彳",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-06"
+                    "targetCharacter": "彳"
                   },
                   "order": 9,
                   "meta": {
@@ -2062,9 +1844,6 @@
                 "id": "scenario-radicals-07",
                 "title": "Радикалы 61–70",
                 "description": "Радикалы Канси №61–70.",
-                "lessonId": "lesson-radicals-01",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -2099,10 +1878,7 @@
                     "referenceHintKnown": "сердце (xīn)",
                     "meaningKnown": "сердце",
                     "practiceMode": "tracing",
-                    "targetCharacter": "心",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-07"
+                    "targetCharacter": "心"
                   },
                   "order": 0,
                   "meta": {
@@ -2129,10 +1905,7 @@
                     "referenceHintKnown": "алебарда (gē)",
                     "meaningKnown": "алебарда",
                     "practiceMode": "tracing",
-                    "targetCharacter": "戈",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-07"
+                    "targetCharacter": "戈"
                   },
                   "order": 1,
                   "meta": {
@@ -2159,10 +1932,7 @@
                     "referenceHintKnown": "дверь (hù)",
                     "meaningKnown": "дверь",
                     "practiceMode": "tracing",
-                    "targetCharacter": "戶",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-07"
+                    "targetCharacter": "戶"
                   },
                   "order": 2,
                   "meta": {
@@ -2189,10 +1959,7 @@
                     "referenceHintKnown": "рука (shǒu)",
                     "meaningKnown": "рука",
                     "practiceMode": "tracing",
-                    "targetCharacter": "手",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-07"
+                    "targetCharacter": "手"
                   },
                   "order": 3,
                   "meta": {
@@ -2219,10 +1986,7 @@
                     "referenceHintKnown": "ветка (zhī), подпорка",
                     "meaningKnown": "ветка",
                     "practiceMode": "tracing",
-                    "targetCharacter": "支",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-07"
+                    "targetCharacter": "支"
                   },
                   "order": 4,
                   "meta": {
@@ -2249,10 +2013,7 @@
                     "referenceHintKnown": "удар (pū)",
                     "meaningKnown": "удар",
                     "practiceMode": "tracing",
-                    "targetCharacter": "攴",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-07"
+                    "targetCharacter": "攴"
                   },
                   "order": 5,
                   "meta": {
@@ -2279,10 +2040,7 @@
                     "referenceHintKnown": "письменность (wén), знак",
                     "meaningKnown": "письменность",
                     "practiceMode": "tracing",
-                    "targetCharacter": "文",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-07"
+                    "targetCharacter": "文"
                   },
                   "order": 6,
                   "meta": {
@@ -2309,10 +2067,7 @@
                     "referenceHintKnown": "ковш (dǒu), мерка",
                     "meaningKnown": "ковш",
                     "practiceMode": "tracing",
-                    "targetCharacter": "斗",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-07"
+                    "targetCharacter": "斗"
                   },
                   "order": 7,
                   "meta": {
@@ -2339,10 +2094,7 @@
                     "referenceHintKnown": "топор (jīn)",
                     "meaningKnown": "топор",
                     "practiceMode": "tracing",
-                    "targetCharacter": "斤",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-07"
+                    "targetCharacter": "斤"
                   },
                   "order": 8,
                   "meta": {
@@ -2369,10 +2121,7 @@
                     "referenceHintKnown": "квадрат (fāng), сторона",
                     "meaningKnown": "квадрат",
                     "practiceMode": "tracing",
-                    "targetCharacter": "方",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-01",
-                    "scenarioId": "scenario-radicals-07"
+                    "targetCharacter": "方"
                   },
                   "order": 9,
                   "meta": {
@@ -2395,22 +2144,11 @@
             "id": "lesson-radicals-02",
             "title": "Урок 2: сценарии 8–14",
             "description": "7 сценариев: scenario-radicals-08 — scenario-radicals-14.",
-            "programId": "course-zh-radicals-214-program",
-            "scenarioIds": [
-              "scenario-radicals-08",
-              "scenario-radicals-09",
-              "scenario-radicals-10",
-              "scenario-radicals-11",
-              "scenario-radicals-12",
-              "scenario-radicals-13",
-              "scenario-radicals-14"
-            ],
             "prerequisiteLessonIds": [
               "lesson-radicals-01"
             ],
             "order": 1,
-            "updatedAt": "2026-11-18T05:23:14.660Z",
-            "courseId": "course-zh-radicals-214"
+            "updatedAt": "2026-11-18T05:23:14.660Z"
           },
           "order": 1,
           "scenarios": [
@@ -2419,9 +2157,6 @@
                 "id": "scenario-radicals-08",
                 "title": "Радикалы 71–80",
                 "description": "Радикалы Канси №71–80.",
-                "lessonId": "lesson-radicals-02",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -2456,10 +2191,7 @@
                     "referenceHintKnown": "нет (wú), небытие",
                     "meaningKnown": "нет",
                     "practiceMode": "tracing",
-                    "targetCharacter": "无",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-08"
+                    "targetCharacter": "无"
                   },
                   "order": 0,
                   "meta": {
@@ -2486,10 +2218,7 @@
                     "referenceHintKnown": "солнце (rì)",
                     "meaningKnown": "солнце",
                     "practiceMode": "tracing",
-                    "targetCharacter": "日",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-08"
+                    "targetCharacter": "日"
                   },
                   "order": 1,
                   "meta": {
@@ -2516,10 +2245,7 @@
                     "referenceHintKnown": "говорить (yuē)",
                     "meaningKnown": "говорить",
                     "practiceMode": "tracing",
-                    "targetCharacter": "曰",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-08"
+                    "targetCharacter": "曰"
                   },
                   "order": 2,
                   "meta": {
@@ -2546,10 +2272,7 @@
                     "referenceHintKnown": "луна (yuè)",
                     "meaningKnown": "луна",
                     "practiceMode": "tracing",
-                    "targetCharacter": "月",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-08"
+                    "targetCharacter": "月"
                   },
                   "order": 3,
                   "meta": {
@@ -2576,10 +2299,7 @@
                     "referenceHintKnown": "дерево (mù)",
                     "meaningKnown": "дерево",
                     "practiceMode": "tracing",
-                    "targetCharacter": "木",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-08"
+                    "targetCharacter": "木"
                   },
                   "order": 4,
                   "meta": {
@@ -2606,10 +2326,7 @@
                     "referenceHintKnown": "недостаток (qiàn), зевать",
                     "meaningKnown": "недостаток",
                     "practiceMode": "tracing",
-                    "targetCharacter": "欠",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-08"
+                    "targetCharacter": "欠"
                   },
                   "order": 5,
                   "meta": {
@@ -2636,10 +2353,7 @@
                     "referenceHintKnown": "остановка (zhǐ)",
                     "meaningKnown": "остановка",
                     "practiceMode": "tracing",
-                    "targetCharacter": "止",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-08"
+                    "targetCharacter": "止"
                   },
                   "order": 6,
                   "meta": {
@@ -2666,10 +2380,7 @@
                     "referenceHintKnown": "смерть (dǎi)",
                     "meaningKnown": "смерть",
                     "practiceMode": "tracing",
-                    "targetCharacter": "歹",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-08"
+                    "targetCharacter": "歹"
                   },
                   "order": 7,
                   "meta": {
@@ -2696,10 +2407,7 @@
                     "referenceHintKnown": "оружие (shū), пика",
                     "meaningKnown": "оружие",
                     "practiceMode": "tracing",
-                    "targetCharacter": "殳",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-08"
+                    "targetCharacter": "殳"
                   },
                   "order": 8,
                   "meta": {
@@ -2726,10 +2434,7 @@
                     "referenceHintKnown": "не (wú), мать",
                     "meaningKnown": "не",
                     "practiceMode": "tracing",
-                    "targetCharacter": "毋",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-08"
+                    "targetCharacter": "毋"
                   },
                   "order": 9,
                   "meta": {
@@ -2750,9 +2455,6 @@
                 "id": "scenario-radicals-09",
                 "title": "Радикалы 81–90",
                 "description": "Радикалы Канси №81–90.",
-                "lessonId": "lesson-radicals-02",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -2787,10 +2489,7 @@
                     "referenceHintKnown": "сравнение (bǐ)",
                     "meaningKnown": "сравнение",
                     "practiceMode": "tracing",
-                    "targetCharacter": "比",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-09"
+                    "targetCharacter": "比"
                   },
                   "order": 0,
                   "meta": {
@@ -2817,10 +2516,7 @@
                     "referenceHintKnown": "мех (máo)",
                     "meaningKnown": "мех",
                     "practiceMode": "tracing",
-                    "targetCharacter": "毛",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-09"
+                    "targetCharacter": "毛"
                   },
                   "order": 1,
                   "meta": {
@@ -2847,10 +2543,7 @@
                     "referenceHintKnown": "род (shì)",
                     "meaningKnown": "род",
                     "practiceMode": "tracing",
-                    "targetCharacter": "氏",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-09"
+                    "targetCharacter": "氏"
                   },
                   "order": 2,
                   "meta": {
@@ -2877,10 +2570,7 @@
                     "referenceHintKnown": "пар (qì)",
                     "meaningKnown": "пар",
                     "practiceMode": "tracing",
-                    "targetCharacter": "气",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-09"
+                    "targetCharacter": "气"
                   },
                   "order": 3,
                   "meta": {
@@ -2907,10 +2597,7 @@
                     "referenceHintKnown": "вода (shuǐ)",
                     "meaningKnown": "вода",
                     "practiceMode": "tracing",
-                    "targetCharacter": "水",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-09"
+                    "targetCharacter": "水"
                   },
                   "order": 4,
                   "meta": {
@@ -2937,10 +2624,7 @@
                     "referenceHintKnown": "огонь (huǒ)",
                     "meaningKnown": "огонь",
                     "practiceMode": "tracing",
-                    "targetCharacter": "火",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-09"
+                    "targetCharacter": "火"
                   },
                   "order": 5,
                   "meta": {
@@ -2967,10 +2651,7 @@
                     "referenceHintKnown": "коготь (zhǎo)",
                     "meaningKnown": "коготь",
                     "practiceMode": "tracing",
-                    "targetCharacter": "爪",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-09"
+                    "targetCharacter": "爪"
                   },
                   "order": 6,
                   "meta": {
@@ -2997,10 +2678,7 @@
                     "referenceHintKnown": "отец (fù)",
                     "meaningKnown": "отец",
                     "practiceMode": "tracing",
-                    "targetCharacter": "父",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-09"
+                    "targetCharacter": "父"
                   },
                   "order": 7,
                   "meta": {
@@ -3027,10 +2705,7 @@
                     "referenceHintKnown": "триграммы (yáo)",
                     "meaningKnown": "триграммы",
                     "practiceMode": "tracing",
-                    "targetCharacter": "爻",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-09"
+                    "targetCharacter": "爻"
                   },
                   "order": 8,
                   "meta": {
@@ -3057,10 +2732,7 @@
                     "referenceHintKnown": "доска (qiáng)",
                     "meaningKnown": "доска",
                     "practiceMode": "tracing",
-                    "targetCharacter": "爿",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-09"
+                    "targetCharacter": "爿"
                   },
                   "order": 9,
                   "meta": {
@@ -3081,9 +2753,6 @@
                 "id": "scenario-radicals-10",
                 "title": "Радикалы 91–100",
                 "description": "Радикалы Канси №91–100.",
-                "lessonId": "lesson-radicals-02",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -3118,10 +2787,7 @@
                     "referenceHintKnown": "ломtик (piàn)",
                     "meaningKnown": "ломtик",
                     "practiceMode": "tracing",
-                    "targetCharacter": "片",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-10"
+                    "targetCharacter": "片"
                   },
                   "order": 0,
                   "meta": {
@@ -3148,10 +2814,7 @@
                     "referenceHintKnown": "клык (yá)",
                     "meaningKnown": "клык",
                     "practiceMode": "tracing",
-                    "targetCharacter": "牙",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-10"
+                    "targetCharacter": "牙"
                   },
                   "order": 1,
                   "meta": {
@@ -3178,10 +2841,7 @@
                     "referenceHintKnown": "корова (niú)",
                     "meaningKnown": "корова",
                     "practiceMode": "tracing",
-                    "targetCharacter": "牛",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-10"
+                    "targetCharacter": "牛"
                   },
                   "order": 2,
                   "meta": {
@@ -3208,10 +2868,7 @@
                     "referenceHintKnown": "собака (quǎn)",
                     "meaningKnown": "собака",
                     "practiceMode": "tracing",
-                    "targetCharacter": "犬",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-10"
+                    "targetCharacter": "犬"
                   },
                   "order": 3,
                   "meta": {
@@ -3238,10 +2895,7 @@
                     "referenceHintKnown": "глубокий (xuán)",
                     "meaningKnown": "глубокий",
                     "practiceMode": "tracing",
-                    "targetCharacter": "玄",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-10"
+                    "targetCharacter": "玄"
                   },
                   "order": 4,
                   "meta": {
@@ -3268,10 +2922,7 @@
                     "referenceHintKnown": "нефрит (yù)",
                     "meaningKnown": "нефрит",
                     "practiceMode": "tracing",
-                    "targetCharacter": "玉",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-10"
+                    "targetCharacter": "玉"
                   },
                   "order": 5,
                   "meta": {
@@ -3298,10 +2949,7 @@
                     "referenceHintKnown": "дыня (guā)",
                     "meaningKnown": "дыня",
                     "practiceMode": "tracing",
-                    "targetCharacter": "瓜",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-10"
+                    "targetCharacter": "瓜"
                   },
                   "order": 6,
                   "meta": {
@@ -3328,10 +2976,7 @@
                     "referenceHintKnown": "черепица (wǎ)",
                     "meaningKnown": "черепица",
                     "practiceMode": "tracing",
-                    "targetCharacter": "瓦",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-10"
+                    "targetCharacter": "瓦"
                   },
                   "order": 7,
                   "meta": {
@@ -3358,10 +3003,7 @@
                     "referenceHintKnown": "сладкий (gān)",
                     "meaningKnown": "сладкий",
                     "practiceMode": "tracing",
-                    "targetCharacter": "甘",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-10"
+                    "targetCharacter": "甘"
                   },
                   "order": 8,
                   "meta": {
@@ -3388,10 +3030,7 @@
                     "referenceHintKnown": "жизнь (shēng)",
                     "meaningKnown": "жизнь",
                     "practiceMode": "tracing",
-                    "targetCharacter": "生",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-10"
+                    "targetCharacter": "生"
                   },
                   "order": 9,
                   "meta": {
@@ -3412,9 +3051,6 @@
                 "id": "scenario-radicals-11",
                 "title": "Радикалы 101–110",
                 "description": "Радикалы Канси №101–110.",
-                "lessonId": "lesson-radicals-02",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -3449,10 +3085,7 @@
                     "referenceHintKnown": "использование (yòng)",
                     "meaningKnown": "использование",
                     "practiceMode": "tracing",
-                    "targetCharacter": "用",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-11"
+                    "targetCharacter": "用"
                   },
                   "order": 0,
                   "meta": {
@@ -3479,10 +3112,7 @@
                     "referenceHintKnown": "поле (tián)",
                     "meaningKnown": "поле",
                     "practiceMode": "tracing",
-                    "targetCharacter": "田",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-11"
+                    "targetCharacter": "田"
                   },
                   "order": 1,
                   "meta": {
@@ -3509,10 +3139,7 @@
                     "referenceHintKnown": "ткань (pǐ)",
                     "meaningKnown": "ткань",
                     "practiceMode": "tracing",
-                    "targetCharacter": "疋",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-11"
+                    "targetCharacter": "疋"
                   },
                   "order": 2,
                   "meta": {
@@ -3539,10 +3166,7 @@
                     "referenceHintKnown": "болезнь (nè)",
                     "meaningKnown": "болезнь",
                     "practiceMode": "tracing",
-                    "targetCharacter": "疒",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-11"
+                    "targetCharacter": "疒"
                   },
                   "order": 3,
                   "meta": {
@@ -3569,10 +3193,7 @@
                     "referenceHintKnown": "следы (bō), топтать",
                     "meaningKnown": "следы",
                     "practiceMode": "tracing",
-                    "targetCharacter": "癶",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-11"
+                    "targetCharacter": "癶"
                   },
                   "order": 4,
                   "meta": {
@@ -3599,10 +3220,7 @@
                     "referenceHintKnown": "белый (bái)",
                     "meaningKnown": "белый",
                     "practiceMode": "tracing",
-                    "targetCharacter": "白",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-11"
+                    "targetCharacter": "白"
                   },
                   "order": 5,
                   "meta": {
@@ -3630,10 +3248,7 @@
                     "referenceHintKnown": "сырая кожа (pí)",
                     "meaningKnown": "кожа",
                     "practiceMode": "tracing",
-                    "targetCharacter": "皮",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-11"
+                    "targetCharacter": "皮"
                   },
                   "order": 6,
                   "meta": {
@@ -3660,10 +3275,7 @@
                     "referenceHintKnown": "блюдо (mǐn)",
                     "meaningKnown": "блюдо",
                     "practiceMode": "tracing",
-                    "targetCharacter": "皿",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-11"
+                    "targetCharacter": "皿"
                   },
                   "order": 7,
                   "meta": {
@@ -3690,10 +3302,7 @@
                     "referenceHintKnown": "глаз (mù)",
                     "meaningKnown": "глаз",
                     "practiceMode": "tracing",
-                    "targetCharacter": "目",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-11"
+                    "targetCharacter": "目"
                   },
                   "order": 8,
                   "meta": {
@@ -3720,10 +3329,7 @@
                     "referenceHintKnown": "копьё (máo)",
                     "meaningKnown": "копьё",
                     "practiceMode": "tracing",
-                    "targetCharacter": "矛",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-11"
+                    "targetCharacter": "矛"
                   },
                   "order": 9,
                   "meta": {
@@ -3744,9 +3350,6 @@
                 "id": "scenario-radicals-12",
                 "title": "Радикалы 111–120",
                 "description": "Радикалы Канси №111–120.",
-                "lessonId": "lesson-radicals-02",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -3781,10 +3384,7 @@
                     "referenceHintKnown": "стрела (shǐ)",
                     "meaningKnown": "стрела",
                     "practiceMode": "tracing",
-                    "targetCharacter": "矢",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-12"
+                    "targetCharacter": "矢"
                   },
                   "order": 0,
                   "meta": {
@@ -3811,10 +3411,7 @@
                     "referenceHintKnown": "камень (shí)",
                     "meaningKnown": "камень",
                     "practiceMode": "tracing",
-                    "targetCharacter": "石",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-12"
+                    "targetCharacter": "石"
                   },
                   "order": 1,
                   "meta": {
@@ -3841,10 +3438,7 @@
                     "referenceHintKnown": "дух (shì)",
                     "meaningKnown": "дух",
                     "practiceMode": "tracing",
-                    "targetCharacter": "示",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-12"
+                    "targetCharacter": "示"
                   },
                   "order": 2,
                   "meta": {
@@ -3871,10 +3465,7 @@
                     "referenceHintKnown": "след (róu)",
                     "meaningKnown": "след",
                     "practiceMode": "tracing",
-                    "targetCharacter": "禸",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-12"
+                    "targetCharacter": "禸"
                   },
                   "order": 3,
                   "meta": {
@@ -3901,10 +3492,7 @@
                     "referenceHintKnown": "зерно (hé), злак",
                     "meaningKnown": "зерно",
                     "practiceMode": "tracing",
-                    "targetCharacter": "禾",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-12"
+                    "targetCharacter": "禾"
                   },
                   "order": 4,
                   "meta": {
@@ -3931,10 +3519,7 @@
                     "referenceHintKnown": "пещера (xué)",
                     "meaningKnown": "пещера",
                     "practiceMode": "tracing",
-                    "targetCharacter": "穴",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-12"
+                    "targetCharacter": "穴"
                   },
                   "order": 5,
                   "meta": {
@@ -3961,10 +3546,7 @@
                     "referenceHintKnown": "стоять (lì)",
                     "meaningKnown": "стоять",
                     "practiceMode": "tracing",
-                    "targetCharacter": "立",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-12"
+                    "targetCharacter": "立"
                   },
                   "order": 6,
                   "meta": {
@@ -3991,10 +3573,7 @@
                     "referenceHintKnown": "бамбук (zhú)",
                     "meaningKnown": "бамбук",
                     "practiceMode": "tracing",
-                    "targetCharacter": "竹",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-12"
+                    "targetCharacter": "竹"
                   },
                   "order": 7,
                   "meta": {
@@ -4021,10 +3600,7 @@
                     "referenceHintKnown": "рис (mǐ)",
                     "meaningKnown": "рис",
                     "practiceMode": "tracing",
-                    "targetCharacter": "米",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-12"
+                    "targetCharacter": "米"
                   },
                   "order": 8,
                   "meta": {
@@ -4051,10 +3627,7 @@
                     "referenceHintKnown": "шёлк (mì)",
                     "meaningKnown": "шёлк",
                     "practiceMode": "tracing",
-                    "targetCharacter": "糸",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-12"
+                    "targetCharacter": "糸"
                   },
                   "order": 9,
                   "meta": {
@@ -4075,9 +3648,6 @@
                 "id": "scenario-radicals-13",
                 "title": "Радикалы 121–130",
                 "description": "Радикалы Канси №121–130.",
-                "lessonId": "lesson-radicals-02",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -4112,10 +3682,7 @@
                     "referenceHintKnown": "кувшин (fǒu)",
                     "meaningKnown": "кувшин",
                     "practiceMode": "tracing",
-                    "targetCharacter": "缶",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-13"
+                    "targetCharacter": "缶"
                   },
                   "order": 0,
                   "meta": {
@@ -4142,10 +3709,7 @@
                     "referenceHintKnown": "сеть (wǎng)",
                     "meaningKnown": "сеть",
                     "practiceMode": "tracing",
-                    "targetCharacter": "网",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-13"
+                    "targetCharacter": "网"
                   },
                   "order": 1,
                   "meta": {
@@ -4172,10 +3736,7 @@
                     "referenceHintKnown": "овца (yáng)",
                     "meaningKnown": "овца",
                     "practiceMode": "tracing",
-                    "targetCharacter": "羊",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-13"
+                    "targetCharacter": "羊"
                   },
                   "order": 2,
                   "meta": {
@@ -4202,10 +3763,7 @@
                     "referenceHintKnown": "Перья (yǔ)",
                     "meaningKnown": "перо",
                     "practiceMode": "tracing",
-                    "targetCharacter": "羽",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-13"
+                    "targetCharacter": "羽"
                   },
                   "order": 3,
                   "meta": {
@@ -4232,10 +3790,7 @@
                     "referenceHintKnown": "старый (lǎo)",
                     "meaningKnown": "старый",
                     "practiceMode": "tracing",
-                    "targetCharacter": "老",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-13"
+                    "targetCharacter": "老"
                   },
                   "order": 4,
                   "meta": {
@@ -4262,10 +3817,7 @@
                     "referenceHintKnown": "и (ér)",
                     "meaningKnown": "и",
                     "practiceMode": "tracing",
-                    "targetCharacter": "而",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-13"
+                    "targetCharacter": "而"
                   },
                   "order": 5,
                   "meta": {
@@ -4292,10 +3844,7 @@
                     "referenceHintKnown": "плуг (lěi)",
                     "meaningKnown": "плуг",
                     "practiceMode": "tracing",
-                    "targetCharacter": "耒",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-13"
+                    "targetCharacter": "耒"
                   },
                   "order": 6,
                   "meta": {
@@ -4322,10 +3871,7 @@
                     "referenceHintKnown": "ухо (ěr)",
                     "meaningKnown": "ухо",
                     "practiceMode": "tracing",
-                    "targetCharacter": "耳",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-13"
+                    "targetCharacter": "耳"
                   },
                   "order": 7,
                   "meta": {
@@ -4352,10 +3898,7 @@
                     "referenceHintKnown": "кисть (yù)",
                     "meaningKnown": "кисть",
                     "practiceMode": "tracing",
-                    "targetCharacter": "聿",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-13"
+                    "targetCharacter": "聿"
                   },
                   "order": 8,
                   "meta": {
@@ -4382,10 +3925,7 @@
                     "referenceHintKnown": "мясо (ròu)",
                     "meaningKnown": "мясо",
                     "practiceMode": "tracing",
-                    "targetCharacter": "肉",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-13"
+                    "targetCharacter": "肉"
                   },
                   "order": 9,
                   "meta": {
@@ -4406,9 +3946,6 @@
                 "id": "scenario-radicals-14",
                 "title": "Радикалы 131–140",
                 "description": "Радикалы Канси №131–140.",
-                "lessonId": "lesson-radicals-02",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -4443,10 +3980,7 @@
                     "referenceHintKnown": "министр (chén)",
                     "meaningKnown": "министр",
                     "practiceMode": "tracing",
-                    "targetCharacter": "臣",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-14"
+                    "targetCharacter": "臣"
                   },
                   "order": 0,
                   "meta": {
@@ -4473,10 +4007,7 @@
                     "referenceHintKnown": "сам (zì)",
                     "meaningKnown": "сам",
                     "practiceMode": "tracing",
-                    "targetCharacter": "自",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-14"
+                    "targetCharacter": "自"
                   },
                   "order": 1,
                   "meta": {
@@ -4503,10 +4034,7 @@
                     "referenceHintKnown": "прибыть (zhì)",
                     "meaningKnown": "прибыть",
                     "practiceMode": "tracing",
-                    "targetCharacter": "至",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-14"
+                    "targetCharacter": "至"
                   },
                   "order": 2,
                   "meta": {
@@ -4533,10 +4061,7 @@
                     "referenceHintKnown": "ступа (jiù)",
                     "meaningKnown": "ступа",
                     "practiceMode": "tracing",
-                    "targetCharacter": "臼",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-14"
+                    "targetCharacter": "臼"
                   },
                   "order": 3,
                   "meta": {
@@ -4563,10 +4088,7 @@
                     "referenceHintKnown": "язык (shé)",
                     "meaningKnown": "язык",
                     "practiceMode": "tracing",
-                    "targetCharacter": "舌",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-14"
+                    "targetCharacter": "舌"
                   },
                   "order": 4,
                   "meta": {
@@ -4593,10 +4115,7 @@
                     "referenceHintKnown": "противоположность (chuǎn)",
                     "meaningKnown": "противоположность",
                     "practiceMode": "tracing",
-                    "targetCharacter": "舛",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-14"
+                    "targetCharacter": "舛"
                   },
                   "order": 5,
                   "meta": {
@@ -4623,10 +4142,7 @@
                     "referenceHintKnown": "лодка (zhōu)",
                     "meaningKnown": "лодка",
                     "practiceMode": "tracing",
-                    "targetCharacter": "舟",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-14"
+                    "targetCharacter": "舟"
                   },
                   "order": 6,
                   "meta": {
@@ -4653,10 +4169,7 @@
                     "referenceHintKnown": "остановка (gèn)",
                     "meaningKnown": "остановка",
                     "practiceMode": "tracing",
-                    "targetCharacter": "艮",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-14"
+                    "targetCharacter": "艮"
                   },
                   "order": 7,
                   "meta": {
@@ -4683,10 +4196,7 @@
                     "referenceHintKnown": "цвет (sè)",
                     "meaningKnown": "цвет",
                     "practiceMode": "tracing",
-                    "targetCharacter": "色",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-14"
+                    "targetCharacter": "色"
                   },
                   "order": 8,
                   "meta": {
@@ -4713,10 +4223,7 @@
                     "referenceHintKnown": "трава (cǎo)",
                     "meaningKnown": "трава",
                     "practiceMode": "tracing",
-                    "targetCharacter": "艸",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-02",
-                    "scenarioId": "scenario-radicals-14"
+                    "targetCharacter": "艸"
                   },
                   "order": 9,
                   "meta": {
@@ -4739,22 +4246,11 @@
             "id": "lesson-radicals-03",
             "title": "Урок 3: сценарии 15–21",
             "description": "7 сценариев: scenario-radicals-15 — scenario-radicals-21.",
-            "programId": "course-zh-radicals-214-program",
-            "scenarioIds": [
-              "scenario-radicals-15",
-              "scenario-radicals-16",
-              "scenario-radicals-17",
-              "scenario-radicals-18",
-              "scenario-radicals-19",
-              "scenario-radicals-20",
-              "scenario-radicals-21"
-            ],
             "prerequisiteLessonIds": [
               "lesson-radicals-02"
             ],
             "order": 2,
-            "updatedAt": "2026-11-18T05:23:14.660Z",
-            "courseId": "course-zh-radicals-214"
+            "updatedAt": "2026-11-18T05:23:14.660Z"
           },
           "order": 2,
           "scenarios": [
@@ -4763,9 +4259,6 @@
                 "id": "scenario-radicals-15",
                 "title": "Радикалы 141–150",
                 "description": "Радикалы Канси №141–150.",
-                "lessonId": "lesson-radicals-03",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -4800,10 +4293,7 @@
                     "referenceHintKnown": "тигр (hū)",
                     "meaningKnown": "тигр",
                     "practiceMode": "tracing",
-                    "targetCharacter": "虍",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-15"
+                    "targetCharacter": "虍"
                   },
                   "order": 0,
                   "meta": {
@@ -4830,10 +4320,7 @@
                     "referenceHintKnown": "насекомое (chóng)",
                     "meaningKnown": "насекомое",
                     "practiceMode": "tracing",
-                    "targetCharacter": "虫",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-15"
+                    "targetCharacter": "虫"
                   },
                   "order": 1,
                   "meta": {
@@ -4860,10 +4347,7 @@
                     "referenceHintKnown": "кровь (xuè)",
                     "meaningKnown": "кровь",
                     "practiceMode": "tracing",
-                    "targetCharacter": "血",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-15"
+                    "targetCharacter": "血"
                   },
                   "order": 2,
                   "meta": {
@@ -4890,10 +4374,7 @@
                     "referenceHintKnown": "улица (xíng)",
                     "meaningKnown": "улица",
                     "practiceMode": "tracing",
-                    "targetCharacter": "行",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-15"
+                    "targetCharacter": "行"
                   },
                   "order": 3,
                   "meta": {
@@ -4920,10 +4401,7 @@
                     "referenceHintKnown": "одежда (yī)",
                     "meaningKnown": "одежда",
                     "practiceMode": "tracing",
-                    "targetCharacter": "衣",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-15"
+                    "targetCharacter": "衣"
                   },
                   "order": 4,
                   "meta": {
@@ -4950,10 +4428,7 @@
                     "referenceHintKnown": "покрытие (yà)",
                     "meaningKnown": "покрытие",
                     "practiceMode": "tracing",
-                    "targetCharacter": "襾",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-15"
+                    "targetCharacter": "襾"
                   },
                   "order": 5,
                   "meta": {
@@ -4981,10 +4456,7 @@
                     "referenceHintKnown": "видеть (jiàn)",
                     "meaningKnown": "видеть",
                     "practiceMode": "tracing",
-                    "targetCharacter": "見",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-15"
+                    "targetCharacter": "見"
                   },
                   "order": 6,
                   "meta": {
@@ -5011,10 +4483,7 @@
                     "referenceHintKnown": "рог (jiǎo)",
                     "meaningKnown": "рог",
                     "practiceMode": "tracing",
-                    "targetCharacter": "角",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-15"
+                    "targetCharacter": "角"
                   },
                   "order": 7,
                   "meta": {
@@ -5041,10 +4510,7 @@
                     "referenceHintKnown": "речь (yán)",
                     "meaningKnown": "речь",
                     "practiceMode": "tracing",
-                    "targetCharacter": "言",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-15"
+                    "targetCharacter": "言"
                   },
                   "order": 8,
                   "meta": {
@@ -5071,10 +4537,7 @@
                     "referenceHintKnown": "долина (gǔ)",
                     "meaningKnown": "долина",
                     "practiceMode": "tracing",
-                    "targetCharacter": "谷",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-15"
+                    "targetCharacter": "谷"
                   },
                   "order": 9,
                   "meta": {
@@ -5095,9 +4558,6 @@
                 "id": "scenario-radicals-16",
                 "title": "Радикалы 151–160",
                 "description": "Радикалы Канси №151–160.",
-                "lessonId": "lesson-radicals-03",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -5132,10 +4592,7 @@
                     "referenceHintKnown": "боб (dòu)",
                     "meaningKnown": "боб",
                     "practiceMode": "tracing",
-                    "targetCharacter": "豆",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-16"
+                    "targetCharacter": "豆"
                   },
                   "order": 0,
                   "meta": {
@@ -5162,10 +4619,7 @@
                     "referenceHintKnown": "свинья (shǐ)",
                     "meaningKnown": "свинья",
                     "practiceMode": "tracing",
-                    "targetCharacter": "豕",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-16"
+                    "targetCharacter": "豕"
                   },
                   "order": 1,
                   "meta": {
@@ -5192,10 +4646,7 @@
                     "referenceHintKnown": "барсук (zhì)",
                     "meaningKnown": "барсук",
                     "practiceMode": "tracing",
-                    "targetCharacter": "豸",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-16"
+                    "targetCharacter": "豸"
                   },
                   "order": 2,
                   "meta": {
@@ -5222,10 +4673,7 @@
                     "referenceHintKnown": "раковина (bèi)",
                     "meaningKnown": "раковина",
                     "practiceMode": "tracing",
-                    "targetCharacter": "貝",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-16"
+                    "targetCharacter": "貝"
                   },
                   "order": 3,
                   "meta": {
@@ -5252,10 +4700,7 @@
                     "referenceHintKnown": "красный (chì)",
                     "meaningKnown": "красный",
                     "practiceMode": "tracing",
-                    "targetCharacter": "赤",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-16"
+                    "targetCharacter": "赤"
                   },
                   "order": 4,
                   "meta": {
@@ -5283,10 +4728,7 @@
                     "referenceHintKnown": "бег (zǒu)",
                     "meaningKnown": "бег",
                     "practiceMode": "tracing",
-                    "targetCharacter": "走",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-16"
+                    "targetCharacter": "走"
                   },
                   "order": 5,
                   "meta": {
@@ -5313,10 +4755,7 @@
                     "referenceHintKnown": "нога (zú)",
                     "meaningKnown": "нога",
                     "practiceMode": "tracing",
-                    "targetCharacter": "足",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-16"
+                    "targetCharacter": "足"
                   },
                   "order": 6,
                   "meta": {
@@ -5343,10 +4782,7 @@
                     "referenceHintKnown": "тело (shēn)",
                     "meaningKnown": "тело",
                     "practiceMode": "tracing",
-                    "targetCharacter": "身",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-16"
+                    "targetCharacter": "身"
                   },
                   "order": 7,
                   "meta": {
@@ -5373,10 +4809,7 @@
                     "referenceHintKnown": "телега (chē)",
                     "meaningKnown": "телега",
                     "practiceMode": "tracing",
-                    "targetCharacter": "車",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-16"
+                    "targetCharacter": "車"
                   },
                   "order": 8,
                   "meta": {
@@ -5403,10 +4836,7 @@
                     "referenceHintKnown": "горький (xīn)",
                     "meaningKnown": "горький",
                     "practiceMode": "tracing",
-                    "targetCharacter": "辛",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-16"
+                    "targetCharacter": "辛"
                   },
                   "order": 9,
                   "meta": {
@@ -5427,9 +4857,6 @@
                 "id": "scenario-radicals-17",
                 "title": "Радикалы 161–170",
                 "description": "Радикалы Канси №161–170.",
-                "lessonId": "lesson-radicals-03",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -5464,10 +4891,7 @@
                     "referenceHintKnown": "утро (chén)",
                     "meaningKnown": "утро",
                     "practiceMode": "tracing",
-                    "targetCharacter": "辰",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-17"
+                    "targetCharacter": "辰"
                   },
                   "order": 0,
                   "meta": {
@@ -5494,10 +4918,7 @@
                     "referenceHintKnown": "ходить (chuò)",
                     "meaningKnown": "ходить",
                     "practiceMode": "tracing",
-                    "targetCharacter": "辵",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-17"
+                    "targetCharacter": "辵"
                   },
                   "order": 1,
                   "meta": {
@@ -5524,10 +4945,7 @@
                     "referenceHintKnown": "город (yì)",
                     "meaningKnown": "город",
                     "practiceMode": "tracing",
-                    "targetCharacter": "邑",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-17"
+                    "targetCharacter": "邑"
                   },
                   "order": 2,
                   "meta": {
@@ -5554,10 +4972,7 @@
                     "referenceHintKnown": "вино (yǒu)",
                     "meaningKnown": "вино",
                     "practiceMode": "tracing",
-                    "targetCharacter": "酉",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-17"
+                    "targetCharacter": "酉"
                   },
                   "order": 3,
                   "meta": {
@@ -5584,10 +4999,7 @@
                     "referenceHintKnown": "различать (biàn)",
                     "meaningKnown": "различать",
                     "practiceMode": "tracing",
-                    "targetCharacter": "釆",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-17"
+                    "targetCharacter": "釆"
                   },
                   "order": 4,
                   "meta": {
@@ -5614,10 +5026,7 @@
                     "referenceHintKnown": "деревня (lǐ)",
                     "meaningKnown": "деревня",
                     "practiceMode": "tracing",
-                    "targetCharacter": "里",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-17"
+                    "targetCharacter": "里"
                   },
                   "order": 5,
                   "meta": {
@@ -5644,10 +5053,7 @@
                     "referenceHintKnown": "золото (jīn)",
                     "meaningKnown": "золото",
                     "practiceMode": "tracing",
-                    "targetCharacter": "金",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-17"
+                    "targetCharacter": "金"
                   },
                   "order": 6,
                   "meta": {
@@ -5674,10 +5080,7 @@
                     "referenceHintKnown": "длинный (cháng)",
                     "meaningKnown": "длинный",
                     "practiceMode": "tracing",
-                    "targetCharacter": "長",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-17"
+                    "targetCharacter": "長"
                   },
                   "order": 7,
                   "meta": {
@@ -5704,10 +5107,7 @@
                     "referenceHintKnown": "ворота (mén)",
                     "meaningKnown": "ворота",
                     "practiceMode": "tracing",
-                    "targetCharacter": "門",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-17"
+                    "targetCharacter": "門"
                   },
                   "order": 8,
                   "meta": {
@@ -5734,10 +5134,7 @@
                     "referenceHintKnown": "холм (fù)",
                     "meaningKnown": "холм",
                     "practiceMode": "tracing",
-                    "targetCharacter": "阜",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-17"
+                    "targetCharacter": "阜"
                   },
                   "order": 9,
                   "meta": {
@@ -5758,9 +5155,6 @@
                 "id": "scenario-radicals-18",
                 "title": "Радикалы 171–180",
                 "description": "Радикалы Канси №171–180.",
-                "lessonId": "lesson-radicals-03",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -5795,10 +5189,7 @@
                     "referenceHintKnown": "раб (lì)",
                     "meaningKnown": "раб",
                     "practiceMode": "tracing",
-                    "targetCharacter": "隶",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-18"
+                    "targetCharacter": "隶"
                   },
                   "order": 0,
                   "meta": {
@@ -5825,10 +5216,7 @@
                     "referenceHintKnown": "птица, голубь (zhuī)",
                     "meaningKnown": "птица",
                     "practiceMode": "tracing",
-                    "targetCharacter": "隹",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-18"
+                    "targetCharacter": "隹"
                   },
                   "order": 1,
                   "meta": {
@@ -5855,10 +5243,7 @@
                     "referenceHintKnown": "дождь (yǔ)",
                     "meaningKnown": "дождь",
                     "practiceMode": "tracing",
-                    "targetCharacter": "雨",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-18"
+                    "targetCharacter": "雨"
                   },
                   "order": 2,
                   "meta": {
@@ -5885,10 +5270,7 @@
                     "referenceHintKnown": "синий (qīng)",
                     "meaningKnown": "синий",
                     "practiceMode": "tracing",
-                    "targetCharacter": "靑",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-18"
+                    "targetCharacter": "靑"
                   },
                   "order": 3,
                   "meta": {
@@ -5916,10 +5298,7 @@
                     "referenceHintKnown": "неправильный (fēi)",
                     "meaningKnown": "неправильный",
                     "practiceMode": "tracing",
-                    "targetCharacter": "非",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-18"
+                    "targetCharacter": "非"
                   },
                   "order": 4,
                   "meta": {
@@ -5947,10 +5326,7 @@
                     "referenceHintKnown": "лицо (miàn)",
                     "meaningKnown": "лицо",
                     "practiceMode": "tracing",
-                    "targetCharacter": "面",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-18"
+                    "targetCharacter": "面"
                   },
                   "order": 5,
                   "meta": {
@@ -5977,10 +5353,7 @@
                     "referenceHintKnown": "кожа (gé)",
                     "meaningKnown": "кожа",
                     "practiceMode": "tracing",
-                    "targetCharacter": "革",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-18"
+                    "targetCharacter": "革"
                   },
                   "order": 6,
                   "meta": {
@@ -6007,10 +5380,7 @@
                     "referenceHintKnown": "выделанная кожа (wéi)",
                     "meaningKnown": "выделанная кожа",
                     "practiceMode": "tracing",
-                    "targetCharacter": "韋",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-18"
+                    "targetCharacter": "韋"
                   },
                   "order": 7,
                   "meta": {
@@ -6037,10 +5407,7 @@
                     "referenceHintKnown": "лук-порей (jiǔ)",
                     "meaningKnown": "лук-порей",
                     "practiceMode": "tracing",
-                    "targetCharacter": "韭",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-18"
+                    "targetCharacter": "韭"
                   },
                   "order": 8,
                   "meta": {
@@ -6067,10 +5434,7 @@
                     "referenceHintKnown": "звук (yīn)",
                     "meaningKnown": "звук",
                     "practiceMode": "tracing",
-                    "targetCharacter": "音",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-18"
+                    "targetCharacter": "音"
                   },
                   "order": 9,
                   "meta": {
@@ -6091,9 +5455,6 @@
                 "id": "scenario-radicals-19",
                 "title": "Радикалы 181–190",
                 "description": "Радикалы Канси №181–190.",
-                "lessonId": "lesson-radicals-03",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -6128,10 +5489,7 @@
                     "referenceHintKnown": "лист (yè)",
                     "meaningKnown": "лист",
                     "practiceMode": "tracing",
-                    "targetCharacter": "頁",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-19"
+                    "targetCharacter": "頁"
                   },
                   "order": 0,
                   "meta": {
@@ -6158,10 +5516,7 @@
                     "referenceHintKnown": "ветер (fēng)",
                     "meaningKnown": "ветер",
                     "practiceMode": "tracing",
-                    "targetCharacter": "風",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-19"
+                    "targetCharacter": "風"
                   },
                   "order": 1,
                   "meta": {
@@ -6188,10 +5543,7 @@
                     "referenceHintKnown": "летать (fēi)",
                     "meaningKnown": "летать",
                     "practiceMode": "tracing",
-                    "targetCharacter": "飛",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-19"
+                    "targetCharacter": "飛"
                   },
                   "order": 2,
                   "meta": {
@@ -6218,10 +5570,7 @@
                     "referenceHintKnown": "есть (shí)",
                     "meaningKnown": "есть",
                     "practiceMode": "tracing",
-                    "targetCharacter": "食",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-19"
+                    "targetCharacter": "食"
                   },
                   "order": 3,
                   "meta": {
@@ -6248,10 +5597,7 @@
                     "referenceHintKnown": "голова (shǒu)",
                     "meaningKnown": "голова",
                     "practiceMode": "tracing",
-                    "targetCharacter": "首",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-19"
+                    "targetCharacter": "首"
                   },
                   "order": 4,
                   "meta": {
@@ -6278,10 +5624,7 @@
                     "referenceHintKnown": "аромат (xiāng)",
                     "meaningKnown": "аромат",
                     "practiceMode": "tracing",
-                    "targetCharacter": "香",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-19"
+                    "targetCharacter": "香"
                   },
                   "order": 5,
                   "meta": {
@@ -6308,10 +5651,7 @@
                     "referenceHintKnown": "лошадь (mǎ)",
                     "meaningKnown": "лошадь",
                     "practiceMode": "tracing",
-                    "targetCharacter": "馬",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-19"
+                    "targetCharacter": "馬"
                   },
                   "order": 6,
                   "meta": {
@@ -6338,10 +5678,7 @@
                     "referenceHintKnown": "кость (gǔ)",
                     "meaningKnown": "кость",
                     "practiceMode": "tracing",
-                    "targetCharacter": "骨",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-19"
+                    "targetCharacter": "骨"
                   },
                   "order": 7,
                   "meta": {
@@ -6368,10 +5705,7 @@
                     "referenceHintKnown": "высокий (gāo)",
                     "meaningKnown": "высокий",
                     "practiceMode": "tracing",
-                    "targetCharacter": "高",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-19"
+                    "targetCharacter": "高"
                   },
                   "order": 8,
                   "meta": {
@@ -6398,10 +5732,7 @@
                     "referenceHintKnown": "волосы (biāo)",
                     "meaningKnown": "волосы",
                     "practiceMode": "tracing",
-                    "targetCharacter": "髟",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-19"
+                    "targetCharacter": "髟"
                   },
                   "order": 9,
                   "meta": {
@@ -6422,9 +5753,6 @@
                 "id": "scenario-radicals-20",
                 "title": "Радикалы 191–200",
                 "description": "Радикалы Канси №191–200.",
-                "lessonId": "lesson-radicals-03",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -6459,10 +5787,7 @@
                     "referenceHintKnown": "бой (dòu)",
                     "meaningKnown": "бой",
                     "practiceMode": "tracing",
-                    "targetCharacter": "鬥",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-20"
+                    "targetCharacter": "鬥"
                   },
                   "order": 0,
                   "meta": {
@@ -6489,10 +5814,7 @@
                     "referenceHintKnown": "ритуальное вино (chàng)",
                     "meaningKnown": "ритуальное вино",
                     "practiceMode": "tracing",
-                    "targetCharacter": "鬯",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-20"
+                    "targetCharacter": "鬯"
                   },
                   "order": 1,
                   "meta": {
@@ -6519,10 +5841,7 @@
                     "referenceHintKnown": "котёл (lì)",
                     "meaningKnown": "котёл",
                     "practiceMode": "tracing",
-                    "targetCharacter": "鬲",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-20"
+                    "targetCharacter": "鬲"
                   },
                   "order": 2,
                   "meta": {
@@ -6549,10 +5868,7 @@
                     "referenceHintKnown": "призрак (guǐ)",
                     "meaningKnown": "призрак",
                     "practiceMode": "tracing",
-                    "targetCharacter": "鬼",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-20"
+                    "targetCharacter": "鬼"
                   },
                   "order": 3,
                   "meta": {
@@ -6579,10 +5895,7 @@
                     "referenceHintKnown": "рыба (yú)",
                     "meaningKnown": "рыба",
                     "practiceMode": "tracing",
-                    "targetCharacter": "魚",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-20"
+                    "targetCharacter": "魚"
                   },
                   "order": 4,
                   "meta": {
@@ -6609,10 +5922,7 @@
                     "referenceHintKnown": "птица (niǎo)",
                     "meaningKnown": "птица",
                     "practiceMode": "tracing",
-                    "targetCharacter": "鳥",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-20"
+                    "targetCharacter": "鳥"
                   },
                   "order": 5,
                   "meta": {
@@ -6639,10 +5949,7 @@
                     "referenceHintKnown": "соль (lǔ)",
                     "meaningKnown": "соль",
                     "practiceMode": "tracing",
-                    "targetCharacter": "鹵",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-20"
+                    "targetCharacter": "鹵"
                   },
                   "order": 6,
                   "meta": {
@@ -6669,10 +5976,7 @@
                     "referenceHintKnown": "олень (lù)",
                     "meaningKnown": "олень",
                     "practiceMode": "tracing",
-                    "targetCharacter": "鹿",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-20"
+                    "targetCharacter": "鹿"
                   },
                   "order": 7,
                   "meta": {
@@ -6699,10 +6003,7 @@
                     "referenceHintKnown": "пшеница (mài)",
                     "meaningKnown": "пшеница",
                     "practiceMode": "tracing",
-                    "targetCharacter": "麥",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-20"
+                    "targetCharacter": "麥"
                   },
                   "order": 8,
                   "meta": {
@@ -6729,10 +6030,7 @@
                     "referenceHintKnown": "конопля (má)",
                     "meaningKnown": "конопля",
                     "practiceMode": "tracing",
-                    "targetCharacter": "麻",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-20"
+                    "targetCharacter": "麻"
                   },
                   "order": 9,
                   "meta": {
@@ -6753,9 +6051,6 @@
                 "id": "scenario-radicals-21",
                 "title": "Радикалы 201–214",
                 "description": "14 карточек: радикалы Канси №201–214.",
-                "lessonId": "lesson-radicals-03",
-                "courseId": "course-zh-radicals-214",
-                "programId": "course-zh-radicals-214-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -6794,10 +6089,7 @@
                     "referenceHintKnown": "жёлтый (huáng)",
                     "meaningKnown": "жёлтый",
                     "practiceMode": "tracing",
-                    "targetCharacter": "黃",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "黃"
                   },
                   "order": 0,
                   "meta": {
@@ -6824,10 +6116,7 @@
                     "referenceHintKnown": "просо (shǔ)",
                     "meaningKnown": "просо",
                     "practiceMode": "tracing",
-                    "targetCharacter": "黍",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "黍"
                   },
                   "order": 1,
                   "meta": {
@@ -6854,10 +6143,7 @@
                     "referenceHintKnown": "чёрный (hēi)",
                     "meaningKnown": "чёрный",
                     "practiceMode": "tracing",
-                    "targetCharacter": "黑",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "黑"
                   },
                   "order": 2,
                   "meta": {
@@ -6884,10 +6170,7 @@
                     "referenceHintKnown": "вышивка (zhǐ)",
                     "meaningKnown": "вышивка",
                     "practiceMode": "tracing",
-                    "targetCharacter": "黹",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "黹"
                   },
                   "order": 3,
                   "meta": {
@@ -6914,10 +6197,7 @@
                     "referenceHintKnown": "лягушка (mǐn)",
                     "meaningKnown": "лягушка",
                     "practiceMode": "tracing",
-                    "targetCharacter": "黽",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "黽"
                   },
                   "order": 4,
                   "meta": {
@@ -6944,10 +6224,7 @@
                     "referenceHintKnown": "треножник (dǐng)",
                     "meaningKnown": "треножник",
                     "practiceMode": "tracing",
-                    "targetCharacter": "鼎",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "鼎"
                   },
                   "order": 5,
                   "meta": {
@@ -6974,10 +6251,7 @@
                     "referenceHintKnown": "барабан (gǔ)",
                     "meaningKnown": "барабан",
                     "practiceMode": "tracing",
-                    "targetCharacter": "鼓",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "鼓"
                   },
                   "order": 6,
                   "meta": {
@@ -7004,10 +6278,7 @@
                     "referenceHintKnown": "крыса (shǔ)",
                     "meaningKnown": "крыса",
                     "practiceMode": "tracing",
-                    "targetCharacter": "鼠",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "鼠"
                   },
                   "order": 7,
                   "meta": {
@@ -7034,10 +6305,7 @@
                     "referenceHintKnown": "нос (bí)",
                     "meaningKnown": "нос",
                     "practiceMode": "tracing",
-                    "targetCharacter": "鼻",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "鼻"
                   },
                   "order": 8,
                   "meta": {
@@ -7064,10 +6332,7 @@
                     "referenceHintKnown": "ровный (qí)",
                     "meaningKnown": "ровный",
                     "practiceMode": "tracing",
-                    "targetCharacter": "齊",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "齊"
                   },
                   "order": 9,
                   "meta": {
@@ -7094,10 +6359,7 @@
                     "referenceHintKnown": "зуб (chǐ)",
                     "meaningKnown": "зуб",
                     "practiceMode": "tracing",
-                    "targetCharacter": "齒",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "齒"
                   },
                   "order": 10,
                   "meta": {
@@ -7124,10 +6386,7 @@
                     "referenceHintKnown": "дракон (lóng)",
                     "meaningKnown": "дракон",
                     "practiceMode": "tracing",
-                    "targetCharacter": "龍",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "龍"
                   },
                   "order": 11,
                   "meta": {
@@ -7154,10 +6413,7 @@
                     "referenceHintKnown": "черепаха (guī)",
                     "meaningKnown": "черепаха",
                     "practiceMode": "tracing",
-                    "targetCharacter": "龜",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "龜"
                   },
                   "order": 12,
                   "meta": {
@@ -7184,10 +6440,7 @@
                     "referenceHintKnown": "флейта (yuè)",
                     "meaningKnown": "флейта",
                     "practiceMode": "tracing",
-                    "targetCharacter": "龠",
-                    "courseId": "course-zh-radicals-214",
-                    "lessonId": "lesson-radicals-03",
-                    "scenarioId": "scenario-radicals-21"
+                    "targetCharacter": "龠"
                   },
                   "order": 13,
                   "meta": {

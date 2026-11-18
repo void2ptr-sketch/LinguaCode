@@ -20,7 +20,7 @@ const mockCourse = {
     idea: 'Test idea',
     ideaUpdatedAt: new Date().toISOString(),
     materializedAt: undefined,
-    lastError: undefined,
+    lastError: null,
   },
 } as const;
 

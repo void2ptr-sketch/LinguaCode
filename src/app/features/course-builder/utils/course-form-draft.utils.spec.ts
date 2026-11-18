@@ -23,6 +23,7 @@ describe('course-form-draft.utils', () => {
   const defaultAuthoring: CourseAuthoring = {
     idea: 'Test course idea',
     status: 'draft',
+    lastError: null,
   };
 
   describe('lessonDraftKey', () => {

@@ -14,6 +14,60 @@ import type { CardIndexMetaOverride } from '../../card/model';
  * @remarks
  * Вложенная древовидная структура: Course → Programs → Lessons → Scenarios → Cards.
  * Каждый уровень сохраняет ВСЕ свои поля + поле `order` для явного порядка.
+ *
+ * @example
+ * ```json
+ * {
+ *   "formatVersion": 2,
+ *   "exportedAt": "2026-11-18T00:00:00.000Z",
+ *   "sourceAuthorId": "user-123",
+ *   "course": {
+ *     "id": "course-1",
+ *     "title": "Иероглифы",
+ *     "description": "Изучение иероглифов",
+ *     "authorId": "user-123",
+ *     "slug": "course-hanzi",
+ *     "languagePair": { "source": "ru", "target": "zh" },
+ *     "programIds": ["prog-1"],
+ *     "order": 0,
+ *     "published": true,
+ *     "updatedAt": "2026-11-18T00:00:00.000Z",
+ *     "authoring": {
+ *       "idea": "Курс базовых иероглифов для начинающих с нуля",
+ *       "status": "materialized",
+ *       "ideaUpdatedAt": "2026-11-18T00:00:00.000Z",
+ *       "materializedAt": "2026-11-18T00:00:00.000Z",
+ *       "lastError": null
+ *     },
+ *     "practiceSettings": { "mode": "guided" }
+ *   },
+ *   "programs": [
+ *     {
+ *       "program": { "id": "prog-1", "courseId": "course-1", ... },
+ *       "order": 0,
+ *       "lessons": [
+ *         {
+ *           "lesson": { "id": "lesson-1", "programId": "prog-1", ... },
+ *           "order": 0,
+ *           "scenarios": [
+ *             {
+ *               "scenario": { "id": "scen-1", "title": "Базовые слова", ... },
+ *               "order": 0,
+ *               "cards": [
+ *                 {
+ *                   "card": { "id": "card-1", "kind": "select", ... },
+ *                   "order": 0,
+ *                   "meta": { "pinyin": "zhuō zi", "tones": [1, 5], "difficulty": "beginner", "tags": [...] }
+ *                 }
+ *               ]
+ *             }
+ *           ]
+ *         }
+ *       ]
+ *     }
+ *   ]
+ * }
+ * ```
  */
 export type CourseBundle = {
   /** Версия формата: `2` для новой структуры. */
@@ -30,10 +84,13 @@ export type CourseBundle = {
 
 /**
  * Программа с вложенными уроками и порядком.
+ *
+ * @remarks
+ * `courseId` is omitted in the bundle — context is known from the parent Course.
  */
 export type ProgramBundle = {
-  /** Полная программа со всеми полями. */
-  program: Program;
+  /** Program with cross-entity references removed (courseId is omitted). */
+  program: Omit<Program, 'courseId'>;
   /** Порядок программы в курсе. */
   order: number;
   /** Вложенные уроки. */
@@ -42,10 +99,13 @@ export type ProgramBundle = {
 
 /**
  * Урок с вложенными сценариями и порядком.
+ *
+ * @remarks
+ * `programId` and `courseId` are omitted — context is known from parent Program/Course.
  */
 export type LessonBundle = {
-  /** Полный урок со всеми полями. */
-  lesson: Lesson;
+  /** Lesson with cross-entity references removed (programId, courseId are omitted). */
+  lesson: Omit<Lesson, 'programId' | 'courseId'>;
   /** Порядок урока в программе. */
   order: number;
   /** Вложенные сценарии. */
@@ -54,10 +114,13 @@ export type LessonBundle = {
 
 /**
  * Сценарий с вложенными карточками и порядком.
+ *
+ * @remarks
+ * `lessonId`, `courseId`, and `programId` are omitted — context is known from parent Lesson/Program/Course.
  */
 export type ScenarioBundle = {
-  /** Полный сценарий со всеми полями. */
-  scenario: Scenario;
+  /** Scenario with cross-entity references removed (lessonId, courseId, programId are omitted). */
+  scenario: Omit<Scenario, 'lessonId' | 'courseId' | 'programId'>;
   /** Порядок сценария в уроке. */
   order: number;
   /** Вложенные карточки. */
@@ -66,10 +129,13 @@ export type ScenarioBundle = {
 
 /**
  * Карточка с порядком и объединёнными метаданными.
+ *
+ * @remarks
+ * `courseId`, `lessonId`, `scenarioId`, and `programId` are omitted — context is known from parent Scenario/Lesson/Program/Course.
  */
 export type CardBundle = {
-  /** Полная карточка со всеми полями. */
-  card: Card;
+  /** Card with cross-entity references removed (courseId, lessonId, scenarioId, programId are omitted). */
+  card: Omit<Card, 'courseId' | 'lessonId' | 'scenarioId' | 'programId'>;
   /** Порядок карточки в сценарии. */
   order: number;
   /** Объединённые метаданные (card.meta + cardIndexMeta). */

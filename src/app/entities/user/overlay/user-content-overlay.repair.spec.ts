@@ -124,6 +124,7 @@ describe('user-content-overlay.repair', () => {
             idea: '# Perl interview\n\nFocus on scalar context.',
             status: 'draft',
             ideaUpdatedAt: '2026-06-14T00:00:00.000Z',
+            lastError: null,
           },
         } satisfies Course,
       },

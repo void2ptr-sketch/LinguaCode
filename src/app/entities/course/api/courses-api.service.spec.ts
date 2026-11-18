@@ -74,6 +74,7 @@ describe('CoursesApiService', () => {
         order: 0,
       },
     ],
+    lastError: null,
   };
 
   /** Flushes pending microtasks so async request preparation completes. */
@@ -197,7 +198,7 @@ describe('CoursesApiService', () => {
       expect(result['description']).toBe('Backend description');
       expect(result['authorId']).toBe('7');
       expect(result['languagePair']).toEqual({ known: 'ru', learning: 'en' });
-      expect(result['authoring']).toEqual({ idea: 'Idea', status: 'failed' });
+      expect(result['authoring']).toEqual({ idea: 'Idea', status: 'failed', lastError: null });
       expect(result['practiceSettings']).toEqual({ mode: 'open' });
     });
   });

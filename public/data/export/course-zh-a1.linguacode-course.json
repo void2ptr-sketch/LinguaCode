@@ -19,10 +19,7 @@
       "ideaUpdatedAt": "2026-11-18T05:23:22.727Z",
       "materializedAt": "2026-11-18T05:23:22.727Z",
       "lastError": null
-    },
-    "programIds": [
-      "course-zh-a1-program"
-    ]
+    }
   },
   "programs": [
     {
@@ -30,12 +27,6 @@
         "id": "course-zh-a1-program",
         "title": "Китайский A1: первые шаги",
         "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы.",
-        "courseId": "course-zh-a1",
-        "lessonIds": [
-          "lesson-zh-greetings",
-          "lesson-zh-phonetics",
-          "lesson-zh-characters"
-        ],
         "order": 0,
         "prerequisiteProgramIds": [],
         "updatedAt": "2026-11-18T05:23:22.727Z"
@@ -47,14 +38,9 @@
             "id": "lesson-zh-greetings",
             "title": "Урок 1: Приветствия",
             "description": "你好, 谢谢, 再见 — узнавание и сопоставление.",
-            "programId": "course-zh-a1-program",
-            "scenarioIds": [
-              "scenario-zh-greetings"
-            ],
             "prerequisiteLessonIds": [],
             "order": 0,
-            "updatedAt": "2026-11-18T05:23:22.727Z",
-            "courseId": "course-zh-a1"
+            "updatedAt": "2026-11-18T05:23:22.727Z"
           },
           "order": 0,
           "scenarios": [
@@ -63,9 +49,6 @@
                 "id": "scenario-zh-greetings",
                 "title": "Приветствия (китайский)",
                 "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование.",
-                "lessonId": "lesson-zh-greetings",
-                "courseId": "course-zh-a1",
-                "programId": "course-zh-a1-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -104,10 +87,7 @@
                       "До свидания",
                       "Пожалуйста"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-greetings",
-                    "scenarioId": "scenario-zh-greetings"
+                    "correctIndex": 0
                   },
                   "order": 0,
                   "meta": {
@@ -166,10 +146,7 @@
                           "ipa": "tsai˥˩ tɕiɛn˥˩"
                         }
                       }
-                    ],
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-greetings",
-                    "scenarioId": "scenario-zh-greetings"
+                    ]
                   },
                   "order": 1,
                   "meta": {
@@ -242,10 +219,7 @@
                         "ipa": "tɕʰiŋ˨˩˦",
                         "glossKnown": "Пожалуйста"
                       }
-                    ],
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-greetings",
-                    "scenarioId": "scenario-zh-greetings"
+                    ]
                   },
                   "order": 2,
                   "meta": {
@@ -275,10 +249,7 @@
                       "Пожалуйста"
                     ],
                     "correctIndex": 0,
-                    "audioLabelLearning": "你好",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-greetings",
-                    "scenarioId": "scenario-zh-greetings"
+                    "audioLabelLearning": "你好"
                   },
                   "order": 3,
                   "meta": {
@@ -299,16 +270,11 @@
             "id": "lesson-zh-phonetics",
             "title": "Урок 2: Пиньинь и тоны",
             "description": "Ввод пиньинь, IPA и выбор тона.",
-            "programId": "course-zh-a1-program",
-            "scenarioIds": [
-              "scenario-zh-phonetics"
-            ],
             "prerequisiteLessonIds": [
               "lesson-zh-greetings"
             ],
             "order": 1,
-            "updatedAt": "2026-11-18T05:23:22.727Z",
-            "courseId": "course-zh-a1"
+            "updatedAt": "2026-11-18T05:23:22.727Z"
           },
           "order": 1,
           "scenarios": [
@@ -317,9 +283,6 @@
                 "id": "scenario-zh-phonetics",
                 "title": "Фонетика: пиньинь и тоны",
                 "description": "3 карточки: пиньинь, IPA и тоны на примере 你好 и 妈.",
-                "lessonId": "lesson-zh-phonetics",
-                "courseId": "course-zh-a1",
-                "programId": "course-zh-a1-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -349,10 +312,7 @@
                       "nǐ hǎo",
                       "ni hao"
                     ],
-                    "answerMode": "pinyin",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-phonetics",
-                    "scenarioId": "scenario-zh-phonetics"
+                    "answerMode": "pinyin"
                   },
                   "order": 0,
                   "meta": {
@@ -378,10 +338,7 @@
                     "acceptedAnswersKnown": [
                       "ni˨˩˦ xaʊ˨˩˦"
                     ],
-                    "answerMode": "ipa",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-phonetics",
-                    "scenarioId": "scenario-zh-phonetics"
+                    "answerMode": "ipa"
                   },
                   "order": 1,
                   "meta": {
@@ -411,10 +368,7 @@
                       2,
                       3,
                       4
-                    ],
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-phonetics",
-                    "scenarioId": "scenario-zh-phonetics"
+                    ]
                   },
                   "order": 2,
                   "meta": {
@@ -435,16 +389,11 @@
             "id": "lesson-zh-characters",
             "title": "Урок 3: Иероглифы",
             "description": "Черты, радикалы и чтение 行.",
-            "programId": "course-zh-a1-program",
-            "scenarioIds": [
-              "scenario-zh-characters"
-            ],
             "prerequisiteLessonIds": [
               "lesson-zh-phonetics"
             ],
             "order": 2,
-            "updatedAt": "2026-11-18T05:23:22.727Z",
-            "courseId": "course-zh-a1"
+            "updatedAt": "2026-11-18T05:23:22.727Z"
           },
           "order": 2,
           "scenarios": [
@@ -453,9 +402,6 @@
                 "id": "scenario-zh-characters",
                 "title": "Иероглифы и чтение",
                 "description": "7 карточек: черты 人 и 好, ввод перевода, полифония 行 в 银行.",
-                "lessonId": "lesson-zh-characters",
-                "courseId": "course-zh-a1",
-                "programId": "course-zh-a1-program",
                 "cardSource": {
                   "mode": "fixed",
                   "cardIds": [
@@ -497,10 +443,7 @@
                         "pinyin": "hǎo",
                         "radicalHint": "女 + 子"
                       }
-                    ],
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    ]
                   },
                   "order": 0,
                   "meta": {
@@ -536,10 +479,7 @@
                         "pinyin": "bàng",
                         "radicalHint": "木 + 奉"
                       }
-                    ],
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    ]
                   },
                   "order": 1,
                   "meta": {
@@ -580,10 +520,7 @@
                         "pinyin": "guǎn",
                         "radicalHint": "饣 + 官"
                       }
-                    ],
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    ]
                   },
                   "order": 2,
                   "meta": {
@@ -608,10 +545,7 @@
                     "referenceHintKnown": "человек",
                     "meaningKnown": "человек",
                     "practiceMode": "stroke-order",
-                    "targetCharacter": "人",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    "targetCharacter": "人"
                   },
                   "order": 3,
                   "meta": {
@@ -637,10 +571,7 @@
                     "meaningKnown": "хорошо",
                     "practiceMode": "radicals",
                     "targetCharacter": "好",
-                    "radicalHint": "女 + 子",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    "radicalHint": "女 + 子"
                   },
                   "order": 4,
                   "meta": {
@@ -666,10 +597,7 @@
                     "acceptedAnswersKnown": [
                       "Привет",
                       "привет"
-                    ],
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    ]
                   },
                   "order": 5,
                   "meta": {
@@ -700,10 +628,7 @@
                       "инь хан — банк",
                       "неверное чтение «行» как xíng"
                     ],
-                    "correctIndex": 0,
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    "correctIndex": 0
                   },
                   "order": 6,
                   "meta": {

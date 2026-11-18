@@ -19,10 +19,10 @@ import type {
 /** Flat entity maps extracted from a CourseBundle. */
 export type ExtractedEntities = {
   courses: Record<string, Course>;
-  programs: Record<string, Program>;
-  lessons: Record<string, Lesson>;
-  scenarios: Record<string, Scenario>;
-  cards: Record<string, Card>;
+  programs: Record<string, Omit<Program, 'courseId'>>;
+  lessons: Record<string, Omit<Lesson, 'programId' | 'courseId'>>;
+  scenarios: Record<string, Omit<Scenario, 'lessonId' | 'courseId' | 'programId'>>;
+  cards: Record<string, Omit<Card, 'courseId' | 'lessonId' | 'scenarioId' | 'programId'>>;
   cardIndexMeta: Record<string, CardIndexMetaOverride>;
 };
 
@@ -42,10 +42,10 @@ function isV1(bundle: CourseBundleTyped): bundle is CourseBundleV1 {
 
 function extractFromV2(bundle: CourseBundle): ExtractedEntities {
   const courses: Record<string, Course> = { [bundle.course.id]: bundle.course };
-  const programs: Record<string, Program> = {};
-  const lessons: Record<string, Lesson> = {};
-  const scenarios: Record<string, Scenario> = {};
-  const cards: Record<string, Card> = {};
+  const programs: Record<string, Omit<Program, 'courseId'>> = {};
+  const lessons: Record<string, Omit<Lesson, 'programId' | 'courseId'>> = {};
+  const scenarios: Record<string, Omit<Scenario, 'lessonId' | 'courseId' | 'programId'>> = {};
+  const cards: Record<string, Omit<Card, 'courseId' | 'lessonId' | 'scenarioId' | 'programId'>> = {};
   const cardIndexMeta: Record<string, CardIndexMetaOverride> = {};
 
   for (const pb of bundle.programs) {

@@ -104,8 +104,8 @@ export type CourseWritePayload = {
   ideaUpdatedAt?: string;
   /** ISO 8601 timestamp of the last materialization */
   materializedAt?: string;
-  /** Last generation error message (present when status === 'failed') */
-  lastError?: string;
+  /** Last generation error message (present when status === 'failed'). `null` when no error. */
+  lastError: string | null;
   practiceSettings?: CoursePracticeSettings;
   /**
    * Minimum subscription tier required to access the course.
