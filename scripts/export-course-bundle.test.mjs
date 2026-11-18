@@ -116,21 +116,17 @@ function testExportStructure() {
   assert(firstProgram.program && typeof firstProgram.program.id === 'string', 'program.id — строка');
   assert(typeof firstProgram.order === 'number', 'program.order — число');
   assert(Array.isArray(firstProgram.lessons), 'program.lessons — массив');
-  assert(firstProgram.program.lessonIds.length === firstProgram.lessons.length, 'program.lessonIds.length === lessons.length');
 
   // 5. Проверка lesson уровня
   const firstLesson = firstProgram.lessons[0];
   assert(firstLesson.lesson && typeof firstLesson.lesson.id === 'string', 'lesson.id — строка');
   assert(typeof firstLesson.order === 'number', 'lesson.order — число');
   assert(Array.isArray(firstLesson.scenarios), 'lesson.scenarios — массив');
-  assert(firstLesson.lesson.scenarioIds.length === firstLesson.scenarios.length, 'lesson.scenarioIds.length === scenarios.length');
 
   // 6. Проверка scenario уровня
   const firstScenario = firstLesson.scenarios[0];
   assert(firstScenario.scenario && typeof firstScenario.scenario.id === 'string', 'scenario.id — строка');
   assert(typeof firstScenario.order === 'number', 'scenario.order — число');
-  assert(firstScenario.scenario.cardSource && typeof firstScenario.scenario.cardSource.mode === 'string', 'scenario.cardSource.mode — строка');
-  assert(Array.isArray(firstScenario.scenario.cardSource.cardIds), 'scenario.cardSource.cardIds — массив');
   assert(Array.isArray(firstScenario.cards), 'scenario.cards — массив');
 
   // 7. Проверка card уровня
@@ -143,22 +139,15 @@ function testExportStructure() {
     assert(firstCard.card.scenarioId === firstScenario.scenario.id, 'card.scenarioId совпадает');
   }
 
-  // 8. Проверка замыкания зависимостей
+  // 8. Проверка замыкания зависимостей (card.id → scenarioId, lessonId, courseId)
   let closureErrors = 0;
   for (const pb of v2.programs) {
-    for (const pid of pb.program.lessonIds) {
-      const lessonFound = pb.lessons.some((l) => l.lesson.id === pid);
-      if (!lessonFound) closureErrors++;
-    }
     for (const lb of pb.lessons) {
-      for (const sid of lb.lesson.scenarioIds) {
-        const scenarioFound = lb.scenarios.some((s) => s.scenario.id === sid);
-        if (!scenarioFound) closureErrors++;
-      }
       for (const sb of lb.scenarios) {
-        for (const cid of sb.scenario.cardSource.cardIds) {
-          const cardFound = sb.cards.some((c) => c.card.id === cid);
-          if (!cardFound) closureErrors++;
+        for (const cb of sb.cards) {
+          if (cb.card.scenarioId !== sb.scenario.id) closureErrors++;
+          if (cb.card.lessonId !== lb.lesson.id) closureErrors++;
+          if (cb.card.courseId !== v2.course.id) closureErrors++;
         }
       }
     }
@@ -212,22 +201,23 @@ function testImportValidation() {
   const validV2 = {
     formatVersion: 2,
     exportedAt: new Date().toISOString(),
+    sourceAuthorId: 'user-123',
     course: {
-      id: 'test-valid-course',
-      title: 'Test',
-      programIds: ['prog-1'],
+      id: 'test-import-v2-ok',
+      title: 'Test Import',
+      programIds: ['prog-import'],
     },
     programs: [
       {
-        program: { id: 'prog-1', title: 'P', lessonIds: ['les-1'] },
+        program: { id: 'prog-import', title: 'P' },
         order: 0,
         lessons: [
           {
-            lesson: { id: 'les-1', title: 'L', scenarioIds: ['sc-1'] },
+            lesson: { id: 'les-import', title: 'L' },
             order: 0,
             scenarios: [
               {
-                scenario: { id: 'sc-1', title: 'S', cardSource: { mode: 'fixed', cardIds: [] } },
+                scenario: { id: 'sc-import', title: 'S' },
                 order: 0,
                 cards: [],
               },
@@ -239,15 +229,15 @@ function testImportValidation() {
   };
   writeFileSync(validBundle, JSON.stringify(validV2));
 
-  const result3 = runImport(validBundle, 'test-valid-course');
+  const result3 = runImport(validBundle, 'test-import-v2-ok');
   assert(result3.code === 0, 'Валидный v2 импортируется успешно');
 
   // 4. Проверка коллизий (без --replace)
-  const result4 = runImport(validBundle, 'test-valid-course');
+  const result4 = runImport(validBundle, 'test-import-v2-ok');
   assert(result4.code !== 0, 'Коллизия id отклоняется без --replace');
 
   // 5. Проверка коллизий (с --replace)
-  const result5 = runImport(validBundle, 'test-valid-course', true);
+  const result5 = runImport(validBundle, 'test-import-v2-ok', true);
   assert(result5.code === 0, 'Коллизия id игнорируется с --replace');
 }
 
@@ -273,7 +263,11 @@ function testRoundTrip() {
   // 3. Проверяем, что v2 содержит все ключевые данные
   assert(v2.course.title === originalSeed.title, 'Round-trip: title совпадает');
   assert(v2.course.id === originalSeed.id, 'Round-trip: id совпадает');
-  assert(deepEqual(v2.course.languagePair, originalSeed.languagePair), 'Round-trip: languagePair совпадает');
+  // languagePair трансформируется: known/learning → source/target
+  const lp = v2.course.languagePair;
+  const olp = originalSeed.languagePair;
+  const lpMatch = lp && olp && lp.source === olp.known && lp.target === olp.learning;
+  assert(lpMatch, 'Round-trip: languagePair совпадает (known→source, learning→target)');
 
   // 4. Проверяем, что программы не потеряны
   assert(v2.programs.length === originalSeed.programs.length, 'Round-trip: programs.length совпадает');

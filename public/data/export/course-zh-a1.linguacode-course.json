@@ -1,45 +1,34 @@
 {
   "formatVersion": 2,
-  "exportedAt": "2026-11-18T04:11:10.923Z",
+  "exportedAt": "2026-11-18T05:02:16.291Z",
   "sourceAuthorId": "user-123",
   "course": {
     "id": "course-zh-a1",
     "title": "Китайский A1: первые шаги",
     "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы.",
-    "authorId": "user-123",
     "languagePair": {
-      "known": "ru",
-      "learning": "zh"
+      "source": "ru",
+      "target": "zh"
     },
-    "practiceSettings": {
-      "mode": "guided"
-    },
+    "practiceSettings": null,
     "published": true,
     "authoring": {
       "idea": "",
       "status": "materialized",
-      "ideaUpdatedAt": "2026-11-18T07:44:00.000Z",
-      "materializedAt": "2026-11-18T07:44:00.000Z",
+      "ideaUpdatedAt": "2026-11-18T05:02:16.291Z",
+      "materializedAt": "2026-11-18T05:02:16.291Z",
       "lastError": null
     },
     "programIds": [
       "course-zh-a1-program"
-    ],
-    "order": 0,
-    "updatedAt": "2026-11-18T07:44:00.000Z"
+    ]
   },
   "programs": [
     {
       "program": {
         "id": "course-zh-a1-program",
         "title": "Китайский A1: первые шаги",
-        "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы.",
-        "lessonIds": [
-          "lesson-zh-greetings",
-          "lesson-zh-phonetics",
-          "lesson-zh-characters"
-        ],
-        "prerequisiteProgramIds": []
+        "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы."
       },
       "order": 0,
       "lessons": [
@@ -47,11 +36,7 @@
           "lesson": {
             "id": "lesson-zh-greetings",
             "title": "Урок 1: Приветствия",
-            "description": "你好, 谢谢, 再见 — узнавание и сопоставление.",
-            "scenarioIds": [
-              "scenario-zh-greetings"
-            ],
-            "prerequisiteLessonIds": []
+            "description": "你好, 谢谢, 再见 — узнавание и сопоставление."
           },
           "order": 0,
           "scenarios": [
@@ -59,21 +44,7 @@
               "scenario": {
                 "id": "scenario-zh-greetings",
                 "title": "Приветствия (китайский)",
-                "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "select-zh-1",
-                    "memory-zh-1",
-                    "symbol-zh-1",
-                    "sound-zh-1"
-                  ]
-                }
+                "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование."
               },
               "order": 0,
               "cards": [
@@ -108,9 +79,11 @@
                   "order": 0,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -130,9 +103,11 @@
                   "order": 1,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -160,9 +135,11 @@
                   "order": 2,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -190,9 +167,11 @@
                   "order": 3,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -203,13 +182,7 @@
           "lesson": {
             "id": "lesson-zh-phonetics",
             "title": "Урок 2: Пиньинь и тоны",
-            "description": "Ввод пиньинь, IPA и выбор тона.",
-            "scenarioIds": [
-              "scenario-zh-phonetics"
-            ],
-            "prerequisiteLessonIds": [
-              "lesson-zh-greetings"
-            ]
+            "description": "Ввод пиньинь, IPA и выбор тона."
           },
           "order": 1,
           "scenarios": [
@@ -217,20 +190,7 @@
               "scenario": {
                 "id": "scenario-zh-phonetics",
                 "title": "Фонетика: пиньинь и тоны",
-                "description": "3 карточки: пиньинь, IPA и тоны на примере 你好 и 妈.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "keyboard-zh-pinyin-1",
-                    "keyboard-zh-ipa-1",
-                    "tone-ma-1"
-                  ]
-                }
+                "description": "3 карточки: пиньинь, IPA и тоны на примере 你好 и 妈."
               },
               "order": 0,
               "cards": [
@@ -252,9 +212,11 @@
                   "order": 0,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -275,9 +237,11 @@
                   "order": 1,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -299,9 +263,11 @@
                   "order": 2,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -312,13 +278,7 @@
           "lesson": {
             "id": "lesson-zh-characters",
             "title": "Урок 3: Иероглифы",
-            "description": "Черты, радикалы и чтение 行.",
-            "scenarioIds": [
-              "scenario-zh-characters"
-            ],
-            "prerequisiteLessonIds": [
-              "lesson-zh-phonetics"
-            ]
+            "description": "Черты, радикалы и чтение 行."
           },
           "order": 2,
           "scenarios": [
@@ -326,24 +286,7 @@
               "scenario": {
                 "id": "scenario-zh-characters",
                 "title": "Иероглифы и чтение",
-                "description": "7 карточек: черты 人 и 好, ввод перевода, полифония 行 в 银行.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-nihao-1",
-                    "draw-henbang-1",
-                    "draw-bowuguan-1",
-                    "draw-ren-1",
-                    "draw-hao-1",
-                    "keyboard-zh-1",
-                    "reading-xing-1"
-                  ]
-                }
+                "description": "7 карточек: черты 人 и 好, ввод перевода, полифония 行 в 银行."
               },
               "order": 0,
               "cards": [
@@ -364,9 +307,11 @@
                   "order": 0,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -386,9 +331,11 @@
                   "order": 1,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -408,9 +355,11 @@
                   "order": 2,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -430,9 +379,11 @@
                   "order": 3,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -452,9 +403,11 @@
                   "order": 4,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -475,9 +428,11 @@
                   "order": 5,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -507,9 +462,11 @@
                   "order": 6,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]

@@ -1,44 +1,34 @@
 {
   "formatVersion": 2,
-  "exportedAt": "2026-11-18T04:11:11.014Z",
+  "exportedAt": "2026-11-18T05:02:16.206Z",
   "sourceAuthorId": "user-123",
   "course": {
     "id": "course-zh-conversation",
     "title": "Китайский: разговорная практика",
     "description": "Короткий курс для закрепления приветствий и смешанных упражнений.",
-    "authorId": "user-123",
     "languagePair": {
-      "known": "ru",
-      "learning": "zh"
+      "source": "ru",
+      "target": "zh"
     },
-    "practiceSettings": {
-      "mode": "guided"
-    },
+    "practiceSettings": null,
     "published": true,
     "authoring": {
       "idea": "",
       "status": "materialized",
-      "ideaUpdatedAt": "2026-11-18T07:44:00.000Z",
-      "materializedAt": "2026-11-18T07:44:00.000Z",
+      "ideaUpdatedAt": "2026-11-18T05:02:16.206Z",
+      "materializedAt": "2026-11-18T05:02:16.206Z",
       "lastError": null
     },
     "programIds": [
       "course-zh-conversation-program"
-    ],
-    "order": 0,
-    "updatedAt": "2026-11-18T07:44:00.000Z"
+    ]
   },
   "programs": [
     {
       "program": {
         "id": "course-zh-conversation-program",
         "title": "Китайский: разговорная практика",
-        "description": "Короткий курс для закрепления приветствий и смешанных упражнений.",
-        "lessonIds": [
-          "lesson-zh-quick-start",
-          "lesson-zh-review"
-        ],
-        "prerequisiteProgramIds": []
+        "description": "Короткий курс для закрепления приветствий и смешанных упражнений."
       },
       "order": 0,
       "lessons": [
@@ -46,11 +36,7 @@
           "lesson": {
             "id": "lesson-zh-quick-start",
             "title": "Быстрый старт",
-            "description": "Первые фразы и базовые упражнения.",
-            "scenarioIds": [
-              "scenario-zh-greetings"
-            ],
-            "prerequisiteLessonIds": []
+            "description": "Первые фразы и базовые упражнения."
           },
           "order": 0,
           "scenarios": [
@@ -58,21 +44,7 @@
               "scenario": {
                 "id": "scenario-zh-greetings",
                 "title": "Приветствия (китайский)",
-                "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "select-zh-1",
-                    "memory-zh-1",
-                    "symbol-zh-1",
-                    "sound-zh-1"
-                  ]
-                }
+                "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование."
               },
               "order": 0,
               "cards": [
@@ -107,9 +79,11 @@
                   "order": 0,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -129,9 +103,11 @@
                   "order": 1,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -159,9 +135,11 @@
                   "order": 2,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -189,9 +167,11 @@
                   "order": 3,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -202,13 +182,7 @@
           "lesson": {
             "id": "lesson-zh-review",
             "title": "Закрепление",
-            "description": "Смешанная практика после быстрого старта.",
-            "scenarioIds": [
-              "scenario-zh-review"
-            ],
-            "prerequisiteLessonIds": [
-              "lesson-zh-quick-start"
-            ]
+            "description": "Смешанная практика после быстрого старта."
           },
           "order": 1,
           "scenarios": [
@@ -216,20 +190,7 @@
               "scenario": {
                 "id": "scenario-zh-review",
                 "title": "Закрепление (китайский)",
-                "description": "3 карточки: на время, выбор и пары.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "timed-zh-1",
-                    "select-zh-1",
-                    "memory-zh-1"
-                  ]
-                }
+                "description": "3 карточки: на время, выбор и пары."
               },
               "order": 0,
               "cards": [
@@ -262,9 +223,11 @@
                   "order": 0,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -298,9 +261,11 @@
                   "order": 1,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -320,9 +285,11 @@
                   "order": 2,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "zh",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]

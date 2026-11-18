@@ -124,57 +124,12 @@ function loadAllCardsFromManifest(manifest) {
 
 // ─── Сбор карточек из двух источников ─────────────────────────────────────────
 
-/**
- * Собирает все карточки из nested scenarios:
- * 1. Inline cards[] ( populated in demo courses )
- * 2. _cardIds fallback ( used in C++ course ) — загружает из card-файлов
- *
- * @param {object} fixture — seed-курс
- * @param {Map} cardMap — карта всех карточек из manifest (для _cardIds)
- */
-function collectCardsFromScenarios(fixture, cardMap) {
-  const cardMapResult = new Map(); // id -> { card, order }
+// ─── Трансформация languagePair: known/learning → source/target ───────────────
 
-  for (const program of fixture.programs) {
-    for (const lesson of program.lessons) {
-      for (const scenario of lesson.scenarios) {
-        // Inline cards
-        if (Array.isArray(scenario.cards) && scenario.cards.length > 0) {
-          for (let i = 0; i < scenario.cards.length; i++) {
-            const card = scenario.cards[i];
-            if (!cardMapResult.has(card.id)) {
-              cardMapResult.set(card.id, { card, order: i, scenarioId: scenario.id, lessonId: lesson.id, courseId: fixture.id });
-            }
-          }
-        } else if (Array.isArray(scenario._cardIds) && scenario._cardIds.length > 0) {
-          // _cardIds: загружаем карточки из manifest
-          for (const cardId of scenario._cardIds) {
-            const card = cardMap.get(cardId);
-            if (card && !cardMapResult.has(card.id)) {
-              cardMapResult.set(card.id, { card, order: 0, scenarioId: scenario.id, lessonId: lesson.id, courseId: fixture.id });
-            }
-          }
-        }
-      }
-    }
-  }
-
-  return cardMapResult;
-}
-
-/**
- * Собирает cardSource для сценария:
- * - если cards[] не пустой → cardIds из cards[].id
- * - иначе → cardIds из _cardIds
- */
-function getCardIdsForScenario(scenario) {
-  if (Array.isArray(scenario.cards) && scenario.cards.length > 0) {
-    return scenario.cards.map((c) => c.id);
-  }
-  if (Array.isArray(scenario._cardIds)) {
-    return scenario._cardIds;
-  }
-  return [];
+function normalizeLanguagePair(lp) {
+  if (!lp) return null;
+  if (lp.source !== undefined && lp.target !== undefined) return lp;
+  return { source: lp.known ?? null, target: lp.learning ?? null };
 }
 
 // ─── Трансформация в v2 ──────────────────────────────────────────────────────
@@ -182,29 +137,19 @@ function getCardIdsForScenario(scenario) {
 function transformToV2(fixture, cardMap) {
   const now = new Date().toISOString();
 
-  // Собираем cardSource для каждого сценария
-  const scenarioCardSources = new Map();
-  for (const program of fixture.programs) {
-    for (const lesson of program.lessons) {
-      for (const scenario of lesson.scenarios) {
-        const cardIds = getCardIdsForScenario(scenario);
-        scenarioCardSources.set(scenario.id, { mode: 'fixed', cardIds });
-      }
-    }
-  }
-
   // Формируем v2 структуру
   const v2 = {
     formatVersion: 2,
     exportedAt: now,
+    sourceAuthorId: 'user-123',
     course: {
       id: fixture.id,
       title: fixture.title,
       description: fixture.description ?? '',
-      languagePair: fixture.languagePair,
+      languagePair: normalizeLanguagePair(fixture.languagePair),
       practiceSettings: fixture.practiceSettings ?? null,
       published: fixture.published ?? false,
-      authoring: fixture.authoring,
+      authoring: fixture.authoring ?? { idea: '', status: 'materialized', ideaUpdatedAt: now, materializedAt: now, lastError: null },
       programIds: fixture.programs.map((p) => p.id),
     },
     programs: fixture.programs.map((program) => ({
@@ -212,8 +157,6 @@ function transformToV2(fixture, cardMap) {
         id: program.id,
         title: program.title,
         description: program.description ?? '',
-        lessonIds: program.lessons.map((l) => l.id),
-        prerequisiteProgramIds: program.prerequisiteProgramIds ?? [],
       },
       order: program.order,
       lessons: program.lessons.map((lesson) => ({
@@ -221,8 +164,6 @@ function transformToV2(fixture, cardMap) {
           id: lesson.id,
           title: lesson.title,
           description: lesson.description ?? '',
-          scenarioIds: lesson.scenarios.map((s) => s.id),
-          prerequisiteLessonIds: lesson.prerequisiteLessonIds ?? [],
         },
         order: lesson.order,
         scenarios: lesson.scenarios.map((scenario) => {
@@ -239,29 +180,33 @@ function transformToV2(fixture, cardMap) {
               id: scenario.id,
               title: scenario.title,
               description: scenario.description ?? '',
-              languagePair: scenario.languagePair ?? null,
-              published: scenario.published ?? false,
-              cardSource: scenarioCardSources.get(scenario.id) ?? { mode: 'fixed', cardIds: [] },
             },
             order: scenario.order,
-            cards: cardsArray.map((card, cardOrder) => ({
-              card: {
-                id: card.id,
-                kind: card.kind,
-                title: card.title,
-                appearance: card.appearance,
-                direction: card.direction,
-                promptKnown: card.promptKnown,
-                optionsLearning: card.optionsLearning,
-                optionsKnown: card.optionsKnown,
-                correctIndex: card.correctIndex,
-                courseId: fixture.id,
-                lessonId: lesson.id,
-                scenarioId: scenario.id,
-              },
-              order: cardOrder,
-              meta: card.meta ?? null,
-            })),
+            cards: cardsArray.map((card, cardOrder) => {
+              const baseMeta = card.meta ?? {};
+              const meta = { ...baseMeta };
+              // meta.pinyin / meta.tones — обязательные поля формата v2
+              if (meta.pinyin === undefined) meta.pinyin = null;
+              if (meta.tones === undefined) meta.tones = null;
+              return {
+                card: {
+                  id: card.id,
+                  kind: card.kind,
+                  title: card.title,
+                  appearance: card.appearance,
+                  direction: card.direction,
+                  promptKnown: card.promptKnown,
+                  optionsLearning: card.optionsLearning,
+                  optionsKnown: card.optionsKnown,
+                  correctIndex: card.correctIndex,
+                  courseId: fixture.id,
+                  lessonId: lesson.id,
+                  scenarioId: scenario.id,
+                },
+                order: cardOrder,
+                meta,
+              };
+            }),
           };
         }),
       })),
@@ -285,30 +230,26 @@ function verifyDependencyClosure(v2) {
     }
   }
 
-  // Проверка lessonIds в programs
+  // Проверка cardIds в scenarios
   for (const pb of v2.programs) {
-    const lessonIds = new Set(pb.lessons.map((l) => l.lesson.id));
-    for (const lid of pb.program.lessonIds) {
-      if (!lessonIds.has(lid)) {
-        errors.push(`program "${pb.program.id}" lessonIds содержит несуществующий lessonId: ${lid}`);
-      }
-    }
-
-    // Проверка scenarioIds в lessons
     for (const lb of pb.lessons) {
-      const scenarioIds = new Set(lb.scenarios.map((s) => s.scenario.id));
-      for (const sid of lb.lesson.scenarioIds) {
-        if (!scenarioIds.has(sid)) {
-          errors.push(`lesson "${lb.lesson.id}" scenarioIds содержит несуществующий scenarioId: ${sid}`);
-        }
-      }
-
-      // Проверка cardIds в cardSource
       for (const sb of lb.scenarios) {
-        const cardIds = new Set(sb.cards.map((c) => c.card.id));
-        for (const cid of sb.scenario.cardSource.cardIds) {
-          if (!cardIds.has(cid)) {
-            errors.push(`scenario "${sb.scenario.id}" cardSource.cardIds содержит несуществующий cardId: ${cid}`);
+        // Проверка: card.id → scenarioId
+        for (const cb of sb.cards) {
+          if (cb.card.scenarioId !== sb.scenario.id) {
+            errors.push(`card "${cb.card.id}" scenarioId не совпадает с ${sb.scenario.id}`);
+          }
+        }
+        // Проверка: card.id → lessonId
+        for (const cb of sb.cards) {
+          if (cb.card.lessonId !== lb.lesson.id) {
+            errors.push(`card "${cb.card.id}" lessonId не совпадает с ${lb.lesson.id}`);
+          }
+        }
+        // Проверка: card.id → courseId
+        for (const cb of sb.cards) {
+          if (cb.card.courseId !== v2.course.id) {
+            errors.push(`card "${cb.card.id}" courseId не совпадает с ${v2.course.id}`);
           }
         }
       }

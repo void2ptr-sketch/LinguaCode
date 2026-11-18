@@ -1,45 +1,34 @@
 {
   "formatVersion": 2,
-  "exportedAt": "2026-11-18T04:11:10.833Z",
+  "exportedAt": "2026-11-18T05:02:16.469Z",
   "sourceAuthorId": "user-123",
   "course": {
     "id": "course-demo-card-kinds",
     "title": "Все типы карточек — Демо",
     "description": "Демо-программа ru→en: обзор всех 13 типов карточек, по сценарию на каждый тип.",
-    "authorId": "user-123",
     "languagePair": {
-      "known": "ru",
-      "learning": "en"
+      "source": "ru",
+      "target": "en"
     },
-    "practiceSettings": {
-      "mode": "guided"
-    },
+    "practiceSettings": null,
     "published": true,
     "authoring": {
       "idea": "",
       "status": "materialized",
-      "ideaUpdatedAt": "2026-11-18T07:44:00.000Z",
-      "materializedAt": "2026-11-18T07:44:00.000Z",
+      "ideaUpdatedAt": "2026-11-18T05:02:16.469Z",
+      "materializedAt": "2026-11-18T05:02:16.469Z",
       "lastError": null
     },
     "programIds": [
       "course-demo-card-kinds-program"
-    ],
-    "order": 0,
-    "updatedAt": "2026-11-18T07:44:00.000Z"
+    ]
   },
   "programs": [
     {
       "program": {
         "id": "course-demo-card-kinds-program",
         "title": "Все типы карточек — Демо",
-        "description": "Демо-программа ru→en: обзор всех 13 типов карточек, по сценарию на каждый тип.",
-        "lessonIds": [
-          "demo-lesson-card-kinds-1",
-          "demo-lesson-card-kinds-2",
-          "demo-lesson-card-kinds-3"
-        ],
-        "prerequisiteProgramIds": []
+        "description": "Демо-программа ru→en: обзор всех 13 типов карточек, по сценарию на каждый тип."
       },
       "order": 0,
       "lessons": [
@@ -47,15 +36,7 @@
           "lesson": {
             "id": "demo-lesson-card-kinds-1",
             "title": "Часть 1: выбор, код, память, символы, звук",
-            "description": "5 сценариев: select, code-select, memory, symbol, sound.",
-            "scenarioIds": [
-              "scenario-demo-select",
-              "scenario-demo-code-select",
-              "scenario-demo-memory",
-              "scenario-demo-symbol",
-              "scenario-demo-sound"
-            ],
-            "prerequisiteLessonIds": []
+            "description": "5 сценариев: select, code-select, memory, symbol, sound."
           },
           "order": 0,
           "scenarios": [
@@ -63,18 +44,7 @@
               "scenario": {
                 "id": "scenario-demo-select",
                 "title": "Выбор ответа",
-                "description": "Выбор правильного перевода из вариантов (kind: select).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "select-1"
-                  ]
-                }
+                "description": "Выбор правильного перевода из вариантов (kind: select)."
               },
               "order": 0,
               "cards": [
@@ -111,7 +81,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -120,18 +92,7 @@
               "scenario": {
                 "id": "scenario-demo-code-select",
                 "title": "Код: выбор ответа",
-                "description": "Выбор корректного фрагмента кода (kind: code-select).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "code-select-cpp-1"
-                  ]
-                }
+                "description": "Выбор корректного фрагмента кода (kind: code-select)."
               },
               "order": 0,
               "cards": [
@@ -154,7 +115,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -163,18 +126,7 @@
               "scenario": {
                 "id": "scenario-demo-memory",
                 "title": "Запоминание",
-                "description": "Сопоставление пар перевода (kind: memory).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "memory-1"
-                  ]
-                }
+                "description": "Сопоставление пар перевода (kind: memory)."
               },
               "order": 0,
               "cards": [
@@ -197,7 +149,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -206,18 +160,7 @@
               "scenario": {
                 "id": "scenario-demo-symbol",
                 "title": "Символы",
-                "description": "Выбор символа по значению (kind: symbol).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "symbol-1"
-                  ]
-                }
+                "description": "Выбор символа по значению (kind: symbol)."
               },
               "order": 0,
               "cards": [
@@ -248,7 +191,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -257,18 +202,7 @@
               "scenario": {
                 "id": "scenario-demo-sound",
                 "title": "Звук",
-                "description": "Распознавание слова на слух (kind: sound).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "sound-1"
-                  ]
-                }
+                "description": "Распознавание слова на слух (kind: sound)."
               },
               "order": 0,
               "cards": [
@@ -299,7 +233,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -310,15 +246,7 @@
           "lesson": {
             "id": "demo-lesson-card-kinds-2",
             "title": "Часть 2: время, клавиатура, рисование, тон, чтение",
-            "description": "5 сценариев: timed, keyboard, draw, tone, reading.",
-            "scenarioIds": [
-              "scenario-demo-timed",
-              "scenario-demo-keyboard",
-              "scenario-demo-draw",
-              "scenario-demo-tone",
-              "scenario-demo-reading"
-            ],
-            "prerequisiteLessonIds": []
+            "description": "5 сценариев: timed, keyboard, draw, tone, reading."
           },
           "order": 1,
           "scenarios": [
@@ -326,18 +254,7 @@
               "scenario": {
                 "id": "scenario-demo-timed",
                 "title": "На время",
-                "description": "Ответ с ограничением по времени (kind: timed).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "timed-1"
-                  ]
-                }
+                "description": "Ответ с ограничением по времени (kind: timed)."
               },
               "order": 0,
               "cards": [
@@ -372,7 +289,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -381,18 +300,7 @@
               "scenario": {
                 "id": "scenario-demo-keyboard",
                 "title": "Клавиатура",
-                "description": "Ввод ответа с клавиатуры (kind: keyboard).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "keyboard-1"
-                  ]
-                }
+                "description": "Ввод ответа с клавиатуры (kind: keyboard)."
               },
               "order": 0,
               "cards": [
@@ -416,7 +324,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -425,18 +335,7 @@
               "scenario": {
                 "id": "scenario-demo-draw",
                 "title": "Рисование",
-                "description": "Рисование символа на канвасе (kind: draw).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-1"
-                  ]
-                }
+                "description": "Рисование символа на канвасе (kind: draw)."
               },
               "order": 0,
               "cards": [
@@ -459,7 +358,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -468,18 +369,7 @@
               "scenario": {
                 "id": "scenario-demo-tone",
                 "title": "Тон",
-                "description": "Определение тона слога (kind: tone, пример из китайского модуля).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "tone-ma-1"
-                  ]
-                }
+                "description": "Определение тона слога (kind: tone, пример из китайского модуля)."
               },
               "order": 0,
               "cards": [
@@ -504,7 +394,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -513,18 +405,7 @@
               "scenario": {
                 "id": "scenario-demo-reading",
                 "title": "Чтение (полифония)",
-                "description": "Чтение с выбором интерпретации (kind: reading, пример из китайского модуля).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "reading-xing-1"
-                  ]
-                }
+                "description": "Чтение с выбором интерпретации (kind: reading, пример из китайского модуля)."
               },
               "order": 0,
               "cards": [
@@ -557,7 +438,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -568,13 +451,7 @@
           "lesson": {
             "id": "demo-lesson-card-kinds-3",
             "title": "Часть 3: переворот, пропуск, код-trace",
-            "description": "3 сценария: flip, cloze, code-trace.",
-            "scenarioIds": [
-              "scenario-demo-flip",
-              "scenario-demo-cloze",
-              "scenario-demo-code-trace"
-            ],
-            "prerequisiteLessonIds": []
+            "description": "3 сценария: flip, cloze, code-trace."
           },
           "order": 2,
           "scenarios": [
@@ -582,18 +459,7 @@
               "scenario": {
                 "id": "scenario-demo-flip",
                 "title": "Переворот",
-                "description": "Классическая карточка-переворот (kind: flip).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "flip-1"
-                  ]
-                }
+                "description": "Классическая карточка-переворот (kind: flip)."
               },
               "order": 0,
               "cards": [
@@ -615,7 +481,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -624,18 +492,7 @@
               "scenario": {
                 "id": "scenario-demo-cloze",
                 "title": "Пропуск в тексте",
-                "description": "Заполнение пропуска в предложении (kind: cloze).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "cloze-1"
-                  ]
-                }
+                "description": "Заполнение пропуска в предложении (kind: cloze)."
               },
               "order": 0,
               "cards": [
@@ -659,7 +516,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "beginner",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -668,18 +527,7 @@
               "scenario": {
                 "id": "scenario-demo-code-trace",
                 "title": "Код: что выведет?",
-                "description": "Предсказание вывода кода (kind: code-trace).",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "en"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "code-trace-cpp-1"
-                  ]
-                }
+                "description": "Предсказание вывода кода (kind: code-trace)."
               },
               "order": 0,
               "cards": [
@@ -702,7 +550,9 @@
                     "knownLanguage": "ru",
                     "learningLanguage": "en",
                     "difficulty": "intermediate",
-                    "tags": []
+                    "tags": [],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]

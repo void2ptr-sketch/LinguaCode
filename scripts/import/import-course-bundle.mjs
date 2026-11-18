@@ -104,12 +104,6 @@ function validateBundle(data) {
                 if (!sb.scenario || typeof sb.scenario.id !== 'string') {
                   errors.push(`programs[${i}].lessons[${j}].scenarios[${k}].scenario.id должен быть строкой`);
                 }
-                if (!sb.scenario?.cardSource || typeof sb.scenario.cardSource.mode !== 'string') {
-                  errors.push(`programs[${i}].lessons[${j}].scenarios[${k}].scenario.cardSource.mode должен быть строкой`);
-                }
-                if (!Array.isArray(sb.scenario.cardSource?.cardIds)) {
-                  errors.push(`programs[${i}].lessons[${j}].scenarios[${k}].scenario.cardSource.cardIds должен быть массивом`);
-                }
                 if (!Array.isArray(sb.cards)) {
                   errors.push(`programs[${i}].lessons[${j}].scenarios[${k}].cards должен быть массивом`);
                 }
@@ -379,7 +373,7 @@ function normalizeV2ForSeed(data) {
           ...sb.scenario,
           order: sb.order,
           cards: [], // заполним ниже
-          _cardIds: sb.scenario.cardSource?.cardIds ?? [],
+          _cardIds: sb.cards.map((c) => c.card.id),
         };
         scenarios.push(scenario);
         lesson.scenarios.push(scenario);

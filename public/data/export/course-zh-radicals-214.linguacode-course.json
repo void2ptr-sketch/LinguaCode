@@ -1,15 +1,14 @@
 {
   "formatVersion": 2,
-  "exportedAt": "2026-11-18T04:10:26.143Z",
+  "exportedAt": "2026-11-18T05:02:16.116Z",
   "sourceAuthorId": "user-123",
   "course": {
     "id": "course-zh-radicals-214",
     "title": "214 китайских радикалов",
     "description": "Полный курс по 214 классическим ключам (康熙部首): 21 сценарий по 10 карточек (последний — 14), 3 урока по 7 сценариев, прописывание формы и порядка черт каждого радикала.",
-    "authorId": "user-123",
     "languagePair": {
-      "known": "ru",
-      "learning": "zh"
+      "source": "ru",
+      "target": "zh"
     },
     "practiceSettings": null,
     "published": true,
@@ -20,22 +19,14 @@
     },
     "programIds": [
       "course-zh-radicals-214-program"
-    ],
-    "order": 0,
-    "updatedAt": "2026-11-18T07:44:00.000Z"
+    ]
   },
   "programs": [
     {
       "program": {
         "id": "course-zh-radicals-214-program",
         "title": "214 китайских радикалов",
-        "description": "Полный курс по 214 классическим ключам (康熙部首): 21 сценарий по 10 карточек (последний — 14), 3 урока по 7 сценариев, прописывание формы и порядка черт каждого радикала.",
-        "lessonIds": [
-          "lesson-radicals-01",
-          "lesson-radicals-02",
-          "lesson-radicals-03"
-        ],
-        "prerequisiteProgramIds": []
+        "description": "Полный курс по 214 классическим ключам (康熙部首): 21 сценарий по 10 карточек (последний — 14), 3 урока по 7 сценариев, прописывание формы и порядка черт каждого радикала."
       },
       "order": 0,
       "lessons": [
@@ -43,17 +34,7 @@
           "lesson": {
             "id": "lesson-radicals-01",
             "title": "Урок 1: сценарии 1–7",
-            "description": "7 сценариев: scenario-radicals-01 — scenario-radicals-07.",
-            "scenarioIds": [
-              "scenario-radicals-01",
-              "scenario-radicals-02",
-              "scenario-radicals-03",
-              "scenario-radicals-04",
-              "scenario-radicals-05",
-              "scenario-radicals-06",
-              "scenario-radicals-07"
-            ],
-            "prerequisiteLessonIds": []
+            "description": "7 сценариев: scenario-radicals-01 — scenario-radicals-07."
           },
           "order": 0,
           "scenarios": [
@@ -61,27 +42,7 @@
               "scenario": {
                 "id": "scenario-radicals-01",
                 "title": "Радикалы 1–10",
-                "description": "Радикалы Канси №1–10.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-001",
-                    "draw-radical-002",
-                    "draw-radical-003",
-                    "draw-radical-004",
-                    "draw-radical-005",
-                    "draw-radical-006",
-                    "draw-radical-007",
-                    "draw-radical-008",
-                    "draw-radical-009",
-                    "draw-radical-010"
-                  ]
-                }
+                "description": "Радикалы Канси №1–10."
               },
               "order": 0,
               "cards": [
@@ -107,7 +68,9 @@
                     "tags": [
                       "числительные",
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -132,7 +95,9 @@
                     "tags": [
                       "черты",
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -157,7 +122,9 @@
                     "tags": [
                       "черты",
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -182,7 +149,9 @@
                     "tags": [
                       "черты",
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -207,7 +176,9 @@
                     "tags": [
                       "числительные",
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -232,7 +203,9 @@
                     "tags": [
                       "черты",
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -257,7 +230,9 @@
                     "tags": [
                       "числительные",
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -281,7 +256,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -305,7 +282,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -329,7 +308,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -338,27 +319,7 @@
               "scenario": {
                 "id": "scenario-radicals-02",
                 "title": "Радикалы 11–20",
-                "description": "Радикалы Канси №11–20.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-011",
-                    "draw-radical-012",
-                    "draw-radical-013",
-                    "draw-radical-014",
-                    "draw-radical-015",
-                    "draw-radical-016",
-                    "draw-radical-017",
-                    "draw-radical-018",
-                    "draw-radical-019",
-                    "draw-radical-020"
-                  ]
-                }
+                "description": "Радикалы Канси №11–20."
               },
               "order": 0,
               "cards": [
@@ -383,7 +344,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -408,7 +371,9 @@
                     "tags": [
                       "числительные",
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -433,7 +398,9 @@
                     "tags": [
                       "неживая природа и природные явления",
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -457,7 +424,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -481,7 +450,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -505,7 +476,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -529,7 +502,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -553,7 +528,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -577,7 +554,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -601,7 +580,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -610,27 +591,7 @@
               "scenario": {
                 "id": "scenario-radicals-03",
                 "title": "Радикалы 21–30",
-                "description": "Радикалы Канси №21–30.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-021",
-                    "draw-radical-022",
-                    "draw-radical-023",
-                    "draw-radical-024",
-                    "draw-radical-025",
-                    "draw-radical-026",
-                    "draw-radical-027",
-                    "draw-radical-028",
-                    "draw-radical-029",
-                    "draw-radical-030"
-                  ]
-                }
+                "description": "Радикалы Канси №21–30."
               },
               "order": 0,
               "cards": [
@@ -655,7 +616,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -679,7 +642,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -703,7 +668,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -727,7 +694,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -751,7 +720,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -775,7 +746,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -799,7 +772,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -823,7 +798,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -847,7 +824,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -871,7 +850,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -880,27 +861,7 @@
               "scenario": {
                 "id": "scenario-radicals-04",
                 "title": "Радикалы 31–40",
-                "description": "Радикалы Канси №31–40.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-031",
-                    "draw-radical-032",
-                    "draw-radical-033",
-                    "draw-radical-034",
-                    "draw-radical-035",
-                    "draw-radical-036",
-                    "draw-radical-037",
-                    "draw-radical-038",
-                    "draw-radical-039",
-                    "draw-radical-040"
-                  ]
-                }
+                "description": "Радикалы Канси №31–40."
               },
               "order": 0,
               "cards": [
@@ -925,7 +886,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -949,7 +912,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -973,7 +938,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -997,7 +964,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1021,7 +990,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1045,7 +1016,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1069,7 +1042,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1093,7 +1068,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1117,7 +1094,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1141,7 +1120,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -1150,27 +1131,7 @@
               "scenario": {
                 "id": "scenario-radicals-05",
                 "title": "Радикалы 41–50",
-                "description": "Радикалы Канси №41–50.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-041",
-                    "draw-radical-042",
-                    "draw-radical-043",
-                    "draw-radical-044",
-                    "draw-radical-045",
-                    "draw-radical-046",
-                    "draw-radical-047",
-                    "draw-radical-048",
-                    "draw-radical-049",
-                    "draw-radical-050"
-                  ]
-                }
+                "description": "Радикалы Канси №41–50."
               },
               "order": 0,
               "cards": [
@@ -1195,7 +1156,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1219,7 +1182,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1243,7 +1208,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1267,7 +1234,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1291,7 +1260,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1315,7 +1286,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1339,7 +1312,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1363,7 +1338,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1387,7 +1364,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1411,7 +1390,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -1420,27 +1401,7 @@
               "scenario": {
                 "id": "scenario-radicals-06",
                 "title": "Радикалы 51–60",
-                "description": "Радикалы Канси №51–60.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-051",
-                    "draw-radical-052",
-                    "draw-radical-053",
-                    "draw-radical-054",
-                    "draw-radical-055",
-                    "draw-radical-056",
-                    "draw-radical-057",
-                    "draw-radical-058",
-                    "draw-radical-059",
-                    "draw-radical-060"
-                  ]
-                }
+                "description": "Радикалы Канси №51–60."
               },
               "order": 0,
               "cards": [
@@ -1465,7 +1426,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1489,7 +1452,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1513,7 +1478,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1537,7 +1504,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1561,7 +1530,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1585,7 +1556,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1609,7 +1582,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1633,7 +1608,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1657,7 +1634,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1681,7 +1660,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -1690,27 +1671,7 @@
               "scenario": {
                 "id": "scenario-radicals-07",
                 "title": "Радикалы 61–70",
-                "description": "Радикалы Канси №61–70.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-061",
-                    "draw-radical-062",
-                    "draw-radical-063",
-                    "draw-radical-064",
-                    "draw-radical-065",
-                    "draw-radical-066",
-                    "draw-radical-067",
-                    "draw-radical-068",
-                    "draw-radical-069",
-                    "draw-radical-070"
-                  ]
-                }
+                "description": "Радикалы Канси №61–70."
               },
               "order": 0,
               "cards": [
@@ -1735,7 +1696,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1759,7 +1722,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1783,7 +1748,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1807,7 +1774,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1831,7 +1800,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1855,7 +1826,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1879,7 +1852,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1903,7 +1878,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1927,7 +1904,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -1951,7 +1930,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -1962,19 +1943,7 @@
           "lesson": {
             "id": "lesson-radicals-02",
             "title": "Урок 2: сценарии 8–14",
-            "description": "7 сценариев: scenario-radicals-08 — scenario-radicals-14.",
-            "scenarioIds": [
-              "scenario-radicals-08",
-              "scenario-radicals-09",
-              "scenario-radicals-10",
-              "scenario-radicals-11",
-              "scenario-radicals-12",
-              "scenario-radicals-13",
-              "scenario-radicals-14"
-            ],
-            "prerequisiteLessonIds": [
-              "lesson-radicals-01"
-            ]
+            "description": "7 сценариев: scenario-radicals-08 — scenario-radicals-14."
           },
           "order": 1,
           "scenarios": [
@@ -1982,27 +1951,7 @@
               "scenario": {
                 "id": "scenario-radicals-08",
                 "title": "Радикалы 71–80",
-                "description": "Радикалы Канси №71–80.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-071",
-                    "draw-radical-072",
-                    "draw-radical-073",
-                    "draw-radical-074",
-                    "draw-radical-075",
-                    "draw-radical-076",
-                    "draw-radical-077",
-                    "draw-radical-078",
-                    "draw-radical-079",
-                    "draw-radical-080"
-                  ]
-                }
+                "description": "Радикалы Канси №71–80."
               },
               "order": 0,
               "cards": [
@@ -2027,7 +1976,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2051,7 +2002,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2075,7 +2028,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2099,7 +2054,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2123,7 +2080,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2147,7 +2106,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2171,7 +2132,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2195,7 +2158,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2219,7 +2184,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2243,7 +2210,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -2252,27 +2221,7 @@
               "scenario": {
                 "id": "scenario-radicals-09",
                 "title": "Радикалы 81–90",
-                "description": "Радикалы Канси №81–90.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-081",
-                    "draw-radical-082",
-                    "draw-radical-083",
-                    "draw-radical-084",
-                    "draw-radical-085",
-                    "draw-radical-086",
-                    "draw-radical-087",
-                    "draw-radical-088",
-                    "draw-radical-089",
-                    "draw-radical-090"
-                  ]
-                }
+                "description": "Радикалы Канси №81–90."
               },
               "order": 0,
               "cards": [
@@ -2297,7 +2246,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2321,7 +2272,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2345,7 +2298,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2369,7 +2324,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2393,7 +2350,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2417,7 +2376,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2441,7 +2402,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2465,7 +2428,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2489,7 +2454,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2513,7 +2480,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -2522,27 +2491,7 @@
               "scenario": {
                 "id": "scenario-radicals-10",
                 "title": "Радикалы 91–100",
-                "description": "Радикалы Канси №91–100.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-091",
-                    "draw-radical-092",
-                    "draw-radical-093",
-                    "draw-radical-094",
-                    "draw-radical-095",
-                    "draw-radical-096",
-                    "draw-radical-097",
-                    "draw-radical-098",
-                    "draw-radical-099",
-                    "draw-radical-100"
-                  ]
-                }
+                "description": "Радикалы Канси №91–100."
               },
               "order": 0,
               "cards": [
@@ -2567,7 +2516,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2591,7 +2542,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2615,7 +2568,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2639,7 +2594,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2663,7 +2620,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2687,7 +2646,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2711,7 +2672,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2735,7 +2698,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2759,7 +2724,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2783,7 +2750,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -2792,27 +2761,7 @@
               "scenario": {
                 "id": "scenario-radicals-11",
                 "title": "Радикалы 101–110",
-                "description": "Радикалы Канси №101–110.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-101",
-                    "draw-radical-102",
-                    "draw-radical-103",
-                    "draw-radical-104",
-                    "draw-radical-105",
-                    "draw-radical-106",
-                    "draw-radical-107",
-                    "draw-radical-108",
-                    "draw-radical-109",
-                    "draw-radical-110"
-                  ]
-                }
+                "description": "Радикалы Канси №101–110."
               },
               "order": 0,
               "cards": [
@@ -2837,7 +2786,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2861,7 +2812,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2885,7 +2838,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2909,7 +2864,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2933,7 +2890,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2958,7 +2917,9 @@
                     "tags": [
                       "цвет",
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -2982,7 +2943,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3006,7 +2969,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3030,7 +2995,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3054,7 +3021,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -3063,27 +3032,7 @@
               "scenario": {
                 "id": "scenario-radicals-12",
                 "title": "Радикалы 111–120",
-                "description": "Радикалы Канси №111–120.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-111",
-                    "draw-radical-112",
-                    "draw-radical-113",
-                    "draw-radical-114",
-                    "draw-radical-115",
-                    "draw-radical-116",
-                    "draw-radical-117",
-                    "draw-radical-118",
-                    "draw-radical-119",
-                    "draw-radical-120"
-                  ]
-                }
+                "description": "Радикалы Канси №111–120."
               },
               "order": 0,
               "cards": [
@@ -3108,7 +3057,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3132,7 +3083,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3156,7 +3109,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3180,7 +3135,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3204,7 +3161,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3228,7 +3187,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3252,7 +3213,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3276,7 +3239,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3300,7 +3265,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3324,7 +3291,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -3333,27 +3302,7 @@
               "scenario": {
                 "id": "scenario-radicals-13",
                 "title": "Радикалы 121–130",
-                "description": "Радикалы Канси №121–130.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-121",
-                    "draw-radical-122",
-                    "draw-radical-123",
-                    "draw-radical-124",
-                    "draw-radical-125",
-                    "draw-radical-126",
-                    "draw-radical-127",
-                    "draw-radical-128",
-                    "draw-radical-129",
-                    "draw-radical-130"
-                  ]
-                }
+                "description": "Радикалы Канси №121–130."
               },
               "order": 0,
               "cards": [
@@ -3378,7 +3327,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3402,7 +3353,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3426,7 +3379,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3450,7 +3405,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3474,7 +3431,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3498,7 +3457,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3522,7 +3483,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3546,7 +3509,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3570,7 +3535,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3594,7 +3561,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -3603,27 +3572,7 @@
               "scenario": {
                 "id": "scenario-radicals-14",
                 "title": "Радикалы 131–140",
-                "description": "Радикалы Канси №131–140.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-131",
-                    "draw-radical-132",
-                    "draw-radical-133",
-                    "draw-radical-134",
-                    "draw-radical-135",
-                    "draw-radical-136",
-                    "draw-radical-137",
-                    "draw-radical-138",
-                    "draw-radical-139",
-                    "draw-radical-140"
-                  ]
-                }
+                "description": "Радикалы Канси №131–140."
               },
               "order": 0,
               "cards": [
@@ -3648,7 +3597,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3672,7 +3623,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3696,7 +3649,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3720,7 +3675,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3744,7 +3701,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3768,7 +3727,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3792,7 +3753,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3816,7 +3779,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3840,7 +3805,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3864,7 +3831,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -3875,19 +3844,7 @@
           "lesson": {
             "id": "lesson-radicals-03",
             "title": "Урок 3: сценарии 15–21",
-            "description": "7 сценариев: scenario-radicals-15 — scenario-radicals-21.",
-            "scenarioIds": [
-              "scenario-radicals-15",
-              "scenario-radicals-16",
-              "scenario-radicals-17",
-              "scenario-radicals-18",
-              "scenario-radicals-19",
-              "scenario-radicals-20",
-              "scenario-radicals-21"
-            ],
-            "prerequisiteLessonIds": [
-              "lesson-radicals-02"
-            ]
+            "description": "7 сценариев: scenario-radicals-15 — scenario-radicals-21."
           },
           "order": 2,
           "scenarios": [
@@ -3895,27 +3852,7 @@
               "scenario": {
                 "id": "scenario-radicals-15",
                 "title": "Радикалы 141–150",
-                "description": "Радикалы Канси №141–150.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-141",
-                    "draw-radical-142",
-                    "draw-radical-143",
-                    "draw-radical-144",
-                    "draw-radical-145",
-                    "draw-radical-146",
-                    "draw-radical-147",
-                    "draw-radical-148",
-                    "draw-radical-149",
-                    "draw-radical-150"
-                  ]
-                }
+                "description": "Радикалы Канси №141–150."
               },
               "order": 0,
               "cards": [
@@ -3940,7 +3877,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3964,7 +3903,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -3988,7 +3929,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4012,7 +3955,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4036,7 +3981,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4061,7 +4008,9 @@
                     "tags": [
                       "животный мир",
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4085,7 +4034,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4109,7 +4060,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4133,7 +4086,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4157,7 +4112,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -4166,27 +4123,7 @@
               "scenario": {
                 "id": "scenario-radicals-16",
                 "title": "Радикалы 151–160",
-                "description": "Радикалы Канси №151–160.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-151",
-                    "draw-radical-152",
-                    "draw-radical-153",
-                    "draw-radical-154",
-                    "draw-radical-155",
-                    "draw-radical-156",
-                    "draw-radical-157",
-                    "draw-radical-158",
-                    "draw-radical-159",
-                    "draw-radical-160"
-                  ]
-                }
+                "description": "Радикалы Канси №151–160."
               },
               "order": 0,
               "cards": [
@@ -4211,7 +4148,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4235,7 +4174,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4259,7 +4200,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4283,7 +4226,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4308,7 +4253,9 @@
                     "tags": [
                       "цвет",
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4332,7 +4279,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4356,7 +4305,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4380,7 +4331,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4404,7 +4357,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4428,7 +4383,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -4437,27 +4394,7 @@
               "scenario": {
                 "id": "scenario-radicals-17",
                 "title": "Радикалы 161–170",
-                "description": "Радикалы Канси №161–170.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-161",
-                    "draw-radical-162",
-                    "draw-radical-163",
-                    "draw-radical-164",
-                    "draw-radical-165",
-                    "draw-radical-166",
-                    "draw-radical-167",
-                    "draw-radical-168",
-                    "draw-radical-169",
-                    "draw-radical-170"
-                  ]
-                }
+                "description": "Радикалы Канси №161–170."
               },
               "order": 0,
               "cards": [
@@ -4482,7 +4419,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4506,7 +4445,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4530,7 +4471,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4554,7 +4497,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4578,7 +4523,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4602,7 +4549,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4626,7 +4575,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4650,7 +4601,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4674,7 +4627,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4698,7 +4653,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -4707,27 +4664,7 @@
               "scenario": {
                 "id": "scenario-radicals-18",
                 "title": "Радикалы 171–180",
-                "description": "Радикалы Канси №171–180.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-171",
-                    "draw-radical-172",
-                    "draw-radical-173",
-                    "draw-radical-174",
-                    "draw-radical-175",
-                    "draw-radical-176",
-                    "draw-radical-177",
-                    "draw-radical-178",
-                    "draw-radical-179",
-                    "draw-radical-180"
-                  ]
-                }
+                "description": "Радикалы Канси №171–180."
               },
               "order": 0,
               "cards": [
@@ -4752,7 +4689,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4776,7 +4715,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4800,7 +4741,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "неживая природа и природные явления"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4825,7 +4768,9 @@
                     "tags": [
                       "цвета",
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4850,7 +4795,9 @@
                     "tags": [
                       "неживая природа и природные явления",
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4874,7 +4821,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4898,7 +4847,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4922,7 +4873,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4946,7 +4899,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -4970,7 +4925,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -4979,27 +4936,7 @@
               "scenario": {
                 "id": "scenario-radicals-19",
                 "title": "Радикалы 181–190",
-                "description": "Радикалы Канси №181–190.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-181",
-                    "draw-radical-182",
-                    "draw-radical-183",
-                    "draw-radical-184",
-                    "draw-radical-185",
-                    "draw-radical-186",
-                    "draw-radical-187",
-                    "draw-radical-188",
-                    "draw-radical-189",
-                    "draw-radical-190"
-                  ]
-                }
+                "description": "Радикалы Канси №181–190."
               },
               "order": 0,
               "cards": [
@@ -5024,7 +4961,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5048,7 +4987,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5072,7 +5013,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5096,7 +5039,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5120,7 +5065,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5144,7 +5091,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5168,7 +5117,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5192,7 +5143,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5216,7 +5169,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5240,7 +5195,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "человек и его действия"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -5249,27 +5206,7 @@
               "scenario": {
                 "id": "scenario-radicals-20",
                 "title": "Радикалы 191–200",
-                "description": "Радикалы Канси №191–200.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-191",
-                    "draw-radical-192",
-                    "draw-radical-193",
-                    "draw-radical-194",
-                    "draw-radical-195",
-                    "draw-radical-196",
-                    "draw-radical-197",
-                    "draw-radical-198",
-                    "draw-radical-199",
-                    "draw-radical-200"
-                  ]
-                }
+                "description": "Радикалы Канси №191–200."
               },
               "order": 0,
               "cards": [
@@ -5294,7 +5231,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5318,7 +5257,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5342,7 +5283,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5366,7 +5309,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5390,7 +5335,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5414,7 +5361,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5438,7 +5387,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5462,7 +5413,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5486,7 +5439,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5510,7 +5465,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
@@ -5519,31 +5476,7 @@
               "scenario": {
                 "id": "scenario-radicals-21",
                 "title": "Радикалы 201–214",
-                "description": "14 карточек: радикалы Канси №201–214.",
-                "languagePair": {
-                  "known": "ru",
-                  "learning": "zh"
-                },
-                "published": true,
-                "cardSource": {
-                  "mode": "fixed",
-                  "cardIds": [
-                    "draw-radical-201",
-                    "draw-radical-202",
-                    "draw-radical-203",
-                    "draw-radical-204",
-                    "draw-radical-205",
-                    "draw-radical-206",
-                    "draw-radical-207",
-                    "draw-radical-208",
-                    "draw-radical-209",
-                    "draw-radical-210",
-                    "draw-radical-211",
-                    "draw-radical-212",
-                    "draw-radical-213",
-                    "draw-radical-214"
-                  ]
-                }
+                "description": "14 карточек: радикалы Канси №201–214."
               },
               "order": 0,
               "cards": [
@@ -5568,7 +5501,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5592,7 +5527,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5616,7 +5553,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5640,7 +5579,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5664,7 +5605,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5688,7 +5631,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5712,7 +5657,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5736,7 +5683,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5760,7 +5709,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5784,7 +5735,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "растения"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5808,7 +5761,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "части тела"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5832,7 +5787,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5856,7 +5813,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "животный мир"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 },
                 {
@@ -5880,7 +5839,9 @@
                     "difficulty": "beginner",
                     "tags": [
                       "предметы труда и быта"
-                    ]
+                    ],
+                    "pinyin": null,
+                    "tones": null
                   }
                 }
               ]
