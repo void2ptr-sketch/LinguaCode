@@ -21,14 +21,18 @@
     },
     "programIds": [
       "course-zh-a1-program"
-    ]
+    ],
+    "authorId": "user-123",
+    "order": 0,
+    "updatedAt": "2026-11-18T05:02:16.291Z"
   },
   "programs": [
     {
       "program": {
         "id": "course-zh-a1-program",
         "title": "Китайский A1: первые шаги",
-        "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы."
+        "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы.",
+        "courseId": "course-zh-a1"
       },
       "order": 0,
       "lessons": [
@@ -36,7 +40,8 @@
           "lesson": {
             "id": "lesson-zh-greetings",
             "title": "Урок 1: Приветствия",
-            "description": "你好, 谢谢, 再见 — узнавание и сопоставление."
+            "description": "你好, 谢谢, 再见 — узнавание и сопоставление.",
+            "programId": "course-zh-a1-program"
           },
           "order": 0,
           "scenarios": [
@@ -44,42 +49,18 @@
               "scenario": {
                 "id": "scenario-zh-greetings",
                 "title": "Приветствия (китайский)",
-                "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование."
+                "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование.",
+                "lessonId": "lesson-zh-greetings"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "select-zh-1",
-                    "kind": "select",
-                    "title": "Приветствие (китайский)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как сказать «Привет» по-китайски?",
-                    "optionsLearning": [
-                      "你好",
-                      "谢谢",
-                      "再见",
-                      "请"
-                    ],
-                    "optionsKnown": [
-                      "Привет",
-                      "Спасибо",
-                      "До свидания",
-                      "Пожалуйста"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-greetings",
-                    "scenarioId": "scenario-zh-greetings"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -89,21 +70,10 @@
                 {
                   "card": {
                     "id": "memory-zh-1",
-                    "kind": "memory",
-                    "title": "Пары слов (китайский)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "promptKnown": "Найдите пары: русский — китайский",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-greetings",
-                    "scenarioId": "scenario-zh-greetings"
+                    "kind": "memory"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -113,29 +83,10 @@
                 {
                   "card": {
                     "id": "symbol-zh-1",
-                    "kind": "symbol",
-                    "title": "Иероглифы приветствия",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Выберите иероглиф слова «Привет»",
-                    "optionsKnown": [
-                      "Привет",
-                      "Спасибо",
-                      "До свидания",
-                      "Пожалуйста"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-greetings",
-                    "scenarioId": "scenario-zh-greetings"
+                    "kind": "symbol"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -145,29 +96,10 @@
                 {
                   "card": {
                     "id": "sound-zh-1",
-                    "kind": "sound",
-                    "title": "Звук (китайский)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как переводится услышанное слово?",
-                    "optionsKnown": [
-                      "Привет",
-                      "Спасибо",
-                      "До свидания",
-                      "Пожалуйста"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-greetings",
-                    "scenarioId": "scenario-zh-greetings"
+                    "kind": "sound"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -182,7 +114,8 @@
           "lesson": {
             "id": "lesson-zh-phonetics",
             "title": "Урок 2: Пиньинь и тоны",
-            "description": "Ввод пиньинь, IPA и выбор тона."
+            "description": "Ввод пиньинь, IPA и выбор тона.",
+            "programId": "course-zh-a1-program"
           },
           "order": 1,
           "scenarios": [
@@ -190,29 +123,18 @@
               "scenario": {
                 "id": "scenario-zh-phonetics",
                 "title": "Фонетика: пиньинь и тоны",
-                "description": "3 карточки: пиньинь, IPA и тоны на примере 你好 и 妈."
+                "description": "3 карточки: пиньинь, IPA и тоны на примере 你好 и 妈.",
+                "lessonId": "lesson-zh-phonetics"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "keyboard-zh-pinyin-1",
-                    "kind": "keyboard",
-                    "title": "你好 — ввод пиньинь",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Введите пиньинь для «你好»",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-phonetics",
-                    "scenarioId": "scenario-zh-phonetics"
+                    "kind": "keyboard"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -222,22 +144,10 @@
                 {
                   "card": {
                     "id": "keyboard-zh-ipa-1",
-                    "kind": "keyboard",
-                    "title": "你好 (IPA из пиньинь)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Введите IPA для «你好» (nǐ hǎo)",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-phonetics",
-                    "scenarioId": "scenario-zh-phonetics"
+                    "kind": "keyboard"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -247,23 +157,10 @@
                 {
                   "card": {
                     "id": "tone-ma-1",
-                    "kind": "tone",
-                    "title": "Тон: 妈",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какой тон у иероглифа «妈»?",
-                    "correctIndex": 0,
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-phonetics",
-                    "scenarioId": "scenario-zh-phonetics"
+                    "kind": "tone"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -278,7 +175,8 @@
           "lesson": {
             "id": "lesson-zh-characters",
             "title": "Урок 3: Иероглифы",
-            "description": "Черты, радикалы и чтение 行."
+            "description": "Черты, радикалы и чтение 行.",
+            "programId": "course-zh-a1-program"
           },
           "order": 2,
           "scenarios": [
@@ -286,28 +184,18 @@
               "scenario": {
                 "id": "scenario-zh-characters",
                 "title": "Иероглифы и чтение",
-                "description": "7 карточек: черты 人 и 好, ввод перевода, полифония 行 в 银行."
+                "description": "7 карточек: черты 人 и 好, ввод перевода, полифония 行 в 银行.",
+                "lessonId": "lesson-zh-characters"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "draw-nihao-1",
-                    "kind": "draw",
-                    "title": "你好 — приветствие",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "promptKnown": "Нарисуйте «你好»",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    "kind": "draw"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -317,21 +205,10 @@
                 {
                   "card": {
                     "id": "draw-henbang-1",
-                    "kind": "draw",
-                    "title": "很棒 — отлично",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "promptKnown": "Нарисуйте «很棒»",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    "kind": "draw"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -341,21 +218,10 @@
                 {
                   "card": {
                     "id": "draw-bowuguan-1",
-                    "kind": "draw",
-                    "title": "博物馆 — музей",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "promptKnown": "Нарисуйте «博物馆»",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    "kind": "draw"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -365,21 +231,10 @@
                 {
                   "card": {
                     "id": "draw-ren-1",
-                    "kind": "draw",
-                    "title": "Иероглиф 人",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "promptKnown": "Нарисуйте иероглиф «人» (человек)",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    "kind": "draw"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -389,21 +244,10 @@
                 {
                   "card": {
                     "id": "draw-hao-1",
-                    "kind": "draw",
-                    "title": "Иероглиф 好",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "promptKnown": "Нарисуйте иероглиф «好» (хорошо)",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    "kind": "draw"
                   },
                   "order": 4,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -413,22 +257,10 @@
                 {
                   "card": {
                     "id": "keyboard-zh-1",
-                    "kind": "keyboard",
-                    "title": "Ввод перевода (китайский)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Введите перевод «你好» на русский",
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    "kind": "keyboard"
                   },
                   "order": 5,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -438,31 +270,10 @@
                 {
                   "card": {
                     "id": "reading-xing-1",
-                    "kind": "reading",
-                    "title": "Полифония: 行",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как читается «银行»? (иероглиф «行» здесь читается не как xíng)",
-                    "optionsLearning": [
-                      "银行",
-                      "yínxíng"
-                    ],
-                    "optionsKnown": [
-                      "инь хан — банк",
-                      "неверное чтение «行» как xíng"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-zh-a1",
-                    "lessonId": "lesson-zh-characters",
-                    "scenarioId": "scenario-zh-characters"
+                    "kind": "reading"
                   },
                   "order": 6,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,

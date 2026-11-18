@@ -18,14 +18,18 @@
     },
     "programIds": [
       "prog-1"
-    ]
+    ],
+    "authorId": "user-123",
+    "order": 0,
+    "updatedAt": "2026-11-18T05:02:16.027Z"
   },
   "programs": [
     {
       "program": {
         "id": "prog-1",
         "title": "P",
-        "description": ""
+        "description": "",
+        "courseId": "test-valid-course"
       },
       "order": 0,
       "lessons": [
@@ -33,7 +37,8 @@
           "lesson": {
             "id": "les-1",
             "title": "L",
-            "description": ""
+            "description": "",
+            "programId": "prog-1"
           },
           "order": 0,
           "scenarios": [
@@ -41,7 +46,8 @@
               "scenario": {
                 "id": "sc-1",
                 "title": "S",
-                "description": ""
+                "description": "",
+                "lessonId": "les-1"
               },
               "order": 0,
               "cards": []

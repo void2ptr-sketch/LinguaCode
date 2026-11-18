@@ -24,14 +24,18 @@
     },
     "programIds": [
       "course-ru-perl-interview-program"
-    ]
+    ],
+    "authorId": "user-123",
+    "order": 0,
+    "updatedAt": "2026-11-18T05:02:16.378Z"
   },
   "programs": [
     {
       "program": {
         "id": "course-ru-perl-interview-program",
         "title": "Собеседование на языке Perl",
-        "description": "Подготовка к техническому собеседованию по Perl: программа сгенерирована из «Идеи программы»."
+        "description": "Подготовка к техническому собеседованию по Perl: программа сгенерирована из «Идеи программы».",
+        "courseId": "course-ru-perl-interview"
       },
       "order": 0,
       "lessons": [
@@ -39,7 +43,8 @@
           "lesson": {
             "id": "lesson-perl-interview-01",
             "title": "Контексты и sigils",
-            "description": "4 тем (сценариев) для этапа «Контексты и sigils»."
+            "description": "4 тем (сценариев) для этапа «Контексты и sigils».",
+            "programId": "course-ru-perl-interview-program"
           },
           "order": 0,
           "scenarios": [
@@ -47,42 +52,18 @@
               "scenario": {
                 "id": "scenario-perl-s01-q01",
                 "title": "Что такое scalar context и list context?",
-                "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-01"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s01-q01-c1",
-                    "kind": "select",
-                    "title": "Что такое scalar context и list context? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что такое scalar context и list context?",
-                    "optionsLearning": [
-                      "Контекст определяет, сколько значений ожидает оператор: одно или список",
-                      "Это два разных типа переменных в Perl",
-                      "Scalar context всегда означает число, list — строку",
-                      "Контекст задаётся только директивой use strict"
-                    ],
-                    "optionsKnown": [
-                      "Ожидание одного значения vs списка значений",
-                      "Два типа переменных",
-                      "Число vs строка",
-                      "Только через strict"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q01"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -96,35 +77,10 @@
                 {
                   "card": {
                     "id": "card-perl-s01-q01-c2",
-                    "kind": "select",
-                    "title": "Что такое scalar context и list context? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "В каком выражении массив `@items` используется в list context?",
-                    "optionsLearning": [
-                      "my @copy = @items;",
-                      "my $count = @items;",
-                      "my $last = $#items;",
-                      "print scalar @items;"
-                    ],
-                    "optionsKnown": [
-                      "Присвоение другому массиву",
-                      "Присвоение скаляру (scalar context)",
-                      "Индекс последнего элемента",
-                      "Явный scalar context"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q01"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -138,21 +94,10 @@
                 {
                   "card": {
                     "id": "card-perl-s01-q01-code",
-                    "kind": "code-select",
-                    "title": "Код: Что такое scalar context и list context?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q01"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -169,42 +114,18 @@
               "scenario": {
                 "id": "scenario-perl-s01-q02",
                 "title": "Что вернёт `@array` в scalar context?",
-                "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-01"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s01-q02-c1",
-                    "kind": "select",
-                    "title": "Что вернёт `@array` в scalar context? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что вернёт `@array` в scalar context?",
-                    "optionsLearning": [
-                      "$#array + 1",
-                      "@array",
-                      "%array",
-                      "undef"
-                    ],
-                    "optionsKnown": [
-                      "Количество элементов",
-                      "Сам массив",
-                      "Хеш",
-                      "undef"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q02"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -218,35 +139,10 @@
                 {
                   "card": {
                     "id": "card-perl-s01-q02-c2",
-                    "kind": "select",
-                    "title": "Что вернёт `@array` в scalar context? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какое выражение вернёт число элементов массива `@array` в scalar context?",
-                    "optionsLearning": [
-                      "scalar @array",
-                      "@array",
-                      "length @array",
-                      "$#array"
-                    ],
-                    "optionsKnown": [
-                      "scalar @array",
-                      "массив как list",
-                      "нет length для @",
-                      "индекс последнего, не count"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q02"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -260,35 +156,10 @@
                 {
                   "card": {
                     "id": "card-perl-s01-q02-c3",
-                    "kind": "select",
-                    "title": "Что вернёт `@array` в scalar context? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Чему равен `$#array` для `@array = qw(a b c)`?",
-                    "optionsLearning": [
-                      "2",
-                      "3",
-                      "0",
-                      "-1"
-                    ],
-                    "optionsKnown": [
-                      "2 (индекс последнего)",
-                      "3 (количество)",
-                      "0",
-                      "-1 для пустого"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q02"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -302,21 +173,10 @@
                 {
                   "card": {
                     "id": "card-perl-s01-q02-code",
-                    "kind": "code-select",
-                    "title": "Код: Что вернёт `@array` в scalar context?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q02"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -333,42 +193,18 @@
               "scenario": {
                 "id": "scenario-perl-s01-q03",
                 "title": "Чем отличаются sigils `$`, `@`, `%`?",
-                "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-01"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s01-q03-c1",
-                    "kind": "select",
-                    "title": "Чем отличаются sigils `$`, `@`, `%`? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какие sigils соответствуют скаляру, массиву и хешу?",
-                    "optionsLearning": [
-                      "$ — скаляр, @ — массив, % — хеш",
-                      "$ — массив, @ — хеш, % — скаляр",
-                      "@ — скаляр, $ — массив",
-                      "% — массив, @ — хеш, $ — скаляр"
-                    ],
-                    "optionsKnown": [
-                      "$ @ %",
-                      "перепутаны",
-                      "перепутаны",
-                      "перепутаны"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q03"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -382,35 +218,10 @@
                 {
                   "card": {
                     "id": "card-perl-s01-q03-c2",
-                    "kind": "select",
-                    "title": "Чем отличаются sigils `$`, `@`, `%`? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что хранит переменная `@names`?",
-                    "optionsLearning": [
-                      "Список скаляров (массив)",
-                      "Один строковый скаляр",
-                      "Пары ключ-значение",
-                      "Ссылку только на хеш"
-                    ],
-                    "optionsKnown": [
-                      "Массив скаляров",
-                      "Один скаляр",
-                      "Хеш",
-                      "Ссылка на хеш"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q03"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -424,21 +235,10 @@
                 {
                   "card": {
                     "id": "card-perl-s01-q03-code",
-                    "kind": "code-select",
-                    "title": "Код: Чем отличаются sigils `$`, `@`, `%`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q03"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -455,42 +255,18 @@
               "scenario": {
                 "id": "scenario-perl-s01-q04",
                 "title": "Когда используется `undef`?",
-                "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-01"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s01-q04-c1",
-                    "kind": "select",
-                    "title": "Когда используется `undef`? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Когда используется `undef` в Perl?",
-                    "optionsLearning": [
-                      "Для обозначения отсутствующего значения / пустого скаляра",
-                      "Только при ошибке компиляции",
-                      "Как синоним NULL в SQL внутри regex",
-                      "Чтобы удалить пакет из @INC"
-                    ],
-                    "optionsKnown": [
-                      "Отсутствие значения",
-                      "Ошибка компиляции",
-                      "NULL в regex",
-                      "Удаление из @INC"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q04"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -504,35 +280,10 @@
                 {
                   "card": {
                     "id": "card-perl-s01-q04-c2",
-                    "kind": "select",
-                    "title": "Когда используется `undef`? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Чему равно `scalar @arr` для `my @arr = (undef, 1, undef);`?",
-                    "optionsLearning": [
-                      "3",
-                      "1",
-                      "2",
-                      "undef"
-                    ],
-                    "optionsKnown": [
-                      "3 элемента (undef тоже считается)",
-                      "1 truthy элемент",
-                      "2 не-undef",
-                      "undef"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q04"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -546,35 +297,10 @@
                 {
                   "card": {
                     "id": "card-perl-s01-q04-c3",
-                    "kind": "select",
-                    "title": "Когда используется `undef`? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как проверить, что скаляр `$x` не задан (undef)?",
-                    "optionsLearning": [
-                      "defined $x",
-                      "exists $x",
-                      "length $x",
-                      "truth $x"
-                    ],
-                    "optionsKnown": [
-                      "defined $x",
-                      "exists (для хешей)",
-                      "length",
-                      "нет такой функции"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q04"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -588,21 +314,10 @@
                 {
                   "card": {
                     "id": "card-perl-s01-q04-code",
-                    "kind": "code-select",
-                    "title": "Код: Когда используется `undef`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-01",
-                    "scenarioId": "scenario-perl-s01-q04"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -621,7 +336,8 @@
           "lesson": {
             "id": "lesson-perl-interview-02",
             "title": "Строгость и объявления",
-            "description": "4 тем (сценариев) для этапа «Строгость и объявления»."
+            "description": "4 тем (сценариев) для этапа «Строгость и объявления».",
+            "programId": "course-ru-perl-interview-program"
           },
           "order": 1,
           "scenarios": [
@@ -629,42 +345,18 @@
               "scenario": {
                 "id": "scenario-perl-s02-q01",
                 "title": "Зачем подключать `use strict`?",
-                "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-02"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s02-q01-c1",
-                    "kind": "select",
-                    "title": "Зачем подключать `use strict`? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Зачем подключать `use strict`?",
-                    "optionsLearning": [
-                      "Ловить опечатки в именах и небезопасные глобальные переменные",
-                      "Ускорить интерпретатор Perl",
-                      "Включить только OO-синтаксис",
-                      "Отключить все предупреждения"
-                    ],
-                    "optionsKnown": [
-                      "Безопасность имён и vars",
-                      "Ускорение",
-                      "Только ОО",
-                      "Отключение warnings"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q01"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -678,35 +370,10 @@
                 {
                   "card": {
                     "id": "card-perl-s02-q01-c2",
-                    "kind": "select",
-                    "title": "Зачем подключать `use strict`? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какая директива `use strict` включает проверку объявления переменных?",
-                    "optionsLearning": [
-                      "vars",
-                      "subs",
-                      "refs",
-                      "warnings"
-                    ],
-                    "optionsKnown": [
-                      "strict vars",
-                      "strict subs",
-                      "strict refs",
-                      "не часть strict"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q01"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -720,35 +387,10 @@
                 {
                   "card": {
                     "id": "card-perl-s02-q01-c3",
-                    "kind": "select",
-                    "title": "Зачем подключать `use strict`? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что произойдёт с `use strict` при опечатке `$nam` вместо `$name`?",
-                    "optionsLearning": [
-                      "Compile/runtime error о глобальной/не объявленной переменной",
-                      "Perl создаст новую глобальную молча",
-                      "Автоисправление имени",
-                      "Только warning, выполнение продолжится всегда"
-                    ],
-                    "optionsKnown": [
-                      "Ошибка strict",
-                      "Тихий global",
-                      "Autofix",
-                      "Только warning"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q01"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -762,21 +404,10 @@
                 {
                   "card": {
                     "id": "card-perl-s02-q01-code",
-                    "kind": "code-select",
-                    "title": "Код: Зачем подключать `use strict`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q01"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -793,42 +424,18 @@
               "scenario": {
                 "id": "scenario-perl-s02-q02",
                 "title": "Что даёт `use warnings`?",
-                "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-02"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s02-q02-c1",
-                    "kind": "select",
-                    "title": "Что даёт `use warnings`? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что даёт `use warnings`?",
-                    "optionsLearning": [
-                      "Включает предупреждения о подозрительных конструкциях",
-                      "Запрещает использование regex",
-                      "Превращает warnings в die всегда",
-                      "Отключает strict"
-                    ],
-                    "optionsKnown": [
-                      "Предупреждения",
-                      "Запрет regex",
-                      "Всегда die",
-                      "Отключает strict"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q02"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -842,35 +449,10 @@
                 {
                   "card": {
                     "id": "card-perl-s02-q02-c2",
-                    "kind": "select",
-                    "title": "Что даёт `use warnings`? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как эквивалентно включить warnings из командной строки?",
-                    "optionsLearning": [
-                      "-w или $^W",
-                      "-Mstrict",
-                      "-P",
-                      "--warnings=fatal только"
-                    ],
-                    "optionsKnown": [
-                      "-w / $^W",
-                      "strict",
-                      "-P",
-                      "только fatal"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q02"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -884,21 +466,10 @@
                 {
                   "card": {
                     "id": "card-perl-s02-q02-code",
-                    "kind": "code-select",
-                    "title": "Код: Что даёт `use warnings`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q02"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -915,42 +486,18 @@
               "scenario": {
                 "id": "scenario-perl-s02-q03",
                 "title": "Разница между `my`, `our` и глобальными переменными?",
-                "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-02"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s02-q03-c1",
-                    "kind": "select",
-                    "title": "Разница между `my`, `our` и глобальными переменными? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как объявить лексическую переменную `$count` в блоке?",
-                    "optionsLearning": [
-                      "my $count",
-                      "our $count",
-                      "$count",
-                      "local $count"
-                    ],
-                    "optionsKnown": [
-                      "лексическая my",
-                      "пакетный алиас our",
-                      "не объявлена — ошибка strict",
-                      "local — динамическая, не my"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q03"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -964,35 +511,10 @@
                 {
                   "card": {
                     "id": "card-perl-s02-q03-c2",
-                    "kind": "select",
-                    "title": "Разница между `my`, `our` и глобальными переменными? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Чем `our $VERSION` отличается от `my $version`?",
-                    "optionsLearning": [
-                      "`our` создаёт алиас к пакетной переменной, `my` — лексическую",
-                      "`our` видна только в sub, `my` — глобальна",
-                      "Разницы нет",
-                      "`our` работает только в BEGIN"
-                    ],
-                    "optionsKnown": [
-                      "Пакетная vs лексическая",
-                      "Неверно про sub/global",
-                      "Нет разницы",
-                      "Только BEGIN"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q03"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -1006,35 +528,10 @@
                 {
                   "card": {
                     "id": "card-perl-s02-q03-c3",
-                    "kind": "select",
-                    "title": "Разница между `my`, `our` и глобальными переменными? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Где видна `my $x`, объявленная внутри `{ ... }` блока?",
-                    "optionsLearning": [
-                      "Только внутри этого блока",
-                      "Во всём файле",
-                      "Во всех подпрограммах пакета",
-                      "Только в main::"
-                    ],
-                    "optionsKnown": [
-                      "В пределах блока",
-                      "Весь файл",
-                      "Все subs",
-                      "main::"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q03"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -1048,21 +545,10 @@
                 {
                   "card": {
                     "id": "card-perl-s02-q03-code",
-                    "kind": "code-select",
-                    "title": "Код: Разница между `my`, `our` и глобальными переменными?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q03"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -1079,42 +565,18 @@
               "scenario": {
                 "id": "scenario-perl-s02-q04",
                 "title": "Что такое `use feature 'say'`?",
-                "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-02"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s02-q04-c1",
-                    "kind": "select",
-                    "title": "Что такое `use feature 'say'`? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что такое `use feature 'say'`?",
-                    "optionsLearning": [
-                      "Подключает функцию say (print с \"\\n\") без IO::All",
-                      "Запрещает print",
-                      "Включает строгий режим say",
-                      "Экспортирует say в @EXPORT"
-                    ],
-                    "optionsKnown": [
-                      "say с переводом строки",
-                      "Запрет print",
-                      "strict say",
-                      "@EXPORT"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q04"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -1128,35 +590,10 @@
                 {
                   "card": {
                     "id": "card-perl-s02-q04-c2",
-                    "kind": "select",
-                    "title": "Что такое `use feature 'say'`? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какой однострочник с `say` корректно выведет hi? (Perl 5.10+, `use feature \"say\"`)",
-                    "optionsLearning": [
-                      "say \"hi\";",
-                      "say hi;",
-                      "print say \"hi\"",
-                      "echo \"hi\";"
-                    ],
-                    "optionsKnown": [
-                      "say со строкой",
-                      "hi без кавычек — bareword",
-                      "неверный синтаксис",
-                      "не Perl"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q04"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -1170,21 +607,10 @@
                 {
                   "card": {
                     "id": "card-perl-s02-q04-code",
-                    "kind": "code-select",
-                    "title": "Код: Что такое `use feature 'say'`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-02",
-                    "scenarioId": "scenario-perl-s02-q04"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "beginner",
                     "tags": [
                       "beginner",
@@ -1203,7 +629,8 @@
           "lesson": {
             "id": "lesson-perl-interview-03",
             "title": "Регулярные выражения",
-            "description": "4 тем (сценариев) для этапа «Регулярные выражения»."
+            "description": "4 тем (сценариев) для этапа «Регулярные выражения».",
+            "programId": "course-ru-perl-interview-program"
           },
           "order": 2,
           "scenarios": [
@@ -1211,42 +638,18 @@
               "scenario": {
                 "id": "scenario-perl-s03-q01",
                 "title": "Как работают захваты `$1`, `$2` в regex?",
-                "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-03"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s03-q01-c1",
-                    "kind": "select",
-                    "title": "Как работают захваты `$1`, `$2` в regex? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как работают захваты `$1`, `$2` в regex?",
-                    "optionsLearning": [
-                      "Содержат подстроки, совпавшие с 1-й и 2-й скобочной группой",
-                      "Номера строк в файле",
-                      "Индексы символов в `@_`",
-                      "Глобальные переменные только для split"
-                    ],
-                    "optionsKnown": [
-                      "Группы захвата",
-                      "Номера строк",
-                      "Индексы @_",
-                      "Только split"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q01"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1260,35 +663,10 @@
                 {
                   "card": {
                     "id": "card-perl-s03-q01-c2",
-                    "kind": "select",
-                    "title": "Как работают захваты `$1`, `$2` в regex? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "После `\"abc\" =~ /(b)(c)/` чему равен `$2`?",
-                    "optionsLearning": [
-                      "c",
-                      "b",
-                      "bc",
-                      "undef"
-                    ],
-                    "optionsKnown": [
-                      "c",
-                      "b",
-                      "bc",
-                      "undef"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q01"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1302,21 +680,10 @@
                 {
                   "card": {
                     "id": "card-perl-s03-q01-code",
-                    "kind": "code-select",
-                    "title": "Код: Как работают захваты `$1`, `$2` в regex?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q01"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1333,42 +700,18 @@
               "scenario": {
                 "id": "scenario-perl-s03-q02",
                 "title": "Что делают модификаторы `/g`, `/i`, `/x`?",
-                "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-03"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s03-q02-c1",
-                    "kind": "select",
-                    "title": "Что делают модификаторы `/g`, `/i`, `/x`? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что делает модификатор `/g`?",
-                    "optionsLearning": [
-                      "Ищет все совпадения, не только первое",
-                      "Делает regex case-sensitive",
-                      "Компилирует regex один раз",
-                      "Включает extended whitespace в паттерне"
-                    ],
-                    "optionsKnown": [
-                      "Global / все совпадения",
-                      "Case sensitive",
-                      "Компиляция",
-                      "Extended whitespace"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q02"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1382,35 +725,10 @@
                 {
                   "card": {
                     "id": "card-perl-s03-q02-c2",
-                    "kind": "select",
-                    "title": "Что делают модификаторы `/g`, `/i`, `/x`? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какой модификатор regex делает поиск без учёта регистра?",
-                    "optionsLearning": [
-                      "/i",
-                      "/g",
-                      "/x",
-                      "/m только"
-                    ],
-                    "optionsKnown": [
-                      "case-insensitive",
-                      "global",
-                      "extended",
-                      "/m — multiline, не регистр"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q02"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1424,35 +742,10 @@
                 {
                   "card": {
                     "id": "card-perl-s03-q02-c3",
-                    "kind": "select",
-                    "title": "Что делают модификаторы `/g`, `/i`, `/x`? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Для чего модификатор `/x`?",
-                    "optionsLearning": [
-                      "Extended mode: пробелы и комментарии внутри паттерна",
-                      "Execute pattern in hexadecimal mode",
-                      "Exclusive match (только начало строки)",
-                      "XML-safe regex"
-                    ],
-                    "optionsKnown": [
-                      "Пробелы и # комментарии",
-                      "Hex mode",
-                      "Exclusive",
-                      "XML"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q02"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1466,21 +759,10 @@
                 {
                   "card": {
                     "id": "card-perl-s03-q02-code",
-                    "kind": "code-select",
-                    "title": "Код: Что делают модификаторы `/g`, `/i`, `/x`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q02"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1497,42 +779,18 @@
               "scenario": {
                 "id": "scenario-perl-s03-q03",
                 "title": "Разница между `=~` и `!~`?",
-                "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-03"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s03-q03-c1",
-                    "kind": "select",
-                    "title": "Разница между `=~` и `!~`? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как записать, что строка `$s` НЕ совпадает с `/pat/`?",
-                    "optionsLearning": [
-                      "$s !~ /pat/",
-                      "$s =~ /pat/",
-                      "$s != /pat/",
-                      "!$s =~ /pat/"
-                    ],
-                    "optionsKnown": [
-                      "оператор !~",
-                      "положительное совпадение",
-                      "!= не для regex",
-                      "неверный синтаксис"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q03"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1546,35 +804,10 @@
                 {
                   "card": {
                     "id": "card-perl-s03-q03-c2",
-                    "kind": "select",
-                    "title": "Разница между `=~` и `!~`? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Чем `=~` отличается от `!~`?",
-                    "optionsLearning": [
-                      "`=~` — успешное совпадение, `!~` — отсутствие совпадения",
-                      "`=~` только для хешей",
-                      "`!~` только в list context",
-                      "Это синонимы в Perl 5.38"
-                    ],
-                    "optionsKnown": [
-                      "Match vs negated match",
-                      "Только hash",
-                      "List context",
-                      "Синонимы"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q03"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1588,21 +821,10 @@
                 {
                   "card": {
                     "id": "card-perl-s03-q03-code",
-                    "kind": "code-select",
-                    "title": "Код: Разница между `=~` и `!~`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q03"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1619,42 +841,18 @@
               "scenario": {
                 "id": "scenario-perl-s03-q04",
                 "title": "Зачем использовать `qr//`?",
-                "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-03"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s03-q04-c1",
-                    "kind": "select",
-                    "title": "Зачем использовать `qr//`? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Зачем использовать `qr//`?",
-                    "optionsLearning": [
-                      "Скомпилировать regex один раз и переиспользовать",
-                      "Сделать regex case-sensitive",
-                      "Запретить backtracking",
-                      "Конвертировать regex в JSON"
-                    ],
-                    "optionsKnown": [
-                      "Компиляция и reuse",
-                      "Case sensitive",
-                      "No backtrack",
-                      "JSON"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q04"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1668,35 +866,10 @@
                 {
                   "card": {
                     "id": "card-perl-s03-q04-c2",
-                    "kind": "select",
-                    "title": "Зачем использовать `qr//`? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как сохранить скомпилированный паттерн цифр в `$re`?",
-                    "optionsLearning": [
-                      "my $re = qr/\\d+/;",
-                      "my $re = \"/\\\\d+/\";",
-                      "my $re = regex(\\d+);",
-                      "my $re = m/\\d+/ once;"
-                    ],
-                    "optionsKnown": [
-                      "qr// — compiled regex",
-                      "строка, не regex-объект",
-                      "нет функции regex()",
-                      "m// — match, не сохранение"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q04"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1710,35 +883,10 @@
                 {
                   "card": {
                     "id": "card-perl-s03-q04-c3",
-                    "kind": "select",
-                    "title": "Зачем использовать `qr//`? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что вернёт `ref(qr/\\d+/)`?",
-                    "optionsLearning": [
-                      "Regexp",
-                      "REGEXP",
-                      "SCALAR",
-                      "CODE"
-                    ],
-                    "optionsKnown": [
-                      "Regexp",
-                      "REGEXP",
-                      "SCALAR",
-                      "CODE"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q04"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1752,21 +900,10 @@
                 {
                   "card": {
                     "id": "card-perl-s03-q04-code",
-                    "kind": "code-select",
-                    "title": "Код: Зачем использовать `qr//`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-03",
-                    "scenarioId": "scenario-perl-s03-q04"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1785,7 +922,8 @@
           "lesson": {
             "id": "lesson-perl-interview-04",
             "title": "Подпрограммы и встроенные функции",
-            "description": "4 тем (сценариев) для этапа «Подпрограммы и встроенные функции»."
+            "description": "4 тем (сценариев) для этапа «Подпрограммы и встроенные функции».",
+            "programId": "course-ru-perl-interview-program"
           },
           "order": 3,
           "scenarios": [
@@ -1793,42 +931,18 @@
               "scenario": {
                 "id": "scenario-perl-s04-q01",
                 "title": "Как устроен `@_` в подпрограмме?",
-                "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-04"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s04-q01-c1",
-                    "kind": "select",
-                    "title": "Как устроен `@_` в подпрограмме? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как устроен `@_` в подпрограмме?",
-                    "optionsLearning": [
-                      "Массив аргументов, переданных в текущий sub",
-                      "Копия @ARGV",
-                      "Стек возвратов caller()",
-                      "Только именованные параметры"
-                    ],
-                    "optionsKnown": [
-                      "Аргументы sub",
-                      "@ARGV",
-                      "caller stack",
-                      "Named only"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q01"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1842,35 +956,10 @@
                 {
                   "card": {
                     "id": "card-perl-s04-q01-c2",
-                    "kind": "select",
-                    "title": "Как устроен `@_` в подпрограмме? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как получить первый аргумент sub в `$first`?",
-                    "optionsLearning": [
-                      "my $first = shift;",
-                      "my $first = @_",
-                      "my $first = @ARGV",
-                      "my $first = caller(0)"
-                    ],
-                    "optionsKnown": [
-                      "shift из @_",
-                      "@_ целиком — массив",
-                      "@ARGV — CLI args",
-                      "caller — stack info"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q01"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1884,35 +973,10 @@
                 {
                   "card": {
                     "id": "card-perl-s04-q01-c3",
-                    "kind": "select",
-                    "title": "Как устроен `@_` в подпрограмме? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что делает `shift` без аргументов внутри sub?",
-                    "optionsLearning": [
-                      "Убирает и возвращает первый элемент `@_`",
-                      "Сдвигает @INC",
-                      "Удаляет первый ключ хеша",
-                      "Syntax error в strict"
-                    ],
-                    "optionsKnown": [
-                      "shift @_",
-                      "@INC",
-                      "hash key",
-                      "Syntax error"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q01"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1926,21 +990,10 @@
                 {
                   "card": {
                     "id": "card-perl-s04-q01-code",
-                    "kind": "code-select",
-                    "title": "Код: Как устроен `@_` в подпрограмме?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q01"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -1957,42 +1010,18 @@
               "scenario": {
                 "id": "scenario-perl-s04-q02",
                 "title": "Когда применять `map` и `grep`?",
-                "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-04"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s04-q02-c1",
-                    "kind": "select",
-                    "title": "Когда применять `map` и `grep`? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Когда применять `map` и `grep`?",
-                    "optionsLearning": [
-                      "`map` — преобразовать каждый элемент, `grep` — отфильтровать",
-                      "`grep` только для файлов, `map` только для строк",
-                      "Взаимозаменяемы без разницы",
-                      "Только в scalar context"
-                    ],
-                    "optionsKnown": [
-                      "map transform, grep filter",
-                      "grep files only",
-                      "Same",
-                      "Scalar only"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q02"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -2006,35 +1035,10 @@
                 {
                   "card": {
                     "id": "card-perl-s04-q02-c2",
-                    "kind": "select",
-                    "title": "Когда применять `map` и `grep`? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что вернёт `map { $_ * 2 } (1, 2, 3)`?",
-                    "optionsLearning": [
-                      "(2, 4, 6)",
-                      "6",
-                      "(1, 2, 3)",
-                      "undef"
-                    ],
-                    "optionsKnown": [
-                      "(2, 4, 6)",
-                      "6 (если scalar context)",
-                      "исходный",
-                      "undef"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q02"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -2048,21 +1052,10 @@
                 {
                   "card": {
                     "id": "card-perl-s04-q02-code",
-                    "kind": "code-select",
-                    "title": "Код: Когда применять `map` и `grep`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q02"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -2079,42 +1072,18 @@
               "scenario": {
                 "id": "scenario-perl-s04-q03",
                 "title": "Что делает оператор `<=>` (spaceship)?",
-                "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-04"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s04-q03-c1",
-                    "kind": "select",
-                    "title": "Что делает оператор `<=>` (spaceship)? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как называется оператор `<=>`?",
-                    "optionsLearning": [
-                      "spaceship",
-                      "rocket",
-                      "cmp-only",
-                      "compare"
-                    ],
-                    "optionsKnown": [
-                      "трёхстороннее сравнение",
-                      "неофициальное имя",
-                      "cmp — другой оператор",
-                      "не ключевое слово"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q03"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -2128,35 +1097,10 @@
                 {
                   "card": {
                     "id": "card-perl-s04-q03-c2",
-                    "kind": "select",
-                    "title": "Что делает оператор `<=>` (spaceship)? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Чему равно `\"a\" <=> \"b\"`?",
-                    "optionsLearning": [
-                      "-1",
-                      "0",
-                      "1",
-                      "undef"
-                    ],
-                    "optionsKnown": [
-                      "-1 (a раньше b)",
-                      "0",
-                      "1",
-                      "undef"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q03"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -2170,35 +1114,10 @@
                 {
                   "card": {
                     "id": "card-perl-s04-q03-c3",
-                    "kind": "select",
-                    "title": "Что делает оператор `<=>` (spaceship)? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Для чего используют `<=>` в `sort`?",
-                    "optionsLearning": [
-                      "Задать трёхстороннее сравнение элементов",
-                      "Сортировать только числа в строковом виде",
-                      "Сравнивать ссылки на хеши по умолчанию",
-                      "Включить stable sort в Perl"
-                    ],
-                    "optionsKnown": [
-                      "Comparison function",
-                      "String numbers only",
-                      "Hash refs default",
-                      "Stable sort flag"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q03"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -2212,21 +1131,10 @@
                 {
                   "card": {
                     "id": "card-perl-s04-q03-code",
-                    "kind": "code-select",
-                    "title": "Код: Что делает оператор `<=>` (spaceship)?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q03"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -2243,42 +1151,18 @@
               "scenario": {
                 "id": "scenario-perl-s04-q04",
                 "title": "Разница между `sort` и `sort { ... }`?",
-                "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-04"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s04-q04-c1",
-                    "kind": "select",
-                    "title": "Разница между `sort` и `sort { ... }`? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Разница между `sort @arr` и `sort { $a <=> $b } @arr`?",
-                    "optionsLearning": [
-                      "Первый — строковая сортировка, второй — числовая через spaceship",
-                      "Нет разницы для чисел",
-                      "Блоковая форма запрещена в strict",
-                      "Первый сортирует по длине строки"
-                    ],
-                    "optionsKnown": [
-                      "String vs numeric sort",
-                      "No diff",
-                      "Block forbidden",
-                      "By length"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q04"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -2292,35 +1176,10 @@
                 {
                   "card": {
                     "id": "card-perl-s04-q04-c2",
-                    "kind": "select",
-                    "title": "Разница между `sort` и `sort { ... }`? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как отсортировать `@nums` по возрастанию как числа?",
-                    "optionsLearning": [
-                      "sort { $a <=> $b } @nums",
-                      "sort @nums",
-                      "sort { $a cmp $b } @nums",
-                      "sort numeric @nums"
-                    ],
-                    "optionsKnown": [
-                      "числовой spaceship",
-                      "строковая сортировка по умолчанию",
-                      "строковое cmp",
-                      "нет sort numeric"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q04"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -2334,21 +1193,10 @@
                 {
                   "card": {
                     "id": "card-perl-s04-q04-code",
-                    "kind": "code-select",
-                    "title": "Код: Разница между `sort` и `sort { ... }`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-04",
-                    "scenarioId": "scenario-perl-s04-q04"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "intermediate",
                     "tags": [
                       "intermediate",
@@ -2367,7 +1215,8 @@
           "lesson": {
             "id": "lesson-perl-interview-05",
             "title": "Модули, ООП и практика на интервью",
-            "description": "4 тем (сценариев) для этапа «Модули, ООП и практика на интервью»."
+            "description": "4 тем (сценариев) для этапа «Модули, ООП и практика на интервью».",
+            "programId": "course-ru-perl-interview-program"
           },
           "order": 4,
           "scenarios": [
@@ -2375,42 +1224,18 @@
               "scenario": {
                 "id": "scenario-perl-s05-q01",
                 "title": "Как подключить модуль через `use` и `require`?",
-                "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-05"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s05-q01-c1",
-                    "kind": "select",
-                    "title": "Как подключить модуль через `use` и `require`? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как подключить модуль через `use` и `require`?",
-                    "optionsLearning": [
-                      "`use` — compile time + import, `require` — runtime по строке пути",
-                      "Это синонимы",
-                      "`require` только для CPAN, `use` только core",
-                      "`use` не вызывает import"
-                    ],
-                    "optionsKnown": [
-                      "Compile vs runtime",
-                      "Synonyms",
-                      "CPAN vs core",
-                      "No import"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q01"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2424,35 +1249,10 @@
                 {
                   "card": {
                     "id": "card-perl-s05-q01-c2",
-                    "kind": "select",
-                    "title": "Как подключить модуль через `use` и `require`? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как условно загрузить `JSON::MaybeXS` только если `$ENV{USE_JSON}`?",
-                    "optionsLearning": [
-                      "require JSON::MaybeXS if $ENV{USE_JSON};",
-                      "use JSON::MaybeXS if $ENV{USE_JSON};",
-                      "import JSON::MaybeXS when $ENV{USE_JSON};",
-                      "load module JSON::MaybeXS($ENV{USE_JSON});"
-                    ],
-                    "optionsKnown": [
-                      "require — runtime",
-                      "use — compile time, не для if",
-                      "нет import when",
-                      "нет load module()"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q01"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2466,21 +1266,10 @@
                 {
                   "card": {
                     "id": "card-perl-s05-q01-code",
-                    "kind": "code-select",
-                    "title": "Код: Как подключить модуль через `use` и `require`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q01"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2497,42 +1286,18 @@
               "scenario": {
                 "id": "scenario-perl-s05-q02",
                 "title": "Базовый синтаксис bless для ООП в Perl?",
-                "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-05"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s05-q02-c1",
-                    "kind": "select",
-                    "title": "Базовый синтаксис bless для ООП в Perl? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Базовый синтаксис bless для ООП в Perl?",
-                    "optionsLearning": [
-                      "bless $ref, \"Class::Name\" делает объект класса",
-                      "bless создаёт пакет автоматически в strict",
-                      "bless только для @ISA",
-                      "bless вызывается только в DESTROY"
-                    ],
-                    "optionsKnown": [
-                      "bless ref into class",
-                      "Auto package",
-                      "@ISA only",
-                      "DESTROY only"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q02"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2546,35 +1311,10 @@
                 {
                   "card": {
                     "id": "card-perl-s05-q02-c2",
-                    "kind": "select",
-                    "title": "Базовый синтаксис bless для ООП в Perl? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как сделать объект `My::Class` из хеша `$self`?",
-                    "optionsLearning": [
-                      "bless $self, \"My::Class\"",
-                      "new My::Class($self)",
-                      "object $self, My::Class",
-                      "$self->class(\"My::Class\")"
-                    ],
-                    "optionsKnown": [
-                      "bless ref, class",
-                      "нет встроенного new без конструктора",
-                      "нет object()",
-                      "нет метода class()"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q02"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2588,35 +1328,10 @@
                 {
                   "card": {
                     "id": "card-perl-s05-q02-c3",
-                    "kind": "select",
-                    "title": "Базовый синтаксис bless для ООП в Perl? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как вызвать метод `save` у объекта `$obj` класса `My::Class`?",
-                    "optionsLearning": [
-                      "$obj->save",
-                      "My::Class->save($obj)",
-                      "save($obj)",
-                      "$obj.save"
-                    ],
-                    "optionsKnown": [
-                      "Стрелочный вызов",
-                      "Класс->метод(объект) — другой паттерн",
-                      "Произвольная функция",
-                      "Синтаксис других языков"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q02"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2630,21 +1345,10 @@
                 {
                   "card": {
                     "id": "card-perl-s05-q02-code",
-                    "kind": "code-select",
-                    "title": "Код: Базовый синтаксис bless для ООП в Perl?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q02"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2661,42 +1365,18 @@
               "scenario": {
                 "id": "scenario-perl-s05-q03",
                 "title": "Как безопасно открыть файл и обработать ошибки?",
-                "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-05"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s05-q03-c1",
-                    "kind": "select",
-                    "title": "Как безопасно открыть файл и обработать ошибки? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как безопасно открыть файл и обработать ошибки?",
-                    "optionsLearning": [
-                      "open my $fh, \"<\", $path or die \"open $path: $!\";",
-                      "open FH, $path; ignore errors",
-                      "sysopen без проверки $!",
-                      "eval { open } всегда молча"
-                    ],
-                    "optionsKnown": [
-                      "open or die with $!",
-                      "Ignore errors",
-                      "sysopen no check",
-                      "silent eval"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q03"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2710,35 +1390,10 @@
                 {
                   "card": {
                     "id": "card-perl-s05-q03-c2",
-                    "kind": "select",
-                    "title": "Как безопасно открыть файл и обработать ошибки? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какой шаблон безопасного `open` с обработкой ошибки через `$!`?",
-                    "optionsLearning": [
-                      "open my $fh, \"<\", $path or die \"open $path: $!\";",
-                      "open FH, $path or warn;",
-                      "open my $fh, $path;",
-                      "open($path) || print $!;"
-                    ],
-                    "optionsKnown": [
-                      "lexical FH + or die + $!",
-                      "голый FH без die",
-                      "нет проверки ошибки",
-                      "print вместо die"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q03"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2752,21 +1407,10 @@
                 {
                   "card": {
                     "id": "card-perl-s05-q03-code",
-                    "kind": "code-select",
-                    "title": "Код: Как безопасно открыть файл и обработать ошибки?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q03"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2783,42 +1427,18 @@
               "scenario": {
                 "id": "scenario-perl-s05-q04",
                 "title": "Типовые red flags в Perl-коде на собеседовании?",
-                "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-05"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s05-q04-c1",
-                    "kind": "select",
-                    "title": "Типовые red flags в Perl-коде на собеседовании? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Типовые red flags в Perl-коде на собеседовании?",
-                    "optionsLearning": [
-                      "Отсутствие strict/warnings, голые filehandles, двусмысленный context",
-                      "Использование map/grep",
-                      "Наличие комментариев",
-                      "Применение my в subs"
-                    ],
-                    "optionsKnown": [
-                      "no strict, global FH, context bugs",
-                      "map/grep bad",
-                      "Comments bad",
-                      "my bad"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q04"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2832,35 +1452,10 @@
                 {
                   "card": {
                     "id": "card-perl-s05-q04-c2",
-                    "kind": "select",
-                    "title": "Типовые red flags в Perl-коде на собеседовании? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какие две директивы обычно пишут в начале современного Perl-скрипта?",
-                    "optionsLearning": [
-                      "use strict; use warnings;",
-                      "use say; use utf8;",
-                      "no strict; no warnings;",
-                      "use Moose; use Dancer2;"
-                    ],
-                    "optionsKnown": [
-                      "strict + warnings",
-                      "feature/utf8 — не минимум",
-                      "отключают защиту",
-                      "фреймворки, не базовый минимум"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q04"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2874,35 +1469,10 @@
                 {
                   "card": {
                     "id": "card-perl-s05-q04-c3",
-                    "kind": "select",
-                    "title": "Типовые red flags в Perl-коде на собеседовании? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какой признак устаревшего стиля работы с файлами?",
-                    "optionsLearning": [
-                      "Голый filehandle `open FH, \"<\", $path` без lexicals",
-                      "Лексический `open my $fh, ...`",
-                      "Проверка `$!` после open",
-                      "Использование `<$fh>` в while"
-                    ],
-                    "optionsKnown": [
-                      "Global FH без my",
-                      "Lexical FH — современный стиль",
-                      "Проверка $!",
-                      "Чтение через handle OK"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q04"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2916,21 +1486,10 @@
                 {
                   "card": {
                     "id": "card-perl-s05-q04-code",
-                    "kind": "code-select",
-                    "title": "Код: Типовые red flags в Perl-коде на собеседовании?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-05",
-                    "scenarioId": "scenario-perl-s05-q04"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -2949,7 +1508,8 @@
           "lesson": {
             "id": "lesson-perl-interview-06",
             "title": "Базы данных",
-            "description": "5 тем (сценариев) для этапа «Базы данных»."
+            "description": "5 тем (сценариев) для этапа «Базы данных».",
+            "programId": "course-ru-perl-interview-program"
           },
           "order": 5,
           "scenarios": [
@@ -2957,42 +1517,18 @@
               "scenario": {
                 "id": "scenario-perl-s06-q01",
                 "title": "Что такое DBI и DBD в Perl?",
-                "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-06"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s06-q01-c1",
-                    "kind": "select",
-                    "title": "Что такое DBI и DBD в Perl? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что такое DBI и DBD в Perl?",
-                    "optionsLearning": [
-                      "DBI — общий интерфейс к БД, DBD — драйвер конкретной СУБД",
-                      "DBI — драйвер Oracle, DBD — драйвер MySQL",
-                      "DBI и DBD — синонимы для SQL-запросов",
-                      "DBD подключает strict, DBI — warnings"
-                    ],
-                    "optionsKnown": [
-                      "Interface + driver",
-                      "Oracle/MySQL перепутаны",
-                      "Синонимы",
-                      "strict/warnings — неверно"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q01"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3006,35 +1542,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q01-c2",
-                    "kind": "select",
-                    "title": "Что такое DBI и DBD в Perl? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как подключиться к MySQL через DBI?",
-                    "optionsLearning": [
-                      "use DBI; my $dbh = DBI->connect(\"dbi:mysql:dbname=test\", $user, $pass);",
-                      "use DBD::mysql; connect mysql://user@localhost/test;",
-                      "require SQL; SQL->connect(\"mysql\", $user, $pass);",
-                      "use DBI; DBI->open(\"mysql:test\");"
-                    ],
-                    "optionsKnown": [
-                      "DBI->connect с DSN dbi:mysql:...",
-                      "Неверный синтаксис URL",
-                      "Нет модуля SQL",
-                      "Нет метода open"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q01"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3048,35 +1559,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q01-c3",
-                    "kind": "select",
-                    "title": "Что такое DBI и DBD в Perl? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какой модуль нужен помимо DBI для работы с PostgreSQL?",
-                    "optionsLearning": [
-                      "DBD::Pg (драйвер)",
-                      "DBI::Pg",
-                      "Pg::Strict",
-                      "use postgres;"
-                    ],
-                    "optionsKnown": [
-                      "DBD::Pg",
-                      "DBI::Pg не существует",
-                      "Pg::Strict — выдумка",
-                      "use postgres — неверно"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q01"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3090,21 +1576,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q01-code",
-                    "kind": "code-select",
-                    "title": "Код: Что такое DBI и DBD в Perl?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q01"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3121,42 +1596,18 @@
               "scenario": {
                 "id": "scenario-perl-s06-q02",
                 "title": "Как безопасно передать параметры в SQL через DBI?",
-                "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-06"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s06-q02-c1",
-                    "kind": "select",
-                    "title": "Как безопасно передать параметры в SQL через DBI? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как безопасно передать `$id` в SQL через DBI?",
-                    "optionsLearning": [
-                      "$sth->execute($id) после prepare с placeholder `?`",
-                      "qq{SELECT * FROM users WHERE id = $id}",
-                      "sprintf(\"... id = %d\", $id) без prepare",
-                      "concatenate SQL и $id в строку"
-                    ],
-                    "optionsKnown": [
-                      "placeholders + execute",
-                      "интерполяция — SQL injection",
-                      "sprintf без prepare",
-                      "конкатенация — опасно"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q02"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3170,35 +1621,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q02-c2",
-                    "kind": "select",
-                    "title": "Как безопасно передать параметры в SQL через DBI? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какой placeholder использует DBI по умолчанию?",
-                    "optionsLearning": [
-                      "?",
-                      "$1",
-                      ":name",
-                      "%s"
-                    ],
-                    "optionsKnown": [
-                      "? — стандарт DBI",
-                      "$1 — native PostgreSQL",
-                      ":name — named в некоторых DBD",
-                      "%s — sprintf, не DBI"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q02"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3212,21 +1638,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q02-code",
-                    "kind": "code-select",
-                    "title": "Код: Как безопасно передать параметры в SQL через DBI?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q02"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3243,42 +1658,18 @@
               "scenario": {
                 "id": "scenario-perl-s06-q03",
                 "title": "Чем `$sth->execute` отличается от `$dbh->do`?",
-                "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-06"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s06-q03-c1",
-                    "kind": "select",
-                    "title": "Чем `$sth->execute` отличается от `$dbh->do`? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Когда предпочтительнее `$dbh->do`?",
-                    "optionsLearning": [
-                      "Для простого DDL/DML без возврата строк (CREATE, UPDATE без fetch)",
-                      "Когда нужно fetchall_arrayref",
-                      "Только для SELECT с большим результатом",
-                      "Вместо prepare всегда"
-                    ],
-                    "optionsKnown": [
-                      "Простой DDL/DML",
-                      "do не возвращает rows для fetch",
-                      "SELECT — prepare/fetch",
-                      "prepare нужен для SELECT"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q03"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3292,35 +1683,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q03-c2",
-                    "kind": "select",
-                    "title": "Чем `$sth->execute` отличается от `$dbh->do`? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что возвращает `$sth->fetchrow_array`?",
-                    "optionsLearning": [
-                      "Список значений следующей строки или undef в конце",
-                      "Весь result set как hashref",
-                      "Количество затронутых строк",
-                      "Только первый столбец как скаляр всегда"
-                    ],
-                    "optionsKnown": [
-                      "Следующая строка / undef",
-                      "fetchall — весь набор",
-                      "rows — для do",
-                      "Не только первый столбец"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q03"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3334,35 +1700,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q03-c3",
-                    "kind": "select",
-                    "title": "Чем `$sth->execute` отличается от `$dbh->do`? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Зачем вызывать `$sth->finish`?",
-                    "optionsLearning": [
-                      "Освободить ресурсы statement handle до disconnect",
-                      "Зафиксировать транзакцию",
-                      "Повторно выполнить тот же SELECT",
-                      "Включить AutoCommit"
-                    ],
-                    "optionsKnown": [
-                      "Освобождение handle",
-                      "commit — отдельно",
-                      "execute повторно",
-                      "AutoCommit — атрибут dbh"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q03"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3376,21 +1717,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q03-code",
-                    "kind": "code-select",
-                    "title": "Код: Чем `$sth->execute` отличается от `$dbh->do`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q03"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3407,42 +1737,18 @@
               "scenario": {
                 "id": "scenario-perl-s06-q04",
                 "title": "Как отключить AutoCommit для транзакции в DBI?",
-                "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-06"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s06-q04-c1",
-                    "kind": "select",
-                    "title": "Как отключить AutoCommit для транзакции в DBI? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как начать транзакцию в DBI?",
-                    "optionsLearning": [
-                      "$dbh->{AutoCommit} = 0; затем commit/rollback",
-                      "BEGIN TRANSACTION; через do достаточно всегда",
-                      "AutoCommit нельзя менять",
-                      "use transaction;"
-                    ],
-                    "optionsKnown": [
-                      "AutoCommit=0 + commit/rollback",
-                      "зависит от СУБД, AutoCommit — стандарт DBI",
-                      "можно менять",
-                      "нет pragma"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q04"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3456,35 +1762,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q04-c2",
-                    "kind": "select",
-                    "title": "Как отключить AutoCommit для транзакции в DBI? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что делает `$dbh->rollback`?",
-                    "optionsLearning": [
-                      "Отменяет изменения текущей транзакции",
-                      "Удаляет таблицу",
-                      "Повторяет последний execute",
-                      "Закрывает connection pool"
-                    ],
-                    "optionsKnown": [
-                      "Откат транзакции",
-                      "DROP — не rollback",
-                      "re-execute — нет",
-                      "disconnect — другое"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q04"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3498,21 +1779,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q04-code",
-                    "kind": "code-select",
-                    "title": "Код: Как отключить AutoCommit для транзакции в DBI?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q04"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3529,42 +1799,18 @@
               "scenario": {
                 "id": "scenario-perl-s06-q05",
                 "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)?",
-                "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-06"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s06-q05-c1",
-                    "kind": "select",
-                    "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что делает `{ RaiseError => 1 }` при connect DBI?",
-                    "optionsLearning": [
-                      "Выбрасывает исключение (die) при ошибке DBI",
-                      "Печатает warning и продолжает",
-                      "Игнорирует все ошибки",
-                      "Логирует в syslog только"
-                    ],
-                    "optionsKnown": [
-                      "die on error",
-                      "PrintError — печать",
-                      "Ignore — нет",
-                      "syslog — не встроено"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q05"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3578,35 +1824,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q05-c2",
-                    "kind": "select",
-                    "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как проверить ошибку после `execute` без RaiseError?",
-                    "optionsLearning": [
-                      "$sth->errstr или $DBI::errstr",
-                      "eval { strict }",
-                      "$! как для файлов",
-                      "warnings->warn"
-                    ],
-                    "optionsKnown": [
-                      "errstr",
-                      "strict — не про DBI",
-                      "$! — OS errors",
-                      "не DBI API"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q05"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3620,35 +1841,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q05-c3",
-                    "kind": "select",
-                    "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Чем `PrintError => 1` отличается от `RaiseError => 1`?",
-                    "optionsLearning": [
-                      "PrintError пишет в STDERR, RaiseError прерывает через die",
-                      "PrintError только для MySQL",
-                      "RaiseError отключает strict",
-                      "Разницы нет"
-                    ],
-                    "optionsKnown": [
-                      "warn vs die",
-                      "не только MySQL",
-                      "strict не связан",
-                      "разница есть"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q05"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3662,21 +1858,10 @@
                 {
                   "card": {
                     "id": "card-perl-s06-q05-code",
-                    "kind": "code-select",
-                    "title": "Код: Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-06",
-                    "scenarioId": "scenario-perl-s06-q05"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3695,7 +1880,8 @@
           "lesson": {
             "id": "lesson-perl-interview-07",
             "title": "CGI",
-            "description": "5 тем (сценариев) для этапа «CGI»."
+            "description": "5 тем (сценариев) для этапа «CGI».",
+            "programId": "course-ru-perl-interview-program"
           },
           "order": 6,
           "scenarios": [
@@ -3703,42 +1889,18 @@
               "scenario": {
                 "id": "scenario-perl-s07-q01",
                 "title": "Для чего использовался модуль CGI в Perl?",
-                "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-07"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s07-q01-c1",
-                    "kind": "select",
-                    "title": "Для чего использовался модуль CGI в Perl? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Для чего использовался модуль CGI в Perl?",
-                    "optionsLearning": [
-                      "Парсинг HTTP-запроса и формирование HTTP-ответа в web CGI-скриптах",
-                      "Компиляция Perl в bytecode",
-                      "Только отправка email",
-                      "Замена DBI"
-                    ],
-                    "optionsKnown": [
-                      "HTTP CGI helper",
-                      "не bytecode",
-                      "не email",
-                      "не DBI"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q01"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3752,35 +1914,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q01-c2",
-                    "kind": "select",
-                    "title": "Для чего использовался модуль CGI в Perl? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как создать объект CGI?",
-                    "optionsLearning": [
-                      "my $q = CGI->new;",
-                      "use CGI; CGI->start;",
-                      "CGI::create();",
-                      "new CGI::Request from apache;"
-                    ],
-                    "optionsKnown": [
-                      "CGI->new",
-                      "нет start",
-                      "нет create()",
-                      "не apache-specific"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q01"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3794,21 +1931,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q01-code",
-                    "kind": "code-select",
-                    "title": "Код: Для чего использовался модуль CGI в Perl?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q01"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3825,42 +1951,18 @@
               "scenario": {
                 "id": "scenario-perl-s07-q02",
                 "title": "Как получить параметры GET/POST через CGI?",
-                "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-07"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s07-q02-c1",
-                    "kind": "select",
-                    "title": "Как получить параметры GET/POST через CGI? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как получить параметр `name` из формы через CGI?",
-                    "optionsLearning": [
-                      "my $q = CGI->new; my $name = $q->param(\"name\");",
-                      "my $name = $ENV{POST name};",
-                      "getparam(name);",
-                      "$CGI::PARAM{name}"
-                    ],
-                    "optionsKnown": [
-                      "param(\"name\")",
-                      "нет такого ENV",
-                      "нет getparam",
-                      "нет такого hash"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q02"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3874,35 +1976,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q02-c2",
-                    "kind": "select",
-                    "title": "Как получить параметры GET/POST через CGI? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как получить все значения multi-select `tags`?",
-                    "optionsLearning": [
-                      "my @tags = $q->param(\"tags\");",
-                      "my $tags = $q->param(\"tags\"); # всегда scalar",
-                      "$q->params(\"tags\");",
-                      "CGI::all(\"tags\");"
-                    ],
-                    "optionsKnown": [
-                      "param в list context",
-                      "scalar — одно значение",
-                      "params — все пары",
-                      "нет CGI::all"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q02"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3916,35 +1993,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q02-c3",
-                    "kind": "select",
-                    "title": "Как получить параметры GET/POST через CGI? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Где CGI берёт параметры для GET-запроса?",
-                    "optionsLearning": [
-                      "Из query string (QUERY_STRING)",
-                      "Только из POST body",
-                      "Из @ARGV",
-                      "Из cookies только"
-                    ],
-                    "optionsKnown": [
-                      "QUERY_STRING",
-                      "POST тоже, но GET — query",
-                      "@ARGV — CLI",
-                      "cookies отдельно"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q02"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3958,21 +2010,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q02-code",
-                    "kind": "code-select",
-                    "title": "Код: Как получить параметры GET/POST через CGI?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q02"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -3989,42 +2030,18 @@
               "scenario": {
                 "id": "scenario-perl-s07-q03",
                 "title": "Зачем в CGI-скрипте вызывают `binmode STDOUT`?",
-                "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-07"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s07-q03-c1",
-                    "kind": "select",
-                    "title": "Зачем в CGI-скрипте вызывают `binmode STDOUT`? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Зачем `binmode STDOUT, \":utf8\"` в CGI-скрипте?",
-                    "optionsLearning": [
-                      "Корректно выводить UTF-8 в теле HTTP-ответа",
-                      "Ускорить CGI на 10x",
-                      "Включить strict для stdout",
-                      "Отключить заголовки HTTP"
-                    ],
-                    "optionsKnown": [
-                      "UTF-8 output",
-                      "не ускорение",
-                      "не strict",
-                      "заголовки нужны"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q03"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4038,35 +2055,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q03-c2",
-                    "kind": "select",
-                    "title": "Зачем в CGI-скрипте вызывают `binmode STDOUT`? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что будет, если вывести тело ответа до HTTP-заголовков?",
-                    "optionsLearning": [
-                      "Некорректный ответ: заголовки должны идти первыми",
-                      "Браузер автоматически добавит Content-Type",
-                      "Это рекомендуемый порядок",
-                      "Только warning, HTTP валиден"
-                    ],
-                    "optionsKnown": [
-                      "Headers first",
-                      "браузер не исправит",
-                      "не рекомендуется",
-                      "HTTP сломается"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q03"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4080,21 +2072,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q03-code",
-                    "kind": "code-select",
-                    "title": "Код: Зачем в CGI-скрипте вызывают `binmode STDOUT`?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q03"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4111,42 +2092,18 @@
               "scenario": {
                 "id": "scenario-perl-s07-q04",
                 "title": "Как отправить заголовок Content-Type перед телом ответа?",
-                "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-07"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s07-q04-c1",
-                    "kind": "select",
-                    "title": "Как отправить заголовок Content-Type перед телом ответа? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как отправить JSON через CGI?",
-                    "optionsLearning": [
-                      "print $q->header(\"application/json\"); print encode_json($data);",
-                      "print encode_json($data); print $q->header;",
-                      "header JSON автоматически",
-                      "say JSON $data;"
-                    ],
-                    "optionsKnown": [
-                      "header затем body",
-                      "неверный порядок",
-                      "не автоматически",
-                      "нет say JSON"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q04"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4160,35 +2117,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q04-c2",
-                    "kind": "select",
-                    "title": "Как отправить заголовок Content-Type перед телом ответа? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что делает `$q->header()` без аргументов?",
-                    "optionsLearning": [
-                      "Отправляет `Content-Type: text/html` по умолчанию (и статус 200)",
-                      "Не отправляет никаких заголовков",
-                      "Отправляет только Location",
-                      "Завершает процесс без вывода"
-                    ],
-                    "optionsKnown": [
-                      "text/html default",
-                      "заголовки есть",
-                      "Location — другой метод",
-                      "не exit"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q04"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4202,35 +2134,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q04-c3",
-                    "kind": "select",
-                    "title": "Как отправить заголовок Content-Type перед телом ответа? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как сделать redirect через CGI?",
-                    "optionsLearning": [
-                      "print $q->redirect(\"/login\");",
-                      "print \"Location: /login\"; без header",
-                      "CGI->redirect(\"/login\"); # без print",
-                      "exit redirect \"/login\";"
-                    ],
-                    "optionsKnown": [
-                      "$q->redirect",
-                      "нужен полный header block",
-                      "нужен print",
-                      "нет exit redirect"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q04"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4244,21 +2151,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q04-code",
-                    "kind": "code-select",
-                    "title": "Код: Как отправить заголовок Content-Type перед телом ответа?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q04"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4275,42 +2171,18 @@
               "scenario": {
                 "id": "scenario-perl-s07-q05",
                 "title": "Почему CGI-серверный Perl часто заменяют PSGI/Plack?",
-                "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-07"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s07-q05-c1",
-                    "kind": "select",
-                    "title": "Почему CGI-серверный Perl часто заменяют PSGI/Plack? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Почему CGI часто заменяют PSGI/Plack?",
-                    "optionsLearning": [
-                      "CGI запускает новый процесс на запрос; PSGI — persistent app server",
-                      "PSGI не поддерживает HTTP",
-                      "CGI быстрее PSGI",
-                      "Plack работает только с Python"
-                    ],
-                    "optionsKnown": [
-                      "fork per request vs persistent",
-                      "PSGI — HTTP interface",
-                      "CGI медленнее",
-                      "Plack — Perl"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q05"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4324,35 +2196,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q05-c2",
-                    "kind": "select",
-                    "title": "Почему CGI-серверный Perl часто заменяют PSGI/Plack? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что такое PSGI в экосистеме Perl?",
-                    "optionsLearning": [
-                      "Интерфейс между Perl web-приложением и HTTP-сервером (Plack — реализация)",
-                      "Замена regex",
-                      "Модуль только для CGI",
-                      "Синоним CPAN"
-                    ],
-                    "optionsKnown": [
-                      "Web interface spec",
-                      "не regex",
-                      "ширше CGI",
-                      "не CPAN"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q05"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4366,21 +2213,10 @@
                 {
                   "card": {
                     "id": "card-perl-s07-q05-code",
-                    "kind": "code-select",
-                    "title": "Код: Почему CGI-серверный Perl часто заменяют PSGI/Plack?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-07",
-                    "scenarioId": "scenario-perl-s07-q05"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4399,7 +2235,8 @@
           "lesson": {
             "id": "lesson-perl-interview-08",
             "title": "Oracle (DBD::Oracle)",
-            "description": "5 тем (сценариев) для этапа «Oracle (DBD::Oracle)»."
+            "description": "5 тем (сценариев) для этапа «Oracle (DBD::Oracle)».",
+            "programId": "course-ru-perl-interview-program"
           },
           "order": 7,
           "scenarios": [
@@ -4407,42 +2244,18 @@
               "scenario": {
                 "id": "scenario-perl-s08-q01",
                 "title": "Какой DSN используют для подключения к Oracle через DBI?",
-                "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-08"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s08-q01-c1",
-                    "kind": "select",
-                    "title": "Какой DSN используют для подключения к Oracle через DBI? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какой DSN используют для подключения к Oracle через DBI?",
-                    "optionsLearning": [
-                      "dbi:Oracle:host=dbhost;sid=ORCL (или service_name=...)",
-                      "oracle://user:pass@dbhost/ORCL",
-                      "dbi:mysql:oracle:ORCL",
-                      "DBD::Oracle->connect(\"ORCL\")"
-                    ],
-                    "optionsKnown": [
-                      "Стандартный DBI DSN",
-                      "Не URL-схема Perl DBI",
-                      "mysql — другая СУБД",
-                      "connect — метод DBI, не DBD"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q01"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4457,35 +2270,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q01-c2",
-                    "kind": "select",
-                    "title": "Какой DSN используют для подключения к Oracle через DBI? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какой CPAN-модуль нужен помимо DBI для Oracle?",
-                    "optionsLearning": [
-                      "DBD::Oracle",
-                      "DBI::Oracle",
-                      "Oracle::Strict",
-                      "use oracle;"
-                    ],
-                    "optionsKnown": [
-                      "DBD::Oracle — драйвер",
-                      "DBI::Oracle не существует",
-                      "Oracle::Strict — выдумка",
-                      "use oracle — неверно"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q01"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4500,35 +2288,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q01-c3",
-                    "kind": "select",
-                    "title": "Какой DSN используют для подключения к Oracle через DBI? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как подключиться с RaiseError через DBD::Oracle?",
-                    "optionsLearning": [
-                      "DBI->connect($dsn, $user, $pass, { RaiseError => 1 })",
-                      "Oracle->connect($dsn) or die;",
-                      "DBD::Oracle->open($dsn);",
-                      "connect oracle $user $pass;"
-                    ],
-                    "optionsKnown": [
-                      "DBI->connect + RaiseError",
-                      "Oracle->connect — нет",
-                      "open — нет",
-                      "shell-синтаксис — нет"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q01"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4543,21 +2306,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q01-code",
-                    "kind": "code-select",
-                    "title": "Код: Какой DSN используют для подключения к Oracle через DBI?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q01"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4575,42 +2327,18 @@
               "scenario": {
                 "id": "scenario-perl-s08-q02",
                 "title": "Какие placeholders поддерживает DBD::Oracle?",
-                "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-08"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s08-q02-c1",
-                    "kind": "select",
-                    "title": "Какие placeholders поддерживает DBD::Oracle? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Какие placeholders поддерживает DBD::Oracle?",
-                    "optionsLearning": [
-                      "Позиционные `?` (как в DBI) и именованные `:name` в SQL",
-                      "Только `$1`, `$2` как в PostgreSQL",
-                      "Только `%s` как в sprintf",
-                      "Placeholders не поддерживаются — только конкатенация"
-                    ],
-                    "optionsKnown": [
-                      "? и :name",
-                      "PostgreSQL-style — другой DBD",
-                      "sprintf — не DBI",
-                      "конкатенация — опасно"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q02"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4625,35 +2353,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q02-c2",
-                    "kind": "select",
-                    "title": "Какие placeholders поддерживает DBD::Oracle? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как безопасно передать `:id` в Oracle SELECT через DBI?",
-                    "optionsLearning": [
-                      "prepare с `:id` и bind_param(\":id\", $id) или execute с hash",
-                      "qq{SELECT * FROM t WHERE id = $id}",
-                      "sprintf(\"... id = %d\", $id) без prepare",
-                      "Oracle не поддерживает bind в SELECT"
-                    ],
-                    "optionsKnown": [
-                      "bind_param / named bind",
-                      "интерполяция — SQL injection",
-                      "sprintf без bind",
-                      "Oracle bind поддерживает"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q02"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4668,21 +2371,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q02-code",
-                    "kind": "code-select",
-                    "title": "Код: Какие placeholders поддерживает DBD::Oracle?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q02"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4700,42 +2392,18 @@
               "scenario": {
                 "id": "scenario-perl-s08-q03",
                 "title": "Как указать SID или service name в DBI DSN?",
-                "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-08"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s08-q03-c1",
-                    "kind": "select",
-                    "title": "Как указать SID или service name в DBI DSN? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как указать SID в DSN DBD::Oracle?",
-                    "optionsLearning": [
-                      "dbi:Oracle:host=host;sid=ORCL",
-                      "dbi:Oracle:ORCL@host",
-                      "oracle-sid://ORCL",
-                      "sid=ORCL в username"
-                    ],
-                    "optionsKnown": [
-                      "host;sid=ORCL",
-                      "не @-синтаксис в DSN",
-                      "не URL scheme",
-                      "sid не в user"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q03"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4750,35 +2418,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q03-c2",
-                    "kind": "select",
-                    "title": "Как указать SID или service name в DBI DSN? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как указать service name вместо SID?",
-                    "optionsLearning": [
-                      "dbi:Oracle://host:1521/pdb1.service (Easy Connect) или service_name=pdb1",
-                      "service://pdb1 в username",
-                      "sid и service name — одно и то же в DSN всегда",
-                      "service name только через TNS_ADMIN файл"
-                    ],
-                    "optionsKnown": [
-                      "Easy Connect //host:port/service",
-                      "не в username",
-                      "разные параметры DSN",
-                      "TNS — опция, не единственный способ"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q03"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4793,35 +2436,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q03-c3",
-                    "kind": "select",
-                    "title": "Как указать SID или service name в DBI DSN? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Зачем нужен `$ENV{ORACLE_HOME}` для DBD::Oracle?",
-                    "optionsLearning": [
-                      "Клиент Oracle (OCI) ищет библиотеки и tnsnames.ora",
-                      "Включает strict в Perl",
-                      "Заменяет DBI->connect",
-                      "Только для SQL*Plus, не для Perl"
-                    ],
-                    "optionsKnown": [
-                      "OCI client libs / tnsnames",
-                      "не strict",
-                      "не замена connect",
-                      "Perl DBD тоже использует OCI"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q03"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4836,21 +2454,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q03-code",
-                    "kind": "code-select",
-                    "title": "Код: Как указать SID или service name в DBI DSN?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q03"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4868,42 +2475,18 @@
               "scenario": {
                 "id": "scenario-perl-s08-q04",
                 "title": "Как вызвать хранимую процедуру PL/SQL через DBI?",
-                "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3."
+                "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3.",
+                "lessonId": "lesson-perl-interview-08"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s08-q04-c1",
-                    "kind": "select",
-                    "title": "Как вызвать хранимую процедуру PL/SQL через DBI? (1/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как вызвать анонимный PL/SQL блок через DBI?",
-                    "optionsLearning": [
-                      "$dbh->do(\"BEGIN ... END;\") или prepare/execute с BEGIN...END",
-                      "use plsql; plsql->run(...);",
-                      "Только через SQL*Plus из Perl",
-                      "PL/SQL нельзя вызывать из DBI"
-                    ],
-                    "optionsKnown": [
-                      "BEGIN...END через do/prepare",
-                      "нет модуля plsql",
-                      "не только SQL*Plus",
-                      "можно через DBI"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q04"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4918,35 +2501,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q04-c2",
-                    "kind": "select",
-                    "title": "Как вызвать хранимую процедуру PL/SQL через DBI? (2/2)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как вызвать хранимую процедуру с OUT-параметром?",
-                    "optionsLearning": [
-                      "prepare CALL с bind_param_inout для OUT/IN OUT",
-                      "execute без bind — OUT вернётся автоматически",
-                      "Только DBMS_OUTPUT.PUT_LINE",
-                      "Процедуры Oracle — только через JDBC"
-                    ],
-                    "optionsKnown": [
-                      "bind_param_inout",
-                      "OUT нужен bind",
-                      "DBMS_OUTPUT — другой механизм",
-                      "DBI поддерживает"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q04"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4961,21 +2519,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q04-code",
-                    "kind": "code-select",
-                    "title": "Код: Как вызвать хранимую процедуру PL/SQL через DBI?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q04"
+                    "kind": "code-select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -4993,42 +2540,18 @@
               "scenario": {
                 "id": "scenario-perl-s08-q05",
                 "title": "Как читать CLOB/BLOB через DBD::Oracle?",
-                "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4."
+                "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
+                "lessonId": "lesson-perl-interview-08"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "card-perl-s08-q05-c1",
-                    "kind": "select",
-                    "title": "Как читать CLOB/BLOB через DBD::Oracle? (1/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как читать большой CLOB через DBD::Oracle?",
-                    "optionsLearning": [
-                      "Увеличить $dbh->{LongReadLen} и fetch; при необходимости LongTruncOk",
-                      "CLOB нельзя читать через DBI",
-                      "Только lob_read() без fetch",
-                      "AutoCommit должен быть 0"
-                    ],
-                    "optionsKnown": [
-                      "LongReadLen + fetch",
-                      "CLOB читается",
-                      "lob_read — доп. API, fetch тоже",
-                      "AutoCommit не обязателен для read"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q05"
+                    "kind": "select"
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -5043,35 +2566,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q05-c2",
-                    "kind": "select",
-                    "title": "Как читать CLOB/BLOB через DBD::Oracle? (2/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Что делает `$dbh->{LongReadLen} = 1_000_000`?",
-                    "optionsLearning": [
-                      "Задаёт макс. байт для чтения LONG/CLOB/BLOB за один fetch",
-                      "Ограничивает число строк в SELECT",
-                      "Включает BLOB streaming автоматически",
-                      "Устанавливает timeout соединения"
-                    ],
-                    "optionsKnown": [
-                      "Лимит LOB за fetch",
-                      "не число строк",
-                      "streaming — отдельные настройки",
-                      "не timeout"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q05"
+                    "kind": "select"
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -5086,35 +2584,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q05-c3",
-                    "kind": "select",
-                    "title": "Как читать CLOB/BLOB через DBD::Oracle? (3/3)",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "direction": "known-to-learning",
-                    "promptKnown": "Как прочитать BLOB в Perl через DBI?",
-                    "optionsLearning": [
-                      "SELECT blob_col ... fetch; данные в scalar ref; LongReadLen для размера",
-                      "BLOB только через utl_file",
-                      "binmode на $dbh обязателен",
-                      "BLOB автоматически base64 в DBI"
-                    ],
-                    "optionsKnown": [
-                      "fetch + LongReadLen",
-                      "utl_file — PL/SQL",
-                      "binmode dbh — нет",
-                      "не auto base64"
-                    ],
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q05"
+                    "kind": "select"
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
@@ -5129,21 +2602,10 @@
                 {
                   "card": {
                     "id": "card-perl-s08-q05-code",
-                    "kind": "code-select",
-                    "title": "Код: Как читать CLOB/BLOB через DBD::Oracle?",
-                    "appearance": {
-                      "theme": "azure-blue",
-                      "fontSize": "md"
-                    },
-                    "correctIndex": 0,
-                    "courseId": "course-ru-perl-interview",
-                    "lessonId": "lesson-perl-interview-08",
-                    "scenarioId": "scenario-perl-s08-q05"
+                    "kind": "code-select"
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "perl",
                     "difficulty": "advanced",
                     "tags": [
                       "advanced",
