@@ -83,8 +83,6 @@
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "nǐ hǎo",
@@ -142,8 +140,6 @@
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "pèiduì",
@@ -215,8 +211,6 @@
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -245,8 +239,6 @@
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "nǐ hǎo",
@@ -300,8 +292,6 @@
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "nǐ hǎo",
@@ -326,8 +316,6 @@
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "nǐ hǎo",
@@ -356,8 +344,6 @@
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "mā",
@@ -419,8 +405,6 @@
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "nǐ hǎo",
@@ -455,8 +439,6 @@
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "hěn bàng",
@@ -496,8 +478,6 @@
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "bówùguǎn",
@@ -521,8 +501,6 @@
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "rén",
@@ -547,8 +525,6 @@
                   },
                   "order": 4,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "hǎo",
@@ -573,8 +549,6 @@
                   },
                   "order": 5,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "nǐ hǎo",
@@ -604,8 +578,6 @@
                   },
                   "order": 6,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "yínháng",

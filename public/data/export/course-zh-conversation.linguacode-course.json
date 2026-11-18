@@ -83,8 +83,6 @@
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "nǐ hǎo",
@@ -142,8 +140,6 @@
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "pèiduì",
@@ -215,8 +211,6 @@
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -245,8 +239,6 @@
                   },
                   "order": 3,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "nǐ hǎo",
@@ -307,8 +299,6 @@
                   },
                   "order": 0,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "xièxie",
@@ -342,8 +332,6 @@
                   },
                   "order": 1,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "nǐ hǎo",
@@ -401,8 +389,6 @@
                   },
                   "order": 2,
                   "meta": {
-                    "knownLanguage": "ru",
-                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": "pèiduì",
