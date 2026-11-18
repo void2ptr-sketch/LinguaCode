@@ -1,0 +1,39 @@
+{
+  "id": "test-valid-course",
+  "title": "Test",
+  "published": true,
+  "updatedAt": "2026-11-18T03:56:12.029Z",
+  "programs": [
+    {
+      "id": "prog-1",
+      "title": "P",
+      "lessonIds": [
+        "les-1"
+      ],
+      "order": 0,
+      "lessons": [
+        {
+          "id": "les-1",
+          "title": "L",
+          "scenarioIds": [
+            "sc-1"
+          ],
+          "order": 0,
+          "scenarios": [
+            {
+              "id": "sc-1",
+              "title": "S",
+              "cardSource": {
+                "mode": "fixed",
+                "cardIds": []
+              },
+              "order": 0,
+              "cards": [],
+              "_cardIds": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

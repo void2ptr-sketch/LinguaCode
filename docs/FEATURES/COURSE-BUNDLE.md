@@ -20,6 +20,38 @@
 
 ## Для maintainer'а
 
+### Экспорт seed → v2
+
+```bash
+npm run export:course-bundle -- --slug <slug> [--output <path>]
+```
+
+Опции:
+
+| Опция       | Описание                                                          |
+| ----------- | ----------------------------------------------------------------- |
+| `--slug`    | Уникальный идентификатор курса для экспорта (обязательно)         |
+| `--output`  | Путь к выходному файлу (по умолчанию: `./export/<slug>.linguacode-course.json`) |
+
+**Что делает скрипт:**
+
+1. Находит курс по slug в `content-manifest.json`.
+2. Загружает seed-файл (nested format: `programs → lessons → scenarios → cards`).
+3. Трансформирует в v2 структуру с обёртками (`program`, `lesson`, `scenario`, `card`).
+4. Собирает `cardSource.cardIds` из inline `cards[]` или `_cardIds`.
+5. Проверяет замыкание зависимостей (все ID связаны).
+6. Записывает JSON-файл в формате v2.
+
+**Пример:**
+
+```bash
+# Экспорт в стандартную папку export/
+npm run export:course-bundle -- --slug course-zh-radicals-214
+
+# Экспорт в произвольный файл
+npm run export:course-bundle -- --slug course-demo-card-kinds --output ./my-course.json
+```
+
 ### Импорт курса в seed
 
 ```bash

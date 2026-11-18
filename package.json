@@ -25,6 +25,7 @@
     "import:perl-idea": "node scripts/import/import-perl-interview-idea.mjs",
     "import:course-bundle": "node scripts/import/import-course-bundle.mjs",
     "generate:radicals-course": "node scripts/generate-radicals-course.mjs && node scripts/export-content-seed.mjs",
+    "export:course-bundle": "node scripts/export-course-bundle.mjs",
     "export:course-pdf": "node scripts/export-course-pdf.mjs",
     "generate:api": "node scripts/generate-api-patch.mjs && orval --input src/assets/openapi-patched.json && node scripts/generate-api-patch.mjs --post",
     "generate:api:local": "orval --config orval.config.local.ts",

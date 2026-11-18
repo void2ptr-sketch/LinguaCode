@@ -395,7 +395,8 @@
     "/demo/courses/course-demo-card-kinds.json",
     "/demo/courses/course-zh-a1.json",
     "/demo/courses/course-zh-conversation.json",
-    "/perl/courses/course-ru-perl-interview.json"
+    "/perl/courses/course-ru-perl-interview.json",
+    "/courses/test-valid-course.json"
   ],
   "scenarioFiles": []
 }
