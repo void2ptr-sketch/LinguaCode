@@ -69,7 +69,9 @@ describe('courses API (mock interceptor)', () => {
   it('loads course bundle via GET /api/courses/:id/bundle', async () => {
     const bundle = await api.getBundle('course-demo-card-kinds');
 
-    expect(bundle.catalog.courses.length).toBeGreaterThan(0);
+    expect(bundle.courses.length).toBeGreaterThan(0);
+    expect(Array.isArray(bundle.programs)).toBe(true);
+    expect(Array.isArray(bundle.lessons)).toBe(true);
     expect(Array.isArray(bundle.scenarios)).toBe(true);
     expect(Array.isArray(bundle.cards)).toBe(true);
     expect(bundle.cardIndexMeta).toBeDefined();

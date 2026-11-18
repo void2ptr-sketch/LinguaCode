@@ -55,10 +55,10 @@ export function collectCourseBundle(
       errors.push(`Программа ${programId} не найдена в каталоге`);
       continue;
     }
-    programs.push(program);
+    programsList.push(program);
   }
 
-  if (programs.length === 0) {
+  if (programsList.length === 0) {
     errors.push(`Курс ${courseId} не содержит программ`);
     return null;
   }
@@ -72,7 +72,7 @@ export function collectCourseBundle(
         errors.push(`Урок ${lessonId} не найден в каталоге`);
         continue;
       }
-      lessons.push(lesson);
+      lessonsList.push(lesson);
     }
   }
 
