@@ -57,6 +57,7 @@ import type {
   ContentManifest,
   CoursesNestedFixture,
   CoursesSeedFixture,
+  ExportCourseBundle,
   ScenariosSeedFixture,
 } from './content-seed.types';
 import type { CourseCatalogState } from '../course/utils/course-catalog-state';
@@ -64,6 +65,8 @@ import {
   normalizeStoredCourseCatalog,
   isNestedFormat,
   normalizeNestedCourseCatalog,
+  isExportFormat,
+  normalizeExportCourseCatalog,
 } from '../course/utils/course-catalog-state';
 
 /**
@@ -305,6 +308,18 @@ export class ContentSeedRepository {
     scenarios?: Scenario[];
   }> {
     return firstValueFrom(this.http.get<unknown>(buildFixtureUrl(path))).then((raw) => {
+      // Export format (v2) — check before nested format (has formatVersion + course wrapper)
+      if (isExportFormat(raw)) {
+        const bundle = raw as ExportCourseBundle;
+        const result = normalizeExportCourseCatalog(bundle);
+        return {
+          courses: result.catalog.courses,
+          programs: result.catalog.programs,
+          lessons: result.catalog.lessons,
+          cards: result.cards,
+          scenarios: result.scenarios,
+        };
+      }
       if (isNestedFormat(raw)) {
         const nested = raw as CoursesNestedFixture;
         const result = normalizeNestedCourseCatalog(nested);
