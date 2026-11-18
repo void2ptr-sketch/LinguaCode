@@ -1,10 +1,12 @@
 {
   "formatVersion": 2,
   "exportedAt": "2026-11-18T04:11:08.903Z",
+  "sourceAuthorId": "user-123",
   "course": {
     "id": "course-cpp-complete",
     "title": "C++ Complete Course",
     "description": "Полный курс C++ от основ до продвинутых тем: переменные, типы данных, условия, циклы, функции, массивы, строки, ООП, наследование, полиморфизм, STL контейнеры и алгоритмы.",
+    "authorId": "user-123",
     "languagePair": {
       "known": "ru",
       "learning": "cpp"
@@ -22,7 +24,9 @@
     },
     "programIds": [
       "course-cpp-complete-program"
-    ]
+    ],
+    "order": 0,
+    "updatedAt": "2026-11-18T07:44:00.000Z"
   },
   "programs": [
     {

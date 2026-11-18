@@ -1,10 +1,12 @@
 {
   "formatVersion": 2,
   "exportedAt": "2026-11-18T04:10:26.143Z",
+  "sourceAuthorId": "user-123",
   "course": {
     "id": "course-zh-radicals-214",
     "title": "214 китайских радикалов",
     "description": "Полный курс по 214 классическим ключам (康熙部首): 21 сценарий по 10 карточек (последний — 14), 3 урока по 7 сценариев, прописывание формы и порядка черт каждого радикала.",
+    "authorId": "user-123",
     "languagePair": {
       "known": "ru",
       "learning": "zh"
@@ -18,7 +20,9 @@
     },
     "programIds": [
       "course-zh-radicals-214-program"
-    ]
+    ],
+    "order": 0,
+    "updatedAt": "2026-11-18T07:44:00.000Z"
   },
   "programs": [
     {

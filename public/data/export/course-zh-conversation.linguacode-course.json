@@ -1,20 +1,32 @@
 {
   "formatVersion": 2,
   "exportedAt": "2026-11-18T04:11:11.014Z",
+  "sourceAuthorId": "user-123",
   "course": {
     "id": "course-zh-conversation",
     "title": "Китайский: разговорная практика",
     "description": "Короткий курс для закрепления приветствий и смешанных упражнений.",
+    "authorId": "user-123",
     "languagePair": {
       "known": "ru",
       "learning": "zh"
     },
-    "practiceSettings": null,
+    "practiceSettings": {
+      "mode": "guided"
+    },
     "published": true,
-    "authoring": null,
+    "authoring": {
+      "idea": "",
+      "status": "materialized",
+      "ideaUpdatedAt": "2026-11-18T07:44:00.000Z",
+      "materializedAt": "2026-11-18T07:44:00.000Z",
+      "lastError": null
+    },
     "programIds": [
       "course-zh-conversation-program"
-    ]
+    ],
+    "order": 0,
+    "updatedAt": "2026-11-18T07:44:00.000Z"
   },
   "programs": [
     {
@@ -95,7 +107,7 @@
                   "order": 0,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "en",
+                    "learningLanguage": "zh",
                     "difficulty": "beginner",
                     "tags": []
                   }
@@ -117,7 +129,7 @@
                   "order": 1,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "en",
+                    "learningLanguage": "zh",
                     "difficulty": "beginner",
                     "tags": []
                   }
@@ -147,7 +159,7 @@
                   "order": 2,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "en",
+                    "learningLanguage": "zh",
                     "difficulty": "beginner",
                     "tags": []
                   }
@@ -177,7 +189,7 @@
                   "order": 3,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "en",
+                    "learningLanguage": "zh",
                     "difficulty": "beginner",
                     "tags": []
                   }
@@ -250,7 +262,7 @@
                   "order": 0,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "en",
+                    "learningLanguage": "zh",
                     "difficulty": "beginner",
                     "tags": []
                   }
@@ -286,7 +298,7 @@
                   "order": 1,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "en",
+                    "learningLanguage": "zh",
                     "difficulty": "beginner",
                     "tags": []
                   }
@@ -308,7 +320,7 @@
                   "order": 2,
                   "meta": {
                     "knownLanguage": "ru",
-                    "learningLanguage": "en",
+                    "learningLanguage": "zh",
                     "difficulty": "beginner",
                     "tags": []
                   }

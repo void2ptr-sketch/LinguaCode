@@ -1,20 +1,32 @@
 {
   "formatVersion": 2,
   "exportedAt": "2026-11-18T04:11:10.833Z",
+  "sourceAuthorId": "user-123",
   "course": {
     "id": "course-demo-card-kinds",
     "title": "Все типы карточек — Демо",
     "description": "Демо-программа ru→en: обзор всех 13 типов карточек, по сценарию на каждый тип.",
+    "authorId": "user-123",
     "languagePair": {
       "known": "ru",
       "learning": "en"
     },
-    "practiceSettings": null,
+    "practiceSettings": {
+      "mode": "guided"
+    },
     "published": true,
-    "authoring": null,
+    "authoring": {
+      "idea": "",
+      "status": "materialized",
+      "ideaUpdatedAt": "2026-11-18T07:44:00.000Z",
+      "materializedAt": "2026-11-18T07:44:00.000Z",
+      "lastError": null
+    },
     "programIds": [
       "course-demo-card-kinds-program"
-    ]
+    ],
+    "order": 0,
+    "updatedAt": "2026-11-18T07:44:00.000Z"
   },
   "programs": [
     {

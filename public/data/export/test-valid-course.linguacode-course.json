@@ -1,15 +1,32 @@
 {
   "formatVersion": 2,
   "exportedAt": "2026-11-18T04:11:11.187Z",
+  "sourceAuthorId": "user-123",
   "course": {
     "id": "test-valid-course",
     "title": "Test",
     "description": "",
-    "practiceSettings": null,
+    "authorId": "user-123",
+    "languagePair": {
+      "known": "ru",
+      "learning": "en"
+    },
+    "practiceSettings": {
+      "mode": "guided"
+    },
     "published": true,
+    "authoring": {
+      "idea": "",
+      "status": "materialized",
+      "ideaUpdatedAt": "2026-11-18T07:44:00.000Z",
+      "materializedAt": "2026-11-18T07:44:00.000Z",
+      "lastError": null
+    },
     "programIds": [
       "prog-1"
-    ]
+    ],
+    "order": 0,
+    "updatedAt": "2026-11-18T07:44:00.000Z"
   },
   "programs": [
     {

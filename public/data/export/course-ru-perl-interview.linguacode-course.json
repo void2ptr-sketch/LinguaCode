@@ -1,10 +1,12 @@
 {
   "formatVersion": 2,
   "exportedAt": "2026-11-18T04:11:11.105Z",
+  "sourceAuthorId": "user-123",
   "course": {
     "id": "course-ru-perl-interview",
     "title": "Собеседование на языке Perl",
     "description": "Подготовка к техническому собеседованию по Perl: программа сгенерирована из «Идеи программы».",
+    "authorId": "user-123",
     "languagePair": {
       "known": "ru",
       "learning": "perl"
@@ -23,7 +25,9 @@
     },
     "programIds": [
       "course-ru-perl-interview-program"
-    ]
+    ],
+    "order": 0,
+    "updatedAt": "2026-11-18T07:44:00.000Z"
   },
   "programs": [
     {
