@@ -28,7 +28,6 @@
         "title": "Китайский A1: первые шаги",
         "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы.",
         "order": 0,
-        "prerequisiteProgramIds": [],
         "updatedAt": "2026-11-18T05:23:22.727Z"
       },
       "order": 0,
@@ -38,7 +37,6 @@
             "id": "lesson-zh-greetings",
             "title": "Урок 1: Приветствия",
             "description": "你好, 谢谢, 再见 — узнавание и сопоставление.",
-            "prerequisiteLessonIds": [],
             "order": 0,
             "updatedAt": "2026-11-18T05:23:22.727Z"
           },
@@ -270,9 +268,6 @@
             "id": "lesson-zh-phonetics",
             "title": "Урок 2: Пиньинь и тоны",
             "description": "Ввод пиньинь, IPA и выбор тона.",
-            "prerequisiteLessonIds": [
-              "lesson-zh-greetings"
-            ],
             "order": 1,
             "updatedAt": "2026-11-18T05:23:22.727Z"
           },
@@ -389,9 +384,6 @@
             "id": "lesson-zh-characters",
             "title": "Урок 3: Иероглифы",
             "description": "Черты, радикалы и чтение 行.",
-            "prerequisiteLessonIds": [
-              "lesson-zh-phonetics"
-            ],
             "order": 2,
             "updatedAt": "2026-11-18T05:23:22.727Z"
           },

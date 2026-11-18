@@ -31,7 +31,6 @@
         "title": "Собеседование на языке Perl",
         "description": "Подготовка к техническому собеседованию по Perl: программа сгенерирована из «Идеи программы».",
         "order": 0,
-        "prerequisiteProgramIds": [],
         "updatedAt": "2026-11-18T05:23:22.906Z"
       },
       "order": 0,
@@ -41,7 +40,6 @@
             "id": "lesson-perl-interview-01",
             "title": "Контексты и sigils",
             "description": "4 тем (сценариев) для этапа «Контексты и sigils».",
-            "prerequisiteLessonIds": [],
             "order": 0,
             "updatedAt": "2026-11-18T05:23:22.906Z"
           },
@@ -722,9 +720,6 @@
             "id": "lesson-perl-interview-02",
             "title": "Строгость и объявления",
             "description": "4 тем (сценариев) для этапа «Строгость и объявления».",
-            "prerequisiteLessonIds": [
-              "lesson-perl-interview-01"
-            ],
             "order": 1,
             "updatedAt": "2026-11-18T05:23:22.906Z"
           },
@@ -1405,9 +1400,6 @@
             "id": "lesson-perl-interview-03",
             "title": "Регулярные выражения",
             "description": "4 тем (сценариев) для этапа «Регулярные выражения».",
-            "prerequisiteLessonIds": [
-              "lesson-perl-interview-02"
-            ],
             "order": 2,
             "updatedAt": "2026-11-18T05:23:22.906Z"
           },
@@ -2088,9 +2080,6 @@
             "id": "lesson-perl-interview-04",
             "title": "Подпрограммы и встроенные функции",
             "description": "4 тем (сценариев) для этапа «Подпрограммы и встроенные функции».",
-            "prerequisiteLessonIds": [
-              "lesson-perl-interview-03"
-            ],
             "order": 3,
             "updatedAt": "2026-11-18T05:23:22.906Z"
           },
@@ -2771,9 +2760,6 @@
             "id": "lesson-perl-interview-05",
             "title": "Модули, ООП и практика на интервью",
             "description": "4 тем (сценариев) для этапа «Модули, ООП и практика на интервью».",
-            "prerequisiteLessonIds": [
-              "lesson-perl-interview-04"
-            ],
             "order": 4,
             "updatedAt": "2026-11-18T05:23:22.906Z"
           },
@@ -3454,9 +3440,6 @@
             "id": "lesson-perl-interview-06",
             "title": "Базы данных",
             "description": "5 тем (сценариев) для этапа «Базы данных».",
-            "prerequisiteLessonIds": [
-              "lesson-perl-interview-05"
-            ],
             "order": 5,
             "updatedAt": "2026-11-18T05:23:22.906Z"
           },
@@ -4324,9 +4307,6 @@
             "id": "lesson-perl-interview-07",
             "title": "CGI",
             "description": "5 тем (сценариев) для этапа «CGI».",
-            "prerequisiteLessonIds": [
-              "lesson-perl-interview-06"
-            ],
             "order": 6,
             "updatedAt": "2026-11-18T05:23:22.906Z"
           },
@@ -5154,9 +5134,6 @@
             "id": "lesson-perl-interview-08",
             "title": "Oracle (DBD::Oracle)",
             "description": "5 тем (сценариев) для этапа «Oracle (DBD::Oracle)».",
-            "prerequisiteLessonIds": [
-              "lesson-perl-interview-07"
-            ],
             "order": 7,
             "updatedAt": "2026-11-18T05:23:22.906Z"
           },

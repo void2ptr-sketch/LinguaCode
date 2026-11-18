@@ -28,7 +28,6 @@
         "title": "Все типы карточек — Демо",
         "description": "Демо-программа ru→en: обзор всех 13 типов карточек, по сценарию на каждый тип.",
         "order": 0,
-        "prerequisiteProgramIds": [],
         "updatedAt": "2026-11-18T05:23:22.640Z"
       },
       "order": 0,
@@ -38,7 +37,6 @@
             "id": "demo-lesson-card-kinds-1",
             "title": "Часть 1: выбор, код, память, символы, звук",
             "description": "5 сценариев: select, code-select, memory, symbol, sound.",
-            "prerequisiteLessonIds": [],
             "order": 0,
             "updatedAt": "2026-11-18T05:23:22.640Z"
           },
@@ -317,7 +315,6 @@
             "id": "demo-lesson-card-kinds-2",
             "title": "Часть 2: время, клавиатура, рисование, тон, чтение",
             "description": "5 сценариев: timed, keyboard, draw, tone, reading.",
-            "prerequisiteLessonIds": [],
             "order": 1,
             "updatedAt": "2026-11-18T05:23:22.640Z"
           },
@@ -573,7 +570,6 @@
             "id": "demo-lesson-card-kinds-3",
             "title": "Часть 3: переворот, пропуск, код-trace",
             "description": "3 сценария: flip, cloze, code-trace.",
-            "prerequisiteLessonIds": [],
             "order": 2,
             "updatedAt": "2026-11-18T05:23:22.640Z"
           },

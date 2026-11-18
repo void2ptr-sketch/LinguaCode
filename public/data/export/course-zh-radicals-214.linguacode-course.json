@@ -26,7 +26,6 @@
         "title": "214 китайских радикалов",
         "description": "Полный курс по 214 классическим ключам (康熙部首): 21 сценарий по 10 карточек (последний — 14), 3 урока по 7 сценариев, прописывание формы и порядка черт каждого радикала.",
         "order": 0,
-        "prerequisiteProgramIds": [],
         "updatedAt": "2026-11-18T05:23:14.660Z"
       },
       "order": 0,
@@ -36,7 +35,6 @@
             "id": "lesson-radicals-01",
             "title": "Урок 1: сценарии 1–7",
             "description": "7 сценариев: scenario-radicals-01 — scenario-radicals-07.",
-            "prerequisiteLessonIds": [],
             "order": 0,
             "updatedAt": "2026-11-18T05:23:14.660Z"
           },
@@ -2144,9 +2142,6 @@
             "id": "lesson-radicals-02",
             "title": "Урок 2: сценарии 8–14",
             "description": "7 сценариев: scenario-radicals-08 — scenario-radicals-14.",
-            "prerequisiteLessonIds": [
-              "lesson-radicals-01"
-            ],
             "order": 1,
             "updatedAt": "2026-11-18T05:23:14.660Z"
           },
@@ -4246,9 +4241,6 @@
             "id": "lesson-radicals-03",
             "title": "Урок 3: сценарии 15–21",
             "description": "7 сценариев: scenario-radicals-15 — scenario-radicals-21.",
-            "prerequisiteLessonIds": [
-              "lesson-radicals-02"
-            ],
             "order": 2,
             "updatedAt": "2026-11-18T05:23:14.660Z"
           },
