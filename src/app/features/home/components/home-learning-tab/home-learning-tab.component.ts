@@ -128,7 +128,10 @@ export class HomeLearningTabComponent {
   private readonly reloadOnContextChange = effect(() => {
     this.userStore.activeLanguagePairId();
     this.resultsStore.pairResults();
-    void this.dashboard.reload();
+    // Skip reload while the dashboard is already loading to prevent re-entrant calls.
+    if (!this.dashboard.loading()) {
+      void this.dashboard.reload();
+    }
   });
 
   /**

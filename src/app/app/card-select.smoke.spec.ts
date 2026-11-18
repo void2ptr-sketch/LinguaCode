@@ -95,16 +95,6 @@ describe('Card select smoke', () => {
     expect(manifestReq.request.method).toBe('GET');
     manifestReq.flush({
       version: 1,
-      cardFiles: [
-        '/cards/demo-cards.json',
-        '/cards/radicals-course-cards.json',
-        '/cards/perl-interview-cards.json',
-      ],
-      scenarioFiles: [
-        '/scenarios/demo-scenarios.json',
-        '/scenarios/radicals-scenarios.json',
-        '/scenarios/perl-interview-scenarios.json',
-      ],
       courseFiles: [
         '/courses/demo-courses.json',
         '/courses/radicals-214-course.json',
@@ -114,64 +104,105 @@ describe('Card select smoke', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    // ── 2nd round: ContentSeedRepository loads all seed files ──
-    // Scenario files
-    httpMock.expectOne(`${environment.fixturesUrl}/scenarios/demo-scenarios.json`).flush({
-      scenarios: [
-        {
-          id: 'demo-scenario',
-          title: 'Демо-сценарий',
-          description: '3 карточки для начала обучения (ru→en): выбор ответа.',
-          authorId: 'system',
-          published: true,
-          updatedAt: '2026-01-01T00:00:00.000Z',
-          cardSource: { mode: 'fixed', cardIds: ['select-1', 'select-2', 'select-3'] },
-          languagePair: { known: 'ru', learning: 'en' },
-          courseId: 'demo-course',
-        },
-      ],
-    });
-    httpMock
-      .expectOne(`${environment.fixturesUrl}/scenarios/radicals-scenarios.json`)
-      .flush({ scenarios: [] });
-    httpMock
-      .expectOne(`${environment.fixturesUrl}/scenarios/perl-interview-scenarios.json`)
-      .flush({ scenarios: [] });
-
-    // Course files
+    // ── 2nd round: ContentSeedRepository loads course fixtures (all data in one file) ──
     httpMock.expectOne(`${environment.fixturesUrl}/courses/demo-courses.json`).flush({
-      courses: [
+      formatVersion: 2,
+      exportedAt: '2026-01-01T00:00:00.000Z',
+      course: {
+        id: 'demo-course',
+        title: 'Демо: базовый English',
+        description: 'Вводная учебная программа для курса ru→en.',
+        languagePair: { source: 'ru', target: 'en' },
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        authoring: { idea: '', status: 'materialized', ideaUpdatedAt: '', materializedAt: '', lastError: null },
+      },
+      title: 'Демо: базовый English',
+      description: 'Вводная учебная программа для курса ru→en.',
+      languagePair: { source: 'ru', target: 'en' },
+      published: true,
+      authoring: null,
+      updatedAt: '2026-01-01T00:00:00.000Z',
+      programs: [
         {
-          id: 'demo-course',
-          title: 'Демо: базовый English',
-          description: 'Вводная учебная программа для курса ru→en.',
-          authorId: 'system',
-          languagePair: { known: 'ru', learning: 'en' },
-          lessonIds: ['demo-lesson-1', 'demo-lesson-2'],
-          published: true,
-          updatedAt: '2026-01-01T00:00:00.000Z',
-        },
-      ],
-      lessons: [
-        {
-          id: 'demo-lesson-1',
-          courseId: 'demo-course',
-          title: 'Приветствия',
-          description: 'Первые сценарии приветствия.',
-          scenarioIds: ['demo-scenario'],
-          prerequisiteLessonIds: [],
+          program: {
+            id: 'demo-program',
+            title: 'Демо: базовый English',
+            description: '',
+            order: 0,
+            updatedAt: '2026-01-01T00:00:00.000Z',
+          },
           order: 0,
-          updatedAt: '2026-01-01T00:00:00.000Z',
-        },
-        {
-          id: 'demo-lesson-2',
-          courseId: 'demo-course',
-          title: 'Повторение',
-          description: 'Закрепление после первого урока.',
-          scenarioIds: ['demo-scenario'],
-          prerequisiteLessonIds: ['demo-lesson-1'],
-          order: 1,
-          updatedAt: '2026-01-01T00:00:00.000Z',
+          lessons: [
+            {
+              lesson: {
+                id: 'demo-lesson-1',
+                title: 'Приветствия',
+                description: 'Первые сценарии приветствия.',
+                order: 0,
+                updatedAt: '2026-01-01T00:00:00.000Z',
+              },
+              order: 0,
+              scenarios: [
+                {
+                  scenario: {
+                    id: 'demo-scenario',
+                    title: 'Демо-сценарий',
+                    description: '3 карточки для начала обучения (ru→en): выбор ответа.',
+                    order: 0,
+                    published: true,
+                    updatedAt: '2026-01-01T00:00:00.000Z',
+                    cardSource: { mode: 'fixed' as const, cardIds: ['select-1', 'select-2', 'select-3'] },
+                  },
+                  order: 0,
+                  cards: [
+                    {
+                      card: {
+                        id: 'select-1',
+                        kind: 'select',
+                        title: 'Приветствие',
+                        appearance: { theme: 'azure-blue', fontSize: 'md' },
+                        direction: 'known-to-learning' as const,
+                        promptKnown: 'Как сказать «Привет» по-английски?',
+                        optionsLearning: ['Hello', 'Goodbye', 'Thanks', 'Please'],
+                        optionsKnown: ['Привет', 'Пока', 'Спасибо', 'Пожалуйста'],
+                        correctIndex: 0,
+                      },
+                      order: 0,
+                    },
+                    {
+                      card: {
+                        id: 'select-2',
+                        kind: 'select',
+                        title: 'Числа',
+                        appearance: { theme: 'azure-blue', fontSize: 'md' },
+                        direction: 'known-to-learning' as const,
+                        promptKnown: 'Как будет «один» по-английски?',
+                        optionsLearning: ['One', 'Two', 'Three', 'Four'],
+                        optionsKnown: ['один', 'два', 'три', 'четыре'],
+                        correctIndex: 0,
+                      },
+                      order: 1,
+                    },
+                    {
+                      card: {
+                        id: 'select-3',
+                        kind: 'select',
+                        title: 'Прощание',
+                        appearance: { theme: 'azure-blue', fontSize: 'md' },
+                        direction: 'known-to-learning' as const,
+                        promptKnown: 'Как сказать «До свидания» по-английски?',
+                        optionsLearning: ['Goodbye', 'Hello', 'Thanks', 'Please'],
+                        optionsKnown: ['До свидания', 'Привет', 'Спасибо', 'Пожалуйста'],
+                        correctIndex: 0,
+                      },
+                      order: 2,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
       ],
     });
@@ -181,63 +212,6 @@ describe('Card select smoke', () => {
     httpMock
       .expectOne(`${environment.fixturesUrl}/courses/perl-interview-course.json`)
       .flush({ courses: [], lessons: [] });
-
-    // Card files
-    httpMock.expectOne(`${environment.fixturesUrl}/cards/demo-cards.json`).flush({
-      cards: [
-        {
-          id: 'select-1',
-          kind: 'select',
-          title: 'Приветствие',
-          courseId: 'demo-course',
-          lessonId: 'demo-lesson-2',
-          scenarioId: 'demo-scenario',
-          appearance: { theme: 'azure-blue', fontSize: 'md' },
-          direction: 'known-to-learning',
-          promptKnown: 'Как сказать «Привет» по-английски?',
-          optionsLearning: ['Hello', 'Goodbye', 'Thanks', 'Please'],
-          optionsKnown: ['Привет', 'Пока', 'Спасибо', 'Пожалуйста'],
-          correctIndex: 0,
-          meta: { knownLanguage: 'ru', learningLanguage: 'en', difficulty: 'beginner', tags: [] },
-        },
-        {
-          id: 'select-2',
-          kind: 'select',
-          title: 'Числа',
-          courseId: 'demo-course',
-          lessonId: 'demo-lesson-2',
-          scenarioId: 'demo-scenario',
-          appearance: { theme: 'azure-blue', fontSize: 'md' },
-          direction: 'known-to-learning',
-          promptKnown: 'Как будет «один» по-английски?',
-          optionsLearning: ['One', 'Two', 'Three', 'Four'],
-          optionsKnown: ['один', 'два', 'три', 'четыре'],
-          correctIndex: 0,
-          meta: { knownLanguage: 'ru', learningLanguage: 'en', difficulty: 'beginner', tags: [] },
-        },
-        {
-          id: 'select-3',
-          kind: 'select',
-          title: 'Прощание',
-          courseId: 'demo-course',
-          lessonId: 'demo-lesson-2',
-          scenarioId: 'demo-scenario',
-          appearance: { theme: 'azure-blue', fontSize: 'md' },
-          direction: 'known-to-learning',
-          promptKnown: 'Как сказать «До свидания» по-английски?',
-          optionsLearning: ['Goodbye', 'Hello', 'Thanks', 'Please'],
-          optionsKnown: ['До свидания', 'Привет', 'Спасибо', 'Пожалуйста'],
-          correctIndex: 0,
-          meta: { knownLanguage: 'ru', learningLanguage: 'en', difficulty: 'beginner', tags: [] },
-        },
-      ],
-    });
-    httpMock
-      .expectOne(`${environment.fixturesUrl}/cards/radicals-course-cards.json`)
-      .flush({ cards: [] });
-    httpMock
-      .expectOne(`${environment.fixturesUrl}/cards/perl-interview-cards.json`)
-      .flush({ cards: [] });
     // After all seed files are loaded, the ContentSeedRepository cache is populated.
     // The mock interceptors can now serve API requests from the cache.
     // We need multiple detectChanges + whenStable cycles for the async ngOnInit chain

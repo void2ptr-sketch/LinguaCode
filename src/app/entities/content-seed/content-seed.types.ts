@@ -12,8 +12,8 @@ import type { LanguagePair } from '../language-pair/model/language-pair.types';
  */
 export type ContentManifest = {
   version: number;
-  cardFiles: readonly string[];
-  scenarioFiles: readonly string[];
+  cardFiles?: readonly string[];
+  scenarioFiles?: readonly string[];
   courseFiles: readonly string[];
 };
 

@@ -381,14 +381,14 @@ export class CourseSearchService {
       }
       return await this.coursesApi.getById(resolvedId);
     } catch (error) {
+      // Любая ошибка — возвращаем null (404, сетевые ошибки, ошибки мокового хендлера и т.д.)
       const status = this.extractStatus(error);
-      // 404 — штатная ситуация, возвращаем null
       if (status === 404) {
-        return null;
+        this.logger.debug(`CourseSearch: course ${courseId} not found`, error);
+      } else {
+        this.logger.warn(`CourseSearch: getByIdOrNull failed for ${courseId}`, error);
       }
-      this.logger.error('CourseSearch: operation failed', error);
-      this.error.set('Не удалось выполнить операцию с курсами');
-      throw error;
+      return null;
     } finally {
       this.loading.set(false);
     }
