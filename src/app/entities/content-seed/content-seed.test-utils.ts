@@ -4,20 +4,18 @@ import type { Scenario } from '../scenario/model';
 import { setCardSeedCache, setCourseSeedCache, setScenarioSeedCache } from './content-seed.cache';
 import type { CourseCatalogState } from '../course/utils/course-catalog-state';
 import { normalizeNestedCourseCatalog, isNestedFormat } from '../course/utils/course-catalog-state';
-import type { CardsSeedFixture, CoursesNestedFixture } from './content-seed.types';
+import type { CoursesNestedFixture } from './content-seed.types';
 import { normalizeLegacyCards } from '../card/mapping/card-legacy.mapper';
 import { getDefaultCourseCatalog } from '../course/storage/courses-storage';
 import { getDefaultScenarios } from '../scenario/utils/scenario-catalog.defaults';
 import { USER_CONTENT_MIGRATED_KEY } from '../user/overlay/user-content-overlay.types';
 
-import demoCardsFixture from '../../../../public/data/demo/cards/demo-cards.json';
-import perlCardsFixture from '../../../../public/data/perl/cards/perl-interview-cards.json';
-import courseDemoCardKinds from '../../../../public/data/demo/courses/course-demo-card-kinds.json';
-import courseZhA1 from '../../../../public/data/demo/courses/course-zh-a1.json';
-import courseZhConversation from '../../../../public/data/demo/courses/course-zh-conversation.json';
-import courseCppComplete from '../../../../public/data/cpp/courses/course-cpp-complete.json';
-import courseRuPerlInterview from '../../../../public/data/perl/courses/course-ru-perl-interview.json';
-import courseZhRadicals214 from '../../../../public/data/chinese/courses/course-zh-radicals-214.json';
+import courseDemoCardKinds from '../../../../public/data/export/course-demo-card-kinds.linguacode-course.json';
+import courseZhA1 from '../../../../public/data/export/course-zh-a1.linguacode-course.json';
+import courseZhConversation from '../../../../public/data/export/course-zh-conversation.linguacode-course.json';
+import courseCppComplete from '../../../../public/data/export/course-cpp-complete.linguacode-course.json';
+import courseRuPerlInterview from '../../../../public/data/export/course-ru-perl-interview.linguacode-course.json';
+import courseZhRadicals214 from '../../../../public/data/export/course-zh-radicals-214.linguacode-course.json';
 
 /** Default scenarios used by tests when no scenario fixtures are available. */
 const TEST_DEFAULT_SCENARIOS = [
@@ -116,11 +114,7 @@ export function seedTestContentCache(): void {
 
   setCourseSeedCache(catalog);
   setCardSeedCache(
-    normalizeLegacyCards([
-      ...(demoCardsFixture as CardsSeedFixture).cards,
-      ...(perlCardsFixture as CardsSeedFixture).cards,
-      ...allCards,
-    ]),
+    normalizeLegacyCards(allCards),
   );
   localStorage.setItem(USER_CONTENT_MIGRATED_KEY, '1');
 }
