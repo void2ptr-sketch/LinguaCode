@@ -4,10 +4,19 @@ import type { Program } from '../../program/model';
 import type { Scenario } from '../../scenario/model';
 import type { CardIndexMetaOverride } from '../../card/model';
 import type { CourseCatalogState } from './course-catalog-state';
-import type { CourseBundle, CourseBundleValidation } from './course-bundle.types';
+import type {
+  CourseBundle,
+  CourseBundleValidation,
+  CourseBundleV1,
+  CourseBundleTyped,
+} from './course-bundle.types';
+
+// ──────────────────────────────────────────────
+// Экспорт (collectCourseBundle) — формат v2
+// ──────────────────────────────────────────────
 
 /**
- * Собирает самодостаточный CourseBundle для переданного courseId.
+ * Собирает самодостаточный CourseBundle v2 для переданного courseId.
  *
  * Обходит граф: Course → Program → Lesson → Scenario → Card,
  * проверяет замкнутость всех ссылок и отсутствие criteria-сценариев.
@@ -69,7 +78,7 @@ export function collectCourseBundle(
     return null;
   }
 
-  // 3. Собрать сценарии
+  // 4. Собрать сценарии
   const scenarioIds = new Set<string>();
   for (const lesson of lessons) {
     for (const sid of lesson.scenarioIds) {
@@ -85,7 +94,7 @@ export function collectCourseBundle(
       continue;
     }
 
-    // 3a. Запрет criteria-сценариев
+    // 4a. Запрет criteria-сценариев
     if (scenario.cardSource.mode === 'criteria') {
       errors.push(
         `Сценарий «${scenario.title}» (${sid}) использует criteria-режим. ` +
@@ -97,7 +106,7 @@ export function collectCourseBundle(
     bundleScenarios.push(scenario);
   }
 
-  // 4. Собрать карточки
+  // 5. Собрать карточки
   const cardIds = new Set<string>();
   for (const scenario of bundleScenarios) {
     if (scenario.cardSource.mode === 'fixed' || scenario.cardSource.mode === 'snapshot') {
@@ -117,23 +126,19 @@ export function collectCourseBundle(
     bundleCards.push(card);
   }
 
-  // 5. Собрать cardIndexMeta
-  // Приоритет: card.meta (встроенные) > cardIndexMeta (из внешнего источника)
+  // 6. Собрать cardIndexMeta
   const bundleMeta: Record<string, CardIndexMetaOverride> = {};
   for (const cid of cardIds) {
     const card = cards.find((c) => c.id === cid);
     if (!card) {
       continue;
     }
-    // Использовать встроенные метаданные карточки, если есть
-    // cardIndexMeta используется только как fallback
     const effectiveMeta = card.meta ?? cardIndexMeta[cid];
     if (effectiveMeta) {
       bundleMeta[cid] = effectiveMeta;
     } else {
-      // Если нет ни встроенных, ни во внешнем источнике — ошибка
       errors.push(
-        '`Мета-информация для карточки ${cid} не найдена (нет в card.meta и user-content-overlay)`',
+        `Мета-информация для карточки ${cid} не найдена (нет в card.meta и user-content-overlay)`,
       );
     }
   }
@@ -142,34 +147,102 @@ export function collectCourseBundle(
     return { bundle: null as unknown as CourseBundle, errors };
   }
 
+  // 7. Построить вложенную структуру v2
+  const scenarioMap = new Map(bundleScenarios.map((s) => [s.id, s]));
+  const cardMap = new Map(bundleCards.map((c) => [c.id, c]));
+
+  const bundledLessons: import('./course-bundle.types').LessonBundle[] = [];
+  for (const lesson of lessons) {
+    const bundledScenarios: import('./course-bundle.types').ScenarioBundle[] = [];
+    for (const sid of lesson.scenarioIds) {
+      const scenario = scenarioMap.get(sid);
+      if (!scenario) continue;
+
+      const bundledCards: import('./course-bundle.types').CardBundle[] = [];
+      if (scenario.cardSource.mode === 'fixed' || scenario.cardSource.mode === 'snapshot') {
+        for (const cid of scenario.cardSource.cardIds) {
+          const card = cardMap.get(cid);
+          const meta = card ? bundleMeta[cid] : undefined;
+          if (card && meta) {
+            bundledCards.push({ card, order: card.order ?? bundledCards.length, meta });
+          }
+        }
+      }
+
+      bundledScenarios.push({
+        scenario,
+        order: scenario.order ?? bundledScenarios.length,
+        cards: bundledCards,
+      });
+    }
+
+    bundledLessons.push({
+      lesson,
+      order: lesson.order ?? bundledLessons.length,
+      scenarios: bundledScenarios,
+    });
+  }
+
+  const bundledPrograms: import('./course-bundle.types').ProgramBundle[] = [];
+  for (const program of programs) {
+    const programLessons: import('./course-bundle.types').LessonBundle[] = [];
+    for (const lessonId of program.lessonIds ?? []) {
+      const lesson = bundledLessons.find((l) => l.lesson.id === lessonId);
+      if (lesson) {
+        programLessons.push(lesson);
+      }
+    }
+
+    bundledPrograms.push({
+      program,
+      order: program.order ?? bundledPrograms.length,
+      lessons: programLessons,
+    });
+  }
+
   return {
     bundle: {
-      formatVersion: 1,
+      formatVersion: 2,
       exportedAt: new Date().toISOString(),
       sourceAuthorId: course.authorId,
-      course: {
-        courses: [course],
-        programs,
-        lessons,
-      },
-      scenarios: bundleScenarios,
-      cards: bundleCards,
-      cardIndexMeta: bundleMeta,
+      course,
+      programs: bundledPrograms,
     },
     errors: [],
   };
 }
 
+// ──────────────────────────────────────────────
+// Валидация (validateCourseBundle) — v1 и v2
+// ──────────────────────────────────────────────
+
 /**
  * Валидирует CourseBundle перед экспортом/импортом.
- * Проверяет замкнутость графа зависимостей.
+ * Поддерживает формат v1 (плоские массивы) и v2 (вложенная структура).
  */
-export function validateCourseBundle(bundle: CourseBundle): CourseBundleValidation {
+export function validateCourseBundle(bundle: CourseBundleTyped): CourseBundleValidation {
   const errors: string[] = [];
 
-  if (bundle.formatVersion !== 1) {
-    errors.push(`Неподдерживаемая версия формата: ${bundle.formatVersion}`);
+  // Narrow the type using a type guard
+  const isV1 = (b: CourseBundleTyped): b is CourseBundleV1 => b.formatVersion === 1;
+  const isV2 = (b: CourseBundleTyped): b is CourseBundle => b.formatVersion === 2;
+
+  if (isV1(bundle)) {
+    return validateCourseBundleV1(bundle);
   }
+
+  if (isV2(bundle)) {
+    return validateCourseBundleV2(bundle);
+  }
+
+  // At this point, bundle is CourseBundleTyped with unknown formatVersion
+  const unknownVersion = (bundle as unknown as { formatVersion: number }).formatVersion;
+  errors.push(`Неподдерживаемая версия формата: ${unknownVersion}`);
+  return { valid: false, errors };
+}
+
+function validateCourseBundleV1(bundle: CourseBundleV1): CourseBundleValidation {
+  const errors: string[] = [];
 
   if (!bundle.exportedAt) {
     errors.push('Отсутствует дата экспорта');
@@ -244,8 +317,7 @@ export function validateCourseBundle(bundle: CourseBundle): CourseBundleValidati
     }
   }
 
-  // Проверить meta (приоритет: card.meta > bundle.cardIndexMeta)
-  // Собираем карту всех карточек для быстрого доступа
+  // Проверить meta
   const bundleCardById = new Map(bundle.cards.map((c) => [c.id, c]));
   for (const cid of allCardIds) {
     const card = bundleCardById.get(cid);
@@ -254,6 +326,96 @@ export function validateCourseBundle(bundle: CourseBundle): CourseBundleValidati
       errors.push(
         `Мета-информация для карточки ${cid} отсутствует (нет в card.meta и bundle.cardIndexMeta)`,
       );
+    }
+  }
+
+  return { valid: errors.length === 0, errors };
+}
+
+function validateCourseBundleV2(bundle: CourseBundle): CourseBundleValidation {
+  const errors: string[] = [];
+
+  if (!bundle.exportedAt) {
+    errors.push('Отсутствует дата экспорта');
+  }
+
+  // Проверить программы
+  const programIds = new Set<string>();
+  for (const pb of bundle.programs) {
+    programIds.add(pb.program.id);
+    if (pb.order < 0) {
+      errors.push(`Программа ${pb.program.id} имеет отрицательный order: ${pb.order}`);
+    }
+
+    // Проверить уроки
+    const lessonIds = new Set<string>();
+    for (const lb of pb.lessons) {
+      lessonIds.add(lb.lesson.id);
+      if (lb.order < 0) {
+        errors.push(`Урок ${lb.lesson.id} имеет отрицательный order: ${lb.order}`);
+      }
+
+      // Проверить сценарии
+      const scenarioIds = new Set<string>();
+      for (const sb of lb.scenarios) {
+        scenarioIds.add(sb.scenario.id);
+        if (sb.order < 0) {
+          errors.push(`Сценарий ${sb.scenario.id} имеет отрицательный order: ${sb.order}`);
+        }
+
+        // Проверить сценарий на criteria
+        if (sb.scenario.cardSource.mode === 'criteria') {
+          errors.push(
+            `Сценарий «${sb.scenario.title}» (${sb.scenario.id}) использует criteria-режим. ` +
+              `Экспорт criteria-сценариев не поддерживается.`,
+          );
+        }
+
+        // Проверить карточки
+        const cardIds = new Set<string>();
+        for (const cb of sb.cards) {
+          cardIds.add(cb.card.id);
+          if (cb.order < 0) {
+            errors.push(`Карточка ${cb.card.id} имеет отрицательный order: ${cb.order}`);
+          }
+          if (!cb.meta) {
+            errors.push(`Мета-информация для карточки ${cb.card.id} отсутствует`);
+          }
+        }
+
+        // Проверить замкнутость ссылок в сценарии
+        if (
+          sb.scenario.cardSource.mode === 'fixed' ||
+          sb.scenario.cardSource.mode === 'snapshot'
+        ) {
+          for (const cid of sb.scenario.cardSource.cardIds) {
+            if (!cardIds.has(cid)) {
+              errors.push(`Карточка ${cid} указана в сценарии, но отсутствует в пакете`);
+            }
+          }
+        }
+      }
+
+      // Проверить замкнутость ссылок в уроке
+      for (const sid of lb.lesson.scenarioIds) {
+        if (!scenarioIds.has(sid)) {
+          errors.push(`Сценарий ${sid} указан в уроке, но отсутствует в пакете`);
+        }
+      }
+    }
+
+    // Проверить замкнутость ссылок в программе
+    for (const lessonId of pb.program.lessonIds ?? []) {
+      if (!lessonIds.has(lessonId)) {
+        errors.push(`Урок ${lessonId} указан в программе, но отсутствует в пакете`);
+      }
+    }
+  }
+
+  // Проверить что programIds курса совпадают с пакетами
+  for (const programId of bundle.course.programIds) {
+    if (!programIds.has(programId)) {
+      errors.push(`Программа ${programId} указана в курсе, но отсутствует в пакете`);
     }
   }
 

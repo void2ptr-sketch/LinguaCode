@@ -12,6 +12,12 @@ export type {
   CourseBundle,
   CourseBundleValidation,
   CourseBundleError,
+  CourseBundleV1,
+  CourseBundleTyped,
+  ProgramBundle,
+  LessonBundle,
+  ScenarioBundle,
+  CardBundle,
 } from './course-bundle.types';
 export {
   COURSE_IDEA_MAX_LENGTH,

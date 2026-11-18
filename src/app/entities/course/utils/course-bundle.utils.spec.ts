@@ -4,7 +4,7 @@ import type { Scenario } from '../../scenario/model';
 import type { CardIndexMetaOverride } from '../../card/model';
 import type { CourseCatalogState } from './course-catalog-state';
 import { collectCourseBundle, validateCourseBundle } from './course-bundle.utils';
-import type { CourseBundle } from './course-bundle.types';
+import type { CourseBundle, CourseBundleV1 } from './course-bundle.types';
 
 describe('course-bundle.utils', () => {
   function makeBaseCourse(): Course {
@@ -99,7 +99,7 @@ describe('course-bundle.utils', () => {
   }
 
   describe('collectCourseBundle', () => {
-    it('collects a complete bundle for a valid course', () => {
+    it('collects a complete bundle for a valid course (v2 format)', () => {
       const result = collectCourseBundle(
         'course-test-1',
         makeCatalog(
@@ -114,12 +114,18 @@ describe('course-bundle.utils', () => {
 
       expect(result).not.toBeNull();
       expect(result!.errors).toEqual([]);
-      expect(result!.bundle.formatVersion).toBe(1);
-      expect(result!.bundle.course.courses[0].id).toBe('course-test-1');
-      expect(result!.bundle.course.lessons[0].id).toBe('lesson-test-1');
-      expect(result!.bundle.scenarios[0].id).toBe('scenario-test-1');
-      expect(result!.bundle.cards[0].id).toBe('card-test-1');
-      expect(result!.bundle.cardIndexMeta['card-test-1']).toBeDefined();
+      expect(result!.bundle.formatVersion).toBe(2);
+      expect(result!.bundle.course.id).toBe('course-test-1');
+      expect(result!.bundle.programs.length).toBe(1);
+      expect(result!.bundle.programs[0].order).toBe(0);
+      expect(result!.bundle.programs[0].lessons.length).toBe(1);
+      expect(result!.bundle.programs[0].lessons[0].order).toBe(0);
+      expect(result!.bundle.programs[0].lessons[0].scenarios.length).toBe(1);
+      expect(result!.bundle.programs[0].lessons[0].scenarios[0].order).toBe(0);
+      expect(result!.bundle.programs[0].lessons[0].scenarios[0].cards.length).toBe(1);
+      expect(result!.bundle.programs[0].lessons[0].scenarios[0].cards[0].order).toBe(0);
+      expect(result!.bundle.programs[0].lessons[0].scenarios[0].cards[0].card.id).toBe('card-test-1');
+      expect(result!.bundle.programs[0].lessons[0].scenarios[0].cards[0].meta).toBeDefined();
       expect(result!.bundle.sourceAuthorId).toBe('local-user');
     });
 
@@ -242,12 +248,48 @@ describe('course-bundle.utils', () => {
 
       expect(result).not.toBeNull();
       expect(result!.errors).toEqual([]);
-      expect(result!.bundle.scenarios[0].cardSource.mode).toBe('snapshot');
+      expect(result!.bundle.programs[0].lessons[0].scenarios[0].scenario.cardSource.mode).toBe(
+        'snapshot',
+      );
     });
   });
 
   describe('validateCourseBundle', () => {
-    function makeValidBundle(): CourseBundle {
+    function makeValidBundleV2(): CourseBundle {
+      return {
+        formatVersion: 2,
+        exportedAt: '2026-06-15T00:00:00.000Z',
+        sourceAuthorId: 'local-user',
+        course: makeBaseCourse(),
+        programs: [
+          {
+            program: makeProgram('course-test-1', ['lesson-test-1']),
+            order: 0,
+            lessons: [
+              {
+                lesson: makeBaseLesson(),
+                order: 0,
+                scenarios: [
+                  {
+                    scenario: makeBaseScenario(),
+                    order: 0,
+                    cards: [
+                      {
+                        card: makeBaseCard(),
+                        order: 0,
+                        meta: makeBaseMeta()['card-test-1'],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+    }
+
+    function makeValidBundleV1(): CourseBundleV1 {
       return {
         formatVersion: 1,
         exportedAt: '2026-06-15T00:00:00.000Z',
@@ -263,15 +305,21 @@ describe('course-bundle.utils', () => {
       };
     }
 
-    it('validates a correct bundle', () => {
-      const result = validateCourseBundle(makeValidBundle());
+    it('validates a correct v2 bundle', () => {
+      const result = validateCourseBundle(makeValidBundleV2());
+      expect(result.valid).toBe(true);
+      expect(result.errors).toEqual([]);
+    });
+
+    it('validates a correct v1 bundle', () => {
+      const result = validateCourseBundle(makeValidBundleV1());
       expect(result.valid).toBe(true);
       expect(result.errors).toEqual([]);
     });
 
     it('rejects unsupported formatVersion', () => {
-      const bundle = makeValidBundle();
-      bundle.formatVersion = 999 as 1;
+      const bundle = makeValidBundleV2();
+      bundle.formatVersion = 999 as 2;
 
       const result = validateCourseBundle(bundle);
       expect(result.valid).toBe(false);
@@ -279,61 +327,64 @@ describe('course-bundle.utils', () => {
     });
 
     it('rejects missing exportedAt', () => {
-      const bundle = makeValidBundle();
+      const bundle = makeValidBundleV2();
       bundle.exportedAt = '';
 
       const result = validateCourseBundle(bundle);
       expect(result.valid).toBe(false);
     });
 
-    it('rejects bundles with more than one course', () => {
-      const bundle = makeValidBundle();
-      bundle.course.courses = [makeBaseCourse(), { ...makeBaseCourse(), id: 'course-2' }];
+    it('rejects bundles with negative program order', () => {
+      const bundle = makeValidBundleV2();
+      bundle.programs[0].order = -1;
 
       const result = validateCourseBundle(bundle);
       expect(result.valid).toBe(false);
-      expect(result.errors.some((e) => e.includes('1'))).toBe(true);
+      expect(result.errors.some((e) => e.includes('order'))).toBe(true);
     });
 
-    it('rejects bundles with missing lesson', () => {
-      const bundle = makeValidBundle();
-      bundle.course.programs[0].lessonIds = ['lesson-missing'];
+    it('rejects bundles with negative lesson order', () => {
+      const bundle = makeValidBundleV2();
+      bundle.programs[0].lessons[0].order = -1;
 
       const result = validateCourseBundle(bundle);
       expect(result.valid).toBe(false);
-      expect(result.errors.some((e) => e.includes('lesson-missing'))).toBe(true);
+      expect(result.errors.some((e) => e.includes('order'))).toBe(true);
     });
 
-    it('rejects bundles with missing scenario', () => {
-      const bundle = makeValidBundle();
-      bundle.course.lessons[0].scenarioIds = ['scenario-missing'];
+    it('rejects bundles with negative scenario order', () => {
+      const bundle = makeValidBundleV2();
+      bundle.programs[0].lessons[0].scenarios[0].order = -1;
 
       const result = validateCourseBundle(bundle);
       expect(result.valid).toBe(false);
-      expect(result.errors.some((e) => e.includes('scenario-missing'))).toBe(true);
+      expect(result.errors.some((e) => e.includes('order'))).toBe(true);
     });
 
-    it('rejects bundles with missing card', () => {
-      const bundle = makeValidBundle();
-      bundle.scenarios[0].cardSource = { mode: 'fixed', cardIds: ['card-missing'] };
+    it('rejects bundles with negative card order', () => {
+      const bundle = makeValidBundleV2();
+      bundle.programs[0].lessons[0].scenarios[0].cards[0].order = -1;
 
       const result = validateCourseBundle(bundle);
       expect(result.valid).toBe(false);
-      expect(result.errors.some((e) => e.includes('card-missing'))).toBe(true);
+      expect(result.errors.some((e) => e.includes('order'))).toBe(true);
     });
 
     it('rejects bundles with missing card meta', () => {
-      const bundle = makeValidBundle();
-      bundle.cardIndexMeta = {};
+      const bundle = makeValidBundleV2();
+      // Установить meta в undefined
+      const cards = bundle.programs[0].lessons[0].scenarios[0].cards;
+      const firstCard = cards[0] as { card: Card; order: number; meta?: CardIndexMetaOverride };
+      firstCard.meta = undefined;
 
       const result = validateCourseBundle(bundle);
       expect(result.valid).toBe(false);
       expect(result.errors.some((e) => e.includes('Мета-информация'))).toBe(true);
     });
 
-    it('rejects criteria scenarios in validation', () => {
-      const bundle = makeValidBundle();
-      bundle.scenarios[0].cardSource = {
+    it('rejects criteria scenarios in v2 validation', () => {
+      const bundle = makeValidBundleV2();
+      bundle.programs[0].lessons[0].scenarios[0].scenario.cardSource = {
         mode: 'criteria',
         criteria: { knownLanguage: 'ru', learningLanguage: 'en' },
         limit: 10,
@@ -342,6 +393,42 @@ describe('course-bundle.utils', () => {
       const result = validateCourseBundle(bundle);
       expect(result.valid).toBe(false);
       expect(result.errors.some((e) => e.includes('criteria'))).toBe(true);
+    });
+
+    it('rejects bundles with missing scenario', () => {
+      const bundle = makeValidBundleV1();
+      bundle.course.programs[0].lessonIds = ['lesson-missing'];
+
+      const result = validateCourseBundle(bundle);
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e) => e.includes('lesson-missing'))).toBe(true);
+    });
+
+    it('rejects bundles with missing scenario reference', () => {
+      const bundle = makeValidBundleV1();
+      bundle.course.lessons[0].scenarioIds = ['scenario-missing'];
+
+      const result = validateCourseBundle(bundle);
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e) => e.includes('scenario-missing'))).toBe(true);
+    });
+
+    it('rejects bundles with missing card reference', () => {
+      const bundle = makeValidBundleV1();
+      bundle.scenarios[0].cardSource = { mode: 'fixed', cardIds: ['card-missing'] };
+
+      const result = validateCourseBundle(bundle);
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e) => e.includes('card-missing'))).toBe(true);
+    });
+
+    it('rejects bundles with missing card meta in v1', () => {
+      const bundle = makeValidBundleV1();
+      bundle.cardIndexMeta = {};
+
+      const result = validateCourseBundle(bundle);
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e) => e.includes('Мета-информация'))).toBe(true);
     });
   });
 });

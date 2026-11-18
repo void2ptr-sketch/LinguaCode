@@ -69,13 +69,59 @@ npm run test:ci
 
 ## Формат CourseBundle
 
+### Формат v2 (текущий) — вложенная древовидная структура
+
 ```typescript
 type CourseBundle = {
+  formatVersion: 2;
+  exportedAt: string; // ISO
+  sourceAuthorId?: string; // local-user из overlay
+  course: Course;                    // единственный курс
+  programs: ProgramBundle[];         // программы с порядком
+};
+
+type ProgramBundle = {
+  program: Program;
+  order: number;
+  lessons: LessonBundle[];
+};
+
+type LessonBundle = {
+  lesson: Lesson;
+  order: number;
+  scenarios: ScenarioBundle[];
+};
+
+type ScenarioBundle = {
+  scenario: Scenario;
+  order: number;
+  cards: CardBundle[];
+};
+
+type CardBundle = {
+  card: Card;
+  order: number;
+  meta: CardIndexMetaOverride;       // объединённые метаданные
+};
+```
+
+**Ключевые изменения v2:**
+- Вложенная структура вместо плоских массивов
+- Каждый уровень сохраняет ВСЕ поля родительского типа
+- Поле `order` для явного порядка на каждом уровне
+- `meta` объединён с `card.meta` в `CardBundle[].meta` (без отдельного `cardIndexMeta`)
+- Поле `authoring.idea` сохраняется в `course.authoring.idea`
+
+### Формат v1 (устаревший, обратная совместимость)
+
+```typescript
+type CourseBundleV1 = {
   formatVersion: 1;
   exportedAt: string; // ISO
   sourceAuthorId?: string; // local-user из overlay
   course: {
-    courses: Course[]; // ровно 1 программа
+    courses: Course[]; // ровно 1 курс
+    programs: Program[];
     lessons: Lesson[];
   };
   scenarios: Scenario[];
@@ -84,8 +130,18 @@ type CourseBundle = {
 };
 ```
 
+> **Примечание:** Формат v1 поддерживается для обратной совместимости при импорте, но экспорт всегда генерирует v2.
+
 ### Правила замыкания зависимостей
 
+**v2:**
+- `course.programIds` → все `programs`
+- `program.lessonIds` → все `lessons`
+- `lesson.scenarioIds` → все `scenarios`
+- `scenario.cardSource.cardIds` → все `cards`
+- Для каждой карточки — запись в `CardBundle[].meta`
+
+**v1:**
 - Из `course.lessonIds` → все `lessons`
 - Из `lesson.scenarioIds` → все `scenarios`
 - Из `scenario.cardSource` → все `cardIds` (только `fixed` и `snapshot`)
