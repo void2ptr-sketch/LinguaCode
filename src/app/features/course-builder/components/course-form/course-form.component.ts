@@ -108,6 +108,14 @@ export class CourseFormComponent {
    */
   readonly exportRequested = output<CourseExportType>();
 
+  /**
+   * Emits when the user requests to import a CourseBundle JSON file.
+   *
+   * @remarks
+   * The payload is the selected `File` object.
+   */
+  readonly importRequested = output<File>();
+
   /** Available authoring status options (e.g., 'draft', 'planned', 'generating'). */
   readonly authoringStatusOptions = COURSE_AUTHORING_STATUSES;
 
@@ -341,5 +349,20 @@ export class CourseFormComponent {
   onExportPdf(withHints: boolean): void {
     const type: CourseExportType = withHints ? 'pdf-with-hints' : 'pdf-without-hints';
     this.exportRequested.emit(type);
+  }
+
+  /**
+   * Handles file selection for JSON import.
+   *
+   * @param event — The file input change event.
+   */
+  onImportFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (file) {
+      this.importRequested.emit(file);
+    }
+    // Reset input for re-selection of the same file
+    input.value = '';
   }
 }

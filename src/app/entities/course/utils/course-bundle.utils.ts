@@ -3,7 +3,6 @@ import type { Lesson } from '../model';
 import type { Program } from '../../program/model';
 import type { Scenario } from '../../scenario/model';
 import type { CardIndexMetaOverride } from '../../card/model';
-import type { CourseCatalogState } from './course-catalog-state';
 import type {
   CourseBundle,
   CourseBundleValidation,
@@ -21,16 +20,20 @@ import type {
  * Обходит граф: Course → Program → Lesson → Scenario → Card,
  * проверяет замкнутость всех ссылок и отсутствие criteria-сценариев.
  *
- * @param courseId  ID курса из resolvedCatalog
- * @param catalog   Разрешённый каталог (seed + overlay)
- * @param scenarios Все сценарии (seed + overlay, resolved)
- * @param cards     Все карточки (seed + overlay, resolved)
+ * @param courseId    ID курса из resolved catalog
+ * @param courses     Разрешённые курсы (seed + overlay)
+ * @param programs    Разрешённые программы (seed + overlay)
+ * @param lessons     Разрешённые уроки (seed + overlay)
+ * @param scenarios   Все сценарии (seed + overlay, resolved)
+ * @param cards       Все карточки (seed + overlay, resolved)
  * @param cardIndexMeta Мета-информация из user-content-overlay
  * @returns Пакет или null с описанием ошибки
  */
 export function collectCourseBundle(
   courseId: string,
-  catalog: CourseCatalogState,
+  courses: readonly import('../model').Course[],
+  programs: readonly import('../../program/model').Program[],
+  lessons: readonly import('../model').Lesson[],
   scenarios: readonly Scenario[],
   cards: readonly Card[],
   cardIndexMeta: Record<string, CardIndexMetaOverride>,
@@ -38,16 +41,16 @@ export function collectCourseBundle(
   const errors: string[] = [];
 
   // 1. Найти курс
-  const course = catalog.courses.find((c) => c.id === courseId);
+  const course = courses.find((c) => c.id === courseId);
   if (!course) {
     errors.push(`Курс ${courseId} не найден в каталоге`);
     return null;
   }
 
   // 2. Собрать программы
-  const programs: Program[] = [];
+  const programsList: Program[] = [];
   for (const programId of course.programIds) {
-    const program = catalog.programs.find((p) => p.id === programId);
+    const program = programs.find((p) => p.id === programId);
     if (!program) {
       errors.push(`Программа ${programId} не найдена в каталоге`);
       continue;
@@ -61,10 +64,10 @@ export function collectCourseBundle(
   }
 
   // 3. Собрать уроки из программ
-  const lessons: Lesson[] = [];
-  for (const program of programs) {
+  const lessonsList: Lesson[] = [];
+  for (const program of programsList) {
     for (const lessonId of program.lessonIds ?? []) {
-      const lesson = catalog.lessons.find((l) => l.id === lessonId);
+      const lesson = lessons.find((l) => l.id === lessonId);
       if (!lesson) {
         errors.push(`Урок ${lessonId} не найден в каталоге`);
         continue;
@@ -73,14 +76,14 @@ export function collectCourseBundle(
     }
   }
 
-  if (lessons.length === 0) {
+  if (lessonsList.length === 0) {
     errors.push(`Курс ${courseId} не содержит уроков`);
     return null;
   }
 
   // 4. Собрать сценарии
   const scenarioIds = new Set<string>();
-  for (const lesson of lessons) {
+  for (const lesson of lessonsList) {
     for (const sid of lesson.scenarioIds) {
       scenarioIds.add(sid);
     }
@@ -152,7 +155,7 @@ export function collectCourseBundle(
   const cardMap = new Map(bundleCards.map((c) => [c.id, c]));
 
   const bundledLessons: import('./course-bundle.types').LessonBundle[] = [];
-  for (const lesson of lessons) {
+  for (const lesson of lessonsList) {
     const bundledScenarios: import('./course-bundle.types').ScenarioBundle[] = [];
     for (const sid of lesson.scenarioIds) {
       const scenario = scenarioMap.get(sid);
@@ -184,7 +187,7 @@ export function collectCourseBundle(
   }
 
   const bundledPrograms: import('./course-bundle.types').ProgramBundle[] = [];
-  for (const program of programs) {
+  for (const program of programsList) {
     const programLessons: import('./course-bundle.types').LessonBundle[] = [];
     for (const lessonId of program.lessonIds ?? []) {
       const lesson = bundledLessons.find((l) => l.lesson.id === lessonId);

@@ -29,6 +29,12 @@ import type {
   CourseBuilderDialogResult,
 } from './course-builder-dialog.types';
 import type { CourseFormDraft } from '../../types';
+import { extractEntitiesFromBundle } from '../../utils/course-bundle-import.utils';
+import { validateCourseBundle } from '../../../../entities/course/utils/course-bundle.utils';
+import type { CourseBundleTyped } from '../../../../entities/course/utils/course-bundle.types';
+import type { Course } from '../../../../entities/course/model';
+import { CourseImportDialogService } from '../course-import-dialog/course-import-dialog.service';
+import type { ImportPreview } from '../course-import-dialog/course-import-dialog.types';
 
 /**
  * Modal dialog component for creating and editing courses.
@@ -57,6 +63,7 @@ export class CourseBuilderDialogComponent implements OnInit {
   private readonly snackBar = inject(MatSnackBar);
   private readonly logger = inject(AppLoggerService);
   private readonly languagePairsApi = inject(LanguagePairsApiService);
+  private readonly importDialog = inject(CourseImportDialogService);
   readonly data = inject<CourseBuilderDialogData>(MAT_DIALOG_DATA);
   readonly store = inject(CourseBuilderStore);
 
@@ -175,7 +182,7 @@ export class CourseBuilderDialogComponent implements OnInit {
    *
    * @param type — The export type: pdf-without-hints, pdf-with-hints, json, or scorm.
    * @remarks
-   * Currently only PDF export is implemented; JSON and SCORM are placeholder actions.
+   * PDF and JSON export are implemented; SCORM is a placeholder.
    */
   async onExportRequested(type: CourseExportType): Promise<void> {
     const course = this.store.editingCourse();
@@ -198,14 +205,85 @@ export class CourseBuilderDialogComponent implements OnInit {
       return;
     }
 
-    // ── JSON / SCORM — placeholders ──
-    const labels: Record<CourseExportType, string> = {
-      'pdf-without-hints': 'PDF без подсказок',
-      'pdf-with-hints': 'PDF с ответами',
-      json: 'JSON (CourseBundle)',
-      scorm: 'SCORM / xAPI',
-    };
-    this.snackBar.open(`${labels[type]} — в разработке`, 'Закрыть', { duration: 3000 });
+    // ── JSON export ──
+    if (type === 'json') {
+      try {
+        const json = await this.store.exportCourseBundle(course.id);
+        if (!json) {
+          const err = this.store.exportError();
+          this.snackBar.open(err || 'Ошибка при экспорте курса', 'Закрыть', { duration: 5000 });
+          return;
+        }
+        const blob = new Blob([json], { type: 'application/json' });
+        this.downloadBlob(blob, `${course.id}-bundle.json`);
+        this.snackBar.open('JSON пакет успешно выгружен', 'Закрыть', { duration: 3000 });
+      } catch (err) {
+        this.logger.error('JSON export failed', err);
+        this.snackBar.open('Ошибка при выгрузке JSON', 'Закрыть', { duration: 5000 });
+      }
+      return;
+    }
+
+    // ── SCORM — placeholder ──
+    this.snackBar.open('SCORM / xAPI — в разработке', 'Закрыть', { duration: 3000 });
+  }
+
+  /**
+   * Handles import requests from the course form's Import section.
+   *
+   * @param file — The JSON file selected by the user.
+   */
+  async onImportRequested(file: File): Promise<void> {
+    const text = await file.text();
+    const preview = await this.parseBundlePreview(text, file.size);
+    if (!preview) {
+      this.snackBar.open('Не удалось прочитать пакет', 'Закрыть', { duration: 3000 });
+      return;
+    }
+
+    const confirmed = await this.importDialog.open(preview);
+    if (!confirmed) return;
+
+    const success = await this.store.importCourseBundle(text);
+    if (success) {
+      this.snackBar.open('Курс успешно импортирован', 'Закрыть', { duration: 3000 });
+      await this.store.loadList();
+      this.dialogRef.close();
+    } else {
+      const err = this.store.exportError();
+      this.snackBar.open(err || 'Ошибка при импорте', 'Закрыть', { duration: 5000 });
+    }
+  }
+
+  /**
+   * Parses a bundle JSON string and returns a preview for the confirmation dialog.
+   *
+   * @param json — The JSON string of the bundle.
+   * @param fileSize — File size in bytes (for warning about localStorage limits).
+   * @returns Preview data, or `null` if parsing/validation fails.
+   * @private
+   */
+  private async parseBundlePreview(json: string, fileSize?: number): Promise<ImportPreview | null> {
+    try {
+      const parsed = JSON.parse(json) as CourseBundleTyped;
+      const validation = validateCourseBundle(parsed);
+      if (!validation.valid) return null;
+
+      const extracted = extractEntitiesFromBundle(parsed);
+      if (!extracted) return null;
+
+      const course = Object.values(extracted.courses)[0] as Course;
+      return {
+        courseTitle: course.title,
+        programCount: Object.keys(extracted.programs).length,
+        lessonCount: Object.keys(extracted.lessons).length,
+        scenarioCount: Object.keys(extracted.scenarios).length,
+        cardCount: Object.keys(extracted.cards).length,
+        fileSize,
+      };
+    } catch {
+      return null;
+    }
   }
 
   /**

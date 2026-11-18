@@ -199,3 +199,35 @@
   line-height: 1.5;
   white-space: normal;
 }
+
+/* ── Import section ── */
+
+.course-form__import-section {
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.course-form__import-hint {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.course-form__import-actions {
+  margin-top: 0.5rem;
+}
+
+.course-form__import-label {
+  cursor: pointer;
+  display: inline-block;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.course-form__file-input {
+  display: none;
+}

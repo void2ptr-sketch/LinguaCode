@@ -2,7 +2,6 @@ import type { Card } from '../../card/model';
 import type { Course, Lesson } from '../model';
 import type { Scenario } from '../../scenario/model';
 import type { CardIndexMetaOverride } from '../../card/model';
-import type { CourseCatalogState } from './course-catalog-state';
 import { collectCourseBundle, validateCourseBundle } from './course-bundle.utils';
 import type { CourseBundle, CourseBundleV1 } from './course-bundle.types';
 
@@ -90,7 +89,11 @@ describe('course-bundle.utils', () => {
     course?: Course,
     lesson?: Lesson,
     program?: import('../../program/model/program.types').Program,
-  ): CourseCatalogState {
+  ): {
+    courses: Course[];
+    programs: import('../../program/model/program.types').Program[];
+    lessons: Lesson[];
+  } {
     return {
       courses: course ? [course] : [],
       programs: program ? [program] : [],
@@ -100,13 +103,16 @@ describe('course-bundle.utils', () => {
 
   describe('collectCourseBundle', () => {
     it('collects a complete bundle for a valid course (v2 format)', () => {
+      const catalog = makeCatalog(
+        makeBaseCourse(),
+        makeBaseLesson(),
+        makeProgram('course-test-1', ['lesson-test-1']),
+      );
       const result = collectCourseBundle(
         'course-test-1',
-        makeCatalog(
-          makeBaseCourse(),
-          makeBaseLesson(),
-          makeProgram('course-test-1', ['lesson-test-1']),
-        ),
+        catalog.courses,
+        catalog.programs,
+        catalog.lessons,
         [makeBaseScenario()],
         [makeBaseCard()],
         makeBaseMeta(),
@@ -130,13 +136,16 @@ describe('course-bundle.utils', () => {
     });
 
     it('returns null when course is not found', () => {
+      const catalog = makeCatalog(
+        makeBaseCourse(),
+        makeBaseLesson(),
+        makeProgram('course-test-1', ['lesson-test-1']),
+      );
       const result = collectCourseBundle(
         'course-nonexistent',
-        makeCatalog(
-          makeBaseCourse(),
-          makeBaseLesson(),
-          makeProgram('course-test-1', ['lesson-test-1']),
-        ),
+        catalog.courses,
+        catalog.programs,
+        catalog.lessons,
         [makeBaseScenario()],
         [makeBaseCard()],
         makeBaseMeta(),
@@ -151,9 +160,12 @@ describe('course-bundle.utils', () => {
         programIds: ['program-missing'],
       };
 
+      const catalog = makeCatalog(courseWithMissingLesson);
       const result = collectCourseBundle(
         'course-test-1',
-        makeCatalog(courseWithMissingLesson),
+        catalog.courses,
+        catalog.programs,
+        catalog.lessons,
         [makeBaseScenario()],
         [makeBaseCard()],
         makeBaseMeta(),
@@ -172,13 +184,17 @@ describe('course-bundle.utils', () => {
         },
       };
 
+      const catalog = makeCatalog(
+        makeBaseCourse(),
+        makeBaseLesson(),
+        makeProgram('course-test-1', ['lesson-test-1']),
+      );
+
       const result = collectCourseBundle(
         'course-test-1',
-        makeCatalog(
-          makeBaseCourse(),
-          makeBaseLesson(),
-          makeProgram('course-test-1', ['lesson-test-1']),
-        ),
+        catalog.courses,
+        catalog.programs,
+        catalog.lessons,
         [criteriaScenario],
         [makeBaseCard()],
         makeBaseMeta(),
@@ -189,13 +205,17 @@ describe('course-bundle.utils', () => {
     });
 
     it('returns errors when card is missing', () => {
+      const catalog = makeCatalog(
+        makeBaseCourse(),
+        makeBaseLesson(),
+        makeProgram('course-test-1', ['lesson-test-1']),
+      );
+
       const result = collectCourseBundle(
         'course-test-1',
-        makeCatalog(
-          makeBaseCourse(),
-          makeBaseLesson(),
-          makeProgram('course-test-1', ['lesson-test-1']),
-        ),
+        catalog.courses,
+        catalog.programs,
+        catalog.lessons,
         [makeBaseScenario()],
         [],
         makeBaseMeta(),
@@ -206,13 +226,17 @@ describe('course-bundle.utils', () => {
     });
 
     it('returns errors when card meta is missing', () => {
+      const catalog = makeCatalog(
+        makeBaseCourse(),
+        makeBaseLesson(),
+        makeProgram('course-test-1', ['lesson-test-1']),
+      );
+
       const result = collectCourseBundle(
         'course-test-1',
-        makeCatalog(
-          makeBaseCourse(),
-          makeBaseLesson(),
-          makeProgram('course-test-1', ['lesson-test-1']),
-        ),
+        catalog.courses,
+        catalog.programs,
+        catalog.lessons,
         [makeBaseScenario()],
         [makeBaseCard()],
         {},
@@ -234,13 +258,17 @@ describe('course-bundle.utils', () => {
         },
       };
 
+      const catalog = makeCatalog(
+        makeBaseCourse(),
+        makeBaseLesson(),
+        makeProgram('course-test-1', ['lesson-test-1']),
+      );
+
       const result = collectCourseBundle(
         'course-test-1',
-        makeCatalog(
-          makeBaseCourse(),
-          makeBaseLesson(),
-          makeProgram('course-test-1', ['lesson-test-1']),
-        ),
+        catalog.courses,
+        catalog.programs,
+        catalog.lessons,
         [snapshotScenario],
         [makeBaseCard()],
         makeBaseMeta(),

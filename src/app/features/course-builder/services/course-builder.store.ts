@@ -30,9 +30,18 @@ import { AuthStore } from '../../../entities/auth/services/auth.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { AppSettingsService } from '../../../shared/api/app-settings.service';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
+import type { ExtractedEntities } from '../utils/course-bundle-import.utils';
+import type { UserContentOverlay } from '../../../entities/user/overlay/user-content-overlay.types';
 import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils';
-import { collectCourseBundle } from '../../../entities/course/utils/course-bundle.utils';
+import { collectCourseBundle, validateCourseBundle } from '../../../entities/course/utils/course-bundle.utils';
 import { CoursePdfExportService } from './course-pdf-export.service';
+import { extractEntitiesFromBundle } from '../utils/course-bundle-import.utils';
+import {
+  readUserContentOverlay,
+  patchUserContentOverlay,
+} from '../../../entities/user/overlay/user-content-overlay.storage';
+import type { CourseBundleTyped } from '../../../entities/course/utils/course-bundle.types';
+import { resetContentSeedCache } from '../../../entities/content-seed/content-seed.cache';
 
 /** Sanitizer for course title: max 128 characters, HTML cleaned */
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
@@ -423,10 +432,12 @@ export class CourseBuilderStore {
 
       const result = collectCourseBundle(
         resolvedCourseId,
-        bundle.catalog,
+        bundle.courses,
+        bundle.programs,
+        bundle.lessons,
         bundle.scenarios,
         bundle.cards,
-        bundle.cardIndexMeta,
+        bundle.cardIndexMeta ?? {},
       );
 
       if (!result) {
@@ -481,6 +492,108 @@ export class CourseBuilderStore {
       this.exportError.set('Ошибка при экспорте в PDF');
       return false;
     }
+  }
+
+  // -------------------------------------------------------------------------
+  // Methods: import
+  // -------------------------------------------------------------------------
+
+  /**
+   * Imports a course from a CourseBundle JSON string into the overlay.
+   *
+   * @remarks
+   * Validates the bundle, extracts course/programs/lessons/scenarios/cards,
+   * and writes them into the user-content-overlay via `patchUserContentOverlay`.
+   *
+   * @param bundleJson — The JSON string of the CourseBundle.
+   * @returns `true` on success, `false` on error (error is set in `exportError`).
+   */
+  async importCourseBundle(bundleJson: string): Promise<boolean> {
+    this.exportError.set(null);
+
+    let parsed: CourseBundleTyped;
+    try {
+      parsed = JSON.parse(bundleJson);
+    } catch {
+      this.exportError.set('Некорректный JSON формат');
+      return false;
+    }
+
+    // Валидация пакета
+    const validation = validateCourseBundle(parsed);
+    if (!validation.valid) {
+      this.exportError.set('Пакет не прошёл валидацию:\n' + validation.errors.join('\n'));
+      return false;
+    }
+
+    // Извлечь сущности из v1 или v2
+    const extracted = extractEntitiesFromBundle(parsed);
+    if (!extracted) {
+      this.exportError.set('Не удалось извлечь сущности из пакета');
+      return false;
+    }
+
+    // Проверить коллизии с существующим overlay
+    const overlay = readUserContentOverlay();
+    const collisions = this.findCollisions(extracted, overlay);
+    if (collisions.total > 0) {
+      this.exportError.set(
+        `Найдены коллизии: ${collisions.courses} курсов, ${collisions.programs} программ, ` +
+          `${collisions.lessons} уроков, ${collisions.scenarios} сценариев, ${collisions.cards} карточек. ` +
+          `Они будут обновлены в overlay.`,
+      );
+      // TODO: показать диалог подтверждения — см. G16b.4
+    }
+
+    // Записать в overlay — merge с существующими данными
+    try {
+      const current = readUserContentOverlay();
+      patchUserContentOverlay({
+        courses: { ...current.courses, ...extracted.courses },
+        programs: { ...current.programs, ...extracted.programs },
+        lessons: { ...current.lessons, ...extracted.lessons },
+        scenarios: { ...current.scenarios, ...extracted.scenarios },
+        cards: { ...current.cards, ...extracted.cards },
+        cardIndexMeta: { ...current.cardIndexMeta, ...extracted.cardIndexMeta },
+      });
+      // Сбросить кэш ContentSeedRepository чтобы изменения отразились
+      resetContentSeedCache();
+      this.courseSearchService.clearGetByIdCache();
+      return true;
+    } catch (err) {
+      this.logger.error('CourseBuilder: failed to import bundle', err);
+      this.exportError.set('Не удалось записать курс в overlay');
+      return false;
+    }
+  }
+
+  /**
+   * Finds entity ID collisions between extracted bundle and current overlay.
+   *
+   * @param extracted — Entities extracted from the bundle.
+   * @param overlay — Current user content overlay.
+   * @returns Count of collisions per entity type.
+   * @private
+   */
+  private findCollisions(
+    extracted: ExtractedEntities,
+    overlay: UserContentOverlay,
+  ): {
+    courses: number;
+    programs: number;
+    lessons: number;
+    scenarios: number;
+    cards: number;
+    total: number;
+  } {
+    const courses = Object.keys(extracted.courses).filter((id) => id in overlay.courses).length;
+    const programs = Object.keys(extracted.programs).filter((id) => id in overlay.programs).length;
+    const lessons = Object.keys(extracted.lessons).filter((id) => id in overlay.lessons).length;
+    const scenarios = Object.keys(extracted.scenarios).filter((id) => id in overlay.scenarios).length;
+    const cards = Object.keys(extracted.cards).filter((id) => id in overlay.cards).length;
+    const total = courses + programs + lessons + scenarios + cards;
+
+    return { courses, programs, lessons, scenarios, cards, total };
   }
 
   /**

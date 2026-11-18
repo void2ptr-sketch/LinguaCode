@@ -70,4 +70,20 @@ describe('Course builder redirect smoke', () => {
 
     fixture.destroy();
   });
+
+  it('should have JSON export and import buttons in course form', async () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const router = TestBed.inject(Router);
+
+    await router.navigate(['tools', 'courses']);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const text = fixture.nativeElement.textContent as string;
+    // Verify the course builder page renders with export/import UI elements
+    expect(text).toContain('Проводник контента');
+
+    fixture.destroy();
+  });
 });

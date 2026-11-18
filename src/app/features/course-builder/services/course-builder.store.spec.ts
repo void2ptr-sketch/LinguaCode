@@ -740,4 +740,108 @@ describe('CourseBuilderStore', () => {
 
     expect(store.error()).toBe('Не удалось удалить курс');
   });
+
+  // ── Import tests ──
+
+  it('should import valid v2 bundle', async () => {
+    const v2Bundle = JSON.stringify({
+      formatVersion: 2,
+      exportedAt: new Date().toISOString(),
+      course: {
+        id: 'c-import',
+        title: 'Imported Course',
+        description: '',
+        slug: 'imported',
+        programIds: ['p-1'],
+        published: false,
+        authorId: 'local-user',
+        authoring: { status: 'draft', idea: '', ideaUpdatedAt: '', materializedAt: null, lastError: null },
+      },
+      programs: [
+        {
+          program: { id: 'p-1', title: 'Program 1', description: '', lessonIds: ['l-1'], order: 0 },
+          order: 0,
+          lessons: [
+            {
+              lesson: { id: 'l-1', title: 'Lesson 1', description: '', scenarioIds: ['s-1'], prerequisiteLessonIds: [], order: 0 },
+              order: 0,
+              scenarios: [
+                {
+                  scenario: { id: 's-1', title: 'Scenario 1', description: '', cardSource: { mode: 'fixed' as const, cardIds: ['card-1'] }, published: true, order: 0 },
+                  order: 0,
+                  cards: [{ card: { id: 'card-1', type: 'flip' as const, stimulus: 'Stimulus', response: 'Response', order: 0 }, order: 0, meta: { hints: [], tags: [] } }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+
+    const result = await store.importCourseBundle(v2Bundle);
+
+    expect(result).toBe(true);
+    const overlay = JSON.parse(localStorage.getItem('lingua-code.user-content.v1') || '{}');
+    expect(overlay.courses).toHaveProperty('c-import');
+    expect(overlay.programs).toHaveProperty('p-1');
+    expect(overlay.lessons).toHaveProperty('l-1');
+    expect(overlay.scenarios).toHaveProperty('s-1');
+    expect(overlay.cards).toHaveProperty('card-1');
+  });
+
+  it('should reject invalid JSON', async () => {
+    const result = await store.importCourseBundle('not-json-at-all');
+
+    expect(result).toBe(false);
+    expect(store.exportError()).toBe('Некорректный JSON формат');
+  });
+
+  it('should reject invalid bundle format', async () => {
+    const result = await store.importCourseBundle(JSON.stringify({ formatVersion: 99 }));
+
+    expect(result).toBe(false);
+    expect(store.exportError()).toContain('не прошёл валидацию');
+  });
+
+  it('should patch overlay correctly on import', async () => {
+    // Pre-populate overlay
+    localStorage.setItem(
+      'lingua-code.user-content.v1',
+      JSON.stringify({
+        version: 1,
+        courses: { 'c-existing': { id: 'c-existing', title: 'Existing', slug: 'existing', programIds: [], published: false, authorId: 'local-user', authoring: { status: 'draft', idea: '', ideaUpdatedAt: '', materializedAt: null, lastError: null } } },
+        programs: {},
+        lessons: {},
+        scenarios: {},
+        cards: {},
+        cardIndexMeta: {},
+        deletedSystemIds: {},
+      }),
+    );
+
+    const v2Bundle = JSON.stringify({
+      formatVersion: 2,
+      exportedAt: new Date().toISOString(),
+      course: {
+        id: 'c-new',
+        title: 'New Imported',
+        description: '',
+        slug: 'new-imported',
+        programIds: [],
+        published: false,
+        authorId: 'local-user',
+        authoring: { status: 'draft', idea: '', ideaUpdatedAt: '', materializedAt: null, lastError: null },
+      },
+      programs: [],
+    });
+
+    const result = await store.importCourseBundle(v2Bundle);
+
+    expect(result).toBe(true);
+    const overlay = JSON.parse(localStorage.getItem('lingua-code.user-content.v1') || '{}');
+    // Existing course should still be present
+    expect(overlay.courses).toHaveProperty('c-existing');
+    // New course should be added
+    expect(overlay.courses).toHaveProperty('c-new');
+  });
 });

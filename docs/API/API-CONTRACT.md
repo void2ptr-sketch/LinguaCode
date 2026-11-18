@@ -351,12 +351,16 @@ type CoursePracticeSettings = {
 
 ```typescript
 type CourseExportBundle = {
-  catalog: CourseCatalogState; // курсы + уроки (seed + overlay)
-  scenarios: readonly Scenario[]; // все сценарии
-  cards: readonly Card[]; // все карточки
-  cardIndexMeta: Record<string, CardIndexMetaOverride>; // метаданные индекса
+  courses: readonly Course[];           // курсы (seed + overlay)
+  programs: readonly Program[];         // программы (seed + overlay)
+  lessons: readonly Lesson[];           // уроки (seed + overlay)
+  scenarios: readonly Scenario[];       // все сценарии
+  cards: readonly Card[];               // все карточки
+  cardIndexMeta?: Record<string, CardIndexMetaOverride>; // метаданные индекса (опционально)
 };
 ```
+
+> **Примечание:** `cardIndexMeta` может быть пустым или отсутствовать в ответе бэкенда — фронтенд обрабатывает это как `{}`. Утилитарный слой (`collectCourseBundle`) преобразует flat-массивы во вложенную структуру v2 для экспорта.
 
 ### Экспорт в SCORM/xAPI (`ScormExportBundle`)
 
