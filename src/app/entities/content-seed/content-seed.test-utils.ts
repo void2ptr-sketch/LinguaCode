@@ -3,8 +3,13 @@ import type { Scenario } from '../scenario/model';
 
 import { setCardSeedCache, setCourseSeedCache, setScenarioSeedCache } from './content-seed.cache';
 import type { CourseCatalogState } from '../course/utils/course-catalog-state';
-import { normalizeNestedCourseCatalog, isNestedFormat } from '../course/utils/course-catalog-state';
-import type { CoursesNestedFixture } from './content-seed.types';
+import {
+  normalizeNestedCourseCatalog,
+  isNestedFormat,
+  normalizeExportCourseCatalog,
+  isExportFormat,
+} from '../course/utils/course-catalog-state';
+import type { CoursesNestedFixture, ExportCourseBundle } from './content-seed.types';
 import { normalizeLegacyCards } from '../card/mapping/card-legacy.mapper';
 import { getDefaultCourseCatalog } from '../course/storage/courses-storage';
 import { getDefaultScenarios } from '../scenario/utils/scenario-catalog.defaults';
@@ -99,7 +104,12 @@ export function seedTestContentCache(): void {
   const allCards: import('../card/model').Card[] = [];
 
   for (const fixture of courseFiles) {
-    if (isNestedFormat(fixture)) {
+    // Export format (v2) — check before nested format (has formatVersion + course wrapper)
+    if (isExportFormat(fixture)) {
+      const result = normalizeExportCourseCatalog(fixture as unknown as ExportCourseBundle);
+      allCatalogs.push(result.catalog);
+      allCards.push(...result.cards);
+    } else if (isNestedFormat(fixture)) {
       const result = normalizeNestedCourseCatalog(fixture);
       allCatalogs.push(result.catalog);
       allCards.push(...result.cards);

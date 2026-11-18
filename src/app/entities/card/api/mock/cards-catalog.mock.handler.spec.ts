@@ -5,6 +5,7 @@ import { CardRepository } from '../../repository/card.repository';
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
 import { cardsApiMockInterceptor } from './cards-api.mock.interceptor';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { seedTestContentCache } from '../../../content-seed/content-seed.test-utils';
 
 describe('CardsCatalogMockHandler', () => {
   let api: CardsApiService;
@@ -12,6 +13,7 @@ describe('CardsCatalogMockHandler', () => {
 
   beforeEach(() => {
     localStorage.clear();
+    seedTestContentCache();
 
     TestBed.configureTestingModule({
       providers: [
@@ -32,11 +34,11 @@ describe('CardsCatalogMockHandler', () => {
   });
 
   it('returns multiple cards by ids', async () => {
-    const cards = await api.getByIds(['select-1', 'select-2']);
+    const cards = await api.getByIds(['select-1', 'select-zh-1']);
 
     expect(cards.length).toBe(2);
     expect(cards.map((c) => c.id)).toContain('select-1');
-    expect(cards.map((c) => c.id)).toContain('select-2');
+    expect(cards.map((c) => c.id)).toContain('select-zh-1');
   });
 
   it('returns only existing cards when some ids are missing', async () => {
