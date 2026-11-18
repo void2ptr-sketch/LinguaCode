@@ -1,4 +1,5 @@
 import type { CardDifficulty, CardKind, CardPaymentTier } from './card.types';
+import type { ToneMark } from '../../phonetic/model/phonetic-content.types';
 
 export type { CardDifficulty } from './card.types';
 
@@ -99,6 +100,10 @@ export type CardIndexEntry = {
  * @remarks
  * Used to override index metadata (e.g., from user-content-overlay or fixture data)
  * on top of values derived from the card itself.
+ *
+ * For Chinese cards, `pinyin` and `tones` are mandatory v2 fields in the export —
+ * they must be present even when `null`. The export layer ensures this;
+ * the type keeps them optional for flexible partial updates.
  */
 export type CardIndexMetaOverride = Partial<
   Pick<
@@ -113,7 +118,12 @@ export type CardIndexMetaOverride = Partial<
     | 'requiredTier'
     | 'slug'
   >
->;
+> & {
+  /** Pinyin romanization for Chinese syllables (e.g. "zhuō zi"). `null` when N/A. */
+  pinyin?: string | null;
+  /** Tone marks for Chinese syllables (1–5). `null` when N/A. */
+  tones?: readonly ToneMark[] | null;
+};
 
 /**
  * Card index metadata fixture with mapping by card ID.

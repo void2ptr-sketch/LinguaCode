@@ -137,7 +137,99 @@ function normalizeLanguagePair(lp) {
 function transformToV2(fixture, cardMap) {
   const now = new Date().toISOString();
 
-  // Формируем v2 структуру
+  // ─── Вспомогательная: извлекает pinyin из promptLexeme ─────────────────
+  function extractPinyin(card) {
+    if (card.promptLexeme?.pinyin) return card.promptLexeme.pinyin;
+    return null;
+  }
+
+  // ─── Вспомогательная: извлекает tones из promptLexeme ─────────────────
+  function extractTones(card) {
+    if (Array.isArray(card.promptLexeme?.tones)) return card.promptLexeme.tones;
+    return null;
+  }
+
+  // ─── Вспомогательная: формирует meta с обязательными pinyin/tones ─────
+  function buildMeta(card) {
+    const baseMeta = card.meta ?? {};
+    const meta = { ...baseMeta };
+    // pinyin / tones — обязательные поля формата v2 (всегда присутствуют)
+    if (meta.pinyin === undefined) meta.pinyin = extractPinyin(card);
+    if (meta.tones === undefined) meta.tones = extractTones(card);
+    return meta;
+  }
+
+  // ─── Вспомогательная: копирует ВСЕ поля карточки (CardBase + kind-specific) ─
+  function copyCard(card) {
+    return {
+      id: card.id,
+      kind: card.kind,
+      title: card.title,
+      appearance: card.appearance,
+      // kind-specific fields
+      direction: card.direction,
+      promptKnown: card.promptKnown,
+      optionsLearning: card.optionsLearning,
+      optionsKnown: card.optionsKnown,
+      correctIndex: card.correctIndex,
+      // draw-specific
+      referenceHintKnown: card.referenceHintKnown,
+      meaningKnown: card.meaningKnown,
+      practiceMode: card.practiceMode,
+      targetCharacter: card.targetCharacter,
+      strokeGuides: card.strokeGuides,
+      radicalHint: card.radicalHint,
+      characterTargets: card.characterTargets,
+      // flip-specific
+      front: card.front,
+      back: card.back,
+      frontLexeme: card.frontLexeme,
+      backLexeme: card.backLexeme,
+      audioUrl: card.audioUrl,
+      // cloze-specific
+      options: card.options,
+      correctAnswer: card.correctAnswer,
+      acceptedAnswers: card.acceptedAnswers,
+      // code-select / code-trace
+      caption: card.caption,
+      prompt: card.prompt,
+      code: card.code,
+      outputOptions: card.outputOptions,
+      question: card.question,
+      // memory-specific
+      pairs: card.pairs,
+      // symbol-specific
+      symbols: card.symbols,
+      symbolLexemes: card.symbolLexemes,
+      // sound-specific
+      audioLabelLearning: card.audioLabelLearning,
+      // timed-specific
+      timeLimitSec: card.timeLimitSec,
+      // keyboard-specific
+      acceptedAnswersKnown: card.acceptedAnswersKnown,
+      acceptedAnswersLearning: card.acceptedAnswersLearning,
+      answerMode: card.answerMode,
+      // tone-specific
+      syllableBase: card.syllableBase,
+      toneOptions: card.toneOptions,
+      // reading-specific
+      // (same as select)
+      // references
+      courseId: fixture.id,
+      lessonId: fixture.lessons?.[0]?.id ?? '',
+      scenarioId: '',
+      // meta fields
+      slug: card.slug,
+      authorId: card.authorId,
+      requiredTier: card.requiredTier,
+      published: card.published,
+      languagePairId: card.languagePairId,
+      createdAt: card.createdAt,
+      updatedAt: card.updatedAt,
+    };
+  }
+
+  // ─── Формируем v2 структуру ────────────────────────────────────────────
   const v2 = {
     formatVersion: 2,
     exportedAt: now,
@@ -146,17 +238,30 @@ function transformToV2(fixture, cardMap) {
       id: fixture.id,
       title: fixture.title,
       description: fixture.description ?? '',
+      slug: fixture.slug,
       languagePair: normalizeLanguagePair(fixture.languagePair),
+      languagePairId: fixture.languagePairId,
       practiceSettings: fixture.practiceSettings ?? null,
       published: fixture.published ?? false,
+      updatedAt: fixture.updatedAt ?? now,
       authoring: fixture.authoring ?? { idea: '', status: 'materialized', ideaUpdatedAt: now, materializedAt: now, lastError: null },
       programIds: fixture.programs.map((p) => p.id),
+      order: fixture.order,
+      authorId: fixture.authorId,
     },
     programs: fixture.programs.map((program) => ({
       program: {
         id: program.id,
         title: program.title,
         description: program.description ?? '',
+        courseId: fixture.id,
+        lessonIds: program.lessons.map((l) => l.id),
+        order: program.order,
+        prerequisiteProgramIds: program.prerequisiteProgramIds,
+        requiredTier: program.requiredTier,
+        published: program.published,
+        updatedAt: program.updatedAt ?? now,
+        languagePairId: program.languagePairId,
       },
       order: program.order,
       lessons: program.lessons.map((lesson) => ({
@@ -164,6 +269,15 @@ function transformToV2(fixture, cardMap) {
           id: lesson.id,
           title: lesson.title,
           description: lesson.description ?? '',
+          programId: program.id,
+          scenarioIds: lesson.scenarios.map((s) => s.id),
+          prerequisiteLessonIds: lesson.prerequisiteLessonIds ?? [],
+          order: lesson.order,
+          published: lesson.published,
+          updatedAt: lesson.updatedAt ?? now,
+          requiredTier: lesson.requiredTier,
+          languagePairId: lesson.languagePairId,
+          courseId: fixture.id,
         },
         order: lesson.order,
         scenarios: lesson.scenarios.map((scenario) => {
@@ -175,36 +289,34 @@ function transformToV2(fixture, cardMap) {
               .filter(Boolean);
           }
 
+          // cardSource: из inline cards[] формируем fixed mode
+          const cardIds = cardsArray.map((c) => c.id);
+
           return {
             scenario: {
               id: scenario.id,
               title: scenario.title,
               description: scenario.description ?? '',
+              lessonId: lesson.id,
+              courseId: fixture.id,
+              programId: program.id,
+              authorId: scenario.authorId,
+              cardSource: { mode: 'fixed', cardIds },
+              order: scenario.order,
+              published: scenario.published,
+              updatedAt: scenario.updatedAt ?? now,
+              requiredTier: scenario.requiredTier,
+              languagePairId: scenario.languagePairId,
             },
             order: scenario.order,
             cards: cardsArray.map((card, cardOrder) => {
-              const baseMeta = card.meta ?? {};
-              const meta = { ...baseMeta };
-              // meta.pinyin / meta.tones — обязательные поля формата v2
-              if (meta.pinyin === undefined) meta.pinyin = null;
-              if (meta.tones === undefined) meta.tones = null;
+              const cardCopy = copyCard(card);
+              cardCopy.lessonId = lesson.id;
+              cardCopy.scenarioId = scenario.id;
               return {
-                card: {
-                  id: card.id,
-                  kind: card.kind,
-                  title: card.title,
-                  appearance: card.appearance,
-                  direction: card.direction,
-                  promptKnown: card.promptKnown,
-                  optionsLearning: card.optionsLearning,
-                  optionsKnown: card.optionsKnown,
-                  correctIndex: card.correctIndex,
-                  courseId: fixture.id,
-                  lessonId: lesson.id,
-                  scenarioId: scenario.id,
-                },
+                card: cardCopy,
                 order: cardOrder,
-                meta,
+                meta: buildMeta(card),
               };
             }),
           };

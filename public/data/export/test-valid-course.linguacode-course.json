@@ -1,6 +1,6 @@
 {
   "formatVersion": 2,
-  "exportedAt": "2026-11-18T05:02:16.027Z",
+  "exportedAt": "2026-11-18T05:23:22.997Z",
   "sourceAuthorId": "user-123",
   "course": {
     "id": "test-valid-course",
@@ -9,19 +9,17 @@
     "languagePair": null,
     "practiceSettings": null,
     "published": true,
+    "updatedAt": "2026-11-18T05:05:04.550Z",
     "authoring": {
       "idea": "",
       "status": "materialized",
-      "ideaUpdatedAt": "2026-11-18T05:02:16.027Z",
-      "materializedAt": "2026-11-18T05:02:16.027Z",
+      "ideaUpdatedAt": "2026-11-18T05:23:22.997Z",
+      "materializedAt": "2026-11-18T05:23:22.997Z",
       "lastError": null
     },
     "programIds": [
       "prog-1"
-    ],
-    "authorId": "user-123",
-    "order": 0,
-    "updatedAt": "2026-11-18T05:02:16.027Z"
+    ]
   },
   "programs": [
     {
@@ -29,7 +27,12 @@
         "id": "prog-1",
         "title": "P",
         "description": "",
-        "courseId": "test-valid-course"
+        "courseId": "test-valid-course",
+        "lessonIds": [
+          "les-1"
+        ],
+        "order": 0,
+        "updatedAt": "2026-11-18T05:23:22.997Z"
       },
       "order": 0,
       "lessons": [
@@ -38,7 +41,14 @@
             "id": "les-1",
             "title": "L",
             "description": "",
-            "programId": "prog-1"
+            "programId": "prog-1",
+            "scenarioIds": [
+              "sc-1"
+            ],
+            "prerequisiteLessonIds": [],
+            "order": 0,
+            "updatedAt": "2026-11-18T05:23:22.997Z",
+            "courseId": "test-valid-course"
           },
           "order": 0,
           "scenarios": [
@@ -47,7 +57,15 @@
                 "id": "sc-1",
                 "title": "S",
                 "description": "",
-                "lessonId": "les-1"
+                "lessonId": "les-1",
+                "courseId": "test-valid-course",
+                "programId": "prog-1",
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": []
+                },
+                "order": 0,
+                "updatedAt": "2026-11-18T05:23:22.997Z"
               },
               "order": 0,
               "cards": []

@@ -1,6 +1,6 @@
 {
   "formatVersion": 2,
-  "exportedAt": "2026-11-18T05:02:16.206Z",
+  "exportedAt": "2026-11-18T05:23:22.821Z",
   "sourceAuthorId": "user-123",
   "course": {
     "id": "course-zh-conversation",
@@ -12,19 +12,17 @@
     },
     "practiceSettings": null,
     "published": true,
+    "updatedAt": "2026-06-14T10:00:00.000Z",
     "authoring": {
       "idea": "",
       "status": "materialized",
-      "ideaUpdatedAt": "2026-11-18T05:02:16.206Z",
-      "materializedAt": "2026-11-18T05:02:16.206Z",
+      "ideaUpdatedAt": "2026-11-18T05:23:22.821Z",
+      "materializedAt": "2026-11-18T05:23:22.821Z",
       "lastError": null
     },
     "programIds": [
       "course-zh-conversation-program"
-    ],
-    "authorId": "user-123",
-    "order": 0,
-    "updatedAt": "2026-11-18T05:02:16.206Z"
+    ]
   },
   "programs": [
     {
@@ -32,7 +30,14 @@
         "id": "course-zh-conversation-program",
         "title": "Китайский: разговорная практика",
         "description": "Короткий курс для закрепления приветствий и смешанных упражнений.",
-        "courseId": "course-zh-conversation"
+        "courseId": "course-zh-conversation",
+        "lessonIds": [
+          "lesson-zh-quick-start",
+          "lesson-zh-review"
+        ],
+        "order": 0,
+        "prerequisiteProgramIds": [],
+        "updatedAt": "2026-11-18T05:23:22.821Z"
       },
       "order": 0,
       "lessons": [
@@ -41,7 +46,14 @@
             "id": "lesson-zh-quick-start",
             "title": "Быстрый старт",
             "description": "Первые фразы и базовые упражнения.",
-            "programId": "course-zh-conversation-program"
+            "programId": "course-zh-conversation-program",
+            "scenarioIds": [
+              "scenario-zh-greetings"
+            ],
+            "prerequisiteLessonIds": [],
+            "order": 0,
+            "updatedAt": "2026-11-18T05:23:22.821Z",
+            "courseId": "course-zh-conversation"
           },
           "order": 0,
           "scenarios": [
@@ -50,43 +62,194 @@
                 "id": "scenario-zh-greetings",
                 "title": "Приветствия (китайский)",
                 "description": "4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование.",
-                "lessonId": "lesson-zh-quick-start"
+                "lessonId": "lesson-zh-quick-start",
+                "courseId": "course-zh-conversation",
+                "programId": "course-zh-conversation-program",
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "select-zh-1",
+                    "memory-zh-1",
+                    "symbol-zh-1",
+                    "sound-zh-1"
+                  ]
+                },
+                "order": 0,
+                "published": true,
+                "updatedAt": "2026-11-18T05:23:22.821Z"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "select-zh-1",
-                    "kind": "select"
+                    "kind": "select",
+                    "title": "Приветствие (китайский)",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Как сказать «Привет» по-китайски?",
+                    "optionsLearning": [
+                      "你好",
+                      "谢谢",
+                      "再见",
+                      "请"
+                    ],
+                    "optionsKnown": [
+                      "Привет",
+                      "Спасибо",
+                      "До свидания",
+                      "Пожалуйста"
+                    ],
+                    "correctIndex": 0,
+                    "courseId": "course-zh-conversation",
+                    "lessonId": "lesson-zh-quick-start",
+                    "scenarioId": "scenario-zh-greetings"
                   },
                   "order": 0,
                   "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
-                    "pinyin": null,
+                    "pinyin": "nǐ hǎo",
                     "tones": null
                   }
                 },
                 {
                   "card": {
                     "id": "memory-zh-1",
-                    "kind": "memory"
+                    "kind": "memory",
+                    "title": "Пары слов (китайский)",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "promptKnown": "Найдите пары: русский — китайский",
+                    "pairs": [
+                      {
+                        "known": "Привет",
+                        "learning": "你好",
+                        "learningLexeme": {
+                          "primary": "你好",
+                          "script": "hani",
+                          "pinyin": "nǐ hǎo",
+                          "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                          "palladius": "ни хао",
+                          "ipa": "ni˨˩˦ xaʊ˨˩˦"
+                        }
+                      },
+                      {
+                        "known": "Спасибо",
+                        "learning": "谢谢",
+                        "learningLexeme": {
+                          "primary": "谢谢",
+                          "script": "hani",
+                          "pinyin": "xièxie",
+                          "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+                          "palladius": "сие сие",
+                          "ipa": "ɕiɛ˥˩ ɕiɛ"
+                        }
+                      },
+                      {
+                        "known": "До свидания",
+                        "learning": "再见",
+                        "learningLexeme": {
+                          "primary": "再见",
+                          "script": "hani",
+                          "pinyin": "zàijiàn",
+                          "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
+                          "palladius": "цзай цзянь",
+                          "ipa": "tsai˥˩ tɕiɛn˥˩"
+                        }
+                      }
+                    ],
+                    "courseId": "course-zh-conversation",
+                    "lessonId": "lesson-zh-quick-start",
+                    "scenarioId": "scenario-zh-greetings"
                   },
                   "order": 1,
                   "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
-                    "pinyin": null,
+                    "pinyin": "pèiduì",
                     "tones": null
                   }
                 },
                 {
                   "card": {
                     "id": "symbol-zh-1",
-                    "kind": "symbol"
+                    "kind": "symbol",
+                    "title": "Иероглифы приветствия",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Выберите иероглиф слова «Привет»",
+                    "optionsKnown": [
+                      "Привет",
+                      "Спасибо",
+                      "До свидания",
+                      "Пожалуйста"
+                    ],
+                    "correctIndex": 0,
+                    "symbols": [
+                      "你好",
+                      "谢谢",
+                      "再见",
+                      "请"
+                    ],
+                    "symbolLexemes": [
+                      {
+                        "primary": "你好",
+                        "script": "hani",
+                        "pinyin": "nǐ hǎo",
+                        "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                        "palladius": "ни хао",
+                        "ipa": "ni˨˩˦ xaʊ˨˩˦",
+                        "glossKnown": "Привет"
+                      },
+                      {
+                        "primary": "谢谢",
+                        "script": "hani",
+                        "pinyin": "xièxie",
+                        "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+                        "palladius": "сие сие",
+                        "ipa": "ɕiɛ˥˩ ɕiɛ",
+                        "glossKnown": "Спасибо"
+                      },
+                      {
+                        "primary": "再见",
+                        "script": "hani",
+                        "pinyin": "zàijiàn",
+                        "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
+                        "palladius": "цзай цзянь",
+                        "ipa": "tsai˥˩ tɕiɛn˥˩",
+                        "glossKnown": "До свидания"
+                      },
+                      {
+                        "primary": "请",
+                        "script": "hani",
+                        "pinyin": "qǐng",
+                        "zhuyin": "ㄑㄧㄥˇ",
+                        "palladius": "цин",
+                        "ipa": "tɕʰiŋ˨˩˦",
+                        "glossKnown": "Пожалуйста"
+                      }
+                    ],
+                    "courseId": "course-zh-conversation",
+                    "lessonId": "lesson-zh-quick-start",
+                    "scenarioId": "scenario-zh-greetings"
                   },
                   "order": 2,
                   "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
                     "pinyin": null,
@@ -96,13 +259,33 @@
                 {
                   "card": {
                     "id": "sound-zh-1",
-                    "kind": "sound"
+                    "kind": "sound",
+                    "title": "Звук (китайский)",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Как переводится услышанное слово?",
+                    "optionsKnown": [
+                      "Привет",
+                      "Спасибо",
+                      "До свидания",
+                      "Пожалуйста"
+                    ],
+                    "correctIndex": 0,
+                    "audioLabelLearning": "你好",
+                    "courseId": "course-zh-conversation",
+                    "lessonId": "lesson-zh-quick-start",
+                    "scenarioId": "scenario-zh-greetings"
                   },
                   "order": 3,
                   "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
-                    "pinyin": null,
+                    "pinyin": "nǐ hǎo",
                     "tones": null
                   }
                 }
@@ -115,7 +298,16 @@
             "id": "lesson-zh-review",
             "title": "Закрепление",
             "description": "Смешанная практика после быстрого старта.",
-            "programId": "course-zh-conversation-program"
+            "programId": "course-zh-conversation-program",
+            "scenarioIds": [
+              "scenario-zh-review"
+            ],
+            "prerequisiteLessonIds": [
+              "lesson-zh-quick-start"
+            ],
+            "order": 1,
+            "updatedAt": "2026-11-18T05:23:22.821Z",
+            "courseId": "course-zh-conversation"
           },
           "order": 1,
           "scenarios": [
@@ -124,46 +316,157 @@
                 "id": "scenario-zh-review",
                 "title": "Закрепление (китайский)",
                 "description": "3 карточки: на время, выбор и пары.",
-                "lessonId": "lesson-zh-review"
+                "lessonId": "lesson-zh-review",
+                "courseId": "course-zh-conversation",
+                "programId": "course-zh-conversation-program",
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "timed-zh-1",
+                    "select-zh-1",
+                    "memory-zh-1"
+                  ]
+                },
+                "order": 0,
+                "published": true,
+                "updatedAt": "2026-11-18T05:23:22.821Z"
               },
               "order": 0,
               "cards": [
                 {
                   "card": {
                     "id": "timed-zh-1",
-                    "kind": "timed"
+                    "kind": "timed",
+                    "title": "На время (китайский)",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Быстрый перевод: Спасибо",
+                    "optionsLearning": [
+                      "谢谢",
+                      "你好",
+                      "再见"
+                    ],
+                    "optionsKnown": [
+                      "Спасибо",
+                      "Привет",
+                      "До свидания"
+                    ],
+                    "correctIndex": 0,
+                    "timeLimitSec": 30,
+                    "courseId": "course-zh-conversation",
+                    "lessonId": "lesson-zh-review",
+                    "scenarioId": "scenario-zh-review"
                   },
                   "order": 0,
                   "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
-                    "pinyin": null,
+                    "pinyin": "xièxie",
                     "tones": null
                   }
                 },
                 {
                   "card": {
                     "id": "select-zh-1",
-                    "kind": "select"
+                    "kind": "select",
+                    "title": "Приветствие (китайский)",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Как сказать «Привет» по-китайски?",
+                    "optionsLearning": [
+                      "你好",
+                      "谢谢",
+                      "再见",
+                      "请"
+                    ],
+                    "optionsKnown": [
+                      "Привет",
+                      "Спасибо",
+                      "До свидания",
+                      "Пожалуйста"
+                    ],
+                    "correctIndex": 0,
+                    "courseId": "course-zh-conversation",
+                    "lessonId": "lesson-zh-review",
+                    "scenarioId": "scenario-zh-review"
                   },
                   "order": 1,
                   "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
-                    "pinyin": null,
+                    "pinyin": "nǐ hǎo",
                     "tones": null
                   }
                 },
                 {
                   "card": {
                     "id": "memory-zh-1",
-                    "kind": "memory"
+                    "kind": "memory",
+                    "title": "Пары слов (китайский)",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "promptKnown": "Найдите пары: русский — китайский",
+                    "pairs": [
+                      {
+                        "known": "Привет",
+                        "learning": "你好",
+                        "learningLexeme": {
+                          "primary": "你好",
+                          "script": "hani",
+                          "pinyin": "nǐ hǎo",
+                          "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+                          "palladius": "ни хао",
+                          "ipa": "ni˨˩˦ xaʊ˨˩˦"
+                        }
+                      },
+                      {
+                        "known": "Спасибо",
+                        "learning": "谢谢",
+                        "learningLexeme": {
+                          "primary": "谢谢",
+                          "script": "hani",
+                          "pinyin": "xièxie",
+                          "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+                          "palladius": "сие сие",
+                          "ipa": "ɕiɛ˥˩ ɕiɛ"
+                        }
+                      },
+                      {
+                        "known": "До свидания",
+                        "learning": "再见",
+                        "learningLexeme": {
+                          "primary": "再见",
+                          "script": "hani",
+                          "pinyin": "zàijiàn",
+                          "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
+                          "palladius": "цзай цзянь",
+                          "ipa": "tsai˥˩ tɕiɛn˥˩"
+                        }
+                      }
+                    ],
+                    "courseId": "course-zh-conversation",
+                    "lessonId": "lesson-zh-review",
+                    "scenarioId": "scenario-zh-review"
                   },
                   "order": 2,
                   "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
                     "difficulty": "beginner",
                     "tags": [],
-                    "pinyin": null,
+                    "pinyin": "pèiduì",
                     "tones": null
                   }
                 }

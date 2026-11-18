@@ -3,6 +3,7 @@ import type { Lesson } from '../model';
 import type { Program } from '../../program/model';
 import type { Scenario } from '../../scenario/model';
 import type { CardIndexMetaOverride } from '../../card/model';
+import type { ToneMark } from '../../phonetic/model/phonetic-content.types';
 import type {
   CourseBundle,
   CourseBundleValidation,
@@ -129,21 +130,41 @@ export function collectCourseBundle(
     bundleCards.push(card);
   }
 
-  // 6. Собрать cardIndexMeta
+  // 6. Собрать cardIndexMeta + извлечь pinyin/tones из card.promptLexeme
+  function extractPinyin(card: Card): string | null {
+    const lexeme = (card as Record<string, unknown>)['promptLexeme'] as
+      | { pinyin?: string }
+      | undefined;
+    return lexeme?.pinyin ?? null;
+  }
+
+  function extractTones(card: Card): readonly ToneMark[] | null {
+    const lexeme = (card as Record<string, unknown>)['promptLexeme'] as
+      | { tones?: readonly ToneMark[] }
+      | undefined;
+    return lexeme?.tones ?? null;
+  }
+
   const bundleMeta: Record<string, CardIndexMetaOverride> = {};
   for (const cid of cardIds) {
     const card = cards.find((c) => c.id === cid);
     if (!card) {
       continue;
     }
-    const effectiveMeta = card.meta ?? cardIndexMeta[cid];
-    if (effectiveMeta) {
-      bundleMeta[cid] = effectiveMeta;
-    } else {
+    const baseMeta = card.meta ?? cardIndexMeta[cid];
+    if (!baseMeta) {
       errors.push(
         `Мета-информация для карточки ${cid} не найдена (нет в card.meta и user-content-overlay)`,
       );
+      continue;
     }
+    // pinyin / tones — обязательные поля формата v2
+    const meta: CardIndexMetaOverride = {
+      ...baseMeta,
+      pinyin: baseMeta.pinyin ?? extractPinyin(card),
+      tones: baseMeta.tones ?? extractTones(card),
+    };
+    bundleMeta[cid] = meta;
   }
 
   if (errors.length > 0) {
