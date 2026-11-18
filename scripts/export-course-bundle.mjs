@@ -96,18 +96,44 @@ function loadCourse(fixturePath) {
   return JSON.parse(readFileSync(fullPath, 'utf8'));
 }
 
+// ─── Загрузка карточек из card-файлов manifest ─────────────────────────────────
+
+/**
+ * Загружает все карточки из card-файлов manifest в Map по ID.
+ * Используется для подгрузки карточек по _cardIds (C++ курс).
+ */
+function loadAllCardsFromManifest(manifest) {
+  const cardMap = new Map(); // cardId -> card
+
+  for (const file of manifest.cardFiles) {
+    try {
+      const fullPath = join(dataDir, file.replace(/^\//, ''));
+      const data = JSON.parse(readFileSync(fullPath, 'utf8'));
+      if (Array.isArray(data.cards)) {
+        for (const card of data.cards) {
+          cardMap.set(card.id, card);
+        }
+      }
+    } catch {
+      // Card file may not exist — skip
+    }
+  }
+
+  return cardMap;
+}
+
 // ─── Сбор карточек из двух источников ─────────────────────────────────────────
 
 /**
  * Собирает все карточки из nested scenarios:
  * 1. Inline cards[] ( populated in demo courses )
- * 2. _cardIds fallback ( used in C++ course )
+ * 2. _cardIds fallback ( used in C++ course ) — загружает из card-файлов
  *
- * Для _cardIds возвращает только id — полные объекты карточек подгружаются
- * из card-файлов manifest (если нужно). Для v2 экспорта достаточно id.
+ * @param {object} fixture — seed-курс
+ * @param {Map} cardMap — карта всех карточек из manifest (для _cardIds)
  */
-function collectCardsFromScenarios(fixture) {
-  const cardMap = new Map(); // id -> { card, order }
+function collectCardsFromScenarios(fixture, cardMap) {
+  const cardMapResult = new Map(); // id -> { card, order }
 
   for (const program of fixture.programs) {
     for (const lesson of program.lessons) {
@@ -116,8 +142,16 @@ function collectCardsFromScenarios(fixture) {
         if (Array.isArray(scenario.cards) && scenario.cards.length > 0) {
           for (let i = 0; i < scenario.cards.length; i++) {
             const card = scenario.cards[i];
-            if (!cardMap.has(card.id)) {
-              cardMap.set(card.id, { card, order: i, scenarioId: scenario.id, lessonId: lesson.id, courseId: fixture.id });
+            if (!cardMapResult.has(card.id)) {
+              cardMapResult.set(card.id, { card, order: i, scenarioId: scenario.id, lessonId: lesson.id, courseId: fixture.id });
+            }
+          }
+        } else if (Array.isArray(scenario._cardIds) && scenario._cardIds.length > 0) {
+          // _cardIds: загружаем карточки из manifest
+          for (const cardId of scenario._cardIds) {
+            const card = cardMap.get(cardId);
+            if (card && !cardMapResult.has(card.id)) {
+              cardMapResult.set(card.id, { card, order: 0, scenarioId: scenario.id, lessonId: lesson.id, courseId: fixture.id });
             }
           }
         }
@@ -125,7 +159,7 @@ function collectCardsFromScenarios(fixture) {
     }
   }
 
-  return cardMap;
+  return cardMapResult;
 }
 
 /**
@@ -145,7 +179,7 @@ function getCardIdsForScenario(scenario) {
 
 // ─── Трансформация в v2 ──────────────────────────────────────────────────────
 
-function transformToV2(fixture) {
+function transformToV2(fixture, cardMap) {
   const now = new Date().toISOString();
 
   // Собираем cardSource для каждого сценария
@@ -192,7 +226,13 @@ function transformToV2(fixture) {
         },
         order: lesson.order,
         scenarios: lesson.scenarios.map((scenario) => {
-          const cardIds = getCardIdsForScenario(scenario);
+          // Для inline cards[] используем напрямую, для _cardIds — загружаем из cardMap
+          let cardsArray = scenario.cards ?? [];
+          if (cardsArray.length === 0 && Array.isArray(scenario._cardIds)) {
+            cardsArray = scenario._cardIds
+              .map((cardId) => cardMap.get(cardId))
+              .filter(Boolean);
+          }
 
           return {
             scenario: {
@@ -204,7 +244,7 @@ function transformToV2(fixture) {
               cardSource: scenarioCardSources.get(scenario.id) ?? { mode: 'fixed', cardIds: [] },
             },
             order: scenario.order,
-            cards: (scenario.cards ?? []).map((card, cardOrder) => ({
+            cards: cardsArray.map((card, cardOrder) => ({
               card: {
                 id: card.id,
                 kind: card.kind,
@@ -296,7 +336,7 @@ function main() {
     console.error('Использование:');
     console.error('  node scripts/export-course-bundle.mjs --slug <slug> [--output <path>]');
     console.error('');
-    console.error('  --slug     Уникальный идентификатор курса (обязательно)');
+    console.error('  --slug     Уникальный идентификатор курса для экспорта (обязательно)');
     console.error('  --output   Путь к выходному файлу (по умолчанию: ./export/<slug>.linguacode-course.json)');
     process.exit(1);
   }
@@ -309,10 +349,14 @@ function main() {
   console.log(`\nЭкспорт курса «${fixture.title}» (slug: ${opts.slug}):`);
   console.log(`  источник: ${fixturePath}`);
 
-  // 2. Трансформация в v2
-  const v2 = transformToV2(fixture);
+  // 2. Загружаем все карточки из manifest (для _cardIds fallback)
+  const cardMap = loadAllCardsFromManifest(manifest);
+  console.log(`  загружено карточек из manifest: ${cardMap.size}`);
 
-  // 3. Проверка замыкания зависимостей
+  // 3. Трансформация в v2
+  const v2 = transformToV2(fixture, cardMap);
+
+  // 4. Проверка замыкания зависимостей
   const closureErrors = verifyDependencyClosure(v2);
   if (closureErrors.length > 0) {
     console.error('\nОшибки замыкания зависимостей:');
@@ -322,7 +366,7 @@ function main() {
     process.exit(1);
   }
 
-  // 4. Подсчёт статистики
+  // 5. Подсчёт статистики
   let totalLessons = 0;
   let totalScenarios = 0;
   let totalCards = 0;
@@ -340,7 +384,7 @@ function main() {
   console.log(`  scenarios: ${totalScenarios}`);
   console.log(`  cards (inline): ${totalCards}`);
 
-  // 5. Запись
+  // 6. Запись
   const outputPath = opts.output || join(root, 'export', `${opts.slug}.linguacode-course.json`);
   writeBundle(outputPath, v2);
 

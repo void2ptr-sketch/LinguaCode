@@ -1,0 +1,59 @@
+{
+  "formatVersion": 2,
+  "exportedAt": "2026-11-18T04:11:11.187Z",
+  "course": {
+    "id": "test-valid-course",
+    "title": "Test",
+    "description": "",
+    "practiceSettings": null,
+    "published": true,
+    "programIds": [
+      "prog-1"
+    ]
+  },
+  "programs": [
+    {
+      "program": {
+        "id": "prog-1",
+        "title": "P",
+        "description": "",
+        "lessonIds": [
+          "les-1"
+        ],
+        "prerequisiteProgramIds": []
+      },
+      "order": 0,
+      "lessons": [
+        {
+          "lesson": {
+            "id": "les-1",
+            "title": "L",
+            "description": "",
+            "scenarioIds": [
+              "sc-1"
+            ],
+            "prerequisiteLessonIds": []
+          },
+          "order": 0,
+          "scenarios": [
+            {
+              "scenario": {
+                "id": "sc-1",
+                "title": "S",
+                "description": "",
+                "languagePair": null,
+                "published": false,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": []
+                }
+              },
+              "order": 0,
+              "cards": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

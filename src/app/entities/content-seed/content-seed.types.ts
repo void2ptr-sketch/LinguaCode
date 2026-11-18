@@ -47,8 +47,11 @@ export type CoursesSeedFixture = {
  *
  * @remarks
  * Used to load card JSON files during the content seed initialization process.
+ * The top-level `scenarioId` identifies which scenario these cards belong to.
  */
 export type CardsSeedFixture = {
+  /** Scenario identifier for all cards in this file. */
+  scenarioId?: string;
   /** Array of card objects to seed. */
   cards: readonly Card[];
 };

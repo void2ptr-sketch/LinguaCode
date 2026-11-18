@@ -1,0 +1,703 @@
+{
+  "formatVersion": 2,
+  "exportedAt": "2026-11-18T04:11:10.833Z",
+  "course": {
+    "id": "course-demo-card-kinds",
+    "title": "Все типы карточек — Демо",
+    "description": "Демо-программа ru→en: обзор всех 13 типов карточек, по сценарию на каждый тип.",
+    "languagePair": {
+      "known": "ru",
+      "learning": "en"
+    },
+    "practiceSettings": null,
+    "published": true,
+    "authoring": null,
+    "programIds": [
+      "course-demo-card-kinds-program"
+    ]
+  },
+  "programs": [
+    {
+      "program": {
+        "id": "course-demo-card-kinds-program",
+        "title": "Все типы карточек — Демо",
+        "description": "Демо-программа ru→en: обзор всех 13 типов карточек, по сценарию на каждый тип.",
+        "lessonIds": [
+          "demo-lesson-card-kinds-1",
+          "demo-lesson-card-kinds-2",
+          "demo-lesson-card-kinds-3"
+        ],
+        "prerequisiteProgramIds": []
+      },
+      "order": 0,
+      "lessons": [
+        {
+          "lesson": {
+            "id": "demo-lesson-card-kinds-1",
+            "title": "Часть 1: выбор, код, память, символы, звук",
+            "description": "5 сценариев: select, code-select, memory, symbol, sound.",
+            "scenarioIds": [
+              "scenario-demo-select",
+              "scenario-demo-code-select",
+              "scenario-demo-memory",
+              "scenario-demo-symbol",
+              "scenario-demo-sound"
+            ],
+            "prerequisiteLessonIds": []
+          },
+          "order": 0,
+          "scenarios": [
+            {
+              "scenario": {
+                "id": "scenario-demo-select",
+                "title": "Выбор ответа",
+                "description": "Выбор правильного перевода из вариантов (kind: select).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "select-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "select-1",
+                    "kind": "select",
+                    "title": "Приветствие",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Как сказать «Привет» по-английски?",
+                    "optionsLearning": [
+                      "Hello",
+                      "Goodbye",
+                      "Thanks",
+                      "Please"
+                    ],
+                    "optionsKnown": [
+                      "Привет",
+                      "Пока",
+                      "Спасибо",
+                      "Пожалуйста"
+                    ],
+                    "correctIndex": 0,
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-1",
+                    "scenarioId": "scenario-demo-select"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            },
+            {
+              "scenario": {
+                "id": "scenario-demo-code-select",
+                "title": "Код: выбор ответа",
+                "description": "Выбор корректного фрагмента кода (kind: code-select).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "code-select-cpp-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "code-select-cpp-1",
+                    "kind": "code-select",
+                    "title": "C++: const reference",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "correctIndex": 0,
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-1",
+                    "scenarioId": "scenario-demo-code-select"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            },
+            {
+              "scenario": {
+                "id": "scenario-demo-memory",
+                "title": "Запоминание",
+                "description": "Сопоставление пар перевода (kind: memory).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "memory-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "memory-1",
+                    "kind": "memory",
+                    "title": "Пары слов",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "promptKnown": "Найдите пары перевода",
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-1",
+                    "scenarioId": "scenario-demo-memory"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            },
+            {
+              "scenario": {
+                "id": "scenario-demo-symbol",
+                "title": "Символы",
+                "description": "Выбор символа по значению (kind: symbol).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "symbol-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "symbol-1",
+                    "kind": "symbol",
+                    "title": "Символы",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Выберите символ приветствия",
+                    "optionsKnown": [
+                      "Приветствие",
+                      "Ночь",
+                      "Огонь",
+                      "Снег"
+                    ],
+                    "correctIndex": 0,
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-1",
+                    "scenarioId": "scenario-demo-symbol"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            },
+            {
+              "scenario": {
+                "id": "scenario-demo-sound",
+                "title": "Звук",
+                "description": "Распознавание слова на слух (kind: sound).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "sound-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "sound-1",
+                    "kind": "sound",
+                    "title": "Звук",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Как переводится услышанное слово?",
+                    "optionsKnown": [
+                      "Привет",
+                      "Пока",
+                      "Спасибо",
+                      "Пожалуйста"
+                    ],
+                    "correctIndex": 0,
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-1",
+                    "scenarioId": "scenario-demo-sound"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "lesson": {
+            "id": "demo-lesson-card-kinds-2",
+            "title": "Часть 2: время, клавиатура, рисование, тон, чтение",
+            "description": "5 сценариев: timed, keyboard, draw, tone, reading.",
+            "scenarioIds": [
+              "scenario-demo-timed",
+              "scenario-demo-keyboard",
+              "scenario-demo-draw",
+              "scenario-demo-tone",
+              "scenario-demo-reading"
+            ],
+            "prerequisiteLessonIds": []
+          },
+          "order": 1,
+          "scenarios": [
+            {
+              "scenario": {
+                "id": "scenario-demo-timed",
+                "title": "На время",
+                "description": "Ответ с ограничением по времени (kind: timed).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "timed-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "timed-1",
+                    "kind": "timed",
+                    "title": "На время",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Быстрый перевод: Thanks",
+                    "optionsLearning": [
+                      "Спасибо",
+                      "Привет",
+                      "До свидания"
+                    ],
+                    "optionsKnown": [
+                      "Thanks",
+                      "Hello",
+                      "Goodbye"
+                    ],
+                    "correctIndex": 0,
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-2",
+                    "scenarioId": "scenario-demo-timed"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            },
+            {
+              "scenario": {
+                "id": "scenario-demo-keyboard",
+                "title": "Клавиатура",
+                "description": "Ввод ответа с клавиатуры (kind: keyboard).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "keyboard-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "keyboard-1",
+                    "kind": "keyboard",
+                    "title": "Ввод с клавиатуры",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Введите перевод слова «Hello»",
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-2",
+                    "scenarioId": "scenario-demo-keyboard"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            },
+            {
+              "scenario": {
+                "id": "scenario-demo-draw",
+                "title": "Рисование",
+                "description": "Рисование символа на канвасе (kind: draw).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "draw-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "draw-1",
+                    "kind": "draw",
+                    "title": "Рисование",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "promptKnown": "Нарисуйте символ, связанный со словом Hello",
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-2",
+                    "scenarioId": "scenario-demo-draw"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            },
+            {
+              "scenario": {
+                "id": "scenario-demo-tone",
+                "title": "Тон",
+                "description": "Определение тона слога (kind: tone, пример из китайского модуля).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "tone-ma-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "tone-ma-1",
+                    "kind": "tone",
+                    "title": "Тон: 妈",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Какой тон у иероглифа «妈»?",
+                    "correctIndex": 0,
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-2",
+                    "scenarioId": "scenario-demo-tone"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            },
+            {
+              "scenario": {
+                "id": "scenario-demo-reading",
+                "title": "Чтение (полифония)",
+                "description": "Чтение с выбором интерпретации (kind: reading, пример из китайского модуля).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "reading-xing-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "reading-xing-1",
+                    "kind": "reading",
+                    "title": "Полифония: 行",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "direction": "known-to-learning",
+                    "promptKnown": "Как читается «银行»? (иероглиф «行» здесь читается не как xíng)",
+                    "optionsLearning": [
+                      "银行",
+                      "yínxíng"
+                    ],
+                    "optionsKnown": [
+                      "инь хан — банк",
+                      "неверное чтение «行» как xíng"
+                    ],
+                    "correctIndex": 0,
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-2",
+                    "scenarioId": "scenario-demo-reading"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "lesson": {
+            "id": "demo-lesson-card-kinds-3",
+            "title": "Часть 3: переворот, пропуск, код-trace",
+            "description": "3 сценария: flip, cloze, code-trace.",
+            "scenarioIds": [
+              "scenario-demo-flip",
+              "scenario-demo-cloze",
+              "scenario-demo-code-trace"
+            ],
+            "prerequisiteLessonIds": []
+          },
+          "order": 2,
+          "scenarios": [
+            {
+              "scenario": {
+                "id": "scenario-demo-flip",
+                "title": "Переворот",
+                "description": "Классическая карточка-переворот (kind: flip).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "flip-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "flip-1",
+                    "kind": "flip",
+                    "title": "Карточка-переворот: приветствие",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-3",
+                    "scenarioId": "scenario-demo-flip"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            },
+            {
+              "scenario": {
+                "id": "scenario-demo-cloze",
+                "title": "Пропуск в тексте",
+                "description": "Заполнение пропуска в предложении (kind: cloze).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "cloze-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "cloze-1",
+                    "kind": "cloze",
+                    "title": "Пропуск: спряжение глагола",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "promptKnown": "I ___ coffee every morning.",
+                    "correctIndex": 1,
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-3",
+                    "scenarioId": "scenario-demo-cloze"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "beginner",
+                    "tags": []
+                  }
+                }
+              ]
+            },
+            {
+              "scenario": {
+                "id": "scenario-demo-code-trace",
+                "title": "Код: что выведет?",
+                "description": "Предсказание вывода кода (kind: code-trace).",
+                "languagePair": {
+                  "known": "ru",
+                  "learning": "en"
+                },
+                "published": true,
+                "cardSource": {
+                  "mode": "fixed",
+                  "cardIds": [
+                    "code-trace-cpp-1"
+                  ]
+                }
+              },
+              "order": 0,
+              "cards": [
+                {
+                  "card": {
+                    "id": "code-trace-cpp-1",
+                    "kind": "code-trace",
+                    "title": "C++: что выведет код?",
+                    "appearance": {
+                      "theme": "azure-blue",
+                      "fontSize": "md"
+                    },
+                    "correctIndex": 1,
+                    "courseId": "course-demo-card-kinds",
+                    "lessonId": "demo-lesson-card-kinds-3",
+                    "scenarioId": "scenario-demo-code-trace"
+                  },
+                  "order": 0,
+                  "meta": {
+                    "knownLanguage": "ru",
+                    "learningLanguage": "en",
+                    "difficulty": "intermediate",
+                    "tags": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
