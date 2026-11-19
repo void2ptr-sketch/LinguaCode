@@ -37,8 +37,7 @@ describe('authRefreshInterceptor', () => {
 
   afterEach(() => {
     httpMock.verify();
-    vi.restoreAllMocks();
-    TestBed.resetTestingModule();
+    vi.clearAllMocks();
   });
 
   it('should refresh and retry the request with a fresh token after 401', async () => {
