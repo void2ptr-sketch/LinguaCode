@@ -1,4 +1,3 @@
-import { vi } from 'vitest';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
@@ -13,13 +12,15 @@ describe('authRefreshInterceptor', () => {
   let http: HttpClient;
   let httpMock: HttpTestingController;
 
-  const mockAuthStore = {
+  const createMockAuthStore = () => ({
     refreshSession: vi.fn().mockResolvedValue(false),
     accessToken: vi.fn().mockReturnValue(null),
-  };
+  });
+
+  let mockAuthStore: ReturnType<typeof createMockAuthStore>;
 
   beforeEach(() => {
-    vi.clearAllMocks();
+    mockAuthStore = createMockAuthStore();
 
     TestBed.configureTestingModule({
       providers: [
@@ -37,7 +38,7 @@ describe('authRefreshInterceptor', () => {
 
   afterEach(() => {
     httpMock.verify();
-    vi.clearAllMocks();
+    TestBed.resetTestingModule();
   });
 
   it('should refresh and retry the request with a fresh token after 401', async () => {
