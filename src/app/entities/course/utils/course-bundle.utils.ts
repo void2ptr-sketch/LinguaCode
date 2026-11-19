@@ -133,15 +133,13 @@ export function collectCourseBundle(
   // 6. Собрать cardIndexMeta + извлечь pinyin/tones из card.promptLexeme
   function extractPinyin(card: Card): string | null {
     const lexeme = (card as Record<string, unknown>)['promptLexeme'] as
-      | { pinyin?: string }
-      | undefined;
+      { pinyin?: string } | undefined;
     return lexeme?.pinyin ?? null;
   }
 
   function extractTones(card: Card): readonly ToneMark[] | null {
     const lexeme = (card as Record<string, unknown>)['promptLexeme'] as
-      | { tones?: readonly ToneMark[] }
-      | undefined;
+      { tones?: readonly ToneMark[] } | undefined;
     // Если promptLexeme отсутствует — возвращаем null (не undefined)
     if (!lexeme) return null;
     // Если tones есть — возвращаем; если undefined — null
@@ -194,7 +192,13 @@ export function collectCourseBundle(
           if (card && meta) {
             // Remove cross-entity references from card
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { courseId: _cc, lessonId: _cl, scenarioId: _cs, programId: _cp, ...cardClean } = card;
+            const {
+              courseId: _cc,
+              lessonId: _cl,
+              scenarioId: _cs,
+              programId: _cp,
+              ...cardClean
+            } = card;
             bundledCards.push({
               card: {
                 ...cardClean,
@@ -464,10 +468,7 @@ function validateCourseBundleV2(bundle: CourseBundle): CourseBundleValidation {
         }
 
         // Проверить замкнутость ссылок в сценарии
-        if (
-          sb.scenario.cardSource.mode === 'fixed' ||
-          sb.scenario.cardSource.mode === 'snapshot'
-        ) {
+        if (sb.scenario.cardSource.mode === 'fixed' || sb.scenario.cardSource.mode === 'snapshot') {
           for (const cid of sb.scenario.cardSource.cardIds) {
             if (!cardIds.has(cid)) {
               errors.push(`Карточка ${cid} указана в сценарии, но отсутствует в пакете`);

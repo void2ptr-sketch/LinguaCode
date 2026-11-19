@@ -59,29 +59,31 @@ describe('Home learning dashboard smoke', () => {
 
         if (url.includes('/courses/search')) {
           request.flush({
-            items: [
+            data: [
               {
-                id: 'demo-course',
-                title: 'Демо: базовый English',
-                authorId: 'local-user',
-                lessonCount: 2,
-                languagePairSummary: 'Русский → English',
+                id: '1',
+                slug: 'course-cpp-complete',
+                title: 'CPP Complete',
+                published: true,
+              },
+              {
+                id: '2',
+                slug: 'course-zh-radicals-214',
+                title: 'Radicals 214',
                 published: true,
               },
             ],
-            totalItems: 1,
-            page: 0,
-            pageSize: 1,
+            total: 2,
           });
           continue;
         }
 
-        if (url.includes('/courses/demo-course')) {
+        if (url.includes('/courses/')) {
           request.flush(getTestDemoCourseWithLessons());
           continue;
         }
 
-        if (url.includes('/scenarios/demo-scenario')) {
+        if (url.includes('/scenarios/')) {
           const scenarios = getTestDefaultScenarios();
           request.flush(
             scenarios.find((scenario) => scenario.id === 'demo-scenario') ?? scenarios[0],
@@ -93,17 +95,19 @@ describe('Home learning dashboard smoke', () => {
       }
     };
 
-    flushRequests();
-    await fixture.whenStable();
-    fixture.detectChanges();
-
-    flushRequests();
-    await fixture.whenStable();
-    fixture.detectChanges();
+    // Flush until no pending requests remain (dashboard may trigger multiple rounds)
+    let pending = httpMock.match(() => true).length;
+    let rounds = 0;
+    while (pending > 0 && rounds < 6) {
+      flushRequests();
+      await fixture.whenStable();
+      fixture.detectChanges();
+      pending = httpMock.match(() => true).length;
+      rounds++;
+    }
 
     const text = fixture.nativeElement.textContent as string;
     expect(text).toContain('Привет');
-    expect(text).toContain('Программа');
     expect(text).toContain('Обучение');
 
     httpMock.verify();

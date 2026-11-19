@@ -64,7 +64,11 @@ describe('course-authoring.utils', () => {
     });
 
     it('should keep authoring with non-empty idea', () => {
-      const result = normalizeCourseAuthoring({ idea: 'My idea', status: 'draft', lastError: null });
+      const result = normalizeCourseAuthoring({
+        idea: 'My idea',
+        status: 'draft',
+        lastError: null,
+      });
       expect(result).toBeDefined();
       expect(result!.idea).toBe('My idea');
       expect(result!.status).toBe('draft');
@@ -207,13 +211,15 @@ describe('course-authoring.utils', () => {
     });
 
     it('should return true for undefined and empty', () => {
-      expect(sameCourseAuthoring(undefined, { idea: '', status: 'draft', lastError: null })).toBe(true);
+      expect(sameCourseAuthoring(undefined, { idea: '', status: 'draft', lastError: null })).toBe(
+        true,
+      );
     });
 
     it('should return false for undefined and non-empty', () => {
-      expect(sameCourseAuthoring(undefined, { idea: 'Test', status: 'draft' as const, lastError: null })).toBe(
-        false,
-      );
+      expect(
+        sameCourseAuthoring(undefined, { idea: 'Test', status: 'draft' as const, lastError: null }),
+      ).toBe(false);
     });
 
     it('should return false when only whitespace differs in idea', () => {

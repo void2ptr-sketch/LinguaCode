@@ -37,7 +37,10 @@ import type { CourseFormDraft, CourseEditorMode } from '../types';
 import type { ExtractedEntities } from '../utils/course-bundle-import.utils';
 import type { UserContentOverlay } from '../../../entities/user/overlay/user-content-overlay.types';
 import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils';
-import { collectCourseBundle, validateCourseBundle } from '../../../entities/course/utils/course-bundle.utils';
+import {
+  collectCourseBundle,
+  validateCourseBundle,
+} from '../../../entities/course/utils/course-bundle.utils';
 import { CoursePdfExportService } from './course-pdf-export.service';
 import { extractEntitiesFromBundle } from '../utils/course-bundle-import.utils';
 import {
@@ -593,7 +596,9 @@ export class CourseBuilderStore {
     const courses = Object.keys(extracted.courses).filter((id) => id in overlay.courses).length;
     const programs = Object.keys(extracted.programs).filter((id) => id in overlay.programs).length;
     const lessons = Object.keys(extracted.lessons).filter((id) => id in overlay.lessons).length;
-    const scenarios = Object.keys(extracted.scenarios).filter((id) => id in overlay.scenarios).length;
+    const scenarios = Object.keys(extracted.scenarios).filter(
+      (id) => id in overlay.scenarios,
+    ).length;
     const cards = Object.keys(extracted.cards).filter((id) => id in overlay.cards).length;
     const total = courses + programs + lessons + scenarios + cards;
 

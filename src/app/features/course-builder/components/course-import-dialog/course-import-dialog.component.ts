@@ -19,9 +19,8 @@ import type { ImportConfirmResult, ImportPreview } from './course-import-dialog.
   styleUrl: './course-import-dialog.component.scss',
 })
 export class CourseImportDialogComponent {
-  private readonly dialogRef = inject<MatDialogRef<CourseImportDialogComponent, ImportConfirmResult>>(
-    MatDialogRef,
-  );
+  private readonly dialogRef =
+    inject<MatDialogRef<CourseImportDialogComponent, ImportConfirmResult>>(MatDialogRef);
   readonly data = inject<ImportPreview>(MAT_DIALOG_DATA);
 
   /** Warning message for large bundles approaching localStorage limits. */

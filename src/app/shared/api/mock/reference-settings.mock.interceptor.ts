@@ -73,30 +73,22 @@ export const referenceSettingsApiMockInterceptor: HttpInterceptorFn = (req, next
 
   // GET /reference/settings/validation
   if (req.method === 'GET' && req.url.endsWith('/api/v1/reference/settings/validation')) {
-    return of(
-      new HttpResponse({ status: 200, body: { data: DEFAULT_VALIDATION } }),
-    );
+    return of(new HttpResponse({ status: 200, body: { data: DEFAULT_VALIDATION } }));
   }
 
   // GET /reference/settings/pagination
   if (req.method === 'GET' && req.url.endsWith('/api/v1/reference/settings/pagination')) {
-    return of(
-      new HttpResponse({ status: 200, body: { data: DEFAULT_PAGINATION } }),
-    );
+    return of(new HttpResponse({ status: 200, body: { data: DEFAULT_PAGINATION } }));
   }
 
   // GET /reference/settings/sync
   if (req.method === 'GET' && req.url.endsWith('/api/v1/reference/settings/sync')) {
-    return of(
-      new HttpResponse({ status: 200, body: { data: DEFAULT_SYNC } }),
-    );
+    return of(new HttpResponse({ status: 200, body: { data: DEFAULT_SYNC } }));
   }
 
   // GET /reference/settings/chinese
   if (req.method === 'GET' && req.url.endsWith('/api/v1/reference/settings/chinese')) {
-    return of(
-      new HttpResponse({ status: 200, body: { data: DEFAULT_CHINESE } }),
-    );
+    return of(new HttpResponse({ status: 200, body: { data: DEFAULT_CHINESE } }));
   }
 
   // Pass through

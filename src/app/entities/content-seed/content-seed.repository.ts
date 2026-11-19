@@ -226,10 +226,18 @@ export class ContentSeedRepository {
     }
 
     const courseFixtures = await Promise.all(
-      manifest.courseFiles.map((file) => this.loadCourseFixture(file).catch((error) => {
-        this.logger.warn(`ContentSeed: failed to load course fixture "${file}", skipping`, error);
-        return { courses: [] as Course[], programs: [], lessons: [], cards: [] as Card[], scenarios: [] as Scenario[] };
-      })),
+      manifest.courseFiles.map((file) =>
+        this.loadCourseFixture(file).catch((error) => {
+          this.logger.warn(`ContentSeed: failed to load course fixture "${file}", skipping`, error);
+          return {
+            courses: [] as Course[],
+            programs: [],
+            lessons: [],
+            cards: [] as Card[],
+            scenarios: [] as Scenario[],
+          };
+        }),
+      ),
     );
 
     const courses = mergeCourseFixtures(courseFixtures);

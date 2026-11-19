@@ -351,11 +351,11 @@ type CoursePracticeSettings = {
 
 ```typescript
 type CourseExportBundle = {
-  courses: readonly Course[];           // курсы (seed + overlay)
-  programs: readonly Program[];         // программы (seed + overlay)
-  lessons: readonly Lesson[];           // уроки (seed + overlay)
-  scenarios: readonly Scenario[];       // все сценарии
-  cards: readonly Card[];               // все карточки
+  courses: readonly Course[]; // курсы (seed + overlay)
+  programs: readonly Program[]; // программы (seed + overlay)
+  lessons: readonly Lesson[]; // уроки (seed + overlay)
+  scenarios: readonly Scenario[]; // все сценарии
+  cards: readonly Card[]; // все карточки
   cardIndexMeta?: Record<string, CardIndexMetaOverride>; // метаданные индекса (опционально)
 };
 ```
@@ -485,46 +485,46 @@ type XapiStatement = {
 Все эндпоинты требуют `@PreAuthorize("isAuthenticated()")`. В dev-режиме при `authEnabled: false`
 запросы идут напрямую на бэкенд без токена — mock-интерсептор должен быть включён.
 
-| Метод | Путь                                        | Описание               |
-| ----- | ------------------------------------------- | ---------------------- |
-| GET   | `/reference/settings/validation`            | Правила валидации      |
-| GET   | `/reference/settings/pagination`            | Настройки пагинации    |
-| GET   | `/reference/settings/sync`                  | Настройки синхронизации|
-| GET   | `/reference/settings/chinese`               | Настройки китайского   |
+| Метод | Путь                             | Описание                |
+| ----- | -------------------------------- | ----------------------- |
+| GET   | `/reference/settings/validation` | Правила валидации       |
+| GET   | `/reference/settings/pagination` | Настройки пагинации     |
+| GET   | `/reference/settings/sync`       | Настройки синхронизации |
+| GET   | `/reference/settings/chinese`    | Настройки китайского    |
 
 Ответ: `ApiOneResponse<T>` — обёртка `{ "data": T }`.
 
 ### ValidationRulesResponse
 
-| Поле                   | Тип    | Описание                         |
-| ---------------------- | ------ | -------------------------------- |
-| `maxTitleLength`       | number | Максимальная длина заголовка     |
-| `maxDescriptionLength` | number | Максимальная длина описания      |
-| `maxTagsPerEntity`     | number | Максимальное количество тегов    |
-| `requireTags`          | boolean| Обязательны ли теги              |
+| Поле                   | Тип     | Описание                      |
+| ---------------------- | ------- | ----------------------------- |
+| `maxTitleLength`       | number  | Максимальная длина заголовка  |
+| `maxDescriptionLength` | number  | Максимальная длина описания   |
+| `maxTagsPerEntity`     | number  | Максимальное количество тегов |
+| `requireTags`          | boolean | Обязательны ли теги           |
 
 ### PaginationSettingsResponse
 
-| Поле             | Тип   | Описание                     |
-| ---------------- | ----- | ---------------------------- |
-| `defaultPageSize`| number| Размер страницы по умолчанию |
-| `maxPageSize`    | number| Максимальный размер страницы |
+| Поле              | Тип    | Описание                     |
+| ----------------- | ------ | ---------------------------- |
+| `defaultPageSize` | number | Размер страницы по умолчанию |
+| `maxPageSize`     | number | Максимальный размер страницы |
 
 ### SyncSettingsResponse
 
-| Поле                 | Type   | Описание                        |
-| -------------------- | ------ | ------------------------------- |
-| `maxBatchSize`       | number | Максимальный размер батча       |
-| `syncTimeoutSeconds` | number | Таймаут синхронизации (сек)     |
+| Поле                 | Type   | Описание                    |
+| -------------------- | ------ | --------------------------- |
+| `maxBatchSize`       | number | Максимальный размер батча   |
+| `syncTimeoutSeconds` | number | Таймаут синхронизации (сек) |
 
 ### ChineseSettingsResponse
 
-| Поле             | Тип    | Описание                            |
-| ---------------- | ------ | ----------------------------------- |
-| `showPinyin`     | boolean| Показывать Пиньинь                  |
-| `showTones`      | boolean| Показывать тоны                     |
-| `showHanzi`      | boolean| Показывать Ханьзи                   |
-| `pinyinPosition` | string | Позиция Пиньиня: `above` / `below` / `right` |
+| Поле             | Тип     | Описание                                     |
+| ---------------- | ------- | -------------------------------------------- |
+| `showPinyin`     | boolean | Показывать Пиньинь                           |
+| `showTones`      | boolean | Показывать тоны                              |
+| `showHanzi`      | boolean | Показывать Ханьзи                            |
+| `pinyinPosition` | string  | Позиция Пиньиня: `above` / `below` / `right` |
 
 > **Fallback:** при ошибке или отсутствии данных в БД фронтенд использует дефолтные значения:
 > `maxTitleLength: 200`, `maxDescriptionLength: 2000`, `maxTagsPerEntity: 10`, `requireTags: false`,

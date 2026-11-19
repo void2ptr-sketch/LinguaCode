@@ -301,7 +301,7 @@ export class CoursesCatalogMockHandler {
    * @returns The export bundle with the resolved catalog, scenarios, cards, and metadata.
    * @throws `HttpErrorResponse` with status 404 if no course is found.
    */
-   async getBundle(courseId: string): Promise<CourseExportBundle> {
+  async getBundle(courseId: string): Promise<CourseExportBundle> {
     await this.ensureData();
 
     if (!this.catalog!.courses.some((course) => course.id === courseId)) {

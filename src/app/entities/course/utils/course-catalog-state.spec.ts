@@ -13,7 +13,10 @@ import {
 } from './course-catalog-state';
 import type { Course, Lesson } from '../model';
 import type { Program } from '../../program/model';
-import type { CoursesNestedFixture, ExportCourseBundle } from '../../content-seed/content-seed.types';
+import type {
+  CoursesNestedFixture,
+  ExportCourseBundle,
+} from '../../content-seed/content-seed.types';
 
 function makeCourse(overrides?: Partial<Course>): Course {
   return {
@@ -687,7 +690,14 @@ describe('course-catalog-state', () => {
       const exportBundle = {
         formatVersion: 2,
         exportedAt: '2026-01-01T00:00:00.000Z',
-        course: { id: 'c1', title: 'Test', description: '', languagePair: { source: 'ru', target: 'en' }, published: true, updatedAt: '' },
+        course: {
+          id: 'c1',
+          title: 'Test',
+          description: '',
+          languagePair: { source: 'ru', target: 'en' },
+          published: true,
+          updatedAt: '',
+        },
         programs: [{ program: { id: 'p1', title: 'P', description: '', order: 0 }, lessons: [] }],
       };
       expect(isExportFormat(exportBundle as unknown as Partial<Course[]>)).toBe(true);
@@ -853,10 +863,12 @@ describe('course-catalog-state', () => {
       const fixture = makeExportFixture();
       const result = normalizeExportCourseCatalog(fixture);
 
-      expect((result.cards[0] as { meta?: { difficulty?: string; tags?: string[] } }).meta).toEqual({
-        difficulty: 'easy',
-        tags: ['greeting'],
-      });
+      expect((result.cards[0] as { meta?: { difficulty?: string; tags?: string[] } }).meta).toEqual(
+        {
+          difficulty: 'easy',
+          tags: ['greeting'],
+        },
+      );
     });
 
     it('should map languagePair: source/target → known/learning', () => {
@@ -903,10 +915,29 @@ describe('course-catalog-state', () => {
                 order: 0,
                 scenarios: [
                   {
-                    scenario: { id: 's1', title: 'S1', description: '', order: 0, published: true, updatedAt: '' },
+                    scenario: {
+                      id: 's1',
+                      title: 'S1',
+                      description: '',
+                      order: 0,
+                      published: true,
+                      updatedAt: '',
+                    },
                     order: 0,
                     cards: [
-                      { card: { id: 'c1', kind: 'select', title: 'C1', appearance: { theme: 'a', fontSize: 'md' }, direction: 'known-to-learning' as const, promptKnown: 'a', optionsLearning: ['b'], correctIndex: 0 }, order: 0 },
+                      {
+                        card: {
+                          id: 'c1',
+                          kind: 'select',
+                          title: 'C1',
+                          appearance: { theme: 'a', fontSize: 'md' },
+                          direction: 'known-to-learning' as const,
+                          promptKnown: 'a',
+                          optionsLearning: ['b'],
+                          correctIndex: 0,
+                        },
+                        order: 0,
+                      },
                     ],
                   },
                 ],
@@ -922,10 +953,27 @@ describe('course-catalog-state', () => {
                 order: 0,
                 scenarios: [
                   {
-                    scenario: { id: 's2', title: 'S2', description: '', order: 0, published: true, updatedAt: '' },
+                    scenario: {
+                      id: 's2',
+                      title: 'S2',
+                      description: '',
+                      order: 0,
+                      published: true,
+                      updatedAt: '',
+                    },
                     order: 0,
                     cards: [
-                      { card: { id: 'c2', kind: 'flip', title: 'C2', appearance: { theme: 'a', fontSize: 'md' }, front: 'a', back: 'b' }, order: 0 },
+                      {
+                        card: {
+                          id: 'c2',
+                          kind: 'flip',
+                          title: 'C2',
+                          appearance: { theme: 'a', fontSize: 'md' },
+                          front: 'a',
+                          back: 'b',
+                        },
+                        order: 0,
+                      },
                     ],
                   },
                 ],
@@ -958,7 +1006,14 @@ describe('course-catalog-state', () => {
                 order: 0,
                 scenarios: [
                   {
-                    scenario: { id: 's1', title: 'S1', description: '', order: 0, published: true, updatedAt: '' },
+                    scenario: {
+                      id: 's1',
+                      title: 'S1',
+                      description: '',
+                      order: 0,
+                      published: true,
+                      updatedAt: '',
+                    },
                     order: 0,
                     cards: [],
                   },
@@ -978,19 +1033,43 @@ describe('course-catalog-state', () => {
     it('should default missing description fields', () => {
       const fixture = makeExportFixture({
         course: {
-          id: 'c1', title: 'C', description: undefined as unknown as string, languagePair: { source: 'ru', target: 'en' }, published: undefined as unknown as boolean, updatedAt: '',
+          id: 'c1',
+          title: 'C',
+          description: undefined as unknown as string,
+          languagePair: { source: 'ru', target: 'en' },
+          published: undefined as unknown as boolean,
+          updatedAt: '',
         },
         programs: [
           {
-            program: { id: 'p1', title: 'P1', description: undefined as unknown as string, order: 0, updatedAt: undefined as unknown as string },
+            program: {
+              id: 'p1',
+              title: 'P1',
+              description: undefined as unknown as string,
+              order: 0,
+              updatedAt: undefined as unknown as string,
+            },
             order: 0,
             lessons: [
               {
-                lesson: { id: 'l1', title: 'L1', description: undefined as unknown as string, order: 0, updatedAt: undefined as unknown as string },
+                lesson: {
+                  id: 'l1',
+                  title: 'L1',
+                  description: undefined as unknown as string,
+                  order: 0,
+                  updatedAt: undefined as unknown as string,
+                },
                 order: 0,
                 scenarios: [
                   {
-                    scenario: { id: 's1', title: 'S1', description: undefined as unknown as string, order: 0, published: undefined as unknown as boolean, updatedAt: undefined as unknown as string },
+                    scenario: {
+                      id: 's1',
+                      title: 'S1',
+                      description: undefined as unknown as string,
+                      order: 0,
+                      published: undefined as unknown as boolean,
+                      updatedAt: undefined as unknown as string,
+                    },
                     order: 0,
                     cards: [],
                   },

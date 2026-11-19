@@ -168,7 +168,7 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
     requiredTier: draft.requiredTier,
     slug: draft.slug,
     programs,
-    lastError: 'lastError' in flatAuthoring ? flatAuthoring['lastError'] ?? null : null,
+    lastError: 'lastError' in flatAuthoring ? (flatAuthoring['lastError'] ?? null) : null,
     // languagePairId is resolved to LanguagePair by the API service
     // (CoursesApiService.resolveLanguagePairId). The form draft stores the
     // numeric ID; the payload expects { known, learning } codes.

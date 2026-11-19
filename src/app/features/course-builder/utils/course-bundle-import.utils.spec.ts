@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
 import { extractEntitiesFromBundle } from './course-bundle-import.utils';
-import type { CourseBundle, CourseBundleV1 } from '../../../entities/course/utils/course-bundle.types';
+import type {
+  CourseBundle,
+  CourseBundleV1,
+} from '../../../entities/course/utils/course-bundle.types';
 
 // ── Test fixtures (using `as const` for strict type compatibility) ──
 
@@ -239,7 +242,9 @@ describe('extractEntitiesFromBundle — v1', () => {
 
 describe('extractEntitiesFromBundle — unknown format', () => {
   it('should return null for unknown formatVersion', () => {
-    const bundle = { formatVersion: 99 } as unknown as Parameters<typeof extractEntitiesFromBundle>[0];
+    const bundle = { formatVersion: 99 } as unknown as Parameters<
+      typeof extractEntitiesFromBundle
+    >[0];
 
     const result = extractEntitiesFromBundle(bundle);
 

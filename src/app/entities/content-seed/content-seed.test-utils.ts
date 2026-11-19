@@ -123,9 +123,7 @@ export function seedTestContentCache(): void {
   };
 
   setCourseSeedCache(catalog);
-  setCardSeedCache(
-    normalizeLegacyCards(allCards),
-  );
+  setCardSeedCache(normalizeLegacyCards(allCards));
   localStorage.setItem(USER_CONTENT_MIGRATED_KEY, '1');
 }
 

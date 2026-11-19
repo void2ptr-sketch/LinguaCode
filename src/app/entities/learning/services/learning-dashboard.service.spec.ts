@@ -158,7 +158,9 @@ describe('LearningDashboardService', () => {
 
     it('should fallback to radicals course when getByIdOrNull returns null', async () => {
       // getByIdOrNull returns null for the active course
-      (mockCourseSearchService.getByIdOrNull as ReturnType<typeof vi.fn>).mockResolvedValueOnce(null);
+      (mockCourseSearchService.getByIdOrNull as ReturnType<typeof vi.fn>).mockResolvedValueOnce(
+        null,
+      );
 
       await service.reload();
 

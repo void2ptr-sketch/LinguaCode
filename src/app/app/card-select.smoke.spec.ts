@@ -115,7 +115,13 @@ describe('Card select smoke', () => {
         languagePair: { source: 'ru', target: 'en' },
         published: true,
         updatedAt: '2026-01-01T00:00:00.000Z',
-        authoring: { idea: '', status: 'materialized', ideaUpdatedAt: '', materializedAt: '', lastError: null },
+        authoring: {
+          idea: '',
+          status: 'materialized',
+          ideaUpdatedAt: '',
+          materializedAt: '',
+          lastError: null,
+        },
       },
       title: 'Демо: базовый English',
       description: 'Вводная учебная программа для курса ru→en.',
@@ -152,7 +158,10 @@ describe('Card select smoke', () => {
                     order: 0,
                     published: true,
                     updatedAt: '2026-01-01T00:00:00.000Z',
-                    cardSource: { mode: 'fixed' as const, cardIds: ['select-1', 'select-2', 'select-3'] },
+                    cardSource: {
+                      mode: 'fixed' as const,
+                      cardIds: ['select-1', 'select-2', 'select-3'],
+                    },
                   },
                   order: 0,
                   cards: [

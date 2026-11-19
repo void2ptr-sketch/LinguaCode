@@ -14,14 +14,14 @@ describe('provideApiHttp', () => {
   });
 
   it('should not include mock interceptors when all flags are false', () => {
-    // Dev environment has all mock flags set to true by default
-    expect(environment.useCardsApiMock).toBe(true);
-    expect(environment.useScenariosApiMock).toBe(true);
-    expect(environment.useCoursesApiMock).toBe(true);
-    expect(environment.useProgramsApiMock).toBe(true);
-    expect(environment.useLessonsApiMock).toBe(true);
-    expect(environment.useScormMock).toBe(true);
-    expect(environment.useLanguagePairsApiMock).toBe(true);
+    // Dev environment has all mock flags set to false by default (real backend)
+    expect(environment.useCardsApiMock).toBe(false);
+    expect(environment.useScenariosApiMock).toBe(false);
+    expect(environment.useCoursesApiMock).toBe(false);
+    expect(environment.useProgramsApiMock).toBe(false);
+    expect(environment.useLessonsApiMock).toBe(false);
+    expect(environment.useScormMock).toBe(false);
+    expect(environment.useLanguagePairsApiMock).toBe(false);
     // The function should still work with no mocks
     const result = provideApiHttp();
     expect(result).toBeDefined();

@@ -79,10 +79,10 @@ function makeCardFixture(): Card {
     kind: 'select',
     title: 'Card 1',
     appearance: { theme: 'default', fontSize: 'md' },
-                    promptKnown: 'Hello',
-                    optionsLearning: ['Привет'],
-                    direction: 'known-to-learning' as const,
-                    correctIndex: 0,
+    promptKnown: 'Hello',
+    optionsLearning: ['Привет'],
+    direction: 'known-to-learning' as const,
+    correctIndex: 0,
   } as unknown as Card;
 }
 
@@ -630,7 +630,8 @@ describe('ContentSeedRepository', () => {
     });
   });
 
-  describe('nested course format', () => {    it('should load nested course fixture and extract cards', async () => {
+  describe('nested course format', () => {
+    it('should load nested course fixture and extract cards', async () => {
       resetContentSeedCache();
       createRepository();
 

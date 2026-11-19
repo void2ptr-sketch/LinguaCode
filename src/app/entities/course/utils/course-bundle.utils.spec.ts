@@ -130,7 +130,9 @@ describe('course-bundle.utils', () => {
       expect(result!.bundle.programs[0].lessons[0].scenarios[0].order).toBe(0);
       expect(result!.bundle.programs[0].lessons[0].scenarios[0].cards.length).toBe(1);
       expect(result!.bundle.programs[0].lessons[0].scenarios[0].cards[0].order).toBe(0);
-      expect(result!.bundle.programs[0].lessons[0].scenarios[0].cards[0].card.id).toBe('card-test-1');
+      expect(result!.bundle.programs[0].lessons[0].scenarios[0].cards[0].card.id).toBe(
+        'card-test-1',
+      );
       expect(result!.bundle.programs[0].lessons[0].scenarios[0].cards[0].meta).toBeDefined();
       expect(result!.bundle.sourceAuthorId).toBe('local-user');
     });

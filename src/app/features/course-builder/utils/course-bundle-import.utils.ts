@@ -45,7 +45,10 @@ function extractFromV2(bundle: CourseBundle): ExtractedEntities {
   const programs: Record<string, Omit<Program, 'courseId'>> = {};
   const lessons: Record<string, Omit<Lesson, 'programId' | 'courseId'>> = {};
   const scenarios: Record<string, Omit<Scenario, 'lessonId' | 'courseId' | 'programId'>> = {};
-  const cards: Record<string, Omit<Card, 'courseId' | 'lessonId' | 'scenarioId' | 'programId'>> = {};
+  const cards: Record<
+    string,
+    Omit<Card, 'courseId' | 'lessonId' | 'scenarioId' | 'programId'>
+  > = {};
   const cardIndexMeta: Record<string, CardIndexMetaOverride> = {};
 
   for (const pb of bundle.programs) {
@@ -114,9 +117,7 @@ function extractFromV1(bundle: CourseBundleV1): ExtractedEntities {
  * @param bundle — CourseBundle в формате v1 или v2.
  * @returns Map сущностей по ID, или `null` если формат неизвестен.
  */
-export function extractEntitiesFromBundle(
-  bundle: CourseBundleTyped,
-): ExtractedEntities | null {
+export function extractEntitiesFromBundle(bundle: CourseBundleTyped): ExtractedEntities | null {
   if (isV2(bundle)) {
     return extractFromV2(bundle);
   }

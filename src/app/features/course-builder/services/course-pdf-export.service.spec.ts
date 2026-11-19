@@ -358,7 +358,7 @@ describe('CoursePdfExportService', () => {
     it('should handle empty idea', async () => {
       const emptyCourse: CourseWithPrograms = {
         ...mockCourse,
-        authoring: { idea: '', status: 'draft', lastError: null }
+        authoring: { idea: '', status: 'draft', lastError: null },
       };
       await service.export(emptyCourse, false);
       expect(coursesApiMock.getBundle).toHaveBeenCalled();
@@ -367,7 +367,7 @@ describe('CoursePdfExportService', () => {
     it('should handle idea without stages', async () => {
       const noStagesCourse: CourseWithPrograms = {
         ...mockCourse,
-        authoring: { idea: 'Some text without stages', status: 'draft', lastError: null }
+        authoring: { idea: 'Some text without stages', status: 'draft', lastError: null },
       };
       await service.export(noStagesCourse, false);
       expect(coursesApiMock.getBundle).toHaveBeenCalled();

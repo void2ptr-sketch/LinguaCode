@@ -476,13 +476,12 @@ export function normalizeExportCourseCatalog(bundle: ExportCourseBundle): Export
   const courseId = courseData.id;
 
   // Map languagePair: source → known, target → learning
-  const languagePair =
-    courseData.languagePair
-      ? ({
-          known: courseData.languagePair.source,
-          learning: courseData.languagePair.target,
-        } as Partial<LanguagePair>)
-      : undefined;
+  const languagePair = courseData.languagePair
+    ? ({
+        known: courseData.languagePair.source,
+        learning: courseData.languagePair.target,
+      } as Partial<LanguagePair>)
+    : undefined;
 
   // Create the course object
   courses.push({
@@ -563,9 +562,7 @@ export function normalizeExportCourseCatalog(bundle: ExportCourseBundle): Export
           if (rawCardSource.mode === 'fixed') {
             cardSource = {
               mode: 'fixed' as const,
-              cardIds: rawCardSource.cardIds
-                ? [...rawCardSource.cardIds, ...cardIds]
-                : cardIds,
+              cardIds: rawCardSource.cardIds ? [...rawCardSource.cardIds, ...cardIds] : cardIds,
             };
           } else if (rawCardSource.mode === 'criteria') {
             cardSource = {
@@ -577,7 +574,8 @@ export function normalizeExportCourseCatalog(bundle: ExportCourseBundle): Export
               mode: 'snapshot' as const,
               cardIds: rawCardSource.cardIds ?? cardIds,
               criteria: (rawCardSource as { criteria?: unknown }).criteria ?? {},
-              frozenAt: (rawCardSource as { frozenAt?: string }).frozenAt ?? new Date().toISOString(),
+              frozenAt:
+                (rawCardSource as { frozenAt?: string }).frozenAt ?? new Date().toISOString(),
             };
           }
         } else if (cardIds.length > 0) {

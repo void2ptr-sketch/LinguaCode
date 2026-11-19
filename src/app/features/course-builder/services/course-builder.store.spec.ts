@@ -757,7 +757,13 @@ describe('CourseBuilderStore', () => {
         programIds: ['p-1'],
         published: false,
         authorId: 'local-user',
-        authoring: { status: 'draft', idea: '', ideaUpdatedAt: '', materializedAt: null, lastError: null },
+        authoring: {
+          status: 'draft',
+          idea: '',
+          ideaUpdatedAt: '',
+          materializedAt: null,
+          lastError: null,
+        },
       },
       programs: [
         {
@@ -765,13 +771,39 @@ describe('CourseBuilderStore', () => {
           order: 0,
           lessons: [
             {
-              lesson: { id: 'l-1', title: 'Lesson 1', description: '', scenarioIds: ['s-1'], prerequisiteLessonIds: [], order: 0 },
+              lesson: {
+                id: 'l-1',
+                title: 'Lesson 1',
+                description: '',
+                scenarioIds: ['s-1'],
+                prerequisiteLessonIds: [],
+                order: 0,
+              },
               order: 0,
               scenarios: [
                 {
-                  scenario: { id: 's-1', title: 'Scenario 1', description: '', cardSource: { mode: 'fixed' as const, cardIds: ['card-1'] }, published: true, order: 0 },
+                  scenario: {
+                    id: 's-1',
+                    title: 'Scenario 1',
+                    description: '',
+                    cardSource: { mode: 'fixed' as const, cardIds: ['card-1'] },
+                    published: true,
+                    order: 0,
+                  },
                   order: 0,
-                  cards: [{ card: { id: 'card-1', type: 'flip' as const, stimulus: 'Stimulus', response: 'Response', order: 0 }, order: 0, meta: { hints: [], tags: [] } }],
+                  cards: [
+                    {
+                      card: {
+                        id: 'card-1',
+                        type: 'flip' as const,
+                        stimulus: 'Stimulus',
+                        response: 'Response',
+                        order: 0,
+                      },
+                      order: 0,
+                      meta: { hints: [], tags: [] },
+                    },
+                  ],
                 },
               ],
             },
@@ -811,7 +843,23 @@ describe('CourseBuilderStore', () => {
       'lingua-code.user-content.v1',
       JSON.stringify({
         version: 1,
-        courses: { 'c-existing': { id: 'c-existing', title: 'Existing', slug: 'existing', programIds: [], published: false, authorId: 'local-user', authoring: { status: 'draft', idea: '', ideaUpdatedAt: '', materializedAt: null, lastError: null } } },
+        courses: {
+          'c-existing': {
+            id: 'c-existing',
+            title: 'Existing',
+            slug: 'existing',
+            programIds: [],
+            published: false,
+            authorId: 'local-user',
+            authoring: {
+              status: 'draft',
+              idea: '',
+              ideaUpdatedAt: '',
+              materializedAt: null,
+              lastError: null,
+            },
+          },
+        },
         programs: {},
         lessons: {},
         scenarios: {},
@@ -832,7 +880,13 @@ describe('CourseBuilderStore', () => {
         programIds: [],
         published: false,
         authorId: 'local-user',
-        authoring: { status: 'draft', idea: '', ideaUpdatedAt: '', materializedAt: null, lastError: null },
+        authoring: {
+          status: 'draft',
+          idea: '',
+          ideaUpdatedAt: '',
+          materializedAt: null,
+          lastError: null,
+        },
       },
       programs: [],
     });

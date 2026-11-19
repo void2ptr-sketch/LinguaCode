@@ -25,14 +25,14 @@ export const environment: Environment = {
   appName: 'LinguaCode',
   // Cards must come from the real backend (DB) so that the catalog search
   // filters (course/program/lesson/scenario) work against real hierarchy IDs.
-  useCardsApiMock: true,
-  useScenariosApiMock: true,
-  useCoursesApiMock: true,
-  useProgramsApiMock: true,
-  useLessonsApiMock: true,
-  useScormMock: true,
-  useLanguagePairsApiMock: true,
-  useAuthApiMock: true,
-  useReferenceSettingsApiMock: true,
+  useCardsApiMock: false,
+  useScenariosApiMock: false,
+  useCoursesApiMock: false,
+  useProgramsApiMock: false,
+  useLessonsApiMock: false,
+  useScormMock: false,
+  useLanguagePairsApiMock: false,
+  useAuthApiMock: false,
+  useReferenceSettingsApiMock: false,
   authEnabled: false,
 };
