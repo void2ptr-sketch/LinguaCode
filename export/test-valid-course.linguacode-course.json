@@ -1,0 +1,54 @@
+{
+  "formatVersion": 2,
+  "exportedAt": "2026-11-18T05:02:16.027Z",
+  "sourceAuthorId": "user-123",
+  "course": {
+    "id": "test-valid-course",
+    "title": "Test",
+    "description": "",
+    "languagePair": null,
+    "practiceSettings": null,
+    "published": true,
+    "authoring": {
+      "idea": "",
+      "status": "materialized",
+      "ideaUpdatedAt": "2026-11-18T05:02:16.027Z",
+      "materializedAt": "2026-11-18T05:02:16.027Z",
+      "lastError": null
+    },
+    "programIds": [
+      "prog-1"
+    ]
+  },
+  "programs": [
+    {
+      "program": {
+        "id": "prog-1",
+        "title": "P",
+        "description": ""
+      },
+      "order": 0,
+      "lessons": [
+        {
+          "lesson": {
+            "id": "les-1",
+            "title": "L",
+            "description": ""
+          },
+          "order": 0,
+          "scenarios": [
+            {
+              "scenario": {
+                "id": "sc-1",
+                "title": "S",
+                "description": ""
+              },
+              "order": 0,
+              "cards": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

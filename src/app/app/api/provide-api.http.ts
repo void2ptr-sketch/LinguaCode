@@ -15,6 +15,7 @@ import { coursesApiMockInterceptor } from '../../entities/course/api/mock/course
 import { programsApiMockInterceptor } from '../../entities/program/api/mock/programs-api.mock.interceptor';
 import { lessonsApiMockInterceptor } from '../../entities/lesson/api/mock/lessons-api.mock.interceptor';
 import { scormExportMockInterceptor } from '../../entities/course/api/mock/scorm-export.mock.interceptor';
+import { referenceSettingsApiMockInterceptor } from '../../shared/api/mock/reference-settings.mock.interceptor';
 
 /**
  * Provides HTTP client configuration for the API layer.
@@ -36,6 +37,7 @@ export const provideApiHttp = () => {
     useScormMock: environment.useScormMock,
     useLanguagePairsApiMock: environment.useLanguagePairsApiMock,
     useAuthApiMock: environment.useAuthApiMock,
+    useReferenceSettingsApiMock: environment.useReferenceSettingsApiMock,
   };
 
   const interceptors = [
@@ -54,6 +56,8 @@ export const provideApiHttp = () => {
   if (environment.useProgramsApiMock) interceptors.unshift(programsApiMockInterceptor);
   if (environment.useLessonsApiMock) interceptors.unshift(lessonsApiMockInterceptor);
   if (environment.useScormMock) interceptors.unshift(scormExportMockInterceptor);
+  if (environment.useReferenceSettingsApiMock)
+    interceptors.unshift(referenceSettingsApiMockInterceptor);
 
   const enabledMocks = Object.entries(mockFlags).filter(([, v]) => v);
   if (enabledMocks.length > 0) {
@@ -83,6 +87,7 @@ export const provideApiHttpTesting = (): EnvironmentProviders => {
     programsApiMockInterceptor,
     lessonsApiMockInterceptor,
     scormExportMockInterceptor,
+    referenceSettingsApiMockInterceptor,
     offlineInterceptor,
     authRefreshInterceptor,
     authInterceptor,

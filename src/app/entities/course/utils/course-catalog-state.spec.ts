@@ -8,10 +8,15 @@ import {
   cloneCourseCatalog,
   isNestedFormat,
   normalizeNestedCourseCatalog,
+  isExportFormat,
+  normalizeExportCourseCatalog,
 } from './course-catalog-state';
 import type { Course, Lesson } from '../model';
 import type { Program } from '../../program/model';
-import type { CoursesNestedFixture } from '../../content-seed/content-seed.types';
+import type {
+  CoursesNestedFixture,
+  ExportCourseBundle,
+} from '../../content-seed/content-seed.types';
 
 function makeCourse(overrides?: Partial<Course>): Course {
   return {
@@ -675,6 +680,411 @@ describe('course-catalog-state', () => {
       const result = normalizeNestedCourseCatalog(fixture);
 
       expect(result.catalog.lessons[0].prerequisiteLessonIds).toEqual(['lesson-0']);
+    });
+  });
+
+  // ─── Export format (v2) ──────────────────────────────────────────────────────
+
+  describe('isExportFormat', () => {
+    it('should return true for export format (formatVersion 2 + course + programs)', () => {
+      const exportBundle = {
+        formatVersion: 2,
+        exportedAt: '2026-01-01T00:00:00.000Z',
+        course: {
+          id: 'c1',
+          title: 'Test',
+          description: '',
+          languagePair: { source: 'ru', target: 'en' },
+          published: true,
+          updatedAt: '',
+        },
+        programs: [{ program: { id: 'p1', title: 'P', description: '', order: 0 }, lessons: [] }],
+      };
+      expect(isExportFormat(exportBundle as unknown as Partial<Course[]>)).toBe(true);
+    });
+
+    it('should return false for nested format (no formatVersion, no course wrapper)', () => {
+      const nested = {
+        programs: [{ id: 'p1', title: 'P', description: '', order: 0, lessons: [] }],
+      };
+      expect(isExportFormat(nested as unknown as Partial<Course[]>)).toBe(false);
+    });
+
+    it('should return false for legacy format (courses array present)', () => {
+      const legacy = { courses: [{ id: 'c1', title: 'C', programIds: [] }] };
+      expect(isExportFormat(legacy as unknown as Partial<Course[]>)).toBe(false);
+    });
+
+    it('should return false for empty object', () => {
+      expect(isExportFormat({} as unknown as Partial<Course[]>)).toBe(false);
+    });
+
+    it('should return false for null', () => {
+      expect(isExportFormat(null as unknown as Partial<Course[]>)).toBe(false);
+    });
+
+    it('should return false when formatVersion is not 2', () => {
+      const wrongVersion = { formatVersion: 1, course: {}, programs: [] };
+      expect(isExportFormat(wrongVersion as unknown as Partial<Course[]>)).toBe(false);
+    });
+
+    it('should return false when course is missing', () => {
+      const noCourse = { formatVersion: 2, programs: [] };
+      expect(isExportFormat(noCourse as unknown as Partial<Course[]>)).toBe(false);
+    });
+  });
+
+  describe('normalizeExportCourseCatalog', () => {
+    function makeExportFixture(overrides?: Partial<ExportCourseBundle>): ExportCourseBundle {
+      return {
+        formatVersion: 2,
+        exportedAt: '2026-01-01T00:00:00.000Z',
+        sourceAuthorId: 'user-123',
+        course: {
+          id: 'course-export-1',
+          title: 'Export Course',
+          description: 'An export course for testing',
+          languagePair: { source: 'ru', target: 'en' },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+          authoring: {
+            idea: '',
+            status: 'materialized',
+            materializedAt: '2026-01-01T00:00:00.000Z',
+            lastError: null,
+          },
+        },
+        programs: [
+          {
+            program: {
+              id: 'program-export-1',
+              title: 'Program 1',
+              description: 'First program',
+              order: 0,
+              updatedAt: '2026-01-01T00:00:00.000Z',
+            },
+            order: 0,
+            lessons: [
+              {
+                lesson: {
+                  id: 'lesson-export-1',
+                  title: 'Lesson 1',
+                  description: 'First lesson',
+                  order: 0,
+                  updatedAt: '2026-01-01T00:00:00.000Z',
+                },
+                order: 0,
+                scenarios: [
+                  {
+                    scenario: {
+                      id: 'scenario-export-1',
+                      title: 'Scenario 1',
+                      description: 'First scenario',
+                      order: 0,
+                      published: true,
+                      cardSource: { mode: 'fixed' },
+                      updatedAt: '2026-01-01T00:00:00.000Z',
+                    },
+                    order: 0,
+                    cards: [
+                      {
+                        card: {
+                          id: 'card-export-1',
+                          kind: 'select',
+                          title: 'Card 1',
+                          appearance: { theme: 'azure-blue', fontSize: 'md' },
+                          direction: 'known-to-learning' as const,
+                          promptKnown: 'Hello',
+                          optionsLearning: ['Привет'],
+                          correctIndex: 0,
+                        },
+                        order: 0,
+                        meta: { difficulty: 'easy', tags: ['greeting'] },
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        ...overrides,
+      };
+    }
+
+    it('should return a catalog with one course, one program, one lesson', () => {
+      const fixture = makeExportFixture();
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect(result.catalog.courses).toHaveLength(1);
+      expect(result.catalog.courses[0].id).toBe('course-export-1');
+      expect(result.catalog.courses[0].title).toBe('Export Course');
+      expect(result.catalog.programs).toHaveLength(1);
+      expect(result.catalog.programs[0].id).toBe('program-export-1');
+      expect(result.catalog.programs[0].courseId).toBe('course-export-1');
+      expect(result.catalog.lessons).toHaveLength(1);
+      expect(result.catalog.lessons[0].id).toBe('lesson-export-1');
+      expect(result.catalog.lessons[0].programId).toBe('program-export-1');
+    });
+
+    it('should assign programIds to the course', () => {
+      const fixture = makeExportFixture();
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect(result.catalog.courses[0].programIds).toEqual(['program-export-1']);
+    });
+
+    it('should assign lessonIds to the program', () => {
+      const fixture = makeExportFixture();
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect(result.catalog.programs[0].lessonIds).toEqual(['lesson-export-1']);
+    });
+
+    it('should assign scenarioIds to the lesson', () => {
+      const fixture = makeExportFixture();
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect(result.catalog.lessons[0].scenarioIds).toEqual(['scenario-export-1']);
+    });
+
+    it('should extract cards and assign courseId/lessonId/scenarioId', () => {
+      const fixture = makeExportFixture();
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect(result.cards).toHaveLength(1);
+      expect(result.cards[0].id).toBe('card-export-1');
+      expect((result.cards[0] as { courseId?: string }).courseId).toBe('course-export-1');
+      expect((result.cards[0] as { lessonId?: string }).lessonId).toBe('lesson-export-1');
+      expect((result.cards[0] as { scenarioId?: string }).scenarioId).toBe('scenario-export-1');
+    });
+
+    it('should extract meta from card wrapper', () => {
+      const fixture = makeExportFixture();
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect((result.cards[0] as { meta?: { difficulty?: string; tags?: string[] } }).meta).toEqual(
+        {
+          difficulty: 'easy',
+          tags: ['greeting'],
+        },
+      );
+    });
+
+    it('should map languagePair: source/target → known/learning', () => {
+      const fixture = makeExportFixture({
+        course: {
+          id: 'c1',
+          title: 'Test',
+          description: '',
+          languagePair: { source: 'ru', target: 'en' },
+          published: false,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      });
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect(result.catalog.courses[0].languagePair).toEqual({ known: 'ru', learning: 'en' });
+    });
+
+    it('should preserve authoring.status from export bundle', () => {
+      const fixture = makeExportFixture();
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect(result.catalog.courses[0].authoring?.status).toBe('materialized');
+    });
+
+    it('should handle cardSource.mode = "fixed" without cardIds — fill from cards[]', () => {
+      const fixture = makeExportFixture();
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect(result.scenarios).toHaveLength(1);
+      const cardSource = result.scenarios[0].cardSource;
+      expect(cardSource).toEqual({ mode: 'fixed', cardIds: ['card-export-1'] });
+    });
+
+    it('should handle multiple programs, lessons, and scenarios', () => {
+      const fixture = makeExportFixture({
+        programs: [
+          {
+            program: { id: 'p1', title: 'P1', description: '', order: 0, updatedAt: '' },
+            order: 0,
+            lessons: [
+              {
+                lesson: { id: 'l1', title: 'L1', description: '', order: 0, updatedAt: '' },
+                order: 0,
+                scenarios: [
+                  {
+                    scenario: {
+                      id: 's1',
+                      title: 'S1',
+                      description: '',
+                      order: 0,
+                      published: true,
+                      updatedAt: '',
+                    },
+                    order: 0,
+                    cards: [
+                      {
+                        card: {
+                          id: 'c1',
+                          kind: 'select',
+                          title: 'C1',
+                          appearance: { theme: 'a', fontSize: 'md' },
+                          direction: 'known-to-learning' as const,
+                          promptKnown: 'a',
+                          optionsLearning: ['b'],
+                          correctIndex: 0,
+                        },
+                        order: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            program: { id: 'p2', title: 'P2', description: '', order: 1, updatedAt: '' },
+            order: 1,
+            lessons: [
+              {
+                lesson: { id: 'l2', title: 'L2', description: '', order: 0, updatedAt: '' },
+                order: 0,
+                scenarios: [
+                  {
+                    scenario: {
+                      id: 's2',
+                      title: 'S2',
+                      description: '',
+                      order: 0,
+                      published: true,
+                      updatedAt: '',
+                    },
+                    order: 0,
+                    cards: [
+                      {
+                        card: {
+                          id: 'c2',
+                          kind: 'flip',
+                          title: 'C2',
+                          appearance: { theme: 'a', fontSize: 'md' },
+                          front: 'a',
+                          back: 'b',
+                        },
+                        order: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect(result.catalog.courses).toHaveLength(1);
+      expect(result.catalog.programs).toHaveLength(2);
+      expect(result.catalog.lessons).toHaveLength(2);
+      expect(result.scenarios).toHaveLength(2);
+      expect(result.cards).toHaveLength(2);
+      expect(result.catalog.courses[0].programIds).toEqual(['p1', 'p2']);
+      expect(result.catalog.programs[0].lessonIds).toEqual(['l1']);
+      expect(result.catalog.programs[1].lessonIds).toEqual(['l2']);
+    });
+
+    it('should handle scenarios without cards', () => {
+      const fixture = makeExportFixture({
+        programs: [
+          {
+            program: { id: 'p1', title: 'P1', description: '', order: 0, updatedAt: '' },
+            order: 0,
+            lessons: [
+              {
+                lesson: { id: 'l1', title: 'L1', description: '', order: 0, updatedAt: '' },
+                order: 0,
+                scenarios: [
+                  {
+                    scenario: {
+                      id: 's1',
+                      title: 'S1',
+                      description: '',
+                      order: 0,
+                      published: true,
+                      updatedAt: '',
+                    },
+                    order: 0,
+                    cards: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect(result.cards).toHaveLength(0);
+      expect(result.catalog.lessons[0].scenarioIds).toHaveLength(1);
+      expect(result.scenarios[0].cardSource).toEqual({ mode: 'fixed', cardIds: [] });
+    });
+
+    it('should default missing description fields', () => {
+      const fixture = makeExportFixture({
+        course: {
+          id: 'c1',
+          title: 'C',
+          description: undefined as unknown as string,
+          languagePair: { source: 'ru', target: 'en' },
+          published: undefined as unknown as boolean,
+          updatedAt: '',
+        },
+        programs: [
+          {
+            program: {
+              id: 'p1',
+              title: 'P1',
+              description: undefined as unknown as string,
+              order: 0,
+              updatedAt: undefined as unknown as string,
+            },
+            order: 0,
+            lessons: [
+              {
+                lesson: {
+                  id: 'l1',
+                  title: 'L1',
+                  description: undefined as unknown as string,
+                  order: 0,
+                  updatedAt: undefined as unknown as string,
+                },
+                order: 0,
+                scenarios: [
+                  {
+                    scenario: {
+                      id: 's1',
+                      title: 'S1',
+                      description: undefined as unknown as string,
+                      order: 0,
+                      published: undefined as unknown as boolean,
+                      updatedAt: undefined as unknown as string,
+                    },
+                    order: 0,
+                    cards: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      const result = normalizeExportCourseCatalog(fixture);
+
+      expect(result.catalog.courses[0].description).toBe('');
+      expect(result.catalog.courses[0].published).toBe(false);
+      expect(result.catalog.programs[0].description).toBe('');
+      expect(result.catalog.lessons[0].description).toBe('');
     });
   });
 });

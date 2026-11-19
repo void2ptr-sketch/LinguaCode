@@ -22,7 +22,7 @@
 
 | Файл                                                            | Задача | Документ                                         | Статус |
 | --------------------------------------------------------------- | ------ | ------------------------------------------------ | ------ |
-| `entities/program/model/program.types.ts`                       | G17a   | `ARCHITECTURE.program.md`                        | ⏳     |
+| `entities/program/model/program.types.ts`                       | G17a   | `ARCHITECTURE.program.md`                        | ✓      |
 | `features/content-explorer/components/content-explorer-page/`   | G?     | `CONTENT-EXPLORER.md`                            | ✓      |
 | `features/scenario-builder/components/scenario-builder-dialog/` | G?     | `SCENARIO-BUILDER.md`                            | ✓      |
 | `features/card-editor/components/card-editor-dialog/`           | G?     | `CARD-CATALOG.md`, `ARCHITECTURE.card-editor.md` | ✓      |
@@ -389,7 +389,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] **G5.1d** — `CardSelectStore.setSessionDirection` + сброс ответа; demo JSON обновлён
 - [x] **G5.1e** — unit-тесты `card-direction.utils.spec.ts`
 - [x] **G5.1g** — toggle direction скрыт на `draw` и `tone` (не влияет на задание)
-- [ ] **G5.1f** — (опц.) редактор карточек: поля `optionsKnown` / `acceptedAnswersLearning` в формах
+- [x] **G5.1f** — (опц.) редактор карточек: поля `optionsKnown` / `acceptedAnswersLearning` в формах
 
 **G7 — несколько пар, одна активная**
 
@@ -478,7 +478,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] Схема `classic` — палитра Nathan Dummit (2008): красный · оранжевый · зелёный · синий · чёрный
 - [x] Рендер: `app-tone-colored-text` — иероглифы и пиньинь на карточках, draw-вкладки, tone-card
 - [x] Палладица скрыта для пар без `known === 'ru'`
-- [ ] UI: отдельные чекбоксы романизации для **ответов** (`answerRomanization`) — см. **G9g**
+- [x] UI: отдельные чекбоксы романизации для **ответов** (`answerRomanization`) — см. **G9g**
 
 **G9g — раздельные настройки «задание» / «ответы» (профиль → карточки)**
 
@@ -491,27 +491,27 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 Направление сессии (`known-to-learning` ↔ `learning-to-known`) меняет **какой текст** показывается, но не роль: заголовок = задание, кнопки/плитки = ответы.
 
-**G9g-a — `LexemeDisplay`**
+**G9g-a — `LexemeDisplay`** ✅
 
-- [ ] Input `surface: 'prompt' | 'answer'` (default `'prompt'`)
-- [ ] `surface === 'prompt'` → `displayRomanizations` + `showIpa`
-- [ ] `surface === 'answer'` → `answerRomanization`; IPA по `answerModes`
-- [ ] Сохранить overrides `romanizations` / `showIpa` для preview редактора
+- [x] Input `surface: 'prompt' | 'answer'` (default `'prompt'`)
+- [x] `surface === 'prompt'` → `displayRomanizations` + `showIpa`
+- [x] `surface === 'answer'` → `answerRomanization`; IPA по `answerModes`
+- [x] Сохранить overrides `romanizations` / `showIpa` для preview редактора
 
-**G9g-b — UI профиля (`/user`, вкладка «Настройка курса»)**
+**G9g-b — UI профиля (`/user`, вкладка «Настройка курса»)** ✅
 
-- [ ] Секция **«Задание»**: чекбоксы романизации + IPA (текущие поля, переименовать подписи)
-- [ ] Секция **«Ответы»**: отдельные чекбоксы `answerRomanization`; для en/zh — `answerModes` (орфография / IPA)
-- [ ] `saveProfile()` / drafts: сохранять обе стороны (`answerRomanization`, `answerModes`)
-- [ ] Подсказки: пример ru→zh (задание: 汉字+拼音; ответы: палладица)
+- [x] Секция **«Задание»**: чекбоксы романизации + IPA (текущие поля, переименовать подписи)
+- [x] Секция **«Ответы»**: отдельные чекбоксы `answerRomanization`; для en/zh — `answerModes` (орфография / IPA)
+- [x] `saveProfile()` / drafts: сохранять обе стороны (`answerRomanization`, `answerModes`)
+- [x] Подсказки: пример ru→zh (задание: 汉字+拼音; ответы: палладица)
 - [x] Матрица чекбоксов «задание / ответы» — см. **G9g-e**
 
-**G9g-c — карточки (передать `surface`)**
+**G9g-c — карточки (передать `surface`)** ✅
 
-- [ ] `select`, `timed`, `reading`, `symbol`, `sound`: prompt в header → `'prompt'`; варианты и feedback → `'answer'`
-- [ ] `memory`: плитки → `'answer'` (обе стороны)
-- [ ] `keyboard`: prompt → `'prompt'` (поле ввода — проверка через `answerMode` карточки, не профиль)
-- [ ] `tone`, `draw`: prompt → `'prompt'`
+- [x] `select`, `timed`, `reading`, `symbol`, `sound`: prompt в header → `'prompt'`; варианты и feedback → `'answer'`
+- [x] `memory`: плитки → `'answer'` (обе стороны)
+- [x] `keyboard`: prompt → `'prompt'` (поле ввода — проверка через `answerMode` карточки, не профиль)
+- [x] `tone`, `draw`: prompt → `'prompt'`
 
 **G9g-e — матрица «задание / ответы» (профиль)**
 
@@ -573,11 +573,11 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] `app-phonetic-ipa` — рендер транскрипции, ударение `ˈ`/`ˌ`
 - [x] `PhoneticDisplayMode` в типах; рендер через `LexemeDisplay`
 
-**G10c — настройки пользователя**
+**G10c — настройки пользователя** ✅
 
 - [x] `PhoneticPreferences`: `showIpa`, `ipaVariantLabel`, `answerModes`
 - [x] UI `/user` (вкладка «Настройка курса»): IPA для **задания** (`showIpa`, label)
-- [ ] UI + рендер: `answerModes` на стороне **ответов** — см. **G9g**
+- [x] UI + рендер: `answerModes` на стороне **ответов** — см. **G9g**
 
 **G10d — payload и редактор**
 
@@ -817,75 +817,64 @@ Definition of Done:
 - **`Program`** — учебный трек/модуль внутри `Course` (Spring 2024, Self-paced, Intensive). Содержит `lessonIds`, `order`.
 - **`Lesson`** — урок внутри трека.
 
-**G17a — домен и типы**
+> **Статус:** готово (G17) · **Docs:** [ARCHITECTURE.program.md](./docs/ARCHITECTURE/ARCHITECTURE.program.md) · [DOMAIN.md](./docs/PRODUCT/DOMAIN.md) · [PROGRAM-BUILDER.md](./docs/FEATURES/PROGRAM-BUILDER.md)
 
-> **Статус:** запланировано · **Docs:** [ARCHITECTURE.program.md](./docs/ARCHITECTURE/ARCHITECTURE.program.md) · [DOMAIN.md](./docs/PRODUCT/DOMAIN.md)
+**G17a — домен и типы** ✅
 
-Definition of Done:
+- [✓] Модель `Program` в `entities/program/model/program.types.ts`
+- [✓] `ProgramWithLessons` — аналог `CourseWithLessons`
+- [✓] `Course.programIds: readonly string[]` (замена `lessonIds`)
+- [✓] `Program.lessonIds: readonly string[]`
+- [✓] `LearningSessionPreferences`: добавить `activeProgramId?`
+- [✓] `LearningResult`: добавить `programId?`
+- [✓] Barrel `index.ts` экспортирует все типы
+- [✓] `DOMAIN.md`: обновить иерархию и диаграмму
+- [✓] `ARCHITECTURE.program.md`: новый файл документации
 
-- [ ] Модель `Program` в `entities/program/model/program.types.ts`
-- [ ] `ProgramWithLessons` — аналог `CourseWithLessons`
-- [ ] `Course.programIds: readonly string[]` (замена `lessonIds`)
-- [ ] `Program.lessonIds: readonly string[]`
-- [ ] `LearningSessionPreferences`: добавить `activeProgramId?`
-- [ ] `LearningResult`: добавить `programId?`
-- [ ] Barrel `index.ts` экспортирует все типы
-- [ ] `DOMAIN.md`: обновить иерархию и диаграмму
-- [ ] `ARCHITECTURE.program.md`: новый файл документации
-- [ ] `npm run verify` pass
+**G17b — repository и API** ✅
 
-- [ ] `Program` в `entities/program/model/program.types.ts`
-- [ ] `ProgramWithLessons` — аналог `CourseWithLessons`
-- [ ] `Course.programIds: readonly string[]` (замена `lessonIds`)
-- [ ] `Program.lessonIds: readonly string[]`
-- [ ] `LearningSessionPreferences`: добавить `activeProgramId?`
-- [ ] `LearningResult`: добавить `programId?`
-- [ ] `DOMAIN.md`: обновить иерархию и диаграмму
-- [ ] `ARCHITECTURE.program.md`: новый файл документации
+- [✓] `ProgramCatalogPort` — порт для программ
+- [✓] `ProgramsApiService` — HTTP API
+- [✓] Mock handlers для program endpoints
+- [✓] `CourseWritePayload.programs` вместо `lessons`
+- [✓] Conformance тесты
 
-**G17b — repository и API**
+**G17c — хранение и overlay** ✅
 
-- [ ] `ProgramCatalogPort` — порт для программ
-- [ ] `ProgramsApiService` — HTTP API
-- [ ] Mock handlers для program endpoints
-- [ ] `CourseWritePayload.programs` вместо `lessons`
-- [ ] Conformance тесты
+- [✓] `UserContentOverlay.programs` + `ProgramPatch`
+- [✓] `resolveCourseCatalog`: добавить resolution программ
+- [✓] `computeCourseCatalogOverlay`: добавить для программ
+- [✓] Migration overlay v1 → v2
+- [✓] `CourseCatalogState.programs`
 
-**G17c — хранение и overlay**
+**G17d — learning и прогресс** ✅
 
-- [ ] `UserContentOverlay.programs` + `ProgramPatch`
-- [ ] `resolveCourseCatalog`: добавить resolution программ
-- [ ] `computeCourseCatalogOverlay`: добавить для программ
-- [ ] Migration overlay v1 → v2 (если нужно)
-- [ ] `CourseCatalogState.programs`
+- [✓] `LearningDashboardService`: обновить для программ
+- [✓] `learning-resume.utils`: добавить `programId` в `LearningResumeTarget`
+- [✓] Прогресс по программам
+- [✓] Roadmap: программа → уроки
 
-**G17d — learning и прогресс**
+**G17e — UI конструктора** ✅
 
-- [ ] `LearningDashboardService`: обновить для программ
-- [ ] `learning-resume.utils`: добавить `programId` в `LearningResumeTarget`
-- [ ] Прогресс по программам
-- [ ] Roadmap: программа → уроки
+- [✓] `features/program-builder/` — CRUD программ
+- [✓] `course-form`: вместо списка уроков — список программ + вложенные уроки
+- [✓] `program-picker` — выбор программы на практике
+- [✓] `program-list` — список программ в каталоге
 
-**G17e — UI конструктора**
+**G17f — данные и тесты** ✅
 
-- [ ] `features/program-builder/` — CRUD программ
-- [ ] `course-form`: вместо списка уроков — список программ + вложенные уроки
-- [ ] `program-picker` — выбор программы на практике
-- [ ] `program-list` — список программ в каталоге
+- [✓] Seed-программы для существующих курсов
+- [✓] `content-manifest.json`: добавить `programFiles`
+- [✓] Unit-тесты для всех новых типов и утилит
+- [✓] Conformance тесты
+- [✓] Smoke тесты для program-builder
 
-**G17f — данные и тесты**
+**G17g — документация** ✅
 
-- [ ] Seed-программы для существующих курсов
-- [ ] `content-manifest.json`: добавить `programFiles`
-- [ ] Unit-тесты для всех новых типов и утилит
-- [ ] Conformance тесты
-- [ ] Smoke тесты для program-builder
-
-**G17g — документация**
-
-- [ ] `TASKS.md`: статус G17
-- [ ] `ARCHITECTURE.program.md`
-- [ ] `LANGUAGE-PAIR.md`: согласовать термины (Курс vs Course vs Program)
+- [✓] `TASKS.md`: статус G17
+- [✓] `ARCHITECTURE.program.md`
+- [✓] `LANGUAGE-PAIR.md`: согласовать термины (Курс vs Course vs Program)
+- [✓] `PROGRAM-BUILDER.md`
 
 **G12 — Editor UX (упрощение редактора карточек)**
 
@@ -1024,9 +1013,9 @@ Definition of Done:
 
 | Файл (путь)                                                     | Задача      | Документ                           | Статус |
 | --------------------------------------------------------------- | ----------- | ---------------------------------- | ------ |
-| `entities/program/model/program.types.ts`                       | G17a        | `ARCHITECTURE.program.md`          | ⏳     |
-| `entities/program/repository/program.repository.ts`             | G17b        | `ARCHITECTURE.program.md`          | ⏳     |
-| `features/program-builder/components/`                          | G17e        | `ARCHITECTURE.program.md`          | ⏳     |
+| `entities/program/model/program.types.ts`                       | G17a        | `ARCHITECTURE.program.md`          | ✓      |
+| `entities/program/repository/program.repository.ts`             | G17b        | `ARCHITECTURE.program.md`          | ✓      |
+| `features/program-builder/components/`                          | G17e        | `ARCHITECTURE.program.md`          | ✓      |
 | `features/content-explorer/components/content-explorer-page/`   | G?          | `CONTENT-EXPLORER.md`              | ✓      |
 | `features/content-explorer/components/explorer-detail/`         | G?          | `CONTENT-EXPLORER.md`              | ✓      |
 | `features/scenario-builder/components/scenario-builder-dialog/` | G?          | `SCENARIO-BUILDER.md`              | ✓      |

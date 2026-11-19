@@ -160,6 +160,7 @@ describe('CoursesCatalogMockHandler', () => {
             updatedAt: new Date().toISOString(),
           },
         ],
+        lastError: null,
       };
 
       const created = await api.create(payload);
@@ -176,6 +177,7 @@ describe('CoursesCatalogMockHandler', () => {
         published: true,
         languagePair: makeLanguagePair('en', 'zh'),
         programs: [],
+        lastError: null,
       };
 
       const created = await api.create(payload);
@@ -193,6 +195,7 @@ describe('CoursesCatalogMockHandler', () => {
         published: true,
         languagePair: makeLanguagePair('en', 'zh'),
         programs: [],
+        lastError: null,
       };
 
       const updated = await api.update('course-demo-card-kinds', payload);
@@ -209,6 +212,7 @@ describe('CoursesCatalogMockHandler', () => {
         published: false,
         languagePair: makeLanguagePair('en', 'zh'),
         programs: [],
+        lastError: null,
       };
 
       await expect(api.update('non-existent-id', payload)).rejects.toThrow();
@@ -229,10 +233,12 @@ describe('CoursesCatalogMockHandler', () => {
             title: 'Lesson',
             description: '',
             lessonIds: [],
+            lastError: null,
             order: 0,
             updatedAt: new Date().toISOString(),
           },
         ],
+        lastError: null,
       };
 
       const created = await api.create(newPayload);

@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Импорт курса</h2>
+
+<mat-dialog-content>
+  <p class="course-import-dialog__course-title">{{ data.courseTitle }}</p>
+
+  <div class="course-import-dialog__stats">
+    <div class="course-import-dialog__stat">
+      <span class="course-import-dialog__stat-value">{{ data.programCount }}</span>
+      <span class="course-import-dialog__stat-label">программ</span>
+    </div>
+    <div class="course-import-dialog__stat">
+      <span class="course-import-dialog__stat-value">{{ data.lessonCount }}</span>
+      <span class="course-import-dialog__stat-label">уроков</span>
+    </div>
+    <div class="course-import-dialog__stat">
+      <span class="course-import-dialog__stat-value">{{ data.scenarioCount }}</span>
+      <span class="course-import-dialog__stat-label">сценариев</span>
+    </div>
+    <div class="course-import-dialog__stat">
+      <span class="course-import-dialog__stat-value">{{ data.cardCount }}</span>
+      <span class="course-import-dialog__stat-label">карточек</span>
+    </div>
+  </div>
+
+  @if (fileSizeWarning) {
+    <p class="course-import-dialog__warning">
+      <mat-icon>warning</mat-icon>
+      {{ fileSizeWarning }}
+    </p>
+  }
+
+  <p class="course-import-dialog__note">
+    Данные будут записаны в локальный каталог. Сущности с совпадающими ID будут обновлены.
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="onCancel()">Отмена</button>
+  <button mat-flat-button type="button" (click)="onConfirm()">Импортировать</button>
+</mat-dialog-actions>

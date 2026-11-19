@@ -8,25 +8,28 @@ import type {
   CourseSearchPage,
   CourseWithPrograms,
 } from '../model';
-import type { CourseCatalogState } from '../utils/course-catalog-state';
 
 /**
- * Self-contained export payload for a course.
+ * Self-contained export payload for a course (flat v2 format).
  *
  * @remarks
- * Contains the resolved catalog (courses + lessons), all scenarios, all cards,
- * and the user card-index metadata. Used by authoring/export tooling
- * (CourseBundle JSON, PDF) to build self-contained artifacts.
+ * Flat arrays returned by the backend: courses, programs, lessons, scenarios, cards.
+ * Used by authoring/export tooling (CourseBundle JSON, PDF) to build self-contained artifacts.
+ * The utility layer converts flat arrays into the nested v2 bundle structure.
  */
 export type CourseExportBundle = {
-  /** Resolved course catalog (seed + overlay). */
-  catalog: CourseCatalogState;
+  /** Resolved courses (seed + overlay). */
+  courses: readonly import('../model').Course[];
+  /** Resolved programs (seed + overlay). */
+  programs: readonly import('../../program/model').Program[];
+  /** Resolved lessons (seed + overlay). */
+  lessons: readonly import('../model').Lesson[];
   /** All scenarios (seed + overlay, resolved). */
   scenarios: readonly Scenario[];
   /** All cards (seed + overlay, resolved). */
   cards: readonly Card[];
-  /** Card index metadata from the user-content overlay. */
-  cardIndexMeta: Record<string, CardIndexMetaOverride>;
+  /** Card index metadata from the user-content overlay (optional — may be empty on backend). */
+  cardIndexMeta?: Record<string, CardIndexMetaOverride>;
 };
 
 /**
@@ -101,8 +104,8 @@ export type CourseWritePayload = {
   ideaUpdatedAt?: string;
   /** ISO 8601 timestamp of the last materialization */
   materializedAt?: string;
-  /** Last generation error message (present when status === 'failed') */
-  lastError?: string;
+  /** Last generation error message (present when status === 'failed'). `null` when no error. */
+  lastError: string | null;
   practiceSettings?: CoursePracticeSettings;
   /**
    * Minimum subscription tier required to access the course.

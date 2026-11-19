@@ -10,7 +10,8 @@ import type {
   CardSearchPage,
   ContentLanguage,
 } from '../../model';
-import { DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS } from '../../../../shared/utils/pagination';
+import { PAGE_SIZE_OPTIONS } from '../../../../shared/utils/pagination';
+import { AppSettingsService } from '../../../../shared/api/app-settings.service';
 import {
   CardCatalogHierarchyService,
   type CourseOption,
@@ -35,6 +36,7 @@ export class CardCatalogSearchStore {
     CardCatalogHierarchyService,
   );
   private readonly userStore = inject(UserStore);
+  private readonly appSettings = inject(AppSettingsService);
 
   /** Search query text. */
   readonly query = signal('');
@@ -59,7 +61,7 @@ export class CardCatalogSearchStore {
   /** Current zero-based page index. */
   readonly pageIndex = signal(0);
   /** Items per page. */
-  readonly pageSize = signal(DEFAULT_PAGE_SIZE);
+  readonly pageSize = signal(this.appSettings.defaultPageSize());
   /** Whether the language pair is locked (e.g. from URL params). */
   readonly pairLocked = signal(false);
 

@@ -347,7 +347,7 @@ describe('CourseSearchService', () => {
       const baseCourse = {
         ...journeyCourse,
         description: 'Backend description',
-        authoring: { idea: 'Idea', status: 'failed' },
+        authoring: { idea: 'Idea', status: 'failed', lastError: null },
         practiceSettings: { mode: 'open' },
       };
       const getByIdSpy = vi
@@ -361,7 +361,7 @@ describe('CourseSearchService', () => {
 
       expect(getByIdSpy).toHaveBeenCalledWith('12');
       expect(result.description).toBe('Backend description');
-      expect(result.authoring).toEqual({ idea: 'Idea', status: 'failed' });
+      expect(result.authoring).toEqual({ idea: 'Idea', status: 'failed', lastError: null });
       expect(result.programs).toEqual([]);
     });
   });
@@ -444,6 +444,7 @@ describe('CourseSearchService', () => {
         description: '',
         published: false,
         programs: [],
+        lastError: null,
       });
 
       expect(spy).toHaveBeenCalled();
@@ -456,6 +457,7 @@ describe('CourseSearchService', () => {
       description: '',
       published: true,
       programs: [],
+      lastError: null,
     };
 
     const mockCourse = {

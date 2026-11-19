@@ -17,6 +17,11 @@ describe('app-color-scheme.utils', () => {
     expect(normalizeColorScheme(undefined)).toBe('light');
   });
 
+  it('should return default when localStorage key is missing', () => {
+    localStorage.clear();
+    expect(readStoredColorScheme()).toBe('light');
+  });
+
   it('should read color scheme from persisted user', () => {
     localStorage.setItem(
       'lingua-code.user',

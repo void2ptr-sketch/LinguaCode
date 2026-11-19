@@ -44,6 +44,15 @@ export class LearningDashboardService {
   readonly loading = signal(false);
 
   /**
+   * Internal guard to prevent re-entrant calls during `reload()`.
+   *
+   * @remarks
+   * Set to `true` at the start of `reload()` and reset to `false` in the `finally` block.
+   * Used by external effects to avoid triggering `reload()` while a reload is already in progress.
+   */
+  private readonly reloading = signal(false);
+
+  /**
    * Error message, if any.
    *
    * @remarks
@@ -129,8 +138,14 @@ export class LearningDashboardService {
    * Infers the active course from saved state or falls back to the radicals course.
    */
   async reload(): Promise<void> {
+    // Prevent re-entrant calls: if a reload is already in progress, skip.
+    if (this.reloading()) {
+      return;
+    }
+
     this.loading.set(true);
     this.error.set(null);
+    this.reloading.set(true);
 
     try {
       const pair = this.userStore.languagePair();
@@ -265,6 +280,7 @@ export class LearningDashboardService {
       this.roadmap.set([]);
     } finally {
       this.loading.set(false);
+      this.reloading.set(false);
     }
   }
 

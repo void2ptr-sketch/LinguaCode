@@ -19,6 +19,7 @@
     { "name": "Card Batch", "description": "Пакетные операции с карточками" },
     { "name": "Subscription", "description": "Справочник уровней подписки" },
     { "name": "Admin Tier Management", "description": "Override content tier settings" },
+    { "name": "Reference Settings", "description": "Application settings managed in database" },
     { "name": "Scenarios", "description": "Операции с сценариями обучения" },
     { "name": "Feedback", "description": "Справочник типов обратной связи" },
     { "name": "Programs", "description": "Операции с учебными программами" },
@@ -2347,6 +2348,110 @@
             "description": "Scenarios found",
             "content": {
               "application/json": { "schema": { "$ref": "#/components/schemas/ScenarioList" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reference/settings/validation": {
+      "get": {
+        "tags": ["Reference Settings"],
+        "summary": "Get validation rules",
+        "description": "Returns validation rules settings",
+        "operationId": "getValidationRules",
+        "responses": {
+          "200": {
+            "description": "Validation rules found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ValidationRulesResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ValidationRulesResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reference/settings/sync": {
+      "get": {
+        "tags": ["Reference Settings"],
+        "summary": "Get sync settings",
+        "description": "Returns synchronization settings",
+        "operationId": "getSyncSettings",
+        "responses": {
+          "200": {
+            "description": "Sync settings found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SyncSettingsResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SyncSettingsResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reference/settings/pagination": {
+      "get": {
+        "tags": ["Reference Settings"],
+        "summary": "Get pagination settings",
+        "description": "Returns pagination settings",
+        "operationId": "getPaginationSettings",
+        "responses": {
+          "200": {
+            "description": "Pagination settings found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PaginationSettingsResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PaginationSettingsResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reference/settings/chinese": {
+      "get": {
+        "tags": ["Reference Settings"],
+        "summary": "Get Chinese settings",
+        "description": "Returns Chinese content display settings",
+        "operationId": "getChineseSettings",
+        "responses": {
+          "200": {
+            "description": "Chinese settings found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ChineseSettingsResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ChineseSettingsResponse" }
+              }
             }
           }
         }
@@ -5329,6 +5434,98 @@
           "page": { "type": "integer", "format": "int32", "minimum": 0 },
           "size": { "type": "integer", "format": "int32", "minimum": 1 },
           "sort": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "ValidationRulesResponse": {
+        "type": "object",
+        "description": "Validation rules settings",
+        "properties": {
+          "maxTitleLength": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum allowed title length",
+            "example": 200
+          },
+          "maxDescriptionLength": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum allowed description length",
+            "example": 2000
+          },
+          "maxTagsPerEntity": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum number of tags allowed per entity",
+            "example": 10
+          },
+          "requireTags": {
+            "type": "boolean",
+            "description": "Whether tags are required",
+            "example": false
+          }
+        }
+      },
+      "SyncSettingsResponse": {
+        "type": "object",
+        "description": "Synchronization settings",
+        "properties": {
+          "maxBatchSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum batch size for sync operations",
+            "example": 500
+          },
+          "syncTimeoutSeconds": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Timeout in seconds for sync operations",
+            "example": 300
+          }
+        }
+      },
+      "PaginationSettingsResponse": {
+        "type": "object",
+        "description": "Pagination settings",
+        "properties": {
+          "defaultPageSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Default page size",
+            "example": 20
+          },
+          "maxPageSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Maximum allowed page size",
+            "example": 100
+          }
+        }
+      },
+      "ChineseSettingsResponse": {
+        "type": "object",
+        "description": "Chinese content display settings",
+        "properties": {
+          "showPinyin": {
+            "type": "boolean",
+            "description": "Whether Pinyin is shown",
+            "example": true
+          },
+          "showTones": {
+            "type": "boolean",
+            "description": "Whether tone marks are shown",
+            "example": true
+          },
+          "showHanzi": {
+            "type": "boolean",
+            "description": "Whether Hanzi characters are shown",
+            "example": true
+          },
+          "pinyinPosition": {
+            "type": "string",
+            "description": "Position of Pinyin relative to Hanzi",
+            "enum": ["above", "below", "right"],
+            "example": "above"
+          }
         }
       },
       "ListLessonAvailabilityResponse": {

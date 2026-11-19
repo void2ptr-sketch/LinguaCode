@@ -309,7 +309,9 @@ export class CoursesCatalogMockHandler {
     }
 
     return {
-      catalog: this.catalog!,
+      courses: this.catalog!.courses,
+      programs: this.catalog!.programs,
+      lessons: this.catalog!.lessons,
       scenarios: loadScenariosFromStorage(),
       cards: this.cardRepository.loadStored(),
       cardIndexMeta: loadCardIndexMetaOverrides(),

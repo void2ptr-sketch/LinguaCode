@@ -351,12 +351,16 @@ type CoursePracticeSettings = {
 
 ```typescript
 type CourseExportBundle = {
-  catalog: CourseCatalogState; // курсы + уроки (seed + overlay)
+  courses: readonly Course[]; // курсы (seed + overlay)
+  programs: readonly Program[]; // программы (seed + overlay)
+  lessons: readonly Lesson[]; // уроки (seed + overlay)
   scenarios: readonly Scenario[]; // все сценарии
   cards: readonly Card[]; // все карточки
-  cardIndexMeta: Record<string, CardIndexMetaOverride>; // метаданные индекса
+  cardIndexMeta?: Record<string, CardIndexMetaOverride>; // метаданные индекса (опционально)
 };
 ```
+
+> **Примечание:** `cardIndexMeta` может быть пустым или отсутствовать в ответе бэкенда — фронтенд обрабатывает это как `{}`. Утилитарный слой (`collectCourseBundle`) преобразует flat-массивы во вложенную структуру v2 для экспорта.
 
 ### Экспорт в SCORM/xAPI (`ScormExportBundle`)
 
@@ -474,6 +478,58 @@ type XapiStatement = {
 | GET   | `/learning/statuses` | Статусы уроков |
 
 Ответ: `ApiListResponse<ReferenceOptionDto>` — `{ "code": string, "label": string }`.
+
+## Reference Settings (`/reference/settings`)
+
+Реализация: `AppSettingsService` (обёртка над `ReferenceSettingsService` из `shared/api/generated/`).
+Все эндпоинты требуют `@PreAuthorize("isAuthenticated()")`. В dev-режиме при `authEnabled: false`
+запросы идут напрямую на бэкенд без токена — mock-интерсептор должен быть включён.
+
+| Метод | Путь                             | Описание                |
+| ----- | -------------------------------- | ----------------------- |
+| GET   | `/reference/settings/validation` | Правила валидации       |
+| GET   | `/reference/settings/pagination` | Настройки пагинации     |
+| GET   | `/reference/settings/sync`       | Настройки синхронизации |
+| GET   | `/reference/settings/chinese`    | Настройки китайского    |
+
+Ответ: `ApiOneResponse<T>` — обёртка `{ "data": T }`.
+
+### ValidationRulesResponse
+
+| Поле                   | Тип     | Описание                      |
+| ---------------------- | ------- | ----------------------------- |
+| `maxTitleLength`       | number  | Максимальная длина заголовка  |
+| `maxDescriptionLength` | number  | Максимальная длина описания   |
+| `maxTagsPerEntity`     | number  | Максимальное количество тегов |
+| `requireTags`          | boolean | Обязательны ли теги           |
+
+### PaginationSettingsResponse
+
+| Поле              | Тип    | Описание                     |
+| ----------------- | ------ | ---------------------------- |
+| `defaultPageSize` | number | Размер страницы по умолчанию |
+| `maxPageSize`     | number | Максимальный размер страницы |
+
+### SyncSettingsResponse
+
+| Поле                 | Type   | Описание                    |
+| -------------------- | ------ | --------------------------- |
+| `maxBatchSize`       | number | Максимальный размер батча   |
+| `syncTimeoutSeconds` | number | Таймаут синхронизации (сек) |
+
+### ChineseSettingsResponse
+
+| Поле             | Тип     | Описание                                     |
+| ---------------- | ------- | -------------------------------------------- |
+| `showPinyin`     | boolean | Показывать Пиньинь                           |
+| `showTones`      | boolean | Показывать тоны                              |
+| `showHanzi`      | boolean | Показывать Ханьзи                            |
+| `pinyinPosition` | string  | Позиция Пиньиня: `above` / `below` / `right` |
+
+> **Fallback:** при ошибке или отсутствии данных в БД фронтенд использует дефолтные значения:
+> `maxTitleLength: 200`, `maxDescriptionLength: 2000`, `maxTagsPerEntity: 10`, `requireTags: false`,
+> `defaultPageSize: 50`, `maxPageSize: 200`, `maxBatchSize: 500`, `syncTimeoutSeconds: 300`,
+> `showPinyin: true`, `showTones: true`, `showHanzi: true`, `pinyinPosition: 'above'`.
 
 ## Восстановление пароля (`/auth`)
 

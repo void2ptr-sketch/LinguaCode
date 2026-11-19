@@ -1,0 +1,60 @@
+.course-import-dialog__course-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+}
+
+.course-import-dialog__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.course-import-dialog__stat {
+  align-items: center;
+  background: color-mix(in srgb, var(--mat-sys-primary) 6%, var(--mat-sys-surface));
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.course-import-dialog__stat-value {
+  color: var(--mat-sys-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.course-import-dialog__stat-label {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.8125rem;
+}
+
+.course-import-dialog__warning {
+  align-items: center;
+  color: color-mix(in srgb, var(--mat-sys-warning) 90%, var(--mat-sys-on-surface));
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  margin: 0;
+
+  mat-icon {
+    color: var(--mat-sys-warning);
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+}
+
+.course-import-dialog__note {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  margin: 0.75rem 0 0;
+}

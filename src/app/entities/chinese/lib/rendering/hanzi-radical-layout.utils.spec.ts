@@ -22,4 +22,24 @@ describe('hanzi-radical-layout.utils', () => {
     expect(first).toEqual({ x: 70, y: 140 });
     expect(second).toEqual({ x: 210, y: 140 });
   });
+
+  it('should handle zero componentCount by treating it as 1', () => {
+    const result = resolveRadicalComponentSvgTransform(0, 0, canvasSize);
+    expect(result).toContain('translate(0 0)');
+  });
+
+  it('should clamp negative componentIndex to 0', () => {
+    const result = resolveRadicalComponentSvgTransform(-1, 2, canvasSize);
+    expect(result).toContain('translate(0 0)');
+  });
+
+  it('should clamp componentIndex beyond count to last index', () => {
+    const result = resolveRadicalComponentSvgTransform(5, 2, canvasSize);
+    expect(result).toContain('translate(140 0)');
+  });
+
+  it('should handle cell center with zero componentCount', () => {
+    const result = resolveRadicalComponentCellCenter(0, 0, canvasSize);
+    expect(result).toEqual({ x: 140, y: 140 });
+  });
 });

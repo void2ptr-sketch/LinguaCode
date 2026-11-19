@@ -1,12 +1,14 @@
 import type { Course, Lesson } from '../model';
 import type { Program } from '../../program/model';
 import type { Scenario } from '../../scenario/model';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
 
 import { normalizeLanguagePair } from '../../language-pair/utils/language-pair.utils';
 import { buildCourseAuthoringFromApi } from './course-authoring.utils';
 import type {
   CoursesNestedFixture,
   CoursesSeedFixture,
+  ExportCourseBundle,
 } from '../../content-seed/content-seed.types';
 
 /**
@@ -418,4 +420,201 @@ function isLesson(value: unknown): value is Lesson {
     typeof candidate.programId === 'string' &&
     Array.isArray(candidate.scenarioIds)
   );
+}
+
+// ─── Export format (v2) ───
+
+/**
+ * Result of normalizing an export course bundle.
+ */
+export type ExportCourseResult = {
+  catalog: CourseCatalogState;
+  cards: Card[];
+  scenarios: Scenario[];
+};
+
+/**
+ * Detects whether the catalog is in the export format (v2).
+ *
+ * The export format has `formatVersion === 2`, a `course` object,
+ * and a `programs` array. Each program/lesson/scenario/card is wrapped
+ * in a named key (e.g. `program`, `lesson`, `scenario`, `card`).
+ *
+ * @param catalog - The catalog to check.
+ * @returns `true` if the catalog uses the export format.
+ */
+export function isExportFormat(catalog: unknown): boolean {
+  if (!catalog || typeof catalog !== 'object') return false;
+  const obj = catalog as Record<string, unknown>;
+  return (
+    obj['formatVersion'] === 2 &&
+    obj['course'] != null &&
+    typeof obj['course'] === 'object' &&
+    Array.isArray(obj['programs'])
+  );
+}
+
+/**
+ * Normalises an export course bundle (v2) into a `CourseCatalogState` and extracts cards.
+ *
+ * Traverses `programs[].program → lessons[].lesson → scenarios[].scenario → cards[].card`,
+ * unwraps each layer, maps `languagePair.source/target` → `known/learning`,
+ * creates flat `Course`, `Program`, `Lesson`, and `Scenario` objects, and collects
+ * all inline cards into a flat array for the card seed cache.
+ *
+ * @param bundle - The export course bundle to normalise.
+ * @returns An object containing the normalised catalog and extracted cards.
+ */
+export function normalizeExportCourseCatalog(bundle: ExportCourseBundle): ExportCourseResult {
+  const courses: Course[] = [];
+  const programs: Program[] = [];
+  const lessons: Lesson[] = [];
+  const scenarios: Scenario[] = [];
+  const allCards: Card[] = [];
+
+  const courseData = bundle.course;
+  const courseId = courseData.id;
+
+  // Map languagePair: source → known, target → learning
+  const languagePair = courseData.languagePair
+    ? ({
+        known: courseData.languagePair.source,
+        learning: courseData.languagePair.target,
+      } as Partial<LanguagePair>)
+    : undefined;
+
+  // Create the course object
+  courses.push({
+    id: courseId,
+    title: courseData.title,
+    slug: courseId,
+    description: courseData.description ?? '',
+    authorId: bundle.sourceAuthorId ?? 'local-user',
+    languagePair: normalizeLanguagePair(languagePair),
+    programIds: [],
+    published: courseData.published ?? false,
+    updatedAt: courseData.updatedAt ?? new Date(0).toISOString(),
+    authoring: courseData.authoring ? buildCourseAuthoringFromApi(courseData) : undefined,
+    practiceSettings: courseData.practiceSettings as Course['practiceSettings'],
+  });
+
+  for (const programWrapper of bundle.programs) {
+    const programData = programWrapper.program;
+    const programObj: Program = {
+      id: programData.id,
+      courseId,
+      title: programData.title,
+      description: programData.description ?? '',
+      lessonIds: [],
+      order: programData.order,
+      updatedAt: programData.updatedAt ?? new Date(0).toISOString(),
+    };
+    programs.push(programObj);
+
+    const programLessonIds: string[] = [];
+
+    const lessonWrappers = programWrapper.lessons ?? [];
+
+    for (const lessonWrapper of lessonWrappers) {
+      const lessonData = lessonWrapper.lesson;
+      const lessonObj: Lesson = {
+        id: lessonData.id,
+        programId: programData.id,
+        title: lessonData.title,
+        description: lessonData.description ?? '',
+        scenarioIds: [],
+        prerequisiteLessonIds: [],
+        order: lessonData.order,
+        updatedAt: lessonData.updatedAt ?? new Date(0).toISOString(),
+      };
+      lessons.push(lessonObj);
+
+      const lessonScenarioIds: string[] = [];
+
+      const scenarioWrappers = lessonWrapper.scenarios ?? [];
+
+      for (const scenarioWrapper of scenarioWrappers) {
+        const scenarioData = scenarioWrapper.scenario;
+
+        // Collect cards from wrapped cards[]
+        const cardIds: string[] = [];
+        const cardWrappers = scenarioWrapper.cards ?? [];
+
+        for (const cardWrapper of cardWrappers) {
+          const card = {
+            ...cardWrapper.card,
+            courseId,
+            lessonId: lessonData.id,
+            scenarioId: scenarioData.id,
+          };
+          // Merge meta into card if present
+          if (cardWrapper.meta) {
+            (card as Record<string, unknown>)['meta'] = cardWrapper.meta;
+          }
+          allCards.push(card);
+          cardIds.push(cardWrapper.card.id);
+        }
+
+        // Handle cardSource: merge fixed mode with extracted cardIds
+        let cardSource: Scenario['cardSource'] | undefined;
+        const rawCardSource = scenarioData.cardSource;
+        if (rawCardSource) {
+          if (rawCardSource.mode === 'fixed') {
+            cardSource = {
+              mode: 'fixed' as const,
+              cardIds: rawCardSource.cardIds ? [...rawCardSource.cardIds, ...cardIds] : cardIds,
+            };
+          } else if (rawCardSource.mode === 'criteria') {
+            cardSource = {
+              mode: 'criteria' as const,
+              criteria: (rawCardSource as { criteria?: unknown }).criteria ?? {},
+            };
+          } else {
+            cardSource = {
+              mode: 'snapshot' as const,
+              cardIds: rawCardSource.cardIds ?? cardIds,
+              criteria: (rawCardSource as { criteria?: unknown }).criteria ?? {},
+              frozenAt:
+                (rawCardSource as { frozenAt?: string }).frozenAt ?? new Date().toISOString(),
+            };
+          }
+        } else if (cardIds.length > 0) {
+          cardSource = { mode: 'fixed' as const, cardIds };
+        }
+
+        const scenarioObj: Scenario = {
+          id: scenarioData.id,
+          title: scenarioData.title,
+          description: scenarioData.description ?? '',
+          authorId: 'local-user',
+          cardSource: cardSource ?? { mode: 'fixed' as const, cardIds: [] },
+          published: scenarioData.published ?? false,
+          updatedAt: scenarioData.updatedAt ?? new Date(0).toISOString(),
+          languagePair: scenarioData.languagePair
+            ? normalizeLanguagePair({
+                known: scenarioData.languagePair.source,
+                learning: scenarioData.languagePair.target,
+              } as Partial<LanguagePair>)
+            : undefined,
+          courseId,
+        };
+        scenarios.push(scenarioObj);
+        lessonScenarioIds.push(scenarioData.id);
+      }
+
+      lessonObj.scenarioIds = lessonScenarioIds;
+      programLessonIds.push(lessonData.id);
+    }
+
+    programObj.lessonIds = programLessonIds;
+  }
+
+  // Update course programIds
+  courses[0].programIds = programs.map((p) => p.id);
+
+  return {
+    catalog: { courses, programs, lessons },
+    cards: allCards,
+    scenarios,
+  };
 }

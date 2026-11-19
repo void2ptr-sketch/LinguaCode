@@ -57,6 +57,7 @@ import type {
   ContentManifest,
   CoursesNestedFixture,
   CoursesSeedFixture,
+  ExportCourseBundle,
   ScenariosSeedFixture,
 } from './content-seed.types';
 import type { CourseCatalogState } from '../course/utils/course-catalog-state';
@@ -64,6 +65,8 @@ import {
   normalizeStoredCourseCatalog,
   isNestedFormat,
   normalizeNestedCourseCatalog,
+  isExportFormat,
+  normalizeExportCourseCatalog,
 } from '../course/utils/course-catalog-state';
 
 /**
@@ -216,35 +219,41 @@ export class ContentSeedRepository {
       return;
     }
 
-    // Сетевой путь: загружаем фикстуры, нормализуем и обновляем кэш
-    if (!manifest?.scenarioFiles || !manifest.courseFiles || !manifest.cardFiles) {
-      this.logger.warn('ContentSeed: manifest missing required fields, skipping seed load');
+    // Сетевой путь: загружаем фикстуры курсов (все данные в одном файле)
+    if (!manifest?.courseFiles) {
+      this.logger.warn('ContentSeed: manifest missing courseFiles, skipping seed load');
       return;
     }
 
-    const [scenarioFixtures, courseFixtures, cardFixtures] = await Promise.all([
-      Promise.all(manifest.scenarioFiles.map((file) => this.loadScenarioFixture(file))),
-      Promise.all(manifest.courseFiles.map((file) => this.loadCourseFixture(file))),
-      Promise.all(manifest.cardFiles.map((file) => this.loadCardFixture(file))),
-    ]);
+    const courseFixtures = await Promise.all(
+      manifest.courseFiles.map((file) =>
+        this.loadCourseFixture(file).catch((error) => {
+          this.logger.warn(`ContentSeed: failed to load course fixture "${file}", skipping`, error);
+          return {
+            courses: [] as Course[],
+            programs: [],
+            lessons: [],
+            cards: [] as Card[],
+            scenarios: [] as Scenario[],
+          };
+        }),
+      ),
+    );
 
-    const scenarios = scenarioFixtures.flatMap((fixture) => fixture.scenarios);
     const courses = mergeCourseFixtures(courseFixtures);
-    // Collect cards from nested course fixtures and from card fixture files
+    // Extract cards and scenarios from nested course fixtures (export/nested format)
     const nestedCards = courseFixtures.flatMap((f) => f.cards ?? []);
-    const cards = normalizeLegacyCards([...nestedCards, ...cardFixtures.flatMap((f) => f.cards)]);
-    // Collect scenarios from nested course fixtures
+    const cards = normalizeLegacyCards(nestedCards);
     const nestedScenarios = courseFixtures.flatMap((f) => f.scenarios ?? []);
-    const allScenarios = [...scenarios, ...nestedScenarios];
 
-    setScenarioSeedCache(allScenarios);
+    setScenarioSeedCache(nestedScenarios);
     setCourseSeedCache(courses);
     setCardSeedCache(cards);
 
     // Персист снапшота в IndexedDB (best-effort — ошибка не блокирует старт)
     await saveContentSeedSnapshot(this.idb, {
       version: manifest.version,
-      scenarios: allScenarios,
+      scenarios: nestedScenarios,
       courses: courses.courses,
       programs: courses.programs,
       lessons: courses.lessons,
@@ -305,6 +314,18 @@ export class ContentSeedRepository {
     scenarios?: Scenario[];
   }> {
     return firstValueFrom(this.http.get<unknown>(buildFixtureUrl(path))).then((raw) => {
+      // Export format (v2) — check before nested format (has formatVersion + course wrapper)
+      if (isExportFormat(raw)) {
+        const bundle = raw as ExportCourseBundle;
+        const result = normalizeExportCourseCatalog(bundle);
+        return {
+          courses: result.catalog.courses,
+          programs: result.catalog.programs,
+          lessons: result.catalog.lessons,
+          cards: result.cards,
+          scenarios: result.scenarios,
+        };
+      }
       if (isNestedFormat(raw)) {
         const nested = raw as CoursesNestedFixture;
         const result = normalizeNestedCourseCatalog(nested);

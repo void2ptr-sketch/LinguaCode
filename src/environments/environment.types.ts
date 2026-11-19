@@ -17,6 +17,8 @@ export type Environment = {
   useLanguagePairsApiMock: boolean;
   /** Включает mock для auth API (login/refresh/logout). */
   useAuthApiMock: boolean;
+  /** Включает mock для reference settings API. */
+  useReferenceSettingsApiMock: boolean;
   /** Включает реальный auth-поток (токен/refresh). */
   authEnabled: boolean;
 };

@@ -14,7 +14,7 @@ describe('provideApiHttp', () => {
   });
 
   it('should not include mock interceptors when all flags are false', () => {
-    // In dev environment, all mock flags are false
+    // Dev environment has all mock flags set to false by default (real backend)
     expect(environment.useCardsApiMock).toBe(false);
     expect(environment.useScenariosApiMock).toBe(false);
     expect(environment.useCoursesApiMock).toBe(false);

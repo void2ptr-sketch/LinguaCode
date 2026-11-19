@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +15,7 @@ import type { CourseIndexEntry } from '../../../../entities/course/model';
 import type { LanguagePairDto } from '../../../../entities/language-pair/api';
 import type { ProgramRequiredTier } from '../../../../entities/program/model';
 import type { ProgramFormDraft } from '../../types';
-import { PROGRAM_TITLE_MAX_LENGTH } from '../../utils';
+import { AppSettingsService } from '../../../../shared/api/app-settings.service';
 
 /** Labels for program access tiers (RU). */
 const TIER_LABELS: Record<ProgramRequiredTier, string> = {
@@ -53,6 +53,8 @@ const TIER_LABELS: Record<ProgramRequiredTier, string> = {
   styleUrl: './program-form.component.scss',
 })
 export class ProgramFormComponent {
+  private readonly appSettings = inject(AppSettingsService);
+
   /**
    * Required program form draft being edited or created.
    *
@@ -104,7 +106,7 @@ export class ProgramFormComponent {
   }));
 
   /** Maximum allowed title length (backend contract). */
-  readonly titleMaxLength = PROGRAM_TITLE_MAX_LENGTH;
+  readonly titleMaxLength = this.appSettings.maxTitleLength();
 
   /** Maximum allowed description length. */
   readonly descriptionMaxLength = 2000;

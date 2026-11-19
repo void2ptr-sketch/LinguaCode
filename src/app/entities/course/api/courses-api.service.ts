@@ -378,7 +378,7 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.materializedAt) {
       body['materializedAt'] = payload.materializedAt;
     }
-    if (payload.lastError !== undefined) {
+    if (payload.lastError !== undefined && payload.lastError !== null) {
       body['lastError'] = payload.lastError;
     }
     // practiceSettings is a JSONB column — the backend DTO expects a JSON string.
@@ -443,7 +443,7 @@ export class CoursesApiService implements CourseCatalogPort {
     if (payload.materializedAt) {
       body['materializedAt'] = payload.materializedAt;
     }
-    if (payload.lastError !== undefined) {
+    if (payload.lastError !== undefined && payload.lastError !== null) {
       body['lastError'] = payload.lastError;
     }
     // practiceSettings is a JSONB column — the backend DTO expects a JSON string.
@@ -500,7 +500,7 @@ export class CoursesApiService implements CourseCatalogPort {
    * Retrieves a self-contained export bundle for a course.
    *
    * @param courseId - The course ID.
-   * @returns The export bundle with the resolved catalog, programs, lessons, scenarios, cards, and metadata.
+   * @returns The export bundle with flat arrays: courses, programs, lessons, scenarios, cards, cardIndexMeta.
    *
    * @example
    * ```ts

@@ -14,6 +14,7 @@ import { SyncQueueBootstrap } from './sync/sync-queue.bootstrap';
 import { ContentSeedRepository } from '../entities/content-seed/content-seed.repository';
 import { AuthStore } from '../entities/auth/services/auth.store';
 import { CatalogService } from '../entities/card/api/catalog.service';
+import { AppSettingsService } from '../shared/api/app-settings.service';
 import { LanguageService } from '../entities/language-pair/lib';
 import { migrateUserContentOverlayIfNeeded } from '../entities/user/overlay/user-content-overlay.migration';
 import { repairUserContentOverlayIfNeeded } from '../entities/user/overlay/user-content-overlay.repair';
@@ -60,6 +61,9 @@ export const appConfig: ApplicationConfig = {
         // powers editor and catalog selects. Load it in the background once the
         // user is authenticated; repeated `ensureLoaded()` calls are no-ops.
         void injector.get(CatalogService).ensureLoaded();
+        // App settings (validation rules, pagination, sync, Chinese display)
+        // loaded in the background; repeated `ensureLoaded()` calls are no-ops.
+        void injector.get(AppSettingsService).ensureLoaded();
       }
     }),
   ],

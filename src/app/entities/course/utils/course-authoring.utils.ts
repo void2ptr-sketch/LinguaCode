@@ -10,6 +10,7 @@ export function emptyCourseAuthoring(): CourseAuthoring {
   return {
     idea: '',
     status: 'draft',
+    lastError: null,
   };
 }
 
@@ -99,13 +100,15 @@ export function sameCourseAuthoring(
  * The generated model replaces the nested `authoring?: CourseAuthoring` with
  * five flat string fields: `authoringStatus`, `authoringIdea`, `ideaUpdatedAt`,
  * `materializedAt`, `lastError`.
+ *
+ * Also accepts courses with nested `authoring` (overlay/seed data).
  */
 export type CourseWithFlatAuthoring = {
   authoringStatus?: string;
   authoringIdea?: string;
   ideaUpdatedAt?: string;
   materializedAt?: string;
-  lastError?: string;
+  lastError?: string | null;
   /** Legacy nested `authoring` field — present in overlay/seed data. */
   authoring?: CourseAuthoring | unknown;
 };
@@ -150,6 +153,6 @@ export function buildCourseAuthoringFromApi(
     status,
     ideaUpdatedAt: course.ideaUpdatedAt,
     materializedAt: course.materializedAt,
-    lastError: course.lastError,
+    lastError: course.lastError ?? null,
   };
 }

@@ -36,6 +36,10 @@ export type Program = {
   published?: boolean;
   /** ISO 8601 timestamp of the last update. */
   updatedAt: string;
+  /** IDs of prerequisite programs that must be completed first. */
+  prerequisiteProgramIds?: readonly string[];
+  /** ID of the program author. */
+  authorId?: string;
 };
 
 /**

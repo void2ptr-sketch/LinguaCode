@@ -1,4 +1,3 @@
-import { vi } from 'vitest';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
@@ -9,17 +8,34 @@ import { authInterceptor } from './auth.interceptor';
 import { errorInterceptor } from './error.interceptor';
 import { isHttpApiError } from '../../../shared/api/api-error.utils';
 
+/**
+ * Drains pending microtasks deterministically.
+ *
+ * The interceptor chains `from(refreshSession())` into `switchMap`, so the retried
+ * request is issued on a microtask. Yielding a few microtask turns is enough and,
+ * unlike `setTimeout`, never depends on wall-clock timers (which can stall under
+ * a loaded CI worker and time the test out).
+ */
+const flushMicrotasks = async (turns = 10): Promise<void> => {
+  for (let i = 0; i < turns; i += 1) {
+    await Promise.resolve();
+  }
+};
+
 describe('authRefreshInterceptor', () => {
   let http: HttpClient;
   let httpMock: HttpTestingController;
 
-  const mockAuthStore = {
+  const createMockAuthStore = () => ({
     refreshSession: vi.fn().mockResolvedValue(false),
     accessToken: vi.fn().mockReturnValue(null),
-  };
+  });
+
+  let mockAuthStore: ReturnType<typeof createMockAuthStore>;
 
   beforeEach(() => {
-    vi.clearAllMocks();
+    TestBed.resetTestingModule();
+    mockAuthStore = createMockAuthStore();
 
     TestBed.configureTestingModule({
       providers: [
@@ -37,7 +53,6 @@ describe('authRefreshInterceptor', () => {
 
   afterEach(() => {
     httpMock.verify();
-    vi.restoreAllMocks();
     TestBed.resetTestingModule();
   });
 
@@ -51,7 +66,8 @@ describe('authRefreshInterceptor', () => {
     const first = httpMock.expectOne('/api/scenarios/demo');
     first.flush({ message: 'Unauthorized' }, { status: 401, statusText: 'Unauthorized' });
 
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    // Let the refreshSession() promise resolve and the retry request be issued.
+    await flushMicrotasks();
 
     const retried = httpMock.expectOne('/api/scenarios/demo');
     expect(retried.request.headers.get('Authorization')).toBe('Bearer fresh-token');
@@ -70,7 +86,7 @@ describe('authRefreshInterceptor', () => {
     const first = httpMock.expectOne('/api/scenarios/demo');
     first.flush({ message: 'Unauthorized' }, { status: 401, statusText: 'Unauthorized' });
 
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    await flushMicrotasks();
 
     expect(isHttpApiError(caught)).toBe(true);
     if (isHttpApiError(caught)) {

@@ -185,6 +185,7 @@
           <button
             mat-stroked-button
             type="button"
+            (click)="exportRequested.emit('json')"
             matTooltip="CourseBundle для передачи maintainer'у"
           >
             <mat-icon>file_download</mat-icon>
@@ -195,6 +196,27 @@
             <mat-icon>cloud_download</mat-icon>
             <span>SCORM / xAPI</span>
           </button>
+        </div>
+
+        <div class="course-form__import-section">
+          <p class="course-form__import-hint">
+            Загрузите ранее выгруженный JSON-пакет для импорта в локальный каталог.
+          </p>
+          <div class="course-form__import-actions">
+            <label class="course-form__import-label">
+              <input
+                type="file"
+                accept=".json,application/json"
+                class="course-form__file-input"
+                (change)="onImportFile($event)"
+                hidden
+              />
+              <button mat-stroked-button type="button">
+                <mat-icon>file_upload</mat-icon>
+                <span>Импорт JSON (CourseBundle)</span>
+              </button>
+            </label>
+          </div>
         </div>
       </div>
     </mat-tab>

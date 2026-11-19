@@ -18,8 +18,8 @@ export type CourseAuthoring = {
   ideaUpdatedAt?: string;
   /** ISO 8601 timestamp of the last materialization (manual or automated). */
   materializedAt?: string;
-  /** Last generation error message (present when `status === 'failed'`). */
-  lastError?: string;
+  /** Last generation error message (present when `status === 'failed'`). `null` when no error. */
+  lastError: string | null;
 };
 
 /**

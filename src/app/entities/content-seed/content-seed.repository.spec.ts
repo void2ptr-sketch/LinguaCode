@@ -30,8 +30,6 @@ const MANIFEST_URL = '/data/content-manifest.json';
 function makeManifest(overrides?: Partial<ContentManifest>): ContentManifest {
   return {
     version: 1,
-    cardFiles: [],
-    scenarioFiles: [],
     courseFiles: [],
     ...overrides,
   };
@@ -82,7 +80,9 @@ function makeCardFixture(): Card {
     title: 'Card 1',
     appearance: { theme: 'default', fontSize: 'md' },
     promptKnown: 'Hello',
-    optionsLearning: [],
+    optionsLearning: ['Привет'],
+    direction: 'known-to-learning' as const,
+    correctIndex: 0,
   } as unknown as Card;
 }
 
@@ -136,6 +136,58 @@ class MockIndexedDbService {
       this.records.set(this.recordKey('content-seed', 'snapshot'), snapshot);
     }
   }
+}
+
+function makeNestedFixture(overrides?: Partial<CoursesNestedFixture>): CoursesNestedFixture {
+  return {
+    id: 'nested-course-1',
+    title: 'Nested Course',
+    description: 'Test nested course',
+    languagePair: { known: 'ru', learning: 'en' },
+    published: true,
+    authoring: null,
+    updatedAt: '2026-01-01T00:00:00.000Z',
+    programs: [
+      {
+        id: 'nested-program-1',
+        title: 'Program 1',
+        description: 'First program',
+        order: 0,
+        prerequisiteProgramIds: [],
+        lessons: [
+          {
+            id: 'nested-lesson-1',
+            title: 'Lesson 1',
+            description: 'First lesson',
+            order: 0,
+            prerequisiteLessonIds: [],
+            scenarios: [
+              {
+                id: 'nested-scenario-1',
+                title: 'Scenario 1',
+                description: 'First scenario',
+                order: 0,
+                published: true,
+                cards: [
+                  {
+                    id: 'nested-card-1',
+                    kind: 'select',
+                    title: 'Nested Card 1',
+                    appearance: { theme: 'azure-blue', fontSize: 'md' },
+                    direction: 'known-to-learning' as const,
+                    promptKnown: 'Hello',
+                    optionsLearning: ['Привет'],
+                    correctIndex: 0,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    ...overrides,
+  };
 }
 
 describe('ContentSeedRepository', () => {
@@ -198,34 +250,64 @@ describe('ContentSeedRepository', () => {
       resetContentSeedCache();
       createRepository();
 
-      const promise = repository.preload();
-      flushManifest(
-        makeManifest({
-          scenarioFiles: ['scenarios/demo.json'],
-          courseFiles: ['courses/demo.json'],
-          cardFiles: ['cards/demo.json'],
-        }),
-      );
-      await flushFixture('/data/scenarios/demo.json', { scenarios: [makeScenarioFixture()] });
-      await flushFixture('/data/courses/demo.json', {
-        courses: [makeCourseFixture()],
-        lessons: [makeLessonFixture()],
+      const nested = makeNestedFixture({
+        id: 'c1',
+        title: 'Course 1',
+        programs: [
+          {
+            id: 'p1',
+            title: 'Program 1',
+            description: '',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'l1',
+                title: 'Lesson 1',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 's1',
+                    title: 'Scenario 1',
+                    description: 'Test scenario',
+                    order: 0,
+                    published: false,
+                    cards: [
+                      {
+                        id: 'card-1',
+                        kind: 'select',
+                        title: 'Card 1',
+                        appearance: { theme: 'default', fontSize: 'md' },
+                        promptKnown: 'Hello',
+                        optionsLearning: ['Привет'],
+                        direction: 'known-to-learning' as const,
+                        correctIndex: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       });
-      await flushFixture('/data/cards/demo.json', { cards: [makeCardFixture()] });
+
+      const promise = repository.preload();
+      flushManifest(makeManifest({ courseFiles: ['courses/demo.json'] }));
+      await flushFixture('/data/courses/demo.json', nested);
       await promise;
 
       expect(isContentSeedCacheReady()).toBe(true);
 
-      const scenarios = getScenarioSeedCache();
-      expect(scenarios).toHaveLength(1);
-      expect(scenarios[0]?.id).toBe('s1');
-      if (scenarios[0]?.cardSource.mode === 'fixed') {
-        expect(scenarios[0].cardSource.cardIds).toEqual(['card-1']);
-      }
-
       const courses = getCourseSeedCache();
       expect(courses.courses.map((course) => course.id)).toEqual(['c1']);
       expect(courses.lessons.map((lesson) => lesson.id)).toEqual(['l1']);
+
+      const scenarios = getScenarioSeedCache();
+      expect(scenarios).toHaveLength(1);
+      expect(scenarios[0]?.id).toBe('s1');
 
       expect(getCardSeedCache().map((card) => card.id)).toEqual(['card-1']);
     });
@@ -275,21 +357,6 @@ describe('ContentSeedRepository', () => {
       await retried;
 
       httpMock.verify();
-    });
-
-    it('should store an empty cards list when a card fixture is missing', async () => {
-      resetContentSeedCache();
-      createRepository();
-
-      const promise = repository.preload();
-      flushManifest(makeManifest({ cardFiles: ['cards/missing.json'] }));
-      (await waitForRequest('/data/cards/missing.json')).flush('not found', {
-        status: 404,
-        statusText: 'Not Found',
-      });
-      await promise;
-
-      expect(getCardSeedCache()).toEqual([]);
     });
 
     it('should hydrate from IndexedDB snapshot when version matches (no fixture requests)', async () => {
@@ -347,9 +414,42 @@ describe('ContentSeedRepository', () => {
         cards: [],
       });
 
+      const nested = makeNestedFixture({
+        id: 's1',
+        title: 'Stale Course',
+        programs: [
+          {
+            id: 'p1',
+            title: 'P',
+            description: '',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'l1',
+                title: 'L',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 's1',
+                    title: 'Scenario 1',
+                    description: '',
+                    order: 0,
+                    published: true,
+                    cards: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+
       const promise = repository.preload();
-      flushManifest(makeManifest({ version: 1, scenarioFiles: ['scenarios/demo.json'] }));
-      await flushFixture('/data/scenarios/demo.json', { scenarios: [makeScenarioFixture()] });
+      flushManifest(makeManifest({ version: 1, courseFiles: ['courses/demo.json'] }));
+      await flushFixture('/data/courses/demo.json', nested);
       await promise;
 
       expect(getScenarioSeedCache()[0]?.id).toBe('s1');
@@ -360,9 +460,41 @@ describe('ContentSeedRepository', () => {
       resetContentSeedCache();
       createRepository();
 
+      const nested = makeNestedFixture({
+        id: 'persist-course',
+        programs: [
+          {
+            id: 'p1',
+            title: 'P',
+            description: '',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'l1',
+                title: 'L',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 's1',
+                    title: 'Scenario 1',
+                    description: '',
+                    order: 0,
+                    published: true,
+                    cards: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+
       const promise = repository.preload();
-      flushManifest(makeManifest({ scenarioFiles: ['scenarios/demo.json'] }));
-      await flushFixture('/data/scenarios/demo.json', { scenarios: [makeScenarioFixture()] });
+      flushManifest(makeManifest({ courseFiles: ['courses/demo.json'] }));
+      await flushFixture('/data/courses/demo.json', nested);
       await promise;
 
       const snapshot = idbMock.getSnapshot();
@@ -378,15 +510,52 @@ describe('ContentSeedRepository', () => {
       resetContentSeedCache();
       createRepository();
 
+      const nested = makeNestedFixture({
+        id: 'getter-course',
+        programs: [
+          {
+            id: 'p1',
+            title: 'P',
+            description: '',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'l1',
+                title: 'L',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [
+                  {
+                    id: 's1',
+                    title: 'Scenario 1',
+                    description: '',
+                    order: 0,
+                    published: true,
+                    cards: [
+                      {
+                        id: 'card-1',
+                        kind: 'select',
+                        title: 'Card 1',
+                        appearance: { theme: 'default', fontSize: 'md' },
+                        promptKnown: 'Hello',
+                        optionsLearning: ['Привет'],
+                        direction: 'known-to-learning' as const,
+                        correctIndex: 0,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+
       const promise = repository.preload();
-      flushManifest(
-        makeManifest({
-          scenarioFiles: ['scenarios/demo.json'],
-          cardFiles: ['cards/demo.json'],
-        }),
-      );
-      await flushFixture('/data/scenarios/demo.json', { scenarios: [makeScenarioFixture()] });
-      await flushFixture('/data/cards/demo.json', { cards: [makeCardFixture()] });
+      flushManifest(makeManifest({ courseFiles: ['courses/demo.json'] }));
+      await flushFixture('/data/courses/demo.json', nested);
       await promise;
 
       expect(repository.getScenarioSeed()).toEqual(getScenarioSeedCache());
@@ -400,79 +569,68 @@ describe('ContentSeedRepository', () => {
       resetContentSeedCache();
       createRepository();
 
+      const nestedA = makeNestedFixture({
+        id: 'c1',
+        title: 'A',
+        programs: [
+          {
+            id: 'p1',
+            title: 'P',
+            description: '',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'l1',
+                title: 'A1',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [],
+              },
+            ],
+          },
+        ],
+      });
+
+      const nestedB = makeNestedFixture({
+        id: 'c1',
+        title: 'B',
+        programs: [
+          {
+            id: 'p2',
+            title: 'P',
+            description: '',
+            order: 0,
+            prerequisiteProgramIds: [],
+            lessons: [
+              {
+                id: 'l2',
+                title: 'B1',
+                description: '',
+                order: 0,
+                prerequisiteLessonIds: [],
+                scenarios: [],
+              },
+            ],
+          },
+        ],
+      });
+
       const promise = repository.preload();
       flushManifest(makeManifest({ courseFiles: ['courses/a.json', 'courses/b.json'] }));
-      await flushFixture('/data/courses/a.json', {
-        courses: [{ ...makeCourseFixture(), title: 'A' }],
-        lessons: [{ ...makeLessonFixture(), title: 'A1' }],
-      });
-      await flushFixture('/data/courses/b.json', {
-        courses: [{ ...makeCourseFixture(), title: 'B' }],
-        lessons: [{ ...makeLessonFixture(), title: 'B1' }],
-      });
+      await flushFixture('/data/courses/a.json', nestedA);
+      await flushFixture('/data/courses/b.json', nestedB);
       await promise;
 
       const courses = getCourseSeedCache();
       expect(courses.courses).toHaveLength(1);
       expect(courses.courses[0]?.title).toBe('B');
-      expect(courses.lessons).toHaveLength(1);
-      expect(courses.lessons[0]?.title).toBe('B1');
+      expect(courses.lessons).toHaveLength(2);
     });
   });
 
   describe('nested course format', () => {
-    function makeNestedFixture(overrides?: Partial<CoursesNestedFixture>): CoursesNestedFixture {
-      return {
-        id: 'nested-course-1',
-        title: 'Nested Course',
-        description: 'Test nested course',
-        languagePair: { known: 'ru', learning: 'en' },
-        published: true,
-        authoring: null,
-        updatedAt: '2026-01-01T00:00:00.000Z',
-        programs: [
-          {
-            id: 'nested-program-1',
-            title: 'Program 1',
-            description: 'First program',
-            order: 0,
-            prerequisiteProgramIds: [],
-            lessons: [
-              {
-                id: 'nested-lesson-1',
-                title: 'Lesson 1',
-                description: 'First lesson',
-                order: 0,
-                prerequisiteLessonIds: [],
-                scenarios: [
-                  {
-                    id: 'nested-scenario-1',
-                    title: 'Scenario 1',
-                    description: 'First scenario',
-                    order: 0,
-                    published: true,
-                    cards: [
-                      {
-                        id: 'nested-card-1',
-                        kind: 'select',
-                        title: 'Nested Card 1',
-                        appearance: { theme: 'azure-blue', fontSize: 'md' },
-                        direction: 'known-to-learning' as const,
-                        promptKnown: 'Hello',
-                        optionsLearning: ['Привет'],
-                        correctIndex: 0,
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-        ...overrides,
-      };
-    }
-
     it('should load nested course fixture and extract cards', async () => {
       resetContentSeedCache();
       createRepository();
