@@ -8,6 +8,9 @@ import { authInterceptor } from './auth.interceptor';
 import { errorInterceptor } from './error.interceptor';
 import { isHttpApiError } from '../../../shared/api/api-error.utils';
 
+/** Wait for microtasks + macrotasks to drain (Promise-based from() + switchMap). */
+const drain = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
+
 describe('authRefreshInterceptor', () => {
   let http: HttpClient;
   let httpMock: HttpTestingController;
@@ -38,7 +41,6 @@ describe('authRefreshInterceptor', () => {
 
   afterEach(() => {
     httpMock.verify();
-    TestBed.resetTestingModule();
   });
 
   it('should refresh and retry the request with a fresh token after 401', async () => {
@@ -51,7 +53,7 @@ describe('authRefreshInterceptor', () => {
     const first = httpMock.expectOne('/api/scenarios/demo');
     first.flush({ message: 'Unauthorized' }, { status: 401, statusText: 'Unauthorized' });
 
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    await drain();
 
     const retried = httpMock.expectOne('/api/scenarios/demo');
     expect(retried.request.headers.get('Authorization')).toBe('Bearer fresh-token');
@@ -70,7 +72,7 @@ describe('authRefreshInterceptor', () => {
     const first = httpMock.expectOne('/api/scenarios/demo');
     first.flush({ message: 'Unauthorized' }, { status: 401, statusText: 'Unauthorized' });
 
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    await drain();
 
     expect(isHttpApiError(caught)).toBe(true);
     if (isHttpApiError(caught)) {
