@@ -29,7 +29,9 @@ class TestHostComponent {
   languagePairs = { value: [] as readonly LanguagePairDto[] };
   courses = { value: [] as readonly CourseIndexEntry[] };
   programs = { value: [] as readonly ProgramWithLessons[] };
-  onDraftChange = (_draft: LessonFormDraft): void => { void _draft; /* no-op */ };
+  onDraftChange = (_draft: LessonFormDraft): void => {
+    void _draft; /* no-op */
+  };
 }
 
 describe('LessonFormComponent', () => {

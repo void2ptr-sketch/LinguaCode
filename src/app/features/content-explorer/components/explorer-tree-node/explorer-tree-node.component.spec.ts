@@ -51,9 +51,9 @@ describe('ExplorerTreeNodeComponent', () => {
       searchMatchedKeys: signal<ReadonlySet<string>>(new Set()),
       searchExtraChildren: signal<ReadonlyMap<string, readonly ExplorerNode[]>>(new Map()),
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      selectNode: (() => {}),
+      selectNode: () => {},
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      toggleNode: (() => {}),
+      toggleNode: () => {},
       selectedId: signal<string | null>(null),
       selectedNode: signal<ExplorerNode | null>(null),
     } as unknown as ContentExplorerStore;
@@ -197,7 +197,9 @@ describe('ExplorerTreeNodeComponent', () => {
 
   it('should call store.selectNode on onSelect', () => {
     let selectedNode: ExplorerNode | null = null;
-    (store as unknown as Record<string, (n: ExplorerNode) => void>)['selectNode'] = (n: ExplorerNode) => {
+    (store as unknown as Record<string, (n: ExplorerNode) => void>)['selectNode'] = (
+      n: ExplorerNode,
+    ) => {
       selectedNode = n;
     };
     const node = makeNode('course', 'c1', null);
@@ -211,17 +213,23 @@ describe('ExplorerTreeNodeComponent', () => {
   it('should call store.toggleNode on onToggle', async () => {
     let selectedNode: ExplorerNode | null = null;
     let toggledNode: ExplorerNode | null = null;
-    (store as unknown as Record<string, (n: ExplorerNode) => void>)['selectNode'] = (n: ExplorerNode) => {
+    (store as unknown as Record<string, (n: ExplorerNode) => void>)['selectNode'] = (
+      n: ExplorerNode,
+    ) => {
       selectedNode = n;
     };
-    (store as unknown as Record<string, (n: ExplorerNode) => Promise<void>>)['toggleNode'] = async (n: ExplorerNode) => {
+    (store as unknown as Record<string, (n: ExplorerNode) => Promise<void>>)['toggleNode'] = async (
+      n: ExplorerNode,
+    ) => {
       toggledNode = n;
     };
     const node = makeNode('course', 'c1', null);
     fixture.componentInstance.node.set(node);
     fixture.detectChanges();
 
-    await (component as unknown as Record<string, (e: MouseEvent) => Promise<void>>)['onToggle'](new MouseEvent('click'));
+    await (component as unknown as Record<string, (e: MouseEvent) => Promise<void>>)['onToggle'](
+      new MouseEvent('click'),
+    );
     expect(selectedNode).toBe(node);
     expect(toggledNode).toBe(node);
   });

@@ -89,7 +89,9 @@ describe('UserPairsTabComponent', () => {
   });
 
   it('should call setActivePair on pairManager and show success', async () => {
-    await (component as unknown as Record<string, (e: DirectionCardEvent) => Promise<void>>)['setActivePair'](mockEvent);
+    await (component as unknown as Record<string, (e: DirectionCardEvent) => Promise<void>>)[
+      'setActivePair'
+    ](mockEvent);
     expect(pairManager.setActivePair).toHaveBeenCalledWith(mockEvent);
   });
 
@@ -98,7 +100,9 @@ describe('UserPairsTabComponent', () => {
       Promise.resolve({ ok: false, reason: 'Already active' } as SetActivePairResult),
     );
 
-    await (component as unknown as Record<string, (e: DirectionCardEvent) => Promise<void>>)['setActivePair'](mockEvent);
+    await (component as unknown as Record<string, (e: DirectionCardEvent) => Promise<void>>)[
+      'setActivePair'
+    ](mockEvent);
 
     expect(snackBar.open).toHaveBeenCalledWith('Already active', 'Закрыть', { duration: 5000 });
   });
