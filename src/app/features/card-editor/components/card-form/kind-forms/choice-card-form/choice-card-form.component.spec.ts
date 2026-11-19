@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { ChoiceCardFormComponent } from './choice-card-form.component';
-import type { SelectCardDraft } from '../../../../types';
+import type { SelectCardDraft, ToneCardDraft } from '../../../../types';
 import { emptyLexemeCardDraft, emptyOptionLexemes } from '../../../../types';
 
 describe('ChoiceCardFormComponent', () => {
@@ -102,6 +102,39 @@ describe('ChoiceCardFormComponent', () => {
     it('should return optionsLexemes for select kind', () => {
       fixture.componentRef.setInput('draft', selectDraft);
       expect(component.optionLexemes()).toEqual(selectDraft.optionsLexemes);
+    });
+  });
+
+  describe('toneDraft', () => {
+    it('should return null for non-tone kind', () => {
+      fixture.componentRef.setInput('draft', selectDraft);
+      expect(component.toneDraft()).toBeNull();
+    });
+
+    it('should return draft for tone kind', () => {
+      const toneDraft: ToneCardDraft = {
+        kind: 'tone',
+        title: 'Tone Test',
+        promptKnown: 'Which tone?',
+        syllableBase: 'ma',
+        toneOptions: [1, 2, 3, 4] as const,
+        correctIndex: 0,
+        direction: 'known-to-learning',
+        appearance: { theme: 'azure-blue', fontSize: 'md' },
+        promptLexeme: {
+          primary: 'ma',
+          script: 'latn',
+          pinyin: '',
+          zhuyin: '',
+          palladius: '',
+          ipa: '',
+          audioUrl: '',
+          acceptedReadings: '',
+        },
+        audioUrl: '',
+      };
+      fixture.componentRef.setInput('draft', toneDraft);
+      expect(component.toneDraft()).toBe(toneDraft);
     });
   });
 });

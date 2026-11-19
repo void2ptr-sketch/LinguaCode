@@ -191,7 +191,7 @@ export function collectCourseBundle(
           const meta = card ? bundleMeta[cid] : undefined;
           if (card && meta) {
             // Remove cross-entity references from card
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            /* eslint-disable @typescript-eslint/no-unused-vars */
             const {
               courseId: _cc,
               lessonId: _cl,
@@ -199,6 +199,7 @@ export function collectCourseBundle(
               programId: _cp,
               ...cardClean
             } = card;
+            /* eslint-enable @typescript-eslint/no-unused-vars */
             bundledCards.push({
               card: {
                 ...cardClean,

@@ -140,4 +140,16 @@ describe('TagsService', () => {
     expect(service.loading()).toBe(false);
     expect(service.loaded()).toBe(true);
   });
+
+  it('should handle null data in response', async () => {
+    const loadPromise = service.load();
+    const req = httpMock.expectOne('/api/v1/cards/tags');
+    req.flush({ data: null, total: 0 });
+
+    await loadPromise;
+
+    expect(service.loading()).toBe(false);
+    expect(service.loaded()).toBe(true);
+    expect(service.tagCodes()).toEqual([]);
+  });
 });

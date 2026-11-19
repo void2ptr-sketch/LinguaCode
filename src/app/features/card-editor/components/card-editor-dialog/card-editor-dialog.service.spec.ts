@@ -43,4 +43,18 @@ describe('CardEditorDialogService', () => {
       }),
     );
   });
+
+  it('should return undefined when dialog is already open', async () => {
+    // Mock afterClosed to never resolve — keeps activeRef set
+    openSpy.mockReturnValue({
+      afterClosed: () => ({ then: () => ({ then: () => void 0 }) }),
+    });
+
+    // Start first call but don't await — this sets activeRef
+    void service.openCreate('select');
+
+    // Second call should return undefined because activeRef is set
+    const secondResult = await service.openCreate('flip');
+    expect(secondResult).toBeUndefined();
+  });
 });

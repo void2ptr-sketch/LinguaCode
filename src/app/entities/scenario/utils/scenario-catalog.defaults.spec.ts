@@ -69,4 +69,23 @@ describe('scenario-catalog.defaults', () => {
       'Пользовательское приветствие',
     );
   });
+
+  it('should skip obsolete radicals catalog items', () => {
+    const stored = [
+      {
+        id: 'lesson-radicals-12',
+        title: 'Obsolete Radical Lesson 12',
+        description: 'This should be skipped',
+        authorId: 'system',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        cardSource: { mode: 'fixed' as const, cardIds: [] },
+        languagePair: { known: 'ru' as const, learning: 'zh' as const },
+      },
+    ];
+
+    const merged = mergeScenariosWithDefaults(stored);
+    // defaults are still added, but obsolete stored items should be filtered
+    expect(merged.every((item) => item.id !== 'lesson-radicals-12')).toBe(true);
+  });
 });

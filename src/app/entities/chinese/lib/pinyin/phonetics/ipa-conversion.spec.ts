@@ -60,6 +60,14 @@ describe('parsePinyinSyllable', () => {
     expect(parsePinyinSyllable('MA').base).toBe('ma');
     expect(parsePinyinSyllable('Ma').base).toBe('ma');
   });
+
+  it('should handle ü without tone mark (toneFromMarkedVowel returns null)', () => {
+    // ü (U+00FC) is in PINYIN_TONE_MAP but not in TONE_MARK_TO_TONE,
+    // so toneFromMarkedVowel returns null — this covers branch 3.1
+    const result = parsePinyinSyllable('lü');
+    expect(result.base).toBe('lv');
+    expect(result.tone).toBe(5);
+  });
 });
 
 describe('isPinyinSyllableCovered', () => {
