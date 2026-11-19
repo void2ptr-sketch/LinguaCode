@@ -8,8 +8,19 @@ import { authInterceptor } from './auth.interceptor';
 import { errorInterceptor } from './error.interceptor';
 import { isHttpApiError } from '../../../shared/api/api-error.utils';
 
-/** Wait for microtasks + macrotasks to drain (Promise-based from() + switchMap). */
-const drain = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
+/**
+ * Drains pending microtasks deterministically.
+ *
+ * The interceptor chains `from(refreshSession())` into `switchMap`, so the retried
+ * request is issued on a microtask. Yielding a few microtask turns is enough and,
+ * unlike `setTimeout`, never depends on wall-clock timers (which can stall under
+ * a loaded CI worker and time the test out).
+ */
+const flushMicrotasks = async (turns = 10): Promise<void> => {
+  for (let i = 0; i < turns; i += 1) {
+    await Promise.resolve();
+  }
+};
 
 describe('authRefreshInterceptor', () => {
   let http: HttpClient;
@@ -23,6 +34,7 @@ describe('authRefreshInterceptor', () => {
   let mockAuthStore: ReturnType<typeof createMockAuthStore>;
 
   beforeEach(() => {
+    TestBed.resetTestingModule();
     mockAuthStore = createMockAuthStore();
 
     TestBed.configureTestingModule({
@@ -41,6 +53,7 @@ describe('authRefreshInterceptor', () => {
 
   afterEach(() => {
     httpMock.verify();
+    TestBed.resetTestingModule();
   });
 
   it('should refresh and retry the request with a fresh token after 401', async () => {
@@ -53,7 +66,8 @@ describe('authRefreshInterceptor', () => {
     const first = httpMock.expectOne('/api/scenarios/demo');
     first.flush({ message: 'Unauthorized' }, { status: 401, statusText: 'Unauthorized' });
 
-    await drain();
+    // Let the refreshSession() promise resolve and the retry request be issued.
+    await flushMicrotasks();
 
     const retried = httpMock.expectOne('/api/scenarios/demo');
     expect(retried.request.headers.get('Authorization')).toBe('Bearer fresh-token');
@@ -72,7 +86,7 @@ describe('authRefreshInterceptor', () => {
     const first = httpMock.expectOne('/api/scenarios/demo');
     first.flush({ message: 'Unauthorized' }, { status: 401, statusText: 'Unauthorized' });
 
-    await drain();
+    await flushMicrotasks();
 
     expect(isHttpApiError(caught)).toBe(true);
     if (isHttpApiError(caught)) {
